@@ -1,0 +1,8 @@
+[Follow this steps] [This experience is from Waltershausen]
+
+1. Don’t use port in the connection string
+2. The host is written like 172.18.71.92\\mixcont or wtms000\\mixcont iam not sure
+that it is always like that, but keep it in mind.
+
+OBS!OBS! NOTE: Having host like this: "wtms000\\mixcont" will only work in theirs network.
+To be able to connect to their database from our network have the host written like: "172.18.71.92\\mixcont"

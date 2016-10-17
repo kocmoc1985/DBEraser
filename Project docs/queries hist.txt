@@ -1,0 +1,7 @@
+UPDATE MainTable
+SET RecipeID='125R14A', OrderNr='963122'
+WHERE RecipeID='93019471A12'
+
+UPDATE MainTable
+SET RecipeID='125S87', OrderNr='938956'
+WHERE RecipeID <> '93019471A12'

@@ -1,0 +1,41 @@
+create table Production_Plan(
+PLANDATE datetime,
+PLANID varchar(15) not NULL,
+ORDERNO varchar(6) not NULL,
+RCODE varchar(9),
+MTYPE varchar(1),
+STATUS float,
+BATCHQTY float,
+PRODQTY float,
+FIRSTBATCH varchar(10),
+PRIORITY float,
+CANCELQTY float,
+BOOKEDQTY float,
+PRODDATE datetime,
+ORIGIN varchar(1),
+MODIFIED float,
+REMARK varchar(20),
+LASTUPDATE datetime,
+UPDATEDBY varchar(3)
+);
+
+insert into Production_Plan values (
+'2010-09-28',
+'254692732175',
+'392100',
+'a1',
+'5',
+2,
+5,
+10,
+'AD5',
+4,
+2,
+67,
+'2010-09-28',
+'V',
+89,
+'aa',
+'2010-09-28',
+'AB'
+);

@@ -1,0 +1,8 @@
+dynamicreports-core-4.0.0.jar
+jasperreports-6.1.0.jar
+commons-collections-3.2.jar
+commons-digester-2.1.jar
+commons-lang3-3.4.jar
+commons-logging-1.2.jar
+
+Note that versions are important!!

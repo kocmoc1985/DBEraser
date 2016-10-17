@@ -1,0 +1,4 @@
+jdom-2.0.2.jar
+sqljdbc4.jar
+mysql-connector-java-5.1.10-bin.jar //optional
+javasysmon-0.3.3.jar

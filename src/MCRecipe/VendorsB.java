@@ -1,0 +1,137 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package MCRecipe;
+
+import MyObjectTableInvert.BasicTab;
+import MyObjectTableInvert.RowDataInvert;
+import forall.HelpA;
+import forall.SqlBasicLocal;
+
+/**
+ *
+ * @author KOCMOC
+ */
+public class VendorsB extends BasicTab {
+
+    private Vendors vendors;
+    private final MC_RECIPE mCRecipe;
+    private boolean switch_table_3_2 = false;
+    private boolean switch_table_4 = false;
+
+    public VendorsB(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mc_recipe, Vendors vendors) {
+        super(sql, sql_additional, mc_recipe);
+        this.vendors = vendors;
+        this.mCRecipe = mc_recipe;
+    }
+
+    public void reset() {
+        switch_table_3_2 = false;
+        switch_table_4 = false;
+        mCRecipe.jButtonVendorsSaveTable3_2.setEnabled(true);
+        mCRecipe.jButtonVendorsSaveTable4.setEnabled(true);
+        HelpA.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable3_2);
+        HelpA.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable4);
+    }
+
+    private void refreshTable4_B() {
+        showTableInvert(mCRecipe.jPanelInvertTable4_B, vendors.TABLE_INVERT_4);
+    }
+
+    private void refreshTable3_2_B() {
+        showTableInvert(mCRecipe.jPanelInvertTable3_2_B, vendors.TABLE_INVERT_3_2);
+    }
+
+    public void clearFieldsBeforeAddingTable3_2() {
+        vendors.clearFieldsBeforeAddingTable3_2();
+//        refreshTable3_2_B();
+    }
+
+    public void addToTable3_2() {
+        //
+        String tradeName = getValueTableInvert("TradeName", 1, vendors.TABLE_INVERT_3_2);
+        //
+        if (switch_table_3_2 == false) {
+            clearFieldsBeforeAddingTable3_2();
+            switch_table_3_2 = true;
+            mCRecipe.jButtonVendorsSaveTable3_2.setEnabled(false);
+            HelpA.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable3_2);
+            return;
+        }
+        //
+        if (tradeName.isEmpty()) {
+            HelpA.showNotification("TADE NAME must be filled in");
+            return;
+        }
+        //
+        vendors.addToTable3_2();
+        switch_table_3_2 = false;
+        mCRecipe.jButtonVendorsSaveTable3_2.setEnabled(true);
+        refreshTable3_2_B();
+    }
+
+    public void deleteFromTable3_2() {
+        vendors.deleteFromTable3_2();
+        refreshTable3_2_B();
+    }
+
+    public void addToTable4() {
+        //
+        String vendor = getValueTableInvert("VendorName", 1, vendors.TABLE_INVERT_4);
+        //
+        if (switch_table_4 == false) {
+            clearFieldsBeforeAddingTable4();
+            switch_table_4 = true;
+            mCRecipe.jButtonVendorsSaveTable4.setEnabled(false);
+            HelpA.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable4);
+            return;
+        }
+        //
+        if (vendor.isEmpty()) {
+            HelpA.showNotification("Vendor must be filled in");
+            return;
+        }
+        //
+        if (vendors.addToTable4()) {
+            switch_table_4 = false;
+            refreshTable4_B();
+            mCRecipe.jButtonVendorsSaveTable4.setEnabled(true);
+        }
+    }
+
+    public void clearFieldsBeforeAddingTable4() {
+        vendors.clearFieldsBeforeAddingTable4();
+        refreshTable4_B();
+    }
+
+    public void deleteFromTable4() {
+        vendors.deleteFromTable4();
+        refreshTable4_B();
+    }
+
+    @Override
+    public void initializeSaveIndicators() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public RowDataInvert[] getConfigTableInvert() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showTableInvert() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void fillNotes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean getUnsaved(int nr) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

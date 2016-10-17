@@ -1,0 +1,4 @@
+1. Create an empty .mdb file
+2. Export database structure using "Export function" in MSsql
+3. OBS! In the Destination you must choose !exactly! this one "Microsoft Access"
+4. Create ODBC using your .mdb file. OBS! Dont place the file in the root of C:/

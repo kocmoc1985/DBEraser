@@ -1,0 +1,2 @@
+sqljdbc4.jar
+mysql-connector-java-5.1.10-bin.jar //optional

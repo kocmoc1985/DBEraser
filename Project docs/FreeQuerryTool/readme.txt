@@ -1,0 +1,1 @@
+The properties which starts with npms, means that the sqlResult set is aquired via NPMS server!!
