@@ -140,10 +140,10 @@ public class HelpA {
      */
     public static boolean runningInNetBeans(String path) {
         File f = new File(path);
-        if (f.exists() == false) {
-            return true;
-        } else {
+        if (f.exists()) {
             return false;
+        } else {
+            return true;
         }
     }
 

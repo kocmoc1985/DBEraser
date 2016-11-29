@@ -454,14 +454,19 @@ public class RecipeInitial extends BasicTab {
             return getComboParamsA();
         }
         //
-        boolean cond_0 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected() == false;
-        boolean cond_1 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
-                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
+        boolean checkedIngreds = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected(); 
+        boolean boxesEmpty = upperSearchCriteriasEmpty() == true;
+        boolean checkedOr = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
-        if (cond_0 || cond_1) {
-            return getComboParamsA(); // not selected
-        } else {
+//        boolean cond_2 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
+//                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
+        //
+        if (checkedIngreds && boxesEmpty == false && checkedOr == false) {
+            OUT.showMessage("-----------------------------------------> 23 PARAMS Recipes_Z_X");
             return getComboParamsB();
+        } else {
+            OUT.showMessage("-----------------------------------------> 21 PARAMS (Recipes_Z_X_IngredName)");
+            return getComboParamsA(); // not selected
         }
     }
 
@@ -488,6 +493,7 @@ public class RecipeInitial extends BasicTab {
      * @param box
      */
     private boolean checkIfToFill(JComboBox box) {
+        //
         boolean condition_1 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
         boolean condition_2 = box == mCRecipe2.jComboBox_Ingred_1;
         boolean condition_2_2 = box == mCRecipe2.jComboBox_Ingred_2;
@@ -560,7 +566,7 @@ public class RecipeInitial extends BasicTab {
         //
         boolean boxesEmpty = upperSearchCriteriasEmpty();
         //
-        String q = SQL_A.fill_comboboxes_recipe_initial_b(colName, getComboParams(null), boxesEmpty);
+        String q = SQL_A.fill_comboboxes_recipe_initial_b(colName, getComboParams(null));
         OUT.showMessage(q);
         //
         //

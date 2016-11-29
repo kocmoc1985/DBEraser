@@ -648,21 +648,18 @@ public class SQL_A {
                 + ") order by " + param + " asc";
     }
 
-    public static String fill_comboboxes_recipe_initial_b(String param, String[] params, boolean upperBoxesEmpty) {
+    public static String fill_comboboxes_recipe_initial_b(String param, String[] params) {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
-        boolean cond_2 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
-        //
-        if (cond_1 == true && cond_2 == false && upperBoxesEmpty == false) {
+        if (params.length == 23) {
             procedure = "fn_ITF_Recipes_Z_X";
             //
             return "select distinct " + param + " from " + procedure + " ("
                     + buildParametersForProcedure(params)
                     + ") order by " + param + " asc";
             //
-        } else { // In case if Ingredients search function is activated
+        } else { 
             procedure = "fn_ITF_Recipes_Z_X_IngredName";
             //
             return "select distinct IngredName from " + procedure + "() "
