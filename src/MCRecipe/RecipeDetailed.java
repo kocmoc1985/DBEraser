@@ -951,7 +951,9 @@ public class RecipeDetailed extends BasicTab {
         //
         recipeInitial.clearBoxes();
         //
-        updateRecipeCode();
+        if(updateRecipeCode() == false){
+            return;
+        }
         //
         if (fromScratch) {
             clearRows(TABLE_INVERT, 1, 4);
@@ -964,12 +966,12 @@ public class RecipeDetailed extends BasicTab {
     //
     private String recipe_code_update;
 
-    private void updateRecipeCode() {
+    private boolean updateRecipeCode() {
         //
         recipe_code_update = JOptionPane.showInputDialog("Specify Recipe Code");
         //
         if (recipe_code_update == null) {
-            return;
+            return false;
         }
         //
         String q = "select * from Recipe_Prop_Main"
@@ -984,7 +986,7 @@ public class RecipeDetailed extends BasicTab {
             HelpA.showNotification("Recipe code: " + recipe_code_update
                     + "and Release: " + getRelease() + ","
                     + " exists already!");
-            return;
+            return false;
         }
         //
         String q2 = SQL_A.recipe_detailed_update_recipe_name(recipe_code_update);
@@ -996,6 +998,8 @@ public class RecipeDetailed extends BasicTab {
         }
         //
         updateTables(recipe_code_update);
+        //
+        return true;
     }
     private static String RECIPE_ID_REFRESH_TABLE;
     private static String RECIPE_CODE_REFRESH_TABLE;
