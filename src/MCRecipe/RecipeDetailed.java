@@ -957,10 +957,10 @@ public class RecipeDetailed extends BasicTab {
         //
         if (fromScratch) {
             clearRows(TABLE_INVERT, 1, 4);
+            changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
+        }else{
+            changeValueAndSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
         }
-        //
-        changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
-        //
     }
     //
     //
