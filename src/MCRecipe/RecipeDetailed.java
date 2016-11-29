@@ -188,20 +188,25 @@ public class RecipeDetailed extends BasicTab {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-//                recipeInitial.clearBoxes();
-//                recipeInitial.clearBoxesB();
-//                updateTables(getRecipeCode());
                 //
                 //
                 JTable table = mCRecipe2.jTable1;
-                int row = table.getSelectedRow();
-                recipeInitial.fill_table_1(null, null, null, null);
-                HelpA.setSelectedRow(table, row);
+                //
+                //
+                if (RECIPE_ID_REFRESH_TABLE != null) {
+                    HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeInitial.T1_RECIPE_ID, RECIPE_ID_REFRESH_TABLE));
+                    RECIPE_ID_REFRESH_TABLE = null;
+                } else {
+                    int row = table.getSelectedRow();
+                    recipeInitial.fill_table_1(null, null, null, null);
+                    HelpA.setSelectedRow(table, row);
+                }
                 //
                 mCRecipe2.clickedOnTable1RecipeInitial();
                 //
                 mCRecipe2.recipeDetailedTabbClicked();
                 //
+
             }
         });
     }
@@ -268,6 +273,7 @@ public class RecipeDetailed extends BasicTab {
         }
         //
         saveChangesTableInvert();
+        //
         refreshRecipeInitialTable1AfterSaving();
     }
 
@@ -921,6 +927,7 @@ public class RecipeDetailed extends BasicTab {
     //
 
     public void addNewRecipe(boolean fromScratch) {
+        //
         String recipe_id = getRecipeId();
         //
         if (getRecipeCode().trim().equals("NEW") && fromScratch == false) {
@@ -988,6 +995,7 @@ public class RecipeDetailed extends BasicTab {
         //
         updateTables(recipe_code_update);
     }
+    private static String RECIPE_ID_REFRESH_TABLE;
 
     private void updateTables(String recipeCode) {
         //
@@ -996,6 +1004,7 @@ public class RecipeDetailed extends BasicTab {
         recipeInitial.fill_table_1(SQL_A.quotes(recipeCode, false), null, null, null);
         //
         String recipeId = HelpA.getLastIncrementedId(sql, "Recipe_Prop_Main");
+        RECIPE_ID_REFRESH_TABLE = recipeId;
         //
         if (recipeId != null) {
             HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeInitial.T1_RECIPE_ID, recipeId));
@@ -1028,7 +1037,7 @@ public class RecipeDetailed extends BasicTab {
         if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
             String[] toRemove = new String[]{"PRICE/KG", "PRICE/L"};
             config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
-        }else{
+        } else {
             config = getConfigTableInvert();
         }
         //
