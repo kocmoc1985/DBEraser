@@ -194,8 +194,10 @@ public class RecipeDetailed extends BasicTab {
                 //
                 //
                 if (RECIPE_ID_REFRESH_TABLE != null) {
+                    recipeInitial.fill_table_1(RECIPE_CODE_REFRESH_TABLE, null, null, null);
                     HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeInitial.T1_RECIPE_ID, RECIPE_ID_REFRESH_TABLE));
                     RECIPE_ID_REFRESH_TABLE = null;
+                    RECIPE_CODE_REFRESH_TABLE = null;
                 } else {
                     int row = table.getSelectedRow();
                     recipeInitial.fill_table_1(null, null, null, null);
@@ -996,6 +998,7 @@ public class RecipeDetailed extends BasicTab {
         updateTables(recipe_code_update);
     }
     private static String RECIPE_ID_REFRESH_TABLE;
+    private static String RECIPE_CODE_REFRESH_TABLE;
 
     private void updateTables(String recipeCode) {
         //
@@ -1004,7 +1007,9 @@ public class RecipeDetailed extends BasicTab {
         recipeInitial.fill_table_1(SQL_A.quotes(recipeCode, false), null, null, null);
         //
         String recipeId = HelpA.getLastIncrementedId(sql, "Recipe_Prop_Main");
+        //
         RECIPE_ID_REFRESH_TABLE = recipeId;
+        RECIPE_CODE_REFRESH_TABLE = recipeCode;
         //
         if (recipeId != null) {
             HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeInitial.T1_RECIPE_ID, recipeId));
