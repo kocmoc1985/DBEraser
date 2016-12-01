@@ -3833,7 +3833,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public static javax.swing.JCheckBox jCheckBoxRecipeInitialOR;
     public static javax.swing.JCheckBox jCheckBoxRecipeInitialSearchByIngredients;
     protected javax.swing.JComboBox jComboBox1;
-    protected javax.swing.JComboBox jComboBox1_Recipe_Origin;
+    public javax.swing.JComboBox jComboBox1_Recipe_Origin;
     protected javax.swing.JComboBox jComboBox2_Detailed_Group;
     protected javax.swing.JComboBox jComboBox3_Recipe_Stage;
     protected javax.swing.JComboBox jComboBox4_Mixer_Code;
@@ -3976,7 +3976,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel17;
     public javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
@@ -4034,7 +4034,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel_Ingredients;
     private javax.swing.JPanel jPanel_Log;
     private javax.swing.JPanel jPanel_RecipeDetailed;
-    private javax.swing.JPanel jPanel_RecipeInitial;
+    public javax.swing.JPanel jPanel_RecipeInitial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     public javax.swing.JScrollPane jScrollPane11;

@@ -10,6 +10,8 @@ import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -18,7 +20,9 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JTable;
+import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.rtf.RTFEditorKit;
 
@@ -50,6 +54,14 @@ public class RecipeInitial extends BasicTab {
         super(sql, sql, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
         go();
+        
+//        mCRecipe2.jComboBox1_Recipe_Origin.addMouseMotionListener(new MouseMotionAdapter() {
+//
+//            @Override
+//            public void mouseMoved(MouseEvent e) {
+//                System.out.println("AA" + e.getSource());
+//            }
+//        });
     }
 
     private void go() {
@@ -587,7 +599,7 @@ public class RecipeInitial extends BasicTab {
             prevCall = System.currentTimeMillis();
             return true;
         }
-
+        
     }
     public static long prevCall;
 
