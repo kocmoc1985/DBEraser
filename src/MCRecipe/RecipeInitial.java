@@ -461,11 +461,11 @@ public class RecipeInitial extends BasicTab {
 //        boolean cond_2 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
 //                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
         //
-        if (checkedIngreds && boxesEmpty == false && checkedOr == false) {
-            OUT.showMessage("-----------------------------------------> 23 PARAMS Recipes_Z_X");
+        if (checkedIngreds && boxesEmpty == false) {
+//            OUT.showMessage("-----------------------------------------> 23 PARAMS Recipes_Z_X");
             return getComboParamsB();
         } else {
-            OUT.showMessage("-----------------------------------------> 21 PARAMS (Recipes_Z_X_IngredName)");
+//            OUT.showMessage("-----------------------------------------> 21 PARAMS (Recipes_Z_X_IngredName)");
             return getComboParamsA(); // not selected
         }
     }
