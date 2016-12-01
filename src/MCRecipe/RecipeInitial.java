@@ -454,7 +454,7 @@ public class RecipeInitial extends BasicTab {
             return getComboParamsA();
         }
         //
-        boolean checkedIngreds = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected(); 
+        boolean checkedIngreds = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
         boolean boxesEmpty = upperSearchCriteriasEmpty() == true;
         boolean checkedOr = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
@@ -564,8 +564,6 @@ public class RecipeInitial extends BasicTab {
         //
         Object selection = box.getSelectedItem();
         //
-        boolean boxesEmpty = upperSearchCriteriasEmpty();
-        //
         String q = SQL_A.fill_comboboxes_recipe_initial_b(colName, getComboParams(null));
         OUT.showMessage(q);
         //
@@ -580,9 +578,26 @@ public class RecipeInitial extends BasicTab {
 
     }
 
-    public void fillComboBox(final JComboBox box, final String colName) {
+    public boolean delay() {
+//        System.out.println("AAA:" + Math.abs(System.currentTimeMillis() - prevCall));
+        if (Math.abs(System.currentTimeMillis() - prevCall) < 1000) {
+            prevCall = System.currentTimeMillis();
+            return false;
+        } else {
+            prevCall = System.currentTimeMillis();
+            return true;
+        }
+
+    }
+    public static long prevCall;
+
+    public synchronized void fillComboBox(final JComboBox box, final String colName) {
         //
         if (checkIfToFill(box) == false) {
+            return;
+        }
+        //
+        if (delay() == false) {
             return;
         }
         //
@@ -604,7 +619,11 @@ public class RecipeInitial extends BasicTab {
     }
 
     public void fillComboBoxB(final JComboBox box, final String colName) {
-
+        //
+        if (delay() == false) {
+            return;
+        }
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
