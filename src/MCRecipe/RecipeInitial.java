@@ -10,8 +10,6 @@ import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -20,10 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JList;
 import javax.swing.JTable;
-import javax.swing.ListModel;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.rtf.RTFEditorKit;
 
 /**
@@ -54,7 +49,7 @@ public class RecipeInitial extends BasicTab {
         super(sql, sql, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
         go();
-        
+
 //        mCRecipe2.jComboBox1_Recipe_Origin.addMouseMotionListener(new MouseMotionAdapter() {
 //
 //            @Override
@@ -468,16 +463,23 @@ public class RecipeInitial extends BasicTab {
         //
         boolean checkedIngreds = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
         boolean boxesEmpty = upperSearchCriteriasEmpty() == true;
+        boolean ingredBoxesEmpty = ingredSearchCriteriasEmpty() == true;
         boolean checkedOr = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
 //        boolean cond_2 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
 //                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
         //
-        if (checkedIngreds && boxesEmpty == false) {
-//            OUT.showMessage("-----------------------------------------> 23 PARAMS Recipes_Z_X");
+        if (checkedIngreds && checkedOr == false && ingredBoxesEmpty == false) {
+            System.out.println("getComboParamsB()");
             return getComboParamsB();
+        } else if (checkedOr && boxesEmpty) {
+            System.out.println("getComboParamsA()");
+            return getComboParamsA(); // not selected
+        } else if (checkedIngreds && boxesEmpty) {
+            System.out.println("getComboParamsA()");
+            return getComboParamsA(); // not selected
         } else {
-//            OUT.showMessage("-----------------------------------------> 21 PARAMS (Recipes_Z_X_IngredName)");
+            System.out.println("getComboParamsA()");
             return getComboParamsA(); // not selected
         }
     }
@@ -540,6 +542,14 @@ public class RecipeInitial extends BasicTab {
         });
     }
 
+    private boolean ingredSearchCriteriasEmpty() {
+        if (mCRecipe2.jComboBox_Ingred_1.getSelectedItem() != null || mCRecipe2.jComboBox_Ingred_2.getSelectedItem() != null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public boolean upperSearchCriteriasEmpty() {
         //
         for (JComboBox box : mCRecipe2.upperSearchListRecipeInitial) {
@@ -599,7 +609,7 @@ public class RecipeInitial extends BasicTab {
             prevCall = System.currentTimeMillis();
             return true;
         }
-        
+
     }
     public static long prevCall;
 
