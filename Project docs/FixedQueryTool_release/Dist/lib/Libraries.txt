@@ -1,2 +1,5 @@
 sqljdbc4.jar
+javasysmon.xx.jar
+NetProcMonitor.jar
+
 mysql-connector-java-5.1.10-bin.jar //optional

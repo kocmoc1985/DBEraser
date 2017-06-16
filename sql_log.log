@@ -1,0 +1,1 @@
+[2017-06-16 15:25:46]   com.microsoft.sqlserver.jdbc.SQLServerException: The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value.

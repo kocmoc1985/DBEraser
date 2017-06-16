@@ -1,5 +1,8 @@
 dynamicreports-core-4.0.0.jar
+dynamicreports-examples-4.0.1.jar
 jasperreports-6.1.0.jar
+spring-2.5.jar
+jdt-compiler-3.1.1.jar
 commons-collections-3.2.jar
 commons-digester-2.1.jar
 commons-lang3-3.4.jar

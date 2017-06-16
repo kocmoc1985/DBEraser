@@ -1,0 +1,1 @@
+[2017-06-16 15:25:46]   select * from interf where TDATETIME >='2014-01-01-' and TDATETIME <='2014-05-01'
