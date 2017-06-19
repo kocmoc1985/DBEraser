@@ -1,1 +1,4 @@
 [2017-06-16 15:25:46]   select * from interf where TDATETIME >='2014-01-01-' and TDATETIME <='2014-05-01'
+[2017-06-19 15:27:29]   select * from interf where CAST(TDATETIME as Date) >='2010-01-01' and CAST(TDATETIME as Date) <='2010-12-31' order by TDATETIME desc
+[2017-06-19 15:28:36]   select * from interf where CAST(TDATETIME as Date) >='2010-01-01' and CAST(TDATETIME as Date) <='2010-12-31' order by TDATETIME desc
+[2017-06-19 15:44:29]   select * from interf where CAST(TDATETIME as Datetime) >='YYYY-MM-DD' and CAST(TDATETIME as Datetime) <='YYYY-MM-DD' and VHPRNO ='2307826' order by TDATETIME desc

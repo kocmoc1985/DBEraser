@@ -1,1 +1,4 @@
 [2017-06-16 15:25:46]   com.microsoft.sqlserver.jdbc.SQLServerException: The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value.
+[2017-06-19 15:27:29]   com.microsoft.sqlserver.jdbc.SQLServerException: Type Date is not a defined system type.
+[2017-06-19 15:28:36]   com.microsoft.sqlserver.jdbc.SQLServerException: Type Date is not a defined system type.
+[2017-06-19 15:44:29]   com.microsoft.sqlserver.jdbc.SQLServerException: Syntax error converting datetime from character string.

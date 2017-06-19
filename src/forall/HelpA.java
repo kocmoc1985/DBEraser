@@ -1221,6 +1221,13 @@ public class HelpA {
             return false;
         }
     }
+    
+    public static boolean checkIfDate(String value_yyyy_MM_dd){
+        if(value_yyyy_MM_dd.matches("\\d{4}-\\d{2}-\\d{2}")){
+            return true;
+        }
+        return false;
+    }
 
     private static void requestFocus(final JComponent component) {
         Thread x = new Thread() {

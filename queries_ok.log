@@ -16,3 +16,30 @@
 [2017-06-16 15:56:15]   select * from interf where TDATETIME >='2009-12-20' and TDATETIME <='2009-12-31'
 [2017-06-16 15:56:21]   select * from interf where TDATETIME >='2009-12-16' and TDATETIME <='2009-12-31'
 [2017-06-16 15:56:25]   select * from interf where TDATETIME >='2009-12-14' and TDATETIME <='2009-12-31'
+[2017-06-19 09:13:19]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
+[2017-06-19 09:15:12]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
+[2017-06-19 09:16:02]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-01-31' and VHMFNO ='9000433'
+[2017-06-19 09:20:29]   select * from interf where TDATETIME >='2014-01-01' and TDATETIME <='2014-01-31' and VHMFNO ='9000433'
+[2017-06-19 09:20:47]   select * from interf where TDATETIME >='2014-01-01' and TDATETIME <='2014-01-31'
+[2017-06-19 09:21:03]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2014-01-31'
+[2017-06-19 09:58:21]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2014-12-31' and VHMFNO ='9000433'
+[2017-06-19 10:37:35]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31' and VHMFNO ='9000433'
+[2017-06-19 15:27:08]   select * from interf order by TDATETIME desc
+[2017-06-19 15:29:44]   select * from interf where CAST(TDATETIME as Datetime) >='2010-01-01' and CAST(TDATETIME as Datetime) <='2010-01-31' order by TDATETIME desc
+[2017-06-19 15:29:53]   select * from interf where CAST(TDATETIME as Datetime) >='2010-01-01' and CAST(TDATETIME as Datetime) <='2010-12-31' order by TDATETIME desc
+[2017-06-19 15:30:29]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-10' and CAST(TDATETIME as Datetime) <='2010-06-11' order by TDATETIME desc
+[2017-06-19 15:41:56]   select * from interf order by TDATETIME desc
+[2017-06-19 15:44:15]   select * from interf order by TDATETIME desc
+[2017-06-19 15:49:39]   select * from interf order by TDATETIME desc
+[2017-06-19 15:49:52]   select * from interf where CAST(TDATETIME as Datetime) >='' and CAST(TDATETIME as Datetime) <='' and VHMFNO ='' and VHPRNO ='2307826' order by TDATETIME desc
+[2017-06-19 16:12:38]   select * from interf order by TDATETIME desc
+[2017-06-19 16:13:25]   select * from interf where VHPRNO ='0000310' order by TDATETIME desc
+[2017-06-19 16:13:45]   select * from interf where VHMFNO ='1313989' and VHPRNO ='0000310' order by TDATETIME desc
+[2017-06-19 16:14:05]   select * from interf order by TDATETIME desc
+[2017-06-19 16:14:54]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' and VHPRNO ='0007860' order by TDATETIME desc
+[2017-06-19 16:15:17]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='0007860' order by TDATETIME desc
+[2017-06-19 16:17:07]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' order by TDATETIME desc
+[2017-06-19 16:22:09]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' and VHPRNO ='007860' order by TDATETIME desc
+[2017-06-19 16:22:13]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='007860' order by TDATETIME desc
+[2017-06-19 16:22:32]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='0007860' order by TDATETIME desc
+[2017-06-19 16:22:45]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHMFNO ='1196891' order by TDATETIME desc

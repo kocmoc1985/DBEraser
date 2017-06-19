@@ -231,6 +231,10 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         jButtonRecipeInitialPrintTable1 = new javax.swing.JButton();
         jButtonFind = new javax.swing.JButton();
         jButtonRecipeInitialGo = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -268,6 +272,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         });
 
         jButtonFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_2.png"))); // NOI18N
+        jButtonFind.setText("search");
         jButtonFind.setToolTipText("Find");
         jButtonFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,13 +281,17 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         });
 
         jButtonRecipeInitialGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
-        jButtonRecipeInitialGo.setText("Show all");
+        jButtonRecipeInitialGo.setText("show all");
         jButtonRecipeInitialGo.setToolTipText("");
         jButtonRecipeInitialGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialGoActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Order");
+
+        jLabel4.setText("Article");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,13 +308,21 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonFind)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonRecipeInitialGo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
@@ -314,20 +331,26 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButtonRecipeInitialGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRecipeInitialGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -346,12 +369,12 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     }//GEN-LAST:event_jButtonRecipeInitialPrintTable1ActionPerformed
 
     private void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
-        if(jTextField1.getText().length() != 10 || jTextField2.getText().length() != 10){
-            HelpA.showNotification("Date format not correct, should be like (2010-01-01)");
-            return;
-        }
+//        if (jTextField1.getText().length() != 10 || jTextField2.getText().length() != 10) {
+//            HelpA.showNotification("Date format not correct, should be like (2010-01-01)");
+//            return;
+//        }
         //
-        CURRENT_QUERY = selectDateRangeQuery(jTextField1.getText(), jTextField2.getText());
+        CURRENT_QUERY = selectDateRangeQuery(jTextField1.getText(), jTextField2.getText(), jTextField4.getText(), jTextField3.getText());
         run_query_by_thread();
     }//GEN-LAST:event_jButtonFindActionPerformed
 
@@ -359,10 +382,45 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         show_data();
     }//GEN-LAST:event_jButtonRecipeInitialGoActionPerformed
 
-    public static String selectDateRangeQuery(String dateFrom, String dateTo) {
-        return "select * from " + TABLE_NAME
-                + " where TDATETIME >='" + dateFrom + "'"
-                + " and TDATETIME <='" + dateTo + "'";
+    public static String selectDateRangeQuery(String dateFrom, String dateTo, String article, String order) {
+        String q = "select * from " + TABLE_NAME;
+
+        if (HelpA.checkIfDate(dateFrom) && HelpA.checkIfDate(dateTo)) {
+            q += " where CAST(TDATETIME as Datetime) >='" + dateFrom + "'";
+            q += " and CAST(TDATETIME as Datetime) <='" + dateTo + "'";
+            //
+            if (order.length() != 0 && article.length() != 0) {
+                q += " and VHMFNO ='" + order + "'";
+                q += " and VHPRNO ='" + article + "'";
+            } else if (order.length() != 0 && article.length() == 0) {
+                q += " and VHMFNO ='" + order + "'";
+            } else if (article.length() != 0 && order.length() == 0) {
+                q += " and VHPRNO ='" + article + "'";
+            }
+            //
+        } else {
+            if (order.length() != 0 && article.length() != 0) {
+                q += " where VHMFNO ='" + order + "'";
+                q += " and VHPRNO ='" + article + "'";
+            } else if (order.length() != 0 && article.length() == 0) {
+                q += " where VHMFNO ='" + order + "'";
+            } else if (article.length() != 0 && order.length() == 0) {
+                q += " where VHPRNO ='" + article + "'";
+            }
+
+        }
+
+        q += " order by TDATETIME desc";
+
+        return q;
+
+
+//        return "select * from " + TABLE_NAME
+//                + " where CAST(TDATETIME as Datetime) >='" + dateFrom + "'"
+//                + " and CAST(TDATETIME as Datetime) <='" + dateTo + "'"
+//                + " and VHMFNO ='" + order + "'"
+//                + " and VHPRNO ='" + article + "'"
+//                + " order by TDATETIME desc";
     }
 
     private void update_row_2() {
@@ -522,7 +580,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         }
         //</editor-fold>
         //
-        HelpA.err_output_to_file();
+//        HelpA.err_output_to_file();
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -535,13 +593,17 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     private javax.swing.JButton jButtonFind;
     public javax.swing.JButton jButtonRecipeInitialGo;
     protected javax.swing.JButton jButtonRecipeInitialPrintTable1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
