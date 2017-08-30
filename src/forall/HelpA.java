@@ -1487,6 +1487,36 @@ public class HelpA {
         //
         return jbox;
     }
+    
+    private static long flagWait;
+    
+    /**
+     * IMPORTANT!
+     * @param box
+     * @param query
+     * @param sql 
+     */
+    public static void fillComboBox_with_wait(final JComboBox box, String query, SqlBasicLocal sql) {
+        
+        if (HelpA.fillAllowedComboBox(flagWait) == false) {
+            return;
+        } else {
+            flagWait = 0;
+        }
+        //
+        Object selection = box.getSelectedItem();
+        //
+        String q = query;
+        //
+        //
+        HelpA.fillComboBox(sql, box, q, null, false, false);
+        //
+        box.showPopup();
+        //
+        flagWait = System.currentTimeMillis();
+        //
+        box.setSelectedItem(selection);
+    }
 
     private static String getValueResultSet(ResultSet rs, int index) {
         try {
