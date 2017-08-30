@@ -43,3 +43,26 @@
 [2017-06-19 16:22:13]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='007860' order by TDATETIME desc
 [2017-06-19 16:22:32]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='0007860' order by TDATETIME desc
 [2017-06-19 16:22:45]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHMFNO ='1196891' order by TDATETIME desc
+[2017-08-30 10:38:10]   SELECT distinct Quality from REsultsN
+[2017-08-30 11:06:09]   SELECT * from REsultsN
+[2017-08-30 11:06:44]   SELECT * from REsultsN
+[2017-08-30 11:10:29]   select * from REsultsN
+
+[2017-08-30 11:20:45]   select * from resultsn
+[2017-08-30 11:21:47]   select * from resultsn
+[2017-08-30 11:22:44]   select * from resultsn 
+[2017-08-30 11:30:09]   select * from resultsn
+[2017-08-30 11:30:25]   select * from resultsn
+[2017-08-30 11:30:52]   select * from resultsn
+[2017-08-30 11:31:40]   select * from resultsn
+[2017-08-30 11:46:57]   select * from resultsn
+[2017-08-30 11:47:12]   select * from resultsn
+[2017-08-30 11:48:28]   SELECT distinct Quality from REsultsN
+[2017-08-30 11:49:57]   SELECT distinct Quality from REsultsN
+[2017-08-30 11:57:45]   SELECT distinct Quality from REsultsN
+[2017-08-30 11:59:48]   SELECT distinct Quality from REsultsN
+[2017-08-30 11:59:59]   SELECT distinct Quality from REsultsN
+[2017-08-30 12:13:49]   SELECT distinct Quality from REsultsN
+[2017-08-30 12:19:06]   SELECT distinct Quality from REsultsN
+[2017-08-30 12:25:59]   SELECT distinct Quality from REsultsN
+[2017-08-30 12:27:28]   SELECT distinct Quality from REsultsN

@@ -118,7 +118,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //==========
         String odbc = properties.getProperty("odbc", "");
         //==========================================
-        String mdb_path=properties.getProperty("mdb_path", "");
+        String mdb_path = properties.getProperty("mdb_path", "");
         //==========================================
         String dbtype = properties.getProperty("db_type", "");
         String host = properties.getProperty("host", "");
@@ -137,13 +137,13 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         try {
             if (dbtype.equals(MS_SQL)) {
-                sql_c.connect(host, port, db_name, user, pass,simpleStatement);
+                sql_c.connect(host, port, db_name, user, pass, simpleStatement);
             } else if (dbtype.equals(MY_SQL)) {
                 sql_c.connectMySql(host, port, db_name, user, pass);
             } else if (dbtype.equals(ODBC)) {
-                sql_c.connectODBC(user, pass, odbc,simpleStatement);
-            }else if (dbtype.equals(MDB)) {
-                sql_c.connectMDB(user, pass, mdb_path,simpleStatement);
+                sql_c.connectODBC(user, pass, odbc, simpleStatement);
+            } else if (dbtype.equals(MDB)) {
+                sql_c.connectMDB(user, pass, mdb_path, simpleStatement);
             } else if (dbtype.equals(NPMS)) {
                 sql = createRemoteSql(GP.SQL_NPMS_HOST, GP.SQL_NPMS_PORT,
                         host, Integer.parseInt(port), db_name, user, pass,
@@ -179,7 +179,6 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         return sqlRemote;
     }
 
- 
     @Override
     public void showMessage(String str) {
         jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
@@ -196,40 +195,105 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         return headers;
     }
 
+    public static int getRowCountResultSet(ResultSet rs) {
+        try {
+            rs.last();
+            return rs.getRow();
+        } catch (Exception ex) {
+            return -1;
+        }
+    }
+
     public Object[][] getContent(ResultSet rs) throws Exception {
-        int MAX_ROWS = Integer.parseInt(jTextField1RowsMax.getText());
+        //
+        int MAX_ROWS = 0;
+        //
+        try {
+            MAX_ROWS = Integer.parseInt(jTextField1RowsMax.getText());
+        } catch (NumberFormatException ex) {
+            MAX_ROWS = Integer.MAX_VALUE;
+        }
+        //
         ResultSetMetaData rsmt;
         Object[][] content;
         int columns;
         rsmt = rs.getMetaData(); // får in antalet columner
         columns = rsmt.getColumnCount(); // retrieves number of columns och lagrar det i "columns".
-
+        //
         int rows = 0;
-        while (rs.next()) {
-            rows++;
+        //
+        rows = getRowCountResultSet(rs);
+        //
+        if (rows != 0 && rows != -1) {
+            rs.first();
+        } else {
+            while (rs.next()) {
+                try {
+                    rs.getString(1);
+                    rows++;
+                } catch (Exception ex) {
+                    break;
+                }
+            }
         }
-
+        //
+        if (MAX_ROWS > rows) {
+            MAX_ROWS = rows;
+        }
+        //
+        jLabel2Rows.setText("rows: " + rows);
+        //
         rs = sql.execute(CURRENT_QUERY);
-
+        //
         if (rows < MAX_ROWS) {
             content = new Object[rows][columns]; // ger arrayen content som är en "Object"
         } else {
             content = new Object[MAX_ROWS][columns];
         }
-
+        //
         int row = 0;
+        boolean break_while = false;
         while (rs.next() && row < (MAX_ROWS - 1)) {
+            //
             for (int col = 0; col < columns; col++) {
                 try {
                     content[row][col] = rs.getObject(col + 1);
                 } catch (Exception ex) {
-                    //do nothing
+                    break_while = true;
                 }
             }
+            //
+            if (break_while) {
+               content = removeEmptyRows(row,columns, content);
+                System.out.println("");
+                break;
+            }
+            //
             row++;
+            jLabel2RowsInTable.setText("rows in table: " + (row));
+        }
+        //
+        return content;
+    }
+    
+    private Object[][] removeEmptyRows(int rows_added,int columns, Object[][]content){
+        Object[][] content_new = new Object[rows_added][columns];
+        System.arraycopy(content, 0, content_new, 0, rows_added);
+         return content_new;
+    }
+
+    class BuildTableThr implements Runnable {
+
+        private ResultSet rs;
+
+        public BuildTableThr(ResultSet rs) {
+            this.rs = rs;
         }
 
-        return content;
+        @Override
+        public void run() {
+            build_table(rs);
+        }
     }
 
     public void build_table(ResultSet rs) {
@@ -240,6 +304,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             String[] headers = getHeaders(rs);
             Object[][] content = getContent(rs);
             this.jTable1.setModel(new DefaultTableModel(content, headers));
+            jLabel2RowsInTable.setText("rows in table: " + jTable1.getRowCount());
         } catch (Exception ex) {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -247,8 +312,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         int nr_rows = jTable1.getRowCount();
         for (int i = 1; i < nr_rows; i++) {
             jTable1.setSelectionBackground(Color.yellow);
-            System.out.println("");
         }
+        //
+        showMessage("Executing ok");
+        //
     }
 
     /**
@@ -277,6 +344,8 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         jButton9 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel2Rows = new javax.swing.JLabel();
+        jLabel2RowsInTable = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -313,6 +382,11 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         jLabel1.setText("Rows max");
 
         jTextField1RowsMax.setText("300");
+        jTextField1RowsMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1RowsMaxActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Recent quiries");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -371,6 +445,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             }
         });
 
+        jLabel2Rows.setText("rows:");
+
+        jLabel2RowsInTable.setText("rows in table: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -401,15 +479,20 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2Rows, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2RowsInTable, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                .addGap(10, 10, 10)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -420,10 +503,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                     .addComponent(jButton9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -431,9 +511,15 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jButton6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2Rows)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2RowsInTable)
+                        .addContainerGap())))
         );
 
         pack();
@@ -443,8 +529,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private void showSqlResult(String query) {
         try {
             ResultSet rs = sql.execute(query);
-            build_table(rs);
-            showMessage("Executing ok");
+//            build_table(rs);
+            //
+            Thread thread = new Thread(new BuildTableThr(rs));
+            thread.start();
             //
             if (queryOkSet.contains(query) == false) {
                 SimpleLoggerLight.logg(QUERY_OK_LOG_FILE, query);
@@ -507,6 +595,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         HelpA.open_dir(".");
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTextField1RowsMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1RowsMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1RowsMaxActionPerformed
+
     class Pingthread implements Runnable {
 
         @Override
@@ -561,6 +653,8 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2Rows;
+    private javax.swing.JLabel jLabel2RowsInTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

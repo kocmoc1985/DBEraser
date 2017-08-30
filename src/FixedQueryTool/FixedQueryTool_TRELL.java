@@ -154,7 +154,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     }
 
     private Object[][] getContent(ResultSet rs) throws SQLException {
-        int MAX_ROWS = 10000000;
+        int MAX_ROWS = Integer.MAX_VALUE;
         ResultSetMetaData rsmt;
         Object[][] content;
         int columns;
