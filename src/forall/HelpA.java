@@ -257,6 +257,17 @@ public class HelpA {
 
         }
     }
+    
+    public static void changeTabName(JTabbedPane jtp, String tabNameOld,String tabNameNew){
+        for (int i = 0; i < jtp.getTabCount(); i++) {
+            String title = jtp.getTitleAt(i);
+            //
+            if (title.equals(tabNameOld)) {
+                jtp.setTitleAt(i, tabNameNew);
+            }
+            //
+        }
+    }
 
     public static boolean getSelectedCheckBox(JCheckBox box) {
         return box.isSelected();
