@@ -4,6 +4,11 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.GENERAL;
+import MCRecipe.Lang.RECIPE_DETAILED;
+import MCRecipe.Lang.RECIPE_OVERVIEW;
+import MCRecipe.Lang.TOOLTIP;
+import MCRecipe.Lang.VENDOR_A;
 import forall.GradientJPanel;
 import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -112,8 +117,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
     
     private void lang(){
-        if(LANG.LANG_ENG == false){
-           LANG.GO(jTabbedPane1);
+        if(GENERAL.LANG_ENG == false){
+           GENERAL.GO(jTabbedPane1);
+           RECIPE_OVERVIEW.RECIPE_OVERVIEW_TABS(jTabbedPane2);
         }
         
     }
@@ -879,49 +885,49 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox8_Class.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox8_Class, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 157, -1));
 
-        jLabel12.setText(LANG.RECIPE_OVERVIEW__RECIPE_ORIGIN());
+        jLabel12.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ORIGIN());
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, -1));
 
-        jLabel13.setText(LANG.RECIPE_OVERVIEW__RECIPE_STAGE());
+        jLabel13.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_STAGE());
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 150, -1));
 
-        jLabel14.setText("RECIPE VERSION");
+        jLabel14.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_VERSION());
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        jLabel15.setText("RECIPE ADDITIONAL");
+        jLabel15.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ADDITIONAL());
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
 
-        jLabel16.setText("POLYMER GROUP");
+        jLabel16.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__POLYMER_GROUP());
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel17.setText("MIXER");
+        jLabel17.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__MIXER());
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        jLabel18.setText("STATUS");
+        jLabel18.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__STATUS());
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
 
-        jLabel19.setText("INGREDIENT 2");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 70, -1, -1));
+        jLabel19.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_2());
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 70, -1, -1));
 
         jComboBox_Ingred_1.setModel(new javax.swing.DefaultComboBoxModel());
-        jPanel2.add(jComboBox_Ingred_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 40, 140, -1));
+        jPanel2.add(jComboBox_Ingred_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 40, 140, -1));
 
-        jLabel55.setText("CLASS");
+        jLabel55.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__CLASS());
         jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
 
-        jCheckBoxRecipeInitialSearchByIngredients.setText("Ingredients");
+        jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
         jCheckBoxRecipeInitialSearchByIngredients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxRecipeInitialSearchByIngredientsActionPerformed(evt);
             }
         });
-        jPanel2.add(jCheckBoxRecipeInitialSearchByIngredients, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, -1, -1));
+        jPanel2.add(jCheckBoxRecipeInitialSearchByIngredients, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 40, 130, -1));
 
         jComboBox_Description1.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Description1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 140, -1));
 
         jComboBox_Ingred_2.setModel(new javax.swing.DefaultComboBoxModel());
-        jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 90, 140, -1));
+        jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 140, -1));
 
         jPanel43.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -934,7 +940,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel43.add(jButtonRecipeInitialGo);
 
         jButtonRecipeInitialResetComboBoxes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear2.png"))); // NOI18N
-        jButtonRecipeInitialResetComboBoxes.setToolTipText(LANG.RECIPE_OVERVIEW__RESET_BOXES_BTN_TOOLTIP());
+        jButtonRecipeInitialResetComboBoxes.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonRecipeInitialResetComboBoxes.setPreferredSize(new java.awt.Dimension(65, 43));
         jButtonRecipeInitialResetComboBoxes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -945,14 +951,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel2.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 120, 50));
 
-        jCheckBoxRecipeInitialOR.setText("OR");
-        jPanel2.add(jCheckBoxRecipeInitialOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, -1, -1));
+        jCheckBoxRecipeInitialOR.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__OR_CHKBOX());
+        jPanel2.add(jCheckBoxRecipeInitialOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 130, -1));
 
-        jLabel86.setText("DESCRIPTION");
+        jLabel86.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_DESCRIPTION());
         jPanel2.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
-        jLabel87.setText("INGREDIENT 1");
-        jPanel2.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
+        jLabel87.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_1());
+        jPanel2.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
 
         jPanel46.setLayout(new java.awt.BorderLayout());
 
@@ -986,13 +992,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel44.setText("RECIPES SET");
+        jLabel44.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_SET());
 
         jPanel41.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel41.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonRecipeInitialRemoweAllFromCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear3.png"))); // NOI18N
-        jButtonRecipeInitialRemoweAllFromCompare.setToolTipText("Remowe all from compare");
+        jButtonRecipeInitialRemoweAllFromCompare.setToolTipText(TOOLTIP.REMOVE_ALL_COMPARE_TOOLTIP());
         jButtonRecipeInitialRemoweAllFromCompare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialRemoweAllFromCompareActionPerformed(evt);
@@ -1038,7 +1044,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
@@ -1048,13 +1054,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel44))
-                    .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel44)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1082,7 +1090,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel45.setText("INFO");
+        jLabel45.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_INFO());
 
         jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -1108,9 +1116,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jComboBoxRecipeInitial_Hardnes_sha2.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel56.setText("COLOR");
+        jLabel56.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__COLOR());
 
-        jLabel57.setText("INDUSTRY");
+        jLabel57.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__INDUSTRY());
 
         jLabel58.setText("RECIPE TYPE");
 
@@ -1148,10 +1156,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addGap(29, 29, 29)
                         .addComponent(jComboBoxRecipeInitial_Hardnes_sha1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxRecipeInitial_Color, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel56)
-                            .addComponent(jLabel57))
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxRecipeInitial_Color, 0, 111, Short.MAX_VALUE)
+                            .addComponent(jLabel57)
+                            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxRecipeInitial_CuringProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1237,7 +1245,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel67.setText("SORT BY NOTE VALUE");
+        jLabel67.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE());
 
         jPanel44.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel44.setLayout(new java.awt.GridLayout(1, 0));
@@ -1251,7 +1259,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel44.add(jButtonRecipeInitialGo2);
 
         jButtonRecipeInitialResetComboBoxes3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear2.png"))); // NOI18N
-        jButtonRecipeInitialResetComboBoxes3.setToolTipText(LANG.RECIPE_OVERVIEW__RESET_BOXES_BTN_TOOLTIP());
+        jButtonRecipeInitialResetComboBoxes3.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonRecipeInitialResetComboBoxes3.setPreferredSize(new java.awt.Dimension(65, 43));
         jButtonRecipeInitialResetComboBoxes3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1302,13 +1310,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1444,7 +1452,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel35.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_recipe_detailed_delete_recipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
-        jButton_recipe_detailed_delete_recipe.setToolTipText(LANG.RECIPE_DETAILED__DELETE_RECIPE_BTN_TOOLTIP());
+        jButton_recipe_detailed_delete_recipe.setToolTipText(RECIPE_DETAILED.RECIPE_DETAILED__DELETE_RECIPE_BTN_TOOLTIP());
         jButton_recipe_detailed_delete_recipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_recipe_detailed_delete_recipeActionPerformed(evt);
@@ -2284,7 +2292,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBoxVendorChooseIngred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxVendorChooseIngred.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel36.setText(LANG.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
+        jLabel36.setText(VENDOR_A.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
 
         jPanel25.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel25.setLayout(new java.awt.GridLayout(1, 0));
