@@ -253,7 +253,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         int row = 0;
         boolean break_while = false;
-        while (rs.next() && row < (MAX_ROWS - 1)) {
+        while (rs.next() && row < (MAX_ROWS)) {
             //
             for (int col = 0; col < columns; col++) {
                 try {
@@ -265,7 +265,6 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             //
             if (break_while) {
                content = removeEmptyRows(row,columns, content);
-                System.out.println("");
                 break;
             }
             //
