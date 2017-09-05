@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
 import MCRecipe.Lang.TOOLTIP;
@@ -1769,25 +1770,25 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jCombo_Ingred_Perc_Rubber.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel20.setText("NAME");
+        jLabel20.setText(INGR.NAME());
 
-        jLabel21.setText("DESCR");
+        jLabel21.setText(INGR.DESCR());
 
-        jLabel22.setText("STATUS");
+        jLabel22.setText(INGR.STATUS());
 
-        jLabel23.setText("CAS NR");
+        jLabel23.setText(INGR.CAS_NR());
 
-        jLabel24.setText("VENDOR");
+        jLabel24.setText(INGR.VENDOR());
 
-        jLabel25.setText("GROUP");
+        jLabel25.setText(INGR.GROUP());
 
-        jLabel26.setText("CLASS");
+        jLabel26.setText(INGR.CLASS());
 
-        jLabel27.setText("FORM");
+        jLabel27.setText(INGR.FORM());
 
-        jLabel28.setText("TRADE NAME");
+        jLabel28.setText(INGR.TRADE_NAME());
 
-        jLabel29.setText("PERC RUBBER");
+        jLabel29.setText(INGR.PERC_RUBBER());
 
         jPanel33.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -2022,23 +2023,23 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel39.setText("INGRED. DETAILED");
+        jLabel39.setText(INGR.INGRED_DETAILED_TBL());
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel40.setText("EXPRESS INFO");
+        jLabel40.setText(INGR.EXPRESS_INFO_TBL());
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel41.setText("WAREHOUSE");
+        jLabel41.setText(INGR.WAREHOUSE_TBL());
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel42.setText("NOTES");
+        jLabel42.setText(INGR.NOTES_TBL());
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel43.setText("NOTE DETAILED");
+        jLabel43.setText(INGR.NOTES_DETAILED_TBL());
 
         jButtonIngredExpressInfoPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
         jButtonIngredExpressInfoPrint.setToolTipText("");
