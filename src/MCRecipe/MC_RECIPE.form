@@ -99,7 +99,7 @@
                                       <Component id="jPanel45" min="-2" pref="112" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="143" max="32767" attributes="0"/>
+                              <EmptySpace pref="176" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -146,7 +146,7 @@
                               <Component id="jTextFieldHomePass" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                               <Component id="jPanel45" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="315" max="32767" attributes="0"/>
+                              <EmptySpace pref="316" max="32767" attributes="0"/>
                               <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               <Component id="jLabelHomeVersion1" min="-2" max="-2" attributes="0"/>
@@ -947,7 +947,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/images/ok.png"/>
                             </Property>
-                            <Property name="toolTipText" type="java.lang.String" value="Show compared recipes"/>
+                            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="TOOLTIP.SHOW_COMPARED_RECIPES()" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRecipeInitialShowCompareActionPerformed"/>
@@ -958,7 +960,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/images/add2.png"/>
                             </Property>
-                            <Property name="toolTipText" type="java.lang.String" value="Add recipe to compare"/>
+                            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="TOOLTIP.ADD_RECIPE_TO_COMPARE()" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRecipeInitialAddToCompareActionPerformed"/>
@@ -1375,47 +1379,65 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel58">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="RECIPE TYPE"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.RECIPE_TYPE()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel59">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="CURING SYSTEM "/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.CURING_SYSTEM()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel60">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="CURING PROCESS"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.CURING_PROCESS()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel61">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="FILLER TYPE"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.FILTER_TYPE()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel62">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="CERTIFICATE"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.CERTIFICATE()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel63">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="SHELF LIFE MIN"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.SHELF_LIFE_MIN()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel64">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="SHELF LIFE MAX"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.SHELF_LIFE_MAX()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel65">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="HARDNESS SHA MIN "/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.HARDNESS_SHA_MIN()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel66">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="HARDNESS SHA MAX"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.HARDNESS_SHA_MAX()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="jComboBoxRecipeInitial_Customer">
@@ -1430,7 +1452,9 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel85">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="CUSTOMER"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="RECIPE_OVERVIEW.CUSTOMER()" type="code"/>
+                            </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -2002,7 +2026,7 @@
                           <Image iconType="3" name="/images/clear.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="RECIPE_DETAILED.RECIPE_DETAILED__DELETE_RECIPE_BTN_TOOLTIP()" type="code"/>
+                          <Connection code="TOOLTIP.DELETE_RECIPE_BTN_TOOLTIP()" type="code"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -2055,9 +2079,6 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Hide/Unhide some fields"/>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRecipeInitialUnblock2ActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedPrint">
                       <Properties>

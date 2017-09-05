@@ -5,7 +5,7 @@
  */
 package MCRecipe.Lang;
 
-import static MCRecipe.Lang.GENERAL.LANG_ENG;
+import static MCRecipe.Lang.LNG.LANG_ENG;
 
 /**
  *

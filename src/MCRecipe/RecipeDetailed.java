@@ -4,6 +4,9 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.R_DETAILED;
+import MCRecipe.Lang.T_INV;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
 import static MCRecipe.RecipeInitial.T1_STATUS;
 import MyObjectTableInvert.BasicTab;
@@ -150,7 +153,7 @@ public class RecipeDetailed extends BasicTab {
         //
         mCRecipe2.recipeDetailedTabbClicked();
         //
-        HelpA.openTabByName(mCRecipe2.jTabbedPane1, MC_RECIPE.RECIPE_DETAILED_TAB);
+        HelpA.openTabByName(mCRecipe2.jTabbedPane1, LNG.RECIPE_DETAILED_TAB);
         //
     }
 
@@ -873,45 +876,45 @@ public class RecipeDetailed extends BasicTab {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert code = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Code", "CODE", "", true, true, false);
+        RowDataInvert code = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Code", T_INV.LANG("CODE"), "", true, true, false);
         code.setUneditable();
         //
         String q_1 = SQL_B.basic_combobox_query("Release", "Recipe_Prop_Main");
-        RowDataInvert release = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Release", "RELEASE", "", true, true, false);
+        RowDataInvert release = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Release", T_INV.LANG("RELEASE"), "", true, true, false);
         //
         String q_2 = SQL_B.basic_combobox_query("Status", "Recipe_Prop_Main");
-        RowDataInvert status = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Status", "STATUS", "", true, true, false);
+        RowDataInvert status = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Status", T_INV.LANG("STATUS"), "", true, true, false);
         status.enableFakeValueJComboBox();
         //
         String q_3 = SQL_B.basic_combobox_query("Class", "Recipe_Prop_Main");
-        RowDataInvert clas = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_3, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Class", "CLASS", "", true, true, false);
+        RowDataInvert clas = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_3, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Class", T_INV.LANG("CLASS"), "", true, true, false);
         clas.enableFakeValueJComboBox();
         //
         String q_4 = SQL_B.basic_combobox_query("Detailed_Group", "Recipe_Group");
-        RowDataInvert detailed_group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Detailed_Group", "POLYMER GROUP", "", true, true, false);
+        RowDataInvert detailed_group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Detailed_Group", T_INV.LANG("POLYMER GROUP"), "", true, true, false);
         //
         String q_5 = SQL_B.basic_combobox_query_double_param("Code", "Name", "Mixer_InfoBasic");
-        RowDataInvert mixer_code = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Mixer_Code", "MIXER", "", true, true, false);
+        RowDataInvert mixer_code = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Mixer_Code", T_INV.LANG("MIXER"), "", true, true, false);
         mixer_code.enableComboBoxMultipleValue();
         //
-        RowDataInvert mixer_name = new RowDataInvert("Mixer_InfoBasic", "Name", false, "Name", "MIXER", "", true, false, false);
+        RowDataInvert mixer_name = new RowDataInvert("Mixer_InfoBasic", "Name", false, "Name", T_INV.LANG("MIXER"), "", true, false, false);
         //
-        RowDataInvert load_factor = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Loadfactor", "LOADFACTOR", "", true, true, false);
+        RowDataInvert load_factor = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Loadfactor", T_INV.LANG("LOADFACTOR"), "", true, true, false);
 
-        RowDataInvert mix_time = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "MixTime", "MIXTIME", "", true, true, false);
+        RowDataInvert mix_time = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "MixTime", T_INV.LANG("MIXTIME"), "", true, true, false);
         //
-        RowDataInvert descr = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Descr", "DESCRIPTION", "", true, true, false);
+        RowDataInvert descr = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Descr", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         //
-        RowDataInvert customer = new RowDataInvert("Recipe_Prop_Free_Text", "Recipe_Prop_Free_Text_ID", false, "NoteValue", "CUSTOMER", "", true, true, false);
+        RowDataInvert customer = new RowDataInvert("Recipe_Prop_Free_Text", "Recipe_Prop_Free_Text_ID", false, "NoteValue", T_INV.LANG("CUSTOMER"), "", true, true, false);
         //
-        RowDataInvert priceKg = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "PriceKG", "PRICE/KG", "", true, true, false);
-        RowDataInvert priceL = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "PriceL", "PRICE/L", "", true, true, false);
+        RowDataInvert priceKg = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "PriceKG", T_INV.LANG("PRICE/KG"), "", true, true, false);
+        RowDataInvert priceL = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "PriceL", T_INV.LANG("PRICE/L"), "", true, true, false);
         //
-        RowDataInvert updated_on = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "UpdatedOn", "UPDATED ON", "", true, true, false);
-        RowDataInvert updated_by = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "UpdatedBy", "UPDATED BY", "", true, true, false);
+        RowDataInvert updated_on = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
+        RowDataInvert updated_by = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         //
-        RowDataInvert created_on = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "CreatedOn", "CREATED ON", "", true, true, false);
-        RowDataInvert created_by = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "CreatedBy", "CREATED BY", "", true, true, false);
+        RowDataInvert created_on = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "CreatedOn", T_INV.LANG("CREATED ON"), "", true, true, false);
+        RowDataInvert created_by = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "CreatedBy", T_INV.LANG("CREATED BY"), "", true, true, false);
         //
         mixer_name.setUneditable();
         updated_by.setUneditable();
@@ -1044,7 +1047,7 @@ public class RecipeDetailed extends BasicTab {
         RowDataInvert[] config;
         //
         if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
-            String[] toRemove = new String[]{"PRICE/KG", "PRICE/L"};
+            String[] toRemove = new String[]{ T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
             config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
         } else {
             config = getConfigTableInvert();

@@ -4,8 +4,7 @@
  */
 package MCRecipe;
 
-import MCRecipe.Lang.GENERAL;
-import MCRecipe.Lang.RECIPE_DETAILED;
+import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
 import MCRecipe.Lang.TOOLTIP;
 import MCRecipe.Lang.VENDOR_A;
@@ -28,7 +27,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -77,16 +75,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private AdministrateUsers administrateUsers;
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "qew123";
+    public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = true;
     //
-    public static final String HOME_TAB = "*HOME";
-    public static final String RECIPE_INITIAL_TAB = "RECIPE OVERVIEW";
-    public static final String RECIPE_DETAILED_TAB = "RECIPE DETAILED";
-    public static final String INGREDIENTS_TAB = "INGREDIENTS";
-    public static final String VENDORS_TAB = "VENDORS";
-    public static final String VENDORS_B_TAB = "VENDORS B";
-    public static final String SEQUENCE_TAB = "SEQUENCE";
-    public static final String RECIPE_ADD_TAB = "RECIPE ADD.";
-    public static final String LOG_TAB = "LOG";
 
     /**
      * Creates new form MC_RECIPE
@@ -95,8 +85,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         initComponents();
         //
-//        sql = sqlConnect();
-//        sql_additional = sqlConnect();
+        sql = sqlConnect(); //  ***
+        sql_additional = sqlConnect(); //  ***
         //
         //
         int pid = monitor.currentPid();
@@ -108,20 +98,20 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         lang();
         //
-//        loadUserName();
+        loadUserName(); //  ***
         //
-//        verifyUser();
+        verifyUser();//  ***
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
     }
-    
-    private void lang(){
-        if(GENERAL.LANG_ENG == false){
-           GENERAL.GO(jTabbedPane1);
-           RECIPE_OVERVIEW.RECIPE_OVERVIEW_TABS(jTabbedPane2);
+
+    private void lang() {
+        if (LNG.LANG_ENG == false) {
+            LNG.GO(jTabbedPane1);
+            RECIPE_OVERVIEW.RECIPE_OVERVIEW_TABS(jTabbedPane2);
         }
-        
+
     }
 
     private void loadUserName() {
@@ -805,7 +795,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addGroup(jPanelHomeLayout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(143, Short.MAX_VALUE))))
+                        .addContainerGap(176, Short.MAX_VALUE))))
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -841,7 +831,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                         .addComponent(jLabelHomeVersion)
                         .addGap(13, 13, 13)
                         .addComponent(jLabelHomeVersion1))
@@ -1007,7 +997,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel41.add(jButtonRecipeInitialRemoweAllFromCompare);
 
         jButtonRecipeInitialShowCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
-        jButtonRecipeInitialShowCompare.setToolTipText("Show compared recipes");
+        jButtonRecipeInitialShowCompare.setToolTipText(TOOLTIP.SHOW_COMPARED_RECIPES());
         jButtonRecipeInitialShowCompare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialShowCompareActionPerformed(evt);
@@ -1016,7 +1006,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel41.add(jButtonRecipeInitialShowCompare);
 
         jButtonRecipeInitialAddToCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add2.png"))); // NOI18N
-        jButtonRecipeInitialAddToCompare.setToolTipText("Add recipe to compare");
+        jButtonRecipeInitialAddToCompare.setToolTipText(TOOLTIP.ADD_RECIPE_TO_COMPARE());
         jButtonRecipeInitialAddToCompare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialAddToCompareActionPerformed(evt);
@@ -1120,27 +1110,27 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel57.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__INDUSTRY());
 
-        jLabel58.setText("RECIPE TYPE");
+        jLabel58.setText(RECIPE_OVERVIEW.RECIPE_TYPE());
 
-        jLabel59.setText("CURING SYSTEM ");
+        jLabel59.setText(RECIPE_OVERVIEW.CURING_SYSTEM());
 
-        jLabel60.setText("CURING PROCESS");
+        jLabel60.setText(RECIPE_OVERVIEW.CURING_PROCESS());
 
-        jLabel61.setText("FILLER TYPE");
+        jLabel61.setText(RECIPE_OVERVIEW.FILTER_TYPE());
 
-        jLabel62.setText("CERTIFICATE");
+        jLabel62.setText(RECIPE_OVERVIEW.CERTIFICATE());
 
-        jLabel63.setText("SHELF LIFE MIN");
+        jLabel63.setText(RECIPE_OVERVIEW.SHELF_LIFE_MIN());
 
-        jLabel64.setText("SHELF LIFE MAX");
+        jLabel64.setText(RECIPE_OVERVIEW.SHELF_LIFE_MAX());
 
-        jLabel65.setText("HARDNESS SHA MIN ");
+        jLabel65.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MIN());
 
-        jLabel66.setText("HARDNESS SHA MAX");
+        jLabel66.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MAX());
 
         jComboBoxRecipeInitial_Customer.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel85.setText("CUSTOMER");
+        jLabel85.setText(RECIPE_OVERVIEW.CUSTOMER());
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1452,7 +1442,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel35.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_recipe_detailed_delete_recipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
-        jButton_recipe_detailed_delete_recipe.setToolTipText(RECIPE_DETAILED.RECIPE_DETAILED__DELETE_RECIPE_BTN_TOOLTIP());
+        jButton_recipe_detailed_delete_recipe.setToolTipText(TOOLTIP.DELETE_RECIPE_BTN_TOOLTIP());
         jButton_recipe_detailed_delete_recipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_recipe_detailed_delete_recipeActionPerformed(evt);
@@ -1489,11 +1479,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jButtonRecipeInitialUnblock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/swap.png"))); // NOI18N
         jButtonRecipeInitialUnblock2.setToolTipText("Hide/Unhide some fields");
-        jButtonRecipeInitialUnblock2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecipeInitialUnblock2ActionPerformed(evt);
-            }
-        });
         jPanel35.add(jButtonRecipeInitialUnblock2);
 
         jButtonRecipeDetailedPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
@@ -3701,17 +3686,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         ingredients.addIngredientToTable4RecipeDetailed();
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
-    private void jButtonRecipeInitialUnblock2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialUnblock2ActionPerformed
-        if(SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false){
-            SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = true;
-        }else{
-            SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
-        }
-        //
-        recipeDetailed.showTableInvert();
-    }//GEN-LAST:event_jButtonRecipeInitialUnblock2ActionPerformed
-
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         jTextArea1_Logg.setText("");
         jTextArea1.setText("");
@@ -4158,15 +4132,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             String title = jTabbedPane1.getTitleAt(jTabbedPane1.getSelectedIndex());
             ACTUAL_TAB_NAME = title;
             //
-            if (title.equals(RECIPE_INITIAL_TAB)) {
+            if (title.equals(LNG.RECIPE_INITIAL_TAB())) {
                 //
                 recipeInitialTabClicked();
                 //
-            } else if (title.equals(RECIPE_DETAILED_TAB)) {
+            } else if (title.equals(LNG.RECIPE_DETAILED_TAB())) {
                 // 
                 recipeDetailedTabbClicked();
                 //
-            } else if (title.equals(INGREDIENTS_TAB)) {
+            } else if (title.equals(LNG.INGREDIENTS_TAB())) {
                 //
                 if (ingredients != null && ingredients.table1Build) {
                     clickedTable1Ingredients();
@@ -4180,13 +4154,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     vendors = new Vendors(sql, sql_additional, this);
                 }
                 //
-            } else if (title.equals(SEQUENCE_TAB)) {
+            } else if (title.equals(LNG.SEQUENCE_TAB())) {
                 //
                 if (sequence == null) {
                     sequence = new Sequence(sql, sql_additional, this);
                 }
                 //
-            } else if (title.equals(VENDORS_TAB)) {
+            } else if (title.equals(LNG.VENDORS_TAB())) {
                 //
                 if (vendors == null) {
                     vendors = new Vendors(sql, sql_additional, this);
@@ -4198,7 +4172,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     vendors.reset();
                 }
                 //
-            } else if (title.equals(VENDORS_B_TAB)) {
+            } else if (title.equals(LNG.VENDORS_TAB_B())) {
                 //
                 if (vendors != null && vendorsB == null) {
                     vendorsB = new VendorsB(sql, sql_additional, this, vendors);
@@ -4210,7 +4184,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     vendorsB.reset();
                 }
                 //
-            } else if (title.equals(RECIPE_ADD_TAB)) {
+            } else if (title.equals(LNG.RECIPE_ADD_TAB())) {
                 //
                 if (recipeAdditional != null && recipeInitial != null) {
                     recipeAdditional.recipeAdditionalTabClicked();
@@ -4229,7 +4203,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         mousePressedOnTab(me);
         //
-        boolean cond_1 = HelpA.getCurrentTabName(jTabbedPane1).equals(RECIPE_DETAILED_TAB);
+        boolean cond_1 = HelpA.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
         //
         //
         if (me.getSource() == jTable3 && (me.getClickCount() == 1)) {

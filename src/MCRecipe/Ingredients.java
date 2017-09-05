@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.LNG;
 import MyObjectTableInvert.BasicTab;
 import images.IconUrls;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -166,7 +167,7 @@ public class Ingredients extends BasicTab {
         //
         rd.add_ingredient_table_4(ingredCode);
         //
-        HelpA.openTabByName(mCRecipe.jTabbedPane1, MC_RECIPE.RECIPE_DETAILED_TAB);
+        HelpA.openTabByName(mCRecipe.jTabbedPane1, LNG.RECIPE_DETAILED_TAB);
         //
         mCRecipe.recipeDetailedTabbClicked();
         //
@@ -185,7 +186,7 @@ public class Ingredients extends BasicTab {
         MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.setSelected(true);
         box.addItem(ingred);
         box.setSelectedItem(ingred);
-        HelpA.openTabByName(mCRecipe.jTabbedPane1, MC_RECIPE.RECIPE_INITIAL_TAB);
+        HelpA.openTabByName(mCRecipe.jTabbedPane1, LNG.RECIPE_INITIAL_TAB);
         mCRecipe.recipeInitialTabClicked();
     }
     //

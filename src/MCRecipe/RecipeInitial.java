@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.JTB;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
@@ -394,12 +395,15 @@ public class RecipeInitial extends BasicTab {
         }
         //OBS! Remember that Titles are not the same as "Real" Sql column names 
         // so even when i change the titles they will still have the "Real" column names
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_ADDITIONAL, "Add.");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DESCRIPTION, "Description");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DETAILED_GROUP, "Group");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_MIXER_CODE, "Mixer");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_ON, "Updated On");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_BY, "Updated By");
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_VERSION, JTB.LANG("Recipe Version"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_ADDITIONAL, JTB.LANG("Add."));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DESCRIPTION, JTB.LANG("Description"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DETAILED_GROUP, JTB.LANG("Group"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_STATUS, JTB.LANG("Status"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_CLASS, JTB.LANG("Class"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_MIXER_CODE, JTB.LANG("Mixer"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_ON, JTB.LANG("Updated On"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_BY, JTB.LANG("Updated By"));
         //
         HelpA.hideColumnByName(table, T1_RECIPE_ID);
         HelpA.hideColumnByName(table, T1_RECIPE_ORIGIN);

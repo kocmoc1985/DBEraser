@@ -5,7 +5,7 @@
  */
 package MCRecipe.Lang;
 
-import static MCRecipe.Lang.GENERAL.LANG_ENG;
+import static MCRecipe.Lang.LNG.LANG_ENG;
 
 /**
  *
@@ -19,5 +19,17 @@ public class TOOLTIP {
 
     public static String RESET_BOXES_BTN_TOOLTIP() {
         return LANG_ENG ? "Clear all" : "Alle reinigen";
+    }
+    
+    public static String DELETE_RECIPE_BTN_TOOLTIP() {
+        return LANG_ENG ? "Delete recipe" : "Rezept löschen";
+    }
+
+    public static String ADD_RECIPE_TO_COMPARE() {
+        return LANG_ENG ? "Add recipe to compare" : "Rezept zum Vergleich ergänzen";
+    }
+    
+    public static String SHOW_COMPARED_RECIPES() {
+        return LANG_ENG ? "Show compared recipes" : "Verglichene Rezepte zeigen";
     }
 }
