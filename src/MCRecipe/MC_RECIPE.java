@@ -77,7 +77,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private AdministrateUsers administrateUsers;
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "qew123";
-    public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = true;
+   
     //
 
     /**
@@ -1479,7 +1479,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel35.add(jButtonRecipeDetailedAddNewRecipe);
 
-        jButtonRecipeInitialUnblock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/swap.png"))); // NOI18N
+        jButtonRecipeInitialUnblock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
         jButtonRecipeInitialUnblock2.setToolTipText("Hide/Unhide some fields");
         jButtonRecipeInitialUnblock2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1564,7 +1564,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel37.add(jButton5);
 
         jPanel38.setPreferredSize(new java.awt.Dimension(120, 50));
-        jPanel38.setLayout(new java.awt.GridLayout());
+        jPanel38.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_r_detailed_prev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/prev.png"))); // NOI18N
         jButton_r_detailed_prev.setToolTipText("previous recipe");
@@ -3696,9 +3696,16 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTextArea1_Logg.setText("");
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton18ActionPerformed
-
+     public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
+     
     private void jButtonRecipeInitialUnblock2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialUnblock2ActionPerformed
-        // TODO add your handling code here:
+        if (SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
+            SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = true;
+        } else {
+            SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
+        }
+        //
+        recipeDetailed.showTableInvert();
     }//GEN-LAST:event_jButtonRecipeInitialUnblock2ActionPerformed
 
     /**
