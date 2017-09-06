@@ -82,4 +82,19 @@ public class LNG {
         }
 
     }
+    
+    //=========
+     public static String USERS() {
+        return LANG_ENG ? "USERS" : "ANWENDER";
+    }
+    
+    public static String USER_NAME() {
+        return LANG_ENG ? "USER NAME" : "BENUTZERNAME";
+    }
+    
+     public static String PASSWORD() {
+        return LANG_ENG ? "PASSWORD" : "KENNWORT";
+    }
+     
+     
 }

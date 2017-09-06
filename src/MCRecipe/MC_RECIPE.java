@@ -384,6 +384,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabelHomeVersion1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -726,7 +727,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel69.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel69.setText("User name:");
+        jLabel69.setText(LNG.USER_NAME());
 
         jTextFieldHomeUserName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
@@ -740,7 +741,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel72.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel72.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel72.setText("Pass:");
+        jLabel72.setText(LNG.PASSWORD());
 
         jTextFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldHomePass.setForeground(new java.awt.Color(255, 255, 255));
@@ -772,11 +773,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("USERS");
+        jLabel1.setText(LNG.USERS());
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(102, 102, 102));
         jLabel47.setText("MCPROD PLAN");
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel46.setText("MCRecipe");
 
         javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
         jPanelHome.setLayout(jPanelHomeLayout);
@@ -794,42 +799,47 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel47)))
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(443, 443, 443)
                         .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldHomeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelHomeLayout.createSequentialGroup()
                                 .addGap(110, 110, 110)
-                                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(176, Short.MAX_VALUE))))
+                                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(176, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))))
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelHomeVersion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelHomeLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabelHomeVersion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanelHomeLayout.setVerticalGroup(
             jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel47)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
-                    .addComponent(jLabel2))
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel46)))
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(164, 164, 164)
@@ -842,9 +852,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
                         .addComponent(jLabelHomeVersion)
-                        .addGap(13, 13, 13)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelHomeVersion1))
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -3934,6 +3944,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
