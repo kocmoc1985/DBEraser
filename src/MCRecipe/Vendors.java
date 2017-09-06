@@ -257,10 +257,10 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert2() {
         //
-        RowDataInvert location = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "Location", "LOCATION", "", true, true, false);
+        RowDataInvert location = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "Location", T_INV.LANG("LOCATION"), "", true, true, false);
 //        RowDataInvert shelflife = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "percRubber", "PERCENTAGE RUBBER", "%", true, true, false);
-        RowDataInvert silo_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "SiloId", "SILO ID", "", true, true, false);
-        RowDataInvert balance_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "BalanceID", "BALANCE ID", "", true, true, false);
+        RowDataInvert silo_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "SiloId", T_INV.LANG("SILO ID"), "", true, true, false);
+        RowDataInvert balance_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "BalanceID", T_INV.LANG("BALANCE ID"), "", true, true, false);
 //        RowDataInvert info = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "FreeInfo", "INFO", "", true, true, false);
 //        RowDataInvert ingred_warehouse_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "Ingredient_Warehouse_ID", "WAREHOUSE ID", "", true, true, false);
 //        RowDataInvert ingredient_code_id = new RowDataInvert("Ingredient_Warehouse", "Ingredient_Warehouse_ID", false, "IngredientCode_ID", "INGRED ID", "", true, true, false);
@@ -272,11 +272,11 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert3() {
         //
-        RowDataInvert vendorName = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorName", "VENDOR", "", true, true, false);
+        RowDataInvert vendorName = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorName", T_INV.LANG("VENDOR"), "", true, true, false);
 //        RowDataInvert price = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "ActualPreisePerKg", "PRICE", "Euro/kg", true, true, true);
-        RowDataInvert tradeName = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "TradeName", "TRADENAME", "", true, true, false);
+        RowDataInvert tradeName = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "TradeName", T_INV.LANG("TRADENAME"), "", true, true, false);
 //        RowDataInvert casno = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "Cas_Number", "CASNO ID", "", true, true, false);
-        RowDataInvert supplierOrManufacturer = new RowDataInvert("_INTRF_IngredientCode_ID__Vendor_ID", "id", false, "VM", "SUPP. / MAN.", "", true, true, false);
+        RowDataInvert supplierOrManufacturer = new RowDataInvert("_INTRF_IngredientCode_ID__Vendor_ID", "id", false, "VM", T_INV.LANG("SUPP. / MAN."), "", true, true, false);
         //
         vendorName.setUneditable();
         tradeName.setUneditable();
@@ -293,12 +293,12 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert3_2() {
         //
-        RowDataInvert tradeName = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "TradeName", "TRADE NAME", "", true, true, false);
-        RowDataInvert cas_nr = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "Cas_Number", "CASNO ID", "", true, true, false);
-        RowDataInvert msds = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "MSDS", "MSDS", "", true, true, false);
-        RowDataInvert updatedOn = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "UpdatedOn", "UPDATED ON", "", true, true, false);
+        RowDataInvert tradeName = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "TradeName", T_INV.LANG("TRADENAME"), "", true, true, false);
+        RowDataInvert cas_nr = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "Cas_Number", T_INV.LANG("CASNO ID"), "", true, true, false);
+        RowDataInvert msds = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "MSDS", T_INV.LANG("MSDS"), "", true, true, false);
+        RowDataInvert updatedOn = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
         updatedOn.setUneditable();
-        RowDataInvert updatedBy = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "UpdatedBy", "UPDATED BY", "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         updatedBy.setUneditable();
         //hidden
         RowDataInvert tradeNameId = new RowDataInvert("TRADENAME_MAIN", "Tradename_Main_ID", false, "Tradename_Main_ID", "TID", "", true, false, false);
@@ -310,23 +310,23 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert4() {
         //
-        RowDataInvert vendorName = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorName", "VENDOR", "", true, true, false);
-        RowDataInvert vendorId = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VENDOR_ID", "VENDOR ID", "", true, true, false);
+        RowDataInvert vendorName = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorName", T_INV.LANG("VENDOR"), "", true, true, false);
+        RowDataInvert vendorId = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VENDOR_ID",  T_INV.LANG("VENDOR ID"), "", true, true, false);
         vendorId.setUneditable();
-        RowDataInvert vendorNo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorNo", "VENDOR NO", "", true, true, false);
-        RowDataInvert address = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Adress", "ADRESS", "", true, true, false);
-        RowDataInvert zipCode = new RowDataInvert("VENDOR", "VENDOR_ID", false, "ZipCode", "POSTAL CODE", "", true, true, false);
-        RowDataInvert city = new RowDataInvert("VENDOR", "VENDOR_ID", false, "City", "CITY", "", true, true, false);
-        RowDataInvert country = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Country", "LAND", "", true, true, false);
-        RowDataInvert phone = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Phone", "TELEPHONE", "", true, true, false);
-        RowDataInvert fax = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Fax", "FAX", "", true, true, false);
-        RowDataInvert email = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Email", "EMAIL", "", true, true, false);
-        RowDataInvert website = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Website", "WEBSITE", "", true, true, false);
-        RowDataInvert freeinfo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "FreeInfo", "FREEINFO", "", true, true, false);
-        RowDataInvert status = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Status", "STATUS", "", true, true, false);
-        RowDataInvert updatedOn = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedOn", "UPDATED ON", "", true, true, false);
+        RowDataInvert vendorNo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorNo",  T_INV.LANG("VENDOR NO"), "", true, true, false);
+        RowDataInvert address = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Adress", T_INV.LANG("ADRESS"), "", true, true, false);
+        RowDataInvert zipCode = new RowDataInvert("VENDOR", "VENDOR_ID", false, "ZipCode",  T_INV.LANG("POSTAL CODE"), "", true, true, false);
+        RowDataInvert city = new RowDataInvert("VENDOR", "VENDOR_ID", false, "City",  T_INV.LANG("CITY"), "", true, true, false);
+        RowDataInvert country = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Country",  T_INV.LANG("LAND"), "", true, true, false);
+        RowDataInvert phone = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Phone",  T_INV.LANG("TELEPHONE"), "", true, true, false);
+        RowDataInvert fax = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Fax", T_INV.LANG("FAX"), "", true, true, false);
+        RowDataInvert email = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Email",  T_INV.LANG("EMAIL"), "", true, true, false);
+        RowDataInvert website = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Website",  T_INV.LANG("WEBSITE"), "", true, true, false);
+        RowDataInvert freeinfo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "FreeInfo",  T_INV.LANG("FREEINFO"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Status", T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert updatedOn = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
         updatedOn.setUneditable();
-        RowDataInvert updatedBy = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedBy", "UPDATED BY", "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedBy",  T_INV.LANG("UPDATED BY"), "", true, true, false);
         updatedBy.setUneditable();
         //
         RowDataInvert[] rows = {vendorName, vendorId, vendorNo, address, zipCode, city, country, phone, fax, email, website, freeinfo, status, updatedOn, updatedBy};
@@ -336,15 +336,15 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert4_2() {
         //
-        RowDataInvert vendor_id = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "VENDOR_ID", "VENDOR ID", "", true, true, false);
+        RowDataInvert vendor_id = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "VENDOR_ID",  T_INV.LANG("VENDOR ID"), "", true, true, false);
         vendor_id.setUneditable();
-        RowDataInvert contactName = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "ContactName", "CONTACT NAME", "", true, true, false);
-        RowDataInvert position = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "position", "POSITION", "", true, true, false);
-        RowDataInvert phone = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Phone", "PHONE", "", true, true, false);
-        RowDataInvert email = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Email", "EMAIL", "", true, true, false);
-        RowDataInvert updatedOn = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "UpdatedOn", "UPDATED ON", "", true, true, false);
+        RowDataInvert contactName = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "ContactName", T_INV.LANG("CONTACT NAME"), "", true, true, false);
+        RowDataInvert position = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "position",  T_INV.LANG("POSITION"), "", true, true, false);
+        RowDataInvert phone = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Phone", T_INV.LANG("PHONE"), "", true, true, false);
+        RowDataInvert email = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Email", T_INV.LANG("EMAIL"), "", true, true, false);
+        RowDataInvert updatedOn = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
         updatedOn.setUneditable();
-        RowDataInvert updatedBy = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "UpdatedBy", "UPDATED BY", "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         updatedBy.setUneditable();
         //hidden
         RowDataInvert vendor_contact_id = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Vendor_Contact_ID", "VCID", "", true, false, false);

@@ -2247,12 +2247,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel34.setText("PURCHASE");
+        jLabel34.setText(VENDOR_A.PURCHASE_TABLE());
         jPanelVendors.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel35.setText("VENDOR");
+        jLabel35.setText(VENDOR_A.VENDOR_TABLE());
         jPanelVendors.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, -1, -1));
 
         jPanelInvertTable4_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2263,12 +2263,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel38.setText("PERSONAL");
+        jLabel38.setText(VENDOR_A.PERSONAL_TABLE());
         jPanelVendors.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 590, -1, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel53.setText("INGREDIENT");
+        jLabel53.setText(VENDOR_A.INGREDIENT_TABLE());
         jPanelVendors.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 80, -1, -1));
 
         jButtonVendorsPrintTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
@@ -2453,7 +2453,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel79.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel79.setText("WAREHOUSE");
+        jLabel79.setText(VENDOR_A.WAREHOUSE_TABLE());
         jPanelVendors.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 80, -1, -1));
 
         jLabel80.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

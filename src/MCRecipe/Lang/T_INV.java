@@ -50,13 +50,39 @@ public class T_INV {
         DICT.put("TECHNICAL DATASHEET", "TECH. DATENBLATT");
         DICT.put("CODE ID", "KODE ID");
         //
-        
         //
         DICT.put("UPDATED ON", "AKTUALISERT AM");
         DICT.put("UPDATED BY", "AKTUALISERT VON");
         DICT.put("CREATED ON", "ERSTELLT AM");
         DICT.put("CREATED BY", "ERSTELLT VON");
         //
+        DICT.put("LOCATION", "LAGE");
+        DICT.put("SILO ID", "SILO ID");
+        DICT.put("BALANCE ID", "BALANCE ID");
+        //
+        DICT.put("VENDOR", "LIEFERANT");
+        DICT.put("TRADENAME", "HANDELSNAME");
+        DICT.put("SUPP. / MAN.", "SUPP. / MAN.");
+        //
+        DICT.put("VENDOR ID", "LIEFERANT ID");
+        DICT.put("VENDOR NO", "LIEFERANT NR");
+        DICT.put("ADRESS", "ADRESSE");
+        DICT.put("POSTAL CODE", "POSTLEITZAHL");
+        DICT.put("CITY", "STADT");
+        DICT.put("LAND", "LAND");
+        DICT.put("TELEPHONE", "TELEFON");
+        DICT.put("FAX", "FAX");
+        DICT.put("EMAIL", "EMAIL");
+        DICT.put("WEBSITE", "WEBSEITE");
+        DICT.put("FREEINFO", "INFO");
+        //
+        DICT.put("CONTACT NAME", "ANSPRECHPARTNER");
+        DICT.put("POSITION", "STELLUNG");
+        DICT.put("POSITION", "STELLUNG");
+        DICT.put("PHONE", "TELEFON");
+        //
+        DICT.put("CASNO ID", "CASNO ID");
+        DICT.put("MSDS", "MSDS");
     }
 
     public static String LANG(String word) {
