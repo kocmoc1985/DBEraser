@@ -227,11 +227,11 @@ public class RecipeDetailed extends BasicTab {
         MARKED_FOR_DELITION = false;
     }
     //
-    private static final String C_INGRED_WEIGHT = "Change Ingred weights";
-    private static final String C_INGRED_PHR = "Change Ingred PHR";
-    private static final String C_TOTAL_VOLUME = "Change total volume";
-    private static final String C_TOTAL_WEIGHT = "Change total weight";
-    private static final String C_LOAD_FACTOR = "Change load factor";
+    private static final String C_INGRED_WEIGHT = R_DETAILED.CHANGE_INGR_WEIGHTS_COMBO();
+    private static final String C_INGRED_PHR = R_DETAILED.CHANGE_INGR_PHR_COMBO();
+    private static final String C_TOTAL_VOLUME = R_DETAILED.CHANGE_TOTAL_VOLUME_COMBO();
+    private static final String C_TOTAL_WEIGHT = R_DETAILED.CHANGE_TOTAL_WEIGHT_COMBO();
+    private static final String C_LOAD_FACTOR = R_DETAILED.CHANGE_LOAD_FACTOR_COMBO();
 
     private void fill_table4_recalc_combobox() {
         String[] values = new String[5];

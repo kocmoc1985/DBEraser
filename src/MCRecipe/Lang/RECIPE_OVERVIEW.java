@@ -108,7 +108,7 @@ public class RECIPE_OVERVIEW {
     }
 
     public static String CURING_PROCESS() {
-        return LANG_ENG ? "CURING PROCESS" : "AUSHÄRT. PROZESS";
+        return LANG_ENG ? "CURING PROCESS" : "AUSHÄRT. PROZ.";
     }
 
     public static String FILTER_TYPE() {

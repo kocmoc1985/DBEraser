@@ -32,4 +32,20 @@ public class TOOLTIP {
     public static String SHOW_COMPARED_RECIPES() {
         return LANG_ENG ? "Show compared recipes" : "Verglichene Rezepte zeigen";
     }
+    
+    public static String ADD_INGR() {
+        return LANG_ENG ? "Add ingredient" : "Ingredienz ergänzen";
+    }
+    
+     public static String ADD_INGR_FROM_SCRATCH() {
+        return LANG_ENG ? "Add ingredient from scratch" : "Ingredienz von Grund ergänzen";
+    }
+    
+    public static String DELETE_NOTE() {
+        return LANG_ENG ? "Delete note" : "Notiz löschen";
+    }
+    
+    public static String ADD_NOTE() {
+        return LANG_ENG ? "Add note" : "Notiz ergänzen";
+    }
 }

@@ -12,27 +12,26 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  */
 public class INGR {
 
-    
     public static String INGRED_DETAILED_TBL() {
         return LANG_ENG ? "INGRED. DETAILED" : "INGRED. ERWEITERT";
     }
-    
+
     public static String EXPRESS_INFO_TBL() {
         return LANG_ENG ? "EXPRESS INFO" : "EXPRESS-INFO";
     }
-    
+
     public static String WAREHOUSE_TBL() {
         return LANG_ENG ? "WAREHOUSE" : "LAGER";
     }
-    
-     public static String NOTES_TBL() {
+
+    public static String NOTES_TBL() {
         return LANG_ENG ? "NOTES" : "NOTIZEN";
     }
-     
-     public static String NOTES_DETAILED_TBL() {
+
+    public static String NOTES_DETAILED_TBL() {
         return LANG_ENG ? "NOTE DETAILED" : "NOTIZEN DETALLIERT";
     }
-    
+
     //====
     public static String NAME() {
         return LANG_ENG ? "NAME" : "NAME";
@@ -72,5 +71,30 @@ public class INGR {
 
     public static String PERC_RUBBER() {
         return LANG_ENG ? "PERC RUBBER" : "GUMMI %";
+    }
+    //
+
+    public static String PASTE_INGRED_1_BTN() {
+        return LANG_ENG ? "PASTE INGRED 1" : "INGREDIENZ 1 -> R. ÜBERSICHT";
+    }
+
+    public static String PASTE_INGRED_1_BTN_TOOLTIP() {
+        return LANG_ENG ? "Paste ingred 1 to RECIPE OVERVIEW" : "Ingredienz 1 ins REZEPT ÜBERSICHT einfügen";
+    }
+
+    public static String PASTE_INGRED_2_BTN() {
+        return LANG_ENG ? "PASTE INGRED 2" : "INGREDIENZ 2 -> R. ÜBERSICHT";
+    }
+
+    public static String PASTE_INGRED_2_BTN_TOOLTIP() {
+        return LANG_ENG ? "Paste ingred 2 to RECIPE OVERVIEW" : "Ingredienz 2 ins REZEPT ÜBERSICHT einfügen";
+    }
+
+    public static String ADD_INGREDIENT_TO_R_DETAILED() {
+        return LANG_ENG ? "ADD INGR. TO R. DETAILED" : "INGREDIENZ -> R. ERWEITERT";
+    }
+
+    public static String ADD_INGREDIENT_TO_R_DETAILED_TOOLTIP() {
+        return LANG_ENG ? "Add ingredient to RECIPE DETAILED -> Recipe Manager" : "Ingredienz nach REZEPT ERWEITERT verscheiben (REZEPT VERWALTUNG)";
     }
 }

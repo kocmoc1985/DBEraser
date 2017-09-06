@@ -185,7 +185,7 @@ public class RecipeInitial extends BasicTab {
                 int recipe_seq_main_id = rs.getInt("Recipe_Sequence_Main_ID");
                 sql.execute(SQL_B.delete_record_table_1(recipeID, recipe_seq_main_id), OUT);
             } else {
-                sql.execute(SQL_B.delete_record_table_1(recipeID, HelpA.getColByName(table, T1_RECIPE_VERSION)), OUT);
+                sql.execute(SQL_B.delete_record_table_1(recipeID, HelpA.getColByName(table, JTB.LANG(T1_RECIPE_VERSION))), OUT);
             }
             //
 //            fill_table_1(null, null, null, null);
