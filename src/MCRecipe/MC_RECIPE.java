@@ -8,6 +8,7 @@ import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
 import MCRecipe.Lang.R_DETAILED;
+import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
 import MCRecipe.Lang.VENDOR_A;
 import forall.GradientJPanel;
@@ -106,6 +107,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
+        //
+        companyRelated();
+    }
+    
+    private void companyRelated(){
+        if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)){
+            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+        }
     }
 
     private void lang() {
@@ -2627,7 +2636,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jScrollPane10.setViewportView(jTableSequnce2);
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SEARCH", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, SEQUENCE.SEARCH_TITLE_BORDER(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
         jPanel10.setForeground(new java.awt.Color(153, 153, 153));
 
         jComboBoxSequenceRecipe.setModel(new javax.swing.DefaultComboBoxModel());
@@ -2635,13 +2644,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBoxSequenceRelease.setEditable(false);
         jComboBoxSequenceRelease.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel10.setText("RECIPE");
+        jLabel10.setText(SEQUENCE.RECIPE());
 
-        jLabel11.setText("RELEASE");
+        jLabel11.setText(SEQUENCE.RELEASE());
 
         jComboBoxSequenceMixerCode.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel30.setText("MIXER CODE");
+        jLabel30.setText(SEQUENCE.MIXER_CODE());
 
         jPanel24.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel24.setLayout(new java.awt.GridLayout(1, 0));
@@ -2703,7 +2712,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(19, 19, 19))
         );
 
-        jPanelSequence3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MIXING SEQUENCE STEP EDITOR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        jPanelSequence3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, SEQUENCE.MIX_SEQ_STEP_EDITOR_TITLE_BORDER(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
         jPanelSequence3.setForeground(new java.awt.Color(153, 153, 153));
 
         jTextFieldStepNrSequence.setToolTipText("Step number");
@@ -2712,11 +2721,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTextFieldCommandParamSequence.setToolTipText("Command parameter");
 
-        jLabel7.setText("STEP");
+        jLabel7.setText(SEQUENCE.STEP());
 
-        jLabel8.setText("COMMAND");
+        jLabel8.setText(SEQUENCE.COMMAND());
 
-        jLabel9.setText("PARAMETER");
+        jLabel9.setText(SEQUENCE.PARAMETER());
 
         jPanel22.setPreferredSize(new java.awt.Dimension(240, 50));
         jPanel22.setLayout(new java.awt.GridLayout(1, 0));
@@ -2770,14 +2779,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSequence3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxCommandNameSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSequence3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextFieldCommandParamSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCommandParamSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelSequence3Layout.setVerticalGroup(
             jPanelSequence3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2800,7 +2809,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(21, 21, 21))
         );
 
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "RECIPE SEQUENCE INFO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, SEQUENCE.RECIPE_SEQUENCE_INFO(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
         jPanel15.setForeground(new java.awt.Color(153, 153, 153));
 
         jTextFieldInfoSequence.setToolTipText("Info");
@@ -2809,11 +2818,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTextFieldUpdatedBy.setToolTipText("UpdatedBy");
 
-        jLabel4.setText("INFO");
+        jLabel4.setText(SEQUENCE.INFO());
 
-        jLabel5.setText("DATE CHANGED");
+        jLabel5.setText(SEQUENCE.DATE_CHANGED());
 
-        jLabel6.setText("USER");
+        jLabel6.setText(SEQUENCE.USER());
 
         jPanel11.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel11.setLayout(new java.awt.GridLayout(1, 0));
@@ -2853,8 +2862,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldInfoSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldInfoSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldUpdateOnSequence, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2862,10 +2871,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(7, 7, 7)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldUpdatedBy, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(116, 116, 116))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2891,7 +2900,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap())
         );
 
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "COPY SEQUENCE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, SEQUENCE.COPY_SEQUENCE_TITLE_BORDER(), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
         jPanel16.setForeground(new java.awt.Color(153, 153, 153));
 
         jComboBoxSequenceRecipeCopy.setModel(new javax.swing.DefaultComboBoxModel());
@@ -2900,11 +2909,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jComboBoxSequenceMixerCodeCopy.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel31.setText("RECIPE");
+        jLabel31.setText(SEQUENCE.RECIPE());
 
-        jLabel32.setText("RELEASE");
+        jLabel32.setText(SEQUENCE.RELEASE());
 
-        jLabel33.setText("MIXER CODE");
+        jLabel33.setText(SEQUENCE.MIXER_CODE());
 
         jPanel23.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel23.setLayout(new java.awt.GridLayout(1, 0));
@@ -2986,11 +2995,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel74.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel74.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel74.setText("MIXING SEQUENCE");
+        jLabel74.setText(SEQUENCE.MIXING_SEQUENCE_TBL());
 
         jLabel75.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel75.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel75.setText("RECIPE FORMULATION");
+        jLabel75.setText(SEQUENCE.RECIPE_FORMULATION_TBL());
 
         javax.swing.GroupLayout jPanel10SequenceLayout = new javax.swing.GroupLayout(jPanel10Sequence);
         jPanel10Sequence.setLayout(jPanel10SequenceLayout);

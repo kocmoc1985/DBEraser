@@ -13,6 +13,11 @@ import java.util.Properties;
  */
 public class GP {
 
+    public static String COMPANY_NAME = "compounds";
+    //
+    public static String COMPANY_NAME_QEW = "qew";
+    public static String COMPANY_NAME_COMPOUNDS = "compounds";
+    //
     public static final URL IMAGE_ICON_URL = GP.class.getResource("icon.png");
     public static final URL IMAGE_ICON_URL_RECIPE = GP.class.getResource("icon2.png");
     public static final URL IMAGE_ICON_URL_PROD_PLAN = GP.class.getResource("icon3.png");

@@ -223,10 +223,10 @@ public class HelpA {
         int flag = 0;
         //
         for (RowDataInvert rdi : list) {
-                if (a01(columnsToRemove, rdi.getFieldNickName()) == false) {
-                    toReturn[flag] = rdi;
-                    flag++;
-                }
+            if (a01(columnsToRemove, rdi.getFieldNickName()) == false) {
+                toReturn[flag] = rdi;
+                flag++;
+            }
         }
         //
         return toReturn;
@@ -254,11 +254,21 @@ public class HelpA {
                 jtp.setSelectedIndex(i);
             }
             //
-
         }
     }
     
-    public static void changeTabName(JTabbedPane jtp, String tabNameOld,String tabNameNew){
+    public static void hideTabByName(JTabbedPane jtp, String tabName) {
+        for (int i = 0; i < jtp.getTabCount(); i++) {
+            String title = jtp.getTitleAt(i);
+            //
+            if (title.equals(tabName)) {
+                jtp.removeTabAt(i);
+            }
+            //
+        }
+    }
+
+    public static void changeTabName(JTabbedPane jtp, String tabNameOld, String tabNameNew) {
         for (int i = 0; i < jtp.getTabCount(); i++) {
             String title = jtp.getTitleAt(i);
             //
@@ -272,7 +282,7 @@ public class HelpA {
     public static boolean getSelectedCheckBox(JCheckBox box) {
         return box.isSelected();
     }
-    
+
     public static void main(String[] args) {
         columnExistsSqlTable(null, "UpdatedOn", "Ingredient_Code");
     }
@@ -289,8 +299,6 @@ public class HelpA {
         }
         //
     }
-
-    
 
     public static boolean entryExistsSql(SqlBasicLocal sql, String q) {
         try {
@@ -1232,9 +1240,9 @@ public class HelpA {
             return false;
         }
     }
-    
-    public static boolean checkIfDate(String value_yyyy_MM_dd){
-        if(value_yyyy_MM_dd.matches("\\d{4}-\\d{2}-\\d{2}")){
+
+    public static boolean checkIfDate(String value_yyyy_MM_dd) {
+        if (value_yyyy_MM_dd.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return true;
         }
         return false;
@@ -1304,7 +1312,6 @@ public class HelpA {
             }
         }
     }
-    
     private static HashMap<JComboBox, AutoCompleteSupport> autoSupportList = new HashMap<JComboBox, AutoCompleteSupport>();
     public static Border initialComboBoxBorder;
 
@@ -1498,17 +1505,17 @@ public class HelpA {
         //
         return jbox;
     }
-    
     private static long flagWait;
-    
+
     /**
      * IMPORTANT!
+     *
      * @param box
      * @param query
-     * @param sql 
+     * @param sql
      */
     public static void fillComboBox_with_wait(final JComboBox box, String query, SqlBasicLocal sql) {
-        
+
         if (HelpA.fillAllowedComboBox(flagWait) == false) {
             return;
         } else {
@@ -1922,8 +1929,8 @@ public class HelpA {
         //
         return list;
     }
-    
-     public static void open_dir(String path) {
+
+    public static void open_dir(String path) {
         try {
             Desktop.getDesktop().open(new File(path));
         } catch (IOException ex) {
@@ -1939,8 +1946,8 @@ public class HelpA {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
-    
-      public static void goToEndPosition(JTextArea txtArea) {
+
+    public static void goToEndPosition(JTextArea txtArea) {
         txtArea.setCaretPosition(txtArea.getDocument().getLength());
     }
 
@@ -1985,8 +1992,8 @@ public class HelpA {
             }
         }
     }
-    
-    public static void nimbusLookAndFeel(){
+
+    public static void nimbusLookAndFeel() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
