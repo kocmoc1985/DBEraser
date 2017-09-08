@@ -74,7 +74,7 @@ public class RECIPE_OVERVIEW {
     }
 
     public static String RECIPE_OVERVIEW__INGREDIENT_2() {
-        return LANG_ENG ? "INGREDIENT 2" : "INGREDIENZ 1";
+        return LANG_ENG ? "INGREDIENT 2" : "INGREDIENZ 2";
     }
 
     //===
@@ -104,11 +104,11 @@ public class RECIPE_OVERVIEW {
     }
 
     public static String CURING_SYSTEM() {
-        return LANG_ENG ? "CURING SYSTEM" : "AUSHÄRT. SYSTEM";
+        return LANG_ENG ? "CURING SYSTEM" : "VULK. SYSTEM";
     }
 
     public static String CURING_PROCESS() {
-        return LANG_ENG ? "CURING PROCESS" : "AUSHÄRT. PROZ.";
+        return LANG_ENG ? "CURING PROCESS" : "VULK. PROZESS";
     }
 
     public static String FILTER_TYPE() {

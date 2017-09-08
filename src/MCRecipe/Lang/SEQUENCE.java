@@ -13,11 +13,11 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
 public class SEQUENCE {
 
     public static String MIXING_SEQUENCE_TBL() {
-        return LANG_ENG ? "MIXING SEQUENCE" : "MISH SEQUENZ";
+        return LANG_ENG ? "MIXING SEQUENCE" : "MISCHSEQUENZ";
     }
 
     public static String RECIPE_FORMULATION_TBL() {
-        return LANG_ENG ? "RECIPE FORMULATION" : "REZEPT FORMULIERUNG";
+        return LANG_ENG ? "RECIPE FORMULATION" : "REZEPTUR";
     }
     
     
@@ -67,7 +67,7 @@ public class SEQUENCE {
     }
 
     public static String DATE_CHANGED() {
-        return LANG_ENG ? "DATE CHANGED" : "GEÄNDERT";
+        return LANG_ENG ? "DATE CHANGED" : "GEÄNDERT AM";
     }
 
     public static String USER() {

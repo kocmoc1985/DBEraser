@@ -38,7 +38,7 @@ public class INGR {
     }
 
     public static String DESCR() {
-        return LANG_ENG ? "DESCR" : "BESHREIBUNG";
+        return LANG_ENG ? "DESCR" : "BESCHREIBUNG";
     }
 
     public static String STATUS() {
@@ -70,7 +70,7 @@ public class INGR {
     }
 
     public static String PERC_RUBBER() {
-        return LANG_ENG ? "PERC RUBBER" : "GUMMI %";
+        return LANG_ENG ? "PERC RUBBER" : "KAUTSCHUK %";
     }
     //
 

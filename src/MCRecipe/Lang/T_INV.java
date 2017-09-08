@@ -16,30 +16,30 @@ public class T_INV {
     private static final Properties DICT = new Properties();
 
     static {
-        DICT.put("CODE", "KODE");
+        DICT.put("CODE", "CODE");
         DICT.put("RELEASE", "VERSION");
-        DICT.put("DESCRIPTION", "BESHREIBUNG");
+        DICT.put("DESCRIPTION", "BESCHREIBUNG");
         DICT.put("CUSTOMER", "KUNDE");
         DICT.put("STATUS", "STATUS");
         DICT.put("CLASS", "KATEGORIE");
         DICT.put("POLYMER GROUP", "POLYMER GRUPPE");
         DICT.put("MIXER", "MISCHER");
-        DICT.put("LOADFACTOR", "AUSLASTUNGSFAKTOR");
+        DICT.put("LOADFACTOR", "FÜLLGRAD");
         DICT.put("MIXTIME", "MISCHZEIT");
         DICT.put("PRICE/KG", "PREIS/KG");
         DICT.put("PRICE/L", "PREIS/L");
         //
         DICT.put("NAME", "NAME");
-        DICT.put("CROSS REFERENCE", "KREUZREFERENZ");
-        DICT.put("PRICE", "PREISE");
-        DICT.put("CASNO", "CASNR");
-        DICT.put("CHEMICAL NAME", "CHEMISHE NAME");
-        DICT.put("CHEMICAL NAME", "CHEMISHE NAME");
+        DICT.put("CROSS REFERENCE", "QUERVERWEIS");
+        DICT.put("PRICE", "PREIS");
+        DICT.put("CASNO", "CAS NR");
+        DICT.put("CHEMICAL NAME", "CHEMISHER NAME");
+        DICT.put("CHEMICAL NAME", "CHEMISHER NAME");
         DICT.put("GROUP", "GRUPPE");
-        DICT.put("GROUP NAME", "GRUPPENAME");
+        DICT.put("GROUP NAME", "GRUPPENNAME");
         DICT.put("APPEARANCE", "ERSCHEINUNGSFORM");
-        DICT.put("PERCENTAGE RUBBER", "GUMMI IN PROZENTEN");
-        DICT.put("RUBBER TOLERANCES", "GUMMI TOLERANZ");
+        DICT.put("PERCENTAGE RUBBER", "KAUTSCHUKGEHALT");
+        DICT.put("RUBBER TOLERANCES", "KAUTSCHUK TOLERANZ");
         DICT.put("ACTIVITY", "AKTIVITÄT");
         DICT.put("DENSITY", "DICHTE");
         DICT.put("DENSITY TOLERANCE", "DICHTE TOLERANZ");
@@ -81,7 +81,7 @@ public class T_INV {
         DICT.put("POSITION", "STELLUNG");
         DICT.put("PHONE", "TELEFON");
         //
-        DICT.put("CASNO ID", "CASNO ID");
+        DICT.put("CASNO ID", "CAS NR");
         DICT.put("MSDS", "MSDS");
     }
 

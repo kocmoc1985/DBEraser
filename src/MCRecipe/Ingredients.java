@@ -646,9 +646,9 @@ public class Ingredients extends BasicTab {
         RowDataInvert perc_rubber = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "percRubber", T_INV.LANG("PERCENTAGE RUBBER"), "%", true, true, false);
         RowDataInvert rubber_tolerances = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercRubtOl", T_INV.LANG("RUBBER TOLERANCES"), "%", true, true, false);
         RowDataInvert perc_act_mat = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercActMat", T_INV.LANG("ACTIVITY"), "%", true, true, false);
-        RowDataInvert density = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "density", T_INV.LANG("DENSITY"), "mg/ml", true, true, false);
-        RowDataInvert density_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "DensityTOl", T_INV.LANG("DENSITY TOLERANCE"), "mg/ml", true, true, false);
-        RowDataInvert visc_temp = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTemp", T_INV.LANG("MOONEY TEMPEARTURE"), "C", true, true, false);
+        RowDataInvert density = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "density", T_INV.LANG("DENSITY"), "kg/m&#179", true, true, false);
+        RowDataInvert density_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "DensityTOl", T_INV.LANG("DENSITY TOLERANCE"), "kg/m&#179", true, true, false);
+        RowDataInvert visc_temp = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTemp", T_INV.LANG("MOONEY TEMPEARTURE"), "\u00b0C", true, true, false);
         RowDataInvert visc_time = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTime", T_INV.LANG("MOONEY TIME"), "min", true, true, false);
         RowDataInvert visc_ml = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscML", T_INV.LANG("MOONEY VISCOSITY"), "MU", true, true, false);
         RowDataInvert visc_ml_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscMLTOl", T_INV.LANG("MOONEY TOLERANCES"), "MU", true, true, false);
