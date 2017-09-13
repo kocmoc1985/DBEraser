@@ -25,12 +25,12 @@ import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -64,6 +64,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     //
     private static final String QUERY_MAIN = "select * from interf order by TDATETIME desc";
     private static final String TABLE_NAME = "interf";
+    //
+    public final static String DATE_FORMAT = "yyyy-MM-dd";
 
     /**
      * Creates new form FQ
@@ -75,6 +77,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage()); // maximize window
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("MixCont DB-interface (" + monitor.currentPid() + ")");
+        datePicker1.setDateFormat(new SimpleDateFormat(DATE_FORMAT));
+        datePicker2.setDateFormat(new SimpleDateFormat(DATE_FORMAT));
         //
 //        jButton1.setEnabled(false);
     }
@@ -137,6 +141,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 
     private void addToOutPutWindow(String str) {
         jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
@@ -224,8 +230,6 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         jTextArea2 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButtonRecipeInitialPrintTable1 = new javax.swing.JButton();
@@ -235,6 +239,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         jLabel1 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        datePicker1 = new com.michaelbaranov.microba.calendar.DatePicker();
+        datePicker2 = new com.michaelbaranov.microba.calendar.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -255,10 +261,6 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         ));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jTable1);
-
-        jTextField1.setText("YYYY-MM-DD");
-
-        jTextField2.setText("YYYY-MM-DD");
 
         jLabel2.setText("Date from");
 
@@ -293,6 +295,10 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
 
         jLabel4.setText("Article");
 
+        datePicker1.setShowNoneButton(false);
+
+        datePicker2.setShowNoneButton(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -301,16 +307,15 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                            .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3)
+                            .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
@@ -324,7 +329,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
                         .addComponent(jButtonRecipeInitialGo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addGap(8, 8, 8))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -332,25 +338,27 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonFind, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonRecipeInitialGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                        .addComponent(jButtonRecipeInitialGo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1))
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonRecipeInitialPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -374,7 +382,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
 //            return;
 //        }
         //
-        CURRENT_QUERY = selectDateRangeQuery(jTextField1.getText(), jTextField2.getText(), jTextField4.getText(), jTextField3.getText());
+        CURRENT_QUERY = selectDateRangeQuery(HelpA.datePickerGetDate(datePicker1,DATE_FORMAT), HelpA.datePickerGetDate(datePicker2,DATE_FORMAT), jTextField4.getText(), jTextField3.getText());
         run_query_by_thread();
     }//GEN-LAST:event_jButtonFindActionPerformed
 
@@ -590,6 +598,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.michaelbaranov.microba.calendar.DatePicker datePicker1;
+    private com.michaelbaranov.microba.calendar.DatePicker datePicker2;
     private javax.swing.JButton jButtonFind;
     public javax.swing.JButton jButtonRecipeInitialGo;
     protected javax.swing.JButton jButtonRecipeInitialPrintTable1;
@@ -601,8 +611,6 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables

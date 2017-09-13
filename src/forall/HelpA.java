@@ -4,6 +4,7 @@
  */
 package forall;
 
+import static FixedQueryTool.FixedQueryTool_TRELL.DATE_FORMAT;
 import MCCompound.PROD_PLAN;
 import MCRecipe.ComboBoxTitle;
 import MCRecipe.MC_RECIPE;
@@ -11,6 +12,7 @@ import MCRecipe.SQL_A;
 import MyObjectTableInvert.RowDataInvert;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
+import com.michaelbaranov.microba.calendar.DatePicker;
 import images.IconUrls;
 import java.awt.AWTException;
 import java.awt.Color;
@@ -444,6 +446,25 @@ public class HelpA {
 
     public static long millis_to_days_converter(long millis) {
         return millis / 86400000;
+    }
+    
+    public static String millisToDateConverter(String millis,String dateFormat) {
+//        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS"); //this works!
+        //note if to write hh instead of HH it will show like 03:15:16 and not 15:15:16
+        DateFormat formatter = new SimpleDateFormat(dateFormat); // this works to!
+        long now = Long.parseLong(millis);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(now);
+        return formatter.format(calendar.getTime());
+    }
+    
+    public static String datePickerGetDate(DatePicker dp,String dateFormat) {
+        //
+        if (dp.getDate() == null) {
+            return "";
+        }
+        //
+        return millisToDateConverter("" + dp.getDate().getTime(), dateFormat);
     }
 
     public static Properties choose_properties(String path) {
