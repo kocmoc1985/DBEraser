@@ -63,7 +63,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     private static int SELECTED_ROW = -1;
     //
     private static final String QUERY_MAIN = "select * from interf order by TDATETIME desc";
-    private static final String TABLE_NAME = "interf";
+    private static final String TABLE_NAME = "resultsN";
     //
     public final static String DATE_FORMAT = "yyyy-MM-dd";
 
@@ -141,8 +141,6 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
     private void addToOutPutWindow(String str) {
         jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
@@ -293,7 +291,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
 
         jLabel1.setText("Order");
 
-        jLabel4.setText("Article");
+        jLabel4.setText("Quality");
 
         datePicker1.setShowNoneButton(false);
 
@@ -382,53 +380,90 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
 //            return;
 //        }
         //
-        CURRENT_QUERY = selectDateRangeQuery(HelpA.datePickerGetDate(datePicker1,DATE_FORMAT), HelpA.datePickerGetDate(datePicker2,DATE_FORMAT), jTextField4.getText(), jTextField3.getText());
+        CURRENT_QUERY = selectDateRangeQuery(HelpA.datePickerGetDate(datePicker1, DATE_FORMAT), HelpA.datePickerGetDate(datePicker2, DATE_FORMAT), jTextField4.getText(), jTextField3.getText());
         run_query_by_thread();
     }//GEN-LAST:event_jButtonFindActionPerformed
 
     private void jButtonRecipeInitialGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialGoActionPerformed
         show_data();
     }//GEN-LAST:event_jButtonRecipeInitialGoActionPerformed
+    public static String TEST_DATE = "Testdate"; //Testdate
+    public static String RECIPE = "Quality"; // Quality
+    public static String ORDER = "Order"; // Order
+    public static String BATCH = "BatchNo"; //BatchNo
 
-    public static String selectDateRangeQuery(String dateFrom, String dateTo, String article, String order) {
+    public static String selectDateRangeQuery(String dateFrom, String dateTo, String recipe, String order) {
+        //
         String q = "select * from " + TABLE_NAME;
-
+        //
         if (HelpA.checkIfDate(dateFrom) && HelpA.checkIfDate(dateTo)) {
-            q += " where CAST(TDATETIME as Datetime) >='" + dateFrom + "'";
-            q += " and CAST(TDATETIME as Datetime) <='" + dateTo + "'";
             //
-            if (order.length() != 0 && article.length() != 0) {
-                q += " and VHMFNO ='" + order + "'";
-                q += " and VHPRNO ='" + article + "'";
-            } else if (order.length() != 0 && article.length() == 0) {
-                q += " and VHMFNO ='" + order + "'";
-            } else if (article.length() != 0 && order.length() == 0) {
-                q += " and VHPRNO ='" + article + "'";
+            if (dateFrom.equals(dateTo)) {
+                q += " where " + TEST_DATE + " >='" + dateFrom + "'";
+            } else {
+                q += " where " + TEST_DATE + " >='" + dateFrom + "'";
+                q += " and " + TEST_DATE + " <='" + dateTo + "'";
+            }
+            //
+            if (order.length() != 0 && recipe.length() != 0) {
+                q += " and [" + ORDER + "] ='" + order + "'";
+                q += " and " + RECIPE + " ='" + recipe + "'";
+            } else if (order.length() != 0 && recipe.length() == 0) {
+                q += " and [" + ORDER + "] ='" + order + "'";
+            } else if (recipe.length() != 0 && order.length() == 0) {
+                q += " and " + RECIPE + " ='" + recipe + "'";
             }
             //
         } else {
-            if (order.length() != 0 && article.length() != 0) {
-                q += " where VHMFNO ='" + order + "'";
-                q += " and VHPRNO ='" + article + "'";
-            } else if (order.length() != 0 && article.length() == 0) {
-                q += " where VHMFNO ='" + order + "'";
-            } else if (article.length() != 0 && order.length() == 0) {
-                q += " where VHPRNO ='" + article + "'";
+            if (order.length() != 0 && recipe.length() != 0) {
+                q += " where [" + ORDER + "] ='" + order + "'";
+                q += " and " + RECIPE + " ='" + recipe + "'";
+            } else if (order.length() != 0 && recipe.length() == 0) {
+                q += " where [" + ORDER + "] ='" + order + "'";
+            } else if (recipe.length() != 0 && order.length() == 0) {
+                q += " where " + RECIPE + " ='" + recipe + "'";
             }
 
         }
 
-        q += " order by TDATETIME desc";
+        q += " order by " + TEST_DATE + " desc";
 
         return q;
 
+    }
 
-//        return "select * from " + TABLE_NAME
-//                + " where CAST(TDATETIME as Datetime) >='" + dateFrom + "'"
-//                + " and CAST(TDATETIME as Datetime) <='" + dateTo + "'"
-//                + " and VHMFNO ='" + order + "'"
-//                + " and VHPRNO ='" + article + "'"
-//                + " order by TDATETIME desc";
+    public static String selectDateRangeQuery_BACKUP(String dateFrom, String dateTo, String recipe, String order) {
+        String q = "select * from " + TABLE_NAME;
+
+        if (HelpA.checkIfDate(dateFrom) && HelpA.checkIfDate(dateTo)) {
+            q += " where CAST(" + TEST_DATE + " as Datetime) >='" + dateFrom + "'";
+            q += " and CAST(" + TEST_DATE + " as Datetime) <='" + dateTo + "'";
+            //
+            if (order.length() != 0 && recipe.length() != 0) {
+                q += " and [" + ORDER + "] ='" + order + "'";
+                q += " and " + RECIPE + " ='" + recipe + "'";
+            } else if (order.length() != 0 && recipe.length() == 0) {
+                q += " and [" + ORDER + "] ='" + order + "'";
+            } else if (recipe.length() != 0 && order.length() == 0) {
+                q += " and " + RECIPE + " ='" + recipe + "'";
+            }
+            //
+        } else {
+            if (order.length() != 0 && recipe.length() != 0) {
+                q += " where [" + ORDER + "] ='" + order + "'";
+                q += " and " + RECIPE + " ='" + recipe + "'";
+            } else if (order.length() != 0 && recipe.length() == 0) {
+                q += " where [" + ORDER + "] ='" + order + "'";
+            } else if (recipe.length() != 0 && order.length() == 0) {
+                q += " where " + RECIPE + " ='" + recipe + "'";
+            }
+
+        }
+
+        q += " order by " + TEST_DATE + " desc";
+
+        return q;
+
     }
 
     private void update_row_2() {
@@ -545,7 +580,8 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             cursorSetWaitCursor(true);
             ResultSet rs = sql.execute(query);
             build_table(rs);
-            addToOutPutWindow("Executing ok: " + query);
+//            addToOutPutWindow("Executing ok: " + query);
+            addToOutPutWindow("Executing successful");
             SimpleLoggerLight.logg(QUERY_OK_LOG_FILE, query);
             cursorSetWaitCursor(false);
         } catch (SQLException ex) {

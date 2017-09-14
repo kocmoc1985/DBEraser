@@ -203,7 +203,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Article"/>
+        <Property name="text" type="java.lang.String" value="Quality"/>
       </Properties>
     </Component>
     <Component class="com.michaelbaranov.microba.calendar.DatePicker" name="datePicker1">
