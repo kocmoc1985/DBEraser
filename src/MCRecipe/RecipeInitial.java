@@ -252,21 +252,24 @@ public class RecipeInitial extends BasicTab {
         HelpA.hideColumnByName(table2, "UpdatedBy");
         HelpA.hideColumnByName(table2, "Recipe_Prop_Free_Info_ID");
         //
-        HelpA.moveRowTo(table2, "NoteName", "Color:", 0);
-        HelpA.moveRowTo(table2, "NoteName", "Hardnes Sha:", 1);
-        HelpA.moveRowTo(table2, "NoteName", "recept type:", 2);
-        //        HelpA.moveRowTo(table2, "NoteName:", "Polymer Blend:", 1); // the comented ones are to be added later when the exist
-        //        HelpA.moveRowTo(table2, "NoteName:", "IP:", 1);
-        HelpA.moveRowTo(table2, "NoteName", "curing system:", 3);
-        HelpA.moveRowTo(table2, "NoteName", "filler:", 4);
-        //        HelpA.moveRowTo(table2, "NoteName:", "Approval:", 1);
-        //        HelpA.moveRowTo(table2, "NoteName:", "Food Grade:", 1);
-        HelpA.moveRowTo(table2, "NoteName", "certificate:", 5);
-        HelpA.moveRowTo(table2, "NoteName", "schelflife(weeks):", 6);
-        //        HelpA.moveRowTo(table2, "NoteName:", "Delivery Form:", 1);
-        //        HelpA.moveRowTo(table2, "NoteName:", "Packaging:", 1);
-        HelpA.moveRowTo(table2, "NoteName", "curing system:", 7);
-        HelpA.moveRowTo(table2, "NoteName", "industry:", 8);
+        try {
+            HelpA.moveRowTo(table2, "NoteName", "Color:", 0);
+            HelpA.moveRowTo(table2, "NoteName", "Hardnes Sha:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "recept type:", 2);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Polymer Blend:", 1); // the comented ones are to be added later when the exist
+            //        HelpA.moveRowTo(table2, "NoteName:", "IP:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "curing system:", 3);
+            HelpA.moveRowTo(table2, "NoteName", "filler:", 4);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Approval:", 1);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Food Grade:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "certificate:", 5);
+            HelpA.moveRowTo(table2, "NoteName", "schelflife(weeks):", 6);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Delivery Form:", 1);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Packaging:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "curing system:", 7);
+            HelpA.moveRowTo(table2, "NoteName", "industry:", 8);
+        } catch (Exception ex) {
+        }
         //
         HelpA.changeTableHeaderTitleOfOneColumn(table2, "NoteName", "Name");
         HelpA.changeTableHeaderTitleOfOneColumn(table2, "Note_Value", "Value");
