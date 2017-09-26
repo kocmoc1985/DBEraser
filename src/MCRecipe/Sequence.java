@@ -58,7 +58,7 @@ public class Sequence extends BasicTab {
         });
     }
 
-    public void markPhaseTable2() {
+    private void markPhaseTable2() {
         //
         String command = HelpA.getValueSelectedRow(mCRecipe.jTableSequnece1, "Command Name");
         //
@@ -134,6 +134,8 @@ public class Sequence extends BasicTab {
 
     public void delete_step() {
         //
+        JTable table1 = mCRecipe.jTableSequnece1;
+        //
         if (HelpA.confirm() == false) {
             return;
         }
@@ -150,7 +152,14 @@ public class Sequence extends BasicTab {
         //
         recalcStepNumbers();
         //
+        int row_to_delete = table1.getSelectedRow();
+        //
         fill_table_1(mCRecipe.jComboBoxSequenceRecipe, mCRecipe.jComboBoxSequenceRelease, mCRecipe.jComboBoxSequenceMixerCode);
+        //
+        //
+        HelpA.markGivenRow(table1, HelpA.getNextRow(table1, row_to_delete));
+        //
+        table1Click(table1);
     }
 
     private void recalcStepNumbers() {
@@ -495,8 +504,13 @@ public class Sequence extends BasicTab {
             }
         });
     }
+    
+    public void table1Click(JTable table){
+        table1Clicked(table);
+        markPhaseTable2();
+    }
 
-    public void table1Clicked(JTable table) {
+    private void table1Clicked(JTable table) {
         //
         SEQUENCE_PRESENT = true;
         //

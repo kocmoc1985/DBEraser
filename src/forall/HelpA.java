@@ -258,7 +258,7 @@ public class HelpA {
             //
         }
     }
-    
+
     public static void hideTabByName(JTabbedPane jtp, String tabName) {
         for (int i = 0; i < jtp.getTabCount(); i++) {
             String title = jtp.getTitleAt(i);
@@ -447,8 +447,8 @@ public class HelpA {
     public static long millis_to_days_converter(long millis) {
         return millis / 86400000;
     }
-    
-    public static String millisToDateConverter(String millis,String dateFormat) {
+
+    public static String millisToDateConverter(String millis, String dateFormat) {
 //        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS"); //this works!
         //note if to write hh instead of HH it will show like 03:15:16 and not 15:15:16
         DateFormat formatter = new SimpleDateFormat(dateFormat); // this works to!
@@ -457,8 +457,8 @@ public class HelpA {
         calendar.setTimeInMillis(now);
         return formatter.format(calendar.getTime());
     }
-    
-    public static String datePickerGetDate(DatePicker dp,String dateFormat) {
+
+    public static String datePickerGetDate(DatePicker dp, String dateFormat) {
         //
         if (dp.getDate() == null) {
             return "";
@@ -1232,6 +1232,15 @@ public class HelpA {
         try {
             table.changeSelection(row, 0, false, false);
         } catch (Exception ex) {
+        }
+    }
+
+    public static int getNextRow(JTable table, int previousRow) {
+        int nextRow = previousRow++;
+        if (nextRow < table.getRowCount()) {
+            return nextRow;
+        } else {
+            return 0;
         }
     }
 

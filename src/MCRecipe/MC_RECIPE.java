@@ -4283,9 +4283,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     public void clickedTable1Sequence() {
         //
-        sequence.table1Clicked(jTableSequnece1);
-        //
-        sequence.markPhaseTable2();
+        sequence.table1Click(jTableSequnece1);
         //
     }
 
