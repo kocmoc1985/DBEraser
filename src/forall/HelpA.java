@@ -673,6 +673,24 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static synchronized void build_table_common(ResultSet rs, JTable jTable, String q, int indexFirst, int indexLast) {
+        //
+        if (rs == null) {
+            return;
+        }
+        //
+        HelpA.setTrackingToolTip(jTable, q);
+        //
+        try {
+            String[] headers = getHeaders(rs);
+            Object[][] content = getContent(rs, indexFirst, indexLast);
+            jTable.setModel(new DefaultTableModel(content, headers));
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
 
     public static synchronized void build_table_common(ResultSet rs, JTable jTable, String q) {
         //
@@ -718,6 +736,30 @@ public class HelpA {
         }
         //
         return headers;
+    }
+    
+    public static synchronized Object[][] getContent(ResultSet rs, int indexFirst, int indexLast) throws SQLException {
+        ResultSetMetaData rsmt;
+        Object[][] content;
+        int rows, columns;
+        rsmt = rs.getMetaData(); // får in antalet columner
+        rs.last(); // flyttar pekaren till sista positon
+        columns = rsmt.getColumnCount(); // retrieves number of columns och lagrar det i "columns".
+        rows = (indexLast - indexFirst)+1;
+        content = new Object[rows][columns]; // ger arrayen content som är en "Object"
+        // initialisering i den första demensionen är "rows" i den andra "columns"
+        //
+        int row_ = 0;
+        for (int row = indexFirst; row <= indexLast; row++) {
+            rs.absolute(row+1); // Flytta till rätt rad i resultatmängden
+            for (int col = 0; col < columns; col++) {
+                Object obj = rs.getString(col + 1);
+                content[row_][col] = obj;
+            }
+            row_ ++;
+        }
+        //
+        return content;
     }
 
     public static synchronized Object[][] getContent(ResultSet rs) throws SQLException {

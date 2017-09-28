@@ -5,4 +5,14 @@
 2. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql)
 
 3. Create Database "NCPD" using NCPD.sql -> OBS! you will need to execute the NCPD.sql *twice*
-the first time it fails because some tables/views are created before others
+the first time it fails because some tables/views are created before others.
+
+4. Add "rule" for free entrance (used by MCRecipe.jar):
+
+insert into MCRecipeUsers values (
+'rule_free_entrance',
+'',
+'enabled',
+getDate(),
+getDate()
+)
