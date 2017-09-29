@@ -659,7 +659,7 @@ public class SQL_A {
                     + buildParametersForProcedure(params)
                     + ") order by " + param + " asc";
             //
-        } else { 
+        } else {
             procedure = "fn_ITF_Recipes_Z_X_IngredName";
             //
             return "select distinct IngredName from " + procedure + "() "
@@ -1212,15 +1212,14 @@ public class SQL_A {
                 + param3 + "'";
     }
 
-
     /**
      *
      * @param param1 - user
      * @return
      */
     public static String RecipeTemporarySelect(String param1) {
-        return "SELECT TOP (100) "
-                + "Id,"
+        return "SELECT "
+                + " Id,"
                 + " RecipeName,"
                 + " Release,"
                 + " material,"
@@ -1232,7 +1231,7 @@ public class SQL_A {
                 + " Volume,"
                 + " Phase AS [Loading S.],"
                 + " ContainerNB AS [Weighing S.],"
-//                + " density_Recalc,"
+                //                + " density_Recalc,"
                 + " PHR_recalc,"
                 + " weight_Recalc,"
                 + " MatIndex,"
@@ -1246,7 +1245,7 @@ public class SQL_A {
                 + " Recipe_Recipe_ID,"
                 + " RecipeID "
                 + " FROM " + param1
-                + " ORDER BY GRP asc";
+                + " Order by cast(Id AS float)";
     }
 
     /**
@@ -1268,7 +1267,7 @@ public class SQL_A {
                 + " Volume,"
                 + " Phase AS [Loading S.],"
                 + " ContainerNB AS [Weighing S.],"
-//                + " density_Recalc,"
+                //                + " density_Recalc,"
                 + " PHR_recalc,"
                 + " weight_Recalc,"
                 + " MatIndex,"
