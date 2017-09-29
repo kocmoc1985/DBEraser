@@ -177,7 +177,29 @@ public class RecipeDetailed extends BasicTab {
         jTableToCSV(mCRecipe2.jTable4RecipeDetailed, true, new String[]{"material", "PHR", "weight"});
     }
 
-    public void setIngredNameForIngredients() {
+    public void autoSelectFirstRowTable4() {
+        //
+        boolean cond_1 = HelpA.isEmtyJTable(mCRecipe2.jTable4RecipeDetailed);
+        //
+        if (cond_1 == false) {
+
+            for (int i = 0; i < mCRecipe2.jTable4RecipeDetailed.getRowCount(); i++) {
+                //
+                HelpA.markGivenRow(mCRecipe2.jTable4RecipeDetailed, i);
+                //
+                String ingred = HelpA.getValueSelectedRow(mCRecipe2.jTable4RecipeDetailed, t4_material);
+                //
+                if (HelpA.isIngred(ingred)) {
+                    jTable4RecipeDetailedClicked();
+                    break;
+                }
+                //
+            }
+
+        }
+    }
+
+    public void jTable4RecipeDetailedClicked() {
         //
         String ingredName = HelpA.getValueSelectedRow(mCRecipe2.jTable4RecipeDetailed, "material");
         //
@@ -492,7 +514,7 @@ public class RecipeDetailed extends BasicTab {
         //
         HelpA.markLastRowJtable(table4);
         //
-        setIngredNameForIngredients();
+        jTable4RecipeDetailedClicked();
         //
         CHANGES_TEMP_T4_APPLIED = true;
         //
@@ -954,14 +976,14 @@ public class RecipeDetailed extends BasicTab {
         //
         recipeInitial.clearBoxes();
         //
-        if(updateRecipeCode() == false){
+        if (updateRecipeCode() == false) {
             return;
         }
         //
         if (fromScratch) {
             clearRows(TABLE_INVERT, 1, 4);
             changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
-        }else{
+        } else {
             changeValueAndSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
         }
     }
@@ -1047,7 +1069,7 @@ public class RecipeDetailed extends BasicTab {
         RowDataInvert[] config;
         //
         if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
-            String[] toRemove = new String[]{ T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+            String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
             config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
         } else {
             config = getConfigTableInvert();

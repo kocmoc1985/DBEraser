@@ -4143,6 +4143,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
             recipeDetailed.checkIfDisabled();
             //
+            recipeDetailed.autoSelectFirstRowTable4();
         }
         //
     }
@@ -4257,7 +4258,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
         } else if (me.getSource() == jTable4RecipeDetailed && (me.getClickCount() == 1)) {
             //
-            recipeDetailed.setIngredNameForIngredients();
+            recipeDetailed.jTable4RecipeDetailedClicked();
             //
         } else if (me.getSource() == jTable_Ingred_Table1 && (me.getClickCount() == 1)) {
             //

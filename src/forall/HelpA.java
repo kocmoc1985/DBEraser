@@ -673,7 +673,7 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static synchronized void build_table_common(ResultSet rs, JTable jTable, String q, int indexFirst, int indexLast) {
         //
         if (rs == null) {
@@ -737,7 +737,7 @@ public class HelpA {
         //
         return headers;
     }
-    
+
     public static synchronized Object[][] getContent(ResultSet rs, int indexFirst, int indexLast) throws SQLException {
         ResultSetMetaData rsmt;
         Object[][] content;
@@ -745,18 +745,18 @@ public class HelpA {
         rsmt = rs.getMetaData(); // får in antalet columner
         rs.last(); // flyttar pekaren till sista positon
         columns = rsmt.getColumnCount(); // retrieves number of columns och lagrar det i "columns".
-        rows = (indexLast - indexFirst)+1;
+        rows = (indexLast - indexFirst) + 1;
         content = new Object[rows][columns]; // ger arrayen content som är en "Object"
         // initialisering i den första demensionen är "rows" i den andra "columns"
         //
         int row_ = 0;
         for (int row = indexFirst; row <= indexLast; row++) {
-            rs.absolute(row+1); // Flytta till rätt rad i resultatmängden
+            rs.absolute(row + 1); // Flytta till rätt rad i resultatmängden
             for (int col = 0; col < columns; col++) {
                 Object obj = rs.getString(col + 1);
                 content[row_][col] = obj;
             }
-            row_ ++;
+            row_++;
         }
         //
         return content;
@@ -892,6 +892,14 @@ public class HelpA {
             }
         }
         return false;
+    }
+
+    public static boolean isIngred(String strToCheck) {
+        if (strToCheck.length() > 5) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public static String jTableToCSV(JTable table, boolean writeToFile) {
@@ -1283,6 +1291,14 @@ public class HelpA {
             return nextRow;
         } else {
             return 0;
+        }
+    }
+    
+    public static boolean isEmtyJTable(JTable table){
+        if(table.getRowCount() == 0){
+            return true;
+        }else{
+            return false;
         }
     }
 
