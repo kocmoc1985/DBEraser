@@ -97,4 +97,8 @@ public class INGR {
     public static String ADD_INGREDIENT_TO_R_DETAILED_TOOLTIP() {
         return LANG_ENG ? "Add ingredient to RECIPE DETAILED -> Recipe Manager" : "Ingredienz nach REZEPT ERWEITERT verscheiben (REZEPT VERWALTUNG)";
     }
+    
+     public static String CINFIRM_MSG_1() {
+        return LANG_ENG ? "Caution!\nThis action will add this igredient to the opened recipe, do you want to proceed?" : "Achtung!\nDiese Operation ergänzt diese Ingredienz zum geöffneten Rezept, möchten Sie es machen?";
+    }
 }

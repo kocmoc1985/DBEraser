@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.JTB;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.T_INV;
@@ -154,6 +155,10 @@ public class Ingredients extends BasicTab {
     }
 
     public void addIngredientToTable4RecipeDetailed() {
+        //
+        if(HelpA.confirm(INGR.CINFIRM_MSG_1()) == false){
+            return;
+        }
         //
         if(mCRecipe.recipeInitial.checkIfRecipeDisabled()){
             HelpA.showNotification("Cannot do this action for Recipe with status S, O, Inactive");
