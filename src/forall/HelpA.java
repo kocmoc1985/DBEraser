@@ -42,6 +42,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -1293,11 +1294,11 @@ public class HelpA {
             return 0;
         }
     }
-    
-    public static boolean isEmtyJTable(JTable table){
-        if(table.getRowCount() == 0){
+
+    public static boolean isEmtyJTable(JTable table) {
+        if (table.getRowCount() == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -2037,6 +2038,10 @@ public class HelpA {
 
     public static void goToEndPosition(JTextArea txtArea) {
         txtArea.setCaretPosition(txtArea.getDocument().getLength());
+    }
+
+    public static void setJLabelIcon(JLabel label, URL url) {
+        label.setIcon(new ImageIcon(url)); // NOI18N
     }
 
     public static void setButtonIconPreAdd(JButton btn) {

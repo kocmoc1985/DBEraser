@@ -16,6 +16,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import images.IconUrls;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -35,7 +36,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author KOCMOC
  */
 public class RecipeDetailed extends BasicTab {
-
+    
     private final MC_RECIPE mCRecipe2;
     private final ChangeSaver changeSaver;
     private final RecipeInitial recipeInitial;
@@ -72,14 +73,30 @@ public class RecipeDetailed extends BasicTab {
         initializeSaveIndicators();
         fill_table4_recalc_combobox();
     }
-
+    
+    public void showLockedUnlocked() {
+        if (mCRecipe2.recipeInitial.checkIfRecipeDisabled()) {
+            setLocked(true);
+        } else {
+            setLocked(false);
+        }
+    }
+    
+    private void setLocked(boolean locked) {
+        if (locked) {
+            HelpA.setJLabelIcon(mCRecipe2.jLabelLockedUnlocked, IconUrls.LOCKED_ICON);            
+        } else {
+            HelpA.setJLabelIcon(mCRecipe2.jLabelLockedUnlocked, IconUrls.UNLOCKED_ICON);
+        }
+    }
+    
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator2 = new SaveIndicator(mCRecipe2.jButtonRecipeDetailedSaveTable4, this, 2);
         SaveIndicator saveIndicator3 = new SaveIndicator(mCRecipe2.jButton7, this, 3);
         SaveIndicator saveIndicator4 = new SaveIndicator(mCRecipe2.jButton_Recipe_Detailed_Save_Invert, this, 4);
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         if (nr == 2) {
@@ -107,7 +124,7 @@ public class RecipeDetailed extends BasicTab {
         }
         return false;
     }
-
+    
     public boolean checkIfDisabled() {
         //
         String status = getStatus();
@@ -122,13 +139,14 @@ public class RecipeDetailed extends BasicTab {
             return false;
         }
     }
-
+    
     public void unblockRecipe(JTable table) {
         //
         String status = HelpA.getValueSelectedRow(table, T1_STATUS);
         //
         boolean cond_1 = status.equals("S") == false && status.equals("O") == false
                 && status.equals("Inactive") == false;
+        //
         //
         if (cond_1) {
             HelpA.showNotification("The recipe status is not S or O or Inactive");
@@ -155,34 +173,35 @@ public class RecipeDetailed extends BasicTab {
         //
         HelpA.openTabByName(mCRecipe2.jTabbedPane1, LNG.RECIPE_DETAILED_TAB);
         //
+        showLockedUnlocked();
     }
-
+    
     public void nextRecipe() {
         HelpA.selectNextRow(mCRecipe2.jTable1);
         mCRecipe2.clickedOnTable1RecipeInitial();
         mCRecipe2.recipeDetailedTabbClicked();
     }
-
+    
     public void prevRecipe() {
         HelpA.selectPrevRow(mCRecipe2.jTable1);
         mCRecipe2.clickedOnTable1RecipeInitial();
         mCRecipe2.recipeDetailedTabbClicked();
     }
-
+    
     public void table1Repport() {
         tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
     }
-
+    
     public void table4Repport() {
         jTableToCSV(mCRecipe2.jTable4RecipeDetailed, true, new String[]{"material", "PHR", "weight"});
     }
-
+    
     public void autoSelectFirstRowTable4() {
         //
         boolean cond_1 = HelpA.isEmtyJTable(mCRecipe2.jTable4RecipeDetailed);
         //
         if (cond_1 == false) {
-
+            
             for (int i = 0; i < mCRecipe2.jTable4RecipeDetailed.getRowCount(); i++) {
                 //
                 HelpA.markGivenRow(mCRecipe2.jTable4RecipeDetailed, i);
@@ -195,10 +214,9 @@ public class RecipeDetailed extends BasicTab {
                 }
                 //
             }
-
         }
     }
-
+    
     public void jTable4RecipeDetailedClicked() {
         //
         String ingredName = HelpA.getValueSelectedRow(mCRecipe2.jTable4RecipeDetailed, "material");
@@ -208,7 +226,7 @@ public class RecipeDetailed extends BasicTab {
         }
         //
     }
-
+    
     public void refreshRecipeInitialTable1AfterSaving() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -237,7 +255,7 @@ public class RecipeDetailed extends BasicTab {
             }
         });
     }
-
+    
     public void reset() {
         unsavedChanges_table4 = new LinkedList<Integer>();
         //
@@ -254,7 +272,7 @@ public class RecipeDetailed extends BasicTab {
     private static final String C_TOTAL_VOLUME = R_DETAILED.CHANGE_TOTAL_VOLUME_COMBO();
     private static final String C_TOTAL_WEIGHT = R_DETAILED.CHANGE_TOTAL_WEIGHT_COMBO();
     private static final String C_LOAD_FACTOR = R_DETAILED.CHANGE_LOAD_FACTOR_COMBO();
-
+    
     private void fill_table4_recalc_combobox() {
         String[] values = new String[5];
         values[0] = C_INGRED_WEIGHT;
@@ -264,35 +282,35 @@ public class RecipeDetailed extends BasicTab {
         values[4] = C_LOAD_FACTOR;
         HelpA.fillComboBox(mCRecipe2.jComboBox1, values, null);
     }
-
+    
     public String getRecipeCode() {
         return getValueTableInvert("Code");
     }
-
+    
     public String getRelease() {
         return getValueTableInvert("Release");
     }
-
+    
     public String getRecipeId() {
         return getValueTableInvert("Recipe_ID");
     }
-
+    
     public String getMixerCode() {
         return getValueTableInvert("Mixer_Code");
     }
-
+    
     public String getDetailedGroup() {
         return getValueTableInvert("Detailed_Group");
     }
-
+    
     public String getLoadFactor() {
         return getValueTableInvert("Loadfactor");
     }
-
+    
     public String getStatus() {
         return getValueTableInvert("Status");
     }
-
+    
     public void saveTableInvert() {
         if (getDetailedGroup().equals("NULL") || getMixerCode().equals("NULL")) {
             HelpA.showNotification("Cannot proceed, Polymer group and Mixer must be chosen");
@@ -303,7 +321,7 @@ public class RecipeDetailed extends BasicTab {
         //
         refreshRecipeInitialTable1AfterSaving();
     }
-
+    
     public void table3_add_note() {
         //
         String recipe_id = getRecipeId();
@@ -329,7 +347,7 @@ public class RecipeDetailed extends BasicTab {
         //
         recipeInitial.fill_table_2_and_3(); // Refresh
     }
-
+    
     public void apply_changes_table4_tempory() {
         //
         HelpA.stopEditJTable(mCRecipe2.jTable4RecipeDetailed);
@@ -348,14 +366,14 @@ public class RecipeDetailed extends BasicTab {
         //
         setAllEntriesChangedTable4(mCRecipe2.jTable4RecipeDetailed, t4_id);
     }
-
+    
     private void setAllEntriesChangedTable4(JTable table, String rowIdColumnName) {
         for (int row = 0; row < (table.getRowCount()); row++) {
             String ROW_ID = "" + table.getValueAt(row, HelpA.getColByName(table, rowIdColumnName));
             addPotentiallyUnsavedEntries(Integer.parseInt(ROW_ID), unsavedChanges_table4, null, table);
         }
     }
-
+    
     public void apply_changes_table4_real(boolean confirm) {
         //
         if (confirm) {
@@ -382,7 +400,7 @@ public class RecipeDetailed extends BasicTab {
         //
         reset();
     }
-
+    
     private void saveLoadFactor() {
         //
         String newFillFactor;
@@ -399,7 +417,7 @@ public class RecipeDetailed extends BasicTab {
         //
         changeValueAndSave(TABLE_INVERT, newFillFactor, "Loadfactor", 1);
     }
-
+    
     private void delete_from_table_4_tempory() {
         for (IngredientToDelete ingred : ingredientsToDelete_table_4) {
             //
@@ -411,9 +429,9 @@ public class RecipeDetailed extends BasicTab {
                 Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
     }
-
+    
     private void delete_from_table_4_real() {
         while (ingredientsToDelete_table_4.isEmpty() == false) {
             //
@@ -430,7 +448,7 @@ public class RecipeDetailed extends BasicTab {
             }
         }
     }
-
+    
     private boolean checkDensity(String ingredient) {
         //
         String density = null;
@@ -454,7 +472,7 @@ public class RecipeDetailed extends BasicTab {
             return true;
         }
     }
-
+    
     public void add_ingredient_table_4(String ingred) {
         //
         String ingredient;
@@ -521,12 +539,12 @@ public class RecipeDetailed extends BasicTab {
         apply_changes_table4_real(false);
         //
     }
-
+    
     public void undo_mark_to_delete_ingredient_table_4() {
         ingredientsToDelete_table_4.pollLast();
         paint_selected_rows(ingredientsToDelete_table_4, mCRecipe2.jTable4RecipeDetailed, null);
     }
-
+    
     public void mark_to_delete_ingredient_table_4() {
         //
         JTable table = mCRecipe2.jTable4RecipeDetailed;
@@ -549,7 +567,7 @@ public class RecipeDetailed extends BasicTab {
         //
         MARKED_FOR_DELITION = true;
     }
-
+    
     public void fill_table_4(boolean recreateRecipeTempTable) {
         //
         JTable table4 = mCRecipe2.jTable4RecipeDetailed;
@@ -627,7 +645,7 @@ public class RecipeDetailed extends BasicTab {
         HelpA.synchColumnWidths(mCRecipe2.jTable4RecipeDetailed, mCRecipe2.jTableRecipeDetailedTable4HelpTable);
         //
     }
-
+    
     private void fillTable4HelpTable() {
         //
         checkIfEmpty();// This makes that 
@@ -658,7 +676,7 @@ public class RecipeDetailed extends BasicTab {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void checkIfEmpty() {
         if (mCRecipe2.jTable4RecipeDetailed.getRowCount() == 0) {
             String q = SQL_A.recipeDetailedDeleteIfEmpty(HelpA.updatedBy());
@@ -669,7 +687,7 @@ public class RecipeDetailed extends BasicTab {
             }
         }
     }
-
+    
     private void hideColumnsTable4AndTable4Help(JTable table) {
         HelpA.hideColumnByName(table, "Recipe_Recipe_ID");
         HelpA.hideColumnByName(table, "RecipeID");
@@ -682,7 +700,7 @@ public class RecipeDetailed extends BasicTab {
         HelpA.hideColumnByName(table, "GRP");
         HelpA.hideColumnByName(table, "percRubber");
     }
-
+    
     public void edit_ingredients_parameters_table_4(int row, int col) {
         //
         JTable table4 = mCRecipe2.jTable4RecipeDetailed;
@@ -712,7 +730,7 @@ public class RecipeDetailed extends BasicTab {
             choose_and_set_value_table_4(table4, box, "Choose Container", row, col);
         }
     }
-
+    
     private void choose_and_set_value_table_4(JTable table, JComboBox box, String msg, int row, int col) {
         //
         if (HelpA.chooseFromComboBoxDialog(box, msg) == false) {
@@ -723,9 +741,9 @@ public class RecipeDetailed extends BasicTab {
         //
         table.setValueAt(HelpA.getComboBoxSelectedValue(box).replaceAll("'", ""), row, col);
     }
-
+    
     private void save_changes_table_4_tempory(JTable table) {
-
+        
         for (Integer row_id : unsavedChanges_table4) {
             //
             int row = HelpA.getRowByValue(table, t4_id, "" + row_id);
@@ -754,7 +772,7 @@ public class RecipeDetailed extends BasicTab {
             }
         }
     }
-
+    
     private void recalculate_table_4_temp() {
         //
         String command = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1);
@@ -813,9 +831,9 @@ public class RecipeDetailed extends BasicTab {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void save_changes_table_4_real(JTable table) {
-
+        
         while (unsavedChanges_table4.isEmpty() == false) {
             //
             Integer row_id = unsavedChanges_table4.pollLast();
@@ -846,9 +864,9 @@ public class RecipeDetailed extends BasicTab {
             }
         }
     }
-
+    
     private void insert_materials_table_4_real(JTable table) {
-
+        
         while (insertedMaterials_table4.isEmpty() == false) {
             //
             Integer row_id = insertedMaterials_table4.pollLast();
@@ -891,7 +909,7 @@ public class RecipeDetailed extends BasicTab {
                 Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
     }
 
     //==========================================================================
@@ -922,7 +940,7 @@ public class RecipeDetailed extends BasicTab {
         RowDataInvert mixer_name = new RowDataInvert("Mixer_InfoBasic", "Name", false, "Name", T_INV.LANG("MIXER"), "", true, false, false);
         //
         RowDataInvert load_factor = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Loadfactor", T_INV.LANG("LOADFACTOR"), "", true, true, false);
-
+        
         RowDataInvert mix_time = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "MixTime", T_INV.LANG("MIXTIME"), "", true, true, false);
         //
         RowDataInvert descr = new RowDataInvert("Recipe_Prop_Main", "Recipe_ID", false, "Descr", T_INV.LANG("DESCRIPTION"), "", true, true, false);
@@ -990,7 +1008,7 @@ public class RecipeDetailed extends BasicTab {
     //
     //
     private String recipe_code_update;
-
+    
     private boolean updateRecipeCode() {
         //
         recipe_code_update = JOptionPane.showInputDialog("Specify Recipe Code");
@@ -1028,7 +1046,7 @@ public class RecipeDetailed extends BasicTab {
     }
     private static String RECIPE_ID_REFRESH_TABLE;
     private static String RECIPE_CODE_REFRESH_TABLE;
-
+    
     private void updateTables(String recipeCode) {
         //
         JTable table = mCRecipe2.jTable1;
@@ -1051,7 +1069,7 @@ public class RecipeDetailed extends BasicTab {
         mCRecipe2.recipeDetailedTabbClicked();
         //
     }
-
+    
     @Override
     public void showTableInvert() {
         //
@@ -1092,7 +1110,7 @@ public class RecipeDetailed extends BasicTab {
         //
         showTableInvert(mCRecipe2.jPanel1);
     }
-
+    
     @Override
     public void addPotentiallyUnsavedEntries(int row_id, LinkedList<Integer> listChanged, LinkedList<Integer> listAdded, JTable table) {
         //
@@ -1108,7 +1126,7 @@ public class RecipeDetailed extends BasicTab {
             OUT.showMessage("Potentially unsaved row_id added: " + row_id + " / Table: " + table.getName());
         }
     }
-
+    
     public void table3_change_note_name(JTable table) {
         //
         if (HelpA.getIfAnyRowChosen(table) == false) {
@@ -1152,7 +1170,7 @@ public class RecipeDetailed extends BasicTab {
         recipeInitial.fill_table_2_and_3(); // Refresh
         //
     }
-
+    
     public void table2_add_new_entry(JTable table) {
         //
         String recipe_id = getRecipeId();
@@ -1176,7 +1194,7 @@ public class RecipeDetailed extends BasicTab {
         recipeInitial.fill_table_2_and_3(); // Refresh
         //
     }
-
+    
     public void table2_change_note_value(JTable table) {
         //
         if (HelpA.getIfAnyRowChosen(table) == false) {
@@ -1221,7 +1239,7 @@ public class RecipeDetailed extends BasicTab {
         recipeInitial.fill_table_2_and_3(); // Refresh
         //
     }
-
+    
     private void table2_change_notevalue_if_id_missing(JTable jTable, int row, String noteValue) {
         String recipe_id = getRecipeId();
         String noteName = HelpA.getValueGivenRow(jTable, row, "NoteName");
@@ -1235,7 +1253,7 @@ public class RecipeDetailed extends BasicTab {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void phrsAndWeights() {
         //
         JTable table = mCRecipe2.jTable4RecipeDetailed;
@@ -1256,28 +1274,28 @@ public class RecipeDetailed extends BasicTab {
         }
         //
     }
-
+    
     private void paint_selected_rows(final LinkedList<IngredientToDelete> ingredientsToDelete, final JTable jTable, final Color color) {
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 setBackground(null);
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
+                
                 for (IngredientToDelete ingred : ingredientsToDelete) {
                     if (row == HelpA.getRowByValue(table, "Id", "" + ingred.getRowId())) {
                         c.setBackground(color);
                         return c;
                     }
                 }
-
+                
                 return this;
             }
         });
         //
         jTable.repaint();
     }
-
+    
     private boolean rowToDeleteExists(int row) {
         for (IngredientToDelete ingred : ingredientsToDelete_table_4) {
             if (ingred.getRowId() == row) {
@@ -1286,36 +1304,36 @@ public class RecipeDetailed extends BasicTab {
         }
         return false;
     }
-
+    
     @Override
     public void fillNotes() {
         mCRecipe2.clickedOnTable1RecipeInitial();
         mCRecipe2.recipeDetailedTabbClicked();
     }
-
+    
     public class IngredientToDelete {
-
+        
         private int row_id;
         private final String recipe_recipe_id;
-
+        
         public IngredientToDelete(int row, String recipe_recipe_id) {
             this.row_id = row;
             this.recipe_recipe_id = recipe_recipe_id;
         }
-
+        
         public String getRecipe_recipe_id() {
             return recipe_recipe_id;
         }
-
+        
         public void setRowId(int row) {
             this.row_id = row;
         }
-
+        
         public int getRowId() {
             return row_id;
         }
     }
-
+    
     private void setBtnsDisabled(boolean disabled) {
         mCRecipe2.jButton_Recipe_Detailed_Save_Invert.setEnabled(disabled);
         mCRecipe2.jButton3.setEnabled(disabled);

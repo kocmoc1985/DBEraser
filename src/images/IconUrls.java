@@ -17,4 +17,6 @@ public class IconUrls {
     public static final URL INFO_ICON_URL = IconUrls.class.getResource("info.png");
     public static final URL PRE_ADD = IconUrls.class.getResource("add2.png");
     public static final URL ADD_COMPLETE = IconUrls.class.getResource("add.png");
+    public static final URL LOCKED_ICON = IconUrls.class.getResource("locked.png");
+    public static final URL UNLOCKED_ICON = IconUrls.class.getResource("unlocked.png");
 }

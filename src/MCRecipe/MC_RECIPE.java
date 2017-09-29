@@ -519,6 +519,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel40 = new javax.swing.JPanel();
         jButtonRecipeDetailedPrintTable5 = new javax.swing.JButton();
         jButtonRecipeDetailedSaveTable4 = new javax.swing.JButton();
+        jLabelLockedUnlocked = new javax.swing.JLabel();
         jScrollPaneIngredients = new javax.swing.JScrollPane();
         jPanel_Ingredients = new javax.swing.JPanel();
         jPanel_Ingred_boxes = new javax.swing.JPanel();
@@ -1672,6 +1673,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel40.add(jButtonRecipeDetailedSaveTable4);
 
+        jLabelLockedUnlocked.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unlocked.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel_RecipeDetailedLayout = new javax.swing.GroupLayout(jPanel_RecipeDetailed);
         jPanel_RecipeDetailed.setLayout(jPanel_RecipeDetailedLayout);
         jPanel_RecipeDetailedLayout.setHorizontalGroup(
@@ -1681,13 +1684,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
-                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabelLockedUnlocked)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel35, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
-                        .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -1726,7 +1733,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
                 .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelLockedUnlocked)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_RecipeDetailedLayout.createSequentialGroup()
                         .addContainerGap()
@@ -3991,6 +4000,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelHomeVersion;
     private javax.swing.JLabel jLabelHomeVersion1;
+    public javax.swing.JLabel jLabelLockedUnlocked;
     protected javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel10Sequence;
@@ -4144,6 +4154,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             recipeDetailed.checkIfDisabled();
             //
             recipeDetailed.autoSelectFirstRowTable4();
+            //
+            recipeDetailed.showLockedUnlocked();
         }
         //
     }
