@@ -517,7 +517,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButtonRecipeDetailedSwap = new javax.swing.JButton();
         jButtonRecipeDetailedResetChanges = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
-        jButtonRecipeDetailedPrintTable5 = new javax.swing.JButton();
+        jButtonTable4Repport = new javax.swing.JButton();
         jButtonRecipeDetailedSaveTable4 = new javax.swing.JButton();
         jLabelLockedUnlocked = new javax.swing.JLabel();
         jScrollPaneIngredients = new javax.swing.JScrollPane();
@@ -1499,7 +1499,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel35.add(jButtonRecipeDetailedAddNewRecipe);
 
-        jButtonRecipeInitialUnblock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        jButtonRecipeInitialUnblock2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/show.png"))); // NOI18N
         jButtonRecipeInitialUnblock2.setToolTipText("Hide/Unhide some fields");
         jButtonRecipeInitialUnblock2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1584,7 +1584,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel37.add(jButton5);
 
         jPanel38.setPreferredSize(new java.awt.Dimension(120, 50));
-        jPanel38.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel38.setLayout(new java.awt.GridLayout(1, 0, 2, 0));
 
         jButton_r_detailed_prev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/prev.png"))); // NOI18N
         jButton_r_detailed_prev.setToolTipText("previous recipe");
@@ -1605,7 +1605,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel38.add(jButton_r_detailed_next);
 
         jPanel39.setPreferredSize(new java.awt.Dimension(120, 50));
-        jPanel39.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel39.setLayout(new java.awt.GridLayout(1, 0, 1, 0));
 
         jButtonRecipeDetailedUndoDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/undo2.png"))); // NOI18N
         jButtonRecipeDetailedUndoDelete.setToolTipText("Undo delete");
@@ -1656,14 +1656,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel40.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel40.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonRecipeDetailedPrintTable5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/export.png"))); // NOI18N
-        jButtonRecipeDetailedPrintTable5.setToolTipText("Exort to .csv");
-        jButtonRecipeDetailedPrintTable5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTable4Repport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButtonTable4Repport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecipeDetailedPrintTable5ActionPerformed(evt);
+                jButtonTable4RepportActionPerformed(evt);
             }
         });
-        jPanel40.add(jButtonRecipeDetailedPrintTable5);
+        jPanel40.add(jButtonTable4Repport);
 
         jButtonRecipeDetailedSaveTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         jButtonRecipeDetailedSaveTable4.addActionListener(new java.awt.event.ActionListener() {
@@ -1694,17 +1693,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
-                        .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(103, 103, 103)
                         .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
@@ -1761,12 +1760,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel51)
-                            .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -3547,10 +3546,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         recipeDetailed.table1Repport();
     }//GEN-LAST:event_jButtonRecipeDetailedPrintActionPerformed
 
-    private void jButtonRecipeDetailedPrintTable5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedPrintTable5ActionPerformed
-        recipeDetailed.table4Repport();
-    }//GEN-LAST:event_jButtonRecipeDetailedPrintTable5ActionPerformed
-
     private void jButtonRecipeInitialPrintTable1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialPrintTable1ActionPerformed
         recipeInitial.table1Repport();
     }//GEN-LAST:event_jButtonRecipeInitialPrintTable1ActionPerformed
@@ -3692,14 +3687,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         ingredients.setIngredComboBoxRecipeInitial(jComboBox_Ingred_2);
     }//GEN-LAST:event_jButtonIngredientsPasteIngred2ActionPerformed
 
-    private void jButton_r_detailed_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_prevActionPerformed
-        recipeDetailed.prevRecipe();
-    }//GEN-LAST:event_jButton_r_detailed_prevActionPerformed
-
-    private void jButton_r_detailed_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_nextActionPerformed
-        recipeDetailed.nextRecipe();
-    }//GEN-LAST:event_jButton_r_detailed_nextActionPerformed
-
     private void jButtonRecipeInitialUnblock1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialUnblock1ActionPerformed
         recipeDetailed.unblockRecipe(jTable1);
     }//GEN-LAST:event_jButtonRecipeInitialUnblock1ActionPerformed
@@ -3735,6 +3722,18 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         recipeDetailed.showTableInvert();
     }//GEN-LAST:event_jButtonRecipeInitialUnblock2ActionPerformed
+
+    private void jButtonTable4RepportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTable4RepportActionPerformed
+        recipeDetailed.table4Repport();
+    }//GEN-LAST:event_jButtonTable4RepportActionPerformed
+
+    private void jButton_r_detailed_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_nextActionPerformed
+        recipeDetailed.nextRecipe();
+    }//GEN-LAST:event_jButton_r_detailed_nextActionPerformed
+
+    private void jButton_r_detailed_prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_prevActionPerformed
+        recipeDetailed.prevRecipe();
+    }//GEN-LAST:event_jButton_r_detailed_prevActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3813,7 +3812,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JButton jButtonRecipeDetailedAddNote;
     protected javax.swing.JButton jButtonRecipeDetailedAddRecipeFromScratch;
     private javax.swing.JButton jButtonRecipeDetailedPrint;
-    protected javax.swing.JButton jButtonRecipeDetailedPrintTable5;
     protected javax.swing.JButton jButtonRecipeDetailedResetChanges;
     protected javax.swing.JButton jButtonRecipeDetailedSaveTable4;
     private javax.swing.JButton jButtonRecipeDetailedSwap;
@@ -3833,6 +3831,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JButton jButtonSequenceCopy;
     public javax.swing.JButton jButtonSequenceSearch;
     private javax.swing.JButton jButtonSequenceViewBeforeCopy;
+    private javax.swing.JButton jButtonTable4Repport;
     public javax.swing.JButton jButtonVendorsAddToTable3_2;
     public javax.swing.JButton jButtonVendorsAddToTable4;
     public javax.swing.JButton jButtonVendorsAddToTable4_2;

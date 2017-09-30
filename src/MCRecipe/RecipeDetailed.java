@@ -192,8 +192,12 @@ public class RecipeDetailed extends BasicTab {
         tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
     }
     
-    public void table4Repport() {
+    public void table4RepportCSV() {
         jTableToCSV(mCRecipe2.jTable4RecipeDetailed, true, new String[]{"material", "PHR", "weight"});
+    }
+    
+    public void table4Repport(){
+        tableCommonExportOrRepport(mCRecipe2.jTable4RecipeDetailed, true);
     }
     
     public void autoSelectFirstRowTable4() {
