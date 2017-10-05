@@ -5,6 +5,7 @@
 package forall;
 
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
+import Interfaces.SqlBasic;
 import MyObjectTable.ShowMessage;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,10 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * 
  * @author Administrator
  */
-public class Sql_B implements SqlBasicLocal {
+public class Sql_B implements SqlBasicLocal, SqlBasic {
 
     private Connection connection;
     private Statement statement;
@@ -78,22 +79,8 @@ public class Sql_B implements SqlBasicLocal {
         }
     }
 
-    /**
-     * According to Oracle, if your JDBC client and Oracle database server are
-     * running on the same machine, you should use the OCI Driver because it is
-     * much faster than the Thin Driver (The OCI Driver can use Inter Process
-     * Communication – IPC, whereas the Thin Driver can use only network
-     * connection).
-     *
-     * @param host
-     * @param port
-     * @param databaseName
-     * @param userName
-     * @param password
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     */
-    public void connect_oracle_THIN(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
+    
+    public void connect_oracle(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
         //
         //Name of .jar = ojdbc6.jar
         //
@@ -101,10 +88,10 @@ public class Sql_B implements SqlBasicLocal {
         //OR
 //        DriverManager.registerDriver(new oracle.jdbc.OracleDriver()); 
         //
-        String exampleUrl = "jdbc:oracle:thin:tiger/scott@dbHost:1521:productDB";
+//        String exampleUrl = "jdbc:oracle:thin:user/pass@dbHost:1521/dbName";
         //
         //Default port = 1521
-        String url = "jdbc:oracle:thin:" + userName + "/" + password + "@" + host + ":" + port + ":" + databaseName;
+        String url = "jdbc:oracle:thin:" + userName + "/" + password + "@" + host + ":" + port + "/" + databaseName;
         //
         logg_connection_string(url);      
         //

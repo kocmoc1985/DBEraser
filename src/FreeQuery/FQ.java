@@ -17,9 +17,7 @@ import Interfaces.SqlBasic;
 import forall.SimpleLoggerLight;
 import forall.GP;
 import forall.HelpA;
-import forall.Sql_C;
-import java.awt.Color;
-import java.awt.Component;
+import forall.Sql_B;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,7 +44,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
-    private SqlBasic sql = new Sql_C();
+    private SqlBasic sql;
     //==========================
     private final String MS_SQL = "mssql";
     private final String ORACLE = "oracle";
@@ -86,14 +84,14 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private void init_other() {
         jTextArea1QueryInput.setFont(FONT_1);
         //========
-        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                c.setBackground(row % 2 == 0 ? new Color(244, 244, 252) : Color.WHITE);
-                return c;
-            }
-        });
+//        jTable1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+//            @Override
+//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//                final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//                c.setBackground(row % 2 == 0 ? new Color(244, 244, 252) : Color.WHITE);
+//                return c;
+//            }
+//        });
     }
 
     private void connect() {
@@ -103,7 +101,6 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         GP.SQL_NPMS_PORT = Integer.parseInt(properties.getProperty("sql_npms_port", "1111"));
         //
         GP.MSSQL_CREATE_STATEMENT_SIMPLE = properties.getProperty("mssql_create_statement_simple", "false");
-        boolean simpleStatement = Boolean.parseBoolean(GP.MSSQL_CREATE_STATEMENT_SIMPLE);
         GP.MSSQL_LOGIN_TIME_OUT = Integer.parseInt(properties.getProperty("login_time_out", "60"));
         GP.SQL_LIBRARY_JTDS = Boolean.parseBoolean(properties.getProperty("use_jtds_library", "false"));
         GP.JTDS_USE_NAMED_PIPES = Boolean.parseBoolean(properties.getProperty("use_named_pipes", "false"));
@@ -130,7 +127,9 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         showMessage("sql_type: " + dbtype);
         //
-        Sql_C sql_c = (Sql_C) sql;
+        sql = new Sql_B(Boolean.parseBoolean(GP.MSSQL_CREATE_STATEMENT_SIMPLE),true);
+        //
+        Sql_B sql_b = (Sql_B) sql;
         //
         if (dbtype.equals(NPMS) == false) {
             showMessage("Connecting to: " + host + " / " + db_name + odbc + mdb_path);
@@ -138,15 +137,15 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         try {
             if (dbtype.equals(MS_SQL)) {
-                sql_c.connect(host, port, db_name, user, pass, simpleStatement);
+                sql_b.connect_jdbc(host, port, db_name, user, pass);
             }else if (dbtype.equals(ORACLE)) {
-                sql_c.connectMySql(host, port, db_name, user, pass);
+                sql_b.connect_oracle(host, port, db_name, user, pass);
             } else if (dbtype.equals(MY_SQL)) {
-                sql_c.connectMySql(host, port, db_name, user, pass);
+                sql_b.connectMySql(host, port, db_name, user, pass);
             } else if (dbtype.equals(ODBC)) {
-                sql_c.connectODBC(user, pass, odbc, simpleStatement);
+                sql_b.connect_odbc(user, pass, odbc);
             } else if (dbtype.equals(MDB)) {
-                sql_c.connectMDB(user, pass, mdb_path, simpleStatement);
+                sql_b.connect_mdb(user, pass, mdb_path);
             } else if (dbtype.equals(NPMS)) {
                 sql = createRemoteSql(GP.SQL_NPMS_HOST, GP.SQL_NPMS_PORT,
                         host, Integer.parseInt(port), db_name, user, pass,
@@ -166,7 +165,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        showMessage(GP.CONNECTION_STRING);
+//        showMessage(GP.CONNECTION_STRING);
         //
         HelpA.goToEndPosition(jTextArea2);
         //
@@ -311,10 +310,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        int nr_rows = jTable1.getRowCount();
-        for (int i = 1; i < nr_rows; i++) {
-            jTable1.setSelectionBackground(Color.yellow);
-        }
+//        int nr_rows = jTable1.getRowCount();
+//        for (int i = 1; i < nr_rows; i++) {
+//            jTable1.setSelectionBackground(Color.yellow);
+//        }
         //
         showMessage("Executing ok");
         //

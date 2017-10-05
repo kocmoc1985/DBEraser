@@ -1,5 +1,1 @@
-[2017-06-16 15:25:46]   com.microsoft.sqlserver.jdbc.SQLServerException: The conversion of a char data type to a datetime data type resulted in an out-of-range datetime value.
-[2017-06-19 15:27:29]   com.microsoft.sqlserver.jdbc.SQLServerException: Type Date is not a defined system type.
-[2017-06-19 15:28:36]   com.microsoft.sqlserver.jdbc.SQLServerException: Type Date is not a defined system type.
-[2017-06-19 15:44:29]   com.microsoft.sqlserver.jdbc.SQLServerException: Syntax error converting datetime from character string.
-[2017-08-30 11:55:30]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] Syntax error (missing operator) in query expression 'row_number() over (order by Quality desc)'.
+[2017-10-05 14:24:51]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Jet database engine cannot find the input table or query 'sysobjects'.  Make sure it exists and that its name is spelled correctly.

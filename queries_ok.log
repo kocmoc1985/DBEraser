@@ -1,76 +1,3 @@
-[2017-06-16 15:25:00]   select * from interf where TDATETIME >='2014-01-01' and TDATETIME <='2014-05-01'
-[2017-06-16 15:26:12]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-06-01'
-[2017-06-16 15:26:23]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-01'
-[2017-06-16 15:26:47]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:30:00]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:34:15]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:48:55]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-01-31'
-[2017-06-16 15:49:11]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:54:06]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:55:23]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-06-01'
-[2017-06-16 15:55:29]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-08-01'
-[2017-06-16 15:55:34]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-10-01'
-[2017-06-16 15:55:44]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-11-01'
-[2017-06-16 15:55:49]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-01'
-[2017-06-16 15:55:55]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-16 15:56:15]   select * from interf where TDATETIME >='2009-12-20' and TDATETIME <='2009-12-31'
-[2017-06-16 15:56:21]   select * from interf where TDATETIME >='2009-12-16' and TDATETIME <='2009-12-31'
-[2017-06-16 15:56:25]   select * from interf where TDATETIME >='2009-12-14' and TDATETIME <='2009-12-31'
-[2017-06-19 09:13:19]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-19 09:15:12]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31'
-[2017-06-19 09:16:02]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-01-31' and VHMFNO ='9000433'
-[2017-06-19 09:20:29]   select * from interf where TDATETIME >='2014-01-01' and TDATETIME <='2014-01-31' and VHMFNO ='9000433'
-[2017-06-19 09:20:47]   select * from interf where TDATETIME >='2014-01-01' and TDATETIME <='2014-01-31'
-[2017-06-19 09:21:03]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2014-01-31'
-[2017-06-19 09:58:21]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2014-12-31' and VHMFNO ='9000433'
-[2017-06-19 10:37:35]   select * from interf where TDATETIME >='2009-01-01' and TDATETIME <='2009-12-31' and VHMFNO ='9000433'
-[2017-06-19 15:27:08]   select * from interf order by TDATETIME desc
-[2017-06-19 15:29:44]   select * from interf where CAST(TDATETIME as Datetime) >='2010-01-01' and CAST(TDATETIME as Datetime) <='2010-01-31' order by TDATETIME desc
-[2017-06-19 15:29:53]   select * from interf where CAST(TDATETIME as Datetime) >='2010-01-01' and CAST(TDATETIME as Datetime) <='2010-12-31' order by TDATETIME desc
-[2017-06-19 15:30:29]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-10' and CAST(TDATETIME as Datetime) <='2010-06-11' order by TDATETIME desc
-[2017-06-19 15:41:56]   select * from interf order by TDATETIME desc
-[2017-06-19 15:44:15]   select * from interf order by TDATETIME desc
-[2017-06-19 15:49:39]   select * from interf order by TDATETIME desc
-[2017-06-19 15:49:52]   select * from interf where CAST(TDATETIME as Datetime) >='' and CAST(TDATETIME as Datetime) <='' and VHMFNO ='' and VHPRNO ='2307826' order by TDATETIME desc
-[2017-06-19 16:12:38]   select * from interf order by TDATETIME desc
-[2017-06-19 16:13:25]   select * from interf where VHPRNO ='0000310' order by TDATETIME desc
-[2017-06-19 16:13:45]   select * from interf where VHMFNO ='1313989' and VHPRNO ='0000310' order by TDATETIME desc
-[2017-06-19 16:14:05]   select * from interf order by TDATETIME desc
-[2017-06-19 16:14:54]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' and VHPRNO ='0007860' order by TDATETIME desc
-[2017-06-19 16:15:17]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='0007860' order by TDATETIME desc
-[2017-06-19 16:17:07]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' order by TDATETIME desc
-[2017-06-19 16:22:09]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-10' and VHPRNO ='007860' order by TDATETIME desc
-[2017-06-19 16:22:13]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='007860' order by TDATETIME desc
-[2017-06-19 16:22:32]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHPRNO ='0007860' order by TDATETIME desc
-[2017-06-19 16:22:45]   select * from interf where CAST(TDATETIME as Datetime) >='2010-06-02' and CAST(TDATETIME as Datetime) <='2010-06-11' and VHMFNO ='1196891' order by TDATETIME desc
-[2017-08-30 10:38:10]   SELECT distinct Quality from REsultsN
-[2017-08-30 11:06:09]   SELECT * from REsultsN
-[2017-08-30 11:06:44]   SELECT * from REsultsN
-[2017-08-30 11:10:29]   select * from REsultsN
-
-[2017-08-30 11:20:45]   select * from resultsn
-[2017-08-30 11:21:47]   select * from resultsn
-[2017-08-30 11:22:44]   select * from resultsn 
-[2017-08-30 11:30:09]   select * from resultsn
-[2017-08-30 11:30:25]   select * from resultsn
-[2017-08-30 11:30:52]   select * from resultsn
-[2017-08-30 11:31:40]   select * from resultsn
-[2017-08-30 11:46:57]   select * from resultsn
-[2017-08-30 11:47:12]   select * from resultsn
-[2017-08-30 11:48:28]   SELECT distinct Quality from REsultsN
-[2017-08-30 11:49:57]   SELECT distinct Quality from REsultsN
-[2017-08-30 11:57:45]   SELECT distinct Quality from REsultsN
-[2017-08-30 11:59:48]   SELECT distinct Quality from REsultsN
-[2017-08-30 11:59:59]   SELECT distinct Quality from REsultsN
-[2017-08-30 12:13:49]   SELECT distinct Quality from REsultsN
-[2017-08-30 12:19:06]   SELECT distinct Quality from REsultsN
-[2017-08-30 12:25:59]   SELECT distinct Quality from REsultsN
-[2017-08-30 12:27:28]   SELECT distinct Quality from REsultsN
-[2017-09-04 10:40:51]   select * from tablex
-[2017-09-04 10:41:49]   select * from tablex
-[2017-09-04 10:43:18]   select * from tablex
-[2017-09-04 10:43:48]   select * from tablex
-[2017-09-04 10:44:14]   select * from tablex
 [2017-09-04 10:44:14]   select * from tablex
 [2017-09-04 10:44:28]   select * from tablex
 [2017-09-04 10:45:31]   select * from tablex
@@ -78,3 +5,8 @@
 [2017-09-13 15:50:59]   select * from interf where CAST(TDATETIME as Datetime) >='2017-09-05' and CAST(TDATETIME as Datetime) <='2017-09-13' order by TDATETIME desc
 [2017-09-14 12:04:25]   select * from interf order by TDATETIME desc
 [2017-09-14 15:34:00]   select * from interf order by TDATETIME desc
+[2017-10-05 13:13:00]   select * from MC_ALARM
+[2017-10-05 13:13:53]   select * from MC_BATCHINFO
+[2017-10-05 13:20:40]   select * from MC_ALARM where ALARM_ID = 13
+[2017-10-05 14:25:16]   select * from MC_ALARM where ALARM_ID = 13
+[2017-10-05 14:33:40]   select name,xtype,refdate from sysobjects where xtype = 'U'
