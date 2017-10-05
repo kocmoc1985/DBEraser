@@ -1432,17 +1432,7 @@ public class HelpA {
         fakeValuesMap.put("C", "CALCULATION");
         fakeValuesMap.put("R", "DEVELOPMENT");
     }
-
-    /**
-     *
-     * @param sql
-     * @param jbox
-     * @param query
-     * @param initialValue
-     * @param showMultipleValues if true the combo box will show 2 parameters
-     * @param fakeValue shows a predefined "title" instead for the real value
-     * @return
-     */
+    
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
@@ -1460,9 +1450,19 @@ public class HelpA {
         }
         //
         try {
+            //
             ResultSet rs = sql.execute(query);
+            //
             while (rs.next()) {
-                String val = rs.getString(1);
+                //
+                String val;
+                //
+                try {
+                    val = rs.getString(1);
+                } catch (Exception ex) {
+                    break;
+                }
+                //
                 if (val != null && val.isEmpty() == false) {
                     if (showMultipleValues) {
                         //
@@ -1488,39 +1488,10 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        Object[] arr = list.toArray();
+        JComboBoxA boxA = (JComboBoxA)jbox;
         //
-        if (arr.length == 0) {
-            arr = new Object[1];
-            arr[0] = "";
-        }
+        boxA.AUTOFILL_ADD(list);
         //
-        AutoCompleteSupport support;
-        //
-        //#AutoComplete, Auto complete# glazedlists_java15-1.9.1.jar is needed
-        if (autoSupportList.containsKey(jbox) == false) {
-            support = AutoCompleteSupport.install(
-                    jbox, GlazedLists.eventListOf(arr));
-            //
-            autoSupportList.put(jbox, support);
-            //
-            jbox.setSelectedIndex(0);
-            //
-        } else {
-            //
-            support = autoSupportList.get(jbox);
-            //
-            if (support.isInstalled()) {
-                support.uninstall();
-                support = AutoCompleteSupport.install(
-                        jbox, GlazedLists.eventListOf(arr));
-                //
-                autoSupportList.remove(jbox);
-                //
-                autoSupportList.put(jbox, support);
-                //
-            }
-        }
         //
         if (initialComboBoxBorder == null) {
             initialComboBoxBorder = jbox.getBorder();
@@ -1532,6 +1503,7 @@ public class HelpA {
         //
         return jbox;
     }
+
 
     /**
      * For MultipleValues only with initial value present

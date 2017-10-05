@@ -10,6 +10,6 @@ package forall;
  */
 public interface JComboBoxValueChangedListener {
 
-    public void valueChanged(String value, JComboBoxM boxX);
+    public void comboBoxvalueChanged(String value, JComboBoxA boxX);
     
 }

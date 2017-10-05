@@ -16,8 +16,8 @@ import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
 import forall.HelpA;
+import forall.JComboBoxA;
 import forall.JComboBoxValueChangedListener;
-import forall.JComboBoxM;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -273,10 +273,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
         //
-        JComboBoxM box_ingred_1 = (JComboBoxM) jComboBox_Ingred_1;
+        JComboBoxA box_ingred_1 = (JComboBoxA) jComboBox_Ingred_1;
         box_ingred_1.addValueChangedListener(this);
         //
-        JComboBoxM box_ingred_2 = (JComboBoxM) jComboBox_Ingred_2;
+        JComboBoxA box_ingred_2 = (JComboBoxA) jComboBox_Ingred_2;
         box_ingred_2.addValueChangedListener(this);
     }
 
@@ -388,14 +388,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1_Recipe_Origin = new javax.swing.JComboBox();
-        jComboBox2_Detailed_Group = new javax.swing.JComboBox();
-        jComboBox3_Recipe_Stage = new javax.swing.JComboBox();
-        jComboBox4_Mixer_Code = new javax.swing.JComboBox();
-        jComboBox5_Recipe_Version = new javax.swing.JComboBox();
-        jComboBox6_Status = new javax.swing.JComboBox();
-        jComboBox7_RecipeAdditional = new javax.swing.JComboBox();
-        jComboBox8_Class = new javax.swing.JComboBox();
+        jComboBox1_Recipe_Origin = new JComboBoxA();
+        jComboBox2_Detailed_Group = new JComboBoxA();
+        jComboBox3_Recipe_Stage = new JComboBoxA();
+        jComboBox4_Mixer_Code = new JComboBoxA();
+        jComboBox5_Recipe_Version = new JComboBoxA();
+        jComboBox6_Status = new JComboBoxA();
+        jComboBox7_RecipeAdditional = new JComboBoxA();
+        jComboBox8_Class = new JComboBoxA();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -404,11 +404,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox_Ingred_1 = new forall.JComboBoxM();
+        jComboBox_Ingred_1 = new JComboBoxA();
         jLabel55 = new javax.swing.JLabel();
         jCheckBoxRecipeInitialSearchByIngredients = new javax.swing.JCheckBox();
-        jComboBox_Description1 = new javax.swing.JComboBox();
-        jComboBox_Ingred_2 = new JComboBoxM();
+        jComboBox_Description1 = new JComboBoxA();
+        jComboBox_Ingred_2 = new JComboBoxA();
         jPanel43 = new javax.swing.JPanel();
         jButtonRecipeInitialGo = new javax.swing.JButton();
         jButtonRecipeInitialResetComboBoxes = new javax.swing.JButton();
@@ -435,17 +435,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTable2 = new javax.swing.JTable();
         jLabel45 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
-        jComboBoxRecipeInitial_Color = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Industry = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Recipe_type = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_CuringSystem = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_CuringProcess = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Filler = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Certificat = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Shelflife1 = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Shelflife2 = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Hardnes_sha1 = new javax.swing.JComboBox();
-        jComboBoxRecipeInitial_Hardnes_sha2 = new javax.swing.JComboBox();
+        jComboBoxRecipeInitial_Color = new JComboBoxA();
+        jComboBoxRecipeInitial_Industry = new JComboBoxA();
+        jComboBoxRecipeInitial_Recipe_type = new JComboBoxA();
+        jComboBoxRecipeInitial_CuringSystem = new JComboBoxA();
+        jComboBoxRecipeInitial_CuringProcess = new JComboBoxA();
+        jComboBoxRecipeInitial_Filler = new JComboBoxA();
+        jComboBoxRecipeInitial_Certificat = new JComboBoxA();
+        jComboBoxRecipeInitial_Shelflife1 = new JComboBoxA();
+        jComboBoxRecipeInitial_Shelflife2 = new JComboBoxA();
+        jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBoxA();
+        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBoxA();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -457,7 +457,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        jComboBoxRecipeInitial_Customer = new javax.swing.JComboBox();
+        jComboBoxRecipeInitial_Customer = new JComboBoxA();
         jLabel85 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
@@ -523,16 +523,16 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneIngredients = new javax.swing.JScrollPane();
         jPanel_Ingredients = new javax.swing.JPanel();
         jPanel_Ingred_boxes = new javax.swing.JPanel();
-        jCombo_Ingred_Name = new javax.swing.JComboBox();
-        jCombo_Ingred_Group = new javax.swing.JComboBox();
-        jCombo_Ingred_Descr = new javax.swing.JComboBox();
-        jCombo_Ingred_Class = new javax.swing.JComboBox();
-        jCombo_Ingred_Status = new javax.swing.JComboBox();
-        jCombo_Ingred_Form = new javax.swing.JComboBox();
-        jCombo_Ingred_Cas_Number = new javax.swing.JComboBox();
-        jCombo_Ingred_TradeName = new javax.swing.JComboBox();
-        jCombo_Ingred_VendorName = new javax.swing.JComboBox();
-        jCombo_Ingred_Perc_Rubber = new javax.swing.JComboBox();
+        jCombo_Ingred_Name = new JComboBoxA();
+        jCombo_Ingred_Group = new JComboBoxA();
+        jCombo_Ingred_Descr = new JComboBoxA();
+        jCombo_Ingred_Class = new JComboBoxA();
+        jCombo_Ingred_Status = new JComboBoxA();
+        jCombo_Ingred_Form = new JComboBoxA();
+        jCombo_Ingred_Cas_Number = new JComboBoxA();
+        jCombo_Ingred_TradeName = new JComboBoxA();
+        jCombo_Ingred_VendorName = new JComboBoxA();
+        jCombo_Ingred_Perc_Rubber = new JComboBoxA();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -596,7 +596,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel53 = new javax.swing.JLabel();
         jButtonVendorsPrintTable4 = new javax.swing.JButton();
         jPanel26 = new javax.swing.JPanel();
-        jComboBoxVendorChooseIngred = new javax.swing.JComboBox();
+        jComboBoxVendorChooseIngred = new JComboBoxA();
         jLabel36 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jButton_vendors_prev_ingred = new javax.swing.JButton();
@@ -642,18 +642,18 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPane10 = new javax.swing.JScrollPane();
         jTableSequnce2 = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
-        jComboBoxSequenceRecipe = new javax.swing.JComboBox();
-        jComboBoxSequenceRelease = new javax.swing.JComboBox();
+        jComboBoxSequenceRecipe = new JComboBoxA();
+        jComboBoxSequenceRelease = new JComboBoxA();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBoxSequenceMixerCode = new javax.swing.JComboBox();
+        jComboBoxSequenceMixerCode = new JComboBoxA();
         jLabel30 = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jButtonSequenceSearch = new javax.swing.JButton();
         jButtonBoxesClear = new javax.swing.JButton();
         jPanelSequence3 = new javax.swing.JPanel();
         jTextFieldStepNrSequence = new javax.swing.JTextField();
-        jComboBoxCommandNameSequence = new javax.swing.JComboBox();
+        jComboBoxCommandNameSequence = new JComboBoxA();
         jTextFieldCommandParamSequence = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -675,9 +675,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
-        jComboBoxSequenceRecipeCopy = new javax.swing.JComboBox();
-        jComboBoxSequenceReleaseCopy = new javax.swing.JComboBox();
-        jComboBoxSequenceMixerCodeCopy = new javax.swing.JComboBox();
+        jComboBoxSequenceRecipeCopy = new JComboBoxA();
+        jComboBoxSequenceReleaseCopy = new JComboBoxA();
+        jComboBoxSequenceMixerCodeCopy = new JComboBoxA();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -695,7 +695,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel21 = new javax.swing.JPanel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTable_2_RecipeAdd = new javax.swing.JTable();
-        jComboBoxRecipeAdditionalOrders = new javax.swing.JComboBox();
+        jComboBoxRecipeAdditionalOrders = new JComboBoxA();
         jLabel70 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         jButtonRecipeAdditionalPrint1 = new javax.swing.JButton();
@@ -4595,7 +4595,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     @Override
-    public void valueChanged(String value, JComboBoxM boxX) {
+    public void comboBoxvalueChanged(String value, JComboBoxA boxX) {
         if (boxX.equals(jComboBox_Ingred_1) || boxX.equals(jComboBox_Ingred_2)) {
             recipeInitial.showIngredInfoOnValueChange(value);
         }

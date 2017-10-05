@@ -15,6 +15,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTable.SaveIndicator;
 import forall.HelpA;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
