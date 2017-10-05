@@ -79,6 +79,46 @@ public class Sql_B implements SqlBasicLocal {
     }
 
     /**
+     * According to Oracle, if your JDBC client and Oracle database server are
+     * running on the same machine, you should use the OCI Driver because it is
+     * much faster than the Thin Driver (The OCI Driver can use Inter Process
+     * Communication – IPC, whereas the Thin Driver can use only network
+     * connection).
+     *
+     * @param host
+     * @param port
+     * @param databaseName
+     * @param userName
+     * @param password
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void connect_oracle_THIN(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
+        //
+        //Name of .jar = ojdbc6.jar
+        //
+        Class.forName("oracle.jdbc.OracleDriver");
+        //OR
+//        DriverManager.registerDriver(new oracle.jdbc.OracleDriver()); 
+        //
+        String exampleUrl = "jdbc:oracle:thin:tiger/scott@dbHost:1521:productDB";
+        //
+        //Default port = 1521
+        String url = "jdbc:oracle:thin:" + userName + "/" + password + "@" + host + ":" + port + ":" + databaseName;
+        //
+        logg_connection_string(url);      
+        //
+        connection = DriverManager.getConnection(url);
+        //
+        statement = connection.createStatement();
+        statement_2 = connection.createStatement();
+        //
+        if (statement == null) {
+            SimpleLoggerLight.logg("sql_conn.log", "Connection to: " + host + " / dbname: " + databaseName + " failed");
+        }
+    }
+
+    /**
      *
      * @param host
      * @param port
@@ -93,10 +133,11 @@ public class Sql_B implements SqlBasicLocal {
     public void connect_tds(String host, String port, String databaseName,
             String userName, String password, boolean useNamedPipes,
             String domain, String instance) throws SQLException, ClassNotFoundException {
+        //
         boolean connectionOk = true;
-
+        //
         Class.forName("net.sourceforge.jtds.jdbc.Driver");
-
+        //
         String port_ = "";
         if (port.isEmpty() == false) {
             port_ = ":" + port;
@@ -130,7 +171,6 @@ public class Sql_B implements SqlBasicLocal {
             }
         }
         //
-
         if (statement == null) {
             SimpleLoggerLight.logg("sql_conn.log", "Connection to: " + host + " / dbname: " + databaseName + " failed");
         }
@@ -266,7 +306,7 @@ public class Sql_B implements SqlBasicLocal {
             SimpleLoggerLight.logg(logFile, "Exeption: " + ex.toString() + "\nQuery: " + query);
         }
     }
-    
+
     @Override
     public ResultSet execute(String sql, ShowMessage sm) throws SQLException {
         sm.showMessage(sql);
@@ -304,8 +344,3 @@ public class Sql_B implements SqlBasicLocal {
         connection.close();
     }
 }
-
-
-
-
-

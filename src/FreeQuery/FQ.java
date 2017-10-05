@@ -49,6 +49,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private SqlBasic sql = new Sql_C();
     //==========================
     private final String MS_SQL = "mssql";
+    private final String ORACLE = "oracle";
     private final String MY_SQL = "mysql";
     private final String ODBC = "odbc";
     private final String MDB = "mdb";
@@ -138,6 +139,8 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         try {
             if (dbtype.equals(MS_SQL)) {
                 sql_c.connect(host, port, db_name, user, pass, simpleStatement);
+            }else if (dbtype.equals(ORACLE)) {
+                sql_c.connectMySql(host, port, db_name, user, pass);
             } else if (dbtype.equals(MY_SQL)) {
                 sql_c.connectMySql(host, port, db_name, user, pass);
             } else if (dbtype.equals(ODBC)) {
