@@ -586,7 +586,6 @@ public class RecipeInitial extends BasicTab {
         }
         //
         if (HelpA.fillAllowedComboBox(flagWait) == false) {
-//            System.out.println("Fill not allowed");
             return;
         } else {
             flagWait = 0;
@@ -617,7 +616,6 @@ public class RecipeInitial extends BasicTab {
             prevCall = System.currentTimeMillis();
             return true;
         }
-
     }
     public static long prevCall;
 
@@ -628,6 +626,7 @@ public class RecipeInitial extends BasicTab {
         }
         //
         if (delay() == false) {
+//            System.out.println("RETURNED: DELAY");
             return;
         }
         //

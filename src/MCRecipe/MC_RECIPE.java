@@ -4333,8 +4333,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     @Override
     public void mouseEntered(MouseEvent me) {
-//        System.out.println("Entered");
-
         //
         if (me.getSource() instanceof JButton) {
             JButton button = (JButton) me.getSource();

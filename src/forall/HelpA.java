@@ -1401,7 +1401,6 @@ public class HelpA {
             }
         }
     }
-    private static HashMap<JComboBox, AutoCompleteSupport> autoSupportList = new HashMap<JComboBox, AutoCompleteSupport>();
     public static Border initialComboBoxBorder;
 
     /**
