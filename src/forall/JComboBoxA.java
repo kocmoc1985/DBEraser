@@ -7,13 +7,8 @@ package forall;
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.basic.ComboPopup;
 
 /**
  *
@@ -46,6 +41,7 @@ public class JComboBoxA extends JComboBox {
         } else {
             LIST.clear();
             LIST.addAll(list);
+            setEditable(true);
         }
     }
 

@@ -719,6 +719,9 @@ public class RecipeInitial extends BasicTab {
         //
         //
         HelpA.clearAllRowsJTable(mCRecipe2.jTableIngredientInfoTable);
+        //
+        mCRecipe2.revalidate();
+        mCRecipe2.repaint();
     }
 
     public void clearBoxesB() {
