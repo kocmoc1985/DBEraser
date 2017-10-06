@@ -23,6 +23,7 @@ import forall.JComboBoxA;
 import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
+import MCRecipe.Sec.JComboBox_RI_C;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -237,17 +238,30 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public ArrayList<JComboBox> recipeInitialGroupA;
 
     public void recipeInitial_GroupA_Boxes_to_list() {
+        //
         recipeInitialGroupA = new ArrayList<JComboBox>();
         //
-        recipeInitialGroupA.add(jComboBox1_Recipe_Origin);
-        recipeInitialGroupA.add(jComboBox3_Recipe_Stage);
-        recipeInitialGroupA.add(jComboBox5_Recipe_Version);
-        recipeInitialGroupA.add(jComboBox7_RecipeAdditional);
-        recipeInitialGroupA.add(jComboBox2_Detailed_Group);
-        recipeInitialGroupA.add(jComboBox4_Mixer_Code);
-        recipeInitialGroupA.add(jComboBox6_Status);
-        recipeInitialGroupA.add(jComboBox8_Class);
-        recipeInitialGroupA.add(jComboBox_Description1);
+        Component[] components = jPanel2.getComponents(); 
+        //
+        for(Component c: components){
+            if(c instanceof JComboBox_RI_A){
+                recipeInitialGroupA.add((JComboBox) c);
+            }
+        }
+        //
+    }
+    public ArrayList<JComboBox> recipeInitialGroupC;
+    public void recipeInitial_GroupC_Boxes_to_list() {
+        //
+        recipeInitialGroupC = new ArrayList<JComboBox>();
+        //
+        Component[] components = jPanel17.getComponents(); 
+        //
+        for(Component c: components){
+            if(c instanceof JComboBox_RI_C){
+                recipeInitialGroupC.add((JComboBox) c);
+            }
+        }
         //
     }
 
@@ -257,18 +271,22 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             HelpA.addMouseListenerJComboBox(box, this);
         }
         //
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Color, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Industry, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Recipe_type, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringSystem, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringProcess, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Filler, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Certificat, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife1, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife2, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha1, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha2, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Customer, this);
+        for(JComboBox box: recipeInitialGroupC){
+            HelpA.addMouseListenerJComboBox(box, this);
+        }
+        //
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Color, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Industry, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Recipe_type, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringSystem, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringProcess, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Filler, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Certificat, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife_2, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife_1, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha1, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha2, this);
+//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Customer, this);
         //
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
@@ -435,17 +453,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTable2 = new javax.swing.JTable();
         jLabel45 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
-        jComboBoxRecipeInitial_Color = new JComboBoxA();
-        jComboBoxRecipeInitial_Industry = new JComboBoxA();
-        jComboBoxRecipeInitial_Recipe_type = new JComboBoxA();
-        jComboBoxRecipeInitial_CuringSystem = new JComboBoxA();
-        jComboBoxRecipeInitial_CuringProcess = new JComboBoxA();
-        jComboBoxRecipeInitial_Filler = new JComboBoxA();
-        jComboBoxRecipeInitial_Certificat = new JComboBoxA();
-        jComboBoxRecipeInitial_Shelflife1 = new JComboBoxA();
-        jComboBoxRecipeInitial_Shelflife2 = new JComboBoxA();
-        jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBoxA();
-        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBoxA();
+        jComboBoxRecipeInitial_Color = new JComboBox_RI_C(BOX_PARAMS.COLOR);
+        jComboBoxRecipeInitial_Industry = new JComboBox_RI_C(BOX_PARAMS.INDUSTRY);
+        jComboBoxRecipeInitial_Recipe_type = new JComboBox_RI_C(BOX_PARAMS.RECIPE_TYPE);
+        jComboBoxRecipeInitial_CuringSystem = new JComboBox_RI_C(BOX_PARAMS.CURING_SYSTEM);
+        jComboBoxRecipeInitial_CuringProcess = new JComboBox_RI_C(BOX_PARAMS.CURING_PROCESS);
+        jComboBoxRecipeInitial_Filler = new JComboBox_RI_C(BOX_PARAMS.FILLER);
+        jComboBoxRecipeInitial_Certificat = new JComboBox_RI_C(BOX_PARAMS.CERTIFICATE);
+        jComboBoxRecipeInitial_Shelflife_2 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_2);
+        jComboBoxRecipeInitial_Shelflife_1 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_1);
+        jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_1);
+        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_2);
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -457,7 +475,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        jComboBoxRecipeInitial_Customer = new JComboBoxA();
+        jComboBoxRecipeInitial_Customer = new JComboBox_RI_C(BOX_PARAMS.CUSTOMER);
         jLabel85 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
@@ -1120,9 +1138,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jComboBoxRecipeInitial_Certificat.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jComboBoxRecipeInitial_Shelflife1.setModel(new javax.swing.DefaultComboBoxModel());
+        jComboBoxRecipeInitial_Shelflife_2.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jComboBoxRecipeInitial_Shelflife2.setModel(new javax.swing.DefaultComboBoxModel());
+        jComboBoxRecipeInitial_Shelflife_1.setModel(new javax.swing.DefaultComboBoxModel());
 
         jComboBoxRecipeInitial_Hardnes_sha1.setModel(new javax.swing.DefaultComboBoxModel());
 
@@ -1181,7 +1199,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel65)
                             .addComponent(jLabel64)
-                            .addComponent(jComboBoxRecipeInitial_Shelflife2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxRecipeInitial_Shelflife_1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel17Layout.createSequentialGroup()
@@ -1199,7 +1217,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                                 .addGap(33, 33, 33)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel63)
-                                    .addComponent(jComboBoxRecipeInitial_Shelflife1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel66)
@@ -1220,7 +1238,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxRecipeInitial_Color, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxRecipeInitial_CuringProcess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxRecipeInitial_Shelflife2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxRecipeInitial_Shelflife_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel57)
@@ -1250,7 +1268,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxRecipeInitial_CuringSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxRecipeInitial_Shelflife1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxRecipeInitial_Customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -3888,8 +3906,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JComboBox jComboBoxRecipeInitial_Hardnes_sha2;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Industry;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Recipe_type;
-    public javax.swing.JComboBox jComboBoxRecipeInitial_Shelflife1;
-    public javax.swing.JComboBox jComboBoxRecipeInitial_Shelflife2;
+    public javax.swing.JComboBox jComboBoxRecipeInitial_Shelflife_1;
+    public javax.swing.JComboBox jComboBoxRecipeInitial_Shelflife_2;
     public javax.swing.JComboBox jComboBoxSequenceMixerCode;
     public javax.swing.JComboBox jComboBoxSequenceMixerCodeCopy;
     public javax.swing.JComboBox jComboBoxSequenceRecipe;
@@ -4370,43 +4388,54 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                     
                 } //   RecipeInitial GROUP C
-                else if (parent.equals(jComboBoxRecipeInitial_Color)) {
+                
+                else if (parent instanceof JComboBox_RI_C) {
                     //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Color, "Color:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Industry)) {
+                    JComboBox_RI_C box = (JComboBox_RI_C) parent;
                     //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Industry, "industry:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Recipe_type)) {
+                    recipeInitial.fillComboBoxB(box, box.getPARAMETER());
                     //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Recipe_type, "recept type:");
-                } else if (parent.equals(jComboBoxRecipeInitial_CuringSystem)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringSystem, "curing system:");
-                } else if (parent.equals(jComboBoxRecipeInitial_CuringProcess)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringProcess, "curing process:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Filler)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Filler, "filler:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Certificat)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Certificat, "certificate:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife1)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife1, "schelflife(weeks):");
-                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife2)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife2, "schelflife(weeks):");
-                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha1)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha1, "Hardnes Sha:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha2)) {
-                    //
-                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha2, "Hardnes Sha:");
-                } else if (parent.equals(jComboBoxRecipeInitial_Customer)) {
-                    //
-                    recipeInitial.fillComboBoxCustomer(jComboBoxRecipeInitial_Customer, "Customer");
-                }//Ingredients
+                }
+                
+//                else if (parent.equals(jComboBoxRecipeInitial_Color)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Color, "Color:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Industry)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Industry, "industry:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Recipe_type)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Recipe_type, "recept type:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_CuringSystem)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringSystem, "curing system:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_CuringProcess)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringProcess, "curing process:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Filler)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Filler, "filler:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Certificat)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Certificat, "certificate:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife_2)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife_2, "schelflife(weeks):");
+//                    //
+//                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife_1)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife_1, "schelflife(weeks):");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha1)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha1, "Hardnes Sha:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha2)) {
+//                    //
+//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha2, "Hardnes Sha:");
+//                } else if (parent.equals(jComboBoxRecipeInitial_Customer)) {
+//                    //
+//                    recipeInitial.fillComboBoxCustomer(jComboBoxRecipeInitial_Customer, "Customer");
+//                }
+                //Ingredients
                 //
                 //
                 else if (parent.equals(jCombo_Ingred_Name)) {

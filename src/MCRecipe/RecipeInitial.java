@@ -68,6 +68,7 @@ public class RecipeInitial extends BasicTab {
             @Override
             public void run() {
                 mCRecipe2.recipeInitial_GroupA_Boxes_to_list();
+                mCRecipe2.recipeInitial_GroupC_Boxes_to_list();
                 mCRecipe2.addJComboListenersRecipeInitial();
                 fill_table_1(null, null, null, null);
                 HelpA.markGivenRow(mCRecipe2.jTable1, 0);
@@ -436,8 +437,8 @@ public class RecipeInitial extends BasicTab {
         String curingProcess = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_CuringProcess);
         String filler = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Filler);
         String certificat = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Certificat);
-        String shelflife1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife1);
-        String shelflife2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife2);
+        String shelflife1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife_2);
+        String shelflife2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife_1);
         String hardnessSha1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha1);
         String hardnessSha2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha2);
         String customer = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Customer);
@@ -691,27 +692,14 @@ public class RecipeInitial extends BasicTab {
 
     public void clearBoxes() {
         //
-        mCRecipe2.jComboBox1_Recipe_Origin.setSelectedItem(null);
-        mCRecipe2.jComboBox3_Recipe_Stage.setSelectedItem(null);
-        mCRecipe2.jComboBox5_Recipe_Version.setSelectedItem(null);
-        mCRecipe2.jComboBox7_RecipeAdditional.setSelectedItem(null);
-        mCRecipe2.jComboBox2_Detailed_Group.setSelectedItem(null);
-        mCRecipe2.jComboBox4_Mixer_Code.setSelectedItem(null);
-        mCRecipe2.jComboBox6_Status.setSelectedItem(null);
-        mCRecipe2.jComboBox8_Class.setSelectedItem(null);
-        mCRecipe2.jComboBox_Description1.setSelectedItem(null);
+        for(JComboBox box: mCRecipe2.recipeInitialGroupA){
+            box.setSelectedItem(null);
+            box.setEditable(false);
+        }
+        //
         mCRecipe2.jComboBox_Ingred_1.setSelectedItem(null);
         mCRecipe2.jComboBox_Ingred_2.setSelectedItem(null);
         //
-        mCRecipe2.jComboBox1_Recipe_Origin.setEditable(false);
-        mCRecipe2.jComboBox3_Recipe_Stage.setEditable(false);
-        mCRecipe2.jComboBox5_Recipe_Version.setEditable(false);
-        mCRecipe2.jComboBox7_RecipeAdditional.setEditable(false);
-        mCRecipe2.jComboBox2_Detailed_Group.setEditable(false);
-        mCRecipe2.jComboBox4_Mixer_Code.setEditable(false);
-        mCRecipe2.jComboBox6_Status.setEditable(false);
-        mCRecipe2.jComboBox8_Class.setEditable(false);
-        mCRecipe2.jComboBox_Description1.setEditable(false);
         mCRecipe2.jComboBox_Ingred_1.setEditable(false);
         mCRecipe2.jComboBox_Ingred_2.setEditable(false);
         //
@@ -733,8 +721,8 @@ public class RecipeInitial extends BasicTab {
         mCRecipe2.jComboBoxRecipeInitial_CuringProcess.setSelectedItem(null);
         mCRecipe2.jComboBoxRecipeInitial_Filler.setSelectedItem(null);
         mCRecipe2.jComboBoxRecipeInitial_Certificat.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Shelflife1.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Shelflife2.setSelectedItem(null);
+        mCRecipe2.jComboBoxRecipeInitial_Shelflife_2.setSelectedItem(null);
+        mCRecipe2.jComboBoxRecipeInitial_Shelflife_1.setSelectedItem(null);
         mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha1.setSelectedItem(null);
         mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha2.setSelectedItem(null);
     }

@@ -1186,7 +1186,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel64" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jComboBoxRecipeInitial_Shelflife2" min="-2" pref="115" max="-2" attributes="0"/>
+                                              <Component id="jComboBoxRecipeInitial_Shelflife_1" min="-2" pref="115" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -1210,7 +1210,7 @@
                                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jComboBoxRecipeInitial_Shelflife1" min="-2" pref="111" max="-2" attributes="0"/>
+                                                      <Component id="jComboBoxRecipeInitial_Shelflife_2" min="-2" pref="111" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1240,7 +1240,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jComboBoxRecipeInitial_Color" min="-2" max="-2" attributes="0"/>
                                       <Component id="jComboBoxRecipeInitial_CuringProcess" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBoxRecipeInitial_Shelflife2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxRecipeInitial_Shelflife_1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1276,7 +1276,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jComboBoxRecipeInitial_CuringSystem" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jComboBoxRecipeInitial_Shelflife1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxRecipeInitial_Shelflife_2" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jComboBoxRecipeInitial_Customer" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1293,7 +1293,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.COLOR)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1304,7 +1304,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.INDUSTRY)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1315,7 +1315,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.RECIPE_TYPE)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1326,7 +1326,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.CURING_SYSTEM)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1337,7 +1337,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.CURING_PROCESS)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1348,7 +1348,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.FILLER)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1359,29 +1359,29 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.CERTIFICATE)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBoxRecipeInitial_Shelflife1">
+                        <Component class="javax.swing.JComboBox" name="jComboBoxRecipeInitial_Shelflife_2">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new javax.swing.DefaultComboBoxModel()" type="code"/>
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_2)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBoxRecipeInitial_Shelflife2">
+                        <Component class="javax.swing.JComboBox" name="jComboBoxRecipeInitial_Shelflife_1">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new javax.swing.DefaultComboBoxModel()" type="code"/>
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_1)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1392,7 +1392,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_1)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1403,7 +1403,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_2)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
@@ -1491,7 +1491,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox_RI_C(BOX_PARAMS.CUSTOMER)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
