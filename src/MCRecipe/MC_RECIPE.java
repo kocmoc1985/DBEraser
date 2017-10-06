@@ -4396,45 +4396,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     recipeInitial.fillComboBoxB(box, box.getPARAMETER());
                     //
                 }
-                
-//                else if (parent.equals(jComboBoxRecipeInitial_Color)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Color, "Color:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Industry)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Industry, "industry:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Recipe_type)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Recipe_type, "recept type:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_CuringSystem)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringSystem, "curing system:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_CuringProcess)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_CuringProcess, "curing process:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Filler)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Filler, "filler:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Certificat)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Certificat, "certificate:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife_2)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife_2, "schelflife(weeks):");
-//                    //
-//                } else if (parent.equals(jComboBoxRecipeInitial_Shelflife_1)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Shelflife_1, "schelflife(weeks):");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha1)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha1, "Hardnes Sha:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Hardnes_sha2)) {
-//                    //
-//                    recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Hardnes_sha2, "Hardnes Sha:");
-//                } else if (parent.equals(jComboBoxRecipeInitial_Customer)) {
-//                    //
-//                    recipeInitial.fillComboBoxCustomer(jComboBoxRecipeInitial_Customer, "Customer");
-//                }
                 //Ingredients
                 //
                 //
