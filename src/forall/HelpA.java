@@ -1432,7 +1432,7 @@ public class HelpA {
         fakeValuesMap.put("C", "CALCULATION");
         fakeValuesMap.put("R", "DEVELOPMENT");
     }
-    
+
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
@@ -1488,9 +1488,10 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        JComboBoxA boxA = (JComboBoxA)jbox;
-        //
-        boxA.AUTOFILL_ADD(list);
+        if(jbox instanceof JComboBoxA){
+            JComboBoxA boxA = (JComboBoxA) jbox;
+            boxA.AUTOFILL_ADD(list);
+        }
         //
         //
         if (initialComboBoxBorder == null) {
@@ -1503,7 +1504,6 @@ public class HelpA {
         //
         return jbox;
     }
-
 
     /**
      * For MultipleValues only with initial value present

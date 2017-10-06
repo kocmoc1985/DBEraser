@@ -17,6 +17,7 @@ import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
 import forall.HelpA;
 import forall.JComboBoxA;
+import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
@@ -273,10 +274,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
         //
-        JComboBoxA box_ingred_1 = (JComboBoxA) jComboBox_Ingred_1;
+        JComboBoxM box_ingred_1 = (JComboBoxM) jComboBox_Ingred_1;
         box_ingred_1.addValueChangedListener(this);
         //
-        JComboBoxA box_ingred_2 = (JComboBoxA) jComboBox_Ingred_2;
+        JComboBoxM box_ingred_2 = (JComboBoxM) jComboBox_Ingred_2;
         box_ingred_2.addValueChangedListener(this);
     }
 
@@ -404,11 +405,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox_Ingred_1 = new JComboBoxA();
+        jComboBox_Ingred_1 = new JComboBoxM();
         jLabel55 = new javax.swing.JLabel();
         jCheckBoxRecipeInitialSearchByIngredients = new javax.swing.JCheckBox();
         jComboBox_Description1 = new JComboBoxA();
-        jComboBox_Ingred_2 = new JComboBoxA();
+        jComboBox_Ingred_2 = new JComboBoxM();
         jPanel43 = new javax.swing.JPanel();
         jButtonRecipeInitialGo = new javax.swing.JButton();
         jButtonRecipeInitialResetComboBoxes = new javax.swing.JButton();
@@ -4595,7 +4596,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     @Override
-    public void comboBoxvalueChanged(String value, JComboBoxA boxX) {
+    public void comboBoxvalueChanged(String value, JComboBoxM boxX) {
         if (boxX.equals(jComboBox_Ingred_1) || boxX.equals(jComboBox_Ingred_2)) {
             recipeInitial.showIngredInfoOnValueChange(value);
         }
