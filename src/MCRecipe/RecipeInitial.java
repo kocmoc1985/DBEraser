@@ -67,8 +67,8 @@ public class RecipeInitial extends BasicTab {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                mCRecipe2.recipeInitial_GroupA_Boxes_to_list();
                 mCRecipe2.addJComboListenersRecipeInitial();
-                mCRecipe2.addUpperSearchCriteriaToListRecipeInitial();
                 fill_table_1(null, null, null, null);
                 HelpA.markGivenRow(mCRecipe2.jTable1, 0);
                 mCRecipe2.clickedOnTable1RecipeInitial();
@@ -562,7 +562,7 @@ public class RecipeInitial extends BasicTab {
 
     public boolean upperSearchCriteriasEmpty() {
         //
-        for (JComboBox box : mCRecipe2.upperSearchListRecipeInitial) {
+        for (JComboBox box : mCRecipe2.recipeInitialGroupA) {
             //
             if (box.getSelectedItem() != null) {
                 return false;

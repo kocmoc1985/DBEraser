@@ -83,9 +83,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private AdministrateUsers administrateUsers;
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "qew123";
-   
-    //
 
+    //
     /**
      * Creates new form MC_RECIPE
      */
@@ -115,9 +114,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         companyRelated();
     }
-    
-    private void companyRelated(){
-        if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)){
+
+    private void companyRelated() {
+        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
             HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
         }
     }
@@ -235,32 +234,28 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         this.jTable4RecipeDetailed.getColumnModel().addColumnModelListener(this);
         this.jTable_Ingred_Table1.getColumnModel().addColumnModelListener(this);
     }
-    public ArrayList<JComboBox> upperSearchListRecipeInitial;
+    public ArrayList<JComboBox> recipeInitialGroupA;
 
-    public void addUpperSearchCriteriaToListRecipeInitial() {
-        upperSearchListRecipeInitial = new ArrayList<JComboBox>();
+    public void recipeInitial_GroupA_Boxes_to_list() {
+        recipeInitialGroupA = new ArrayList<JComboBox>();
         //
-        upperSearchListRecipeInitial.add(jComboBox1_Recipe_Origin);
-        upperSearchListRecipeInitial.add(jComboBox3_Recipe_Stage);
-        upperSearchListRecipeInitial.add(jComboBox5_Recipe_Version);
-        upperSearchListRecipeInitial.add(jComboBox7_RecipeAdditional);
-        upperSearchListRecipeInitial.add(jComboBox2_Detailed_Group);
-        upperSearchListRecipeInitial.add(jComboBox4_Mixer_Code);
-        upperSearchListRecipeInitial.add(jComboBox6_Status);
-        upperSearchListRecipeInitial.add(jComboBox8_Class);
-        upperSearchListRecipeInitial.add(jComboBox_Description1);
+        recipeInitialGroupA.add(jComboBox1_Recipe_Origin);
+        recipeInitialGroupA.add(jComboBox3_Recipe_Stage);
+        recipeInitialGroupA.add(jComboBox5_Recipe_Version);
+        recipeInitialGroupA.add(jComboBox7_RecipeAdditional);
+        recipeInitialGroupA.add(jComboBox2_Detailed_Group);
+        recipeInitialGroupA.add(jComboBox4_Mixer_Code);
+        recipeInitialGroupA.add(jComboBox6_Status);
+        recipeInitialGroupA.add(jComboBox8_Class);
+        recipeInitialGroupA.add(jComboBox_Description1);
+        //
     }
 
     public void addJComboListenersRecipeInitial() {
-        HelpA.addMouseListenerJComboBox(jComboBox1_Recipe_Origin, this);
-        HelpA.addMouseListenerJComboBox(jComboBox3_Recipe_Stage, this);
-        HelpA.addMouseListenerJComboBox(jComboBox5_Recipe_Version, this);
-        HelpA.addMouseListenerJComboBox(jComboBox7_RecipeAdditional, this);
-        HelpA.addMouseListenerJComboBox(jComboBox2_Detailed_Group, this);
-        HelpA.addMouseListenerJComboBox(jComboBox4_Mixer_Code, this);
-        HelpA.addMouseListenerJComboBox(jComboBox6_Status, this);
-        HelpA.addMouseListenerJComboBox(jComboBox8_Class, this);
-        HelpA.addMouseListenerJComboBox(jComboBox_Description1, this);
+        //
+        for(JComboBox box: recipeInitialGroupA){
+            HelpA.addMouseListenerJComboBox(box, this);
+        }
         //
         HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Color, this);
         HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Industry, this);
@@ -3716,8 +3711,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTextArea1_Logg.setText("");
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton18ActionPerformed
-     public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
-     
+    public static boolean SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = false;
+
     private void jButtonRecipeInitialUnblock2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialUnblock2ActionPerformed
         if (SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
             SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT = true;
@@ -4357,18 +4352,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 } else if (parent.equals(jComboBoxSequenceMixerCodeCopy)) {
                     sequence.fillComboMixerCopy();
                 } //
-                //RecipeInitial
-                
-                else if(parent instanceof JComboBox_RI_A){
-                    JComboBox_RI_A box = (JComboBox_RI_A)parent;
-                    if(box.isMULTI_PARAM()){
+                //RecipeInitial GROUP A
+                else if (parent instanceof JComboBox_RI_A) {
+                    JComboBox_RI_A box = (JComboBox_RI_A) parent;
+                    if (box.isMULTI_PARAM()) {
                         recipeInitial.fillComboBoxMultiple(box, box.getPARAMETER(), box.getPARAMETER_2());
-                    }else{
-                        recipeInitial.fillComboBox(box,box.getPARAMETER());
+                    } else {
+                        recipeInitial.fillComboBox(box, box.getPARAMETER());
                     }
-                }
-                //
-                
+                } //RecipeInitial GROUP B
                 else if (parent.equals(jComboBox_Ingred_1)) {
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_1, "IngredName1");
@@ -4376,8 +4368,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_2, "IngredName2");
                     //
-                    //
-                } else if (parent.equals(jComboBoxRecipeInitial_Color)) {
+                    
+                } //   RecipeInitial GROUP C
+                else if (parent.equals(jComboBoxRecipeInitial_Color)) {
                     //
                     recipeInitial.fillComboBoxB(jComboBoxRecipeInitial_Color, "Color:");
                 } else if (parent.equals(jComboBoxRecipeInitial_Industry)) {
