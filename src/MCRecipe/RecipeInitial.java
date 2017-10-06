@@ -4,6 +4,8 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.HelpM;
+import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.JTB;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;

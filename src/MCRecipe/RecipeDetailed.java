@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;

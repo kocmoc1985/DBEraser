@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package MCRecipe.Sec;
 
+import MCRecipe.Ingredients;
+import MCRecipe.MC_RECIPE;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -185,7 +187,7 @@ public class AdministrateUsers extends javax.swing.JFrame implements MouseListen
             }
         });
 
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonRecipeDetailedAddNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new user");

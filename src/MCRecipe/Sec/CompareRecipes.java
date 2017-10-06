@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package MCRecipe.Sec;
 
+import MCRecipe.MC_RECIPE;
+import MCRecipe.RecipeDetailed;
+import MCRecipe.SQL_A;
 import Reporting.JTableBasicRepport;
 import forall.GP;
 import forall.HelpA;

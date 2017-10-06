@@ -4,6 +4,8 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.CompareRecipes;
+import MCRecipe.Sec.AdministrateUsers;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
@@ -11,6 +13,7 @@ import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
 import MCRecipe.Lang.VENDOR_A;
+import MCRecipe.Sec.BOX_PARAMS;
 import forall.GradientJPanel;
 import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -19,6 +22,7 @@ import forall.HelpA;
 import forall.JComboBoxA;
 import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
+import MCRecipe.Sec.JComboBox_RI_A;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -389,14 +393,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1_Recipe_Origin = new JComboBoxA();
-        jComboBox2_Detailed_Group = new JComboBoxA();
-        jComboBox3_Recipe_Stage = new JComboBoxA();
-        jComboBox4_Mixer_Code = new JComboBoxA();
-        jComboBox5_Recipe_Version = new JComboBoxA();
-        jComboBox6_Status = new JComboBoxA();
-        jComboBox7_RecipeAdditional = new JComboBoxA();
-        jComboBox8_Class = new JComboBoxA();
+        jComboBox1_Recipe_Origin = new JComboBox_RI_A(BOX_PARAMS.RECIPE_ORIGIN);
+        jComboBox2_Detailed_Group = new JComboBox_RI_A(BOX_PARAMS.DETAILED_GROUP);
+        jComboBox3_Recipe_Stage = new JComboBox_RI_A(BOX_PARAMS.RECIPE_STAGE);
+        jComboBox4_Mixer_Code = new JComboBox_RI_A(BOX_PARAMS.MIXER_CODE);
+        jComboBox5_Recipe_Version = new JComboBox_RI_A(BOX_PARAMS.RECIPE_VERSION);
+        jComboBox6_Status = new JComboBox_RI_A(BOX_PARAMS.STATUS);
+        jComboBox7_RecipeAdditional = new JComboBox_RI_A(BOX_PARAMS.RECIPE_ADDITIONAL);
+        jComboBox8_Class = new JComboBox_RI_A(BOX_PARAMS.CLASS);
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -408,7 +412,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox_Ingred_1 = new JComboBoxM();
         jLabel55 = new javax.swing.JLabel();
         jCheckBoxRecipeInitialSearchByIngredients = new javax.swing.JCheckBox();
-        jComboBox_Description1 = new JComboBoxA();
+        jComboBox_Description1 = new JComboBox_RI_A(BOX_PARAMS.DESCR);
         jComboBox_Ingred_2 = new JComboBoxM();
         jPanel43 = new javax.swing.JPanel();
         jButtonRecipeInitialGo = new javax.swing.JButton();
@@ -4354,36 +4358,18 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     sequence.fillComboMixerCopy();
                 } //
                 //RecipeInitial
-                else if (parent.equals(jComboBox1_Recipe_Origin)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox1_Recipe_Origin, "Recipe_Origin");
-                } else if (parent.equals(jComboBox3_Recipe_Stage)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox3_Recipe_Stage, "[Recipe Stage]");
-                } else if (parent.equals(jComboBox5_Recipe_Version)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox5_Recipe_Version, "[Recipe Version]");
-                } else if (parent.equals(jComboBox7_RecipeAdditional)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox7_RecipeAdditional, "Recipe_Addditional");
-                } else if (parent.equals(jComboBox2_Detailed_Group)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox2_Detailed_Group, "Detailed_Group");
-                } else if (parent.equals(jComboBox4_Mixer_Code)) {
-                    //
-                    recipeInitial.fillComboBoxMultiple(jComboBox4_Mixer_Code, "Mixer_Code", "Name");
-                } else if (parent.equals(jComboBox6_Status)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox6_Status, "Status");
-                } else if (parent.equals(jComboBox8_Class)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox8_Class, "Class");
-                } else if (parent.equals(jComboBox_Description1)) {
-                    //
-                    recipeInitial.fillComboBox(jComboBox_Description1, "Descr");
-                    //
-                    //
-                } else if (parent.equals(jComboBox_Ingred_1)) {
+                
+                else if(parent instanceof JComboBox_RI_A){
+                    JComboBox_RI_A box = (JComboBox_RI_A)parent;
+                    if(box.isMULTI_PARAM()){
+                        recipeInitial.fillComboBoxMultiple(box, box.getPARAMETER(), box.getPARAMETER_2());
+                    }else{
+                        recipeInitial.fillComboBox(box,box.getPARAMETER());
+                    }
+                }
+                //
+                
+                else if (parent.equals(jComboBox_Ingred_1)) {
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_1, "IngredName1");
                 } else if (parent.equals(jComboBox_Ingred_2)) {

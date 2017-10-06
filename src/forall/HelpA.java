@@ -6,7 +6,7 @@ package forall;
 
 import static FixedQueryTool.FixedQueryTool_TRELL.DATE_FORMAT;
 import MCCompound.PROD_PLAN;
-import MCRecipe.ComboBoxTitle;
+import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
 import MyObjectTableInvert.RowDataInvert;
@@ -95,7 +95,7 @@ public class HelpA {
     private static HashMap<String, String> properties_to_use_map = new HashMap();
     private static int nr_properties;
     private static String LAST_ERR_OUT_PUT_FILE_PATH;
-
+    
     public static boolean getVersion(String path, String prefix, JLabel label) {
         File f = new File(path);
         //

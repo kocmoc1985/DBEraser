@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package MCRecipe.Sec;
 
 import forall.HelpA;
 import static forall.HelpA.getValueGivenRow;
