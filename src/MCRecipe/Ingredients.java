@@ -104,6 +104,8 @@ public class Ingredients extends BasicTab {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
+                mCRecipe.ingredients_GroupA_Boxes_to_list();
                 mCRecipe.addJComboListenersIngredients();
                 //
                 fill_table_1(INGRED_NAME);
@@ -586,16 +588,22 @@ public class Ingredients extends BasicTab {
     }
 
     public void clearBoxes() {
-        mCRecipe.jCombo_Ingred_Name.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Class.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Status.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Group.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Descr.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Form.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Perc_Rubber.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_TradeName.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_VendorName.setSelectedItem(null);
-        mCRecipe.jCombo_Ingred_Cas_Number.setSelectedItem(null);
+        
+        for(JComboBox box: mCRecipe.ingredientsGroupList){
+            box.setSelectedItem(null);
+            box.setEditable(false);
+        }
+        
+//        mCRecipe.jCombo_Ingred_Name.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Class.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Status.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Group.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Descr.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Form.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Perc_Rubber.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_TradeName.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_VendorName.setSelectedItem(null);
+//        mCRecipe.jCombo_Ingred_Cas_Number.setSelectedItem(null);
     }
 
     /**

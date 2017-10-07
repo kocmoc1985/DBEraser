@@ -33,4 +33,17 @@ public class BOX_PARAMS {
     public static final CBoxParam HARDNESS_SHA_1 = new CBoxParam("Hardnes Sha:", false);
     public static final CBoxParam HARDNESS_SHA_2 = new CBoxParam("Hardnes Sha:", false);
     public static final CBoxParam CUSTOMER = new CBoxParam("Customer", false);
+    //
+    //
+    //INGREDIENTS GROUP A
+    public static final CBoxParam INGRED_NAME = new CBoxParam("Name", false);
+    public static final CBoxParam INGRED_GROUP = new CBoxParam("Grupp", false);
+    public static final CBoxParam INGRED_DESCR = new CBoxParam("Descr", false);
+    public static final CBoxParam INGRED_CLASS = new CBoxParam("Class", false);
+    public static final CBoxParam INGRED_STATUS = new CBoxParam("Status", false);
+    public static final CBoxParam INGRED_FORM = new CBoxParam("Form", false);
+    public static final CBoxParam CAS_NUMBER = new CBoxParam("Cas_Number", false);
+    public static final CBoxParam TRADE_NAME = new CBoxParam("TradeName", false);
+    public static final CBoxParam VENDOR_NAME = new CBoxParam("VendorName", false);
+    public static final CBoxParam PERC_RUBBER = new CBoxParam("percRubber", false);
 }

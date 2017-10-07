@@ -14,6 +14,7 @@ import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
 import MCRecipe.Lang.VENDOR_A;
 import MCRecipe.Sec.BOX_PARAMS;
+import MCRecipe.Sec.JComboBox_ING_A;
 import forall.GradientJPanel;
 import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -241,24 +242,25 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         recipeInitialGroupA = new ArrayList<JComboBox>();
         //
-        Component[] components = jPanel2.getComponents(); 
+        Component[] components = jPanel2.getComponents();
         //
-        for(Component c: components){
-            if(c instanceof JComboBox_RI_A){
+        for (Component c : components) {
+            if (c instanceof JComboBox_RI_A) {
                 recipeInitialGroupA.add((JComboBox) c);
             }
         }
         //
     }
     public ArrayList<JComboBox> recipeInitialGroupC;
+
     public void recipeInitial_GroupC_Boxes_to_list() {
         //
         recipeInitialGroupC = new ArrayList<JComboBox>();
         //
-        Component[] components = jPanel17.getComponents(); 
+        Component[] components = jPanel17.getComponents();
         //
-        for(Component c: components){
-            if(c instanceof JComboBox_RI_C){
+        for (Component c : components) {
+            if (c instanceof JComboBox_RI_C) {
                 recipeInitialGroupC.add((JComboBox) c);
             }
         }
@@ -267,26 +269,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     public void addJComboListenersRecipeInitial() {
         //
-        for(JComboBox box: recipeInitialGroupA){
+        for (JComboBox box : recipeInitialGroupA) {
             HelpA.addMouseListenerJComboBox(box, this);
         }
         //
-        for(JComboBox box: recipeInitialGroupC){
+        for (JComboBox box : recipeInitialGroupC) {
             HelpA.addMouseListenerJComboBox(box, this);
         }
         //
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Color, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Industry, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Recipe_type, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringSystem, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_CuringProcess, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Filler, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Certificat, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife_2, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Shelflife_1, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha1, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Hardnes_sha2, this);
-//        HelpA.addMouseListenerJComboBox(jComboBoxRecipeInitial_Customer, this);
         //
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
         HelpA.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
@@ -298,17 +288,38 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         box_ingred_2.addValueChangedListener(this);
     }
 
+    public ArrayList<JComboBox> ingredientsGroupList;
+
+    public void ingredients_GroupA_Boxes_to_list() {
+        //
+        ingredientsGroupList = new ArrayList<JComboBox>();
+        //
+        Component[] components = jPanel_Ingred_boxes.getComponents();
+        //
+        for (Component c : components) {
+            if (c instanceof JComboBox_ING_A) {
+                ingredientsGroupList.add((JComboBox) c);
+            }
+        }
+        //
+    }
+
     public void addJComboListenersIngredients() {
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Cas_Number, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Class, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Descr, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Form, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Group, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Name, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Status, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_TradeName, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_VendorName, this);
-        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Perc_Rubber, this);
+        //
+        for (JComboBox box : ingredientsGroupList) {
+            HelpA.addMouseListenerJComboBox(box, this);
+        }
+        //
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Cas_Number, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Class, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Descr, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Form, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Group, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Name, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Status, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_TradeName, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_VendorName, this);
+//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Perc_Rubber, this);
     }
 
     public void addJComboListenersSequence() {
@@ -541,16 +552,16 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneIngredients = new javax.swing.JScrollPane();
         jPanel_Ingredients = new javax.swing.JPanel();
         jPanel_Ingred_boxes = new javax.swing.JPanel();
-        jCombo_Ingred_Name = new JComboBoxA();
-        jCombo_Ingred_Group = new JComboBoxA();
-        jCombo_Ingred_Descr = new JComboBoxA();
-        jCombo_Ingred_Class = new JComboBoxA();
-        jCombo_Ingred_Status = new JComboBoxA();
-        jCombo_Ingred_Form = new JComboBoxA();
-        jCombo_Ingred_Cas_Number = new JComboBoxA();
-        jCombo_Ingred_TradeName = new JComboBoxA();
-        jCombo_Ingred_VendorName = new JComboBoxA();
-        jCombo_Ingred_Perc_Rubber = new JComboBoxA();
+        jCombo_Ingred_Name = new JComboBox_ING_A(BOX_PARAMS.INGRED_NAME);
+        jCombo_Ingred_Group = new JComboBox_ING_A(BOX_PARAMS.INGRED_GROUP);
+        jCombo_Ingred_Descr = new JComboBox_ING_A(BOX_PARAMS.INGRED_DESCR);
+        jCombo_Ingred_Class = new JComboBox_ING_A(BOX_PARAMS.CLASS);
+        jCombo_Ingred_Status = new JComboBox_ING_A(BOX_PARAMS.INGRED_STATUS);
+        jCombo_Ingred_Form = new JComboBox_ING_A(BOX_PARAMS.INGRED_FORM);
+        jCombo_Ingred_Cas_Number = new JComboBox_ING_A(BOX_PARAMS.CAS_NUMBER);
+        jCombo_Ingred_TradeName = new JComboBox_ING_A(BOX_PARAMS.TRADE_NAME);
+        jCombo_Ingred_VendorName = new JComboBox_ING_A(BOX_PARAMS.VENDOR_NAME);
+        jCombo_Ingred_Perc_Rubber = new JComboBox_ING_A(BOX_PARAMS.PERC_RUBBER);
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -4386,50 +4397,56 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_2, "IngredName2");
                     //
-                    
+
                 } //   RecipeInitial GROUP C
-                
                 else if (parent instanceof JComboBox_RI_C) {
                     //
                     JComboBox_RI_C box = (JComboBox_RI_C) parent;
                     //
                     recipeInitial.fillComboBoxB(box, box.getPARAMETER());
                     //
-                }
-                //Ingredients
+                } //Ingredients
                 //
-                //
-                else if (parent.equals(jCombo_Ingred_Name)) {
+                else if (parent instanceof JComboBox_ING_A) {
                     //
-                    ingredients.fillComboBox(jCombo_Ingred_Name, "Name");
-                } else if (parent.equals(jCombo_Ingred_Group)) {
+                    JComboBox_ING_A box = (JComboBox_ING_A) parent;
                     //
-                    ingredients.fillComboBox(jCombo_Ingred_Group, "Grupp");
-                } else if (parent.equals(jCombo_Ingred_Descr)) {
+                    ingredients.fillComboBox(box, "Name");
                     //
-                    ingredients.fillComboBox(jCombo_Ingred_Descr, "Descr");
-                } else if (parent.equals(jCombo_Ingred_Class)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_Class, "Class");
-                } else if (parent.equals(jCombo_Ingred_Status)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_Status, "Status");
-                } else if (parent.equals(jCombo_Ingred_Form)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_Form, "Form");
-                } else if (parent.equals(jCombo_Ingred_Cas_Number)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_Cas_Number, "Cas_Number");
-                } else if (parent.equals(jCombo_Ingred_TradeName)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_TradeName, "TradeName");
-                } else if (parent.equals(jCombo_Ingred_VendorName)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_VendorName, "VendorName");
-                } else if (parent.equals(jCombo_Ingred_Perc_Rubber)) {
-                    //
-                    ingredients.fillComboBox(jCombo_Ingred_Perc_Rubber, "percRubber");
                 }
+                //
+//                else if (parent.equals(jCombo_Ingred_Name)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Name, "Name");
+//                    //
+//                } else if (parent.equals(jCombo_Ingred_Group)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Group, "Grupp");
+//                } else if (parent.equals(jCombo_Ingred_Descr)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Descr, "Descr");
+//                } else if (parent.equals(jCombo_Ingred_Class)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Class, "Class");
+//                } else if (parent.equals(jCombo_Ingred_Status)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Status, "Status");
+//                } else if (parent.equals(jCombo_Ingred_Form)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Form, "Form");
+//                } else if (parent.equals(jCombo_Ingred_Cas_Number)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Cas_Number, "Cas_Number");
+//                } else if (parent.equals(jCombo_Ingred_TradeName)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_TradeName, "TradeName");
+//                } else if (parent.equals(jCombo_Ingred_VendorName)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_VendorName, "VendorName");
+//                } else if (parent.equals(jCombo_Ingred_Perc_Rubber)) {
+//                    //
+//                    ingredients.fillComboBox(jCombo_Ingred_Perc_Rubber, "percRubber");
+//                }
             }
         }
     }
