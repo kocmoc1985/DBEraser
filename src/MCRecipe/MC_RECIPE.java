@@ -4393,6 +4393,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 else if (parent.equals(jComboBox_Ingred_1)) {
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_1, "IngredName1");
+                    //
                 } else if (parent.equals(jComboBox_Ingred_2)) {
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_2, "IngredName2");
@@ -4411,7 +4412,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                     JComboBox_ING_A box = (JComboBox_ING_A) parent;
                     //
-                    ingredients.fillComboBox(box, "Name");
+                    ingredients.fillComboBox(box, box.getPARAMETER());
                     //
                 }
                 //
