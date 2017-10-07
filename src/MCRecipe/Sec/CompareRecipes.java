@@ -72,7 +72,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     
     public boolean addToCompare(String recipeCode, String release, String user) {
         //
-        String q = SQL_A.compareRecipesAddToCompare(recipeCode, release, user);
+        String q = SQL_A.compareRecipesAddToCompare(PROC.PROC_01,recipeCode, release, user);
         //
         mc_recipe.showMessage(q);
         //

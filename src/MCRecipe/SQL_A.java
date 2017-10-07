@@ -40,13 +40,14 @@ public class SQL_A {
 
     /**
      *
+     * @param PROCEDURE
      * @param param1 - recipeCode
      * @param param2 - release
      * @param param3 - user
      * @return
      */
-    public static String compareRecipesAddToCompare(String param1, String param2, String param3) {
-        return "Create_Recipe_Tempory_USER_Compare " + ""
+    public static String compareRecipesAddToCompare(String PROCEDURE, String param1, String param2, String param3) {
+        return PROCEDURE + ""
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + "";
@@ -54,12 +55,13 @@ public class SQL_A {
 
     /**
      *
+     * @param PROC
      * @param param1 - recipeCode
      * @param param2 - order
      * @return
      */
-    public static String recipe_additional_build_table_2(String param1, String param2) {
-        return "SELECT * FROM fn_Lab_REsults" + " ("
+    public static String recipe_additional_build_table_2(String PROC, String param1, String param2) {
+        return "SELECT * FROM " + PROC + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false)
                 + ")"
@@ -68,23 +70,25 @@ public class SQL_A {
 
     /**
      *
+     * @param PROC
      * @param param1 - recipeCode
      * @return
      */
-    public static String recipe_additional_fill_combo_orders(String param1) {
-        return "SELECT * FROM fn_Lab_SelectOrders" + " ("
+    public static String recipe_additional_fill_combo_orders(String PROC, String param1) {
+        return "SELECT * FROM " + PROC + " ("
                 + quotes(param1, false) + ")"
                 + " order by [order] desc";
     }
 
     /**
      *
+     * @param PROC
      * @param param1 = recipeCode
      * @return
      */
-    public static String recipe_additional_build_table_1(String param1) {
+    public static String recipe_additional_build_table_1(String PROC,String param1) {
         return "SELECT Quality,TestCode,Description,LSL,USL,Name,Target,Device"
-                + " FROM fn_Lab_Procedures" + " ("
+                + " FROM "+ PROC + " ("
                 + quotes(param1, false) + ")"
                 + " order by TestCode";
     }
