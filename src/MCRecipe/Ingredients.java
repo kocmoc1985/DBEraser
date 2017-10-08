@@ -577,7 +577,7 @@ public class Ingredients extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_ingred(colName, getComboParams());
+                String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24,colName, getComboParams());
                 OUT.showMessage(q);
                 HelpA.fillComboBox(sql, box, q, null, false, false);
 //        box.setBorder(BorderFactory.createLineBorder(Color.green));

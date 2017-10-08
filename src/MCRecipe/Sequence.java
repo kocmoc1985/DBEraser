@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
@@ -385,7 +386,7 @@ public class Sequence extends BasicTab {
         String recipe2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceRecipeCopy);
         String release2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceReleaseCopy);
         String mixerCode2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceMixerCodeCopy);
-        String q = SQL_A.copy_sequence(RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, HelpA.updatedOn(), "");
+        String q = SQL_A.copy_sequence(PROC.PROC_23,RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, HelpA.updatedOn(), "");
         //
         try {
             sql.execute(q, mCRecipe);
@@ -396,7 +397,7 @@ public class Sequence extends BasicTab {
         //
         String recipeSequenceMainId = getRecipeSequenceMainId(RECIPE, RELEASE, MIXER_CODE);
         //
-        String q2 = SQL_A.sequenceInsertFromOther(recipeSequenceMainId, recipe2, release2, mixerCode2, date, "");
+        String q2 = SQL_A.sequenceInsertFromOther(PROC.PROC_22,recipeSequenceMainId, recipe2, release2, mixerCode2, date, "");
         //
         try {
             sql_additional.execute(q2, mCRecipe);
@@ -528,7 +529,7 @@ public class Sequence extends BasicTab {
             String release = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceRelease);
             String mixerCode = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceMixerCode);
             //
-            String q = SQL_A.sequence_get_sequence_main(recipe, release, mixerCode);
+            String q = SQL_A.sequence_get_sequence_main(PROC.PROC_21,recipe, release, mixerCode);
             //
             JTable table_temp = new JTable();
             //

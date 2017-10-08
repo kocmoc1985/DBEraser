@@ -26,5 +26,17 @@ public class PROC {
     public static final String PROC_13 = "prc_ITF_RECIPE_main_Insert ";
     public static final String PROC_14 = "prc_ITF_Igredients_DisplVendor_Delete ";
     public static final String PROC_15 = "prc_ITF_Igredients_DisplPurchase_delete ";
+    public static final String PROC_16 = "prc_ITF_Igredients_DisplVendor_INSERT ";
+    public static final String PROC_17 = "prc_ITF_Igredients_DisplPurchase_INSERT ";
+    public static final String PROC_18 = "fn_ITF_Vendor_Init_Load ";
+    public static final String PROC_19 = "fn_ITF_Igredients_Display_Purchase ";
+    public static final String PROC_20 = "fn_ITF_Igredients_Display_Warehouse ";
+    public static final String PROC_21 = "fn_ITF_Sequence_Main_Get ";
+    public static final String PROC_22 = "prc_ITF_Sequence_insert_from_Other ";
+    public static final String PROC_23 = "prc_ITF_Sequence_Insert_Main_from_Other ";
+    public static final String PROC_24 = "fn_ITF_Igredients_BasSearch ";
+    
+    public static final String PROC_25 = " ";
+    
     
 }

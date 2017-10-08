@@ -314,8 +314,8 @@ public class SQL_A {
      * @deprecated
      * @return
      */
-    public static String vendor_insert_table_4(String param1, String param2, String param3, String param4) {
-        return "[dbo].[prc_ITF_Igredients_DisplVendor_INSERT] " + ""
+    public static String vendor_insert_table_4(String PROC, String param1, String param2, String param3, String param4) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, true) + ","
                 + quotes(param3, false) + ","
@@ -343,10 +343,6 @@ public class SQL_A {
                 + " Email = " + quotes(param5, false);
     }
 
-    public static void main(String[] args) {
-        System.out.println("" + vendor_check_if_contact_is_present("1236", "aa", "aa", "aa", "aa"));
-    }
-
     /**
      *
      * @param ingredName 17460
@@ -365,8 +361,8 @@ public class SQL_A {
      * @param param5 VENDOR_ID bigint
      * @return
      */
-    public static String vendor_insert_table_3B(String param1, String param2, String param3, String param4, String param5) {
-        return "[dbo].[prc_ITF_Igredients_DisplPurchase_INSERT] " + ""
+    public static String vendor_insert_table_3B(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, true) + ","
                 + quotes(param3, false) + ","
@@ -383,8 +379,8 @@ public class SQL_A {
      * @deprecated
      * @return
      */
-    public static String vendor_insert_table_3(String param1, String param2, String param3, String param4) {
-        return "[dbo].[prc_ITF_Igredients_DisplPurchase_INSERT] " + ""
+    public static String vendor_insert_table_3(String PROC, String param1, String param2, String param3, String param4) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, true) + ","
                 + quotes(param3, false) + ","
@@ -413,8 +409,8 @@ public class SQL_A {
      * @param param1 = ingred name
      * @return
      */
-    public static String vendor_build_table_invert_4(String param1) {
-        return "SELECT * FROM fn_ITF_Vendor_Init_Load" + " ("
+    public static String vendor_build_table_invert_4(String PROC, String param1) {
+        return "SELECT * FROM " + PROC + " ("
                 + quotes(param1, false) + ")";
     }
 
@@ -434,8 +430,8 @@ public class SQL_A {
      * @param param1 = ingred name
      * @return
      */
-    public static String vendor_build_table_invert_3(String param1) {
-        return "SELECT * FROM fn_ITF_Igredients_Display_Purchase" + " ("
+    public static String vendor_build_table_invert_3(String PROC, String param1) {
+        return "SELECT * FROM " + PROC + " ("
                 + quotes(param1, false) + ")";
     }
 
@@ -444,8 +440,8 @@ public class SQL_A {
      * @param param1 = ingred name
      * @return
      */
-    public static String vendor_build_table_invert_warehouse(String param1) {
-        return "SELECT * FROM fn_ITF_Igredients_Display_Warehouse" + " ("
+    public static String vendor_build_table_invert_warehouse(String PROC, String param1) {
+        return "SELECT * FROM " + PROC + " ("
                 + quotes(param1, false) + ")";
     }
 
@@ -456,8 +452,8 @@ public class SQL_A {
      * @param param3 - mixerCode
      * @return
      */
-    public static String sequence_get_sequence_main(String param1, String param2, String param3) {
-        return "SELECT * FROM [fn_ITF_Sequence_Main_Get]" + " ("
+    public static String sequence_get_sequence_main(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ""
@@ -474,8 +470,8 @@ public class SQL_A {
      * @param param6 UpdatedBy varchar(50)
      * @return
      */
-    public static String sequenceInsertFromOther(String param1, String param2, String param3, String param4, String param5, String param6) {
-        return "[dbo].[prc_ITF_Sequence_insert_from_Other] " + ""
+    public static String sequenceInsertFromOther(String PROC, String param1, String param2, String param3, String param4, String param5, String param6) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -510,8 +506,8 @@ public class SQL_A {
      * @param param8 UpdatedBy varchar(50)
      * @return
      */
-    public static String copy_sequence(String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8) {
-        return "[dbo].[prc_ITF_Sequence_Insert_Main_from_Other] " + ""
+    public static String copy_sequence(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -522,8 +518,8 @@ public class SQL_A {
                 + quotes(param8, false);
     }
 
-    public static String fill_comboboxes_ingred(String param, String[] params) {
-        return "SELECT DISTINCT " + param + " FROM [fn_ITF_Igredients_BasSearch]" + " ("
+    public static String fill_comboboxes_ingred(String PROC, String param, String[] params) {
+        return "SELECT DISTINCT " + param + " FROM [" + PROC + "]" + " ("
                 + "" + checkIfNull(params[0]) + ","
                 + "" + checkIfNull(params[1]) + ","
                 + "" + checkIfNull(params[2]) + ","

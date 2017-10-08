@@ -400,7 +400,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         TABLE_INVERT_4 = null;
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_4(vendorId);
+            String q = SQL_A.vendor_build_table_invert_4(PROC.PROC_18,vendorId);
             OUT.showMessage(q);
             TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q);
         } catch (SQLException ex) {
@@ -521,7 +521,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String vendor_id = boxObject2.getParam_2();
         //
         //
-        String q = SQL_A.vendor_insert_table_3B(ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn(), vendor_id);
+        String q = SQL_A.vendor_insert_table_3B(PROC.PROC_17,ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn(), vendor_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -757,7 +757,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_3(name);
+            String q = SQL_A.vendor_build_table_invert_3(PROC.PROC_19,name);
             OUT.showMessage(q);
             TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q);
         } catch (SQLException ex) {
@@ -782,7 +782,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_warehouse(name);
+            String q = SQL_A.vendor_build_table_invert_warehouse(PROC.PROC_20,name);
             OUT.showMessage(q);
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q);
         } catch (SQLException ex) {
@@ -824,7 +824,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         Object selection = box.getSelectedItem();
         //
         //
-        String q = SQL_A.fill_comboboxes_ingred(colName, getComboParams());
+        String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24,colName, getComboParams());
         OUT.showMessage(q);
         HelpA.fillComboBox(sql, box, q, null, false, false);
         //
@@ -966,7 +966,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_3(ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A.vendor_insert_table_3(PROC.PROC_17,ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1019,7 +1019,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_4(ingred_code_id, vendor_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A.vendor_insert_table_4(PROC.PROC_16,ingred_code_id, vendor_id, HelpA.updatedBy(), HelpA.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
