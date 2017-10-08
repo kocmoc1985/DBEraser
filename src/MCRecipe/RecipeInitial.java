@@ -7,6 +7,7 @@ package MCRecipe;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.JTB;
+import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
@@ -542,7 +543,7 @@ public class RecipeInitial extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial_multiple(colName, colName2, getComboParams(null));
+                String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
                 OUT.showMessage(q);
                 //
                 HelpA.fillComboBox(sql, box, q, null, true, false);
@@ -596,7 +597,7 @@ public class RecipeInitial extends BasicTab {
         //
         Object selection = box.getSelectedItem();
         //
-        String q = SQL_A.fill_comboboxes_recipe_initial_b(colName, getComboParams(null));
+        String q = SQL_A.fill_comboboxes_recipe_initial_b(PROC.PROC_27, PROC.PROC_28, colName, getComboParams(null));
         OUT.showMessage(q);
         //
         //
@@ -639,7 +640,7 @@ public class RecipeInitial extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial(colName, getComboParams(null), mCRecipe2);
+                String q = SQL_A.fill_comboboxes_recipe_initial(PROC.PROC_26, PROC.PROC_27, PROC.PROC_29, PROC.PROC_26, colName, getComboParams(null), mCRecipe2);
                 OUT.showMessage(q);
                 //
                 HelpA.fillComboBox(sql, box, q, null, false, false);
@@ -663,7 +664,7 @@ public class RecipeInitial extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial_B(colName);
+                String q = SQL_A.fill_comboboxes_recipe_initial_B(PROC.PROC_25, colName);
                 OUT.showMessage(q);
                 HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
@@ -692,7 +693,7 @@ public class RecipeInitial extends BasicTab {
 
     public void clearBoxes() {
         //
-        for(JComboBox box: mCRecipe2.recipeInitialGroupA){
+        for (JComboBox box : mCRecipe2.recipeInitialGroupA) {
             box.setSelectedItem(null);
             box.setEditable(false);
         }

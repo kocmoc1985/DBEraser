@@ -35,8 +35,12 @@ public class PROC {
     public static final String PROC_22 = "prc_ITF_Sequence_insert_from_Other ";
     public static final String PROC_23 = "prc_ITF_Sequence_Insert_Main_from_Other ";
     public static final String PROC_24 = "fn_ITF_Igredients_BasSearch ";
+    public static final String PROC_25 = "fn_ITF_Recipes_PropFree_Info_fullList ";
+    public static final String PROC_26 = "fn_ITF_Recipes_Z ";
+    public static final String PROC_27 = "fn_ITF_Recipes_Z_X ";
+    public static final String PROC_28 = "fn_ITF_Recipes_Z_X_IngredName ";
     
-    public static final String PROC_25 = " ";
     
+    public static final String PROC_29 = "fn_ITF_Recipes_Z_X_OR ";
     
 }

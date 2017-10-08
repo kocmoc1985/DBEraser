@@ -559,26 +559,6 @@ public class SQL_A {
                 + "WHERE Recipe_ID=" + quotes(param, true);
     }
 
-    /**
-     *
-     * @param param
-     * @param params
-     * @deprecated
-     * @return
-     */
-    public static String fill_comboboxes_recipe_initial_old(String param, String[] params) {
-        return "SELECT DISTINCT " + param + " FROM [fn_ITF_Recipes_Init]" + " ("
-                + "" + checkIfNull(params[0]) + ","
-                + "" + checkIfNull(params[1]) + ","
-                + "" + checkIfNull(params[2]) + ","
-                + "" + checkIfNull(params[3]) + ","
-                + "" + checkIfNull(params[4]) + ","
-                + "" + checkIfNull(params[5]) + ","
-                + "" + checkIfNull(params[6]) + ","
-                + "" + checkIfNull(params[7]) + ")"
-                + " order by " + param + " asc";
-    }
-
 //    1. Recipe version, 2. Recipe_Additional, 3. Descr, 4. Customer, 
 //            5. Detailed_Group, 6. Status, 7. Class, 8. Mixer_Code, 
 //                    9. Created on, 10. Created  by, 11. UpdatedOn, 12. UpdatedBy
@@ -612,20 +592,20 @@ public class SQL_A {
                 + "ORDER BY NoteValue asc";
     }
 
-    public static String fill_comboboxes_recipe_initial_B(String param) {
+    public static String fill_comboboxes_recipe_initial_B(String PROC, String param) {
         return "SELECT NoteValue "
-                + "FROM dbo.fn_ITF_Recipes_PropFree_Info_fullList('" + param + "') "
+                + "FROM " + PROC + "('" + param + "') "
                 + "ORDER BY NoteValue";
     }
 
-    public static String fill_comboboxes_recipe_initial_multiple(String param, String param2, String[] params) {
+    public static String fill_comboboxes_recipe_initial_multiple(String PROC_1, String PROC_2, String param, String param2, String[] params) {
         //
         String procedure = "";
         //
         if (params.length == 21) {
-            procedure = "fn_ITF_Recipes_Z";
+            procedure = PROC_1;
         } else if (params.length == 23) { // In case if Ingredients search function is activated
-            procedure = "fn_ITF_Recipes_Z_X";
+            procedure = PROC_2;
         }
         //
         return "select distinct "
@@ -635,19 +615,19 @@ public class SQL_A {
                 + ") order by " + param + " asc";
     }
 
-    public static String fill_comboboxes_recipe_initial_b(String param, String[] params) {
+    public static String fill_comboboxes_recipe_initial_b(String PROC_1, String PROC_2, String param, String[] params) {
         //
         String procedure;
         //
         if (params.length == 23) {
-            procedure = "fn_ITF_Recipes_Z_X";
+            procedure = PROC_1;
             //
             return "select distinct " + param + " from " + procedure + " ("
                     + buildParametersForProcedure(params)
                     + ") order by " + param + " asc";
             //
         } else {
-            procedure = "fn_ITF_Recipes_Z_X_IngredName";
+            procedure = PROC_2;
             //
             return "select distinct IngredName from " + procedure + "() "
                     + "order by IngredName asc";
@@ -656,7 +636,7 @@ public class SQL_A {
         //
     }
 
-    public static String fill_comboboxes_recipe_initial(String param, String[] params, MC_RECIPE mc_recipe) {
+    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE mc_recipe) {
         //
         String procedure;
         //
@@ -665,13 +645,13 @@ public class SQL_A {
                 && mc_recipe.jComboBox_Ingred_2.getSelectedItem() == null;
         //
         if (params.length == 21) {//Ingredients box disabled
-            procedure = "fn_ITF_Recipes_Z";
+            procedure = PROC_1;
         } else if (params.length == 23 && cond_1 == false && cond_2 == false) { // In case if Ingredients search function is activated
-            procedure = "fn_ITF_Recipes_Z_X";
+            procedure = PROC_2;
         } else if (params.length == 23 && cond_1 && cond_2 == false) {
-            procedure = "fn_ITF_Recipes_Z_X_OR";
+            procedure = PROC_3;
         } else {
-            procedure = "fn_ITF_Recipes_Z";
+            procedure = PROC_4;
         }
         //
         return "select distinct " + param + " from " + procedure + " ("
