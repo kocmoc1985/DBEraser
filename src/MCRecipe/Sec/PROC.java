@@ -5,11 +5,28 @@
  */
 package MCRecipe.Sec;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mcab
  */
 public class PROC {
+
+    public static final ArrayList<String> procList = new ArrayList<String>();
+
+    public static boolean exists(String procName) {
+        for (String proc : procList) {
+            if (proc.contains(procName)) {
+                return true;
+            } 
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("" + exists("fn_Lab_REsults"));
+    }
 
     public static final String PROC_01 = "Create_Recipe_Tempory_USER_Compare ";//#RECIPE INITIAL
     public static final String PROC_02 = "fn_Lab_REsults "; //#RECIPE ADDITIONAL
@@ -75,5 +92,72 @@ public class PROC {
     public static final String PROC_62 = "User_Int_RecipeInvert "; //#RECIPE DETAILED
     public static final String PROC_63 = "fn_ITF_Recipes_Info "; //#RECIPE INITIAL
     public static final String PROC_64 = "fn_ITF_Recipes_TEXT "; //#RECIPE INITIAL
+
+    static {
+        procList.add(PROC_01);
+        procList.add(PROC_02);
+        procList.add(PROC_03);
+        procList.add(PROC_04);
+        procList.add(PROC_05);
+        procList.add(PROC_06);
+        procList.add(PROC_06);
+        procList.add(PROC_08);
+        procList.add(PROC_09);
+        procList.add(PROC_10);
+        procList.add(PROC_11);
+        procList.add(PROC_12);
+        procList.add(PROC_13);
+        procList.add(PROC_14);
+        procList.add(PROC_15);
+        procList.add(PROC_16);
+        procList.add(PROC_17);
+        procList.add(PROC_18);
+        procList.add(PROC_19);
+        procList.add(PROC_20);
+        procList.add(PROC_21);
+        procList.add(PROC_22);
+        procList.add(PROC_23);
+        procList.add(PROC_24);
+        procList.add(PROC_25);
+        procList.add(PROC_26);
+        procList.add(PROC_27);
+        procList.add(PROC_28);
+        procList.add(PROC_29);
+        procList.add(PROC_30);
+        procList.add(PROC_31);
+        procList.add(PROC_32);
+        procList.add(PROC_33);
+        procList.add(PROC_34);
+        procList.add(PROC_35);
+        procList.add(PROC_36);
+        procList.add(PROC_37);
+        procList.add(PROC_38);
+        procList.add(PROC_39);
+        procList.add(PROC_40);
+        procList.add(PROC_41);
+        procList.add(PROC_42);
+        procList.add(PROC_43);
+        procList.add(PROC_44);
+        procList.add(PROC_45);
+        procList.add(PROC_46);
+        procList.add(PROC_47);
+        procList.add(PROC_48);
+        procList.add(PROC_49);
+        procList.add(PROC_50);
+        procList.add(PROC_51);
+        procList.add(PROC_52);
+        procList.add(PROC_53);
+        procList.add(PROC_54);
+        procList.add(PROC_55);
+        procList.add(PROC_56);
+        procList.add(PROC_57);
+        procList.add(PROC_58);
+        procList.add(PROC_59);
+        procList.add(PROC_60);
+        procList.add(PROC_61);
+        procList.add(PROC_62);
+        procList.add(PROC_63);
+        procList.add(PROC_64);
+    }
 
 }
