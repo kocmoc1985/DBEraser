@@ -5,6 +5,7 @@
 package MCRecipe;
 
 import MCRecipe.Lang.T_INV;
+import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -194,18 +195,18 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-        RowDataInvert name = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Name",  T_INV.LANG("NAME"), "", true, true, false);
+        RowDataInvert name = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Name", T_INV.LANG("NAME"), "", true, true, false);
         RowDataInvert cross_reference = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Info_01", T_INV.LANG("CROSS REFERENCE"), "", true, true, false);
         //
         String q_1 = SQL_B.basic_combobox_query("Descr", "Ingredient_Code");
-        RowDataInvert description = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Descr",  T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        RowDataInvert description = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Descr", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         //
-        RowDataInvert priceKg = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "ActualPreisePerKg",  T_INV.LANG("PRICE"), "Euro/kg", true, true, false);
+        RowDataInvert priceKg = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "ActualPreisePerKg", T_INV.LANG("PRICE"), "Euro/kg", true, true, false);
         //
         RowDataInvert casno = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Cas_Number", T_INV.LANG("CASNO"), "", true, true, false);
         //
         //
-        RowDataInvert chem_number = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "ChemName",  T_INV.LANG("CHEMICAL NAME"), "", true, true, false);
+        RowDataInvert chem_number = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "ChemName", T_INV.LANG("CHEMICAL NAME"), "", true, true, false);
         chem_number.enableToolTipTextJTextField();
         //
         //
@@ -213,30 +214,30 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         RowDataInvert clasS = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Class", T_INV.LANG("CLASS"), "", true, true, false);
         //
         String q_3 = SQL_B.basic_combobox_query("Status", "Ingredient_Code");
-        RowDataInvert status = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_3, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Status",  T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_3, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Status", T_INV.LANG("STATUS"), "", true, true, false);
         //
         String q_4 = SQL_B.basic_combobox_query("[Group]", "Ingredient_Code");
-        RowDataInvert group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Group",  T_INV.LANG("GROUP"), "", true, true, false);
+        RowDataInvert group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Group", T_INV.LANG("GROUP"), "", true, true, false);
         //
         RowDataInvert group_name = new RowDataInvert("Ingred_Group", "Id", false, "Descr", T_INV.LANG("GROUP NAME"), "", true, true, false);
         //
         //
         String q_5 = SQL_B.basic_combobox_query("Form", "Ingredient_Code");
-        RowDataInvert appereance = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Form",  T_INV.LANG("APPEARANCE"), "", true, true, false);
+        RowDataInvert appereance = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Form", T_INV.LANG("APPEARANCE"), "", true, true, false);
         //
         //
         RowDataInvert perc_rubber = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "percRubber", T_INV.LANG("PERCENTAGE RUBBER"), "%", true, true, false);
-        RowDataInvert rubber_tolerances = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercRubtOl",  T_INV.LANG("RUBBER TOLERANCES"), "%", true, true, false);
-        RowDataInvert perc_act_mat = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercActMat",  T_INV.LANG("ACTIVITY"), "%", true, true, false);
-        RowDataInvert density = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "density",  T_INV.LANG("DENSITY"), "kg/m&#179", true, true, false);
-        RowDataInvert density_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "DensityTOl",  T_INV.LANG("DENSITY TOLERANCE"), "kg/m&#179", true, true, false);
-        RowDataInvert visc_temp = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTemp",   T_INV.LANG("MOONEY TEMPEARTURE"), "\u00b0C", true, true, false);
-        RowDataInvert visc_time = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTime",  T_INV.LANG("MOONEY TIME"), "min", true, true, false);
+        RowDataInvert rubber_tolerances = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercRubtOl", T_INV.LANG("RUBBER TOLERANCES"), "%", true, true, false);
+        RowDataInvert perc_act_mat = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "PercActMat", T_INV.LANG("ACTIVITY"), "%", true, true, false);
+        RowDataInvert density = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "density", T_INV.LANG("DENSITY"), "kg/m&#179", true, true, false);
+        RowDataInvert density_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "DensityTOl", T_INV.LANG("DENSITY TOLERANCE"), "kg/m&#179", true, true, false);
+        RowDataInvert visc_temp = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTemp", T_INV.LANG("MOONEY TEMPEARTURE"), "\u00b0C", true, true, false);
+        RowDataInvert visc_time = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscTime", T_INV.LANG("MOONEY TIME"), "min", true, true, false);
         RowDataInvert visc_ml = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscML", T_INV.LANG("MOONEY VISCOSITY"), "MU", true, true, false);
-        RowDataInvert visc_ml_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscMLTOl",  T_INV.LANG("MOONEY TOLERANCES"), "MU", true, true, false);
+        RowDataInvert visc_ml_tol = new RowDataInvert("Ingredient_phys_Properties", "Ingredient_phys_Properties_ID", false, "ViscMLTOl", T_INV.LANG("MOONEY TOLERANCES"), "MU", true, true, false);
         //
         //
-        RowDataInvert updated_on = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "UpdatedOn",  T_INV.LANG("UPDATED ON"), "", true, true, false);
+        RowDataInvert updated_on = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
         RowDataInvert updated_by = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         //
         RowDataInvert created_on = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "CreatedOn", T_INV.LANG("CREATED ON"), "", true, true, false);
@@ -311,22 +312,22 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     public RowDataInvert[] getConfigTableInvert4() {
         //
         RowDataInvert vendorName = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorName", T_INV.LANG("VENDOR"), "", true, true, false);
-        RowDataInvert vendorId = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VENDOR_ID",  T_INV.LANG("VENDOR ID"), "", true, true, false);
+        RowDataInvert vendorId = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VENDOR_ID", T_INV.LANG("VENDOR ID"), "", true, true, false);
         vendorId.setUneditable();
-        RowDataInvert vendorNo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorNo",  T_INV.LANG("VENDOR NO"), "", true, true, false);
+        RowDataInvert vendorNo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "VendorNo", T_INV.LANG("VENDOR NO"), "", true, true, false);
         RowDataInvert address = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Adress", T_INV.LANG("ADRESS"), "", true, true, false);
-        RowDataInvert zipCode = new RowDataInvert("VENDOR", "VENDOR_ID", false, "ZipCode",  T_INV.LANG("POSTAL CODE"), "", true, true, false);
-        RowDataInvert city = new RowDataInvert("VENDOR", "VENDOR_ID", false, "City",  T_INV.LANG("CITY"), "", true, true, false);
-        RowDataInvert country = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Country",  T_INV.LANG("LAND"), "", true, true, false);
-        RowDataInvert phone = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Phone",  T_INV.LANG("TELEPHONE"), "", true, true, false);
+        RowDataInvert zipCode = new RowDataInvert("VENDOR", "VENDOR_ID", false, "ZipCode", T_INV.LANG("POSTAL CODE"), "", true, true, false);
+        RowDataInvert city = new RowDataInvert("VENDOR", "VENDOR_ID", false, "City", T_INV.LANG("CITY"), "", true, true, false);
+        RowDataInvert country = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Country", T_INV.LANG("LAND"), "", true, true, false);
+        RowDataInvert phone = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Phone", T_INV.LANG("TELEPHONE"), "", true, true, false);
         RowDataInvert fax = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Fax", T_INV.LANG("FAX"), "", true, true, false);
-        RowDataInvert email = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Email",  T_INV.LANG("EMAIL"), "", true, true, false);
-        RowDataInvert website = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Website",  T_INV.LANG("WEBSITE"), "", true, true, false);
-        RowDataInvert freeinfo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "FreeInfo",  T_INV.LANG("FREEINFO"), "", true, true, false);
+        RowDataInvert email = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Email", T_INV.LANG("EMAIL"), "", true, true, false);
+        RowDataInvert website = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Website", T_INV.LANG("WEBSITE"), "", true, true, false);
+        RowDataInvert freeinfo = new RowDataInvert("VENDOR", "VENDOR_ID", false, "FreeInfo", T_INV.LANG("FREEINFO"), "", true, true, false);
         RowDataInvert status = new RowDataInvert("VENDOR", "VENDOR_ID", false, "Status", T_INV.LANG("STATUS"), "", true, true, false);
         RowDataInvert updatedOn = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
         updatedOn.setUneditable();
-        RowDataInvert updatedBy = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedBy",  T_INV.LANG("UPDATED BY"), "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert("VENDOR", "VENDOR_ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         updatedBy.setUneditable();
         //
         RowDataInvert[] rows = {vendorName, vendorId, vendorNo, address, zipCode, city, country, phone, fax, email, website, freeinfo, status, updatedOn, updatedBy};
@@ -336,10 +337,10 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public RowDataInvert[] getConfigTableInvert4_2() {
         //
-        RowDataInvert vendor_id = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "VENDOR_ID",  T_INV.LANG("VENDOR ID"), "", true, true, false);
+        RowDataInvert vendor_id = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "VENDOR_ID", T_INV.LANG("VENDOR ID"), "", true, true, false);
         vendor_id.setUneditable();
         RowDataInvert contactName = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "ContactName", T_INV.LANG("CONTACT NAME"), "", true, true, false);
-        RowDataInvert position = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "position",  T_INV.LANG("POSITION"), "", true, true, false);
+        RowDataInvert position = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "position", T_INV.LANG("POSITION"), "", true, true, false);
         RowDataInvert phone = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Phone", T_INV.LANG("PHONE"), "", true, true, false);
         RowDataInvert email = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "Email", T_INV.LANG("EMAIL"), "", true, true, false);
         RowDataInvert updatedOn = new RowDataInvert("Vendor_Contact", "Vendor_Contact_ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
@@ -423,7 +424,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_3B("" + currentId);
+        String q = SQL_A.vendor_delete_from_table_3B(PROC.PROC_14, "" + currentId);
         //
         //
         try {
@@ -906,7 +907,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         String ingred_code_id = getIngredCodeId(ingred_name);
         //
-        String q = SQL_A.vendor_delete_from_table_3("" + currentTradeNameId, "" + ingred_code_id);
+        String q = SQL_A.vendor_delete_from_table_3(PROC.PROC_15, "" + currentTradeNameId, "" + ingred_code_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -930,7 +931,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_4("" + currentVendorId);
+        String q = SQL_A.vendor_delete_from_table_4(PROC.PROC_14, "" + currentVendorId);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1031,7 +1032,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     }
 
     private String insertNewVendor(String newVendorName) {
-        String q = SQL_A.vendors_add_new_vendor(newVendorName);
+        String q = SQL_A.vendors_add_new_vendor(PROC.PROC_05, newVendorName);
         OUT.showMessage(q);
         String idOfInsertedVendor = null;
         try {

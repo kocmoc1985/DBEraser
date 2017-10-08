@@ -10,6 +10,7 @@ import MCRecipe.Lang.JTB;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.T_INV;
 import static MCRecipe.RecipeInitial.T1_RECIPE_VERSION;
+import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import images.IconUrls;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -160,11 +161,11 @@ public class Ingredients extends BasicTab {
 
     public void addIngredientToTable4RecipeDetailed() {
         //
-        if(HelpA.confirm(INGR.CINFIRM_MSG_1()) == false){
+        if (HelpA.confirm(INGR.CINFIRM_MSG_1()) == false) {
             return;
         }
         //
-        if(mCRecipe.recipeInitial.checkIfRecipeDisabled()){
+        if (mCRecipe.recipeInitial.checkIfRecipeDisabled()) {
             HelpA.showNotification("Cannot do this action for Recipe with status S, O, Inactive");
         }
         //
@@ -240,9 +241,9 @@ public class Ingredients extends BasicTab {
         String q;
         //
         if (fromScratch) {
-            q = SQL_A.ingredients_add_new_ingredient_scratch(getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A.ingredients_add_new_ingredient_scratch(PROC.PROC_10, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
         } else {
-            q = SQL_A.ingredients_add_new_ingredient(getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A.ingredients_add_new_ingredient(PROC.PROC_11, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
         }
         //
         try {
@@ -588,12 +589,12 @@ public class Ingredients extends BasicTab {
     }
 
     public void clearBoxes() {
-        
-        for(JComboBox box: mCRecipe.ingredientsGroupList){
+
+        for (JComboBox box : mCRecipe.ingredientsGroupList) {
             box.setSelectedItem(null);
             box.setEditable(false);
         }
-        
+
 //        mCRecipe.jCombo_Ingred_Name.setSelectedItem(null);
 //        mCRecipe.jCombo_Ingred_Class.setSelectedItem(null);
 //        mCRecipe.jCombo_Ingred_Status.setSelectedItem(null);
@@ -624,7 +625,7 @@ public class Ingredients extends BasicTab {
         icon_cont.add(labe2);
         icon_cont.add(labe3);
         //
-        RowDataInvert name = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Name",  T_INV.LANG("NAME"), "", true, true, false);
+        RowDataInvert name = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Name", T_INV.LANG("NAME"), "", true, true, false);
         name.setUneditable();
         //
         RowDataInvert cross_reference = new RowDataInvert("Ingredient_Code", "IngredientCode_ID", false, "Info_01", T_INV.LANG("CROSS REFERENCE"), "", true, true, false);

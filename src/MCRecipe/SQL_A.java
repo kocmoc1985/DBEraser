@@ -86,9 +86,9 @@ public class SQL_A {
      * @param param1 = recipeCode
      * @return
      */
-    public static String recipe_additional_build_table_1(String PROC,String param1) {
+    public static String recipe_additional_build_table_1(String PROC, String param1) {
         return "SELECT Quality,TestCode,Description,LSL,USL,Name,Target,Device"
-                + " FROM "+ PROC + " ("
+                + " FROM " + PROC + " ("
                 + quotes(param1, false) + ")"
                 + " order by TestCode";
     }
@@ -98,31 +98,32 @@ public class SQL_A {
      * @param param1 - new vendor name
      * @return
      */
-    public static String vendors_add_new_vendor(String param1) {
-        return "prc_ITF_Vendor_Insert" + " "
+    public static String vendors_add_new_vendor(String PROC, String param1) {
+        return PROC + " "
                 + quotes(param1, false) + "";
     }
 
     /**
      *
+     * @param PROC
      * @param param1 - IngredName
      * @return
      */
-    public static String recipe_detailed_find_density_ingred(String param1) {
-        return "select density from fn_Recipe_Ingredient_Insert (" + quotes(param1, false) + ")";
+    public static String recipe_detailed_find_density_ingred(String PROC, String param1) {
+        return "select density from " + PROC + " (" + quotes(param1, false) + ")";
     }
 
-    /**
-     *
-     * @param param1 - Recipe_Id, bigint
-     * @param param2 - NoteName
-     * @param param3 - NoteValue
-     * @param param3 - UpdateOn
-     * @param param4 - UpdateBy
-     * @return
-     */
-    public static String recipe_detailed_insert_note_table_2(String param1, String param2, String param3, String param4, String param5) {
-        return "[dbo].[prc_ITF_RECIPE_FreeInfo_Insert] " + ""
+    public static String recipe_detailed_insert_note_table_2(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return "[dbo].[" + PROC + "] " + ""
+                + quotes(param1, true) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ","
+                + quotes(param4, false) + ","
+                + quotes(param5, false);
+    }
+
+    public static String recipe_detailed_insert_note_table_3(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -132,24 +133,7 @@ public class SQL_A {
 
     /**
      *
-     * @param param1 - Recipe_Id, bigint
-     * @param param2 - NoteName
-     * @param param3 - NoteValue
-     * @param param3 - UpdateOn
-     * @param param4 - UpdateBy
-     * @return
-     */
-    public static String recipe_detailed_insert_note_table_3(String param1, String param2, String param3, String param4, String param5) {
-        return "[dbo].[prc_ITF_RECIPE_FreeTEXT_Insert] " + ""
-                + quotes(param1, true) + ","
-                + quotes(param2, false) + ","
-                + quotes(param3, false) + ","
-                + quotes(param4, false) + ","
-                + quotes(param5, false);
-    }
-
-    /**
-     *
+     * @param PROC
      * @param param1 - Recipe_Id, bigint
      * @param param2 - NoteName varchar
      * @param param3 - NoteValue varchar
@@ -157,8 +141,8 @@ public class SQL_A {
      * @param param5 - UpdateBy
      * @return
      */
-    public static String recipe_detailed_update_table_2(String param1, String param2, String param3, String param4, String param5) {
-        return "[dbo].[prc_ITF_RECIPE_FreeInfo_Update] " + ""
+    public static String recipe_detailed_update_table_2(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -178,13 +162,14 @@ public class SQL_A {
 
     /**
      *
+     * @param PROC
      * @param param1 - ingredientCOde_id
      * @param param2 - CreatedOn
      * @param param3 - CreatedBy
      * @return
      */
-    public static String ingredients_add_new_ingredient_scratch(String param1, String param2, String param3) {
-        return "prc_ITF_Ingredient_NEW_fromScratch" + " "
+    public static String ingredients_add_new_ingredient_scratch(String PROC, String param1, String param2, String param3) {
+        return PROC + " "
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + "";
@@ -192,13 +177,14 @@ public class SQL_A {
 
     /**
      *
+     * @param PROC
      * @param param1 - ingredientCOde_id
      * @param param2 - CreatedOn
      * @param param3 - CreatedBy
      * @return
      */
-    public static String ingredients_add_new_ingredient(String param1, String param2, String param3) {
-        return "prc_ITF_Ingredient_NEW_Insert" + " "
+    public static String ingredients_add_new_ingredient(String PROC, String param1, String param2, String param3) {
+        return PROC + " "
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + "";
@@ -227,8 +213,8 @@ public class SQL_A {
                 + quotes(param1, false) + " WHERE (Code = 'NEW')";
     }
 
-    public static String recipe_detailed_add_new_recipe_scratch(String param1, String param2, String param3) {
-        return "prc_ITF_RECIPE_Scratch" + " "
+    public static String recipe_detailed_add_new_recipe_scratch(String PROC, String param1, String param2, String param3) {
+        return PROC + " "
                 + quotes(param1, true) + "," //prc_ITF_RECIPE_Scratch
                 + quotes(param2, false) + "," //prc_ITF_RECIPE_main_Insert
                 + quotes(param3, false) + "";
@@ -236,13 +222,14 @@ public class SQL_A {
 
     /**
      *
+     * @param PROC
      * @param param1 - RecipeID
      * @param param2 - CreatedOn
      * @param param3 - CreatedBy
      * @return
      */
-    public static String recipe_detailed_add_new_recipe(String param1, String param2, String param3) {
-        return "prc_ITF_RECIPE_main_Insert" + " "
+    public static String recipe_detailed_add_new_recipe(String PROC, String param1, String param2, String param3) {
+        return PROC + " "
                 + quotes(param1, true) + "," //prc_ITF_RECIPE_Scratch
                 + quotes(param2, false) + "," //prc_ITF_RECIPE_main_Insert
                 + quotes(param3, false) + "";
@@ -291,8 +278,8 @@ public class SQL_A {
      * @param vendor_id
      * @return
      */
-    public static String vendor_delete_from_table_4(String param1) {
-        return "[dbo].[prc_ITF_Igredients_DisplVendor_Delete] "
+    public static String vendor_delete_from_table_4(String PROC, String param1) {
+        return "[dbo].[" + PROC + "] "
                 + quotes(param1, true) + "";
     }
 
@@ -301,8 +288,8 @@ public class SQL_A {
      * @param param1 id from "_INTRF_IngredientCode_ID__Vendor_ID" table
      * @return
      */
-    public static String vendor_delete_from_table_3B(String param1) {
-        return "[prc_ITF_Igredients_DisplVendor_Delete] "
+    public static String vendor_delete_from_table_3B(String PROC, String param1) {
+        return "[" + PROC + "] "
                 + quotes(param1, true);
     }
 
@@ -312,8 +299,8 @@ public class SQL_A {
      * @param param2 = IngredientCodeId
      * @return
      */
-    public static String vendor_delete_from_table_3(String param1, String param2) {
-        return "[prc_ITF_Igredients_DisplPurchase_delete] "
+    public static String vendor_delete_from_table_3(String PROC, String param1, String param2) {
+        return "[" + PROC + "] "
                 + quotes(param1, true) + ","
                 + quotes(param2, true);
     }

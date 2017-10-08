@@ -10,6 +10,7 @@ import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
 import static MCRecipe.RecipeInitial.T1_STATUS;
+import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.Run_Invert;
@@ -342,7 +343,7 @@ public class RecipeDetailed extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.recipe_detailed_insert_note_table_3(recipe_id, noteName.getText(), noteValue.getText(), HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A.recipe_detailed_insert_note_table_3(PROC.PROC_08,recipe_id, noteName.getText(), noteValue.getText(), HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
@@ -458,7 +459,7 @@ public class RecipeDetailed extends BasicTab {
         //
         String density = null;
         //
-        String q = SQL_A.recipe_detailed_find_density_ingred(ingredient);
+        String q = SQL_A.recipe_detailed_find_density_ingred(PROC.PROC_06,ingredient);
         //
         try {
             ResultSet rs = sql.execute(q, mCRecipe2);
@@ -1015,9 +1016,9 @@ public class RecipeDetailed extends BasicTab {
         String q;
         //
         if (fromScratch) {
-            q = SQL_A.recipe_detailed_add_new_recipe_scratch(recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12,recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
         } else {
-            q = SQL_A.recipe_detailed_add_new_recipe(recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A.recipe_detailed_add_new_recipe(PROC.PROC_13,recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
         }
         //
         OUT.showMessage(q);
@@ -1215,7 +1216,7 @@ public class RecipeDetailed extends BasicTab {
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        String q = SQL_A.recipe_detailed_insert_note_table_2(recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A.recipe_detailed_insert_note_table_2(PROC.PROC_07,recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
@@ -1277,7 +1278,7 @@ public class RecipeDetailed extends BasicTab {
         String noteName = HelpA.getValueGivenRow(jTable, row, "NoteName");
 //        String noteValue = HelpA.getValueGivenRow(jTable, row, "Note_Value");
         //
-        String q = SQL_A.recipe_detailed_update_table_2(recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A.recipe_detailed_update_table_2(PROC.PROC_09,recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
