@@ -659,18 +659,18 @@ public class SQL_A {
                 + ") order by " + param + " asc";
     }
 
-    public static String recipeInitialBuildTable1(String[] params) {
+    public static String recipeInitialBuildTable1(String PROC_1,String PROC_2,String PROC_3,String[] params) {
         //
         String procedure;
         //
         boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
         if (params.length == 21) { //Ingred check box is of
-            procedure = "prc_ITF_Recipes_Z_Z";
+            procedure = PROC_1;
         } else if (params.length == 23 && cond_1 == false) { // In case if Ingredients search function is activated
-            procedure = "prc_ITF_Recipes_Z_X";
+            procedure = PROC_2;
         } else {
-            procedure = "prc_ITF_Recipes_Z_X_OR";
+            procedure = PROC_3;
         }
         //
         return "dbo.[" + procedure + "]" + " "

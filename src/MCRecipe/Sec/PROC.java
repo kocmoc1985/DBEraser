@@ -39,8 +39,11 @@ public class PROC {
     public static final String PROC_26 = "fn_ITF_Recipes_Z ";
     public static final String PROC_27 = "fn_ITF_Recipes_Z_X ";
     public static final String PROC_28 = "fn_ITF_Recipes_Z_X_IngredName ";
-    
-    
     public static final String PROC_29 = "fn_ITF_Recipes_Z_X_OR ";
+    public static final String PROC_30 = "prc_ITF_Recipes_Z_Z ";
+    public static final String PROC_31 = "prc_ITF_Recipes_Z_X ";
+    public static final String PROC_32 = "prc_ITF_Recipes_Z_X_OR ";
+
+    
     
 }

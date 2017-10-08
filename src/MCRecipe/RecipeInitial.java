@@ -373,7 +373,7 @@ public class RecipeInitial extends BasicTab {
                 fillTable1HelpM();
                 OUT.showMessage(q);
             } else {
-                q = SQL_A.recipeInitialBuildTable1(params);
+                q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30,PROC.PROC_31,PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
