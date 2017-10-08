@@ -872,8 +872,8 @@ public class SQL_A {
      * @param param5 = UpdatedBy varchar(50)
      * @return
      */
-    public static String add_to_ingred_table_3(String param1, String param2, String param3, String param4, String param5) {
-        return "prc_ITF_Ingredients_FreeInfo_Insert " + ""
+    public static String add_to_ingred_table_3(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return PROC + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -886,8 +886,8 @@ public class SQL_A {
      * @param param1 = Ingred_Free_Info_ID bigint
      * @return
      */
-    public static String delete_from_ingred_table_3(String param1) {
-        return "prc_ITF_Ingredients_FreeInfo_Delete" + " "
+    public static String delete_from_ingred_table_3(String PROC, String param1) {
+        return PROC + " "
                 + quotes(param1, true) + "";
     }
 
@@ -901,8 +901,8 @@ public class SQL_A {
      * @param param6 = UpdatedBy varchar(50)
      * @return
      */
-    public static String update_ingred_table_3(String param1, String param2, String param3, String param4, String param5, String param6) {
-        return "prc_ITF_Ingredients_FreeInfo_Update " + ""
+    public static String update_ingred_table_3(String PROC, String param1, String param2, String param3, String param4, String param5, String param6) {
+        return PROC + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, true) + ","
                 + quotes(param3, false) + ","
@@ -933,8 +933,8 @@ public class SQL_A {
      * @param param1 = IngredientCode_ID
      * @return
      */
-    public static String build_ingred_textarea(String param1) {
-        return "prc_ITF_Ingredients_Coments_Select" + " '"
+    public static String build_ingred_textarea(String PROC, String param1) {
+        return PROC + " '"
                 + param1 + "'";
     }
 
@@ -943,8 +943,8 @@ public class SQL_A {
      * @param param1 = IngredCodeId (Name)
      * @return
      */
-    public static String build_ingred_table_3(String param1) {
-        return "prc_ITF_Ingredients_FreeInfo_Select" + " '"
+    public static String build_ingred_table_3(String PROC, String param1) {
+        return PROC + " '"
                 + param1 + "'";
     }
 
@@ -953,8 +953,8 @@ public class SQL_A {
      * @param param1 = IngredCodeId (Name)
      * @return
      */
-    public static String build_ingred_table_2(String param1) {
-        return "SELECT * FROM [fn_ITF_Igredients_Init_Load_Warehause]" + " ('"
+    public static String build_ingred_table_2(String PROC, String param1) {
+        return "SELECT * FROM [" + PROC + "]" + " ('"
                 + param1 + "')";
     }
 
@@ -963,8 +963,8 @@ public class SQL_A {
      * @param param1 = name
      * @return
      */
-    public static String prc_ITF_Igredients_main_Select(String param1) {
-        return "prc_ITF_Igredients_main_Select " + quotes(param1, false);
+    public static String prc_ITF_Igredients_main_Select(String PROC, String param1) {
+        return PROC + quotes(param1, false);
     }
 
     /**
@@ -981,8 +981,8 @@ public class SQL_A {
      * @param param10 = CasNr
      * @return
      */
-    public static String ingredientListFunction(String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10) {
-        return "SELECT * FROM [fn_ITF_Igredients_BasSearch]" + " ("
+    public static String ingredientListFunction(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","

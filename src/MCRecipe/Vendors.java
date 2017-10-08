@@ -804,7 +804,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.prc_ITF_Igredients_main_Select(name);
+            String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49,name);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
         } catch (SQLException ex) {

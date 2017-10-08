@@ -53,9 +53,15 @@ public class PROC {
     public static final String PROC_40 = "fn_ITF_Sequence_Init_SelectUnic ";
     public static final String PROC_41 = "fn_ITF_Sequence_Init_SelectSet_1 ";
     public static final String PROC_42 = "fn_ITF_Sequence_Init_SelectSet_2 ";
+    public static final String PROC_43 = "prc_ITF_Ingredients_FreeInfo_Insert ";
+    public static final String PROC_44 = "prc_ITF_Ingredients_FreeInfo_Delete ";
+    public static final String PROC_45 = "prc_ITF_Ingredients_FreeInfo_Update ";
+    public static final String PROC_46 = "prc_ITF_Ingredients_Coments_Select ";
+    public static final String PROC_47 = "prc_ITF_Ingredients_FreeInfo_Select ";
+    public static final String PROC_48 = "fn_ITF_Igredients_Init_Load_Warehause ";
+    public static final String PROC_49 = "prc_ITF_Igredients_main_Select ";
+    public static final String PROC_50 = "fn_ITF_Igredients_BasSearch ";
     
-    public static final String PROC_43 = " ";
+    public static final String PROC_51 = " ";
 
-    
-    
 }
