@@ -61,7 +61,19 @@ public class PROC {
     public static final String PROC_48 = "fn_ITF_Igredients_Init_Load_Warehause ";
     public static final String PROC_49 = "prc_ITF_Igredients_main_Select ";
     public static final String PROC_50 = "fn_ITF_Igredients_BasSearch ";
-    
-    public static final String PROC_51 = " ";
+    public static final String PROC_51 = "Recipe_Tempory_Recalc_newTotalWeight_USER ";
+    public static final String PROC_52 = "Recipe_Tempory_Recalc_FillFactor_USER ";
+    public static final String PROC_53 = "Recipe_Tempory_Recalc_newTotalVolume_USER ";
+    public static final String PROC_54 = "Recipe_Tempory_Recalc_givenPHRS_USER ";
+    public static final String PROC_55 = "Recipe_Tempory_Recalc_GivenWeights_USER ";
+    public static final String PROC_56 = "Recipe_Recipe_INSERT_New_material ";
+    public static final String PROC_57 = "Recipe_Tempory_Delete_User ";
+    public static final String PROC_58 = "Recipe_Tempory_UPDATE_USER ";
+    public static final String PROC_59 = "Recipe_Tempory_INSERT_INTO_USER ";
+    public static final String PROC_60 = "Create_Recipe_Tempory1_USER ";
+    public static final String PROC_61 = "Recipe_Full_RZPT_1_O_W_User ";
+    public static final String PROC_62 = "User_Int_RecipeInvert ";
+    public static final String PROC_63 = "fn_ITF_Recipes_Info ";
+    public static final String PROC_64 = "fn_ITF_Recipes_TEXT ";
 
 }

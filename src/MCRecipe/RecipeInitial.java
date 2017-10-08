@@ -243,10 +243,10 @@ public class RecipeInitial extends BasicTab {
         String recipeAdditional = HelpA.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
         String mixerCode = HelpA.getValueSelectedRow(table1, T1_MIXER_CODE);
         //
-        String q = SQL_A.fillTable2RecipeInitial(recipeVersion, recipeAdditional, mixerCode);
+        String q = SQL_A.fillTable2RecipeInitial(PROC.PROC_63, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table2);
         //
-        q = SQL_A.fillTable3RecipeInitial(recipeVersion, recipeAdditional, mixerCode);
+        q = SQL_A.fillTable3RecipeInitial(PROC.PROC_64,recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table3);
         //
         //

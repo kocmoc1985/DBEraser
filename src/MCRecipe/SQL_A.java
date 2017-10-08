@@ -1005,8 +1005,8 @@ public class SQL_A {
      * @param param4 - user
      * @return
      */
-    public static String changeTotalWeight(String param1, String param2, String param3, String param4) {
-        return "Recipe_Tempory_Recalc_newTotalWeight_USER " + "'"
+    public static String changeTotalWeight(String PROC, String param1, String param2, String param3, String param4) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "','"
@@ -1022,8 +1022,8 @@ public class SQL_A {
      * @param param5 - user
      * @return
      */
-    public static String changeLoadFactor(String param1, String param2, String param3, String param4, String param5) {
-        return "Recipe_Tempory_Recalc_FillFactor_USER " + "'"
+    public static String changeLoadFactor(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "','"
@@ -1039,8 +1039,8 @@ public class SQL_A {
      * @param param4 - user
      * @return
      */
-    public static String changeTotalVolume(String param1, String param2, String param3, String param4) {
-        return "Recipe_Tempory_Recalc_newTotalVolume_USER " + "'"
+    public static String changeTotalVolume(String PROC, String param1, String param2, String param3, String param4) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "','"
@@ -1054,8 +1054,8 @@ public class SQL_A {
      * @param param3 - user
      * @return
      */
-    public static String changeIngredPHR(String param1, String param2, String param3) {
-        return "Recipe_Tempory_Recalc_givenPHRS_USER " + "'"
+    public static String changeIngredPHR(String PROC, String param1, String param2, String param3) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "'";
@@ -1068,8 +1068,8 @@ public class SQL_A {
      * @param param3 - user
      * @return
      */
-    public static String changeIngredWeights(String param1, String param2, String param3) {
-        return "Recipe_Tempory_Recalc_GivenWeights_USER " + "'"
+    public static String changeIngredWeights(String PROC, String param1, String param2, String param3) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "'";
@@ -1087,8 +1087,8 @@ public class SQL_A {
      * @param param8 = UpdatedBy
      * @return
      */
-    public static String recipeRecipeInsertNewMaterial(String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8) {
-        return "Recipe_Recipe_INSERT_New_material " + ""
+    public static String recipeRecipeInsertNewMaterial(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8) {
+        return PROC + ""
                 + param1 + ",'"
                 + param2 + "','"
                 + param3 + "','"
@@ -1105,8 +1105,8 @@ public class SQL_A {
      * @param param2 - user
      * @return
      */
-    public static String recipyTemporaryDelete(String param1, String param2) {
-        return "Recipe_Tempory_Delete_User " + "'"
+    public static String recipyTemporaryDelete(String PROC, String param1, String param2) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "'";
     }
@@ -1122,8 +1122,8 @@ public class SQL_A {
      * @param param7 - user
      * @return
      */
-    public static String recipyTemporaryUpdate(String param1, String param2, String param3, String param4, String param5, String param6, String param7) {
-        return "Recipe_Tempory_UPDATE_USER " + "'"
+    public static String recipyTemporaryUpdate(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "','"
@@ -1133,17 +1133,12 @@ public class SQL_A {
                 + param7 + "'";
     }
 
-    public static String recipyTemporaryInsert(String param1, String param2, String param3, String param4) {
-        return "Recipe_Tempory_INSERT_INTO_USER "
+    public static String recipyTemporaryInsert(String PROC, String param1, String param2, String param3, String param4) {
+        return PROC
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
                 + quotes(param4, false) + "";
-    }
-
-    public static String for_adding_to_table_4(String param1) {
-        return "SELECT * FROM [fn_Recipe_Ingredient_Insert]" + " ('"
-                + param1 + "')";
     }
 
     /**
@@ -1153,8 +1148,8 @@ public class SQL_A {
      * @param param3 - user
      * @return
      */
-    public static String createRecipeTempTable(String param1, String param2, String param3) {
-        return "Create_Recipe_Tempory1_USER " + "'"
+    public static String createRecipeTempTable(String PROC, String param1, String param2, String param3) {
+        return PROC + "'"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "'";
@@ -1167,13 +1162,13 @@ public class SQL_A {
      * @param param3 - user
      * @return
      */
-    public static String RecipeTemporaryPrepareSelect(String param1, String param2, String param3) {
+    public static String RecipeTemporaryPrepareSelect(String PROC, String param1, String param2, String param3) {
         //
         if (param2.isEmpty()) {
             param2 = "0";
         }
         //
-        return "Recipe_Full_RZPT_1_O_W_User " + "'"
+        return PROC + "'"
                 + param1 + "',"
                 + param2 + ",'"
                 + param3 + "'";
@@ -1252,41 +1247,13 @@ public class SQL_A {
 
     /**
      *
-     * @param param1 - mixerCode
-     * @param param2 - LoadFactor
-     * @deprecated
-     * @return
-     */
-    public static String RecipeTemporarySelect(String param1, String param2) {
-        return "SELECT * FROM [Recipe_Full_RZPT_1_O_W]" + " ('"
-                + param1 + "','"
-                + param2 + "') "
-                + "where id != 99";
-    }
-
-    /**
-     *
-     * @param param1
-     * @param param2
-     * @deprecated
-     * @return
-     */
-    public static String RecipeTemporarySelectForTable4SummTable(String param1, String param2) {
-        return "SELECT * FROM [Recipe_Full_RZPT_1_O_W]" + " ('"
-                + param1 + "','"
-                + param2 + "') "
-                + "where id = 99";
-    }
-
-    /**
-     *
      * @param param1 = recipeVersion (Recipe code)
      * @param param2 = recipeAdditional (Release)
      * @param param3 = mixerCode
      * @return
      */
-    public static String RecipeInvertFunction(String param1, String param2, String param3) {
-        return "SELECT * FROM [User_Int_RecipeInvert]" + " ('"
+    public static String RecipeInvertFunction(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ('"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "')";
@@ -1299,8 +1266,8 @@ public class SQL_A {
      * @param param3 = mixerCode
      * @return
      */
-    public static String fillTable2RecipeInitial(String param1, String param2, String param3) {
-        return "SELECT * FROM [fn_ITF_Recipes_Info]" + " ('"
+    public static String fillTable2RecipeInitial(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ('"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "')";
@@ -1313,8 +1280,8 @@ public class SQL_A {
      * @param param3 = mixerCode
      * @return
      */
-    public static String fillTable3RecipeInitial(String param1, String param2, String param3) {
-        return "SELECT * FROM [fn_ITF_Recipes_TEXT]" + " ('"
+    public static String fillTable3RecipeInitial(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ('"
                 + param1 + "','"
                 + param2 + "','"
                 + param3 + "')";
