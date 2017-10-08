@@ -43,6 +43,18 @@ public class PROC {
     public static final String PROC_30 = "prc_ITF_Recipes_Z_Z ";
     public static final String PROC_31 = "prc_ITF_Recipes_Z_X ";
     public static final String PROC_32 = "prc_ITF_Recipes_Z_X_OR ";
+    public static final String PROC_33 = "prc_ITF_Recipes_Z_A ";
+    public static final String PROC_34 = "prc_ITF_Sequence_deleteMain ";
+    public static final String PROC_35 = "prc_ITF_Sequence_Edit_Main ";
+    public static final String PROC_36 = "prc_ITF_Sequence_Insert_Main ";
+    public static final String PROC_37 = "prc_ITF_Sequence_deleteSingle ";
+    public static final String PROC_38 = "prc_ITF_Sequence_Edit ";
+    public static final String PROC_39 = "prc_ITF_Sequence_insert ";
+    public static final String PROC_40 = "fn_ITF_Sequence_Init_SelectUnic ";
+    public static final String PROC_41 = "fn_ITF_Sequence_Init_SelectSet_1 ";
+    public static final String PROC_42 = "fn_ITF_Sequence_Init_SelectSet_2 ";
+    
+    public static final String PROC_43 = " ";
 
     
     

@@ -368,12 +368,12 @@ public class RecipeInitial extends BasicTab {
         try {
             //
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
-                q = SQL_A.recipeInitialBuildTable1_B(params);
+                q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
             } else {
-                q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30,PROC.PROC_31,PROC.PROC_32, params);
+                q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);

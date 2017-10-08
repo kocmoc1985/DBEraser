@@ -659,7 +659,7 @@ public class SQL_A {
                 + ") order by " + param + " asc";
     }
 
-    public static String recipeInitialBuildTable1(String PROC_1,String PROC_2,String PROC_3,String[] params) {
+    public static String recipeInitialBuildTable1(String PROC_1, String PROC_2, String PROC_3, String[] params) {
         //
         String procedure;
         //
@@ -684,9 +684,9 @@ public class SQL_A {
      * @param params
      * @return
      */
-    public static String recipeInitialBuildTable1_B(String[] params) {
+    public static String recipeInitialBuildTable1_B(String PROC, String[] params) {
         //
-        String procedure = "prc_ITF_Recipes_Z_A";
+        String procedure = PROC;
         //
         return "dbo.[" + procedure + "]" + " "
                 + buildParametersForProcedure(params);
@@ -712,8 +712,8 @@ public class SQL_A {
      * @param param2 = Release varchar(50)
      * @return
      */
-    public static String deleteOtherSequence(String param1, String param2) {
-        return "[dbo].[prc_ITF_Sequence_deleteMain] " + ""
+    public static String deleteOtherSequence(String PROC, String param1, String param2) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, false) + ","
                 + quotes(param2, false);
     }
@@ -728,8 +728,8 @@ public class SQL_A {
      *
      * @return
      */
-    public static String updateOtherSequence(String param1, String param2, String param3, String param4, String param5) {
-        return "[dbo].[prc_ITF_Sequence_Edit_Main] " + ""
+    public static String updateOtherSequence(String PROC, String param1, String param2, String param3, String param4, String param5) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -744,8 +744,8 @@ public class SQL_A {
      * @param param3 = Mixer_Code
      * @return
      */
-    public static String insertOtherSequence(String param1, String param2, String param3) {
-        return "[dbo].[prc_ITF_Sequence_Insert_Main] " + ""
+    public static String insertOtherSequence(String PROC, String param1, String param2, String param3) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + "";
@@ -761,8 +761,8 @@ public class SQL_A {
      * @param param1 = Recipe_Sequence_Steps_ID bigint
      * @return
      */
-    public static String deleteStepSequence(String param1) {
-        return "[dbo].[prc_ITF_Sequence_deleteSingle] " + ""
+    public static String deleteStepSequence(String PROC, String param1) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + "";
     }
 
@@ -786,8 +786,8 @@ public class SQL_A {
      * @param param4 = Command_Param varchar(50)
      * @return
      */
-    public static String updateStepSequence(String param1, String param2, String param3, String param4) {
-        return "[dbo].[prc_ITF_Sequence_Edit] " + ""
+    public static String updateStepSequence(String PROC, String param1, String param2, String param3, String param4) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -802,8 +802,8 @@ public class SQL_A {
      * @param param4 = Command_Param varchar(50)
      * @return
      */
-    public static String insertStepSequence(String param1, String param2, String param3, String param4) {
-        return "[dbo].[prc_ITF_Sequence_insert] " + ""
+    public static String insertStepSequence(String PROC, String param1, String param2, String param3, String param4) {
+        return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, true) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
@@ -822,13 +822,13 @@ public class SQL_A {
                 + "ORDER BY Phase, ContainerNB";
     }
 
-    public static String build_table1_sequence(String recipe, String release, String mixerCode) {
+    public static String build_table1_sequence(String PROC, String recipe, String release, String mixerCode) {
         return "SELECT Code AS [Recipe Code], Release, Step_NB AS [Step Nb], Command_Name AS [Command Name], Command_Param AS [Cmd Parameter], "
                 + "Mixer_Code AS [Mixer Code], Recipe_Sequence_Main_ID, Recipe_Sequence_Steps_ID, "
                 + "Info,"
                 + "LEFT(CONVERT(VARCHAR(19),UpdatedOn,126),10) as UpdatedOn,"
                 + "UpdatedBy "
-                + "FROM dbo.fn_ITF_Sequence_Init_SelectUnic(" + quotes(recipe, false) + "," + quotes(release, false) + "," + quotes(mixerCode, false) + ") "
+                + "FROM dbo." + PROC + "(" + quotes(recipe, false) + "," + quotes(release, false) + "," + quotes(mixerCode, false) + ") "
                 + "Order by CAST(Step_NB AS integer)";
     }
 
