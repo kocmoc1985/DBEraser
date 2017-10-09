@@ -115,6 +115,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
         //
         companyRelated();
+        //
     }
 
     private void companyRelated() {

@@ -10,6 +10,7 @@ import forall.HelpA;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import images.IconUrls;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 /**
  *
@@ -37,6 +41,7 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
         sqlConnect();
         this.setTitle("MCRecipe procedure analyzer");
         this.setIconImage(new ImageIcon(IconUrls.OK_ICON_URL).getImage());
+        displayFullList();
     }
 
     private SqlBasicLocal sqlConnect() {
@@ -80,7 +85,8 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
                 + "WHERE (type = 'IF') "
                 + "OR (type='TF') "
                 + "OR (type='FN') "
-                + "OR (type='P')";
+                + "OR (type='P') "
+                + "ORDER by name asc";
     }
 
     private ArrayList<String> getAllProcedures() {
@@ -102,6 +108,51 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
         Collections.sort(list);
         //
         return list;
+        //
+    }
+
+    private void tableView() {
+        //
+        String html;
+        //
+        HTMLEditorKit kit = new HTMLEditorKit();
+        jEditorPane1.setEditorKit(kit);
+        //
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule("table, th, td {border: 1px solid black}");
+        //
+        //
+        html = "<table style='width:100%;'>";
+        //
+        html += "<tr>";
+        html += "<th>NAME</th>";
+        html += "<th>TYPE</th>";
+        html += "</tr>";
+        //
+        //
+        try {
+            //
+            ResultSet rs = sql.execute(getAllQ());
+            //
+            while (rs.next()) {
+                html += "<tr>";
+                html += "<td>" + rs.getString("name") + "</td>";
+                html += "<td>" + rs.getString("type") + "</td>";
+                html += "</tr>";
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(PROC_ANALYZER.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        //
+        html += "</table>";
+        //
+        //
+        Document doc = kit.createDefaultDocument();
+        jEditorPane1.setDocument(doc);
+        //
+        jEditorPane1.setText(html);
         //
     }
 
@@ -194,9 +245,13 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
     private static final int NONE = 0;
     private static final int PROC_MISSING = 1;
     private static final int CONTAINS_SYS_PREFIX = 2;
+    private int FONT_SIZE;
 
     private String htmlBuilder(int option, int index, String value) {
-        String html = "<div style='font-size:18pt;"
+        //
+        FONT_SIZE = Integer.parseInt(jTextField1.getText());
+        //
+        String html = "<div style='font-size:" + FONT_SIZE + "pt;"
                 + "margin-left:40px;"
                 + "margin-bottom: 5px;";
 
@@ -229,6 +284,10 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,6 +315,24 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("All table view");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("18");
+
+        jLabel1.setText("font-size");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -266,11 +343,18 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 616, Short.MAX_VALUE)))
+                        .addGap(88, 88, 88)
+                        .addComponent(jButton4)
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,9 +364,13 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,8 +386,20 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       displayUsed();
+        displayUsed();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        tableView();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            jEditorPane1.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(PROC_ANALYZER.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,7 +440,11 @@ public class PROC_ANALYZER extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
