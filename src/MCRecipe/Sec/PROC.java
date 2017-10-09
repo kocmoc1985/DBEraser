@@ -92,7 +92,13 @@ public class PROC {
     public static final String PROC_62 = "User_Int_RecipeInvert "; //#RECIPE DETAILED
     public static final String PROC_63 = "fn_ITF_Recipes_Info "; //#RECIPE INITIAL
     public static final String PROC_64 = "fn_ITF_Recipes_TEXT "; //#RECIPE INITIAL
-
+    //
+    //PROD_PLAN
+    public static final String PROC_P_01 = "fn_Sequence_Get "; 
+    public static final String PROC_P_02 = "DELETE_CREATE_ALL_RECIPENew "; 
+    public static final String PROC_P_03 = "generate_CSVColumn_1 "; 
+    public static final String PROC_P_04 = "generate_Empty_CSVColumn "; 
+      
     static {
         procList.add(PROC_01);
         procList.add(PROC_02);
@@ -158,6 +164,11 @@ public class PROC {
         procList.add(PROC_62);
         procList.add(PROC_63);
         procList.add(PROC_64);
+        //
+        procList.add(PROC_P_01);
+        procList.add(PROC_P_02);
+        procList.add(PROC_P_03);
+        procList.add(PROC_P_04);
     }
 
 }

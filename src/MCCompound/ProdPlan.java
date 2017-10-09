@@ -5,6 +5,7 @@
 package MCCompound;
 
 import static MCRecipe.MC_RECIPE.jTextArea1_Logg;
+import MCRecipe.Sec.PROC_P;
 import MyObjectTableInvert.Run_Invert;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -162,7 +163,7 @@ public class ProdPlan extends BasicTab {
             String order = rs.getString(PROD_ORDER);
             int ammount = rs.getInt(BATCHES);
             //
-            String procedure = SQL_A.generate_CSVColumn(recipeName, release, column, order, ammount, "null", "null");
+            String procedure = SQL_A.generate_CSVColumn(PROC_P.PROC_P_03,recipeName, release, column, order, ammount, "null", "null");
             //
             OUT.showMessage("procedure: " + procedure);
             //
@@ -203,7 +204,7 @@ public class ProdPlan extends BasicTab {
         String release2 = HelpA.getValueSelectedRow(table, "Release");
         //
         //
-        String procedure = SQL_A.generate_CSVColumn(recipeName, release, column, order, ammount, recipeName2, release2);
+        String procedure = SQL_A.generate_CSVColumn(PROC_P.PROC_P_03,recipeName, release, column, order, ammount, recipeName2, release2);
         //
         System.out.println("procedure: " + procedure);
         //
@@ -401,7 +402,7 @@ public class ProdPlan extends BasicTab {
         String recipeCode = HelpA.getValueSelectedRow(table, ARTIKEL);
         String release = "0";
         //
-        ResultSet rs_sequence = sql.execute(SQL_A.fnSequenceGet(recipeCode, release), OUT);
+        ResultSet rs_sequence = sql.execute(SQL_A.fnSequenceGet(PROC_P.PROC_P_01,recipeCode, release), OUT);
         ResultSet rs_recipe_basic = sql.execute_2(SQL_A.recipeBasicRZPT(recipeCode, release));
         //
         JTable table_sequence = new JTable();

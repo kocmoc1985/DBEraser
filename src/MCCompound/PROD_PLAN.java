@@ -6,6 +6,7 @@ package MCCompound;
 
 import MyObjectTable.ShowMessage;
 import FreeQuery.FQ;
+import MCRecipe.Sec.PROC_P;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
 import forall.HelpA;
@@ -102,7 +103,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             //
             sp.goToEnd();
             //
-            int RETUR = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe());
+            int RETUR = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe(PROC_P.PROC_P_02));
             //
             if (RETUR == 0) {
                 return true;
@@ -635,7 +636,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
 
     private void clear_column(int column) throws SQLException {
         //
-        String procedure = SQL_A.generate_Empty_CSVColumn(column);
+        String procedure = SQL_A.generate_Empty_CSVColumn(PROC_P.PROC_P_04,column);
         //
         sql.execute(procedure,this);
     }

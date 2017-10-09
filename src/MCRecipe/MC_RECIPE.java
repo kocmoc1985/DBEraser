@@ -66,7 +66,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private SqlBasicLocal sql;
     private SqlBasicLocal sql_additional;
-    private String PROPERTIES_PATH = "mccompound.properties";
+    public static final String PROPERTIES_PATH = "mccompound.properties";
     private String IO_PROPERTIES_PATH = "io.properties";
     private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitial recipeInitial;

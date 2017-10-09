@@ -43,15 +43,7 @@ public class SQL_B {
                 + " where " + ProdPlan.SEQUENCE + " > " + seqPosition;
     }
 
-    public static void main(String[] args) {
-//        System.out.println("" + updatePositions("3"));
-    }
-
-    private static String prodPlanGetHigherThen(int seqPosition) {
-        return "select * from Production_Plan_Csv_Temp "
-                + " where " + ProdPlan.SEQUENCE + " > " + seqPosition;
-    }
-
+    
     public static String prodPlanGetHighestSeqNr() {
         return "select top 1 * from Production_Plan_Csv_Temp order by " + ProdPlan.SEQUENCE + " desc";
     }

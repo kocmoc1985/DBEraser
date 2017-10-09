@@ -10,8 +10,6 @@ package MCCompound;
  */
 public class SQL_A {
 
-   
-
     /**
      *
      * @param param1 - recipeName
@@ -47,19 +45,19 @@ public class SQL_A {
      * @param param2 - release
      * @return
      */
-    public static String fnSequenceGet(String param1, String param2) {
-        return "SELECT * FROM [fn_Sequence_Get]" + " ('"
+    public static String fnSequenceGet(String PROC, String param1, String param2) {
+        return "SELECT * FROM [" + PROC + "]" + " ('"
                 + param1 + "','"
                 + param2 + "') "
                 + "ORDER by _step ";
     }
 
-    public static String delete_create_all_recipe() {
-        return "DELETE_CREATE_ALL_RECIPENew";
+    public static String delete_create_all_recipe(String PROC) {
+        return PROC;
     }
 
-    public static String generate_CSVColumn(String recipeName, String release, int column, String order, int ammount, String recipeName2, String release2) {
-        return "generate_CSVColumn_1 '" + recipeName + "','"
+    public static String generate_CSVColumn(String PROC, String recipeName, String release, int column, String order, int ammount, String recipeName2, String release2) {
+        return PROC + "'" + recipeName + "','"
                 + release + "'," + column + ",'" + order + "',"
                 + ammount + "," + quotes(recipeName2) + "," + quotes(release2);
     }
@@ -72,7 +70,7 @@ public class SQL_A {
         }
     }
 
-    public static String generate_Empty_CSVColumn(int column) {
-        return "generate_Empty_CSVColumn " + column;
+    public static String generate_Empty_CSVColumn(String PROC,int column) {
+        return PROC + column;
     }
 }
