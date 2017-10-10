@@ -25,6 +25,7 @@ import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
+import forall.HTMLPrint;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -41,6 +42,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -288,7 +292,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         JComboBoxM box_ingred_2 = (JComboBoxM) jComboBox_Ingred_2;
         box_ingred_2.addValueChangedListener(this);
     }
-
     public ArrayList<JComboBox> ingredientsGroupList;
 
     public void ingredients_GroupA_Boxes_to_list() {
@@ -3755,7 +3758,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void jButtonTable4RepportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTable4RepportActionPerformed
         recipeDetailed.table4Repport();
+//        printTable();
     }//GEN-LAST:event_jButtonTable4RepportActionPerformed
+
+    private void printTable() {
+        String[] CSS = {"table, th, td {border: 1px solid black; font-size:7pt}"};
+        //
+        HTMLPrint print = new HTMLPrint(jTable4RecipeDetailed, CSS);
+    }
 
     private void jButton_r_detailed_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_nextActionPerformed
         recipeDetailed.nextRecipe();

@@ -16,6 +16,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.Run_Invert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
+import forall.HTMLPrint;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import images.IconUrls;
@@ -199,7 +200,9 @@ public class RecipeDetailed extends BasicTab {
     }
 
     public void table4Repport() {
-        tableCommonExportOrRepport(mCRecipe2.jTable4RecipeDetailed, true);
+//        tableCommonExportOrRepport(mCRecipe2.jTable4RecipeDetailed, true);
+       HTMLPrint print = new HTMLPrint(TABLE_INVERT, 1, getConfigTableInvert());
+       print.setVisible(true);
     }
 
     public void autoSelectFirstRowTable4() {
@@ -999,7 +1002,13 @@ public class RecipeDetailed extends BasicTab {
         //
         RowDataInvert[] rows = {code, release, descr, customer, priceKg, priceL, status, clas, detailed_group, mixer_code, mixer_name, load_factor, mix_time, recipe_id, updated_on, updated_by, created_on, created_by};
         //
-        return rows;
+        //
+        if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
+            String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+            return HelpA.removeGivenEntriesFromArray(rows, toRemove);
+        } else {
+            return rows;
+        }
     }
     //
     //
@@ -1117,17 +1126,17 @@ public class RecipeDetailed extends BasicTab {
         String release = HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_ADDITIONAL);//Recipe_Addditional
         String mixer_code = HelpA.getValueSelectedRow(table, RecipeInitial.T1_MIXER_CODE);//Mixer_Code
         //
-        RowDataInvert[] config;
+//        RowDataInvert[] config;
         //
-        if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
-            String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-            config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
-        } else {
-            config = getConfigTableInvert();
-        }
+//        if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
+//            String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+//            config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
+//        } else {
+//            config = getConfigTableInvert();
+//        }
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, config, false, "recipe_detailed_1");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "recipe_detailed_1");
         //
         TABLE_INVERT = null;
         //

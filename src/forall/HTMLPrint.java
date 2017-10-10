@@ -4,7 +4,26 @@
  */
 package forall;
 
+import MCCompound.PROD_PLAN;
+import MyObjectTable.Table;
+import MyObjectTableInvert.ColumnValue;
+import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.TableInvert;
+import Reporting.InvertTableRow;
+import static forall.HelpA.run_application_with_associated_application;
+import java.awt.print.PrinterException;
+import java.io.File;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.JTable;
+import javax.swing.text.html.HTMLEditorKit;
 
 /**
  *
@@ -15,13 +34,126 @@ public class HTMLPrint extends javax.swing.JFrame {
     /**
      * Creates new form HTMLPrint
      */
-    public HTMLPrint(JTable table,String HTML,String[]CSSRules) {
+    public HTMLPrint(JTable table, String[] CSSRules) {
         //
         initComponents();
         //
         HelpA.jTableToHTML(table, jEditorPane1, CSSRules);
         //
         this.setVisible(true);
+    }
+
+    public HTMLPrint(Table table, int startColumn, RowDataInvert[] cfg) {
+        //
+        initComponents();
+        //
+        tableInvertToHTML(table, startColumn, cfg);
+    }
+
+    private void tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
+        String csv = tableInvertToCSV(table, startColumn, cfg);
+        ArrayList<InvertTableRow> tableRowsList = buildTableRowList(csv);
+        tableInvertToHTML(tableRowsList);
+    }
+
+    private void tableInvertToHTML(ArrayList<InvertTableRow> tableRowsList) {
+        //
+        HTMLEditorKit kit = new HTMLEditorKit();
+        jEditorPane1.setEditorKit(kit);
+        //
+        String html = "<table>";
+        //
+        //
+        for (InvertTableRow invertTableRow : tableRowsList) {
+            html += "<tr>";
+            html += "<td>" + invertTableRow.getColumnName() + "</td>";
+            html += "<td>" + invertTableRow.getValue(0) + "</td>";
+            html += "</tr>";
+        }
+        //
+        //
+        html += "</table>";
+        //
+        jEditorPane1.setText(html);
+
+    }
+
+    private String tableInvertToCSV(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        String csv = "";
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            if (dataInvert.getVisible() == false) {
+                continue;
+            }
+            //
+            csv += dataInvert.getFieldNickName() + ";";
+            //
+            if (dataInvert.getUnit() instanceof String) {
+                String unit = (String) dataInvert.getUnit();
+                //
+                if (unit.isEmpty() == false) {
+                    csv += unit + ";";
+                } else {
+                    csv += "unit" + ";";
+                }
+                //
+            }
+            //
+            for (int x = startColumn; x < getColumnCountTableInvert(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                if(columnValue == null){
+                    System.out.println("");
+                }
+                //
+                csv += columnValue.getValue() + ";";
+                // 
+            }
+            //
+            csv += "\n";
+            //
+        }
+        //
+//        System.out.println("CSV: \n" + csv);
+        //
+        //
+        return csv;
+    }
+
+    private int getColumnCountTableInvert(Table table_invert) {
+        TableInvert tableInvert = (TableInvert) table_invert;
+        return tableInvert.getColumnCount();
+    }
+
+    private ArrayList<InvertTableRow> buildTableRowList(String csv) {
+        //
+        String[] lines = csv.split("\n");
+        //
+        ArrayList<InvertTableRow> tableRowsList = new ArrayList<InvertTableRow>();
+        //
+        for (String line : lines) {
+            String arr[] = line.split(";");
+
+            String columnName = arr[0];
+            String unit = arr[1];
+
+            InvertTableRow row = new InvertTableRow(columnName, unit);
+
+            for (int i = 2; i < arr.length; i++) {
+                row.addValue(arr[i]);
+            }
+            //
+            tableRowsList.add(row);
+            //
+        }
+        return tableRowsList;
     }
 
     /**
@@ -35,31 +167,52 @@ public class HTMLPrint extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jEditorPane1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 914, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            jEditorPane1.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -95,6 +248,7 @@ public class HTMLPrint extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

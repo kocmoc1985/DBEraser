@@ -1586,6 +1586,13 @@ public class HelpA {
         if (jbox instanceof JComboBoxA) {
             JComboBoxA boxA = (JComboBoxA) jbox;
             boxA.AUTOFILL_ADD(list);
+            //
+            try {
+                jbox.setSelectedIndex(0);
+            } catch (Exception ex) {
+            }
+            //
+
         }
         //
         //
