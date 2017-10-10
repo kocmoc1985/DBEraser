@@ -3758,15 +3758,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void jButtonTable4RepportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTable4RepportActionPerformed
         recipeDetailed.table4Repport();
-//        printTable();
     }//GEN-LAST:event_jButtonTable4RepportActionPerformed
-
-    private void printTable() {
-        String[] CSS = {"table, th, td {border: 1px solid black; font-size:7pt}"};
-        //
-        HTMLPrint print = new HTMLPrint(jTable4RecipeDetailed, CSS);
-    }
-
+    
     private void jButton_r_detailed_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_r_detailed_nextActionPerformed
         recipeDetailed.nextRecipe();
     }//GEN-LAST:event_jButton_r_detailed_nextActionPerformed

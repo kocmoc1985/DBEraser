@@ -201,8 +201,20 @@ public class RecipeDetailed extends BasicTab {
 
     public void table4Repport() {
 //        tableCommonExportOrRepport(mCRecipe2.jTable4RecipeDetailed, true);
-       HTMLPrint print = new HTMLPrint(TABLE_INVERT, 1, getConfigTableInvert());
-       print.setVisible(true);
+        //
+        //border: 1px solid black
+        String[] CSSRules = {
+            "table {margin-bottom:10px;}",
+            "tr {border-bottom: 1px solid black;}",
+            ".jtable {font-size:7pt;}",
+            ".table-invert {font-size:8pt;}",};
+        //
+        String[] colsToInclude = {"Ingredient", "Description", "Density", "PHR", "Weight", "Volume",
+            "Loading S.", "PHR Recalc", "Weight Recalc", "Volume Recalc"};
+        //
+        HTMLPrint print = new HTMLPrint(getRecipeCode(), mCRecipe2.jTable4RecipeDetailed, TABLE_INVERT, 1,
+                getConfigTableInvert(), CSSRules, colsToInclude);
+        print.setVisible(true);
     }
 
     public void autoSelectFirstRowTable4() {
