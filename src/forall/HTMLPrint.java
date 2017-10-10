@@ -4,6 +4,7 @@
  */
 package forall;
 
+import MCRecipe.RecipeDetailed;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnValue;
 import MyObjectTableInvert.RowDataInvert;
@@ -27,16 +28,15 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint extends javax.swing.JFrame {
 
-
-    public HTMLPrint(String recipe, JTable jtable, Table table, int startColumn, RowDataInvert[] cfg,
+    public HTMLPrint(String recipe, JTable jtable, JTable jtableSumm, Table table, int startColumn, RowDataInvert[] cfg,
             String[] CSSRules, String[] jtableColsToInclude) {
         //
         initComponents();
         //
-        recipeDetailedBuildTable4WithTableInvert(recipe, jtable, table, startColumn, cfg, CSSRules, jtableColsToInclude);
+        recipeDetailedBuildTable4WithTableInvert(recipe, jtable, jtableSumm, table, startColumn, cfg, CSSRules, jtableColsToInclude);
     }
 
-    private void recipeDetailedBuildTable4WithTableInvert(String recipe, JTable jtable, Table table, int startColumn,
+    private void recipeDetailedBuildTable4WithTableInvert(String recipe, JTable jtable, JTable jtableSumm, Table table, int startColumn,
             RowDataInvert[] cfg, String[] CSSRules, String[] jtableColsToInclude) {
         //
         HTMLEditorKit kit = new HTMLEditorKit();
@@ -53,7 +53,7 @@ public class HTMLPrint extends javax.swing.JFrame {
         //
         html += "<h2'>" + recipe + "</h2>";
         //
-        html += "<div style='color:grey;font-size:6pt'>MixCont MCRecipe Report: "+HelpA.get_proper_date_adjusted_format(3)+"</div>";
+        html += "<div style='color:grey;font-size:6pt'>MixCont MCRecipe Report: " + HelpA.get_proper_date_adjusted_format(3) + "</div>";
         //
         html += "<br>";
         //
@@ -62,10 +62,12 @@ public class HTMLPrint extends javax.swing.JFrame {
         //
         html += "<br><br>";
         //
-        html += jTableToHTML(jtable, jtableColsToInclude);
+//        html += jTableToHTML(jtable, jtableColsToInclude);
         //
+        html += jTableToHTML_adjusted(jtable, jtableSumm, jtableColsToInclude);
         //
         html += "<br><br>";
+        //
         //This one is needed, otherwise the last element used to be cut
         html += "<div style='height:20px;color:grey;font-size:6pt'>.</div>";
         //
@@ -73,13 +75,17 @@ public class HTMLPrint extends javax.swing.JFrame {
         jEditorPane1.setDocument(doc);
         //
         jEditorPane1.setText(html);
-
     }
 
-    private String jTableToHTML(JTable table, String[] jtableColsToInclude) {
+    private String jTableToHTML_adjusted(JTable table, JTable tableSum, String[] jtableColsToInclude) {
         //
+        ArrayList<String> colNames;
         //
-        ArrayList<String> colNames = HelpA.getVisibleColumnsNames_B(table, jtableColsToInclude);
+        if (jtableColsToInclude != null) {
+            colNames = HelpA.getVisibleColumnsNames_B(table, jtableColsToInclude);
+        } else {
+            colNames = HelpA.getVisibleColumnsNames(table);
+        }
         //
         //
         String html = "";
@@ -100,7 +106,97 @@ public class HTMLPrint extends javax.swing.JFrame {
         //<TABLE BODY>
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            ArrayList rowValues = HelpA.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
+            ArrayList rowValues;
+            //
+            if (jtableColsToInclude != null) {
+                rowValues = HelpA.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
+            } else {
+                rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
+            }
+            //
+            //
+            html += "<tr>";
+            //
+            for (int i = 0; i < rowValues.size(); i++) {
+                html += "<td>" + rowValues.get(i) + "</td>";
+            }
+            //
+            html += "</tr>";
+            //
+        }
+        //
+        //
+        html += "<tr>";
+        //
+        for (int i = 0; i < colNames.size(); i++) {
+            //
+            String colName = colNames.get(i);
+            //
+            System.out.println("ColName: " + colName);
+            //
+            int col = HelpA.getColByName(table, colName); // I need to make a map for real and nicknames
+            //
+            if (HelpA.columnIsVisible(table, col)) {
+                //
+                String value = (String) tableSum.getValueAt(0, col);
+                //
+                if (value != null && value.isEmpty() == false) {
+                    html += "<td>" + value + "</td>";
+                }else{
+                    html += "<td>-</td>";
+                }
+                //
+            }
+            //
+        }
+        //
+        html += "</tr>";
+        //
+        //</TABLE BODY>
+        //
+        html += "</table>";
+        //
+        //
+        return html;
+    }
+
+    private String jTableToHTML(JTable table, String[] jtableColsToInclude) {
+        //
+        ArrayList<String> colNames;
+        //
+        if (jtableColsToInclude != null) {
+            colNames = HelpA.getVisibleColumnsNames_B(table, jtableColsToInclude);
+        } else {
+            colNames = HelpA.getVisibleColumnsNames(table);
+        }
+        //
+        //
+        String html = "";
+        //
+        //
+        html += "<table class='jtable'>";
+        //
+        //<TABLE HEADER>
+        html += "<tr>";
+        //
+        for (int i = 0; i < colNames.size(); i++) {
+            html += "<th>" + colNames.get(i) + "</th>";
+        }
+        //
+        html += "</tr>";
+        //</TABLE HEADER>
+        //
+        //<TABLE BODY>
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            ArrayList rowValues;
+            //
+            if (jtableColsToInclude != null) {
+                rowValues = HelpA.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
+            } else {
+                rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
+            }
+            //
             //
             html += "<tr>";
             //

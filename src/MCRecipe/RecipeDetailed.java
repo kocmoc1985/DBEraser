@@ -200,9 +200,9 @@ public class RecipeDetailed extends BasicTab {
     }
 
     public void table4Repport() {
+        //
 //        tableCommonExportOrRepport(mCRecipe2.jTable4RecipeDetailed, true);
         //
-        //border: 1px solid black
         String[] CSSRules = {
             "table {margin-bottom:10px;}",
             "tr {border-bottom: 1px solid black;}",
@@ -212,8 +212,9 @@ public class RecipeDetailed extends BasicTab {
         String[] colsToInclude = {"Ingredient", "Description", "Density", "PHR", "Weight", "Volume",
             "Loading S.", "PHR Recalc", "Weight Recalc", "Volume Recalc"};
         //
-        HTMLPrint print = new HTMLPrint(getRecipeCode(), mCRecipe2.jTable4RecipeDetailed, TABLE_INVERT, 1,
-                getConfigTableInvert(), CSSRules, colsToInclude);
+        HTMLPrint print = new HTMLPrint(getRecipeCode(), mCRecipe2.jTable4RecipeDetailed,
+                mCRecipe2.jTableRecipeDetailedTable4HelpTable,
+                TABLE_INVERT, 1, getConfigTableInvert(), CSSRules, colsToInclude);
         print.setVisible(true);
     }
 
@@ -704,7 +705,7 @@ public class RecipeDetailed extends BasicTab {
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_material, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_loadingSeq, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_containerNb, "");
-            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, "Fillfactor");
+            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Descr_Help_Table_4_name); 
             //
             HelpA.setValueGivenRow(table, 0, t4_id, "");
             //
@@ -712,6 +713,8 @@ public class RecipeDetailed extends BasicTab {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static final String t4_Descr_Help_Table_4_name = "Fillfactor";
 
     private void checkIfEmpty() {
         if (mCRecipe2.jTable4RecipeDetailed.getRowCount() == 0) {
