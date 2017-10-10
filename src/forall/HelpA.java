@@ -68,6 +68,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -85,6 +86,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 /**
  *
@@ -95,7 +99,41 @@ public class HelpA {
     private static HashMap<String, String> properties_to_use_map = new HashMap();
     private static int nr_properties;
     private static String LAST_ERR_OUT_PUT_FILE_PATH;
-    
+    private static Border PREV_BORDER;
+
+    public static void addMouseListenerToAllComponentsOfComponent(JComponent c) {
+        Component[] c_arr = c.getComponents();
+        for (Component component : c_arr) {
+            component.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent me) {
+                    String str = "SOURCE ELEM: " + me.getSource();
+                    System.out.println(str);
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent me) {
+                    if (me.getSource() instanceof JComponent) {
+                        JComponent jc = (JComponent) me.getSource();
+                        PREV_BORDER = jc.getBorder();
+                        jc.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+                    }
+                }
+
+                @Override
+                public void mouseExited(MouseEvent me) {
+                    if (me.getSource() instanceof JComponent) {
+                        JComponent jc = (JComponent) me.getSource();
+                        jc.setBorder(PREV_BORDER);
+                    }
+                }
+            });
+            if (component instanceof JComponent) {
+                addMouseListenerToAllComponentsOfComponent((JComponent) component);
+            }
+        }
+    }
+
     public static boolean getVersion(String path, String prefix, JLabel label) {
         File f = new File(path);
         //
@@ -903,6 +941,64 @@ public class HelpA {
         }
     }
 
+    public static String jTableToHTML(JTable table, JEditorPane pane, String[] CSSRules) {
+        //
+        HTMLEditorKit kit = new HTMLEditorKit();
+        pane.setEditorKit(kit);
+        //
+        StyleSheet styleSheet = kit.getStyleSheet();
+//        styleSheet.addRule("table, th, td {border: 1px solid black}");
+        //
+        for (int i = 0; i < CSSRules.length; i++) {
+            styleSheet.addRule(CSSRules[i]);
+        }
+        //
+        //
+        ArrayList<String> colNames = getVisibleColumnsNames(table);
+        //
+        //
+        String html = "";
+        //
+        //
+        html += "<table>";
+        //
+        //<TABLE HEADER>
+        html += "<tr>";
+        //
+        for (int i = 0; i < colNames.size(); i++) {
+            html += "<th>" + colNames.get(i) + "</th>";
+        }
+        //
+        html += "</tr>";
+        //</TABLE HEADER>
+        //
+        //<TABLE BODY>
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            ArrayList rowValues = getLineValuesVisibleColsOnly(table, x);
+            //
+            html += "<tr>";
+            //
+            for (int i = 0; i < rowValues.size(); i++) {
+                html += "<td>" + rowValues.get(i) + "</td>";
+            }
+            //
+            html += "</tr>";
+            //
+        }
+        //</TABLE BODY>
+        //
+        html += "</table>";
+        //
+        //
+        Document doc = kit.createDefaultDocument();
+        pane.setDocument(doc);
+        //
+        pane.setText(html);
+        //
+        return html;
+    }
+
     public static String jTableToCSV(JTable table, boolean writeToFile) {
         //
         String csv = "";
@@ -1487,7 +1583,7 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if(jbox instanceof JComboBoxA){
+        if (jbox instanceof JComboBoxA) {
             JComboBoxA boxA = (JComboBoxA) jbox;
             boxA.AUTOFILL_ADD(list);
         }
@@ -2021,40 +2117,6 @@ public class HelpA {
 
     public static void setButtonIconCompleteAdd(JButton btn) {
         btn.setIcon(new ImageIcon(IconUrls.ADD_COMPLETE)); // NOI18N
-    }
-    private static Border PREV_BORDER;
-
-    public static void addMouseListenerToAllComponentsOfComponent(JComponent c) {
-        Component[] c_arr = c.getComponents();
-        for (Component component : c_arr) {
-            component.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    String str = "SOURCE ELEM: " + me.getSource();
-                    System.out.println(str);
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent me) {
-                    if (me.getSource() instanceof JComponent) {
-                        JComponent jc = (JComponent) me.getSource();
-                        PREV_BORDER = jc.getBorder();
-                        jc.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-                    }
-                }
-
-                @Override
-                public void mouseExited(MouseEvent me) {
-                    if (me.getSource() instanceof JComponent) {
-                        JComponent jc = (JComponent) me.getSource();
-                        jc.setBorder(PREV_BORDER);
-                    }
-                }
-            });
-            if (component instanceof JComponent) {
-                addMouseListenerToAllComponentsOfComponent((JComponent) component);
-            }
-        }
     }
 
     public static void nimbusLookAndFeel() {
