@@ -25,7 +25,6 @@ import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
-import forall.HTMLPrint;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -42,9 +41,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -4539,10 +4535,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     @Override
     public void columnMarginChanged(ChangeEvent ce) {
+        //
         DefaultTableColumnModel dtcm = (DefaultTableColumnModel) ce.getSource();
         JTable parentTable = null;
         //
         Object[] signers = dtcm.getColumnModelListeners();
+        //
         for (Object object : signers) {
             if (object instanceof JTable && parentTable == null) {
                 parentTable = (JTable) object;
