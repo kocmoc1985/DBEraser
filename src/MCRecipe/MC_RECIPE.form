@@ -1911,7 +1911,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="jTable4RecipeDetailed">
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTable()"/>
+                            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JTableM(&quot;r_detailed_t4&quot;,true)"/>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                           </AuxValues>
                         </Component>
@@ -3026,6 +3026,7 @@
                                 </Property>
                               </Properties>
                               <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value=" new JTableM(&quot;ingred_t1&quot;,true)"/>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                               </AuxValues>
                             </Component>

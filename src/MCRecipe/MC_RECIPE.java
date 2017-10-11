@@ -25,6 +25,7 @@ import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
+import forall.JTableM;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -48,21 +49,16 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.TableColumnModelEvent;
-import javax.swing.event.TableColumnModelListener;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.text.BadLocationException;
+
 
 /**
  *
  * @author KOCMOC
  */
-public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, TableColumnModelListener, JComboBoxValueChangedListener {
+public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
 
     private SqlBasicLocal sql;
     private SqlBasicLocal sql_additional;
@@ -234,8 +230,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         this.textAreaIngredComments.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
         this.textAreaRecipeInitialNotes.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
         //
-        this.jTable4RecipeDetailed.getColumnModel().addColumnModelListener(this);
-        this.jTable_Ingred_Table1.getColumnModel().addColumnModelListener(this);
+        JTableM jtm = (JTableM)jTable4RecipeDetailed;
+        jtm.addSyncTable(jTableRecipeDetailedTable4HelpTable);
+        //
+//        this.jTable4RecipeDetailed.getColumnModel().addColumnModelListener(this);
+//        this.jTable_Ingred_Table1.getColumnModel().addColumnModelListener(this);
     }
     public ArrayList<JComboBox> recipeInitialGroupA;
 
@@ -508,7 +507,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel14 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable4RecipeDetailed = new JTable();
+        jTable4RecipeDetailed = new JTableM("r_detailed_t4",true);
         jButton7 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jButton11 = new javax.swing.JButton();
@@ -581,7 +580,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel8 = new javax.swing.JPanel();
         jPanel_Ingred_Table1_Cont = new javax.swing.JPanel();
         jScrollPane_Ingred_Table1 = new javax.swing.JScrollPane();
-        jTable_Ingred_Table1 = new javax.swing.JTable();
+        jTable_Ingred_Table1 =  new JTableM("ingred_t1",true);
         jPanel_Ingred_Invert_Table = new javax.swing.JPanel();
         jPanel_Ingred_table2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -4533,54 +4532,40 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
     }
 
-    @Override
-    public void columnMarginChanged(ChangeEvent ce) {
-        //
-        DefaultTableColumnModel dtcm = (DefaultTableColumnModel) ce.getSource();
-        JTable parentTable = null;
-        //
-        Object[] signers = dtcm.getColumnModelListeners();
-        //
-        for (Object object : signers) {
-            if (object instanceof JTable && parentTable == null) {
-                parentTable = (JTable) object;
-            }
-        }
-        //
-        //
-        if (parentTable == jTable4RecipeDetailed) {
-            //
-            HelpA.synchColumnWidths(jTable4RecipeDetailed, jTableRecipeDetailedTable4HelpTable);
-            //
-            if (recipeDetailed != null) {// asking for null very important for proper saving of widths
-                HelpA.R_DETAILED_TABLE_4_LIST = HelpA.saveColumnWidths(HelpA.R_DETAILED_TABLE_4_LIST, 75, jTable4RecipeDetailed, HelpA.R_DETAILED_TABLE_4_OBJ);
-            }
-            //
-        } else if (parentTable == jTable_Ingred_Table1) {
-            //
-            if (ingredients != null) {// asking for null very important for proper saving of widths
-                HelpA.INGRED_TABLE_1_LIST = HelpA.saveColumnWidths(HelpA.INGRED_TABLE_1_LIST, 75, jTable_Ingred_Table1, HelpA.INGRED_TABLE_1_OBJ);
-            }
-            //
-        }
-        //
-    }
+    
+//    public void columnMarginChanged(ChangeEvent ce) {
+//        //
+//        DefaultTableColumnModel dtcm = (DefaultTableColumnModel) ce.getSource();
+//        JTable parentTable = null;
+//        //
+//        Object[] signers = dtcm.getColumnModelListeners();
+//        //
+//        for (Object object : signers) {
+//            if (object instanceof JTable && parentTable == null) {
+//                parentTable = (JTable) object;
+//            }
+//        }
+//        //
+//        //
+//        if (parentTable == jTable4RecipeDetailed) {
+//            //
+//            HelpA.synchColumnWidths(jTable4RecipeDetailed, jTableRecipeDetailedTable4HelpTable);
+//            //
+//            if (recipeDetailed != null) {// asking for null very important for proper saving of widths
+//                HelpA.R_DETAILED_TABLE_4_LIST = HelpA.saveColumnWidths(HelpA.R_DETAILED_TABLE_4_LIST, 75, jTable4RecipeDetailed, HelpA.R_DETAILED_TABLE_4_OBJ);
+//            }
+//            //
+//        } else if (parentTable == jTable_Ingred_Table1) {
+//            //
+//            if (ingredients != null) {// asking for null very important for proper saving of widths
+//                HelpA.INGRED_TABLE_1_LIST = HelpA.saveColumnWidths(HelpA.INGRED_TABLE_1_LIST, 75, jTable_Ingred_Table1, HelpA.INGRED_TABLE_1_OBJ);
+//            }
+//            //
+//        }
+//        //
+//    }
 
-    @Override
-    public void columnSelectionChanged(ListSelectionEvent lse) {
-    }
-
-    @Override
-    public void columnAdded(TableColumnModelEvent tcme) {
-    }
-
-    @Override
-    public void columnRemoved(TableColumnModelEvent tcme) {
-    }
-
-    @Override
-    public void columnMoved(TableColumnModelEvent tcme) {
-    }
+    
 
     @Override
     public void comboBoxvalueChanged(String value, JComboBoxM boxX) {

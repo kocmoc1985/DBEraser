@@ -664,11 +664,11 @@ public class RecipeDetailed extends BasicTab {
         paint_selected_rows(new LinkedList<IngredientToDelete>(), table4, null);
         //
         //
-        HelpA.R_DETAILED_TABLE_4_LIST = HelpA.restoreListFromObject(HelpA.R_DETAILED_TABLE_4_OBJ);
-        //
-        HelpA.restoreColumnWidths(table4, HelpA.R_DETAILED_TABLE_4_LIST);
-        //
-        HelpA.synchColumnWidths(mCRecipe2.jTable4RecipeDetailed, mCRecipe2.jTableRecipeDetailedTable4HelpTable);
+//        HelpA.R_DETAILED_TABLE_4_LIST = HelpA.restoreListFromObject(HelpA.R_DETAILED_TABLE_4_OBJ);
+//        //
+//        HelpA.restoreColumnWidths(table4, HelpA.R_DETAILED_TABLE_4_LIST);
+//        //
+//        HelpA.synchColumnWidths(mCRecipe2.jTable4RecipeDetailed, mCRecipe2.jTableRecipeDetailedTable4HelpTable);
         //
     }
 

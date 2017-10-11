@@ -535,9 +535,9 @@ public class Ingredients extends BasicTab {
         }
         //
         //
-        HelpA.INGRED_TABLE_1_LIST = HelpA.restoreListFromObject(HelpA.INGRED_TABLE_1_OBJ);
-        //
-        HelpA.restoreColumnWidths(table, HelpA.INGRED_TABLE_1_LIST);
+//        HelpA.INGRED_TABLE_1_LIST = HelpA.restoreListFromObject(HelpA.INGRED_TABLE_1_OBJ);
+//        //
+//        HelpA.restoreColumnWidths(table, HelpA.INGRED_TABLE_1_LIST);
         //
         //
         HelpA.hideColumnByName(table, "VendorNo");
