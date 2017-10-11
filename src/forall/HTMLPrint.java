@@ -10,8 +10,6 @@ import MyObjectTableInvert.ColumnValue;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
-import static forall.HelpA.getLineValuesVisibleColsOnly;
-import static forall.HelpA.getVisibleColumnsNames;
 import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import java.util.HashMap;
