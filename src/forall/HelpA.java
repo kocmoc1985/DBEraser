@@ -1205,6 +1205,33 @@ public class HelpA {
         tc.setHeaderValue(newTitle);
         th.repaint();
     }
+    private static HashMap<String, String> HEADER_MAP = new HashMap<String, String>();
+
+    public static void changeTableHeaderTitleOfOneColumn_to_hashmap(JTable table, String oldName, String newTitle) {
+        //
+        HEADER_MAP.put(newTitle, oldName);
+        //
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+        TableColumn tc = tcm.getColumn(getColByName(table, oldName));
+        tc.setHeaderValue(newTitle);
+        th.repaint();
+    }
+
+    public static int getColByName_hashmap(JTable table, String name) {
+        for (int i = 0; i < table.getColumnCount(); ++i) {
+            if (HEADER_MAP.containsKey(name)) {
+                if (table.getColumnName(i).equals(HEADER_MAP.get(name))) {
+                    return i;
+                }
+            }else{
+                if (table.getColumnName(i).equals(name)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 
     //
     public static void paintTableHeaderBorderOneColumn(JTable table, int column, final Color borederColor) {

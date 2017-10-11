@@ -62,6 +62,18 @@ public class RecipeDetailed extends BasicTab {
     public static final String t4_loadingSeq = "Loading S.";
     public static final String t4_Descr = "Descr";
     public static final String t4_density = "density";
+    public static final String t4_phr_recalc = "PHR_recalc";
+    public static final String t4_weight_recalc = "weight_Recalc";
+    public static final String t4_volume_recalc = "volume_Recalc";
+    //
+    public static final String t4_material_nick = "Ingredient";
+    public static final String t4_Descr_nick = "Description";
+    public static final String t4_matIndex_nick = "Mat Index";
+    public static final String t4_density_nick = "Density";
+    public static final String t4_phr_recalc_nick = "PHR Recalc";
+    public static final String t4_weight_nick = "Weight";
+    public static final String t4_weight_recalc_nick = "Weight Recalc";
+    public static final String t4_volume_recalc_nick = "Volume Recalc";
     //
     private boolean CHANGES_TEMP_T4_APPLIED = false;
     private boolean MARKED_FOR_DELITION = false;
@@ -647,15 +659,6 @@ public class RecipeDetailed extends BasicTab {
         //HelpA.hideColumnByName(table4, "Id");
         //
         renameColumnsTable4AndTable4Help(table4);
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, t4_material, "Ingredient");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, "Descr", "Description");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, t4_matIndex, "Mat Index");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, t4_density, "Density");
-////        HelpA.changeTableHeaderTitleOfOneColumn(table4, "density_Recalc", "Density Recalc");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, "PHR_recalc", "PHR Recalc");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, t4_weight, "Weight");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, "weight_Recalc", "Weight Recalc");
-//        HelpA.changeTableHeaderTitleOfOneColumn(table4, "volume_Recalc", "Volume Recalc");
         //
         //Reset all painting
         paint_selected_rows(new LinkedList<IngredientToDelete>(), table4, null);
@@ -705,7 +708,7 @@ public class RecipeDetailed extends BasicTab {
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_material, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_loadingSeq, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_containerNb, "");
-            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Descr_Help_Table_4_name); 
+            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Fillfactor); 
             //
             HelpA.setValueGivenRow(table, 0, t4_id, "");
             //
@@ -714,7 +717,7 @@ public class RecipeDetailed extends BasicTab {
         }
     }
     
-    public static final String t4_Descr_Help_Table_4_name = "Fillfactor";
+    public static final String t4_Fillfactor = "Fillfactor";
 
     private void checkIfEmpty() {
         if (mCRecipe2.jTable4RecipeDetailed.getRowCount() == 0) {
@@ -727,16 +730,19 @@ public class RecipeDetailed extends BasicTab {
         }
     }
 
+    
+    
+    
     private void renameColumnsTable4AndTable4Help(JTable table) {
-        HelpA.changeTableHeaderTitleOfOneColumn(table, t4_material, "Ingredient");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, "Descr", "Description");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, t4_matIndex, "Mat Index");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, t4_density, "Density");
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_material, t4_material_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_Descr, t4_Descr_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_matIndex, t4_matIndex_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_density, t4_density_nick);
 //        HelpA.changeTableHeaderTitleOfOneColumn(table, "density_Recalc", "Density Recalc");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, "PHR_recalc", "PHR Recalc");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, t4_weight, "Weight");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, "weight_Recalc", "Weight Recalc");
-        HelpA.changeTableHeaderTitleOfOneColumn(table, "volume_Recalc", "Volume Recalc");
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_phr_recalc, t4_phr_recalc_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight, t4_weight_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight_recalc, t4_weight_recalc_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_volume_recalc, t4_volume_recalc_nick);
     }
 
     private void hideColumnsTable4AndTable4Help(JTable table) {

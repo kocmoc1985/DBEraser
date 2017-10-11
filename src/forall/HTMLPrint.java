@@ -132,17 +132,23 @@ public class HTMLPrint extends javax.swing.JFrame {
             //
             String colName = colNames.get(i);
             //
-            System.out.println("ColName: " + colName);
             //
-            int col = HelpA.getColByName(table, colName); // I need to make a map for real and nicknames
+            int col = HelpA.getColByName_hashmap(table, colName); // I need to make a map for real and nicknames
             //
             if (HelpA.columnIsVisible(table, col)) {
                 //
                 String value = (String) tableSum.getValueAt(0, col);
                 //
                 if (value != null && value.isEmpty() == false) {
-                    html += "<td>" + value + "</td>";
-                }else{
+                    //
+                    if (colName.equals(RecipeDetailed.t4_Descr_nick)) {
+                        html += "<td><strong>*" + value + "</strong></td>";
+                    } else {
+                        html += "<td><strong>" + value + "</strong></td>";
+                    }
+                    //
+
+                } else {
                     html += "<td>-</td>";
                 }
                 //
@@ -156,6 +162,8 @@ public class HTMLPrint extends javax.swing.JFrame {
         //
         html += "</table>";
         //
+        //
+        html += "<div style='color:grey;font-size:6pt'>*" + RecipeDetailed.t4_Fillfactor + "</div>";
         //
         return html;
     }
