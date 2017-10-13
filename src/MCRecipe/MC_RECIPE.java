@@ -4397,7 +4397,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                     recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_2, "IngredName2");
                     //
-
                 } //   RecipeInitial GROUP C
                 else if (parent instanceof JComboBox_RI_C) {
                     //
@@ -4415,38 +4414,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                 }
                 //
-//                else if (parent.equals(jCombo_Ingred_Name)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Name, "Name");
-//                    //
-//                } else if (parent.equals(jCombo_Ingred_Group)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Group, "Grupp");
-//                } else if (parent.equals(jCombo_Ingred_Descr)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Descr, "Descr");
-//                } else if (parent.equals(jCombo_Ingred_Class)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Class, "Class");
-//                } else if (parent.equals(jCombo_Ingred_Status)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Status, "Status");
-//                } else if (parent.equals(jCombo_Ingred_Form)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Form, "Form");
-//                } else if (parent.equals(jCombo_Ingred_Cas_Number)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Cas_Number, "Cas_Number");
-//                } else if (parent.equals(jCombo_Ingred_TradeName)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_TradeName, "TradeName");
-//                } else if (parent.equals(jCombo_Ingred_VendorName)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_VendorName, "VendorName");
-//                } else if (parent.equals(jCombo_Ingred_Perc_Rubber)) {
-//                    //
-//                    ingredients.fillComboBox(jCombo_Ingred_Perc_Rubber, "percRubber");
-//                }
             }
         }
     }

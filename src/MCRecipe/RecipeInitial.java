@@ -546,7 +546,9 @@ public class RecipeInitial extends BasicTab {
                 String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
                 OUT.showMessage(q);
                 //
-                HelpA.fillComboBox(sql, box, q, null, true, false);
+                JComboBoxA boxA = (JComboBoxA)box;
+                //
+                boxA.fillComboBox(sql, box, q, null, true, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);

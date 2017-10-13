@@ -1580,7 +1580,7 @@ public class HelpA {
      * @param initialValue
      * @param showMultipleValues
      */
-    private static void tryMatch(JComboBox box, String initialValue, boolean showMultipleValues, boolean fakeValue) {
+    public static void tryMatch(JComboBox box, String initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
         if (showMultipleValues == false || initialValue == null || initialValue.isEmpty()) {
             if (fakeValue && initialValue != null) {
@@ -1665,7 +1665,7 @@ public class HelpA {
         box.setSelectedItem(selection);
     }
 
-    private static String getValueResultSet(ResultSet rs, int index) {
+    public static String getValueResultSet(ResultSet rs, int index) {
         try {
             return rs.getString(index).trim();
         } catch (Exception ex) {

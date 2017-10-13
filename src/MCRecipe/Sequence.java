@@ -8,7 +8,6 @@ import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
-import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.sql.ResultSet;
