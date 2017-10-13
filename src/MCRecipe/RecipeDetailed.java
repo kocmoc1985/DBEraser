@@ -18,6 +18,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HTMLPrint;
 import forall.HelpA;
+import forall.JTableM;
 import forall.SqlBasicLocal;
 import images.IconUrls;
 import java.awt.Color;
@@ -604,7 +605,7 @@ public class RecipeDetailed extends BasicTab {
 
     public void fill_table_4(boolean recreateRecipeTempTable) {
         //
-        JTable table4 = mCRecipe2.jTable4RecipeDetailed;
+        JTableM table4 = (JTableM)mCRecipe2.jTable4RecipeDetailed;
         //
         if (TABLE_INVERT == null) {
             return;
@@ -636,7 +637,12 @@ public class RecipeDetailed extends BasicTab {
             ResultSet rs = sql.execute(q1, mCRecipe2);
             //
             //
-            HelpA.build_table_common_with_rounding(rs, q1, table4, "%2.2f",
+//            HelpA.build_table_common_with_rounding(rs, q1, table4, "%2.2f",
+//                    new String[]{t4_id, t4_loadingSeq, t4_material},
+//                    new String[]{t4_density},
+//                    new String[]{t4_id});
+            //
+            table4.build_table_common_with_rounding(rs, q1, table4, "%2.2f",
                     new String[]{t4_id, t4_loadingSeq, t4_material},
                     new String[]{t4_density},
                     new String[]{t4_id});

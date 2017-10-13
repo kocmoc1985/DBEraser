@@ -4,6 +4,7 @@
  */
 package forall;
 
+import static forall.HelpA.getHeaders;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
@@ -116,12 +117,23 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
             SYNC_TABLES_LIST = new ArrayList<JTable>();
         }
         //
-        if (COUNTER == (getColumnCount()+1) && getColumnCount() != 0) {
-            //
+        if(TABLE_IS_BUILT){
             restore();
-            //
-            System.out.println("RESTORE: " + TABLE_NAME);
+            TABLE_IS_BUILT = false;
         }
+        //
+        //
+//        if (COUNTER == (getColumnCount() + 2) && getColumnCount() != 0 && getColumnNameByIndex(1).equals("Title 1") == false) {
+//            //
+//            System.out.println("RESTORE: " + TABLE_NAME);
+//            //
+//            restore();
+//            //
+//            //
+//        } else if (getColumnCount() != 0 && getColumnNameByIndex(1).equals("Title 1")) {
+//            COUNTER = 0;
+//            System.out.println("COUNTER: 0");
+//        }
         //
         //
         //
@@ -247,8 +259,6 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
     public void synchColumnWidths(JTable tableToSyncWith) {
         for (int i = 0; i < getColumnCount(); i++) {
             int srcWidth = getColumnWidthByIndex(i);
-//            int destWidth = getColumnWidthByIndex(tableToSyncWith, i);
-//            System.out.println("src: " + srcWidth + "  dest: " + destWidth);
             tableToSyncWith.getColumnModel().getColumn(i).setPreferredWidth(srcWidth);
         }
     }
@@ -292,7 +302,35 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
     }
 
-    public static synchronized String[] getHeaders(ResultSet rs) throws SQLException {
+    private boolean TABLE_IS_BUILT = false;
+    
+    public synchronized void build_table_common_with_rounding(ResultSet rs, String q, JTable jTable, String roundingFormat, String[] skipColumnsNames, String[] exceptionColumns, String[] sortAsInt) {
+        //
+        if (rs == null) {
+            return;
+        }
+        //
+        HelpA.setTrackingToolTip(jTable, q);
+        //
+        try {
+            String[] headers = getHeaders(rs);
+            Object[][] content = getContentRounding(rs, roundingFormat, headers, skipColumnsNames, exceptionColumns, sortAsInt);
+            jTable.setModel(new DefaultTableModelM(content, headers, sortAsInt, jTable));
+            jTable.setAutoCreateRowSorter(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        TABLE_IS_BUILT = true;
+        //
+//        if (SYNC_TABLES_LIST.isEmpty() == false) {
+//            for (JTable table : SYNC_TABLES_LIST) {
+//                synchColumnWidths(table);
+//            }
+//        }
+    }
+
+    public synchronized String[] getHeaders(ResultSet rs) throws SQLException {
         ResultSetMetaData meta; // Returns the number of columns
         String[] headers; // skapar en ny array att lagra titlar i
         meta = rs.getMetaData(); // Den parameter som skickas in "ResultSet rs" innehåller Sträng vid initialisering
@@ -304,7 +342,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         return headers;
     }
 
-    public static synchronized Object[][] getContent(ResultSet rs) throws SQLException {
+    public synchronized Object[][] getContent(ResultSet rs) throws SQLException {
         ResultSetMetaData rsmt;
         Object[][] content;
         int rows, columns;
@@ -326,7 +364,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         return content;
     }
 
-    public static synchronized Object[][] getContent(ResultSet rs, int indexFirst, int indexLast) throws SQLException {
+    public synchronized Object[][] getContent(ResultSet rs, int indexFirst, int indexLast) throws SQLException {
         ResultSetMetaData rsmt;
         Object[][] content;
         int rows, columns;
@@ -349,6 +387,93 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
         //
         return content;
+    }
+
+    private synchronized Object[][] getContentRounding(ResultSet rs, String format, String[] headers, String[] skipColumnsNames, String[] exceptionColumns, String[] sortAsInt) throws SQLException {
+        ResultSetMetaData rsmt;
+        Object[][] content;
+        int rows, columns;
+        rsmt = rs.getMetaData(); // får in antalet columner
+        rs.last(); // flyttar pekaren till sista positon
+        rows = rs.getRow(); // retrieves the current antalet rows och lagrar det i variabeln "rows"
+        columns = rsmt.getColumnCount(); // retrieves number of columns och lagrar det i "columns".
+        content = new Object[rows][columns]; // ger arrayen content som är en "Object"
+        //
+        // initialisering i den första demensionen är "rows" i den andra "columns"
+        //
+        for (int row = 0; row < rows; row++) {
+            rs.absolute(row + 1); // Flytta till rätt rad i resultatmängden
+            for (int col = 0; col < columns; col++) {
+                //
+                Object obj = rs.getString(col + 1);
+                //
+                if (exceptionColumn(col, headers, exceptionColumns)) {
+                    content[row][col] = roundDouble(obj, "%2.3f");
+                } else if (skipRounding(col, headers, skipColumnsNames) == false) {
+                    content[row][col] = roundDouble(obj, format);//-----------------------OBS ROUNDING IS DONE HERE
+                } else if (sortAsInteger(col, headers, sortAsInt)) {
+                    content[row][col] = Integer.parseInt(obj.toString());
+                } else {
+                    content[row][col] = obj;
+                }
+                //
+            }
+        }
+        //
+        return content;
+    }
+
+    private boolean exceptionColumn(int colNr, String[] headers, String[] exceptionColumns) {
+        for (String colName : exceptionColumns) {
+            if (headers[colNr].equals(colName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private synchronized Object roundDouble(Object obj, String format) {
+        if (isDouble(obj)) {
+            String val = (String) obj;
+            double ret = Double.parseDouble(val);
+//            return "" + Double.parseDouble(roundDouble(ret, format));
+            return "" + roundDouble(ret, format);
+        } else {
+            return obj;
+        }
+    }
+
+    private boolean sortAsInteger(int colNr, String[] headers, String[] colNames) {
+        for (String colName : colNames) {
+            if (headers[colNr].equals(colName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private synchronized boolean isDouble(Object obj) {
+        if (obj instanceof String) {
+            String val = (String) obj;
+            //
+            //
+            try {
+                Double.parseDouble(val);
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private boolean skipRounding(int colNr, String[] headers, String[] skipColumnsNames) {
+        for (String colName : skipColumnsNames) {
+            if (headers[colNr].equals(colName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String jTableToHTML(String[] jtableColsToInclude) {
@@ -525,7 +650,17 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
      * @param width
      */
     public void setColumnWidthByIndex(int colIndex, int width) {
-        getColumnModel().getColumn(colIndex).setWidth(width);
+        getColumnModel().getColumn(colIndex).setPreferredWidth(width);
+    }
+
+    /**
+     *
+     * @param colIndex - starts from 0
+     * @param table
+     * @param width
+     */
+    public void setColumnWidthByIndexP(int colIndex, int width) {
+        getColumnModel().getColumn(colIndex).setPreferredWidth(width);
     }
 
     /**
