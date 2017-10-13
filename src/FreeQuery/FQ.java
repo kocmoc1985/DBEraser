@@ -729,15 +729,15 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         HelpA.nimbusLookAndFeel();
         //
         HelpA.create_dir_if_missing("err_output");
-//        try {
-//            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
-//            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
-//
-//            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
-//            System.setErr(out);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
+
+            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
+            System.setErr(out);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         //======================================================================
         java.awt.EventQueue.invokeLater(new Runnable() {

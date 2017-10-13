@@ -141,13 +141,18 @@ public class HTMLPrint extends javax.swing.JFrame {
                     //
                     if (colName.equals(RecipeDetailed.t4_Descr_nick)) {
                         html += "<td><strong>*" + value + "</strong></td>";
+                    } else if (colName.equals(RecipeDetailed.t4_material_nick)) {
+                        html += "<td><strong>sum</strong></td>";
                     } else {
                         html += "<td><strong>" + value + "</strong></td>";
                     }
                     //
-
                 } else {
-                    html += "<td>-</td>";
+                    if (colName.equals(RecipeDetailed.t4_material_nick)) {
+                        html += "<td><strong>sum</strong></td>";
+                    } else {
+                        html += "<td>-</td>";
+                    }
                 }
                 //
             }
