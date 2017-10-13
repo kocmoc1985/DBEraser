@@ -10,3 +10,19 @@
 [2017-10-05 13:20:40]   select * from MC_ALARM where ALARM_ID = 13
 [2017-10-05 14:25:16]   select * from MC_ALARM where ALARM_ID = 13
 [2017-10-05 14:33:40]   select name,xtype,refdate from sysobjects where xtype = 'U'
+[2017-10-13 13:44:53]   select name,xtype,refdate from sysobjects where xtype = 'U'
+[2017-10-13 13:45:02]   select * from Limits
+[2017-10-13 13:47:26]   select * from Limits
+[2017-10-13 13:48:11]   select * from Limits
+[2017-10-13 13:52:05]   select * from Limits
+[2017-10-13 13:52:17]   select * from Limits
+[2017-10-13 13:57:25]   select * from Limits
+[2017-10-13 13:58:41]   select * from Limits
+[2017-10-13 13:59:43]   select * from Limits
+[2017-10-13 14:28:12]   select * from LImits
+[2017-10-13 14:30:21]   select name,xtype,refdate from sysobjects where xtype = 'U'
+[2017-10-13 14:30:31]   select * from interf
+[2017-10-13 14:31:39]   select * from interf
+[2017-10-13 14:33:58]   select name,xtype,refdate from sysobjects where xtype = 'U'
+[2017-10-13 14:34:02]   select * from interf
+[2017-10-13 14:35:33]   select * from interf

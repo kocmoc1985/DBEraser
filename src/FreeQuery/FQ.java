@@ -32,6 +32,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -127,7 +129,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         showMessage("sql_type: " + dbtype);
         //
-        sql = new Sql_B(Boolean.parseBoolean(GP.MSSQL_CREATE_STATEMENT_SIMPLE),true);
+        sql = new Sql_B(Boolean.parseBoolean(GP.MSSQL_CREATE_STATEMENT_SIMPLE), true);
         //
         Sql_B sql_b = (Sql_B) sql;
         //
@@ -138,7 +140,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         try {
             if (dbtype.equals(MS_SQL)) {
                 sql_b.connect_jdbc(host, port, db_name, user, pass);
-            }else if (dbtype.equals(ORACLE)) {
+            } else if (dbtype.equals(ORACLE)) {
                 sql_b.connect_oracle(host, port, db_name, user, pass);
             } else if (dbtype.equals(MY_SQL)) {
                 sql_b.connectMySql(host, port, db_name, user, pass);
@@ -266,7 +268,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
             }
             //
             if (break_while) {
-               content = removeEmptyRows(row,columns, content);
+                content = removeEmptyRows(row, columns, content);
                 break;
             }
             //
@@ -276,11 +278,11 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         return content;
     }
-    
-    private Object[][] removeEmptyRows(int rows_added,int columns, Object[][]content){
+
+    private Object[][] removeEmptyRows(int rows_added, int columns, Object[][] content) {
         Object[][] content_new = new Object[rows_added][columns];
         System.arraycopy(content, 0, content_new, 0, rows_added);
-         return content_new;
+        return content_new;
     }
 
     class BuildTableThr implements Runnable {
@@ -347,6 +349,8 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         jButton4 = new javax.swing.JButton();
         jLabel2Rows = new javax.swing.JLabel();
         jLabel2RowsInTable = new javax.swing.JLabel();
+        jButton10 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -450,6 +454,17 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
         jLabel2RowsInTable.setText("rows in table: ");
 
+        jButton10.setText("Update");
+        jButton10.setToolTipText("Under cunstruction");
+        jButton10.setEnabled(false);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -466,21 +481,24 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                             .addComponent(jScrollPane1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2Rows, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,9 +517,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                     .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
                     .addComponent(jButton5)
-                    .addComponent(jButton9))
+                    .addComponent(jButton9)
+                    .addComponent(jButton10)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -512,7 +531,9 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)))
+                        .addComponent(jButton6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -527,7 +548,21 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }// </editor-fold>//GEN-END:initComponents
     private HashSet<String> queryOkSet = new HashSet<String>();
 
+    public static String extractTableName(String q) {
+        Pattern p = Pattern.compile("from\\s+(?:\\w+\\.)*(\\w+)($|\\s+[WHERE,JOIN,START\\s+WITH,ORDER\\s+BY,GROUP\\s+BY])", Pattern.CASE_INSENSITIVE);
+
+        Matcher m = p.matcher(q);
+        while (m.find()) {
+            return m.group(1);
+        }
+        return null;
+    }
+    private String TABLE_NAME;
+
     private void showSqlResult(String query) {
+        //
+        TABLE_NAME = extractTableName(query);
+        //
         try {
             ResultSet rs = sql.execute(query);
 //            build_table(rs);
@@ -600,6 +635,76 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1RowsMaxActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        updateTable();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void updateTable() {
+        int selectedRow = jTable1.getSelectedRow();
+        //
+        jTable1.editCellAt(0, 0);
+        //
+        delete_selected_row(TABLE_NAME, selectedRow);
+        String q = build_insert_query(TABLE_NAME, jTable1, selectedRow, true);
+        //
+        try {
+            sql.execute(q);
+            showMessage("Executing ok");
+        } catch (Exception ex) {
+            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void delete_selected_row(String table_name, int selectedRow) {
+        //
+        String id_field = jTextField1.getText().trim();
+        //
+        String q = "delete from " + table_name + " where " + id_field + " = " + isString((String)jTable1.getValueAt(selectedRow, 0), false);
+        //
+        try {
+            sql.execute(q);
+        } catch (Exception ex) {
+            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private String build_insert_query(String table_name, JTable jTable, int selected_row, boolean auto_increment) {
+        StringBuilder stringBuilder = new StringBuilder("insert into " + table_name + " values(");
+        //
+        boolean first_record = true;
+        //
+        int column_count = jTable.getModel().getColumnCount();
+        for (int i = 0; i < column_count; i++) {
+            if (first_record && auto_increment) {
+                first_record = false;
+                continue;
+            }
+            //
+            String formatted_value = isString("" + jTable.getValueAt(selected_row, i), false);
+            stringBuilder.append(formatted_value);
+            stringBuilder.append(",");
+        }
+        //
+        //
+        stringBuilder.deleteCharAt(stringBuilder.toString().length() - 1);
+        stringBuilder.append(")");
+        return stringBuilder.toString();
+    }
+
+    private String isString(String value, boolean only_string_values) {
+        //
+        if (only_string_values) {
+            return "'" + value + "'";
+        }
+        //
+        try {
+            Double.parseDouble(value);
+            return value;
+        } catch (Exception e) {
+            return "'" + value + "'";
+        }
+    }
+
     class Pingthread implements Runnable {
 
         @Override
@@ -624,15 +729,15 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         HelpA.nimbusLookAndFeel();
         //
         HelpA.create_dir_if_missing("err_output");
-        try {
-            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
-            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
-
-            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
-            System.setErr(out);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+//            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
+//
+//            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
+//            System.setErr(out);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
         //======================================================================
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -645,6 +750,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -662,6 +768,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private javax.swing.JTable jTable1;
     private static javax.swing.JTextArea jTextArea1QueryInput;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField1RowsMax;
     // End of variables declaration//GEN-END:variables
 
