@@ -25,7 +25,6 @@ import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
-import forall.JTableM;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -52,6 +51,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
+import mySwing.JTableM;
 
 
 /**

@@ -18,7 +18,6 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HTMLPrint;
 import forall.HelpA;
-import forall.JTableM;
 import forall.SqlBasicLocal;
 import images.IconUrls;
 import java.awt.Color;
@@ -34,6 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
+import mySwing.JTableM;
 
 /**
  *

@@ -18,7 +18,6 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTable.SaveIndicator;
 import forall.HelpA;
 import forall.JComboBoxA;
-import forall.JTableM;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +33,7 @@ import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import mySwing.JTableM;
 
 /**
  *
