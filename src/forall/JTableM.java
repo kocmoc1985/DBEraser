@@ -49,11 +49,10 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
     private boolean SAVE_COL_WIDTHS;
     private ArrayList COL_WIDTH_LIST_SAVE;
     private String COL_WIDTH_LIST_FILE_NAME;
-    private final int NOT_LESS_THEN = 100;
     private boolean SAVE_ALLOWED = false;
     private ArrayList<JTable> SYNC_TABLES_LIST;
     private boolean ONCE = false;
-    private int COUNTER = 0;
+    private boolean TABLE_IS_BUILT = false;
 
     /**
      * The basic one
@@ -111,29 +110,14 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         super.columnMarginChanged(ce);
         //
         //
-        COUNTER++;
-        //
         if (SYNC_TABLES_LIST == null) {
             SYNC_TABLES_LIST = new ArrayList<JTable>();
         }
         //
-        if(TABLE_IS_BUILT){
+        if (TABLE_IS_BUILT) {
             restore();
             TABLE_IS_BUILT = false;
         }
-        //
-        //
-//        if (COUNTER == (getColumnCount() + 2) && getColumnCount() != 0 && getColumnNameByIndex(1).equals("Title 1") == false) {
-//            //
-//            System.out.println("RESTORE: " + TABLE_NAME);
-//            //
-//            restore();
-//            //
-//            //
-//        } else if (getColumnCount() != 0 && getColumnNameByIndex(1).equals("Title 1")) {
-//            COUNTER = 0;
-//            System.out.println("COUNTER: 0");
-//        }
         //
         //
         //
@@ -192,7 +176,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
         //
         objectToFile(COL_WIDTH_LIST_FILE_NAME, list);
-        System.out.println("saved");
+//        System.out.println("saved");
         return list;
         //
     }
@@ -238,23 +222,6 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
     }
 
-    private boolean verifyWidths(ArrayList<Integer> list) {
-        //
-        int less = 0;
-        //
-        for (Integer i : list) {
-            if (i < NOT_LESS_THEN) {
-                less++;
-            }
-        }
-        //
-        if (less == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     //==========================================================================
     public void synchColumnWidths(JTable tableToSyncWith) {
         for (int i = 0; i < getColumnCount(); i++) {
@@ -281,6 +248,9 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         } catch (SQLException ex) {
             Logger.getLogger(JTableM.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        TABLE_IS_BUILT = true;
+        //
     }
 
     public synchronized void build_table_common(ResultSet rs, String q, int indexFirst, int indexLast) {
@@ -300,10 +270,11 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         } catch (SQLException ex) {
             Logger.getLogger(JTableM.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        TABLE_IS_BUILT = true;
+        //
     }
 
-    private boolean TABLE_IS_BUILT = false;
-    
     public synchronized void build_table_common_with_rounding(ResultSet rs, String q, JTable jTable, String roundingFormat, String[] skipColumnsNames, String[] exceptionColumns, String[] sortAsInt) {
         //
         if (rs == null) {
@@ -323,11 +294,6 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         //
         TABLE_IS_BUILT = true;
         //
-//        if (SYNC_TABLES_LIST.isEmpty() == false) {
-//            for (JTable table : SYNC_TABLES_LIST) {
-//                synchColumnWidths(table);
-//            }
-//        }
     }
 
     public synchronized String[] getHeaders(ResultSet rs) throws SQLException {

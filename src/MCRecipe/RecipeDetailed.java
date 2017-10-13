@@ -605,7 +605,7 @@ public class RecipeDetailed extends BasicTab {
 
     public void fill_table_4(boolean recreateRecipeTempTable) {
         //
-        JTableM table4 = (JTableM)mCRecipe2.jTable4RecipeDetailed;
+        JTableM table4 = (JTableM) mCRecipe2.jTable4RecipeDetailed;
         //
         if (TABLE_INVERT == null) {
             return;
@@ -714,7 +714,7 @@ public class RecipeDetailed extends BasicTab {
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_material, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_loadingSeq, "");
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_containerNb, "");
-            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Fillfactor); 
+            HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Fillfactor);
             //
             HelpA.setValueGivenRow(table, 0, t4_id, "");
             //
@@ -722,7 +722,6 @@ public class RecipeDetailed extends BasicTab {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     public static final String t4_Fillfactor = "Fillfactor";
 
     private void checkIfEmpty() {
@@ -736,9 +735,6 @@ public class RecipeDetailed extends BasicTab {
         }
     }
 
-    
-    
-    
     private void renameColumnsTable4AndTable4Help(JTable table) {
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_material, t4_material_nick);
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_Descr, t4_Descr_nick);

@@ -18,6 +18,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTable.SaveIndicator;
 import forall.HelpA;
 import forall.JComboBoxA;
+import forall.JTableM;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -502,7 +503,7 @@ public class Ingredients extends BasicTab {
         String vendor = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_VendorName);
         String casNr = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_Cas_Number);
         //
-        JTable table = mCRecipe.jTable_Ingred_Table1;
+        JTableM table = (JTableM)mCRecipe.jTable_Ingred_Table1;
         //
         if (name_ != null && name_.isEmpty() == false) {
             name = name_;
@@ -525,7 +526,8 @@ public class Ingredients extends BasicTab {
             //
             ResultSet rs = sql.execute(q, mCRecipe);
             //
-            HelpA.build_table_common(rs, table, q);
+//            HelpA.build_table_common(rs, table, q);
+            table.build_table_common(rs, q);
             //
             table1Build = true;
             //
