@@ -82,7 +82,8 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
             Logger.getLogger(JTableM.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        addMouseListener(this);
+//        addMouseListener(this);
+        getTableHeader().addMouseListener(this);
         //
     }
 
@@ -115,8 +116,8 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
         //
         if (TABLE_IS_BUILT) {
-            restore();
             TABLE_IS_BUILT = false;
+            restore();
         }
         //
         //
@@ -158,6 +159,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
     @Override
     public void mouseEntered(MouseEvent me) {
         if (ONCE == false) {
+            System.out.println("Event: " + me.getSource());
             SAVE_ALLOWED = true;
             ONCE = true;
         }
@@ -176,7 +178,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         }
         //
         objectToFile(COL_WIDTH_LIST_FILE_NAME, list);
-//        System.out.println("saved");
+        System.out.println("saved");
         return list;
         //
     }
@@ -231,6 +233,14 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
     }
 
     //==========================================================================
+    public synchronized void build_table_common(String[] headers, Object[][] content) {
+        this.setModel(new DefaultTableModel(content, headers));
+        //
+        TABLE_IS_BUILT = true;
+        //
+     
+    }
+
     public synchronized void build_table_common(ResultSet rs, String q) {
         //
         if (rs == null) {
@@ -251,6 +261,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         //
         TABLE_IS_BUILT = true;
         //
+       
     }
 
     public synchronized void build_table_common(ResultSet rs, String q, int indexFirst, int indexLast) {
@@ -273,6 +284,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         //
         TABLE_IS_BUILT = true;
         //
+       
     }
 
     public synchronized void build_table_common_with_rounding(ResultSet rs, String q, JTable jTable, String roundingFormat, String[] skipColumnsNames, String[] exceptionColumns, String[] sortAsInt) {
@@ -294,6 +306,7 @@ public class JTableM extends JTable implements TableColumnModelListener, MouseLi
         //
         TABLE_IS_BUILT = true;
         //
+ 
     }
 
     public synchronized String[] getHeaders(ResultSet rs) throws SQLException {
