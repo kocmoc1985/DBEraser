@@ -603,7 +603,7 @@ public class RecipeInitial extends BasicTab {
         OUT.showMessage(q);
         //
         //
-        HelpA.fillComboBox(sql, box, q, null, false, false);
+        HelpA.fillComboBox_autofill_ext(sql, box, q, null, false, false);
         //
         box.showPopup();
         //

@@ -16,7 +16,7 @@ import javax.swing.plaf.basic.ComboPopup;
  * entry in the list it fires the "valueChanged" method
  * @author KOCMOC
  */
-public class JComboBoxM extends JComboBox<Object> {
+public class JComboBoxM extends JComboBox<Object>{
 
     private ListSelectionListener listener;
     private ArrayList<JComboBoxValueChangedListener> list = new ArrayList<JComboBoxValueChangedListener>();
@@ -47,7 +47,7 @@ public class JComboBoxM extends JComboBox<Object> {
 
     private void valueChangedListener_install() {
         ListSelectionListener[] arr = getPopupList().getListSelectionListeners();
-
+        
         listener = new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -60,11 +60,13 @@ public class JComboBoxM extends JComboBox<Object> {
                 Object obj = list.getSelectedValue();
                 String str = String.valueOf(obj);
                 callListeners(str);
-
+                
             }
         };
         getPopupList().addListSelectionListener(listener);
     }
+    
+    
 
     private void callListeners(String value) {
         for (JComboBoxValueChangedListener listnr : list) {
