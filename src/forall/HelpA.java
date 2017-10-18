@@ -1497,6 +1497,12 @@ public class HelpA {
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
+        //
+        if (jbox instanceof JComboBoxA == false) {
+            return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
+        }
+        //
+        //
         ArrayList<Object> list = new ArrayList<Object>();
         //
         boolean cond_1 = initialValue != null && (initialValue instanceof Boolean == false)
@@ -1585,7 +1591,7 @@ public class HelpA {
      * @param fakeValue
      * @return 
      */
-    public static JComboBox fillComboBox_autofill_ext(SqlBasicLocal sql, JComboBox jbox, String query,
+    public static JComboBox fillComboBox_old(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
         ArrayList<Object> list = new ArrayList<Object>();
@@ -1758,7 +1764,7 @@ public class HelpA {
         String q = query;
         //
         //
-        HelpA.fillComboBox(sql, box, q, null, false, false);
+        HelpA.fillComboBox_old(sql, box, q, null, false, false);
         //
         box.showPopup();
         //

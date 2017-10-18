@@ -18,6 +18,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HTMLPrint;
 import forall.HelpA;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import images.IconUrls;
 import java.awt.Color;
@@ -514,9 +515,9 @@ public class RecipeDetailed extends BasicTab {
         //
         if (ingred == null) {
             //
-            JComboBox box = new JComboBox();
+            JComboBoxA box = new JComboBoxA();
             //
-            HelpA.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
+            box.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
             //
             if (HelpA.chooseFromComboBoxDialog(box, "Choose material") == false) {
                 return;

@@ -9,7 +9,6 @@ import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.JTB;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.T_INV;
-import static MCRecipe.RecipeInitial.T1_RECIPE_VERSION;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import images.IconUrls;
@@ -582,7 +581,10 @@ public class Ingredients extends BasicTab {
                 //
                 String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
                 OUT.showMessage(q);
-                HelpA.fillComboBox(sql, box, q, null, false, false);
+                //
+                JComboBoxA boxA = (JComboBoxA)box;
+                //
+                boxA.fillComboBox(sql, box, q, null, false, false);
 //        box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);

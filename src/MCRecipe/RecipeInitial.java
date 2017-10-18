@@ -603,7 +603,7 @@ public class RecipeInitial extends BasicTab {
         OUT.showMessage(q);
         //
         //
-        HelpA.fillComboBox_autofill_ext(sql, box, q, null, false, false);
+        HelpA.fillComboBox_old(sql, box, q, null, false, false);
         //
         box.showPopup();
         //
@@ -645,7 +645,10 @@ public class RecipeInitial extends BasicTab {
                 String q = SQL_A.fill_comboboxes_recipe_initial(PROC.PROC_26, PROC.PROC_27, PROC.PROC_29, PROC.PROC_26, colName, getComboParams(null), mCRecipe2);
                 OUT.showMessage(q);
                 //
-                HelpA.fillComboBox(sql, box, q, null, false, false);
+                JComboBoxA boxA = (JComboBoxA)box;
+                boxA.fillComboBox(sql, box, q, null, false, false);
+                //
+//                HelpA.fillComboBox(sql, box, q, null, false, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);
@@ -668,7 +671,11 @@ public class RecipeInitial extends BasicTab {
                 //
                 String q = SQL_A.fill_comboboxes_recipe_initial_B(PROC.PROC_25, colName);
                 OUT.showMessage(q);
-                HelpA.fillComboBox(sql, box, q, null, false, false);
+                //
+                JComboBoxA boxA = (JComboBoxA)box;
+                boxA.fillComboBox(sql, box, q, null, false, false);
+                //
+//                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
