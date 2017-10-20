@@ -324,9 +324,7 @@ public class HelpA {
         return box.isSelected();
     }
 
-    public static void main(String[] args) {
-        columnExistsSqlTable(null, "UpdatedOn", "Ingredient_Code");
-    }
+   
 
     public static boolean columnExistsSqlTable(SqlBasicLocal sql, String colName, String tableName) {
         String q = "select top 1 " + colName + " from " + tableName;
@@ -442,6 +440,10 @@ public class HelpA {
 
     public static String updatedBy() {
         return MC_RECIPE.jTextFieldHomeUserName.getText();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(""+ define_date_format("2017-10-20"));
     }
 
     public static String define_date_format(String date) {

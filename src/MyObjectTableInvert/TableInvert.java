@@ -5,16 +5,23 @@
  */
 package MyObjectTableInvert;
 
+import Interfaces.SqlBasic;
 import MyObjectTable.ControlsActionsIF;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
+import forall.HelpA;
+import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -128,11 +135,11 @@ public class TableInvert extends Table implements ControlsActionsIF {
         }
         return map;
     }
-    
-    public void setTableEmpty(boolean not_empty){
-        if(not_empty){
+
+    public void setTableEmpty(boolean not_empty) {
+        if (not_empty) {
             this.IS_EMPTY = false;
-        }else{
+        } else {
             this.IS_EMPTY = true;
         }
     }
@@ -155,14 +162,13 @@ public class TableInvert extends Table implements ControlsActionsIF {
         }
         return list;
     }
-    
-     public void addToUnsaved(String rowName, int column) {
+
+    public void addToUnsaved(String rowName, int column) {
         Object obj = getComponentAt(rowName, column);
         TableRow tableRow = getRow(0);
         TableRowInvert tri = (TableRowInvert) tableRow;
         tri.add_to_unsaved(obj);
     }
-     
 
     public void clearAllRows() {
         for (Object rowInvert : rows_list) {
@@ -185,7 +191,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
             }
         }
     }
-    
+
     public void clearRows(int start, int notToClearFromEnd) {
         for (int i = start; i < rows_list.size() - notToClearFromEnd; i++) {
             Object rowInvert = rows_list.get(i);
@@ -271,8 +277,6 @@ public class TableInvert extends Table implements ControlsActionsIF {
         return (TableRowInvert) row___col_object__map.get((Component) field);
     }
 
-   
-
     class Entry {
 
         private UnsavedEntryInvert unsavedEntryInvert;
@@ -348,9 +352,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
             System.out.println("TABLE_INVERT_SAVE_Q: " + q_string);
 
-
             try {
-                getSql().update(q_string);
+//                getSql().update(q_string);
                 Component c = (Component) unsavedEntryInvert.getDataField();
                 c.setForeground(Color.green);
                 //
@@ -376,18 +379,53 @@ public class TableInvert extends Table implements ControlsActionsIF {
             boolean isString,
             boolean keyIsString) {
 
-        if (keyIsString) {
-            if (db_id.contains("'") == false) {
-                String db_id_temp = "'" + db_id + "'";
-                db_id = db_id_temp;
-            }
-        }
+//        if (keyIsString) {
+//            if (db_id.contains("'") == false) {
+//                String db_id_temp = "'" + db_id + "'";
+//                db_id = db_id_temp;
+//            }
+//        }
 
-        if (isString) {
-            if (value.contains("'") == false) {
-                String value_temp = "'" + value + "'";
-                value = value_temp;
+//        if (isString) {
+//            if (value.contains("'") == false) {
+//                String value_temp = "'" + value + "'";
+//                value = value_temp;
+//            }
+//        }
+        //
+        try {
+            //
+            SqlBasicLocal sql = getSql();
+//            PreparedStatement ps = sql.getPreparedStatement();
+            //
+            sql.prepareStatement("UPDATE " + tableName
+                    + " SET [" + columnName + "]=" + "?" + ""
+                    + " WHERE " + keyName + "=" + "?" + "");
+            //
+            String dateFormat = HelpA.define_date_format(value);
+            //
+            if(dateFormat != null){
+                long millis = HelpA.dateToMillisConverter3(value, dateFormat);
+                Timestamp timestamp = new Timestamp(millis);
+                sql.getPreparedStatement().setTimestamp(1, timestamp);
+            }else{
+                if(isString){
+                    sql.getPreparedStatement().setString(1, value);
+                }else{
+                    sql.getPreparedStatement().setInt(1, Integer.parseInt(value));
+                }
             }
+            //
+            if(keyIsString){
+                sql.getPreparedStatement().setString(2, db_id);
+            }else{
+                sql.getPreparedStatement().setInt(2, Integer.parseInt(db_id));
+            }
+            //
+            sql.getPreparedStatement().executeUpdate();
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return "UPDATE " + tableName
