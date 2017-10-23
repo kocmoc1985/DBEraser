@@ -471,7 +471,8 @@ public class HelpA {
         "MM/dd/yyyy'T'HH:mm:ss.SSSZ", "MM/dd/yyyy'T'HH:mm:ss.SSS",
         "MM/dd/yyyy'T'HH:mm:ssZ", "MM/dd/yyyy'T'HH:mm:ss",
         "yyyy:MM:dd HH:mm:ss",
-        "yyyy-MM-dd", "yyyy:MM:dd", "yyyyMMdd",
+        "yyyy-MM-dd", "yyyy:MM:dd",
+//        "yyyyMMdd", dont use this because 352980126 is considered as this time format
         "dd/MM/yy", "dd/MM/yyyy", "dd-MM-yy", "dd-MM-yyyy",
         "dd:MM:yy", "dd:MM:yyyy"};
 

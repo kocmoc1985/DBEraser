@@ -341,7 +341,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 UpdateBefore.updateBefore(unsavedEntryInvert, getSql(), updateOtherTablesBeforeInstruction);
             }
 
-            String q_string = updateFieldString(
+            updateFieldString(
                     unsavedEntryInvert.getTableName(),
                     unsavedEntryInvert.getColumnName(),
                     unsavedEntryInvert.getValue(),
@@ -349,11 +349,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
                     unsavedEntryInvert.getDbID(),
                     unsavedEntryInvert.isString(),
                     unsavedEntryInvert.keyIsString());
-
-            System.out.println("TABLE_INVERT_SAVE_Q: " + q_string);
-
+            //
             try {
-//                getSql().update(q_string);
+                //
                 Component c = (Component) unsavedEntryInvert.getDataField();
                 c.setForeground(Color.green);
                 //
@@ -371,32 +369,17 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
     }
 
-    private String updateFieldString(String tableName,
+    private void updateFieldString(String tableName,
             String columnName,
             String value,
             String keyName,
             String db_id,
             boolean isString,
             boolean keyIsString) {
-
-//        if (keyIsString) {
-//            if (db_id.contains("'") == false) {
-//                String db_id_temp = "'" + db_id + "'";
-//                db_id = db_id_temp;
-//            }
-//        }
-
-//        if (isString) {
-//            if (value.contains("'") == false) {
-//                String value_temp = "'" + value + "'";
-//                value = value_temp;
-//            }
-//        }
         //
         try {
             //
             SqlBasicLocal sql = getSql();
-//            PreparedStatement ps = sql.getPreparedStatement();
             //
             sql.prepareStatement("UPDATE " + tableName
                     + " SET [" + columnName + "]=" + "?" + ""
@@ -404,21 +387,21 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             String dateFormat = HelpA.define_date_format(value);
             //
-            if(dateFormat != null){
+            if (dateFormat != null) {
                 long millis = HelpA.dateToMillisConverter3(value, dateFormat);
                 Timestamp timestamp = new Timestamp(millis);
                 sql.getPreparedStatement().setTimestamp(1, timestamp);
-            }else{
-                if(isString){
+            } else {
+                if (isString) {
                     sql.getPreparedStatement().setString(1, value);
-                }else{
+                } else {
                     sql.getPreparedStatement().setInt(1, Integer.parseInt(value));
                 }
             }
             //
-            if(keyIsString){
+            if (keyIsString) {
                 sql.getPreparedStatement().setString(2, db_id);
-            }else{
+            } else {
                 sql.getPreparedStatement().setInt(2, Integer.parseInt(db_id));
             }
             //
@@ -428,9 +411,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
             Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "UPDATE " + tableName
-                + " SET [" + columnName + "]=" + value + ""
-                + " WHERE " + keyName + "=" + db_id + "";
+//        return "UPDATE " + tableName
+//                + " SET [" + columnName + "]=" + value + ""
+//                + " WHERE " + keyName + "=" + db_id + "";
 
     }
 
