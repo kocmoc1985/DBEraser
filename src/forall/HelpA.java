@@ -495,6 +495,19 @@ public class HelpA {
     public static long millis_to_days_converter(long millis) {
         return millis / 86400000;
     }
+    
+    public static String get_proper_date_adjusted_format(long millis,int style) {
+        TimeZone tz = TimeZone.getDefault();
+        Calendar cal = Calendar.getInstance(tz);
+        DateFormat f1 = DateFormat.getDateInstance(style);
+        cal.setTimeInMillis(millis);
+        Date d = cal.getTime();
+        return f1.format(d);
+    }
+    
+    public static String millisToDefaultDate(long millis){
+        return get_proper_date_adjusted_format(millis,2);
+    }
 
     public static String millisToDateConverter(String millis, String dateFormat) {
 //        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss.SSS"); //this works!
