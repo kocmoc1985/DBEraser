@@ -387,7 +387,8 @@ public class RecipeInitial extends BasicTab {
             HelpA.setTrackingToolTip((JComponent) event.getSource(), q);
         }
         //
-
+        mCRecipe2.jLabelRecordsTable1.setText("<html><h5>" + mCRecipe2.jTable1.getRowCount() + "</h5></html>");
+        //
     }
 
     private void fillTable1HelpM() {
