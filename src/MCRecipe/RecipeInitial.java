@@ -246,7 +246,7 @@ public class RecipeInitial extends BasicTab {
         String q = SQL_A.fillTable2RecipeInitial(PROC.PROC_63, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table2);
         //
-        q = SQL_A.fillTable3RecipeInitial(PROC.PROC_64,recipeVersion, recipeAdditional, mixerCode);
+        q = SQL_A.fillTable3RecipeInitial(PROC.PROC_64, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table3);
         //
         //
@@ -481,10 +481,12 @@ public class RecipeInitial extends BasicTab {
 //        boolean cond_2 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
 //                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
         //
-        if (checkedIngreds && checkedOr == false && ingredBoxesEmpty == false) {
+
+        //
+        if (checkedIngreds || checkedOr && ingredBoxesEmpty == false) {
             System.out.println("getComboParamsB()");
             return getComboParamsB();
-        } else if (checkedOr && boxesEmpty) {
+        }  else if (checkedOr && boxesEmpty) {
             System.out.println("getComboParamsA()");
             return getComboParamsA(); // not selected
         } else if (checkedIngreds && boxesEmpty) {
@@ -546,7 +548,7 @@ public class RecipeInitial extends BasicTab {
                 String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
                 OUT.showMessage(q);
                 //
-                JComboBoxA boxA = (JComboBoxA)box;
+                JComboBoxA boxA = (JComboBoxA) box;
                 //
                 boxA.fillComboBox(sql, box, q, null, true, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
@@ -645,7 +647,7 @@ public class RecipeInitial extends BasicTab {
                 String q = SQL_A.fill_comboboxes_recipe_initial(PROC.PROC_26, PROC.PROC_27, PROC.PROC_29, PROC.PROC_26, colName, getComboParams(null), mCRecipe2);
                 OUT.showMessage(q);
                 //
-                JComboBoxA boxA = (JComboBoxA)box;
+                JComboBoxA boxA = (JComboBoxA) box;
                 boxA.fillComboBox(sql, box, q, null, false, false);
                 //
 //                HelpA.fillComboBox(sql, box, q, null, false, false);
@@ -672,7 +674,7 @@ public class RecipeInitial extends BasicTab {
                 String q = SQL_A.fill_comboboxes_recipe_initial_B(PROC.PROC_25, colName);
                 OUT.showMessage(q);
                 //
-                JComboBoxA boxA = (JComboBoxA)box;
+                JComboBoxA boxA = (JComboBoxA) box;
                 boxA.fillComboBox(sql, box, q, null, false, false);
                 //
 //                HelpA.fillComboBox(sql, box, q, null, false, false);
