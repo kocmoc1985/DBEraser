@@ -326,6 +326,10 @@ public class RecipeDetailed extends BasicTab {
     public String getRelease() {
         return getValueTableInvert("Release");
     }
+    
+    public String getVersion() {
+        return getRelease();
+    }
 
     public String getRecipeId() {
         return getValueTableInvert("Recipe_ID");

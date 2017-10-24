@@ -4243,6 +4243,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     sequence = new Sequence(sql, sql_additional, this);
                 }
                 //
+                if(recipeDetailed != null){
+                    sequence.setSelectedItems();
+                    jButtonSequenceSearchActionPerformed(null);
+                }
+                //
             } else if (title.equals(LNG.VENDORS_TAB())) {
                 //
                 if (vendors == null) {

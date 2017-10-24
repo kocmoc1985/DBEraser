@@ -49,6 +49,27 @@ public class Sequence extends BasicTab {
         }
     }
 
+    public void setSelectedItems() {
+        //
+        RecipeDetailed rd = mCRecipe.recipeDetailed;
+        //
+        String recipeCode = rd.getRecipeCode();
+        String release = rd.getRelease();
+        String mixerCode = rd.getMixerCode();
+        //
+        if (recipeCode != null && release != null && mixerCode != null) {
+            //
+            mCRecipe.jComboBoxSequenceRecipe.setEditable(true);
+            mCRecipe.jComboBoxSequenceRelease.setEditable(true);
+            mCRecipe.jComboBoxSequenceMixerCode.setEditable(true);
+            //
+            mCRecipe.jComboBoxSequenceRecipe.setSelectedItem(recipeCode);
+            mCRecipe.jComboBoxSequenceRelease.setSelectedItem(release);
+            mCRecipe.jComboBoxSequenceMixerCode.setSelectedItem(mixerCode);
+        }
+        //
+    }
+
     private void go() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -143,7 +164,7 @@ public class Sequence extends BasicTab {
         //
         String step_id = HelpA.getValueSelectedRow(mCRecipe.jTableSequnece1, "Recipe_Sequence_Steps_ID");
         //
-        String q = SQL_A.deleteStepSequence(PROC.PROC_37,step_id);
+        String q = SQL_A.deleteStepSequence(PROC.PROC_37, step_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -215,7 +236,7 @@ public class Sequence extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.updateStepSequence(PROC.PROC_38,step_id, commandName, stepNr, commandParam);
+        String q = SQL_A.updateStepSequence(PROC.PROC_38, step_id, commandName, stepNr, commandParam);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -266,7 +287,7 @@ public class Sequence extends BasicTab {
         //
         stepNr = processStepNumber(stepNr, addLast);
         //
-        String q = SQL_A.insertStepSequence(PROC.PROC_39,sequence_id, commandName, stepNr, commandParam);
+        String q = SQL_A.insertStepSequence(PROC.PROC_39, sequence_id, commandName, stepNr, commandParam);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -299,7 +320,7 @@ public class Sequence extends BasicTab {
             String release = HelpA.getComboBoxSelectedValue(releaseBox);
             String mixerCode = HelpA.getComboBoxSelectedValue(mixerBox);
             //
-            String q = SQL_A.build_table1_sequence(PROC.PROC_40,recipe, release, mixerCode);
+            String q = SQL_A.build_table1_sequence(PROC.PROC_40, recipe, release, mixerCode);
             //
             ResultSet rs = sql.execute(q, mCRecipe);
             //
