@@ -431,20 +431,26 @@ public class HelpA {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
+    
+    public static String updatedOnLocal() {
+        return get_proper_date_adjusted_format(3);
+    }
 
     public static String updatedOn() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
+        return get_proper_date_adjusted_format(3);
     }
+    
+//    public static String updatedOn() {
+//        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar calendar = Calendar.getInstance();
+//        return formatter.format(calendar.getTime());
+//    }
 
     public static String updatedBy() {
         return MC_RECIPE.jTextFieldHomeUserName.getText();
     }
     
-    public static void main(String[] args) {
-        System.out.println(""+ define_date_format("2017-10-20"));
-    }
+    
 
     public static String define_date_format(String date) {
         if (date != null) {
@@ -2132,6 +2138,10 @@ public class HelpA {
         DateFormat f1 = DateFormat.getDateInstance(style);
         Date d = cal.getTime();
         return f1.format(d);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(""+ get_proper_date_adjusted_format(3));
     }
 
     public static String extractValueFromHtmlString(String str) {

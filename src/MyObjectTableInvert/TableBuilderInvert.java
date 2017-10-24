@@ -26,13 +26,13 @@ import javax.swing.JComponent;
  * @author mcab
  */
 public class TableBuilderInvert {
-    
+
     private final SqlBasicLocal sql;
     private final RowDataInvert[] CONFIG;
     private final boolean SHOW_UNITS;
     private final ShowMessage SM;
     private final String TABLE_NAME;
-    
+
     public TableBuilderInvert(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
         this.sql = sql;
         this.SM = sm;
@@ -40,13 +40,17 @@ public class TableBuilderInvert {
         this.SHOW_UNITS = showUnits;
         this.TABLE_NAME = tableName;
     }
-    
+
     public void showMessage(String msg) {
         SM.showMessage(msg);
     }
-    
+
     public Table buildTable(String query) throws SQLException {
         ResultSet rs = sql.execute(query);
+        //
+//        if(TABLE_NAME.equals("recipe_detailed_1")){
+//            System.out.println("");
+//        }
         //
         TableData tableData = new TableData();
         //
@@ -57,7 +61,7 @@ public class TableBuilderInvert {
         for (int i = 0; i < ROWS.length; i++) {
             RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
             //
-            CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getFieldNickName(),CURR_ROW.getFieldOriginalName(), CURR_ROW.getTableName()));
+            CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getFieldNickName(), CURR_ROW.getFieldOriginalName(), CURR_ROW.getTableName()));
             //
             if (SHOW_UNITS) {
                 CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getUnit(), true));
@@ -76,12 +80,25 @@ public class TableBuilderInvert {
             String orig_field_name = CURR_ROW.getFieldOriginalName();
             String key_name = CURR_ROW.getPrimaryOrForeignKeyName();
             //
+//            if(orig_field_name.equals("UpdatedOn")){
+//                System.out.println("");
+//            }
+            //
             int type = CURR_ROW.getType();
             //
             while (rs.next()) {
                 //
+                try{
+                    rs.getTimestamp(orig_field_name);
+                }catch(Exception ex){
+                    System.out.println("");
+                }
+                //
                 String value = rs.getString(orig_field_name);
                 //
+//                if (orig_field_name.equals("UpdatedOn")) {
+//                    System.out.println("VALUE______A___A____A: " + value);
+//                }
                 //
                 ColumnDataEntryInvert cde;
                 //
@@ -116,7 +133,7 @@ public class TableBuilderInvert {
         //
         return table;
     }
-    
+
     public HashMap<String, Object> getDefaultRowComponents() {
         HashMap<String, Object> componentMap = new HashMap<String, Object>();
         //
@@ -124,7 +141,7 @@ public class TableBuilderInvert {
         //
         return componentMap;
     }
-    
+
     private void addAdditionalComponent(RowDataInvert CURR_ROW, HashMap<String, Object> additionalComponentsMap) {
         Set set = additionalComponentsMap.keySet();
         Iterator it = set.iterator();
@@ -134,5 +151,4 @@ public class TableBuilderInvert {
             CURR_ROW.addRowColumnData(new ColumnDataEntryInvert(component, "-1", "-", CURR_ROW.getFieldNickName()));
         }
     }
-    
 }

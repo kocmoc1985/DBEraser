@@ -381,11 +381,12 @@ public class Sequence extends BasicTab {
         deleteAllSequenceSteps();
         //
         String date = HelpA.updatedOn();
+        String updatedBy = HelpA.updatedBy();
         //
         String recipe2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceRecipeCopy);
         String release2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceReleaseCopy);
         String mixerCode2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceMixerCodeCopy);
-        String q = SQL_A.copy_sequence(PROC.PROC_23, RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, HelpA.updatedOn(), "");
+        String q = SQL_A.copy_sequence(PROC.PROC_23, RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, date, updatedBy);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -396,7 +397,7 @@ public class Sequence extends BasicTab {
         //
         String recipeSequenceMainId = getRecipeSequenceMainId(RECIPE, RELEASE, MIXER_CODE);
         //
-        String q2 = SQL_A.sequenceInsertFromOther(PROC.PROC_22, recipeSequenceMainId, recipe2, release2, mixerCode2, date, "");
+        String q2 = SQL_A.sequenceInsertFromOther(PROC.PROC_22, recipeSequenceMainId, recipe2, release2, mixerCode2, date, updatedBy);
         //
         try {
             sql_additional.execute(q2, mCRecipe);
