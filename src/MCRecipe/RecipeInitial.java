@@ -518,11 +518,7 @@ public class RecipeInitial extends BasicTab {
         }
     }
 
-    /**
-     * If unchecked, Ingred comboboxes should not be filled
-     *
-     * @param box
-     */
+    
     private boolean checkIfToFill(JComboBox box) {
         //
         boolean condition_1 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();

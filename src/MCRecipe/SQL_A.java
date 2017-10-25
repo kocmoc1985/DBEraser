@@ -4,6 +4,8 @@
  */
 package MCRecipe;
 
+import javax.swing.JOptionPane;
+
 /**
  * vendor_insert_new_table_3_2
  *
@@ -653,12 +655,24 @@ public class SQL_A {
         } else if (params.length == 23 && cond_1 && cond_2 == false) {
             procedure = PROC_3;
         } else {
+            params = cutArr(params, 21);
             procedure = PROC_4;
         }
         //
         return "select distinct " + param + " from " + procedure + " ("
                 + buildParametersForProcedure(params)
                 + ") order by " + param + " asc";
+    }
+    
+    private static String[] cutArr(String[]arrToCut,int positions){
+        //
+        String[]arrToReturn = new String[positions];
+        //
+        for (int i = 0; i < positions; i++) {
+            arrToReturn[i] = arrToCut[i];
+        }
+        //
+        return arrToReturn;
     }
 
     public static String recipeInitialBuildTable1(String PROC_1, String PROC_2, String PROC_3, String[] params) {

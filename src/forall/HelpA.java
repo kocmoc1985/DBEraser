@@ -1797,6 +1797,39 @@ public class HelpA {
         //
         return null;
     }
+    
+    /**
+     * Returns nulls instead of 'NULLS'
+     * @param box
+     * @return 
+     */
+    public static String getComboBoxSelectedValueB(JComboBox box) {
+        Object val = box.getSelectedItem();
+        //
+        if (val == null) {
+            return null;
+        }
+        //
+        if (val instanceof String) {
+            String v = (String) val;
+            if (v.isEmpty()) {
+                return null;
+            } else {
+                return v.toString();
+            }
+        }
+        //
+        if (val instanceof ComboBoxTitle) {
+            return null;
+        }
+        //
+        if (val instanceof HelpA.ComboBoxObject) {
+            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
+            return cbo.getParam_1(); // The "'" shall be remowed in feature!!!!!
+        }
+        //
+        return null;
+    }
 
     public static ComboBoxObject getSelectedComboBoxObject(JComboBox box) {
         //

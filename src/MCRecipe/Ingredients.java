@@ -326,6 +326,7 @@ public class Ingredients extends BasicTab {
      * This one handles added rows to
      */
     public void save_changes_table_3() {
+        //
         JTable table3 = mCRecipe.jTable_Ingred_Table3;
         //
         HelpA.stopEditJTable(table3);
@@ -446,6 +447,7 @@ public class Ingredients extends BasicTab {
     }
 
     private void fill_table_2() {
+        //
         JTable table2 = mCRecipe.jTable_Ingred_table2;
         //
         try {
