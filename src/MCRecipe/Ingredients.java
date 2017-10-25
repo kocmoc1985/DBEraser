@@ -608,22 +608,15 @@ public class Ingredients extends BasicTab {
     }
 
     public void clearBoxes() {
-
+        //
         for (JComboBox box : mCRecipe.ingredientsGroupList) {
             box.setSelectedItem(null);
             box.setEditable(false);
         }
-
-//        mCRecipe.jCombo_Ingred_Name.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Class.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Status.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Group.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Descr.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Form.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Perc_Rubber.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_TradeName.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_VendorName.setSelectedItem(null);
-//        mCRecipe.jCombo_Ingred_Cas_Number.setSelectedItem(null);
+        //
+        mCRecipe.revalidate();
+        mCRecipe.repaint();
+        //
     }
 
     /**
