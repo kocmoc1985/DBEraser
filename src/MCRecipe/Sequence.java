@@ -344,7 +344,8 @@ public class Sequence extends BasicTab {
         HelpA.setColumnWidthByName("Command Name", table1, 0.5);
         HelpA.setColumnWidthByName("Cmd Parameter", table1, 0.4);
         //
-
+        HelpA.markFirstRowJtable(mCRecipe.jTableSequnece1);
+        mCRecipe.clickedTable1Sequence();
     }
 
     public void fill_table_2(JComboBox recipeBox, JComboBox releaseBox, JComboBox mixerBox, boolean orig) {
@@ -428,6 +429,7 @@ public class Sequence extends BasicTab {
         //
         fill_table_1(mCRecipe.jComboBoxSequenceRecipe, mCRecipe.jComboBoxSequenceRelease, mCRecipe.jComboBoxSequenceMixerCode);
         fill_table_2(mCRecipe.jComboBoxSequenceRecipe, mCRecipe.jComboBoxSequenceRelease, mCRecipe.jComboBoxSequenceMixerCode, true);
+        //
     }
 
     private String getRecipeSequenceMainId(String code, String release, String mixerCode) {
