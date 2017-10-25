@@ -10,6 +10,7 @@ import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
 import static forall.HelpA.getValueResultSet;
 import static forall.HelpA.initialComboBoxBorder;
+import static forall.HelpA.setCursorWait;
 import static forall.HelpA.setTrackingToolTip;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -128,6 +129,8 @@ public class JComboBoxA extends JComboBox {
     public JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
+         setCursorWait(true);
+        //
         ArrayList<Object> list = new ArrayList<Object>();
         //
         boolean cond_1 = initialValue != null && (initialValue instanceof Boolean == false)
@@ -200,6 +203,8 @@ public class JComboBoxA extends JComboBox {
         HelpA.tryMatch(jbox, (String) initialValue, showMultipleValues, fakeValue);
         //
         setTrackingToolTip(jbox, query);
+        //
+        setCursorWait(false);
         //
         return jbox;
     }

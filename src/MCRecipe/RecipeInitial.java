@@ -12,6 +12,7 @@ import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
 import forall.JComboBoxA;
+import forall.JComboBoxM;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -69,6 +70,7 @@ public class RecipeInitial extends BasicTab {
             @Override
             public void run() {
                 mCRecipe2.recipeInitial_GroupA_Boxes_to_list();
+                mCRecipe2.recipeInitial_GroupA_INGRED_Boxes_to_list();
                 mCRecipe2.recipeInitial_GroupC_Boxes_to_list();
                 mCRecipe2.addJComboListenersRecipeInitial();
                 fill_table_1(null, null, null, null);
@@ -533,31 +535,14 @@ public class RecipeInitial extends BasicTab {
             return true;
         }
     }
-
-    public void fillComboBoxMultiple(final JComboBox box, final String colName, final String colName2) {
-        //
-        if (checkIfToFill(box) == false) {
-            return;
-        }
-        //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Object selection = box.getSelectedItem();
-                //
-                //
-                String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
-                OUT.showMessage(q);
-                //
-                JComboBoxA boxA = (JComboBoxA) box;
-                //
-                boxA.fillComboBox(sql, box, q, null, true, false);
-                // box.setBorder(BorderFactory.createLineBorder(Color.green));
-                //
-                box.setSelectedItem(selection);
-            }
-        });
+    
+    private void resetFlagWaitsIngredientsComboBoxes(){
+       for(JComboBoxM box: mCRecipe2.recipeInitialGroupA_INGRED){
+           box.setFLAG_WAIT(0);
+       }
     }
+
+    
 
     private boolean ingredSearchCriteriasEmpty() {
         if (mCRecipe2.jComboBox_Ingred_1.getSelectedItem() != null || mCRecipe2.jComboBox_Ingred_2.getSelectedItem() != null) {
@@ -579,25 +564,26 @@ public class RecipeInitial extends BasicTab {
         //
         return true;
     }
-    //
-    private long flagWait;
+    
 
+    
+    
+    
     /**
-     * Not used so far
      *
      * @param box
      * @param colName
      */
-    public void fillComboBoxIngredients_with_wait(final JComboBox box, final String colName) {
+    public void fillComboBoxIngredients_with_wait(final JComboBoxM box, final String colName) {
         //
         if (checkIfToFill(box) == false) {
             return;
         }
         //
-        if (HelpA.fillAllowedComboBox(flagWait) == false) {
+        if (box.fillAllowedComboBox(box.getFLAG_WAIT()) == false) {
             return;
         } else {
-            flagWait = 0;
+            box.setFLAG_WAIT(0);
         }
         //
         Object selection = box.getSelectedItem();
@@ -610,14 +596,15 @@ public class RecipeInitial extends BasicTab {
         //
         box.showPopup();
         //
-        flagWait = System.currentTimeMillis();
+        box.setFLAG_WAIT(System.currentTimeMillis());
         //
         box.setSelectedItem(selection);
 
     }
+    
+    private static long prevCall;
 
-    public boolean delay() {
-//        System.out.println("AAA:" + Math.abs(System.currentTimeMillis() - prevCall));
+    private boolean delay() {
         if (Math.abs(System.currentTimeMillis() - prevCall) < 1000) {
             prevCall = System.currentTimeMillis();
             return false;
@@ -626,7 +613,7 @@ public class RecipeInitial extends BasicTab {
             return true;
         }
     }
-    public static long prevCall;
+    
 
     public synchronized void fillComboBox(final JComboBox box, final String colName) {
         //
@@ -635,9 +622,10 @@ public class RecipeInitial extends BasicTab {
         }
         //
         if (delay() == false) {
-//            System.out.println("RETURNED: DELAY");
             return;
         }
+        //
+        resetFlagWaitsIngredientsComboBoxes();
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -651,7 +639,36 @@ public class RecipeInitial extends BasicTab {
                 JComboBoxA boxA = (JComboBoxA) box;
                 boxA.fillComboBox(sql, box, q, null, false, false);
                 //
-//                HelpA.fillComboBox(sql, box, q, null, false, false);
+                //
+                box.setSelectedItem(selection);
+            }
+        });
+    }
+    
+    public void fillComboBoxMultiple(final JComboBox box, final String colName, final String colName2) {
+        //
+        if (checkIfToFill(box) == false) {
+            return;
+        }
+        //
+        if (delay() == false) {
+            return;
+        }
+        //
+        resetFlagWaitsIngredientsComboBoxes();
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //
+                Object selection = box.getSelectedItem();
+                //
+                String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
+                OUT.showMessage(q);
+                //
+                JComboBoxA boxA = (JComboBoxA) box;
+                //
+                boxA.fillComboBox(sql, box, q, null, true, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);
@@ -677,8 +694,6 @@ public class RecipeInitial extends BasicTab {
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
                 boxA.fillComboBox(sql, box, q, null, false, false);
-                //
-//                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
@@ -724,6 +739,8 @@ public class RecipeInitial extends BasicTab {
         //
         mCRecipe2.revalidate();
         mCRecipe2.repaint();
+        //
+        resetFlagWaitsIngredientsComboBoxes();
     }
 
     public void clearBoxesB() {

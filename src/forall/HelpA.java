@@ -17,8 +17,10 @@ import images.IconUrls;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Robot;
@@ -324,8 +326,6 @@ public class HelpA {
         return box.isSelected();
     }
 
-   
-
     public static boolean columnExistsSqlTable(SqlBasicLocal sql, String colName, String tableName) {
         String q = "select top 1 " + colName + " from " + tableName;
         //
@@ -431,7 +431,7 @@ public class HelpA {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
-    
+
     public static String updatedOnLocal() {
         return get_proper_date_adjusted_format(3);
     }
@@ -439,18 +439,15 @@ public class HelpA {
     public static String updatedOn() {
         return get_proper_date_adjusted_format(3);
     }
-    
+
 //    public static String updatedOn() {
 //        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        Calendar calendar = Calendar.getInstance();
 //        return formatter.format(calendar.getTime());
 //    }
-
     public static String updatedBy() {
         return MC_RECIPE.jTextFieldHomeUserName.getText();
     }
-    
-    
 
     public static String define_date_format(String date) {
         if (date != null) {
@@ -478,7 +475,7 @@ public class HelpA {
         "MM/dd/yyyy'T'HH:mm:ssZ", "MM/dd/yyyy'T'HH:mm:ss",
         "yyyy:MM:dd HH:mm:ss",
         "yyyy-MM-dd", "yyyy:MM:dd",
-//        "yyyyMMdd", dont use this because 352980126 is considered as this time format
+        //        "yyyyMMdd", dont use this because 352980126 is considered as this time format
         "dd/MM/yy", "dd/MM/yyyy", "dd-MM-yy", "dd-MM-yyyy",
         "dd:MM:yy", "dd:MM:yyyy"};
 
@@ -495,8 +492,8 @@ public class HelpA {
     public static long millis_to_days_converter(long millis) {
         return millis / 86400000;
     }
-    
-    public static String get_proper_date_adjusted_format(long millis,int style) {
+
+    public static String get_proper_date_adjusted_format(long millis, int style) {
         TimeZone tz = TimeZone.getDefault();
         Calendar cal = Calendar.getInstance(tz);
         DateFormat f1 = DateFormat.getDateInstance(style);
@@ -504,9 +501,9 @@ public class HelpA {
         Date d = cal.getTime();
         return f1.format(d);
     }
-    
-    public static String millisToDefaultDate(long millis){
-        return get_proper_date_adjusted_format(millis,2);
+
+    public static String millisToDefaultDate(long millis) {
+        return get_proper_date_adjusted_format(millis, 2);
     }
 
     public static String millisToDateConverter(String millis, String dateFormat) {
@@ -636,8 +633,6 @@ public class HelpA {
     public static int getColumnWidthByIndex(int colIndex, JTable table) {
         return table.getColumnModel().getColumn(colIndex).getWidth();
     }
-
-    
 
     private static void objectToFile(String path, Object obj) {
         try {
@@ -1185,7 +1180,7 @@ public class HelpA {
                 if (table.getColumnName(i).equals(HEADER_MAP.get(name))) {
                     return i;
                 }
-            }else{
+            } else {
                 if (table.getColumnName(i).equals(name)) {
                     return i;
                 }
@@ -1289,12 +1284,20 @@ public class HelpA {
     }
 
     public static String getValueSelectedRow(JTable table, String colName) {
+        //
         int selected_row = table.getSelectedRow();
         //
         try {
-            return "" + table.getValueAt(selected_row, getColByName(table, colName));
+            //
+            String value = "" + table.getValueAt(selected_row, getColByName(table, colName));
+            //
+            if (value.trim().equals("null")) {
+                return "";
+            } else {
+                return value;
+            }
+            //
         } catch (Exception ex) {
-//            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -1487,22 +1490,7 @@ public class HelpA {
     }
     public static Border initialComboBoxBorder;
 
-    /**
-     * Very effective way of handling cases when it takes plenty of time to load
-     * data to a combo box, and each time when you point on the combo box it
-     * starts to load the data from the beginning
-     *
-     * @param flagWait
-     * @return
-     */
-    public static boolean fillAllowedComboBox(long flagWait) {
-        //
-        if (System.currentTimeMillis() - flagWait < 10000 && flagWait > 0) {
-            return false;
-        }
-        //
-        return true;
-    }
+    
     private static final HashMap<String, String> fakeValuesMap = new HashMap<String, String>();
 
     static {
@@ -1600,21 +1588,27 @@ public class HelpA {
         //
         return jbox;
     }
-    
+
+    public static void setCursorWait(boolean yesno) {
+        Cursor defCursor = Cursor.getDefaultCursor();
+        Cursor waitCursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR);
+        Frame.getFrames()[0].setCursor(yesno ? waitCursor : defCursor);
+    }
     private static HashMap<JComboBox, AutoCompleteSupport> autoSupportList = new HashMap<JComboBox, AutoCompleteSupport>();
-    
+
     /**
-     * @deprecated 
-     * @param sql
+     * @deprecated @param sql
      * @param jbox
      * @param query
      * @param initialValue
      * @param showMultipleValues
      * @param fakeValue
-     * @return 
+     * @return
      */
     public static JComboBox fillComboBox_old(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
+        //
+        setCursorWait(true);
         //
         ArrayList<Object> list = new ArrayList<Object>();
         //
@@ -1700,6 +1694,8 @@ public class HelpA {
         //
         setTrackingToolTip(jbox, query);
         //
+        setCursorWait(false);
+        //
         return jbox;
     }
 
@@ -1764,36 +1760,7 @@ public class HelpA {
         //
         return jbox;
     }
-    private static long flagWait;
-
-    /**
-     * IMPORTANT!
-     *
-     * @param box
-     * @param query
-     * @param sql
-     */
-    public static void fillComboBox_with_wait(final JComboBox box, String query, SqlBasicLocal sql) {
-
-        if (HelpA.fillAllowedComboBox(flagWait) == false) {
-            return;
-        } else {
-            flagWait = 0;
-        }
-        //
-        Object selection = box.getSelectedItem();
-        //
-        String q = query;
-        //
-        //
-        HelpA.fillComboBox_old(sql, box, q, null, false, false);
-        //
-        box.showPopup();
-        //
-        flagWait = System.currentTimeMillis();
-        //
-        box.setSelectedItem(selection);
-    }
+    
 
     public static String getValueResultSet(ResultSet rs, int index) {
         try {
@@ -2152,9 +2119,9 @@ public class HelpA {
         Date d = cal.getTime();
         return f1.format(d);
     }
-    
+
     public static void main(String[] args) {
-        System.out.println(""+ get_proper_date_adjusted_format(3));
+        System.out.println("" + get_proper_date_adjusted_format(3));
     }
 
     public static String extractValueFromHtmlString(String str) {

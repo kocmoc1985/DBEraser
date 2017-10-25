@@ -504,9 +504,10 @@ public class SQL_A {
      * @param param6 Mixer_Code2 varchar(50)source (right)
      * @param param7 UpdatedOn datetime
      * @param param8 UpdatedBy varchar(50)
+     * @param param9 info varchar(50)
      * @return
      */
-    public static String copy_sequence(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8) {
+    public static String copy_sequence(String PROC, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9) {
         return "[dbo].[" + PROC + "] " + ""
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
@@ -515,7 +516,8 @@ public class SQL_A {
                 + quotes(param5, false) + ","
                 + quotes(param6, false) + ","
                 + quotes(param7, false) + ","
-                + quotes(param8, false);
+                + quotes(param8, false)+ ","
+                + quotes(param9, false);
     }
 
     public static String fill_comboboxes_ingred(String PROC, String param, String[] params) {

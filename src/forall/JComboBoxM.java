@@ -12,12 +12,14 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.ComboPopup;
 
 /**
- * Listens for the changes in the list, so when you hover the mouse cursor over the
- * entry in the list it fires the "valueChanged" method
+ * Listens for the changes in the list, so when you hover the mouse cursor over
+ * the entry in the list it fires the "valueChanged" method
+ *
  * @author KOCMOC
  */
-public class JComboBoxM extends JComboBox<Object>{
+public class JComboBoxM extends JComboBox<Object> {
 
+    private long FLAG_WAIT;
     private ListSelectionListener listener;
     private ArrayList<JComboBoxValueChangedListener> list = new ArrayList<JComboBoxValueChangedListener>();
 
@@ -47,7 +49,7 @@ public class JComboBoxM extends JComboBox<Object>{
 
     private void valueChangedListener_install() {
         ListSelectionListener[] arr = getPopupList().getListSelectionListeners();
-        
+
         listener = new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -60,13 +62,11 @@ public class JComboBoxM extends JComboBox<Object>{
                 Object obj = list.getSelectedValue();
                 String str = String.valueOf(obj);
                 callListeners(str);
-                
+
             }
         };
         getPopupList().addListSelectionListener(listener);
     }
-    
-    
 
     private void callListeners(String value) {
         for (JComboBoxValueChangedListener listnr : list) {
@@ -77,5 +77,22 @@ public class JComboBoxM extends JComboBox<Object>{
     private JList getPopupList() {
         ComboPopup popup = (ComboPopup) getUI().getAccessibleChild(this, 0);
         return popup.getList();
+    }
+    
+    public boolean fillAllowedComboBox(long flagWait) {
+        //
+        if (System.currentTimeMillis() - flagWait < 12000000 && flagWait > 0) {
+            return false;
+        }
+        //
+        return true;
+    }
+
+    public long getFLAG_WAIT() {
+        return FLAG_WAIT;
+    }
+
+    public void setFLAG_WAIT(long FLAG_WAIT) {
+        this.FLAG_WAIT = FLAG_WAIT;
     }
 }

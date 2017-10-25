@@ -502,7 +502,7 @@ public class Ingredients extends BasicTab {
         String vendor = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_VendorName);
         String casNr = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_Cas_Number);
         //
-        JTableM table = (JTableM)mCRecipe.jTable_Ingred_Table1;
+        JTableM table = (JTableM) mCRecipe.jTable_Ingred_Table1;
         //
         if (name_ != null && name_.isEmpty() == false) {
             name = name_;
@@ -570,9 +570,24 @@ public class Ingredients extends BasicTab {
         String ingredVendorName = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_VendorName);
         return new String[]{ingredName, ingredClass, ingredGroup, ingredStatus, ingredDescr, ingredForm, percRubber, ingredTradeName, ingredVendorName, ingredCasNr};
     }
+    private static long prevCall;
+
+    private boolean delay() {
+        if (Math.abs(System.currentTimeMillis() - prevCall) < 1000) {
+            prevCall = System.currentTimeMillis();
+            return false;
+        } else {
+            prevCall = System.currentTimeMillis();
+            return true;
+        }
+    }
 
     public void fillComboBox(final JComboBox box, final String colName) {
-
+        // 
+        if (delay() == false) {
+            return;
+        }
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -582,10 +597,9 @@ public class Ingredients extends BasicTab {
                 String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
                 OUT.showMessage(q);
                 //
-                JComboBoxA boxA = (JComboBoxA)box;
+                JComboBoxA boxA = (JComboBoxA) box;
                 //
                 boxA.fillComboBox(sql, box, q, null, false, false);
-//        box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);
             }
@@ -720,7 +734,7 @@ public class Ingredients extends BasicTab {
         TABLE_INVERT = null;
         //
         try {
-            String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49,name);
+            String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
         } catch (SQLException ex) {

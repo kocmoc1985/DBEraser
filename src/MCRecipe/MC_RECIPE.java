@@ -235,6 +235,24 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 //        this.jTable4RecipeDetailed.getColumnModel().addColumnModelListener(this);
 //        this.jTable_Ingred_Table1.getColumnModel().addColumnModelListener(this);
     }
+    
+    public ArrayList<JComboBoxM> recipeInitialGroupA_INGRED;
+
+    public void recipeInitial_GroupA_INGRED_Boxes_to_list() {
+        //
+        recipeInitialGroupA_INGRED = new ArrayList<JComboBoxM>();
+        //
+        Component[] components = jPanel2.getComponents();
+        //
+        for (Component c : components) {
+            if (c instanceof JComboBoxM) {
+                recipeInitialGroupA_INGRED.add((JComboBoxM) c);
+            }
+        }
+        //
+    }
+    
+    
     public ArrayList<JComboBox> recipeInitialGroupA;
 
     public void recipeInitial_GroupA_Boxes_to_list() {
@@ -4440,19 +4458,22 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 //RecipeInitial GROUP A
                 else if (parent instanceof JComboBox_RI_A) {
                     JComboBox_RI_A box = (JComboBox_RI_A) parent;
+                    //
                     if (box.isMULTI_PARAM()) {
                         recipeInitial.fillComboBoxMultiple(box, box.getPARAMETER(), box.getPARAMETER_2());
                     } else {
                         recipeInitial.fillComboBox(box, box.getPARAMETER());
                     }
+                    //
+                    //
                 } //RecipeInitial GROUP B
                 else if (parent.equals(jComboBox_Ingred_1)) {
                     //
-                    recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_1, "IngredName1");
+                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM)jComboBox_Ingred_1, "IngredName1");
                     //
                 } else if (parent.equals(jComboBox_Ingred_2)) {
                     //
-                    recipeInitial.fillComboBoxIngredients_with_wait(jComboBox_Ingred_2, "IngredName2");
+                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM)jComboBox_Ingred_2, "IngredName2");
                     //
                 } //   RecipeInitial GROUP C
                 else if (parent instanceof JComboBox_RI_C) {
