@@ -237,7 +237,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 //        this.jTable4RecipeDetailed.getColumnModel().addColumnModelListener(this);
 //        this.jTable_Ingred_Table1.getColumnModel().addColumnModelListener(this);
     }
-    
     public ArrayList<JComboBoxM> recipeInitialGroupA_INGRED;
 
     public void recipeInitial_GroupA_INGRED_Boxes_to_list() {
@@ -253,8 +252,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
         //
     }
-    
-    
     public ArrayList<JComboBox> recipeInitialGroupA;
 
     public void recipeInitial_GroupA_Boxes_to_list() {
@@ -4367,9 +4364,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 }
                 //
                 if (vendors != null && vendorsB != null) {
-                    vendorsB.showTableInvertIn(jPanelInvertTable4_B, vendors.TABLE_INVERT_4);
-                    vendorsB.showTableInvertIn(jPanelInvertTable3_2_B, vendors.TABLE_INVERT_3_2);
-                    vendorsB.reset();
+                    vendors_tab_b_clicked();
                 }
                 //
             } else if (title.equals(LNG.RECIPE_ADD_TAB())) {
@@ -4384,6 +4379,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
             }
         }
+    }
+
+    public void vendors_tab_b_clicked() {
+        vendorsB.showTableInvertIn(jPanelInvertTable4_B, vendors.TABLE_INVERT_4);
+        vendorsB.showTableInvertIn(jPanelInvertTable3_2_B, vendors.TABLE_INVERT_3_2);
     }
 
     @Override
@@ -4505,11 +4505,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 } //RecipeInitial GROUP B
                 else if (parent.equals(jComboBox_Ingred_1)) {
                     //
-                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM)jComboBox_Ingred_1, "IngredName1");
+                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM) jComboBox_Ingred_1, "IngredName1");
                     //
                 } else if (parent.equals(jComboBox_Ingred_2)) {
                     //
-                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM)jComboBox_Ingred_2, "IngredName2");
+                    recipeInitial.fillComboBoxIngredients_with_wait((JComboBoxM) jComboBox_Ingred_2, "IngredName2");
                     //
                 } //   RecipeInitial GROUP C
                 else if (parent instanceof JComboBox_RI_C) {
