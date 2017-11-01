@@ -6,6 +6,7 @@ package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
 import MCRecipe.MC_RECIPE;
+import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -58,6 +59,7 @@ public class AdministrateUsers extends javax.swing.JFrame implements MouseListen
 
     private void go() {
         initBasicTab();
+        basicTab.initializeSaveIndicators();
         showTable();
         //
         HelpA.markFirstRowJtable(jTable1);
@@ -129,7 +131,7 @@ public class AdministrateUsers extends javax.swing.JFrame implements MouseListen
 
             @Override
             public void initializeSaveIndicators() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                SaveIndicator saveIndicator1 = new SaveIndicator(jButton_Save, this, 1);
             }
 
             @Override
@@ -139,7 +141,16 @@ public class AdministrateUsers extends javax.swing.JFrame implements MouseListen
 
             @Override
             public boolean getUnsaved(int nr) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                if (nr == 1) {
+                    //
+                    if (TABLE_INVERT == null) {
+                        return false;
+                    } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                        return true;
+                    }
+                    //
+                }
+                return false;
             }
         };
     }
@@ -162,6 +173,7 @@ public class AdministrateUsers extends javax.swing.JFrame implements MouseListen
         jButton_Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));

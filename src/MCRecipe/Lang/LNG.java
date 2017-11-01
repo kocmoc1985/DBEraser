@@ -96,5 +96,9 @@ public class LNG {
         return LANG_ENG ? "PASSWORD" : "KENNWORT";
     }
      
+     public static String RECIPE_GROUPS() {
+        return LANG_ENG ? "RECIPE GROUPS" : "REZEPT-GRUPPEN";
+    }
+     
      
 }

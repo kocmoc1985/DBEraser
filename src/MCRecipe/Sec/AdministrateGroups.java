@@ -6,6 +6,7 @@ package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
 import MCRecipe.MC_RECIPE;
+import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import mySwing.JTableM;
 
 /**
  *
@@ -36,6 +38,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
     private BasicTab basicTab;
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     public final static String TABLE_NAME = "Recipe_Group";
+    public final static String TABLE_ID = "Recipe_Group_ID";
 
     /**
      * Creates new form AdministrateUsers
@@ -46,6 +49,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         this.sql = sql;
         this.sql_additional = sql_additional;
         initOther();
+
         go();
     }
 
@@ -54,10 +58,12 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         this.setTitle("Administrate Users");
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         jTable1.addMouseListener(this);
+        jTable1.setAutoCreateRowSorter(true);
     }
 
     private void go() {
         initBasicTab();
+        basicTab.initializeSaveIndicators();
         showTable();
         //
         HelpA.markFirstRowJtable(jTable1);
@@ -69,8 +75,8 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         String q = "select * from " + TABLE_NAME;
         //
         try {
-            ResultSet rs = sql.execute(q,mc_recipe);
-            HelpA.build_table_common(rs, jTable1,q);
+            ResultSet rs = sql.execute(q, mc_recipe);
+            HelpA.build_table_common(rs, jTable1, q);
         } catch (SQLException ex) {
             Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,27 +90,27 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
             @Override
             public RowDataInvert[] getConfigTableInvert() {
-                RowDataInvert id = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "Recipe_Group_ID", "ID", "", true, true, false);
+                RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Recipe_Group_ID", "ID", "", true, true, false);
                 //
-                RowDataInvert mainGroup = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "Main_Group", "MAIN GROUP", "", true, true, false);
+                RowDataInvert mainGroup = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Main_Group", "MAIN GROUP", "", true, true, false);
                 //
-                RowDataInvert mainInfo = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "main_Info", "MAIN INFO", "", true, true, false);
+                RowDataInvert mainInfo = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "main_Info", "MAIN INFO", "", true, true, false);
                 //
-                RowDataInvert detailedGroup = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "Detailed_Group", "DETAILED GROUP", "", true, true, false);
+                RowDataInvert detailedGroup = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Detailed_Group", "DETAILED GROUP", "", true, true, false);
                 //
-                RowDataInvert detailedInfo = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "Detailed_Info", "DETAILED INFO", "", true, true, false);
+                RowDataInvert detailedInfo = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Detailed_Info", "DETAILED INFO", "", true, true, false);
                 //
-                RowDataInvert noteMain = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "Note_Main", "NOTE MAIN", "", true, true, false);
+                RowDataInvert noteMain = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Note_Main", "NOTE MAIN", "", true, true, false);
                 //
-                RowDataInvert updatedOn = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "UpdatedOn", "UPDATED ON", "", true, true, false);
+                RowDataInvert updatedOn = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "UpdatedOn", "UPDATED ON", "", true, true, false);
                 //
-                RowDataInvert updatedBy = new RowDataInvert(TABLE_NAME, "Recipe_Group_ID", false, "UpdatedBy", "UPDATED BY", "", true, true, false);
+                RowDataInvert updatedBy = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "UpdatedBy", "UPDATED BY", "", true, true, false);
                 //
                 id.setUneditable();
                 updatedOn.setUneditable();
                 updatedBy.setUneditable();
                 //
-                RowDataInvert[] rows = {id, mainGroup, mainInfo, detailedGroup, detailedInfo, noteMain};
+                RowDataInvert[] rows = {id, mainGroup, mainInfo, detailedGroup, detailedInfo, noteMain, updatedOn, updatedBy};
                 //
                 return rows;
             }
@@ -115,11 +121,11 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
                 //
                 TABLE_INVERT = null;
                 //
-                String id = HelpA.getValueSelectedRow(jTable1, "id");
+                String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
                 //
                 try {
                     String q = "select * from " + TABLE_NAME
-                            + " where id = " + id;
+                            + " where " + TABLE_ID + "= " + id;
                     //
                     OUT.showMessage(q);
                     TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
@@ -133,7 +139,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
 
             @Override
             public void initializeSaveIndicators() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                SaveIndicator saveIndicator1 = new SaveIndicator(jButton_Save, this, 1);
             }
 
             @Override
@@ -143,7 +149,16 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
 
             @Override
             public boolean getUnsaved(int nr) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                if (nr == 1) {
+                    //
+                    if (TABLE_INVERT == null) {
+                        return false;
+                    } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                        return true;
+                    }
+                    //
+                }
+                return false;
             }
         };
     }
@@ -159,13 +174,15 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new JTableM("groups_adm_tbl",true);
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonRecipeDetailedAddNewRecipe = new javax.swing.JButton();
         jButton_Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1320, 520));
+        setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
@@ -184,7 +201,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
-        jButton2.setToolTipText("Mark to delete, delete is done after save");
+        jButton2.setToolTipText("Delete entry");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -194,7 +211,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonRecipeDetailedAddNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new user");
+        jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new group");
         jButtonRecipeDetailedAddNewRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeDetailedAddNewRecipeActionPerformed(evt);
@@ -216,16 +233,16 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(641, 641, 641)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +255,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -252,25 +269,26 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jButtonRecipeDetailedAddNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
-       addUser();
+        addGroup();
     }//GEN-LAST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         deleteUser();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void deleteUser(){
+    private void deleteUser() {
         //
-        if(HelpA.confirm() == false){
+        if (HelpA.confirm() == false) {
             return;
         }
         //
-        String id = HelpA.getValueSelectedRow(jTable1, "id");
+        String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
+        //
         String q = "delete from " + TABLE_NAME
-                + " where id = " + id;
+                + " where " + TABLE_ID + " = " + id;
         //
         try {
-            sql.execute(q,mc_recipe);
+            sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
             Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -279,14 +297,14 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         HelpA.markFirstRowJtable(jTable1);
         clikedJtable1();
     }
-    
-    private void addUser(){
+
+    private void addGroup() {
         //
         String q = "insert into " + TABLE_NAME
-                + " values('new','new','','" + HelpA.updatedOn() + "','" + HelpA.updatedOn() + "')";
+                + " values('NEW','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
         //
         try {
-            sql.execute(q,mc_recipe);
+            sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
             Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -295,7 +313,6 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         HelpA.markLastRowJtable(jTable1);
         clikedJtable1();
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton jButton2;
     protected javax.swing.JButton jButtonRecipeDetailedAddNewRecipe;
@@ -316,8 +333,8 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
             clikedJtable1();
         }
     }
-    
-    private void clikedJtable1(){
+
+    private void clikedJtable1() {
         basicTab.showTableInvert();
     }
 
