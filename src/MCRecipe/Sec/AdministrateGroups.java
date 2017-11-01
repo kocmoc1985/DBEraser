@@ -76,7 +76,10 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         //
         try {
             ResultSet rs = sql.execute(q, mc_recipe);
-            HelpA.build_table_common(rs, jTable1, q);
+//            HelpA.build_table_common(rs, jTable1, q);
+            JTableM jtm = (JTableM)jTable1;
+            jtm.build_table_common(rs, q);
+            this.setSize(getWidth()-1, getHeight());
         } catch (SQLException ex) {
             Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
         }

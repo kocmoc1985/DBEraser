@@ -470,9 +470,9 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public void addToTable3_2() {
         //
-        if (HelpA.confirm() == false) {
-            return;
-        }
+//        if (HelpA.confirm() == false) {
+//            return;
+//        }
         //
         String trade_name = JOptionPane.showInputDialog("Specify Trade name");//getValueTableInvert("TradeName", 1, TABLE_INVERT_3_2);
         String cas_nr = "";
@@ -588,9 +588,9 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
 
     public boolean addToTable4() {
         //
-        if (HelpA.confirm() == false) {
-            return false;
-        }
+//        if (HelpA.confirm() == false) {
+//            return false;
+//        }
         //
         String vendor_name = JOptionPane.showInputDialog("Specify Vendor Name");
         String updatedOn = HelpA.updatedOn();
