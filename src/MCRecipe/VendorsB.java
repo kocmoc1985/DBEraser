@@ -80,13 +80,13 @@ public class VendorsB extends BasicTab {
         //
         String vendor = getValueTableInvert("VendorName", 1, vendors.TABLE_INVERT_4);
         //
-        if (switch_table_4 == false) {
-            clearFieldsBeforeAddingTable4();
-            switch_table_4 = true;
-            mCRecipe.jButtonVendorsSaveTable4.setEnabled(false);
-            HelpA.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable4);
-            return;
-        }
+//        if (switch_table_4 == false) {
+//            clearFieldsBeforeAddingTable4();
+//            switch_table_4 = true;
+//            mCRecipe.jButtonVendorsSaveTable4.setEnabled(false);
+//            HelpA.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable4);
+//            return;
+//        }
         //
         if (vendor.isEmpty()) {
             HelpA.showNotification("Vendor must be filled in");

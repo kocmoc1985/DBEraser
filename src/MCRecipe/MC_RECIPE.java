@@ -12,7 +12,7 @@ import MCRecipe.Lang.RECIPE_OVERVIEW;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
-import MCRecipe.Lang.VENDOR_A;
+import MCRecipe.Lang.VENDOR_A_B;
 import MCRecipe.Sec.AdministrateGroups;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Sec.JComboBox_ING_A;
@@ -922,9 +922,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addComponent(jLabel72)
                             .addComponent(jLabel54))
                         .addGap(13, 13, 13)
-                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
@@ -2354,12 +2354,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel34.setText(VENDOR_A.PURCHASE_TABLE());
+        jLabel34.setText(MCRecipe.Lang.VENDOR_A_B.PURCHASE_TABLE());
         jPanelVendors.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel35.setText(VENDOR_A.VENDOR_TABLE());
+        jLabel35.setText(MCRecipe.Lang.VENDOR_A_B.VENDOR_TABLE());
         jPanelVendors.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, -1, -1));
 
         jPanelInvertTable4_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2370,12 +2370,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel38.setText(VENDOR_A.PERSONAL_TABLE());
+        jLabel38.setText(MCRecipe.Lang.VENDOR_A_B.PERSONAL_TABLE());
         jPanelVendors.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 590, -1, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel53.setText(VENDOR_A.INGREDIENT_TABLE());
+        jLabel53.setText(MCRecipe.Lang.VENDOR_A_B.INGREDIENT_TABLE());
         jPanelVendors.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 80, -1, -1));
 
         jButtonVendorsPrintTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
@@ -2390,7 +2390,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBoxVendorChooseIngred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxVendorChooseIngred.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel36.setText(VENDOR_A.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
+        jLabel36.setText(MCRecipe.Lang.VENDOR_A_B.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
 
         jPanel25.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel25.setLayout(new java.awt.GridLayout(1, 0));
@@ -2560,7 +2560,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel79.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel79.setText(VENDOR_A.WAREHOUSE_TABLE());
+        jLabel79.setText(MCRecipe.Lang.VENDOR_A_B.WAREHOUSE_TABLE());
         jPanelVendors.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 80, -1, -1));
 
         jLabel80.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2590,11 +2590,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel37.setText("TRADENAME");
+        jLabel37.setText(VENDOR_A_B.TRADE_NAME());
 
         jLabel68.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel68.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel68.setText("VENDOR");
+        jLabel68.setText(VENDOR_A_B.VENDOR_TABLE());
 
         javax.swing.GroupLayout jPanelVendorsBSeparator1Layout = new javax.swing.GroupLayout(jPanelVendorsBSeparator1);
         jPanelVendorsBSeparator1.setLayout(jPanelVendorsBSeparator1Layout);

@@ -11,7 +11,7 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  *
  * @author mcab
  */
-public class VENDOR_A {
+public class VENDOR_A_B {
 
     public static String VENDOR_A__CHOOSE_INGREDIENT_TO_START() {
         return LANG_ENG ? "Choose igredient to start" : "Wählen Sie eine Ingredienz aus";
@@ -35,5 +35,9 @@ public class VENDOR_A {
 
     public static String PERSONAL_TABLE() {
         return LANG_ENG ? "PERSONNEL" : "PERSONAL";
+    }
+    
+    public static String TRADE_NAME(){
+        return LANG_ENG ? "TRADE NAME" : "HANDELSNAME";
     }
 }
