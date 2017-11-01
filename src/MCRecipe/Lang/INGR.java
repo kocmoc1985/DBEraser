@@ -34,7 +34,7 @@ public class INGR {
 
     //====
     public static String NAME() {
-        return LANG_ENG ? "NAME" : "NAME";
+        return LANG_ENG ? "NAME" : "CODE";
     }
 
     public static String DESCR() {

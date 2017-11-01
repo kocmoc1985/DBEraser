@@ -29,7 +29,7 @@ public class T_INV {
         DICT.put("PRICE/KG", "PREIS/KG");
         DICT.put("PRICE/L", "PREIS/L");
         //
-        DICT.put("NAME", "NAME");
+        DICT.put("NAME", "CODE");
         DICT.put("CROSS REFERENCE", "QUERVERWEIS");
         DICT.put("PRICE", "PREIS");
         DICT.put("CASNO", "CAS NR");

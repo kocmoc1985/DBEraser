@@ -4,8 +4,6 @@
  */
 package MCRecipe;
 
-import javax.swing.JOptionPane;
-
 /**
  * vendor_insert_new_table_3_2
  *
