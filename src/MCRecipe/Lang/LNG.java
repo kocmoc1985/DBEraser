@@ -96,8 +96,8 @@ public class LNG {
         return LANG_ENG ? "PASSWORD" : "KENNWORT";
     }
      
-     public static String RECIPE_GROUPS() {
-        return LANG_ENG ? "RECIPE GROUPS" : "REZEPT-GRUPPEN";
+     public static String ADMIN_TOOLS() {
+        return LANG_ENG ? "ADMINISTRATION TOOLS" : "VERWALTUNGSWERKZEUGE";
     }
      
      

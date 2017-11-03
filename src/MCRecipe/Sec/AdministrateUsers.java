@@ -30,6 +30,17 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
     }
 
     @Override
+    public void setTableTitle() {
+        jLabel1.setText("USERS");
+    }
+
+    @Override
+    public String addEntryQuery() {
+        return "insert into " + TABLE_NAME
+                + " values('new','new','','" + HelpA.updatedOn() + "','" + HelpA.updatedOn() + "')";
+    }
+
+    @Override
     public void initBasicTab() {
         //
         TABLE_NAME = USER_ADM_TBL_NAME;

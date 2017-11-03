@@ -38,9 +38,9 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
 //    private Table TABLE_INVERT;
     public BasicTab basicTab;
     public TableBuilderInvert TABLE_BUILDER_INVERT;
-    public  String TABLE_NAME = "Recipe_Group";
-    public  String TABLE_ID = "Recipe_Group_ID";
-
+    public String TABLE_NAME = "Recipe_Group";
+    public String TABLE_ID = "Recipe_Group_ID";
+    
     /**
      * Creates new form AdministrateUsers
      */
@@ -53,6 +53,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
 
         go();
     }
+    
 
     private void initOther() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,6 +61,12 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         jTable1.addMouseListener(this);
         jTable1.setAutoCreateRowSorter(true);
+        this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
+        setTableTitle();
+    }
+    
+    public void setTableTitle(){
+        jLabel1.setText("RECIPE GROUPS");
     }
 
     private void go() {
@@ -184,9 +191,11 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         jPanel2 = new javax.swing.JPanel();
         jButtonRecipeDetailedAddNewRecipe = new javax.swing.JButton();
         jButton_Save = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1320, 520));
+        setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -232,21 +241,28 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         });
         jPanel2.add(jButton_Save);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,11 +271,12 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -274,7 +291,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jButtonRecipeDetailedAddNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
-        addGroup();
+        addEntry();
     }//GEN-LAST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -302,11 +319,15 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         HelpA.markFirstRowJtable(jTable1);
         clikedJtable1();
     }
-
-    private void addGroup() {
-        //
-        String q = "insert into " + TABLE_NAME
+    
+    public String addEntryQuery(){
+        return "insert into " + TABLE_NAME
                 + " values('NEW','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
+    }
+
+    private void addEntry() {
+        //
+        String q = addEntryQuery();
         //
         try {
             sql.execute(q, mc_recipe);
@@ -322,6 +343,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
     protected javax.swing.JButton jButton2;
     protected javax.swing.JButton jButtonRecipeDetailedAddNewRecipe;
     protected javax.swing.JButton jButton_Save;
+    public javax.swing.JLabel jLabel1;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

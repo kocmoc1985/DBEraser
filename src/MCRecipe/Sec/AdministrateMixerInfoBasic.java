@@ -21,45 +21,65 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateIngredGroups extends AdministrateRecipeGroups {
+public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups {
 
-    public AdministrateIngredGroups(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateMixerInfoBasic(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(mc_recipe, sql, sql_additional);
     }
-    
-    @Override
-    public void setTableTitle() {
-        jLabel1.setText("INGRED GROUPS");
-    }
 
     @Override
-    public void actionsAfterShowTable() {
+    public void setTableTitle() {
+        jLabel1.setText("MIXER INFO BASIC");
     }
     
     @Override
     public String addEntryQuery(){
-        return "insert into " + TABLE_NAME + " values('NEW','NEW')";
+        return "insert into " + TABLE_NAME
+                + " values('NEW','','','','','','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
     }
     
+
     @Override
-     public void initBasicTab() {
+    public void initBasicTab() {
         //
-        TABLE_NAME = "Ingred_Group";
-        TABLE_ID = "Id";
+        TABLE_NAME = "Mixer_InfoBasic";
+        TABLE_ID = "Mixer_InfoBasic_ID";
         //
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
             @Override
             public RowDataInvert[] getConfigTableInvert() {
                 //
-                RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Id", "ID", "", true, true, false);
+                RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Mixer_InfoBasic_ID", "ID", "", true, true, false);
                 //
-                RowDataInvert group = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Grupp", "GROUP", "", true, true, false);
+                RowDataInvert code = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Code", "CODE", "", true, true, false);
                 //
-                RowDataInvert descr = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Descr", "DESCRIPTION", "", true, true, false);
+                RowDataInvert name = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Name", "NAME", "", true, true, false);
+                //
+                RowDataInvert volume = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Volume", "VOLUME", "", true, true, false);
+                //
+                RowDataInvert cost = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Costs_perKilo", "PRICE/KG", "", true, true, false);
+                //
+                RowDataInvert waste = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Waste", "WASTE", "", true, true, false);
+                //
+                RowDataInvert dust = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Dust", "DUST", "", true, true, false);
+                //
+                RowDataInvert starttime = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "StartTime", "START TIME", "", true, true, false);
+                //
+                RowDataInvert cycle_ovh = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "CycleOVH", "CYCLE OVH", "", true, true, false);
+                //
+                RowDataInvert decimals = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Decimals", "DECIMALS", "", true, true, false);
+                //
+                RowDataInvert noteMain = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Note_Main", "NOTE MAIN", "", true, true, false);
+                //
+                RowDataInvert updatedOn = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "UpdatedOn", "UPDATED ON", "", true, true, false);
+                //
+                RowDataInvert updatedBy = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "UpdatedBy", "UPDATED BY", "", true, true, false);
                 //
                 id.setUneditable();
+                updatedOn.setUneditable();
+                updatedBy.setUneditable();
                 //
-                RowDataInvert[] rows = {id, group, descr};
+                RowDataInvert[] rows = {id, code, name, volume, cost, waste, dust, starttime, cycle_ovh, decimals, noteMain, updatedOn, updatedBy};
                 //
                 return rows;
             }
@@ -112,5 +132,4 @@ public class AdministrateIngredGroups extends AdministrateRecipeGroups {
             }
         };
     }
-    
 }
