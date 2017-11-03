@@ -23,27 +23,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import mySwing.JTableM;
 
 /**
  *
  * @author KOCMOC
  */
-public class AdministrateGroups extends javax.swing.JFrame implements MouseListener {
+public class AdministrateRecipeGroups extends javax.swing.JFrame implements MouseListener {
 
-    private final MC_RECIPE mc_recipe;
-    private final SqlBasicLocal sql;
-    private final SqlBasicLocal sql_additional;
+    public final MC_RECIPE mc_recipe;
+    public final SqlBasicLocal sql;
+    public final SqlBasicLocal sql_additional;
 //    private Table TABLE_INVERT;
-    private BasicTab basicTab;
-    private TableBuilderInvert TABLE_BUILDER_INVERT;
-    public final static String TABLE_NAME = "Recipe_Group";
-    public final static String TABLE_ID = "Recipe_Group_ID";
+    public BasicTab basicTab;
+    public TableBuilderInvert TABLE_BUILDER_INVERT;
+    public  String TABLE_NAME = "Recipe_Group";
+    public  String TABLE_ID = "Recipe_Group_ID";
 
     /**
      * Creates new form AdministrateUsers
      */
-    public AdministrateGroups(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateRecipeGroups(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         initComponents();
         this.mc_recipe = mc_recipe;
         this.sql = sql;
@@ -70,25 +71,26 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         clikedJtable1();
     }
 
-    private void showTable() {
+    public void showTable() {
         //
         String q = "select * from " + TABLE_NAME;
         //
         try {
             ResultSet rs = sql.execute(q, mc_recipe);
-//            HelpA.build_table_common(rs, jTable1, q);
-            JTableM jtm = (JTableM)jTable1;
-            jtm.build_table_common(rs, q);
-            this.setSize(getWidth()-1, getHeight());
+            HelpA.build_table_common(rs, jTable1, q);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        actionsAfterShowTable();
+    }
+    
+    public void actionsAfterShowTable(){
         HelpA.hideColumnByName(jTable1, "dateCreated");
         HelpA.hideColumnByName(jTable1, "dateChanged");
     }
 
-    private void initBasicTab() {
+    public void initBasicTab() {
         //
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
             @Override
@@ -177,7 +179,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new JTableM("groups_adm_tbl",true);
+        jTable1 = new JTable();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButtonRecipeDetailedAddNewRecipe = new javax.swing.JButton();
@@ -293,7 +295,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         try {
             sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         showTable();
@@ -309,7 +311,7 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
         try {
             sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         showTable();
@@ -320,10 +322,10 @@ public class AdministrateGroups extends javax.swing.JFrame implements MouseListe
     protected javax.swing.JButton jButton2;
     protected javax.swing.JButton jButtonRecipeDetailedAddNewRecipe;
     protected javax.swing.JButton jButton_Save;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     @Override

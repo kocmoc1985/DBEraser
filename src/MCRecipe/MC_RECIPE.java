@@ -5,7 +5,6 @@
 package MCRecipe;
 
 import MCRecipe.Sec.CompareRecipes;
-import MCRecipe.Sec.AdministrateUsers;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
@@ -13,7 +12,9 @@ import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
 import MCRecipe.Lang.VENDOR_A_B;
-import MCRecipe.Sec.AdministrateGroups;
+import MCRecipe.Sec.AdministrateIngredGroups;
+import MCRecipe.Sec.AdministrateRecipeGroups;
+import MCRecipe.Sec.AdministrateUsers;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Sec.JComboBox_ING_A;
 import forall.GradientJPanel;
@@ -79,7 +80,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public JComboBox jComboBoxVenorsTradnames = new JComboBox();
     private CompareRecipes compareRecipes;
     private AdministrateUsers administrateUsers;
-    private AdministrateGroups administrateGroups;
+    private AdministrateRecipeGroups administrateRecipeGroups;
+    private AdministrateIngredGroups administrateIngredGroups;
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "qew123";
 
@@ -159,7 +161,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private boolean verifyUser() {
         //
         String where = "username ='" + getUserName() + "' and pass ='" + getPass() + "'";
-        int userConfirmed = HelpA.getRowCount(sql, AdministrateUsers.TABLE_NAME, where);
+        int userConfirmed = HelpA.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
         boolean userConfirmed_ = userConfirmed >= 1;
         //
         if (userConfirmed_ == false && freeEntranceEnabled() == false) {//&& freeEntranceEnabled() == false
@@ -175,7 +177,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private boolean freeEntranceEnabled() {
         String where = "username =" + ADMIN_RULE_ENTRANCE_ENABLED + " and role ='enabled'";
-        int freeEntrance = HelpA.getRowCount(sql, AdministrateUsers.TABLE_NAME, where);
+        int freeEntrance = HelpA.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
         boolean freeEntrance_ = freeEntrance >= 1;
         return freeEntrance_;
     }
@@ -431,6 +433,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel46 = new javax.swing.JLabel();
         jButton19 = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
+        jButton20 = new javax.swing.JButton();
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -845,6 +848,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel54.setForeground(new java.awt.Color(102, 102, 102));
         jLabel54.setText(LNG.RECIPE_GROUPS());
 
+        jButton20.setText("jButton20");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
         jPanelHome.setLayout(jPanelHomeLayout);
         jPanelHomeLayout.setHorizontalGroup(
@@ -864,7 +874,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel54))
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton20)))
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(443, 443, 443)
@@ -908,32 +921,36 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel46)))
-                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel69)
-                        .addGap(13, 13, 13)
-                        .addComponent(jTextFieldHomeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel72)
-                            .addComponent(jLabel54))
-                        .addGap(13, 13, 13)
                         .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                                .addGap(164, 164, 164)
+                                .addComponent(jLabel69)
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextFieldHomeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel72)
+                                    .addComponent(jLabel54))
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13)
-                        .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
-                        .addComponent(jLabelHomeVersion)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelHomeVersion1))
+                        .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton20)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
+                .addComponent(jLabelHomeVersion)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelHomeVersion1))
         );
 
         jTabbedPane1.addTab("*HOME", jPanelHome);
@@ -3852,13 +3869,22 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton_sequence_next_recipeActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        if (administrateGroups == null) {
-            administrateGroups = new AdministrateGroups(this, sql, sql_additional);
-            administrateGroups.setVisible(true);
+        if (administrateRecipeGroups == null) {
+            administrateRecipeGroups = new AdministrateRecipeGroups(this, sql, sql_additional);
+            administrateRecipeGroups.setVisible(true);
         } else {
-            administrateGroups.setVisible(true);
+            administrateRecipeGroups.setVisible(true);
         }
     }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        if (administrateIngredGroups == null) {
+            administrateIngredGroups = new AdministrateIngredGroups(this, sql, sql_additional);
+            administrateIngredGroups.setVisible(true);
+        } else {
+            administrateIngredGroups.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3916,6 +3942,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     protected javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     protected javax.swing.JButton jButton3;
     protected javax.swing.JButton jButton4;
     protected javax.swing.JButton jButton5;

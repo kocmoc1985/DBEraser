@@ -21,46 +21,42 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateUsers extends AdministrateRecipeGroups {
+public class AdministrateIngredGroups extends AdministrateRecipeGroups {
 
-    public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
-
-    public AdministrateUsers(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateIngredGroups(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(mc_recipe, sql, sql_additional);
     }
 
     @Override
-    public void initBasicTab() {
+    public void actionsAfterShowTable() {
+    }
+    
+    @Override
+     public void initBasicTab() {
         //
-        TABLE_NAME = USER_ADM_TBL_NAME;
-        TABLE_ID = "id";
+        TABLE_NAME = "Ingred_Group";
+        TABLE_ID = "Id";
         //
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
             @Override
             public RowDataInvert[] getConfigTableInvert() {
-                RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "id", "ID", "", true, true, false);
                 //
-                RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "userName", "USER", "", true, true, false);
+                RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Id", "ID", "", true, true, false);
                 //
-                RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
+                RowDataInvert group = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Grupp", "GROUP", "", true, true, false);
                 //
-                RowDataInvert role = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
-                //
-                RowDataInvert dateCreated = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "dateCreated", "CREATED ON", "", true, true, false);
-                //
-                RowDataInvert dateChanged = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "dateChanged", "UPDATED ON", "", true, true, false);
+                RowDataInvert descr = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "Descr", "DESCRIPTION", "", true, true, false);
                 //
                 id.setUneditable();
-                dateCreated.setUneditable();
-                dateChanged.setUneditable();
                 //
-                RowDataInvert[] rows = {id, user, pass, role, dateCreated, dateChanged};
+                RowDataInvert[] rows = {id, group, descr};
                 //
                 return rows;
             }
 
             @Override
             public void showTableInvert() {
+                //
                 TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "vendors_2");
                 //
                 TABLE_INVERT = null;
@@ -106,4 +102,5 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
             }
         };
     }
+    
 }
