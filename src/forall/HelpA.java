@@ -20,12 +20,14 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -1448,6 +1450,55 @@ public class HelpA {
         return JOptionPane.showConfirmDialog(null, jtf, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
+    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String regex, String msg) {
+        tfc.setRegex(regex);
+        requestFocus(tfc);
+        return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    public static class TextFieldCheck extends JTextField implements KeyListener {
+
+        private String regex;
+        private final Font FONT_1 = new Font("Arial", Font.BOLD, 16);
+
+        public void setRegex(String regex) {
+            this.regex = regex;
+            this.addKeyListener(this);
+            this.setFont(FONT_1);
+        }
+
+        @Override
+        public String getText() {
+            if (super.getText().matches(regex)) {
+                return super.getText();
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong format");
+                return null;
+            }
+        }
+
+        public String getText_() {
+            return super.getText();
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) {
+            if (getText_().matches(regex)) {
+                setForeground(Color.GREEN);
+            } else {
+                setForeground(Color.RED);
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent ke) {
+        }
+    }
+
     public static boolean chooseFromComboBoxDialog(JComboBox box, String msg) {
         return JOptionPane.showConfirmDialog(null, box, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
@@ -1489,8 +1540,6 @@ public class HelpA {
         }
     }
     public static Border initialComboBoxBorder;
-
-    
     private static final HashMap<String, String> fakeValuesMap = new HashMap<String, String>();
 
     static {
@@ -1760,7 +1809,6 @@ public class HelpA {
         //
         return jbox;
     }
-    
 
     public static String getValueResultSet(ResultSet rs, int index) {
         try {
@@ -1797,11 +1845,12 @@ public class HelpA {
         //
         return null;
     }
-    
+
     /**
      * Returns nulls instead of 'NULLS'
+     *
      * @param box
-     * @return 
+     * @return
      */
     public static String getComboBoxSelectedValueB(JComboBox box) {
         Object val = box.getSelectedItem();

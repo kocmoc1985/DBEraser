@@ -206,9 +206,15 @@ public class Ingredients extends BasicTab {
     private String ingredient_code_update;
 
     private void updateIngredientName() {
-        ingredient_code_update = JOptionPane.showInputDialog("Specify Ingredient Code");
         //
-        if (ingredient_code_update == null) {
+//        ingredient_code_update = JOptionPane.showInputDialog("Specify Ingredient Code");
+        HelpA.TextFieldCheck tfc = new HelpA.TextFieldCheck();
+        tfc.setRegex("\\d{5}");
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"\\d{5}","Specify Ingredient Code");
+        ingredient_code_update = tfc.getText();
+        //
+        if (ingredient_code_update == null || yesNo == false) {
             return;
         }
         //
