@@ -33,7 +33,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     public static int ALREADY_EXIST_RESULT = 2;
     public int RESULT;
 
-    public TextFieldCheck(SqlBasicLocal sql, String q, String regex,int columns) {
+    public TextFieldCheck(SqlBasicLocal sql, String q, String regex, int columns) {
         this.sql = sql;
         this.entryExistQuery = q;
         this.regex = regex;
@@ -77,7 +77,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         //
         if (str.matches(regex)) {
             //
-            completeQuery(entryExistQuery,str,null);
+            prepareQuery(entryExistQuery, str, null);
             //
             if (isPresent()) {
                 setForeground(Color.ORANGE);
@@ -93,7 +93,12 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         }
     }
 
-    public void completeQuery(String q, String val_1, String val_2) {
+    public void prepareQuery(String q, String val_1, String val_2) {
+        //
+        if (sql == null) {
+            return;
+        }
+        //
         try {
             sql.prepareStatement(q);
             sql.getPreparedStatement().setString(1, val_1);
@@ -103,18 +108,13 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     }
 
     private boolean isPresent() {
-        return entryExistsSql(sql);
+        if (sql == null) {
+            return false;
+        } else {
+            return entryExistsSql(sql);
+        }
     }
-
-    @Override
-    public void keyTyped(KeyEvent ke) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-    }
-
-
+    
     public boolean entryExistsSql(SqlBasicLocal sql) {
         try {
             //
@@ -131,4 +131,14 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         //
         return false;
     }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke) {
+    }
+
+    
 }
