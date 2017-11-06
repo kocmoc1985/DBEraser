@@ -1450,53 +1450,9 @@ public class HelpA {
         return JOptionPane.showConfirmDialog(null, jtf, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
-    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String regex, String msg) {
-        tfc.setRegex(regex);
+    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg) {
         requestFocus(tfc);
         return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
-    }
-
-    public static class TextFieldCheck extends JTextField implements KeyListener {
-
-        private String regex;
-        private final Font FONT_1 = new Font("Arial", Font.BOLD, 16);
-
-        public void setRegex(String regex) {
-            this.regex = regex;
-            this.addKeyListener(this);
-            this.setFont(FONT_1);
-        }
-
-        @Override
-        public String getText() {
-            if (super.getText().matches(regex)) {
-                return super.getText();
-            } else {
-                JOptionPane.showMessageDialog(null, "Wrong format");
-                return null;
-            }
-        }
-
-        public String getText_() {
-            return super.getText();
-        }
-
-        @Override
-        public void keyReleased(KeyEvent ke) {
-            if (getText_().matches(regex)) {
-                setForeground(Color.GREEN);
-            } else {
-                setForeground(Color.RED);
-            }
-        }
-
-        @Override
-        public void keyTyped(KeyEvent ke) {
-        }
-
-        @Override
-        public void keyPressed(KeyEvent ke) {
-        }
     }
 
     public static boolean chooseFromComboBoxDialog(JComboBox box, String msg) {

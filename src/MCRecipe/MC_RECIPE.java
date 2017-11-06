@@ -3757,11 +3757,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private boolean verifyPasswordUserAdmin() {
+        //
         JTextField jtf = new JTextField();
         jtf.setForeground(Color.WHITE);
         HelpA.chooseFromJTextField(jtf, "Specify password");
         String pwd = jtf.getText();
-
         //
         if (pwd == null || pwd.isEmpty()) {
             return false;

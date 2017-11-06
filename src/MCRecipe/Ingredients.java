@@ -8,6 +8,7 @@ import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.JTB;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
@@ -18,6 +19,7 @@ import MyObjectTable.SaveIndicator;
 import forall.HelpA;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
+import forall.TextFieldCheck;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -205,26 +207,26 @@ public class Ingredients extends BasicTab {
     //
     private String ingredient_code_update;
 
-    private void updateIngredientName() {
+    private boolean updateIngredientName() {
         //
-//        ingredient_code_update = JOptionPane.showInputDialog("Specify Ingredient Code");
-        HelpA.TextFieldCheck tfc = new HelpA.TextFieldCheck();
-        tfc.setRegex("\\d{5}");
+        String q = "select Name from Ingredient_Code where Name = ";
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"\\d{5}","Specify Ingredient Code");
+        TextFieldCheck tfc = new TextFieldCheck(sql,q,REGEX.INGREDIENT_CODE_REGEX);
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"Specify Ingredient Code");
         ingredient_code_update = tfc.getText();
         //
         if (ingredient_code_update == null || yesNo == false) {
-            return;
+            //
+            return false;
+            //
         }
-        //
-        String q = "select Name from Ingredient_Code where Name = " + SQL_A.quotes(ingredient_code_update, false);
         //
         boolean exists = HelpA.entryExistsSql(sql, q);
         //
         if (exists == true) {
             HelpA.showNotification("Ingredient code: " + ingredient_code_update + " exists already, choose another one");
-            return;
+            return false;
         }
         //
         String q2 = SQL_A.ingredient_update_ingred_name(ingredient_code_update);
@@ -233,9 +235,12 @@ public class Ingredients extends BasicTab {
             sql.execute(q2, mCRecipe);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         //
         updateTables(ingredient_code_update);
+        //
+        return true;
     }
 
     public void addIngredient(boolean fromScratch) {
@@ -258,7 +263,9 @@ public class Ingredients extends BasicTab {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        updateIngredientName();
+        if(updateIngredientName() == false){
+            return;
+        }
         //
         if (fromScratch) {
             clearRows(TABLE_INVERT, 1, 4);
