@@ -33,10 +33,16 @@ public interface SqlBasicLocal {
 
     public void prepareStatement(String q) throws SQLException;
 
+     /**
+     * @deprecated
+     */
     public int executeUpdatePreparedStatement() throws SQLException;
 
     public PreparedStatement getPreparedStatement();
 
+     /**
+     * @deprecated
+     */
     public PreparedStatement prepareStatementB(String q) throws SQLException;
 
     public Connection getConnection();

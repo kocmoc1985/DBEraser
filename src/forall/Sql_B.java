@@ -267,6 +267,9 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     }
 
     @Override
+    /**
+     * @deprecated
+     */
     public PreparedStatement prepareStatementB(String q) throws SQLException {
         return connection.prepareStatement(q);
     }
@@ -282,6 +285,9 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     }
 
     @Override
+    /**
+     * @deprecated
+     */
     public int executeUpdatePreparedStatement() throws SQLException {
         return p_statement.executeUpdate();
     }

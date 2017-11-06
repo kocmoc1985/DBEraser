@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
  */
 public class TextFieldCheck extends JTextField implements KeyListener {
 
-    private SqlBasicLocal sql;
+    public SqlBasicLocal sql;
     private String entryExistQuery;
     private String regex;
     private final Font FONT_1 = new Font("Arial", Font.BOLD, 16);
@@ -32,10 +33,11 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     public static int ALREADY_EXIST_RESULT = 2;
     public int RESULT;
 
-    public TextFieldCheck(SqlBasicLocal sql, String q, String regex) {
+    public TextFieldCheck(SqlBasicLocal sql, String q, String regex,int columns) {
         this.sql = sql;
         this.entryExistQuery = q;
         this.regex = regex;
+        setColumns(columns);
         initOther();
     }
 
@@ -75,9 +77,9 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         //
         if (str.matches(regex)) {
             //
-            String q = entryExistQuery + quotes(str, false);
+            completeQuery(entryExistQuery,str,null);
             //
-            if (isPresent(q)) {
+            if (isPresent()) {
                 setForeground(Color.ORANGE);
                 RESULT = ALREADY_EXIST_RESULT;
             } else {
@@ -91,8 +93,17 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         }
     }
 
-    private boolean isPresent(String q) {
-        return entryExistsSql(sql, q);
+    public void completeQuery(String q, String val_1, String val_2) {
+        try {
+            sql.prepareStatement(q);
+            sql.getPreparedStatement().setString(1, val_1);
+        } catch (SQLException ex) {
+            Logger.getLogger(TextFieldCheck.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private boolean isPresent() {
+        return entryExistsSql(sql);
     }
 
     @Override
@@ -103,29 +114,16 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     public void keyPressed(KeyEvent ke) {
     }
 
-    private String quotes(String str, boolean number) {
-        //
-        if (str == null || str.equals("NULL")) {
-            return "NULL";
-        }
-        //
-        if (number) {
-            return str.replaceAll("'", "");
-        } else {
-            if (str.contains("'")) {
-                return str;
-            } else {
-                return "'" + str + "'";
-            }
-        }
-    }
 
-    private boolean entryExistsSql(SqlBasicLocal sql, String q) {
+    public boolean entryExistsSql(SqlBasicLocal sql) {
         try {
-            ResultSet rs = sql.execute(q);
+            //
+            ResultSet rs = sql.getPreparedStatement().executeQuery();
+            //
             if (rs.next()) {
                 return true;
             }
+            //
         } catch (SQLException ex) {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return false;

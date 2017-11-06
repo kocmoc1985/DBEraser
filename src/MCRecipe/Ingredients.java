@@ -28,7 +28,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.GridLayout;
@@ -209,24 +208,17 @@ public class Ingredients extends BasicTab {
 
     private boolean updateIngredientName() {
         //
-        String q = "select Name from Ingredient_Code where Name = ";
+        String q = "select Name from Ingredient_Code where Name = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql,q,REGEX.INGREDIENT_CODE_REGEX);
+        TextFieldCheck tfc = new TextFieldCheck(sql,q,REGEX.INGRED_REGEX,20);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"Specify Ingredient Code");
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"Specify Ingredient Code, format: " + REGEX.INGRED_REGEX_DESCR);
         ingredient_code_update = tfc.getText();
         //
         if (ingredient_code_update == null || yesNo == false) {
             //
             return false;
             //
-        }
-        //
-        boolean exists = HelpA.entryExistsSql(sql, q);
-        //
-        if (exists == true) {
-            HelpA.showNotification("Ingredient code: " + ingredient_code_update + " exists already, choose another one");
-            return false;
         }
         //
         String q2 = SQL_A.ingredient_update_ingred_name(ingredient_code_update);

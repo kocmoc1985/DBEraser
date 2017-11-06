@@ -6,6 +6,7 @@ package MCRecipe;
 
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
@@ -20,6 +21,7 @@ import forall.HTMLPrint;
 import forall.HelpA;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
+import forall.TextFieldCheck;
 import images.IconUrls;
 import java.awt.Color;
 import java.awt.Component;
@@ -326,7 +328,7 @@ public class RecipeDetailed extends BasicTab {
     public String getRelease() {
         return getValueTableInvert("Release");
     }
-    
+
     public String getVersion() {
         return getRelease();
     }
@@ -1081,26 +1083,22 @@ public class RecipeDetailed extends BasicTab {
 
     private boolean updateRecipeCode() {
         //
-        recipe_code_update = JOptionPane.showInputDialog("Specify Recipe Code");
-        //
-        if (recipe_code_update == null) {
-            return false;
-        }
-        //
         String q = "select * from Recipe_Prop_Main"
-                + " where Code ='" + recipe_code_update + "'"
+                + " where Code =?"
                 + " and Release = '" + getRelease() + "'";
         //
-        OUT.showMessage(q);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.RECIPE_REGEX,25);
         //
-        boolean exists = HelpA.entryExistsSql(sql, q);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Recipe Code, format: " + REGEX.RECIPE_REGEX_DESCR);
         //
-        if (exists == true) {
-            HelpA.showNotification("Recipe code: " + recipe_code_update
-                    + "and Release: " + getRelease() + ","
-                    + " exists already!");
+        recipe_code_update = tfc.getText();
+        //
+        if (recipe_code_update == null || yesNo == false) {
+            //
             return false;
+            //
         }
+        //
         //
         String q2 = SQL_A.recipe_detailed_update_recipe_name(recipe_code_update);
         //
