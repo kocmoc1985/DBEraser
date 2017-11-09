@@ -160,6 +160,32 @@ public class Ingredients extends BasicTab {
         return null;
     }
 
+    public boolean deleteIngredient() {
+        //
+        if (HelpA.confirm() == false) {
+            return false;
+        }
+        //
+        String ingredCode = getIngredCode();
+        //
+        if (ingredCode == null || ingredCode.isEmpty()) {
+            return false;
+        }
+        //
+        String q = SQL_A.ingredients_delete_ingred(PROC.PROC_65, ingredCode);
+        //
+        try {
+            sql.execute(q, mCRecipe);
+            //
+            updateTables(null);
+            //
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     public void addIngredientToTable4RecipeDetailed() {
         //
         if (HelpA.confirm(INGR.CINFIRM_MSG_1()) == false) {
@@ -210,9 +236,9 @@ public class Ingredients extends BasicTab {
         //
         String q = "select Name from Ingredient_Code where Name = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql,q,REGEX.INGRED_REGEX,20);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.INGRED_REGEX, 20);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc,"Specify Ingredient Code, format: " + REGEX.INGRED_REGEX_DESCR);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Ingredient Code, format: " + REGEX.INGRED_REGEX_DESCR);
         ingredient_code_update = tfc.getText();
         //
         if (ingredient_code_update == null || yesNo == false) {
@@ -255,7 +281,7 @@ public class Ingredients extends BasicTab {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if(updateIngredientName() == false){
+        if (updateIngredientName() == false) {
             return;
         }
         //
@@ -278,7 +304,10 @@ public class Ingredients extends BasicTab {
     }
 
     public void delete_from_table_3() {
-        HelpA.confirm();
+        //
+        if (HelpA.confirm() == false) {
+            return;
+        }
         //
         int selected_row = mCRecipe.jTable_Ingred_Table3.getSelectedRow();
         //

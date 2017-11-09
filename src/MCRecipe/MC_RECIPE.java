@@ -624,6 +624,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel43 = new javax.swing.JLabel();
         jButtonIngredExpressInfoPrint = new javax.swing.JButton();
         jPanel32 = new javax.swing.JPanel();
+        jButton_Ingred_delete_Ingred = new javax.swing.JButton();
         jButton_Ingred_Add_Ingredient_From_Scratch = new javax.swing.JButton();
         jButton_Ingred_Add_Ingredient = new javax.swing.JButton();
         jButtonIngredPrint = new javax.swing.JButton();
@@ -1903,7 +1904,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel29.setText(INGR.PERC_RUBBER());
 
-        jPanel33.setLayout(new java.awt.GridLayout(1, 0, 5, 0));
+        jPanel33.setLayout(new java.awt.GridLayout());
 
         jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
         jButtonIngredGo.addActionListener(new java.awt.event.ActionListener() {
@@ -2165,6 +2166,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel32.setLayout(new java.awt.GridLayout(1, 0));
 
+        jButton_Ingred_delete_Ingred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
+        jButton_Ingred_delete_Ingred.setToolTipText(TOOLTIP.ADD_INGR_FROM_SCRATCH());
+        jButton_Ingred_delete_Ingred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Ingred_delete_IngredActionPerformed(evt);
+            }
+        });
+        jPanel32.add(jButton_Ingred_delete_Ingred);
+
         jButton_Ingred_Add_Ingredient_From_Scratch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add2.png"))); // NOI18N
         jButton_Ingred_Add_Ingredient_From_Scratch.setToolTipText(TOOLTIP.ADD_INGR_FROM_SCRATCH());
         jButton_Ingred_Add_Ingredient_From_Scratch.addActionListener(new java.awt.event.ActionListener() {
@@ -2242,7 +2252,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addGroup(jPanel_IngredientsLayout.createSequentialGroup()
                                 .addComponent(jLabel39)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel_IngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -3871,6 +3881,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
+    private void jButton_Ingred_delete_IngredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Ingred_delete_IngredActionPerformed
+       //
+        ingredients.deleteIngredient();
+       //
+    }//GEN-LAST:event_jButton_Ingred_delete_IngredActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3993,6 +4009,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JButton jButton_Ingred_Add_Ingredient_From_Scratch;
     private javax.swing.JButton jButton_Ingred_Add_Table_3;
     private javax.swing.JButton jButton_Ingred_Del_Table_3;
+    private javax.swing.JButton jButton_Ingred_delete_Ingred;
     protected javax.swing.JButton jButton_Ingredients_Save_Comments;
     protected javax.swing.JButton jButton_Ingredients_Save_Invert;
     protected javax.swing.JButton jButton_Ingredients_Save_Table3;

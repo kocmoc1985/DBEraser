@@ -92,6 +92,8 @@ public class SQL_A {
                 + quotes(param1, false) + ")"
                 + " order by TestCode";
     }
+    
+    
 
     /**
      *
@@ -99,8 +101,7 @@ public class SQL_A {
      * @return
      */
     public static String vendors_add_new_vendor(String PROC, String param1) {
-        return PROC + " "
-                + quotes(param1, false) + "";
+        return PROC + " " + quotes(param1, false) + "";
     }
 
     /**
@@ -875,6 +876,16 @@ public class SQL_A {
                 return "'" + param + "'";
             }
         }
+    }
+    
+    /**
+     * 
+     * @param PROC
+     * @param param1 - ingredName
+     * @return 
+     */
+    public static String ingredients_delete_ingred(String PROC, String param1) {
+        return PROC + " " + quotes(param1, false) + "";
     }
 
     /**
