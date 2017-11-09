@@ -48,4 +48,8 @@ public class TOOLTIP {
     public static String ADD_NOTE() {
         return LANG_ENG ? "Add note" : "Notiz ergänzen";
     }
+    
+     public static String DELETE_INGRED() {
+        return LANG_ENG ? "Delete ingredient" : "Ingredienz löschen";
+    }
 }

@@ -3326,7 +3326,7 @@
                           <Image iconType="3" name="/images/clear.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="TOOLTIP.ADD_INGR_FROM_SCRATCH()" type="code"/>
+                          <Connection code="TOOLTIP.DELETE_INGRED()" type="code"/>
                         </Property>
                       </Properties>
                       <Events>

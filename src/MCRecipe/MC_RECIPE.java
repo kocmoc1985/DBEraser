@@ -2167,7 +2167,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel32.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_Ingred_delete_Ingred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
-        jButton_Ingred_delete_Ingred.setToolTipText(TOOLTIP.ADD_INGR_FROM_SCRATCH());
+        jButton_Ingred_delete_Ingred.setToolTipText(TOOLTIP.DELETE_INGRED());
         jButton_Ingred_delete_Ingred.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Ingred_delete_IngredActionPerformed(evt);
