@@ -2,7 +2,8 @@
 1. Create Linked servers, find instruction on google drive. (You will need following files:
 )
 
-2. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql)
+2. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql).
+	You also need to fill the CPM with data by detaching it on some Server and then attaching it.
 
 3. Create Database "NCPD" using NCPD.sql -> OBS! you will need to execute the NCPD.sql *twice*
 the first time it fails because some tables/views are created before others.

@@ -26,3 +26,7 @@
 [2017-10-13 14:33:58]   select name,xtype,refdate from sysobjects where xtype = 'U'
 [2017-10-13 14:34:02]   select * from interf
 [2017-10-13 14:35:33]   select * from interf
+[2017-11-15 13:34:38]   select * from MC_BATCHINFO
+[2017-11-15 13:35:16]   select * from MC_BATCHINFO WHERE ROWNUM <= 10
+[2017-11-15 13:38:07]   select * from MC_BATCHINFO WHERE ROWNUM <= 20
+[2017-11-15 14:13:05]   select * from MC_BATCHINFO WHERE ROWNUM <= 20

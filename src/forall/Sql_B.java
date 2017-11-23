@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * @author Administrator
  */
 public class Sql_B implements SqlBasicLocal, SqlBasic {
@@ -79,7 +79,6 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         }
     }
 
-    
     public void connect_oracle(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
         //
         //Name of .jar = ojdbc6.jar
@@ -93,12 +92,17 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         //Default port = 1521
         String url = "jdbc:oracle:thin:" + userName + "/" + password + "@" + host + ":" + port + "/" + databaseName;
         //
-        logg_connection_string(url);      
+        logg_connection_string(url);
         //
         connection = DriverManager.getConnection(url);
         //
-        statement = connection.createStatement();
-        statement_2 = connection.createStatement();
+        if (CREATE_STATEMENT_SIMPLE == true) {
+            statement = connection.createStatement();
+            statement_2 = connection.createStatement();
+        } else {
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            statement_2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        }
         //
         if (statement == null) {
             SimpleLoggerLight.logg("sql_conn.log", "Connection to: " + host + " / dbname: " + databaseName + " failed");

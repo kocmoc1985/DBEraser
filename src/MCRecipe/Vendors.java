@@ -220,7 +220,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         String q_4 = SQL_B.basic_combobox_query("[Group]", "Ingredient_Code");
         RowDataInvert group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Group", T_INV.LANG("GROUP"), "", true, true, false);
         //
-        RowDataInvert group_name = new RowDataInvert("Ingred_Group", "Id", false, "Descr", T_INV.LANG("GROUP NAME"), "", true, true, false);
+        RowDataInvert group_name = new RowDataInvert("Ingred_Group", "Id", false, "GroupName", T_INV.LANG("GROUP NAME"), "", true, true, false);
         //
         //
         String q_5 = SQL_B.basic_combobox_query("Form", "Ingredient_Code");
