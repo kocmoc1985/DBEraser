@@ -144,17 +144,34 @@ public class RecipeDetailed extends BasicTab {
         return false;
     }
 
+    public static final String STATUS_S = "S";
+    public static final String STATUS_O = "O";
+    public static final String STATUS_INACTIVE = "Inactive";
+    
     public boolean checkIfDisabled() {
         //
         String status = getStatus();
         //
-        boolean cond_1 = status.equals("S") || status.equals("O") || status.equals("Inactive");
+        boolean cond_1 = status.equals(STATUS_S) || status.equals(STATUS_O) || status.equals(STATUS_INACTIVE);
         //
         if (cond_1) {
             setBtnsDisabled(false); // this one disables
             return true;
         } else {
             setBtnsDisabled(true);// this one enables
+            return false;
+        }
+    }
+    
+    public boolean checkIfDisabled_b() {
+        //
+        String status = getStatus();
+        //
+        boolean cond_1 = status.equals(STATUS_S) || status.equals(STATUS_O) || status.equals(STATUS_INACTIVE);
+        //
+        if (cond_1) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -1197,6 +1214,11 @@ public class RecipeDetailed extends BasicTab {
 
     public void table3_change_note_name(JTable table) {
         //
+        if(checkIfDisabled_b()){
+            HelpA.stopEditJTable(table);
+            return;
+        }
+        //
         if (HelpA.getIfAnyRowChosen(table) == false) {
             HelpA.showNotification("Please choose a row in the table to perform this action");
             return;
@@ -1265,6 +1287,11 @@ public class RecipeDetailed extends BasicTab {
 
     public void table2_change_note_value(JTable table) {
         //
+         if(checkIfDisabled_b()){
+            HelpA.stopEditJTable(table);
+            return;
+        }
+        //
         if (HelpA.getIfAnyRowChosen(table) == false) {
             HelpA.showNotification("Please choose a row in the table to perform this action");
             return;
@@ -1286,7 +1313,7 @@ public class RecipeDetailed extends BasicTab {
             return;
         }
         //
-        if (id.equals("null")) {
+        if (id == null || id.isEmpty() || id.equals("null")) {
             table2_change_notevalue_if_id_missing(table, table.getSelectedRow(), value);
             recipeInitial.fill_table_2_and_3();
             return;

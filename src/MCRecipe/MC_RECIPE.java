@@ -4305,11 +4305,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
             recipeDetailed.showTableInvert();
             //
+            recipeDetailed.checkIfDisabled();
+            //
             recipeDetailed.fill_table_4(true);
             //
             recipeDetailed.reset();
-            //
-            recipeDetailed.checkIfDisabled();
             //
             recipeDetailed.autoSelectFirstRowTable4();
             //
@@ -4420,11 +4420,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         mousePressedOnTab(me);
         //
         boolean cond_1 = HelpA.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
-        //
+        //11
         //
         if (me.getSource() == jTable3 && (me.getClickCount() == 1)) {
             //
             recipeInitial.fillNotes();
+            //
+        }else if (me.getSource() == jTable3 && (me.getClickCount() == 2)) {
+            //
+            recipeDetailed.table3_change_note_name(jTable3);
+            //
+        }else if (me.getSource() == jTable2 && (me.getClickCount() == 2)) {
+            //
+            recipeDetailed.table2_change_note_value(jTable2);
             //
         } else if (me.getSource() == jTable1 && (me.getClickCount() == 1)) {
             //
