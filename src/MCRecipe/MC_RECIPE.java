@@ -1530,6 +1530,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel19.setLayout(new java.awt.GridLayout(1, 0));
 
+        jTableRecipeDetailedTable4HelpTable.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jTableRecipeDetailedTable4HelpTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1908,7 +1909,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel29.setText(INGR.PERC_RUBBER());
 
-        jPanel33.setLayout(new java.awt.GridLayout());
+        jPanel33.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
         jButtonIngredGo.addActionListener(new java.awt.event.ActionListener() {

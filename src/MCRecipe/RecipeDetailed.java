@@ -684,7 +684,10 @@ public class RecipeDetailed extends BasicTab {
                     new String[]{});
             //
             table4.rightAlignValues();
+            //
             table4.alignValueByColName(t4_Descr, 2);// align left
+            table4.alignValueByColName(t4_material, 2);
+            table4.alignValueByColName(t4_id, 2);
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
@@ -771,7 +774,7 @@ public class RecipeDetailed extends BasicTab {
             //
             //
             HelpA.rightAlignValuesJTable(table);
-            HelpA.alignValueByColName(table, t4_Descr, 2);// left align
+//            HelpA.alignValueByColName(table, t4_Descr, 2);// left align
             //
         } catch (Exception ex) {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
