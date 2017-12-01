@@ -11,11 +11,15 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -32,6 +36,10 @@ public class HTMLPrint extends javax.swing.JFrame {
         initComponents();
         //
         recipeDetailedBuildTable4WithTableInvert(recipe, jtable, jtableSumm, table, startColumn, cfg, CSSRules, jtableColsToInclude);
+        //
+        this.setTitle("Print");
+        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void recipeDetailedBuildTable4WithTableInvert(String recipe, JTable jtable, JTable jtableSumm, Table table, int startColumn,
@@ -380,7 +388,12 @@ public class HTMLPrint extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            //
             jEditorPane1.print();
+            //
+//            PrinterJob job = PrinterJob.getPrinterJob();
+//            job.setJobName("Recipe");
+            //
         } catch (PrinterException ex) {
             Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
         }

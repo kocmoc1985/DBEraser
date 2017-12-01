@@ -108,7 +108,7 @@ public class TableInvertBasicRepport {
                     .add(
                     //                    cmp.image(getClass().getResourceAsStream("../images/dynamicreports.png")).setFixedDimension(80, 80),
                     cmp.text("MCRecipe").setStyle(titleStyle).setHorizontalAlignment(HorizontalAlignment.LEFT),
-                    cmp.text("Repport").setStyle(titleStyle).setHorizontalAlignment(HorizontalAlignment.RIGHT))
+                    cmp.text("Report").setStyle(titleStyle).setHorizontalAlignment(HorizontalAlignment.RIGHT))
                     .newRow()
                     .add(cmp.filler().setStyle(stl.style().setTopBorder(stl.pen2Point())).setFixedHeight(10)))
                     .pageFooter(Templates.footerComponent)
