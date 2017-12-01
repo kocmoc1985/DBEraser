@@ -881,16 +881,22 @@ public class HelpA {
         String format = "%2.";
         String x = p.getProperty(colName, defaultFormat);
         //
-        try{
+        try {
             Integer.parseInt(x);
             return format += x + "f";
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return x;
         }
         //
     }
 
+    /**
+     *
+     * @tags float, align, right
+     * @param table
+     */
     public static void rightAlignValuesJTable(JTable table) {
+        //
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
         //
@@ -898,6 +904,53 @@ public class HelpA {
             table.getColumnModel().getColumn(x).setCellRenderer(rightRenderer);
         }
         //
+    }
+
+    /**
+     * @tags float, align, left
+     * @param table
+     * @param colName 
+     */
+    public static void leftAlignValueByColName(JTable table, String colName) {
+        //
+        DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        //
+        int colNr = getColByName(table, colName);
+        //
+        if (colNr != -1) {
+            table.getColumnModel().getColumn(colNr).setCellRenderer(leftRenderer);
+        } 
+    }
+    
+    public static void rightAlignValueByColName(JTable table, String colName) {
+        //
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        //
+        int colNr = getColByName(table, colName);
+        //
+        if (colNr != -1) {
+            table.getColumnModel().getColumn(colNr).setCellRenderer(rightRenderer);
+        } 
+    }
+    
+    /**
+     * 
+     * @param table
+     * @param colName
+     * @param rightOrLeft 2=left, 4=right
+     */
+    public static void alignValueByColName(JTable table, String colName,int rightOrLeft) {
+        //
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(rightOrLeft);
+        //
+        int colNr = getColByName(table, colName);
+        //
+        if (colNr != -1) {
+            table.getColumnModel().getColumn(colNr).setCellRenderer(renderer);
+        } 
     }
 
     private static boolean sortAsInteger(int colNr, String[] headers, String[] colNames) {

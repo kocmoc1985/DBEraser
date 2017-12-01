@@ -84,7 +84,8 @@ public class RecipeDetailed extends BasicTab {
     private boolean CHANGES_TEMP_T4_APPLIED = false;
     private boolean MARKED_FOR_DELITION = false;
     //
-
+    private static Properties TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
+    
     public RecipeDetailed(MC_RECIPE mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitial recipeInitial) {
         super(sql, sql_additional, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
@@ -627,6 +628,8 @@ public class RecipeDetailed extends BasicTab {
         //
         MARKED_FOR_DELITION = true;
     }
+    
+    
 
     public void fill_table_4(boolean recreateRecipeTempTable) {
         //
@@ -667,12 +670,21 @@ public class RecipeDetailed extends BasicTab {
 //                    new String[]{t4_density},
 //                    new String[]{t4_id});
             //
-            table4.build_table_common_with_rounding(rs, q1, table4, "%2.2f",
+//            table4.build_table_common_with_rounding(rs, q1, "%2.2f",
+//                    new String[]{t4_id, t4_loadingSeq, t4_material},
+//                    new String[]{t4_density},
+//                    new String[]{t4_id});
+            //
+            table4.build_table_common_with_rounding_properties(
+                    rs,
+                    q1,
+                    TABLE_4_FORMATS,
+                    "%2.2f",
                     new String[]{t4_id, t4_loadingSeq, t4_material},
-                    new String[]{t4_density},
-                    new String[]{t4_id});
+                    new String[]{});
             //
             table4.rightAlignValues();
+            table4.alignValueByColName(t4_Descr, 2);// align left
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
@@ -725,12 +737,10 @@ public class RecipeDetailed extends BasicTab {
 //                    new String[]{t4_density},
 //                    new String[]{});
             //
-            Properties pFormats = HelpA.properties_load_properties(MC_RECIPE.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
-            //
             HelpA.build_table_common_with_rounding_properties(
                     rs,
                     q,
-                    pFormats,
+                    TABLE_4_FORMATS,
                     table,
                     "%2.2f",
                     new String[]{t4_id, t4_loadingSeq, t4_material},
@@ -759,7 +769,9 @@ public class RecipeDetailed extends BasicTab {
             //
             HelpA.setValueGivenRow(table, 0, t4_id, "");
             //
+            //
             HelpA.rightAlignValuesJTable(table);
+            HelpA.alignValueByColName(table, t4_Descr, 2);// left align
             //
         } catch (Exception ex) {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
