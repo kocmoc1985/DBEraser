@@ -3607,7 +3607,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButtonVendorsAddToTable4ActionPerformed
 
     private void jButtonRecipeDetailedSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedSwapActionPerformed
+        //
         recipeDetailed.phrsAndWeights();
+        //
+        try {
+            HelpA.run_application_exe_or_jar("PropertiesReader.jar", "properties");
+        } catch (IOException ex) {
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonRecipeDetailedSwapActionPerformed
 
     private void jButtonVendorsDeleteFromTable3_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVendorsDeleteFromTable3_2ActionPerformed
