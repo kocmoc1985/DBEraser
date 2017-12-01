@@ -568,6 +568,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButton_r_detailed_prev = new javax.swing.JButton();
         jButton_r_detailed_next = new javax.swing.JButton();
         jPanel39 = new javax.swing.JPanel();
+        jButton20 = new javax.swing.JButton();
         jButtonRecipeDetailedUndoDelete = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -1467,6 +1468,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTabbedPane1.addTab("RECIPE OVERVIEW", jScrollPaneRecipeInitial);
 
         jPanel_RecipeDetailed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel_RecipeDetailed.setMaximumSize(new java.awt.Dimension(1574, 32767));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
@@ -1693,6 +1695,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel39.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel39.setLayout(new java.awt.GridLayout(1, 0, 1, 0));
 
+        jButton20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton20.setForeground(new java.awt.Color(204, 51, 0));
+        jButton20.setText("0.0");
+        jButton20.setToolTipText("Edit ammount of digits after comma. Restart of program is required!");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+        jPanel39.add(jButton20);
+
         jButtonRecipeDetailedUndoDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/undo2.png"))); // NOI18N
         jButtonRecipeDetailedUndoDelete.setToolTipText("Undo delete");
         jButtonRecipeDetailedUndoDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -1780,11 +1793,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
                         .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(103, 103, 103)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3895,6 +3908,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
        //
     }//GEN-LAST:event_jButton_Ingred_delete_IngredActionPerformed
 
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        try {
+            HelpA.run_application_exe_or_jar("PropertiesReader.jar", "properties");
+        } catch (IOException ex) {
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3958,6 +3979,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     protected javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     protected javax.swing.JButton jButton3;
     protected javax.swing.JButton jButton4;
     protected javax.swing.JButton jButton5;
