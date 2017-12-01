@@ -83,8 +83,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -653,6 +655,28 @@ public class HelpA {
         return obj;
     }
 
+    public static synchronized void build_table_common_with_rounding_properties(ResultSet rs, String q, Properties props, JTable jTable, String defaultFormat, String[] skipColumnsNames, String[] sortAsInt) {
+        //
+        if (rs == null) {
+            return;
+        }
+        //
+        HelpA.setTrackingToolTip(jTable, q);
+        //
+        try {
+            //
+            String[] headers = getHeaders(rs);
+            //
+            Object[][] content = getContentRounding_properties(rs, props, defaultFormat, headers, skipColumnsNames, sortAsInt);
+            //
+            jTable.setModel(new DefaultTableModelM(content, headers, sortAsInt, jTable));
+            jTable.setAutoCreateRowSorter(true);
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static synchronized void build_table_common_with_rounding(ResultSet rs, String q, JTable jTable, String roundingFormat, String[] skipColumnsNames, String[] exceptionColumns, String[] sortAsInt) {
         //
         if (rs == null) {
@@ -813,6 +837,67 @@ public class HelpA {
         }
         //
         return content;
+    }
+
+    private static synchronized Object[][] getContentRounding_properties(ResultSet rs, Properties pFomats, String defaultFormat, String[] headers, String[] skipColumnsNames, String[] sortAsInt) throws SQLException {
+        ResultSetMetaData rsmt;
+        Object[][] content;
+        int rows, columns;
+        rsmt = rs.getMetaData(); // får in antalet columner
+        rs.last(); // flyttar pekaren till sista positon
+        rows = rs.getRow(); // retrieves the current antalet rows och lagrar det i variabeln "rows"
+        columns = rsmt.getColumnCount(); // retrieves number of columns och lagrar det i "columns".
+        content = new Object[rows][columns]; // ger arrayen content som är en "Object"
+        //
+        // initialisering i den första demensionen är "rows" i den andra "columns"
+        //
+        for (int row = 0; row < rows; row++) {
+            rs.absolute(row + 1); // Flytta till rätt rad i resultatmängden
+            for (int col = 0; col < columns; col++) {
+                //
+                Object obj = rs.getString(col + 1);
+                //
+                if (skipRounding(col, headers, skipColumnsNames) == false) {
+                    //
+                    String roundFormat = defineRoundingByColName(col, headers, defaultFormat, pFomats);
+                    //
+                    content[row][col] = roundDouble(obj, roundFormat);//-----------------------OBS ROUNDING IS DONE HERE
+                    //
+                } else if (sortAsInteger(col, headers, sortAsInt)) {
+                    content[row][col] = Integer.parseInt(obj.toString());
+                } else {
+                    content[row][col] = obj;
+                }
+                //
+            }
+        }
+        //
+        return content;
+    }
+
+    private static String defineRoundingByColName(int col, String[] headers, String defaultFormat, Properties p) {
+        //
+        String colName = headers[col];
+        String format = "%2.";
+        String x = p.getProperty(colName, defaultFormat);
+        //
+        try{
+            Integer.parseInt(x);
+            return format += x + "f";
+        }catch(Exception ex){
+            return x;
+        }
+        //
+    }
+
+    public static void rightAlignValuesJTable(JTable table) {
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(SwingConstants.RIGHT);
+        //
+        for (int x = 0; x < table.getColumnCount(); x++) {
+            table.getColumnModel().getColumn(x).setCellRenderer(rightRenderer);
+        }
+        //
     }
 
     private static boolean sortAsInteger(int colNr, String[] headers, String[] colNames) {

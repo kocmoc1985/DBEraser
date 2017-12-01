@@ -33,6 +33,7 @@ import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -54,6 +55,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import mySwing.JTableM;
 
@@ -65,7 +68,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     public SqlBasicLocal sql;
     public SqlBasicLocal sql_additional;
-    public static final String PROPERTIES_PATH = "mccompound.properties";
+    public static final String TABLE_4_RECIPE_ADMIN_PROPS_PATH = "properties/table4formats.properties";
+    public static final String PROPERTIES_PATH = "properties/mccompound.properties";
     private String IO_PROPERTIES_PATH = "io.properties";
     private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitial recipeInitial;
@@ -3900,6 +3904,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    //
+                    UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+                    defaults.put("Table.gridColor", new Color(198, 195, 198));
+                    defaults.put("Table.disabled", false);
+                    defaults.put("Table.showGrid", true);
+                    defaults.put("Table.intercellSpacing", new Dimension(1, 1));
+                    //
                     break;
                 }
             }

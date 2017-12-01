@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import DBT.MC_BARCODES;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.REGEX;
@@ -29,6 +30,7 @@ import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -143,11 +145,10 @@ public class RecipeDetailed extends BasicTab {
         }
         return false;
     }
-
     public static final String STATUS_S = "S";
     public static final String STATUS_O = "O";
     public static final String STATUS_INACTIVE = "Inactive";
-    
+
     public boolean checkIfDisabled() {
         //
         String status = getStatus();
@@ -162,7 +163,7 @@ public class RecipeDetailed extends BasicTab {
             return false;
         }
     }
-    
+
     public boolean checkIfDisabled_b() {
         //
         String status = getStatus();
@@ -671,6 +672,8 @@ public class RecipeDetailed extends BasicTab {
                     new String[]{t4_density},
                     new String[]{t4_id});
             //
+            table4.rightAlignValues();
+            //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -714,11 +717,25 @@ public class RecipeDetailed extends BasicTab {
         String q = SQL_A.RecipeTemporarySelectForTable4SummTable(HelpA.updatedBy());
         //
         try {
+            //
             ResultSet rs = sql.execute(q, mCRecipe2);
-            HelpA.build_table_common_with_rounding(rs, q, table, "%2.2f", new String[]{t4_id,
-                t4_loadingSeq, t4_material},
-                    new String[]{t4_density},
+            //
+//            HelpA.build_table_common_with_rounding(rs, q, table, "%2.2f", new String[]{t4_id,
+//                t4_loadingSeq, t4_material},
+//                    new String[]{t4_density},
+//                    new String[]{});
+            //
+            Properties pFormats = HelpA.properties_load_properties(MC_RECIPE.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
+            //
+            HelpA.build_table_common_with_rounding_properties(
+                    rs,
+                    q,
+                    pFormats,
+                    table,
+                    "%2.2f",
+                    new String[]{t4_id, t4_loadingSeq, t4_material},
                     new String[]{});
+            //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -741,6 +758,8 @@ public class RecipeDetailed extends BasicTab {
             HelpA.changeTableHeaderTitleOfOneColumn(table, t4_Descr, t4_Fillfactor);
             //
             HelpA.setValueGivenRow(table, 0, t4_id, "");
+            //
+            HelpA.rightAlignValuesJTable(table);
             //
         } catch (Exception ex) {
 //            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
@@ -1104,7 +1123,7 @@ public class RecipeDetailed extends BasicTab {
                 + " where Code =?"
                 + " and Release = '" + getRelease() + "'";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.RECIPE_REGEX,25);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.RECIPE_REGEX, 25);
         //
         boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Recipe Code, format: " + REGEX.RECIPE_REGEX_DESCR);
         //
@@ -1214,7 +1233,7 @@ public class RecipeDetailed extends BasicTab {
 
     public void table3_change_note_name(JTable table) {
         //
-        if(checkIfDisabled_b()){
+        if (checkIfDisabled_b()) {
             HelpA.stopEditJTable(table);
             return;
         }
@@ -1287,7 +1306,7 @@ public class RecipeDetailed extends BasicTab {
 
     public void table2_change_note_value(JTable table) {
         //
-         if(checkIfDisabled_b()){
+        if (checkIfDisabled_b()) {
             HelpA.stopEditJTable(table);
             return;
         }

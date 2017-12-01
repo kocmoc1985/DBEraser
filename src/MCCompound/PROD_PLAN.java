@@ -6,6 +6,7 @@ package MCCompound;
 
 import MyObjectTable.ShowMessage;
 import FreeQuery.FQ;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
@@ -35,7 +36,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private final String MS_SQL = "mssql";
     private final String MY_SQL = "mysql";
     private final String ODBC = "odbc";
-    private String PROPERTIES_PATH = "mccompound.properties";
+    private String PROPERTIES_PATH = MC_RECIPE.PROPERTIES_PATH;
     private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     private JavaSysMon monitor = new JavaSysMon();
     private ClientCompound clientCompound;
