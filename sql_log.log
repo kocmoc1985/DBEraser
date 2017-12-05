@@ -1,6 +1,0 @@
-[2017-10-05 14:24:51]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Jet database engine cannot find the input table or query 'sysobjects'.  Make sure it exists and that its name is spelled correctly.
-[2017-10-13 14:29:39]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.sysobjects' doesn't exist
-[2017-10-13 14:31:34]   com.microsoft.sqlserver.jdbc.SQLServerException: Line 1: Incorrect syntax near 'from'.
-[2017-10-13 14:33:00]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Jet database engine cannot find the input table or query 'interf'.  Make sure it exists and that its name is spelled correctly.
-[2017-10-13 14:33:09]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Jet database engine cannot find the input table or query 'sysobjects'.  Make sure it exists and that its name is spelled correctly.
-[2017-10-13 14:33:26]   java.sql.SQLException: [Microsoft][ODBC Microsoft Access Driver] The Microsoft Jet database engine cannot find the input table or query 'sysobjects'.  Make sure it exists and that its name is spelled correctly.

@@ -4,6 +4,7 @@
  */
 package forall;
 
+import MCRecipe.Lang.ERRORS;
 import MCRecipe.RecipeDetailed;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnValue;
@@ -244,7 +245,13 @@ public class HTMLPrint extends javax.swing.JFrame {
         for (InvertTableRow invertTableRow : tableRowsList) {
             html += "<tr>";
             html += "<td style='background-color:light-grey'>" + invertTableRow.getColumnName() + "</td>";
-            html += "<td>" + invertTableRow.getValue(0) + "</td>";
+            //
+            try{
+               html += "<td>" + invertTableRow.getValue(0) + "</td>"; 
+            }catch(Exception ex){
+                html += "<td>" + ERRORS.VAL_MISSING_REPORT + "</td>";
+            }
+            //
             html += "</tr>";
         }
         //
