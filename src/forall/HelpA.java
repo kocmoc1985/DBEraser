@@ -185,8 +185,8 @@ public class HelpA {
      * @param path
      * @return
      */
-    public static boolean runningInNetBeans(String path) {
-        File f = new File(path);
+    public static boolean runningInNetBeans(String pathAndFileName) {
+        File f = new File(pathAndFileName);
         if (f.exists()) {
             return false;
         } else {

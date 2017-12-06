@@ -72,9 +72,11 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
         connect();
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage()); // maximize window
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setTitle("MixCont DB-interface (" + monitor.currentPid() + ")");
+        this.setTitle("MCBarcodes (" + monitor.currentPid() + ")");
         //
         jButton1.setEnabled(false);
+        //
+        show_data();
     }
 
     private void init_other() {
@@ -290,8 +292,8 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -363,7 +365,7 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
                 continue;
             }
             //
-            String formatted_value = isString("" + jTable.getValueAt(selected_row, i),true);
+            String formatted_value = isString("" + jTable.getValueAt(selected_row, i), true);
             stringBuilder.append(formatted_value);
             stringBuilder.append(",");
         }
@@ -375,15 +377,16 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     }
 
     /**
-     * 
+     *
      * @param value
-     * @param only_string_values - this means that table contains only string values
-     * @return 
+     * @param only_string_values - this means that table contains only string
+     * values
+     * @return
      */
-    private String isString(String value,boolean only_string_values) {
+    private String isString(String value, boolean only_string_values) {
         //
-        if(only_string_values){
-             return "'" + value + "'";
+        if (only_string_values) {
+            return "'" + value + "'";
         }
         //
         try {
@@ -472,6 +475,23 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+            //
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FixedQueryTool_FED_BCR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FixedQueryTool_FED_BCR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FixedQueryTool_FED_BCR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FixedQueryTool_FED_BCR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         //
         HelpA.err_output_to_file();
         //
