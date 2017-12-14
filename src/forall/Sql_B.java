@@ -267,7 +267,7 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
 //            connection = DriverManager.getConnection("jdbc:mysql://195.178.232.239:3306/m09k2847","m09k2847","636363");
         connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + databaseName, userName, password);
         statement = connection.createStatement();
-
+        statement_2 = connection.createStatement();
     }
 
     @Override
