@@ -1,6 +1,5 @@
 
-1. Create Linked servers, find instruction on google drive. (You will need following files:
-)
+1. Create Linked servers CPRECIPE & PRODPLAN, find instruction on google drive.
 
 2. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql).
 	You also need to fill the CPM with data by detaching it on some Server and then attaching it.
