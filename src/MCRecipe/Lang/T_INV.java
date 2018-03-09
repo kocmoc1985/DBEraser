@@ -83,6 +83,9 @@ public class T_INV {
         //
         DICT.put("CASNO ID", "CAS NR");
         DICT.put("MSDS", "MSDS");
+        //
+        //
+        DICT.put("ORDER", "AUFTRAG");
     }
 
     public static String LANG(String word) {

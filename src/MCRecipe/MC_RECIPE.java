@@ -79,6 +79,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private VendorsB vendorsB;
     private Sequence sequence;
     private RecipeAdditional recipeAdditional;
+    private TestParameters testParameters;
     private JavaSysMon monitor = new JavaSysMon();
     protected JTextArea textAreaIngredComments = new JTextArea();
     protected JTextArea textAreaRecipeInitialNotes = new JTextArea();
@@ -762,6 +763,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel71 = new javax.swing.JLabel();
         jButtonRecipeAdditionalPrint1 = new javax.swing.JButton();
         jButtonRecipeAdditionalPrint2 = new javax.swing.JButton();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jPanel_Test_Parameters = new javax.swing.JPanel();
+        jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jTable_1_test_parameters = new JTableM("test_param_jtable", true);
         jPanel_Log = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1_Logg = new javax.swing.JTextArea();
@@ -3315,6 +3321,47 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTabbedPane1.addTab("RECIPE ADD.", jScrollPaneRecipeAdditional);
 
+        jPanel_Test_Params_Inv_Table_1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_Test_Params_Inv_Table_1.setLayout(new java.awt.BorderLayout());
+
+        jTable_1_test_parameters.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane19.setViewportView(jTable_1_test_parameters);
+
+        javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
+        jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
+        jPanel_Test_ParametersLayout.setHorizontalGroup(
+            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
+        );
+        jPanel_Test_ParametersLayout.setVerticalGroup(
+            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(460, Short.MAX_VALUE))
+        );
+
+        jScrollPane18.setViewportView(jPanel_Test_Parameters);
+
+        jTabbedPane1.addTab("TEST PARAMETERS", jScrollPane18);
+
         jTextArea1_Logg.setColumns(20);
         jTextArea1_Logg.setRows(5);
         jScrollPane6.setViewportView(jTextArea1_Logg);
@@ -3359,7 +3406,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap()
                 .addGroup(jPanel_LogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane16)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1209, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                     .addComponent(jScrollPane15)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel_LogLayout.createSequentialGroup()
                         .addComponent(jButton9)
@@ -4267,6 +4314,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel_Log;
     private javax.swing.JPanel jPanel_RecipeDetailed;
     public javax.swing.JPanel jPanel_RecipeInitial;
+    private javax.swing.JPanel jPanel_Test_Parameters;
+    public javax.swing.JPanel jPanel_Test_Params_Inv_Table_1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     public javax.swing.JScrollPane jScrollPane11;
@@ -4276,6 +4325,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4305,6 +4356,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JTable jTableSequnce2;
     public javax.swing.JTable jTableSequnece1;
     public javax.swing.JTable jTable_1_RecipeAdd;
+    public javax.swing.JTable jTable_1_test_parameters;
     public javax.swing.JTable jTable_2_RecipeAdd;
     protected javax.swing.JTable jTable_Ingred_Table1;
     protected javax.swing.JTable jTable_Ingred_Table3;
@@ -4442,6 +4494,14 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     recipeAdditional = new RecipeAdditional(sql, sql_additional, this);
                 }
 
+            }else if (title.equals(LNG.TEST_PARAMS_TAB())) {
+                //
+                if(testParameters == null){
+                    testParameters = new TestParameters(sql, sql_additional, this);
+                }
+                //
+                testParameters.showTableInvert();
+                //
             }
         }
     }

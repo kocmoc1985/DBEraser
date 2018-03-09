@@ -1311,4 +1311,20 @@ public class SQL_A {
                 + param2 + "','"
                 + param3 + "')";
     }
+    
+    
+    /**
+     * 
+     * @param PROC
+     * @param param1 - order
+     * @param param2 - recipe
+     * @return 
+     */
+     public static String fn_ITF_Test_Related(String PROC, String param1, String param2) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ")";
+//                + " order by Name asc";
+//                + " order by CAST(Name AS decimal) asc ";
+    }
 }
