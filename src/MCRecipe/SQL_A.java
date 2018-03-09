@@ -92,8 +92,6 @@ public class SQL_A {
                 + quotes(param1, false) + ")"
                 + " order by TestCode";
     }
-    
-    
 
     /**
      *
@@ -517,7 +515,7 @@ public class SQL_A {
                 + quotes(param5, false) + ","
                 + quotes(param6, false) + ","
                 + quotes(param7, false) + ","
-                + quotes(param8, false)+ ","
+                + quotes(param8, false) + ","
                 + quotes(param9, false);
     }
 
@@ -662,10 +660,10 @@ public class SQL_A {
                 + buildParametersForProcedure(params)
                 + ") order by " + param + " asc";
     }
-    
-    private static String[] cutArr(String[]arrToCut,int positions){
+
+    private static String[] cutArr(String[] arrToCut, int positions) {
         //
-        String[]arrToReturn = new String[positions];
+        String[] arrToReturn = new String[positions];
         //
         for (int i = 0; i < positions; i++) {
             arrToReturn[i] = arrToCut[i];
@@ -877,12 +875,12 @@ public class SQL_A {
             }
         }
     }
-    
+
     /**
-     * 
+     *
      * @param PROC
      * @param param1 - ingredName
-     * @return 
+     * @return
      */
     public static String ingredients_delete_ingred(String PROC, String param1) {
         return PROC + " " + quotes(param1, false) + "";
@@ -1311,20 +1309,32 @@ public class SQL_A {
                 + param2 + "','"
                 + param3 + "')";
     }
-    
+
+    /**
+     *
+     * @param PROC
+     * @param param1 - order
+     * @param param2 - recipe
+     * @return
+     */
+    public static String fn_ITF_Test_Related(String PROC, String param1, String param2) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ")";
+    }
     
     /**
      * 
      * @param PROC
      * @param param1 - order
      * @param param2 - recipe
+     * @param param3 - ID
      * @return 
      */
-     public static String fn_ITF_Test_Related(String PROC, String param1, String param2) {
+    public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
-                + quotes(param2, false) + ")";
-//                + " order by Name asc";
-//                + " order by CAST(Name AS decimal) asc ";
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ")";
     }
 }

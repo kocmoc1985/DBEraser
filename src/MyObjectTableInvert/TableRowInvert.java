@@ -250,7 +250,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
 //            TableRowInvert tri = (TableRowInvert) ti.row___col_object__map.get(field);
             TableRowInvert tri = ti.getTableRowInvertByComponent(field);
             RowDataInvert rcdi = tri.getRowConfig();
-            RowDataInvert rcdi_2 = ti.getRowConfig(1);
+//            RowDataInvert rcdi_2 = ti.getRowConfig(1);
             //
         }
     }

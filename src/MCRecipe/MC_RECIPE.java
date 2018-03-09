@@ -225,6 +225,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         this.jTable_Ingred_Table1.addMouseListener(this);
         this.jTable_Ingred_Table3.addMouseListener(this);
         this.jTableSequnece1.addMouseListener(this);
+        this.jTable_1_test_parameters.addMouseListener(this);
         //
         this.jTable1.addKeyListener(this);
         this.jTable_Ingred_Table1.addKeyListener(this);
@@ -232,6 +233,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         this.jEditorPaneRecipeInitialNotes.addKeyListener(this);
         this.textAreaIngredComments.addKeyListener(this);
         this.textAreaRecipeInitialNotes.addKeyListener(this);
+        this.jTable_1_test_parameters.addKeyListener(this);
         //
         this.jTable1.setAutoCreateRowSorter(true);
         this.jTable2.setAutoCreateRowSorter(true);
@@ -4562,7 +4564,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
             clickedTable1Sequence();
             //
+        }else if (me.getSource() == jTable_1_test_parameters && (me.getClickCount() == 1)) {
+            //
+             clickedTable1TestParameters();
+            //
         }
+    }
+    
+    public void clickedTable1TestParameters(){
+        testParameters.showTableInvert();
     }
 
     public void clickedTable1Sequence() {
