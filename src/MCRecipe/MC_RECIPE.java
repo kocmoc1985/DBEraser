@@ -4636,6 +4636,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 } //
                 //RecipeInitial GROUP A
                 else if (parent instanceof JComboBox_RI_A) {
+                    //
                     JComboBox_RI_A box = (JComboBox_RI_A) parent;
                     //
                     if (box.isMULTI_PARAM()) {
