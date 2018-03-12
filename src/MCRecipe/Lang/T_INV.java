@@ -86,6 +86,8 @@ public class T_INV {
         //
         //
         DICT.put("ORDER", "AUFTRAG");
+        DICT.put("RECIPE", "CODE");
+        DICT.put("TEST CODE", "PRÜFCODE");
     }
 
     public static String LANG(String word) {

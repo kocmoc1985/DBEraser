@@ -788,6 +788,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel49 = new javax.swing.JPanel();
         jComboBoxTestParams_Order = new JComboBox_TP_A(BOX_PARAMS.TP_ORDER);
         jComboBoxTestPararams_Recipe = new JComboBox_TP_A(BOX_PARAMS.TP_RECIPE);
+        jPanel50 = new javax.swing.JPanel();
+        jButtonTestParametersGo = new javax.swing.JButton();
+        jButtonTestParametersClear = new javax.swing.JButton();
+        jPanel51 = new javax.swing.JPanel();
+        jButtonTestParametersPrint_InvertTable = new javax.swing.JButton();
+        jButtonTestParametersSave_InvertTable = new javax.swing.JButton();
         jPanel_Log = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1_Logg = new javax.swing.JTextArea();
@@ -3361,6 +3367,26 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jComboBoxTestPararams_Recipe.setModel(new javax.swing.DefaultComboBoxModel());
 
+        jPanel50.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButtonTestParametersGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
+        jButtonTestParametersGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersGoActionPerformed(evt);
+            }
+        });
+        jPanel50.add(jButtonTestParametersGo);
+
+        jButtonTestParametersClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear2.png"))); // NOI18N
+        jButtonTestParametersClear.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
+        jButtonTestParametersClear.setPreferredSize(new java.awt.Dimension(65, 43));
+        jButtonTestParametersClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersClearActionPerformed(evt);
+            }
+        });
+        jPanel50.add(jButtonTestParametersClear);
+
         javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
         jPanel49.setLayout(jPanel49Layout);
         jPanel49Layout.setHorizontalGroup(
@@ -3370,16 +3396,39 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jPanel50, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel49Layout.setVerticalGroup(
             jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
-                .addGap(0, 38, Short.MAX_VALUE)
-                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel49Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        jPanel51.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButtonTestParametersPrint_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButtonTestParametersPrint_InvertTable.setToolTipText("print");
+        jButtonTestParametersPrint_InvertTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersPrint_InvertTableActionPerformed(evt);
+            }
+        });
+        jPanel51.add(jButtonTestParametersPrint_InvertTable);
+
+        jButtonTestParametersSave_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        jButtonTestParametersSave_InvertTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersSave_InvertTableActionPerformed(evt);
+            }
+        });
+        jPanel51.add(jButtonTestParametersSave_InvertTable);
 
         javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
         jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
@@ -3387,18 +3436,25 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
-                .addGap(31, 31, 31))
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                        .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                        .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))))
         );
         jPanel_Test_ParametersLayout.setVerticalGroup(
             jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4011,6 +4067,22 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
+    private void jButtonTestParametersGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersGoActionPerformed
+        testParameters.fillTable1();
+    }//GEN-LAST:event_jButtonTestParametersGoActionPerformed
+
+    private void jButtonTestParametersClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTestParametersClearActionPerformed
+
+    private void jButtonTestParametersPrint_InvertTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersPrint_InvertTableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTestParametersPrint_InvertTableActionPerformed
+
+    private void jButtonTestParametersSave_InvertTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersSave_InvertTableActionPerformed
+        testParameters.saveChangesTableInvert();
+    }//GEN-LAST:event_jButtonTestParametersSave_InvertTableActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4117,6 +4189,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JButton jButtonSequenceSearch;
     private javax.swing.JButton jButtonSequenceViewBeforeCopy;
     private javax.swing.JButton jButtonTable4Repport;
+    public javax.swing.JButton jButtonTestParametersClear;
+    public javax.swing.JButton jButtonTestParametersGo;
+    private javax.swing.JButton jButtonTestParametersPrint_InvertTable;
+    public javax.swing.JButton jButtonTestParametersSave_InvertTable;
     public javax.swing.JButton jButtonVendorsAddToTable3_2;
     public javax.swing.JButton jButtonVendorsAddToTable4;
     public javax.swing.JButton jButtonVendorsAddToTable4_2;
@@ -4338,6 +4414,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel48;
     private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel50;
+    private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;

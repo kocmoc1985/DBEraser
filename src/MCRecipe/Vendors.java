@@ -62,6 +62,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
                 fillComboBox(mCRecipe.jComboBoxVendorChooseIngred, "Name");
                 mCRecipe.jComboBoxVendorChooseIngred.setSelectedIndex(0);
                 mCRecipe.vendorsShowTablesOnItemStateChanged();

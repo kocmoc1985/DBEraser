@@ -7,6 +7,7 @@ package MCRecipe;
 
 import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
+import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -42,7 +43,9 @@ public class TestParameters extends BasicTab {
     private void init() {
         mCRecipe.testParameters_GroupA_Boxes_to_list();
         mCRecipe.addJComboListenersTestParameters();
-        fillTable1();
+        //
+        initializeSaveIndicators();
+//        fillTable1();
     }
 
     private static long prevCall;
@@ -81,13 +84,13 @@ public class TestParameters extends BasicTab {
         });
     }
 
-    private void fillTable1() {
+    public void fillTable1() {
         //
-        String order = "ENTW000001";
-        String recipe = "E 4373/B3 80";
+//        String order = "ENTW000001";
+//        String recipe = "E 4373/B3 80";
         //
         try {
-            String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, order, recipe);
+            String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, getOrder(), getRecipe());
             OUT.showMessage(q);
             ResultSet rs = sql.execute(q, OUT);
             jTable_1.build_table_common(rs, q);
@@ -114,11 +117,41 @@ public class TestParameters extends BasicTab {
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-        //
+        //MCcpwotest
+        RowDataInvert recipe = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "CODE", T_INV.LANG("RECIPE"), "", true, true, false);
+        recipe.setUneditable();
         RowDataInvert order = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "ORDERNO", T_INV.LANG("ORDER"), "", true, true, false);
+        order.setUneditable();
+        RowDataInvert testCode = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCODE", T_INV.LANG("TEST CODE"), "", true, true, false);
+        RowDataInvert prefvulc = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
+        RowDataInvert prefage = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
+
+        //MCCPTproc
+        RowDataInvert testVar = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        testVar.enableToolTipTextJTextField();
         //
+        RowDataInvert testCond = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTCOND", T_INV.LANG("TEST CONDITION"), "", true, true, false);
+        RowDataInvert version = new RowDataInvert("MCCPTproc", "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);
+        RowDataInvert norm = new RowDataInvert("MCCPTproc", "ID_Proc", false, "NORM", T_INV.LANG("NORM"), "", true, true, false);
+        RowDataInvert group = new RowDataInvert("MCCPTproc", "ID_Proc", false, "GROUP", T_INV.LANG("GROUP"), "", true, true, false);
+        RowDataInvert report = new RowDataInvert("MCCPTproc", "ID_Proc", false, "REPORT", T_INV.LANG("REPORT"), "", true, true, false);
+        RowDataInvert note = new RowDataInvert("MCCPTproc", "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        
+
+        //Ingredient_Vulco_Code
+        RowDataInvert vulcoinfo = new RowDataInvert("Ingredient_Vulco_Code", "Ingredient_Vulco_Code_ID", false, "Descr", T_INV.LANG("VULCO INFO"), "", true, true, false);
+        
+        
+        //Ingredient_Aeging_Code
+        RowDataInvert ageinfo = new RowDataInvert("Ingredient_Aeging_Code", "Ingredient_Aeging_Code_ID", false, "Aeging_Info", T_INV.LANG("AEGING INFO"), "", true, true, false);
+        ageinfo.setUneditable();
         //
-        RowDataInvert[] rows = {order};
+        RowDataInvert[] rows = {
+            recipe, order, testCode, testVar, testCond,
+            version,norm,group,prefvulc,
+            vulcoinfo,
+            prefage,ageinfo,report,note
+        };
         //
         return rows;
     }
@@ -150,7 +183,7 @@ public class TestParameters extends BasicTab {
 
     @Override
     public void initializeSaveIndicators() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SaveIndicator saveIndicator = new SaveIndicator(mCRecipe.jButtonTestParametersSave_InvertTable, this, 1);
     }
 
     @Override
@@ -160,7 +193,17 @@ public class TestParameters extends BasicTab {
 
     @Override
     public boolean getUnsaved(int nr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (nr == 1) {
+            //
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (TABLE_INVERT.unsaved_entries_map.isEmpty() == false) {
+                return true;
+            }
+            //
+        }
+        //
+        return false;
     }
 
 }
