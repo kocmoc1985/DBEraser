@@ -4,7 +4,6 @@
  */
 package forall;
 
-import static FixedQueryTool.FixedQueryTool_TRELL.DATE_FORMAT;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE;
@@ -20,14 +19,12 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -710,6 +707,9 @@ public class HelpA {
         } catch (SQLException ex) {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        //
+        //
         //
     }
 

@@ -8,12 +8,13 @@ import forall.JComboBoxA;
 
 /**
  * RI_C RecipeInitial section C, the section at the bottom in the middle
+ *
  * @author KOCMOC
  */
-public class JComboBox_ING_A extends JComboBoxA{
+public class JComboBox_ING_A extends JComboBoxA {
 
     public JComboBox_ING_A(CBoxParam param) {
         super(param);
     }
-    
+
 }

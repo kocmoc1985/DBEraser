@@ -202,7 +202,7 @@ public class JComboBoxA extends JComboBox {
         //
         HelpA.tryMatch(jbox, (String) initialValue, showMultipleValues, fakeValue);
         //
-        setTrackingToolTip(jbox, query);
+//        setTrackingToolTip(jbox, query);
         //
         setCursorWait(false);
         //

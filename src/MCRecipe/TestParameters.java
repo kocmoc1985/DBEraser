@@ -11,11 +11,13 @@ import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import mySwing.JTableM;
 
 /**
@@ -38,7 +40,45 @@ public class TestParameters extends BasicTab {
     }
 
     private void init() {
+        mCRecipe.testParameters_GroupA_Boxes_to_list();
+        mCRecipe.addJComboListenersTestParameters();
         fillTable1();
+    }
+
+    private static long prevCall;
+
+    private boolean delay() {
+        if (Math.abs(System.currentTimeMillis() - prevCall) < 1000) {
+            prevCall = System.currentTimeMillis();
+            return false;
+        } else {
+            prevCall = System.currentTimeMillis();
+            return true;
+        }
+    }
+
+    public void fillComboBox(final JComboBox box, final String colName) {
+        //
+        if (delay() == false) {
+            return;
+        }
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //
+                Object selection = box.getSelectedItem();
+                //
+                //
+                String q = SQL_A.fill_comboboxes_test_parameters_a(PROC.PROC_66, colName, getOrder(), getRecipe());
+                OUT.showMessage(q);
+                //
+                JComboBoxA boxA = (JComboBoxA) box;
+                boxA.fillComboBox(sql, box, q, null, false, false);
+                //
+                box.setSelectedItem(selection);
+            }
+        });
     }
 
     private void fillTable1() {
@@ -63,13 +103,13 @@ public class TestParameters extends BasicTab {
     }
 
     private String getOrder() {
-//        String order = HelpA.getComboBoxSelectedValue(someComboBox);
-        return "ENTW000001";
+        return HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
+//        return "ENTW000001";
     }
-    
-    private String getRecipe(){
-        //        String recipe = HelpA.getComboBoxSelectedValue(someComboBox);
-        return "E 4373/B3 80";
+
+    private String getRecipe() {
+        return HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+//        return "E 4373/B3 80";
     }
 
     @Override

@@ -46,4 +46,10 @@ public class BOX_PARAMS {
     public static final CBoxParam TRADE_NAME = new CBoxParam("TradeName", false);
     public static final CBoxParam VENDOR_NAME = new CBoxParam("VendorName", false);
     public static final CBoxParam PERC_RUBBER = new CBoxParam("percRubber", false);
+    //
+    //
+    //TEST PARAMETERS
+    public static final CBoxParam TP_ORDER = new CBoxParam("ORDERNO", false);
+    public static final CBoxParam TP_RECIPE = new CBoxParam("CODE", false);
+    
 }

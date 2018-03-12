@@ -29,6 +29,7 @@ import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
+import MCRecipe.Sec.JComboBox_TP_A;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -295,6 +296,30 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
         //
     }
+    
+    public ArrayList<JComboBox> testParametersGroupA;
+
+    public void testParameters_GroupA_Boxes_to_list() {
+        //
+        testParametersGroupA = new ArrayList<JComboBox>();
+        //
+        Component[] components = jPanel49.getComponents();
+        //
+        for (Component c : components) {
+            if (c instanceof JComboBox_TP_A) {
+                testParametersGroupA.add((JComboBox) c);
+            }
+        }
+        //
+    }
+    
+    public void addJComboListenersTestParameters() {
+        //
+        for (JComboBox box : testParametersGroupA) {
+            HelpA.addMouseListenerJComboBox(box, this);
+        }
+        //
+    }
 
     public void addJComboListenersRecipeInitial() {
         //
@@ -338,16 +363,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             HelpA.addMouseListenerJComboBox(box, this);
         }
         //
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Cas_Number, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Class, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Descr, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Form, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Group, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Name, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Status, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_TradeName, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_VendorName, this);
-//        HelpA.addMouseListenerJComboBox(jCombo_Ingred_Perc_Rubber, this);
     }
 
     public void addJComboListenersSequence() {
@@ -465,9 +480,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel19 = new javax.swing.JLabel();
         jComboBox_Ingred_1 = new JComboBoxM();
         jLabel55 = new javax.swing.JLabel();
+        jComboBox_Ingred_2 = new JComboBoxM();
         jCheckBoxRecipeInitialSearchByIngredients = new javax.swing.JCheckBox();
         jComboBox_Description1 = new JComboBox_RI_A(BOX_PARAMS.DESCR);
-        jComboBox_Ingred_2 = new JComboBoxM();
         jPanel43 = new javax.swing.JPanel();
         jButtonRecipeInitialGo = new javax.swing.JButton();
         jButtonRecipeInitialResetComboBoxes = new javax.swing.JButton();
@@ -770,6 +785,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         jTable_1_test_parameters = new JTableM("test_param_jtable", true);
+        jPanel49 = new javax.swing.JPanel();
+        jComboBoxTestParams_Order = new JComboBox_TP_A(BOX_PARAMS.TP_ORDER);
+        jComboBoxTestPararams_Recipe = new JComboBox_TP_A(BOX_PARAMS.TP_RECIPE);
         jPanel_Log = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1_Logg = new javax.swing.JTextArea();
@@ -1017,6 +1035,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel55.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__CLASS());
         jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
 
+        jComboBox_Ingred_2.setModel(new javax.swing.DefaultComboBoxModel());
+        jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 140, -1));
+
         jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
         jCheckBoxRecipeInitialSearchByIngredients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1027,9 +1048,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jComboBox_Description1.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Description1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 140, -1));
-
-        jComboBox_Ingred_2.setModel(new javax.swing.DefaultComboBoxModel());
-        jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 140, -1));
 
         jPanel43.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -3339,21 +3357,49 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         ));
         jScrollPane19.setViewportView(jTable_1_test_parameters);
 
+        jComboBoxTestParams_Order.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jComboBoxTestPararams_Recipe.setModel(new javax.swing.DefaultComboBoxModel());
+
+        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
+        jPanel49.setLayout(jPanel49Layout);
+        jPanel49Layout.setHorizontalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel49Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel49Layout.setVerticalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
+                .addGap(0, 38, Short.MAX_VALUE)
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
         jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
         jPanel_Test_ParametersLayout.setHorizontalGroup(
             jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
                 .addGap(31, 31, 31))
         );
         jPanel_Test_ParametersLayout.setVerticalGroup(
             jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap()
+                .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4138,6 +4184,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JComboBox jComboBoxSequenceRecipeCopy;
     public javax.swing.JComboBox jComboBoxSequenceRelease;
     public javax.swing.JComboBox jComboBoxSequenceReleaseCopy;
+    public javax.swing.JComboBox jComboBoxTestParams_Order;
+    public javax.swing.JComboBox jComboBoxTestPararams_Recipe;
     public javax.swing.JComboBox jComboBoxVendorChooseIngred;
     public javax.swing.JComboBox jComboBox_Description1;
     public javax.swing.JComboBox jComboBox_Ingred_1;
@@ -4288,6 +4336,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
+    private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -4672,6 +4721,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     //
                 }
                 //
+                else if (parent instanceof JComboBox_TP_A) {
+                    //
+                    JComboBox_TP_A box = (JComboBox_TP_A) parent;
+                    //
+                    testParameters.fillComboBox(box, box.getPARAMETER());
+                    //
+                }
             }
         }
     }

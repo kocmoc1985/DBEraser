@@ -1322,19 +1322,34 @@ public class SQL_A {
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ")";
     }
-    
+
     /**
-     * 
+     *
      * @param PROC
      * @param param1 - order
      * @param param2 - recipe
      * @param param3 - ID
-     * @return 
+     * @return
      */
     public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ")";
+    }
+    
+    /**
+     * 
+     * @param PROC
+     * @param param1 - parameter to choose - order or recipe
+     * @param param2 - order
+     * @param param3 - recipe
+     * @return 
+     */
+    public static String fill_comboboxes_test_parameters_a(String PROC, String param1, String param2,String param3) {
+        return "SELECT distinct (" + param1 + ") FROM [" + PROC + "]" + " ("
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ")";
     }
 }
