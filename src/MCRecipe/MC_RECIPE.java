@@ -4629,10 +4629,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     testParameters = new TestParameters(sql, sql_additional, this);
                 }
                 //
-                testParameters.showTableInvert();
+                test_parameters_tab_clicked();
                 //
             }
         }
+    }
+    
+    public void test_parameters_tab_clicked(){
+        testParameters.fillTable1();
+        testParameters.showTableInvert();
     }
 
     public void vendors_tab_b_clicked() {

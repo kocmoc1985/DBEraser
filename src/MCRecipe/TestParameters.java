@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 import mySwing.JTableM;
 
 /**
@@ -86,13 +87,22 @@ public class TestParameters extends BasicTab {
 
     public void fillTable1() {
         //
-//        String order = "ENTW000001";
-//        String recipe = "E 4373/B3 80";
+        String order = getOrder();
+        String recipe = getRecipe();
+        //
+        if (order == null && recipe == null) {
+            return;
+        }
         //
         try {
             String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, getOrder(), getRecipe());
             OUT.showMessage(q);
             ResultSet rs = sql.execute(q, OUT);
+            //
+            if(rs.next() == false){
+                return;
+            }
+            //
             jTable_1.build_table_common(rs, q);
             //
             jTable_1.setSelectedRow(0);
@@ -100,19 +110,44 @@ public class TestParameters extends BasicTab {
             jTable_1.validate();
             jTable_1.revalidate();
             jTable_1.repaint();
+            //
+            hideColsJTable();
+            //
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private String getOrder() {
-        return HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
+    private void hideColsJTable() {
+        jTable_1.hideColumnByName("ID_Wotest");
+        jTable_1.hideColumnByName("ID_Proc");
+        jTable_1.hideColumnByName("Ingredient_Vulco_Code_ID");
+        jTable_1.hideColumnByName("Ingredient_Aeging_Code_ID");
+    }
+
+    public String getOrder() {
+        //
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
+        //
+        return val;
 //        return "ENTW000001";
     }
 
-    private String getRecipe() {
-        return HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
-//        return "E 4373/B3 80";
+    //mCRecipe.jComboBoxTestPararams_Recipe
+    public String getRecipe() {
+        //
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+        //
+        if (val == null) {
+            //
+            JTable table = mCRecipe.jTable1;
+            //
+            if (mCRecipe.recipeInitial != null) {
+                return HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
+            }
+        }
+        //
+        return val;
     }
 
     @Override
@@ -136,21 +171,19 @@ public class TestParameters extends BasicTab {
         RowDataInvert group = new RowDataInvert("MCCPTproc", "ID_Proc", false, "GROUP", T_INV.LANG("GROUP"), "", true, true, false);
         RowDataInvert report = new RowDataInvert("MCCPTproc", "ID_Proc", false, "REPORT", T_INV.LANG("REPORT"), "", true, true, false);
         RowDataInvert note = new RowDataInvert("MCCPTproc", "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
-        
 
         //Ingredient_Vulco_Code
         RowDataInvert vulcoinfo = new RowDataInvert("Ingredient_Vulco_Code", "Ingredient_Vulco_Code_ID", false, "Descr", T_INV.LANG("VULCO INFO"), "", true, true, false);
-        
-        
+
         //Ingredient_Aeging_Code
         RowDataInvert ageinfo = new RowDataInvert("Ingredient_Aeging_Code", "Ingredient_Aeging_Code_ID", false, "Aeging_Info", T_INV.LANG("AEGING INFO"), "", true, true, false);
         ageinfo.setUneditable();
         //
         RowDataInvert[] rows = {
             recipe, order, testCode, testVar, testCond,
-            version,norm,group,prefvulc,
+            version, norm, group, prefvulc,
             vulcoinfo,
-            prefage,ageinfo,report,note
+            prefage, ageinfo, report, note
         };
         //
         return rows;
@@ -166,6 +199,9 @@ public class TestParameters extends BasicTab {
         //
         String order = getOrder();
         String recipe = getRecipe();
+        //
+        System.out.println("RECIPE: " + recipe);
+        //
         String id = jTable_1.getValueSelectedRow("ID");
         //
         try {
