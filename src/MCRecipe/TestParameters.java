@@ -48,6 +48,17 @@ public class TestParameters extends BasicTab {
         initializeSaveIndicators();
 //        fillTable1();
     }
+    
+     public void clearBoxes() {
+        //
+        for (JComboBox box : mCRecipe.testParametersGroupA) {
+            box.setSelectedItem(null);
+            box.setEditable(false);
+        }
+        //
+        mCRecipe.revalidate();
+        mCRecipe.repaint();
+     }
 
     private static long prevCall;
 
@@ -74,7 +85,7 @@ public class TestParameters extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_test_parameters_a(PROC.PROC_66, colName, getOrder(), getRecipe());
+                String q = SQL_A.fill_comboboxes_test_parameters_a(PROC.PROC_66, colName, getOrder(), getRecipe_B());
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
@@ -95,11 +106,11 @@ public class TestParameters extends BasicTab {
         }
         //
         try {
-            String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, getOrder(), getRecipe());
+            String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, order, recipe);
             OUT.showMessage(q);
             ResultSet rs = sql.execute(q, OUT);
             //
-            if(rs.next() == false){
+            if (rs.next() == false) {
                 return;
             }
             //
@@ -125,7 +136,7 @@ public class TestParameters extends BasicTab {
         jTable_1.hideColumnByName("Ingredient_Aeging_Code_ID");
     }
 
-    public String getOrder() {
+    private String getOrder() {
         //
         String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
         //
@@ -134,9 +145,10 @@ public class TestParameters extends BasicTab {
     }
 
     //mCRecipe.jComboBoxTestPararams_Recipe
-    public String getRecipe() {
+    private String getRecipe() {
         //
         String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+        //
         //
         if (val == null) {
             //
@@ -149,6 +161,11 @@ public class TestParameters extends BasicTab {
         //
         return val;
     }
+    
+     private String getRecipe_B() {
+         String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+         return val;
+     }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -160,18 +177,18 @@ public class TestParameters extends BasicTab {
         RowDataInvert testCode = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCODE", T_INV.LANG("TEST CODE"), "", true, true, false);
         RowDataInvert prefvulc = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
         RowDataInvert prefage = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
-
+        RowDataInvert testCond = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCOND", T_INV.LANG("TEST CONDITION"), "", true, true, false);
+        //
         //MCCPTproc
         RowDataInvert testVar = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
         testVar.enableToolTipTextJTextField();
         //
-        RowDataInvert testCond = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTCOND", T_INV.LANG("TEST CONDITION"), "", true, true, false);
         RowDataInvert version = new RowDataInvert("MCCPTproc", "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);
         RowDataInvert norm = new RowDataInvert("MCCPTproc", "ID_Proc", false, "NORM", T_INV.LANG("NORM"), "", true, true, false);
         RowDataInvert group = new RowDataInvert("MCCPTproc", "ID_Proc", false, "GROUP", T_INV.LANG("GROUP"), "", true, true, false);
         RowDataInvert report = new RowDataInvert("MCCPTproc", "ID_Proc", false, "REPORT", T_INV.LANG("REPORT"), "", true, true, false);
         RowDataInvert note = new RowDataInvert("MCCPTproc", "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
-
+        note.enableToolTipTextJTextField();
         //Ingredient_Vulco_Code
         RowDataInvert vulcoinfo = new RowDataInvert("Ingredient_Vulco_Code", "Ingredient_Vulco_Code_ID", false, "Descr", T_INV.LANG("VULCO INFO"), "", true, true, false);
 
@@ -188,7 +205,8 @@ public class TestParameters extends BasicTab {
         //
         return rows;
     }
-
+    
+    
     @Override
     public void showTableInvert() {
         //
@@ -200,7 +218,11 @@ public class TestParameters extends BasicTab {
         String order = getOrder();
         String recipe = getRecipe();
         //
-        System.out.println("RECIPE: " + recipe);
+        if (order == null && recipe == null) {
+            return;
+        }
+        //
+//        System.out.println("RECIPE: " + recipe);
         //
         String id = jTable_1.getValueSelectedRow("ID");
         //
@@ -215,6 +237,15 @@ public class TestParameters extends BasicTab {
         //
         showTableInvert(mCRecipe.jPanel_Test_Params_Inv_Table_1);
         //
+    }
+    
+    public void searchButtonClicked(){
+        fillTable1();
+        showTableInvert();
+    }
+
+    public void tableInvertRepport() {
+        tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
     }
 
     @Override

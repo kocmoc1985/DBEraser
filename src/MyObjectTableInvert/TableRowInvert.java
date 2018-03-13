@@ -244,7 +244,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
             //
             JTextField jtf = (JTextField) field;
             //
-            System.out.println("value:" + jtf.getText());
+//            System.out.println("value:" + jtf.getText());
             //
             //
 //            TableRowInvert tri = (TableRowInvert) ti.row___col_object__map.get(field);

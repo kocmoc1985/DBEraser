@@ -4068,15 +4068,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButtonTestParametersGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersGoActionPerformed
-        testParameters.fillTable1();
+        testParameters.searchButtonClicked();
     }//GEN-LAST:event_jButtonTestParametersGoActionPerformed
 
     private void jButtonTestParametersClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersClearActionPerformed
-        // TODO add your handling code here:
+        testParameters.clearBoxes();
     }//GEN-LAST:event_jButtonTestParametersClearActionPerformed
 
     private void jButtonTestParametersPrint_InvertTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersPrint_InvertTableActionPerformed
-        // TODO add your handling code here:
+        testParameters.tableInvertRepport();
     }//GEN-LAST:event_jButtonTestParametersPrint_InvertTableActionPerformed
 
     private void jButtonTestParametersSave_InvertTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTestParametersSave_InvertTableActionPerformed
