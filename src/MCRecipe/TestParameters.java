@@ -175,12 +175,14 @@ public class TestParameters extends BasicTab {
         RowDataInvert order = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "ORDERNO", T_INV.LANG("ORDER"), "", true, true, false);
         order.setUneditable();
         RowDataInvert testCode = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCODE", T_INV.LANG("TEST CODE"), "", true, true, false);
+        testCode.setUneditable();
         RowDataInvert prefvulc = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
         RowDataInvert prefage = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
         RowDataInvert testCond = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCOND", T_INV.LANG("TEST CONDITION"), "", true, true, false);
         //
         //MCCPTproc
         RowDataInvert testVar = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        testVar.setUneditable();
         testVar.enableToolTipTextJTextField();
         //
         RowDataInvert version = new RowDataInvert("MCCPTproc", "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);

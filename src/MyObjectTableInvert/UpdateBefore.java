@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * UNUSED, VERIFIED ON 13-MAR-2018
  * @author KOCMOC
  * @deprecated 
  */

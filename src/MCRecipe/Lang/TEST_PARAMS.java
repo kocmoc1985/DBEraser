@@ -11,10 +11,11 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  *
  * @author KOCMOC
  */
-public class T_PARAMS {
+public class TEST_PARAMS {
     
-    
-     public static String ORDER() {
-        return LANG_ENG ? "ORDER" : "HÄRTE SHA MAX";
+     public static String TABLE_INVERT_NAME() {
+        return LANG_ENG ? "RECIPE SETTINGS" : "REZEPT EINSTELLUNGEN";
     }
+     
+   
 }

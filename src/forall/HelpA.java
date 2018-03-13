@@ -5,6 +5,7 @@
 package forall;
 
 import MCCompound.PROD_PLAN;
+import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
@@ -909,7 +910,7 @@ public class HelpA {
     /**
      * @tags float, align, left
      * @param table
-     * @param colName 
+     * @param colName
      */
     public static void leftAlignValueByColName(JTable table, String colName) {
         //
@@ -920,9 +921,9 @@ public class HelpA {
         //
         if (colNr != -1) {
             table.getColumnModel().getColumn(colNr).setCellRenderer(leftRenderer);
-        } 
+        }
     }
-    
+
     public static void rightAlignValueByColName(JTable table, String colName) {
         //
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
@@ -932,16 +933,16 @@ public class HelpA {
         //
         if (colNr != -1) {
             table.getColumnModel().getColumn(colNr).setCellRenderer(rightRenderer);
-        } 
+        }
     }
-    
+
     /**
-     * 
+     *
      * @param table
      * @param colName
      * @param rightOrLeft 2=left, 4=right
      */
-    public static void alignValueByColName(JTable table, String colName,int rightOrLeft) {
+    public static void alignValueByColName(JTable table, String colName, int rightOrLeft) {
         //
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(rightOrLeft);
@@ -950,7 +951,7 @@ public class HelpA {
         //
         if (colNr != -1) {
             table.getColumnModel().getColumn(colNr).setCellRenderer(renderer);
-        } 
+        }
     }
 
     private static boolean sortAsInteger(int colNr, String[] headers, String[] colNames) {
@@ -1224,7 +1225,6 @@ public class HelpA {
 //                columnNames.add(getColumnNameByIndex(table, ind));
 //            }
 //        }
-
         return columnNames;
     }
 
@@ -1536,6 +1536,14 @@ public class HelpA {
 
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);
+    }
+
+    public static void showNotification_Data_Truncation_Error() {
+        JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR_DATA_TRUNCATION());
+    }
+    
+    public static void showNotification_SQL_Error() {
+        JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR());
     }
 
     public static boolean confirm() {

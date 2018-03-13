@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
+import java.sql.DataTruncation;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -341,7 +342,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 UpdateBefore.updateBefore(unsavedEntryInvert, getSql(), updateOtherTablesBeforeInstruction);
             }
 
-            updateFieldString(
+          boolean ok =  updateFieldString(
                     unsavedEntryInvert.getTableName(),
                     unsavedEntryInvert.getColumnName(),
                     unsavedEntryInvert.getValue(),
@@ -351,6 +352,10 @@ public class TableInvert extends Table implements ControlsActionsIF {
                     unsavedEntryInvert.keyIsString());
             //
             try {
+                //
+                if(!ok){
+                    return;
+                }
                 //
                 Component c = (Component) unsavedEntryInvert.getDataField();
                 c.setForeground(Color.green);
@@ -369,7 +374,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
     }
 
-    private void updateFieldString(String tableName,
+    private boolean updateFieldString(String tableName,
             String columnName,
             String value,
             String keyName,
@@ -381,9 +386,13 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             SqlBasicLocal sql = getSql();
             //
-            sql.prepareStatement("UPDATE " + tableName
+            String q = "UPDATE " + tableName
                     + " SET [" + columnName + "]=" + "?" + ""
-                    + " WHERE " + keyName + "=" + "?" + "");
+                    + " WHERE " + keyName + "=" + "?" + "";
+            //
+            System.out.println("SQL SAVE TABLE INVERT: " + q);
+            //
+            sql.prepareStatement(q);
             //
             String dateFormat = HelpA.define_date_format(value);
             //
@@ -402,19 +411,26 @@ public class TableInvert extends Table implements ControlsActionsIF {
             if (keyIsString) {
                 sql.getPreparedStatement().setString(2, db_id);
             } else {
-                sql.getPreparedStatement().setInt(2, Integer.parseInt(db_id));
+                sql.getPreparedStatement().setInt(2, Integer.parseInt(db_id.trim()));
             }
             //
             sql.getPreparedStatement().executeUpdate();
             //
-        } catch (SQLException ex) {
+        } catch (DataTruncation ex) {
+            HelpA.showNotification_Data_Truncation_Error();
             Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (SQLException ex) {
+            HelpA.showNotification_SQL_Error();
+            Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
+        //
+        return true;
 
 //        return "UPDATE " + tableName
 //                + " SET [" + columnName + "]=" + value + ""
 //                + " WHERE " + keyName + "=" + db_id + "";
-
     }
 
     private boolean columnNameExists(String rowName, int colNr) {
