@@ -1328,14 +1328,20 @@ public class SQL_A {
      * @param PROC
      * @param param1 - order
      * @param param2 - recipe
-     * @param param3 - ID
+     * @param param3 - ID_Wotest
+     * @param param4 - ID_Proc
+     * @param param5 - Ingredient_Vulco_Code_ID
+     * @param param6 - Ingredient_Aeging_Code_ID
      * @return
      */
-    public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3) {
+    public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3,String param4,String param5,String param6) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
-                + quotes(param3, false) + ")";
+                + quotes(param3, false) + ","
+                + quotes(param4, false) + ","
+                + quotes(param5, false) + ","
+                + quotes(param6, false)  + ")";
     }
     
     /**

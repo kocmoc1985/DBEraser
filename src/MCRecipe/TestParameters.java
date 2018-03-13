@@ -48,8 +48,8 @@ public class TestParameters extends BasicTab {
         initializeSaveIndicators();
 //        fillTable1();
     }
-    
-     public void clearBoxes() {
+
+    public void clearBoxes() {
         //
         for (JComboBox box : mCRecipe.testParametersGroupA) {
             box.setSelectedItem(null);
@@ -58,7 +58,7 @@ public class TestParameters extends BasicTab {
         //
         mCRecipe.revalidate();
         mCRecipe.repaint();
-     }
+    }
 
     private static long prevCall;
 
@@ -161,11 +161,11 @@ public class TestParameters extends BasicTab {
         //
         return val;
     }
-    
-     private String getRecipe_B() {
-         String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
-         return val;
-     }
+
+    private String getRecipe_B() {
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+        return val;
+    }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -207,8 +207,7 @@ public class TestParameters extends BasicTab {
         //
         return rows;
     }
-    
-    
+
     @Override
     public void showTableInvert() {
         //
@@ -226,10 +225,13 @@ public class TestParameters extends BasicTab {
         //
 //        System.out.println("RECIPE: " + recipe);
         //
-        String id = jTable_1.getValueSelectedRow("ID");
+        String id_1 = jTable_1.getValueSelectedRow("ID_Wotest");
+        String id_2 = jTable_1.getValueSelectedRow("ID_Proc");
+        String id_3 = jTable_1.getValueSelectedRow("Ingredient_Vulco_Code_ID");
+        String id_4 = jTable_1.getValueSelectedRow("Ingredient_Aeging_Code_ID");
         //
         try {
-            String q = SQL_A.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id);
+            String q = SQL_A.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id_1, id_2, id_3, id_4);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
         } catch (SQLException ex) {
@@ -240,8 +242,8 @@ public class TestParameters extends BasicTab {
         showTableInvert(mCRecipe.jPanel_Test_Params_Inv_Table_1);
         //
     }
-    
-    public void searchButtonClicked(){
+
+    public void searchButtonClicked() {
         fillTable1();
         showTableInvert();
     }

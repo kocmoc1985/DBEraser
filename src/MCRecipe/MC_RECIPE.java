@@ -596,6 +596,23 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButtonTable4Repport = new javax.swing.JButton();
         jButtonRecipeDetailedSaveTable4 = new javax.swing.JButton();
         jLabelLockedUnlocked = new javax.swing.JLabel();
+        jScrollPaneTestParameters = new javax.swing.JScrollPane();
+        jPanel_Test_Parameters = new javax.swing.JPanel();
+        jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jTable_1_test_parameters = new JTableM("test_param_jtable", true);
+        jPanel49 = new javax.swing.JPanel();
+        jComboBoxTestParams_Order = new JComboBox_TP_A(BOX_PARAMS.TP_ORDER);
+        jComboBoxTestPararams_Recipe = new JComboBox_TP_A(BOX_PARAMS.TP_RECIPE);
+        jPanel50 = new javax.swing.JPanel();
+        jButtonTestParametersGo = new javax.swing.JButton();
+        jButtonTestParametersClear = new javax.swing.JButton();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        jPanel51 = new javax.swing.JPanel();
+        jButtonTestParametersPrint_InvertTable = new javax.swing.JButton();
+        jButtonTestParametersSave_InvertTable = new javax.swing.JButton();
+        jLabel89 = new javax.swing.JLabel();
         jScrollPaneIngredients = new javax.swing.JScrollPane();
         jPanel_Ingredients = new javax.swing.JPanel();
         jPanel_Ingred_boxes = new javax.swing.JPanel();
@@ -780,23 +797,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel71 = new javax.swing.JLabel();
         jButtonRecipeAdditionalPrint1 = new javax.swing.JButton();
         jButtonRecipeAdditionalPrint2 = new javax.swing.JButton();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        jPanel_Test_Parameters = new javax.swing.JPanel();
-        jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
-        jScrollPane19 = new javax.swing.JScrollPane();
-        jTable_1_test_parameters = new JTableM("test_param_jtable", true);
-        jPanel49 = new javax.swing.JPanel();
-        jComboBoxTestParams_Order = new JComboBox_TP_A(BOX_PARAMS.TP_ORDER);
-        jComboBoxTestPararams_Recipe = new JComboBox_TP_A(BOX_PARAMS.TP_RECIPE);
-        jPanel50 = new javax.swing.JPanel();
-        jButtonTestParametersGo = new javax.swing.JButton();
-        jButtonTestParametersClear = new javax.swing.JButton();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel88 = new javax.swing.JLabel();
-        jPanel51 = new javax.swing.JPanel();
-        jButtonTestParametersPrint_InvertTable = new javax.swing.JButton();
-        jButtonTestParametersSave_InvertTable = new javax.swing.JButton();
-        jLabel89 = new javax.swing.JLabel();
         jPanel_Log = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1_Logg = new javax.swing.JTextArea();
@@ -1914,6 +1914,146 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneRecipeDetailed.setViewportView(jPanel_RecipeDetailed);
 
         jTabbedPane1.addTab("RECIPE DETAILED", jScrollPaneRecipeDetailed);
+
+        jPanel_Test_Params_Inv_Table_1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_Test_Params_Inv_Table_1.setLayout(new java.awt.BorderLayout());
+
+        jTable_1_test_parameters.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane19.setViewportView(jTable_1_test_parameters);
+
+        jComboBoxTestParams_Order.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jComboBoxTestPararams_Recipe.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jPanel50.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButtonTestParametersGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
+        jButtonTestParametersGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersGoActionPerformed(evt);
+            }
+        });
+        jPanel50.add(jButtonTestParametersGo);
+
+        jButtonTestParametersClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear2.png"))); // NOI18N
+        jButtonTestParametersClear.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
+        jButtonTestParametersClear.setPreferredSize(new java.awt.Dimension(65, 43));
+        jButtonTestParametersClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersClearActionPerformed(evt);
+            }
+        });
+        jPanel50.add(jButtonTestParametersClear);
+
+        jLabel73.setText(MCRecipe.Lang.T_INV.LANG("ORDER"));
+
+        jLabel88.setText(MCRecipe.Lang.T_INV.LANG("RECIPE"));
+
+        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
+        jPanel49.setLayout(jPanel49Layout);
+        jPanel49Layout.setHorizontalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel49Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxTestParams_Order, 0, 135, Short.MAX_VALUE)
+                    .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxTestPararams_Recipe, 0, 135, Short.MAX_VALUE)
+                    .addComponent(jLabel88, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jPanel50, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel49Layout.setVerticalGroup(
+            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel49Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
+                        .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel73)
+                            .addComponent(jLabel88))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jPanel51.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButtonTestParametersPrint_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButtonTestParametersPrint_InvertTable.setToolTipText("print");
+        jButtonTestParametersPrint_InvertTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersPrint_InvertTableActionPerformed(evt);
+            }
+        });
+        jPanel51.add(jButtonTestParametersPrint_InvertTable);
+
+        jButtonTestParametersSave_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        jButtonTestParametersSave_InvertTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTestParametersSave_InvertTableActionPerformed(evt);
+            }
+        });
+        jPanel51.add(jButtonTestParametersSave_InvertTable);
+
+        jLabel89.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel89.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel89.setText(MCRecipe.Lang.TEST_PARAMS.TABLE_INVERT_NAME());
+
+        javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
+        jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
+        jPanel_Test_ParametersLayout.setHorizontalGroup(
+            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                        .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                        .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))))
+        );
+        jPanel_Test_ParametersLayout.setVerticalGroup(
+            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel89))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(460, Short.MAX_VALUE))
+        );
+
+        jScrollPaneTestParameters.setViewportView(jPanel_Test_Parameters);
+
+        jTabbedPane1.addTab("TEST PARAMETERS", jScrollPaneTestParameters);
 
         jPanel_Ingred_boxes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -3350,147 +3490,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTabbedPane1.addTab("RECIPE ADD.", jScrollPaneRecipeAdditional);
 
-        jPanel_Test_Params_Inv_Table_1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel_Test_Params_Inv_Table_1.setLayout(new java.awt.BorderLayout());
-
-        jTable_1_test_parameters.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane19.setViewportView(jTable_1_test_parameters);
-
-        jComboBoxTestParams_Order.setModel(new javax.swing.DefaultComboBoxModel());
-
-        jComboBoxTestPararams_Recipe.setModel(new javax.swing.DefaultComboBoxModel());
-
-        jPanel50.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButtonTestParametersGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
-        jButtonTestParametersGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTestParametersGoActionPerformed(evt);
-            }
-        });
-        jPanel50.add(jButtonTestParametersGo);
-
-        jButtonTestParametersClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear2.png"))); // NOI18N
-        jButtonTestParametersClear.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
-        jButtonTestParametersClear.setPreferredSize(new java.awt.Dimension(65, 43));
-        jButtonTestParametersClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTestParametersClearActionPerformed(evt);
-            }
-        });
-        jPanel50.add(jButtonTestParametersClear);
-
-        jLabel73.setText(MCRecipe.Lang.T_INV.LANG("ORDER"));
-
-        jLabel88.setText(MCRecipe.Lang.T_INV.LANG("RECIPE"));
-
-        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
-        jPanel49.setLayout(jPanel49Layout);
-        jPanel49Layout.setHorizontalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel49Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxTestParams_Order, 0, 135, Short.MAX_VALUE)
-                    .addComponent(jLabel73, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxTestPararams_Recipe, 0, 135, Short.MAX_VALUE)
-                    .addComponent(jLabel88, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jPanel50, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel49Layout.setVerticalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel49Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel73)
-                            .addComponent(jLabel88))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxTestParams_Order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxTestPararams_Recipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        jPanel51.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButtonTestParametersPrint_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
-        jButtonTestParametersPrint_InvertTable.setToolTipText("print");
-        jButtonTestParametersPrint_InvertTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTestParametersPrint_InvertTableActionPerformed(evt);
-            }
-        });
-        jPanel51.add(jButtonTestParametersPrint_InvertTable);
-
-        jButtonTestParametersSave_InvertTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        jButtonTestParametersSave_InvertTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTestParametersSave_InvertTableActionPerformed(evt);
-            }
-        });
-        jPanel51.add(jButtonTestParametersSave_InvertTable);
-
-        jLabel89.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel89.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel89.setText(MCRecipe.Lang.TEST_PARAMS.TABLE_INVERT_NAME());
-
-        javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
-        jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
-        jPanel_Test_ParametersLayout.setHorizontalGroup(
-            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                        .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                        .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
-                        .addGap(31, 31, 31))))
-        );
-        jPanel_Test_ParametersLayout.setVerticalGroup(
-            jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel89))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(460, Short.MAX_VALUE))
-        );
-
-        jScrollPane18.setViewportView(jPanel_Test_Parameters);
-
-        jTabbedPane1.addTab("TEST PARAMETERS", jScrollPane18);
-
         jTextArea1_Logg.setColumns(20);
         jTextArea1_Logg.setRows(5);
         jScrollPane6.setViewportView(jTextArea1_Logg);
@@ -4482,7 +4481,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
-    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JScrollPane jScrollPane3;
@@ -4498,6 +4496,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPaneRecipeInitial;
     public javax.swing.JScrollPane jScrollPaneRecipeInitialNotes;
     private javax.swing.JScrollPane jScrollPaneSequence;
+    private javax.swing.JScrollPane jScrollPaneTestParameters;
     private javax.swing.JScrollPane jScrollPaneVendors;
     private javax.swing.JScrollPane jScrollPaneVenodrsB;
     protected javax.swing.JScrollPane jScrollPane_Ingred_Comments;

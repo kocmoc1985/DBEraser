@@ -94,7 +94,7 @@ public class PROC {
     public static final String PROC_64 = "fn_ITF_Recipes_TEXT "; //#RECIPE INITIAL
     public static final String PROC_65 = "prc_ITF_Igredients_main_Delete "; //#INGREDIENTS
     public static final String PROC_66 = "fn_ITF_Test_Related "; //#TEST PARAMETERS
-    public static final String PROC_67 = "fn_ITF_Test_Related_ID "; //#TEST PARAMETERS
+    public static final String PROC_67 = "fn_ITF_Test_Related_ID_4 "; //#TEST PARAMETERS
     //
     //PROD_PLAN
     public static final String PROC_P_01 = "fn_Sequence_Get "; 
