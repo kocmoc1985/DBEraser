@@ -106,17 +106,23 @@ public class TestParameters extends BasicTab {
         }
         //
         try {
+            //
             String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, order, recipe);
             OUT.showMessage(q);
+            //
             ResultSet rs = sql.execute(q, OUT);
             //
-            if (rs.next() == false) {
-                return;
+            boolean recordsExist = false;
+            //
+            if (rs.next()) {
+                recordsExist = true;
             }
             //
             jTable_1.build_table_common(rs, q);
             //
-            jTable_1.setSelectedRow(0);
+            if(recordsExist){
+                jTable_1.setSelectedRow(0);
+            }
             //
             jTable_1.validate();
             jTable_1.revalidate();
@@ -129,11 +135,18 @@ public class TestParameters extends BasicTab {
         }
     }
 
+    
+    private final static String ID_1 = "ID_Wotest";
+    private final static String ID_2 = "ID_Proc";
+    private final static String ID_3 = "Ingredient_Vulco_Code_ID";
+    private final static String ID_4 = "Ingredient_Aeging_Code_ID";
+    
+    
     private void hideColsJTable() {
-        jTable_1.hideColumnByName("ID_Wotest");
-        jTable_1.hideColumnByName("ID_Proc");
-        jTable_1.hideColumnByName("Ingredient_Vulco_Code_ID");
-        jTable_1.hideColumnByName("Ingredient_Aeging_Code_ID");
+        jTable_1.hideColumnByName(ID_1);
+        jTable_1.hideColumnByName(ID_2);
+        jTable_1.hideColumnByName(ID_3);
+        jTable_1.hideColumnByName(ID_4);
     }
 
     private String getOrder() {
@@ -155,7 +168,14 @@ public class TestParameters extends BasicTab {
             JTable table = mCRecipe.jTable1;
             //
             if (mCRecipe.recipeInitial != null) {
-                return HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
+                //
+                String rst = HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
+                //
+                mCRecipe.jComboBoxTestPararams_Recipe.setEnabled(true);
+                mCRecipe.jComboBoxTestPararams_Recipe.setEditable(true);
+                mCRecipe.jComboBoxTestPararams_Recipe.setSelectedItem(rst);
+                //
+                return rst;
             }
         }
         //
@@ -225,10 +245,10 @@ public class TestParameters extends BasicTab {
         //
 //        System.out.println("RECIPE: " + recipe);
         //
-        String id_1 = jTable_1.getValueSelectedRow("ID_Wotest");
-        String id_2 = jTable_1.getValueSelectedRow("ID_Proc");
-        String id_3 = jTable_1.getValueSelectedRow("Ingredient_Vulco_Code_ID");
-        String id_4 = jTable_1.getValueSelectedRow("Ingredient_Aeging_Code_ID");
+        String id_1 = jTable_1.getValueSelectedRow(ID_1);
+        String id_2 = jTable_1.getValueSelectedRow(ID_2);
+        String id_3 = jTable_1.getValueSelectedRow(ID_3);
+        String id_4 = jTable_1.getValueSelectedRow(ID_4);
         //
         try {
             String q = SQL_A.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id_1, id_2, id_3, id_4);

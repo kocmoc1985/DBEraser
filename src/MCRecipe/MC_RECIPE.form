@@ -2571,9 +2571,9 @@
                               <Component id="jLabel89" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane19" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel_Test_Params_Inv_Table_1" min="-2" pref="753" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel_Test_Params_Inv_Table_1" pref="753" max="32767" attributes="0"/>
+                              <Component id="jScrollPane19" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="460" max="32767" attributes="0"/>
                       </Group>
