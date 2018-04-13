@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * FQ.java
  *
  * Created on 2013-mar-11, 11:57:31
@@ -50,9 +50,16 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     private final String MS_SQL = "mssql";
     private final String ORACLE = "oracle";
     private final String MY_SQL = "mysql";
-    private final String ODBC = "odbc";
-    private final String MDB = "mdb";
+    private final String MDB_J8 = "mdbj8";
     private final String NPMS = "npms";
+    /**
+     * @deprecated
+     */
+    private final String ODBC = "odbc";
+    /**
+     * @deprecated
+     */
+    private final String MDB = "mdb";
     //==========================
     private final String LOG_FILE = "sql_log.log";
     private final String QUERY_OK_LOG_FILE = "queries_ok.log";
@@ -147,6 +154,8 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                 sql_b.connect_odbc(user, pass, odbc);
             } else if (dbtype.equals(MDB)) {
                 sql_b.connect_mdb(user, pass, mdb_path);
+            }else if (dbtype.equals(MDB_J8)) {
+                sql_b.connect_mdb_java_8(user, pass, mdb_path);
             } else if (dbtype.equals(NPMS)) {
                 sql = createRemoteSql(GP.SQL_NPMS_HOST, GP.SQL_NPMS_PORT,
                         host, Integer.parseInt(port), db_name, user, pass,
@@ -564,7 +573,11 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         try {
             ResultSet rs = sql.execute(query);
-//            build_table(rs);
+            //
+            if(rs.next()==false){
+                 showMessage("No records in table");
+                return;
+            }
             //
             Thread thread = new Thread(new BuildTableThr(rs));
             thread.start();
@@ -658,7 +671,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         String id_field = jTextField1.getText().trim();
         //
-        String q = "delete from " + table_name + " where " + id_field + " = " + isString((String)jTable1.getValueAt(selectedRow, 0), false);
+        String q = "delete from " + table_name + " where " + id_field + " = " + isString((String) jTable1.getValueAt(selectedRow, 0), false);
         //
         try {
             sql.execute(q);
@@ -727,16 +740,16 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
         HelpA.nimbusLookAndFeel();
         //
-        HelpA.create_dir_if_missing("err_output");
-        try {
-            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
-            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
-
-            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
-            System.setErr(out);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        HelpA.create_dir_if_missing("err_output");
+//        try {
+//            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+//            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
+//
+//            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));
+//            System.setErr(out);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
         //======================================================================
         java.awt.EventQueue.invokeLater(new Runnable() {
