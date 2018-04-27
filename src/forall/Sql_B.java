@@ -27,10 +27,10 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     private Statement statement_2;
     private PreparedStatement p_statement;
     //
-    private boolean CREATE_STATEMENT_SIMPLE;
+    private final boolean CREATE_STATEMENT_SIMPLE;
     private int SQL_LOGIN_TIME_OUT = 60;
     //
-    private boolean LOGG_CONNECTION_STRING;
+    private final boolean LOGG_CONNECTION_STRING;
     //
     public boolean ODBC_OR_MDB;
 
@@ -120,6 +120,7 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
      * @param domain - is used only if named pipe are used
      * @param instance - shall not be null, if not used use ""
      * @throws SQLException
+     * @throws java.lang.ClassNotFoundException
      */
     public void connect_tds(String host, String port, String databaseName,
             String userName, String password, boolean useNamedPipes,
@@ -204,10 +205,11 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     }
 
     /**
-     * This one is for having access to .mdb and .accdb files with Java8
-     * OBS! For libraries look in folder lib -> mdbj8 (5 libraries)
-     * For the distribution this 5 libraries must all be in the "lib" folder!! Skip "mdbj8" folder!!
-     * As properties example see "freeq_mdbj8.properties"
+     * This one is for having access to .mdb and .accdb files with Java8 OBS!
+     * For libraries look in folder lib -> mdbj8 (5 libraries) For the
+     * distribution this 5 libraries must all be in the "lib" folder!! Skip
+     * "mdbj8" folder!! As properties example see "freeq_mdbj8.properties"
+     *
      * @param user
      * @param pass
      * @param pathToMdbFile
@@ -223,17 +225,21 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         //
         connection = DriverManager.getConnection(connectionUrl, user, pass);
         //
-//        if (CREATE_STATEMENT_SIMPLE == false) { // This can't be used for "jdbc:ucanaccess:"
-//            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//            statement_2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//        } else {
-            statement = connection.createStatement();
-            statement_2 = connection.createStatement();
-//        }
+        statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        statement_2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
     }
-    
-    
-     public void connectMySql(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
+
+    public void connect_mdb_java_8_(String user, String pass, String pathToMdbFile) throws SQLException {
+        //
+        String connectionUrl = "jdbc:ucanaccess://" + pathToMdbFile;//jdbc:ucanaccess://C:/__tmp/test/zzz.accdb
+        //
+        connection = DriverManager.getConnection(connectionUrl, user, pass);
+        //
+        statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        statement_2 = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+    }
+
+    public void connectMySql(String host, String port, String databaseName, String userName, String password) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
 //            connection = DriverManager.getConnection("jdbc:mysql://195.178.232.239:3306/m09k2847","m09k2847","636363");
         connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + databaseName, userName, password);
@@ -249,7 +255,7 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
      * @param user
      * @param pass
      * @param odbc
-     * @deprecated 
+     * @deprecated
      * @throws SQLException
      */
     public void connect_odbc(String user, String pass, String odbc) throws SQLException, ClassNotFoundException {
@@ -273,7 +279,8 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     /**
      * OBS!. sun.jdbc.odbc.JdbcOdbcDriver is not supported in Java 1.8 it will
      * throw "java.lang.ClassNotFoundException: sun.jdbc.odbc.JdbcOdbcDriver"
-     * @deprecated 
+     *
+     * @deprecated
      * @param user
      * @param pass
      * @param pathToMdbFile
@@ -301,8 +308,6 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
     }
 
     //    
-   
-
     @Override
     /**
      * @deprecated
