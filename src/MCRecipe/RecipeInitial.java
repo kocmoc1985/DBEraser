@@ -424,6 +424,9 @@ public class RecipeInitial extends BasicTab {
     }
 
     private String[] getComboParamsA() {
+        //
+        R_Ini_Custom_Panel cPanel = (R_Ini_Custom_Panel)mCRecipe2.customPanelRini;
+        //
         String recipeOrigin = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin);
         String detailedGroup = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox2_Detailed_Group);
         String recipeStage = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox3_Recipe_Stage);
@@ -434,18 +437,18 @@ public class RecipeInitial extends BasicTab {
         String class_ = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox8_Class);
         String description = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox_Description1);
         //
-        String color = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Color);
-        String industry = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Industry);
-        String recipeType = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Recipe_type);
-        String curingSystem = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_CuringSystem);
-        String curingProcess = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_CuringProcess);
-        String filler = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Filler);
-        String certificat = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Certificat);
-        String shelflife1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife_2);
-        String shelflife2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Shelflife_1);
-        String hardnessSha1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha1);
-        String hardnessSha2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha2);
-        String customer = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBoxRecipeInitial_Customer);
+        String color = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Color);
+        String industry = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Industry);
+        String recipeType = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Recipe_type);
+        String curingSystem = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_CuringSystem);
+        String curingProcess = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_CuringProcess);
+        String filler = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Filler);
+        String certificat = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Certificat);
+        String shelflife1 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Shelflife_2);
+        String shelflife2 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Shelflife_1);
+        String hardnessSha1 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Hardnes_sha1);
+        String hardnessSha2 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Hardnes_sha2);
+        String customer = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Customer);
         //
         return new String[]{recipeOrigin, recipeAdditional, recipeVersion,
             recipeStage, detailedGroup, status, class_, mixerCode, description,
@@ -740,17 +743,20 @@ public class RecipeInitial extends BasicTab {
     }
 
     public void clearBoxesB() {
-        mCRecipe2.jComboBoxRecipeInitial_Color.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Industry.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Recipe_type.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_CuringSystem.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_CuringProcess.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Filler.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Certificat.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Shelflife_2.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Shelflife_1.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha1.setSelectedItem(null);
-        mCRecipe2.jComboBoxRecipeInitial_Hardnes_sha2.setSelectedItem(null);
+        //
+        R_Ini_Custom_Panel cPanel = (R_Ini_Custom_Panel)mCRecipe2.customPanelRini;
+        //
+        cPanel.jComboBoxRecipeInitial_Color.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Industry.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Recipe_type.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_CuringSystem.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_CuringProcess.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Filler.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Certificat.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Shelflife_2.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Shelflife_1.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Hardnes_sha1.setSelectedItem(null);
+        cPanel.jComboBoxRecipeInitial_Hardnes_sha2.setSelectedItem(null);
     }
 
     @Override
