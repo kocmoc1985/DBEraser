@@ -20,7 +20,7 @@ public class BOX_PARAMS {
     public static final CBoxParam MIXER_CODE = new CBoxParam("Mixer_Code", "Name", false);
     public static final CBoxParam STATUS = new CBoxParam("Status", false);
     public static final CBoxParam CLASS = new CBoxParam("Class", false);
-    //RECIPE_INITIAL GROUP C
+    //RECIPE_INITIAL GROUP C, QEW
     public static final CBoxParam COLOR = new CBoxParam("Color:", false);
     public static final CBoxParam INDUSTRY = new CBoxParam("industry:", false);
     public static final CBoxParam RECIPE_TYPE = new CBoxParam("recept type:", false);
@@ -34,6 +34,8 @@ public class BOX_PARAMS {
     public static final CBoxParam HARDNESS_SHA_2 = new CBoxParam("Hardnes Sha:", false);
     public static final CBoxParam CUSTOMER = new CBoxParam("Customer", false);
     //
+    //RECIPE_INITIAL GROUP C, QEW
+    public static final CBoxParam KOST = new CBoxParam("Herstellkosten:", false);
     //
     //INGREDIENTS GROUP A
     public static final CBoxParam INGRED_NAME = new CBoxParam("Name", false);

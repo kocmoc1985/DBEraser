@@ -90,7 +90,7 @@ public class RECIPE_OVERVIEW {
         return LANG_ENG ? "SORT BY NOTE VALUE" : "SORTIEREN NACH NOTENWERT";
     }
 
-    //===
+    //<===Company = QEW====>
     public static String RECIPE_OVERVIEW__COLOR() {
         return LANG_ENG ? "COLOR" : "FARBE";
     }
@@ -138,4 +138,11 @@ public class RECIPE_OVERVIEW {
      public static String CUSTOMER() {
         return LANG_ENG ? "CUSTOMER" : "KUNDE";
     }
+     //</===Company = QEW====>
+     
+      //<===Company = CP====>
+    public static String RECIPE_OVERVIEW__KOST_VON() {
+        return LANG_ENG ? "COST FROM" : "KOSTEN VON";
+    }
+    //</===Company = CP====>
 }

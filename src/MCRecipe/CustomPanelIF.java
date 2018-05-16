@@ -9,6 +9,6 @@ package MCRecipe;
  *
  * @author KOCMOC
  */
-public interface CustomPanelRini {
+public interface CustomPanelIF {
     
 }

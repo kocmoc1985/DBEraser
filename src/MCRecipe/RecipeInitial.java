@@ -425,7 +425,7 @@ public class RecipeInitial extends BasicTab {
 
     private String[] getComboParamsA() {
         //
-        R_Ini_Custom_Panel cPanel = (R_Ini_Custom_Panel)mCRecipe2.customPanelRini;
+        CustomPanelQew cPanel = (CustomPanelQew)mCRecipe2.customPanelRecipeInitial;
         //
         String recipeOrigin = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin);
         String detailedGroup = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox2_Detailed_Group);
@@ -744,7 +744,7 @@ public class RecipeInitial extends BasicTab {
 
     public void clearBoxesB() {
         //
-        R_Ini_Custom_Panel cPanel = (R_Ini_Custom_Panel)mCRecipe2.customPanelRini;
+        CustomPanelQew cPanel = (CustomPanelQew)mCRecipe2.customPanelRecipeInitial;
         //
         cPanel.jComboBoxRecipeInitial_Color.setSelectedItem(null);
         cPanel.jComboBoxRecipeInitial_Industry.setSelectedItem(null);

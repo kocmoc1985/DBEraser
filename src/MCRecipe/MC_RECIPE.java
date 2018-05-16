@@ -97,7 +97,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "qew123";
     //
-    public CustomPanelRini customPanelRini;
+    public CustomPanelIF customPanelRecipeInitial;
 
     //
     /**
@@ -133,13 +133,20 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void companyRelated() {
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
-            this.customPanelRini = new R_Ini_Custom_Panel();
-            Dimension d = jPanel17.getSize();
-            this.jPanel17.add((Component)customPanelRini);
-            this.jPanel17.setLayout(new GridLayout(1, 1));
-            this.jPanel17.setPreferredSize(d);
+            this.customPanelRecipeInitial = new CustomPanelCp();
+            initCustomPanel((Component) customPanelRecipeInitial);
             HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+        } else {
+            this.customPanelRecipeInitial = new CustomPanelQew();
+            initCustomPanel((Component) customPanelRecipeInitial);
         }
+    }
+
+    private void initCustomPanel(Component c) {
+        Dimension d = jPanel17.getSize();
+        this.jPanel17.add(c);
+        this.jPanel17.setLayout(new GridLayout(1, 1));
+        this.jPanel17.setPreferredSize(d);
     }
 
     private void lang() {
