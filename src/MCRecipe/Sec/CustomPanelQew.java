@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package MCRecipe.Sec;
 import MCRecipe.Sec.JComboBox_RI_C;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Lang.RECIPE_OVERVIEW;
@@ -11,12 +11,12 @@ import MCRecipe.Lang.RECIPE_OVERVIEW;
  *
  * @author KOCMOC
  */
-public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
+public class CustomPanelQew extends javax.swing.JPanel implements CustomPanelIF{
 
     /**
-     * Creates new form CustomPanelCp
+     * Creates new form R_Ini_Custom_Panel
      */
-    public CustomPanelCp() {
+    public CustomPanelQew() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBoxRecipeInitial_Color = new JComboBox_RI_C(BOX_PARAMS.KOST);
+        jComboBoxRecipeInitial_Color = new JComboBox_RI_C(BOX_PARAMS.COLOR);
         jComboBoxRecipeInitial_Industry = new JComboBox_RI_C(BOX_PARAMS.INDUSTRY);
         jComboBoxRecipeInitial_Recipe_type = new JComboBox_RI_C(BOX_PARAMS.RECIPE_TYPE);
         jComboBoxRecipeInitial_CuringSystem = new JComboBox_RI_C(BOX_PARAMS.CURING_SYSTEM);
@@ -39,6 +39,7 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
         jComboBoxRecipeInitial_Shelflife_2 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_2);
         jComboBoxRecipeInitial_Shelflife_1 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_1);
         jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_1);
+        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_2);
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -49,6 +50,9 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
         jLabel63 = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jComboBoxRecipeInitial_Customer = new JComboBox_RI_C(BOX_PARAMS.CUSTOMER);
+        jLabel85 = new javax.swing.JLabel();
 
         jComboBoxRecipeInitial_Color.setModel(new javax.swing.DefaultComboBoxModel());
 
@@ -70,7 +74,9 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
 
         jComboBoxRecipeInitial_Hardnes_sha1.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel56.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__KOST_VON());
+        jComboBoxRecipeInitial_Hardnes_sha2.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jLabel56.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__COLOR());
 
         jLabel57.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__INDUSTRY());
 
@@ -89,6 +95,12 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
         jLabel64.setText(RECIPE_OVERVIEW.SHELF_LIFE_MAX());
 
         jLabel65.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MIN());
+
+        jLabel66.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MAX());
+
+        jComboBoxRecipeInitial_Customer.setModel(new javax.swing.DefaultComboBoxModel());
+
+        jLabel85.setText(RECIPE_OVERVIEW.CUSTOMER());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,23 +130,30 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
                             .addComponent(jLabel65)
                             .addComponent(jLabel64)
                             .addComponent(jComboBoxRecipeInitial_Shelflife_1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxRecipeInitial_Recipe_type, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel58))
-                            .addGap(33, 33, 33)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxRecipeInitial_Certificat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel62)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBoxRecipeInitial_CuringSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel59))
-                            .addGap(33, 33, 33)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel63)
-                                .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxRecipeInitial_Recipe_type, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel58))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxRecipeInitial_Certificat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel62)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxRecipeInitial_CuringSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel59))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel63)
+                                    .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel66)
+                            .addComponent(jComboBoxRecipeInitial_Hardnes_sha2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel85)
+                            .addComponent(jComboBoxRecipeInitial_Customer, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
@@ -163,20 +182,25 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel58)
-                    .addComponent(jLabel62))
+                    .addComponent(jLabel62)
+                    .addComponent(jLabel66))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxRecipeInitial_Recipe_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxRecipeInitial_Certificat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxRecipeInitial_Certificat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxRecipeInitial_Hardnes_sha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel59)
-                    .addComponent(jLabel63))
+                    .addComponent(jLabel63)
+                    .addComponent(jLabel85))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBoxRecipeInitial_CuringSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxRecipeInitial_Shelflife_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxRecipeInitial_Customer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,8 +210,10 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
     public javax.swing.JComboBox jComboBoxRecipeInitial_Color;
     public javax.swing.JComboBox jComboBoxRecipeInitial_CuringProcess;
     public javax.swing.JComboBox jComboBoxRecipeInitial_CuringSystem;
+    public javax.swing.JComboBox jComboBoxRecipeInitial_Customer;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Filler;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Hardnes_sha1;
+    public javax.swing.JComboBox jComboBoxRecipeInitial_Hardnes_sha2;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Industry;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Recipe_type;
     public javax.swing.JComboBox jComboBoxRecipeInitial_Shelflife_1;
@@ -202,5 +228,7 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel85;
     // End of variables declaration//GEN-END:variables
 }

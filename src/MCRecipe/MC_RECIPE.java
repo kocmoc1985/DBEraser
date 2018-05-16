@@ -4,6 +4,9 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.CustomPanelCp;
+import MCRecipe.Sec.CustomPanelIF;
+import MCRecipe.Sec.CustomPanelQew;
 import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;

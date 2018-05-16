@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Sec.CustomPanelQew;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.JTB;
