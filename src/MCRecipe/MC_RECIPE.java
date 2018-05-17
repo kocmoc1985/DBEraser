@@ -307,7 +307,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         recipeInitialGroupC = new ArrayList<JComboBox>();
         //
-        Component[] components = jPanel17.getComponents();
+        JComponent jc = (JComponent)jPanel17.getComponent(0);
+        //
+        Component[] components = jc.getComponents();
+        //
         //
         for (Component c : components) {
             if (c instanceof JComboBox_RI_C) {

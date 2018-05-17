@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 public class GP {
 
-    public static String COMPANY_NAME = "qew";
+    public static String COMPANY_NAME = "compounds";
     //
     public static String COMPANY_NAME_QEW = "qew";
     public static String COMPANY_NAME_COMPOUNDS = "compounds";

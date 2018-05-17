@@ -61,7 +61,6 @@ public class PROC {
     public static final String PROC_31 = "prc_ITF_Recipes_Z_X "; //#RECIPE INITIAL
     public static final String PROC_32 = "prc_ITF_Recipes_Z_X_OR "; //#RECIPE INITIAL
     public static final String PROC_33 = "prc_ITF_Recipes_Z_A "; //#RECIPE INITIAL
-    public static final String PROC_33_1 = "prc_ITF_Recipes_Z_A_AG "; //#RECIPE INITIAL
     public static final String PROC_34 = "prc_ITF_Sequence_deleteMain "; //#SEQUENCE
     public static final String PROC_35 = "prc_ITF_Sequence_Edit_Main "; //#SEQUENCE
     public static final String PROC_36 = "prc_ITF_Sequence_Insert_Main "; //#SEQUENCE
@@ -137,7 +136,6 @@ public class PROC {
         procList.add(PROC_31);
         procList.add(PROC_32);
         procList.add(PROC_33);
-        procList.add(PROC_33_1);
         procList.add(PROC_34);
         procList.add(PROC_35);
         procList.add(PROC_36);

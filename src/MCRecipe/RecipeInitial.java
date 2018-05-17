@@ -72,6 +72,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+
                 mCRecipe2.recipeInitial_GroupA_Boxes_to_list();
                 mCRecipe2.recipeInitial_GroupA_INGRED_Boxes_to_list();
                 mCRecipe2.recipeInitial_GroupC_Boxes_to_list();
@@ -79,6 +80,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 fill_table_1(null, null, null, null);
                 HelpA.markGivenRow(mCRecipe2.jTable1, 0);
                 mCRecipe2.clickedOnTable1RecipeInitial();
+
             }
         });
     }
@@ -385,7 +387,10 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         try {
             //
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
-                fill_table_1__h1(q, params);
+                q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
+                HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
+                fillTable1HelpM();
+                OUT.showMessage(q);
             } else {
                 q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
@@ -405,12 +410,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
     }
 
-    public void fill_table_1__h1(String q, String[] params) throws SQLException {
-        q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
-        HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
-        fillTable1HelpM();
-        OUT.showMessage(q);
-    }
+   
 
     public void fillTable1HelpM() {
         //
@@ -789,20 +789,29 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     @Override
     public void clearBoxesB() {
+      //
+        for (JComboBox box : mCRecipe2.recipeInitialGroupC) {
+            box.setSelectedItem(null);
+            box.setEditable(false);
+        }
         //
-        CustomPanelQew cPanel = (CustomPanelQew) mCRecipe2.customPanelRecipeInitial;
+        mCRecipe2.revalidate();
+        mCRecipe2.repaint();
         //
-        cPanel.jComboBoxRecipeInitial_Color.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Industry.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Recipe_type.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_CuringSystem.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_CuringProcess.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Filler.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Certificat.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Shelflife_2.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Shelflife_1.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Hardnes_sha1.setSelectedItem(null);
-        cPanel.jComboBoxRecipeInitial_Hardnes_sha2.setSelectedItem(null);
+        //
+//        CustomPanelQew cPanel = (CustomPanelQew) mCRecipe2.customPanelRecipeInitial;
+//        //
+//        cPanel.jComboBoxRecipeInitial_Color.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Industry.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Recipe_type.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_CuringSystem.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_CuringProcess.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Filler.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Certificat.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Shelflife_2.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Shelflife_1.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Hardnes_sha1.setSelectedItem(null);
+//        cPanel.jComboBoxRecipeInitial_Hardnes_sha2.setSelectedItem(null);
     }
 
     @Override

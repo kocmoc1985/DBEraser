@@ -39,8 +39,8 @@ public class BOX_PARAMS {
     public static final CBoxParam COST_TO = new CBoxParam("Herstellkosten:", false);
     public static final CBoxParam VK_PRICE_FROM = new CBoxParam("VK-Preis:", false);
     public static final CBoxParam VK_PRICE_TO = new CBoxParam("VK-Preis:", false);
-    public static final CBoxParam DICHTE_FROM = new CBoxParam("Dichte g/cm:", false);
-    public static final CBoxParam DICHTE_TO = new CBoxParam("Dichte g/cm:", false);
+    public static final CBoxParam DICHTE_FROM = new CBoxParam("Dichte g/cm³:", false);
+    public static final CBoxParam DICHTE_TO = new CBoxParam("Dichte g/cm³:", false);
     public static final CBoxParam CHARGE_FROM = new CBoxParam("Charge kg:", false);
     public static final CBoxParam CHARGE_TO = new CBoxParam("Charge kg:", false);
     public static final CBoxParam HALTBARKEIT_FROM = new CBoxParam("Haltbarkeit:", false);

@@ -33,7 +33,7 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
         jComboBox_vk_preis_von = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_FROM);
         jComboBox_dichte_von = new JComboBox_RI_C(BOX_PARAMS.DICHTE_FROM);
         jComboBox_charge_von = new JComboBox_RI_C(BOX_PARAMS.CHARGE_FROM);
-        jComboBoxRecipeInitial_Cost_to = new JComboBox_RI_C(BOX_PARAMS.CURING_PROCESS);
+        jComboBoxRecipeInitial_Cost_to = new JComboBox_RI_C(BOX_PARAMS.COST_TO);
         jComboBox_vk_preis_bis = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_TO);
         jComboBox_dichte_bis = new JComboBox_RI_C(BOX_PARAMS.DICHTE_TO);
         jComboBox_charge_bis = new JComboBox_RI_C(BOX_PARAMS.CHARGE_TO);
