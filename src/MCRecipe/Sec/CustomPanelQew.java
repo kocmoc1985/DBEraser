@@ -29,17 +29,17 @@ public class CustomPanelQew extends javax.swing.JPanel implements CustomPanelIF{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBoxRecipeInitial_Color = new JComboBox_RI_C(BOX_PARAMS.COLOR);
-        jComboBoxRecipeInitial_Industry = new JComboBox_RI_C(BOX_PARAMS.INDUSTRY);
-        jComboBoxRecipeInitial_Recipe_type = new JComboBox_RI_C(BOX_PARAMS.RECIPE_TYPE);
-        jComboBoxRecipeInitial_CuringSystem = new JComboBox_RI_C(BOX_PARAMS.CURING_SYSTEM);
-        jComboBoxRecipeInitial_CuringProcess = new JComboBox_RI_C(BOX_PARAMS.CURING_PROCESS);
-        jComboBoxRecipeInitial_Filler = new JComboBox_RI_C(BOX_PARAMS.FILLER);
-        jComboBoxRecipeInitial_Certificat = new JComboBox_RI_C(BOX_PARAMS.CERTIFICATE);
-        jComboBoxRecipeInitial_Shelflife_2 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_2);
-        jComboBoxRecipeInitial_Shelflife_1 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_1);
-        jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_1);
-        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_2);
+        jComboBoxRecipeInitial_Color = new JComboBox_RI_C(BOX_PARAMS.COLOR,1);
+        jComboBoxRecipeInitial_Industry = new JComboBox_RI_C(BOX_PARAMS.INDUSTRY,2);
+        jComboBoxRecipeInitial_Recipe_type = new JComboBox_RI_C(BOX_PARAMS.RECIPE_TYPE,3);
+        jComboBoxRecipeInitial_CuringSystem = new JComboBox_RI_C(BOX_PARAMS.CURING_SYSTEM,4);
+        jComboBoxRecipeInitial_CuringProcess = new JComboBox_RI_C(BOX_PARAMS.CURING_PROCESS,5);
+        jComboBoxRecipeInitial_Filler = new JComboBox_RI_C(BOX_PARAMS.FILLER,6);
+        jComboBoxRecipeInitial_Certificat = new JComboBox_RI_C(BOX_PARAMS.CERTIFICATE,7);
+        jComboBoxRecipeInitial_Shelflife_2 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_2,8);
+        jComboBoxRecipeInitial_Shelflife_1 = new JComboBox_RI_C(BOX_PARAMS.SCHELFLIFE_1,9);
+        jComboBoxRecipeInitial_Hardnes_sha1 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_1,10);
+        jComboBoxRecipeInitial_Hardnes_sha2 = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_SHA_2,11);
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -51,7 +51,7 @@ public class CustomPanelQew extends javax.swing.JPanel implements CustomPanelIF{
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        jComboBoxRecipeInitial_Customer = new JComboBox_RI_C(BOX_PARAMS.CUSTOMER);
+        jComboBoxRecipeInitial_Customer = new JComboBox_RI_C(BOX_PARAMS.CUSTOMER,12);
         jLabel85 = new javax.swing.JLabel();
 
         jComboBoxRecipeInitial_Color.setModel(new javax.swing.DefaultComboBoxModel());

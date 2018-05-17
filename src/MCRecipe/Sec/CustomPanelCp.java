@@ -29,16 +29,16 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBoxRecipeInitial_Cost_from = new JComboBox_RI_C(BOX_PARAMS.COST_FROM);
-        jComboBox_vk_preis_von = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_FROM);
-        jComboBox_dichte_von = new JComboBox_RI_C(BOX_PARAMS.DICHTE_FROM);
-        jComboBox_charge_von = new JComboBox_RI_C(BOX_PARAMS.CHARGE_FROM);
-        jComboBoxRecipeInitial_Cost_to = new JComboBox_RI_C(BOX_PARAMS.COST_TO);
-        jComboBox_vk_preis_bis = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_TO);
-        jComboBox_dichte_bis = new JComboBox_RI_C(BOX_PARAMS.DICHTE_TO);
-        jComboBox_charge_bis = new JComboBox_RI_C(BOX_PARAMS.CHARGE_TO);
-        jComboBox_haltbarkeit_von = new JComboBox_RI_C(BOX_PARAMS.HALTBARKEIT_FROM);
-        jComboBox_haltbarkeit_bis = new JComboBox_RI_C(BOX_PARAMS.HALTBARKEIT_TO);
+        jComboBoxRecipeInitial_Cost_from = new JComboBox_RI_C(BOX_PARAMS.COST_FROM,1);
+        jComboBox_vk_preis_von = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_FROM,3);
+        jComboBox_dichte_von = new JComboBox_RI_C(BOX_PARAMS.DICHTE_FROM,5);
+        jComboBox_charge_von = new JComboBox_RI_C(BOX_PARAMS.CHARGE_FROM,7);
+        jComboBoxRecipeInitial_Cost_to = new JComboBox_RI_C(BOX_PARAMS.COST_TO,2);
+        jComboBox_vk_preis_bis = new JComboBox_RI_C(BOX_PARAMS.VK_PRICE_TO,4);
+        jComboBox_dichte_bis = new JComboBox_RI_C(BOX_PARAMS.DICHTE_TO,6);
+        jComboBox_charge_bis = new JComboBox_RI_C(BOX_PARAMS.CHARGE_TO,8);
+        jComboBox_haltbarkeit_von = new JComboBox_RI_C(BOX_PARAMS.HALTBARKEIT_FROM,9);
+        jComboBox_haltbarkeit_bis = new JComboBox_RI_C(BOX_PARAMS.HALTBARKEIT_TO,10);
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
@@ -50,9 +50,9 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        jComboBox_hardness_from = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_FROM);
+        jComboBox_hardness_from = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_FROM,11);
         jLabel67 = new javax.swing.JLabel();
-        jComboBox_hardness_to = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_TO);
+        jComboBox_hardness_to = new JComboBox_RI_C(BOX_PARAMS.HARDNESS_TO,12);
 
         jComboBoxRecipeInitial_Cost_from.setModel(new javax.swing.DefaultComboBoxModel());
 

@@ -301,11 +301,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
         //
     }
-    public ArrayList<JComboBox> recipeInitialGroupC;
+    public ArrayList<JComboBox_RI_C> recipeInitialGroupC;
 
     public void recipeInitial_GroupC_Boxes_to_list() {
         //
-        recipeInitialGroupC = new ArrayList<JComboBox>();
+        recipeInitialGroupC = new ArrayList<JComboBox_RI_C>();
         //
         JComponent jc = (JComponent)jPanel17.getComponent(0);
         //
@@ -314,7 +314,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         for (Component c : components) {
             if (c instanceof JComboBox_RI_C) {
-                recipeInitialGroupC.add((JComboBox) c);
+                recipeInitialGroupC.add((JComboBox_RI_C) c);
             }
         }
         //
@@ -4402,11 +4402,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     private RecipeInitialIF defineRecipeInitial() {
-        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
-            return new RecipeInitialCp(this, sql);
-        } else {
-            return new RecipeInitialQew(this, sql);
-        }
+//        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
+//            return new RecipeInitialCp(this, sql);
+//        } else {
+//            return new RecipeInitialQew(this, sql);
+//        }
+//
+        return new RecipeInitial(this, sql);
     }
 
     public void recipeInitialTabClicked() {

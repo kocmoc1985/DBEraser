@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -410,8 +411,6 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
     }
 
-   
-
     public void fillTable1HelpM() {
         //
         String q = SQL_A.recipe_initial_main();
@@ -469,29 +468,15 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
      *
      * @return
      */
-    public ArrayList<String> getComboParamsA_h_two() {
+    private ArrayList<String> getComboParamsA_h_two() {
         //
         ArrayList<String> list = new ArrayList<String>();
         //
-        CustomPanelQew cPanel = (CustomPanelQew) mCRecipe2.customPanelRecipeInitial;
+        Collections.sort(mCRecipe2.recipeInitialGroupC);
         //
-        String color = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Color);
-        String industry = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Industry);
-        String recipeType = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Recipe_type);
-        String curingSystem = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_CuringSystem);
-        String curingProcess = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_CuringProcess);
-        String filler = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Filler);
-        String certificat = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Certificat);
-        String shelflife1 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Shelflife_2);
-        String shelflife2 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Shelflife_1);
-        String hardnessSha1 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Hardnes_sha1);
-        String hardnessSha2 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Hardnes_sha2);
-        String customer = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Customer);
-        //
-        String[] arr = new String[]{color, industry, recipeType, curingSystem, curingProcess,
-            filler, certificat, shelflife1, shelflife2, hardnessSha1, hardnessSha2, customer};
-        //
-        list.addAll(Arrays.asList(arr));
+        for (JComboBox box : mCRecipe2.recipeInitialGroupC) {
+            list.add(HelpA.getComboBoxSelectedValue(box));
+        }
         //
         return list;
     }
@@ -789,7 +774,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     @Override
     public void clearBoxesB() {
-      //
+        //
         for (JComboBox box : mCRecipe2.recipeInitialGroupC) {
             box.setSelectedItem(null);
             box.setEditable(false);
