@@ -12,6 +12,7 @@ import forall.SqlBasicLocal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -26,10 +27,9 @@ public class RecipeInitialCp extends RecipeInitial {
         this.customPanel = (CustomPanelCp) mCRecipe2.customPanelRecipeInitial;
     }
 
-  
     @Override
     public ArrayList<String> getComboParamsA_h_two() {
-        //
+//        //
         ArrayList<String> list = new ArrayList<String>();
         //
         String cost_from = HelpA.getComboBoxSelectedValue(customPanel.jComboBoxRecipeInitial_Cost_from);
@@ -45,14 +45,25 @@ public class RecipeInitialCp extends RecipeInitial {
         String hardness_from = HelpA.getComboBoxSelectedValue(customPanel.jComboBox_hardness_from);
         String hardness_to = HelpA.getComboBoxSelectedValue(customPanel.jComboBox_hardness_to);
         //
-        String[] arr = new String[]{cost_from,cost_to,vk_preis_from,vk_preis_to,density_from,density_to,
-        charge_from,charge_to,shelflife_from,shelflife_to,hardness_from,hardness_to};
+        String[] arr = new String[]{cost_from, cost_to, vk_preis_from, vk_preis_to, density_from, density_to,
+            charge_from, charge_to, shelflife_from, shelflife_to, hardness_from, hardness_to};
         //
         list.addAll(Arrays.asList(arr));
         //
         return list;
-    }
 
-    
+        //
+        //
+        // It would be nice to solve it like that but the order of parameters is 
+        // important!  (PROC_33 = "prc_ITF_Recipes_Z_A ")
+        //
+//        ArrayList<String> list = new ArrayList<String>();
+//        //
+//        for(JComboBox box: mCRecipe2.recipeInitialGroupC){
+//            list.add(HelpA.getComboBoxSelectedValue(box));
+//        }
+//        //
+//        return list;
+    }
 
 }
