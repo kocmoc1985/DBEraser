@@ -5,7 +5,6 @@
  */
 package MyObjectTableInvert;
 
-import Interfaces.SqlBasic;
 import MyObjectTable.ControlsActionsIF;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
@@ -18,11 +17,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.sql.DataTruncation;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;

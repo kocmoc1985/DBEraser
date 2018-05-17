@@ -24,9 +24,6 @@ public class PROC {
         return false;
     }
 
-    public static void main(String[] args) {
-        System.out.println("" + exists("fn_Lab_REsults"));
-    }
 
     public static final String PROC_01 = "Create_Recipe_Tempory_USER_Compare ";//#RECIPE INITIAL
     public static final String PROC_02 = "fn_Lab_REsults "; //#RECIPE ADDITIONAL
