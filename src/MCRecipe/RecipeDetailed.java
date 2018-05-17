@@ -48,7 +48,7 @@ public class RecipeDetailed extends BasicTab {
 
     private final MC_RECIPE mCRecipe2;
     private final ChangeSaver changeSaver;
-    private final RecipeInitial recipeInitial;
+    private final RecipeInitialIF recipeInitial;
     protected LinkedList<Integer> unsavedChanges_table4 = new LinkedList<Integer>();//This should contain the "Id" of the row
     protected LinkedList<Integer> insertedMaterials_table4 = new LinkedList<Integer>();//This should contain the "Id" of the row
     protected LinkedList<Integer> addedRows_table_2 = new LinkedList<Integer>();
@@ -86,7 +86,7 @@ public class RecipeDetailed extends BasicTab {
     //
     private static Properties TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
     
-    public RecipeDetailed(MC_RECIPE mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitial recipeInitial) {
+    public RecipeDetailed(MC_RECIPE mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitialIF recipeInitial) {
         super(sql, sql_additional, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
         this.changeSaver = changeSaver;

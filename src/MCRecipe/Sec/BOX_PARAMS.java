@@ -34,8 +34,19 @@ public class BOX_PARAMS {
     public static final CBoxParam HARDNESS_SHA_2 = new CBoxParam("Hardnes Sha:", false);
     public static final CBoxParam CUSTOMER = new CBoxParam("Customer", false);
     //
-    //RECIPE_INITIAL GROUP C, QEW
-    public static final CBoxParam KOST = new CBoxParam("Herstellkosten:", false);
+    //RECIPE_INITIAL GROUP C, COMPOUNDS
+    public static final CBoxParam COST_FROM = new CBoxParam("Herstellkosten:", false);
+    public static final CBoxParam COST_TO = new CBoxParam("Herstellkosten:", false);
+    public static final CBoxParam VK_PRICE_FROM = new CBoxParam("VK-Preis:", false);
+    public static final CBoxParam VK_PRICE_TO = new CBoxParam("VK-Preis:", false);
+    public static final CBoxParam DICHTE_FROM = new CBoxParam("Dichte g/cm:", false);
+    public static final CBoxParam DICHTE_TO = new CBoxParam("Dichte g/cm:", false);
+    public static final CBoxParam CHARGE_FROM = new CBoxParam("Charge kg:", false);
+    public static final CBoxParam CHARGE_TO = new CBoxParam("Charge kg:", false);
+    public static final CBoxParam HALTBARKEIT_FROM = new CBoxParam("Haltbarkeit:", false);
+    public static final CBoxParam HALTBARKEIT_TO = new CBoxParam("Haltbarkeit:", false);
+    public static final CBoxParam HARDNESS_FROM = new CBoxParam("Härte:", false);
+    public static final CBoxParam HARDNESS_TO = new CBoxParam("Härte:", false);
     //
     //INGREDIENTS GROUP A
     public static final CBoxParam INGRED_NAME = new CBoxParam("Name", false);

@@ -19,6 +19,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,9 +34,9 @@ import javax.swing.text.rtf.RTFEditorKit;
  *
  * @author KOCMOC
  */
-public class RecipeInitial extends BasicTab {
+public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
-    private final MC_RECIPE mCRecipe2;
+    public final MC_RECIPE mCRecipe2;
     private CompareRecipes compareRecipes;
     public static final String T1_RECIPE_VERSION = "Recipe Version";
     public static final String T1_RECIPE_ID = "Recipe_ID";
@@ -81,10 +83,12 @@ public class RecipeInitial extends BasicTab {
         });
     }
 
+    @Override
     public void table1Repport() {
         tableCommonExportOrRepport(mCRecipe2.jTable1, true);
     }
 
+    @Override
     public void showIngredInfoOnValueChange(String ingredName) {
         String q = SQL_A.recipe_initial_build_info_table(ingredName);
         //
@@ -103,10 +107,12 @@ public class RecipeInitial extends BasicTab {
         //
     }
 
+    @Override
     public void setCompareRecipes(CompareRecipes compareRecipes) {
         this.compareRecipes = compareRecipes;
     }
 
+    @Override
     public void remoweAllFromCompare() {
         //
         if (HelpA.confirm() == false) {
@@ -118,6 +124,7 @@ public class RecipeInitial extends BasicTab {
         ADDED_TO_COMPARE_LIST = new LinkedList<Integer>();
     }
 
+    @Override
     public void addToCompare() {
         //
         if (ADDED_TO_COMPARE_LIST.size() >= 6) {
@@ -142,6 +149,7 @@ public class RecipeInitial extends BasicTab {
         paint_selected_rows_a(ADDED_TO_COMPARE_LIST, table1, Color.lightGray);
     }
 
+    @Override
     public void showComparedRecipes() {
         //
         if (compareRecipes == null || ADDED_TO_COMPARE_LIST.size() == 0) {
@@ -151,10 +159,12 @@ public class RecipeInitial extends BasicTab {
         compareRecipes.fillAndShow();
     }
 
+    @Override
     public void dropCompareTable() {
         compareRecipes.dropCompareTable(HelpA.updatedBy());
     }
 
+    @Override
     public boolean checkIfRecipeDisabled() {
         //
         String status = HelpA.getValueSelectedRow(mCRecipe2.jTable1, T1_STATUS);
@@ -169,6 +179,7 @@ public class RecipeInitial extends BasicTab {
         //
     }
 
+    @Override
     public void delete_record_table_1(JTable table) {
         //
         if (checkIfRecipeDisabled()) {
@@ -212,6 +223,7 @@ public class RecipeInitial extends BasicTab {
         }
     }
 
+    @Override
     public void delete_record_table_2_or_3(JTable table, int row_index, String tableName, String idColumnName) {
         //
         if (HelpA.confirm() == false) {
@@ -236,6 +248,7 @@ public class RecipeInitial extends BasicTab {
         }
     }
 
+    @Override
     public void fill_table_2_and_3() {
         //
         JTable table1 = mCRecipe2.jTable1;
@@ -352,6 +365,7 @@ public class RecipeInitial extends BasicTab {
         unpaintAllRows_a(mCRecipe2.jTable1);
     }
 
+    @Override
     public void fill_table_1(String recipe_code, String release, String mixer_code, ActionEvent event) {
         //
         unpaintTable1();
@@ -371,10 +385,7 @@ public class RecipeInitial extends BasicTab {
         try {
             //
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
-                q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
-                HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
-                fillTable1HelpM();
-                OUT.showMessage(q);
+                fill_table_1__h1(q, params);
             } else {
                 q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
@@ -394,7 +405,14 @@ public class RecipeInitial extends BasicTab {
         //
     }
 
-    private void fillTable1HelpM() {
+    public void fill_table_1__h1(String q, String[] params) throws SQLException {
+        q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
+        HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
+        fillTable1HelpM();
+        OUT.showMessage(q);
+    }
+
+    public void fillTable1HelpM() {
         //
         String q = SQL_A.recipe_initial_main();
         //
@@ -424,9 +442,9 @@ public class RecipeInitial extends BasicTab {
         HelpA.hideColumnByName(table, T1_MIX_TIME);
     }
 
-    private String[] getComboParamsA() {
+    private ArrayList<String> getComboParamsA_h_one() {
         //
-        CustomPanelQew cPanel = (CustomPanelQew)mCRecipe2.customPanelRecipeInitial;
+        ArrayList<String> list = new ArrayList<String>();
         //
         String recipeOrigin = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin);
         String detailedGroup = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox2_Detailed_Group);
@@ -437,6 +455,25 @@ public class RecipeInitial extends BasicTab {
         String recipeAdditional = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox7_RecipeAdditional);
         String class_ = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox8_Class);
         String description = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox_Description1);
+        //
+        String[] arr = new String[]{recipeOrigin, recipeAdditional, recipeVersion,
+            recipeStage, detailedGroup, status, class_, mixerCode, description};
+        //
+        list.addAll(Arrays.asList(arr));
+        //
+        return list;
+    }
+
+    /**
+     * This one is for the "CustomPanel"
+     *
+     * @return
+     */
+    public ArrayList<String> getComboParamsA_h_two() {
+        //
+        ArrayList<String> list = new ArrayList<String>();
+        //
+        CustomPanelQew cPanel = (CustomPanelQew) mCRecipe2.customPanelRecipeInitial;
         //
         String color = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Color);
         String industry = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Industry);
@@ -451,11 +488,23 @@ public class RecipeInitial extends BasicTab {
         String hardnessSha2 = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Hardnes_sha2);
         String customer = HelpA.getComboBoxSelectedValue(cPanel.jComboBoxRecipeInitial_Customer);
         //
-        return new String[]{recipeOrigin, recipeAdditional, recipeVersion,
-            recipeStage, detailedGroup, status, class_, mixerCode, description,
-            color, industry, recipeType, curingSystem, curingProcess,
-            filler, certificat, shelflife1, shelflife2, hardnessSha1, hardnessSha2, customer
-        };
+        String[] arr = new String[]{color, industry, recipeType, curingSystem, curingProcess,
+            filler, certificat, shelflife1, shelflife2, hardnessSha1, hardnessSha2, customer};
+        //
+        list.addAll(Arrays.asList(arr));
+        //
+        return list;
+    }
+
+    private String[] getComboParamsA() {
+        //
+        ArrayList<String> list_a = getComboParamsA_h_one();
+        //
+        ArrayList<String> list_b = getComboParamsA_h_two();
+        //
+        list_a.addAll(list_b);
+        //
+        return list_a.toArray(new String[list_a.size()]);
     }
 
     private String[] getComboParamsB() {
@@ -493,7 +542,7 @@ public class RecipeInitial extends BasicTab {
         if (checkedIngreds || checkedOr && ingredBoxesEmpty == false) {
             System.out.println("getComboParamsB()");
             return getComboParamsB();
-        }  else if (checkedOr && boxesEmpty) {
+        } else if (checkedOr && boxesEmpty) {
             System.out.println("getComboParamsA()");
             return getComboParamsA(); // not selected
         } else if (checkedIngreds && boxesEmpty) {
@@ -522,7 +571,6 @@ public class RecipeInitial extends BasicTab {
         }
     }
 
-    
     private boolean checkIfToFill(JComboBox box) {
         //
         boolean condition_1 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
@@ -535,14 +583,12 @@ public class RecipeInitial extends BasicTab {
             return true;
         }
     }
-    
-    private void resetFlagWaitsIngredientsComboBoxes(){
-       for(JComboBoxM box: mCRecipe2.recipeInitialGroupA_INGRED){
-           box.setFLAG_WAIT(0);
-       }
-    }
 
-    
+    private void resetFlagWaitsIngredientsComboBoxes() {
+        for (JComboBoxM box : mCRecipe2.recipeInitialGroupA_INGRED) {
+            box.setFLAG_WAIT(0);
+        }
+    }
 
     private boolean ingredSearchCriteriasEmpty() {
         if (mCRecipe2.jComboBox_Ingred_1.getSelectedItem() != null || mCRecipe2.jComboBox_Ingred_2.getSelectedItem() != null) {
@@ -564,16 +610,13 @@ public class RecipeInitial extends BasicTab {
         //
         return true;
     }
-    
 
-    
-    
-    
     /**
      *
      * @param box
      * @param colName
      */
+    @Override
     public void fillComboBoxIngredients_with_wait(final JComboBoxM box, final String colName) {
         //
         if (checkIfToFill(box) == false) {
@@ -601,7 +644,7 @@ public class RecipeInitial extends BasicTab {
         box.setSelectedItem(selection);
 
     }
-    
+
     private static long prevCall;
 
     private boolean delay() {
@@ -613,7 +656,6 @@ public class RecipeInitial extends BasicTab {
             return true;
         }
     }
-    
 
     public synchronized void fillComboBox(final JComboBox box, final String colName) {
         //
@@ -644,7 +686,7 @@ public class RecipeInitial extends BasicTab {
             }
         });
     }
-    
+
     public void fillComboBoxMultiple(final JComboBox box, final String colName, final String colName2) {
         //
         if (checkIfToFill(box) == false) {
@@ -676,6 +718,7 @@ public class RecipeInitial extends BasicTab {
         });
     }
 
+    @Override
     public void fillComboBoxB(final JComboBox box, final String colName) {
         //
         if (delay() == false) {
@@ -718,6 +761,7 @@ public class RecipeInitial extends BasicTab {
         });
     }
 
+    @Override
     public void clearBoxes() {
         //
         for (JComboBox box : mCRecipe2.recipeInitialGroupA) {
@@ -743,9 +787,10 @@ public class RecipeInitial extends BasicTab {
         resetFlagWaitsIngredientsComboBoxes();
     }
 
+    @Override
     public void clearBoxesB() {
         //
-        CustomPanelQew cPanel = (CustomPanelQew)mCRecipe2.customPanelRecipeInitial;
+        CustomPanelQew cPanel = (CustomPanelQew) mCRecipe2.customPanelRecipeInitial;
         //
         cPanel.jComboBoxRecipeInitial_Color.setSelectedItem(null);
         cPanel.jComboBoxRecipeInitial_Industry.setSelectedItem(null);

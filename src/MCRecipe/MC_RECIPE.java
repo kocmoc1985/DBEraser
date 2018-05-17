@@ -78,7 +78,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public static final String PROPERTIES_PATH = "properties/mccompound.properties";
     private String IO_PROPERTIES_PATH = "io.properties";
     private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
-    public RecipeInitial recipeInitial;
+    public RecipeInitialIF recipeInitial;
     public RecipeDetailed recipeDetailed;
     private Ingredients ingredients;
     private Vendors vendors;
@@ -4398,10 +4398,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
     }
 
+    private RecipeInitialIF defineRecipeInitial() {
+        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
+            return new RecipeInitialCp(this, sql);
+        } else {
+            return new RecipeInitialQew(this, sql);
+        }
+    }
+
     public void recipeInitialTabClicked() {
         //
         if (recipeInitial == null) {
-            recipeInitial = new RecipeInitial(this, sql);
+//            recipeInitial = new RecipeInitial(this, sql);
+            recipeInitial = defineRecipeInitial();
         }
         //
         jPanel5.add(jScrollPane3);// Moving TABLE2

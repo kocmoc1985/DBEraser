@@ -122,27 +122,72 @@ public class RECIPE_OVERVIEW {
     public static String SHELF_LIFE_MIN() {
         return LANG_ENG ? "SHELF LIFE MIN" : "HALTBARKEIT MIN";
     }
-    
+
     public static String SHELF_LIFE_MAX() {
         return LANG_ENG ? "SHELF LIFE MAX" : "HALTBARKEIT MAX";
     }
-    
-     public static String HARDNESS_SHA_MIN() {
+
+    public static String HARDNESS_SHA_MIN() {
         return LANG_ENG ? "HARDNESS SHA MIN" : "HÄRTE SHA MIN";
     }
-     
-     public static String HARDNESS_SHA_MAX() {
+
+    public static String HARDNESS_SHA_MAX() {
         return LANG_ENG ? "HARDNESS SHA MAX" : "HÄRTE SHA MAX";
     }
-     
-     public static String CUSTOMER() {
+
+    public static String CUSTOMER() {
         return LANG_ENG ? "CUSTOMER" : "KUNDE";
     }
-     //</===Company = QEW====>
-     
-      //<===Company = CP====>
-    public static String RECIPE_OVERVIEW__KOST_VON() {
+    //</===Company = QEW====>
+
+    //<===Company = CP====>
+    public static String KOST_VON() {
         return LANG_ENG ? "COST FROM" : "KOSTEN VON";
     }
+
+    public static String KOST_BIS() {
+        return LANG_ENG ? "COST TO" : "KOSTEN BIS";
+    }
+
+    public static String VK_PREIS_VON() {
+        return LANG_ENG ? "VK-PRICE FROM" : "VK-PREIS VON";
+    }
+
+    public static String VK_PREIS_BIS() {
+        return LANG_ENG ? "VK-PRICE TO" : "VK-PREIS BIS";
+    }
+
+    public static String DICHTE_VON() {
+        return LANG_ENG ? "DENSITY FROM" : "DICHTE VON";
+    }
+
+    public static String DICHTE_BIS() {
+        return LANG_ENG ? "DENSITY TO" : "DICHTE BIS";
+    }
+
+    public static String CHARGE_KG_VON() {
+        return LANG_ENG ? "BATCH FROM" : "CHARGE VON";
+    }
+
+    public static String CHARGE_KG_BIS() {
+        return LANG_ENG ? "BATCH TO" : "CHARGE BIS";
+    }
+    
+    public static String HALTBARKEIT_VON() {
+        return LANG_ENG ? "SHELFLIFE FROM" : "HALTBARKEIT VON";
+    }
+    
+    public static String HALTBARKEIT_BIS() {
+        return LANG_ENG ? "SHELFLIFE TO" : "HALTBARKEIT BIS";
+    }
+    
+    public static String HÄRTE_VON() {
+        return LANG_ENG ? "HARDNESS FROM" : "HÄRTE VON";
+    }
+    
+    public static String HÄRTE_BIS() {
+        return LANG_ENG ? "HARDNESS TO" : "HÄRTE BIS";
+    }
+
     //</===Company = CP====>
 }
