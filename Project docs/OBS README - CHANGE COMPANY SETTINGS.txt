@@ -1,0 +1,5 @@
+Look at: 
+
+GP.COMPANY_NAME
+
+LNG.LANG_ENG

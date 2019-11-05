@@ -5,7 +5,7 @@
  */
 package MCRecipe.Lang;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import forall.HelpA;
 import javax.swing.JTabbedPane;
 
@@ -15,7 +15,7 @@ import javax.swing.JTabbedPane;
  */
 public class LNG {
     //
-    public static boolean LANG_ENG = false;
+    public static boolean LANG_ENG = true;
     //
     public static final String HOME_TAB = "*HOME";
     public static final String RECIPE_INITIAL_TAB = "RECIPE OVERVIEW";

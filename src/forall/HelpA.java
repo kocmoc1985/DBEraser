@@ -7,7 +7,7 @@ package forall;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTableInvert.RowDataInvert;
 import ca.odell.glazedlists.GlazedLists;
@@ -448,7 +448,7 @@ public class HelpA {
 //        return formatter.format(calendar.getTime());
 //    }
     public static String updatedBy() {
-        return MC_RECIPE.jTextFieldHomeUserName.getText();
+        return MC_RECIPE_.jTextFieldHomeUserName.getText();
     }
 
     public static String define_date_format(String date) {

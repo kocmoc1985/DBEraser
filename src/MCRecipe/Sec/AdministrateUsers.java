@@ -5,7 +5,7 @@
 package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -25,7 +25,7 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
 
-    public AdministrateUsers(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateUsers(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(mc_recipe, sql, sql_additional);
     }
 
