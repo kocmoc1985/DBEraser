@@ -497,6 +497,11 @@ public abstract class BasicTab implements SaveIndicator.SaveIndicatorIF {
     }
     
     public void showTableInvert(final JComponent container) {
+        //
+        if(TABLE_INVERT == null){
+            return;
+        }
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

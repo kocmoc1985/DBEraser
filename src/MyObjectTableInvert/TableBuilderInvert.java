@@ -53,6 +53,10 @@ public class TableBuilderInvert {
 
     public Table buildTable(String query) throws SQLException {
         //
+        if(CONFIG == null){
+            return null;
+        }
+        //
         ResultSet rs = sql.execute(query);
         //
 //        if(TABLE_NAME.equals("recipe_detailed_1")){

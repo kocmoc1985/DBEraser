@@ -139,7 +139,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             LNG.LANG_ENG = false;
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
-            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+//            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
         } else {
             LNG.LANG_ENG = true;
             this.customPanelRecipeInitial = new CustomPanelQew();
