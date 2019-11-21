@@ -2091,6 +2091,12 @@ public class HelpA {
         //
         return jbox;
     }
+    
+    public static String[] extract_comma_separated_values(String str){
+        str = str.trim();
+        String[]arr = str.split(",");
+        return arr;
+    }
 
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);

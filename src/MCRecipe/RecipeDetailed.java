@@ -1044,11 +1044,11 @@ public class RecipeDetailed extends BasicTab {
         //
         String q_2 = SQL_B.basic_combobox_query("Status", "Recipe_Prop_Main");
         RowDataInvert status = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Status", T_INV.LANG("STATUS"), "", true, true, false);
-        status.enableFakeValueJComboBox();
+        status.enableFakeValue();
         //
         String q_3 = SQL_B.basic_combobox_query("Class", "Recipe_Prop_Main");
         RowDataInvert clas = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_3, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Class", T_INV.LANG("CLASS"), "", true, true, false);
-        clas.enableFakeValueJComboBox();
+        clas.enableFakeValue();
         //
         String q_4 = SQL_B.basic_combobox_query("Detailed_Group", "Recipe_Group");
         RowDataInvert detailed_group = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_4, sql_additional, "", "Recipe_Prop_Main", "Recipe_ID", false, "Detailed_Group", T_INV.LANG("POLYMER GROUP"), "", true, true, false);

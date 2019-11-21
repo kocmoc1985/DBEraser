@@ -14,10 +14,12 @@ import forall.SqlBasicLocal;
  * @author mcab
  */
 public class RowDataInvert extends RowData {
+
     public static final int TYPE_COMMON = 0;
     public static final int TYPE_JCOMBOBOX = 1;
     public static final int TYPE_JBUTTON = 2;
     public static final int TYPE_JLABEL = 3;
+    public static final int TYPE_JCOMBOBOX_PREFILED = 4;
     //
     private int type = 0;
     private String additionalInfo;
@@ -38,6 +40,7 @@ public class RowDataInvert extends RowData {
     private boolean JTextFieldToolTipText = false;
     private boolean comboBoxMultipleValue = false;
     private boolean comboBoxFakeValue = false;
+    private boolean comboBoxFixedValue = false;
 
     /**
      *
@@ -116,16 +119,20 @@ public class RowDataInvert extends RowData {
         this.visible = visible;
         this.important = important;
     }
-    
-    public void enableFakeValueJComboBox(){
+
+    public void enableFixedValues() {
+        comboBoxFixedValue = true;
+    }
+
+    public void enableFakeValue() {
         comboBoxFakeValue = true;
     }
 
     public void enableComboBoxMultipleValue() {
         comboBoxMultipleValue = true;
     }
-    
-    public boolean comboBoxMultipleValueEnabled(){
+
+    public boolean comboBoxMultipleValueEnabled() {
         return comboBoxMultipleValue;
     }
 
@@ -158,11 +165,14 @@ public class RowDataInvert extends RowData {
         if (type == TYPE_JCOMBOBOX) {
             JComboBoxInvert jcb = new JComboBoxInvert();
             if (comboBoxMultipleValue) {
-                jcb = (JComboBoxInvert)HelpA.fillComboBox(sql, jcb, additionalInfo,  value, true,false);
-            }else if(comboBoxFakeValue){
-                jcb = (JComboBoxInvert)HelpA.fillComboBox(sql, jcb, additionalInfo,  value, false,true);
-            }else {
-                jcb = (JComboBoxInvert)HelpA.fillComboBox(sql, jcb, additionalInfo,  value, false,false);
+                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, true, false);
+            } else if (comboBoxFakeValue) {
+                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, true);
+            } else if (comboBoxFixedValue) {
+                String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
+                jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, comboboxValues, value);
+            } else {
+                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, false);
             }
             //
             return jcb;
@@ -185,7 +195,7 @@ public class RowDataInvert extends RowData {
     public Object getUnit() {
         return unitOrObject;
     }
-    
+
     public boolean getVisible() {
         return visible;
     }

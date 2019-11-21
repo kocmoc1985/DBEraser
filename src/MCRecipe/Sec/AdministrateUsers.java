@@ -5,7 +5,9 @@
 package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
+import MCRecipe.Lang.T_INV;
 import MCRecipe.MC_RECIPE_;
+import MCRecipe.SQL_B;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -25,8 +27,8 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
 
-    public AdministrateUsers(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
-        super(title,mc_recipe, sql, sql_additional);
+    public AdministrateUsers(String title, MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+        super(title, mc_recipe, sql, sql_additional);
     }
 
     @Override
@@ -55,7 +57,10 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
                 //
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
                 //
-                RowDataInvert role = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
+                String fixedComboValues = "admin,user,useradvanced,developer";
+                RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
+                role.enableFixedValues();
+//              RowDataInvert role = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 //
                 RowDataInvert dateCreated = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "dateCreated", "CREATED ON", "", true, true, false);
                 //
