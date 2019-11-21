@@ -222,7 +222,9 @@ public class HelpA {
             return;
         }
         //
-        if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB")) {
+        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
+        //
+        if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB") || role_developer) { // 
             //
             if (jc instanceof JComboBoxA) {
                 jc.setToolTipText(text);
@@ -1596,7 +1598,7 @@ public class HelpA {
 
         x.start();
     }
-    
+
     public static JPasswordField chooseFromPasswordField(String msg, boolean hideChars) {
         //
         JPasswordField jpf = new JPasswordField();

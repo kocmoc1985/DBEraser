@@ -4,6 +4,14 @@ The pass for user administration: recipe123 [updated on 2019-11-21]
 
 _____________________________________________________________________________
 
+[USER ROLES]
+user - nothing yet...
+useradvanced - nothing yet...
+admin - nothing yet...
+developer - Tracking tool tip is activated
+
+_____________________________________________________________________________
+
 [RULE FREE ENTRANCE]
 This rule makes that the login is not obvious.
 
@@ -18,7 +26,15 @@ The SQL script for creating of "MCRecipeUsers" table is found:
 _____________________________________________________________________________
 
 [TRACKING TOOL TIP]
+
+Legacy way of having the toolTip enabled, it's still active though [2019-11-21]
 At [2019-11-21] you shall have the "rule_free_entrance" implemented
 and login as "SB".
 
+The new way of having it enabled is:
+Add a user with role "developer"
+
+Runing from NetBeans:
 When runing from netbeans it's allways enabled
+
+_____________________________________________________________________________

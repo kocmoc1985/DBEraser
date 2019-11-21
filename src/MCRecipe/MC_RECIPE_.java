@@ -99,11 +99,12 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
     private final static String ADMIN_USERS_PWD = "recipe123";
     //
-    private static String USER_ROLE;
-    private final static String ROLE_UNDEFINED = "undef";
-    private final static String ROLE_COMMON_USER = "user";
-    private final static String ROLE_ADVANCED_USER = "useradvanced";
-    private final static String ROLE_ADMIN = "admin";
+    public static String USER_ROLE = "";
+    public final static String ROLE_UNDEFINED = "undef";
+    public final static String ROLE_COMMON_USER = "user";
+    public final static String ROLE_ADVANCED_USER = "useradvanced";
+    public final static String ROLE_ADMIN = "admin";
+    public final static String ROLE_DEVELOPER = "developer";
     //
     public CustomPanelIF customPanelRecipeInitial;
     //
@@ -130,7 +131,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         loadUserName(); //  ***
         //
-        verifyUser();//  ***
+        if (verifyUser() == false) {
+            userNotValidActions();
+        }
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
@@ -172,7 +175,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         String userName = p.getProperty("username", "NA");
         String pass = p.getProperty("pass", "");
         jTextFieldHomeUserName.setText(userName);
-        jTextFieldHomePass.setText(pass);
+        jPasswordFieldHomePass.setText(pass);
     }
 
     private String getUserName() {
@@ -180,17 +183,20 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }
 
     private String getPass() {
-        return jTextFieldHomePass.getText();
+        return jPasswordFieldHomePass.getText();
     }
 
     private void updateUserName() {
+        //
         String userName = jTextFieldHomeUserName.getText();
-        String pass = jTextFieldHomePass.getText();
+        String pass = jPasswordFieldHomePass.getText();
         Properties p = new Properties();
+        //
         p.put("username", userName);
         p.put("pass", pass);
+        //
         HelpA.properties_save_properties(p, IO_PROPERTIES_PATH, "");
-        HelpA.showNotification("User name and password saved");
+//        HelpA.showNotification("User name and password saved");
 //        jTextFieldHomeUserName.setBorder(BorderFactory.createLineBorder(Color.green));
     }
 
@@ -202,7 +208,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         boolean freeEntranceEnabled = freeEntranceEnabled();
         //
 //        USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
-        //
 //        System.out.println("USER ROLE: " + USER_ROLE);
         //
         if (freeEntranceEnabled) {
@@ -495,10 +500,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jTextFieldHomeUserName = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jLabel72 = new javax.swing.JLabel();
-        jTextFieldHomePass = new javax.swing.JTextField();
-        jPanel45 = new javax.swing.JPanel();
-        jButton_Home_Login = new javax.swing.JButton();
-        jButton_Home_Save_UserName = new javax.swing.JButton();
+        jPasswordFieldHomePass = new javax.swing.JPasswordField();
         jLabelHomeVersion = new javax.swing.JLabel();
         jLabelHomeVersion1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -506,6 +508,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel46 = new javax.swing.JLabel();
         jButton19 = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
+        jButton_Home_Login = new javax.swing.JButton();
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -864,29 +867,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel72.setForeground(new java.awt.Color(102, 102, 102));
         jLabel72.setText(LNG.PASSWORD());
 
-        jTextFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextFieldHomePass.setForeground(new java.awt.Color(255, 255, 255));
-
-        jPanel45.setPreferredSize(new java.awt.Dimension(120, 50));
-        jPanel45.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButton_Home_Login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_1.png"))); // NOI18N
-        jButton_Home_Login.setToolTipText("Login");
-        jButton_Home_Login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Home_LoginActionPerformed(evt);
-            }
-        });
-        jPanel45.add(jButton_Home_Login);
-
-        jButton_Home_Save_UserName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        jButton_Home_Save_UserName.setToolTipText("Save cridentials");
-        jButton_Home_Save_UserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Home_Save_UserNameActionPerformed(evt);
-            }
-        });
-        jPanel45.add(jButton_Home_Save_UserName);
+        jPasswordFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabelHomeVersion.setText("Version");
 
@@ -915,6 +896,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel54.setForeground(new java.awt.Color(102, 102, 102));
         jLabel54.setText(LNG.ADMIN_TOOLS());
 
+        jButton_Home_Login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_1.png"))); // NOI18N
+        jButton_Home_Login.setToolTipText("Login");
+        jButton_Home_Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Home_LoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
         jPanelHome.setLayout(jPanelHomeLayout);
         jPanelHomeLayout.setHorizontalGroup(
@@ -936,22 +925,24 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addContainerGap()
                         .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelHomeLayout.createSequentialGroup()
-                        .addGap(443, 443, 443)
-                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldHomeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelHomeLayout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(176, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))))
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                                .addGap(443, 443, 443)
+                                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldHomeUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPasswordFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                                .addGap(608, 608, 608)
+                                .addComponent(jButton_Home_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(177, Short.MAX_VALUE))))
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -991,15 +982,16 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addGap(13, 13, 13)
                         .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                                .addComponent(jPasswordFieldHomePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton_Home_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
                 .addComponent(jLabelHomeVersion)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelHomeVersion1))
@@ -3770,10 +3762,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         vendors.table4_2Repport();
     }//GEN-LAST:event_jButtonVendorsTable4_2PrintActionPerformed
 
-    private void jButton_Home_Save_UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_Save_UserNameActionPerformed
-        updateUserName();
-    }//GEN-LAST:event_jButton_Home_Save_UserNameActionPerformed
-
     private void jButtonRecipeAdditionalPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeAdditionalPrint1ActionPerformed
         if (recipeAdditional != null) {
             recipeAdditional.table1Repport();
@@ -3866,11 +3854,21 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         return false;
     }
 
+    private void userNotValidActions() {
+        jTextFieldHomeUserName.setText("");
+        jPasswordFieldHomePass.setText("");
+        updateUserName();
+    }
+
     private void jButton_Home_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_LoginActionPerformed
         if (verifyUser()) {
-            HelpA.showNotification("Login ok");
+            HelpA.showNotification("Login valid");
+            updateUserName();
+        } else {
+            userNotValidActions();
         }
     }//GEN-LAST:event_jButton_Home_LoginActionPerformed
+
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         HelpA.read_err_outputfile_and_show(jTextArea1);
@@ -4122,7 +4120,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButtonVendorsSaveTable4_2;
     private javax.swing.JButton jButtonVendorsTable4_2Print;
     protected javax.swing.JButton jButton_Home_Login;
-    protected javax.swing.JButton jButton_Home_Save_UserName;
     private javax.swing.JButton jButton_Ingred_Add_Ingredient;
     private javax.swing.JButton jButton_Ingred_Add_Ingredient_From_Scratch;
     private javax.swing.JButton jButton_Ingred_Add_Table_3;
@@ -4297,7 +4294,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
     public javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
@@ -4334,6 +4330,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JPanel jPanel_RecipeInitial;
     private javax.swing.JPanel jPanel_Test_Parameters;
     public javax.swing.JPanel jPanel_Test_Params_Inv_Table_1;
+    public static javax.swing.JTextField jPasswordFieldHomePass;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     public javax.swing.JScrollPane jScrollPane11;
@@ -4382,7 +4379,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JTextArea jTextArea1_Logg;
     public javax.swing.JTextField jTextFieldCommandParamSequence;
-    public static javax.swing.JTextField jTextFieldHomePass;
     public static javax.swing.JTextField jTextFieldHomeUserName;
     public javax.swing.JTextField jTextFieldInfoSequence;
     public javax.swing.JTextField jTextFieldStepNrSequence;
