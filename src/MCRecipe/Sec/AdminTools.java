@@ -22,7 +22,7 @@ public class AdminTools extends javax.swing.JFrame {
         initComponents();
         this.mcRecipe = mcRecipe;
         this.setTitle("Administration");
-        this.setSize(400,300);
+        this.setSize(400, 300);
         this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
     }
 
@@ -83,7 +83,8 @@ public class AdminTools extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (mcRecipe.administrateRecipeGroups == null) {
-            mcRecipe.administrateRecipeGroups = new AdministrateRecipeGroups(mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
+            String title = "Administrate recipe groups";
+            mcRecipe.administrateRecipeGroups = new AdministrateRecipeGroups(title, mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
             mcRecipe.administrateRecipeGroups.setVisible(true);
         } else {
             mcRecipe.administrateRecipeGroups.setVisible(true);
@@ -95,7 +96,8 @@ public class AdminTools extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (mcRecipe.administrateIngredGroups == null) {
-            mcRecipe.administrateIngredGroups = new AdministrateIngredGroups(mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
+            String title = "Administrate Ingred. groups";
+            mcRecipe.administrateIngredGroups = new AdministrateIngredGroups(title, mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
             mcRecipe.administrateIngredGroups.setVisible(true);
         } else {
             mcRecipe.administrateIngredGroups.setVisible(true);
@@ -107,7 +109,8 @@ public class AdminTools extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (mcRecipe.administrateMixerInfoBasic == null) {
-            mcRecipe.administrateMixerInfoBasic = new AdministrateMixerInfoBasic(mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
+            String title = "Administrate mixer info basic";
+            mcRecipe.administrateMixerInfoBasic = new AdministrateMixerInfoBasic(title, mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
             mcRecipe.administrateMixerInfoBasic.setVisible(true);
         } else {
             mcRecipe.administrateMixerInfoBasic.setVisible(true);
@@ -120,7 +123,7 @@ public class AdminTools extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -76,6 +76,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -93,6 +94,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import supplementary.HelpM;
 
 /**
  *
@@ -1593,6 +1595,20 @@ public class HelpA {
         };
 
         x.start();
+    }
+    
+    public static JPasswordField chooseFromPasswordField(String msg, boolean hideChars) {
+        //
+        JPasswordField jpf = new JPasswordField();
+        //
+        requestFocus(jpf);
+        //
+        if (hideChars == false) {
+            jpf.setEchoChar((char) 0);
+        }
+        //
+        boolean x = JOptionPane.showConfirmDialog(null, jpf, msg, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
+        return jpf;
     }
 
     public static boolean chooseFromJTextField(JTextField jtf, String msg) {

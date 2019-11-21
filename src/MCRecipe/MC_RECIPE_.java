@@ -58,8 +58,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
@@ -97,11 +97,17 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public AdministrateMixerInfoBasic administrateMixerInfoBasic;
     private AdminTools adminTools;
     private final static String ADMIN_RULE_ENTRANCE_ENABLED = "'rule_free_entrance'";
-    private final static String ADMIN_USERS_PWD = "qew123";
+    private final static String ADMIN_USERS_PWD = "recipe123";
+    //
+    private static String USER_ROLE;
+    private final static String ROLE_UNDEFINED = "undef";
+    private final static String ROLE_COMMON_USER = "user";
+    private final static String ROLE_ADVANCED_USER = "useradvanced";
+    private final static String ROLE_ADMIN = "admin";
     //
     public CustomPanelIF customPanelRecipeInitial;
-
     //
+
     /**
      * Creates new form MC_RECIPE
      */
@@ -190,15 +196,32 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private boolean verifyUser() {
         //
-        String where = "username ='" + getUserName() + "' and pass ='" + getPass() + "'";
-        int userConfirmed = HelpA.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
+        String sqlTableName = AdministrateUsers.USER_ADM_TBL_NAME;
+        String userName = getUserName();
+        //
+        boolean freeEntranceEnabled = freeEntranceEnabled();
+        //
+//        USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
+        //
+//        System.out.println("USER ROLE: " + USER_ROLE);
+        //
+        if (freeEntranceEnabled) {
+            jTabbedPane1.setEnabled(true);
+            USER_ROLE = ROLE_UNDEFINED;
+            return true;
+        }
+        //
+        String where = "username ='" + userName + "' and pass ='" + getPass() + "'";
+        int userConfirmed = HelpA.getRowCount(sql, sqlTableName, where);
         boolean userConfirmed_ = userConfirmed >= 1;
         //
-        if (userConfirmed_ == false && freeEntranceEnabled() == false) {//&& freeEntranceEnabled() == false
+        if (userConfirmed_ == false && freeEntranceEnabled == false) {//&& freeEntranceEnabled() == false
             HelpA.showNotification("User not valid");
             jTabbedPane1.setEnabled(false);
             return false;
         } else {
+            USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
+            setTitle(getTitle() + " *" + USER_ROLE);
             jTabbedPane1.setEnabled(true);
             return true;
         }
@@ -308,7 +331,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         recipeInitialGroupC = new ArrayList<JComboBox_RI_C>();
         //
-        JComponent jc = (JComponent)jPanel17.getComponent(0);
+        JComponent jc = (JComponent) jPanel17.getComponent(0);
         //
         Component[] components = jc.getComponents();
         //
@@ -3819,7 +3842,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         }
         //
         if (administrateUsers == null) {
-            administrateUsers = new AdministrateUsers(this, sql, sql_additional);
+            String title = "Administrate users";
+            administrateUsers = new AdministrateUsers(title, this, sql, sql_additional);
             administrateUsers.setVisible(true);
         } else {
             administrateUsers.setVisible(true);
@@ -3828,10 +3852,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private boolean verifyPasswordUserAdmin() {
         //
-        JTextField jtf = new JTextField();
-        jtf.setForeground(Color.WHITE);
-        HelpA.chooseFromJTextField(jtf, "Specify password");
-        String pwd = jtf.getText();
+        JPasswordField jpf = HelpA.chooseFromPasswordField("Enter password", true);
+        String pwd = new String(jpf.getPassword());
         //
         if (pwd == null || pwd.isEmpty()) {
             return false;

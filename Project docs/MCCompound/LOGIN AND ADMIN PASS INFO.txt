@@ -1,0 +1,24 @@
+[ADMIN LOGINS USERS ADMINISTRATION]
+
+The pass for user administration: recipe123 [updated on 2019-11-21]
+
+_____________________________________________________________________________
+
+[RULE FREE ENTRANCE]
+This rule makes that the login is not obvious.
+
+To add this rule, add a following user:
+col "userName" = rule_free_entrance
+col "pass" = empty - *means don't write enything
+col "role" = enabled
+
+The SQL script for creating of "MCRecipeUsers" table is found:
+"\DBEraser\Project docs\MCCompound\SQL create\Create NCPD"
+
+_____________________________________________________________________________
+
+[TRACKING TOOL TIP]
+At [2019-11-21] you shall have the "rule_free_entrance" implemented
+and login as "SB".
+
+When runing from netbeans it's allways enabled

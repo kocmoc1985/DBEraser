@@ -23,8 +23,8 @@ import java.util.logging.Logger;
  */
 public class AdministrateIngredGroups extends AdministrateRecipeGroups {
 
-    public AdministrateIngredGroups(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
-        super(mc_recipe, sql, sql_additional);
+    public AdministrateIngredGroups(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+        super(title,mc_recipe, sql, sql_additional);
     }
     
     @Override

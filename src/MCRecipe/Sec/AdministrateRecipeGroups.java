@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import mySwing.JTableM;
 
 /**
  *
@@ -32,6 +31,7 @@ import mySwing.JTableM;
  */
 public class AdministrateRecipeGroups extends javax.swing.JFrame implements MouseListener {
 
+    protected final String TITLE;
     public final MC_RECIPE_ mc_recipe;
     public final SqlBasicLocal sql;
     public final SqlBasicLocal sql_additional;
@@ -44,8 +44,9 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
     /**
      * Creates new form AdministrateUsers
      */
-    public AdministrateRecipeGroups(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateRecipeGroups(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         initComponents();
+        this.TITLE = title;
         this.mc_recipe = mc_recipe;
         this.sql = sql;
         this.sql_additional = sql_additional;
@@ -57,7 +58,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
 
     private void initOther() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setTitle("Administrate Users");
+        this.setTitle(TITLE);
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         jTable1.addMouseListener(this);
         jTable1.setAutoCreateRowSorter(true);

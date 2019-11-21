@@ -25,8 +25,8 @@ public class AdministrateUsers extends AdministrateRecipeGroups {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
 
-    public AdministrateUsers(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
-        super(mc_recipe, sql, sql_additional);
+    public AdministrateUsers(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+        super(title,mc_recipe, sql, sql_additional);
     }
 
     @Override
