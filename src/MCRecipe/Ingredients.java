@@ -495,6 +495,9 @@ public class Ingredients extends BasicTab {
             //
             HelpA.build_table_common(rs, table2, q);
             //
+            if (table2 != null) {
+                HelpA.setTrackingToolTip(table2, q);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -512,6 +515,10 @@ public class Ingredients extends BasicTab {
             ResultSet rs = sql_additional.execute(q, mCRecipe);
             //
             HelpA.build_table_common(rs, table3, q);
+            //
+            if(table3 != null){
+                HelpA.setTrackingToolTip(table3, q);
+            }
             //
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
@@ -569,6 +576,10 @@ public class Ingredients extends BasicTab {
             //
             table1Build = true;
             //
+            if (table != null) {
+                HelpA.setTrackingToolTip(table, q);
+            }
+            //
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             table1Build = false;
@@ -594,6 +605,9 @@ public class Ingredients extends BasicTab {
         HelpA.changeTableHeaderTitleOfOneColumn(table, "VendorName", JTB.LANG("VendorName"));
         HelpA.changeTableHeaderTitleOfOneColumn(table, "Cas_Number", JTB.LANG("Cas_Number"));
         HelpA.changeTableHeaderTitleOfOneColumn(table, "VM", JTB.LANG("VM"));
+        //
+
+        //
     }
 
     private String[] getComboParams() {

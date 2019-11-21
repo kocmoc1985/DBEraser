@@ -221,12 +221,16 @@ public class HelpA {
         }
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB")) {
-            if (jc instanceof JComboBox) {//Combo from InvertTable
+            //
+            if (jc instanceof JComboBoxA) {
+                jc.setToolTipText(text);
+            } else if (jc instanceof JComboBox) {//Combo from InvertTable
                 JComboBox box = (JComboBox) jc;
                 box.setRenderer(new MyComboBoxRenderer(text));
             } else {
                 jc.setToolTipText(text);
             }
+            //
         }
     }
 
@@ -1541,7 +1545,7 @@ public class HelpA {
     public static void showNotification_Data_Truncation_Error() {
         JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR_DATA_TRUNCATION());
     }
-    
+
     public static void showNotification_SQL_Error() {
         JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR());
     }

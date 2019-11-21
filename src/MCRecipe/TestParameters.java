@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import mySwing.JTableM;
 
@@ -128,6 +129,10 @@ public class TestParameters extends BasicTab {
             jTable_1.validate();
             jTable_1.revalidate();
             jTable_1.repaint();
+            //
+            if (jTable_1 != null) {
+                HelpA.setTrackingToolTip(jTable_1, q);
+            }
             //
             hideColsJTable();
             //

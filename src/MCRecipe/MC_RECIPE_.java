@@ -35,7 +35,6 @@ import MCRecipe.Sec.JComboBox_RI_C;
 import MCRecipe.Sec.JComboBox_TP_A;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -992,6 +991,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jComboBox1_Recipe_Origin.setEditable(false);
         jComboBox1_Recipe_Origin.setModel(new javax.swing.DefaultComboBoxModel());
+        jComboBox1_Recipe_Origin.setToolTipText("");
         jPanel2.add(jComboBox1_Recipe_Origin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 157, -1));
 
         jComboBox2_Detailed_Group.setModel(new javax.swing.DefaultComboBoxModel());

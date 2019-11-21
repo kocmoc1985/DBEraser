@@ -187,6 +187,8 @@ public class JComboBoxA extends JComboBox {
             JComboBoxA boxA = (JComboBoxA) jbox;
             boxA.AUTOFILL_ADD(list);
             //
+            HelpA.setTrackingToolTip(jbox, query);
+            //
             try {
                 jbox.setSelectedIndex(0);
             } catch (Exception ex) {

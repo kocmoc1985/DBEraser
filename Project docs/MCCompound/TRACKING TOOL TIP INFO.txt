@@ -1,0 +1,18 @@
+[2019-11-21]
+
+[ACTIVATION]
+If you run it from netbeans it is activated by default. If you run it normally
+you have to LOGIN under nick "SB" all i upper case
+
+[COMMON JTables]
+For common jtables you add it manually like:
+"HelpA.setTrackingToolTip(table, q);"
+
+
+
+[INVERT TABLES]
+For the inverted tables, the tracking tooltip is added automatically on build.
+
+NOTE That there are 2 kinds of tracking tool tip added to a invert table,
+if you point on a row you will see one and also if you point on the
+area some where in the corner you will see the "select" query

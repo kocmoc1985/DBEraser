@@ -85,7 +85,7 @@ public class RecipeDetailed extends BasicTab {
     private boolean MARKED_FOR_DELITION = false;
     //
     private static Properties TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE_.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
-    
+
     public RecipeDetailed(MC_RECIPE_ mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitialIF recipeInitial) {
         super(sql, sql_additional, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
@@ -628,8 +628,6 @@ public class RecipeDetailed extends BasicTab {
         //
         MARKED_FOR_DELITION = true;
     }
-    
-    
 
     public void fill_table_4(boolean recreateRecipeTempTable) {
         //
@@ -711,12 +709,17 @@ public class RecipeDetailed extends BasicTab {
         //Reset all painting
         paint_selected_rows(new LinkedList<IngredientToDelete>(), table4, null);
         //
+        if (table4 != null) {
+            HelpA.setTrackingToolTip(table4, q1);
+        }
         //
 //        HelpA.R_DETAILED_TABLE_4_LIST = HelpA.restoreListFromObject(HelpA.R_DETAILED_TABLE_4_OBJ);
 //        //
 //        HelpA.restoreColumnWidths(table4, HelpA.R_DETAILED_TABLE_4_LIST);
 //        //
 //        HelpA.synchColumnWidths(mCRecipe2.jTable4RecipeDetailed, mCRecipe2.jTableRecipeDetailedTable4HelpTable);
+        //
+
         //
     }
 

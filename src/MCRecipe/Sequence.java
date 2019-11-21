@@ -24,7 +24,7 @@ import javax.swing.JTable;
  */
 public class Sequence extends BasicTab {
 
-    private MC_RECIPE_ mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
     private String RECIPE;
     private String RELEASE;
     private String MIXER_CODE;
@@ -326,6 +326,8 @@ public class Sequence extends BasicTab {
             //
             HelpA.build_table_common(rs, table1, q);
             //
+            HelpA.setTrackingToolTip(table1, RECIPE);
+            //
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -346,6 +348,7 @@ public class Sequence extends BasicTab {
         //
         HelpA.markFirstRowJtable(mCRecipe.jTableSequnece1);
         mCRecipe.clickedTable1Sequence();
+        //
     }
 
     public void fill_table_2(JComboBox recipeBox, JComboBox releaseBox, JComboBox mixerBox, boolean orig) {
@@ -368,6 +371,8 @@ public class Sequence extends BasicTab {
             ResultSet rs = sql_additional.execute(q, mCRecipe);
             //
             HelpA.build_table_common(rs, table2, q);
+            //
+            HelpA.setTrackingToolTip(table2, RECIPE);
             //
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);

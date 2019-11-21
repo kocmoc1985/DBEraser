@@ -88,6 +88,8 @@ public class RecipeAdditional extends BasicTab {
             //
             HelpA.build_table_common(rs, mCRecipe.jTable_2_RecipeAdd,q);
             //
+            HelpA.setTrackingToolTip(mCRecipe.jTable_2_RecipeAdd, q);
+            //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeAdditional.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -107,6 +109,8 @@ public class RecipeAdditional extends BasicTab {
             ResultSet rs = sql.execute(q,mCRecipe);
             //
             HelpA.build_table_common(rs, mCRecipe.jTable_1_RecipeAdd,q);
+            //
+            HelpA.setTrackingToolTip(mCRecipe.jTable_1_RecipeAdd, q);
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeAdditional.class.getName()).log(Level.SEVERE, null, ex);
