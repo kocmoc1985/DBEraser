@@ -1,0 +1,2 @@
+[2018-04-13 15:02:18]   select name,xtype,refdate from sysobjects where xtype = 'U'
+[2018-04-13 15:19:44]   select name,xtype,refdate from sysobjects where xtype = 'U'
