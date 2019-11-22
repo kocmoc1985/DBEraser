@@ -4,7 +4,6 @@
  */
 package MCRecipe;
 
-import DBT.MC_BARCODES;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.REGEX;

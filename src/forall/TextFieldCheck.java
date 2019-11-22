@@ -4,13 +4,10 @@
  */
 package forall;
 
-import ClientRecorder.Sql;
-import MCRecipe.SQL_A;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;

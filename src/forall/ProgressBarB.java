@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
-import supplementary.GP;
 
 /**
  *
@@ -57,7 +56,7 @@ public class ProgressBarB extends JFrame {
         this.setTitle(title);
         //
         if (imageIconUrl == null) {
-            this.setIconImage(new ImageIcon(GP.PROGRESS_BAR_B_IMAGE_PATH).getImage());
+//            this.setIconImage(new ImageIcon(GP.PROGRESS_BAR_B_IMAGE_PATH).getImage());
         } else {
             this.setIconImage(new ImageIcon(imageIconUrl).getImage());
         }

@@ -68,7 +68,7 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         try {
             closed = statement.isClosed();
         } catch (SQLException ex) {
-            Logger.getLogger(SQL.Sql_B.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sql_B.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         //

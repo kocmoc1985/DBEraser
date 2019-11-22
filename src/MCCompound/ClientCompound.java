@@ -8,12 +8,7 @@ import MyObjectTable.ShowMessage;
 import CSCom.CRC;
 import ForSending.CSMessage;
 import Interfaces.ClientAbstrakt;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import supplementary.GP;
 
 /**
  *
@@ -23,11 +18,11 @@ public class ClientCompound extends ClientAbstrakt {
 
     private final ClientProtocolCompound protocolCompound = new ClientProtocolCompound(this);
     private final ShowMessage showMessage;
-    private final String host;
 
     public ClientCompound(ShowMessage showMessage, String host) {
         this.showMessage = showMessage;
         this.host = host;
+        GP.USE_SSL_SOCKETS = false;
         go();
     }
 
@@ -40,13 +35,13 @@ public class ClientCompound extends ClientAbstrakt {
         }
     }
 
-    public void disconnect() {
-        try {
-            socket.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ClientCompound.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void disconnect() {
+//        try {
+//            socket.close();
+//        } catch (IOException ex) {
+//            Logger.getLogger(ClientCompound.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public ClientProtocolCompound getProtocol() {
         return protocolCompound;
@@ -65,28 +60,43 @@ public class ClientCompound extends ClientAbstrakt {
         queMessageSend(new CSMessage(CRC.QEW_COMPOUND_COPY_DBF, ""));
     }
 
-    @Override
-    public synchronized void send(CSMessage clMsg) {
-         try {
-            ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-            output.writeObject(clMsg);
-            output.flush();
-        } catch (IOException e) {
-             JOptionPane.showMessageDialog(null, "Failed communicating with server");
-        }
-    }
+//    @Override
+//    public synchronized void send(CSMessage clMsg) {
+//         try {
+//            ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+//            output.writeObject(clMsg);
+//            output.flush();
+//        } catch (IOException e) {
+//             JOptionPane.showMessageDialog(null, "Failed communicating with server");
+//        }
+//    }
     
 
+//    @Override
+//    public void recieve() throws ClassNotFoundException {
+//        try {
+//            if (socket != null) {
+//                ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+//                CSMessage sMsg = (CSMessage) input.readObject();
+//                client_protocol.queMessageRecieve(sMsg);
+//            }
+//        } catch (IOException e) {
+//            RUN = false;
+//        }
+//    }
+
     @Override
-    public void recieve() throws ClassNotFoundException {
-        try {
-            if (socket != null) {
-                ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-                CSMessage sMsg = (CSMessage) input.readObject();
-                client_protocol.queMessageRecieve(sMsg);
-            }
-        } catch (IOException e) {
-            RUN = false;
-        }
+    public void actionsBeforeConnect() {
+        
+    }
+
+    @Override
+    public void actionsAfterConnect() {
+        
+    }
+
+    @Override
+    public void errorActionOnConnectionLost() {
+        
     }
 }

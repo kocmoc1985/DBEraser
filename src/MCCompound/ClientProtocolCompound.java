@@ -10,6 +10,9 @@ import Interfaces.ClientBasic;
 import Interfaces.ClientProtocolAbstrakt;
 import Interfaces.MyCSMessage;
 import forall.GP;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +46,11 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             processGetResponseOnSendCsv(msg);
             //
-            clientCompound.disconnect();
+            try {
+                clientCompound.disconnect();
+            } catch (IOException ex) {
+                Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
+            }
             //
         } else if (msg.getCommando().equals(CRC.QEW_COMPOUND_COPY_DBF_OK)) {
             //
@@ -51,7 +58,11 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             processCopyDbfDoneOrFailed(msg);
             //
-            clientCompound.disconnect();
+            try {
+                clientCompound.disconnect();
+            } catch (IOException ex) {
+                Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
+            }
             //
         } else if (msg.getCommando().equals(SRC.FEEDBACK_ANY_CLIENT)) {
             //

@@ -41,7 +41,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private JavaSysMon monitor = new JavaSysMon();
     private ClientCompound clientCompound;
     private final ShowProgress showProgress = new ShowProgress();
-    private final boolean test_mode = Boolean.parseBoolean(PROPS.getProperty("prod_plan_test_mode", "false"));
+    private final boolean TEST_MODE = Boolean.parseBoolean(PROPS.getProperty("prod_plan_test_mode", "false"));
     private final String npms_host_ip = PROPS.getProperty("npms_host", "localhost");
     private ProdPlan prodPlan;
 
@@ -77,7 +77,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }
 
     public boolean getTestMode() {
-        return test_mode;
+        return TEST_MODE;
     }
 
     private void connectToNpms() {
@@ -91,9 +91,10 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }
 
     private void copy_dbf_and_run_procedure() {
+        //
         connectToNpms();
         //
-        clientCompound.sendDoCopyDbfFiles();
+//        clientCompound.sendDoCopyDbfFiles(); // Diactivated on [2019-11-22] due to not working
         //
     }
 
