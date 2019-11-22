@@ -78,7 +78,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private String IO_PROPERTIES_PATH = "io.properties";
     private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitialIF recipeInitial;
-    public RecipeDetailed recipeDetailed;
+    public RecipeDetailed_ recipeDetailed;
     private Ingredients ingredients;
     private Vendors vendors;
     private VendorsB vendorsB;
@@ -665,9 +665,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel33 = new javax.swing.JPanel();
         jButtonIngredGo = new javax.swing.JButton();
         jButtonIngredClearBoxes = new javax.swing.JButton();
+        jPanel45 = new javax.swing.JPanel();
+        jButton12 = new javax.swing.JButton();
         jButtonIngredientsPasteIngred2 = new javax.swing.JButton();
         jButtonIngredientsPasteIngred1 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel_Ingred_Table1_Cont = new javax.swing.JPanel();
         jScrollPane_Ingred_Table1 = new javax.swing.JScrollPane();
@@ -1995,21 +1996,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         });
         jPanel33.add(jButtonIngredClearBoxes);
 
-        jButtonIngredientsPasteIngred2.setText(INGR.PASTE_INGRED_2_BTN());
-        jButtonIngredientsPasteIngred2.setToolTipText(INGR.PASTE_INGRED_2_BTN_TOOLTIP());
-        jButtonIngredientsPasteIngred2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIngredientsPasteIngred2ActionPerformed(evt);
-            }
-        });
-
-        jButtonIngredientsPasteIngred1.setText(INGR.PASTE_INGRED_1_BTN());
-        jButtonIngredientsPasteIngred1.setToolTipText(INGR.PASTE_INGRED_1_BTN_TOOLTIP());
-        jButtonIngredientsPasteIngred1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIngredientsPasteIngred1ActionPerformed(evt);
-            }
-        });
+        jPanel45.setLayout(new java.awt.GridLayout(3, 0));
 
         jButton12.setText(INGR.ADD_INGREDIENT_TO_R_DETAILED());
         jButton12.setToolTipText(INGR.ADD_INGREDIENT_TO_R_DETAILED_TOOLTIP());
@@ -2018,6 +2005,25 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButton12ActionPerformed(evt);
             }
         });
+        jPanel45.add(jButton12);
+
+        jButtonIngredientsPasteIngred2.setText(INGR.PASTE_INGRED_2_BTN());
+        jButtonIngredientsPasteIngred2.setToolTipText(INGR.PASTE_INGRED_2_BTN_TOOLTIP());
+        jButtonIngredientsPasteIngred2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngredientsPasteIngred2ActionPerformed(evt);
+            }
+        });
+        jPanel45.add(jButtonIngredientsPasteIngred2);
+
+        jButtonIngredientsPasteIngred1.setText(INGR.PASTE_INGRED_1_BTN());
+        jButtonIngredientsPasteIngred1.setToolTipText(INGR.PASTE_INGRED_1_BTN_TOOLTIP());
+        jButtonIngredientsPasteIngred1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngredientsPasteIngred1ActionPerformed(evt);
+            }
+        });
+        jPanel45.add(jButtonIngredientsPasteIngred1);
 
         javax.swing.GroupLayout jPanel_Ingred_boxesLayout = new javax.swing.GroupLayout(jPanel_Ingred_boxes);
         jPanel_Ingred_boxes.setLayout(jPanel_Ingred_boxesLayout);
@@ -2066,57 +2072,46 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonIngredientsPasteIngred1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonIngredientsPasteIngred2))
+                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel_Ingred_boxesLayout.setVerticalGroup(
             jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                        .addComponent(jButton12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonIngredientsPasteIngred1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonIngredientsPasteIngred2)
-                        .addGap(21, 21, 21))
-                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel24))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCombo_Ingred_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Descr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Cas_Number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_VendorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel25)
-                                    .addComponent(jLabel26)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel29))
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCombo_Ingred_Group, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_TradeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(25, 25, 25))))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
+                            .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel20)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel22)
+                                .addComponent(jLabel23)
+                                .addComponent(jLabel24))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCombo_Ingred_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Descr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Cas_Number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_VendorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel25)
+                                .addComponent(jLabel26)
+                                .addComponent(jLabel27)
+                                .addComponent(jLabel28)
+                                .addComponent(jLabel29))
+                            .addGap(8, 8, 8)
+                            .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCombo_Ingred_Group, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Class, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_TradeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(30, 30, 30))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2360,7 +2355,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             .addGroup(jPanel_IngredientsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel_Ingred_boxes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel_IngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel40, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2391,7 +2386,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addGroup(jPanel_IngredientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel_Ingred_table4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel_Ingred_table3, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
-                        .addContainerGap(242, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_IngredientsLayout.createSequentialGroup()
                         .addComponent(jPanel_Ingred_Invert_Table, javax.swing.GroupLayout.PREFERRED_SIZE, 979, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))))
@@ -4294,6 +4289,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel44;
+    private javax.swing.JPanel jPanel45;
     public javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel48;
@@ -4397,7 +4393,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void recipeDetailedTabbClicked() {
         //
         if (recipeDetailed == null && recipeInitial != null) {
-            recipeDetailed = new RecipeDetailed(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
+            recipeDetailed = new RecipeDetailed_(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
         }
         //
         if (recipeDetailed != null) {

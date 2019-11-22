@@ -1680,6 +1680,7 @@ public class HelpA {
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
+         setCursorWait(true);
         //
         if (jbox instanceof JComboBoxA == false) {
             return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
@@ -1758,6 +1759,8 @@ public class HelpA {
         tryMatch(jbox, (String) initialValue, showMultipleValues, fakeValue);
         //
         setTrackingToolTip(jbox, query);
+        //
+         setCursorWait(false);
         //
         return jbox;
     }

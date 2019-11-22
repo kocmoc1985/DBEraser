@@ -664,7 +664,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                boxA.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 //
                 box.setSelectedItem(selection);
@@ -695,7 +695,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
                 //
-                boxA.fillComboBox(sql, box, q, null, true, false);
+                HelpA.fillComboBox(sql, box, q, null, true, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);
@@ -721,7 +721,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                boxA.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }

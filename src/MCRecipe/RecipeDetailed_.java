@@ -44,7 +44,7 @@ import mySwing.JTableM;
  *
  * @author KOCMOC
  */
-public class RecipeDetailed extends BasicTab {
+public class RecipeDetailed_ extends BasicTab {
 
     private final MC_RECIPE_ mCRecipe2;
     private final ChangeSaver changeSaver;
@@ -86,7 +86,7 @@ public class RecipeDetailed extends BasicTab {
     //
     private static Properties TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE_.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
 
-    public RecipeDetailed(MC_RECIPE_ mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitialIF recipeInitial) {
+    public RecipeDetailed_(MC_RECIPE_ mCRecipe2, SqlBasicLocal sql, SqlBasicLocal sql_additional, ChangeSaver changeSaver, RecipeInitialIF recipeInitial) {
         super(sql, sql_additional, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
         this.changeSaver = changeSaver;
@@ -403,7 +403,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         recipeInitial.fill_table_2_and_3(); // Refresh
@@ -487,7 +487,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -505,7 +505,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -523,7 +523,7 @@ public class RecipeDetailed extends BasicTab {
             }
             //
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         //
@@ -542,7 +542,7 @@ public class RecipeDetailed extends BasicTab {
             //
             JComboBoxA box = new JComboBoxA();
             //
-            box.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
+            box = (JComboBoxA)HelpA.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
             //
             if (HelpA.chooseFromComboBoxDialog(box, "Choose material") == false) {
                 return;
@@ -569,7 +569,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         //
@@ -688,7 +688,7 @@ public class RecipeDetailed extends BasicTab {
             table4.alignValueByColName(t4_id, 2);
             //
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         //
@@ -753,7 +753,7 @@ public class RecipeDetailed extends BasicTab {
                     new String[]{});
             //
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         //
@@ -791,7 +791,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 ResultSet rs = sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -888,7 +888,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -948,7 +948,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -980,7 +980,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -1026,7 +1026,7 @@ public class RecipeDetailed extends BasicTab {
             try {
                 sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
-                Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -1159,7 +1159,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q2, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         updateTables(recipe_code_update);
@@ -1315,7 +1315,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         recipeInitial.fill_table_2_and_3(); // Refresh
@@ -1382,7 +1382,7 @@ public class RecipeDetailed extends BasicTab {
         try {
             sql.execute(q, mCRecipe2);
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -91,7 +91,7 @@ public class TestParameters extends BasicTab {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                boxA.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
