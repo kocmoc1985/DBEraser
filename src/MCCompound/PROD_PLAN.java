@@ -94,7 +94,11 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         //
         connectToNpms();
         //
-//        clientCompound.sendDoCopyDbfFiles(); // Diactivated on [2019-11-22] due to not working
+        // [DESCRIPTION OF COPY MECHANISM:]
+        // A "QEW_COMPOUND_COPY_DBF_OK" command is sent to the NPMS server which is intended to make copy.
+        // Attention that at the NPMS side a propertie file is needed which is placed in "properties/npms_prod_plan.properties".
+        // After the copying is done it sends the same CMD as feedback
+        clientCompound.sendDoCopyDbfFiles(); // Diactivated on [2019-11-22] due to not working
         //
     }
 

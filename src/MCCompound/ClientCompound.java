@@ -52,10 +52,20 @@ public class ClientCompound extends ClientAbstrakt {
         send(new CSMessage(CRC.SET_CLIENT_INFO, ""));
     }
 
+    /**
+     * OBS! This one is triggered manually by clicking a button
+     * Sends the .csv file to the central server running NPMS.
+     * The path and file ("Z:/prod_plan.csv") name on server to which the file is sent, is defined in 
+     * "properties/npms_prod_plan.properties" which is on NPMS server side.
+     * @param csvContent 
+     */
     public void sendCSV(String csvContent) {
         queMessageSend(new CSMessage(CRC.QEW_COMPOUND_SEND_CSV, csvContent));
     }
 
+    /**
+     * Triggers file copying on remote server with help of NPMS server
+     */
     public void sendDoCopyDbfFiles() {
         queMessageSend(new CSMessage(CRC.QEW_COMPOUND_COPY_DBF, ""));
     }
@@ -97,6 +107,6 @@ public class ClientCompound extends ClientAbstrakt {
 
     @Override
     public void errorActionOnConnectionLost() {
-        
+        closeConnectionOnClose();
     }
 }

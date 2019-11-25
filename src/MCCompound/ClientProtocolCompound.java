@@ -46,11 +46,7 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             processGetResponseOnSendCsv(msg);
             //
-            try {
-                clientCompound.disconnect();
-            } catch (IOException ex) {
-                Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            disconnect(); // The disconnect is done in order to "release" file lock
             //
         } else if (msg.getCommando().equals(CRC.QEW_COMPOUND_COPY_DBF_OK)) {
             //
@@ -58,11 +54,7 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             processCopyDbfDoneOrFailed(msg);
             //
-            try {
-                clientCompound.disconnect();
-            } catch (IOException ex) {
-                Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            disconnect(); // The disconnect is done in order to "release" file lock
             //
         } else if (msg.getCommando().equals(SRC.FEEDBACK_ANY_CLIENT)) {
             //
@@ -70,6 +62,14 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             processFeedBack(msg);
         }
+    }
+    
+    private void disconnect(){
+          try { 
+                clientCompound.disconnect();
+            } catch (IOException ex) {
+                Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     private void processFeedBack(MyCSMessage msg) {
@@ -88,6 +88,7 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
     }
 
     private void processCopyDbfDoneOrFailed(MyCSMessage msg) {
+        //
         Boolean copy_ok = (Boolean) msg.getObject();
         Boolean replicate_ok = false;
         //
