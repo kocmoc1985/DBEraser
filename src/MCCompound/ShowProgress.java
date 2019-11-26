@@ -25,7 +25,7 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
      */
     public ShowProgress() {
         initComponents();
-        this.setTitle("Replication in progress, please wait...");
+        this.setTitle("Information");
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);
@@ -45,6 +45,7 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
     }
 
     public void showMesasge(String currentOperation, String msg) {
+        setVisible(true);
         jTextArea1.setText(currentOperation + "\n\n" + msg);
     }
 

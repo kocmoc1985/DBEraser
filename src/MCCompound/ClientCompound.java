@@ -8,6 +8,7 @@ import MyObjectTable.ShowMessage;
 import CSCom.CRC;
 import ForSending.CSMessage;
 import Interfaces.ClientAbstrakt;
+import Interfaces.ClientProtocolIF;
 import supplementary.GP;
 
 /**
@@ -18,6 +19,7 @@ public class ClientCompound extends ClientAbstrakt {
 
     private final ClientProtocolCompound protocolCompound = new ClientProtocolCompound(this);
     private final ShowMessage showMessage;
+    private boolean CONNECTED_TO_NPMS = false;
 
     public ClientCompound(ShowMessage showMessage, String host) {
         this.showMessage = showMessage;
@@ -25,14 +27,34 @@ public class ClientCompound extends ClientAbstrakt {
         GP.USE_SSL_SOCKETS = false;
         go();
     }
+    
+    public boolean isConnected(){
+        return CONNECTED_TO_NPMS;
+    }
 
     private void go() {
         //
         start(host, 1111, protocolCompound);
         //
-        if (connected()) {
+        if (CONNECTED_TO_NPMS) {
             showMessage.showMessage("Connection to NPMS ok: " + host);
         }
+    }
+
+    @Override
+    public void start(String host, int port, ClientProtocolIF client_protocol) {
+        //
+        this.client_protocol = client_protocol;
+        //================
+        if (connect(host, port)) {
+            CONNECTED_TO_NPMS = true;
+            authorization();
+            //=================
+            Thread thisThr = new Thread(this);
+            thisThr.setName("ClientCompound-Thr");
+            thisThr.start();
+        }
+        //
     }
 
 //    public void disconnect() {
@@ -42,7 +64,6 @@ public class ClientCompound extends ClientAbstrakt {
 //            Logger.getLogger(ClientCompound.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     public ClientProtocolCompound getProtocol() {
         return protocolCompound;
     }
@@ -53,21 +74,27 @@ public class ClientCompound extends ClientAbstrakt {
     }
 
     /**
-     * OBS! This one is triggered manually by clicking a button
-     * Sends the .csv file to the central server running NPMS.
-     * The path and file ("Z:/prod_plan.csv") name on server to which the file is sent, is defined in 
-     * "properties/npms_prod_plan.properties" which is on NPMS server side.
-     * @param csvContent 
+     * OBS! This one is triggered manually by clicking a button Sends the .csv
+     * file to the central server running NPMS. The path and file
+     * ("Z:/prod_plan.csv") name on server to which the file is sent, is defined
+     * in "properties/npms_prod_plan.properties" which is on NPMS server side.
+     *
+     * @param csvContent
      */
     public void sendCSV(String csvContent) {
-        queMessageSend(new CSMessage(CRC.QEW_COMPOUND_SEND_CSV, csvContent));
+        if(CONNECTED_TO_NPMS){
+           queMessageSend(new CSMessage(CRC.QEW_COMPOUND_SEND_CSV, csvContent)); 
+        }
     }
 
     /**
      * Triggers file copying on remote server with help of NPMS server
      */
     public void sendDoCopyDbfFiles() {
-        queMessageSend(new CSMessage(CRC.QEW_COMPOUND_COPY_DBF, ""));
+        if(CONNECTED_TO_NPMS){
+            queMessageSend(new CSMessage(CRC.QEW_COMPOUND_COPY_DBF, ""));
+        }
+        
     }
 
 //    @Override
@@ -80,8 +107,6 @@ public class ClientCompound extends ClientAbstrakt {
 //             JOptionPane.showMessageDialog(null, "Failed communicating with server");
 //        }
 //    }
-    
-
 //    @Override
 //    public void recieve() throws ClassNotFoundException {
 //        try {
@@ -94,19 +119,26 @@ public class ClientCompound extends ClientAbstrakt {
 //            RUN = false;
 //        }
 //    }
-
     @Override
     public void actionsBeforeConnect() {
-        
+
     }
 
     @Override
     public void actionsAfterConnect() {
-        
+
     }
 
     @Override
     public void errorActionOnConnectionLost() {
+        CONNECTED_TO_NPMS = false;
         closeConnectionOnClose();
     }
+
+    @Override
+    public void errorActionsOnConnectionFailed(Exception ex) {
+        CONNECTED_TO_NPMS = false;
+        showMessage.showMessage("Connection to NPMS failed: " + host);
+    }
+
 }

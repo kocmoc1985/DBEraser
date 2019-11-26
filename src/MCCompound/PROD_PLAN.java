@@ -88,6 +88,11 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         cpc.setProdPlan(this);
         cpc.setShowProgress(showProgress);
         //
+        if(clientCompound.isConnected() == false){
+           showProgress.enableHideOnClose();
+           showProgress.showMesasge("Connection to remote replication server on " + npms_host_ip + " failed", "Requested procedure can not be done"); 
+        }
+        //
     }
 
     private void copy_dbf_and_run_procedure() {
@@ -293,7 +298,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         });
 
         jButtonPrintTable2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
-        jButtonPrintTable2.setToolTipText("");
+        jButtonPrintTable2.setToolTipText("Print");
         jButtonPrintTable2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrintTable2ActionPerformed(evt);
@@ -301,7 +306,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         });
 
         jButtonPrintTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
-        jButtonPrintTable3.setToolTipText("");
+        jButtonPrintTable3.setToolTipText("Print");
         jButtonPrintTable3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrintTable3ActionPerformed(evt);
@@ -309,7 +314,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         });
 
         jButtonPrintTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
-        jButtonPrintTable4.setToolTipText("");
+        jButtonPrintTable4.setToolTipText("Print");
         jButtonPrintTable4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPrintTable4ActionPerformed(evt);
@@ -502,8 +507,8 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5AdjustOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5AdjustOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(459, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -511,9 +516,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton5AdjustOptions)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(482, Short.MAX_VALUE))
+                .addContainerGap(540, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Options", jPanel6);
@@ -524,7 +529,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1085, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -700,7 +705,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         //
         connectToNpms();
         //
-        if (clientCompound.connected()) {
+        if (clientCompound.isConnected()) {
             clientCompound.sendCSV(csv);
         }
         //

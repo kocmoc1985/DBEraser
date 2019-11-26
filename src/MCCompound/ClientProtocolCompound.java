@@ -23,7 +23,7 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
 
     private ShowProgress showProgress;
     private PROD_PLAN PROD_PLAN;
-    private ClientCompound clientCompound;
+    private final ClientCompound clientCompound;
     private final static String CURRENT_OPERATION_COPY = "COPY 1/2";
     private final static String CURRENT_OPERATION_REPLICATE = "REPLICATE 2/2";
 
