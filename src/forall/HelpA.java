@@ -454,8 +454,15 @@ public class HelpA {
 //        Calendar calendar = Calendar.getInstance();
 //        return formatter.format(calendar.getTime());
 //    }
+    
+    private static String ACTUAL_USER = "UNDEF";
+    
+    public static void setUser(String user){
+        ACTUAL_USER = user;
+    }
+    
     public static String updatedBy() {
-        return MC_RECIPE_.jTextFieldHomeUserName.getText();
+        return ACTUAL_USER;
     }
 
     public static String define_date_format(String date) {

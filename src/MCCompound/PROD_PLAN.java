@@ -36,9 +36,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private final String MS_SQL = "mssql";
     private final String MY_SQL = "mysql";
     private final String ODBC = "odbc";
-    private String PROPERTIES_PATH = MC_RECIPE_.PROPERTIES_PATH;
-    private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
-    private JavaSysMon monitor = new JavaSysMon();
+    private final String PROPERTIES_PATH = MC_RECIPE_.PROPERTIES_PATH;
+    private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
+    private final JavaSysMon monitor = new JavaSysMon();
     private ClientCompound clientCompound;
     private final ShowProgress showProgress = new ShowProgress();
     private final boolean TEST_MODE = Boolean.parseBoolean(PROPS.getProperty("prod_plan_test_mode", "false"));
@@ -103,7 +103,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         // A "QEW_COMPOUND_COPY_DBF_OK" command is sent to the NPMS server which is intended to make copy.
         // Attention that at the NPMS side a propertie file is needed which is placed in "properties/npms_prod_plan.properties".
         // After the copying is done it sends the same CMD as feedback
-        clientCompound.sendDoCopyDbfFiles(); // Diactivated on [2019-11-22] due to not working
+        if(getTestMode() == false){
+           clientCompound.sendDoCopyDbfFiles(); 
+        }
         //
     }
 

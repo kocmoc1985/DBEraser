@@ -106,7 +106,6 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
         } else {
             showProgress.showMessageAppend("", "Copy operation failed");
             showProgress.setTitle("Failed");
-
         }
         //
         //

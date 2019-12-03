@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCCompound.PROD_PLAN;
 import MCRecipe.Sec.CustomPanelCp;
 import MCRecipe.Sec.CustomPanelIF;
 import MCRecipe.Sec.CustomPanelQew;
@@ -85,7 +86,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private Sequence sequence;
     private RecipeAdditional recipeAdditional;
     private TestParameters testParameters;
-    private JavaSysMon monitor = new JavaSysMon();
+    private final JavaSysMon monitor = new JavaSysMon();
     protected JTextArea textAreaIngredComments = new JTextArea();
     protected JTextArea textAreaRecipeInitialNotes = new JTextArea();
     public JComboBox jComboBoxVenorsVendors = new JComboBox();
@@ -133,6 +134,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         if (verifyUser() == false) {
             userNotValidActions();
+        }else{
+            HelpA.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
+            System.out.println("Username set");
         }
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
@@ -3705,11 +3709,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButtonVendorsDeleteFromTable4_2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            HelpA.run_application_exe_or_jar("ProdPlan_B.jar", ".");
-        } catch (IOException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            HelpA.run_application_exe_or_jar("ProdPlan_B.jar", ".");
+//        } catch (IOException ex) {
+//            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+            
+          PROD_PLAN prod_plan = new PROD_PLAN();
+          prod_plan.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonRecipeInitialResetComboBoxes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialResetComboBoxes3ActionPerformed
