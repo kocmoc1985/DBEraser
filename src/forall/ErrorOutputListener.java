@@ -19,11 +19,16 @@ import javax.swing.border.Border;
  */
 public class ErrorOutputListener implements Runnable {
 
-    private final File file;
+    private File file;
     private double prevFileSize = 0;
-    private final JComponent component;
+    private JComponent component;
 
     public ErrorOutputListener(String errOutPutFilePath, JComponent c) {
+        //
+        if(errOutPutFilePath == null || errOutPutFilePath.isEmpty()){
+            return;
+        }
+        //
         this.file = new File(errOutPutFilePath);
         this.component = c;
         //
