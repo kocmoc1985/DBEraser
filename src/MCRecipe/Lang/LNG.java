@@ -21,6 +21,7 @@ public class LNG {
     public static final String RECIPE_INITIAL_TAB = "RECIPE OVERVIEW";
     public static final String RECIPE_DETAILED_TAB = "RECIPE DETAILED";
     public static final String INGREDIENTS_TAB = "INGREDIENTS";
+    public static final String INGREDIENTS_TAB_B = "INGREDIENTS B";
     public static final String VENDORS_TAB = "VENDORS";
     public static final String VENDORS_B_TAB = "VENDORS B";
     public static final String SEQUENCE_TAB = "SEQUENCE";
@@ -32,6 +33,7 @@ public class LNG {
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
     public static String RECIPE_DETAILED_TAB_DE = "REZEPT ERWEITERT";
     public static String INGREDIENTS_TAB_DE = "INGREDIENZEN";
+    public static String INGREDIENTS_TAB_DE_B = "INGREDIENZEN";
     public static String VENDORS_TAB_DE = "LIEFERANT A";
     public static String VENDORS_B_TAB_DE = "LIEFERANT B";
     public static String SEQUENCE_TAB_DE = "SEQUENZ";
@@ -53,6 +55,10 @@ public class LNG {
 
     public static String INGREDIENTS_TAB() {
         return LANG_ENG ? INGREDIENTS_TAB : INGREDIENTS_TAB_DE;
+    }
+    
+    public static String INGREDIENTS_TAB_B() {
+        return LANG_ENG ? INGREDIENTS_TAB_B : INGREDIENTS_TAB_DE_B;
     }
 
     public static String VENDORS_TAB() {
