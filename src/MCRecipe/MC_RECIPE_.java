@@ -143,7 +143,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         }
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
-        HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
         //
         companyRelated();
         //
@@ -511,7 +510,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel72 = new javax.swing.JLabel();
         jPasswordFieldHomePass = new javax.swing.JPasswordField();
         jLabelHomeVersion = new javax.swing.JLabel();
-        jLabelHomeVersion1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -883,8 +881,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jLabelHomeVersion.setText("Version");
 
-        jLabelHomeVersion1.setText("Version");
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText(LNG.USERS());
@@ -954,15 +950,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                             .addGroup(jPanelHomeLayout.createSequentialGroup()
                                 .addGap(608, 608, 608)
                                 .addComponent(jButton_Home_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(749, Short.MAX_VALUE))))
+                        .addContainerGap(177, Short.MAX_VALUE))))
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHomeLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelHomeVersion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelHomeLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -1003,10 +997,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 722, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
                 .addComponent(jLabelHomeVersion)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelHomeVersion1))
+                .addGap(34, 34, 34))
         );
 
         jTabbedPane1.addTab("*HOME", jPanelHome);
@@ -4283,7 +4276,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelHomeVersion;
-    private javax.swing.JLabel jLabelHomeVersion1;
     public javax.swing.JLabel jLabelLockedUnlocked;
     public javax.swing.JLabel jLabelRecordsTable1;
     protected javax.swing.JPanel jPanel1;
