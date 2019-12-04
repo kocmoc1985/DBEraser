@@ -17,6 +17,7 @@ import images.IconUrls;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -103,10 +104,10 @@ public class HelpA {
 
     private static HashMap<String, String> properties_to_use_map = new HashMap();
     private static int nr_properties;
-    private static String LAST_ERR_OUT_PUT_FILE_PATH;
+    public static String LAST_ERR_OUT_PUT_FILE_PATH;
     private static Border PREV_BORDER;
 
-    public static void addMouseListenerToAllComponentsOfComponent(JComponent c) {
+    public static void addMouseListenerToAllComponentsOfComponent(Container c) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {
             component.addMouseListener(new MouseAdapter() {
@@ -158,6 +159,7 @@ public class HelpA {
     }
 
     public static void read_err_outputfile_and_show(JTextArea jta) {
+        //
         ArrayList<String> list = read_Txt_To_ArrayList(LAST_ERR_OUT_PUT_FILE_PATH);
         //
         jta.setText("");
@@ -165,6 +167,7 @@ public class HelpA {
         for (String string : list) {
             jta.append(string + "\n");
         }
+        //
     }
 
     public static void console_output_to_jtextpane(JTextPane jTextPane) {
@@ -296,6 +299,22 @@ public class HelpA {
     public static String getCurrentTabName(JTabbedPane jtp) {
         int i = jtp.getSelectedIndex();
         return jtp.getTitleAt(i);
+    }
+
+    /**
+     * Not working
+     * @param jtp
+     * @param tabName 
+     */
+    public static void getTabByName(JTabbedPane jtp, String tabName) {
+        jtp.setBorder(BorderFactory.createLineBorder(Color.red, 5));
+//        for (int i = 0; i < jtp.getTabCount(); i++) {
+//            String title = jtp.getTitleAt(i);
+//            if (title.equals(tabName)) {
+//                  jtp.setSelectedIndex(i);
+//                jtp.setBackgroundAt(i, Color.red);
+//            }
+//        }
     }
 
     public static void openTabByName(JTabbedPane jtp, String tabName) {
@@ -454,13 +473,12 @@ public class HelpA {
 //        Calendar calendar = Calendar.getInstance();
 //        return formatter.format(calendar.getTime());
 //    }
-    
     private static String ACTUAL_USER = "UNDEF";
-    
-    public static void setUser(String user){
+
+    public static void setUser(String user) {
         ACTUAL_USER = user;
     }
-    
+
     public static String updatedBy() {
         return ACTUAL_USER;
     }
@@ -1686,7 +1704,7 @@ public class HelpA {
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
-         setCursorWait(true);
+        setCursorWait(true);
         //
         if (jbox instanceof JComboBoxA == false) {
             return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
@@ -1766,7 +1784,7 @@ public class HelpA {
         //
         setTrackingToolTip(jbox, query);
         //
-         setCursorWait(false);
+        setCursorWait(false);
         //
         return jbox;
     }
@@ -2100,10 +2118,10 @@ public class HelpA {
         //
         return jbox;
     }
-    
-    public static String[] extract_comma_separated_values(String str){
+
+    public static String[] extract_comma_separated_values(String str) {
         str = str.trim();
-        String[]arr = str.split(",");
+        String[] arr = str.split(",");
         return arr;
     }
 

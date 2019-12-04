@@ -34,6 +34,7 @@ import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
 import MCRecipe.Sec.JComboBox_TP_A;
+import forall.ErrorOutputListener;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import java.awt.Color;
@@ -120,6 +121,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         sql = sqlConnect(); //  ***
         sql_additional = sqlConnect(); //  ***
         //
+     
+//         HelpA.addMouseListenerToAllComponentsOfComponent(this.getContentPane());
         //
         int pid = monitor.currentPid();
         this.setTitle("MCRecipe (" + pid + ")");
@@ -143,6 +146,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         HelpA.getVersion("ProdPlan_B.jar", "Prodplan: V.", jLabelHomeVersion1);
         //
         companyRelated();
+        //
+        ErrorOutputListener el = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1);
         //
     }
 
@@ -4052,6 +4057,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (runInNetbeans == false) {
             HelpA.err_output_to_file();
         }
+        //
+//        HelpA.err_output_to_file();
+        //
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
