@@ -45,6 +45,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.RandomAccessFile;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -157,6 +158,22 @@ public class HelpA {
         //
         return true;
     }
+    
+     public static void read_err_outputfile_and_show(JTextArea jta,long offset) {
+        //
+        if(offset == -1){
+            return;
+        }
+        //
+        ArrayList<String> list = read_Txt_To_ArrayList(LAST_ERR_OUT_PUT_FILE_PATH,offset);
+        //
+        jta.setText("");
+        //
+        for (String string : list) {
+            jta.append(string + "\n");
+        }
+        //
+    }
 
     public static void read_err_outputfile_and_show(JTextArea jta) {
         //
@@ -168,6 +185,24 @@ public class HelpA {
             jta.append(string + "\n");
         }
         //
+    }
+    
+     public static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset) {
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+            RandomAccessFile raf = new RandomAccessFile(filename, "r");
+            raf.seek(offset);
+            String rs = raf.readLine();
+            while (rs != null) {
+                list.add(rs);
+                rs = raf.readLine();
+            }
+            //
+        } catch (IOException e) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
+        }
+        //
+        return list;
     }
 
     public static void console_output_to_jtextpane(JTextPane jTextPane) {
