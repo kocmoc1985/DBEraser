@@ -90,7 +90,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         //
         if(clientCompound.isConnected() == false){
            showProgress.enableHideOnClose();
-           showProgress.showMesasge("Connection to remote replication server on " + npms_host_ip + " failed", "Requested procedure can not be done"); 
+           showProgress.showMessageAppend("Connection to remote replication server on " + npms_host_ip + " failed. Requested procedure can not be done"); 
         }
         //
     }
@@ -112,20 +112,22 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     public boolean sql_replication_procedure(String operationName, ShowProgress sp) {
         //
         try {
-            sp.showMessageAppend(operationName, "Replication procedure started, duration about 3 min");
+            sp.showMessageAppend("Replication procedure started, duration about 3 min");
             //
             sp.goToEnd();
             //
             int RETUR = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe(PROC.PROC_P_02));
+            //
+            System.out.println("RETUR: " + RETUR);
             //
             if (RETUR == 0) {
                 return true;
             } else {
                 return false;
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
-            sp.showMessageAppend(operationName, "Replication procedure ended with failure: " + "\n" + ex);
+            sp.showMessageAppend("Replication procedure ended with failure: " + "\n" + ex);
             return false;
         }
     }

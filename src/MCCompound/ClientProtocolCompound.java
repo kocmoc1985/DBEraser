@@ -6,6 +6,7 @@ package MCCompound;
 
 import CSCom.CRC;
 import CSCom.SRC;
+import ForSending.CSMessage;
 import Interfaces.ClientBasic;
 import Interfaces.ClientProtocolAbstrakt;
 import Interfaces.MyCSMessage;
@@ -42,15 +43,13 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
 
     @Override
     public void handleRequest(MyCSMessage msg) {
-        if (msg.getCommando().equals(CRC.QEW_COMPOUND_SEND_CSV)) {
+        if (msg.getCommando().equals(CRC.PROD_PLAN_SEND_CSV)) {
             //
             processGetResponseOnSendCsv(msg);
             //
             disconnect(); // The disconnect is done in order to "release" file lock
             //
-        } else if (msg.getCommando().equals(CRC.QEW_COMPOUND_COPY_DBF_OK)) {
-            //
-            showProgress.setVisible(true);
+        } else if (msg.getCommando().equals(CRC.PROD_PLAN_COPY_DBF_OK)) {
             //
             processCopyDbfDoneOrFailed(msg);
             //
@@ -58,9 +57,12 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
         } else if (msg.getCommando().equals(SRC.FEEDBACK_ANY_CLIENT)) {
             //
-            showProgress.setVisible(true);
+            processFeedBack(msg);
+            //
+        } else if(msg.getCommando().equals(CRC.PROD_PLAN_OPERATION_IN_PROGRESS)){
             //
             processFeedBack(msg);
+            //
         }
     }
     
@@ -74,10 +76,11 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
 
     private void processFeedBack(MyCSMessage msg) {
         String feed_back = (String) msg.getObject();
-        showProgress.showMesasge(CURRENT_OPERATION_COPY, feed_back);
+        showProgress.showMessageAppend(feed_back);
     }
-
+    
     private void processGetResponseOnSendCsv(MyCSMessage msg) {
+        //
         Boolean send_ok = (Boolean) msg.getObject();
         //
         if (send_ok == false) {
@@ -94,7 +97,7 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
         //
         if (copy_ok) {
             //
-            showProgress.showMessageAppend("", "Copy operation ended without failures");
+            showProgress.showMessageAppend("Copy operation ended without failures");
             //
             //
             showProgress.startCountDown();
@@ -104,26 +107,35 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             }
             //
         } else {
-            showProgress.showMessageAppend("", "Copy operation failed");
+            showProgress.showMessageAppend("Copy operation failed");
             showProgress.setTitle("Failed");
+            //
+            // Not needed to be called here, it's called a litle bit below
+//            clientCompound.send(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, false));
+            //
         }
         //
-        //
         if (replicate_ok) {
-            showProgress.showMessageAppend("COMPLETE!", "Operations ended without failures");
             //
-            showProgress.setComplete();
+            showProgress.showMessageAppend("Operations ended without failures");
             //
-            showProgress.setTitle("Complete");
+            showProgress.setComplete("Complete");
             //
             showProgress.setIconImage(GP.COMPLETE_IMAGE_ICON_URL);
             //
             PROD_PLAN.buildProdPlanTable_forward();
             //
-            showProgress.setTitle("Complete"); // i repeat it here once more time and it's not failure
+//            clientCompound.queMessageSend(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, true));
+            clientCompound.send(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, true));
+            //
         } else {
-            showProgress.setComplete();
-            showProgress.setTitle("Failed");
+            //
+            showProgress.showMessageAppend("Replication procedure failed");
+            showProgress.setComplete("Ended with failures");
+            //
+//            clientCompound.queMessageSend(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, false));
+            clientCompound.send(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, false));
+            //
         }
         //
         showProgress.goToEnd();

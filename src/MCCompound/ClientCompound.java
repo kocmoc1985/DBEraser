@@ -83,7 +83,7 @@ public class ClientCompound extends ClientAbstrakt {
      */
     public void sendCSV(String csvContent) {
         if(CONNECTED_TO_NPMS){
-           queMessageSend(new CSMessage(CRC.QEW_COMPOUND_SEND_CSV, csvContent)); 
+           queMessageSend(new CSMessage(CRC.PROD_PLAN_SEND_CSV, csvContent)); 
         }
     }
 
@@ -92,7 +92,7 @@ public class ClientCompound extends ClientAbstrakt {
      */
     public void sendDoCopyDbfFiles() {
         if(CONNECTED_TO_NPMS){
-            queMessageSend(new CSMessage(CRC.QEW_COMPOUND_COPY_DBF, ""));
+            queMessageSend(new CSMessage(CRC.PROD_PLAN_COPY_DBF, ""));
         }
         
     }

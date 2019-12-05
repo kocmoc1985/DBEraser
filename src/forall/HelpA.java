@@ -641,11 +641,12 @@ public class HelpA {
         CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
         proc.registerOutParameter(1, Types.INTEGER);
         proc.execute();
+        //
         int ret;
         //
         try {
             ret = proc.getInt(1);
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             ret = -1;
         }

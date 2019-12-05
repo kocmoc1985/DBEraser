@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import supplementary.HelpM;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 public class ShowProgress extends javax.swing.JFrame implements Runnable {
 
     private boolean complete = false;
+    private String completeMsg = "";
 
     /**
      * Creates new form ShowProgress
@@ -44,16 +46,19 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public void showMesasge(String currentOperation, String msg) {
+//    public void showMesasge(String currentOperation, String msg) {
+//        setVisible(true);
+//        jTextArea1.setText(currentOperation + "\n" + msg);
+//    }
+
+    public void showMessageAppend(String msg) {
         setVisible(true);
-        jTextArea1.setText(currentOperation + "\n\n" + msg);
+//        jTextArea1.append("\n" + currentOperation + "\n" + msg);
+        jTextArea1.append("[" + HelpM.get_proper_date_and_time_default_format() + "]" + " -> " + msg + "\n");
     }
 
-    public void showMessageAppend(String currentOperation, String msg) {
-        jTextArea1.append("\n\n" + currentOperation + "\n\n" + msg);
-    }
-
-    public void setComplete() {
+    public void setComplete(String msg) {
+        this.completeMsg = msg;
         this.complete = true;
     }
 
@@ -165,5 +170,8 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
             //
             this.setTitle(initial_title + " " + secondsToMiniutesAndSeconds(seconds));
         }
+        //
+        setTitle(completeMsg);
+        //
     }
 }
