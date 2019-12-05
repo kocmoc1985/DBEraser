@@ -672,6 +672,8 @@ public class RecipeDetailed_ extends BasicTab {
 //                    new String[]{t4_density},
 //                    new String[]{t4_id});
             //
+            TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE_.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
+            //
             table4.build_table_common_with_rounding_properties(
                     rs,
                     q1,
@@ -741,6 +743,8 @@ public class RecipeDetailed_ extends BasicTab {
 //                t4_loadingSeq, t4_material},
 //                    new String[]{t4_density},
 //                    new String[]{});
+            //
+            TABLE_4_FORMATS = HelpA.properties_load_properties(MC_RECIPE_.TABLE_4_RECIPE_ADMIN_PROPS_PATH, false);
             //
             HelpA.build_table_common_with_rounding_properties(
                     rs,

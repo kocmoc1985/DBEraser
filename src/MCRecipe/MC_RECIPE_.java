@@ -1481,7 +1481,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         });
         jPanel35.add(jButton_recipe_detailed_delete_recipe);
 
-        jButtonRecipeInitialUnblock1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_2.png"))); // NOI18N
+        jButtonRecipeInitialUnblock1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/unlocked.png"))); // NOI18N
         jButtonRecipeInitialUnblock1.setToolTipText("Unblock recipe");
         jButtonRecipeInitialUnblock1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4022,6 +4022,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         try {
+            //The settings are set via the "PropertiesReader.jar" - file: "table4formats.properties"
+            //Pay also attention to the "pr_skip.list" which contains the main property file "mccompound.properties",
+            //this is done to only show the "table4formats.properties" file
             HelpA.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
             Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
@@ -4084,11 +4087,11 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         final boolean runInNetbeans = HelpA.runningInNetBeans("MCRecipe.jar");
         //
-        if (runInNetbeans == false) {
-            HelpA.err_output_to_file();
-        }
+//        if (runInNetbeans == false) {
+//            HelpA.err_output_to_file();
+//        }
         //
-//        HelpA.err_output_to_file();
+        HelpA.err_output_to_file();
         //
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
