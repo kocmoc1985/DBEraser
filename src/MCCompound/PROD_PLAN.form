@@ -77,7 +77,9 @@
                           <Component id="jPanel_Table1" pref="671" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton_ShowAdditional" min="-2" pref="55" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel_lastReplicationTime" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                               <Component id="jButton3AddToTempTable" min="-2" pref="55" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonPrintTable1" min="-2" pref="55" max="-2" attributes="0"/>
@@ -91,12 +93,12 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="277" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonPrintTable3" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jButtonPrintTable4" min="-2" pref="55" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButton2Save" min="-2" pref="51" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jButtonPrintTable3" alignment="1" min="-2" pref="55" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -107,11 +109,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton_ShowAdditional" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jButton3AddToTempTable" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jButtonPrintTable1" min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="jButtonPrintTable3" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButton_ShowAdditional" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="jButton3AddToTempTable" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="jButtonPrintTable1" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="jButtonPrintTable3" min="-2" pref="47" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel_lastReplicationTime" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -386,6 +391,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPrintTable4ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel_lastReplicationTime">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="..."/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

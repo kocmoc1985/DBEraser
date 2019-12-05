@@ -49,6 +49,7 @@ public class ClientCompound extends ClientAbstrakt {
         if (connect(host, port)) {
             CONNECTED_TO_NPMS = true;
             authorization();
+            requestLastReplicationOperationTime();
             //=================
             Thread thisThr = new Thread(this);
             thisThr.setName("ClientCompound-Thr");
@@ -70,7 +71,11 @@ public class ClientCompound extends ClientAbstrakt {
 
     @Override
     public void authorization() {
-        send(new CSMessage(CRC.SET_CLIENT_INFO, ""));
+        send(new CSMessage(CRC.SET_CLIENT_INFO, GP.CLIENT_TYPE_PROD_PLAN));
+    }
+    
+    public void requestLastReplicationOperationTime(){
+        queMessageSend(new CSMessage(CRC.PROD_PLAN_GET_LAST_OP_TIME, null));
     }
 
     /**

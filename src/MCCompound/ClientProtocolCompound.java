@@ -61,7 +61,15 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
         } else if(msg.getCommando().equals(CRC.PROD_PLAN_OPERATION_IN_PROGRESS)){
             //
-            processFeedBack(msg);
+            processOperationInProgress(msg);
+            //
+        }else if(msg.getCommando().equals(CRC.PROD_PLAN_LAST_OPERATION_DONE_TIME)){
+            //
+            String time = (String)msg.getObject();
+            //
+//            System.out.println("TIME: " + time);
+            //
+            PROD_PLAN.setLastReplicationTime(time);
             //
         }
     }
@@ -72,6 +80,11 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             } catch (IOException ex) {
                 Logger.getLogger(ClientProtocolCompound.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+    
+    private void processOperationInProgress(MyCSMessage msg){
+        processFeedBack(msg);
+        showProgress.enableHideOnClose();
     }
 
     private void processFeedBack(MyCSMessage msg) {
