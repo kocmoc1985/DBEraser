@@ -80,6 +80,10 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         System.out.print(msg);
         jTextArea1Console.append(msg);
     }
+    
+    public void setDisposeOnClose(){
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
 
     public boolean getTestMode() {
         return TEST_MODE;
@@ -156,6 +160,10 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     
     public void rebuildAll_forward(){
         prodPlan.rebuildAll();
+    }
+    
+    public void redrawTablesInvert_forward(){
+        prodPlan.redrawTablesInvert();
     }
 
     public void buildCSVTable_2() {

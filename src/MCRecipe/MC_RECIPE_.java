@@ -67,7 +67,6 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import mySwing.JTableM;
-import supplementary.HelpM2;
 
 /**
  *
@@ -121,6 +120,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public CustomPanelIF customPanelRecipeInitial;
     //
     private final ErrorOutputListener errorOutputListener;
+    //
+    private PROD_PLAN prod_plan;
 
     /**
      * Creates new form MC_RECIPE
@@ -3786,14 +3787,16 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButtonVendorsDeleteFromTable4_2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        try {
-//            HelpA.run_application_exe_or_jar("ProdPlan_B.jar", ".");
-//        } catch (IOException ex) {
-//            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
-            PROD_PLAN prod_plan = new PROD_PLAN();
-            prod_plan.setVisible(true);
+            if (prod_plan == null) {
+                prod_plan = new PROD_PLAN();
+                prod_plan.setVisible(true);
+                prod_plan.setDisposeOnClose();
+            }else{
+                prod_plan.setVisible(true);
+                prod_plan.redrawTablesInvert_forward();
+            }
         } else {
             HelpA.showAccessDeniedUserRole(USER_ROLE);
         }
