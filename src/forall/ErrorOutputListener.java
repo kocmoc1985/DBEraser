@@ -31,7 +31,7 @@ import javax.swing.border.Border;
 public class ErrorOutputListener implements Runnable, ActionListener {
 
     private File file;
-    private double prevFileSize = 0;
+    private long prevFileSize = 0;
     private JComponent blinkRedComponent;
     private final ArrayList<Long> OFFSET_LIST = new ArrayList<Long>();
     private JPanel choosePanel;
@@ -80,7 +80,7 @@ public class ErrorOutputListener implements Runnable, ActionListener {
         //
         while (true) {
             //
-            double fileSize = file.length();
+            long fileSize = file.length();
             //
             if (prevFileSize != fileSize) {
                 //
@@ -106,20 +106,23 @@ public class ErrorOutputListener implements Runnable, ActionListener {
         }
     }
 
-    private JButton buildButton() {
+    private JButtonX buildButton() {
         //
         int nr = OFFSET_LIST.size();
         //
-        JButton btn = new JButton("" + nr);
+        JButtonX btn = new JButtonX("" + nr);
         btn.addActionListener(this);
         //
         if (OFFSET_LIST.size() == 1) {
-            btn.setName("" + 0); // saving offset
+//            btn.setName("" + 0); // saving offset
+            btn.setOffset(0);
+            btn.setEndOffset(prevFileSize);
             btn.setToolTipText("offset: " + 0 + " -> " + prevFileSize);
             return btn;
         } else {
-            String offset = "" + OFFSET_LIST.get(OFFSET_LIST.size() - 2);
-            btn.setName(offset);// saving offset
+            long offset = OFFSET_LIST.get(OFFSET_LIST.size() - 2);
+            btn.setOffset(offset);
+            btn.setEndOffset(prevFileSize);
             btn.setToolTipText("offset: " + offset + " -> " + prevFileSize);
             return btn;
         }
@@ -180,7 +183,7 @@ public class ErrorOutputListener implements Runnable, ActionListener {
             return;
         }
         //
-        ArrayList<String> list = read_Txt_To_ArrayList(LATEST_ERR_OUTPUT_FILE_PATH, offset);
+        ArrayList<String> list = read_Txt_To_ArrayList(LATEST_ERR_OUTPUT_FILE_PATH, offset, prevFileSize);
         //
         OUTPUT.setText("");
         //
@@ -192,13 +195,13 @@ public class ErrorOutputListener implements Runnable, ActionListener {
         //
     }
 
-    public void showGiven(long offset) {
+    public void showGiven(long offset, long endOffset) {
         //
         if (offset == -1) {
             return;
         }
         //
-        ArrayList<String> list = read_Txt_To_ArrayList(LATEST_ERR_OUTPUT_FILE_PATH, offset);
+        ArrayList<String> list = read_Txt_To_ArrayList(LATEST_ERR_OUTPUT_FILE_PATH, offset, endOffset);
         //
         OUTPUT.setText("");
         //
@@ -210,13 +213,13 @@ public class ErrorOutputListener implements Runnable, ActionListener {
         //
     }
 
-    private static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset) {
+    private static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset, long endOffset) {
         ArrayList<String> list = new ArrayList<String>();
         try {
             RandomAccessFile raf = new RandomAccessFile(filename, "r");
             raf.seek(offset);
             String rs = raf.readLine();
-            while (rs != null) {
+            while (rs != null && raf.getFilePointer() <= endOffset) {
                 list.add(rs);
                 rs = raf.readLine();
             }
@@ -250,21 +253,26 @@ public class ErrorOutputListener implements Runnable, ActionListener {
 //    }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() instanceof JButton) {
-            JButton btn = (JButton) ae.getSource();
-            Long offset = Long.parseLong(btn.getName());
-//            System.out.println("OFFSET: " + offset);
-            showGiven(offset);
+        if (ae.getSource() instanceof JButtonX) {
+            JButtonX btn = (JButtonX) ae.getSource();
+            showGiven(btn.getOffset(), btn.getEndOffset());
         }
     }
 
     class JButtonX extends JButton {
 
-        private final long offset;
-        private final long endOffset;
+        private long offset;
+        private long endOffset;
 
-        public JButtonX(long offset, long endOffset) {
+        public JButtonX(String title) {
+            super(title);
+        }
+
+        public void setOffset(long offset) {
             this.offset = offset;
+        }
+
+        public void setEndOffset(long endOffset) {
             this.endOffset = endOffset;
         }
 
@@ -275,8 +283,6 @@ public class ErrorOutputListener implements Runnable, ActionListener {
         public long getEndOffset() {
             return endOffset;
         }
-        
-        
 
     }
 

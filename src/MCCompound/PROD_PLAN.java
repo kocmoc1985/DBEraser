@@ -711,9 +711,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }//GEN-LAST:event_jButton4Export1ActionPerformed
 
     private void jButton3AddToTempTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3AddToTempTableActionPerformed
-//        prodPlan.insertIntoTempTable();
-        String x = null;
-        System.out.println("" + x.length());
+        prodPlan.insertIntoTempTable();
+//        String x = null;
+//        System.out.println("" + x.length());
     }//GEN-LAST:event_jButton3AddToTempTableActionPerformed
 
     private void jButtonDeleteRecordTempTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteRecordTempTableActionPerformed
