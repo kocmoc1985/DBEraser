@@ -35,6 +35,7 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
     }
 
     public void setIconImage(URL url) {
+        this.setTitle("Complete");
         this.setIconImage(new ImageIcon(url).getImage());
     }
 
@@ -55,6 +56,13 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
         setVisible(true);
 //        jTextArea1.append("\n" + currentOperation + "\n" + msg);
         jTextArea1.append("[" + HelpM.get_proper_date_and_time_default_format() + "]" + " -> " + msg + "\n");
+        //
+        String text = jTextArea1.getText();
+        //
+        if(text != null && text.isEmpty() == false){
+            jTextArea1.setCaretPosition(text.length());
+        }
+        //
     }
 
     public void setComplete(String msg) {
