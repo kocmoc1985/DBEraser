@@ -41,11 +41,12 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     private final JavaSysMon monitor = new JavaSysMon();
     private ClientCompound clientCompound;
-    private final ShowProgress showProgress = new ShowProgress();
+    private ShowProgress showProgress;
     private final boolean TEST_MODE = Boolean.parseBoolean(PROPS.getProperty("prod_plan_test_mode", "false"));
     private final String npms_host_ip = PROPS.getProperty("npms_host", "localhost");
     private ProdPlan prodPlan;
-    private ErrorOutputListener errorOutputListener;
+    private ErrorOutputListener errorOutputListener; // OBS! is in use!
+
     /**
      * Creates new form PROD_PLAN
      */
@@ -86,15 +87,24 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
 
     private void connectToNpms() {
         //
-        clientCompound = new ClientCompound(this, npms_host_ip);
+        showProgress = new ShowProgress();
+        //
+        if (clientCompound != null && clientCompound.isConnected()) {
+            System.out.println("RETURN: ALREADY CONNECTED TO NPMS");
+            return;
+        }
+        //
+        if (clientCompound == null || clientCompound.isConnected() == false) {
+            clientCompound = new ClientCompound(this, npms_host_ip);
+        }
         //
         ClientProtocolCompound cpc = clientCompound.getProtocol();
         cpc.setProdPlan(this);
         cpc.setShowProgress(showProgress);
         //
-        if(clientCompound.isConnected() == false){
-           showProgress.enableHideOnClose();
-           showProgress.showMessageAppend("Connection to remote replication server on " + npms_host_ip + " failed. Requested procedure can not be done"); 
+        if (clientCompound.isConnected() == false) {
+            showProgress.enableHideOnClose();
+            showProgress.showMessageAppend("Connection to remote replication server on " + npms_host_ip + " failed. Requested procedure can not be done");
         }
         //
     }
@@ -107,8 +117,8 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         // A "QEW_COMPOUND_COPY_DBF_OK" command is sent to the NPMS server which is intended to make copy.
         // Attention that at the NPMS side a propertie file is needed which is placed in "properties/npms_prod_plan.properties".
         // After the copying is done it sends the same CMD as feedback
-        if(getTestMode() == false){
-           clientCompound.sendDoCopyDbfFiles(); 
+        if (getTestMode() == false) {
+            clientCompound.sendDoCopyDbfFiles();
         }
         //
     }
@@ -135,20 +145,24 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             return false;
         }
     }
-    
-    public void setLastReplicationTime(String time){
-        this.jLabel_lastReplicationTime.setText("Last copy made on: " + time);
+
+    public void setLastReplicationTime(String time) {
+        this.jLabel_lastReplicationTime.setText("Last replication made on: " + time);
     }
 
     public void buildProdPlanTable_forward() {
         prodPlan.buildProdPlanTable();
     }
+    
+    public void rebuildAll_forward(){
+        prodPlan.rebuildAll();
+    }
 
     public void buildCSVTable_2() {
         try {
             String q = SQL_B.buildRecipeCsv();
-            ResultSet rs = sql.execute(q,this);
-            HelpA.build_table_common(rs, jTable2,q);
+            ResultSet rs = sql.execute(q, this);
+            HelpA.build_table_common(rs, jTable2, q);
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -185,6 +199,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jButtonPrintTable3 = new javax.swing.JButton();
         jButtonPrintTable4 = new javax.swing.JButton();
         jLabel_lastReplicationTime = new javax.swing.JLabel();
+        jButtonCopyProcedureStart = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -340,6 +355,14 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jLabel_lastReplicationTime.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_lastReplicationTime.setText("...");
 
+        jButtonCopyProcedureStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/download.png"))); // NOI18N
+        jButtonCopyProcedureStart.setToolTipText("Start replication");
+        jButtonCopyProcedureStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCopyProcedureStartActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -362,7 +385,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
                         .addComponent(jButton_ShowAdditional, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_lastReplicationTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(171, 171, 171)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCopyProcedureStart, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
                         .addComponent(jButton3AddToTempTable, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -385,11 +410,12 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton_ShowAdditional, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3AddToTempTable, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonPrintTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonPrintTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton_ShowAdditional, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                        .addComponent(jButton3AddToTempTable, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                        .addComponent(jButtonPrintTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                        .addComponent(jButtonPrintTable3, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                        .addComponent(jButtonCopyProcedureStart, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                     .addComponent(jLabel_lastReplicationTime))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -693,9 +719,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
 
     private void clear_column(int column) throws SQLException {
         //
-        String procedure = SQL_A.generate_Empty_CSVColumn(PROC.PROC_P_04,column);
+        String procedure = SQL_A.generate_Empty_CSVColumn(PROC.PROC_P_04, column);
         //
-        sql.execute(procedure,this);
+        sql.execute(procedure, this);
     }
 
     private void jButton_ShowAdditionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ShowAdditionalActionPerformed
@@ -744,6 +770,11 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         prodPlan.table4Repport();
     }//GEN-LAST:event_jButtonPrintTable4ActionPerformed
 
+    private void jButtonCopyProcedureStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopyProcedureStartActionPerformed
+        Thread x = new Thread(new CopyFilesAndRunProcedureThread());
+        x.start();
+    }//GEN-LAST:event_jButtonCopyProcedureStartActionPerformed
+
     private void csvToRemoteDrive() {
         try {
             csv = csvTableToCsvFile();
@@ -761,7 +792,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
 
     private String csvTableToCsvFile() throws SQLException {
         String CSV_STRING = "";
-        ResultSet rs = sql.execute(SQL_B.getRecipeCsv(),this);
+        ResultSet rs = sql.execute(SQL_B.getRecipeCsv(), this);
         //
         rs.beforeFirst();
         //
@@ -838,6 +869,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private javax.swing.JButton jButtonChangePosition;
     private javax.swing.JButton jButtonClearAll;
     private javax.swing.JButton jButtonClearColumn;
+    private javax.swing.JButton jButtonCopyProcedureStart;
     private javax.swing.JButton jButtonDeleteAllRecordsTempTable;
     private javax.swing.JButton jButtonDeleteRecordTempTable;
     private javax.swing.JButton jButtonPrintTable1;
@@ -871,17 +903,26 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     // End of variables declaration//GEN-END:variables
 
     private void go() {
-        Thread x = new Thread(new ConnectAndBuildThread());
+        Thread x = new Thread(new SqlConnectTableBuildThread());
         x.start();
     }
 
-    class ConnectAndBuildThread implements Runnable {
+    class SqlConnectTableBuildThread implements Runnable {
+
+        @Override
+        public void run() {
+//            copy_dbf_and_run_procedure();
+            sqlConnect();
+            initOther();
+            connectToNpms();
+        }
+    }
+
+    class CopyFilesAndRunProcedureThread implements Runnable {
 
         @Override
         public void run() {
             copy_dbf_and_run_procedure();
-            sqlConnect();
-            initOther();
         }
     }
 

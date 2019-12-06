@@ -67,8 +67,6 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             String time = (String)msg.getObject();
             //
-//            System.out.println("TIME: " + time);
-            //
             PROD_PLAN.setLastReplicationTime(time);
             //
         }
@@ -136,7 +134,8 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             showProgress.setIconImage(GP.COMPLETE_IMAGE_ICON_URL);
             //
-            PROD_PLAN.buildProdPlanTable_forward();
+//            PROD_PLAN.buildProdPlanTable_forward();
+            PROD_PLAN.rebuildAll_forward();//
             //
 //            clientCompound.queMessageSend(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, true));
             clientCompound.send(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, true));
@@ -145,6 +144,8 @@ public class ClientProtocolCompound extends ClientProtocolAbstrakt {
             //
             showProgress.showMessageAppend("Replication procedure failed");
             showProgress.setComplete("Ended with failures");
+            //
+             PROD_PLAN.rebuildAll_forward();// ONLY FOR TEST
             //
 //            clientCompound.queMessageSend(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, false));
             clientCompound.send(new CSMessage(CRC.PROD_PLAN_OPERATION_COMPLETE, false));

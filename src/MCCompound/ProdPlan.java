@@ -72,6 +72,10 @@ public class ProdPlan extends BasicTab {
             }
         });
     }
+    
+    public void rebuildAll(){
+        go();
+    }
 
     public void table1Repport() {
         tableCommonExportOrRepport(P_P.jTable1, true);

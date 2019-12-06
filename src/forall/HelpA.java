@@ -1601,6 +1601,10 @@ public class HelpA {
     public static void stopEditJTable(JTable table) {
         table.editCellAt(0, 0);
     }
+    
+    public static void showAccessDeniedUserRole(String userRole){
+        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: " +userRole,"Not allowed",JOptionPane.ERROR_MESSAGE);
+    }
 
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);

@@ -50,6 +50,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,6 +67,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import mySwing.JTableM;
+import supplementary.HelpM2;
 
 /**
  *
@@ -108,6 +110,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public final static String ROLE_ADMIN = "admin";
     public final static String ROLE_DEVELOPER = "developer";
     //
+    public static final HashSet<String> USER_ROLES_ADMIN_DEVELOPER_ACCESS = new HashSet<String>();
+
+    //
+    static {
+        USER_ROLES_ADMIN_DEVELOPER_ACCESS.add(ROLE_DEVELOPER);
+        USER_ROLES_ADMIN_DEVELOPER_ACCESS.add(ROLE_ADMIN);
+    }
+    //
     public CustomPanelIF customPanelRecipeInitial;
     //
     private final ErrorOutputListener errorOutputListener;
@@ -122,11 +132,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         sql = sqlConnect(); //  ***
         sql_additional = sqlConnect(); //  ***
         //
-     
+
 //         HelpA.addMouseListenerToAllComponentsOfComponent(this.getContentPane());
         //
-        int pid = monitor.currentPid();
-        this.setTitle("MCRecipe (" + pid + ")");
+        this.setTitle(buildTitle(null));
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //
@@ -147,8 +156,20 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         companyRelated();
         //
-        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1,jTextArea1,jPanel52);
+        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
+    }
+
+    private String buildTitle(String userRole) {
+        //
+        int pid = monitor.currentPid();
+        //
+        if (userRole == null || userRole.isEmpty()) {
+            return "MCRecipe (" + pid + ")";
+        } else {
+            return "MCRecipe (" + pid + ")" + " *" + USER_ROLE;
+        }
+
     }
 
     private void companyRelated() {
@@ -230,12 +251,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         boolean userConfirmed_ = userConfirmed >= 1;
         //
         if (userConfirmed_ == false && freeEntranceEnabled == false) {//&& freeEntranceEnabled() == false
+            USER_ROLE = ROLE_UNDEFINED;
+            setTitle(buildTitle(null));
             HelpA.showNotification("User not valid");
             jTabbedPane1.setEnabled(false);
             return false;
         } else {
             USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
-            setTitle(getTitle() + " *" + USER_ROLE);
+            setTitle(buildTitle(USER_ROLE));
             jTabbedPane1.setEnabled(true);
             return true;
         }
@@ -856,6 +879,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mixcont_logo.png"))); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forall/icon3.png"))); // NOI18N
+        jButton1.setToolTipText("Admin rights required");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -869,7 +893,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jTextFieldHomeUserName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user.png"))); // NOI18N
-        jButton8.setToolTipText("Click to administrate users");
+        jButton8.setToolTipText("Predefined password required");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -897,6 +921,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel46.setText("MCRecipe");
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/groups.png"))); // NOI18N
+        jButton19.setToolTipText("Admin rights required");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -3766,10 +3791,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 //        } catch (IOException ex) {
 //            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
-        PROD_PLAN prod_plan = new PROD_PLAN();
-        prod_plan.setVisible(true);
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
+            PROD_PLAN prod_plan = new PROD_PLAN();
+            prod_plan.setVisible(true);
+        } else {
+            HelpA.showAccessDeniedUserRole(USER_ROLE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
 
     private void jButtonRecipeInitialResetComboBoxes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialResetComboBoxes3ActionPerformed
         recipeInitial.clearBoxesB();
@@ -4006,8 +4035,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    adminTools = new AdminTools(mc_recipe);
-                    adminTools.setVisible(true);
+                    if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
+                        adminTools = new AdminTools(mc_recipe);
+                        adminTools.setVisible(true);
+                    } else {
+                        HelpA.showAccessDeniedUserRole(USER_ROLE);
+                    }
+
                 }
             });
         } else {
@@ -4541,7 +4575,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 }
                 //
             } else if (title.equals(LNG.INGREDIENTS_TAB_B())) {
-                 //
+                //
                 if (ingredients != null && ingredients.table1Build) {
                     clickedTable1Ingredients();
                 }

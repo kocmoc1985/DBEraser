@@ -79,7 +79,9 @@
                               <Component id="jButton_ShowAdditional" min="-2" pref="55" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel_lastReplicationTime" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonCopyProcedureStart" min="-2" pref="55" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                               <Component id="jButton3AddToTempTable" min="-2" pref="55" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButtonPrintTable1" min="-2" pref="55" max="-2" attributes="0"/>
@@ -110,11 +112,12 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton_ShowAdditional" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                              <Component id="jButton3AddToTempTable" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                              <Component id="jButtonPrintTable1" min="-2" pref="47" max="-2" attributes="0"/>
-                              <Component id="jButtonPrintTable3" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton_ShowAdditional" alignment="0" pref="47" max="32767" attributes="0"/>
+                              <Component id="jButton3AddToTempTable" alignment="0" pref="47" max="32767" attributes="0"/>
+                              <Component id="jButtonPrintTable1" pref="47" max="32767" attributes="0"/>
+                              <Component id="jButtonPrintTable3" pref="47" max="32767" attributes="0"/>
+                              <Component id="jButtonCopyProcedureStart" alignment="0" pref="47" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel_lastReplicationTime" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -399,6 +402,17 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonCopyProcedureStart">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/download.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Start replication"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCopyProcedureStartActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
