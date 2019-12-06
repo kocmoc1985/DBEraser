@@ -110,6 +110,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     //
     public CustomPanelIF customPanelRecipeInitial;
     //
+    private final ErrorOutputListener errorOutputListener;
 
     /**
      * Creates new form MC_RECIPE
@@ -146,7 +147,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         companyRelated();
         //
-        ErrorOutputListener el = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1,jTextArea1,jPanel52);
+        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1,jTextArea1,jPanel52);
         //
     }
 
@@ -3924,7 +3925,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        ErrorOutputListener.showAll();
+        errorOutputListener.showAll();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButtonIngredientsPasteIngred1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngredientsPasteIngred1ActionPerformed
@@ -4048,7 +4049,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButtonTestParametersSave_InvertTableActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        ErrorOutputListener.showLatest();
+        errorOutputListener.showLatest();
     }//GEN-LAST:event_jButton21ActionPerformed
 
     /**

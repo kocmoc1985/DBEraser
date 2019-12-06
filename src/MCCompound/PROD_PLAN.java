@@ -9,6 +9,7 @@ import FreeQuery.FQ;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;
+import forall.ErrorOutputListener;
 import forall.GP;
 import forall.HelpA;
 import forall.Sql_B;
@@ -44,7 +45,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private final boolean TEST_MODE = Boolean.parseBoolean(PROPS.getProperty("prod_plan_test_mode", "false"));
     private final String npms_host_ip = PROPS.getProperty("npms_host", "localhost");
     private ProdPlan prodPlan;
-
+    private ErrorOutputListener errorOutputListener;
     /**
      * Creates new form PROD_PLAN
      */
@@ -67,6 +68,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jTable1_2.addMouseListener(this);
         jTable1.addKeyListener(this);
         jTable1_2.addKeyListener(this);
+        //
+        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextAreaErrOutPut, jPanel2);
+        //
     }
 
     @Override
@@ -118,7 +122,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             //
             int RETUR = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe(PROC.PROC_P_02));
             //
-            System.out.println("RETUR: " + RETUR);
+//            System.out.println("RETUR: " + RETUR);
             //
             if (RETUR == 0) {
                 return true;
@@ -194,6 +198,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jButton5AdjustOptions = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1Console = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextAreaErrOutPut = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -516,16 +523,35 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jTextArea1Console.setRows(5);
         jScrollPane3.setViewportView(jTextArea1Console);
 
+        jTextAreaErrOutPut.setColumns(20);
+        jTextAreaErrOutPut.setRows(5);
+        jScrollPane5.setViewportView(jTextAreaErrOutPut);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 31, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 963, Short.MAX_VALUE)
                     .addComponent(jButton5AdjustOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(459, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,10 +560,14 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
                 .addComponent(jButton5AdjustOptions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(540, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Options", jPanel6);
+        jTabbedPane1.addTab("Log", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -681,7 +711,9 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }//GEN-LAST:event_jButton4Export1ActionPerformed
 
     private void jButton3AddToTempTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3AddToTempTableActionPerformed
-        prodPlan.insertIntoTempTable();
+//        prodPlan.insertIntoTempTable();
+        String x = null;
+        System.out.println("" + x.length());
     }//GEN-LAST:event_jButton3AddToTempTableActionPerformed
 
     private void jButtonDeleteRecordTempTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteRecordTempTableActionPerformed
@@ -758,11 +790,14 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final boolean runInNetbeans = HelpA.runningInNetBeans("ProdPlan_B.jar");
+        final boolean runInNetbeans = HelpA.runningInNetBeans("ProdPlan.jar");
         //
-        if (runInNetbeans == false) {
-            HelpA.err_output_to_file();
-        }
+//        if (runInNetbeans == false) {
+//            HelpA.err_output_to_file();
+//        }
+        //
+        HelpA.err_output_to_file();
+        //
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -814,6 +849,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     protected javax.swing.JComboBox jComboBox3SelectColumn;
     private javax.swing.JLabel jLabel_lastReplicationTime;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -825,11 +861,13 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     protected javax.swing.JTabbedPane jTabbedPane1;
     protected javax.swing.JTable jTable1;
     protected javax.swing.JTable jTable1_2;
     protected javax.swing.JTable jTable2;
     public static javax.swing.JTextArea jTextArea1Console;
+    private javax.swing.JTextArea jTextAreaErrOutPut;
     // End of variables declaration//GEN-END:variables
 
     private void go() {

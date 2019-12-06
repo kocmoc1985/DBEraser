@@ -28,26 +28,29 @@ import javax.swing.border.Border;
  *
  * @author KOCMOC
  */
-public class ErrorOutputListener implements Runnable,ActionListener {
+public class ErrorOutputListener implements Runnable, ActionListener {
 
     private File file;
     private double prevFileSize = 0;
     private JComponent blinkRedComponent;
-    private static final ArrayList<Long> OFFSET_LIST = new ArrayList<Long>();
+    private final ArrayList<Long> OFFSET_LIST = new ArrayList<Long>();
     private JPanel choosePanel;
     private boolean oneTimeFlag = false;
-    private static JTextArea OUTPUT;
-    private static String LATEST_ERR_OUTPUT_FILE_PATH;
-    
+    private JTextArea OUTPUT;
+    private String LATEST_ERR_OUTPUT_FILE_PATH;
+
     /**
-     * 
-     * @param errOutPutFilePath - The path of the latest "err_output file" - usually defined in "HelpM.err_output_to_file()"
-     * @param blinkRedComponent - The component which blinks in case of a new exception is written to the file
+     *
+     * @param errOutPutFilePath - The path of the latest "err_output file" -
+     * usually defined in "HelpM.err_output_to_file()"
+     * @param blinkRedComponent - The component which blinks in case of a new
+     * exception is written to the file
      * @param output - The JTextArea in which the failures are shown
-     * @param choosePanel - The panel for choosing the exception to show. This one can be manually added to the gui
+     * @param choosePanel - The panel for choosing the exception to show. This
+     * one can be manually added to the gui
      */
     public ErrorOutputListener(String errOutPutFilePath, JComponent blinkRedComponent, JTextArea output, JPanel choosePanel) {
-         //
+        //
         if (errOutPutFilePath == null || errOutPutFilePath.isEmpty()) {
             return;
         }
@@ -103,23 +106,26 @@ public class ErrorOutputListener implements Runnable,ActionListener {
         }
     }
 
-    private JButton buildButton(){
+    private JButton buildButton() {
         //
         int nr = OFFSET_LIST.size();
         //
-        JButton btn = new JButton(""+nr);
+        JButton btn = new JButton("" + nr);
         btn.addActionListener(this);
         //
         if (OFFSET_LIST.size() == 1) {
             btn.setName("" + 0); // saving offset
+            btn.setToolTipText("offset: " + 0 + " -> " + prevFileSize);
             return btn;
         } else {
-            btn.setName(""+ OFFSET_LIST.get(OFFSET_LIST.size() - 2));// saving offset
+            String offset = "" + OFFSET_LIST.get(OFFSET_LIST.size() - 2);
+            btn.setName(offset);// saving offset
+            btn.setToolTipText("offset: " + offset + " -> " + prevFileSize);
             return btn;
         }
     }
 
-    private static long getOffset() {
+    private long getOffset() {
         //
         if (OFFSET_LIST.isEmpty()) {
             return -1;
@@ -154,7 +160,7 @@ public class ErrorOutputListener implements Runnable,ActionListener {
         }
     }
 
-    public static void showAll() {
+    public void showAll() {
         //
         ArrayList<String> list = read_Txt_To_ArrayList(LATEST_ERR_OUTPUT_FILE_PATH);
         //
@@ -166,7 +172,7 @@ public class ErrorOutputListener implements Runnable,ActionListener {
         //
     }
 
-    public static void showLatest() {
+    public void showLatest() {
         //
         long offset = getOffset();
         //
@@ -185,8 +191,8 @@ public class ErrorOutputListener implements Runnable,ActionListener {
         OUTPUT.setCaretPosition(0);
         //
     }
-    
-    public static void showGiven(long offset) {
+
+    public void showGiven(long offset) {
         //
         if (offset == -1) {
             return;
@@ -203,8 +209,6 @@ public class ErrorOutputListener implements Runnable,ActionListener {
         OUTPUT.setCaretPosition(0);
         //
     }
-    
-    
 
     private static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset) {
         ArrayList<String> list = new ArrayList<String>();
@@ -244,14 +248,36 @@ public class ErrorOutputListener implements Runnable,ActionListener {
 //    public static void main(String[] args) {
 //        ErrorOutputListener el = new ErrorOutputListener("err_output/err_2018-02-20 14_20.txt",null);
 //    }
-
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource() instanceof JButton){
-            JButton btn = (JButton)ae.getSource();
+        if (ae.getSource() instanceof JButton) {
+            JButton btn = (JButton) ae.getSource();
             Long offset = Long.parseLong(btn.getName());
 //            System.out.println("OFFSET: " + offset);
             showGiven(offset);
         }
     }
+
+    class JButtonX extends JButton {
+
+        private final long offset;
+        private final long endOffset;
+
+        public JButtonX(long offset, long endOffset) {
+            this.offset = offset;
+            this.endOffset = endOffset;
+        }
+
+        public long getOffset() {
+            return offset;
+        }
+
+        public long getEndOffset() {
+            return endOffset;
+        }
+        
+        
+
+    }
+
 }
