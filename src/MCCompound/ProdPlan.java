@@ -36,7 +36,7 @@ import javax.swing.JTable;
  */
 public class ProdPlan extends BasicTab {
 
-    private PROD_PLAN P_P;
+    private final PROD_PLAN P_P;
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     public Table TABLE_INVERT_2;
     private TableBuilderInvert TABLE_BUILDER_INVERT_2;

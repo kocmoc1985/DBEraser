@@ -78,8 +78,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public SqlBasicLocal sql_additional;
     public static final String TABLE_4_RECIPE_ADMIN_PROPS_PATH = "properties/table4formats.properties";
     public static final String PROPERTIES_PATH = "properties/mccompound.properties";
-    private String IO_PROPERTIES_PATH = "io.properties";
-    private Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
+    private final String IO_PROPERTIES_PATH = "io.properties";
+    private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitialIF recipeInitial;
     public RecipeDetailed_ recipeDetailed;
     private Ingredients ingredients;
