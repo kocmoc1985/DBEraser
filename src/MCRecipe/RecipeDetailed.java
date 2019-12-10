@@ -9,6 +9,8 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;
+import static MCRecipe.MC_RECIPE_.USER_ROLE;
+import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
 import static MCRecipe.RecipeInitial.T1_STATUS;
 import MCRecipe.Sec.PROC;
@@ -457,6 +459,11 @@ public class RecipeDetailed extends BasicTab {
     }
 
     public void apply_changes_table4_real(boolean confirm) {
+        //
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+             HelpA.showActionDeniedUserRole(USER_ROLE);
+             return;
+        }
         //
         if (confirm) {
             if (HelpA.confirm() == false) {

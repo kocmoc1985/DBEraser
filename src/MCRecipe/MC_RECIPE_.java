@@ -111,7 +111,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public final static String ROLE_DEVELOPER = "developer";
     //
     public static final HashSet<String> USER_ROLES_ADMIN_DEVELOPER_ACCESS = new HashSet<String>();
-
     //
     static {
         USER_ROLES_ADMIN_DEVELOPER_ACCESS.add(ROLE_DEVELOPER);
@@ -3808,6 +3807,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButtonVendorsDeleteFromTable4_2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //
+        // This snippet is for copying
+//        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
+//            
+//        }else {
+//            HelpA.showAccessDeniedUserRole(USER_ROLE);
+//        }
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
             if (prod_plan == null) {

@@ -114,7 +114,7 @@
                                       <Component id="jButton_Home_Login" min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="177" max="32767" attributes="0"/>
+                              <EmptySpace pref="749" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -178,7 +178,7 @@
                               <Component id="jButton8" min="-2" pref="92" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="305" max="32767" attributes="0"/>
+                      <EmptySpace pref="876" max="32767" attributes="0"/>
                       <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
@@ -1499,7 +1499,7 @@
                               </Group>
                               <Component id="jPanel1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="397" max="32767" attributes="0"/>
+                          <EmptySpace pref="525" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2217,7 +2217,7 @@
                               <Component id="jPanel_Test_Params_Inv_Table_1" pref="753" max="32767" attributes="0"/>
                               <Component id="jScrollPane19" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="460" max="32767" attributes="0"/>
+                          <EmptySpace pref="614" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -5476,11 +5476,11 @@
                           <Component id="jPanel52" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane16" pref="292" max="32767" attributes="0"/>
+                      <Component id="jScrollPane16" pref="577" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane15" pref="171" max="32767" attributes="0"/>
+                      <Component id="jScrollPane15" pref="457" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>

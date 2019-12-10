@@ -1619,9 +1619,13 @@ public class HelpA {
     public static void stopEditJTable(JTable table) {
         table.editCellAt(0, 0);
     }
+    
+    public static void showActionDeniedUserRole(String userRole) {
+        JOptionPane.showMessageDialog(null, "Action not allowed with user role: *" + userRole+"*", "Not allowed", JOptionPane.ERROR_MESSAGE);
+    }
 
     public static void showAccessDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: " + userRole, "Not allowed", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: *" + userRole +"'", "Not allowed", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {

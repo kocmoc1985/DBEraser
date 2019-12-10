@@ -5,9 +5,10 @@ The pass for user administration: recipe123 [updated on 2019-11-21]
 _____________________________________________________________________________
 
 [USER ROLES] -> Look in: MC_RECIPE -> public static String USER_ROLE
-user - nothing yet...
+Last update [2019-12-10]
+user - not allowed to open "Adm Tools", "Prod Plan". Not allowed to save.
 useradvanced - nothing yet...
-admin - nothing yet...
+admin - Almost as developer, tool tip not activated though.
 developer - Tracking tool tip is activated
 
 _____________________________________________________________________________

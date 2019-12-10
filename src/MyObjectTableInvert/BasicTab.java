@@ -6,6 +6,8 @@ package MyObjectTableInvert;
 
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
+import static MCRecipe.MC_RECIPE_.USER_ROLE;
+import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -211,6 +213,12 @@ public abstract class BasicTab implements SaveIndicator.SaveIndicatorIF {
     }
     
     public void saveChangesTableInvert(Table tableInvert) {
+        //
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+             HelpA.showActionDeniedUserRole(USER_ROLE);
+             return;
+        }
+        //
         TableInvert ti = (TableInvert) tableInvert;
         //
         automaticFieldUpdate(tableInvert);
@@ -220,6 +228,11 @@ public abstract class BasicTab implements SaveIndicator.SaveIndicatorIF {
     }
     
     public void saveChangesTableInvert() {
+        //
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+             HelpA.showActionDeniedUserRole(USER_ROLE);
+             return;
+        }
         //
         TableInvert ti = (TableInvert) TABLE_INVERT;
         //
@@ -281,6 +294,11 @@ public abstract class BasicTab implements SaveIndicator.SaveIndicatorIF {
             JTable table,
             JTextArea jTextArea,
             String idColumnName) throws BadLocationException {
+        //
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+             HelpA.showActionDeniedUserRole(USER_ROLE);
+             return;
+        }
         //
         String comments = "";
         //
