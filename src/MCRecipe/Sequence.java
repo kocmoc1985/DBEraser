@@ -51,7 +51,7 @@ public class Sequence extends BasicTab {
 
     public void setSelectedItems() {
         //
-        RecipeDetailed_ rd = mCRecipe.recipeDetailed;
+        RecipeDetailed rd = mCRecipe.recipeDetailed;
         //
         String recipeCode = rd.getRecipeCode();
         String release = rd.getRelease();

@@ -5,7 +5,7 @@
 package forall;
 
 import MCRecipe.Lang.ERRORS;
-import MCRecipe.RecipeDetailed_;
+import MCRecipe.RecipeDetailed;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnValue;
 import MyObjectTableInvert.RowDataInvert;
@@ -149,16 +149,16 @@ public class HTMLPrint extends javax.swing.JFrame {
                 //
                 if (value != null && value.isEmpty() == false) {
                     //
-                    if (colName.equals(RecipeDetailed_.t4_Descr_nick)) {
+                    if (colName.equals(RecipeDetailed.t4_Descr_nick)) {
                         html += "<td><strong>*" + value + "</strong></td>";
-                    } else if (colName.equals(RecipeDetailed_.t4_material_nick)) {
+                    } else if (colName.equals(RecipeDetailed.t4_material_nick)) {
                         html += "<td><strong>sum</strong></td>";
                     } else {
                         html += "<td><strong>" + value + "</strong></td>";
                     }
                     //
                 } else {
-                    if (colName.equals(RecipeDetailed_.t4_material_nick)) {
+                    if (colName.equals(RecipeDetailed.t4_material_nick)) {
                         html += "<td><strong>sum</strong></td>";
                     } else {
                         html += "<td>-</td>";
@@ -176,7 +176,7 @@ public class HTMLPrint extends javax.swing.JFrame {
         html += "</table>";
         //
         //
-        html += "<div style='color:grey;font-size:6pt'>*" + RecipeDetailed_.t4_Fillfactor + "</div>";
+        html += "<div style='color:grey;font-size:6pt'>*" + RecipeDetailed.t4_Fillfactor + "</div>";
         //
         return html;
     }

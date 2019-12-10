@@ -5,7 +5,7 @@
 package MCRecipe.Sec;
 
 import MCRecipe.MC_RECIPE_;
-import MCRecipe.RecipeDetailed_;
+import MCRecipe.RecipeDetailed;
 import MCRecipe.SQL_A;
 import Reporting.JTableBasicRepport;
 import forall.GP;
@@ -145,12 +145,12 @@ public class CompareRecipes extends javax.swing.JFrame {
             ResultSet rs = sql.execute(q1,mc_recipe);
             //
             HelpA.build_table_common_with_rounding(rs,q1, table, "%2.2f",
-                    new String[]{RecipeDetailed_.t4_id, RecipeDetailed_.t4_loadingSeq,RecipeDetailed_.t4_material,RecipeDetailed_.t4_release},
-                    new String[]{RecipeDetailed_.t4_density},
+                    new String[]{RecipeDetailed.t4_id, RecipeDetailed.t4_loadingSeq,RecipeDetailed.t4_material,RecipeDetailed.t4_release},
+                    new String[]{RecipeDetailed.t4_density},
                     new String[]{});
             //
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         hideColumns(table);

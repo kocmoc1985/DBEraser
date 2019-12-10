@@ -82,7 +82,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private final String IO_PROPERTIES_PATH = "io.properties";
     private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitialIF recipeInitial;
-    public RecipeDetailed_ recipeDetailed;
+    public RecipeDetailed recipeDetailed;
     private Ingredients ingredients;
     private Vendors vendors;
     private VendorsB vendorsB;
@@ -4523,7 +4523,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void recipeDetailedTabbClicked() {
         //
         if (recipeDetailed == null && recipeInitial != null) {
-            recipeDetailed = new RecipeDetailed_(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
+            recipeDetailed = new RecipeDetailed(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
         }
         //
         if (recipeDetailed != null) {
@@ -4540,7 +4540,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //
             recipeDetailed.reset();
             //
-            recipeDetailed.autoSelectFirstRowTable4();
+            recipeDetailed.autoSelectRowTable4();
             //
             recipeDetailed.showLockedUnlocked();
         }

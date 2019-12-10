@@ -196,7 +196,7 @@ public class Ingredients extends BasicTab {
             HelpA.showNotification("Cannot do this action for Recipe with status S, O, Inactive");
         }
         //
-        RecipeDetailed_ rd = mCRecipe.recipeDetailed;
+        RecipeDetailed rd = mCRecipe.recipeDetailed;
         //
         String ingredCode = getIngredCode();
         //
@@ -212,7 +212,7 @@ public class Ingredients extends BasicTab {
         //
         JTable table = mCRecipe.jTable4RecipeDetailed;
         //
-        HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeDetailed_.t4_material, ingredCode));
+        HelpA.markGivenRow(table, HelpA.getRowByValue(table, RecipeDetailed.t4_material, ingredCode));
     }
 
     public void setIngredComboBoxRecipeInitial(JComboBox box) {
