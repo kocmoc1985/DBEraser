@@ -5,6 +5,7 @@
 package forall;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Properties;
 
 /**
@@ -13,10 +14,18 @@ import java.util.Properties;
  */
 public class GP {
 
-    public static String COMPANY_NAME = "qew";
+    public static String COMPANY_NAME;
     //
-    public static String COMPANY_NAME_QEW = "qew";
-    public static String COMPANY_NAME_COMPOUNDS = "compounds";
+    public static final String COMPANY_NAME_UNDEFINED = "undef";
+    public static final String COMPANY_NAME_QEW = "qew";
+    public static final String COMPANY_NAME_COMPOUNDS = "compounds";
+    //
+    public static final HashSet<String>COMPANIES = new HashSet<String>();
+    //
+    static{
+        COMPANIES.add(COMPANY_NAME_QEW);
+        COMPANIES.add(COMPANY_NAME_COMPOUNDS);
+    }
     //
     public static final URL IMAGE_ICON_URL = GP.class.getResource("icon.png");
     public static final URL IMAGE_ICON_URL_RECIPE = GP.class.getResource("icon2.png");

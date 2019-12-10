@@ -33,7 +33,7 @@ public class LNG {
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
     public static String RECIPE_DETAILED_TAB_DE = "REZEPT ERWEITERT";
     public static String INGREDIENTS_TAB_DE = "INGREDIENZEN";
-    public static String INGREDIENTS_TAB_DE_B = "INGREDIENZEN";
+    public static String INGREDIENTS_TAB_DE_B = "INGREDIENZEN B";
     public static String VENDORS_TAB_DE = "LIEFERANT A";
     public static String VENDORS_B_TAB_DE = "LIEFERANT B";
     public static String SEQUENCE_TAB_DE = "SEQUENZ";
@@ -87,6 +87,7 @@ public class LNG {
             HelpA.changeTabName(jtp, RECIPE_INITIAL_TAB, RECIPE_INITIAL_TAB_DE);
             HelpA.changeTabName(jtp, RECIPE_DETAILED_TAB, RECIPE_DETAILED_TAB_DE);
             HelpA.changeTabName(jtp, INGREDIENTS_TAB, INGREDIENTS_TAB_DE);
+            HelpA.changeTabName(jtp, INGREDIENTS_TAB_B, INGREDIENTS_TAB_DE_B);
             HelpA.changeTabName(jtp, VENDORS_TAB, VENDORS_TAB_DE);
             HelpA.changeTabName(jtp, VENDORS_B_TAB, VENDORS_B_TAB_DE);
             HelpA.changeTabName(jtp, SEQUENCE_TAB, SEQUENCE_TAB_DE);

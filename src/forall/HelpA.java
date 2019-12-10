@@ -158,14 +158,14 @@ public class HelpA {
         //
         return true;
     }
-    
-     public static void read_err_outputfile_and_show(JTextArea jta,long offset) {
+
+    public static void read_err_outputfile_and_show(JTextArea jta, long offset) {
         //
-        if(offset == -1){
+        if (offset == -1) {
             return;
         }
         //
-        ArrayList<String> list = read_Txt_To_ArrayList(LAST_ERR_OUT_PUT_FILE_PATH,offset);
+        ArrayList<String> list = read_Txt_To_ArrayList(LAST_ERR_OUT_PUT_FILE_PATH, offset);
         //
         jta.setText("");
         //
@@ -186,8 +186,8 @@ public class HelpA {
         }
         //
     }
-    
-     public static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset) {
+
+    public static ArrayList<String> read_Txt_To_ArrayList(String filename, long offset) {
         ArrayList<String> list = new ArrayList<String>();
         try {
             RandomAccessFile raf = new RandomAccessFile(filename, "r");
@@ -338,8 +338,9 @@ public class HelpA {
 
     /**
      * Not working
+     *
      * @param jtp
-     * @param tabName 
+     * @param tabName
      */
     public static void getTabByName(JTabbedPane jtp, String tabName) {
         jtp.setBorder(BorderFactory.createLineBorder(Color.red, 5));
@@ -780,6 +781,18 @@ public class HelpA {
         //
         //
         //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
     }
 
     public static synchronized void build_table_common(ResultSet rs, JTable jTable, String q) {
@@ -1099,11 +1112,16 @@ public class HelpA {
     }
 
     public static boolean isIngred(String strToCheck) {
-        if (strToCheck.length() > 5) {
-            return false;
-        } else {
+        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)) {
+            if (strToCheck.length() > 5) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
             return true;
         }
+
     }
 
     public static String jTableToHTML(JTable table, JEditorPane pane, String[] CSSRules) {
@@ -1601,9 +1619,9 @@ public class HelpA {
     public static void stopEditJTable(JTable table) {
         table.editCellAt(0, 0);
     }
-    
-    public static void showAccessDeniedUserRole(String userRole){
-        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: " +userRole,"Not allowed",JOptionPane.ERROR_MESSAGE);
+
+    public static void showAccessDeniedUserRole(String userRole) {
+        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: " + userRole, "Not allowed", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {

@@ -67,6 +67,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import mySwing.JTableM;
+import supplementary.HelpM2;
 
 /**
  *
@@ -130,6 +131,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         initComponents();
         //
+        initCompany();
+        //
         sql = sqlConnect(); //  ***
         sql_additional = sqlConnect(); //  ***
         //
@@ -139,6 +142,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         this.setTitle(buildTitle(null));
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //
+        companyRelated();
         //
         initOther();
         //
@@ -155,9 +160,25 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         //
-        companyRelated();
-        //
         errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
+        //
+    }
+
+    private void initCompany() {
+        //
+        GP.COMPANY_NAME = PROPS.getProperty("company", "undef");
+        //
+        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_UNDEFINED) || GP.COMPANY_NAME.isEmpty()) {
+            HelpM2.showInformationMessage("Company name missing or undefined, program will close");
+            System.exit(0);
+        } else {
+            if (GP.COMPANIES.contains(GP.COMPANY_NAME) == false) {
+                HelpM2.showInformationMessage("Company name : *" + GP.COMPANY_NAME + "* does not exist, program will close");
+                System.exit(0);
+            } else {
+                showMessage("COMPANY SETTING = " + GP.COMPANY_NAME); // Everything ok  
+            }
+        }
         //
     }
 
@@ -2261,7 +2282,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel41)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_Ingred_table2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2457,7 +2478,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jPanelVendorsInvertTableWarehouse.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelVendorsInvertTableWarehouse.setLayout(new java.awt.BorderLayout());
-        jPanelVendors.add(jPanelVendorsInvertTableWarehouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 109, 577, 200));
+        jPanelVendors.add(jPanelVendorsInvertTableWarehouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 109, 1100, 200));
 
         jPanelInvertTable3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelInvertTable3.setLayout(new java.awt.BorderLayout());
@@ -2473,7 +2494,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButtonVendorsSaveTable2ActionPerformed(evt);
             }
         });
-        jPanelVendors.add(jButtonVendorsSaveTable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1026, 58, 50, 45));
+        jPanelVendors.add(jButtonVendorsSaveTable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1550, 60, 50, 45));
 
         jPanelInvertTable4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelInvertTable4.setLayout(new java.awt.BorderLayout());
@@ -3793,7 +3814,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 prod_plan = new PROD_PLAN();
                 prod_plan.setVisible(true);
                 prod_plan.setDisposeOnClose();
-            }else{
+            } else {
                 prod_plan.setVisible(true);
                 prod_plan.redrawTablesInvert_forward();
             }
@@ -4571,6 +4592,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 //
                 if (ingredients == null) {
                     ingredients = new Ingredients(sql, sql_additional, this);
+                } else if (ingredients != null && ingredients.table1Build) {
+                    clickedTable1Ingredients();
                 }
                 //
                 if (vendors == null) {
@@ -4654,7 +4677,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         mousePressedOnTab(me);
         //
         boolean cond_1 = HelpA.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
-        //11
+        //
         //
         if (me.getSource() == jTable3 && (me.getClickCount() == 1)) {
             //
