@@ -65,6 +65,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
+import javax.swing.plaf.DimensionUIResource;
 import javax.swing.text.BadLocationException;
 import mySwing.JTableM;
 import supplementary.HelpM2;
@@ -4135,6 +4136,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     defaults.put("Table.disabled", false);
                     defaults.put("Table.showGrid", true);
                     defaults.put("Table.intercellSpacing", new Dimension(1, 1));
+                    //
+                    UIManager.put("ScrollBar.minimumThumbSize", new DimensionUIResource(35, 35));
                     //
                     break;
                 }
