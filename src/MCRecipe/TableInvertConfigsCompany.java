@@ -13,9 +13,33 @@ import MyObjectTableInvert.RowDataInvert;
  * @author KOCMOC
  */
 public class TableInvertConfigsCompany {
-    
+
     public static RowDataInvert[] testParameters_qew() {
-        return null;
+        //
+        // UNKNOWN_DB - it's just as reminder, because i made
+        // all the field uneditable it does not play any role [2020-03-24]
+        RowDataInvert recipe = new RowDataInvert("UNKNOWN_DB", "ID", false, "Code", T_INV.LANG("RECIPE"), "", true, true, false);
+        RowDataInvert testCode = new RowDataInvert("UNKNOWN_DB", "ID", false, "TESTCODE", T_INV.LANG("TEST CODE"), "", true, true, false);
+        RowDataInvert descr = new RowDataInvert("UNKNOWN_DB", "ID", false, "Description", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        RowDataInvert norm = new RowDataInvert("UNKNOWN_DB", "ID", false, "NORM", T_INV.LANG("NORM"), "", true, true, false);
+        RowDataInvert group = new RowDataInvert("UNKNOWN_DB", "ID", false, "GROUP", T_INV.LANG("GROUP"), "", true, true, false);
+        RowDataInvert testVar = new RowDataInvert("UNKNOWN_DB", "ID", false, "Test_Variable", T_INV.LANG("TEST VARIABLE"), "", true, true, false);
+        RowDataInvert vulcCode = new RowDataInvert("UNKNOWN_DB", "ID", false, "VULC_Code", T_INV.LANG("VULC CODE"), "", true, true, false);
+        RowDataInvert ageCode = new RowDataInvert("UNKNOWN_DB", "ID", false, "Aeging_Code", T_INV.LANG("AEGING CODE"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert("UNKNOWN_DB", "ID", false, "STATUS", T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert class_ = new RowDataInvert("UNKNOWN_DB", "ID", false, "CLASS", T_INV.LANG("CLASS"), "", true, true, false);
+        RowDataInvert report = new RowDataInvert("UNKNOWN_DB", "ID", false, "REPORT", T_INV.LANG("REPORT"), "", true, true, false);
+        //
+        //
+        RowDataInvert[] rows = {recipe, testCode, descr, norm, group, testVar, vulcCode,
+            ageCode, status, class_, report
+        };
+        //
+        for (RowDataInvert row : rows) {
+            row.setUneditable();
+        }
+        //
+        return rows;
     }
 
     public static RowDataInvert[] testParameters_compounds() {

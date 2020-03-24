@@ -47,8 +47,20 @@ public class TestParameters extends BasicTab {
         mCRecipe.testParameters_GroupA_Boxes_to_list();
         mCRecipe.addJComboListenersTestParameters();
         //
+//        hideOrderComboBox();
+        //
         initializeSaveIndicators();
 //        fillTable1();
+    }
+    
+    /**
+     * Added [2020-03-24]
+     * Not sure it will be used..
+     */
+    private void hideOrderComboBox(){
+        if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)){
+            mCRecipe.jComboBoxTestParams_Order.setVisible(false);
+        }
     }
 
     public void clearBoxes() {
