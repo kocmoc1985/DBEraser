@@ -10,6 +10,7 @@ import ForSending.CSMessage;
 import Interfaces.ClientAbstrakt;
 import Interfaces.ClientProtocolIF;
 import supplementary.GP;
+import supplementary.HelpM2;
 
 /**
  *
@@ -98,6 +99,8 @@ public class ClientCompound extends ClientAbstrakt {
     public void sendDoCopyDbfFiles() {
         if(CONNECTED_TO_NPMS){
             queMessageSend(new CSMessage(CRC.PROD_PLAN_COPY_DBF, ""));
+        }else{
+            HelpM2.showInformationMessage("Connected to NPMS: " + CONNECTED_TO_NPMS);
         }
         
     }

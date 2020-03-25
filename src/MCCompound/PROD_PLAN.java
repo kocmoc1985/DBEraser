@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import supplementary.HelpM;
 
 /**
  *
@@ -790,6 +791,11 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }//GEN-LAST:event_jButtonPrintTable4ActionPerformed
 
     private void jButtonCopyProcedureStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopyProcedureStartActionPerformed
+        //
+        if(HelpM.confirm() == false){
+            return;
+        }
+        //
         Thread x = new Thread(new CopyFilesAndRunProcedureThread());
         x.start();
     }//GEN-LAST:event_jButtonCopyProcedureStartActionPerformed
