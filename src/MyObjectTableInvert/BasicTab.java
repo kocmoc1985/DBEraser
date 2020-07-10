@@ -377,6 +377,16 @@ public abstract class BasicTab implements SaveIndicator.SaveIndicatorIF {
         return HelpA.jTableToCSV(table, writeToFile, columns);
     }
     
+    
+    /**
+     * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10]
+     * Use 2 if using units, 1 otherwise 
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @param writeToFile
+     * @return 
+     */
     public String tableInvertToCSV(Table table_invert, int startColumn, RowDataInvert[] rdi, boolean writeToFile) {
         TableInvert tableInvert = (TableInvert) table_invert;
         //

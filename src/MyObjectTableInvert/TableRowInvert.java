@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -129,6 +130,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
                 addComponent(add_component);
                 JComboBox box = (JComboBox) add_component;
                 box.addItemListener(this);
+//                box.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
                 //
                 if (getRowConfig().isEditable() == false) {
                     box.setEditable(false);

@@ -47,9 +47,78 @@ public class TableBuilderInvert {
         SM.showMessage(msg);
     }
 
+    /**
+     * New [2020-07-10] Not using SQL
+     * @return
+     * @throws SQLException 
+     */
+    public Table buildTable_B() throws SQLException {
+        //
+        if (CONFIG == null) {
+            return null;
+        }
+        //
+        TableData tableData = new TableData();
+        //
+        RowDataInvert[] ROWS = CONFIG;
+        //
+        for (int i = 0; i < ROWS.length; i++) {
+            //
+            RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
+            //
+            CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getFieldNickName(), CURR_ROW.getFieldOriginalName(), CURR_ROW.getTableName()));
+            //
+            if (SHOW_UNITS) {
+                CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getUnit(), true));
+            }
+            //
+            //
+            String orig_field_name = CURR_ROW.getFieldOriginalName();
+            String key_name = CURR_ROW.getPrimaryOrForeignKeyName();
+            //
+            System.out.println("orig_field_name: " + orig_field_name);
+            //
+            int type = CURR_ROW.getType();
+            //
+            String value = "";
+            //
+            ColumnDataEntryInvert cde;
+            //
+            if (type == RowDataInvert.TYPE_COMMON) {
+                cde = new ColumnDataEntryInvert(value, "", orig_field_name, CURR_ROW.getFieldNickName());
+            } else {
+                cde = new ColumnDataEntryInvert(CURR_ROW.getSpecialComponent(value), "", orig_field_name, CURR_ROW.getFieldNickName());
+            }
+            //
+            //
+            if (cde.getObject() == null) {
+                cde.setObject("NULL");
+            }
+            //
+            CURR_ROW.addRowColumnData(cde);
+            //
+            //
+            //
+            addAdditionalComponent(CURR_ROW, getDefaultRowComponents());
+            //
+            //
+            tableData.addRowData(CURR_ROW);
+        }
+        //
+        //
+        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME);
+        table.setShowUnits(SHOW_UNITS);
+//        table.setSql(sql);
+        table.setTableEmpty(true);
+//        HelpA.setTrackingToolTip(table, query);
+        //
+        return table;
+        //
+    }
+
     public Table buildTable(String query) throws SQLException {
         //
-        if(CONFIG == null){
+        if (CONFIG == null) {
             return null;
         }
         //
@@ -90,6 +159,8 @@ public class TableBuilderInvert {
 //            if(orig_field_name.equals("UpdatedOn")){
 //                System.out.println("");
 //            }
+            //
+            System.out.println("orig_field_name: " + orig_field_name);
             //
             int type = CURR_ROW.getType();
             //
@@ -137,8 +208,9 @@ public class TableBuilderInvert {
         HelpA.setTrackingToolTip(table, query);
         //
         return table;
+        //
     }
-    
+
     private String millisToDefaultDate(long millis) {
         TimeZone tz = TimeZone.getDefault();
         Calendar cal = Calendar.getInstance(tz);
@@ -147,7 +219,7 @@ public class TableBuilderInvert {
         //
         Locale locale = Locale.getDefault();
         //
-        if(locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")){
+        if (locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")) {
             style = 2;
         }
         //
