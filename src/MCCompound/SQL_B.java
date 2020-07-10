@@ -16,12 +16,12 @@ public class SQL_B {
     }
 
     public static String select_query_1() {
-        return "SELECT top 5 VENDOR.Vendor_ID,dbo.VENDOR.VendorNo, dbo.VENDOR.VendorName, dbo.VENDOR.Adress, dbo.VENDOR.ZipCode, dbo.VENDOR.City, dbo.VENDOR.Country,\n"
-                + " dbo.VENDOR.Phone, dbo.VENDOR.Fax, dbo.VENDOR.Website, dbo.VENDOR.FreeInfo, dbo.VENDOR.Status, dbo.Vendor_Contact.ContactName,\n"
-                + " dbo.Vendor_Contact.position, dbo.Vendor_Contact.Phone AS Person_Phone, dbo.Vendor_Contact.Email AS Person_email,\n"
-                + " dbo.Vendor_Contact.Status AS Person_Status\n"
-                + " FROM dbo.VENDOR LEFT OUTER JOIN\n"
-                + " dbo.Vendor_Contact ON dbo.VENDOR.VENDOR_ID = dbo.Vendor_Contact.VENDOR_ID";
+        return "SELECT top 5 VENDOR.Vendor_ID,VENDOR.VendorNo, VENDOR.VendorName, VENDOR.Adress, VENDOR.ZipCode, VENDOR.City, VENDOR.Country,\n"
+                + " VENDOR.Phone, VENDOR.Fax, VENDOR.Website, VENDOR.FreeInfo, VENDOR.Status, Vendor_Contact.ContactName,\n"
+                + " Vendor_Contact.position, Vendor_Contact.Phone AS Person_Phone, Vendor_Contact.Email AS Person_email,\n"
+                + " Vendor_Contact.Status AS Person_Status\n"
+                + " FROM VENDOR LEFT OUTER JOIN\n"
+                + " Vendor_Contact ON VENDOR.VENDOR_ID = Vendor_Contact.VENDOR_ID";
     }
 
     public static String updatePositions(String seqPosition, String actSeqPos) {

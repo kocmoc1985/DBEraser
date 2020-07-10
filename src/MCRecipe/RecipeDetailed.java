@@ -16,7 +16,6 @@ import static MCRecipe.RecipeInitial.T1_STATUS;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTable.SaveIndicator;
-import MyObjectTableInvert.Run_Invert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HTMLPrint;
@@ -1257,7 +1256,7 @@ public class RecipeDetailed extends BasicTab {
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
         } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         setMargin(TABLE_INVERT, 10, 0, 0, 0);

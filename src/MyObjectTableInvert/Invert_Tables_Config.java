@@ -1,6 +1,7 @@
 package MyObjectTableInvert;
 
 import MCRecipe.SQL_B;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 
 /*
@@ -13,6 +14,8 @@ import forall.SqlBasicLocal;
  * @author KOCMOC
  */
 public class Invert_Tables_Config {
+    
+     
 
     public static RowDataInvert[] getConfigTest() {
         //

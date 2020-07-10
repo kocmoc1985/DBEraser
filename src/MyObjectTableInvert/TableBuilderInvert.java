@@ -11,9 +11,6 @@ import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
 import forall.HelpA;
 import forall.SqlBasicLocal;
-import java.awt.Component;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -25,7 +22,6 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
-import javax.swing.JComponent;
 
 /**
  *

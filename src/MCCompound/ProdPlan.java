@@ -5,7 +5,6 @@
 package MCCompound;
 
 import MCRecipe.Sec.PROC;
-import MyObjectTableInvert.Run_Invert;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -501,7 +500,7 @@ public class ProdPlan extends BasicTab {
         try {
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(SQL_B.getOneOrderByPlanId(SELECTED_ORDER));
         } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
         //
@@ -526,7 +525,7 @@ public class ProdPlan extends BasicTab {
         try {
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(SQL_B.getOneOrderByPlanIdTemp(id));
         } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
         }
         //
