@@ -34,7 +34,7 @@ import javax.swing.border.Border;
  *
  * @author mcab
  */
-public class Run_Invert_Example_C extends Basic implements MouseListener {
+public class Run_Invert_Example_D extends Basic implements MouseListener {
 
     private Border PREV_BORDER;
     private final Sql_B sql = new Sql_B(false, false);
@@ -44,7 +44,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
     private final JFrame table_container_frame = new JFrame("test");
     private TableBuilderInvert tableBuilder;
 
-    public Run_Invert_Example_C() {
+    public Run_Invert_Example_D() {
         initOther();
     }
 
@@ -59,7 +59,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         try {
             sql.connect_mdb_java_8("", "", "example.mdb");
         } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), false, "");
@@ -120,7 +120,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         try {
             str_a = HelpBuh.http_get_content_post(HelpBuh.getAllClientsInInterval("httpcom", 0, 20000));
         } catch (Exception ex) {
-            Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
 //        String fixedComboValues = "admin,user,useradvanced,developer";
@@ -172,7 +172,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         }
         //</editor-fold>
         //
-        Run_Invert_Example_C invert = new Run_Invert_Example_C();
+        Run_Invert_Example_D invert = new Run_Invert_Example_D();
         invert.showTableInvert();
     }
 

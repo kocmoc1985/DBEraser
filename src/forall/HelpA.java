@@ -1118,7 +1118,7 @@ public class HelpA {
             } else {
                 return true;
             }
-        }else{
+        } else {
             return true;
         }
 
@@ -1619,13 +1619,13 @@ public class HelpA {
     public static void stopEditJTable(JTable table) {
         table.editCellAt(0, 0);
     }
-    
+
     public static void showActionDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, "Action not allowed with user role: *" + userRole+"*", "Not allowed", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Action not allowed with user role: *" + userRole + "*", "Not allowed", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showAccessDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: *" + userRole +"'", "Not allowed", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: *" + userRole + "'", "Not allowed", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {
@@ -2187,6 +2187,33 @@ public class HelpA {
         return arr;
     }
 
+    /**
+     * [2020-07-10]
+     * the format is following: "Skruv;1,Spik;2,Hammare;3"
+     * @return
+     */
+    public static ComboBoxObject[] extract_comma_separated_object(String str) {
+        str = str.trim();
+        String[] arr = str.split(",");
+        ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
+        int i = 0;
+        for (String stringObj : arr) {
+            String[] arr_obj = stringObj.split(";");
+            ComboBoxObject cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
+            cbo_arr[i] = cbo;
+            i++;
+        }
+        return cbo_arr;
+    }
+    
+     public static void main(String[] args) {
+         String str = "Skruv;1,Spik;2,Hammare;3";
+        ComboBoxObject[] cbo_arr = extract_comma_separated_object(str);
+         for (ComboBoxObject cbo : cbo_arr) {
+             System.out.println("ID: " + cbo.getParam_2());
+         }
+    }
+
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);
     }
@@ -2421,9 +2448,7 @@ public class HelpA {
         return f1.format(d);
     }
 
-    public static void main(String[] args) {
-        System.out.println("" + get_proper_date_adjusted_format(3));
-    }
+   
 
     public static String extractValueFromHtmlString(String str) {
         if (str.contains("<") == false) {
