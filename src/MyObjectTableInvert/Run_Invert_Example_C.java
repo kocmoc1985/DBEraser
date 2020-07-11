@@ -5,6 +5,7 @@
  */
 package MyObjectTableInvert;
 
+import BuhInvoice.HelpBuh;
 import MCCompound.PROD_PLAN;
 import MyObjectTable.CommonControllsPanel;
 import MyObjectTable.OutPut;
@@ -75,7 +76,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
 
     @Override
     public void showTableInvert() {
-                //
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -104,7 +105,6 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         //
     }
 
-
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -113,10 +113,22 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         //
         RowDataInvert batch = new RowDataInvert("main_table", "batch_id", false, "batch_nr", "BATCH", "", true, true, false);
         //
-        String fixedComboValues = "admin,user,useradvanced,developer";
+        // ********************************************************************
+        //
+        String str_a = "";
+        //
+        try {
+            str_a = HelpBuh.http_get_content_post(HelpBuh.getAllClientsInInterval("httpcom", 0, 20000));
+        } catch (Exception ex) {
+            Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+//        String fixedComboValues = "admin,user,useradvanced,developer";
+        String fixedComboValues = str_a;
         RowDataInvert fixdValTest = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", "", "", false, "test", "TEST", "", true, true, false);
         fixdValTest.enableFixedValues();
         //
+        // ********************************************************************
         //
         String q_5 = MCRecipe.SQL_B.basic_combobox_query_double_param("recipe_id", "batch_id", "main_table");
         RowDataInvert line = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql, "", "", "", false, "line_nr", "LINE", "", true, true, false);

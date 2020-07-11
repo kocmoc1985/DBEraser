@@ -69,7 +69,6 @@ public class Run_Invert_Example_B implements MouseListener {
             @Override
             public void run() {
                 //
-                try {
                     //
                     //
                     table = tableBuilder.buildTable_B();
@@ -92,12 +91,6 @@ public class Run_Invert_Example_B implements MouseListener {
                     table_container_frame.add(container);
                     table_container_frame.setVisible(true);
                     //
-                } catch (SQLException ex) {
-                    Logger.getLogger(Run_Invert_Example_B.class.getName()).log(Level.SEVERE, null, ex);
-                    sm.showMessage(ex.toString());
-                }
-                //
-                //
             }
         });
 
