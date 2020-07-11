@@ -33,7 +33,7 @@ public class CommonControllsPanel extends JPanel implements ActionListener {
     private JButton SAVE_BTN;
     private JButton COPY_BUTTON;
     private JButton PRINT_BUTTON;
-    private ControlsActionsIF controlsActions;
+    private final ControlsActionsIF controlsActions;
 
     public CommonControllsPanel(ControlsActionsIF controlsActions) {
         this.controlsActions = controlsActions;
@@ -53,6 +53,10 @@ public class CommonControllsPanel extends JPanel implements ActionListener {
         this.add(PRINT_BUTTON);
         //
         SAVE_BTN.addActionListener(this);
+    }
+    
+    public JButton getSaveButton(){
+        return SAVE_BTN;
     }
 
 //    public static void main(String[] args) {

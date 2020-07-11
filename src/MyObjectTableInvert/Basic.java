@@ -282,8 +282,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public abstract void showTableInvert();
     
     public abstract void initializeSaveIndicators();
-    
-    public abstract void fillNotes();
+     
     
     public String jTableToCSV(JTable table, boolean writeToFile) {
         return HelpA.jTableToCSV(table, writeToFile);

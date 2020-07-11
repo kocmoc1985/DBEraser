@@ -8,10 +8,8 @@ package MyObjectTableInvert;
 import MCCompound.PROD_PLAN;
 import MyObjectTable.CommonControllsPanel;
 import MyObjectTable.OutPut;
+import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
-import MyObjectTable.Table;
-import forall.HelpA;
-import static forall.HelpA.run_application_with_associated_application;
 import forall.Sql_B;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,10 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -38,11 +33,11 @@ import javax.swing.border.Border;
  *
  * @author mcab
  */
-public class Run_Invert_Example_C extends BasicTab implements MouseListener {
+public class Run_Invert_Example_C extends Basic implements MouseListener {
 
-    private static Table table;
     private Border PREV_BORDER;
     private final Sql_B sql = new Sql_B(false, false);
+    private CommonControllsPanel ccp;
 
     public void go() {
         //
@@ -54,8 +49,6 @@ public class Run_Invert_Example_C extends BasicTab implements MouseListener {
         final ShowMessage sm = new OutPut();
         //
         final JPanel container = new JPanel(new BorderLayout());
-        //
-
         //
         try {
             sql.connect_mdb_java_8("", "", "example.mdb");
@@ -71,26 +64,29 @@ public class Run_Invert_Example_C extends BasicTab implements MouseListener {
                 //
                 try {
                     //
-                    //
-                    table = tableBuilder.buildTable_B();
-                    CommonControllsPanel ccp = new CommonControllsPanel((TableInvert) table);
+                    TABLE_INVERT = tableBuilder.buildTable_B();
+                    ccp = new CommonControllsPanel((TableInvert) TABLE_INVERT);
                     //
                     JButton button = new JButton("TEST");
                     //
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            tableInvertToCSV(table, 1, getConfigTableInvert(), true); // OBS! using 2 if units enabled 1 otherwise [2020-07-10]
+                            tableInvertToCSV(TABLE_INVERT, 1, getConfigTableInvert(), true); // OBS! using 2 if units enabled 1 otherwise [2020-07-10]
                         }
                     });
                     //
-                    container.add(button,BorderLayout.BEFORE_FIRST_LINE);
-//                    container.add(ccp, BorderLayout.BEFORE_FIRST_LINE); // BEFORE_FIRST_LINE
-                    container.add(table.getTable());
+                    container.add(TABLE_INVERT.getTable());
                     //
+                    table_container_frame.add(ccp,BorderLayout.PAGE_START);
                     //
                     table_container_frame.add(container);
+                    //
+                    table_container_frame.add(button,BorderLayout.PAGE_END);
+                    //
                     table_container_frame.setVisible(true);
+                    //
+                    initializeSaveIndicators();
                     //
                 } catch (SQLException ex) {
                     Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,12 +94,9 @@ public class Run_Invert_Example_C extends BasicTab implements MouseListener {
                 }
                 //
                 //
-                //
-                //
             }
         });
 
-        //
         //
         //
 //                addMouseListenerToAllComponentsOfComponent((JComponent) table.getTable(), this);
@@ -214,16 +207,20 @@ public class Run_Invert_Example_C extends BasicTab implements MouseListener {
 
     @Override
     public void initializeSaveIndicators() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void fillNotes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SaveIndicator saveIndicator = new SaveIndicator(ccp.getSaveButton(), this, 1);
     }
 
     @Override
     public boolean getUnsaved(int nr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (nr == 1) {
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (TABLE_INVERT.unsaved_entries_map.isEmpty() == false) {
+                return true;
+            }
+        }
+        //
+        return false;
     }
 }
