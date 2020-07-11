@@ -38,17 +38,24 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
     private Border PREV_BORDER;
     private final Sql_B sql = new Sql_B(false, false);
     private CommonControllsPanel ccp;
+    private final JButton button = new JButton("TEST");
+    private final JPanel container = new JPanel(new BorderLayout());
+    private final JFrame table_container_frame = new JFrame("test");
+    private TableBuilderInvert tableBuilder;
 
-    public void go() {
+    public Run_Invert_Example_C() {
+        initOther();
+    }
+
+    private void initOther() {
         //
-        final JFrame table_container_frame = new JFrame("test");
         table_container_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         table_container_frame.setLayout(new BorderLayout());
         table_container_frame.setSize(new Dimension(600, 400));
         //
         final ShowMessage sm = new OutPut();
         //
-        final JPanel container = new JPanel(new BorderLayout());
+
         //
         try {
             sql.connect_mdb_java_8("", "", "example.mdb");
@@ -56,43 +63,37 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
             Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        final TableBuilderInvert tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), false, "");
+        tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), false, "");
+        //
+        ccp = new CommonControllsPanel((TableInvert) TABLE_INVERT);
+        //
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tableInvertToCSV(TABLE_INVERT, 1, getConfigTableInvert(), true); // OBS! using 2 if units enabled 1 otherwise [2020-07-10]
+            }
+        });
+    }
+
+    public void go() {
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 //
-                try {
-                    //
-                    TABLE_INVERT = tableBuilder.buildTable_B();
-                    ccp = new CommonControllsPanel((TableInvert) TABLE_INVERT);
-                    //
-                    JButton button = new JButton("TEST");
-                    //
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tableInvertToCSV(TABLE_INVERT, 1, getConfigTableInvert(), true); // OBS! using 2 if units enabled 1 otherwise [2020-07-10]
-                        }
-                    });
-                    //
-                    container.add(TABLE_INVERT.getTable());
-                    //
-                    table_container_frame.add(ccp,BorderLayout.PAGE_START);
-                    //
-                    table_container_frame.add(container);
-                    //
-                    table_container_frame.add(button,BorderLayout.PAGE_END);
-                    //
-                    table_container_frame.setVisible(true);
-                    //
-                    initializeSaveIndicators();
-                    //
-                } catch (SQLException ex) {
-                    Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
-                    sm.showMessage(ex.toString());
-                }
+                TABLE_INVERT = tableBuilder.buildTable_B();
                 //
+                container.add(TABLE_INVERT.getTable());
+                //
+                table_container_frame.add(ccp, BorderLayout.PAGE_START);
+                //
+                table_container_frame.add(container);
+                //
+                table_container_frame.add(button, BorderLayout.PAGE_END);
+                //
+                table_container_frame.setVisible(true);
+                //
+                initializeSaveIndicators();
                 //
             }
         });
@@ -135,9 +136,13 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         return rows;
     }
 
-   
     public static void main(String[] args) {
-         try {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -153,7 +158,8 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-         //
+        //</editor-fold>
+        //
         Run_Invert_Example_C invert = new Run_Invert_Example_C();
         invert.go();
     }

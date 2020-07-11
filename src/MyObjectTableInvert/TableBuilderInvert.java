@@ -50,9 +50,8 @@ public class TableBuilderInvert {
     /**
      * New [2020-07-10] Not using SQL
      * @return
-     * @throws SQLException 
      */
-    public Table buildTable_B() throws SQLException {
+    public Table buildTable_B() {
         //
         if (CONFIG == null) {
             return null;
