@@ -55,8 +55,6 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         //
         final ShowMessage sm = new OutPut();
         //
-
-        //
         try {
             sql.connect_mdb_java_8("", "", "example.mdb");
         } catch (SQLException ex) {
@@ -75,8 +73,9 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         });
     }
 
-    public void go() {
-        //
+    @Override
+    public void showTableInvert() {
+                //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -104,6 +103,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
 //        addMouseListenerToAllComponentsOfComponent(container, this);
         //
     }
+
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -161,7 +161,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         //</editor-fold>
         //
         Run_Invert_Example_C invert = new Run_Invert_Example_C();
-        invert.go();
+        invert.showTableInvert();
     }
 
     private void addMouseListenerToAllComponentsOfComponent(JComponent c, MouseListener ml) {
@@ -204,11 +204,6 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
             JComponent jc = (JComponent) me.getSource();
             jc.setBorder(PREV_BORDER);
         }
-    }
-
-    @Override
-    public void showTableInvert() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
