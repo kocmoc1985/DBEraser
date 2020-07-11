@@ -38,7 +38,7 @@ import javax.swing.border.Border;
  *
  * @author mcab
  */
-public class Run_Invert_Example_B implements MouseListener {
+public class Run_Invert_Example_C extends BasicTab implements MouseListener {
 
     private static Table table;
     private Border PREV_BORDER;
@@ -60,7 +60,7 @@ public class Run_Invert_Example_B implements MouseListener {
         try {
             sql.connect_mdb_java_8("", "", "example.mdb");
         } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert_Example_B.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         final TableBuilderInvert tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), false, "");
@@ -93,9 +93,11 @@ public class Run_Invert_Example_B implements MouseListener {
                     table_container_frame.setVisible(true);
                     //
                 } catch (SQLException ex) {
-                    Logger.getLogger(Run_Invert_Example_B.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
                     sm.showMessage(ex.toString());
                 }
+                //
+                //
                 //
                 //
             }
@@ -109,7 +111,8 @@ public class Run_Invert_Example_B implements MouseListener {
         //
     }
 
-    private RowDataInvert[] getConfigTableInvert() {
+    @Override
+    public RowDataInvert[] getConfigTableInvert() {
         //
         //Show 1 parameter in a "JTextField"
         RowDataInvert order = new RowDataInvert("", "", false, "", "ORDER", "KM/H", true, true, false);
@@ -139,68 +142,7 @@ public class Run_Invert_Example_B implements MouseListener {
         return rows;
     }
 
-    public String tableInvertToCSV(Table table_invert, int startColumn, RowDataInvert[] rdi, boolean writeToFile) {
-        TableInvert tableInvert = (TableInvert) table_invert;
-        //
-        String csv = "";
-        //
-        for (RowDataInvert dataInvert : rdi) {
-            //
-            if (dataInvert.getVisible() == false) {
-                continue;
-            }
-            //
-            csv += dataInvert.getFieldNickName() + ";";
-            //
-            if (dataInvert.getUnit() instanceof String) {
-                String unit = (String) dataInvert.getUnit();
-                //
-                if (unit.isEmpty() == false) {
-                    csv += unit + ";";
-                } else {
-                    csv += "unit" + ";";
-                }
-                //
-            }
-            //
-            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
-                //
-                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
-                //
-                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
-                //
-                csv += columnValue.getValue() + ";";
-                // 
-            }
-            //
-            csv += "\n";
-            //
-        }
-        //
-//        System.out.println("CSV: \n" + csv);
-        //
-        //
-        String path = HelpA.get_desktop_path() + "\\"
-                + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
-        //
-        if (writeToFile) {
-            try {
-                HelpA.writeToFile(path, csv);
-//                JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
-                run_application_with_associated_application(new File(path));
-            } catch (IOException ex) {
-                Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        //
-        return csv;
-    }
-
-    public int getColumnCount(Table table_invert) {
-        TableInvert tableInvert = (TableInvert) table_invert;
-        return tableInvert.getColumnCount();
-    }
-
+   
     public static void main(String[] args) {
          try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -219,7 +161,7 @@ public class Run_Invert_Example_B implements MouseListener {
             java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
          //
-        Run_Invert_Example_B invert = new Run_Invert_Example_B();
+        Run_Invert_Example_C invert = new Run_Invert_Example_C();
         invert.go();
     }
 
@@ -263,5 +205,25 @@ public class Run_Invert_Example_B implements MouseListener {
             JComponent jc = (JComponent) me.getSource();
             jc.setBorder(PREV_BORDER);
         }
+    }
+
+    @Override
+    public void showTableInvert() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void initializeSaveIndicators() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void fillNotes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean getUnsaved(int nr) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

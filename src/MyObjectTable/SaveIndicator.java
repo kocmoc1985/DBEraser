@@ -16,10 +16,10 @@ import javax.swing.JButton;
  */
 public class SaveIndicator implements Runnable {
 
-    private JButton saveBtn;
+    private final JButton saveBtn;
     private ImageIcon initialIcon;
-    private SaveIndicatorIF unsavedList;
-    private int NR;
+    private final SaveIndicatorIF unsavedList;
+    private final int NR;
     private boolean flag = true;
 
     public SaveIndicator(JButton saveBtn, SaveIndicatorIF ul, int nr) {
