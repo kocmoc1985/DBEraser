@@ -45,6 +45,9 @@ public class InvoiceA extends Basic {
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_vilkor", "LEVERANS VILKOR", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
         //
+        RowDataInvert faktura_datum = new RowDataInvertB("fakturadatum", "FAKTURADATUM", "", true, true, true);
+        RowDataInvert forfalo_datum = new RowDataInvertB("forfallodatum", "FÖRFALLODATUM", "", true, true, true);
+        //
         kund.enableFixedValuesAdvanced();
         RowDataInvert[] rows = {
             kund,
@@ -52,7 +55,9 @@ public class InvoiceA extends Basic {
             var_referens,
             betal_vilkor,
             lev_vilkor,
-            lev_satt
+            lev_satt,
+            faktura_datum,
+            forfalo_datum
         };
         //
         return rows;
@@ -63,7 +68,7 @@ public class InvoiceA extends Basic {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "invoice_a");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B();
-        setMargin(TABLE_INVERT, 10, 0, 0, 0);
+        setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(buh_invoice_main.jPanel2_faktura_main);
     }
 
