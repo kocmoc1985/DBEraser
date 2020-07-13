@@ -1,0 +1,39 @@
+insert into buh_konsult (namn) values
+('Konsult A'),
+('Konsult B');
+
+insert into buh_kund (konsultId,namn) values
+(1,'Kund A'),
+(2,'Kund B');
+
+
+insert into buh_faktura_kund (kundId,namn,kundnr) values
+(1,'Securitas',1),
+(1,'Telenor',2),
+(2,'Telia',1),
+(2,'Eon',2),
+(2,'Akelius',3),
+(2,'Telenor',4);
+
+---------------------------------------------------------------
+
+insert into buh_faktura (kundId,namn) values
+(1,1,'Faktura A'),
+(1,1,'Faktura B'),
+(2,2,'Faktura 2A'),
+(2,4,'Faktura 2B');
+
+insert into buh_faktura_artikel (kundId,namn) values
+(1,'Spik'),
+(1,'Skruv'),
+(1,'Hammare'),
+(1,'Skruvdragare'),
+(2,'Bil'),
+(2,'Båt'),
+(2,'Skruv');
+
+insert into Buh_F_artikel (fakturaId,artikelId,namn) values
+(1,1,'Spik'),
+(1,2,'Skruv'),
+(3,4,'Skruvdragare'),
+(3,5,'Bil');

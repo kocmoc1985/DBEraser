@@ -1,0 +1,39 @@
+/*Queries made in JAVA*/
+//===================================================================
+select Band.namn,Band.stil, PlaysOn.tidpunkt,Scen.namn FROM PlaysOn INNER JOIN" +
+" Band ON Band.bandID = PlaysOn.bandID INNER JOIN Scen ON Scen.scenID = PlaysOn.scenID" +
+" WHERE PlaysOn.datum ='" + getDateYYYY_MM_DD() + "' ORDER BY tidpunkt
+//====================================================================
+
+select Scen.namn, Scen.antalPlatser, Band.namn,PlaysOn.datum,PlaysOn.tidpunkt from Band " +
+"inner Join PlaysOn on Band.bandID = PlaysOn.bandID inner Join Scen on PlaysOn.scenID = Scen.scenID " +
+"order by datum,tidpunkt
+//====================================================================
+
+select Band.beskrivning From Band WHERE Band.namn ='" + str + "'
+//====================================================================
+
+select Band.namn, PlaysOn.datum, PlaysOn.tidpunkt, Scen.namn FROM PlaysOn " +
+"inner join Band ON Band.bandID = PlaysOn.bandID inner join Scen ON Scen.scenID = PlaysOn.scenID" +
+" Where Band.namn ='" + str + "'
+//====================================================================
+
+select Scen.namn, Scen.antalPlatser, Band.namn,PlaysOn.datum,PlaysOn.tidpunkt from Band " +
+"inner Join PlaysOn on Band.bandID = PlaysOn.bandID inner Join Scen on PlaysOn.scenID = Scen.scenID " +
+" where Scen.namn = '" + str + "' order by datum,tidpunkt
+//====================================================================
+
+select Band.namn, PlaysOn.tidpunkt,PlaysOn.datum,Scen.namn FROM PlaysOn INNER JOIN " +
+"Band ON Band.bandID = PlaysOn.bandID INNER JOIN Scen ON Scen.scenID = PlaysOn.scenID
+Order by PlaysOn.datum, PlaysOn.tidpunkt
+//====================================================================
+
+Select Band.namn From Band Order by namn
+//====================================================================
+
+select Band.land, Band.stil, Artist.namn,Artist.intresse,Artist.born From Band inner join " +
+"Artist on Band.bandID = Artist.bandID where Band.namn = '" + (String) Gui.jComboBox1.getSelectedItem() +
+"' Order by Artist.namn
+//====================================================================
+
+

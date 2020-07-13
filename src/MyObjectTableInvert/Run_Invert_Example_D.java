@@ -37,7 +37,7 @@ import javax.swing.border.Border;
 public class Run_Invert_Example_D extends Basic implements MouseListener {
 
     private Border PREV_BORDER;
-    private final Sql_B sql = new Sql_B(false, false);
+//    private final Sql_B sql = new Sql_B(false, false);
     private CommonControllsPanel ccp;
     private final JButton button = new JButton("TEST");
     private final JPanel container = new JPanel(new BorderLayout());
@@ -56,13 +56,13 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
         //
         final ShowMessage sm = new OutPut();
         //
-        try {
-            sql.connect_mdb_java_8("", "", "example.mdb");
-        } catch (SQLException ex) {
-            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            sql.connect_mdb_java_8("", "", "example.mdb");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         //
-        tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), false, "");
+        tableBuilder = new TableBuilderInvert(sm, null, getConfigTableInvert(), false, "buh_f_artikel_entry");
         //
         ccp = new CommonControllsPanel((TableInvert) TABLE_INVERT);
         //
@@ -123,20 +123,20 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
 //        fixdValTest.enableFixedValues();
         //
         String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3";
-        RowDataInvert artikel = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, null, "", "", "", false, "artikel", "ARTIKEL", "", true, true, false);
+        RowDataInvert artikel = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "artikelId", "ARTIKEL", "", true, true, false);
         artikel.enableFixedValuesAdvanced();
         //
-        RowDataInvert komment = new RowDataInvert("komment", "BENÄMNING", "", true, true, false);
+        RowDataInvert komment = new RowDataInvertB("komment", "BENÄMNING", "", true, true, false);
         //
-        RowDataInvert antal = new RowDataInvert("antal", "ANTAL", "", true, true, false);
+        RowDataInvert antal = new RowDataInvertB("antal", "ANTAL", "", true, true, false);
         //
-        RowDataInvert pris = new RowDataInvert("pris", "à-PRIS", "", true, true, false);
+        RowDataInvert pris = new RowDataInvertB("pris", "à-PRIS", "", true, true, false);
         //
         String fixedComboValues_b = "St,Förp,Tim";
-        RowDataInvert enhet = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", "", "", false, "enhet", "ENHET", "", true, true, false);
+        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "enhet", "ENHET", "", true, true, false);
         enhet.enableFixedValues();
         //
-        RowDataInvert rabatt = new RowDataInvert("rabatt", "RABATT", "", true, true, false);
+        RowDataInvert rabatt = new RowDataInvertB("rabatt", "RABATT", "", true, true, false);
         //
         // *********************************************************************
         //

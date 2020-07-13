@@ -73,9 +73,9 @@ public class TableBuilderInvert {
             //
             //
             String orig_field_name = CURR_ROW.getFieldOriginalName();
-            String key_name = CURR_ROW.getPrimaryOrForeignKeyName();
+//            String key_name = CURR_ROW.getPrimaryOrForeignKeyName();
             //
-            System.out.println("orig_field_name: " + orig_field_name);
+//            System.out.println("orig_field_name: " + orig_field_name);
             //
             int type = CURR_ROW.getType();
             //

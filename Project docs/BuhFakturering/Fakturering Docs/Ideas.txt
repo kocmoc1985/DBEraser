@@ -1,0 +1,4 @@
+1. Konsult-Side interface for recieving the facturas marked as "bokför" 
+2. Factoring, erbjuda kunden att få ansöka om att få betald direkt för fakturan.
+3. Make automatic "betalning påmmminelser"
+4. Make Webbased LAGER module, to update lagerstatus of products

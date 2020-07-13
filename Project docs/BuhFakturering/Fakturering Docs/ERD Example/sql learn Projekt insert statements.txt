@@ -1,0 +1,52 @@
+insert into Band values
+(1,'Sektor gaza','Russia','Pank ROk','THe best of the best'),
+(2,'Iron Maden','USA','Metal','A well known Band'),
+(3,'Nirvana','Mexico','ROk','New instance of nirvana')
+
+insert into Scen values
+(1,'lilen',150),
+(2,'lilen plus',300),
+(3,'meredian',550),
+(4,'big boss',1000)
+
+insert into PlaysOn values 
+(1,4,20101211,'17.45'),
+(1,3,20101212,'10.00'),
+(3,4,20101211,'19.45'),
+(2,1,20101211,'13.15')
+
+insert into Artist values
+(1,1,'Juri Kliskih','have fun',1974),
+(2,1,'Artem Mogilnij','music & pusic',1903),
+(3,2,'Brian May','Chicks',1978),
+(4,2,'Rahil Rubinstein','Smoking weed',1879)
+
+insert into Personal values
+(1,'Johan Petersson','0708-890121','man'),
+(2,'Axel Johansson','0709-345123','man'),
+(3,'Marten Mopsson','0708-099012','man'),
+(4,'Johan Petersson','0708-224421','man'),
+(5,'Pernilla Bentgtsson','0708-998332','man')
+
+insert into SecuityP values
+(1,5),
+(4,2),
+(5,9)
+
+insert into KontaktP values
+(2),
+(3)
+
+insert into SecurityAnsvar values
+(1,3,20101212,'10.00'),
+(1,4,20101211,'19.45'),
+(5,4,20101211,'17.45'),
+(4,1,20101211,'13.15')
+
+insert into KontaktAnsvar values
+(3,1),
+(3,2),
+(2,3)
+
+
+

@@ -1,0 +1,7 @@
+
+SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1
+
+----------------------------------------------------------------------
+SELECT buh_faktura.namn, buh_kund.namn FROM buh_kund 
+INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
+WHERE buh_kund.kundId=1

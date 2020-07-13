@@ -1,0 +1,92 @@
+DROP DATABASE if EXISTS buh;
+CREATE DATABASE buh;
+USE buh;
+
+CREATE TABLE Buh_Konsult (
+konsultId integer primary key not null AUTO_INCREMENT,
+namn varchar(150) DEFAULT ''
+);
+
+CREATE TABLE Buh_Kund (
+kundId integer primary key not null AUTO_INCREMENT,
+konsultId integer not null,
+namn varchar(150) DEFAULT '',
+Foreign key (konsultId) references Buh_Konsult(konsultId)
+);
+
+CREATE TABLE Buh_Faktura_Kund (
+fakturaKundId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+kundnr integer not null,
+namn varchar(150) DEFAULT '',
+orgnr varchar(30) DEFAULT '',
+vatnr varchar (30) DEFAULT '',
+email varchar (320) DEFAULT '',
+kund_kategori varchar (1) DEFAULT 'A',
+Foreign key (kundId) references Buh_Kund(kundId)
+);
+
+CREATE TABLE Buh_Address (
+id integer primary key not null AUTO_INCREMENT,
+konsultId integer,
+kundId integer,
+fakturaKundId integer,
+namn varchar(150) DEFAULT '',
+primary_addr boolean DEFAULT true,
+postaddr_a varchar (300) DEFAULT '',
+postaddr_b varchar (300) DEFAULT '',
+visit_addr varchar (300) DEFAULT '',
+zip varchar (10) DEFAULT '',
+ort varchar (100) DEFAULT '',
+tel_a varchar (50) DEFAULT '',
+tel_b varchar (50) DEFAULT '',
+swish varchar (100) DEFAULT '',
+other varchar (500) DEFAULT '',
+Foreign key (konsultId) references Buh_Konsult(konsultId),
+Foreign key (kundId) references Buh_Kund(kundId),
+Foreign key (fakturaKundId) references Buh_Faktura_Kund(fakturaKundId)
+);
+
+CREATE TABLE Buh_Faktura (
+fakturaId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaKundId integer,
+fakturanr integer DEFAULT 0,
+namn varchar(150) DEFAULT 'FAKTURA XX',
+fakturatyp varchar(10) DEFAULT 'NORMAL',
+inkl_moms boolean DEFAULT true,
+fakturadatum varchar(10) DEFAULT CURDATE(),
+forfallodatum varchar(10) DEFAULT CURDATE(),
+valuta varchar(3) DEFAULT 'SEK',
+er_referens varchar(50) DEFAULT '',
+var_referens varchar(50) DEFAULT '',
+frakt float DEFAULT 0,
+betal_vilkor integer DEFAULT 10,
+lev_vilkor varchar(3) DEFAULT 'FVL',
+exp_avg float DEFAULT 0,
+Foreign key (kundId) references Buh_Kund(kundId),
+Foreign key (fakturaKundId) references Buh_Faktura_Kund(fakturaKundId)
+); 
+
+CREATE TABLE Buh_Faktura_Artikel (
+artikelId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+lager integer DEFAULT 1,
+namn varchar(50) DEFAULT '',
+komment varchar(500) DEFAULT '',
+Foreign key (kundId) references Buh_Kund(kundId)
+);
+
+
+CREATE TABLE Buh_F_artikel (
+id integer primary key not null AUTO_INCREMENT,
+fakturaId integer not null,
+artikelId integer,
+antal integer DEFAULT 1,
+pris float DEFAULT 0,
+enhet varchar(30) DEFAULT 'St',
+inkopspris float DEFAULT 0,
+rabatt integer DEFAULT 0,
+Foreign key (fakturaId) references Buh_Faktura(fakturaId),
+Foreign key (artikelId) references Buh_Faktura_Artikel(artikelId)
+);

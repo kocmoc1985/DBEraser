@@ -21,19 +21,19 @@ public class RowDataInvert extends RowData {
     public static final int TYPE_JLABEL = 3;
     public static final int TYPE_JCOMBOBOX_PREFILED = 4;
     //
-    private int type = 0;
-    private String additionalInfo;
+    protected int type = 0;
+    protected String additionalInfo;
     private SqlBasicLocal sql;
     private String updateOtherTablesBefore = "";
     //
     private String TableName;
     private String primaryOrForeignKey;
-    private  String fieldOrigName;
-    private  String fieldNickName;
-    private  Object unitOrObject;
-    private  boolean visible;
-    private  boolean important;
-    private  boolean isString;
+    protected String fieldOrigName;
+    protected String fieldNickName;
+    protected Object unitOrObject;
+    protected boolean visible;
+    protected boolean important;
+    protected boolean isString;
     private boolean keyIsString;
     //
     private boolean editable = true;
@@ -42,6 +42,9 @@ public class RowDataInvert extends RowData {
     private boolean comboBoxFakeValue = false;
     private boolean comboBoxFixedValue = false;
     private boolean comboBoxFixedValueAdvanced = false;
+
+    public RowDataInvert() {
+    }
 
     /**
      *
@@ -121,22 +124,6 @@ public class RowDataInvert extends RowData {
         this.important = important;
     }
 
-    //==========================================================================
-    public RowDataInvert(
-            String field_original_name,
-            String field_nick_name,
-            Object unitOrObject,
-            boolean string,
-            boolean visible,
-            boolean important) {
-        this.fieldOrigName = field_original_name;
-        this.fieldNickName = field_nick_name;
-        this.unitOrObject = unitOrObject;
-        this.isString = string;
-        this.visible = visible;
-        this.important = important;
-    }
-    //==========================================================================
 
     public void enableFixedValues() {
         comboBoxFixedValue = true;

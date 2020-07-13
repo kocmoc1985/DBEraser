@@ -1,0 +1,60 @@
+
+SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1
+
+----------------------------------------------------------------------
+SELECT buh_faktura.namn, buh_kund.namn FROM buh_kund 
+INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
+WHERE buh_kund.kundId=1
+
+-----------------------------------------------------------------------
+
+SUPER IMPORTANT QUERRY: EXTREAMLY IMPORTANT FOR UNDERSTANDING ---> OBS! PAY ATTENTION AT: "GROUP BY Buh_F_artikel.id"
+
+SELECT buh_kund.namn,buh_kund.kundId, buh_faktura.namn,buh_faktura.fakturaId, buh_faktura_artikel.namn, Buh_F_artikel.antal FROM `buh_kund`
+INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
+INNER JOIN buh_faktura_artikel ON buh_faktura_artikel.kundId = buh_kund.kundId
+INNER JOIN Buh_F_artikel ON Buh_F_artikel.artikelId = buh_faktura_artikel.artikelId
+WHERE Buh_F_artikel.antal=7 GROUP BY Buh_F_artikel.id
+
+-------------------------------------------------------------------------
+
+SELECT ALL CUSTOMERS OF SOME "KUND" --> Working
+
+SELECT buh_kund.namn, buh_faktura_kund.namn,buh_faktura_kund.kundnr FROM `buh_kund`
+INNER JOIN buh_faktura_kund ON buh_kund.kundId = buh_faktura_kund.kundId
+WHERE buh_kund.kundId=2
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA"
+
+SELECT * FROM buh_f_artikel 
+WHERE buh_f_artikel.fakturaId=6
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA" (ADVANCED, not showing entries where artikelId not specified)
+
+SELECT buh_kund.namn ,buh_faktura.namn, buh_faktura.fakturaId, buh_faktura_artikel.namn, Buh_F_artikel.antal FROM `buh_faktura`
+INNER JOIN Buh_F_artikel ON buh_faktura.fakturaId = Buh_F_artikel.fakturaId
+INNER JOIN buh_faktura_artikel ON Buh_F_artikel.artikelId = buh_faktura_artikel.artikelId
+INNER JOIN buh_kund ON buh_faktura.kundId = buh_kund.kundId
+WHERE buh_faktura.fakturaId=1
+
+-----------------------------------------------------------------------------
+
+SELECT ALL "ARTICLES" OF A CUSTOMER --> Working
+
+SELECT buh_kund.namn, buh_faktura_artikel.namn, buh_faktura_artikel.artikelId FROM `buh_faktura_artikel`
+INNER JOIN buh_kund ON buh_faktura_artikel.kundId = buh_kund.kundId
+WHERE buh_kund.kundId = 1
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ADRESSES OF A "FAKTURA KUND" --> Working
+
+SELECT buh_address.zip,buh_address.postaddr_a,buh_address.primary_addr, buh_faktura_kund.namn, buh_faktura_kund.kundId FROM buh_faktura_kund
+INNER JOIN buh_address ON buh_address.fakturaKundId = buh_faktura_kund.fakturaKundId
+WHERE buh_faktura_kund.fakturaKundId=4
+
+-----------------------------------------------------------------------------

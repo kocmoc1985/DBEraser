@@ -1,0 +1,79 @@
+drop table if exists Band;
+drop table if exists Scen;
+drop table if exists PlaysOn;
+drop table if exists Artist;
+drop table if exists Personal;
+drop table if exists SecurityP;
+drop table if exists KontaktP;
+
+CREATE TABLE Band (
+bandID integer primary key not null,
+namn varchar(150),
+land varchar(30),
+stil varchar(70),
+beskrivning varchar(600)
+)
+
+CREATE TABLE Scen (
+scenID integer primary key not null,
+namn varchar(100),
+antalPlatser integer not null
+)
+
+CREATE TABLE PlaysOn ( 
+bandID integer not null,
+scenID integer not null,
+datum date not null,
+tidpunkt varchar(20) not null,
+Foreign key (bandID) references Band(bandID),
+Foreign key (scenID) references Scen(scenID),
+unique(datum,tidpunkt)
+)
+
+CREATE TABLE Artist (
+artID integer primary key not null,
+bandId integer not null,
+namn varchar(150) not null,
+intresse varchar(500),
+born Year,
+foreign key (bandID) references Band(bandID)
+)
+
+CREATE TABLE Personal(
+persID integer primary key not null,
+namn varchar(150) not null,
+mobil varchar(11) not null,
+sex varchar(7) not null
+)
+
+CREATE TABLE SecurityP(
+persID integer not null,
+skills integer,
+foreign key (persID) references Personal(persID)
+)
+
+CREATE TABLE KontaktP (
+persID integer not null,
+foreign key (persID) references Personal(persID)
+)
+
+CREATE TABLE SecurityAnsvar(
+persID integer not null,
+scenID integer not null,
+datum date not null,
+tidpunkt varchar(20) not null,
+foreign key (persID) references Personal(persID),
+Foreign key (scenID) references Scen(scenID)
+)
+
+CREATE TABLE KontaktAnsvar (
+persID integer not null,
+bandID integer not null,
+foreign key (persID) references Personal(persID),
+foreign key (bandID) references Band(bandID)
+)
+
+
+
+
+

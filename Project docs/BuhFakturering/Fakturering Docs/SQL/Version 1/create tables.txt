@@ -1,0 +1,51 @@
+drop table if exists Buh_Kund;
+drop table if exists Buh_Faktura;
+drop table if exists Buh_Faktura_Artikel;
+drop table if exists Buh_Faktura_Kund;
+
+CREATE TABLE Buh_Kund (
+kundId integer primary key not null AUTO_INCREMENT,
+namn varchar(150)
+)
+
+CREATE TABLE Buh_Faktura (
+fakturaId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+namn varchar(150),
+Foreign key (kundId) references Buh_Kund(kundId)
+) 
+
+CREATE TABLE Buh_Faktura_Artikel (
+artikelId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+namn varchar(150),
+Foreign key (kundId) references Buh_Kund(kundId)
+)
+
+CREATE TABLE Buh_Faktura_Kund (
+fakturaKundId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+namn varchar(150),
+Foreign key (kundId) references Buh_Kund(kundId)
+)
+
+insert into buh_kund (namn) values
+('A AB'),
+('B AB')
+
+insert into buh_faktura (kundId,namn) values
+(1,'Faktura A'),
+(1,'Faktura B')
+
+insert into buh_faktura_kund (kundId,namn) values
+(1,'Securitas'),
+(1,'Telenor'),
+(2,'Telia'),
+(2,'Eon')
+
+insert into buh_faktura_artikel (kundId,namn) values
+(1,'Spik'),
+(1,'Skruv'),
+(2,'Bil'),
+(2,'Båt')
+
