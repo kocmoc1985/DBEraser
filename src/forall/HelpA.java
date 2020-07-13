@@ -2191,6 +2191,7 @@ public class HelpA {
                 jbox, GlazedLists.eventListOf(arr));
         //
         jbox.setSelectedIndex(0);
+//        jbox.setSelectedItem(initialValue);
         //
         return jbox;
     }
