@@ -36,9 +36,9 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author KOCMOC
  */
 public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
-    
+
     public Table TABLE_INVERT;
-    
+
     public Basic() {
     }
 
@@ -65,7 +65,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         }
         //
     }
-    
+
     public void tableInvertExportOrRepport(Table table_invert, int startColumn, RowDataInvert[] cfg) {
         //
         JComboBox box = new JComboBox(new String[]{"REPORT", "CSV"});
@@ -83,48 +83,48 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         }
         //
     }
-    
+
     public void tableCommonRepport(JTable table, boolean landscape) {
         new JTableBasicRepport(table, landscape);
     }
-    
+
     public void tableInvertRepport(Table table_invert, int startColumn, RowDataInvert[] cfg) {
         String csv = tableInvertToCSV(table_invert, startColumn, cfg, false);
         makeRepportTableInvert(csv);
     }
-    
+
     public void addTableInvertRowListener(Table table_invert, TableRowInvertListener tril) {
         TableInvert tableInvert = (TableInvert) table_invert;
         tableInvert.addTableRowInvertListener(tril);
     }
-    
+
     public void setVerticalScrollBarDisabled(Table table_invert) {
         TableInvert tableInvert = (TableInvert) table_invert;
         JScrollPane jsp = (JScrollPane) tableInvert.getTable();
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     }
-    
+
     public void setMargin(Table table_invert, int top, int left, int bottom, int right) {
         TableInvert tableInvert = (TableInvert) table_invert;
         tableInvert.setMargin(top, left, bottom, right);
     }
-    
+
     public boolean tableEmpty(Table table_invert) {
         TableInvert tableInvert = (TableInvert) table_invert;
         return tableInvert.tableEmpty();
     }
-    
+
     public void changeValueAndSave(Table table_invert, Object newValue, String rowName, int column) {
         setValueTableInvert(rowName, table_invert, newValue);
         addToUnsaved(table_invert, rowName, column);
         saveChangesTableInvert(table_invert);
     }
-    
+
     public void changeValueNoSave(Table table_invert, Object newValue, String rowName, int column) {
         setValueTableInvert(rowName, table_invert, newValue);
         addToUnsaved(table_invert, rowName, column);
     }
-    
+
     public boolean unsavedEntriesExist(Table table_invert) {
         if (table_invert.unsaved_entries_map.isEmpty() == false) {
             return true;
@@ -132,17 +132,17 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             return false;
         }
     }
-    
+
     public void addToUnsaved(Table table_invert, String rowName, int column) {
         TableInvert tableInvert = (TableInvert) table_invert;
         tableInvert.addToUnsaved(rowName, column);
     }
-    
+
     public int getColumnCount(Table table_invert) {
         TableInvert tableInvert = (TableInvert) table_invert;
         return tableInvert.getColumnCount();
     }
-    
+
     public void clearAllRowsTableInvert(Table table_invert) {
         TableInvert tableInvert = (TableInvert) table_invert;
         //
@@ -152,7 +152,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         tableInvert.clearAllRows();
     }
-    
+
     public void clearRows(Table table_invert, int start) {
         TableInvert tableInvert = (TableInvert) table_invert;
         //
@@ -162,7 +162,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         tableInvert.clearRows(start);
     }
-    
+
     public void clearRows(Table table_invert, int start, int notToClearFromEnd) {
         TableInvert tableInvert = (TableInvert) table_invert;
         //
@@ -172,15 +172,16 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         tableInvert.clearRows(start, notToClearFromEnd);
     }
-    
+
     public void setValueTableInvert(String rowName, Table tableInvert, Object value) {
         TableInvert ti = (TableInvert) tableInvert;
         ti.setValueAt(rowName, value, defineValueColumnIndex(tableInvert));
     }
 
     /**
-     * Basic method for getting value from a TableInvert
-     * Obs! The rowName is the column name from DB not the nickName
+     * Basic method for getting value from a TableInvert Obs! The rowName is the
+     * column name from DB not the nickName
+     *
      * @param rowName
      * @return
      */
@@ -188,22 +189,22 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         TableInvert ti = (TableInvert) TABLE_INVERT;
         return ti.getValueAt(rowName);
     }
-    
+
     public String getValueTableInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAt(rowName);
     }
-    
+
     public String getValueTableInvert(String rowName, int column, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAt(rowName, column);
     }
-    
+
     public void saveChangesTableInvert(Table tableInvert) {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-             HelpA.showActionDeniedUserRole(USER_ROLE);
-             return;
+            HelpA.showActionDeniedUserRole(USER_ROLE);
+            return;
         }
         //
         TableInvert ti = (TableInvert) tableInvert;
@@ -213,12 +214,12 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         ti.applyChanges();
         //
     }
-    
+
     public void saveChangesTableInvert() {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-             HelpA.showActionDeniedUserRole(USER_ROLE);
-             return;
+            HelpA.showActionDeniedUserRole(USER_ROLE);
+            return;
         }
         //
         TableInvert ti = (TableInvert) TABLE_INVERT;
@@ -228,13 +229,13 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         ti.applyChanges();
         //
     }
-    
+
     public void automaticFieldUpdate(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA.updatedOn());
         ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA.updatedBy());
     }
-    
+
     public boolean columnNameExists(String colName, Table tableInvert) {
         try {
             getValueTableInvert(colName, defineValueColumnIndex(tableInvert), tableInvert);
@@ -243,7 +244,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             return false;
         }
     }
-    
+
     public int defineValueColumnIndex(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         //
@@ -252,7 +253,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         } else {
             return 2;
         }
-        
+
     }
 
     /**
@@ -274,35 +275,54 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             }
         }
     }
-    
-    
-    
+
     public abstract RowDataInvert[] getConfigTableInvert();
-    
+
     public abstract void showTableInvert();
-    
+
     public abstract void initializeSaveIndicators();
-     
-    
+
     public String jTableToCSV(JTable table, boolean writeToFile) {
         return HelpA.jTableToCSV(table, writeToFile);
     }
-    
+
     public String jTableToCSV(JTable table, boolean writeToFile, String[] columns) {
         return HelpA.jTableToCSV(table, writeToFile, columns);
     }
-    
-    
+
+    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+            }
+        }
+        //
+        return mapToReturn;
+    }
+
     /**
-     * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10]
-     * Use 2 if using units, 1 otherwise 
+     * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10] Use
+     * 2 if using units, 1 otherwise
+     *
      * @param table_invert
      * @param startColumn
      * @param rdi
      * @param writeToFile
-     * @return 
+     * @return
      */
     public String tableInvertToCSV(Table table_invert, int startColumn, RowDataInvert[] rdi, boolean writeToFile) {
+        //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
         String csv = "";
@@ -358,7 +378,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         return csv;
     }
-    
+
     private void makeRepportTableInvert(String csv) {
         String[] lines = csv.split("\n");
         //
@@ -366,12 +386,12 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         for (String line : lines) {
             String arr[] = line.split(";");
-            
+
             String columnName = arr[0];
             String unit = arr[1];
-            
+
             InvertTableRow row = new InvertTableRow(columnName, unit);
-            
+
             for (int i = 2; i < arr.length; i++) {
                 row.addValue(arr[i]);
             }
@@ -423,7 +443,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public void showTableInvertIn(JComponent container, Table tableInvert) {
         showTableInvert(container, tableInvert);
     }
-    
+
     public void showTableInvert(final JComponent container, final Table tableInvert) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -433,12 +453,12 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 x.start();
             }
         });
-        
+
     }
-    
+
     public void showTableInvert(final JComponent container) {
         //
-        if(TABLE_INVERT == null){
+        if (TABLE_INVERT == null) {
             return;
         }
         //
@@ -451,17 +471,17 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             }
         });
     }
-    
+
     class RepaintThread implements Runnable {
-        
+
         private final JComponent container;
         private final Table table;
-        
+
         public RepaintThread(JComponent container, Table table) {
             this.container = container;
             this.table = table;
         }
-        
+
         @Override
         public void run() {
             //
@@ -486,29 +506,28 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             });
         }
     }
-    
+
     public void paint_selected_rows_a(final LinkedList<Integer> rowsToPaint, final JTable jTable, final Color color) {
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 setBackground(null);
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
-                
+
                 for (Integer r : rowsToPaint) {
                     if (row == r) {
                         c.setBackground(color);
                         return c;
                     }
                 }
-                
+
                 return this;
             }
         });
         //
         jTable.repaint();
     }
-    
+
     public void unpaintAllRows_a(JTable table) {
         paint_selected_rows_a(new LinkedList<Integer>(), table, null);
     }
@@ -534,14 +553,14 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                         return c;
                     }
                 }
-                
+
                 return this;
             }
         });
         //
         jTable.repaint();
     }
-    
+
     public void unpaintRow_b(JTable table, final String id, String idColumnName, final LinkedList<Integer> rowsToHighlight) {
         Iterator<Integer> iter = rowsToHighlight.iterator();
         //

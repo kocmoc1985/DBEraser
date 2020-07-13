@@ -70,6 +70,7 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableInvertToCSV(TABLE_INVERT, 1, getConfigTableInvert(), true); // OBS! using 2 if units enabled 1 otherwise [2020-07-10]
+//                tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
             }
         });
     }
@@ -108,42 +109,45 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        //Show 1 parameter in a "JTextField"
-        RowDataInvert order = new RowDataInvert("", "", false, "", "ORDER", "KM/H", true, true, false);
         //
-        RowDataInvert batch = new RowDataInvert("main_table", "batch_id", false, "batch_nr", "BATCH", "", true, true, false);
+//        String str_a = "";
+//        //
+//        try {
+//            str_a = HelpBuh.http_get_content_post(HelpBuh.getAllClientsInInterval("httpcom", 0, 20000));
+//        } catch (Exception ex) {
+//            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        //
+//        String fixedComboValues = str_a;
+//        RowDataInvert fixdValTest = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", "", "", false, "test", "TEST", "", true, true, false);
+//        fixdValTest.enableFixedValues();
+        //
+        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3";
+        RowDataInvert artikel = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, null, "", "", "", false, "artikel", "ARTIKEL", "", true, true, false);
+        artikel.enableFixedValuesAdvanced();
+        //
+        RowDataInvert komment = new RowDataInvert("komment", "BENÄMNING", "", true, true, false);
+        //
+        RowDataInvert antal = new RowDataInvert("antal", "ANTAL", "", true, true, false);
+        //
+        RowDataInvert pris = new RowDataInvert("pris", "à-PRIS", "", true, true, false);
+        //
+        String fixedComboValues_b = "St,Förp,Tim";
+        RowDataInvert enhet = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", "", "", false, "enhet", "ENHET", "", true, true, false);
+        enhet.enableFixedValues();
+        //
+        RowDataInvert rabatt = new RowDataInvert("rabatt", "RABATT", "", true, true, false);
         //
         // *********************************************************************
-        //
-        String str_a = "";
-        //
-        try {
-            str_a = HelpBuh.http_get_content_post(HelpBuh.getAllClientsInInterval("httpcom", 0, 20000));
-        } catch (Exception ex) {
-            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-//        String fixedComboValues = "admin,user,useradvanced,developer";
-        String fixedComboValues = str_a;
-        RowDataInvert fixdValTest = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", "", "", false, "test", "TEST", "", true, true, false);
-        fixdValTest.enableFixedValues();
-        //
-        // *********************************************************************
-        //
-        String q_5 = MCRecipe.SQL_B.basic_combobox_query_double_param("recipe_id", "batch_id", "main_table");
-        RowDataInvert line = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql, "", "", "", false, "line_nr", "LINE", "", true, true, false);
-        line.enableComboBoxMultipleValue();
-        //
-        String q_6 = MCRecipe.SQL_B.basic_combobox_query("duration", "main_table");
-        RowDataInvert duration = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_6, sql, "", "main_table", "batch_id", false, "duration", "DURATION", "", true, true, false);
         //
         RowDataInvert[] rows = {
-            fixdValTest,
-            order,
-            batch,
-            //            recipe,
-            line,
-            duration};
+            artikel,
+            komment,
+            antal,
+            pris,
+            enhet,
+            rabatt
+        };
         //
         return rows;
     }

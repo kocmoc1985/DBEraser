@@ -26,21 +26,22 @@ public class RowDataInvert extends RowData {
     private SqlBasicLocal sql;
     private String updateOtherTablesBefore = "";
     //
-    private final String TableName;
-    private final String primaryOrForeignKey;
-    private final String fieldOrigName;
-    private final String fieldNickName;
-    private final Object unitOrObject;
-    private final boolean visible;
-    private final boolean important;
-    private final boolean isString;
-    private final boolean keyIsString;
+    private String TableName;
+    private String primaryOrForeignKey;
+    private  String fieldOrigName;
+    private  String fieldNickName;
+    private  Object unitOrObject;
+    private  boolean visible;
+    private  boolean important;
+    private  boolean isString;
+    private boolean keyIsString;
     //
     private boolean editable = true;
     private boolean JTextFieldToolTipText = false;
     private boolean comboBoxMultipleValue = false;
     private boolean comboBoxFakeValue = false;
     private boolean comboBoxFixedValue = false;
+    private boolean comboBoxFixedValueAdvanced = false;
 
     /**
      *
@@ -120,8 +121,32 @@ public class RowDataInvert extends RowData {
         this.important = important;
     }
 
+    //==========================================================================
+    public RowDataInvert(
+            String field_original_name,
+            String field_nick_name,
+            Object unitOrObject,
+            boolean string,
+            boolean visible,
+            boolean important) {
+        this.fieldOrigName = field_original_name;
+        this.fieldNickName = field_nick_name;
+        this.unitOrObject = unitOrObject;
+        this.isString = string;
+        this.visible = visible;
+        this.important = important;
+    }
+    //==========================================================================
+
     public void enableFixedValues() {
         comboBoxFixedValue = true;
+    }
+
+    /**
+     * Accepts objects in following format: "Skruv;1,Spik;2,Hammare;3"
+     */
+    public void enableFixedValuesAdvanced() {
+        comboBoxFixedValueAdvanced = true;
     }
 
     public void enableFakeValue() {
@@ -171,6 +196,9 @@ public class RowDataInvert extends RowData {
             } else if (comboBoxFixedValue) {
                 String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, comboboxValues, value);
+            } else if (comboBoxFixedValueAdvanced) {
+                HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);
+                jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
             } else {
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, false);
             }

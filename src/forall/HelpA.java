@@ -2053,7 +2053,8 @@ public class HelpA {
         //
         if (val instanceof HelpA.ComboBoxObject) {
             HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
-            return cbo.getParam_1(); // The "'" shall be remowed in feature!!!!!
+//            return cbo.getParam_1();
+            return cbo.getParamAuto(); // Introduced [2020-07-13]
         }
         //
         return null;
@@ -2111,11 +2112,24 @@ public class HelpA {
         String param_1;
         String param_2;
         String param_3;
+        int paramToReturn = 1;
 
         public ComboBoxObject(String param_1, String param_2, String param_3) {
             this.param_1 = param_1;
             this.param_2 = param_2;
             this.param_3 = param_3;
+        }
+
+        public void setParamToReturn(int paramToReturn) {
+            this.paramToReturn = paramToReturn;
+        }
+
+        public String getParamAuto() {
+            HashMap<Integer, String> paramMap = new HashMap<>();
+            paramMap.put(1, param_1);
+            paramMap.put(2, param_2);
+            paramMap.put(3, param_3);
+            return paramMap.get(paramToReturn);
         }
 
         @Override
@@ -2188,11 +2202,11 @@ public class HelpA {
     }
 
     /**
-     * [2020-07-10]
-     * the format is following: "Skruv;1,Spik;2,Hammare;3"
+     * [2020-07-10] the format is following: "Skruv;1,Spik;2,Hammare;3"
+     *
      * @return
      */
-    public static ComboBoxObject[] extract_comma_separated_object(String str) {
+    public static ComboBoxObject[] extract_comma_separated_objects(String str, int paramToReturn) {
         str = str.trim();
         String[] arr = str.split(",");
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
@@ -2200,18 +2214,19 @@ public class HelpA {
         for (String stringObj : arr) {
             String[] arr_obj = stringObj.split(";");
             ComboBoxObject cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
+            cbo.setParamToReturn(paramToReturn);
             cbo_arr[i] = cbo;
             i++;
         }
         return cbo_arr;
     }
-    
-     public static void main(String[] args) {
-         String str = "Skruv;1,Spik;2,Hammare;3";
-        ComboBoxObject[] cbo_arr = extract_comma_separated_object(str);
-         for (ComboBoxObject cbo : cbo_arr) {
-             System.out.println("ID: " + cbo.getParam_2());
-         }
+
+    public static void main(String[] args) {
+        String str = "Skruv;1,Spik;2,Hammare;3";
+        ComboBoxObject[] cbo_arr = extract_comma_separated_objects(str,2);
+        for (ComboBoxObject cbo : cbo_arr) {
+            System.out.println("ID: " + cbo.getParam_2());
+        }
     }
 
     public static void run_application_with_associated_application(File file) throws IOException {
@@ -2447,8 +2462,6 @@ public class HelpA {
         Date d = cal.getTime();
         return f1.format(d);
     }
-
-   
 
     public static String extractValueFromHtmlString(String str) {
         if (str.contains("<") == false) {
