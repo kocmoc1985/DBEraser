@@ -33,11 +33,11 @@ public class InvoiceA extends Basic {
         RowDataInvert er_ref = new RowDataInvertB("er_referens", "ER REFERENS", "", true, true, false);
         RowDataInvert var_referens = new RowDataInvertB("er_referens", "VÅR REFERENS", "", true, true, false);
         //
-        String fixedComboValues_b = "1,5,10,15,20,30";
+        String fixedComboValues_b = "5,10,15,20,30";
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "betal_vilkor", "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
         //
-        String fixedComboValues_c = "CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB,Fritt vårt lager;FVL";
+        String fixedComboValues_c = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, "lev_vilkor", "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         //

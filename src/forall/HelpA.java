@@ -2190,8 +2190,8 @@ public class HelpA {
         AutoCompleteSupport support = AutoCompleteSupport.install(
                 jbox, GlazedLists.eventListOf(arr));
         //
-        jbox.setSelectedIndex(0);
-//        jbox.setSelectedItem(initialValue);
+//        jbox.setSelectedIndex(0);
+        jbox.setSelectedIndex(1);
         //
         return jbox;
     }
