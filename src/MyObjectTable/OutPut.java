@@ -5,7 +5,6 @@
  */
 package MyObjectTable;
 
-import MCCompound.PROD_PLAN;
 import forall.HelpA;
 
 /**

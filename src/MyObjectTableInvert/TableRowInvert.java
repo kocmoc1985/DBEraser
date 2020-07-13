@@ -72,7 +72,13 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
             HeaderInvert hi = (HeaderInvert) obj;
             //
             if (hi.isUnitHeader() == false) {
-                JLabel label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + "</p></html>");
+                JLabel label;
+                //
+                if (getRowConfig().getImportant()) {
+                    label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + " *" + "</p></html>");
+                }else{
+                    label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + "</p></html>");
+                }
                 //
                 HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
                 //

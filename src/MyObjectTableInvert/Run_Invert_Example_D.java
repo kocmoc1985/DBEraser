@@ -5,13 +5,11 @@
  */
 package MyObjectTableInvert;
 
-import BuhInvoice.HelpBuh;
 import MCCompound.PROD_PLAN;
 import MyObjectTable.CommonControllsPanel;
 import MyObjectTable.OutPut;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
-import forall.Sql_B;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -20,9 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;

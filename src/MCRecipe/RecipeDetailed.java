@@ -1261,7 +1261,7 @@ public class RecipeDetailed extends BasicTab {
         //
         setMargin(TABLE_INVERT, 10, 0, 0, 0);
         //
-        showTableInvert(mCRecipe2.jPanel1);
+        showTableInvert(mCRecipe2.jPanel1_recipe_detailed);
     }
 
     @Override
