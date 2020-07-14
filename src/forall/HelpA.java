@@ -2437,7 +2437,32 @@ public class HelpA {
         byteArrayToFile(duplicate_file_name, b_arr);
         System.out.println("copy files done");
     }
+    
+    public static String get_proper_date_yyyy_MM_dd() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
 
+    public static String get_today_plus_x_days(long days) {
+        long millis = 86400000 * days;
+        String dateToday = get_today_with_00_00_00();
+        return get_date_time_plus_some_time_in_ms(dateToday, "yyyy-MM-dd", millis);
+    }
+    
+     public static String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+    
+     public static String get_today_with_00_00_00() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime()) + " 00:00:00";
+    }
+    
     public static String get_proper_date_time_same_format_on_all_computers() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();

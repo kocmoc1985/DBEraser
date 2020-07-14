@@ -6,21 +6,23 @@
 package MyObjectTableInvert;
 
 /**
- * For the case when no SQL is used
+ * For the case when SQL is NOT used
  *
  * @author MCREMOTE
  */
 public class RowDataInvertB extends RowDataInvert {
-    
+
     private String initialValue;
 
     public RowDataInvertB(
+            String initialValue,
             String field_original_name,
             String field_nick_name,
             Object unitOrObject,
             boolean string,
             boolean visible,
             boolean important) {
+        this.initialValue = initialValue;
         this.fieldOrigName = field_original_name;
         this.fieldNickName = field_nick_name;
         this.unitOrObject = unitOrObject;
@@ -47,6 +49,10 @@ public class RowDataInvertB extends RowDataInvert {
         this.isString = string;
         this.visible = visible;
         this.important = important;
+    }
+
+    public String getInitialValue() {
+        return this.initialValue;
     }
 
 }

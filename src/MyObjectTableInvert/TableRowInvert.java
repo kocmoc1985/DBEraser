@@ -136,10 +136,15 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
                 addComponent(add_component);
                 JComboBox box = (JComboBox) add_component;
                 box.addItemListener(this);
-//                box.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
                 //
                 if (getRowConfig().isEditable() == false) {
                     box.setEditable(false);
+                }
+                //
+                if (getRowConfig().getImportant()){
+                    Font f = box.getFont();
+                    box.setFont(new Font(f.getFamily(),  Font.BOLD, f.getSize()+1));
+//                    box.setFont(new Font("SansSerif", Font.BOLD, 20));
                 }
                 //
             }

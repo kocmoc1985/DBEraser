@@ -10,6 +10,7 @@ import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
+import forall.HelpA;
 
 /**
  *
@@ -29,26 +30,31 @@ public class InvoiceA extends Basic {
         String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "fakturaKundId", "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
+        kund.setUneditable();
         //
-        RowDataInvert faktura_datum = new RowDataInvertB("fakturadatum", "FAKTURADATUM", "", true, true, true);
-        RowDataInvert forfalo_datum = new RowDataInvertB("forfallodatum", "FÖRFALLODATUM", "", true, true, true);
+        String faktura_datum_val = HelpA.get_proper_date_yyyy_MM_dd();
+        String faktura_datum_forfallo = HelpA.get_today_plus_x_days(30);
+        RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val,"fakturadatum", "FAKTURADATUM", "", true, true, true);
+        RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo,"forfallodatum", "FÖRFALLODATUM", "", true, true, true);
         //
-        RowDataInvert er_ref = new RowDataInvertB("er_referens", "ER REFERENS", "", true, true, false);
-        RowDataInvert var_referens = new RowDataInvertB("er_referens", "VÅR REFERENS", "", true, true, false);
+        RowDataInvert er_ref = new RowDataInvertB("","er_referens", "ER REFERENS", "", true, true, false);
+        RowDataInvert var_referens = new RowDataInvertB("","er_referens", "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = "30,20,15,10,5";
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "betal_vilkor", "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
+        betal_vilkor.setUneditable();
         //
         String fixedComboValues_c = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, "lev_vilkor", "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
+        lev_vilkor.setUneditable();
         //
         String fixedComboValues_d = "Post;P,Hämtas;HAM";
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_satt", "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
-        
-        kund.enableFixedValuesAdvanced();
+        lev_satt.setUneditable();
+        //
         RowDataInvert[] rows = {
             kund,
             faktura_datum,

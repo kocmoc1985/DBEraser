@@ -63,7 +63,7 @@ public class TableBuilderInvert {
         //
         for (int i = 0; i < ROWS.length; i++) {
             //
-            RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
+            RowDataInvertB CURR_ROW = (RowDataInvertB) ROWS[i];
             //
             CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getFieldNickName(), CURR_ROW.getFieldOriginalName(), CURR_ROW.getTableName()));
             //
@@ -84,7 +84,7 @@ public class TableBuilderInvert {
             ColumnDataEntryInvert cde;
             //
             if (type == RowDataInvert.TYPE_COMMON) {
-                cde = new ColumnDataEntryInvert(value, "", orig_field_name, CURR_ROW.getFieldNickName());
+                cde = new ColumnDataEntryInvert(CURR_ROW.getInitialValue(), "", orig_field_name, CURR_ROW.getFieldNickName());
             } else {
                 cde = new ColumnDataEntryInvert(CURR_ROW.getSpecialComponent(value), "", orig_field_name, CURR_ROW.getFieldNickName());
             }

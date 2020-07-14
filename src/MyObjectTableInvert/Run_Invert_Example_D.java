@@ -121,17 +121,17 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
         RowDataInvert artikel = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "artikelId", "ARTIKEL", "", true, true, false);
         artikel.enableFixedValuesAdvanced();
         //
-        RowDataInvert komment = new RowDataInvertB("komment", "BENÄMNING", "", true, true, false);
+        RowDataInvert komment = new RowDataInvertB("","komment", "BENÄMNING", "", true, true, false);
         //
-        RowDataInvert antal = new RowDataInvertB("antal", "ANTAL", "", true, true, false);
+        RowDataInvert antal = new RowDataInvertB("","antal", "ANTAL", "", true, true, false);
         //
-        RowDataInvert pris = new RowDataInvertB("pris", "à-PRIS", "", true, true, false);
+        RowDataInvert pris = new RowDataInvertB("","pris", "à-PRIS", "", true, true, false);
         //
         String fixedComboValues_b = "St,Förp,Tim";
         RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "enhet", "ENHET", "", true, true, false);
         enhet.enableFixedValues();
         //
-        RowDataInvert rabatt = new RowDataInvertB("rabatt", "RABATT", "", true, true, false);
+        RowDataInvert rabatt = new RowDataInvertB("","rabatt", "RABATT", "", true, true, false);
         //
         // *********************************************************************
         //

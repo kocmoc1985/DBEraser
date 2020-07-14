@@ -100,6 +100,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BUH_INVOICE_MAIN().setVisible(true);
             }
