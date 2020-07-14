@@ -290,6 +290,13 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         return HelpA.jTableToCSV(table, writeToFile, columns);
     }
 
+    /**
+     * [2020-07-13]
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return 
+     */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //
         HashMap<String, String> mapToReturn = new HashMap<>();

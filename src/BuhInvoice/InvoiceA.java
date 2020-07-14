@@ -38,7 +38,7 @@ public class InvoiceA extends Basic {
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo,"forfallodatum", "FÖRFALLODATUM", "", true, true, true);
         //
         RowDataInvert er_ref = new RowDataInvertB("","er_referens", "ER REFERENS", "", true, true, false);
-        RowDataInvert var_referens = new RowDataInvertB("","er_referens", "VÅR REFERENS", "", true, true, false);
+        RowDataInvert var_referens = new RowDataInvertB("","var_referens", "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = "30,20,15,10,5";
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "betal_vilkor", "BETAL VILKOR", "", true, true, false);

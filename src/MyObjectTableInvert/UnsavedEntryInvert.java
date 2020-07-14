@@ -21,13 +21,13 @@ public class UnsavedEntryInvert {
     private final Object dataField;
     private final String tableName;
     private final String primareyOrForeignKeyName;
-    private String db_id;
+    private final String db_id;
     private final String columnName;
     private final int columnNr;
     private String value;
-    private boolean isString;
-    private boolean keyIsString;
-    private String updateOtherTablesBefore;
+    private final boolean isString;
+    private final boolean keyIsString;
+    private final String updateOtherTablesBefore;
 
     public UnsavedEntryInvert(Object data_field,
             String tableName,
