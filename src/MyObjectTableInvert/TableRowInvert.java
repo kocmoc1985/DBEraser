@@ -171,18 +171,18 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
 //        System.out.println("COLUMN_COUNT:" + COLUMN_COUNT);
     }
 
-    public String getTableName() {
+    public String getTableNameDataBase() {
         return getRowConfig().getTableName();
     }
 
-    private void set_current_row__and__database_id(Object source) {
+    protected void set_current_row__and__database_id(Object source) {
         Table t = getTable();
         t.setCurrentRow(ROW_NR);
         t.setCurrentDatabaseId("" + t.row_col_object__db_id__map.get((Component) source));
 //        System.out.println("selected_row: " + t.getCurrentRow() + " / database_id: " + t.getCurrentDatabaseId());
     }
 
-    private boolean isHeaderComponent(Object source) {
+    protected boolean isHeaderComponent(Object source) {
         if (getTable().row_col_object__db_id__map.containsKey((Component) source)) {
             return false;
         } else {
@@ -218,6 +218,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
 
     @Override
     public void mouseEntered(MouseEvent me) {
+        //
         Object source = me.getSource();
         //
         if (isHeaderComponent(source)) {
@@ -235,10 +236,8 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
         System.out.println("DB_ID: " + ti.getCurrentDatabaseId());
         System.out.println("Column name: " + ti.getCurrentColumnName(source));
         System.out.println("Column NickName: " + ti.getCurrentColumnNickName(source));
-        System.out.println("TABLE_NAME: " + getTableName());// OBS!
+        System.out.println("TABLE_NAME: " + getTableNameDataBase());// OBS!
         System.out.println("==============================");
-        //
-        //
         //
         //
         Object col_nr = ti.getCurrentColumn(source);
@@ -272,7 +271,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
     public void mouseClicked(MouseEvent me) {
         TableInvert t = (TableInvert) getTable();
         for (TableRowInvertListener tril : tableRowListenerList) {
-            tril.mouseClicked(t.getCurrentColumn(me.getSource()), t.getTABLE_NAME(), t);
+            tril.mouseClicked(t.getCurrentColumn(me.getSource()),t.getCurrentRow(), t.getTABLE_NAME(), t);
         }
     }
 

@@ -4,44 +4,24 @@
  */
 package MyObjectTableInvert;
 
-import Reporting.InvertTableRow;
-import MCCompound.PROD_PLAN;
 import static MCRecipe.MC_RECIPE_.USER_ROLE;
 import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
-import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
-import MyObjectTable.Table;
-import Reporting.TableInvertBasicRepport;
-import Reporting.JTableBasicRepport;
 import forall.HelpA;
-import static forall.HelpA.run_application_with_associated_application;
 import forall.SqlBasicLocal;
-import java.awt.Color;
-import java.awt.Component;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.text.BadLocationException;
 
 /**
  *
  * @author KOCMOC
  */
-public abstract class BasicTab extends Basic {
+public abstract class BasicTab extends Basic  {
     
     public final ShowMessage OUT;
     public final SqlBasicLocal sql;
@@ -53,7 +33,6 @@ public abstract class BasicTab extends Basic {
         this.sql = sql;
         this.sql_additional = sql_additional;
     }
-
     
     public void save_changes_notes(
             JScrollPane jScrollPane,

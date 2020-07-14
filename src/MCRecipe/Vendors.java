@@ -170,11 +170,11 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     }
 
     public void vendorsColumnClickedSimulation() {
-        mouseClicked(1, "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
+        mouseClicked(1,TABLE_INVERT_3.getCurrentRow(), "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
     }
 
     @Override
-    public void mouseClicked(int column, String tableName, TableInvert ti) {
+    public void mouseClicked(int column,int row, String tableName, TableInvert ti) {
         //
         if (tableEmpty(ti)) {
             return;

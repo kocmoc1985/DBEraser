@@ -10,20 +10,21 @@ import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 
 /**
  *
  * @author MCREMOTE
  */
-public class InvoiceA extends Basic {
+public class InvoiceA extends Basic{
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -76,16 +77,28 @@ public class InvoiceA extends Basic {
         TABLE_INVERT = tableBuilder.buildTable_B();
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(buh_invoice_main.jPanel2_faktura_main);
+        //
+        addTableInvertRowListener(TABLE_INVERT, this);
+        //
+    }
+    
+     @Override
+    public void mouseClicked(int column,int row, String tableName, TableInvert tableInvert) {
+        super.mouseClicked(column,row, tableName, tableInvert); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+   
+
+    
+
+   
 }

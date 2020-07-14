@@ -35,11 +35,16 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author KOCMOC
  */
-public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
+public abstract class Basic implements TableRowInvertListener, SaveIndicator.SaveIndicatorIF {
 
     public Table TABLE_INVERT;
 
     public Basic() {
+    }
+
+    @Override
+    public void mouseClicked(int column,int row, String tableName, TableInvert tableInvert) {
+        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
     }
 
     /**

@@ -10,5 +10,5 @@ package MyObjectTableInvert;
  */
 public interface TableRowInvertListener {
 
-    public void mouseClicked(int column,String tableName,TableInvert tableInvert);
+    public void mouseClicked(int column,int row,String tableName,TableInvert tableInvert);
 }

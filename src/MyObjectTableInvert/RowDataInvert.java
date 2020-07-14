@@ -26,7 +26,7 @@ public class RowDataInvert extends RowData {
     private SqlBasicLocal sql;
     private String updateOtherTablesBefore = "";
     //
-    private String TableName;
+    private String tableName;
     private String primaryOrForeignKey;
     protected String fieldOrigName;
     protected String fieldNickName;
@@ -70,7 +70,7 @@ public class RowDataInvert extends RowData {
             boolean string,
             boolean visible,
             boolean important) {
-        this.TableName = tableName;
+        this.tableName = tableName;
         this.primaryOrForeignKey = primaryOrForeignKey;
         this.keyIsString = keyIsString;
         this.fieldOrigName = field_original_name;
@@ -113,7 +113,7 @@ public class RowDataInvert extends RowData {
         this.sql = sql;
         this.updateOtherTablesBefore = updateOtherTablesBefore;
         //
-        this.TableName = tableName;
+        this.tableName = tableName;
         this.primaryOrForeignKey = primaryOrForeignKey;
         this.keyIsString = keyIsString;
         this.fieldOrigName = field_original_name;
@@ -224,7 +224,7 @@ public class RowDataInvert extends RowData {
     }
 
     public String getTableName() {
-        return TableName;
+        return tableName;
     }
 
     public String getPrimaryOrForeignKeyName() {

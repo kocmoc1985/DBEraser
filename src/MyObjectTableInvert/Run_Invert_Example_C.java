@@ -109,9 +109,9 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
     public RowDataInvert[] getConfigTableInvert() {
         //
         //Show 1 parameter in a "JTextField"
-        RowDataInvert order = new RowDataInvert("", "", false, "", "ORDER", "KM/H", true, true, false);
+        RowDataInvert order = new RowDataInvertB("", "order", "ORDER", "KM/H", true, true, false);
         //
-        RowDataInvert batch = new RowDataInvert("main_table", "batch_id", false, "batch_nr", "BATCH", "", true, true, false);
+        RowDataInvert batch = new RowDataInvertB("", "batch_nr", "BATCH", "", true, true, false);
         //
         // *********************************************************************
         //
@@ -125,25 +125,16 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         //
 //        String fixedComboValues = "admin,user,useradvanced,developer";
         String fixedComboValues = str_a;
-        RowDataInvert fixdValTest = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", "", "", false, "test", "TEST", "", true, true, false);
+        RowDataInvert fixdValTest = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, "test", "TEST", "", true, true, false);
         fixdValTest.enableFixedValues();
         //
         // *********************************************************************
-        //
-        String q_5 = MCRecipe.SQL_B.basic_combobox_query_double_param("recipe_id", "batch_id", "main_table");
-        RowDataInvert line = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_5, sql, "", "", "", false, "line_nr", "LINE", "", true, true, false);
-        line.enableComboBoxMultipleValue();
-        //
-        String q_6 = MCRecipe.SQL_B.basic_combobox_query("duration", "main_table");
-        RowDataInvert duration = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_6, sql, "", "main_table", "batch_id", false, "duration", "DURATION", "", true, true, false);
-        //
+       
         RowDataInvert[] rows = {
             fixdValTest,
             order,
             batch,
-            //            recipe,
-            line,
-            duration};
+            };
         //
         return rows;
     }

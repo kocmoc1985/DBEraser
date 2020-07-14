@@ -90,11 +90,22 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     @Override
     public void addDataToTable() {
-
         //
         for (Object row_column_data_entry : TABLE_DATA) {
-            RowDataInvert rcd = (RowDataInvert) row_column_data_entry;
-            TableRowInvert row = new TableRowInvert(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
+            //
+            RowDataInvert rcd;
+            TableRowInvert row;
+            //
+            if (row_column_data_entry instanceof RowDataInvertB) {
+                rcd = (RowDataInvertB) row_column_data_entry;
+                row = new TableRowInvertB(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
+            } else if (row_column_data_entry instanceof RowDataInvert) {
+                rcd = (RowDataInvert) row_column_data_entry;
+                row = new TableRowInvert(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
+            } else {
+                rcd = null;
+                row = null;
+            }
             //
             rows_list.add(row);
             //
@@ -339,7 +350,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 UpdateBefore.updateBefore(unsavedEntryInvert, getSql(), updateOtherTablesBeforeInstruction);
             }
 
-          boolean ok =  updateFieldString(
+            boolean ok = updateFieldString(
                     unsavedEntryInvert.getTableName(),
                     unsavedEntryInvert.getColumnName(),
                     unsavedEntryInvert.getValue(),
@@ -350,7 +361,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             try {
                 //
-                if(!ok){
+                if (!ok) {
                     return;
                 }
                 //

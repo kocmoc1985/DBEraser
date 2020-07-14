@@ -6,7 +6,7 @@
 package MyObjectTableInvert;
 
 /**
- * For the case when SQL is NOT used
+ * For the case when SQL is NOT used [2020-07-13]
  *
  * @author MCREMOTE
  */
