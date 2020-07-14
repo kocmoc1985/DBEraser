@@ -268,7 +268,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
     public void mouseClicked(MouseEvent me) {
         TableInvert t = (TableInvert) getTable();
         for (TableRowInvertListener tril : tableRowListenerList) {
-            tril.mouseClicked(t.getCurrentColumn(me.getSource()),t.getCurrentRow(), t.getTABLE_NAME(), t);
+            tril.mouseClicked(me,t.getCurrentColumn(me.getSource()),t.getCurrentRow(), t.getTABLE_NAME(), t);
         }
     }
 

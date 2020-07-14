@@ -15,6 +15,7 @@ import MyObjectTable.Table;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -170,11 +171,11 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     }
 
     public void vendorsColumnClickedSimulation() {
-        mouseClicked(1,TABLE_INVERT_3.getCurrentRow(), "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
+        mouseClicked(null,1,TABLE_INVERT_3.getCurrentRow(), "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
     }
 
     @Override
-    public void mouseClicked(int column,int row, String tableName, TableInvert ti) {
+    public void mouseClicked(MouseEvent me,int column,int row, String tableName, TableInvert ti) {
         //
         if (tableEmpty(ti)) {
             return;

@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     @Override
-    public void mouseClicked(int column, int row, String tableName, TableInvert tableInvert) {
+    public void mouseClicked(MouseEvent me,int column, int row, String tableName, TableInvert tableInvert) {
         System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
     }
 

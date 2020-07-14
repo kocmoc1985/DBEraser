@@ -2224,7 +2224,7 @@ public class HelpA {
 
     public static void main(String[] args) {
         String str = "Skruv;1,Spik;2,Hammare;3";
-        ComboBoxObject[] cbo_arr = extract_comma_separated_objects(str,2);
+        ComboBoxObject[] cbo_arr = extract_comma_separated_objects(str, 2);
         for (ComboBoxObject cbo : cbo_arr) {
             System.out.println("ID: " + cbo.getParam_2());
         }
@@ -2437,7 +2437,7 @@ public class HelpA {
         byteArrayToFile(duplicate_file_name, b_arr);
         System.out.println("copy files done");
     }
-    
+
     public static String get_proper_date_yyyy_MM_dd() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
@@ -2449,20 +2449,37 @@ public class HelpA {
         String dateToday = get_today_with_00_00_00();
         return get_date_time_plus_some_time_in_ms(dateToday, "yyyy-MM-dd", millis);
     }
-    
-     public static String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
+
+    public static String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
         long ms = dateToMillisConverter3(date, date_format);
         long new_date_in_ms = ms + time_to_plus;
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
         return new_date;
     }
-    
-     public static String get_today_with_00_00_00() {
+
+    public static String get_date_time_plus_some_time_in_ms(String date, long time_to_plus) {
+        String date_format = "yyyy-MM-dd";
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    public static String get_date_time_plus_some_time_in_days(String date, long days) {
+        String date_format = "yyyy-MM-dd";
+        long time_to_plus = 86400000 * days;
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    public static String get_today_with_00_00_00() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime()) + " 00:00:00";
     }
-    
+
     public static String get_proper_date_time_same_format_on_all_computers() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
@@ -2535,6 +2552,41 @@ public class HelpA {
 
     public static String get_desktop_path() {
         return System.getProperty("user.home") + "\\" + "Desktop";
+    }
+
+    public static String loadLastEntered(String filePath) {
+        //
+        String previous = "";
+        ArrayList<String> list;
+        //
+        if (file_exists(filePath)) {
+            //
+            list = read_Txt_To_ArrayList(filePath);
+            //
+            if (list.isEmpty() == false) {
+                previous = list.get(0);
+            }
+            //
+        }
+        //
+        return previous;
+        //
+    }
+
+    public static boolean file_exists(String path) {
+        File f = new File(path);
+        return f.exists();
+    }
+
+    public static void writeToFile(String fileName, String textToWrite, boolean apend) throws IOException {
+        FileWriter fstream = new FileWriter(fileName, apend);
+        BufferedWriter out = new BufferedWriter(fstream);
+        //
+        out.write(textToWrite);
+        out.newLine();
+        //Very Important this makes that file is not in use after this operation
+        out.flush();
+        out.close();
     }
 
     public static Point position_window_in_center_of_the_screen(JFrame window) {
