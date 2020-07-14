@@ -11,6 +11,8 @@ package MyObjectTableInvert;
  * @author MCREMOTE
  */
 public class RowDataInvertB extends RowDataInvert {
+    
+    private String initialValue;
 
     public RowDataInvertB(
             String field_original_name,

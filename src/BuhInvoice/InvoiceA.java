@@ -30,10 +30,13 @@ public class InvoiceA extends Basic {
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "fakturaKundId", "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         //
+        RowDataInvert faktura_datum = new RowDataInvertB("fakturadatum", "FAKTURADATUM", "", true, true, true);
+        RowDataInvert forfalo_datum = new RowDataInvertB("forfallodatum", "FÖRFALLODATUM", "", true, true, true);
+        //
         RowDataInvert er_ref = new RowDataInvertB("er_referens", "ER REFERENS", "", true, true, false);
         RowDataInvert var_referens = new RowDataInvertB("er_referens", "VÅR REFERENS", "", true, true, false);
         //
-        String fixedComboValues_b = "5,10,15,20,30";
+        String fixedComboValues_b = "30,20,15,10,5";
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "betal_vilkor", "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
         //
@@ -42,22 +45,19 @@ public class InvoiceA extends Basic {
         lev_vilkor.enableFixedValuesAdvanced();
         //
         String fixedComboValues_d = "Post;P,Hämtas;HAM";
-        RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_vilkor", "LEVERANS VILKOR", "", true, true, false);
+        RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_satt", "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
-        //
-        RowDataInvert faktura_datum = new RowDataInvertB("fakturadatum", "FAKTURADATUM", "", true, true, true);
-        RowDataInvert forfalo_datum = new RowDataInvertB("forfallodatum", "FÖRFALLODATUM", "", true, true, true);
-        //
+        
         kund.enableFixedValuesAdvanced();
         RowDataInvert[] rows = {
             kund,
+            faktura_datum,
+            forfalo_datum,
             er_ref,
             var_referens,
             betal_vilkor,
             lev_vilkor,
-            lev_satt,
-            faktura_datum,
-            forfalo_datum
+            lev_satt
         };
         //
         return rows;
