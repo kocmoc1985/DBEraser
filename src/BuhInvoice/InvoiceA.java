@@ -12,6 +12,8 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -54,7 +56,7 @@ public class InvoiceA extends Basic{
         String fixedComboValues_d = "Post;P,Hämtas;HAM";
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_satt", "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
-        lev_satt.setUneditable();
+//        lev_satt.setUneditable();
         //
         RowDataInvert[] rows = {
             kund,
@@ -74,7 +76,7 @@ public class InvoiceA extends Basic{
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "invoice_a");
         TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B();
+        TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(buh_invoice_main.jPanel2_faktura_main);
         //
@@ -96,7 +98,29 @@ public class InvoiceA extends Basic{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
+     /**
+     * SUPER important here you catch the event when key released on some component
+     * so you can process this event as required
+     * @param ti
+     * @param ie 
+     */
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * SUPER important here you catch the event when some jcombobox item is changed 
+     * so you can process this event as required
+     * @param ti
+     * @param ie 
+     */
+    @Override
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
     
 

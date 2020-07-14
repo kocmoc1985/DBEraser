@@ -81,7 +81,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
             @Override
             public void run() {
                 //
-                TABLE_INVERT = tableBuilder.buildTable_B();
+                TABLE_INVERT = tableBuilder.buildTable_B(null);
                 //
                 container.add(TABLE_INVERT.getTable());
                 //

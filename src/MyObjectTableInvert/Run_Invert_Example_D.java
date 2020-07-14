@@ -73,36 +73,28 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     @Override
     public void showTableInvert() {
         //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //
-                TABLE_INVERT = tableBuilder.buildTable_B();
-                //
-                container.add(TABLE_INVERT.getTable());
-                //
-                table_container_frame.add(ccp, BorderLayout.PAGE_START);
-                //
-                table_container_frame.add(container);
-                //
-                table_container_frame.add(button, BorderLayout.PAGE_END);
-                //
-                table_container_frame.setVisible(true);
-                //
-                initializeSaveIndicators();
-                //
-            }
-        });
-
+        TABLE_INVERT = tableBuilder.buildTable_B(this);
         //
+        container.add(TABLE_INVERT.getTable());
         //
+        table_container_frame.add(ccp, BorderLayout.PAGE_START);
+        //
+        table_container_frame.add(container);
+        //
+        table_container_frame.add(button, BorderLayout.PAGE_END);
+        //
+        table_container_frame.setVisible(true);
+        //
+        initializeSaveIndicators();
+        //
+    //
 //                addMouseListenerToAllComponentsOfComponent((JComponent) table.getTable(), this);
 //        addMouseListenerToAllComponentsOfComponent(container, this);
-        //
-    }
+    //
+}
 
-    @Override
-    public RowDataInvert[] getConfigTableInvert() {
+@Override
+        public RowDataInvert[] getConfigTableInvert() {
         //
         //
 //        String str_a = "";
@@ -158,21 +150,39 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PROD_PLAN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PROD_PLAN.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PROD_PLAN.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PROD_PLAN.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PROD_PLAN.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
         Run_Invert_Example_D invert = new Run_Invert_Example_D();
-        invert.showTableInvert();
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+        public void run() {
+                invert.showTableInvert();
+             }
+        });
+        
     }
 
     private void addMouseListenerToAllComponentsOfComponent(JComponent c, MouseListener ml) {
@@ -186,22 +196,22 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent me) {
+        public void mouseClicked(MouseEvent me) {
         String str = "SOURCE ELEM: " + me.getSource();
         System.out.println(str);
         System.out.println(str);
     }
 
     @Override
-    public void mousePressed(MouseEvent me) {
+        public void mousePressed(MouseEvent me) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent me) {
+        public void mouseReleased(MouseEvent me) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent me) {
+        public void mouseEntered(MouseEvent me) {
         if (me.getSource() instanceof JComponent) {
             JComponent jc = (JComponent) me.getSource();
             PREV_BORDER = jc.getBorder();
@@ -210,7 +220,7 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     }
 
     @Override
-    public void mouseExited(MouseEvent me) {
+        public void mouseExited(MouseEvent me) {
         if (me.getSource() instanceof JComponent) {
             JComponent jc = (JComponent) me.getSource();
             jc.setBorder(PREV_BORDER);
@@ -218,12 +228,12 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     }
 
     @Override
-    public void initializeSaveIndicators() {
+        public void initializeSaveIndicators() {
         SaveIndicator saveIndicator = new SaveIndicator(ccp.getSaveButton(), this, 1);
     }
 
     @Override
-    public boolean getUnsaved(int nr) {
+        public boolean getUnsaved(int nr) {
         //
         if (nr == 1) {
             if (TABLE_INVERT == null) {

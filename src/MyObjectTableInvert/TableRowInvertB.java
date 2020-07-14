@@ -10,8 +10,6 @@ import MyObjectTable.Table;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.JTextField;
 
 /**
  * For the case when SQL is NOT used [2020-07-14]
@@ -26,12 +24,28 @@ public class TableRowInvertB extends TableRowInvert {
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        System.out.println("TableRowInvertB.class keyReleased(...)");
+        //
+//        System.out.println("TableRowInvertB.class keyReleased(...)");
+        //
+        TableInvert ti = (TableInvert) getTable();
+        Basic consumer = ti.getTableInvertConsumer();
+        //
+        if (consumer != null) {
+            consumer.keyReleasedForward(ti, ke);
+        }
     }
 
     @Override
     public void itemStateChanged(ItemEvent ie) {
-        System.out.println("TableRowInvertB.class JComboBox itemStateChanged()");
+        //
+//        System.out.println("TableRowInvertB.class JComboBox itemStateChanged()");
+        //
+        TableInvert ti = (TableInvert) getTable();
+        Basic consumer = ti.getTableInvertConsumer();
+        //
+        if (consumer != null) {
+            consumer.jComboBoxItemStateChangedForward(ti, ie);
+        }
     }
 
     @Override
@@ -55,7 +69,7 @@ public class TableRowInvertB extends TableRowInvert {
         System.out.println("Column NickName: " + ti.getCurrentColumnNickName(source));
         System.out.println("InvertTableName: " + ti.getTABLE_NAME());
         //
-        RowDataInvertB dataInvertB = (RowDataInvertB) ti.getRowConfig(ti.getCurrentRow()-1); 
+        RowDataInvertB dataInvertB = (RowDataInvertB) ti.getRowConfig(ti.getCurrentRow() - 1);
         //
         System.out.println("");
 //        System.out.println("attr. important: " + dataInvertB.fieldNickName);

@@ -49,9 +49,10 @@ public class TableBuilderInvert {
 
     /**
      * New [2020-07-10] Not using SQL
+     * @param tableInvertConsumer
      * @return
      */
-    public Table buildTable_B() {
+    public Table buildTable_B(Basic tableInvertConsumer) {
         //
         if (CONFIG == null) {
             return null;
@@ -105,7 +106,7 @@ public class TableBuilderInvert {
         }
         //
         //
-        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME);
+        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME,tableInvertConsumer);
         table.setShowUnits(SHOW_UNITS);
 //        table.setSql(sql);
         table.setTableEmpty(true);

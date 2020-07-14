@@ -40,10 +40,21 @@ public class TableInvert extends Table implements ControlsActionsIF {
     private String TABLE_NAME = "";
     private boolean SHOW_UNITS = false;
     private boolean IS_EMPTY = false;
+    private Basic TABLE_INVERT_CONSUMER;
 
     public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName) {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
+    }
+    
+     public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName, Basic tableInvertConsumer) {
+        super(data, row_layout, row_height, column_width_percent);
+        this.TABLE_NAME = tableName;
+        this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
+    }
+     
+    public Basic getTableInvertConsumer(){
+        return TABLE_INVERT_CONSUMER;
     }
 
     public void setShowUnits(boolean show) {

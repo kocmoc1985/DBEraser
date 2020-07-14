@@ -16,6 +16,8 @@ import forall.HelpA;
 import static forall.HelpA.run_application_with_associated_application;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,8 +45,16 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     @Override
-    public void mouseClicked(int column,int row, String tableName, TableInvert tableInvert) {
+    public void mouseClicked(int column, int row, String tableName, TableInvert tableInvert) {
         System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
+    }
+
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
+    }
+
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
     }
 
     /**
@@ -297,10 +307,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * [2020-07-13]
+     *
      * @param table_invert
      * @param startColumn
      * @param rdi
-     * @return 
+     * @return
      */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //

@@ -71,7 +71,7 @@ public class Run_Invert_Example_B implements MouseListener {
                 //
                     //
                     //
-                    table = tableBuilder.buildTable_B();
+                    table = tableBuilder.buildTable_B(null);
                     CommonControllsPanel ccp = new CommonControllsPanel((TableInvert) table);
                     //
                     JButton button = new JButton("TEST");
