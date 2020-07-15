@@ -23,3 +23,36 @@ EXAMPLE A: "{\"name\";\"myname\",\"age\";\"20\"}"
 EXAMPLE B: "{\"fakturaKundId\";\"1\",\"lev_satt\";\"P\",\"var_referens\";\"Andrei Brassas\",\"fakturadatum\";\"2020-07-15\",\"forfallodatum\";\"2020-08-14\",\"lev_vilkor\";\"FVL\",\"er_referens\";\"\",\"betal_vilkor\";\"30\"}"
 
 ________________________________________________________
+
+JSON TO SQL:
+
+foreach ($data as $author) {
+    mysql_query("INSERT INTO `authors` (`first_name`, `last_name`), VALUES('{$author->first_name}', '{$author->last_name}') ");
+    $author_id = mysql_last_insert_id();
+    foreach ($author->books as $book) {
+        mysql_query("INSERT INTO `books` (`title`, `isbn`, `author_id`), VALUES('{$book->title}', '{$book->isbn}', '{$author_id}') ");
+    }
+}
+
+_______________________________________________________
+
+THIS EXAMPLE IS FOR JAVA EE
+
+public static void jsonToMap(String t) throws JSONException {
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        JSONObject jObject = new JSONObject(t);
+        Iterator<?> keys = jObject.keys();
+
+        while( keys.hasNext() ){
+            String key = (String)keys.next();
+            String value = jObject.getString(key); 
+            map.put(key, value);
+
+        }
+
+        System.out.println("json : "+jObject);
+        System.out.println("map : "+map);
+    }
+	
+__________________________________________________________

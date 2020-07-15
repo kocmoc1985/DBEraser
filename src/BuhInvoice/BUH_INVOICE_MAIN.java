@@ -157,6 +157,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         System.out.println("json: " + json);
     }
 
+    
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
 //            HelpBuh.http_get_content_post(HelpBuh.testSendJson("{\"name\";\"myname\",\"age\";\"20\"}"));
