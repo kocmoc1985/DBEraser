@@ -8,6 +8,9 @@ package BuhInvoice;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -45,6 +48,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jPanel2_faktura_main = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1118, 922));
@@ -67,6 +71,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("PHP JSON");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,7 +88,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,7 +100,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
@@ -112,7 +126,45 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             String value = entry.getValue();
             System.out.println(key + "=" + value);
         });
+        //
+        hashMapToJSON(map);
+        //
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void hashMapToJSON(HashMap<String, String> map) {
+        //
+        String json = "{";
+        //
+        Set set = map.keySet();
+        Iterator it = set.iterator();
+        //
+        while (it.hasNext()) {
+            //
+            String key = (String) it.next();
+            String value = (String) map.get(key);
+            //
+            json += "\"" + key + "\"" + ";";
+            if(!it.hasNext()){
+                json += "\"" + value + "\"";
+            }else{
+                json += "\"" + value + "\"" + ",";
+            }
+            //
+        }
+        //
+        json += "}";
+        //
+        System.out.println("json: " + json);
+    }
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+//            HelpBuh.http_get_content_post(HelpBuh.testSendJson("{\"name\";\"myname\",\"age\";\"20\"}"));
+            HelpBuh.http_get_content_post(HelpBuh.testSendJson("{\"fakturaKundId\";\"1\",\"lev_satt\";\"P\",\"var_referens\";\"Andrei Brassas\",\"fakturadatum\";\"2020-07-15\",\"forfallodatum\";\"2020-08-14\",\"lev_vilkor\";\"FVL\",\"er_referens\";\"\",\"betal_vilkor\";\"30\"}"));
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +205,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JTabbedPane jTabbedPane1;

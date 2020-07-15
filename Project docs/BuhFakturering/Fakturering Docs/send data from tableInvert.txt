@@ -1,0 +1,25 @@
+********************************************************
+Splitting example i use: Securitas;1,Telenor;2,Telia;3
+********************************************************
+
+Table invert creates HashMap:
+
+fakturaKundId=1
+lev_satt=P
+var_referens=Andrei Brassas
+fakturadatum=2020-07-15
+forfallodatum=2020-08-14
+lev_vilkor=FVL
+er_referens=Gerhart Gunter
+betal_vilkor=30
+
+________________________________________________________
+
+SUPER IMPORTANT
+The JSON String sent from java looks like:
+
+EXAMPLE A: "{\"name\";\"myname\",\"age\";\"20\"}"
+
+EXAMPLE B: "{\"fakturaKundId\";\"1\",\"lev_satt\";\"P\",\"var_referens\";\"Andrei Brassas\",\"fakturadatum\";\"2020-07-15\",\"forfallodatum\";\"2020-08-14\",\"lev_vilkor\";\"FVL\",\"er_referens\";\"\",\"betal_vilkor\";\"30\"}"
+
+________________________________________________________

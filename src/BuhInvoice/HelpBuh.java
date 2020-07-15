@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -19,19 +20,26 @@ import java.nio.charset.StandardCharsets;
  * @author MCREMOTE
  */
 public class HelpBuh {
-    
+
     /**
      * For testing only
+     *
      * @param tablename
      * @param min
      * @param max
-     * @return 
+     * @return
      */
     public static String getAllClientsInInterval(String tablename, int min, int max) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&getininterval=true&min=%s&max=%s&tablename=%s",
                 "" + min, "" + max, tablename);
     }
-    
+
+    public static String testSendJson(String json) {
+        return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
+    }
+
+   
+
     /**
      * Implemented [2020-06-02] Yes this one is working
      *
@@ -53,7 +61,7 @@ public class HelpBuh {
         conn.setDoOutput(true);
         ((HttpURLConnection) conn).setInstanceFollowRedirects(false);
         ((HttpURLConnection) conn).setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); // 
         conn.setRequestProperty("charset", "utf-8");
         conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
         conn.setUseCaches(false);
@@ -79,9 +87,13 @@ public class HelpBuh {
         }
         //
         String temp = arr[1];
-//        String param = temp.split(":")[0];
         String value = temp.split(":")[1];
         System.out.println("HTTP REQ VAL: " + value);
         return value;
+        //
+//        String temp = arr[1];
+//        System.out.println("HTTP REQ VAL: " + temp);
+//        return temp;
     }
+    
 }
