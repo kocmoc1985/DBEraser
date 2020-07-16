@@ -43,7 +43,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 //             {"", "", "", "", "", ""}
         };
         //
-        jTable1.setModel(new DefaultTableModel(content, headers));
+        jTable1.setModel(new DefaultTableModel(null, headers));
     }
 
     /**
@@ -102,8 +102,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(452, 330));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,8 +162,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
