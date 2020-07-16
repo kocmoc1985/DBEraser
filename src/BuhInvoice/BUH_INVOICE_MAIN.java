@@ -7,7 +7,6 @@ package BuhInvoice;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +43,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -91,7 +91,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
@@ -117,7 +117,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("FAKTURA", jPanel1);
 
-        getContentPane().add(jTabbedPane1);
+        jScrollPane1.setViewportView(jTabbedPane1);
+
+        getContentPane().add(jScrollPane1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,6 +223,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2_faktura_main;
     protected javax.swing.JPanel jPanel_articles;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
