@@ -161,8 +161,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
+            //
 //            HelpBuh.http_get_content_post(HelpBuh.testSendJson("{\"name\";\"myname\",\"age\";\"20\"}"));
             HelpBuh.http_get_content_post(HelpBuh.testSendJson("{\"fakturaKundId\";\"1\",\"lev_satt\";\"P\",\"var_referens\";\"Andrei Brassas\",\"fakturadatum\";\"2020-07-15\",\"forfallodatum\";\"2020-08-14\",\"lev_vilkor\";\"FVL\",\"er_referens\";\"\",\"betal_vilkor\";\"30\"}"));
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -34,6 +34,12 @@ public class HelpBuh {
                 "" + min, "" + max, tablename);
     }
 
+    
+    /**
+     * Working test example [2020-07-16]
+     * @param json
+     * @return 
+     */
     public static String testSendJson(String json) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
     }
@@ -94,6 +100,63 @@ public class HelpBuh {
 //        String temp = arr[1];
 //        System.out.println("HTTP REQ VAL: " + temp);
 //        return temp;
+    }
+    
+    /**
+     * Was trying to make it working for sending JSON
+     * but no success, it can be leaved for further investigations
+     * @param url_
+     * @return
+     * @throws Exception 
+     * @deprecated 
+     */
+    public static String http_get_content_post___test(String url_) throws Exception {
+        //
+        String urlParameters = url_.split("\\?")[1];
+        byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        String request = url_.split("\\?")[0];
+        //
+        URL url = new URL(request);
+        URLConnection conn = url.openConnection();
+        //
+        conn.setDoOutput(true);
+        ((HttpURLConnection) conn).setInstanceFollowRedirects(false);
+        ((HttpURLConnection) conn).setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json"); //
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setRequestProperty("charset", "utf-8");
+        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+        conn.setUseCaches(false);
+        //
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+            wr.write(postData);
+        }
+        //
+        InputStream ins = conn.getInputStream();
+        InputStreamReader isr = new InputStreamReader(ins);
+        BufferedReader in = new BufferedReader(isr);
+        String inputLine;
+        String result = "";
+        while ((inputLine = in.readLine()) != null) {
+            result += inputLine;
+        }
+
+        String[] arr = result.split("###");
+        //
+        if (arr.length == 0) {
+            System.out.println("HTTP REQ FAILED");
+            return "";
+        }
+        //
+//        String temp = arr[1];
+//        String value = temp.split(":")[1];
+//        System.out.println("HTTP REQ VAL: " + value);
+//        return value;
+        //
+        String temp = arr[1];
+        System.out.println("HTTP REQ VAL: " + temp);
+        return temp;
     }
     
 }
