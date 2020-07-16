@@ -28,7 +28,7 @@ public class InvoiceA extends Basic {
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
 
-    private Table TABLE_INVERT_2;
+    protected Table TABLE_INVERT_2;
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
