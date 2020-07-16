@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import MyObjectTable.OutPut;
+import MyObjectTable.Table;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
@@ -26,6 +27,8 @@ import java.util.logging.Logger;
 public class InvoiceA extends Basic {
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
+
+    private Table TABLE_INVERT_2;
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
@@ -80,6 +83,20 @@ public class InvoiceA extends Basic {
         //
         return rows;
     }
+    
+    public RowDataInvert[] getConfigTableInvert_2() {
+        //
+        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "fakturaKundId", "KUND", "", true, true, true);
+        kund.enableFixedValuesAdvanced();
+        kund.setUneditable();
+        //
+        RowDataInvert[] rows = {
+            kund,
+        };
+        //
+        return rows;
+    }
 
     @Override
     public void showTableInvert() {
@@ -93,10 +110,20 @@ public class InvoiceA extends Basic {
         //
     }
 
+    public void showTableInvert_2() {
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
+        TABLE_INVERT_2 = null;
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
+        showTableInvert(buh_invoice_main.jPanel_articles, TABLE_INVERT_2);
+        //
+        addTableInvertRowListener(TABLE_INVERT_2, this);
+    }
+
     @Override
-    public void mouseClicked(MouseEvent me ,int column, int row, String tableName, TableInvert ti) {
-        super.mouseClicked(me,column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-         //
+    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
