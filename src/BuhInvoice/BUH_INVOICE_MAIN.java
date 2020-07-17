@@ -5,7 +5,14 @@
  */
 package BuhInvoice;
 
+import MCRecipe.Lang.ERRORS;
+import MyObjectTable.Table;
+import MyObjectTableInvert.ColumnValue;
+import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.TableInvert;
+import Reporting.InvertTableRow;
 import forall.JSon;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -71,6 +78,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jTextField_total_inkl_moms = new javax.swing.JTextField();
         jTextField_moms = new javax.swing.JTextField();
         jTextField_total_exkl_moms = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -135,6 +143,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
         jTextField_total_exkl_moms.setText("0");
 
+        jButton4.setText("TO HTML");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,14 +163,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField_total_exkl_moms, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField_moms, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                        .addComponent(jTextField_total_inkl_moms, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField_total_exkl_moms, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField_moms, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                        .addComponent(jTextField_total_inkl_moms, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(315, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,7 +181,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(56, 56, 56)
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3)
                         .addGap(98, 98, 98)
                         .addComponent(jButton2)
@@ -221,6 +239,118 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         invoiceA.addArticleForDB();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String html = tableInvertToHTML(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(html);
+                hTMLPrint_A.setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
+        String csv = tableInvertToCSV(table, startColumn, cfg);
+        ArrayList<InvertTableRow> tableRowsList = buildTableRowList(csv);
+        //
+        String html = "<table class='table-invert'>";
+        //
+        //
+        for (InvertTableRow invertTableRow : tableRowsList) {
+            html += "<tr>";
+            html += "<td style='background-color:light-grey'>" + invertTableRow.getColumnName() + "</td>";
+            //
+            try {
+                html += "<td>" + invertTableRow.getValue(0) + "</td>";
+            } catch (Exception ex) {
+                html += "<td>" + ERRORS.VAL_MISSING_REPORT + "</td>";
+            }
+            //
+            html += "</tr>";
+        }
+        //
+        //
+        html += "</table>";
+        //
+        return html;
+    }
+
+    private String tableInvertToCSV(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        String csv = "";
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            if (dataInvert.getVisible() == false) {
+                continue;
+            }
+            //
+            csv += dataInvert.getFieldNickName() + ";";
+            //
+            if (dataInvert.getUnit() instanceof String) {
+                String unit = (String) dataInvert.getUnit();
+                //
+                if (unit.isEmpty() == false) {
+                    csv += unit + ";";
+                } else {
+                    csv += "unit" + ";";
+                }
+                //
+            }
+            //
+            for (int x = startColumn; x < getColumnCountTableInvert(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                csv += columnValue.getValue() + ";";
+                // 
+            }
+            //
+            csv += "\n";
+            //
+        }
+        //
+//        System.out.println("CSV: \n" + csv);
+        //
+        //
+        return csv;
+    }
+
+    private int getColumnCountTableInvert(Table table_invert) {
+        TableInvert tableInvert = (TableInvert) table_invert;
+        return tableInvert.getColumnCount();
+    }
+
+    private ArrayList<InvertTableRow> buildTableRowList(String csv) {
+        //
+        String[] lines = csv.split("\n");
+        //
+        ArrayList<InvertTableRow> tableRowsList = new ArrayList<InvertTableRow>();
+        //
+        for (String line : lines) {
+            String arr[] = line.split(";");
+
+            String columnName = arr[0];
+            String unit = arr[1];
+
+            InvertTableRow row = new InvertTableRow(columnName, unit);
+
+            for (int i = 2; i < arr.length; i++) {
+                row.addValue(arr[i]);
+            }
+            //
+            tableRowsList.add(row);
+            //
+        }
+        return tableRowsList;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +391,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
