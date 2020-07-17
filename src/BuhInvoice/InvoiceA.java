@@ -36,24 +36,41 @@ public class InvoiceA extends Basic {
         this.buh_invoice_main = buh_invoice_main;
     }
 
-    protected void setMainFakturaData(){
-        this.buh_Faktura_Entry.setMainFakturaData();
+    /**
+     * OBS! This is important and by [2020-07-17] i don't really know where to
+     * get it from. In any case it seems that it should be done by making a
+     * request to HTTP.
+     *
+     * @return
+     */
+    protected int getFakturaId() {
+        return 1;
+    }
+
+    protected int getKundId() {
+        return 1;
+    }
+
+    protected int getFakturaNr(){
+        return 1;
     }
     
+    protected void setMainFakturaData() {
+        this.buh_Faktura_Entry.setMainFakturaData();
+    }
+
     public void addArticleForJTable(JTable table) {
         this.buh_Faktura_Entry.addArticleForJTable(table);
     }
-    
+
     public void addArticleForDB() {
-       this.buh_Faktura_Entry.addArticleForDB();
+        this.buh_Faktura_Entry.addArticleForDB();
     }
-    
+
     public Buh_Faktura_Entry getBuhFakturaEntry() {
         return buh_Faktura_Entry;
     }
 
-    
-    
     protected String getFakturaKundId() {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
@@ -107,7 +124,7 @@ public class InvoiceA extends Basic {
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5";
-        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a,  DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
         //
@@ -116,7 +133,7 @@ public class InvoiceA extends Basic {
         RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", true, true, false);
         //
         String fixedComboValues_b = "Styck;st,Förp;Förp,Timmar;Tim";
-        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b,  DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
+        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
         enhet.enableFixedValuesAdvanced();
         enhet.setUneditable();
         //

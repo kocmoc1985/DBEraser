@@ -11,10 +11,13 @@ package BuhInvoice;
  */
 public class DB {
 
+    public static final String BUH_FAKTURA__KUNDID = "kundId";
+    public static final String BUH_FAKTURA__FAKTURANR = "fakturanr";
     public static final String BUH_FAKTURA__ER_REFERENS = "er_referens";
     public static final String BUH_FAKTURA__VAR_REFERENS = "var_referens";
     //
-    public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelid";
+    public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
+    public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";
     public static final String BUH_F_ARTIKEL__KOMMENT = "komment";
     public static final String BUH_F_ARTIKEL__ANTAL = "antal";
     public static final String BUH_F_ARTIKEL__ENHET = "enhet";

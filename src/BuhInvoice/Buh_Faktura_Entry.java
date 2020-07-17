@@ -21,6 +21,10 @@ public class Buh_Faktura_Entry {
     private HashMap<String, String> mainMap = new HashMap<>();
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
+    //
+    private double fakturaTotalExklMoms;
+    private double fakturaTotalInklMoms;
+    private double momsTotal;
 
     public Buh_Faktura_Entry(InvoiceA invoiceA) {
         this.invoiceA = invoiceA;
@@ -29,11 +33,14 @@ public class Buh_Faktura_Entry {
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
-     * @param mainMap
      */
     public void setMainFakturaData() {
         //
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
+        //
+        //Adding obligatory values not present in the "TABLE_INVERT"
+        mainMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
+        mainMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
         //
         this.mainMap.entrySet().forEach((entry) -> {
             String key = entry.getKey();
@@ -48,10 +55,17 @@ public class Buh_Faktura_Entry {
     public void addArticleForDB() {
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        //
+        //Adding obligatory values not present in the "TABLE_INVERT_2"
+        map_for_adding_to_db.put(DB.BUH_F_ARTIKEL__FAKTURAID, "" + invoiceA.getFakturaId());
+        //
         this.articlesList.add(map_for_adding_to_db);
         //
         articlesListToJson(articlesList);
+        //
+        countFakturaTotal(map_for_adding_to_db);
+        //
     }
 
     public void addArticleForJTable(JTable table) {
@@ -59,6 +73,19 @@ public class Buh_Faktura_Entry {
         HashMap<String, String> map_for_show_in_jtable = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         this.articlesListJTable.add(map_for_show_in_jtable);
         addToJTable(map_for_show_in_jtable, table);
+    }
+
+    private void countFakturaTotal(HashMap<String, String> map) {
+        int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        fakturaTotalInklMoms += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
+        momsTotal = fakturaTotalInklMoms * 0.25;
+        fakturaTotalExklMoms = fakturaTotalInklMoms - momsTotal;
+        System.out.println("faktura total inkl. moms: " + fakturaTotalInklMoms);
+        System.out.println("faktura total exkl. moms: " + fakturaTotalExklMoms);
+        System.out.println("moms total: " + momsTotal);
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + fakturaTotalInklMoms);
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + fakturaTotalExklMoms);
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + momsTotal);
     }
 
     private void addToJTable(HashMap<String, String> map, JTable table) {
@@ -76,8 +103,8 @@ public class Buh_Faktura_Entry {
         model.addRow(jtableRow);
         //
     }
-    
-    private void articlesListToJson(ArrayList<HashMap<String, String>> list){
+
+    private void articlesListToJson(ArrayList<HashMap<String, String>> list) {
         //
         for (HashMap<String, String> article : list) {
             JSon.hashMapToJSON(article);
