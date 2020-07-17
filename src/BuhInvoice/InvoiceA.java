@@ -17,7 +17,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -51,10 +50,10 @@ public class InvoiceA extends Basic {
         return 1;
     }
 
-    protected int getFakturaNr(){
+    protected int getFakturaNr() {
         return 1;
     }
-    
+
     protected void setMainFakturaData() {
         this.buh_Faktura_Entry.setMainFakturaData();
     }
@@ -79,31 +78,31 @@ public class InvoiceA extends Basic {
     public RowDataInvert[] getConfigTableInvert() {
         //
         String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
-        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, "fakturaKundId", "KUND", "", true, true, true);
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
         //
         String faktura_datum_val = HelpA.get_proper_date_yyyy_MM_dd();
         String faktura_datum_forfallo = HelpA.get_today_plus_x_days(30);
-        RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, "fakturadatum", "FAKTURADATUM", "", true, true, true);
-        RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, "forfallodatum", "FÖRFALLODATUM", "", true, true, false);
+        RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
+        RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
         //
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         RowDataInvert var_referens = new RowDataInvertB(HelpA.loadLastEntered(IO.VAR_REFERENS), DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = "30,60,20,15,10,5";
-        RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, "betal_vilkor", "BETAL VILKOR", "", true, true, false);
+        RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
         betal_vilkor.setUneditable();
         //
         String fixedComboValues_c = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
-        RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, "lev_vilkor", "LEVERANS VILKOR", "", true, true, false);
+        RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         lev_vilkor.setUneditable();
         //
         String fixedComboValues_d = "Post;P,Hämtas;HAM";
-        RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, "lev_satt", "LEVERANS SÄTT", "", true, true, false);
+        RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
         //
@@ -123,7 +122,7 @@ public class InvoiceA extends Basic {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5";
+        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
