@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import forall.HTMLPrint;
+import forall.JSon;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -26,14 +27,14 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint_A extends javax.swing.JFrame {
 
-    private final String html;
+    private ArrayList<HashMap<String, String>> articles_map_list;
 
     /**
      * Creates new form HTMLPrint_A
      */
-    public HTMLPrint_A(String html) {
+    public HTMLPrint_A(ArrayList<HashMap<String, String>> articles_map_list) {
         initComponents();
-        this.html = html;
+        this.articles_map_list = articles_map_list;
         go();
     }
 
@@ -104,22 +105,65 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + "<tr>"
                 + "<td>"
-                + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"},true)
+                + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
                 + "<td>"
-                + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"},true)
+                + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
                 + "</tr>"
                 //
+                //
+                + "<tr></tr>"
+                //
+                //
+                //
                 + "</table>"
+                //
+                //
+                + articles_to_html(articles_map_list)
+                //
                 //
                 + "</div>"
                 + "</body>"
                 + "</html>";
     }
-    
-    private String articles_to_html(ArrayList<HashMap<String, String>> articlesList){
-        return "";
+
+    private String articles_to_html(ArrayList<HashMap<String, String>> list) {
+        //
+        String html_ = "<table>";
+        //
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+        //
+        html_ += "<tr>";
+        //
+        html_ += "<td>" + "Artnr" + "</td>";
+        html_ += "<td>" + "Benämning" + "</td>";
+        html_ += "<td>" + "Antal" + "</td>";
+        html_ += "<td>" + "Enhet" + "</td>";
+        html_ += "<td>" + "A´Pris" + "</td>";
+        //
+        html_ += "</tr>";
+        //
+        //
+        for (HashMap<String, String> map : list) {
+            //
+            html_ += "<tr>";
+            //
+            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ARTIKELID) + "</td>";
+            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
+            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__PRIS) + "</td>";
+            //
+            html_ += "</tr>";
+            //
+        }
+        //
+        html_ += "</table>";
+        //
+        return html_;
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {

@@ -240,15 +240,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String html = tableInvertToHTML(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(html);
-                hTMLPrint_A.setVisible(true);
-            }
-        });
+        invoiceA.htmlFaktura();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {

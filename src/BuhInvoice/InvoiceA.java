@@ -53,6 +53,10 @@ public class InvoiceA extends Basic {
     protected int getFakturaNr() {
         return 1;
     }
+    
+    public void htmlFaktura(){
+        this.buh_Faktura_Entry.htmlFaktura();
+    }
 
     protected void setMainFakturaData() {
         this.buh_Faktura_Entry.setMainFakturaData();
@@ -65,6 +69,7 @@ public class InvoiceA extends Basic {
     public void addArticleForDB() {
         this.buh_Faktura_Entry.addArticleForDB();
     }
+    
 
     public Buh_Faktura_Entry getBuhFakturaEntry() {
         return buh_Faktura_Entry;

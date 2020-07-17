@@ -30,6 +30,16 @@ public class Buh_Faktura_Entry {
         this.invoiceA = invoiceA;
     }
 
+    public void htmlFaktura(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(articlesList);
+                hTMLPrint_A.setVisible(true);
+            }
+        });
+    }
+    
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
