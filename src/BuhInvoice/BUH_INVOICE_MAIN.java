@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.JSon;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -68,6 +69,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1118, 922));
@@ -127,6 +129,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("ADD ARTICLE");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,11 +148,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(315, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,7 +168,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton4))
+                        .addComponent(jButton4)
+                        .addGap(77, 77, 77)
+                        .addComponent(jButton5))
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -181,6 +193,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //
         HashMap<String, String> map = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
         //
         map.entrySet().forEach((entry) -> {
@@ -189,35 +202,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             System.out.println(key + "=" + value);
         });
         //
-        hashMapToJSON(map);
+        JSon.hashMapToJSON(map);
         //
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void hashMapToJSON(HashMap<String, String> map) {
-        //
-        String json = "{";
-        //
-        Set set = map.keySet();
-        Iterator it = set.iterator();
-        //
-        while (it.hasNext()) {
-            //
-            String key = (String) it.next();
-            String value = (String) map.get(key);
-            //
-            json += "\"" + key + "\"" + ";";
-            if (!it.hasNext()) {
-                json += "\"" + value + "\"";
-            } else {
-                json += "\"" + value + "\"" + ",";
-            }
-            //
-        }
-        //
-        json += "}";
-        //
-        System.out.println("json: " + json);
-    }
 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -232,6 +219,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //
+//        int jcomboBoxParamToReturnManuallySpecified = 1; // refers to "HelpA.ComboBoxObject"
+//        HashMap<String, String> map = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
         //
         HashMap<String, String> map = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2());
         //
@@ -248,6 +238,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         model.addRow(jtableRow);
         //
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 1; // refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map_for_show_in_jtable = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
+        invoiceA.getBuhFakturaEntry().addArticleForJTable(map_for_show_in_jtable,jTable1);
+        //
+        //
+        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2());
+        invoiceA.getBuhFakturaEntry().addArticleForDB(map_for_adding_to_db);
+        //
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +292,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel2_faktura_main;

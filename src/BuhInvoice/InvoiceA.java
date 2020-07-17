@@ -27,13 +27,19 @@ import java.util.logging.Logger;
 public class InvoiceA extends Basic {
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
-
     protected Table TABLE_INVERT_2;
+    private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry();
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
     }
 
+    public Buh_Faktura_Entry getBuhFakturaEntry() {
+        return buh_Faktura_Entry;
+    }
+
+    
+    
     protected String getFakturaKundId() {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }

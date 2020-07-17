@@ -2059,6 +2059,42 @@ public class HelpA {
         //
         return null;
     }
+    
+    /**
+     * [2020-07-17]
+     * @param box
+     * @param paramToReturn
+     * @return 
+     */
+     public static String getComboBoxSelectedValue(JComboBox box, int paramToReturn) {
+        Object val = box.getSelectedItem();
+        //
+        if (val == null) {
+            return "NULL";
+        }
+        //
+        if (val instanceof String) {
+            String v = (String) val;
+            if (v.isEmpty()) {
+                return "NULL";
+            } else {
+                return v.toString();
+            }
+        }
+        //
+        if (val instanceof ComboBoxTitle) {
+            return "NULL";
+        }
+        //
+        if (val instanceof HelpA.ComboBoxObject) {
+            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
+            cbo.setParamToReturn(paramToReturn);
+//            return cbo.getParam_1();
+            return cbo.getParamAuto(); // Introduced [2020-07-13]
+        }
+        //
+        return null;
+    }
 
     /**
      * Returns nulls instead of 'NULLS'

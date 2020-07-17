@@ -52,5 +52,24 @@ public class ColumnValue {
             return null;
         }
     }
+    
+    public String getValue(int paramToReturn) {
+        if (value instanceof JLabel) {
+            JLabel label = (JLabel) value;
+            return label.getText();
+        } else if (value instanceof JComboBox) {
+            JComboBox comboBox = (JComboBox) value;
+//            return HelpA.getComboBoxSelectedValue(comboBox);
+            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
+        } else if (value instanceof JTextField) {
+            JTextField jtf = (JTextField) value;
+            return (String) jtf.getText();
+        } else if (value instanceof JButton) {
+            JButton jb = (JButton) value;
+            return (String) jb.getText();
+        } else {
+            return null;
+        }
+    }
 
 }

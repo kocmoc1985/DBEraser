@@ -46,7 +46,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     @Override
-    public void mouseClicked(MouseEvent me,int column, int row, String tableName, TableInvert tableInvert) {
+    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
         System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
     }
 
@@ -329,6 +329,37 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
                 mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+            }
+        }
+        //
+        return mapToReturn;
+    }
+
+    /**
+     * [2020-07-17]
+     * This method allows you to specify manually which parameter the JComboBox will
+     * return.
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @param paramToReturn
+     * @return 
+     */
+    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi, int paramToReturn) {
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue(paramToReturn));
             }
         }
         //
