@@ -64,14 +64,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     private static final String T__FAKTURA = "Faktura";
-    private static final String T__FAKTURA_NR= "Faktura nr";
-    private static final String T__KUND_NR= "Kundnr";
-    private static final String T__FAKTURA_DATUM= "Fakturadatum";
+    private static final String T__FAKTURA_NR = "Faktura nr";
+    private static final String T__KUND_NR = "Kundnr";
+    private static final String T__FAKTURA_DATUM = "Fakturadatum";
     //
     private static final String COMPANY_NAME = "MixCont AB";
     private static final String FAKTURA_NR = "424";
     private static final String KUND_NR = "114103307";
     private static final String FAKTURA_DATUM = "2020-05-01";
+
+    private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
 
     protected String buildHTML() {
         //
@@ -90,9 +92,22 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</tr>"
                 //
                 + "<tr>"
-                + " " + get_2row_3col_table(T__FAKTURA_NR, T__KUND_NR,T__FAKTURA_DATUM, FAKTURA_NR, KUND_NR,FAKTURA_DATUM)
+                + internal_table_2r_3c(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
+                new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM})
                 + "</tr>"
                 //
+                //
+                + "<tr></tr>"
+                //
+                //
+                + "<tr>"
+                + "<td>"
+                + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"},true)
+                + "</td>"
+                + "<td>"
+                + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"},true)
+                + "</td>"
+                + "</tr>"
                 //
                 + "</table>"
                 //
@@ -101,6 +116,76 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</html>";
     }
 
+    private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {
+        //
+        String html_ = "<table>";
+        //
+        for (int i = 0; i < rows; i++) {
+            //
+            html_ += "<tr>";
+            //
+            if (markFirstTd && i == 0) {
+                html_ += "<td style='font-weight:bold'>" + values[i] + "</td>";
+            } else {
+                html_ += "<td>" + values[i] + "</td>";
+            }
+            //
+            html_ += "</tr>";
+            //
+        }
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    /**
+     * Build a table which is inserted into "<tr>" element of another table
+     *
+     * @param rows
+     * @param cols
+     * @param headers
+     * @param values
+     * @return
+     */
+    private String internal_table_2r_3c(String[] headers, String[] values) {
+        //
+        int rows = 2;
+        int cols = headers.length;
+        //
+        String html_ = "<table>";
+        //
+        for (int i = 0; i < rows; i++) {
+            //
+            html_ += "<tr>";
+            //
+            if (i == 0) {
+                //
+                for (int j = 0; j < cols; j++) {
+                    html_ += "<td>" + headers[j] + "</td>";
+                }
+                //
+            } else {
+                //
+                for (int j = 0; j < cols; j++) {
+                    html_ += "<td>" + values[j] + "</td>";
+                }
+                //
+            }
+            //
+            html_ += "</tr>";
+            //
+        }
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    //==========================================================================
+    /**
+     * @deprecated @return
+     */
     private String get_2row_3col_table(String header_a, String header_b, String header_c, String value_a, String value_b, String value_c) {
         return "<table>"
                 + "<tr>"
@@ -117,6 +202,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</table>";
     }
 
+    /**
+     * @deprecated @return
+     */
     private String get_2row_2col_table(String header_a, String header_b, String value_a, String value_b) {
         return "<table>"
                 + "<tr>"
@@ -213,7 +301,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       try {
+        try {
             //
 //            getContentPane().print(getGraphics());
             // https://stackoverflow.com/questions/47147662/changing-print-margins-on-jtextpane
