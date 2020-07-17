@@ -11,6 +11,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.print.PrinterException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -114,6 +116,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</div>"
                 + "</body>"
                 + "</html>";
+    }
+    
+    private String articles_to_html(ArrayList<HashMap<String, String>> articlesList){
+        return "";
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {

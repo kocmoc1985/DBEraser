@@ -106,8 +106,8 @@ public class Buh_Faktura_Entry {
 
     private void articlesListToJson(ArrayList<HashMap<String, String>> list) {
         //
-        for (HashMap<String, String> article : list) {
-            JSon.hashMapToJSON(article);
+        for (HashMap<String, String> article_map : list) {
+            JSon.hashMapToJSON(article_map);
         }
         //
     }
