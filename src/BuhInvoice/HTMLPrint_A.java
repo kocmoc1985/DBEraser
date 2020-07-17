@@ -107,6 +107,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "<td>"
                 + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
+                //
                 + "<td>"
                 + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
