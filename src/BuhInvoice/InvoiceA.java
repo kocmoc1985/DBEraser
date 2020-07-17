@@ -17,8 +17,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -28,12 +30,24 @@ public class InvoiceA extends Basic {
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
     protected Table TABLE_INVERT_2;
-    private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry();
+    private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry(this);
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
     }
 
+    protected void setMainFakturaData(){
+        this.buh_Faktura_Entry.setMainFakturaData();
+    }
+    
+    public void addArticleForJTable(JTable table) {
+        this.buh_Faktura_Entry.addArticleForJTable(table);
+    }
+    
+    public void addArticleForDB() {
+       this.buh_Faktura_Entry.addArticleForDB();
+    }
+    
     public Buh_Faktura_Entry getBuhFakturaEntry() {
         return buh_Faktura_Entry;
     }

@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.JSon;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -16,22 +17,48 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Buh_Faktura_Entry {
 
+    private final InvoiceA invoiceA;
     private HashMap<String, String> mainMap = new HashMap<>();
-    private ArrayList<HashMap<String, String>> articlesMap = new ArrayList<>();
-    private ArrayList<HashMap<String, String>> articlesMapJTable = new ArrayList<>();
+    private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
+    private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
 
-    public void setMainMap(HashMap<String, String> mainMap) {
-        this.mainMap = mainMap;
+    public Buh_Faktura_Entry(InvoiceA invoiceA) {
+        this.invoiceA = invoiceA;
     }
 
-    public void addArticleForDB(HashMap<String, String> article) {
-        this.articlesMap.add(article);
+    /**
+     * The "MainMap" contains data from SQL table "buh_faktura"
+     *
+     * @param mainMap
+     */
+    public void setMainFakturaData() {
+        //
+        this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
+        //
+        this.mainMap.entrySet().forEach((entry) -> {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + "=" + value);
+        });
+        //
+        JSon.hashMapToJSON(mainMap); // Temporary here
+        //
     }
 
-    public void addArticleForJTable(HashMap<String, String> article, JTable table) {
-        this.articlesMapJTable.add(article);
-        addToJTable(article, table);
+    public void addArticleForDB() {
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
+        this.articlesList.add(map_for_adding_to_db);
+        //
+        articlesListToJson(articlesList);
+    }
 
+    public void addArticleForJTable(JTable table) {
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map_for_show_in_jtable = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        this.articlesListJTable.add(map_for_show_in_jtable);
+        addToJTable(map_for_show_in_jtable, table);
     }
 
     private void addToJTable(HashMap<String, String> map, JTable table) {
@@ -47,6 +74,14 @@ public class Buh_Faktura_Entry {
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(jtableRow);
+        //
+    }
+    
+    private void articlesListToJson(ArrayList<HashMap<String, String>> list){
+        //
+        for (HashMap<String, String> article : list) {
+            JSon.hashMapToJSON(article);
+        }
         //
     }
 }
