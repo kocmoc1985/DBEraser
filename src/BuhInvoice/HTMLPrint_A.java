@@ -46,7 +46,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black}",
             "td {padding-left: 4px}", //            "tr {border-bottom: 1px solid black;}",
-            ".marginTop {margin-top: 5px}"
+            ".marginTop {margin-top: 5px}",
+            ".bold {font-weight:bold}"
         //            ".jtable {font-size:7pt;}",
         //            ".table-invert {font-size:14pt;}",
         };
@@ -235,7 +236,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             html_ += "<tr>";
             //
             if (markFirstTd && i == 0) {
-                html_ += "<td style='font-weight:bold'>" + values[i] + "</td>";
+                html_ += "<td class='bold'>" + values[i] + "</td>";
             } else {
                 html_ += "<td>" + values[i] + "</td>";
             }
