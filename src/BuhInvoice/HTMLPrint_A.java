@@ -189,14 +189,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String faktura_data_B_to_html() {
         //
-        String html_ = "<table class='marginTop'>";
+        String html_ = "<table class='marginTop'>";//<table class='marginTop'>
         //
         String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
         String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
         //
         html_ += internal_table_2r_xc(headers, values, 6);
         //
-        html_ += "</table>";
+        html_ += "</table>";//</table>
         //
         System.out.println(""+html_);
         //
