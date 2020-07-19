@@ -46,6 +46,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black}",
             "td {padding-left: 4px}", //            "tr {border-bottom: 1px solid black;}",
+            ".marginTop {margin-top: 5px}"
         //            ".jtable {font-size:7pt;}",
         //            ".table-invert {font-size:14pt;}",
         };
@@ -87,7 +88,22 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return "<html>"
                 + "<body>" //style='background-color:#F1F3F6'
                 + "<div style='margin-left:10px;color:gray;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
-                + "<table style='margin-top:15px'>"
+                //
+                + faktura_header_with_logo_to_html()
+                //
+                + adresses_to_html()
+                //
+                + articles_to_html(articles_map_list)
+                //
+                //
+                + "</div>"
+                + "</body>"
+                + "</html>";
+    }
+    
+
+    private String faktura_header_with_logo_to_html() {
+        return "<table style='margin-top:15px'>"
                 //
                 + "<tr>"
                 + "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
@@ -99,11 +115,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM})
                 + "</tr>"
                 //
-                //
-                + "<tr></tr>"
-                //
-                //
-                + "<tr>"
+                + "</table>";
+    }
+
+    private String adresses_to_html() {
+        //
+        String html_ = "<table class='marginTop'>";
+        //
+        html_ += "<tr>"
                 + "<td>"
                 + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
@@ -111,27 +130,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "<td>"
                 + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
                 + "</td>"
-                + "</tr>"
-                //
-                //
-                + "<tr></tr>"
-                //
-                //
-                //
-                + "</table>"
-                //
-                //
-                + articles_to_html(articles_map_list)
-                //
-                //
-                + "</div>"
-                + "</body>"
-                + "</html>";
+                + "</tr>";
+        //
+        html_ += "</table>";
+        //
+        return html_;
     }
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
-        String html_ = "<table>";
+        String html_ = "<table class='marginTop'>";
         //
         if (list == null || list.isEmpty()) {
             return "";
