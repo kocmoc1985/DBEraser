@@ -93,6 +93,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + adresses_to_html()
                 //
+                + faktura_data_a_to_html()
+                //
                 + articles_to_html(articles_map_list)
                 //
                 //
@@ -107,7 +109,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + titleOrLogoIfExist(imgPath)
                 //
                 + "<tr>"
-                + internal_table_2r_3c(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
+                + internal_table_2r_xc(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
                 new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM})
                 + "</tr>"
                 //
@@ -139,6 +141,30 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + "<td>"
                 + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
+                + "</td>"
+                + "</tr>";
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    private String faktura_data_a_to_html() {
+        //
+        String html_ = "<table class='marginTop'>";
+        //
+        String[] headers_t_1 = new String[]{"Er referens", "Ert ordernr", "Leveransvilkor", "Leveranssätt", "Ert VAT nummer"};
+        String[] values_t_1 = new String[]{"Vladimir Putin", "", "Fritt Kund", "Post", "SE5546785683"};
+        String[] headers_t_2 = new String[]{"Vår referens","Betalningsvilkor","Förfallodatum","Dröjsmålsränta","Krediterar fakturanr"};
+        String[] values_t_2 = new String[]{"Aleksander Lukasjenko","0 dagar netto","2020-07-09","23%","200011"};
+        //
+        html_ += "<tr>"
+                + "<td>"
+                + internal_table_xr_2c(headers_t_1, values_t_1)
+                + "</td>"
+                //
+                + "<td>"
+                + internal_table_xr_2c(headers_t_2, values_t_2)
                 + "</td>"
                 + "</tr>";
         //
@@ -208,8 +234,32 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return html_;
     }
 
+    private String internal_table_xr_2c(String[] headers_t_1, String[] values_t_1) {
+        //
+        String html_ = "<table>";
+        //
+        int rows_t1_col1 = headers_t_1.length;
+        //
+        for (int i = 0; i < rows_t1_col1; i++) {
+            //
+            html_ += "<tr>";
+            //
+            html_ += "<td>" + headers_t_1[i] + "</td>";
+            html_ += "<td>" + values_t_1[i] + "</td>";
+            //
+            html_ += "</tr>";
+            //
+        }
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
     /**
      * Build a table which is inserted into "<tr>" element of another table
+     *
+     * OBS! The structure of this table is intended for 2 ROWS ONLY
      *
      * @param rows
      * @param cols
@@ -217,9 +267,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * @param values
      * @return
      */
-    private String internal_table_2r_3c(String[] headers, String[] values) {
+    private String internal_table_2r_xc(String[] headers, String[] values) {
         //
         int rows = 2;
+        //
         int cols = headers.length;
         //
         String html_ = "<table>";
