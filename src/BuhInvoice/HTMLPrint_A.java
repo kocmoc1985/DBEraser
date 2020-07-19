@@ -45,9 +45,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             "table {width: 99%}",
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black}",
-            "td {padding-left: 4px}", //            "tr {border-bottom: 1px solid black;}",
+            "td {padding-left: 4px}",
+            //
             ".marginTop {margin-top: 5px}",
             ".bold {font-weight:bold}"
+        //    
         //            ".jtable {font-size:7pt;}",
         //            ".table-invert {font-size:14pt;}",
         };
@@ -106,13 +108,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     private String faktura_header_with_logo_to_html(String imgPath) {
+        //
+        String[] headers = new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM};
+        String[] values = new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM};
+        //
         return "<table style='margin-top:15px'>"
                 //
                 + titleOrLogoIfExist(imgPath)
                 //
                 + "<tr>"
-                + internal_table_2r_xc(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
-                new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM}, -1)
+                + internal_table_2r_xc(headers, values, -1)
                 + "</tr>"
                 //
                 + "</table>";
@@ -136,14 +141,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
+        String[] values_a = new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"};
+        String[] values_b = new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"};
+        //
         html_ += "<tr>"
+                //
                 + "<td>"
-                + internal_table_x_r_1c(5, new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
+                + internal_table_x_r_1c(5, values_a, true)
                 + "</td>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(5, new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"}, true)
+                + internal_table_x_r_1c(5, values_b, true)
                 + "</td>"
+                //
                 + "</tr>";
         //
         html_ += "</table>";
@@ -161,6 +171,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String[] values_t_2 = new String[]{"Aleksander Lukasjenko", "0 dagar netto", "2020-07-09", "23%", "200011"};
         //
         html_ += "<tr>"
+                //
                 + "<td>"
                 + internal_table_xr_2c(headers_t_1, values_t_1)
                 + "</td>"
@@ -168,6 +179,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "<td>"
                 + internal_table_xr_2c(headers_t_2, values_t_2)
                 + "</td>"
+                //
                 + "</tr>";
         //
         html_ += "</table>";
@@ -185,6 +197,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         html_ += internal_table_2r_xc(headers, values, 6);
         //
         html_ += "</table>";
+        //
+        System.out.println(""+html_);
         //
         return html_;
     }
