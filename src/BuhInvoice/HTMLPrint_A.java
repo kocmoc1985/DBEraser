@@ -112,7 +112,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + "<tr>"
                 + internal_table_2r_xc(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
-                new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM})
+                new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM}, -1)
                 + "</tr>"
                 //
                 + "</table>";
@@ -182,7 +182,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
         String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
         //
-        html_ += internal_table_2r_xc(headers, values);
+        html_ += internal_table_2r_xc(headers, values, 6);
         //
         html_ += "</table>";
         //
@@ -283,7 +283,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * @param values
      * @return
      */
-    private String internal_table_2r_xc(String[] headers, String[] values) {
+    private String internal_table_2r_xc(String[] headers, String[] values, int colToMakeBold) {
         //
         int rows = 2;
         //
@@ -298,13 +298,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             if (i == 0) {
                 //
                 for (int j = 0; j < cols; j++) {
-                    html_ += "<td>" + headers[j] + "</td>";
+                    if (j == (colToMakeBold - 1)) {
+                        html_ += "<td class='bold'>" + headers[j] + "</td>";
+                    } else {
+                        html_ += "<td>" + headers[j] + "</td>";
+                    }
                 }
                 //
             } else {
                 //
                 for (int j = 0; j < cols; j++) {
-                    html_ += "<td>" + values[j] + "</td>";
+                    if (j == (colToMakeBold - 1)) {
+                        html_ += "<td class='bold'>" + values[j] + "</td>";
+                    } else {
+                        html_ += "<td>" + values[j] + "</td>";
+                    }
                 }
                 //
             }
