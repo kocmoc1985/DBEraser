@@ -81,7 +81,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     protected String buildHTML() {
         //
-//        String img_a = getImageIconURL("images", "file.png").toString();
+        String img_a = getImageIconURL("images", "mixcont_logo.png").toString();
 //        String img_b = getImageIconURL("images", "file.png").toString();
 //        String img_c = getImageIconURL("images/images_b", "star.png").toString();
         //
@@ -89,7 +89,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "<body>" //style='background-color:#F1F3F6'
                 + "<div style='margin-left:10px;color:gray;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
                 //
-                + faktura_header_with_logo_to_html()
+                + faktura_header_with_logo_to_html(img_a)
                 //
                 + adresses_to_html()
                 //
@@ -100,15 +100,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</body>"
                 + "</html>";
     }
-    
 
-    private String faktura_header_with_logo_to_html() {
+    private String faktura_header_with_logo_to_html(String imgPath) {
         return "<table style='margin-top:15px'>"
                 //
-                + "<tr>"
-                + "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
-                + "<td><h2>" + T__FAKTURA + "</h2></td>"
-                + "</tr>"
+                + titleOrLogoIfExist(imgPath)
                 //
                 + "<tr>"
                 + internal_table_2r_3c(new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM},
@@ -116,6 +112,20 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</tr>"
                 //
                 + "</table>";
+    }
+
+    private String titleOrLogoIfExist(String imgPath) {
+        if (imgPath != null) {
+            return "<tr>"
+                    + "<td rowspan='2'><img style='width:80%' src='" + imgPath + "' alt='MCRemote'></td>" // width='32' height='32'
+                    + "<td><h2>" + T__FAKTURA + "</h2></td>"
+                    + "</tr>";
+        } else {
+            return "<tr>"
+                    + "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
+                    + "<td><h1>" + T__FAKTURA + "</h1></td>"
+                    + "</tr>";
+        }
     }
 
     private String adresses_to_html() {
