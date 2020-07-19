@@ -93,10 +93,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + adresses_to_html()
                 //
-                + faktura_data_a_to_html()
+                + faktura_data_A_to_html()
                 //
                 + articles_to_html(articles_map_list)
                 //
+                + faktura_data_B_to_html()
                 //
                 + "</div>"
                 + "</body>"
@@ -149,14 +150,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return html_;
     }
 
-    private String faktura_data_a_to_html() {
+    private String faktura_data_A_to_html() {
         //
         String html_ = "<table class='marginTop'>";
         //
         String[] headers_t_1 = new String[]{"Er referens", "Ert ordernr", "Leveransvilkor", "Leveranssätt", "Ert VAT nummer"};
         String[] values_t_1 = new String[]{"Vladimir Putin", "", "Fritt Kund", "Post", "SE5546785683"};
-        String[] headers_t_2 = new String[]{"Vår referens","Betalningsvilkor","Förfallodatum","Dröjsmålsränta","Krediterar fakturanr"};
-        String[] values_t_2 = new String[]{"Aleksander Lukasjenko","0 dagar netto","2020-07-09","23%","200011"};
+        String[] headers_t_2 = new String[]{"Vår referens", "Betalningsvilkor", "Förfallodatum", "Dröjsmålsränta", "Krediterar fakturanr"};
+        String[] values_t_2 = new String[]{"Aleksander Lukasjenko", "0 dagar netto", "2020-07-09", "23%", "200011"};
         //
         html_ += "<tr>"
                 + "<td>"
@@ -167,6 +168,20 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + internal_table_xr_2c(headers_t_2, values_t_2)
                 + "</td>"
                 + "</tr>";
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    private String faktura_data_B_to_html() {
+        //
+        String html_ = "<table class='marginTop'>";
+        //
+        String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
+        String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
+        //
+        html_ += internal_table_2r_xc(headers, values);
         //
         html_ += "</table>";
         //
@@ -303,56 +318,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     //==========================================================================
-    /**
-     * @deprecated @return
-     */
-    private String get_2row_3col_table(String header_a, String header_b, String header_c, String value_a, String value_b, String value_c) {
-        return "<table>"
-                + "<tr>"
-                + "<td><h3>" + header_a + "</h3></td>"
-                + "<td><h3>" + header_b + "</h3></td>"
-                + "<td><h3>" + header_c + "</h3></td>"
-                + "</tr>"
-                //
-                + "<tr>"
-                + "<td>" + value_a + "</td>"
-                + "<td>" + value_b + "</td>"
-                + "<td>" + value_c + "</td>"
-                + "</tr>"
-                + "</table>";
-    }
-
-    /**
-     * @deprecated @return
-     */
-    private String get_2row_2col_table(String header_a, String header_b, String value_a, String value_b) {
-        return "<table>"
-                + "<tr>"
-                + "<td><h3>" + header_a + "</h3></td>"
-                + "<td><h3>" + header_b + "</h3></td>"
-                + "</tr>"
-                //
-                + "<tr>"
-                + "<td>" + value_a + "</td>"
-                + "<td>" + value_b + "</td>"
-                + "</tr>"
-                + "</table>";
-    }
-
-    private String get_2row_2col_table__th(String header_a, String header_b, String value_a, String value_b) {
-        return "<table>"
-                + "<tr>"
-                + "<th>" + header_a + "</th>"
-                + "<th>" + header_b + "</th>"
-                + "</tr>"
-                //
-                + "<tr>"
-                + "<td>" + value_a + "</td>"
-                + "<td>" + value_b + "</td>"
-                + "</tr>"
-                + "</table>";
-    }
-
     /**
      *
      * @param path - path to image folder, play around to get the path working
