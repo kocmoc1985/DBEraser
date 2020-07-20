@@ -12,26 +12,30 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
+import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
+import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author MCREMOTE
  */
 public class InvoiceA extends Basic {
-
+    
     private final BUH_INVOICE_MAIN buh_invoice_main;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry(this);
-
+    
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
     }
@@ -46,39 +50,51 @@ public class InvoiceA extends Basic {
     protected int getFakturaId() {
         return 1;
     }
-
+    
     protected int getKundId() {
         return 1;
     }
-
+    
     protected int getFakturaNr() {
         return 1;
     }
-
+    
+    public boolean getInklMoms() {
+        try {
+            return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
+        } catch (Exception ex) {
+            return true;
+        }
+    }
+    
+    public boolean getMakulerad() {
+        return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
+    }
+    
     public void htmlFaktura() {
         this.buh_Faktura_Entry.htmlFaktura();
     }
-
+    
     protected void setMainFakturaData() {
         this.buh_Faktura_Entry.setMainFakturaData();
     }
-
+    
     public void addArticleForJTable(JTable table) {
         this.buh_Faktura_Entry.addArticleForJTable(table);
     }
-
+    
     public void addArticleForDB() {
         this.buh_Faktura_Entry.addArticleForDB();
     }
-
+    
     public Buh_Faktura_Entry getBuhFakturaEntry() {
         return buh_Faktura_Entry;
     }
-
+    
     protected String getFakturaKundId() {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -124,7 +140,7 @@ public class InvoiceA extends Basic {
         //
         return rows;
     }
-
+    
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
@@ -156,25 +172,31 @@ public class InvoiceA extends Basic {
         //
         return rows;
     }
-
+    
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
-        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "MOMS", "", true, true, false);
+        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
+        //
+        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        moms.enableFixedValuesAdvanced();
+        moms.setUneditable();
         //
         RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
         //
         RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
         //
-         String fixedComboValues_b = "Nej;0,Ja;0"; // This will aquired from SQL
+        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
         //
         RowDataInvert[] rows = {
             inkl_exkl_moms,
+            moms,
             expavgift,
             frakt,
             makulerad
@@ -182,7 +204,7 @@ public class InvoiceA extends Basic {
         //
         return rows;
     }
-
+    
     @Override
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
@@ -194,7 +216,7 @@ public class InvoiceA extends Basic {
         addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
-
+    
     public void showTableInvert_2() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
@@ -204,7 +226,7 @@ public class InvoiceA extends Basic {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
-
+    
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
         TABLE_INVERT_3 = null;
@@ -214,7 +236,7 @@ public class InvoiceA extends Basic {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
@@ -227,12 +249,12 @@ public class InvoiceA extends Basic {
         }
         //
     }
-
+    
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -288,13 +310,46 @@ public class InvoiceA extends Basic {
         //
         String col_name = ti.getCurrentColumnName(ie.getSource());
         //
-        if (col_name.equals("betal_vilkor")) {
-            long value = Long.parseLong(getValueTableInvert("betal_vilkor"));
-            String date = getValueTableInvert("fakturadatum");
+        if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
+            long value = Long.parseLong(getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR));
+            String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
             String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
-            setValueTableInvert("forfallodatum", TABLE_INVERT, date_new);
+            setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);
+        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
+            //
+            boolean momsInk = getInklMoms();
+            //
+            TableInvert table = (TableInvert) TABLE_INVERT_3;
+            TableRowInvert tri = (TableRowInvert) table.getRow(DB.BUH_FAKTURA__MOMS_SATS);
+            //
+            if (momsInk == false) {
+//                JComboBox box = (JComboBox) ie.getSource();
+//                TableRowInvert tableRowInvert = (TableRowInvert) box.getParent();
+//                tableRowInvert.setVisible(false);
+//                RowDataInvert rdi = tableRowInvert.getRowConfig();
+                tri.setVisible(false);
+            } else {
+                buh_invoice_main.jPanel3_faktura_sec.removeAll();
+                buh_invoice_main.jPanel3_faktura_sec.setLayout(new GridLayout(1, 1));
+                buh_invoice_main.jPanel3_faktura_sec.add(table.getTable());
+                tri.setVisible(true);
+                buh_invoice_main.jPanel3_faktura_sec.invalidate();
+                buh_invoice_main.jPanel3_faktura_sec.validate();
+                buh_invoice_main.jPanel3_faktura_sec.repaint();
+                 java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    SwingUtilities.updateComponentTreeUI(table);
+                }
+            });
+//                System.out.println("tri: "+ tri);
+            }
+            //
+//            buh_invoice_main.jPanel3_faktura_sec.invalidate();
+//            buh_invoice_main.jPanel3_faktura_sec.validate();
+            //
         }
         //
     }
-
+    
 }

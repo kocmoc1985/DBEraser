@@ -46,6 +46,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     public HashMap<Component, TableRow> row___col_object__map = new HashMap<Component, TableRow>();// used for "Invert"
     public HashMap<Component, String> row_col_object__db_id__map = new HashMap<Component, String>();// used for "Invert"
     public HashMap<Component, String> row_col_object__column_name__map = new HashMap<Component, String>();// used for "Invert"
+    public HashMap<String, Component> row__col_name__tablerowinvert_map = new HashMap<String, Component>();
     public HashMap<Component, String> row_col_object__column_nick_name__map = new HashMap<Component, String>();// used for "Invert"
     public HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = new HashMap<Object, UnsavedEntryInvert>();
     //

@@ -191,7 +191,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
     }
 
     public void clearAllRows() {
+        //
         for (Object rowInvert : rows_list) {
+            //
             TableRowInvert tri = (TableRowInvert) rowInvert;
             //
             Object obj;
@@ -242,6 +244,15 @@ public class TableInvert extends Table implements ControlsActionsIF {
     public RowDataInvert getRowConfig(int row) {
         TableRowInvert rowInvert = getRow(row);
         return rowInvert.getRowConfig();
+    }
+    
+    /**
+     * [2020-07-20]
+     * @param columnNameNotNickName
+     * @return 
+     */
+    public TableRowInvert getRow(String columnNameNotNickName){
+        return (TableRowInvert)row__col_name__tablerowinvert_map.get(columnNameNotNickName);
     }
 
     @Override

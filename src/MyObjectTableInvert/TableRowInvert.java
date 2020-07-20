@@ -149,6 +149,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
             table_invert.row_col_object__column_count__map.put(add_component, COLUMN_COUNT);
             table_invert.row_col_object__db_id__map.put(add_component, cde.getDatabase_id());
             table_invert.row_col_object__column_name__map.put(add_component, cde.getOriginalColumn_name());
+            table_invert.row__col_name__tablerowinvert_map.put(cde.getOriginalColumn_name(), this);
             table_invert.row_col_object__column_nick_name__map.put(add_component, cde.getColumn_nick_name());
             table_invert.row___col_object__map.put(add_component, this);
             table_invert.col_name__row_nr__map.put(cde.getOriginalColumn_name(), ROW_NR);
