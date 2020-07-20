@@ -54,11 +54,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
-            ".bold {font-weight:bold;}",
-            ".red{color: red;}"
+            ".bold {font-weight:bold;}"
         //    
-        //            ".jtable {font-size:7pt;}",
-        //            ".table-invert {font-size:14pt;}",
         };
         //
         HTMLEditorKit kit = new HTMLEditorKit();
@@ -131,7 +128,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</tr>"
                 //
                 + "<tr>"
-                + internal_table_2r_xc(headers, values, -1)
+                + internal_table_2r_xc(headers, values, -1, "")
                 + "</tr>"
                 //
                 + "</table>";
@@ -205,7 +202,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
         String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
         //
-        html_ += internal_table_2r_xc(headers, values, 6);
+        html_ += internal_table_2r_xc(headers, values, 6, "");
         //
         html_ += "</div>";//</table>
         //
@@ -213,15 +210,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         return html_;
     }
-    
-     private String faktura_data_C_to_html() {
+
+    private String faktura_data_C_to_html() {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{"Adress", "Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr"};
-        String[] values = new String[]{"Henry Dunkers gata 2, 23181, Trelleborg", "014051764","ask@mixcont.com", "5129-0542", "556251-6806", "SE556251680601"};
+        String[] headers = new String[]{"Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr", "Innehar F-skattebevis"};
+        String[] values = new String[]{"014051764", "ask@mixcont.com", "5129-0542", "556251-6806", "SE556251680601", "Ja"};
         //
-        html_ += internal_table_2r_xc(headers, values, -1);
+        html_ += internal_table_2r_xc(headers, values, -1, "");
         //
         html_ += "</div>";
         //
@@ -232,7 +229,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
-        String html_ = "<table class='marginTop'>";
+        String html_ = "<table class='marginTop' style='border: 1px solid black'>";
         //
         if (list == null || list.isEmpty()) {
             return "";
@@ -324,13 +321,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * @param values
      * @return
      */
-    private String internal_table_2r_xc(String[] headers, String[] values, int colToMakeBold) {
+    private String internal_table_2r_xc(String[] headers, String[] values, int colToMakeBold, String tableClass) {
         //
         int rows = 2;
         //
         int cols = headers.length;
         //
-        String html_ = "<table>";
+        String html_ = "<table class='" + tableClass + "'>";
         //
         for (int i = 0; i < rows; i++) {
             //
