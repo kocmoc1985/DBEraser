@@ -10,7 +10,10 @@ import forall.JSon;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +66,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         for (int i = 0; i < CSSRules.length; i++) {
             styleSheet.addRule(CSSRules[i]);
         }
+        //
+        //
+
         //
         Document doc = kit.createDefaultDocument();
         jEditorPane1.setDocument(doc);
@@ -198,7 +204,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         html_ += "</table>";//</table>
         //
-        System.out.println(""+html_);
+        System.out.println("" + html_);
         //
         return html_;
     }
@@ -409,19 +415,61 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            //
-//            getContentPane().print(getGraphics());
-            // https://stackoverflow.com/questions/47147662/changing-print-margins-on-jtextpane
-            jEditorPane1.print();
-            //
-//            PrinterJob job = PrinterJob.getPrinterJob();
-//            job.setJobName("Recipe");
-            //
-        } catch (PrinterException ex) {
-            Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
+        Paper paper = new Paper();
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
+                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
+        //
+        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
+        //
+        PageFormat pageFormat = new PageFormat();
+        pageFormat.setPaper(paper);
+        //
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setPrintable(jEditorPane1.getPrintable(null, null), pageFormat);
+        PageFormat pf = pj.pageDialog(pageFormat);
+
+//        pj.validatePage(pageFormat);
+        
+        if (pj.printDialog()) {
+            try {
+                pj.print();
+            } catch (PrinterException ex) {
+                Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
+//        try {
+//            //
+////            getContentPane().print(getGraphics());
+//            // https://stackoverflow.com/questions/47147662/changing-print-margins-on-jtextpane
+//            jEditorPane1.print();
+//            //
+////            PrinterJob job = PrinterJob.getPrinterJob();
+////            job.setJobName("Recipe");
+//            //
+//        } catch (PrinterException ex) {
+//            Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private static double fromCMToPPI(double cm) {
+        return toPPI(cm * 0.393700787);
+    }
+
+    private static double toPPI(double inch) {
+        return inch * 72d;
+    }
+
+    private static PageFormat getMinimumMarginPageFormat(PrinterJob printJob) {
+        PageFormat pf0 = printJob.defaultPage();
+        PageFormat pf1 = (PageFormat) pf0.clone();
+        Paper p = pf0.getPaper();
+        p.setImageableArea(0, 0, pf0.getWidth(), pf0.getHeight());
+        pf1.setPaper(p);
+        PageFormat pf2 = printJob.validatePage(pf1);
+        return pf2;
+    }
 
     /**
      * @param args the command line arguments
