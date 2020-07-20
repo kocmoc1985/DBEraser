@@ -29,6 +29,7 @@ public class InvoiceA extends Basic {
 
     private final BUH_INVOICE_MAIN buh_invoice_main;
     protected Table TABLE_INVERT_2;
+    protected Table TABLE_INVERT_3;
     private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry(this);
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
@@ -53,8 +54,8 @@ public class InvoiceA extends Basic {
     protected int getFakturaNr() {
         return 1;
     }
-    
-    public void htmlFaktura(){
+
+    public void htmlFaktura() {
         this.buh_Faktura_Entry.htmlFaktura();
     }
 
@@ -69,7 +70,6 @@ public class InvoiceA extends Basic {
     public void addArticleForDB() {
         this.buh_Faktura_Entry.addArticleForDB();
     }
-    
 
     public Buh_Faktura_Entry getBuhFakturaEntry() {
         return buh_Faktura_Entry;
@@ -157,6 +157,32 @@ public class InvoiceA extends Basic {
         return rows;
     }
 
+    public RowDataInvert[] getConfigTableInvert_3() {
+        //
+        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
+        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "MOMS", "", true, true, false);
+        inkl_exkl_moms.enableFixedValuesAdvanced();
+        inkl_exkl_moms.setUneditable();
+        //
+        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
+        //
+        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
+        //
+         String fixedComboValues_b = "Nej;0,Ja;0"; // This will aquired from SQL
+        RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
+        makulerad.enableFixedValuesAdvanced();
+        makulerad.setUneditable();
+        //
+        RowDataInvert[] rows = {
+            inkl_exkl_moms,
+            expavgift,
+            frakt,
+            makulerad
+        };
+        //
+        return rows;
+    }
+
     @Override
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
@@ -175,6 +201,16 @@ public class InvoiceA extends Basic {
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(buh_invoice_main.jPanel_articles, TABLE_INVERT_2);
+        //
+        addTableInvertRowListener(TABLE_INVERT_2, this);
+    }
+
+    public void showTableInvert_3() {
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
+        TABLE_INVERT_3 = null;
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
+        showTableInvert(buh_invoice_main.jPanel3_faktura_sec, TABLE_INVERT_3);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }

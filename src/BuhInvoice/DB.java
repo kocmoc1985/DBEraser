@@ -21,6 +21,10 @@ public class DB {
     public static final String BUH_FAKTURA__BETAL_VILKOR = "betal_vilkor";
     public static final String BUH_FAKTURA__LEV_VILKOR = "lev_vilkor";
     public static final String BUH_FAKTURA__LEV_SATT = "lev_satt";
+     public static final String BUH_FAKTURA__EXP_AVG = "exp_avg";
+     public static final String BUH_FAKTURA__FRAKT = "frakt";
+     public static final String BUH_FAKTURA__INKL_MOMS = "inkl_moms";
+     public static final String BUH_FAKTURA__MAKULERAD = "makulerad";
     //
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";
