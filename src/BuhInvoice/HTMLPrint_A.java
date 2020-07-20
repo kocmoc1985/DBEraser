@@ -456,6 +456,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (pj.printDialog()) {
             try {
+                pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
                 pj.print();
             } catch (PrinterException ex) {
                 Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
