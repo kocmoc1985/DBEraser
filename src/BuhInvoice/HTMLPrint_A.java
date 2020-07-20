@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import forall.HTMLPrint;
+import forall.HelpA;
 import forall.JSon;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -31,6 +33,8 @@ import javax.swing.text.html.StyleSheet;
 public class HTMLPrint_A extends javax.swing.JFrame {
 
     private ArrayList<HashMap<String, String>> articles_map_list;
+    
+    private final static Dimension A4_PAPER = new Dimension(545, 842);
 
     /**
      * Creates new form HTMLPrint_A
@@ -46,6 +50,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%}",
+//            "img {width: 20px}", not working from here
+            "table {font-size:9pt}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black}",
             "td {padding-left: 4px}",
@@ -67,9 +73,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             styleSheet.addRule(CSSRules[i]);
         }
         //
-        //
-
-        //
         Document doc = kit.createDefaultDocument();
         jEditorPane1.setDocument(doc);
         //
@@ -90,8 +93,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     protected String buildHTML() {
         //
-        String img_a = getImageIconURL("images", "mixcont_logo.png").toString();
-//        String img_b = getImageIconURL("images", "file.png").toString();
+        String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
+//        String img_b = getImageIconURL("images", "rado.png").toString();
 //        String img_c = getImageIconURL("images/images_b", "star.png").toString();
         //
         return "<html>"
@@ -108,9 +111,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + faktura_data_B_to_html()
                 //
+                + "<br><br>"
+                //
                 + "</div>"
                 + "</body>"
                 + "</html>";
+        //
     }
 
     private String faktura_header_with_logo_to_html(String imgPath) {
@@ -118,9 +124,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String[] headers = new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM};
         String[] values = new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM};
         //
-        return "<table style='margin-top:15px'>"
+        return "<table style='margin-top:15px;'>"
                 //
+                + "<tr>"
                 + titleOrLogoIfExist(imgPath)
+                + "</tr>"
                 //
                 + "<tr>"
                 + internal_table_2r_xc(headers, values, -1)
@@ -131,15 +139,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String titleOrLogoIfExist(String imgPath) {
         if (imgPath != null) {
-            return "<tr>"
-                    + "<td rowspan='2'><img style='width:80%' src='" + imgPath + "' alt='MCRemote'></td>" // width='32' height='32'
-                    + "<td><h2>" + T__FAKTURA + "</h2></td>"
-                    + "</tr>";
+            return "<td rowspan='2'><img src='" + imgPath + "' alt='MCRemote'></td>" // width='32' height='32'
+                    + "<td><h2>" + T__FAKTURA + "</h2></td>";
         } else {
-            return "<tr>"
-                    + "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
-                    + "<td><h1>" + T__FAKTURA + "</h1></td>"
-                    + "</tr>";
+            return "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
+                    + "<td><h1>" + T__FAKTURA + "</h1></td>";
+
         }
     }
 
@@ -377,6 +382,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -394,12 +400,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(641, Short.MAX_VALUE))))
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,30 +410,50 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        print();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void print() {
+        //
+        int maxHeightA4 = 842;
+        //
+        int actHeight = jEditorPane1.getHeight();
+        //
+        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
+        //
+        if(actHeight >= maxHeightA4){
+            HelpA.showNotification("A4 Heigh exceeded");
+        }
+        //
         Paper paper = new Paper();
         paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
-        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
-                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
         //
+//        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
+//                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
+        //
+        // This one sets the margins
         paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
         //
         PageFormat pageFormat = new PageFormat();
         pageFormat.setPaper(paper);
         //
         PrinterJob pj = PrinterJob.getPrinterJob();
-        pj.setPrintable(jEditorPane1.getPrintable(null, null), pageFormat);
+        //
+        PageFormat validatedFormat = pj.validatePage(pageFormat);
+        //
+        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
+        //
+        // This one shows additional Dialog displaying the margins, can be skipped
         PageFormat pf = pj.pageDialog(pageFormat);
-
-//        pj.validatePage(pageFormat);
-        
+        //
         if (pj.printDialog()) {
             try {
                 pj.print();
@@ -438,20 +461,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-//        try {
-//            //
-////            getContentPane().print(getGraphics());
-//            // https://stackoverflow.com/questions/47147662/changing-print-margins-on-jtextpane
-//            jEditorPane1.print();
-//            //
-////            PrinterJob job = PrinterJob.getPrinterJob();
-////            job.setJobName("Recipe");
-//            //
-//        } catch (PrinterException ex) {
-//            Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //
+    }
 
     private static double fromCMToPPI(double cm) {
         return toPPI(cm * 0.393700787);
@@ -459,16 +470,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private static double toPPI(double inch) {
         return inch * 72d;
-    }
-
-    private static PageFormat getMinimumMarginPageFormat(PrinterJob printJob) {
-        PageFormat pf0 = printJob.defaultPage();
-        PageFormat pf1 = (PageFormat) pf0.clone();
-        Paper p = pf0.getPaper();
-        p.setImageableArea(0, 0, pf0.getWidth(), pf0.getHeight());
-        pf1.setPaper(p);
-        PageFormat pf2 = printJob.validatePage(pf1);
-        return pf2;
     }
 
     /**
