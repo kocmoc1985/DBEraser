@@ -5,9 +5,7 @@
  */
 package BuhInvoice;
 
-import forall.HTMLPrint;
 import forall.HelpA;
-import forall.JSon;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -21,7 +19,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -33,7 +30,7 @@ import javax.swing.text.html.StyleSheet;
 public class HTMLPrint_A extends javax.swing.JFrame {
 
     private ArrayList<HashMap<String, String>> articles_map_list;
-    
+
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
     /**
@@ -49,15 +46,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
-            "table {width: 99%}",
-//            "img {width: 20px}", not working from here
-            "table {font-size:9pt}", // 9pt seems to be optimal
+            "table {width: 99%;}",
+            //            "img {width: 20px}", not working from here
+            "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",
-            "td {border: 1px solid black}",
-            "td {padding-left: 4px}",
+            "td {border: 1px solid black;}",
+            "td {padding-left: 4px;}",
             //
-            ".marginTop {margin-top: 5px}",
-            ".bold {font-weight:bold}"
+            ".marginTop {margin-top: 5px;}",
+            ".bold {font-weight:bold;}",
+            ".red{color: red;}"
         //    
         //            ".jtable {font-size:7pt;}",
         //            ".table-invert {font-size:14pt;}",
@@ -99,7 +97,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         return "<html>"
                 + "<body>" //style='background-color:#F1F3F6'
-                + "<div style='margin-left:10px;color:gray;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
+                + "<div style='margin-left:10px;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
                 //
                 + faktura_header_with_logo_to_html(img_a)
                 //
@@ -110,6 +108,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + articles_to_html(articles_map_list)
                 //
                 + faktura_data_B_to_html()
+                //
+                + faktura_data_C_to_html()
                 //
                 + "<br><br>"
                 //
@@ -200,16 +200,32 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String faktura_data_B_to_html() {
         //
-        String html_ = "<table class='marginTop'>";//<table class='marginTop'>
+        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
         String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
         //
         html_ += internal_table_2r_xc(headers, values, 6);
         //
-        html_ += "</table>";//</table>
+        html_ += "</div>";//</table>
         //
-        System.out.println("" + html_);
+//        System.out.println("" + html_);
+        //
+        return html_;
+    }
+    
+     private String faktura_data_C_to_html() {
+        //
+        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
+        //
+        String[] headers = new String[]{"Adress", "Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr"};
+        String[] values = new String[]{"Henry Dunkers gata 2, 23181, Trelleborg", "014051764","ask@mixcont.com", "5129-0542", "556251-6806", "SE556251680601"};
+        //
+        html_ += internal_table_2r_xc(headers, values, -1);
+        //
+        html_ += "</div>";
+        //
+//        System.out.println("" + html_);
         //
         return html_;
     }
@@ -423,13 +439,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private void print() {
         //
-        int maxHeightA4 = 842;
-        //
         int actHeight = jEditorPane1.getHeight();
         //
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
-        if(actHeight >= maxHeightA4){
+        if (actHeight >= A4_PAPER.getHeight()) {
             HelpA.showNotification("A4 Heigh exceeded");
         }
         //
