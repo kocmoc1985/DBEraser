@@ -1,0 +1,7 @@
+
+
+1. Make additional inputs parameters from Interface for table "Buh_Faktura".
+Parameters for: "exp_avg", "inkl_moms", "frakt"
+
+
+2. Add field "makulerad" for "Buh_Faktura"
