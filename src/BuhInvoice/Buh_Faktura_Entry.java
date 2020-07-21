@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.HelpA;
 import forall.JSon;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class Buh_Faktura_Entry {
 
     private final InvoiceA invoiceA;
     private HashMap<String, String> mainMap = new HashMap<>();
+    private HashMap<String, String> secMap = new HashMap<>();
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
@@ -47,18 +49,25 @@ public class Buh_Faktura_Entry {
     public void setMainFakturaData() {
         //
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
+        this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
+        //
+        HashMap<String,String>joinedMap = HelpA.joinHashMaps(mainMap, secMap);
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
-        mainMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
-        mainMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
+        joinedMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
+        joinedMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
         //
-        this.mainMap.entrySet().forEach((entry) -> {
+        System.out.println("-------------------------------------------------");
+        //
+        joinedMap.entrySet().forEach((entry) -> {
             String key = entry.getKey();
             String value = entry.getValue();
             System.out.println(key + "=" + value);
         });
         //
-        JSon.hashMapToJSON(mainMap); // Temporary here
+        System.out.println("-------------------------------------------------");
+        //
+        JSon.hashMapToJSON(joinedMap); // Temporary here
         //
     }
 
