@@ -291,7 +291,6 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
         //
         add_to_unsaved(source);
         //
-
     }
 
     public void add_to_unsaved(Object source) {

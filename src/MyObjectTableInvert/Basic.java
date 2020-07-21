@@ -50,10 +50,20 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
     }
 
+    /**
+     * Call from: TableRowInvertB
+     * @param ti
+     * @param ke 
+     */
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
     }
 
+    /**
+     * Call from: TableRowInvertB
+     * @param ti
+     * @param ie 
+     */
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
         System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
     }

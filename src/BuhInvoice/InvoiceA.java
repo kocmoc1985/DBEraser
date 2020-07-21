@@ -252,6 +252,7 @@ public class InvoiceA extends Basic {
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        //
         super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
@@ -274,6 +275,7 @@ public class InvoiceA extends Basic {
     }
 
     /**
+     * [2020-07-XX]
      * SUPER important here you catch the event when key released on some
      * component so you can process this event as required
      *
@@ -282,6 +284,7 @@ public class InvoiceA extends Basic {
      */
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
         super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
@@ -310,6 +313,7 @@ public class InvoiceA extends Basic {
     }
 
     /**
+     * [2020-07-XX]
      * SUPER important here you catch the event when some jcombobox item is
      * changed so you can process this event as required
      *
