@@ -160,7 +160,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     /**
      * OBS! deletes Graphic component ONLY!!
      */
-    public void deleteRows() {
+    public void deleteRowsGraphic() {
         //
         removeAll();
         //
@@ -169,7 +169,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     }
 
 
-    public void deleteRow(int row) {
+    public void deleteRowGraphic(int row) {
         //
         if (row == 0) {
             return;
@@ -178,6 +178,14 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         this.remove(getRow(row));
         //
         repaintTable();
+    }
+    
+    public void deleteRowData(int row){
+        //
+        TableRow tr = getRow(row);
+        //
+        this.rows_list.remove(tr);
+        //
     }
 
     public int getNrRows() {

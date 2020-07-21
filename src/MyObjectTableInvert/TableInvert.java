@@ -125,19 +125,20 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
         }
     }
-    
+
     /**
      * SUPER IMPORTANT [2020-07-21]
      */
-    public void refreshTableRows(){
-        deleteRows();
-        addDataToTable_B();
+    public void refreshTableRows() {
+        deleteRowsGraphic();
+        addExistingRowsToTable();
     }
 
     /**
      * [2020-07-21]
+     * This method is about adding graphical components
      */
-    public void addDataToTable_B() {
+    private void addExistingRowsToTable() {
         //
         for (TableRow tableRow : rows_list) {
             //
@@ -147,12 +148,15 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             if (rdi.getVisible() == false) {
                 row.setVisible(false);
+            } else {
+                row.setVisible(true);
             }
             //
             this.addRow_B(row);
             //
         }
-        //
+        // OBS! PAY ATTENTION AT THIS!! THIS ONE WORKS LIKE A KIND OF REFRESH!!
+        // EXTREAMLY IMPORTANT [2020-07-21]
         resizeRows();
         //
     }
@@ -196,6 +200,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
             }
             //
             this.addRow(row);
+            //
             this.ROW_COUNTER++;
         }
         //
@@ -325,7 +330,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
      * @param columnNameNotNickName
      * @return
      */
-    public TableRowInvert getRow(String columnNameNotNickName) {
+    public TableRowInvert getRowByColName(String columnNameNotNickName) {
         return (TableRowInvert) row__col_name__tablerowinvert_map.get(columnNameNotNickName);
     }
 

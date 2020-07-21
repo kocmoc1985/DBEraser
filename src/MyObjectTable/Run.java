@@ -48,7 +48,7 @@ public class Run {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                table.deleteRow(table.getSelectedRow());
+                table.deleteRowGraphic(table.getSelectedRow());
 //                try {
 //                    tableBuilder.getSql().execute(SQL_DELETE.test_1_delete_querry(table.getSelectedDatabaseId()));
 //                    

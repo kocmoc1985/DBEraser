@@ -325,18 +325,22 @@ public class InvoiceA extends Basic {
             boolean momsInk = getInklMoms();
             //
             TableInvert table = (TableInvert) TABLE_INVERT_3;
-            TableRowInvert tri = (TableRowInvert) table.getRow(DB.BUH_FAKTURA__MOMS_SATS);
+            TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__MOMS_SATS);
             RowDataInvert rdi = tri.getRowConfig();
             //
             if (momsInk == false) {
                 //
-                tri.setVisible(false);
+                // Both ways below working (regarding: "setVisible()")
+//                tri.setVisible(false);
+                rdi.setVisible_(false);
                 //
                 refreshTableInvert(TABLE_INVERT_3);
                 //
             } else {
                 //
-                tri.setVisible(true);
+                // Both ways below working
+//                tri.setVisible(true);
+                rdi.setVisible_(true);
                 //
                 refreshTableInvert(TABLE_INVERT_3);
                 //
@@ -353,7 +357,9 @@ public class InvoiceA extends Basic {
     }
 
     public void test_b() {
-
+         TableInvert table = (TableInvert) TABLE_INVERT_3;
+         table.deleteRowData(0);
+         table.refreshTableRows();
     }
 
 }
