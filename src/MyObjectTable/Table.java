@@ -138,6 +138,9 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         return this.rows_list;
     }
 
+    /**
+     * Called "Initially" on TableBuild
+     */
     public void addDataToTable() {
         for (Object row_column_data_entry : TABLE_DATA) {
             RowData rcd = (RowData) row_column_data_entry;
@@ -148,46 +151,23 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         }
     }
 
-    public void refreshTable() {
-        this.getParent().getParent().invalidate();
-        this.getParent().getParent().validate();
-        this.getParent().repaint();
-
-//        final Table t = this;
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    SwingUtilities.updateComponentTreeUI(t);
-//                }
-//            });
+    private void repaintTable() {
+        this.invalidate();
+        this.validate();
+        this.repaint();
     }
 
-    public void deleteRows_B() {
-        //
-        ROW_COUNTER = 0;
-        row_nr__database_id_map.clear();
-        //
-//        for (TableRow row : rows_list) {
-//            remove(row);
-//        }
+    /**
+     * OBS! deletes Graphic component ONLY!!
+     */
+    public void deleteRows() {
         //
         removeAll();
         //
-        refreshTable();
+        repaintTable();
         //
     }
 
-    public void deleteRows() {
-        //
-        for (TableRow row : rows_list) {
-            remove(row);
-        }
-        //
-        rows_list = new ArrayList<TableRow>();
-        //
-        refreshTable();
-        //
-    }
 
     public void deleteRow(int row) {
         //
@@ -197,7 +177,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         //
         this.remove(getRow(row));
         //
-        refreshTable();
+        repaintTable();
     }
 
     public int getNrRows() {
@@ -210,18 +190,6 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         } else {
             //
             row_nr__database_id_map.put("" + row.getDatabaseId(), "" + ROW_COUNTER);
-            //
-//            System.out.println("#####################################");
-//            //
-//            System.out.println("addRow -> Table.layout: " + this.getLayout());
-//            System.out.println("addRow -> Table.w: " + this.getWidth());
-//            System.out.println("addRow -> Table.h: " + this.getHeight());
-//            //
-//            System.out.println("*************************************");
-//            //
-//            System.out.println("addRow -> Row.layout: " + row.getLayout());
-//            System.out.println("addRow -> Row.w: " + row.getWidth());
-//            System.out.println("addRow -> Row.h: " + row.getHeight());
             //
             this.add(row);
         }

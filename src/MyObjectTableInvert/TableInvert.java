@@ -95,7 +95,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     @Override
     public void initTable() {
-        setBackground(Color.yellow);
+        // 
+//        setBackground(Color.yellow); // Good for debuging
+        //
         double height = (rows_list.size() * ROW_HEIGHT) * 1.13;//1.13
         RowData rcd = (RowData) TABLE_DATA.get(0);
         //
@@ -108,6 +110,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     }
 
+    /**
+     * Can be good for debugging [2020-07-21]
+     */
     public void printRowList() {
         //
         System.out.println("PRINT ROW LIST:");
@@ -119,6 +124,14 @@ public class TableInvert extends Table implements ControlsActionsIF {
             System.out.println("w:" + row.getWidth() + " / h:" + row.getHeight() + " / visible: " + tri.getRowConfig().getVisible());
             //
         }
+    }
+    
+    /**
+     * SUPER IMPORTANT [2020-07-21]
+     */
+    public void refreshTableRows(){
+        deleteRows();
+        addDataToTable_B();
     }
 
     /**
@@ -136,8 +149,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 row.setVisible(false);
             }
             //
-            this.addRow(row);
-            this.ROW_COUNTER++;
+            this.addRow_B(row);
             //
         }
         //
@@ -145,8 +157,18 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
     }
 
-    
-
+    /**
+     * [2020-07-21]
+     */
+    private void addRow_B(TableRow row) {
+        if (row instanceof TableRowHeaders) {
+            this.add(row);
+        } else {
+            //
+            this.add(row);
+            //
+        }
+    }
 
     @Override
     public void addDataToTable() {
@@ -177,7 +199,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
             this.ROW_COUNTER++;
         }
         //
-
+//        resizeRows();
         //
     }
 

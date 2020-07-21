@@ -331,14 +331,15 @@ public class InvoiceA extends Basic {
             if (momsInk == false) {
                 //
                 tri.setVisible(false);
-                table.deleteRows_B();
                 //
-//                buh_invoice_main.jPanel3_faktura_sec.removeAll();
-//                buh_invoice_main.jPanel3_faktura_sec.revalidate();
-//                buh_invoice_main.jPanel3_faktura_sec.repaint();
+                refreshTableInvert(TABLE_INVERT_3);
                 //
             } else {
-
+                //
+                tri.setVisible(true);
+                //
+                refreshTableInvert(TABLE_INVERT_3);
+                //
             }
             //
         }
@@ -352,18 +353,6 @@ public class InvoiceA extends Basic {
     }
 
     public void test_b() {
-//        showTableInvert(buh_invoice_main.jPanel2_faktura_main, TABLE_INVERT);
-        //
-        TableInvert table = (TableInvert) TABLE_INVERT_3;
-        //
-        buh_invoice_main.jPanel3_faktura_sec.add(table.getTable());
-        //
-        table.addDataToTable_B();
-        //
-        buh_invoice_main.jPanel3_faktura_sec.revalidate();
-        buh_invoice_main.jPanel3_faktura_sec.repaint();
-        //
-       
 
     }
 

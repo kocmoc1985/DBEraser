@@ -487,11 +487,26 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
             listChanged.add(row_id);
         }
     }
+    
+    /**
+     * SUPER IMPORTANT AND EFFECTIVE METHOD [2020-07-21]
+     */
+    public void refreshTableInvert(){
+        TableInvert ti = (TableInvert) TABLE_INVERT;
+        ti.refreshTableRows();
+    }
+    
+    /**
+     * SUPER IMPORTANT AND EFFECTIVE METHOD [2020-07-21]
+     * @param ti 
+     */
+    public void refreshTableInvert(Table tableInvert){
+        TableInvert ti = (TableInvert) tableInvert;
+        ti.refreshTableRows();
+    }
 
     /**
-     * This one is the same as "showTableInvert" but for better understanding
-     * that this method can be used in different cases, this method is done
-     *
+     * 
      * @param container
      * @param tableInvert
      */
@@ -499,6 +514,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         showTableInvert(container, tableInvert);
     }
 
+    /**
+     * OBS! Mostly used once at start up [2020-07-21]
+     * @param container
+     * @param tableInvert 
+     */
     public void showTableInvert(final JComponent container, final Table tableInvert) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

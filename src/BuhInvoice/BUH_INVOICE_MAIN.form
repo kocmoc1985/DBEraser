@@ -54,7 +54,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" pref="585" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="585" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jTextField_total_exkl_moms" alignment="0" max="32767" attributes="0"/>
@@ -87,7 +87,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Component id="jPanel3_faktura_sec" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel3_faktura_sec" alignment="0" min="-2" pref="585" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="315" max="-2" attributes="0"/>
                       </Group>
