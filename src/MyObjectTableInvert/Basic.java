@@ -6,8 +6,8 @@ package MyObjectTableInvert;
 
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
-import static MCRecipe.MC_RECIPE_.USER_ROLE;
-import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
+import static MCRecipe.MC_RECIPE.USER_ROLE;
+import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import Reporting.TableInvertBasicRepport;

@@ -215,6 +215,10 @@ public class RowDataInvert extends RowData {
         return visible;
     }
     
+    public void setVisible_(boolean visible){
+        this.visible = visible;
+    }
+    
 
     public boolean getImportant() {
         return important;

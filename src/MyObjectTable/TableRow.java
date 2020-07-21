@@ -65,6 +65,8 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
         INITIAL_BORDER = getBorder();
         //
         this.addComponentListener(this);
+        //
+        // OBS! OBS! [2020-07-21] Works without but displays "uggly" uppon first visualisation
         this.addAncestorListener(this);
         gridLayoutFix();
     }
@@ -286,21 +288,30 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
 
     @Override
     public void ancestorAdded(AncestorEvent ae) {
-        //This must be done after the parent component JPanel is drawn otherwise the getWidth() will return 0
+        // This must be done after the parent component JPanel is 
+        // drawn otherwise the getWidth() will return 0
         resize_row_or_column(ae);
     }
 
     private void resize_row_or_column(AncestorEvent ae) {
-        if (ae.getSource() instanceof JPanel) {
+        //
+        if (ae.getSource() instanceof JPanel) { // JPanel -> "TableRow"
+            //
             JPanel row_panel = (JPanel) ae.getSource();
             //
             row_panel.setPreferredSize(new Dimension(TABLE.ROW_WIDTH_INITIAL, TABLE.ROW_HEIGHT));
             //
+//            System.out.println("" + row_panel);
+            //
+//            System.out.println("TABLE ROW: w: " + TABLE.ROW_WIDTH_INITIAL + " / h: " + TABLE.ROW_HEIGHT);
+            //
         } else {
+            //
             if (LAYOUT instanceof GridLayout) {
                 this.updateUI();
                 return;
             }
+            //
             JComponent c = (JComponent) ae.getSource();
             int column_nr = getTable().row_col_object__column_count__map.get(c);
             int w = calculateWidth(TABLE.COLUMN_WIDTHS_PERCENT[column_nr]);
@@ -331,9 +342,11 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
     }
 
     private void resizeRows() {
+        //
         if (LAYOUT instanceof GridLayout) {
             return;
         }
+        //
         Set set = getTable().row_col_object__column_count__map.keySet();
         Iterator it = set.iterator();
         while (it.hasNext()) {
@@ -342,6 +355,7 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
             int w = calculateWidth(TABLE.COLUMN_WIDTHS_PERCENT[column]);
             column_obj.setPreferredSize(new Dimension(w, TABLE.ROW_HEIGHT - 10));
         }
+        //
         updateUI();
     }
 

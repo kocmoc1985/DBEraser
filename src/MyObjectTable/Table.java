@@ -7,9 +7,12 @@ package MyObjectTable;
 import MyObjectTableInvert.UnsavedEntryInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -19,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -37,7 +41,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     public int ROW_COUNTER;
     private SelectRowButton SELECT_ROW_BTN;
     public final TableData TABLE_DATA;
-    private final HashMap<String, String> row_nr__database_id_map = new HashMap<String, String>();
+    public final HashMap<String, String> row_nr__database_id_map = new HashMap<String, String>();
     private String[] TABLE_HEADERS;
     public HashMap<Component, Integer> row_col_object__column_count__map = new HashMap<Component, Integer>();
     public ArrayList<TableRow> rows_list = new ArrayList<TableRow>();
@@ -127,6 +131,12 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         rows_list.add(row);
         this.addRow(row);
     }
+    
+    
+    
+    public ArrayList<TableRow> getRowList(){
+        return this.rows_list;
+    }
 
     public void addDataToTable() {
         for (Object row_column_data_entry : TABLE_DATA) {
@@ -138,32 +148,81 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         }
     }
 
+    public void refreshTable() {
+        this.getParent().getParent().invalidate();
+        this.getParent().getParent().validate();
+        this.getParent().repaint();
+
+//        final Table t = this;
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    SwingUtilities.updateComponentTreeUI(t);
+//                }
+//            });
+    }
+
+    public void deleteRows_B() {
+        //
+        ROW_COUNTER = 0;
+        row_nr__database_id_map.clear();
+        //
+//        for (TableRow row : rows_list) {
+//            remove(row);
+//        }
+        //
+        removeAll();
+        //
+        refreshTable();
+        //
+    }
+
     public void deleteRows() {
+        //
         for (TableRow row : rows_list) {
             remove(row);
         }
+        //
         rows_list = new ArrayList<TableRow>();
+        //
+        refreshTable();
+        //
     }
 
     public void deleteRow(int row) {
+        //
         if (row == 0) {
             return;
         }
+        //
         this.remove(getRow(row));
-        this.updateUI();
+        //
+        refreshTable();
     }
 
     public int getNrRows() {
         return this.NR_ROWS;
     }
-    
-   
 
     public void addRow(TableRow row) {
         if (row instanceof TableRowHeaders) {
             this.add(row);
         } else {
+            //
             row_nr__database_id_map.put("" + row.getDatabaseId(), "" + ROW_COUNTER);
+            //
+//            System.out.println("#####################################");
+//            //
+//            System.out.println("addRow -> Table.layout: " + this.getLayout());
+//            System.out.println("addRow -> Table.w: " + this.getWidth());
+//            System.out.println("addRow -> Table.h: " + this.getHeight());
+//            //
+//            System.out.println("*************************************");
+//            //
+//            System.out.println("addRow -> Row.layout: " + row.getLayout());
+//            System.out.println("addRow -> Row.w: " + row.getWidth());
+//            System.out.println("addRow -> Row.h: " + row.getHeight());
+            //
             this.add(row);
         }
     }
@@ -199,8 +258,6 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         String value = tableRow.getValueAt(column);
         return value;
     }
-    
-    
 
     public TableRow getRow(int i) {
         return (TableRow) this.getComponent(i);

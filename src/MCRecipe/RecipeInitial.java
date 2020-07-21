@@ -37,7 +37,7 @@ import javax.swing.text.rtf.RTFEditorKit;
  */
 public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
-    public final MC_RECIPE_ mCRecipe2;
+    public final MC_RECIPE mCRecipe2;
     private CompareRecipes compareRecipes;
     public static final String T1_RECIPE_VERSION = "Recipe Version";
     public static final String T1_RECIPE_ID = "Recipe_ID";
@@ -55,7 +55,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public static final String T1_UPDATED_BY = "UpdatedBy";
     private LinkedList<Integer> ADDED_TO_COMPARE_LIST = new LinkedList<Integer>();
 
-    public RecipeInitial(MC_RECIPE_ mCRecipe2, SqlBasicLocal sql) {
+    public RecipeInitial(MC_RECIPE mCRecipe2, SqlBasicLocal sql) {
         super(sql, sql, mCRecipe2);
         this.mCRecipe2 = mCRecipe2;
         go();
@@ -514,10 +514,10 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
             return getComboParamsA();
         }
         //
-        boolean checkedIngreds = MC_RECIPE_.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
+        boolean checkedIngreds = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
         boolean boxesEmpty = upperSearchCriteriasEmpty() == true;
         boolean ingredBoxesEmpty = ingredSearchCriteriasEmpty() == true;
-        boolean checkedOr = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
+        boolean checkedOr = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
 //        boolean cond_2 = mCRecipe2.jComboBox_Ingred_1.getSelectedItem() == null
 //                && mCRecipe2.jComboBox_Ingred_2.getSelectedItem() == null;
@@ -558,7 +558,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     private boolean checkIfToFill(JComboBox box) {
         //
-        boolean condition_1 = MC_RECIPE_.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
+        boolean condition_1 = MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.isSelected();
         boolean condition_2 = box == mCRecipe2.jComboBox_Ingred_1;
         boolean condition_2_2 = box == mCRecipe2.jComboBox_Ingred_2;
         //
@@ -760,8 +760,8 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         mCRecipe2.jComboBox_Ingred_1.setEditable(false);
         mCRecipe2.jComboBox_Ingred_2.setEditable(false);
         //
-        MC_RECIPE_.jCheckBoxRecipeInitialSearchByIngredients.setSelected(false);
-        MC_RECIPE_.jCheckBoxRecipeInitialOR.setSelected(false);
+        MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.setSelected(false);
+        MC_RECIPE.jCheckBoxRecipeInitialOR.setSelected(false);
         //
         //
         HelpA.clearAllRowsJTable(mCRecipe2.jTableIngredientInfoTable);

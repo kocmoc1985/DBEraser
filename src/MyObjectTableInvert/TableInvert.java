@@ -10,11 +10,13 @@ import MyObjectTable.RowData;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
+import MyObjectTable.TableRowHeaders;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ComponentEvent;
 import java.sql.DataTruncation;
 import java.sql.SQLException;
@@ -46,14 +48,14 @@ public class TableInvert extends Table implements ControlsActionsIF {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
     }
-    
-     public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName, Basic tableInvertConsumer) {
+
+    public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName, Basic tableInvertConsumer) {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
         this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
     }
-     
-    public Basic getTableInvertConsumer(){
+
+    public Basic getTableInvertConsumer() {
         return TABLE_INVERT_CONSUMER;
     }
 
@@ -80,13 +82,20 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     @Override
     public void resizeRows() {
+        //
         for (TableRow row : rows_list) {
+            //
             row.setPreferredSize(new Dimension(getWidth() - 10, ROW_HEIGHT));
+            //
+            // [2020-07-21] OBS! Turned out to be extreamly important for Graphic Updating
+            row.updateUI();
+            //
         }
     }
 
     @Override
     public void initTable() {
+        setBackground(Color.yellow);
         double height = (rows_list.size() * ROW_HEIGHT) * 1.13;//1.13
         RowData rcd = (RowData) TABLE_DATA.get(0);
         //
@@ -98,6 +107,46 @@ public class TableInvert extends Table implements ControlsActionsIF {
         this.addComponentListener(this);
 
     }
+
+    public void printRowList() {
+        //
+        System.out.println("PRINT ROW LIST:");
+        //
+        for (TableRow row : rows_list) {
+            //
+            TableRowInvert tri = (TableRowInvert) row;
+            //
+            System.out.println("w:" + row.getWidth() + " / h:" + row.getHeight() + " / visible: " + tri.getRowConfig().getVisible());
+            //
+        }
+    }
+
+    /**
+     * [2020-07-21]
+     */
+    public void addDataToTable_B() {
+        //
+        for (TableRow tableRow : rows_list) {
+            //
+            TableRowInvertB row = (TableRowInvertB) tableRow;
+            //
+            RowDataInvert rdi = row.getRowConfig();
+            //
+            if (rdi.getVisible() == false) {
+                row.setVisible(false);
+            }
+            //
+            this.addRow(row);
+            this.ROW_COUNTER++;
+            //
+        }
+        //
+        resizeRows();
+        //
+    }
+
+    
+
 
     @Override
     public void addDataToTable() {
@@ -127,7 +176,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
             this.addRow(row);
             this.ROW_COUNTER++;
         }
+        //
 
+        //
     }
 
     public void addTableRowInvertListener(TableRowInvertListener tril) {
@@ -245,14 +296,15 @@ public class TableInvert extends Table implements ControlsActionsIF {
         TableRowInvert rowInvert = getRow(row);
         return rowInvert.getRowConfig();
     }
-    
+
     /**
      * [2020-07-20]
+     *
      * @param columnNameNotNickName
-     * @return 
+     * @return
      */
-    public TableRowInvert getRow(String columnNameNotNickName){
-        return (TableRowInvert)row__col_name__tablerowinvert_map.get(columnNameNotNickName);
+    public TableRowInvert getRow(String columnNameNotNickName) {
+        return (TableRowInvert) row__col_name__tablerowinvert_map.get(columnNameNotNickName);
     }
 
     @Override
