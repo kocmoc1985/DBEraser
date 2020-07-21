@@ -72,6 +72,14 @@ public class InvoiceA extends Basic {
         }
     }
 
+    public double getMomsSats() {
+        try {
+            return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
+        } catch (Exception ex) {
+            return 0.25;
+        }
+    }
+
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
@@ -346,6 +354,10 @@ public class InvoiceA extends Basic {
                 //
             }
             //
+        }else if(col_name.equals(DB.BUH_FAKTURA__MAKULERAD)){
+            //
+            System.out.println("FAKTURA MAKULERAD");
+            //
         }
         //
     }
@@ -357,9 +369,9 @@ public class InvoiceA extends Basic {
     }
 
     public void test_b() {
-         TableInvert table = (TableInvert) TABLE_INVERT_3;
-         table.deleteRowData(0);
-         table.refreshTableRows();
+        TableInvert table = (TableInvert) TABLE_INVERT_3;
+        table.deleteRowData(0);
+        table.refreshTableRows();
     }
 
 }

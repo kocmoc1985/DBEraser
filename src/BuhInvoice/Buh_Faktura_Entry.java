@@ -22,15 +22,15 @@ public class Buh_Faktura_Entry {
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
-    private double fakturaTotalExklMoms;
-    private double fakturaTotalInklMoms;
-    private double momsTotal;
+    private double FAKTURA_TOTAL_EXKL_MOMS;
+    private double FAKTURA_TOTAL;
+    private double MOMS_TOTAL;
 
     public Buh_Faktura_Entry(InvoiceA invoiceA) {
         this.invoiceA = invoiceA;
     }
 
-    public void htmlFaktura(){
+    public void htmlFaktura() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -39,7 +39,7 @@ public class Buh_Faktura_Entry {
             }
         });
     }
-    
+
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
@@ -86,16 +86,20 @@ public class Buh_Faktura_Entry {
     }
 
     private void countFakturaTotal(HashMap<String, String> map) {
+        //
         int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
-        fakturaTotalInklMoms += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
-        momsTotal = fakturaTotalInklMoms * 0.25;
-        fakturaTotalExklMoms = fakturaTotalInklMoms - momsTotal;
-        System.out.println("faktura total inkl. moms: " + fakturaTotalInklMoms);
-        System.out.println("faktura total exkl. moms: " + fakturaTotalExklMoms);
-        System.out.println("moms total: " + momsTotal);
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + fakturaTotalInklMoms);
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + fakturaTotalExklMoms);
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + momsTotal);
+        //
+        FAKTURA_TOTAL += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
+        //
+        if (invoiceA.getInklMoms()) {
+            MOMS_TOTAL = FAKTURA_TOTAL * invoiceA.getMomsSats();
+            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
+        }
+        //
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
+        //
     }
 
     private void addToJTable(HashMap<String, String> map, JTable table) {
