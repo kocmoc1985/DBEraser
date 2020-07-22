@@ -8,6 +8,8 @@ package BuhInvoice;
 import forall.JSon;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,7 +32,25 @@ public class Buh_Faktura_Entry {
         this.invoiceA = invoiceA;
     }
 
-    public void htmlFaktura(){
+    public void articlesToHttpDB() {
+        //
+        for (HashMap<String, String> article_row_map : articlesList) {
+            //
+            String json = JSon.hashMapToJSON(article_row_map);
+            //
+            try {
+                //
+                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
+                //
+            } catch (Exception ex) {
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //
+    }
+
+    public void htmlFaktura() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -39,7 +59,7 @@ public class Buh_Faktura_Entry {
             }
         });
     }
-    
+
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
@@ -89,6 +109,7 @@ public class Buh_Faktura_Entry {
         int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
         fakturaTotalInklMoms += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
         momsTotal = fakturaTotalInklMoms * 0.25;
+        fakturaTotalInklMoms += momsTotal;
         fakturaTotalExklMoms = fakturaTotalInklMoms - momsTotal;
         System.out.println("faktura total inkl. moms: " + fakturaTotalInklMoms);
         System.out.println("faktura total exkl. moms: " + fakturaTotalExklMoms);

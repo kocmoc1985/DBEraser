@@ -1,0 +1,11 @@
+drop table buh_address;
+drop table buh_f_artikel;
+drop table buh_faktura;
+drop table buh_faktura_artikel;
+drop table buh_faktura_kund;
+drop table buh_bund;
+drop table buh_konsult;
+
+
+
+

@@ -21,6 +21,21 @@ import java.nio.charset.StandardCharsets;
  */
 public class HelpBuh {
 
+    
+    
+    public static String sendArticles(String json) {
+        return String.format("http://www.mixcont.com/index.php?link=_http_buh&articles_to_db=true&json=%s", json);
+    }
+    
+    /**
+     * Working test example [2020-07-16]
+     * @param json
+     * @return 
+     */
+    public static String testSendJson(String json) {
+        return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
+    }
+    
     /**
      * For testing only
      *
@@ -35,14 +50,7 @@ public class HelpBuh {
     }
 
     
-    /**
-     * Working test example [2020-07-16]
-     * @param json
-     * @return 
-     */
-    public static String testSendJson(String json) {
-        return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
-    }
+    
 
    
 

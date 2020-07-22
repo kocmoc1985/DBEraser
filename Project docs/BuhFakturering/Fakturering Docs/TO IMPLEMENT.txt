@@ -4,4 +4,4 @@
 Parameters for: "exp_avg", "inkl_moms", "frakt"
 
 
-2. Add field "makulerad", "moms" for "Buh_Faktura"
+2. Add field "makulerad", "moms", total, for "Buh_Faktura" ----> It's done

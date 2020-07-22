@@ -356,10 +356,8 @@ public class InvoiceA extends Basic {
         table.resizeRows();
     }
 
-    public void test_b() {
-         TableInvert table = (TableInvert) TABLE_INVERT_3;
-         table.deleteRowData(0);
-         table.refreshTableRows();
+    public void articlesToHttpDB() {
+         buh_Faktura_Entry.articlesToHttpDB();
     }
 
 }

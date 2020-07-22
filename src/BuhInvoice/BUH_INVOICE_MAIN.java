@@ -161,7 +161,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("TEST B");
+        jButton7.setText("ARTICLES TO HTTP");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -283,7 +283,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        invoiceA.test_b();
+        invoiceA.articlesToHttpDB();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {

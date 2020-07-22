@@ -27,7 +27,7 @@ public class JSon {
     //
     
     
-    public static void hashMapToJSON(HashMap<String, String> map) {
+    public static String hashMapToJSON(HashMap<String, String> map) {
         //
         String json = "{";
         //
@@ -51,6 +51,8 @@ public class JSon {
         json += "}";
         //
         System.out.println("json: " + json);
+        //
+        return json;
         //
     }
 
