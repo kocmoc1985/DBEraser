@@ -11,6 +11,11 @@ package BuhInvoice;
  */
 public class DB {
 
+    //
+    public static final String PHP_SCRIPT_MAIN = "_http_buh";
+    public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db";
+    public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db";
+    //
     public static final String BUH_FAKTURA__KUNDID = "kundId";
     public static final String BUH_FAKTURA__FAKTURAKUND_ID = "fakturaKundId";
     public static final String BUH_FAKTURA__FAKTURANR = "fakturanr";

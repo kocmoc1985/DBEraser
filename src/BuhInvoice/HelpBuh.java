@@ -21,21 +21,40 @@ import java.nio.charset.StandardCharsets;
  */
 public class HelpBuh {
 
-    
-    
+    /**
+     * [2020-07-22] Universal function for inserting into HTTP DB
+     *
+     * @param phpScriptName
+     * @param phpFunctionName
+     * @param json
+     * @return
+     */
+    public static String insert(String phpScriptName, String phpFunctionName, String json) {
+        return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
+    }
+
+    /**
+     * [2020-07-22] The first real method for inserting data to HTTP db
+     *
+     * @param json
+     * @deprecated 
+     * @return
+     */
     public static String sendArticles(String json) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&articles_to_db=true&json=%s", json);
     }
-    
+
     /**
      * Working test example [2020-07-16]
+     *
      * @param json
-     * @return 
+     * @deprecated 
+     * @return
      */
     public static String testSendJson(String json) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
     }
-    
+
     /**
      * For testing only
      *
@@ -48,11 +67,6 @@ public class HelpBuh {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&getininterval=true&min=%s&max=%s&tablename=%s",
                 "" + min, "" + max, tablename);
     }
-
-    
-    
-
-   
 
     /**
      * Implemented [2020-06-02] Yes this one is working
@@ -109,14 +123,15 @@ public class HelpBuh {
 //        System.out.println("HTTP REQ VAL: " + temp);
 //        return temp;
     }
-    
+
     /**
-     * Was trying to make it working for sending JSON
-     * but no success, it can be leaved for further investigations
+     * Was trying to make it working for sending JSON but no success, it can be
+     * leaved for further investigations
+     *
      * @param url_
      * @return
-     * @throws Exception 
-     * @deprecated 
+     * @throws Exception
+     * @deprecated
      */
     public static String http_get_content_post___test(String url_) throws Exception {
         //
@@ -166,5 +181,5 @@ public class HelpBuh {
         System.out.println("HTTP REQ VAL: " + temp);
         return temp;
     }
-    
+
 }

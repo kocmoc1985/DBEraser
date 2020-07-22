@@ -61,7 +61,7 @@ public class InvoiceA extends Basic {
     }
 
     protected int getFakturaNr() {
-        return 1;
+        return 8;
     }
 
     public boolean getInklMoms() {
@@ -82,6 +82,20 @@ public class InvoiceA extends Basic {
 
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
+    }
+    
+    /**
+     * [2020-07-22]
+     */
+    public void fakturaToHttpDB() {
+        buh_Faktura_Entry.fakturaToHttpDB();
+    }
+
+    /**
+     * [2020-07-22]
+     */
+    public void articlesToHttpDB() {
+        buh_Faktura_Entry.articlesToHttpDB();
     }
 
     public void htmlFaktura() {
@@ -275,9 +289,8 @@ public class InvoiceA extends Basic {
     }
 
     /**
-     * [2020-07-XX]
-     * SUPER important here you catch the event when key released on some
-     * component so you can process this event as required
+     * [2020-07-XX] SUPER important here you catch the event when key released
+     * on some component so you can process this event as required
      *
      * @param ti
      * @param ke
@@ -313,9 +326,8 @@ public class InvoiceA extends Basic {
     }
 
     /**
-     * [2020-07-XX]
-     * SUPER important here you catch the event when some jcombobox item is
-     * changed so you can process this event as required
+     * [2020-07-XX] SUPER important here you catch the event when some jcombobox
+     * item is changed so you can process this event as required
      *
      * @param ti
      * @param ie
@@ -358,7 +370,7 @@ public class InvoiceA extends Basic {
                 //
             }
             //
-        }else if(col_name.equals(DB.BUH_FAKTURA__MAKULERAD)){
+        } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
             System.out.println("FAKTURA MAKULERAD");
             //
@@ -370,10 +382,6 @@ public class InvoiceA extends Basic {
         TableInvert table = (TableInvert) TABLE_INVERT_3;
         table.printRowList();
         table.resizeRows();
-    }
-
-    public void articlesToHttpDB() {
-         buh_Faktura_Entry.articlesToHttpDB();
     }
 
 }

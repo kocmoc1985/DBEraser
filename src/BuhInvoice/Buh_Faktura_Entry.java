@@ -23,6 +23,7 @@ public class Buh_Faktura_Entry {
     private final InvoiceA invoiceA;
     private HashMap<String, String> mainMap = new HashMap<>();
     private HashMap<String, String> secMap = new HashMap<>();
+    private HashMap<String, String> fakturaMap = new HashMap<>();
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
@@ -34,6 +35,21 @@ public class Buh_Faktura_Entry {
         this.invoiceA = invoiceA;
     }
 
+    public void fakturaToHttpDB() {
+        //
+        String json = JSon.hashMapToJSON(this.fakturaMap);
+        //
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_TO_DB, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
     public void articlesToHttpDB() {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
@@ -42,7 +58,9 @@ public class Buh_Faktura_Entry {
             //
             try {
                 //
-                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
+//                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
+                HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_ARTICLES_TO_DB, json));
                 //
             } catch (Exception ex) {
                 Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,15 +89,15 @@ public class Buh_Faktura_Entry {
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
         this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
         //
-        HashMap<String,String>joinedMap = HelpA.joinHashMaps(mainMap, secMap);
+        this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
-        joinedMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
-        joinedMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
+        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
+        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
         //
         System.out.println("-------------------------------------------------");
         //
-        joinedMap.entrySet().forEach((entry) -> {
+        this.fakturaMap.entrySet().forEach((entry) -> {
             String key = entry.getKey();
             String value = entry.getValue();
             System.out.println(key + "=" + value);
@@ -87,7 +105,7 @@ public class Buh_Faktura_Entry {
         //
         System.out.println("-------------------------------------------------");
         //
-        JSon.hashMapToJSON(joinedMap); // Temporary here
+        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
         //
     }
 
