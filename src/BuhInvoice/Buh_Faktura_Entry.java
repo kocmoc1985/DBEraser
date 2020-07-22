@@ -101,7 +101,7 @@ public class Buh_Faktura_Entry {
         //
         this.articlesList.add(map_for_adding_to_db);
         //
-        articlesListToJson(articlesList);
+//        articlesListToJson(articlesList);
         //
         countFakturaTotal(map_for_adding_to_db);
         //
@@ -122,6 +122,7 @@ public class Buh_Faktura_Entry {
         //
         if (invoiceA.getInklMoms()) {
             MOMS_TOTAL = FAKTURA_TOTAL * invoiceA.getMomsSats();
+            FAKTURA_TOTAL += MOMS_TOTAL;
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }
         //
