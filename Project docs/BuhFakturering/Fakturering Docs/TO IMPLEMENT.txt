@@ -1,7 +1,2 @@
 
-
-1. Make additional inputs parameters from Interface for table "Buh_Faktura".
-Parameters for: "exp_avg", "inkl_moms", "frakt"
-
-
-2. Add field "makulerad", "moms", total, for "Buh_Faktura" ----> It's done
+2. Add fields "makulerad", "moms","total" for "Buh_Faktura"

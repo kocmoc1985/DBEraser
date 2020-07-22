@@ -61,7 +61,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -2663,5 +2665,29 @@ public class HelpA {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+    
+     public static HashMap<String,String> joinHashMaps(HashMap p1, HashMap p2) {
+        //
+        HashMap joined_properties = new HashMap();
+        //
+        Set set = p1.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            String value = (String)p1.get(key);
+            joined_properties.put(key, value);
+        }
+        //
+        Set set_2 = p2.keySet();
+        Iterator it_2 = set_2.iterator();
+        //
+        while (it_2.hasNext()) {
+            String key = (String) it_2.next();
+            String value = (String)p2.get(key);
+            joined_properties.put(key, value);
+        }
+        //
+        return joined_properties;
     }
 }
