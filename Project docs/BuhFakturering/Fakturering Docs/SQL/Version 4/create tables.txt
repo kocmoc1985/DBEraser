@@ -80,6 +80,7 @@ important_komment varchar(200) DEFAULT '',
 ska_bokforas boolean DEFAULT false,
 request_factoring boolean DEFAULT false,
 factoring_status integer DEFAULT 0,
+makulerad boolean DEFAULT false,
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 ); 

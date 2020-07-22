@@ -61,7 +61,7 @@ public class InvoiceA extends Basic {
     }
 
     protected int getFakturaNr() {
-        return 8;
+        return 5;
     }
 
     public boolean getInklMoms() {

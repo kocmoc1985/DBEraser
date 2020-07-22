@@ -37,6 +37,8 @@ public class Buh_Faktura_Entry {
 
     public void fakturaToHttpDB() {
         //
+        // setMainFakturaData() -> btn: "SET MAIN DATA" shall be called first [2020-07-22]
+        //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
         try {

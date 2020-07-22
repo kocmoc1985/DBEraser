@@ -1,3 +1,20 @@
+----------------------------------------------------------------------
+
+[2020-07-22]
+
+OBS! OBS! OBS! 
+
+I WILL NEED QUERY FOR GETTING THE LAST "fakturaId" for given KUND
+
+From StackOverflow: subject "sql-server-return-value-after-insert"
+
+"No need for a separate SELECT..."
+INSERT INTO table (name)
+OUTPUT Inserted.ID
+VALUES('bob');
+
+"This works for non-IDENTITY columns (such as GUIDs) too"
+----------------------------------------------------------------------
 
 SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1
 
