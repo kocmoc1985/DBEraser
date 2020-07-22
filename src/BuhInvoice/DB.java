@@ -16,9 +16,9 @@ public class DB {
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db";
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db";
     //
-    public static final String BUH_FAKTURA__KUNDID = "kundId";
+    public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
+    public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";
     public static final String BUH_FAKTURA__FAKTURAKUND_ID = "fakturaKundId";
-    public static final String BUH_FAKTURA__FAKTURANR = "fakturanr";
     public static final String BUH_FAKTURA__FAKTURA_DATUM = "fakturadatum";
     public static final String BUH_FAKTURA__FORFALLO_DATUM = "forfallodatum";
     public static final String BUH_FAKTURA__ER_REFERENS = "er_referens";
@@ -31,6 +31,9 @@ public class DB {
     public static final String BUH_FAKTURA__INKL_MOMS = "inkl_moms";
     public static final String BUH_FAKTURA__MAKULERAD = "makulerad";
     public static final String BUH_FAKTURA__MOMS_SATS = "moms_sats";
+    public static final String BUH_FAKTURA__TOTAL__ = "total_ink_moms";
+    public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
+    public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
     //
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";

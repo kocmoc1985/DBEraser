@@ -27,13 +27,47 @@ public class Buh_Faktura_Entry {
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
-    private double FAKTURA_TOTAL_EXKL_MOMS;
-    private double FAKTURA_TOTAL;
-    private double MOMS_TOTAL;
+    private double FAKTURA_TOTAL_EXKL_MOMS = 0;
+    private double FAKTURA_TOTAL = 0;
+    private double MOMS_TOTAL = 0;
 
     public Buh_Faktura_Entry(InvoiceA invoiceA) {
         this.invoiceA = invoiceA;
     }
+    
+    /**
+     * The "MainMap" contains data from SQL table "buh_faktura"
+     *
+     */
+    public void setMainFakturaData() {
+        //
+        this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
+        this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
+        //
+        this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
+        //
+        //Adding obligatory values not present in the "TABLE_INVERT"
+        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, "" + invoiceA.getKundId());
+        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, "" + invoiceA.getFakturaNr());
+        //
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + FAKTURA_TOTAL);
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + FAKTURA_TOTAL_EXKL_MOMS);
+        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + MOMS_TOTAL);
+        //
+        System.out.println("-------------------------------------------------");
+        //
+        this.fakturaMap.entrySet().forEach((entry) -> {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + "=" + value);
+        });
+        //
+        System.out.println("-------------------------------------------------");
+        //
+        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
+        //
+    }
+    
 
     public void fakturaToHttpDB() {
         //
@@ -82,34 +116,7 @@ public class Buh_Faktura_Entry {
         });
     }
 
-    /**
-     * The "MainMap" contains data from SQL table "buh_faktura"
-     *
-     */
-    public void setMainFakturaData() {
-        //
-        this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
-        this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
-        //
-        this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
-        //
-        //Adding obligatory values not present in the "TABLE_INVERT"
-        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID, "" + invoiceA.getKundId());
-        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR, "" + invoiceA.getFakturaNr());
-        //
-        System.out.println("-------------------------------------------------");
-        //
-        this.fakturaMap.entrySet().forEach((entry) -> {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + "=" + value);
-        });
-        //
-        System.out.println("-------------------------------------------------");
-        //
-        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
-        //
-    }
+    
 
     public void addArticleForDB() {
         //
