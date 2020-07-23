@@ -1,1 +1,1 @@
-
+Make check for "float" inputs and namely check for ","

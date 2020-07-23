@@ -17,8 +17,8 @@ public class DB {
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db";
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr";
     //
-    public static final String PHP_FUNC_PARAM__GET_KUNDER__$ = "get_faktura_kunder"; // "__" additional prefix on the end means that it's a "select" function
-    public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES__$ = "get_kund_articles";
+    public static final String PHP_FUNC_PARAM__GET_KUNDER__$ = "get_faktura_kunder"; // using php-function: "get_by_kundid()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES__$ = "get_kund_articles"; // using php-function: "get_by_kundid()"
     //
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";

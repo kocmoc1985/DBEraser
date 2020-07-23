@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -361,7 +363,21 @@ public class InvoiceA extends Basic {
                 Logger.getLogger(InvoiceA.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
+        }else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+            //
+            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
+            //
+            boolean validated = validate(DATE_YYYY_MM_DD, val);
+            //
+            System.out.println("validated: " + validated);
         }
+    }
+    
+    public static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    
+    private boolean validate(Pattern pattern, String stringToCheck) {
+        Matcher matcher = pattern.matcher(stringToCheck);
+        return matcher.find();
     }
 
     /**
