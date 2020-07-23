@@ -256,7 +256,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
            try {
             //
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_GET_KUNDER__, json));
+                    DB.PHP_FUNC_PARAM__GET_KUNDER__$, json));
             //
             //
             String comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, DB.BUH_FAKTURA_KUND___NAMN,DB.BUH_FAKTURA_KUND__ID);
