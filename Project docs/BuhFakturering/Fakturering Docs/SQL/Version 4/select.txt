@@ -1,19 +1,14 @@
 ----------------------------------------------------------------------
-
 [2020-07-22]
 
-OBS! OBS! OBS! 
+IMPORTANT:
+GET FAKTURA ID (fakturaId) for the created FAKTURA with given "kundId".
 
-I WILL NEED QUERY FOR GETTING THE LAST "fakturaId" for given KUND
+=============================
+THIS IS THE WORKING ONE[2020-07-23]:
+SELECT buh_faktura.fakturaId FROM `buh_faktura` WHERE buh_faktura.kundId=1 AND buh_faktura.date_created='2020-07-23 10.28.28.156'
+=============================
 
-From StackOverflow: subject "sql-server-return-value-after-insert"
-
-"No need for a separate SELECT..."
-INSERT INTO table (name)
-OUTPUT Inserted.ID
-VALUES('bob');
-
-"This works for non-IDENTITY columns (such as GUIDs) too"
 ----------------------------------------------------------------------
 
 SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1

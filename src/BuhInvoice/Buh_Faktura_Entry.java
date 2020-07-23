@@ -7,7 +7,10 @@ package BuhInvoice;
 
 import forall.HelpA;
 import forall.JSon;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +37,7 @@ public class Buh_Faktura_Entry {
     public Buh_Faktura_Entry(InvoiceA invoiceA) {
         this.invoiceA = invoiceA;
     }
-    
+
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
@@ -54,6 +57,8 @@ public class Buh_Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + FAKTURA_TOTAL_EXKL_MOMS);
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + MOMS_TOTAL);
         //
+        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, getDateWithTime());
+        //
         System.out.println("-------------------------------------------------");
         //
         this.fakturaMap.entrySet().forEach((entry) -> {
@@ -67,7 +72,6 @@ public class Buh_Faktura_Entry {
         JSon.hashMapToJSON(this.fakturaMap); // Temporary here
         //
     }
-    
 
     public void fakturaToHttpDB() {
         //
@@ -115,8 +119,6 @@ public class Buh_Faktura_Entry {
             }
         });
     }
-
-    
 
     public void addArticleForDB() {
         //
@@ -181,5 +183,11 @@ public class Buh_Faktura_Entry {
             JSon.hashMapToJSON(article_map);
         }
         //
+    }
+
+    private String getDateWithTime() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
     }
 }

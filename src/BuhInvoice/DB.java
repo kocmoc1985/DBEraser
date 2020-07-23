@@ -34,6 +34,7 @@ public class DB {
     public static final String BUH_FAKTURA__TOTAL__ = "total_ink_moms";
     public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
     public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
+    public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     //
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";

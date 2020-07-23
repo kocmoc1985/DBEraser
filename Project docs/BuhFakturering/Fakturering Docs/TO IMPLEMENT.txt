@@ -1,2 +1,1 @@
 
-2. Add fields "makulerad", "moms","total" for "Buh_Faktura"
