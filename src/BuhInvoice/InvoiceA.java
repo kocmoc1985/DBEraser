@@ -45,17 +45,7 @@ public class InvoiceA extends Basic {
         this.buh_invoice_main = buh_invoice_main;
     }
 
-    /**
-     * OBS! This is important and by [2020-07-17] i don't really know where to
-     * get it from. In any case it seems that it should be done by making a
-     * request to HTTP.
-     *
-     * @return
-     */
-    protected int getFakturaId() {
-        return 1;
-    }
-
+    
     protected int getKundId() {
         return 1;
     }
@@ -91,12 +81,6 @@ public class InvoiceA extends Basic {
         buh_Faktura_Entry.fakturaToHttpDB();
     }
 
-    /**
-     * [2020-07-22]
-     */
-    public void articlesToHttpDB() {
-        buh_Faktura_Entry.articlesToHttpDB();
-    }
 
     public void htmlFaktura() {
         this.buh_Faktura_Entry.htmlFaktura();

@@ -79,9 +79,11 @@ public class Buh_Faktura_Entry {
         //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
+        String fakturaId = "-1";
+        //
         try {
             //
-            String fakturaId = HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
+            fakturaId = HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_TO_DB, json));
             //
             System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
@@ -90,9 +92,37 @@ public class Buh_Faktura_Entry {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        if (verifyFakturaId(fakturaId)) {
+            setFakturaIdForArticles(fakturaId);
+        }
+        //
+        articlesToHttpDB();
+        //
     }
 
-    public void articlesToHttpDB() {
+    private void setFakturaIdForArticles(String fakturaId) {
+        //
+        for (HashMap<String, String> article_row_map : articlesList) {
+            article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        }
+        //
+    }
+
+    private boolean verifyFakturaId(String fakturaId) {
+        //
+        int id;
+        //
+        try {
+            id = Integer.parseInt(fakturaId);
+        } catch (Exception ex) {
+            id = -1;
+        }
+        //
+        return id != -1;
+        //
+    }
+
+    private void articlesToHttpDB() {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
             //
@@ -112,6 +142,19 @@ public class Buh_Faktura_Entry {
         //
     }
 
+    public void addArticleForDB() {
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        //
+        this.articlesList.add(map_for_adding_to_db);
+        //
+//        articlesListToJson(articlesList);
+        //
+        countFakturaTotal(map_for_adding_to_db);
+        //
+    }
+
     public void htmlFaktura() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -120,22 +163,6 @@ public class Buh_Faktura_Entry {
                 hTMLPrint_A.setVisible(true);
             }
         });
-    }
-
-    public void addArticleForDB() {
-        //
-        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map_for_adding_to_db = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
-        //
-        //Adding obligatory values not present in the "TABLE_INVERT_2"
-        map_for_adding_to_db.put(DB.BUH_F_ARTIKEL__FAKTURAID, "" + invoiceA.getFakturaId());
-        //
-        this.articlesList.add(map_for_adding_to_db);
-        //
-//        articlesListToJson(articlesList);
-        //
-        countFakturaTotal(map_for_adding_to_db);
-        //
     }
 
     public void addArticleForJTable(JTable table) {
