@@ -14,6 +14,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
+import forall.JSon;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -22,6 +23,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -45,13 +47,40 @@ public class InvoiceA extends Basic {
         this.buh_invoice_main = buh_invoice_main;
     }
 
-    
-    protected int getKundId() {
-        return 1;
+    /**
+     * OBS! Note if "kundId" does not exist it will not
+     * be possible to insert a invoice because of the "foreign key constraints".
+     * 
+     * It will maybe make sense to verify if the "kundId" exist in cloud
+     * @return 
+     */
+    protected String getKundId() {
+        return "1";
     }
 
-    protected int getFakturaNr() {
-        return 5;
+    protected String getFakturaNr() {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        map.put(DB.BUH_FAKTURA__KUNDID__, getKundId());
+        String json = JSon.hashMapToJSON(map);
+        //
+        try {
+            //
+            String fakturaNr = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json));
+            //
+            if (HelpA.checkIfNumber_b(fakturaNr)) {
+                int nr = Integer.parseInt(fakturaNr);
+                nr++; // OBS! Iam getting the last so i have to add to get the nr for the act. faktura
+                return "" + nr;
+            } else {
+                return null;
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     public boolean getInklMoms() {
@@ -73,7 +102,7 @@ public class InvoiceA extends Basic {
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
-    
+
     /**
      * [2020-07-22]
      */
@@ -81,14 +110,11 @@ public class InvoiceA extends Basic {
         buh_Faktura_Entry.fakturaToHttpDB();
     }
 
-
     public void htmlFaktura() {
         this.buh_Faktura_Entry.htmlFaktura();
     }
 
-    protected void setMainFakturaData() {
-        this.buh_Faktura_Entry.setMainFakturaData();
-    }
+   
 
     public void addArticleForJTable(JTable table) {
         this.buh_Faktura_Entry.addArticleForJTable(table);

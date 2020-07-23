@@ -1660,6 +1660,15 @@ public class HelpA {
             return false;
         }
     }
+    
+    public static boolean checkIfNumber_b(String value) {
+        try {
+            Double.parseDouble(value);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
 
     public static boolean checkIfDate(String value_yyyy_MM_dd) {
         if (value_yyyy_MM_dd.matches("\\d{4}-\\d{2}-\\d{2}")) {

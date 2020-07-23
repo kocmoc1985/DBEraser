@@ -15,6 +15,7 @@ public class DB {
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db";
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db";
+    public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr";
     //
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";

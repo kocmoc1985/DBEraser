@@ -1,4 +1,13 @@
 ----------------------------------------------------------------------
+[2020-07-23]
+
+GET LATEST FAKTURA NR (fakturanr) for given KUND ID (kundid).
+This is needed to know which "fakturanr" to give a faktura which is beeing created at the moment
+
+SELECT MAX(buh_faktura.fakturanr) as `latest`  FROM buh_faktura
+WHERE buh_faktura.kundId=2
+
+----------------------------------------------------------------------
 [2020-07-22]
 
 IMPORTANT:

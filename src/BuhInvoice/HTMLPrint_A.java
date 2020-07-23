@@ -104,6 +104,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + articles_to_html(articles_map_list)
                 //
+                + brElements()
+                //
                 + faktura_data_B_to_html()
                 //
                 + faktura_data_C_to_html()
@@ -114,6 +116,27 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</body>"
                 + "</html>";
         //
+    }
+    
+    /**
+     * Temporary fix [2020-07-23]
+     * @return 
+     */
+    private String brElements(){
+        //
+        if(articles_map_list == null){
+            return "";
+        }
+        //
+        String html = "";
+        //
+        int br_to_add = 10 - articles_map_list.size();
+        //
+        for (int i = 0; i < br_to_add; i++) {
+            html+="<br>";
+        }
+        //
+        return html;
     }
 
     private String faktura_header_with_logo_to_html(String imgPath) {

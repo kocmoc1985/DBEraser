@@ -29,7 +29,7 @@ public class HelpBuh {
      * @param json
      * @return
      */
-    public static String insert(String phpScriptName, String phpFunctionName, String json) {
+    public static String execute(String phpScriptName, String phpFunctionName, String json) {
         return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
     }
 

@@ -1,0 +1,26 @@
+
+___________________________________________________________________________________________________________
+[REGARDING FAKTURA ID (fakturaId) TABLE: "buh_faktura"]
+
+PHP_FUNC: 'fakturaToDb()'
+
+The "fakturaId" is returned directly upon inserting of the "FAKTURA DATA" to SQL DB .
+So the the php function implements both "insertion" and "getting". 
+
+It seems that this construction will work good even in case of simultaneous usage by several users.
+
+___________________________________________________________________________________________________________
+
+[REGARDING FAKTURA NR (fakturanr) TABLE: "buh_faktura"]
+
+PHP_FUNC: 'getLatestFakturaNr()'
+
+JAVA_FUNC: 'getFakturaNr()'
+
+The "fakturanr" is aquired before the insertion to the SQL DB but is done under same procedure ->
+and namely after pressing the BUTTON for "commiting" of the Faktura.
+
+So the php function returns the latest "fakturanr". Later in java i read the latest one and 
+add (+1) for getting the nr for the faktura which is beiing inserted.
+
+___________________________________________________________________________________________________________

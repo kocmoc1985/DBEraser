@@ -37,12 +37,47 @@ public class Buh_Faktura_Entry {
     public Buh_Faktura_Entry(InvoiceA invoiceA) {
         this.invoiceA = invoiceA;
     }
+    
+    public void fakturaToHttpDB() {
+        //
+        //
+        setMainFakturaData();
+        //
+        //
+        String json = JSon.hashMapToJSON(this.fakturaMap);
+        //
+        String fakturaId = "-1";
+        //
+        try {
+            //
+            fakturaId = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_TO_DB, json));
+            //
+            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        if (verifyFakturaId(fakturaId)) {
+            //
+            setFakturaIdForArticles(fakturaId);
+            //
+            articlesToHttpDB();
+            //
+        } else {
+            //
+            HelpA.showNotification("Kunde inte ladda up fakturan (Faktura id saknas)");
+            //
+        }
+        //
+    }
 
     /**
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
      */
-    public void setMainFakturaData() {
+    private void setMainFakturaData() {
         //
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
         this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
@@ -50,8 +85,8 @@ public class Buh_Faktura_Entry {
         this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
-        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, "" + invoiceA.getKundId());
-        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, "" + invoiceA.getFakturaNr());
+        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoiceA.getKundId());
+        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, invoiceA.getFakturaNr()); // OBS! Aquired from http
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + FAKTURA_TOTAL);
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + FAKTURA_TOTAL_EXKL_MOMS);
@@ -73,32 +108,7 @@ public class Buh_Faktura_Entry {
         //
     }
 
-    public void fakturaToHttpDB() {
-        //
-        // setMainFakturaData() -> btn: "SET MAIN DATA" shall be called first [2020-07-22]
-        //
-        String json = JSon.hashMapToJSON(this.fakturaMap);
-        //
-        String fakturaId = "-1";
-        //
-        try {
-            //
-            fakturaId = HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_TO_DB, json));
-            //
-            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-        if (verifyFakturaId(fakturaId)) {
-            setFakturaIdForArticles(fakturaId);
-        }
-        //
-        articlesToHttpDB();
-        //
-    }
+    
 
     private void setFakturaIdForArticles(String fakturaId) {
         //
@@ -131,7 +141,7 @@ public class Buh_Faktura_Entry {
             try {
                 //
 //                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
-                HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
+                HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_ARTICLES_TO_DB, json));
                 //
             } catch (Exception ex) {
