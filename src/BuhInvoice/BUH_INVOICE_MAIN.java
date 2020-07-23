@@ -250,15 +250,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 //          invoiceA.test();
           //
           HashMap<String,String>map = new HashMap<>();
-          map.put("kundId", "1");
+          map.put("kundId", "2");
           String json = JSon.hashMapToJSON(map);
           //
            try {
             //
-            String fakturaNr = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json));
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_KUNDER__, json));
             //
-            System.out.println("FAKTURA NR AQUIRED: " + fakturaNr);
+            //
+            String comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, DB.BUH_FAKTURA_KUND___NAMN,DB.BUH_FAKTURA_KUND__ID);
+            //
+            System.out.println("combo string: " + comboString);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);

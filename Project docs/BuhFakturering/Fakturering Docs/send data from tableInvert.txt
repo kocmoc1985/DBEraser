@@ -22,37 +22,31 @@ EXAMPLE A: "{\"name\";\"myname\",\"age\";\"20\"}"
 
 EXAMPLE B: "{\"fakturaKundId\";\"1\",\"lev_satt\";\"P\",\"var_referens\";\"Andrei Brassas\",\"fakturadatum\";\"2020-07-15\",\"forfallodatum\";\"2020-08-14\",\"lev_vilkor\";\"FVL\",\"er_referens\";\"\",\"betal_vilkor\";\"30\"}"
 
+THE STRING I USE FOR JCOMBO "FIXED VALUES":
+"Securitas;1,Telenor;2,Telia;3"
+
+JSON created from SQL request: "SELECT namn,fakturaKundId FROM buh_faktura_kund where kundId=2"
+{"0";"Telia","namn";"Telia","1";"3","fakturaKundId";"3"},{"0";"Eon","namn";"Eon","1";"4","fakturaKundId";"4"},{"0";"Akelius","namn";"Akelius","1";"5","fakturaKundId";"5"},{"0";"Telenor","namn";"Telenor","1";"6","fakturaKundId";"6"}
+
 ________________________________________________________
 
-JSON TO SQL:
+[DECODE] The one below i use when i recieve a "json" string from java
 
-foreach ($data as $author) {
-    mysql_query("INSERT INTO `authors` (`first_name`, `last_name`), VALUES('{$author->first_name}', '{$author->last_name}') ");
-    $author_id = mysql_last_insert_id();
-    foreach ($author->books as $book) {
-        mysql_query("INSERT INTO `books` (`title`, `isbn`, `author_id`), VALUES('{$book->title}', '{$book->isbn}', '{$author_id}') ");
+$json = getReplacedJSON(); // replacing ";" with ":" -> this because when sending over "http" it's not working with ":"
+$obj = json_decode($json, true);
+
+
+[ENCODE] The one below is used when you need to get "json" from sql select
+function executeSelectQueryJSON($querry) {
+    //
+    $c = getDBConnectionInstance();
+    $result_set = mysqli_query($c, $querry);
+    //
+    $rows = array();
+    while ($row = mysqli_fetch_array($result_set)) {
+        $rows[] = $row;
     }
+    //
+    mysqli_close($c);
+    return json_encode($rows);
 }
-
-_______________________________________________________
-
-THIS EXAMPLE IS FOR JAVA EE
-
-public static void jsonToMap(String t) throws JSONException {
-
-        HashMap<String, String> map = new HashMap<String, String>();
-        JSONObject jObject = new JSONObject(t);
-        Iterator<?> keys = jObject.keys();
-
-        while( keys.hasNext() ){
-            String key = (String)keys.next();
-            String value = jObject.getString(key); 
-            map.put(key, value);
-
-        }
-
-        System.out.println("json : "+jObject);
-        System.out.println("map : "+map);
-    }
-	
-__________________________________________________________

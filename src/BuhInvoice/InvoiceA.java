@@ -48,14 +48,15 @@ public class InvoiceA extends Basic {
     }
 
     /**
-     * OBS! Note if "kundId" does not exist it will not
-     * be possible to insert a invoice because of the "foreign key constraints".
-     * 
+     * OBS! Note if "kundId" does not exist it will not be possible to insert a
+     * invoice because of the "foreign key constraints".
+     *
      * It will maybe make sense to verify if the "kundId" exist in cloud
-     * @return 
+     *
+     * @return
      */
     protected String getKundId() {
-        return "1";
+        return "2";
     }
 
     protected String getFakturaNr() {
@@ -114,8 +115,6 @@ public class InvoiceA extends Basic {
         this.buh_Faktura_Entry.htmlFaktura();
     }
 
-   
-
     public void addArticleForJTable(JTable table) {
         this.buh_Faktura_Entry.addArticleForJTable(table);
     }
@@ -132,10 +131,38 @@ public class InvoiceA extends Basic {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
 
+    private String getJComboString_a(String keyOne, String keyTwo) {
+        //
+        String comboString;
+        //
+        HashMap<String, String> map = new HashMap<>();
+        map.put("kundId", getKundId());
+        String json = JSon.hashMapToJSON(map);
+        //
+         try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_KUNDER__, json));
+            //
+            //
+            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return,
+                    DB.BUH_FAKTURA_KUND___NAMN,DB.BUH_FAKTURA_KUND__ID);
+            //
+            System.out.println("combo string: " + comboString);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            comboString = null;
+        }
+        //
+        return comboString;
+    }
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
+//        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
+        String fixedComboValues_a = getJComboString_a("", "");
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();

@@ -16,6 +16,7 @@ public class DB {
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db";
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db";
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr";
+    public static final String PHP_FUNC_GET_KUNDER__ = "get_kunder"; // "__" additional prefix on the end means that it's a "select" function
     //
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";
@@ -36,6 +37,9 @@ public class DB {
     public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
     public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
+    //
+    public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
+    public static final String BUH_FAKTURA_KUND___NAMN = "namn";
     //
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";
