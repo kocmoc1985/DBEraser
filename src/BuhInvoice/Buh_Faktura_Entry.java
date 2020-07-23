@@ -81,8 +81,10 @@ public class Buh_Faktura_Entry {
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
+            String fakturaId = HelpBuh.http_get_content_post(HelpBuh.insert(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_TO_DB, json));
+            //
+            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
