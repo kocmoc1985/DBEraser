@@ -25,8 +25,8 @@ import javax.swing.JFrame;
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
     private InvoiceA invoiceA;
-    private  InvoiceB invoiceB;
-           
+    private InvoiceB invoiceB;
+
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -52,7 +52,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     protected String getKundId() {
         return "1";
     }
-    
+
+    protected String getKundId_JSON_Entry() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(DB.BUH_KUND__ID, getKundId());
+        return JSon.hashMapToJSON(map);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -242,8 +248,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(709, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,22 +290,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 //          invoiceA.test();
-          //
-          HashMap<String,String>map = new HashMap<>();
-          map.put("kundId", "2");
-          String json = JSon.hashMapToJSON(map);
-          //
-           try {
+        //
+        String json = getKundId_JSON_Entry();
+        //
+        try {
             //
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__$, json));
             //
-            
-            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
-          //
+        //
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {

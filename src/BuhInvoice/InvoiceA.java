@@ -139,9 +139,7 @@ public class InvoiceA extends Basic {
          //
         String comboString;
         //
-        HashMap<String, String> map = new HashMap<>();
-        map.put("kundId", bim.getKundId());
-        String json = JSon.hashMapToJSON(map);
+        String json = bim.getKundId_JSON_Entry();
         //
          try {
             //

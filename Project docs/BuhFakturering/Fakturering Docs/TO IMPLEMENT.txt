@@ -1,6 +1,2 @@
 [2020-07-24]
 Make check for "float" inputs and namely check for "," 
-
-
-[2020-07-24]
-Introduce field "betald" for "buh_faktura" table

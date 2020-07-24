@@ -21,8 +21,10 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES__$ = "get_kund_articles"; // using php-function: "get_by_kundid()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__$ = "get_kund_fakturor"; // using php-function: "get_by_kundid()"
     //
+    public static final String BUH_FAKTURA__ID__ = "fakturaId";
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";
+    public static final String BUH_FAKTURA__FAKTURATYP = "fakturatyp";
     public static final String BUH_FAKTURA__FAKTURAKUND_ID = "fakturaKundId";
     public static final String BUH_FAKTURA__FAKTURA_DATUM = "fakturadatum";
     public static final String BUH_FAKTURA__FORFALLO_DATUM = "forfallodatum";
@@ -39,10 +41,13 @@ public class DB {
     public static final String BUH_FAKTURA__TOTAL__ = "total_ink_moms";
     public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
     public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
+    public static final String BUH_FAKTURA__VALUTA = "valuta";
+    public static final String BUH_FAKTURA__BETALD = "betald";
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND___NAMN = "namn";
+    public static final String BUH_FAKTURA_KUND___KUNDNR = "kundnr";
     //
     public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";
@@ -54,4 +59,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__ENHET = "enhet";
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
+    //
+    //
+    public static final String BUH_KUND__ID = "kundId";
 }

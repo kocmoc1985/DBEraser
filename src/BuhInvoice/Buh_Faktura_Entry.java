@@ -179,7 +179,7 @@ public class Buh_Faktura_Entry {
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map_for_show_in_jtable = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_2, 1, invoiceA.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         this.articlesListJTable.add(map_for_show_in_jtable);
-        addToJTable(map_for_show_in_jtable, table);
+        addRowToJTable(map_for_show_in_jtable, table);
     }
 
     private void countFakturaTotal(HashMap<String, String> map) {
@@ -200,7 +200,7 @@ public class Buh_Faktura_Entry {
         //
     }
 
-    private void addToJTable(HashMap<String, String> map, JTable table) {
+    private void addRowToJTable(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
