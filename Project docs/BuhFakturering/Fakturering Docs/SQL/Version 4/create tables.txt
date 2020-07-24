@@ -81,7 +81,7 @@ ska_bokforas boolean DEFAULT false,
 request_factoring boolean DEFAULT false,
 factoring_status integer DEFAULT 0,
 makulerad boolean DEFAULT false,
-date_created varchar(30) DEFAULT 'na',
+date_created varchar(30) DEFAULT 'n/a',
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 ); 

@@ -15,10 +15,6 @@ import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
 import forall.JSon;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -28,11 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
-import javax.swing.plaf.basic.DefaultMenuLayout;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,8 +40,24 @@ public class InvoiceA extends Basic {
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
         this.buh_invoice_main = buh_invoice_main;
+        initOther();
     }
 
+    private void initOther(){
+        showTableInvert();
+        showTableInvert_2();
+        showTableInvert_3();
+        fillJTableheader();
+    }
+    
+    private void fillJTableheader(){
+        String[] headers = {"ARTIKEL", "KOMMENTAR", "ANTAL", "ENHET", "PRIS", "RABATT"};
+        String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
+        //             {"", "", "", "", "", ""}
+        };
+        this.buh_invoice_main.jTable1_InvoideA_articles.setModel(new DefaultTableModel(null, headers));
+    }
+    
     /**
      * OBS! Note if "kundId" does not exist it will not be possible to insert a
      * invoice because of the "foreign key constraints".

@@ -25,8 +25,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
-    private final InvoiceA invoiceA = new InvoiceA(this);
-
+    private InvoiceA invoiceA;
+    private  InvoiceB invoiceB;
+           
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -36,20 +37,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }
 
     private void initOhter() {
+        invoiceB = new InvoiceB(this);
+        invoiceA = new InvoiceA(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        invoiceA.showTableInvert();
-        invoiceA.showTableInvert_2();
-        invoiceA.showTableInvert_3();
-        test_fill_jtable();
-    }
-
-    private void test_fill_jtable() {
-        String[] headers = {"ARTIKEL", "KOMMENTAR", "ANTAL", "ENHET", "PRIS", "RABATT"};
-        String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
-        //             {"", "", "", "", "", ""}
-        };
-        //
-        jTable1.setModel(new DefaultTableModel(null, headers));
+//        invoiceA.showTableInvert();
+//        invoiceA.showTableInvert_2();
+//        invoiceA.showTableInvert_3();     
     }
 
     /**
@@ -71,7 +64,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1_InvoideA_articles = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jTextField_total_inkl_moms = new javax.swing.JTextField();
         jTextField_moms = new javax.swing.JTextField();
@@ -79,6 +72,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel3_faktura_sec = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -106,7 +100,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1_InvoideA_articles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -117,7 +111,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTable1_InvoideA_articles);
 
         jPanel2.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
@@ -219,6 +213,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("FAKTURA", jPanel1);
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1519, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 991, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("FAKTUROR", jPanel3);
+
         jScrollPane1.setViewportView(jTabbedPane1);
 
         getContentPane().add(jScrollPane1);
@@ -237,7 +244,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //
-        invoiceA.addArticleForJTable(jTable1);
+        invoiceA.addArticleForJTable(jTable1_InvoideA_articles);
         //
         invoiceA.addArticleForDB();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -411,13 +418,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel2_faktura_main;
+    private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
     protected javax.swing.JPanel jPanel_articles;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    protected javax.swing.JTable jTable1;
+    protected javax.swing.JTable jTable1_InvoideA_articles;
     public static javax.swing.JTextField jTextField_moms;
     public static javax.swing.JTextField jTextField_total_exkl_moms;
     public static javax.swing.JTextField jTextField_total_inkl_moms;

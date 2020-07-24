@@ -39,7 +39,7 @@ public class HelpBuh {
      * @deprecated 
      * @return
      */
-    public static String sendArticles(String json) {
+    private static String sendArticles(String json) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&articles_to_db=true&json=%s", json);
     }
 
@@ -50,13 +50,13 @@ public class HelpBuh {
      * @deprecated 
      * @return
      */
-    public static String testSendJson(String json) {
+    private static String testSendJson(String json) {
         return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
     }
 
     /**
      * For testing only
-     *
+     * Used by "Run_Invert_Example_C.java" [2020-07-24]
      * @param tablename
      * @param min
      * @param max
