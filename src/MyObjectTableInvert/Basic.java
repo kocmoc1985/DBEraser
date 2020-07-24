@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +58,15 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      */
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
+    }
+    
+    /**
+     * Call from: TableRowInvertB
+     * @param ti
+     * @param ke 
+     */
+    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e){
+        System.out.println(this.getClass() + "mouseWheelForward() from TableRowInvertB. curr col: " + ti.getCurrentColumnName(e.getSource()));
     }
 
     /**

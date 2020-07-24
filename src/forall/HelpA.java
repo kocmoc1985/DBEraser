@@ -55,6 +55,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -2512,11 +2513,27 @@ public class HelpA {
         return new_date;
     }
 
+    
+    public static boolean isDateValid(String date_yyyy_mm_dd) {
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        return sdf.parse(date_yyyy_mm_dd, new ParsePosition(0)) != null;
+    }
+    
     public static String get_date_time_plus_some_time_in_days(String date, long days) {
         String date_format = "yyyy-MM-dd";
         long time_to_plus = 86400000 * days;
         long ms = dateToMillisConverter3(date, date_format);
         long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+    
+    public static String get_date_time_minus_some_time_in_days(String date, long days) {
+        String date_format = "yyyy-MM-dd";
+        long time_to_minus = 86400000 * Math.abs(days);
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms - time_to_minus;
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
         return new_date;
     }

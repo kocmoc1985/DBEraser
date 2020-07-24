@@ -30,7 +30,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private InvoiceB invoiceB;
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
-     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
+    private final static String TAB_CREATE_FAKTURA = "FAKTURA";
 
     /**
      * Creates new form BUH_INVOICE_MAIN

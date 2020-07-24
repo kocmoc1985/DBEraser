@@ -10,6 +10,7 @@ import MyObjectTable.Table;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 /**
  * For the case when SQL is NOT used [2020-07-14]
@@ -21,6 +22,18 @@ public class TableRowInvertB extends TableRowInvert {
     public TableRowInvertB(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
     }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        TableInvert ti = (TableInvert) getTable();
+        Basic consumer = ti.getTableInvertConsumer();
+        //
+        if (consumer != null) {
+            consumer.mouseWheelForward(ti, e);
+        }
+    }
+    
+    
 
     @Override
     public void keyReleased(KeyEvent ke) {

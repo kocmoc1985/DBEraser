@@ -18,6 +18,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
@@ -31,7 +33,7 @@ import javax.swing.JTextField;
  *
  * @author mcab
  */
-public class TableRowInvert extends TableRow implements KeyListener, ItemListener {
+public class TableRowInvert extends TableRow implements KeyListener,MouseWheelListener, ItemListener {
 
     private ArrayList<TableRowInvertListener> tableRowListenerList = new ArrayList<TableRowInvertListener>();
 
@@ -158,6 +160,7 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
         if (add_component != null) {
             add_component.addMouseListener(this);
             //
+            add_component.addMouseWheelListener(this);
             //
             JComponent component = (JComponent) add_component;
             component.addAncestorListener(this);
@@ -326,5 +329,9 @@ public class TableRowInvert extends TableRow implements KeyListener, ItemListene
         Object source = ie.getSource();
         //
         add_to_unsaved(source);
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
     }
 }

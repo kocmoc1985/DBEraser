@@ -15,9 +15,11 @@ import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
 import forall.JSon;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -25,6 +27,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,14 +47,14 @@ public class InvoiceA extends Basic {
         initOther();
     }
 
-    private void initOther(){
+    private void initOther() {
         showTableInvert();
         showTableInvert_2();
         showTableInvert_3();
         fillJTableheader();
     }
-    
-    private void fillJTableheader(){
+
+    private void fillJTableheader() {
         //
         String[] headers = {"ARTIKEL", "KOMMENTAR", "ANTAL", "ENHET", "PRIS", "RABATT"};
         String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
@@ -58,8 +62,8 @@ public class InvoiceA extends Basic {
         };
         this.bim.jTable1_InvoideA_articles.setModel(new DefaultTableModel(null, headers));
     }
-    
-    protected String getKundId(){
+
+    protected String getKundId() {
         return bim.getKundId();
     }
 
@@ -135,19 +139,19 @@ public class InvoiceA extends Basic {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
 
-    private String getJComboString_b(String php_function,String keyOne, String keyTwo){
-         //
+    private String getJComboString_b(String php_function, String keyOne, String keyTwo) {
+        //
         String comboString;
         //
         String json = bim.getKundId_JSON_Entry();
         //
-         try {
+        try {
             //
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     php_function, json));
             //
             //
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return,keyOne,keyTwo);
+            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keyOne, keyTwo);
             //
             System.out.println("combo string: " + comboString);
             //
@@ -158,14 +162,12 @@ public class InvoiceA extends Basic {
         //
         return comboString;
     }
-    
-    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
-        String fixedComboValues_a = getJComboString_b(DB.PHP_FUNC_PARAM__GET_KUNDER__$,DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
+        String fixedComboValues_a = getJComboString_b(DB.PHP_FUNC_PARAM__GET_KUNDER__$, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
@@ -329,6 +331,38 @@ public class InvoiceA extends Basic {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
+        super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
+        //
+        String col_name = ti.getCurrentColumnName(e.getSource());
+        //
+        if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+            //
+            double wheelRotation = e.getPreciseWheelRotation();
+            //
+            double scroll = wheelRotation;
+            double scroll_rounded = Math.round(scroll);
+            long value = (long) scroll_rounded;
+            //
+            String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
+            //
+            String date_new;
+            //
+            if (wheelRotation > 0) {
+                date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+            } else {
+                date_new = HelpA.get_date_time_minus_some_time_in_days(date, value);
+            }
+            //
+            setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
+            //
+            forfalloDatumAutoChange();
+            //
+        }
+        //
+    }
+
     /**
      * [2020-07-XX] SUPER important here you catch the event when key released
      * on some component so you can process this event as required
@@ -363,21 +397,39 @@ public class InvoiceA extends Basic {
                 Logger.getLogger(InvoiceA.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
             //
             boolean validated = validate(DATE_YYYY_MM_DD, val);
             //
-            System.out.println("validated: " + validated);
+            JTextField jtf = (JTextField)ke.getSource();
+            //
+            if(validated && HelpA.isDateValid(val)){
+                JTextField field = new JTextField();
+                Color initialColor = field.getForeground();
+                jtf.setForeground(initialColor);
+                forfalloDatumAutoChange();
+            }else{
+                jtf.setForeground(Color.RED);
+            }
+            //
+//            System.out.println("validated: " + validated);
         }
     }
-    
+
     public static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-    
+
     private boolean validate(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
         return matcher.find();
+    }
+
+    private void forfalloDatumAutoChange() {
+        long value = Long.parseLong(getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR));
+        String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
+        String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+        setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);
     }
 
     /**
@@ -395,10 +447,9 @@ public class InvoiceA extends Basic {
         String col_name = ti.getCurrentColumnName(ie.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
-            long value = Long.parseLong(getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR));
-            String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
-            String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
-            setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);
+            //
+            forfalloDatumAutoChange();
+            //
         } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
             //
             boolean momsInk = getInklMoms();
