@@ -69,7 +69,20 @@ public class JSon {
             //
             String[] jsonObj = entry.split(";");
             String key = jsonObj[0];
-            String value = jsonObj[1];
+            //
+//            if (keyIsInteger(key)) {
+////                System.out.println("Continue");
+//                continue;
+//            }
+            //
+            String value;
+            //
+            if (jsonObj.length == 1) {
+//                System.out.println("key, emptie value=" + key);
+                value = null;
+            } else {
+                value = jsonObj[1];
+            }
             //
             map.put(key, value);
         }
@@ -78,17 +91,62 @@ public class JSon {
     }
 
     /**
+     * I have a problem that the PHP sends me some strange key and value and
+     * namely for each "normal" column it also send me a "key/value pair" were
+     * both are numbers - and those i don't want to have. [2020-07-24]
+     *
+     * @param key
+     * @return
+     */
+    private static boolean keyIsInteger(String key) {
+        //
+        try {
+            Double.parseDouble(key);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+        //
+    }
+
+    /**
+     * [2020-07-24]
+     *
+     * @param phpJsonString
+     * @return
+     */
+    public static ArrayList<HashMap<String, String>> phpJsonResponseToHashMap(String phpJsonString) {
+        //
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        //
+        ArrayList<String> jsonEnriesList = phpJsonStringSplit(phpJsonString);
+        //
+        for (String json : jsonEnriesList) {
+            //
+            HashMap<String, String> map = JSONToHashMap(json);
+            //
+            System.out.println("map: " + map);
+            //
+            list.add(map);
+            //
+        }
+        //
+        return list;
+    }
+
+    /**
      * [2020-07-23]
+     *
      * @param phpJsonString
      * @param keyOne
      * @param keyTwo
-     * @return 
+     * @return
      */
     public static String phpJsonResponseToComboBoxString(String phpJsonString, String keyOne, String keyTwo) {
         //
         String jcomboStr = "";
         //
-        ArrayList<String>jsons = phpJsonStringSplit(phpJsonString);
+        ArrayList<String> jsons = phpJsonStringSplit(phpJsonString);
         //
         for (String json : jsons) {
             //
@@ -101,12 +159,12 @@ public class JSon {
         return jcomboStr;
         //
     }
-    
-    private static ArrayList<String> phpJsonStringSplit(String jsonStr){
+
+    private static ArrayList<String> phpJsonStringSplit(String jsonStr) {
         //
-        String[]arr = jsonStr.split("\\}");
+        String[] arr = jsonStr.split("\\}");
         //
-        ArrayList<String>list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         //
         for (String string : arr) {
             string = string.replaceAll(",\\{", "");
@@ -114,9 +172,9 @@ public class JSon {
             list.add(string);
         }
         //
-//        for (String str : list) {
-//            System.out.println("" + str);
-//        }
+        for (String str : list) {
+            System.out.println("" + str);
+        }
         //
         return list;
     }
@@ -129,9 +187,13 @@ public class JSon {
         //
         String phpJsonStr = "{\"0\";\"Telia\",\"namn\";\"Telia\",\"1\";\"3\",\"fakturaKundId\";\"3\"},{\"0\";\"Eon\",\"namn\";\"Eon\",\"1\";\"4\",\"fakturaKundId\";\"4\"},{\"0\";\"Akelius\",\"namn\";\"Akelius\",\"1\";\"5\",\"fakturaKundId\";\"5\"},{\"0\";\"Telenor\",\"namn\";\"Telenor\",\"1\";\"6\",\"fakturaKundId\";\"6\"}";
         //
-//        phpJsonStringSplit(phpJsonStr);
+        String phpJsonStr_b = "{\"fakturaId\";\"6\",\"kundId\";\"2\",\"fakturaKundId\";\"1\",\"fakturanr\";\"2\",\"namn\";\"FAKTURA BB\",\"fakturatyp\";\"NORMAL\",\"inkl_moms\";\"1\",\"fakturadatum\";\"2020-07-09\",\"forfallodatum\";\"2020-07-09\",\"valuta\";\"SEK\",\"ert_ordernr\";\"\",\"er_referens\";\"\",\"var_referens\";\"\",\"frakt\";\"0\",\"betal_vilkor\";\"10\",\"lev_vilkor\";\"FVL\",\"lev_satt\";\"P\",\"exp_avg\";\"0\",\"total_ink_moms\";\"0\",\"total_exkl_moms\";\"0\",\"moms_total\";\"0\",\"moms_sats\";\"0\",\"komment\";\"\",\"important_komment\";\"\",\"ska_bokforas\";\"0\",\"request_factoring\";\"0\",\"factoring_status\";\"0\",\"makulerad\";\"0\",\"date_created\";\"n\\/a\"},{\"fakturaId\";\"5\",\"kundId\";\"2\",\"fakturaKundId\";\"3\",\"fakturanr\";\"1\",\"namn\";\"FAKTURA AA\",\"fakturatyp\";\"NORMAL\",\"inkl_moms\";\"1\",\"fakturadatum\";\"2020-07-09\",\"forfallodatum\";\"2020-07-09\",\"valuta\";\"SEK\",\"ert_ordernr\";\"\",\"er_referens\";\"\",\"var_referens\";\"\",\"frakt\";\"0\",\"betal_vilkor\";\"10\",\"lev_vilkor\";\"FVL\",\"lev_satt\";\"P\",\"exp_avg\";\"0\",\"total_ink_moms\";\"0\",\"total_exkl_moms\";\"0\",\"moms_total\";\"0\",\"moms_sats\";\"0\",\"komment\";\"\",\"important_komment\";\"\",\"ska_bokforas\";\"0\",\"request_factoring\";\"0\",\"factoring_status\";\"0\",\"makulerad\";\"0\",\"date_created\";\"n\\/a\"}";
         //
-        System.out.println("" + phpJsonResponseToComboBoxString(phpJsonStr, "namn", "fakturaKundId"));
+//        phpJsonStringSplit(phpJsonStr_b);
+        //
+//        System.out.println("" + phpJsonResponseToComboBoxString(phpJsonStr, "namn", "fakturaKundId"));
+        //
+        phpJsonResponseToHashMap(phpJsonStr_b);
     }
 
 }
