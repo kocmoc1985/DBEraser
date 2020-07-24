@@ -30,6 +30,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private InvoiceB invoiceB;
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
+     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -478,9 +479,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             ACTUAL_TAB_NAME = title;
             //
             if (title.equals(TAB_INVOICES_OVERVIEW)) {
+                //
                 if (invoiceB == null) {
                     invoiceB = new InvoiceB(this);
                 }
+                //
+            }else if(title.equals(TAB_CREATE_FAKTURA)){
+                //
+                if(invoiceA != null){
+                  //
+                  // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
+                  // The problem was that when you switched to another tab and returned back the invert-tables were not showing
+                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
+                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
+                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
+                  //
+                }
+                //
             }
             //
         }
