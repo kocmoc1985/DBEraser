@@ -12,6 +12,8 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
 import forall.JSon;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -22,10 +24,12 @@ import javax.swing.JFrame;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
+public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener {
 
     private InvoiceA invoiceA;
     private InvoiceB invoiceB;
+    private String ACTUAL_TAB_NAME;
+    private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -36,7 +40,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     }
 
     private void initOhter() {
-        invoiceB = new InvoiceB(this);
+        //
+        this.jTabbedPane1.addMouseListener(this);
+        //
         invoiceA = new InvoiceA(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -463,4 +469,44 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame {
     public static javax.swing.JTextField jTextField_total_exkl_moms;
     public static javax.swing.JTextField jTextField_total_inkl_moms;
     // End of variables declaration//GEN-END:variables
+
+    private void mousePressedOnTab(MouseEvent me) {
+        //
+        if (me.getSource() == jTabbedPane1) {
+            //
+            String title = jTabbedPane1.getTitleAt(jTabbedPane1.getSelectedIndex());
+            ACTUAL_TAB_NAME = title;
+            //
+            if (title.equals(TAB_INVOICES_OVERVIEW)) {
+                if (invoiceB == null) {
+                    invoiceB = new InvoiceB(this);
+                }
+            }
+            //
+        }
+        //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //
+        mousePressedOnTab(e);
+        //
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 }
