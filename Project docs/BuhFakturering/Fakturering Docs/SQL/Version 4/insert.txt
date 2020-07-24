@@ -23,14 +23,13 @@ INSERT INTO `buh_faktura_kund` (`fakturaKundId`, `kundId`, `kundnr`, `namn`, `or
 
 
 /*!40000 ALTER TABLE `buh_faktura` DISABLE KEYS */;
-INSERT INTO `buh_faktura` (`fakturaId`, `kundId`, `fakturaKundId`, `fakturanr`, `namn`, `fakturatyp`, `inkl_moms`, `fakturadatum`, `forfallodatum`, `valuta`,`ert_ordernr`, `er_referens`, `var_referens`, `frakt`, `betal_vilkor`, `lev_vilkor`,`lev_satt`, `exp_avg`,`total_ink_moms`,`total_exkl_moms`,`moms_total`,`moms_sats`,`komment`, `important_komment`, `ska_bokforas`, `request_factoring`, `factoring_status`,`makulerad`,`date_created`) VALUES
-	(1, 1, 5, 1, 'FAKTURA A', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' ,'', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(2, 1, 1, 2, 'FAKTURA B', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(3, 1, 3, 3, 'FAKTURA C', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(4, 1, 4, 4, 'FAKTURA D', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(5, 2, 3, 1, 'FAKTURA AA', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(6, 2, 1, 2, 'FAKTURA BB', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT),
-	(7, 2, 2, 3, 'FAKTURA CC', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT);
+INSERT INTO `buh_faktura` (`fakturaId`, `kundId`, `fakturaKundId`, `fakturanr`, `namn`, `fakturatyp`, `inkl_moms`, `fakturadatum`, `forfallodatum`, `valuta`,`ert_ordernr`, `er_referens`, `var_referens`, `frakt`, `betal_vilkor`, `lev_vilkor`,`lev_satt`, `exp_avg`,`total_ink_moms`,`total_exkl_moms`,`moms_total`,`moms_sats`,`komment`, `important_komment`, `ska_bokforas`, `request_factoring`, `factoring_status`,`makulerad`,`betald`,`date_created`) VALUES
+	(1, 2, 5, 1, 'FAKTURA A Akelius', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' ,'', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(2, 2, 6, 2, 'FAKTURA B Telenor', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(3, 2, 3, 3, 'FAKTURA C Telia', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(4, 2, 4, 4, 'FAKTURA D Eon', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(5, 1, 1, 2, 'FAKTURA AA Securitas', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(6, 1, 2, 3, 'FAKTURA BB Telenor', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT);
 /*!40000 ALTER TABLE `buh_faktura` ENABLE KEYS */;
 
 

@@ -33,13 +33,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceA extends Basic {
 
-    private final BUH_INVOICE_MAIN buh_invoice_main;
+    private final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry(this);
 
     public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
-        this.buh_invoice_main = buh_invoice_main;
+        this.bim = buh_invoice_main;
         initOther();
     }
 
@@ -51,29 +51,22 @@ public class InvoiceA extends Basic {
     }
     
     private void fillJTableheader(){
+        //
         String[] headers = {"ARTIKEL", "KOMMENTAR", "ANTAL", "ENHET", "PRIS", "RABATT"};
         String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
         //             {"", "", "", "", "", ""}
         };
-        this.buh_invoice_main.jTable1_InvoideA_articles.setModel(new DefaultTableModel(null, headers));
+        this.bim.jTable1_InvoideA_articles.setModel(new DefaultTableModel(null, headers));
     }
     
-    /**
-     * OBS! Note if "kundId" does not exist it will not be possible to insert a
-     * invoice because of the "foreign key constraints".
-     *
-     * It will maybe make sense to verify if the "kundId" exist in cloud
-     *
-     * @return
-     */
-    protected String getKundId() {
-        return "2";
+    protected String getKundId(){
+        return bim.getKundId();
     }
 
     protected String getFakturaNr() {
         //
         HashMap<String, String> map = new HashMap<>();
-        map.put(DB.BUH_FAKTURA__KUNDID__, getKundId());
+        map.put(DB.BUH_FAKTURA__KUNDID__, bim.getKundId());
         String json = JSon.hashMapToJSON(map);
         //
         try {
@@ -147,7 +140,7 @@ public class InvoiceA extends Basic {
         String comboString;
         //
         HashMap<String, String> map = new HashMap<>();
-        map.put("kundId", getKundId());
+        map.put("kundId", bim.getKundId());
         String json = JSon.hashMapToJSON(map);
         //
          try {
@@ -288,7 +281,7 @@ public class InvoiceA extends Basic {
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
-        showTableInvert(buh_invoice_main.jPanel2_faktura_main);
+        showTableInvert(bim.jPanel2_faktura_main);
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
@@ -299,7 +292,7 @@ public class InvoiceA extends Basic {
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
-        showTableInvert(buh_invoice_main.jPanel_articles, TABLE_INVERT_2);
+        showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
@@ -309,7 +302,7 @@ public class InvoiceA extends Basic {
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(buh_invoice_main.jPanel3_faktura_sec, TABLE_INVERT_3);
+        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }

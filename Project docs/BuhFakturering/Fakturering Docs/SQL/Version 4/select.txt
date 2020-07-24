@@ -23,6 +23,15 @@ SELECT buh_faktura.fakturaId FROM `buh_faktura` WHERE buh_faktura.kundId=1 AND b
 SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1
 
 ----------------------------------------------------------------------
+SELECT ESSENTIAL FAKTURA DATA FOR GIVEN "KUND ID" [2020-07-24]
+This is used for getting fakturas for a kund, and building a "jtable"
+
+SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturatyp, buh_faktura.fakturadatum,
+buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn
+FROM buh_faktura 
+INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId WHERE buh_faktura.kundId=1
+
+----------------------------------------------------------------------
 SELECT buh_faktura.namn, buh_kund.namn FROM buh_kund 
 INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
 WHERE buh_kund.kundId=1

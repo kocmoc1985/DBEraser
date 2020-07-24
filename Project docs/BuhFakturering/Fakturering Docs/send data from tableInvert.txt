@@ -28,6 +28,10 @@ THE STRING I USE FOR JCOMBO "FIXED VALUES":
 JSON created from SQL request: "SELECT namn,fakturaKundId FROM buh_faktura_kund where kundId=2"
 {"0";"Telia","namn";"Telia","1";"3","fakturaKundId";"3"},{"0";"Eon","namn";"Eon","1";"4","fakturaKundId";"4"},{"0";"Akelius","namn";"Akelius","1";"5","fakturaKundId";"5"},{"0";"Telenor","namn";"Telenor","1";"6","fakturaKundId";"6"}
 
+JSON created from SQL request - with "MYSQLI_ASSOC" -> returns only key/value pairs wher the key is "NAME" not "NUMBER":
+FROM NOW ON [2020-07-24] I WILL ONLY USE SUCH STRUCTURE (lib.php->"executeSelectQueryJSON_ASSOC($querry)")
+{"fakturaId";"6","kundId";"2","fakturaKundId";"1","fakturanr";"2","namn";"FAKTURA BB","fakturatyp";"NORMAL","inkl_moms";"1","fakturadatum";"2020-07-09","forfallodatum";"2020-07-09","valuta";"SEK","ert_ordernr";"","er_referens";"","var_referens";"","frakt";"0","betal_vilkor";"10","lev_vilkor";"FVL","lev_satt";"P","exp_avg";"0","total_ink_moms";"0","total_exkl_moms";"0","moms_total";"0","moms_sats";"0","komment";"","important_komment";"","ska_bokforas";"0","request_factoring";"0","factoring_status";"0","makulerad";"0","date_created";"n\/a"},{"fakturaId";"5","kundId";"2","fakturaKundId";"3","fakturanr";"1","namn";"FAKTURA AA","fakturatyp";"NORMAL","inkl_moms";"1","fakturadatum";"2020-07-09","forfallodatum";"2020-07-09","valuta";"SEK","ert_ordernr";"","er_referens";"","var_referens";"","frakt";"0","betal_vilkor";"10","lev_vilkor";"FVL","lev_satt";"P","exp_avg";"0","total_ink_moms";"0","total_exkl_moms";"0","moms_total";"0","moms_sats";"0","komment";"","important_komment";"","ska_bokforas";"0","request_factoring";"0","factoring_status";"0","makulerad";"0","date_created";"n\/a"}
+
 ________________________________________________________
 
 [DECODE] The one below i use when i recieve a "json" string from java
