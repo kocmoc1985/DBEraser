@@ -1,0 +1,18 @@
+
+
+<?php
+$array1=array("Orange" => 100, "Apple" => 200, "Banana" => 300, "Cherry" => 400);
+print_r(array_keys($array1));
+?> 
+
+
+<?php
+$arr = array(1, 2, 3, 4);
+foreach ($arr as &$value) {
+    $value = $value * 2;
+}
+
+
+UPDATE Customers
+SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+WHERE CustomerID = 1;
