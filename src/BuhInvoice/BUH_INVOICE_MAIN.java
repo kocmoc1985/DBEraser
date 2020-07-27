@@ -298,12 +298,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
 //          invoiceA.test();
         //
-        String json = getKundId_JSON_Entry();
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", "fakturaId");
+        map.put("fakturaId", "1");
+        map.put("table", "buh_f_artikel");
+        //
+        map.put("pris", "159");
+        map.put("rabatt", "20");
+        map.put("komment","kontrollera");
+        //
+        String json = JSon.hashMapToJSON(map);
         //
         try {
             //
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__$, json));
+                    DB.PHP_FUNC_GET_AUTO, json));
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
@@ -484,16 +494,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     invoiceB = new InvoiceB(this);
                 }
                 //
-            }else if(title.equals(TAB_CREATE_FAKTURA)){
+            } else if (title.equals(TAB_CREATE_FAKTURA)) {
                 //
-                if(invoiceA != null){
-                  //
-                  // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
-                  // The problem was that when you switched to another tab and returned back the invert-tables were not showing
-                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
-                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
-                  invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
-                  //
+                if (invoiceA != null) {
+                    //
+                    // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
+                    // The problem was that when you switched to another tab and returned back the invert-tables were not showing
+                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
+                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
+                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
+                    //
                 }
                 //
             }

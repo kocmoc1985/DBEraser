@@ -21,6 +21,8 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES__$ = "get_kund_articles"; // using php-function: "get_by_kundid()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__$ = "get_kund_fakturor"; // using php-function: "get_by_kundid()"
     //
+    public static final String PHP_FUNC_GET_AUTO = "update_auto"; // using php-function: "updateAuto()"
+    //
     public static final String BUH_FAKTURA__ID__ = "fakturaId";
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";
