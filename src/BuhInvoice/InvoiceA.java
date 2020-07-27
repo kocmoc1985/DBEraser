@@ -48,10 +48,35 @@ public class InvoiceA extends Basic {
     }
 
     private void initOther() {
-        showTableInvert();
-        showTableInvert_2();
-        showTableInvert_3();
-        fillJTableheader();
+        //
+        startUp();
+        //
+    }
+    
+    protected void startUp(){
+       //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                showTableInvert();
+            }
+        });
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                showTableInvert_2();
+            }
+        });
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                showTableInvert_3();
+            }
+        });
+        //
+        fillJTableheader(); 
     }
 
     private void fillJTableheader() {
@@ -139,7 +164,7 @@ public class InvoiceA extends Basic {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
 
-    private String getJComboString_b(String php_function, String keyOne, String keyTwo) {
+    protected String getJComboStringTableInvert(String php_function, String keyOne, String keyTwo) {
         //
         String comboString;
         //
@@ -163,11 +188,12 @@ public class InvoiceA extends Basic {
         return comboString;
     }
 
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
-        String fixedComboValues_a = getJComboString_b(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
+        String fixedComboValues_a = getJComboStringTableInvert(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
@@ -212,7 +238,7 @@ public class InvoiceA extends Basic {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        String fixedComboValues_a = getJComboString_b(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
+        String fixedComboValues_a = getJComboStringTableInvert(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
         kund.enableFixedValuesAdvanced();
@@ -426,7 +452,14 @@ public class InvoiceA extends Basic {
     }
 
     private void forfalloDatumAutoChange() {
-        long value = Long.parseLong(getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR));
+        //
+        String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
+        //
+        if(val.equals("NULL")){
+          return;
+        }
+        //
+        long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
         String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);

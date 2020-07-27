@@ -30,7 +30,9 @@ import javax.swing.JFrame;
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA invoiceA;
+    private InvoiceA_B invoiceA_B;
     private InvoiceB invoiceB;
+    
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
@@ -125,6 +127,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel3_faktura_sec = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_invoiceB_alla_fakturor = new javax.swing.JTable();
@@ -211,6 +214,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jButton7.setText("CLEAR");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,7 +253,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -254,7 +267,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField_total_exkl_moms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,6 +409,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       invoiceA.clearAllRowsTableInvert(invoiceA.TABLE_INVERT);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
         String csv = tableInvertToCSV(table, startColumn, cfg);
@@ -538,6 +557,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel2_faktura_main;
@@ -569,6 +589,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (invoiceB == null) {
                     invoiceB = new InvoiceB(this);
+                    invoiceA_B = new InvoiceA_B(this);
                 }
                 //
             } else if (title.equals(TAB_CREATE_FAKTURA)) {
@@ -580,6 +601,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
                     invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
                     invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
+                    //
+//                    invoiceA_B.refreshTableInvert(invoiceA_B.TABLE_INVERT);
                     //
                 }
                 //
@@ -601,6 +624,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         if (e.getSource() == jTable_invoiceB_alla_fakturor && (e.getClickCount() == 1)) {
             //
             jtableAllInvoicesClicked();
+            //
+//            invoiceA_B.showTableInvert();
             //
         }
     }
