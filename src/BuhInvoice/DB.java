@@ -21,6 +21,8 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "get_by_kundid()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "get_by_kundid()"
     //
+    public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
+    //
     public static final String PHP_FUNC_GET_AUTO = "update_auto"; // using php-function: "update()"
     //
     public static final String BUH_FAKTURA__ID__ = "fakturaId";
