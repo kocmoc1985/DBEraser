@@ -11,16 +11,17 @@ package BuhInvoice;
  */
 public class DB {
 
+    public static final String DB__BUH_F_ARTIKEL = "buh_f_artikel";
+    public static final String DB__BUH_FAKTURA = "buh_faktura";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     //
-    public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "get_by_kundid()"
-    public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "get_by_kundid()"
-    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "get_by_kundid()"
-    //
+    public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     //
     public static final String PHP_FUNC_GET_AUTO = "update_auto"; // using php-function: "update()"
@@ -56,6 +57,7 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";
     //
+    public static final String BUH_F_ARTIKEL__ID = "id";
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";
     public static final String BUH_F_ARTIKEL__KOMMENT = "komment";

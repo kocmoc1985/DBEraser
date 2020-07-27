@@ -60,7 +60,7 @@ public class InvoiceA extends Basic {
         String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
         //             {"", "", "", "", "", ""}
         };
-        this.bim.jTable1_InvoideA_articles.setModel(new DefaultTableModel(null, headers));
+        this.bim.jTable_InvoiceA_articles.setModel(new DefaultTableModel(null, headers));
     }
 
     protected String getKundId() {
@@ -143,7 +143,7 @@ public class InvoiceA extends Basic {
         //
         String comboString;
         //
-        String json = bim.getKundId_JSON_Entry();
+        String json = bim.getSELECT_kundId();
         //
         try {
             //
