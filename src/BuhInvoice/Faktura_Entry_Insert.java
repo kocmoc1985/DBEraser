@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class Buh_Faktura_Entry {
+public class Faktura_Entry_Insert {
 
-    private final InvoiceA invoiceA;
+    private final InvoiceA_Insert invoiceA;
     private HashMap<String, String> mainMap = new HashMap<>();
     private HashMap<String, String> secMap = new HashMap<>();
     private HashMap<String, String> fakturaMap = new HashMap<>();
@@ -34,7 +34,7 @@ public class Buh_Faktura_Entry {
     private double FAKTURA_TOTAL = 0;
     private double MOMS_TOTAL = 0;
 
-    public Buh_Faktura_Entry(InvoiceA invoiceA) {
+    public Faktura_Entry_Insert(InvoiceA_Insert invoiceA) {
         this.invoiceA = invoiceA;
     }
     

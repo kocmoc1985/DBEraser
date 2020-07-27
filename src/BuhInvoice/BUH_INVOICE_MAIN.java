@@ -29,8 +29,8 @@ import javax.swing.JFrame;
  */
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
-    private InvoiceA invoiceA;
-    private InvoiceA_B invoiceA_B;
+    private InvoiceA_Insert invoiceA;
+    private InvoiceA_Update invoiceA_B;
     private InvoiceB invoiceB;
     
     private String ACTUAL_TAB_NAME;
@@ -51,7 +51,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.jTable_invoiceB_alla_fakturor.addMouseListener(this);
         this.jTable_invoiceB_alla_fakturor.addKeyListener(this);
         //
-        invoiceA = new InvoiceA(this);
+        invoiceA = new InvoiceA_Insert(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -589,7 +589,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (invoiceB == null) {
                     invoiceB = new InvoiceB(this);
-                    invoiceA_B = new InvoiceA_B(this);
+                    invoiceA_B = new InvoiceA_Update(this);
                 }
                 //
             } else if (title.equals(TAB_CREATE_FAKTURA)) {

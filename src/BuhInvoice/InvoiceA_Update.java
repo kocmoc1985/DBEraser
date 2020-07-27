@@ -13,9 +13,9 @@ import forall.HelpA;
  *
  * @author MCREMOTE
  */
-public class InvoiceA_B extends InvoiceA{
+public class InvoiceA_Update extends InvoiceA_Insert{
 
-    public InvoiceA_B(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
 

@@ -35,14 +35,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class InvoiceA extends Basic {
+public class InvoiceA_Insert extends Basic {
 
     private final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
-    private Buh_Faktura_Entry buh_Faktura_Entry = new Buh_Faktura_Entry(this);
+    private Faktura_Entry_Insert buh_Faktura_Entry = new Faktura_Entry_Insert(this);
 
-    public InvoiceA(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceA_Insert(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
@@ -156,7 +156,7 @@ public class InvoiceA extends Basic {
         this.buh_Faktura_Entry.addArticleForDB();
     }
 
-    public Buh_Faktura_Entry getBuhFakturaEntry() {
+    public Faktura_Entry_Insert getBuhFakturaEntry() {
         return buh_Faktura_Entry;
     }
 
@@ -410,8 +410,9 @@ public class InvoiceA extends Basic {
             try {
                 HelpA.writeToFile(IO.VAR_REFERENS, var_referens);
             } catch (IOException ex) {
-                Logger.getLogger(InvoiceA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
@@ -420,8 +421,9 @@ public class InvoiceA extends Basic {
             try {
                 HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), er_referens);
             } catch (IOException ex) {
-                Logger.getLogger(InvoiceA.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
