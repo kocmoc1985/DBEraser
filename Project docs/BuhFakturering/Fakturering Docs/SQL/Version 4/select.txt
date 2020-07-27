@@ -63,18 +63,24 @@ WHERE buh_kund.kundId=2
 
 SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA"
 
-SELECT * FROM buh_f_artikel 
-WHERE buh_f_artikel.fakturaId=6
+SELECT * FROM buh_f_artikel WHERE buh_f_artikel.fakturaId=6
 
 -----------------------------------------------------------------------------
 
 SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA" (ADVANCED, not showing entries where artikelId not specified)
 
-SELECT buh_kund.namn ,buh_faktura.namn, buh_faktura.fakturaId, buh_faktura_artikel.namn, Buh_F_artikel.antal FROM `buh_faktura`
-INNER JOIN Buh_F_artikel ON buh_faktura.fakturaId = Buh_F_artikel.fakturaId
-INNER JOIN buh_faktura_artikel ON Buh_F_artikel.artikelId = buh_faktura_artikel.artikelId
+[WORKING][TESTED: 2020-07-27]
+SELECT buh_kund.namn ,buh_faktura.namn, buh_faktura.fakturaId, buh_faktura_artikel.namn, buh_f_artikel.antal FROM `buh_faktura`
+INNER JOIN buh_f_artikel ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
+INNER JOIN buh_faktura_artikel ON buh_f_artikel.artikelId = buh_faktura_artikel.artikelId
 INNER JOIN buh_kund ON buh_faktura.kundId = buh_kund.kundId
 WHERE buh_faktura.fakturaId=1
+
+
+[2020-07-27]
+SELECT buh_faktura_artikel.namn, buh_f_artikel.id, buh_f_artikel.antal, buh_f_artikel.pris, buh_f_artikel.komment FROM `buh_faktura_artikel`
+RIGHT OUTER JOIN buh_f_artikel ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
+WHERE buh_f_artikel.fakturaId=6
 
 -----------------------------------------------------------------------------
 

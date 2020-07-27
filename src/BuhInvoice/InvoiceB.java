@@ -60,8 +60,7 @@ public class InvoiceB extends Basic {
         //
         JTable table_b = this.bim.jTable_invoiceB_faktura_artiklar;
         //
-        String[] headers_b = {"ID", "ANTAL", "PRIS",
-            "KOMMENT"};
+        String[] headers_b = {"ID", "NAMN","KOMMENT", "ANTAL", "PRIS"};
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
     }
@@ -107,9 +106,10 @@ public class InvoiceB extends Basic {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ID),
+            map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN),
+            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            map.get(DB.BUH_F_ARTIKEL__PRIS),
-            map.get(DB.BUH_F_ARTIKEL__KOMMENT)
+            map.get(DB.BUH_F_ARTIKEL__PRIS)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
