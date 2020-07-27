@@ -1661,7 +1661,7 @@ public class HelpA {
             return false;
         }
     }
-    
+
     public static boolean checkIfNumber_b(String value) {
         try {
             Double.parseDouble(value);
@@ -2071,14 +2071,15 @@ public class HelpA {
         //
         return null;
     }
-    
+
     /**
      * [2020-07-17]
+     *
      * @param box
      * @param paramToReturn
-     * @return 
+     * @return
      */
-     public static String getComboBoxSelectedValue(JComboBox box, int paramToReturn) {
+    public static String getComboBoxSelectedValue(JComboBox box, int paramToReturn) {
         Object val = box.getSelectedItem();
         //
         if (val == null) {
@@ -2513,13 +2514,12 @@ public class HelpA {
         return new_date;
     }
 
-    
     public static boolean isDateValid(String date_yyyy_mm_dd) {
-       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
         return sdf.parse(date_yyyy_mm_dd, new ParsePosition(0)) != null;
     }
-    
+
     public static String get_date_time_plus_some_time_in_days(String date, long days) {
         String date_format = "yyyy-MM-dd";
         long time_to_plus = 86400000 * days;
@@ -2528,7 +2528,7 @@ public class HelpA {
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
         return new_date;
     }
-    
+
     public static String get_date_time_minus_some_time_in_days(String date, long days) {
         String date_format = "yyyy-MM-dd";
         long time_to_minus = 86400000 * Math.abs(days);
@@ -2692,8 +2692,8 @@ public class HelpA {
             java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-    
-     public static HashMap<String,String> joinHashMaps(HashMap p1, HashMap p2) {
+
+    public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {
         //
         HashMap joined_properties = new HashMap();
         //
@@ -2701,7 +2701,7 @@ public class HelpA {
         Iterator it = set.iterator();
         while (it.hasNext()) {
             String key = (String) it.next();
-            String value = (String)p1.get(key);
+            String value = (String) p1.get(key);
             joined_properties.put(key, value);
         }
         //
@@ -2710,10 +2710,20 @@ public class HelpA {
         //
         while (it_2.hasNext()) {
             String key = (String) it_2.next();
-            String value = (String)p2.get(key);
+            String value = (String) p2.get(key);
             joined_properties.put(key, value);
         }
         //
         return joined_properties;
+    }
+
+    public static String getValHashMap(String value) {
+        //
+        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
+            return "";
+        } else {
+            return value;
+        }
+        //
     }
 }

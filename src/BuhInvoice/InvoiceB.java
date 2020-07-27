@@ -106,7 +106,7 @@ public class InvoiceB extends Basic {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ID),
-            map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN),
+            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__PRIS)
