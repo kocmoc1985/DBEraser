@@ -47,20 +47,20 @@ public class InvoiceB extends Basic {
         // "ID" -> "buh_faktura.fakturaId"
         //
         String[] headers = {"ID", "FAKTURANR", "FAKTURATYP",
-            "KUNDNR", "KUND", "FAKTURADATUM", "FÖRFALLODATUM",
+            "KUND", "FAKTURADATUM", "FÖRFALLODATUM",
             "EXKL MOMS", "TOTAL", "VALUTA", "BETALD"};
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
 //        System.out.println("" + table.getFont());
         //
-        table.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
         //
         //
         JTable table_b = this.bim.jTable_invoiceB_faktura_artiklar;
         //
-        String[] headers_b = {"ID", "NAMN","KOMMENT", "ANTAL", "PRIS"};
+        String[] headers_b = {"ID", "ARTIKEL", "KOMMENT", "ANTAL", "PRIS"};
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
     }
@@ -119,6 +119,8 @@ public class InvoiceB extends Basic {
 
     private void fillFakturaTable() {
         //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
         String json = bim.getSELECT_kundId();
         //
         try {
@@ -130,7 +132,7 @@ public class InvoiceB extends Basic {
             //
             //
             for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable_all_invoices(invoice_map, bim.jTable_invoiceB_alla_fakturor);
+                addRowJtable_all_invoices(invoice_map, table);
             }
             //
             //
@@ -138,6 +140,7 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        HelpA.hideColumnByName(table, "ID");
         //
     }
 
@@ -147,7 +150,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__ID__),
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
             map.get(DB.BUH_FAKTURA__FAKTURATYP),
-            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
+//            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
             map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
             map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),

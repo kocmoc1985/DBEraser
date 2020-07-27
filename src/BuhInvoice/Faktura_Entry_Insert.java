@@ -23,16 +23,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Faktura_Entry_Insert {
 
-    private final InvoiceA_Insert invoiceA;
-    private HashMap<String, String> mainMap = new HashMap<>();
-    private HashMap<String, String> secMap = new HashMap<>();
-    private HashMap<String, String> fakturaMap = new HashMap<>();
+    protected final InvoiceA_Insert invoiceA;
+    protected HashMap<String, String> mainMap = new HashMap<>();
+    protected HashMap<String, String> secMap = new HashMap<>();
+    protected HashMap<String, String> fakturaMap = new HashMap<>();
     private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
-    private double FAKTURA_TOTAL_EXKL_MOMS = 0;
-    private double FAKTURA_TOTAL = 0;
-    private double MOMS_TOTAL = 0;
+    protected double FAKTURA_TOTAL_EXKL_MOMS = 0;
+    protected double FAKTURA_TOTAL = 0;
+    protected double MOMS_TOTAL = 0;
 
     public Faktura_Entry_Insert(InvoiceA_Insert invoiceA) {
         this.invoiceA = invoiceA;
@@ -77,7 +77,7 @@ public class Faktura_Entry_Insert {
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
      */
-    private void setMainFakturaData() {
+    protected void setMainFakturaData() {
         //
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
         this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
@@ -110,7 +110,7 @@ public class Faktura_Entry_Insert {
 
     
 
-    private void setFakturaIdForArticles(String fakturaId) {
+    protected void setFakturaIdForArticles(String fakturaId) {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
             article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
@@ -132,7 +132,7 @@ public class Faktura_Entry_Insert {
         //
     }
 
-    private void articlesToHttpDB() {
+    protected void articlesToHttpDB() {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
             //
@@ -224,7 +224,7 @@ public class Faktura_Entry_Insert {
         //
     }
 
-    private String getDateWithTime() {
+    protected String getDateWithTime() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
