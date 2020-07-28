@@ -92,10 +92,37 @@ public class InvoiceA_Update extends InvoiceA_Insert {
         return rows;
     }
 
-//    @Override
-//    public RowDataInvert[] getConfigTableInvert_3() {
-//        return super.getConfigTableInvert_3(); //To change body of generated methods, choose Tools | Templates.
-//    }
+public RowDataInvert[] getConfigTableInvert_3() {
+        //
+        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
+        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
+        inkl_exkl_moms.enableFixedValuesAdvanced();
+        inkl_exkl_moms.setUneditable();
+        //
+        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        moms.enableFixedValuesAdvanced();
+        moms.setUneditable();
+        //
+        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
+        //
+        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
+        //
+        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
+        RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
+        makulerad.enableFixedValuesAdvanced();
+        makulerad.setUneditable();
+        //
+        RowDataInvert[] rows = {
+            inkl_exkl_moms,
+            moms,
+            expavgift,
+            frakt,
+            makulerad
+        };
+        //
+        return rows;
+    }
     
     
     

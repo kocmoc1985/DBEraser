@@ -14,6 +14,10 @@ public class DB {
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
     public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
     public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
+    public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
+    public static final String STATIC__MOMS_SATS = "25%;0.25,12%;0.12,6%;0.06";
+    public static final String STATIC__MAKULERAD_JA_NEJ = "Nej;0,Ja;1";
+    public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     //
     //
     public static final String DB__BUH_F_ARTIKEL = "buh_f_artikel";

@@ -205,17 +205,17 @@ public class InvoiceA_Insert extends Basic {
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         RowDataInvert var_referens = new RowDataInvertB(HelpA.loadLastEntered(IO.VAR_REFERENS), DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
-        String fixedComboValues_b = "30,60,20,15,10,5";
+        String fixedComboValues_b = DB.STATIC__BETAL_VILKOR;
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
         betal_vilkor.setUneditable();
         //
-        String fixedComboValues_c = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
+        String fixedComboValues_c = DB.STATIC__LEV_VILKOR;
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         lev_vilkor.setUneditable();
         //
-        String fixedComboValues_d = "Post;P,Hämtas;HAM";
+        String fixedComboValues_d = DB.STATIC__LEV_SATT;
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
@@ -246,7 +246,7 @@ public class InvoiceA_Insert extends Basic {
         //
         RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", true, true, false);
         //
-        String fixedComboValues_b = "Styck;st,Förp;Förp,Timmar;Tim";
+        String fixedComboValues_b = DB.STATIC__ENHET;
         RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
         enhet.enableFixedValuesAdvanced();
         enhet.setUneditable();
@@ -269,12 +269,12 @@ public class InvoiceA_Insert extends Basic {
 
     public RowDataInvert[] getConfigTableInvert_3() {
         //
-        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
+        String fixedComboValues_a = DB.STATIC__INKL_EXKL_MOMS; // This will aquired from SQL
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
         //
-        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
+        String fixedComboValues_c = DB.STATIC__MOMS_SATS; // This will aquired from SQL
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
@@ -283,7 +283,7 @@ public class InvoiceA_Insert extends Basic {
         //
         RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
         //
-        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
+        String fixedComboValues_b = DB.STATIC__MAKULERAD_JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
