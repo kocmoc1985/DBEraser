@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -610,6 +611,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             //
                             invoiceA_update.showTableInvert_3();
                             invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_3);
+                            //
+                            DefaultTableModel dtm = (DefaultTableModel)jTable_invoiceB_faktura_artiklar.getModel();
+                            jTable_InvoiceA_articles.setModel(dtm);
                         }
                     });
                     //

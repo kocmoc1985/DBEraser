@@ -54,7 +54,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
-    
+
     private void fillJTableheader() {
         //
         //
@@ -97,9 +97,10 @@ public class InvoiceB extends Basic {
         //
         JTable table_b = this.bim.jTable_invoiceB_faktura_artiklar;
         //
-        String[] headers_b = {"ID", "ARTIKEL", "KOMMENT", "ANTAL", "PRIS"};
+        String[] headers_b = {"ID", "ARTIKEL", "KOMMENT", "ANTAL", "ENHET", "PRIS", "RABATT"};
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
+        //
     }
 
     protected void all_invoices_table_clicked(String fakturaId) {
@@ -211,7 +212,9 @@ public class InvoiceB extends Basic {
             HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            map.get(DB.BUH_F_ARTIKEL__PRIS)
+            map.get(DB.BUH_F_ARTIKEL__ENHET),
+            map.get(DB.BUH_F_ARTIKEL__PRIS),
+            map.get(DB.BUH_F_ARTIKEL__RABATT)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

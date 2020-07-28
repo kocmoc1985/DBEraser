@@ -17,3 +17,24 @@ WHERE buh_f_artikel.fakturaId=6
 [2020-07-27]
 
 Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
+
+
+[2020-07-28]
+
+InvoiceA
+artikel / namn
+kommentar
+antal
+enhet
+pris
+rabatt
+
+InvoiceB
+id
+namn
+komment
+antal
+pris
+rabatt
+
+
