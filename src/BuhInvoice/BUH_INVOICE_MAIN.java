@@ -12,7 +12,6 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
 import forall.HelpA;
-import forall.JSon;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -30,9 +29,9 @@ import javax.swing.JFrame;
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA_Insert invoiceA;
-    private InvoiceA_Update invoiceA_B;
+    private InvoiceA_Update invoiceA_update;
     private InvoiceB invoiceB;
-    
+
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
@@ -411,7 +410,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       invoiceA.clearAllRowsTableInvert(invoiceA.TABLE_INVERT);
+        invoiceA.clearAllRowsTableInvert(invoiceA.TABLE_INVERT);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
@@ -589,7 +588,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (invoiceB == null) {
                     invoiceB = new InvoiceB(this);
-                    invoiceA_B = new InvoiceA_Update(this);
+                    invoiceA_update = new InvoiceA_Update(this);
                 }
                 //
             } else if (title.equals(TAB_CREATE_FAKTURA)) {
@@ -598,11 +597,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     //
                     // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
                     // The problem was that when you switched to another tab and returned back the invert-tables were not showing
-                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
-                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
-                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
+//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
+//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
+//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
                     //
-//                    invoiceA_B.refreshTableInvert(invoiceA_B.TABLE_INVERT);
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            invoiceA_update.showTableInvert(); //[$TEST$]
+                            invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT); // //[$TEST$]
+                        }
+                    });
                     //
                 }
                 //
@@ -625,7 +630,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             jtableAllInvoicesClicked();
             //
-//            invoiceA_B.showTableInvert();
+
             //
         }
     }

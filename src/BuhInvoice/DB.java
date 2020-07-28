@@ -11,6 +11,11 @@ package BuhInvoice;
  */
 public class DB {
 
+    public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
+    public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
+    public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
+    //
+    //
     public static final String DB__BUH_F_ARTIKEL = "buh_f_artikel";
     public static final String DB__BUH_FAKTURA = "buh_faktura";
     //

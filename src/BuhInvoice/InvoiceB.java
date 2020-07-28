@@ -8,7 +8,6 @@ package BuhInvoice;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
-import forall.JSon;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +38,17 @@ public class InvoiceB extends Basic {
 //        fillFakturaArticlesTable();
     }
 
+    public static String TABLE_ALL_INVOICES__ID = "ID";
+    public static String TABLE_ALL_INVOICES__KUND = "KUND";
+    public static String TABLE_ALL_INVOICES__KUND_ID = "KUND ID";
+    public static String TABLE_ALL_INVOICES__DATUM = "FAKTURADATUM";
+    public static String TABLE_ALL_INVOICES__FORFALLODATUM = "FÖRFALLODATUM";
+    public static String TABLE_ALL_INVOICES__VAR_REF = "VAR REF";
+    public static String TABLE_ALL_INVOICES__ER_REF = "ER REF";
+    public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
+    public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
+    public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
+    
     private void fillJTableheader() {
         //
         //
@@ -46,9 +56,24 @@ public class InvoiceB extends Basic {
         //        
         // "ID" -> "buh_faktura.fakturaId"
         //
-        String[] headers = {"ID", "FAKTURANR", "FAKTURATYP",
-            "KUND", "FAKTURADATUM", "FÖRFALLODATUM",
-            "EXKL MOMS", "TOTAL", "VALUTA", "BETALD"};
+        String[] headers = {
+            TABLE_ALL_INVOICES__ID, // hidden
+            TABLE_ALL_INVOICES__KUND_ID, // hidden
+            TABLE_ALL_INVOICES__VAR_REF, // hidden
+            TABLE_ALL_INVOICES__ER_REF, // hidden
+            TABLE_ALL_INVOICES__BET_VILKOR, // hidden
+            TABLE_ALL_INVOICES__LEV_VILKOR, // hidden
+            TABLE_ALL_INVOICES__LEV_SATT, // hidden
+            "FAKTURANR",
+            "FAKTURATYP",
+            TABLE_ALL_INVOICES__KUND,
+            TABLE_ALL_INVOICES__DATUM,
+            TABLE_ALL_INVOICES__FORFALLODATUM,
+            "EXKL MOMS",
+            "TOTAL",
+            "VALUTA",
+            "BETALD"
+        };
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
@@ -72,6 +97,66 @@ public class InvoiceB extends Basic {
                 fillFakturaArticlesTable(fakturaId);
             }
         });
+    }
+
+    private void fillFakturaTable() {
+        //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        String json = bim.getSELECT_kundId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json));
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            //
+            for (HashMap<String, String> invoice_map : invoices) {
+                addRowJtable_all_invoices(invoice_map, table);
+            }
+            //
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ID);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);
+//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
+//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
+//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
+        //
+    }
+
+    private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
+        //
+        Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_FAKTURA__ID__), // hidden
+            map.get(DB.BUH_FAKTURA_KUND__ID), // hidden
+            map.get(DB.BUH_FAKTURA__VAR_REFERENS), // hidden
+            map.get(DB.BUH_FAKTURA__ER_REFERENS), // hidden
+            map.get(DB.BUH_FAKTURA__BETAL_VILKOR), // hidden
+            map.get(DB.BUH_FAKTURA__LEV_VILKOR), // hidden
+            map.get(DB.BUH_FAKTURA__LEV_SATT), // hidden
+            //
+            map.get(DB.BUH_FAKTURA__FAKTURANR__),
+            map.get(DB.BUH_FAKTURA__FAKTURATYP),
+            map.get(DB.BUH_FAKTURA_KUND___NAMN),
+            map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
+            map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
+            map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__),
+            map.get(DB.BUH_FAKTURA__TOTAL__),
+            map.get(DB.BUH_FAKTURA__VALUTA),
+            map.get(DB.BUH_FAKTURA__BETALD)
+        };
+        //
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(jtableRow);
+        //
     }
 
     private void fillFakturaArticlesTable(String fakturaId) {
@@ -110,54 +195,6 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__PRIS)
-        };
-        //
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(jtableRow);
-        //
-    }
-
-    private void fillFakturaTable() {
-        //
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
-        //
-        String json = bim.getSELECT_kundId();
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json));
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            //
-            for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable_all_invoices(invoice_map, table);
-            }
-            //
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-        HelpA.hideColumnByName(table, "ID");
-        //
-    }
-
-    private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
-        //
-        Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_FAKTURA__ID__),
-            map.get(DB.BUH_FAKTURA__FAKTURANR__),
-            map.get(DB.BUH_FAKTURA__FAKTURATYP),
-//            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
-            map.get(DB.BUH_FAKTURA_KUND___NAMN),
-            map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
-            map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
-            map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__),
-            map.get(DB.BUH_FAKTURA__TOTAL__),
-            map.get(DB.BUH_FAKTURA__VALUTA),
-            map.get(DB.BUH_FAKTURA__BETALD)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package forall;
+package BuhInvoice;
 
+import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,7 +57,12 @@ public class JSon {
         //
     }
 
-    public static HashMap<String, String> JSONToHashMap(String json) {
+    public static String getValueFromJSonString(String json, String key, boolean reverse) {
+        HashMap<String, String> map = JSONToHashMap(json, reverse);
+        return map.get(key);
+    }
+
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
@@ -84,7 +90,12 @@ public class JSon {
                 value = jsonObj[1];
             }
             //
-            map.put(key, value);
+            if (reverse) {
+                map.put(value, key);
+            } else {
+                map.put(key, value);
+            }
+
         }
         //
         return map;
@@ -123,7 +134,7 @@ public class JSon {
         //
         for (String json : jsonEnriesList) {
             //
-            HashMap<String, String> map = JSONToHashMap(json);
+            HashMap<String, String> map = JSONToHashMap(json, false);
             //
             System.out.println("map: " + map);
             //
@@ -150,7 +161,7 @@ public class JSon {
         //
         for (String json : jsons) {
             //
-            HashMap<String, String> map = JSONToHashMap(json);
+            HashMap<String, String> map = JSONToHashMap(json, false);
             //
             jcomboStr += map.get(keyOne) + ";" + map.get(keyTwo) + ",";
             //
@@ -179,6 +190,53 @@ public class JSon {
         return list;
     }
 
+    /**
+     * The idea behind all this special "_get" methods
+     * is to make a given "element" first in the String
+     * @param jsonStr -> "Telenor;2,Securitas;1,Telia;3"
+     * @param returnValue -> "2"
+     * @return -> "Telenor;2,Securitas;1,Telia;3"
+     */
+    public static String _get_special(String jsonStr, String returnValue) {
+        String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
+        return _get(toShowValue,returnValue, jsonStr);
+    }
+    
+    
+    /**
+     * 
+     * @param showVal "Telenor"
+     * @param returnVal "2"
+     * @param all "Telenor;2,Securitas;1,Telia;3"
+     * @return -> "Telenor;2,Securitas;1,Telia;3"
+     */
+    public static String _get(String showVal,String returnVal, String all){
+        String showValPlusReturnVal = showVal + ";" + returnVal;
+        all = all.replaceAll(showValPlusReturnVal, "");
+        String rst = showValPlusReturnVal + "," + all;
+        rst = rst.replaceAll(",,", ",");
+        rst = delete_last_letter_in_string(rst, ",");
+//      System.out.println("rst: " + rst);
+        return rst;
+    }
+    
+    /**
+     * 
+     * @param singleVal -> "10"
+     * @param all -> "30,60,20,15,10,5"
+     * @return -> "10,30,60,20,15,5"
+     */
+    public static String _get_simple(String singleVal, String all){
+        all = all.replaceAll(singleVal, "");
+        String rst = singleVal + "," + all;
+        rst = rst.replaceAll(",,", ",");
+        rst = delete_last_letter_in_string(rst, ",");
+//      System.out.println("rst: " + rst);
+        return rst;
+    }
+    
+    
+
     public static void main(String[] args) {
         //
 //        String json = "{\"name\";\"myname\",\"age\";\"20\"}";
@@ -193,7 +251,31 @@ public class JSon {
         //
 //        System.out.println("" + phpJsonResponseToComboBoxString(phpJsonStr, "namn", "fakturaKundId"));
         //
-        phpJsonResponseToHashMap(phpJsonStr_b);
+//        phpJsonResponseToHashMap(phpJsonStr_b);
+    
+            System.out.println("" + _get("Telenor","2", "Securitas;1,Telenor;2,Telia;3"));
+            
+            System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
+            
+    }
+    
+    
+    private static String delete_last_letter_in_string(String str,String letter) {
+        //
+        int a = str.length() - 1;
+        //
+        if(getLastChar(str).equals(letter)){
+            return str.substring(0, a);
+        }else{
+            return str;
+        }
+        //
+    }
+    
+    private static String getLastChar(String str) {
+        int a = str.length() - 1;
+        int b = str.length();
+        return str.substring(a, b);
     }
 
 }

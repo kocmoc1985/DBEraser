@@ -14,7 +14,6 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
-import forall.JSon;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
@@ -36,7 +35,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceA_Insert extends Basic {
 
-    private final BUH_INVOICE_MAIN bim;
+    protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     private Faktura_Entry_Insert buh_Faktura_Entry = new Faktura_Entry_Insert(this);
@@ -163,7 +162,7 @@ public class InvoiceA_Insert extends Basic {
         return getValueTableInvert("fakturaKundId", TABLE_INVERT);
     }
 
-    protected String getJComboStringTableInvert(String php_function, String keyOne, String keyTwo) {
+    protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {
         //
         String comboString;
         //
@@ -192,7 +191,7 @@ public class InvoiceA_Insert extends Basic {
     public RowDataInvert[] getConfigTableInvert() {
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
-        String fixedComboValues_a = getJComboStringTableInvert(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
@@ -237,7 +236,7 @@ public class InvoiceA_Insert extends Basic {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        String fixedComboValues_a = getJComboStringTableInvert(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
         kund.enableFixedValuesAdvanced();
