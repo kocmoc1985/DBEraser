@@ -92,23 +92,45 @@ public class InvoiceA_Update extends InvoiceA_Insert {
         return rows;
     }
 
-public RowDataInvert[] getConfigTableInvert_3() {
+    @Override
+    public RowDataInvert[] getConfigTableInvert_3() {
         //
-        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        String fixedComboValues_a = JSon._get_special(
+                DB.STATIC__INKL_EXKL_MOMS,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__INKL_MOMS)
+        );
+        //
+//        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
         //
-        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
+        //
+        String fixedComboValues_c = JSon._get_special(
+                DB.STATIC__MOMS_SATS,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS)
+        );
+        //
+//        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
         //
-        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
         //
-        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
+        String exp = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG);
+        RowDataInvert expavgift = new RowDataInvertB(exp, DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
         //
-        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
+        String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
+        RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
+        //
+        String fixedComboValues_b = JSon._get_special(
+                DB.STATIC__MAKULERAD_JA_NEJ,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD)
+        );
+        //
+//        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
@@ -123,8 +145,5 @@ public RowDataInvert[] getConfigTableInvert_3() {
         //
         return rows;
     }
-    
-    
-    
 
 }

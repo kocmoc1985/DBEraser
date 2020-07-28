@@ -328,7 +328,7 @@ public class InvoiceA_Insert extends Basic {
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
         //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
+        addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
     @Override

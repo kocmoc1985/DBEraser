@@ -48,6 +48,12 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
+    //
+    public static String TABLE_ALL_INVOICES__INKL_MOMS = "INKL MOMS";
+    public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
+    public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
+    public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
+    public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     
     private void fillJTableheader() {
         //
@@ -64,6 +70,12 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__BET_VILKOR, // hidden
             TABLE_ALL_INVOICES__LEV_VILKOR, // hidden
             TABLE_ALL_INVOICES__LEV_SATT, // hidden
+            TABLE_ALL_INVOICES__INKL_MOMS,
+            TABLE_ALL_INVOICES__MOMS_SATS,
+            TABLE_ALL_INVOICES__FRAKT,
+            TABLE_ALL_INVOICES__EXP_AVG,
+            TABLE_ALL_INVOICES__MAKULERAD,
+            //
             "FAKTURANR",
             "FAKTURATYP",
             TABLE_ALL_INVOICES__KUND,
@@ -126,9 +138,9 @@ public class InvoiceB extends Basic {
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);
-//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
-//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
-//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
+        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
         //
     }
 
@@ -142,6 +154,11 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__BETAL_VILKOR), // hidden
             map.get(DB.BUH_FAKTURA__LEV_VILKOR), // hidden
             map.get(DB.BUH_FAKTURA__LEV_SATT), // hidden
+            map.get(DB.BUH_FAKTURA__INKL_MOMS),
+            map.get(DB.BUH_FAKTURA__MOMS_SATS),
+            map.get(DB.BUH_FAKTURA__FRAKT),
+            map.get(DB.BUH_FAKTURA__EXP_AVG),
+            map.get(DB.BUH_FAKTURA__MAKULERAD),
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
             map.get(DB.BUH_FAKTURA__FAKTURATYP),
