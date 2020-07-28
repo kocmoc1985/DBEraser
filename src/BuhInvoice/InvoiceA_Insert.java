@@ -38,14 +38,20 @@ public class InvoiceA_Insert extends Basic {
     protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
-    private Faktura_Entry_Insert buh_Faktura_Entry = new Faktura_Entry_Insert(this);
+    protected Faktura_Entry_Insert faktura_entry_insert;
 
     public InvoiceA_Insert(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
+    
+    protected Faktura_Entry_Insert initFakturaEntry(){
+        return new Faktura_Entry_Insert(this);
+    }
 
     private void initOther() {
+        //
+        faktura_entry_insert = initFakturaEntry();
         //
         startUp();
         //
@@ -139,23 +145,23 @@ public class InvoiceA_Insert extends Basic {
      * [2020-07-22]
      */
     public void fakturaToHttpDB() {
-        buh_Faktura_Entry.fakturaToHttpDB();
+        faktura_entry_insert.fakturaToHttpDB();
     }
 
     public void htmlFaktura() {
-        this.buh_Faktura_Entry.htmlFaktura();
+        this.faktura_entry_insert.htmlFaktura();
     }
 
     public void addArticleForJTable(JTable table) {
-        this.buh_Faktura_Entry.addArticleForJTable(table);
+        this.faktura_entry_insert.addArticleForJTable(table);
     }
 
     public void addArticleForDB() {
-        this.buh_Faktura_Entry.addArticleForDB();
+        this.faktura_entry_insert.addArticleForDB();
     }
 
     public Faktura_Entry_Insert getBuhFakturaEntry() {
-        return buh_Faktura_Entry;
+        return faktura_entry_insert;
     }
 
     protected String getFakturaKundId() {

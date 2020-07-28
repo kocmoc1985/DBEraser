@@ -16,10 +16,17 @@ import javax.swing.JTable;
  */
 public class InvoiceA_Update extends InvoiceA_Insert {
 
+    private Faktura_Entry_Update faktura_Entry_Update;
+    
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
 
+    @Override
+    protected Faktura_Entry_Insert initFakturaEntry() {
+        return new Faktura_Entry_Update(this);
+    }
+    
     @Override
     protected void startUp() {
     }

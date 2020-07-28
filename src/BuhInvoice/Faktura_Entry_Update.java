@@ -8,6 +8,7 @@ package BuhInvoice;
 import forall.HelpA;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,6 +19,17 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert {
     public Faktura_Entry_Update(InvoiceA_Update invoiceA_update) {
         super(invoiceA_update);
     }
+
+    @Override
+    public void addArticleForDB() {
+        super.addArticleForDB(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addArticleForJTable(JTable table) {
+        super.addArticleForJTable(table); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 
     @Override
     public void fakturaToHttpDB() {
