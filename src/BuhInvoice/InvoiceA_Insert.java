@@ -50,9 +50,9 @@ public class InvoiceA_Insert extends Basic {
         startUp();
         //
     }
-    
-    protected void startUp(){
-       //
+
+    protected void startUp() {
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -74,7 +74,7 @@ public class InvoiceA_Insert extends Basic {
             }
         });
         //
-        fillJTableheader(); 
+        fillJTableheader();
     }
 
     private void fillJTableheader() {
@@ -186,7 +186,6 @@ public class InvoiceA_Insert extends Basic {
         return comboString;
     }
 
-    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -309,6 +308,7 @@ public class InvoiceA_Insert extends Basic {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
+       
     }
 
     public void showTableInvert_2() {
@@ -429,14 +429,14 @@ public class InvoiceA_Insert extends Basic {
             //
             boolean validated = validate(DATE_YYYY_MM_DD, val);
             //
-            JTextField jtf = (JTextField)ke.getSource();
+            JTextField jtf = (JTextField) ke.getSource();
             //
-            if(validated && HelpA.isDateValid(val)){
+            if (validated && HelpA.isDateValid(val)) {
                 JTextField field = new JTextField();
                 Color initialColor = field.getForeground();
                 jtf.setForeground(initialColor);
                 forfalloDatumAutoChange();
-            }else{
+            } else {
                 jtf.setForeground(Color.RED);
             }
             //
@@ -455,8 +455,8 @@ public class InvoiceA_Insert extends Basic {
         //
         String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
         //
-        if(val.equals("NULL")){
-          return;
+        if (val.equals("NULL")) {
+            return;
         }
         //
         long value = Long.parseLong(val);
@@ -485,29 +485,7 @@ public class InvoiceA_Insert extends Basic {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
             //
-            boolean momsInk = getInklMoms();
-            //
-            TableInvert table = (TableInvert) TABLE_INVERT_3;
-            TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__MOMS_SATS);
-            RowDataInvert rdi = tri.getRowConfig();
-            //
-            if (momsInk == false) {
-                //
-                // Both ways below working (regarding: "setVisible()")
-//                tri.setVisible(false);
-                rdi.setVisible_(false);
-                //
-                refreshTableInvert(TABLE_INVERT_3);
-                //
-            } else {
-                //
-                // Both ways below working
-//                tri.setVisible(true);
-                rdi.setVisible_(true);
-                //
-                refreshTableInvert(TABLE_INVERT_3);
-                //
-            }
+            hideMomsSatsIfExklMoms();
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
@@ -515,6 +493,35 @@ public class InvoiceA_Insert extends Basic {
             //
         }
         //
+    }
+
+    protected void hideMomsSatsIfExklMoms() {
+        //
+        System.out.println("INKL_MOMS----------------------");
+        //
+        boolean momsInk = getInklMoms();
+        //
+        TableInvert table = (TableInvert) TABLE_INVERT_3;
+        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__MOMS_SATS);
+        RowDataInvert rdi = tri.getRowConfig();
+        //
+        if (momsInk == false) {
+            //
+            // Both ways below working (regarding: "setVisible()")
+//                tri.setVisible(false);
+            rdi.setVisible_(false);
+            //
+            refreshTableInvert(TABLE_INVERT_3);
+            //
+        } else {
+            //
+            // Both ways below working
+//                tri.setVisible(true);
+            rdi.setVisible_(true);
+            //
+            refreshTableInvert(TABLE_INVERT_3);
+            //
+        }
     }
 
     public void test() {

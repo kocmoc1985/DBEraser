@@ -604,6 +604,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     java.awt.EventQueue.invokeLater(new Runnable() {
                         @Override
                         public void run() {
+                            //
                             invoiceA_update.showTableInvert(); //[$TEST$]
                             invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT); // //[$TEST$]
                             //

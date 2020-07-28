@@ -25,6 +25,19 @@ public class InvoiceA_Update extends InvoiceA_Insert {
     }
 
     @Override
+    public void showTableInvert_3() {
+        //
+        super.showTableInvert_3(); //To change body of generated methods, choose Tools | Templates.
+        //
+        hideMomsSatsIfExklMoms();
+        //
+    }
+
+  
+    
+    
+
+    @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
