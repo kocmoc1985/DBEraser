@@ -53,26 +53,29 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * Call from: TableRowInvertB
+     *
      * @param ti
-     * @param ke 
+     * @param ke
      */
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
     }
-    
+
     /**
      * Call from: TableRowInvertB
+     *
      * @param ti
-     * @param ke 
+     * @param ke
      */
-    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e){
+    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
         System.out.println(this.getClass() + "mouseWheelForward() from TableRowInvertB. curr col: " + ti.getCurrentColumnName(e.getSource()));
     }
 
     /**
      * Call from: TableRowInvertB
+     *
      * @param ti
-     * @param ie 
+     * @param ie
      */
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
         System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
@@ -349,21 +352,66 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
                 mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                //
             }
+            //
         }
         //
         return mapToReturn;
     }
 
     /**
-     * [2020-07-17]
-     * This method allows you to specify manually which parameter the JComboBox will
-     * return.
+     * [2020-07-13]
+     *
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return
+     */
+    public HashMap<String, String> tableInvertToHashMap_unsaved_values(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        int row = 0;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            //
+            RowDataInvertB rowDataInvertB = (RowDataInvertB) tableInvert.getRowConfig(row);
+            //
+            row++;
+            //
+            if (rowDataInvertB.isFieldUpdated() == false) {
+                continue;
+            }
+            //
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                //
+            }
+            //
+        }
+        //
+        return mapToReturn;
+    }
+
+    /**
+     * [2020-07-17] This method allows you to specify manually which parameter
+     * the JComboBox will return.
+     *
      * @param table_invert
      * @param startColumn
      * @param rdi
      * @param paramToReturn
-     * @return 
+     * @return
      */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi, int paramToReturn) {
         //
@@ -507,26 +555,27 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
             listChanged.add(row_id);
         }
     }
-    
+
     /**
      * SUPER IMPORTANT AND EFFECTIVE METHOD [2020-07-21]
      */
-    public void refreshTableInvert(){
+    public void refreshTableInvert() {
         TableInvert ti = (TableInvert) TABLE_INVERT;
         ti.refreshTableRows();
     }
-    
+
     /**
      * SUPER IMPORTANT AND EFFECTIVE METHOD [2020-07-21]
-     * @param ti 
+     *
+     * @param ti
      */
-    public void refreshTableInvert(Table tableInvert){
+    public void refreshTableInvert(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         ti.refreshTableRows();
     }
 
     /**
-     * 
+     *
      * @param container
      * @param tableInvert
      */
@@ -536,8 +585,9 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * OBS! Mostly used once at start up [2020-07-21]
+     *
      * @param container
-     * @param tableInvert 
+     * @param tableInvert
      */
     public void showTableInvert(final JComponent container, final Table tableInvert) {
         java.awt.EventQueue.invokeLater(new Runnable() {

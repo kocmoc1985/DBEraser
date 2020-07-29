@@ -8,7 +8,9 @@ package BuhInvoice;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.Basic;
+import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
@@ -24,6 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 /**
@@ -298,9 +302,13 @@ public abstract class Invoice extends Basic {
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         //
-//        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
-//        RowDataInvert rdi = tri.getRowConfig();
+        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
+        RowDataInvertB rdi = (RowDataInvertB)tri.getRowConfig();
+        rdi.setFieldUpdated(true);
         //
+        //
+//        JComponent component = (JComponent)ke.getSource();
+//        ColumnDataEntryInvert cde = component.getParent();
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //

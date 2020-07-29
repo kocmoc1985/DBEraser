@@ -13,6 +13,7 @@ package MyObjectTableInvert;
 public class RowDataInvertB extends RowDataInvert {
 
     private String initialValue;
+    private boolean fieldUpdated = false;
 
     public RowDataInvertB(
             String initialValue,
@@ -51,6 +52,14 @@ public class RowDataInvertB extends RowDataInvert {
         this.important = important;
     }
 
+    public void setFieldUpdated(boolean fieldUpdated) {
+        this.fieldUpdated = fieldUpdated;
+    }
+
+    public boolean isFieldUpdated() {
+        return fieldUpdated;
+    }
+    
     public String getInitialValue() {
         return this.initialValue;
     }

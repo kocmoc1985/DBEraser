@@ -40,7 +40,7 @@ public class InvoiceA_Update extends Invoice {
         //
         JTable table = bim.jTable_InvoiceA_articles;
         //
-        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, 1, getConfigTableInvert_2());
+        HashMap<String,String>map = tableInvertToHashMap_unsaved_values(TABLE_INVERT_2, 1, getConfigTableInvert_2());
         //
         String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.DB__BUH_F_ARTIKEL);

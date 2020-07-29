@@ -42,6 +42,7 @@ public class RowDataInvert extends RowData {
     private boolean comboBoxFakeValue = false;
     private boolean comboBoxFixedValue = false;
     private boolean comboBoxFixedValueAdvanced = false;
+    //
 
     public RowDataInvert() {
     }

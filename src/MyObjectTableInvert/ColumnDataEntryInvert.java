@@ -28,6 +28,7 @@ public class ColumnDataEntryInvert {
     }
 
     public Object getObject() {
+        //Set parent here [2020-07-29]
         return object;
     }
 
