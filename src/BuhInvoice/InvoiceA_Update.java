@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import forall.HelpA;
@@ -17,16 +18,16 @@ import javax.swing.JTable;
 public class InvoiceA_Update extends InvoiceA_Insert {
 
     private Faktura_Entry_Update faktura_Entry_Update;
-    
+
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
 
     @Override
-    protected Faktura_Entry_Insert initFakturaEntry() {
+    protected Faktura_Entry_Insert_ initFakturaEntry() {
         return new Faktura_Entry_Update(this);
     }
-    
+
     @Override
     protected void startUp() {
     }
@@ -39,10 +40,6 @@ public class InvoiceA_Update extends InvoiceA_Insert {
         hideMomsSatsIfExklMoms();
         //
     }
-
-  
-    
-    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -107,6 +104,52 @@ public class InvoiceA_Update extends InvoiceA_Insert {
             betal_vilkor,
             lev_vilkor,
             lev_satt
+        };
+        //
+        return rows;
+    }
+
+    @Override
+    public RowDataInvert[] getConfigTableInvert_2() {
+        //
+        JTable table = bim.jTable_InvoiceA_articles;
+        //
+        String fixedComboValues_a = JSon._get(
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
+                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_F_ARTIKEL__ARTIKELID));
+//        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
+        kund.enableFixedValuesAdvanced();
+        kund.setUneditable();
+        //
+        //
+        String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
+        RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, "KOMMENTAR", "", true, true, false);
+        //
+        String ant = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", true, true, false);
+        //
+        String fixedComboValues_b = JSon._get_special(
+                DB.STATIC__ENHET,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET)
+        );
+        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
+        enhet.enableFixedValuesAdvanced();
+        enhet.setUneditable();
+        //
+        //
+        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", true, true, true);
+        //
+        RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", true, true, false);
+        //
+        RowDataInvert[] rows = {
+            kund,
+            komment,
+            antal,
+            enhet,
+            pris,
+            rabatt
         };
         //
         return rows;

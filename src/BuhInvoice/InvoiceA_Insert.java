@@ -38,15 +38,15 @@ public class InvoiceA_Insert extends Basic {
     protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
-    protected Faktura_Entry_Insert faktura_entry_insert;
+    protected Faktura_Entry_Insert_ faktura_entry_insert;
 
     public InvoiceA_Insert(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
     
-    protected Faktura_Entry_Insert initFakturaEntry(){
-        return new Faktura_Entry_Insert(this);
+    protected Faktura_Entry_Insert_ initFakturaEntry(){
+        return new Faktura_Entry_Insert_(this);
     }
 
     private void initOther() {
@@ -160,7 +160,7 @@ public class InvoiceA_Insert extends Basic {
         this.faktura_entry_insert.addArticleForDB();
     }
 
-    public Faktura_Entry_Insert getBuhFakturaEntry() {
+    public Faktura_Entry_Insert_ getBuhFakturaEntry() {
         return faktura_entry_insert;
     }
 

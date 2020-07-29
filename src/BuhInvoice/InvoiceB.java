@@ -54,6 +54,16 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
+    //
+    //
+    public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
+    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
+    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
+    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "KOMMENT";
+    public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
+    public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
+    public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
+    public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
 
     private void fillJTableheader() {
         //
@@ -97,7 +107,16 @@ public class InvoiceB extends Basic {
         //
         JTable table_b = this.bim.jTable_invoiceB_faktura_artiklar;
         //
-        String[] headers_b = {"ID", "ARTIKEL", "KOMMENT", "ANTAL", "ENHET", "PRIS", "RABATT"};
+        String[] headers_b = {
+            TABLE_INVOICE_ARTIKLES__ARTIKEL_ID,
+            TABLE_INVOICE_ARTIKLES__ID,
+            TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN,
+            TABLE_INVOICE_ARTIKLES__KOMMENT,
+            TABLE_INVOICE_ARTIKLES__ANTAL,
+            TABLE_INVOICE_ARTIKLES__ENHET,
+            TABLE_INVOICE_ARTIKLES__PRIS,
+            TABLE_INVOICE_ARTIKLES__RABATT
+        };
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
@@ -208,6 +227,7 @@ public class InvoiceB extends Basic {
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
+            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___ID)),
             map.get(DB.BUH_F_ARTIKEL__ID),
             HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),

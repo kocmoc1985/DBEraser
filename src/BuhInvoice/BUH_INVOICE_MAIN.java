@@ -51,6 +51,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.jTable_invoiceB_alla_fakturor.addMouseListener(this);
         this.jTable_invoiceB_alla_fakturor.addKeyListener(this);
         //
+        this.jTable_InvoiceA_articles.addMouseListener(this);
+        //
         invoiceA = new InvoiceA_Insert(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -612,7 +614,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             invoiceA_update.showTableInvert_3();
                             invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_3);
                             //
-                            DefaultTableModel dtm = (DefaultTableModel)jTable_invoiceB_faktura_artiklar.getModel();
+                            DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
                             jTable_InvoiceA_articles.setModel(dtm);
                         }
                     });
@@ -638,7 +640,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             jtableAllInvoicesClicked();
             //
-
+        } else if (e.getSource() == jTable_InvoiceA_articles && (e.getClickCount() == 1)) {
+            //
+            invoiceA_update.showTableInvert_2();
+            invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
             //
         }
     }
@@ -681,5 +686,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jtableAllInvoicesClicked();
             //
         }
+        //
     }
 }

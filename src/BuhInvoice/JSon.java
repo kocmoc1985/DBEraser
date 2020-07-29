@@ -191,42 +191,52 @@ public class JSon {
     }
 
     /**
-     * The idea behind all this special "_get" methods
-     * is to make a given "element" first in the String
+     * The idea behind all this special "_get" methods is to make a given
+     * "element" first in the String
+     *
      * @param jsonStr -> "Telenor;2,Securitas;1,Telia;3"
      * @param returnValue -> "2"
      * @return -> "Telenor;2,Securitas;1,Telia;3"
      */
     public static String _get_special(String jsonStr, String returnValue) {
         String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
-        return _get(toShowValue,returnValue, jsonStr);
+        return _get(toShowValue, returnValue, jsonStr);
     }
-    
-    
+
     /**
-     * 
+     *
      * @param showVal "Telenor"
      * @param returnVal "2"
      * @param all "Telenor;2,Securitas;1,Telia;3"
      * @return -> "Telenor;2,Securitas;1,Telia;3"
      */
-    public static String _get(String showVal,String returnVal, String all){
+    public static String _get(String showVal, String returnVal, String all) {
+        //
+        if ((showVal == null || showVal.isEmpty()) && (returnVal == null || returnVal.isEmpty())) {
+            return " ;-1," + all;
+        }
+        //
         String showValPlusReturnVal = showVal + ";" + returnVal;
         all = all.replaceAll(showValPlusReturnVal, "");
+        //
         String rst = showValPlusReturnVal + "," + all;
         rst = rst.replaceAll(",,", ",");
         rst = delete_last_letter_in_string(rst, ",");
-//      System.out.println("rst: " + rst);
         return rst;
     }
-    
+
     /**
-     * 
+     *
      * @param singleVal -> "10"
      * @param all -> "30,60,20,15,10,5"
      * @return -> "10,30,60,20,15,5"
      */
-    public static String _get_simple(String singleVal, String all){
+    public static String _get_simple(String singleVal, String all) {
+        //
+        if (singleVal == null || singleVal.isEmpty()) {
+            return all;
+        }
+        //
         all = all.replaceAll(singleVal, "");
         String rst = singleVal + "," + all;
         rst = rst.replaceAll(",,", ",");
@@ -234,8 +244,6 @@ public class JSon {
 //      System.out.println("rst: " + rst);
         return rst;
     }
-    
-    
 
     public static void main(String[] args) {
         //
@@ -252,26 +260,25 @@ public class JSon {
 //        System.out.println("" + phpJsonResponseToComboBoxString(phpJsonStr, "namn", "fakturaKundId"));
         //
 //        phpJsonResponseToHashMap(phpJsonStr_b);
-    
-            System.out.println("" + _get("Telenor","2", "Securitas;1,Telenor;2,Telia;3"));
-            
-            System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
-            
+
+        System.out.println("" + _get("Telenor", "2", "Securitas;1,Telenor;2,Telia;3"));
+
+        System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
+
     }
-    
-    
-    private static String delete_last_letter_in_string(String str,String letter) {
+
+    private static String delete_last_letter_in_string(String str, String letter) {
         //
         int a = str.length() - 1;
         //
-        if(getLastChar(str).equals(letter)){
+        if (getLastChar(str).equals(letter)) {
             return str.substring(0, a);
-        }else{
+        } else {
             return str;
         }
         //
     }
-    
+
     private static String getLastChar(String str) {
         int a = str.length() - 1;
         int b = str.length();

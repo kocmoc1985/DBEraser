@@ -11,6 +11,9 @@ package BuhInvoice;
  */
 public class DB {
 
+    /**
+     * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
+     */
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
     public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
     public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class Faktura_Entry_Insert {
+public class Faktura_Entry_Insert_ {
 
     protected final InvoiceA_Insert invoiceA;
     protected HashMap<String, String> mainMap = new HashMap<>();
@@ -33,7 +33,7 @@ public class Faktura_Entry_Insert {
     protected double FAKTURA_TOTAL = 0;
     protected double MOMS_TOTAL = 0;
 
-    public Faktura_Entry_Insert(InvoiceA_Insert invoiceA) {
+    public Faktura_Entry_Insert_(InvoiceA_Insert invoiceA) {
         this.invoiceA = invoiceA;
     }
     

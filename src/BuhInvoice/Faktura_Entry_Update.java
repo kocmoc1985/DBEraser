@@ -14,7 +14,7 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class Faktura_Entry_Update extends Faktura_Entry_Insert {
+public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
 
     public Faktura_Entry_Update(InvoiceA_Update invoiceA_update) {
         super(invoiceA_update);
