@@ -17,8 +17,6 @@ import javax.swing.JTable;
  */
 public class InvoiceA_Update extends InvoiceA_Insert {
 
-    private Faktura_Entry_Update faktura_Entry_Update;
-
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
@@ -34,8 +32,7 @@ public class InvoiceA_Update extends InvoiceA_Insert {
 
     public void makeUpdate(){
         //
-        faktura_Entry_Update = (Faktura_Entry_Update)faktura_entry_insert;
-        faktura_Entry_Update.fakturaToHttpDB(); // UPDATE!
+        faktura_entry.insertOrUpdate(); // UPDATE!
         //
     }
     

@@ -20,27 +20,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class Faktura_Entry_Insert_ {
+public class Faktura_Entry_Insert_ extends Faktura_Entry {
 
-    protected final InvoiceA_Insert invoiceA;
-    protected HashMap<String, String> mainMap = new HashMap<>();
-    protected HashMap<String, String> secMap = new HashMap<>();
-    protected HashMap<String, String> fakturaMap = new HashMap<>();
-    private ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
-    private ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
-    //
-    protected double FAKTURA_TOTAL_EXKL_MOMS = 0;
-    protected double FAKTURA_TOTAL = 0;
-    protected double MOMS_TOTAL = 0;
+    protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
+    protected ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
 
     public Faktura_Entry_Insert_(InvoiceA_Insert invoiceA) {
-        this.invoiceA = invoiceA;
+        super(invoiceA);
     }
-    
-    public void fakturaToHttpDB() {
+
+    @Override
+    public void insertOrUpdate() {
         //
         //
-        setMainFakturaData();
+        setData();
         //
         //
         String json = JSon.hashMapToJSON(this.fakturaMap);
@@ -76,7 +69,8 @@ public class Faktura_Entry_Insert_ {
      * The "MainMap" contains data from SQL table "buh_faktura"
      *
      */
-    protected void setMainFakturaData() {
+    @Override
+    protected void setData() {
         //
         this.mainMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert());
         this.secMap = invoiceA.tableInvertToHashMap(invoiceA.TABLE_INVERT_3, 1, invoiceA.getConfigTableInvert_3());
@@ -107,8 +101,6 @@ public class Faktura_Entry_Insert_ {
         //
     }
 
-    
-
     protected void setFakturaIdForArticles(String fakturaId) {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
@@ -117,19 +109,6 @@ public class Faktura_Entry_Insert_ {
         //
     }
 
-    protected boolean verifyFakturaId(String fakturaId) {
-        //
-        int id;
-        //
-        try {
-            id = Integer.parseInt(fakturaId);
-        } catch (Exception ex) {
-            id = -1;
-        }
-        //
-        return id != -1;
-        //
-    }
 
     protected void articlesToHttpDB() {
         //
@@ -181,23 +160,6 @@ public class Faktura_Entry_Insert_ {
         addRowToJTable(map_for_show_in_jtable, table);
     }
 
-    private void countFakturaTotal(HashMap<String, String> map) {
-        //
-        int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
-        //
-        FAKTURA_TOTAL += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
-        //
-        if (invoiceA.getInklMoms()) {
-            MOMS_TOTAL = FAKTURA_TOTAL * invoiceA.getMomsSats();
-            FAKTURA_TOTAL += MOMS_TOTAL;
-            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
-        }
-        //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
-        //
-    }
 
     private void addRowToJTable(HashMap<String, String> map, JTable table) {
         //
@@ -214,18 +176,5 @@ public class Faktura_Entry_Insert_ {
         model.addRow(jtableRow);
         //
     }
-
-    private void articlesListToJson(ArrayList<HashMap<String, String>> list) {
-        //
-        for (HashMap<String, String> article_map : list) {
-            JSon.hashMapToJSON(article_map);
-        }
-        //
-    }
-
-    protected String getDateWithTime() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
-    }
+  
 }

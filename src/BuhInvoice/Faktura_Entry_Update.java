@@ -35,13 +35,13 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
      * [2020-07-29] Here it's for the update purpose
      */
     @Override
-    public void fakturaToHttpDB() {
+    public void insertOrUpdate() {
         //
 //        InvoiceA_Update invoice_update = (InvoiceA_Update)invoiceA;
         //
         JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
         //
-        setMainFakturaData();
+        setData();
         //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
@@ -68,7 +68,7 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
     }
 
     @Override
-    protected void setMainFakturaData() {
+    protected void setData() {
         //
         JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
         InvoiceA_Update iu = (InvoiceA_Update) invoiceA;

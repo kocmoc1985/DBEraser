@@ -38,7 +38,8 @@ public class InvoiceA_Insert extends Basic {
     protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
-    protected Faktura_Entry_Insert_ faktura_entry_insert;
+    protected Faktura_Entry faktura_entry;
+    private Faktura_Entry_Insert_ faktura_entry_insert;
     private int INSERT_OR_UPDATE_CLASS = 0;
     
 
@@ -53,7 +54,7 @@ public class InvoiceA_Insert extends Basic {
 
     private void initOther() {
         //
-        faktura_entry_insert = initFakturaEntry();
+        faktura_entry = initFakturaEntry();
         //
         startUp();
         //
@@ -80,6 +81,8 @@ public class InvoiceA_Insert extends Basic {
 
     protected void startUp() {
         //
+        this.faktura_entry_insert = (Faktura_Entry_Insert_)faktura_entry;
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +105,7 @@ public class InvoiceA_Insert extends Basic {
         });
         //
         fillJTableheader();
+        //
     }
 
     private void fillJTableheader() {
@@ -110,6 +114,7 @@ public class InvoiceA_Insert extends Basic {
         String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
         //             {"", "", "", "", "", ""}
         };
+        //
         this.bim.jTable_InvoiceA_articles.setModel(new DefaultTableModel(null, headers));
     }
 
@@ -166,7 +171,7 @@ public class InvoiceA_Insert extends Basic {
      * [2020-07-22]
      */
     public void fakturaToHttpDB() {
-        faktura_entry_insert.fakturaToHttpDB();
+        faktura_entry.insertOrUpdate();
     }
 
     public void htmlFaktura() {
@@ -182,7 +187,7 @@ public class InvoiceA_Insert extends Basic {
     }
 
     public Faktura_Entry_Insert_ getBuhFakturaEntry() {
-        return faktura_entry_insert;
+        return this.faktura_entry_insert;
     }
 
     protected String getFakturaKundId() {
