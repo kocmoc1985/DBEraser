@@ -9,6 +9,7 @@ import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 /**
@@ -56,6 +57,65 @@ public class JSon {
         return json;
         //
     }
+    
+    public static String hashMapToCommaSeparatedString__(HashMap<HashMapKeyCaseInsensitive, String> map) {
+        //
+        String rst = "";
+        //
+        Set set = map.keySet();
+        Iterator it = set.iterator();
+        //
+        while (it.hasNext()) {
+            //
+            HashMapKeyCaseInsensitive obj_key = (HashMapKeyCaseInsensitive) it.next();
+            String key = obj_key.getKeyValue();
+            String value = (String) map.get(obj_key);
+            //
+            rst += key  + ";";
+            if (!it.hasNext()) {
+                rst +=  value;
+            } else {
+                rst +=  value + ",";
+            }
+            //
+        }
+        //
+        rst += "";
+        //
+        System.out.println("str: " + rst);
+        //
+        return rst;
+        //
+    }
+    
+    public static String hashMapToCommaSeparatedString(HashMap<String, String> map) {
+        //
+        String rst = "";
+        //
+        Set set = map.keySet();
+        Iterator it = set.iterator();
+        //
+        while (it.hasNext()) {
+            //
+            String key = (String) it.next();
+            String value = (String) map.get(key);
+            //
+            rst += key  + ";";
+            if (!it.hasNext()) {
+                rst +=  value;
+            } else {
+                rst +=  value + ",";
+            }
+            //
+        }
+        //
+        rst += "";
+        //
+        System.out.println("str: " + rst);
+        //
+        return rst;
+        //
+    }
 
     public static String getValueFromJSonString(String json, String key, boolean reverse) {
         HashMap<String, String> map = JSONToHashMap(json, reverse);
@@ -64,7 +124,7 @@ public class JSon {
 
     public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
         //
-        HashMap<String, String> map = new HashMap<>();
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
         //
         json = json.replaceAll("\"", "");
         json = json.replaceAll("\\{", "");
@@ -203,14 +263,49 @@ public class JSon {
         return _get(toShowValue, returnValue, jsonStr);
     }
 
+    
+
     /**
-     *
+     * [2020-07-29]
+     * OBS! Pay attention to "HashMapKeyCaseInsensitive.class", this
+     * class makes that LOWER/UPPER case does not matter for the "keys"
      * @param showVal "Telenor"
      * @param returnVal "2"
      * @param all "Telenor;2,Securitas;1,Telia;3"
      * @return -> "Telenor;2,Securitas;1,Telia;3"
      */
     public static String _get(String showVal, String returnVal, String all) {
+        //
+        LinkedHashMap<HashMapKeyCaseInsensitive, String> map = new LinkedHashMap<>();
+        //
+        if ((showVal == null || showVal.isEmpty()) && (returnVal == null || returnVal.isEmpty())) {
+            map.put(new HashMapKeyCaseInsensitive(" "), "-1");
+        } else {
+            map.put(new HashMapKeyCaseInsensitive(showVal), returnVal);
+        }
+        //
+        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false);
+        //
+        map_all.entrySet().forEach((entry) -> {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            map.put(new HashMapKeyCaseInsensitive(key), value);
+        });
+        //
+        return hashMapToCommaSeparatedString__(map);
+        //
+    }
+    
+    /**
+     * USE "_get()"
+     * This one uses string operations which is less clear and stable
+     * @deprecated 
+     * @param showVal "Telenor"
+     * @param returnVal "2"
+     * @param all "Telenor;2,Securitas;1,Telia;3"
+     * @return -> "Telenor;2,Securitas;1,Telia;3"
+     */
+    public static String _get_(String showVal, String returnVal, String all) {
         //
         if ((showVal == null || showVal.isEmpty()) && (returnVal == null || returnVal.isEmpty())) {
             return " ;-1," + all;
@@ -247,9 +342,9 @@ public class JSon {
 
     public static void main(String[] args) {
         //
-//        String json = "{\"name\";\"myname\",\"age\";\"20\"}";
+//        String rst = "{\"name\";\"myname\",\"age\";\"20\"}";
 //        //
-//        System.out.println("" + JSONToHashMap(json));
+//        System.out.println("" + JSONToHashMap(rst));
         //
         String phpJsonStr = "{\"0\";\"Telia\",\"namn\";\"Telia\",\"1\";\"3\",\"fakturaKundId\";\"3\"},{\"0\";\"Eon\",\"namn\";\"Eon\",\"1\";\"4\",\"fakturaKundId\";\"4\"},{\"0\";\"Akelius\",\"namn\";\"Akelius\",\"1\";\"5\",\"fakturaKundId\";\"5\"},{\"0\";\"Telenor\",\"namn\";\"Telenor\",\"1\";\"6\",\"fakturaKundId\";\"6\"}";
         //
@@ -261,9 +356,9 @@ public class JSon {
         //
 //        phpJsonResponseToHashMap(phpJsonStr_b);
 
-        System.out.println("" + _get("Telenor", "2", "Securitas;1,Telenor;2,Telia;3"));
-
-        System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
+        System.out.println("_get:  " + _get("Telenor", "2", "Securitas;1,telenor;2,Telia;3"));
+        System.out.println("_get_:  " + _get_("Telenor", "2", "Securitas;1,telenor;2,Telia;3"));
+//        System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
 
     }
 
