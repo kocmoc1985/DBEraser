@@ -36,7 +36,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     //
-    public static final String PHP_FUNC_GET_AUTO = "update_auto"; // using php-function: "update()"
+    public static final String PHP_FUNC_UPDATE_AUTO = "update_auto"; // using php-function: "update()"
     //
     public static final String BUH_FAKTURA__ID__ = "fakturaId";
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert

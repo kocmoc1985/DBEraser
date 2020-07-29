@@ -372,29 +372,29 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //
-//          invoiceA_insert.test();
         //
-        HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.DB__BUH_F_ARTIKEL);
+        invoiceA_update.makeUpdate();
         //
-//        map.put("where", "fakturaId"); // $whereCoulunName
-//        map.put("fakturaId", "1"); // $whereValue
-//        map.put("table", "buh_f_artikel"); // $table
         //
-        map.put("pris", "159");
-        map.put("rabatt", "20");
-        map.put("komment", "kontrollera");
+//        HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.DB__BUH_F_ARTIKEL);
+//        //
+//        map.put("pris", "159");
+//        map.put("rabatt", "20");
+//        map.put("komment", "kontrollera");
+//        //
+//        String json = JSon.hashMapToJSON(map);
+//        //
+//        try {
+//            //
+//            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+//                    DB.PHP_FUNC_UPDATE_AUTO, json));
+//            //
+//        } catch (Exception ex) {
+//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         //
-        String json = JSon.hashMapToJSON(map);
         //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_GET_AUTO, json));
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

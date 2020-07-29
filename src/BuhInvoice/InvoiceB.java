@@ -38,7 +38,7 @@ public class InvoiceB extends Basic {
 //        fillFakturaArticlesTable();
     }
 
-    public static String TABLE_ALL_INVOICES__ID = "ID";
+    public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
     public static String TABLE_ALL_INVOICES__KUND_ID = "KUND ID";
     public static String TABLE_ALL_INVOICES__DATUM = "FAKTURADATUM";
@@ -73,7 +73,7 @@ public class InvoiceB extends Basic {
         // "ID" -> "buh_faktura.fakturaId"
         //
         String[] headers = {
-            TABLE_ALL_INVOICES__ID, // hidden
+            TABLE_ALL_INVOICES__FAKTURA_ID, // hidden
             TABLE_ALL_INVOICES__KUND_ID, // hidden
             TABLE_ALL_INVOICES__VAR_REF, // hidden
             TABLE_ALL_INVOICES__ER_REF, // hidden
@@ -154,7 +154,7 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ID);
+//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);

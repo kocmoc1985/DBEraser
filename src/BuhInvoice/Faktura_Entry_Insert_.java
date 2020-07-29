@@ -117,7 +117,7 @@ public class Faktura_Entry_Insert_ {
         //
     }
 
-    private boolean verifyFakturaId(String fakturaId) {
+    protected boolean verifyFakturaId(String fakturaId) {
         //
         int id;
         //

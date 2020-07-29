@@ -32,6 +32,13 @@ public class InvoiceA_Update extends InvoiceA_Insert {
     protected void startUp() {
     }
 
+    public void makeUpdate(){
+        //
+        faktura_Entry_Update = (Faktura_Entry_Update)faktura_entry_insert;
+        faktura_Entry_Update.fakturaToHttpDB(); // UPDATE!
+        //
+    }
+    
     @Override
     public void showTableInvert_3() {
         //

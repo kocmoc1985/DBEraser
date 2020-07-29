@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import forall.HelpA;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -29,25 +30,32 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
     public void addArticleForJTable(JTable table) {
         super.addArticleForJTable(table); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
+    /**
+     * [2020-07-29] Here it's for the update purpose
+     */
     @Override
     public void fakturaToHttpDB() {
         //
+//        InvoiceA_Update invoice_update = (InvoiceA_Update)invoiceA;
+        //
+        JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
         //
         setMainFakturaData();
         //
-        //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
-        String fakturaId = "OBS! EXIST";
+        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
+        //
+        if (verifyFakturaId(fakturaId) == false) {
+            HelpA.showNotification("Kunde inte updatera fakturan (Faktura id saknas)");
+        }
         //
         try {
             //
             HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    "XXXXXX-XXXXX-XXXXX-XXXXX", json));
-            //
-            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
+                    DB.PHP_FUNC_UPDATE_AUTO, json));
             //
         } catch (Exception ex) {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,21 +70,30 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
     @Override
     protected void setMainFakturaData() {
         //
+        JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
         InvoiceA_Update iu = (InvoiceA_Update) invoiceA;
         //
         this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, 1, iu.getConfigTableInvert());
         this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, 1, iu.getConfigTableInvert_3());
         //
-        this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
         //
-//        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoiceA.getKundId());
-//        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, invoiceA.getFakturaNr()); // OBS! Aquired from http
+        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        //
+        //
+        HashMap<String, String> update_map = invoiceA.bim.getUPDATE(
+                DB.BUH_FAKTURA__ID__,
+                fakturaId,
+                DB.DB__BUH_FAKTURA
+        );
+        //
+        HashMap<String, String> map_temp = HelpA.joinHashMaps(mainMap, secMap);
+        //
+        this.fakturaMap = HelpA.joinHashMaps(map_temp, update_map);
+        //
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + FAKTURA_TOTAL);
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + FAKTURA_TOTAL_EXKL_MOMS);
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + MOMS_TOTAL);
-        //
-//        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, getDateWithTime());
         //
         System.out.println("-------------------------------------------------");
         //
@@ -88,7 +105,7 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
         //
         System.out.println("-------------------------------------------------");
         //
-        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
+//        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
         //
     }
 
