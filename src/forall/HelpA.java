@@ -1253,6 +1253,11 @@ public class HelpA {
         return csv;
     }
 
+    public static void addRowToJTable(Object[] rowData, JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(rowData);
+    }
+
     private static boolean exists_(String col, String[] columns) {
         for (String colName : columns) {
             if (colName.equals(col)) {
@@ -1494,6 +1499,10 @@ public class HelpA {
             }
         }
         return -1;
+    }
+    
+    public static void setValueCurrentRow(JTable table, String colName, Object value) {
+        table.setValueAt(value, table.getSelectedRow(), getColByName(table, colName));
     }
 
     public static void setValueGivenRow(JTable table, int row, String colName, Object value) {
@@ -2726,7 +2735,5 @@ public class HelpA {
         }
         //
     }
-    
-    
-    
+
 }

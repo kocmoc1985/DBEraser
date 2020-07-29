@@ -6,15 +6,11 @@
 package BuhInvoice;
 
 import forall.HelpA;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -154,16 +150,13 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     }
 
     public void addArticleForJTable(JTable table) {
-        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map_for_show_in_jtable = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, 1, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
-        this.articlesListJTable.add(map_for_show_in_jtable);
-        addRowToJTable(map_for_show_in_jtable, table);
-    }
-
-
-    private void addRowToJTable(HashMap<String, String> map, JTable table) {
         //
-        Object[] jtableRow = new Object[]{
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, 1, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        this.articlesListJTable.add(map);
+        //
+        //
+         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
@@ -172,9 +165,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             map.get(DB.BUH_F_ARTIKEL__RABATT)
         };
         //
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(jtableRow);
+        HelpA.addRowToJTable(jtableRow, table);
         //
     }
+
   
 }

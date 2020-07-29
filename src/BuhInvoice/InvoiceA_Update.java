@@ -9,6 +9,10 @@ import static BuhInvoice.InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import forall.HelpA;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 
 /**
@@ -29,14 +33,41 @@ public class InvoiceA_Update extends Invoice {
     @Override
     protected void startUp() {
     }
-    
-    
-    @Override
-    public void showTableInvert_3() {
+
+    protected void jtableArticlesRowChange(){
         //
-        super.showTableInvert_3(); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
         //
-        
+        JTable table = bim.jTable_InvoiceA_articles;
+        //
+        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, 1, getConfigTableInvert_2());
+        //
+        String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+        HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.DB__BUH_F_ARTIKEL);
+        //
+        // Remove didn't work [2020-07-29]
+        updateMap.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // OBS! Important by now [2020-07-29] i don't allow to change artikel
+        //
+        HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        System.out.println("");
+        //
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_UPDATE_AUTO, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        //
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
         //
     }
 
