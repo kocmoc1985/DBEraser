@@ -15,20 +15,10 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
+public class Faktura_Entry_Update extends Faktura_Entry {
 
-    public Faktura_Entry_Update(InvoiceA_Update invoiceA_update) {
-        super(invoiceA_update);
-    }
-
-    @Override
-    public void addArticleForDB() {
-        super.addArticleForDB(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addArticleForJTable(JTable table) {
-        super.addArticleForJTable(table); //To change body of generated methods, choose Tools | Templates.
+    public Faktura_Entry_Update(Invoice invoice) {
+        super(invoice);
     }
 
     /**
@@ -37,9 +27,9 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
     @Override
     public void insertOrUpdate() {
         //
-//        InvoiceA_Update invoice_update = (InvoiceA_Update)invoiceA;
+//        InvoiceA_Update invoice_update = (InvoiceA_Update)invoice;
         //
-        JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
+        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
         //
         setData();
         //
@@ -61,17 +51,17 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        setFakturaIdForArticles(fakturaId);
+//        setFakturaIdForArticles(fakturaId);
         //
-        articlesToHttpDB();
+//        articlesToHttpDB();
         //
     }
 
     @Override
     protected void setData() {
         //
-        JTable table = invoiceA.bim.jTable_invoiceB_alla_fakturor;
-        InvoiceA_Update iu = (InvoiceA_Update) invoiceA;
+        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
+        InvoiceA_Update iu = (InvoiceA_Update) invoice;
         //
         this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, 1, iu.getConfigTableInvert());
         this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, 1, iu.getConfigTableInvert_3());
@@ -80,7 +70,7 @@ public class Faktura_Entry_Update extends Faktura_Entry_Insert_ {
         String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
         //
         //
-        HashMap<String, String> update_map = invoiceA.bim.getUPDATE(
+        HashMap<String, String> update_map = invoice.bim.getUPDATE(
                 DB.BUH_FAKTURA__ID__,
                 fakturaId,
                 DB.DB__BUH_FAKTURA

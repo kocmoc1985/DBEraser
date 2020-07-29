@@ -33,55 +33,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class InvoiceA_Insert extends Basic {
+public class InvoiceA_Insert extends Invoice {
 
-    protected final BUH_INVOICE_MAIN bim;
-    protected Table TABLE_INVERT_2;
-    protected Table TABLE_INVERT_3;
-    protected Faktura_Entry faktura_entry;
-    private Faktura_Entry_Insert_ faktura_entry_insert;
-    private int INSERT_OR_UPDATE_CLASS = 0;
+    private Faktura_Entry_Insert faktura_entry_insert;
     
-
-    public InvoiceA_Insert(BUH_INVOICE_MAIN buh_invoice_main) {
-        this.bim = buh_invoice_main;
-        initOther();
+    public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
+        super(bim);
     }
 
-    protected Faktura_Entry_Insert_ initFakturaEntry() {
-        return new Faktura_Entry_Insert_(this);
+    @Override
+    protected Faktura_Entry initFakturaEntry() {
+        return new Faktura_Entry_Insert(this);
     }
 
-    private void initOther() {
-        //
-        faktura_entry = initFakturaEntry();
-        //
-        startUp();
-        //
-    }
-
-    /**
-     * VERY IMPORTANT !
-     * [2020-07-29]
-     * @return 1 = Insert, 2 = Update, 0 = Undefined
-     */
-    public int isInsertOrUpdate() {
-        return INSERT_OR_UPDATE_CLASS;
-    }
-
-    public void setInsertOrUpdateClassActive() {
-        if (this instanceof InvoiceA_Insert) {
-            INSERT_OR_UPDATE_CLASS = 1;
-        } else if (this instanceof InvoiceA_Update) {
-            INSERT_OR_UPDATE_CLASS = 2;
-        } else {
-            INSERT_OR_UPDATE_CLASS = 0;
-        }
-    }
-
+    
+    @Override
     protected void startUp() {
         //
-        this.faktura_entry_insert = (Faktura_Entry_Insert_)faktura_entry;
+        this.faktura_entry_insert = (Faktura_Entry_Insert)faktura_entry;
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -118,61 +87,6 @@ public class InvoiceA_Insert extends Basic {
         this.bim.jTable_InvoiceA_articles.setModel(new DefaultTableModel(null, headers));
     }
 
-    protected String getKundId() {
-        return bim.getKundId();
-    }
-
-    protected String getFakturaNr() {
-        //
-        HashMap<String, String> map = new HashMap<>();
-        map.put(DB.BUH_FAKTURA__KUNDID__, bim.getKundId());
-        String json = JSon.hashMapToJSON(map);
-        //
-        try {
-            //
-            String fakturaNr = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json));
-            //
-            if (HelpA.checkIfNumber_b(fakturaNr)) {
-                int nr = Integer.parseInt(fakturaNr);
-                nr++; // OBS! Iam getting the last so i have to add to get the nr for the act. faktura
-                return "" + nr;
-            } else {
-                return null;
-            }
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    public boolean getInklMoms() {
-        try {
-            return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
-        } catch (Exception ex) {
-            return true;
-        }
-    }
-
-    public double getMomsSats() {
-        try {
-            return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
-        } catch (Exception ex) {
-            return 0.25;
-        }
-    }
-
-    public boolean getMakulerad() {
-        return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
-    }
-
-    /**
-     * [2020-07-22]
-     */
-    public void fakturaToHttpDB() {
-        faktura_entry.insertOrUpdate();
-    }
 
     public void htmlFaktura() {
         this.faktura_entry_insert.htmlFaktura();
@@ -186,37 +100,7 @@ public class InvoiceA_Insert extends Basic {
         this.faktura_entry_insert.addArticleForDB();
     }
 
-    public Faktura_Entry_Insert_ getBuhFakturaEntry() {
-        return this.faktura_entry_insert;
-    }
-
-    protected String getFakturaKundId() {
-        return getValueTableInvert("fakturaKundId", TABLE_INVERT);
-    }
-
-    protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {
-        //
-        String comboString;
-        //
-        String json = bim.getSELECT_kundId();
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    php_function, json));
-            //
-            //
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keyOne, keyTwo);
-            //
-            System.out.println("combo string: " + comboString);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            comboString = null;
-        }
-        //
-        return comboString;
-    }
+    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -265,6 +149,7 @@ public class InvoiceA_Insert extends Basic {
         return rows;
     }
 
+    @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
@@ -298,6 +183,7 @@ public class InvoiceA_Insert extends Basic {
         return rows;
     }
 
+    @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         String fixedComboValues_a = DB.STATIC__INKL_EXKL_MOMS; // This will aquired from SQL
@@ -328,233 +214,6 @@ public class InvoiceA_Insert extends Basic {
         };
         //
         return rows;
-    }
-
-    @Override
-    public void showTableInvert() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
-        TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B(this);
-        setMargin(TABLE_INVERT, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel2_faktura_main);
-        //
-        addTableInvertRowListener(TABLE_INVERT, this);
-        //
-        setInsertOrUpdateClassActive(); // [2020-07-29] IMPORTANT
-        //
-    }
-
-    public void showTableInvert_2() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
-        TABLE_INVERT_2 = null;
-        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
-        setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
-        //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
-    }
-
-    public void showTableInvert_3() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
-        TABLE_INVERT_3 = null;
-        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
-        setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
-        //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        //
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
-            String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
-            setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
-        }
-        //
-    }
-
-    @Override
-    public void initializeSaveIndicators() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean getUnsaved(int nr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
-        super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(e.getSource());
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
-            //
-            double wheelRotation = e.getPreciseWheelRotation();
-            //
-            double scroll = wheelRotation;
-            double scroll_rounded = Math.round(scroll);
-            long value = (long) scroll_rounded;
-            //
-            String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
-            //
-            String date_new;
-            //
-            if (wheelRotation > 0) {
-                date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
-            } else {
-                date_new = HelpA.get_date_time_minus_some_time_in_days(date, value);
-            }
-            //
-            setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
-            //
-            forfalloDatumAutoChange();
-            //
-        }
-        //
-    }
-
-    /**
-     * [2020-07-XX] SUPER important here you catch the event when key released
-     * on some component so you can process this event as required
-     *
-     * @param ti
-     * @param ke
-     */
-    @Override
-    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
-        //
-        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(ke.getSource());
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
-            //
-            String var_referens = getValueTableInvert(DB.BUH_FAKTURA__VAR_REFERENS);
-            //
-            try {
-                HelpA.writeToFile(IO.VAR_REFERENS, var_referens);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
-            //
-            String er_referens = getValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS);
-            //
-            try {
-                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), er_referens);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
-            //
-            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
-            //
-            boolean validated = validate(DATE_YYYY_MM_DD, val);
-            //
-            JTextField jtf = (JTextField) ke.getSource();
-            //
-            if (validated && HelpA.isDateValid(val)) {
-                JTextField field = new JTextField();
-                Color initialColor = field.getForeground();
-                jtf.setForeground(initialColor);
-                forfalloDatumAutoChange();
-            } else {
-                jtf.setForeground(Color.RED);
-            }
-            //
-//            System.out.println("validated: " + validated);
-        }
-    }
-
-    public static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-
-    private boolean validate(Pattern pattern, String stringToCheck) {
-        Matcher matcher = pattern.matcher(stringToCheck);
-        return matcher.find();
-    }
-
-    private void forfalloDatumAutoChange() {
-        //
-        String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
-        //
-        if (val.equals("NULL")) {
-            return;
-        }
-        //
-        long value = Long.parseLong(val);
-        String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
-        String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
-        setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);
-    }
-
-    /**
-     * [2020-07-XX] SUPER important here you catch the event when some jcombobox
-     * item is changed so you can process this event as required
-     *
-     * @param ti
-     * @param ie
-     */
-    @Override
-    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
-        //
-        super.jComboBoxItemStateChangedForward(ti, ie);
-        //
-        String col_name = ti.getCurrentColumnName(ie.getSource());
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
-            //
-            forfalloDatumAutoChange();
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
-            //
-            hideMomsSatsIfExklMoms();
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
-            //
-            System.out.println("FAKTURA MAKULERAD");
-            //
-        }
-        //
-    }
-
-    protected void hideMomsSatsIfExklMoms() {
-        //
-        System.out.println("INKL_MOMS----------------------");
-        //
-        boolean momsInk = getInklMoms();
-        //
-        TableInvert table = (TableInvert) TABLE_INVERT_3;
-        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__MOMS_SATS);
-        RowDataInvert rdi = tri.getRowConfig();
-        //
-        if (momsInk == false) {
-            //
-            // Both ways below working (regarding: "setVisible()")
-//                tri.setVisible(false);
-            rdi.setVisible_(false);
-            //
-            refreshTableInvert(TABLE_INVERT_3);
-            //
-        } else {
-            //
-            // Both ways below working
-//                tri.setVisible(true);
-            rdi.setVisible_(true);
-            //
-            refreshTableInvert(TABLE_INVERT_3);
-            //
-        }
     }
 
     public void test() {

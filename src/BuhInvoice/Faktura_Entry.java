@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public abstract class Faktura_Entry {
 
-    protected final InvoiceA_Insert invoiceA;
+    protected final Invoice invoice;
     protected HashMap<String, String> mainMap = new HashMap<>();
     protected HashMap<String, String> secMap = new HashMap<>();
     protected HashMap<String, String> fakturaMap = new HashMap<>();
@@ -25,8 +25,8 @@ public abstract class Faktura_Entry {
     protected double FAKTURA_TOTAL = 0;
     protected double MOMS_TOTAL = 0;
 
-    public Faktura_Entry(InvoiceA_Insert invoiceA) {
-        this.invoiceA = invoiceA;
+    public Faktura_Entry(Invoice invoice) {
+        this.invoice = invoice;
     }
     
     protected abstract void insertOrUpdate();
@@ -39,8 +39,8 @@ public abstract class Faktura_Entry {
         //
         FAKTURA_TOTAL += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
         //
-        if (invoiceA.getInklMoms()) {
-            MOMS_TOTAL = FAKTURA_TOTAL * invoiceA.getMomsSats();
+        if (invoice.getInklMoms()) {
+            MOMS_TOTAL = FAKTURA_TOTAL * invoice.getMomsSats();
             FAKTURA_TOTAL += MOMS_TOTAL;
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }

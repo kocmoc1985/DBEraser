@@ -18,8 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -356,7 +354,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        invoiceA_insert.fakturaToHttpDB();
+        invoiceA_insert.insertOrUpdate();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -373,7 +371,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //
         //
-        invoiceA_update.makeUpdate();
+        invoiceA_update.insertOrUpdate();
         //
         //
 //        HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.DB__BUH_F_ARTIKEL);
