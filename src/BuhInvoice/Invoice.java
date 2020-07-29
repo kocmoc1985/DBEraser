@@ -36,7 +36,7 @@ public abstract class Invoice extends Basic {
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
-    private int INSERT_OR_UPDATE_CLASS = 0;
+    private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
     private final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
     public Invoice(BUH_INVOICE_MAIN bim) {
@@ -65,7 +65,7 @@ public abstract class Invoice extends Basic {
      *
      * @return 1 = Insert, 2 = Update, 0 = Undefined
      */
-    public int isInsertOrUpdate() {
+    public static int isInsertOrUpdate() {
         return INSERT_OR_UPDATE_CLASS;
     }
 
@@ -148,6 +148,7 @@ public abstract class Invoice extends Basic {
         //
         setInsertOrUpdateClassActive(); //  ************************ [2020-07-29] IMPORTANT
         //
+        bim.displayInsertOrUpdate(); // FOR TRACING
     }
 
     public void showTableInvert_2() {
