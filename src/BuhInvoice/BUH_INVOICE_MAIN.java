@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
-    private InvoiceA_Insert invoiceA;
+    private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
     private InvoiceB invoiceB;
 
@@ -53,7 +53,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         this.jTable_InvoiceA_articles.addMouseListener(this);
         //
-        invoiceA = new InvoiceA_Insert(this);
+        invoiceA_insert = new InvoiceA_Insert(this);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -351,28 +351,28 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        invoiceA.tableInvertToCSV(invoiceA.TABLE_INVERT, 1, invoiceA.getConfigTableInvert(), true);
+        invoiceA_insert.tableInvertToCSV(invoiceA_insert.TABLE_INVERT, 1, invoiceA_insert.getConfigTableInvert(), true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        invoiceA.fakturaToHttpDB();
+        invoiceA_insert.fakturaToHttpDB();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //
-        invoiceA.addArticleForJTable(jTable_InvoiceA_articles);
+        invoiceA_insert.addArticleForJTable(jTable_InvoiceA_articles);
         //
-        invoiceA.addArticleForDB();
+        invoiceA_insert.addArticleForDB();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        invoiceA.htmlFaktura();
+        invoiceA_insert.htmlFaktura();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //
-//          invoiceA.test();
+//          invoiceA_insert.test();
         //
         HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.DB__BUH_F_ARTIKEL);
         //
@@ -399,21 +399,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //
-        String json = getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, "6");
+        if (invoiceA_insert != null) {
+            System.out.println("invoiceA_insert: INSERT_OR_UPDATE: " + invoiceA_insert.isInsertOrUpdate());
+        }
         //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json));
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        if (invoiceA_update != null) {
+            System.out.println("invoiceA_update: INSERT_OR_UPDATE: " + invoiceA_update.isInsertOrUpdate());
         }
         //
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        invoiceA.clearAllRowsTableInvert(invoiceA.TABLE_INVERT);
+        invoiceA_insert.clearAllRowsTableInvert(invoiceA_insert.TABLE_INVERT);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
@@ -596,13 +593,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
             } else if (title.equals(TAB_CREATE_FAKTURA)) {
                 //
-                if (invoiceA != null) {
+                if (invoiceA_insert != null) {
                     //
                     // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
                     // The problem was that when you switched to another tab and returned back the invert-tables were not showing
-//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT);
-//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_2);
-//                    invoiceA.refreshTableInvert(invoiceA.TABLE_INVERT_3);
+//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT);
+//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_2);
+//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_3);
                     //
                     java.awt.EventQueue.invokeLater(new Runnable() {
                         @Override

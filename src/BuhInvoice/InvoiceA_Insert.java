@@ -39,13 +39,15 @@ public class InvoiceA_Insert extends Basic {
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry_Insert_ faktura_entry_insert;
+    private int INSERT_OR_UPDATE_CLASS = 0;
+    
 
     public InvoiceA_Insert(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
-    
-    protected Faktura_Entry_Insert_ initFakturaEntry(){
+
+    protected Faktura_Entry_Insert_ initFakturaEntry() {
         return new Faktura_Entry_Insert_(this);
     }
 
@@ -55,6 +57,25 @@ public class InvoiceA_Insert extends Basic {
         //
         startUp();
         //
+    }
+
+    /**
+     * VERY IMPORTANT !
+     * [2020-07-29]
+     * @return 1 = Insert, 2 = Update, 0 = Undefined
+     */
+    public int isInsertOrUpdate() {
+        return INSERT_OR_UPDATE_CLASS;
+    }
+
+    public void setInsertOrUpdateClassActive() {
+        if (this instanceof InvoiceA_Insert) {
+            INSERT_OR_UPDATE_CLASS = 1;
+        } else if (this instanceof InvoiceA_Update) {
+            INSERT_OR_UPDATE_CLASS = 2;
+        } else {
+            INSERT_OR_UPDATE_CLASS = 0;
+        }
     }
 
     protected void startUp() {
@@ -314,7 +335,8 @@ public class InvoiceA_Insert extends Basic {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
-       
+        setInsertOrUpdateClassActive(); // [2020-07-29] IMPORTANT
+        //
     }
 
     public void showTableInvert_2() {
