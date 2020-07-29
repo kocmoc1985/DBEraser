@@ -297,6 +297,11 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
+        //
+//        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
+//        RowDataInvert rdi = tri.getRowConfig();
+        //
+        //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
             String var_referens = getValueTableInvert(DB.BUH_FAKTURA__VAR_REFERENS);
@@ -339,8 +344,6 @@ public abstract class Invoice extends Basic {
 //            System.out.println("validated: " + validated);
         }
     }
-
-    
 
     private boolean validate(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
