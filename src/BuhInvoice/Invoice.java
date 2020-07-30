@@ -263,7 +263,7 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(e.getSource());
         //
-        if(col_name == null){
+        if (col_name == null) {
             return;
         }
         //
@@ -294,11 +294,11 @@ public abstract class Invoice extends Basic {
     }
 
     /**
-     *  In future it
-     * makes sense to make better the criteria of considering the field updated.
-     * Now it's considered to be updated when a user clicks on a field
+     * In future it makes sense to make better the criteria of considering the
+     * field updated. Now it's considered to be updated when a user clicks on a
+     * field
      *
-     * @deprecated 
+     * @deprecated
      * @param eventSourceObj
      */
     private void setFieldUpdated__(Object eventSourceObj) {
@@ -376,11 +376,13 @@ public abstract class Invoice extends Basic {
         //
         super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
         //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         //
 //        TEST_REFERENSES(ke);
-          fieldUpdateWatcher(ke);
+        fieldUpdateWatcher(ke);
         //
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
@@ -407,23 +409,45 @@ public abstract class Invoice extends Basic {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
-            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
+//            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
+            //
+            String val = jli.getValue();
+            //
             //
             boolean validated = validate(DATE_YYYY_MM_DD, val);
             //
             JTextField jtf = (JTextField) ke.getSource();
             //
             if (validated && HelpA.isDateValid(val)) {
-                JTextField field = new JTextField();
-                Color initialColor = field.getForeground();
-                jtf.setForeground(initialColor);
+                jtf.setForeground(getJTextFieldInitialColor());
                 forfalloDatumAutoChange();
+                jli.setValidated(true);
             } else {
                 jtf.setForeground(Color.RED);
+                jli.setValidated(false);
             }
             //
 //            System.out.println("validated: " + validated);
+        } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)) {
+            //
+            JTextField jtf = (JTextField) ke.getSource();
+            //
+            String val = jli.getValue();
+            //
+            if (HelpA.isNumber(val)) {
+                jtf.setForeground(getJTextFieldInitialColor());
+                jli.setValidated(true);
+            } else {
+                jtf.setForeground(Color.RED);
+                jli.setValidated(false);
+            }
+            //
         }
+    }
+
+    private Color getJTextFieldInitialColor() {
+        JTextField field = new JTextField();
+        return field.getForeground();
     }
 
     private boolean validate(Pattern pattern, String stringToCheck) {

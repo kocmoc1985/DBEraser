@@ -18,6 +18,7 @@ public class ColumnDataEntryInvert {
     private final String original_column_name;
     private final String column_nick_name;
     private boolean isUpdated = false;
+    private boolean validated = true;
     private String initialValue;
 
     public ColumnDataEntryInvert(Object object, String database_id, String originalColumnName, String columnNickName) {
@@ -25,6 +26,10 @@ public class ColumnDataEntryInvert {
         this.database_id = database_id;
         this.original_column_name = originalColumnName;
         this.column_nick_name = columnNickName;
+    }
+    
+    public void setValidated(boolean validated){
+        this.validated = validated;
     }
 
     public boolean isUpdated() {

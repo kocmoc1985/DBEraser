@@ -55,5 +55,10 @@ public class JLabelInvert extends JLabel implements JLinkInvert {
             child.setUpdated(false);
         }
     }
+    
+    @Override
+    public void setValidated(boolean validated) {
+        child.setValidated(validated);
+    }
 
 }

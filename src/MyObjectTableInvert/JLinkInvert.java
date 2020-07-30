@@ -27,5 +27,7 @@ public interface JLinkInvert {
     public boolean valueUpdated();
 
     public void setFieldUpdatedAuto();
+    
+    public void setValidated(boolean validated);
 
 }

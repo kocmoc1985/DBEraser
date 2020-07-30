@@ -2735,5 +2735,14 @@ public class HelpA {
         }
         //
     }
+    
+    public static boolean isNumber(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
 
 }

@@ -59,4 +59,9 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
         }
     }
     
+    @Override
+    public void setValidated(boolean validated) {
+        child.setValidated(validated);
+    }
+    
 }
