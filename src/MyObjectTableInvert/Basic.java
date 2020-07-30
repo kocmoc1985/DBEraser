@@ -229,10 +229,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
-     * 
+     *
      * [2020-07-30]
+     *
      * @param parent - Usually it's taken from an "Event" like "me.getSource()"
-     * @return 
+     * @return
      */
     public ColumnDataEntryInvert getColumnData(Object parent) {
         if (parent instanceof JParentInvert) {
@@ -387,14 +388,15 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
-     * [2020-07-13]
+     * [2020-07-30] Return only the map which contains values which were
+     * considered as changed/modified/updated
      *
      * @param table_invert
      * @param startColumn
      * @param rdi
      * @return
      */
-    public HashMap<String, String> tableInvertToHashMap_unsaved_values(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+    public HashMap<String, String> tableInvertToHashMap_unsaved_values_only(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //
         HashMap<String, String> mapToReturn = new HashMap<>();
         //
@@ -408,7 +410,17 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 //
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
-                mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                if (columnValue.getColumnDataEntryInvert() != null) {
+                    //
+                    ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
+                    //
+                    if (cde.isIsUpdated()) {
+                        mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                    } else {
+                        // Nothing, don't add
+                    }
+                    //
+                }
                 //
             }
             //

@@ -23,8 +23,8 @@ public class ColumnValue {
 
     public ColumnValue(Object value) {
         this.value = value;
-    }  
-    
+    }
+
     public ColumnValue(String columnNickName, String columnOriginalName, Object value) {
         this.columnNickName = columnNickName;
         this.columnOriginalName = columnOriginalName;
@@ -35,37 +35,47 @@ public class ColumnValue {
         return columnNickName;
     }
 
+
+    public ColumnDataEntryInvert getColumnDataEntryInvert() {
+        if (value instanceof JParentInvert) {
+            JParentInvert jpi = (JParentInvert) value;
+            return jpi.getChildObject();
+        } else {
+            return null;
+        }
+    }
+
     public String getValue() {
-        if (value instanceof JLabel) {
-            JLabel label = (JLabel) value;
+        if (value instanceof JLabelInvert) {
+            JLabelInvert label = (JLabelInvert) value;
             return label.getText();
-        } else if (value instanceof JComboBox) {
-            JComboBox comboBox = (JComboBox) value;
+        } else if (value instanceof JComboBoxInvert) {
+            JComboBoxInvert comboBox = (JComboBoxInvert) value;
             return HelpA.getComboBoxSelectedValue(comboBox);
-        } else if (value instanceof JTextField) {
-            JTextField jtf = (JTextField) value;
+        } else if (value instanceof JTextFieldInvert) {
+            JTextFieldInvert jtf = (JTextFieldInvert) value;
             return (String) jtf.getText();
-        } else if (value instanceof JButton) {
-            JButton jb = (JButton) value;
+        } else if (value instanceof JButtonInvert) {
+            JButtonInvert jb = (JButtonInvert) value;
             return (String) jb.getText();
         } else {
             return null;
         }
     }
-    
+
     public String getValue(int paramToReturn) {
-        if (value instanceof JLabel) {
-            JLabel label = (JLabel) value;
+        if (value instanceof JLabelInvert) {
+            JLabelInvert label = (JLabelInvert) value;
             return label.getText();
-        } else if (value instanceof JComboBox) {
-            JComboBox comboBox = (JComboBox) value;
+        } else if (value instanceof JComboBoxInvert) {
+            JComboBoxInvert comboBox = (JComboBoxInvert) value;
 //            return HelpA.getComboBoxSelectedValue(comboBox);
             return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
-        } else if (value instanceof JTextField) {
-            JTextField jtf = (JTextField) value;
+        } else if (value instanceof JTextFieldInvert) {
+            JTextFieldInvert jtf = (JTextFieldInvert) value;
             return (String) jtf.getText();
-        } else if (value instanceof JButton) {
-            JButton jb = (JButton) value;
+        } else if (value instanceof JButtonInvert) {
+            JButtonInvert jb = (JButtonInvert) value;
             return (String) jb.getText();
         } else {
             return null;
