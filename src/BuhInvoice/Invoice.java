@@ -9,7 +9,6 @@ import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
-import MyObjectTableInvert.JParentInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -30,25 +29,26 @@ import java.util.regex.Pattern;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
+import MyObjectTableInvert.JLinkInvert;
 
 /**
  *
  * @author KOCMOC
  */
 public abstract class Invoice extends Basic {
-    
+
     protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
     private final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-    
+
     public Invoice(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
         initOther();
     }
-    
+
     private void initOther() {
         //
         faktura_entry = initFakturaEntry();
@@ -56,11 +56,11 @@ public abstract class Invoice extends Basic {
         startUp();
         //
     }
-    
+
     protected abstract Faktura_Entry initFakturaEntry();
-    
+
     protected abstract void startUp();
-    
+
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
     }
@@ -73,7 +73,7 @@ public abstract class Invoice extends Basic {
     public static int isInsertOrUpdate() {
         return INSERT_OR_UPDATE_CLASS;
     }
-    
+
     public void setInsertOrUpdateClassActive() {
         if (this instanceof InvoiceA_Insert) {
             INSERT_OR_UPDATE_CLASS = 1;
@@ -83,15 +83,15 @@ public abstract class Invoice extends Basic {
             INSERT_OR_UPDATE_CLASS = 0;
         }
     }
-    
+
     protected String getKundId() {
         return bim.getKundId();
     }
-    
+
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
     }
-    
+
     protected String getFakturaNr() {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -116,7 +116,7 @@ public abstract class Invoice extends Basic {
             return null;
         }
     }
-    
+
     public boolean getInklMoms() {
         try {
             return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
@@ -124,7 +124,7 @@ public abstract class Invoice extends Basic {
             return true;
         }
     }
-    
+
     public double getMomsSats() {
         try {
             return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
@@ -132,15 +132,15 @@ public abstract class Invoice extends Basic {
             return 0.25;
         }
     }
-    
+
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
-    
+
     public abstract RowDataInvert[] getConfigTableInvert_2();
-    
+
     public abstract RowDataInvert[] getConfigTableInvert_3();
-    
+
     @Override
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
@@ -155,7 +155,7 @@ public abstract class Invoice extends Basic {
         //
         bim.displayInsertOrUpdate(); // FOR TRACING
     }
-    
+
     public void showTableInvert_2() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
@@ -165,7 +165,7 @@ public abstract class Invoice extends Basic {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
-    
+
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
         TABLE_INVERT_3 = null;
@@ -178,7 +178,7 @@ public abstract class Invoice extends Basic {
         hideMomsSatsIfExklMoms(); // **********************************
         //
     }
-    
+
     protected void hideMomsSatsIfExklMoms() {
         //
         System.out.println("INKL_MOMS----------------------");
@@ -207,7 +207,7 @@ public abstract class Invoice extends Basic {
             //
         }
     }
-    
+
     protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {
         //
         String comboString;
@@ -231,11 +231,15 @@ public abstract class Invoice extends Basic {
         //
         return comboString;
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
         super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        //
+        setFieldUpdated(me.getSource()); // *************************
+        //
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
@@ -245,17 +249,17 @@ public abstract class Invoice extends Basic {
         }
         //
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
         super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
@@ -289,6 +293,23 @@ public abstract class Invoice extends Basic {
     }
 
     /**
+     * [2020-07-30]
+     * Marking the field is considered to be updated.
+     * In future it makes sense to make better the criteria of considering the field updated.
+     * Now it's considered to be updated when a user clicks on a field
+     * @param eventSourceObj 
+     */
+    private void setFieldUpdated(Object eventSourceObj) {
+        //
+        ColumnDataEntryInvert cde = getColumnData(eventSourceObj);
+        //
+        if (cde != null) {
+            cde.setUpdated(true);
+            System.out.println("FIELD: '" + cde.getOriginalColumn_name() + "' " + "MARKED AS UPDATED");
+        }
+    }
+
+    /**
      * [2020-07-XX] SUPER important here you catch the event when key released
      * on some component so you can process this event as required
      *
@@ -302,12 +323,9 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        ColumnDataEntryInvert cde = getColumnData(ke.getSource());
-        cde.setUpdated(true);
-        //
-//        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
-//        RowDataInvertB rdi = (RowDataInvertB)tri.getRowConfig();
-//        rdi.setFieldUpdated(true);
+//        if(ke.getSource() instanceof JLinkInvert){
+//            
+//        }
         //
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
@@ -352,12 +370,12 @@ public abstract class Invoice extends Basic {
 //            System.out.println("validated: " + validated);
         }
     }
-    
+
     private boolean validate(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
         return matcher.find();
     }
-    
+
     private void forfalloDatumAutoChange() {
         //
         String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
@@ -401,5 +419,5 @@ public abstract class Invoice extends Basic {
         }
         //
     }
-    
+
 }

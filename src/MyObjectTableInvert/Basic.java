@@ -51,14 +51,29 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         Object source = me.getSource();
         //
+        Object child = null;
         Object parent = null;
         //
-        if (source instanceof JParentInvert) {
-            JParentInvert jpi = (JParentInvert) source;
-            parent = jpi.getChildObject();
+        if (source instanceof JLinkInvert) {
+            JLinkInvert jpi = (JLinkInvert) source;
+            child = jpi.getChildObject();
+            parent = jpi.getParentObj();
         }
         //
-        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName + " class: " + me.getSource().getClass() + " parent: " + parent.getClass());
+        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName
+                + " class: " + me.getSource().getClass()
+                + " child: " + _get(child)
+                + " parent: " + _get(parent)
+        );
+        //
+    }
+    
+    private String _get(Object obj){
+       if(obj == null){
+           return "";
+       }else{
+           return obj.getClass().getName();
+       }
     }
 
     /**
@@ -236,8 +251,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * @return
      */
     public ColumnDataEntryInvert getColumnData(Object parent) {
-        if (parent instanceof JParentInvert) {
-            JParentInvert jpi = (JParentInvert) parent;
+        if (parent instanceof JLinkInvert) {
+            JLinkInvert jpi = (JLinkInvert) parent;
             return jpi.getChildObject();
         } else {
             return null;

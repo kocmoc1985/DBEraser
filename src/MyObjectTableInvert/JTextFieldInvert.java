@@ -11,22 +11,33 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class JTextFieldInvert extends JTextField implements JParentInvert {
+public class JTextFieldInvert extends JTextField implements JLinkInvert {
 
     private ColumnDataEntryInvert child;
+    private TableRowInvert parent;
 
     public JTextFieldInvert(String text) {
         super(text);
     }
     
     @Override
-    public void setChild(ColumnDataEntryInvert child) {
+    public void setChildObject(ColumnDataEntryInvert child) {
         this.child = child;
     }
 
     @Override
     public ColumnDataEntryInvert getChildObject() {
         return child;
+    }
+    
+    @Override
+    public void setParentObj(TableRowInvert rdi) {
+        this.parent = rdi;
+    }
+
+    @Override
+    public TableRowInvert getParentObj() {
+       return this.parent;
     }
 
 }

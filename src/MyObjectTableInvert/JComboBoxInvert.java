@@ -13,12 +13,13 @@ import forall.JComboBoxA;
  *
  * @author KOCMOC
  */
-public class JComboBoxInvert extends JComboBoxA implements JParentInvert{
+public class JComboBoxInvert extends JComboBoxA implements JLinkInvert{
  
     private ColumnDataEntryInvert child;
+    private TableRowInvert parent;
     
     @Override
-    public void setChild(ColumnDataEntryInvert child){
+    public void setChildObject(ColumnDataEntryInvert child){
         this.child = child;
     }
 
@@ -27,6 +28,14 @@ public class JComboBoxInvert extends JComboBoxA implements JParentInvert{
         return child;
     }
     
-    
+     @Override
+    public void setParentObj(TableRowInvert rdi) {
+        this.parent = rdi;
+    }
+
+    @Override
+    public TableRowInvert getParentObj() {
+       return this.parent;
+    }
   
 }

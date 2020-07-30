@@ -37,8 +37,8 @@ public class ColumnValue {
 
 
     public ColumnDataEntryInvert getColumnDataEntryInvert() {
-        if (value instanceof JParentInvert) {
-            JParentInvert jpi = (JParentInvert) value;
+        if (value instanceof JLinkInvert) {
+            JLinkInvert jpi = (JLinkInvert) value;
             return jpi.getChildObject();
         } else {
             return null;

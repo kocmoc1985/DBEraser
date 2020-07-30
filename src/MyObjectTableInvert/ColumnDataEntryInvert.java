@@ -42,12 +42,12 @@ public class ColumnDataEntryInvert {
         //
         // Setting this as child of parent JComponent here [2020-07-30]
         //
-        if(object instanceof JParentInvert){
-            JParentInvert jpi = (JParentInvert)object;
-            jpi.setChild(this);
+        if(object instanceof JLinkInvert){
+            JLinkInvert jpi = (JLinkInvert)object;
+            jpi.setChildObject(this);
         }
         //
-        // OBS! OBS! For the JTextFieldInvert the "setChild()" is done from
+        // OBS! OBS! For the JTextFieldInvert the "setChildObject()" is done from
         // "TableRowInvert.class -> addColumn(Object obj) -> line: 112" [2020-07-30]
         //
         return object;

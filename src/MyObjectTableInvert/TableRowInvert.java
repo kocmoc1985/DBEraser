@@ -106,10 +106,17 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
             //
             ColumnDataEntryInvert cde = (ColumnDataEntryInvert) obj;
             //
+            if(cde.getObject() instanceof JLinkInvert){
+                JLinkInvert jpi = (JLinkInvert)cde.getObject();
+                jpi.setParentObj(this);
+            }
+            //
             if (cde.getObject() instanceof String) {
+                //
                 JTextFieldInvert jtf = new JTextFieldInvert((String) cde.getObject());
                 //
-                jtf.setChild(cde);
+                jtf.setChildObject(cde);
+                jtf.setParentObj(this); // *************** setting separately here!
                 //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
