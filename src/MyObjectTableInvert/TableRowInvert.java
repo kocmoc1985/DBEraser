@@ -107,7 +107,10 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
             ColumnDataEntryInvert cde = (ColumnDataEntryInvert) obj;
             //
             if (cde.getObject() instanceof String) {
-                JTextField jtf = new JTextField((String) cde.getObject());
+                JTextFieldInvert jtf = new JTextFieldInvert((String) cde.getObject());
+                //
+                jtf.setChild(cde);
+                //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
                 if (getRowConfig().getImportant()) {
@@ -127,10 +130,10 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                 addComponent(add_component);
                 add_component.addKeyListener(this);
                 //
-            } else if (cde.getObject() instanceof JButton) {
+            } else if (cde.getObject() instanceof JButtonInvert) {
                 add_component = (Component) cde.getObject();
                 addComponent(add_component);
-            } else if (cde.getObject() instanceof JComboBox) {
+            } else if (cde.getObject() instanceof JComboBoxInvert) {
                 add_component = (Component) cde.getObject();
                 addComponent(add_component);
                 JComboBox box = (JComboBox) add_component;

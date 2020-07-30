@@ -48,7 +48,17 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
-        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName);
+        //
+        Object source = me.getSource();
+        //
+        Object parent = null;
+        //
+        if (source instanceof JParentInvert) {
+            JParentInvert jpi = (JParentInvert) source;
+            parent = jpi.getChildObject();
+        }
+        //
+        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName + " class: " + me.getSource().getClass() + " parent: " + parent.getClass());
     }
 
     /**
@@ -65,6 +75,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * Call from: TableRowInvertB
      *
      * @param ti
+     * @param e
      * @param ke
      */
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
@@ -215,6 +226,21 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public void setValueTableInvert(String rowName, Table tableInvert, Object value) {
         TableInvert ti = (TableInvert) tableInvert;
         ti.setValueAt(rowName, value, defineValueColumnIndex(tableInvert));
+    }
+
+    /**
+     * 
+     * [2020-07-30]
+     * @param parent - Usually it's taken from an "Event" like "me.getSource()"
+     * @return 
+     */
+    public ColumnDataEntryInvert getColumnData(Object parent) {
+        if (parent instanceof JParentInvert) {
+            JParentInvert jpi = (JParentInvert) parent;
+            return jpi.getChildObject();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -374,19 +400,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
-        int row = 0;
-        //
         for (RowDataInvert dataInvert : rdi) {
-            //
-            //
-            RowDataInvertB rowDataInvertB = (RowDataInvertB) tableInvert.getRowConfig(row);
-            //
-            row++;
-            //
-            if (rowDataInvertB.isFieldUpdated() == false) {
-                continue;
-            }
-            //
             //
             for (int x = startColumn; x < getColumnCount(table_invert); x++) {
                 //

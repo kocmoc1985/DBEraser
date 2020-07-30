@@ -13,7 +13,20 @@ import forall.JComboBoxA;
  *
  * @author KOCMOC
  */
-public class JComboBoxInvert extends JComboBoxA {
+public class JComboBoxInvert extends JComboBoxA implements JParentInvert{
+ 
+    private ColumnDataEntryInvert child;
+    
+    @Override
+    public void setChild(ColumnDataEntryInvert child){
+        this.child = child;
+    }
 
+    @Override
+    public ColumnDataEntryInvert getChildObject() {
+        return child;
+    }
+    
+    
   
 }

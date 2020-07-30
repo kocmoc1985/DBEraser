@@ -194,7 +194,11 @@ public class RowDataInvert extends RowData {
             return jcb;
             //
         } else if (type == TYPE_JBUTTON) {
+            JButtonInvert jbi = new JButtonInvert();
+            return jbi;
         } else if (type == TYPE_JLABEL) {
+            JLabelInvert jli = new JLabelInvert();
+            return jli;
         }
         //
         return null;

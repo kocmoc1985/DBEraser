@@ -5,28 +5,11 @@
  */
 package BuhInvoice;
 
-import MyObjectTable.OutPut;
-import MyObjectTable.Table;
-import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
-import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
-import java.awt.Color;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**

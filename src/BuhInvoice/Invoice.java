@@ -9,6 +9,7 @@ import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
+import MyObjectTableInvert.JParentInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -301,14 +302,13 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
+        ColumnDataEntryInvert cde = getColumnData(ke.getSource());
+        cde.setUpdated(true);
         //
-        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
-        RowDataInvertB rdi = (RowDataInvertB)tri.getRowConfig();
-        rdi.setFieldUpdated(true);
+//        TableRowInvert tri = (TableRowInvert) ti.getRowByColName(col_name);
+//        RowDataInvertB rdi = (RowDataInvertB)tri.getRowConfig();
+//        rdi.setFieldUpdated(true);
         //
-        //
-//        JComponent component = (JComponent)ke.getSource();
-//        ColumnDataEntryInvert cde = component.getParent();
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
