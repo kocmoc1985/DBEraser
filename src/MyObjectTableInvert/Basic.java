@@ -67,13 +67,13 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         );
         //
     }
-    
-    private String _get(Object obj){
-       if(obj == null){
-           return "";
-       }else{
-           return obj.getClass().getName();
-       }
+
+    private String _get(Object obj) {
+        if (obj == null) {
+            return "";
+        } else {
+            return obj.getClass().getName();
+        }
     }
 
     /**
@@ -369,6 +369,40 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     public String jTableToCSV(JTable table, boolean writeToFile, String[] columns) {
         return HelpA.jTableToCSV(table, writeToFile, columns);
+    }
+
+    /**
+     * [2020-07-30]
+     * 
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return
+     */
+    public boolean containsInvalidatedFields(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
+                //
+                if (cde.isValidated() == false) {
+                    return true;
+                }
+                //
+            }
+            //
+        }
+        //
+        return false;
+        //
     }
 
     /**

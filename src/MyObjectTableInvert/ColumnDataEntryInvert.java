@@ -31,6 +31,10 @@ public class ColumnDataEntryInvert {
     public void setValidated(boolean validated){
         this.validated = validated;
     }
+    
+    public boolean isValidated(){
+        return validated;
+    }
 
     public boolean isUpdated() {
         return isUpdated;

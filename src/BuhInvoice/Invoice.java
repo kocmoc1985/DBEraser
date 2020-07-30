@@ -427,7 +427,6 @@ public abstract class Invoice extends Basic {
                 jli.setValidated(false);
             }
             //
-//            System.out.println("validated: " + validated);
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)) {
             //
             JTextField jtf = (JTextField) ke.getSource();
