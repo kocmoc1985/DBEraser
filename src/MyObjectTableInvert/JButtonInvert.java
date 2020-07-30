@@ -11,7 +11,7 @@ import javax.swing.JButton;
  *
  * @author KOCMOC
  */
-public class JButtonInvert extends JButton implements JLinkInvert { 
+public class JButtonInvert extends JButton implements JLinkInvert {
 
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
@@ -33,6 +33,17 @@ public class JButtonInvert extends JButton implements JLinkInvert {
 
     @Override
     public TableRowInvert getParentObj() {
-       return this.parent;
+        return this.parent;
     }
+
+    @Override
+    public String getValue() {
+        return getText();
+    }
+
+    @Override
+    public boolean valueUpdated() {
+        return !child.getInitialValue().equals(getValue());
+    }
+
 }

@@ -7,12 +7,9 @@ package MyObjectTable;
 import MyObjectTableInvert.UnsavedEntryInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -22,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingUtilities;
 
 /**
  *

@@ -18,6 +18,7 @@ public class ColumnDataEntryInvert {
     private final String original_column_name;
     private final String column_nick_name;
     private boolean isUpdated = false;
+    private String initialValue;
 
     public ColumnDataEntryInvert(Object object, String database_id, String originalColumnName, String columnNickName) {
         this.object = object;
@@ -26,14 +27,14 @@ public class ColumnDataEntryInvert {
         this.column_nick_name = columnNickName;
     }
 
-    public boolean isIsUpdated() {
+    public boolean isUpdated() {
         return isUpdated;
     }
 
     public void setUpdated(boolean isUpdated) {
         this.isUpdated = isUpdated;
     }
-    
+
     public void setObject(Object object) {
         this.object = object;
     }
@@ -42,9 +43,12 @@ public class ColumnDataEntryInvert {
         //
         // Setting this as child of parent JComponent here [2020-07-30]
         //
-        if(object instanceof JLinkInvert){
-            JLinkInvert jpi = (JLinkInvert)object;
+        if (object instanceof JLinkInvert) {
+            JLinkInvert jpi = (JLinkInvert) object;
             jpi.setChildObject(this);
+            initialValue = jpi.getValue();
+        }else{
+            initialValue = (String)object; // This one in case of "JTextFieldInvert" see: "TableRowInvert.class -> addColumn(Object obj) -> line: 112"
         }
         //
         // OBS! OBS! For the JTextFieldInvert the "setChildObject()" is done from
@@ -52,6 +56,19 @@ public class ColumnDataEntryInvert {
         //
         return object;
         //
+    }
+
+    /**
+     * [2020-07-30] Get INITIAL value from JTextFieldInvert, JComboBoxInvert or other
+     * components implementing "JLinkInvert" interface.
+     * 
+     * So the initial means the value which was "there" when the table
+     * was built
+     *
+     * @return
+     */
+    public String getInitialValue() {
+        return initialValue;
     }
 
     public String getDatabase_id() {
@@ -65,6 +82,5 @@ public class ColumnDataEntryInvert {
     public String getColumn_nick_name() {
         return column_nick_name;
     }
-    
-    
+
 }

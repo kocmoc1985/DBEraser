@@ -4,8 +4,8 @@
  */
 package MyObjectTableInvert;
 
+import forall.HelpA;
 import forall.JComboBoxA;
-
 
 /**
  * This class is just to be able to distinguish between a box used for
@@ -13,13 +13,13 @@ import forall.JComboBoxA;
  *
  * @author KOCMOC
  */
-public class JComboBoxInvert extends JComboBoxA implements JLinkInvert{
- 
+public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
+
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
-    
+
     @Override
-    public void setChildObject(ColumnDataEntryInvert child){
+    public void setChildObject(ColumnDataEntryInvert child) {
         this.child = child;
     }
 
@@ -27,15 +27,25 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert{
     public ColumnDataEntryInvert getChildObject() {
         return child;
     }
-    
-     @Override
+
+    @Override
     public void setParentObj(TableRowInvert rdi) {
         this.parent = rdi;
     }
 
     @Override
     public TableRowInvert getParentObj() {
-       return this.parent;
+        return this.parent;
     }
-  
+
+    @Override
+    public String getValue() {
+        return HelpA.getComboBoxSelectedValue(this);
+    }
+
+    @Override
+    public boolean valueUpdated() {
+        return !child.getInitialValue().equals(getValue());
+    }
+
 }

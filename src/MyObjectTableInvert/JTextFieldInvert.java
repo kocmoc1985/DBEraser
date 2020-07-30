@@ -12,10 +12,10 @@ import javax.swing.JTextField;
  * @author KOCMOC
  */
 public class JTextFieldInvert extends JTextField implements JLinkInvert {
-
+    
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
-
+    
     public JTextFieldInvert(String text) {
         super(text);
     }
@@ -24,7 +24,7 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     public void setChildObject(ColumnDataEntryInvert child) {
         this.child = child;
     }
-
+    
     @Override
     public ColumnDataEntryInvert getChildObject() {
         return child;
@@ -34,10 +34,28 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     public void setParentObj(TableRowInvert rdi) {
         this.parent = rdi;
     }
-
+    
     @Override
     public TableRowInvert getParentObj() {
-       return this.parent;
+        return this.parent;
     }
-
+    
+    @Override
+    public String getValue() {
+        return getText();
+    }
+    
+    @Override
+    public boolean valueUpdated() {
+        return !child.getInitialValue().equals(getValue());
+    }
+    
+    public void setFieldUpdatedAuto() {
+        if (valueUpdated()) {
+            child.setUpdated(true);
+        } else {
+            child.setUpdated(false);
+        }
+    }
+    
 }

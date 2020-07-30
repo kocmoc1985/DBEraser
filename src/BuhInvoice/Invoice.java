@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
+import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
@@ -30,6 +31,11 @@ import javax.swing.JColorChooser;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
+import java.awt.AWTEvent;
+import java.awt.Event;
+import java.awt.event.ComponentEvent;
+import java.awt.event.InputEvent;
 
 /**
  *
@@ -262,6 +268,7 @@ public abstract class Invoice extends Basic {
 
     @Override
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
+        //
         super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
         //
         String col_name = ti.getCurrentColumnName(e.getSource());
@@ -293,11 +300,11 @@ public abstract class Invoice extends Basic {
     }
 
     /**
-     * [2020-07-30]
-     * Marking the field is considered to be updated.
-     * In future it makes sense to make better the criteria of considering the field updated.
+     * [2020-07-30] Marking the field is considered to be updated. In future it
+     * makes sense to make better the criteria of considering the field updated.
      * Now it's considered to be updated when a user clicks on a field
-     * @param eventSourceObj 
+     *
+     * @param eventSourceObj
      */
     private void setFieldUpdated(Object eventSourceObj) {
         //
@@ -307,6 +314,42 @@ public abstract class Invoice extends Basic {
             cde.setUpdated(true);
             System.out.println("FIELD: '" + cde.getOriginalColumn_name() + "' " + "MARKED AS UPDATED");
         }
+    }
+    
+    /**
+     * IMPORTANT EXAMPLE [2020-07-30]
+     * @param evt 
+     */
+    private void TEST_REFERENSES(AWTEvent evt){
+        //
+        if (evt.getSource() instanceof JLinkInvert) {
+            //
+            JLinkInvert jli = (JLinkInvert) evt.getSource();
+            //
+            TableRowInvert tri = jli.getParentObj();
+            //
+            TableInvert ti_ = (TableInvert) tri.getTable();
+            //
+            TableData ta = ti_.TABLE_DATA;
+            //
+            RowDataInvert rdi = tri.getRowConfig();
+            //
+            ColumnDataEntryInvert cde = jli.getChildObject();
+            //
+            String initialValue = cde.getInitialValue();
+            //
+            String actualValue = jli.getValue();
+            //
+            boolean valuChanged = jli.valueUpdated();
+            //
+            System.out.println("");
+            System.out.println("InitialValue: " + initialValue);
+            System.out.println("ActualValue: " + actualValue);
+            System.out.println("Value Changed: " + valuChanged);
+            System.out.println("");
+            //
+        }
+        //
     }
 
     /**
@@ -323,9 +366,8 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-//        if(ke.getSource() instanceof JLinkInvert){
-//            
-//        }
+        //
+        TEST_REFERENSES(ke);
         //
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
@@ -401,6 +443,8 @@ public abstract class Invoice extends Basic {
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
         //
         super.jComboBoxItemStateChangedForward(ti, ie);
+        //
+        TEST_REFERENSES(ie);
         //
         String col_name = ti.getCurrentColumnName(ie.getSource());
         //

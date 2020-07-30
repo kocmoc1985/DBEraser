@@ -429,7 +429,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                     //
                     ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
                     //
-                    if (cde.isIsUpdated()) {
+                    if (cde.isUpdated()) {
                         mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
                     } else {
                         // Nothing, don't add

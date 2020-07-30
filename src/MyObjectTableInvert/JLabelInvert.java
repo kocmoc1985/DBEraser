@@ -15,7 +15,7 @@ public class JLabelInvert extends JLabel implements JLinkInvert {
 
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
-    
+
     @Override
     public void setChildObject(ColumnDataEntryInvert child) {
         this.child = child;
@@ -25,7 +25,7 @@ public class JLabelInvert extends JLabel implements JLinkInvert {
     public ColumnDataEntryInvert getChildObject() {
         return child;
     }
-    
+
     @Override
     public void setParentObj(TableRowInvert rdi) {
         this.parent = rdi;
@@ -33,6 +33,17 @@ public class JLabelInvert extends JLabel implements JLinkInvert {
 
     @Override
     public TableRowInvert getParentObj() {
-       return this.parent;
+        return this.parent;
     }
+
+    @Override
+    public String getValue() {
+        return getText();
+    }
+
+    @Override
+    public boolean valueUpdated() {
+        return !child.getInitialValue().equals(getValue());
+    }
+
 }

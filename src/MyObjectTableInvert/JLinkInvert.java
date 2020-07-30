@@ -20,4 +20,8 @@ public interface JLinkInvert {
     
     public TableRowInvert getParentObj();
     
+    public String getValue();
+    
+    public boolean valueUpdated();
+    
 }
