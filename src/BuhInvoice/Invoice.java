@@ -263,6 +263,10 @@ public abstract class Invoice extends Basic {
         //
         String col_name = ti.getCurrentColumnName(e.getSource());
         //
+        if(col_name == null){
+            return;
+        }
+        //
         if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             double wheelRotation = e.getPreciseWheelRotation();

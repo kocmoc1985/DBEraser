@@ -53,14 +53,14 @@ public class InvoiceA_Update extends Invoice {
         //
         System.out.println("UPDATE json: " + json);
         //
-//        try {
-//            //
-//            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-//                    DB.PHP_FUNC_UPDATE_AUTO, json));
-//            //
-//        } catch (Exception ex) {
-//            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_UPDATE_AUTO, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
         //
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));

@@ -9,3 +9,4 @@ Make check for "float" inputs and namely check for ","
 
 MySql allows point "." !!!!!!
 
+MySql allows inserting values without single quotes -> '' 
