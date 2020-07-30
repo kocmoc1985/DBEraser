@@ -48,6 +48,7 @@ public class InvoiceA_Update extends Invoice {
         map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
         //
         HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
+        //
         String json = JSon.hashMapToJSON(final_map);
         //
         System.out.println("UPDATE json: " + json);

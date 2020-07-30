@@ -45,5 +45,16 @@ public class JButtonInvert extends JButton implements JLinkInvert {
     public boolean valueUpdated() {
         return !child.getInitialValue().equals(getValue());
     }
+    
+    @Override
+    public void setFieldUpdatedAuto() {
+        if (valueUpdated()) {
+            child.setUpdated(true);
+        } else {
+            child.setUpdated(false);
+        }
+    }
+    
+   
 
 }

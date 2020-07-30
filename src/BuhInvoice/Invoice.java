@@ -11,7 +11,6 @@ import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
@@ -27,15 +26,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.JColorChooser;
-import javax.swing.JComponent;
 import javax.swing.JTextField;
 import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
 import java.awt.AWTEvent;
-import java.awt.Event;
-import java.awt.event.ComponentEvent;
-import java.awt.event.InputEvent;
 
 /**
  *
@@ -244,9 +237,6 @@ public abstract class Invoice extends Basic {
         super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
         //
-        setFieldUpdated(me.getSource()); // *************************
-        //
-        //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
@@ -300,13 +290,14 @@ public abstract class Invoice extends Basic {
     }
 
     /**
-     * [2020-07-30] Marking the field is considered to be updated. In future it
+     *  In future it
      * makes sense to make better the criteria of considering the field updated.
      * Now it's considered to be updated when a user clicks on a field
      *
+     * @deprecated 
      * @param eventSourceObj
      */
-    private void setFieldUpdated(Object eventSourceObj) {
+    private void setFieldUpdated__(Object eventSourceObj) {
         //
         ColumnDataEntryInvert cde = getColumnData(eventSourceObj);
         //
@@ -314,13 +305,30 @@ public abstract class Invoice extends Basic {
             cde.setUpdated(true);
             System.out.println("FIELD: '" + cde.getOriginalColumn_name() + "' " + "MARKED AS UPDATED");
         }
+        //
     }
-    
+
+    /**
+     * [2020-07-30] Marking the field is considered to be updated.
+     */
+    private void fieldUpdateWatcher(AWTEvent evt) {
+        //
+        if (evt.getSource() instanceof JLinkInvert) {
+            //
+            JLinkInvert jli = (JLinkInvert) evt.getSource();
+            //
+            jli.setFieldUpdatedAuto();
+            //
+        }
+        //
+    }
+
     /**
      * IMPORTANT EXAMPLE [2020-07-30]
-     * @param evt 
+     *
+     * @param evt
      */
-    private void TEST_REFERENSES(AWTEvent evt){
+    private void TEST_REFERENSES(AWTEvent evt) {
         //
         if (evt.getSource() instanceof JLinkInvert) {
             //
@@ -367,7 +375,8 @@ public abstract class Invoice extends Basic {
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         //
-        TEST_REFERENSES(ke);
+//        TEST_REFERENSES(ke);
+          fieldUpdateWatcher(ke);
         //
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
@@ -444,7 +453,8 @@ public abstract class Invoice extends Basic {
         //
         super.jComboBoxItemStateChangedForward(ti, ie);
         //
-        TEST_REFERENSES(ie);
+//        TEST_REFERENSES(ie);
+        fieldUpdateWatcher(ie);
         //
         String col_name = ti.getCurrentColumnName(ie.getSource());
         //

@@ -1,27 +1,11 @@
-[2020-07-24]
-Make check for "float" inputs and namely check for "," 
-
-[2020-07-25]
-php function "getLatestFakturaNr()" -> integrate with "get_by_kundid()" --- > Shall not be done be integerated, they turned to be rather different [2020-07-26]
-
-
-[2020-07-27] [DONE]
-
-Learn how to get "ARTICLES" for a faktura which DO NOT contain artikleId
-
-SELECT buh_faktura_artikel.namn, buh_f_artikel.id, buh_f_artikel.antal, buh_f_artikel.pris FROM `buh_faktura_artikel`
-RIGHT OUTER JOIN buh_f_artikel ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
-WHERE buh_f_artikel.fakturaId=6
-
-
 [2020-07-27]
 
 Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
 
 
-[2020-07-29]
+[2020-07-30]
 
-ColumnDataEntryInvert -> Object -> Make a Class which extends JComponent!???????!!!???
+Make check for "float" inputs and namely check for "," 
 
-Search for: //Set parent here [2020-07-29]
+MySql allows point "." !!!!!!
 

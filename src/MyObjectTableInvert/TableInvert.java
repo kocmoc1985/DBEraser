@@ -217,7 +217,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     public HashMap<String, ColumnValue> getColumnData(int colNr) {
         //
-        HashMap<String, ColumnValue> map = new HashMap<String, ColumnValue>();
+        HashMap<String, ColumnValue> map = new HashMap<>();
         //
         Set set = row_col_object__column_count__map.keySet();
         Iterator it = set.iterator();
