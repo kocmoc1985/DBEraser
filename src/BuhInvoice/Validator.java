@@ -18,12 +18,16 @@ import javax.swing.JTextField;
  */
 public class Validator {
 
+    // SWE VAT: SE + XXXXXXXXXX + 01
+    private static final Pattern ORGNR = Pattern.compile("\\d{6}-\\d{4}");
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    private static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     /**
      * Verify input of digits/numbers
+     *
      * @param jli
-     * @return 
+     * @return
      */
     public static boolean validateDigitalInput(JLinkInvert jli) {
         //
@@ -31,7 +35,7 @@ public class Validator {
         //
         JTextField jtf = (JTextField) jli;
         //
-        if(val.contains(",")){
+        if (val.contains(",")) {
             val = val.replaceAll(",", ".");
             jtf.setText(val);
         }
@@ -48,11 +52,43 @@ public class Validator {
         //
     }
 
+    public static boolean validateOrgnr(String orgnr) {
+        return validate_(ORGNR, orgnr);
+    }
+
+    public static boolean validateOrgnr(JLinkInvert jli) {
+        return validate(jli, ORGNR);
+    }
+
+    public static boolean validateEmail(JLinkInvert jli) {
+        return validate(jli, EMAIL);
+    }
+
+    public static boolean validate(JLinkInvert jli, Pattern pattern) {
+        //
+        String val = jli.getValue();
+        //
+        boolean validated = validate_(pattern, val);
+        //
+        JTextField jtf = (JTextField) jli;
+        //
+        if (validated) {
+            jtf.setForeground(getJTextFieldInitialColor());
+            jli.setValidated(true);
+            return true;
+        } else {
+            jtf.setForeground(Color.RED);
+            jli.setValidated(false);
+            return false;
+        }
+        //
+    }
+
     public static boolean validateDate(JLinkInvert jli) {
         //
         String val = jli.getValue();
         //
-        boolean validated = validate(DATE_YYYY_MM_DD, val);
+        boolean validated = validate_(DATE_YYYY_MM_DD, val);
         //
         JTextField jtf = (JTextField) jli;
         //
@@ -68,9 +104,9 @@ public class Validator {
         //
     }
 
-    private static boolean validate(Pattern pattern, String stringToCheck) {
+    private static boolean validate_(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
-        return matcher.find();
+        return matcher.matches();
     }
 
     private static Color getJTextFieldInitialColor() {

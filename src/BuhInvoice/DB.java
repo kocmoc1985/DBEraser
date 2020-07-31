@@ -22,6 +22,8 @@ public class DB {
     public static final String STATIC__MAKULERAD_JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     //
+    public static final String STATIC__KUND_KATEGORI = "A,B,C,D,E,F,G";
+    //
     //
     public static final String DB__BUH_F_ARTIKEL = "buh_f_artikel";
     public static final String DB__BUH_FAKTURA = "buh_faktura";
@@ -65,6 +67,11 @@ public class DB {
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND___NAMN = "namn";
     public static final String BUH_FAKTURA_KUND___KUNDNR = "kundnr";
+    public static final String BUH_FAKTURA_KUND___ORGNR = "orgnr";
+    public static final String BUH_FAKTURA_KUND___VATNR = "vatnr";
+    public static final String BUH_FAKTURA_KUND___EMAIL = "email";
+    public static final String BUH_FAKTURA_KUND___KATEGORI = "kund_kategori";
+    
     //
     public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";

@@ -9,12 +9,14 @@ import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import java.awt.AWTEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -87,7 +89,51 @@ public abstract class Basic_Buh extends Basic {
             //
             Validator.validateDigitalInput(jli);
             //
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___EMAIL)) {
+            //
+            Validator.validateEmail(jli);
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___ORGNR)) {
+            //
+            Validator.validateOrgnr(jli);
+            //
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        //
+        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) me.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(me.getSource());
+        //
+        if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
+            //
+            vatnrAuto(jli, ti);
+            //
+        }
+    }
+
+    private void vatnrAuto(JLinkInvert jli, TableInvert ti) {
+        //
+        String vatnr = "SE";
+        //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        if (jtfi.getText().isEmpty() == false) {
+            return;
+        }
+        //
+        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
+        //
+        if (Validator.validateOrgnr(orgnr)) {
+            vatnr += orgnr.replace("-", "") + "01";
+            //
+            jtfi.setText(vatnr);
+        }
+        //
     }
 
     @Override
@@ -98,9 +144,7 @@ public abstract class Basic_Buh extends Basic {
         fieldUpdateWatcher(ie);
         //       
     }
-    
-    
-    
+
     /**
      * [2020-07-30] Marking the field is considered to be updated.
      */
@@ -115,7 +159,7 @@ public abstract class Basic_Buh extends Basic {
         }
         //
     }
-    
+
     /**
      * IMPORTANT EXAMPLE [2020-07-30]
      *

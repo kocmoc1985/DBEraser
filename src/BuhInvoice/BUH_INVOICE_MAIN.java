@@ -11,8 +11,6 @@ import MyObjectTableInvert.ColumnValue;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
-import forall.GradientJPanel;
-import forall.GradientJPanel_B;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -32,11 +30,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
+    private CustomersA customersA;
     private InvoiceB invoiceB;
 
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
+    private final static String TAB_KUDNER = "KUNDER";
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -586,7 +586,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
     protected javax.swing.JPanel jPanel4_Customers;
-    private javax.swing.JPanel jPanel5;
+    protected javax.swing.JPanel jPanel5;
     protected javax.swing.JPanel jPanel_articles;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -620,11 +620,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (invoiceA_insert != null) {
                     //
-                    // Super important fix [2020-07-24], without this fix the "invert tables" are not showing.
-                    // The problem was that when you switched to another tab and returned back the invert-tables were not showing
-//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT);
-//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_2);
-//                    invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_3);
                     //
                     java.awt.EventQueue.invokeLater(new Runnable() {
                         @Override
@@ -641,6 +636,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         }
                     });
                     //
+                }
+                //
+            }else if (title.equals(TAB_KUDNER)) {
+                //
+                if (customersA == null) {
+                    customersA = new CustomersA(this);
                 }
                 //
             }
