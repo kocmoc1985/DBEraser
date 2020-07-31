@@ -11,6 +11,8 @@ import MyObjectTableInvert.ColumnValue;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
+import forall.GradientJPanel;
+import forall.GradientJPanel_B;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -114,7 +116,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new GradientJPanel_B();
         jPanel2_faktura_main = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
