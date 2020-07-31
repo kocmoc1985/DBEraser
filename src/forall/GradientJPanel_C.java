@@ -15,13 +15,13 @@ import javax.swing.JPanel;
  *
  * @author KOCMOC
  */
-public class GradientJPanel_B extends JPanel {
+public class GradientJPanel_C extends JPanel {
 
-    public GradientJPanel_B() {
+    public GradientJPanel_C() {
     }
 
     
-    public GradientJPanel_B(LayoutManager layout) {
+    public GradientJPanel_C(LayoutManager layout) {
         super(layout);
     }
     
@@ -32,10 +32,11 @@ public class GradientJPanel_B extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         Color color1 = getBackground();
         Color color2 = color1.brighter();
+        Color color3 = color2.darker();
         int w = getWidth();
         int h = getHeight();
         GradientPaint gp = new GradientPaint(
-                0, 0, color2, 0, h, color1);
+                0, 0, color2, 0, h,color2 );
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, w, h);
     }

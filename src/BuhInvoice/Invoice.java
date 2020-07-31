@@ -41,7 +41,6 @@ public abstract class Invoice extends Basic {
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
-    
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
@@ -387,42 +386,51 @@ public abstract class Invoice extends Basic {
         //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
-            String var_referens = getValueTableInvert(DB.BUH_FAKTURA__VAR_REFERENS);
-            //
-            try {
-                HelpA.writeToFile(IO.VAR_REFERENS, var_referens);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
+            referensSave(DB.BUH_FAKTURA__VAR_REFERENS);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
-            String er_referens = getValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS);
-            //
-            try {
-                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), er_referens);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
+            referensSave(DB.BUH_FAKTURA__ER_REFERENS);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
-//            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
-            //
-            if(Validator.validateDate(jli)){
+            if (Validator.validateDate(jli)) {
                 forfalloDatumAutoChange();
             }
             //
-        } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)) {
+        } else if ( 
+                col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
+                || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                //
+                || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
+                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //
             Validator.validateNumberInput(jli);
             //
         }
     }
 
-
+    private void referensSave(String colName) {
+        //
+        String er_referens = getValueTableInvert(colName);
+        //
+        if (colName.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
+            try {
+                HelpA.writeToFile(IO.VAR_REFERENS, er_referens);
+            } catch (IOException ex) {
+                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        } else if (colName.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
+            try {
+                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), er_referens);
+            } catch (IOException ex) {
+                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //
+    }
 
     private void forfalloDatumAutoChange() {
         //

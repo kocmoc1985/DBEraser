@@ -26,6 +26,11 @@ public class Validator {
         //
         JTextField jtf = (JTextField) jli;
         //
+        if(val.contains(",")){
+            val = val.replaceAll(",", ".");
+            jtf.setText(val);
+        }
+        //
         if (HelpA.isNumber(val)) {
             jtf.setForeground(getJTextFieldInitialColor());
             jli.setValidated(true);

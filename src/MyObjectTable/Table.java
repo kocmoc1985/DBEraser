@@ -5,6 +5,8 @@
 package MyObjectTable;
 
 import MyObjectTableInvert.UnsavedEntryInvert;
+import forall.GradientJPanel_B;
+import forall.GradientJPanel_C;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
