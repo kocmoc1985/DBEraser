@@ -12,8 +12,12 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
+import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,6 +38,30 @@ public class CustomersA extends Basic_Buh {
                 showTableInvert();
             }
         });
+        //
+    }
+
+    public void insertCustomer() {
+        //
+        HashMap<String, String> map = tableInvertToHashMap_updated_values_only(TABLE_INVERT, 1, getConfigTableInvert());
+        //
+        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        if(containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())){
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+         try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 

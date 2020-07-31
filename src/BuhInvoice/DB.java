@@ -31,6 +31,7 @@ public class DB {
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     //
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
@@ -65,6 +66,7 @@ public class DB {
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
+    public static final String BUH_FAKTURA_KUND__KUND_ID = "kundId";
     public static final String BUH_FAKTURA_KUND___NAMN = "namn";
     public static final String BUH_FAKTURA_KUND___KUNDNR = "kundnr";
     public static final String BUH_FAKTURA_KUND___ORGNR = "orgnr";

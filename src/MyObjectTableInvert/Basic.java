@@ -480,7 +480,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * @param rdi
      * @return
      */
-    public HashMap<String, String> tableInvertToHashMap_unsaved_values_only(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+    public HashMap<String, String> tableInvertToHashMap_updated_values_only(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //
         HashMap<String, String> mapToReturn = new HashMap<>();
         //
