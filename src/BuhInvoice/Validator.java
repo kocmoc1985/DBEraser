@@ -52,10 +52,6 @@ public class Validator {
         //
     }
 
-    public static boolean validateOrgnr(String orgnr) {
-        return validate_(ORGNR, orgnr);
-    }
-
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);
     }

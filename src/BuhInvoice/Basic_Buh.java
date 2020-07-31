@@ -79,61 +79,6 @@ public abstract class Basic_Buh extends Basic {
 //        TEST_REFERENSES(ke);
         fieldUpdateWatcher(ke);
         //
-        //
-        if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
-                || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-                //
-                || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
-                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
-            //
-            Validator.validateDigitalInput(jli);
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___EMAIL)) {
-            //
-            Validator.validateEmail(jli);
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___ORGNR)) {
-            //
-            Validator.validateOrgnr(jli);
-            //
-        }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        //
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-        JLinkInvert jli = (JLinkInvert) me.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //
-        if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
-            //
-            vatnrAuto(jli, ti);
-            //
-        }
-    }
-
-    private void vatnrAuto(JLinkInvert jli, TableInvert ti) {
-        //
-        String vatnr = "SE";
-        //
-        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
-        //
-        if (jtfi.getText().isEmpty() == false) {
-            return;
-        }
-        //
-        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
-        //
-        if (Validator.validateOrgnr(orgnr)) {
-            vatnr += orgnr.replace("-", "") + "01";
-            //
-            jtfi.setText(vatnr);
-        }
-        //
     }
 
     @Override

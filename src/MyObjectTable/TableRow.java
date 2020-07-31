@@ -4,6 +4,7 @@
  */
 package MyObjectTable;
 
+import MyObjectTableInvert.JLinkInvert;
 import forall.HelpA;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -70,8 +71,6 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
         this.addAncestorListener(this);
         gridLayoutFix();
     }
-    
-    
 
     private void gridLayoutFix() {
         if (this.getLayout() instanceof GridLayout) {
@@ -127,24 +126,36 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
     protected void addComponent(Component componentToAdd) {
         this.add(componentToAdd);
     }
-    
-    public void setValueAt(int column_index,Object value){
+
+    public void setValueAt(int column_index, Object value) {
         Component c = this.getComponent(column_index);
         //
         if (c instanceof JTextField) {
             JTextField jtf = (JTextField) c;
             jtf.setText(value.toString());
-        } else if(c instanceof JComboBox){
-            JComboBox jcb = (JComboBox)c;
+        } else if (c instanceof JComboBox) {
+            JComboBox jcb = (JComboBox) c;
             jcb.setSelectedItem(value);
         }
     }
-    
-    public Object getComponentAt(int column_index){
+
+    public Object getComponentAt(int column_index) {
         return this.getComponent(column_index);
     }
 
+    public JLinkInvert getLinkInvertAt(int column_index) {
+        //
+        Component c = this.getComponent(column_index);
+        //
+        if (c instanceof JLinkInvert) {
+            return (JLinkInvert) c;
+        } else {
+            return null;
+        }
+    }
+
     public String getValueAt(int column_index) {
+        //
         Component c = this.getComponent(column_index);
         //
         if (c instanceof JLabel) {

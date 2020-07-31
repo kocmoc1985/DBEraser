@@ -42,12 +42,11 @@ public abstract class Invoice extends Basic_Buh {
         initFakturaEntry_();
     }
 
-    private void initFakturaEntry_(){
+    private void initFakturaEntry_() {
         faktura_entry = initFakturaEntry();
     }
-    
-    protected abstract Faktura_Entry initFakturaEntry();
 
+    protected abstract Faktura_Entry initFakturaEntry();
 
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
@@ -71,8 +70,6 @@ public abstract class Invoice extends Basic_Buh {
             INSERT_OR_UPDATE_CLASS = 0;
         }
     }
-
-
 
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
@@ -194,7 +191,6 @@ public abstract class Invoice extends Basic_Buh {
         }
     }
 
-
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
@@ -256,7 +252,6 @@ public abstract class Invoice extends Basic_Buh {
         //
     }
 
-    
     /**
      * [2020-07-XX] SUPER important here you catch the event when key released
      * on some component so you can process this event as required
@@ -273,7 +268,16 @@ public abstract class Invoice extends Basic_Buh {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
+        if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
+                || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                //
+                || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
+                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
+            //
+            Validator.validateDigitalInput(jli);
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
             referensSave(DB.BUH_FAKTURA__VAR_REFERENS);
             //
@@ -287,7 +291,7 @@ public abstract class Invoice extends Basic_Buh {
                 forfalloDatumAutoChange(ti);
             }
             //
-        } 
+        }
     }
 
     private void referensSave(String colName) {
@@ -321,7 +325,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
-        
+
         String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }

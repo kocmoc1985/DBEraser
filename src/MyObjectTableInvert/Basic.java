@@ -270,6 +270,41 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert ti = (TableInvert) TABLE_INVERT;
         return ti.getValueAt(rowName);
     }
+    
+    /**
+     * [2020-07-31]
+     * @param rowName
+     * @param tableInvert
+     * @return 
+     */
+    public boolean getValidated(String rowName, Table tableInvert){
+        ColumnDataEntryInvert cde = getColumnDataEntryInvert(rowName, tableInvert);
+        return cde.isValidated();
+    }
+
+    /**
+     * MEGA IMPORTANT
+     * [2020-07-31]
+     * @param rowName
+     * @param tableInvert
+     * @return 
+     */
+    public ColumnDataEntryInvert getColumnDataEntryInvert(String rowName, Table tableInvert) {
+        TableInvert ti = (TableInvert) tableInvert;
+        return ti.getColumnDataEntryInvertAt(rowName);
+    }
+    
+    /**
+     * [2020-07-31]
+     * @param rowName
+     * @param tableInvert
+     * @param column
+     * @return 
+     */
+    public ColumnDataEntryInvert getColumnDataEntryInvert(String rowName, Table tableInvert, int column) {
+        TableInvert ti = (TableInvert) tableInvert;
+        return ti.getColumnDataEntryInvertAt(rowName,column);
+    }
 
     public String getValueTableInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
@@ -373,7 +408,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * [2020-07-30]
-     * 
+     *
      * @param table_invert
      * @param startColumn
      * @param rdi
