@@ -15,7 +15,6 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
-import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -24,9 +23,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JTextField;
 import MyObjectTableInvert.JLinkInvert;
 import java.awt.AWTEvent;
 
@@ -34,30 +30,24 @@ import java.awt.AWTEvent;
  *
  * @author KOCMOC
  */
-public abstract class Invoice extends Basic {
+public abstract class Invoice extends Basic_Buh {
 
-    protected final BUH_INVOICE_MAIN bim;
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
 
     public Invoice(BUH_INVOICE_MAIN bim) {
-        this.bim = bim;
-        initOther();
+        super(bim);
+        initFakturaEntry_();
     }
 
-    private void initOther() {
-        //
+    private void initFakturaEntry_(){
         faktura_entry = initFakturaEntry();
-        //
-        startUp();
-        //
     }
-
+    
     protected abstract Faktura_Entry initFakturaEntry();
 
-    protected abstract void startUp();
 
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
@@ -82,15 +72,13 @@ public abstract class Invoice extends Basic {
         }
     }
 
-    protected String getKundId() {
-        return bim.getKundId();
-    }
+
 
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
     }
 
-    protected String getFakturaNr() {
+    protected String getNextFakturaNr() {
         //
         HashMap<String, String> map = new HashMap<>();
         map.put(DB.BUH_FAKTURA__KUNDID__, bim.getKundId());
@@ -206,29 +194,6 @@ public abstract class Invoice extends Basic {
         }
     }
 
-    protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {
-        //
-        String comboString;
-        //
-        String json = bim.getSELECT_kundId();
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    php_function, json));
-            //
-            //
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keyOne, keyTwo);
-            //
-//            System.out.println("combo string: " + comboString);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            comboString = null;
-        }
-        //
-        return comboString;
-    }
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
@@ -292,24 +257,6 @@ public abstract class Invoice extends Basic {
         //
     }
 
-    /**
-     * In future it makes sense to make better the criteria of considering the
-     * field updated. Now it's considered to be updated when a user clicks on a
-     * field
-     *
-     * @deprecated
-     * @param eventSourceObj
-     */
-    private void setFieldUpdated__(Object eventSourceObj) {
-        //
-        ColumnDataEntryInvert cde = getColumnData(eventSourceObj);
-        //
-        if (cde != null) {
-            cde.setUpdated(true);
-            System.out.println("FIELD: '" + cde.getOriginalColumn_name() + "' " + "MARKED AS UPDATED");
-        }
-        //
-    }
 
     /**
      * [2020-07-30] Marking the field is considered to be updated.

@@ -29,7 +29,6 @@ public class InvoiceA_Insert extends Invoice {
         return new Faktura_Entry_Insert(this);
     }
 
-    
     @Override
     protected void startUp() {
         //
