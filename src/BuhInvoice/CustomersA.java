@@ -41,6 +41,22 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
+    public void checkLatest() {
+        //
+        String json = bim.getLatest(DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
+        //
+        try {
+            //
+           String latest = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_LATEST, json));
+            //
+            System.out.println("LATEST: " + latest + "   *************************");
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void insertCustomer() {
         //
         HashMap<String, String> map = tableInvertToHashMap_updated_values_only(TABLE_INVERT, 1, getConfigTableInvert());
@@ -128,7 +144,7 @@ public class CustomersA extends Basic_Buh {
             //
             Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
             //
             Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
             //
@@ -136,38 +152,6 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
-    private void checkIfExistInDB(JLinkInvert jli, String colName, String tableName) {
-        //
-        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
-        //
-        String val = jtfi.getText();
-        //
-        if (val.isEmpty()) {
-            return;
-        }
-        //
-        String json = bim.getExist(colName, val, tableName);
-        //
-        String exist;
-        //
-        try {
-            //
-            exist = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_EXIST, json));
-            //
-            System.out.println("VALUE: " + val + " exists: " + exist);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
-            exist = "0";
-        }
-        //
-        boolean exist_ = Boolean.parseBoolean(exist);
-        //
-
-    }
-
-    
     private void orgnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
