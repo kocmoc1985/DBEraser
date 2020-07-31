@@ -25,14 +25,16 @@ public class DB {
     public static final String STATIC__KUND_KATEGORI = "A,B,C,D,E,F,G";
     //
     //
-    public static final String DB__BUH_F_ARTIKEL = "buh_f_artikel";
-    public static final String DB__BUH_FAKTURA = "buh_faktura";
+    public static final String TABLE__BUH_F_ARTIKEL = "buh_f_artikel";
+    public static final String TABLE__BUH_FAKTURA = "buh_faktura";
+    public static final String TABLE__BUH_FAKTURA_KUND = "buh_faktura_kund";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
+    public static final String PHP_FUNC_EXIST = "check_if_exist"; // using php-finction: "getLatestFakturaNr()"
     //
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"

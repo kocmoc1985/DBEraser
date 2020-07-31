@@ -70,10 +70,9 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
         //
         //
-        HashMap<String, String> update_map = invoice.bim.getUPDATE(
-                DB.BUH_FAKTURA__ID__,
+        HashMap<String, String> update_map = invoice.bim.getUPDATE(DB.BUH_FAKTURA__ID__,
                 fakturaId,
-                DB.DB__BUH_FAKTURA
+                DB.TABLE__BUH_FAKTURA
         );
         //
         HashMap<String, String> map_temp = HelpA.joinHashMaps(mainMap, secMap);

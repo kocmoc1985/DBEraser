@@ -49,12 +49,12 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        if(containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())){
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
             return;
         }
         //
-         try {
+        try {
             //
             HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
@@ -124,10 +124,50 @@ public class CustomersA extends Basic_Buh {
             //
             orgnr_additional(jli, ti);
             //
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+            //
+            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
+            //
+        }else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
+            //
+            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
+            //
         }
         //
     }
 
+    private void checkIfExistInDB(JLinkInvert jli, String colName, String tableName) {
+        //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        String val = jtfi.getText();
+        //
+        if (val.isEmpty()) {
+            return;
+        }
+        //
+        String json = bim.getExist(colName, val, tableName);
+        //
+        String exist;
+        //
+        try {
+            //
+            exist = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_EXIST, json));
+            //
+            System.out.println("VALUE: " + val + " exists: " + exist);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            exist = "0";
+        }
+        //
+        boolean exist_ = Boolean.parseBoolean(exist);
+        //
+
+    }
+
+    
     private void orgnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;

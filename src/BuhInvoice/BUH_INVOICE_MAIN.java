@@ -46,10 +46,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         initOhter();
     }
 
-    protected void displayInsertOrUpdate(){
+    protected void displayInsertOrUpdate() {
         this.setTitle("INSERT OR UPDATE: " + Invoice.isInsertOrUpdate());
     }
-    
+
     private void initOhter() {
         //
         this.jTabbedPane1.addMouseListener(this);
@@ -83,6 +83,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         HashMap<String, String> map = new HashMap<>();
         map.put("where", whereColName); // $whereCoulunName
         map.put(whereColName, whereValue); // $whereValue
+        //
+        return JSon.hashMapToJSON(map);
+    }
+
+    protected String getExist(String columnName, String value, String tableName) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("column", columnName);
+        map.put("value", value);
+        map.put("table", tableName);
+        map.put("kundId", getKundId());
         //
         return JSon.hashMapToJSON(map);
     }
@@ -417,7 +429,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceA_update.insertOrUpdate();
         //
         //
-//        HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.DB__BUH_F_ARTIKEL);
+//        HashMap<String, String> map = getUPDATE(DB.BUH_F_ARTIKEL__FAKTURAID, "1", DB.TABLE__BUH_F_ARTIKEL);
 //        //
 //        map.put("pris", "159");
 //        map.put("rabatt", "20");
@@ -655,7 +667,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     //
                 }
                 //
-            }else if (title.equals(TAB_KUDNER)) {
+            } else if (title.equals(TAB_KUDNER)) {
                 //
                 if (customersA == null) {
                     customersA = new CustomersA(this);

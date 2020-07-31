@@ -47,7 +47,7 @@ public class InvoiceA_Update extends Invoice {
         HashMap<String,String>map = tableInvertToHashMap_updated_values_only(TABLE_INVERT_2, 1, getConfigTableInvert_2());
         //
         String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
-        HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.DB__BUH_F_ARTIKEL);
+        HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
         //
         // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
         map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
