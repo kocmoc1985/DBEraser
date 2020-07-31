@@ -12,4 +12,5 @@ package BuhInvoice;
 public class LANG {
     public static String MSG_1 = "Kunde inte updatera fakturan (Faktura id saknas)";
     public static String MSG_2 = "Kunde inte spara Kund (verifiera inmatning)";
+    public static String MSG_3 = "Kunde inte spara Artikel (verifiera inmatning)";
 }

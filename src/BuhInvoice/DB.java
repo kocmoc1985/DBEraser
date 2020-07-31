@@ -28,11 +28,13 @@ public class DB {
     public static final String TABLE__BUH_F_ARTIKEL = "buh_f_artikel";
     public static final String TABLE__BUH_FAKTURA = "buh_faktura";
     public static final String TABLE__BUH_FAKTURA_KUND = "buh_faktura_kund";
+    public static final String TABLE__BUH_FAKTURA_ARTIKEL = "buh_faktura_artikel";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_ARTIKEL_TO_DB = "artikel_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     public static final String PHP_FUNC_EXIST = "check_if_exist"; // using php-finction: "exist()"
     public static final String PHP_FUNC_LATEST = "get_latest"; // using php-finction: "latest()"
@@ -78,8 +80,13 @@ public class DB {
     public static final String BUH_FAKTURA_KUND___KATEGORI = "kund_kategori";
     
     //
-    public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";
+    public static final String BUH_FAKTURA_ARTIKEL___KUND_ID = "kundId";
+    public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
+    public static final String BUH_FAKTURA_ARTIKEL___LAGER = "lager";
+    public static final String BUH_FAKTURA_ARTIKEL___PRIS = "pris";
+    public static final String BUH_FAKTURA_ARTIKEL___INKOPS_PRIS = "inkopspris";
+    public static final String BUH_FAKTURA_ARTIKEL___KOMMENT = "komment";
     //
     public static final String BUH_F_ARTIKEL__ID = "id";
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";

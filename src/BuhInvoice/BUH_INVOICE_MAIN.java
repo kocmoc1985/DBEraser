@@ -31,12 +31,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
     private CustomersA customersA;
+    private ArticlesA articlesA;
     private InvoiceB invoiceB;
 
     private String ACTUAL_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
     private final static String TAB_KUDNER = "KUNDER";
+    private final static String TAB_ARTIKLAR = "ARTIKLAR";
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -98,7 +100,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return JSon.hashMapToJSON(map);
     }
-    
+
     protected String getLatest(String columnName, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -167,6 +169,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jPanel4_Articles = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -420,6 +425,39 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jTabbedPane1.addTab("KUNDER", jPanel4_Customers);
 
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setLayout(new java.awt.BorderLayout());
+
+        jButton10.setText("INSERT");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4_ArticlesLayout = new javax.swing.GroupLayout(jPanel4_Articles);
+        jPanel4_Articles.setLayout(jPanel4_ArticlesLayout);
+        jPanel4_ArticlesLayout.setHorizontalGroup(
+            jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(jButton10)
+                .addContainerGap(831, Short.MAX_VALUE))
+        );
+        jPanel4_ArticlesLayout.setVerticalGroup(
+            jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton10)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(674, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("ARTIKLAR", jPanel4_Articles);
+
         jScrollPane1.setViewportView(jTabbedPane1);
 
         getContentPane().add(jScrollPane1);
@@ -489,8 +527,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-       customersA.checkLatest();
+        customersA.checkLatest();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        articlesA.insertArtikel();
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     private String tableInvertToHTML(Table table, int startColumn, RowDataInvert[] cfg) {
         String csv = tableInvertToCSV(table, startColumn, cfg);
@@ -630,6 +672,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -643,8 +686,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
+    private javax.swing.JPanel jPanel4_Articles;
     protected javax.swing.JPanel jPanel4_Customers;
     protected javax.swing.JPanel jPanel5;
+    protected javax.swing.JPanel jPanel6;
     protected javax.swing.JPanel jPanel_articles;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -700,6 +745,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (customersA == null) {
                     customersA = new CustomersA(this);
+                }
+                //
+            } else if (title.equals(TAB_ARTIKLAR)) {
+                //
+                if (articlesA == null) {
+                    articlesA = new ArticlesA(this);
                 }
                 //
             }
