@@ -246,7 +246,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jButton2.setText("TEST ");
+        jButton2.setText("UPDATE ARTICLE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
