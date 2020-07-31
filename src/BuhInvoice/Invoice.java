@@ -200,7 +200,6 @@ public abstract class Invoice extends Basic_Buh {
         //
         super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
-        //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
@@ -251,65 +250,13 @@ public abstract class Invoice extends Basic_Buh {
             //
             setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
             //
-            forfalloDatumAutoChange();
+            forfalloDatumAutoChange(ti);
             //
         }
         //
     }
 
-
-    /**
-     * [2020-07-30] Marking the field is considered to be updated.
-     */
-    private void fieldUpdateWatcher(AWTEvent evt) {
-        //
-        if (evt.getSource() instanceof JLinkInvert) {
-            //
-            JLinkInvert jli = (JLinkInvert) evt.getSource();
-            //
-            jli.setFieldUpdatedAuto();
-            //
-        }
-        //
-    }
-
-    /**
-     * IMPORTANT EXAMPLE [2020-07-30]
-     *
-     * @param evt
-     */
-    private void TEST_REFERENSES(AWTEvent evt) {
-        //
-        if (evt.getSource() instanceof JLinkInvert) {
-            //
-            JLinkInvert jli = (JLinkInvert) evt.getSource();
-            //
-            TableRowInvert tri = jli.getParentObj();
-            //
-            TableInvert ti_ = (TableInvert) tri.getTable();
-            //
-            TableData ta = ti_.TABLE_DATA;
-            //
-            RowDataInvert rdi = tri.getRowConfig();
-            //
-            ColumnDataEntryInvert cde = jli.getChildObject();
-            //
-            String initialValue = cde.getInitialValue();
-            //
-            String actualValue = jli.getValue();
-            //
-            boolean valuChanged = jli.valueUpdated();
-            //
-            System.out.println("");
-            System.out.println("InitialValue: " + initialValue);
-            System.out.println("ActualValue: " + actualValue);
-            System.out.println("Value Changed: " + valuChanged);
-            System.out.println("");
-            //
-        }
-        //
-    }
-
+    
     /**
      * [2020-07-XX] SUPER important here you catch the event when key released
      * on some component so you can process this event as required
@@ -326,11 +273,6 @@ public abstract class Invoice extends Basic_Buh {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        //
-//        TEST_REFERENSES(ke);
-        fieldUpdateWatcher(ke);
-        //
-        //
         if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
             referensSave(DB.BUH_FAKTURA__VAR_REFERENS);
@@ -342,20 +284,10 @@ public abstract class Invoice extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             if (Validator.validateDate(jli)) {
-                forfalloDatumAutoChange();
+                forfalloDatumAutoChange(ti);
             }
             //
-        } else if ( 
-                col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
-                || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-                //
-                || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
-                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
-            //
-            Validator.validateNumberInput(jli);
-            //
-        }
+        } 
     }
 
     private void referensSave(String colName) {
@@ -379,7 +311,7 @@ public abstract class Invoice extends Basic_Buh {
         //
     }
 
-    private void forfalloDatumAutoChange() {
+    private void forfalloDatumAutoChange(TableInvert ti) {
         //
         String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
         //
@@ -388,9 +320,10 @@ public abstract class Invoice extends Basic_Buh {
         }
         //
         long value = Long.parseLong(val);
-        String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
+        String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
+        
         String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
-        setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, TABLE_INVERT, date_new);
+        setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }
 
     /**
@@ -405,14 +338,11 @@ public abstract class Invoice extends Basic_Buh {
         //
         super.jComboBoxItemStateChangedForward(ti, ie);
         //
-//        TEST_REFERENSES(ie);
-        fieldUpdateWatcher(ie);
-        //
         String col_name = ti.getCurrentColumnName(ie.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
             //
-            forfalloDatumAutoChange();
+            forfalloDatumAutoChange(ti);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
             //

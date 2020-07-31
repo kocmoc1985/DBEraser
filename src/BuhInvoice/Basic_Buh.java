@@ -5,8 +5,16 @@
  */
 package BuhInvoice;
 
+import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
+import MyObjectTableInvert.ColumnDataEntryInvert;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.TableInvert;
+import MyObjectTableInvert.TableRowInvert;
+import java.awt.AWTEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,8 +64,94 @@ public abstract class Basic_Buh extends Basic {
         //
         return comboString;
     }
+
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
+        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(ke.getSource());
+        //
+//        TEST_REFERENSES(ke);
+        fieldUpdateWatcher(ke);
+        //
+        //
+        if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
+                || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                //
+                || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
+                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
+            //
+            Validator.validateDigitalInput(jli);
+            //
+        }
+    }
+
+    @Override
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        //
+        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
+        //
+        fieldUpdateWatcher(ie);
+        //       
+    }
     
     
+    
+    /**
+     * [2020-07-30] Marking the field is considered to be updated.
+     */
+    private void fieldUpdateWatcher(AWTEvent evt) {
+        //
+        if (evt.getSource() instanceof JLinkInvert) {
+            //
+            JLinkInvert jli = (JLinkInvert) evt.getSource();
+            //
+            jli.setFieldUpdatedAuto();
+            //
+        }
+        //
+    }
+    
+    /**
+     * IMPORTANT EXAMPLE [2020-07-30]
+     *
+     * @param evt
+     */
+    private void TEST_REFERENSES(AWTEvent evt) {
+        //
+        if (evt.getSource() instanceof JLinkInvert) {
+            //
+            JLinkInvert jli = (JLinkInvert) evt.getSource();
+            //
+            TableRowInvert tri = jli.getParentObj();
+            //
+            TableInvert ti_ = (TableInvert) tri.getTable();
+            //
+            TableData ta = ti_.TABLE_DATA;
+            //
+            RowDataInvert rdi = tri.getRowConfig();
+            //
+            ColumnDataEntryInvert cde = jli.getChildObject();
+            //
+            String initialValue = cde.getInitialValue();
+            //
+            String actualValue = jli.getValue();
+            //
+            boolean valuChanged = jli.valueUpdated();
+            //
+            System.out.println("");
+            System.out.println("InitialValue: " + initialValue);
+            System.out.println("ActualValue: " + actualValue);
+            System.out.println("Value Changed: " + valuChanged);
+            System.out.println("");
+            //
+        }
+        //
+    }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {

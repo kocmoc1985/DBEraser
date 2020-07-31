@@ -20,7 +20,12 @@ public class Validator {
 
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
 
-    public static boolean validateNumberInput(JLinkInvert jli) {
+    /**
+     * Verify input of digits/numbers
+     * @param jli
+     * @return 
+     */
+    public static boolean validateDigitalInput(JLinkInvert jli) {
         //
         String val = jli.getValue();
         //
