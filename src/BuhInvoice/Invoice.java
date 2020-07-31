@@ -41,7 +41,7 @@ public abstract class Invoice extends Basic {
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
-    private final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
@@ -411,54 +411,18 @@ public abstract class Invoice extends Basic {
             //
 //            String val = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT);
             //
-            String val = jli.getValue();
-            //
-            //
-            boolean validated = validate(DATE_YYYY_MM_DD, val);
-            //
-            JTextField jtf = (JTextField) ke.getSource();
-            //
-            if (validated && HelpA.isDateValid(val)) {
-                jtf.setForeground(getJTextFieldInitialColor());
+            if(Validator.validateDate(jli)){
                 forfalloDatumAutoChange();
-                jli.setValidated(true);
-            } else {
-                jtf.setForeground(Color.RED);
-                jli.setValidated(false);
             }
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)) {
             //
-            validateNumberInput(jli);
+            Validator.validateNumberInput(jli);
             //
         }
     }
 
-    private void validateNumberInput(JLinkInvert jli) {
-        //
-        String val = jli.getValue();
-        //
-        JTextField jtf = (JTextField) jli;
-        //
-        if (HelpA.isNumber(val)) {
-            jtf.setForeground(getJTextFieldInitialColor());
-            jli.setValidated(true);
-        } else {
-            jtf.setForeground(Color.RED);
-            jli.setValidated(false);
-        }
-        //
-    }
 
-    private Color getJTextFieldInitialColor() {
-        JTextField field = new JTextField();
-        return field.getForeground();
-    }
-
-    private boolean validate(Pattern pattern, String stringToCheck) {
-        Matcher matcher = pattern.matcher(stringToCheck);
-        return matcher.find();
-    }
 
     private void forfalloDatumAutoChange() {
         //
