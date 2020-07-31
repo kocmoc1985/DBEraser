@@ -429,19 +429,25 @@ public abstract class Invoice extends Basic {
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)) {
             //
-            JTextField jtf = (JTextField) ke.getSource();
-            //
-            String val = jli.getValue();
-            //
-            if (HelpA.isNumber(val)) {
-                jtf.setForeground(getJTextFieldInitialColor());
-                jli.setValidated(true);
-            } else {
-                jtf.setForeground(Color.RED);
-                jli.setValidated(false);
-            }
+            validateNumberInput(jli);
             //
         }
+    }
+
+    private void validateNumberInput(JLinkInvert jli) {
+        //
+        String val = jli.getValue();
+        //
+        JTextField jtf = (JTextField) jli;
+        //
+        if (HelpA.isNumber(val)) {
+            jtf.setForeground(getJTextFieldInitialColor());
+            jli.setValidated(true);
+        } else {
+            jtf.setForeground(Color.RED);
+            jli.setValidated(false);
+        }
+        //
     }
 
     private Color getJTextFieldInitialColor() {
