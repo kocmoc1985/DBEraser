@@ -7,9 +7,6 @@ package BuhInvoice;
 
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
-import MyObjectTable.TableData;
-import MyObjectTableInvert.Basic;
-import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
@@ -24,7 +21,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
-import java.awt.AWTEvent;
 
 /**
  *

@@ -36,7 +36,7 @@ public class InvoiceA_Update extends Invoice {
     protected void jtableArticlesRowChange(){
         //
         if(containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())){
-            HelpA.showNotification("Table Invert 2 contains invalidated values");
+            HelpA.showNotification(LANG.MSG_4);
             return;
         }
         //

@@ -38,19 +38,7 @@ public class InvoiceA_Insert extends Invoice {
             @Override
             public void run() {
                 showTableInvert();
-            }
-        });
-        //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
                 showTableInvert_2();
-            }
-        });
-        //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
                 showTableInvert_3();
             }
         });

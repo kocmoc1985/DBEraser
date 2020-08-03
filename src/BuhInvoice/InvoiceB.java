@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class InvoiceB extends Basic {
 
     private final BUH_INVOICE_MAIN bim;
+    
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
@@ -101,7 +102,7 @@ public class InvoiceB extends Basic {
         //
 //        System.out.println("" + table.getFont());
         //
-        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
+//        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
         //
         //
