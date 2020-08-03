@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  *
@@ -98,7 +99,7 @@ public class HelpBuh {
         }
         //
         InputStream ins = conn.getInputStream();
-        InputStreamReader isr = new InputStreamReader(ins);
+        InputStreamReader isr = new InputStreamReader(ins, "UTF-8");
         BufferedReader in = new BufferedReader(isr);
         String inputLine;
         String result = "";
@@ -115,8 +116,13 @@ public class HelpBuh {
         //
         String temp = arr[1];
         String value = temp.split(":")[1];
+        //
         System.out.println("HTTP REQ VAL: " + value);
-        return value;
+        //
+        //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
+        // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"
+        // because an unescaped string which i recieve looks like "\\u00e5" indeed 
+        return StringEscapeUtils.unescapeJava(value); 
         //
 //        String temp = arr[1];
 //        System.out.println("HTTP REQ VAL: " + temp);

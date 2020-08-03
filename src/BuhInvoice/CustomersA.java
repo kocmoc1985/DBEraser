@@ -52,18 +52,49 @@ public class CustomersA extends Basic_Buh {
             public void run() {
                 showTableInvert();
                 fillJTableheader();
-                fillCustomertsTable();
+                fillCustomertsJTable();
             }
         });
         //
 
     }
 
+    public void insertCustomer() {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
+        //
+        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_5);
+            return;
+        }
+        //
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
+            //
+
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
     protected void customersTableClicked() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                fillCustomertsTable();
+                fillCustomertsJTable();
             }
         });
     }
@@ -71,7 +102,7 @@ public class CustomersA extends Basic_Buh {
     private void fillJTableheader() {
         //
         //
-        JTable table = this.bim.jTable1_kunder;
+        JTable table = this.bim.jTable_kunder;
         //
         String[] headers = {
             TABLE_FAKTURA_KUNDER__KUND_ID,
@@ -87,12 +118,11 @@ public class CustomersA extends Basic_Buh {
         //
 //        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
-
     }
 
-    private void fillCustomertsTable() {
+    private void fillCustomertsJTable() {
         //
-        JTable table = bim.jTable1_kunder;
+        JTable table = bim.jTable_kunder;
         //
         String json = bim.getSELECT_kundId();
         //
@@ -133,37 +163,6 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
-    public void insertCustomer() {
-        //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
-        //
-        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return;
-        }
-        //
-        if(containsEmptyObligatoryFields(TABLE_INVERT, 1, getConfigTableInvert())){
-            HelpA.showNotification(LANG.MSG_5);
-            return;
-        }
-        //
-        try {
-            //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
-            //
-
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
     @Override
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
@@ -180,7 +179,7 @@ public class CustomersA extends Basic_Buh {
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel5);
+        showTableInvert(bim.jPanel5, TABLE_INVERT_2);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
 
@@ -217,7 +216,7 @@ public class CustomersA extends Basic_Buh {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable1_kunder;
+        JTable table = bim.jTable_kunder;
         //
         String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
@@ -347,9 +346,9 @@ public class CustomersA extends Basic_Buh {
             return "";
         }
     }
-    
-    private void supposeNextKundNr(JLinkInvert jli){
-         //
+
+    private void supposeNextKundNr(JLinkInvert jli) {
+        //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
         String next = getNextKundnr();

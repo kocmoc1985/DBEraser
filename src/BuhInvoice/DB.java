@@ -42,6 +42,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUDNER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     
