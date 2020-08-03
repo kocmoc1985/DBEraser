@@ -34,9 +34,9 @@ public abstract class Invoice extends Basic_Buh {
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
     //
-    private double FAKTURA_TOTAL_EXKL_MOMS = 0;
-    private double FAKTURA_TOTAL = 0;
-    private double MOMS_TOTAL = 0;
+    private static double FAKTURA_TOTAL_EXKL_MOMS = 0;
+    private static double FAKTURA_TOTAL = 0;
+    private static double MOMS_TOTAL = 0;
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);

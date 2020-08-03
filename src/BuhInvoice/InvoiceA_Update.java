@@ -203,7 +203,7 @@ public class InvoiceA_Update extends Invoice {
         //
         String fixedComboValues_a = JSon._get_special(
                 DB.STATIC__INKL_EXKL_MOMS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__INKL_MOMS)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS)
         );
         //
 //        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
