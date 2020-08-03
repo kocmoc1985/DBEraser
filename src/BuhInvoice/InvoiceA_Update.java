@@ -55,7 +55,7 @@ public class InvoiceA_Update extends Invoice {
         HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
         //
         //
-        
+        countFakturaTotal(final_map);
         //
         //
         String json = JSon.hashMapToJSON(final_map);

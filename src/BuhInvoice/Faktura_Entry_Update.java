@@ -80,9 +80,9 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         this.fakturaMap = HelpA.joinHashMaps(map_temp, update_map);
         //
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + getFakturaTotal());
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + getTotalExklMoms());
-        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + getMomsTotal());
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
+        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
         System.out.println("-------------------------------------------------");
         //

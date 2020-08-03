@@ -33,6 +33,10 @@ public abstract class Invoice extends Basic_Buh {
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
+    //
+    private double FAKTURA_TOTAL_EXKL_MOMS = 0;
+    private double FAKTURA_TOTAL = 0;
+    private double MOMS_TOTAL = 0;
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -116,6 +120,36 @@ public abstract class Invoice extends Basic_Buh {
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
+    
+     protected void countFakturaTotal(HashMap<String, String> map) {
+        //
+        int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        //
+        FAKTURA_TOTAL += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
+        //
+        if (getInklMoms()) {
+            MOMS_TOTAL = FAKTURA_TOTAL * getMomsSats();
+            FAKTURA_TOTAL += MOMS_TOTAL;
+            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
+        }
+        //
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
+        //
+    }
+    
+    protected double getFakturaTotal(){
+        return HelpA.round_double(FAKTURA_TOTAL);
+    }
+    
+    protected double getMomsTotal(){
+        return HelpA.round_double(MOMS_TOTAL);
+    }
+
+    protected double getTotalExklMoms(){
+        return HelpA.round_double(FAKTURA_TOTAL_EXKL_MOMS);
+    }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
 
@@ -198,20 +232,20 @@ public abstract class Invoice extends Basic_Buh {
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
             setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
-        }else if(col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)){
+        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
-            restoreFakturaDatumIfEmty(me,ti);
+            restoreFakturaDatumIfEmty(me, ti);
             //
         }
         //
     }
-    
-    private void restoreFakturaDatumIfEmty(MouseEvent me,TableInvert ti){
+
+    private void restoreFakturaDatumIfEmty(MouseEvent me, TableInvert ti) {
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
-        JTextFieldInvert jtfi = (JTextFieldInvert)jli;
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
-        if(jli.getValue().isEmpty()){
+        if (jli.getValue().isEmpty()) {
             //
             jtfi.setText(HelpA.get_proper_date_yyyy_MM_dd());
             //

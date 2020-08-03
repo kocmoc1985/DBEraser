@@ -86,9 +86,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoice.getKundId());
         this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, invoice.getNextFakturaNr()); // OBS! Aquired from http
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + getFakturaTotal());
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + getTotalExklMoms());
-        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + getMomsTotal());
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
+        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, getDateWithTime());
         //
@@ -143,7 +143,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
 //        articlesListToJson(articlesList);
         //
-        countFakturaTotal(map_for_adding_to_db);
+        invoice.countFakturaTotal(map_for_adding_to_db);
         //
     }
 
