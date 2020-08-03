@@ -45,6 +45,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
     
     //
     public static final String PHP_FUNC_UPDATE_AUTO = "update_auto"; // using php-function: "update()"
@@ -99,6 +100,18 @@ public class DB {
     public static final String BUH_F_ARTIKEL__ENHET = "enhet";
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
+    //
+    public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";
+    public static final String BUH_ADDR__NAMN = "namn";
+    public static final String BUH_ADDR__IS_PRIMARY_ADDR = "primary_addr";
+    public static final String BUH_ADDR__ADDR_A = "postaddr_a";
+    public static final String BUH_ADDR__ADDR_B = "postaddr_b";
+    public static final String BUH_ADDR__BESOKS_ADDR = "visit_addr";
+    public static final String BUH_ADDR__POSTNR_ZIP = "zip";
+    public static final String BUH_ADDR__ORT = "ort";
+    public static final String BUH_ADDR__TEL_A = "tel_a";
+    public static final String BUH_ADDR__TEL_B = "tel_b";
+    public static final String BUH_ADDR__OTHER = "other";
     //
     //
     public static final String BUH_KUND__ID = "kundId";
