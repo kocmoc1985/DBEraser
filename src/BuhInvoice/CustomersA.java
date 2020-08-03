@@ -64,16 +64,14 @@ public class CustomersA extends Basic_Buh {
             @Override
             public void run() {
                 showTableInvert();
-                fillJTableheader_kunder();
-                fillJTableheader_kund_addresses();
-                fillCustomersJTable();
+                fillJTable_header_kunder();
+                fillJTable_header_kund_addresses();
+                fillKundJTable();
             }
         });
         //
     }
     
-    
-
     public void insertCustomer() {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
@@ -109,13 +107,13 @@ public class CustomersA extends Basic_Buh {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                fillCustomersJTable();
+                fillKundJTable();
             }
         });
     }
 
     
-    private void fillJTableheader_kund_addresses() {
+    private void fillJTable_header_kund_addresses() {
         //
         JTable table = this.bim.jTable_kund_adresses;
         //
@@ -139,7 +137,7 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
-    private void fillJTableheader_kunder() {
+    private void fillJTable_header_kunder() {
         //
         //
         JTable table = this.bim.jTable_kunder;
@@ -161,7 +159,7 @@ public class CustomersA extends Basic_Buh {
         //
     }
     
-    public void fillJTableCustomerAdresses(){
+    public void fillJTableKundAdresses(){
         //
         JTable table = this.bim.jTable_kund_adresses;
         //
@@ -180,7 +178,7 @@ public class CustomersA extends Basic_Buh {
             //
             //
             for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable_customer_adresses(invoice_map, table);
+                addRowJtable_kund_adresses(invoice_map, table);
             }
             //
             //
@@ -191,29 +189,8 @@ public class CustomersA extends Basic_Buh {
 //        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_KUND__KUND_ID);
         //
     }
-    
-    private void addRowJtable_customer_adresses(HashMap<String, String> map, JTable table) {
-        //
-        Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_ADDR__FAKTURAKUND_ID), // hidden
-            map.get(DB.BUH_ADDR__NAMN),
-            map.get(DB.BUH_ADDR__IS_PRIMARY_ADDR),
-            map.get(DB.BUH_ADDR__ADDR_A),
-            map.get(DB.BUH_ADDR__ADDR_B),
-            map.get(DB.BUH_ADDR__BESOKS_ADDR),
-            map.get(DB.BUH_ADDR__POSTNR_ZIP),
-            map.get(DB.BUH_ADDR__ORT),
-            map.get(DB.BUH_ADDR__TEL_A),
-            map.get(DB.BUH_ADDR__TEL_B),
-            map.get(DB.BUH_ADDR__OTHER)
-        };
-        //
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(jtableRow);
-        //
-    }
-
-    private void fillCustomersJTable() {
+   
+    private void fillKundJTable() {
         //
         JTable table = bim.jTable_kunder;
         //
@@ -240,7 +217,26 @@ public class CustomersA extends Basic_Buh {
         //
     }
     
-    
+    private void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
+        //
+        Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_ADDR__FAKTURAKUND_ID), // hidden
+            map.get(DB.BUH_ADDR__NAMN),
+            map.get(DB.BUH_ADDR__IS_PRIMARY_ADDR),
+            map.get(DB.BUH_ADDR__ADDR_A),
+            map.get(DB.BUH_ADDR__ADDR_B),
+            map.get(DB.BUH_ADDR__BESOKS_ADDR),
+            map.get(DB.BUH_ADDR__POSTNR_ZIP),
+            map.get(DB.BUH_ADDR__ORT),
+            map.get(DB.BUH_ADDR__TEL_A),
+            map.get(DB.BUH_ADDR__TEL_B),
+            map.get(DB.BUH_ADDR__OTHER)
+        };
+        //
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(jtableRow);
+        //
+    }
 
     private void addRowJtable_kunder(HashMap<String, String> map, JTable table) {
         //
