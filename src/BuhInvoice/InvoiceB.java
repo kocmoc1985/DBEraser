@@ -23,7 +23,37 @@ import javax.swing.table.DefaultTableModel;
 public class InvoiceB extends Basic {
 
     private final BUH_INVOICE_MAIN bim;
-    
+    //
+    public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
+    public static String TABLE_ALL_INVOICES__KUND = "KUND";
+    public static String TABLE_ALL_INVOICES__KUND_ID = "KUND ID";
+    public static String TABLE_ALL_INVOICES__DATUM = "FAKTURADATUM";
+    public static String TABLE_ALL_INVOICES__FORFALLODATUM = "FÖRFALLODATUM";
+    public static String TABLE_ALL_INVOICES__VAR_REF = "VAR REF";
+    public static String TABLE_ALL_INVOICES__ER_REF = "ER REF";
+    public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
+    public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
+    public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
+    //
+    public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
+    public static String TABLE_ALL_INVOICES__INKL_MOMS = "INKL MOMS";
+    public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
+    public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
+    public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
+    public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
+    public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
+    public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
+    public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
+    public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
+    //
+    public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
+    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
+    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
+    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "KOMMENT";
+    public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
+    public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
+    public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
+    public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
@@ -38,33 +68,6 @@ public class InvoiceB extends Basic {
         //
 //        fillFakturaArticlesTable();
     }
-
-    public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
-    public static String TABLE_ALL_INVOICES__KUND = "KUND";
-    public static String TABLE_ALL_INVOICES__KUND_ID = "KUND ID";
-    public static String TABLE_ALL_INVOICES__DATUM = "FAKTURADATUM";
-    public static String TABLE_ALL_INVOICES__FORFALLODATUM = "FÖRFALLODATUM";
-    public static String TABLE_ALL_INVOICES__VAR_REF = "VAR REF";
-    public static String TABLE_ALL_INVOICES__ER_REF = "ER REF";
-    public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
-    public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
-    public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
-    //
-    public static String TABLE_ALL_INVOICES__INKL_MOMS = "INKL MOMS";
-    public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
-    public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
-    public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
-    public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
-    //
-    //
-    public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
-    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
-    public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
-    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "KOMMENT";
-    public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
-    public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
-    public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
-    public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
 
     private void fillJTableheader() {
         //
@@ -81,7 +84,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__BET_VILKOR, // hidden
             TABLE_ALL_INVOICES__LEV_VILKOR, // hidden
             TABLE_ALL_INVOICES__LEV_SATT, // hidden
-            TABLE_ALL_INVOICES__INKL_MOMS,
+            TABLE_ALL_INVOICES__IS_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
             TABLE_ALL_INVOICES__EXP_AVG,
@@ -92,10 +95,11 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__KUND,
             TABLE_ALL_INVOICES__DATUM,
             TABLE_ALL_INVOICES__FORFALLODATUM,
-            "EXKL MOMS",
-            "TOTAL",
-            "VALUTA",
-            "BETALD"
+            TABLE_ALL_INVOICES__EXKL_MOMS,
+            TABLE_ALL_INVOICES__INKL_MOMS,
+            TABLE_ALL_INVOICES__MOMS,
+            TABLE_ALL_INVOICES__VALUTA,
+            TABLE_ALL_INVOICES__BETALD
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -127,7 +131,15 @@ public class InvoiceB extends Basic {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
                 fillFakturaArticlesTable(fakturaId);
+                //
+                JTable table = bim.jTable_invoiceB_alla_fakturor;
+                double total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__INKL_MOMS));
+                double total_exkl = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__EXKL_MOMS));
+                double moms_total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__MOMS));
+                bim.displayTotals(total, total_exkl, moms_total);
+                //
             }
         });
     }
@@ -188,6 +200,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
             map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__),
             map.get(DB.BUH_FAKTURA__TOTAL__),
+            map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
             map.get(DB.BUH_FAKTURA__BETALD)
         };

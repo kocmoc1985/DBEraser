@@ -52,6 +52,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setTitle("INSERT OR UPDATE: " + Invoice.isInsertOrUpdate());
     }
 
+    protected void displayTotals(double fakturaTotal, double total_exkl_moms, double moms) {
+        jTextField_total_inkl_moms.setText("" + fakturaTotal);
+        jTextField_total_exkl_moms.setText("" + total_exkl_moms);
+        jTextField_moms.setText("" + moms);
+    }
+
     private void initOhter() {
         //
         this.jTabbedPane1.addMouseListener(this);
@@ -81,8 +87,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getSELECT_kundId() {
         return getSELECT(DB.BUH_FAKTURA__KUNDID__, getKundId());
     }
-    
-     protected String getSELECT_fakturaKundId(String fakturaKundId) {
+
+    protected String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
     }
 
@@ -850,14 +856,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_update.showTableInvert_2();
             invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
             //
-        }else if (e.getSource() == jTable_kunder && (e.getClickCount() == 1)) {
+        } else if (e.getSource() == jTable_kunder && (e.getClickCount() == 1)) {
             //
             customersA.showTableInvert_2();
             customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
             //
             customersA.fillJTableKundAdresses();
             //
-        }else if (e.getSource() == jTable_articles && (e.getClickCount() == 1)) {
+        } else if (e.getSource() == jTable_articles && (e.getClickCount() == 1)) {
             //
             articlesA.showTableInvert_2();
             articlesA.refreshTableInvert(articlesA.TABLE_INVERT_2);

@@ -513,6 +513,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      *
      * OBS! Use only with "update" methods [2020-08-03]
      * 
+     * @deprecated - this functionality must be "re-thinked"
      * @param table_invert
      * @param startColumn
      * @param rdi

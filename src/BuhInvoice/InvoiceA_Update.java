@@ -44,7 +44,7 @@ public class InvoiceA_Update extends Invoice {
         //
         JTable table = bim.jTable_InvoiceA_articles;
         //
-        HashMap<String,String>map = tableInvertToHashMap_updated_values_only(TABLE_INVERT_2, 1, getConfigTableInvert_2());
+        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, 1, getConfigTableInvert_2());
         //
         String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
@@ -178,9 +178,11 @@ public class InvoiceA_Update extends Invoice {
         enhet.setUneditable();
         //
         //
-        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", true, true, true);
+        String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
+        RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", true, true, true);
         //
-        RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", true, true, false);
+        String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", true, true, false);
         //
         RowDataInvert[] rows = {
             kund,

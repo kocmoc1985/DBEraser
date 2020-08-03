@@ -133,11 +133,11 @@ public abstract class Invoice extends Basic_Buh {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
+        bim.displayTotals(FAKTURA_TOTAL, FAKTURA_TOTAL_EXKL_MOMS, MOMS_TOTAL);
         //
     }
+     
+    
     
     protected double getFakturaTotal(){
         return HelpA.round_double(FAKTURA_TOTAL);
