@@ -548,7 +548,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        customersA.checkLatest();
+        customersA.getNextKundnr();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -802,7 +802,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
         }else if (e.getSource() == jTable1_kunder && (e.getClickCount() == 1)) {
             //
-            customersA.jtableKunderRowChange();
+            customersA.showTableInvert_2();
+            customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
             //
         }
     }

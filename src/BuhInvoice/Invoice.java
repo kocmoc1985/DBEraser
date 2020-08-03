@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 
 /**
  *
@@ -197,8 +198,28 @@ public abstract class Invoice extends Basic_Buh {
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
             setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+        }else if(col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)){
+            //
+            restoreFakturaDatumIfEmty(me,ti);
+            //
         }
         //
+    }
+    
+    private void restoreFakturaDatumIfEmty(MouseEvent me,TableInvert ti){
+        //
+        JLinkInvert jli = (JLinkInvert) me.getSource();
+        JTextFieldInvert jtfi = (JTextFieldInvert)jli;
+        //
+        if(jli.getValue().isEmpty()){
+            //
+            jtfi.setText(HelpA.get_proper_date_yyyy_MM_dd());
+            //
+            if (Validator.validateDate(jli)) {
+                forfalloDatumAutoChange(ti);
+            }
+            //
+        }
     }
 
     @Override

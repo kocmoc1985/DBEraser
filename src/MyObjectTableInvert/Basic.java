@@ -439,6 +439,42 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return false;
         //
     }
+    
+     /**
+     * [2020-08-03]
+     *
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return
+     */
+    public boolean containsEmptyObligatoryFields(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
+                //
+                if(dataInvert.important == true){
+                    if(cde.getActualValue().isEmpty()){
+                        return true;
+                    }
+                }
+                //
+            }
+            //
+        }
+        //
+        return false;
+        //
+    }
 
     /**
      * [2020-07-13]
@@ -475,6 +511,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * [2020-07-30] Return only the map which contains values which were
      * considered as changed/modified/updated
      *
+     * OBS! Use only with "update" methods [2020-08-03]
+     * 
      * @param table_invert
      * @param startColumn
      * @param rdi

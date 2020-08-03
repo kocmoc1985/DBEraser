@@ -41,7 +41,7 @@ public class ArticlesA extends Basic_Buh {
 
     public void insertArtikel() {
         //
-        HashMap<String, String> map = tableInvertToHashMap_updated_values_only(TABLE_INVERT, 1, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
         //
         map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, getKundId());
         //

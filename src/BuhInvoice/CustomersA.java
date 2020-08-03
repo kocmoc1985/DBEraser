@@ -31,6 +31,14 @@ import javax.swing.table.DefaultTableModel;
 public class CustomersA extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
+    //
+    private static final String TABLE_FAKTURA_KUNDER__KUND_ID = "KUND ID";
+    private static final String TABLE_FAKTURA_KUNDER__KUNDNR = "KUNDNR";
+    private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
+    private static final String TABLE_FAKTURA_KUNDER__ORGNR = "ORGNR";
+    private static final String TABLE_FAKTURA_KUNDER__VATNR = "VATNR";
+    private static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
+    private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
 
     public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -48,9 +56,9 @@ public class CustomersA extends Basic_Buh {
             }
         });
         //
-        
+
     }
-    
+
     protected void customersTableClicked() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -66,13 +74,13 @@ public class CustomersA extends Basic_Buh {
         JTable table = this.bim.jTable1_kunder;
         //
         String[] headers = {
-            DB.BUH_FAKTURA_KUND__KUND_ID,
-            DB.BUH_FAKTURA_KUND___KUNDNR,
-            DB.BUH_FAKTURA_KUND___NAMN,
-            DB.BUH_FAKTURA_KUND___ORGNR,
-            DB.BUH_FAKTURA_KUND___VATNR,
-            DB.BUH_FAKTURA_KUND___EMAIL,
-            DB.BUH_FAKTURA_KUND___KATEGORI
+            TABLE_FAKTURA_KUNDER__KUND_ID,
+            TABLE_FAKTURA_KUNDER__KUNDNR,
+            TABLE_FAKTURA_KUNDER__KUND_NAMN,
+            TABLE_FAKTURA_KUNDER__ORGNR,
+            TABLE_FAKTURA_KUNDER__VATNR,
+            TABLE_FAKTURA_KUNDER__EPOST,
+            TABLE_FAKTURA_KUNDER__KATEGORI
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -125,37 +133,9 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
-    protected void jtableKunderRowChange() {
-        //
-        if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_4);
-            return;
-        }
-        // 
-
-    }
-
-    public void checkLatest() {
-        //
-        String json = bim.getLatest(DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
-        //
-        try {
-            //
-            String latest = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_LATEST, json));
-            //
-            System.out.println("LATEST: " + latest + "   *************************");
-            //
-
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public void insertCustomer() {
         //
-        HashMap<String, String> map = tableInvertToHashMap_updated_values_only(TABLE_INVERT, 1, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
         //
@@ -163,6 +143,11 @@ public class CustomersA extends Basic_Buh {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        if(containsEmptyObligatoryFields(TABLE_INVERT, 1, getConfigTableInvert())){
+            HelpA.showNotification(LANG.MSG_5);
             return;
         }
         //
@@ -192,29 +177,29 @@ public class CustomersA extends Basic_Buh {
 
     public void showTableInvert_2() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_faktura_a");
-        TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B(this);
-        setMargin(TABLE_INVERT, 5, 0, 5, 0);
+        TABLE_INVERT_2 = null;
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel5);
         //
-        addTableInvertRowListener(TABLE_INVERT, this);
+        addTableInvertRowListener(TABLE_INVERT_2, this);
 
     }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert kundnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___KUNDNR, "KUNDNR", "", true, true, true);
+        RowDataInvert kundnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
         //
-        RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, "KUND NAMN", "", true, true, true);
+        RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
-        RowDataInvert orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, "ORGNR", "", true, true, false);
+        RowDataInvert orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
         //
-        RowDataInvert vatnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___VATNR, "VATNR", "", true, true, false);
+        RowDataInvert vatnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
         //
-        RowDataInvert email = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___EMAIL, "E-POST", "", true, true, false);
+        RowDataInvert email = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___EMAIL, TABLE_FAKTURA_KUNDER__EPOST, "", true, true, false);
         //
-        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, "KUND KATEGORI", "", true, true, false);
+        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
         kund_kategori.enableFixedValues();
         kund_kategori.setUneditable();
         //
@@ -232,27 +217,40 @@ public class CustomersA extends Basic_Buh {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        RowDataInvert kundnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___KUNDNR, "KUNDNR", "", true, true, true);
+        JTable table = bim.jTable1_kunder;
         //
-        RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, "KUND NAMN", "", true, true, true);
+        String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+        RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
         //
-        RowDataInvert orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, "ORGNR", "", true, true, false);
+        String kundnamn_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+        RowDataInvert kundnamn = new RowDataInvertB(kundnamn_, DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
-        RowDataInvert vatnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___VATNR, "VATNR", "", true, true, false);
+        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__ORGNR);
+        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
         //
-        RowDataInvert email = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___EMAIL, "E-POST", "", true, true, false);
+        String vatnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__VATNR);
+        RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
         //
-        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, "KUND KATEGORI", "", true, true, false);
-        kund_kategori.enableFixedValues();
-        kund_kategori.setUneditable();
+        String epost_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__EPOST);
+        RowDataInvert epost = new RowDataInvertB(epost_, DB.BUH_FAKTURA_KUND___EMAIL, TABLE_FAKTURA_KUNDER__EPOST, "", true, true, false);
+        //
+        //
+        String fixedComboValues_b = JSon._get_simple(
+                HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KATEGORI),
+                DB.STATIC__KUND_KATEGORI
+        );
+        //
+        RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
+        kategori.enableFixedValues();
+        kategori.setUneditable();
         //
         RowDataInvert[] rows = {
             kundnr,
-            namn,
+            kundnamn,
             orgnr,
             vatnr,
-            email,
-            kund_kategori
+            epost,
+            kategori
         };
         //
         return rows;
@@ -318,7 +316,45 @@ public class CustomersA extends Basic_Buh {
             //
             vatnrAuto(jli, ti);
             //
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+            //
+            supposeNextKundNr(jli);
+            //
         }
+    }
+
+    public String getNextKundnr() {
+        //
+        String json = bim.getLatest(DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
+        //
+        try {
+            //
+            String latest = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_LATEST, json));
+            //
+            System.out.println("LATEST: " + latest + "   *************************");
+            //
+            if (HelpA.checkIfNumber_b(latest)) {
+                int nr = Integer.parseInt(latest);
+                nr++; // OBS! Iam getting the last so i have to add to get the nr for the act. faktura
+                return "" + nr;
+            } else {
+                return "";
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
+    }
+    
+    private void supposeNextKundNr(JLinkInvert jli){
+         //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        String next = getNextKundnr();
+        //
+        jtfi.setText(next);
     }
 
     private void vatnrAuto(JLinkInvert jli, TableInvert ti) {

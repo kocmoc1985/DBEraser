@@ -24,7 +24,7 @@ CREATE TABLE buh_faktura_kund (
 fakturaKundId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
 kundnr integer not null,
-namn varchar(150) DEFAULT '',
+namn varchar(150) not null,
 orgnr varchar(30) DEFAULT '',
 vatnr varchar (30) DEFAULT '',
 email varchar (320) DEFAULT '',

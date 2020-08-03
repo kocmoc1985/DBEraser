@@ -9,7 +9,6 @@ import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
@@ -89,6 +88,16 @@ public abstract class Basic_Buh extends Basic {
         fieldUpdateWatcher(ie);
         //       
     }
+
+    @Override
+    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
+        //
+        super.mouseClicked(me, column, row, tableName, tableInvert); //To change body of generated methods, choose Tools | Templates.
+        //
+//        fieldUpdateWatcher(me);
+    }
+    
+    
 
     /**
      * [2020-07-30] Marking the field is considered to be updated.

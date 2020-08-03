@@ -20,6 +20,7 @@ public class ColumnDataEntryInvert {
     private boolean isUpdated = false;
     private boolean validated = true;
     private String initialValue;
+    private Object parent;
 
     public ColumnDataEntryInvert(Object object, String database_id, String originalColumnName, String columnNickName) {
         this.object = object;
@@ -27,12 +28,21 @@ public class ColumnDataEntryInvert {
         this.original_column_name = originalColumnName;
         this.column_nick_name = columnNickName;
     }
-    
-    public void setValidated(boolean validated){
+
+    /**
+     * [2020-08-03]
+     * This is only in case of "JTextFieldInvert"
+     * @param parent
+     */
+    public void setParent(Object parent) {
+        this.parent = parent;
+    }
+
+    public void setValidated(boolean validated) {
         this.validated = validated;
     }
-    
-    public boolean isValidated(){
+
+    public boolean isValidated() {
         return validated;
     }
 
@@ -48,6 +58,25 @@ public class ColumnDataEntryInvert {
         this.object = object;
     }
 
+    /**
+     * [2020-08-03]
+     *
+     * @return
+     */
+    public String getActualValue() {
+        //
+        if (parent != null && parent instanceof JTextFieldInvert) { // This is only in case of "JTextFieldInvert"
+            JTextFieldInvert jpi = (JTextFieldInvert) parent;
+            return jpi.getValue();
+        } else if (object instanceof JLinkInvert) {
+            JLinkInvert jpi = (JLinkInvert) object;
+            return jpi.getValue();
+        }else{
+            return null;
+        }
+        //
+    }
+
     public Object getObject() {
         //
         // Setting this as child of parent JComponent here [2020-07-30]
@@ -56,8 +85,8 @@ public class ColumnDataEntryInvert {
             JLinkInvert jpi = (JLinkInvert) object;
             jpi.setChildObject(this);
             initialValue = jpi.getValue();
-        }else{
-            initialValue = (String)object; // This one in case of "JTextFieldInvert" see: "TableRowInvert.class -> addColumn(Object obj) -> line: 112"
+        } else {
+            initialValue = (String) object; // This one in case of "JTextFieldInvert" see: "TableRowInvert.class -> addColumn(Object obj) -> line: 112"
         }
         //
         // OBS! OBS! For the JTextFieldInvert the "setChildObject()" is done from
@@ -68,11 +97,10 @@ public class ColumnDataEntryInvert {
     }
 
     /**
-     * [2020-07-30] Get INITIAL value from JTextFieldInvert, JComboBoxInvert or other
-     * components implementing "JLinkInvert" interface.
-     * 
-     * So the initial means the value which was "there" when the table
-     * was built
+     * [2020-07-30] Get INITIAL value from JTextFieldInvert, JComboBoxInvert or
+     * other components implementing "JLinkInvert" interface.
+     *
+     * So the initial means the value which was "there" when the table was built
      *
      * @return
      */
