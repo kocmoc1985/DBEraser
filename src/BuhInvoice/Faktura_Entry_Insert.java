@@ -86,9 +86,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoice.getKundId());
         this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, invoice.getNextFakturaNr()); // OBS! Aquired from http
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + FAKTURA_TOTAL);
-        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + FAKTURA_TOTAL_EXKL_MOMS);
-        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + MOMS_TOTAL);
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + getFakturaTotal());
+        this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + getTotalExklMoms());
+        this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + getMomsTotal());
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, getDateWithTime());
         //

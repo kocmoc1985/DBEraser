@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.HelpA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,18 +22,18 @@ public abstract class Faktura_Entry {
     protected HashMap<String, String> secMap = new HashMap<>();
     protected HashMap<String, String> fakturaMap = new HashMap<>();
     //
-    protected double FAKTURA_TOTAL_EXKL_MOMS = 0;
-    protected double FAKTURA_TOTAL = 0;
-    protected double MOMS_TOTAL = 0;
+    private double FAKTURA_TOTAL_EXKL_MOMS = 0;
+    private double FAKTURA_TOTAL = 0;
+    private double MOMS_TOTAL = 0;
 
     public Faktura_Entry(Invoice invoice) {
         this.invoice = invoice;
     }
-    
+
     protected abstract void insertOrUpdate();
-    
+
     protected abstract void setData();
-    
+
     protected void countFakturaTotal(HashMap<String, String> map) {
         //
         int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
@@ -51,6 +52,18 @@ public abstract class Faktura_Entry {
         //
     }
     
+    protected double getFakturaTotal(){
+        return HelpA.round_double(FAKTURA_TOTAL);
+    }
+    
+    protected double getMomsTotal(){
+        return HelpA.round_double(MOMS_TOTAL);
+    }
+
+    protected double getTotalExklMoms(){
+        return HelpA.round_double(FAKTURA_TOTAL_EXKL_MOMS);
+    }
+    
     protected boolean verifyFakturaId(String fakturaId) {
         //
         int id;
@@ -64,7 +77,7 @@ public abstract class Faktura_Entry {
         return id != -1;
         //
     }
-    
+
     protected String getDateWithTime() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
         Calendar calendar = Calendar.getInstance();

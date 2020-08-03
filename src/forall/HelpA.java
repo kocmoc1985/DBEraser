@@ -1086,6 +1086,10 @@ public class HelpA {
         return String.format(format, number).replace(",", ".");
     }
 
+   public static double round_double(double rst) {
+        return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
+    }
+    
     private static synchronized boolean isDouble(Object obj) {
         if (obj instanceof String) {
             String val = (String) obj;

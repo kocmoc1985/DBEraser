@@ -33,14 +33,14 @@ public class InvoiceA_Update extends Invoice {
     protected void startUp() {
     }
 
-    protected void jtableArticlesRowChange(){
+    protected void updateArticle(){
         //
         if(containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())){
             HelpA.showNotification(LANG.MSG_4);
             return;
         }
         //
-        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
+//        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
         //
         JTable table = bim.jTable_InvoiceA_articles;
         //
@@ -53,6 +53,10 @@ public class InvoiceA_Update extends Invoice {
         map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
         //
         HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
+        //
+        //
+        
+        //
         //
         String json = JSon.hashMapToJSON(final_map);
         //
