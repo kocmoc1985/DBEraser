@@ -66,7 +66,9 @@ public class InvoiceB extends Basic {
         //
         fillFakturaTable();
         //
-//        fillFakturaArticlesTable();
+
+        //
+        // fillFakturaArticlesTable();
     }
 
     private void fillJTableheader() {
@@ -133,12 +135,6 @@ public class InvoiceB extends Basic {
             public void run() {
                 //
                 fillFakturaArticlesTable(fakturaId);
-                //
-//                JTable table = bim.jTable_invoiceB_alla_fakturor;
-//                double total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__INKL_MOMS));
-//                double total_exkl = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__EXKL_MOMS));
-//                double moms_total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__MOMS));
-//                bim.displayTotals(total, total_exkl, moms_total);
                 //
             }
         });
@@ -223,6 +219,12 @@ public class InvoiceB extends Basic {
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json));
             //
+            //
+            if(json_str_return.equals("empty")){ // this value='empty' is returned by PHP script
+                return;
+            }
+            //
+            //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
             //
@@ -230,11 +232,9 @@ public class InvoiceB extends Basic {
                 addRowJtable_faktura_articles(invoice_map, table);
             }
             //
-            //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
         //
     }
 

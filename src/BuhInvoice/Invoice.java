@@ -57,24 +57,7 @@ public abstract class Invoice extends Basic_Buh {
         faktura_entry.insertOrUpdate();
     }
 
-    /**
-     * VERY IMPORTANT ! [2020-07-29]
-     *
-     * @return 1 = Insert, 2 = Update, 0 = Undefined
-     */
-    public static int isInsertOrUpdate() {
-        return INSERT_OR_UPDATE_CLASS;
-    }
-
-    public void setInsertOrUpdateClassActive() {
-        if (this instanceof InvoiceA_Insert) {
-            INSERT_OR_UPDATE_CLASS = 1;
-        } else if (this instanceof InvoiceA_Update) {
-            INSERT_OR_UPDATE_CLASS = 2;
-        } else {
-            INSERT_OR_UPDATE_CLASS = 0;
-        }
-    }
+   
 
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
@@ -181,9 +164,6 @@ public abstract class Invoice extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
-        setInsertOrUpdateClassActive(); //  ************************ [2020-07-29] IMPORTANT
-        //
-        bim.displayInsertOrUpdate(); // FOR TRACING
     }
 
     public void showTableInvert_2() {
