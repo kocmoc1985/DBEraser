@@ -54,10 +54,6 @@ public class InvoiceA_Update extends Invoice {
         //
         HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
         //
-        //
-        countFakturaTotal(final_map);
-        //
-        //
         String json = JSon.hashMapToJSON(final_map);
         //
         System.out.println("UPDATE json: " + json);
@@ -77,6 +73,10 @@ public class InvoiceA_Update extends Invoice {
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        //
+        //
+        countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        //
         //
     }
 

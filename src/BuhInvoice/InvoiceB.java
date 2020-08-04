@@ -134,11 +134,11 @@ public class InvoiceB extends Basic {
                 //
                 fillFakturaArticlesTable(fakturaId);
                 //
-                JTable table = bim.jTable_invoiceB_alla_fakturor;
-                double total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__INKL_MOMS));
-                double total_exkl = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__EXKL_MOMS));
-                double moms_total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__MOMS));
-                bim.displayTotals(total, total_exkl, moms_total);
+//                JTable table = bim.jTable_invoiceB_alla_fakturor;
+//                double total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__INKL_MOMS));
+//                double total_exkl = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__EXKL_MOMS));
+//                double moms_total = Double.parseDouble(HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__MOMS));
+//                bim.displayTotals(total, total_exkl, moms_total);
                 //
             }
         });

@@ -52,11 +52,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setTitle("INSERT OR UPDATE: " + Invoice.isInsertOrUpdate());
     }
 
-    protected void displayTotals(double fakturaTotal, double total_exkl_moms, double moms) {
-        jTextField_total_inkl_moms.setText("" + fakturaTotal);
-        jTextField_total_exkl_moms.setText("" + total_exkl_moms);
-        jTextField_moms.setText("" + moms);
-    }
 
     private void initOhter() {
         //
@@ -815,6 +810,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             //
                             DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
                             jTable_InvoiceA_articles.setModel(dtm);
+                            //
+                            invoiceA_insert.countFakturaTotal(jTable_InvoiceA_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
                         }
                     });
                     //

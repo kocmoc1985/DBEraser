@@ -19,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
 public class InvoiceA_Insert extends Invoice {
 
     private Faktura_Entry_Insert faktura_entry_insert;
-    
+
     public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
         super(bim);
+        this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }
 
     @Override
@@ -31,8 +32,6 @@ public class InvoiceA_Insert extends Invoice {
 
     @Override
     protected void startUp() {
-        //
-        this.faktura_entry_insert = (Faktura_Entry_Insert)faktura_entry;
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -57,20 +56,23 @@ public class InvoiceA_Insert extends Invoice {
         this.bim.jTable_InvoiceA_articles.setModel(new DefaultTableModel(null, headers));
     }
 
-
     public void htmlFaktura() {
         this.faktura_entry_insert.htmlFaktura();
     }
 
     public void addArticleForJTable(JTable table) {
+        //
         this.faktura_entry_insert.addArticleForJTable(table);
+        //
+        // Clearing the rows with the code below
+        showTableInvert_2();
+        refreshTableInvert(TABLE_INVERT_2);
+        //
     }
 
     public void addArticleForDB() {
         this.faktura_entry_insert.addArticleForDB();
     }
-
-    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {

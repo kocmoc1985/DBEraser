@@ -5,6 +5,9 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_moms;
+import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_exkl_moms;
+import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_inkl_moms;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -22,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
+import javax.swing.JTable;
 
 /**
  *
@@ -120,12 +124,24 @@ public abstract class Invoice extends Basic_Buh {
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
-    
-     protected void countFakturaTotal(HashMap<String, String> map) {
+
+
+    protected void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
-        int antal = Integer.parseInt(map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        FAKTURA_TOTAL = 0;
+        FAKTURA_TOTAL_EXKL_MOMS = 0;
+        MOMS_TOTAL = 0;
         //
-        FAKTURA_TOTAL += Double.parseDouble(map.get(DB.BUH_F_ARTIKEL__PRIS)) * antal;
+        double pris;
+        int antal;
+        //
+        for (int i = 0; i < table.getModel().getRowCount(); i++) {
+            pris = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
+            antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
+            //
+            FAKTURA_TOTAL += (pris * antal);
+            //
+        }
         //
         if (getInklMoms()) {
             MOMS_TOTAL = FAKTURA_TOTAL * getMomsSats();
@@ -133,21 +149,21 @@ public abstract class Invoice extends Basic_Buh {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }
         //
-        bim.displayTotals(FAKTURA_TOTAL, FAKTURA_TOTAL_EXKL_MOMS, MOMS_TOTAL);
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
         //
     }
-     
-    
-    
-    protected double getFakturaTotal(){
+
+    protected double getFakturaTotal() {
         return HelpA.round_double(FAKTURA_TOTAL);
     }
-    
-    protected double getMomsTotal(){
+
+    protected double getMomsTotal() {
         return HelpA.round_double(MOMS_TOTAL);
     }
 
-    protected double getTotalExklMoms(){
+    protected double getTotalExklMoms() {
         return HelpA.round_double(FAKTURA_TOTAL_EXKL_MOMS);
     }
 
