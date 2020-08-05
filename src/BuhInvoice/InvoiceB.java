@@ -36,7 +36,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
     //
     public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
-    public static String TABLE_ALL_INVOICES__INKL_MOMS = "INKL MOMS";
+    public static String TABLE_ALL_INVOICES__INKL_MOMS = "TOTAL";
     public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
     public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
@@ -46,6 +46,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
     //
+    public static String TABLE_INVOICE_ARTIKLES__FAKTURA_ID = "FAKTURA ID";
     public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
@@ -68,8 +69,8 @@ public class InvoiceB extends Basic {
         //
         // fillFakturaArticlesTable();
     }
-    
-    protected void refresh(){
+
+    protected void refresh() {
         fillFakturaTable();
 //        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
 //        all_invoices_table_clicked(TABLE_ALL_INVOICES__KUND);
@@ -119,8 +120,9 @@ public class InvoiceB extends Basic {
         JTable table_b = this.bim.jTable_invoiceB_faktura_artiklar;
         //
         String[] headers_b = {
+            TABLE_INVOICE_ARTIKLES__ID, // hidden
+            TABLE_INVOICE_ARTIKLES__FAKTURA_ID,
             TABLE_INVOICE_ARTIKLES__ARTIKEL_ID,
-            TABLE_INVOICE_ARTIKLES__ID,
             TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN,
             TABLE_INVOICE_ARTIKLES__KOMMENT,
             TABLE_INVOICE_ARTIKLES__ANTAL,
@@ -226,7 +228,7 @@ public class InvoiceB extends Basic {
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json));
             //
             //
-            if(json_str_return.equals("empty")){ // this value='empty' is returned by PHP script
+            if (json_str_return.equals("empty")) { // this value='empty' is returned by PHP script
                 return;
             }
             //
@@ -242,13 +244,16 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
+        //
     }
 
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
-            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___ID)),
             map.get(DB.BUH_F_ARTIKEL__ID),
+            map.get(DB.BUH_F_ARTIKEL__FAKTURAID),
+            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___ID)),
             HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
@@ -260,6 +265,55 @@ public class InvoiceB extends Basic {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(jtableRow);
         //
+    }
+
+    protected void deleteFaktura() {
+        //
+        if(HelpA.confirm(LANG.MSG_6) == false){
+            return;
+        }
+        //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        String fakturaId = HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__FAKTURA_ID);
+        //
+        deleteFakturaArticles(fakturaId);
+        //
+        deleteFaktura(fakturaId);
+        //
+        fillFakturaTable(); // Kind of refresh
+    }
+
+    private void deleteFaktura(String fakturaId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+    }
+
+    private void deleteFakturaArticles(String fakturaId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+    }
+
+    private void executeDelete(String json) {
+        //
+        System.out.println("UPDATE json: " + json);
+        //
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

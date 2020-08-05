@@ -16,4 +16,5 @@ public class LANG {
     public static String MSG_3 = "Kunde inte spara Artikel (verifiera inmatning)";
     public static String MSG_4 = "Imatning av data innehåler fel, var god kontrollera, färg markerade rader";
     public static String MSG_5 = "Obligatoriska fält markerade med \"*\" måste vara ifyllda";
+    public static String MSG_6 = "Vill du verkligen radera fakturan?";
 }

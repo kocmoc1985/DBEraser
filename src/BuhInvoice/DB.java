@@ -44,6 +44,7 @@ public class DB {
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     public static final String PHP_FUNC_EXIST = "check_if_exist"; // using php-finction: "exist()"
     public static final String PHP_FUNC_LATEST = "get_latest"; // using php-finction: "latest()"
+    public static final String PHP_FUNC_DELETE = "delete_entry"; // using php-finction: "latest()"
     //
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUDNER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"

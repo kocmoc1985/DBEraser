@@ -53,7 +53,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.jTable_articles.addMouseListener(this);
         //
         invoiceB = new InvoiceB(this);
-        HelpA.markLastRowJtable(jTable_invoiceB_alla_fakturor);
+        HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
         jtableAllInvoicesClicked();
         //
         invoiceA_update = new InvoiceA_Update(this);
@@ -89,6 +89,29 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return JSon.hashMapToJSON(map);
     }
+    
+    /**
+     * OBS! this function returns only basic parameters for "update". So you
+     * will have to add the update values after calling this function.
+     *
+     * @param whereColName
+     * @param whereValue
+     * @param tableName
+     * @return
+     */
+    protected HashMap<String, String> getUPDATE(String whereColName, String whereValue, String tableName) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        map.put("table", tableName); // $table
+        //
+        return map;
+    }
+    
+    protected HashMap<String, String> getDELETE(String whereColName, String whereValue, String tableName) {
+        return getUPDATE(whereColName, whereValue, tableName);
+    }
 
     protected String getExist(String columnName, String value, String tableName) {
         //
@@ -113,24 +136,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return JSon.hashMapToJSON(map);
     }
 
-    /**
-     * OBS! this function returns only basic parameters for "update". So you
-     * will have to add the update values after calling this function.
-     *
-     * @param whereColName
-     * @param whereValue
-     * @param tableName
-     * @return
-     */
-    protected HashMap<String, String> getUPDATE(String whereColName, String whereValue, String tableName) {
-        //
-        HashMap<String, String> map = new HashMap<>();
-        map.put("where", whereColName); // $whereCoulunName
-        map.put(whereColName, whereValue); // $whereValue
-        map.put("table", tableName); // $table
-        //
-        return map;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,6 +154,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_invoiceB_alla_fakturor = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_invoiceB_faktura_artiklar = new javax.swing.JTable();
+        jButton12 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -210,6 +217,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         ));
         jScrollPane5.setViewportView(jTable_invoiceB_faktura_artiklar);
 
+        jButton12.setText("Radera faktura");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -217,14 +231,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton12)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(8, 8, 8)
+                .addComponent(jButton12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -623,6 +640,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+       invoiceB.deleteFaktura();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -663,6 +684,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
