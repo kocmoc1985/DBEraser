@@ -38,7 +38,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
         System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
         //
-        if (verifyFakturaId(fakturaId) == false) {
+        if (BUH_INVOICE_MAIN.verifyId(fakturaId) == false) {
             HelpA.showNotification(LANG.MSG_1);
         }
         //

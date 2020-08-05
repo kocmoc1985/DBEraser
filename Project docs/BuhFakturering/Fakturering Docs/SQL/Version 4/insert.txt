@@ -12,13 +12,13 @@ INSERT INTO `buh_kund` (`kundId`, `konsultId`, `namn`, `orgnr`, `vatnr`, `email`
 
 
 /*!40000 ALTER TABLE `buh_faktura_kund` DISABLE KEYS */;
-INSERT INTO `buh_faktura_kund` (`fakturaKundId`, `kundId`, `kundnr`, `namn`, `orgnr`, `vatnr`, `email`, `kund_kategori`) VALUES
-	(1, 1, 1, 'Securitas', '', '', '', 'A'),
-	(2, 1, 2, 'Telenor', '', '', '', 'A'),
-	(3, 2, 1, 'Telia', '', '', '', 'A'),
-	(4, 2, 2, 'Eon', '', '', '', 'A'),
-	(5, 2, 3, 'Akelius', '', '', '', 'A'),
-	(6, 2, 4, 'Telenor', '', '', '', 'A');
+INSERT INTO `buh_faktura_kund` (`fakturaKundId`, `kundId`, `kundnr`, `namn`, `orgnr`, `vatnr`, `email`, `kund_kategori`,`date_created`) VALUES
+	(1, 1, 1, 'Securitas', '', '', '', 'A',DEFAULT),
+	(2, 1, 2, 'Telenor', '', '', '', 'A',DEFAULT),
+	(3, 2, 1, 'Telia', '', '', '', 'A',DEFAULT),
+	(4, 2, 2, 'Eon', '', '', '', 'A',DEFAULT),
+	(5, 2, 3, 'Akelius', '', '', '', 'A',DEFAULT),
+	(6, 2, 4, 'Telenor', '', '', '', 'A',DEFAULT);
 /*!40000 ALTER TABLE `buh_faktura_kund` ENABLE KEYS */;
 
 

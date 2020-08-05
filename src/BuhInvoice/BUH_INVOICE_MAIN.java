@@ -65,11 +65,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    public static String getDateCreated() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
-    }
+   
     
     /**
      * OBS! Note if "kundId" does not exist it will not be possible to insert a
@@ -895,6 +891,26 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jtableAllInvoicesClicked();
             //
         }
+        //
+    }
+    
+     public static String getDateCreated() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+    
+    public static boolean verifyId(String fakturaId) {
+        //
+        int id;
+        //
+        try {
+            id = Integer.parseInt(fakturaId);
+        } catch (Exception ex) {
+            id = -1;
+        }
+        //
+        return id != -1;
         //
     }
 }

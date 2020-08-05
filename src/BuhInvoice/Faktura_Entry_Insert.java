@@ -56,7 +56,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (verifyFakturaId(fakturaId)) {
+        if (BUH_INVOICE_MAIN.verifyId(fakturaId)) {
             //
             setFakturaIdForArticles(fakturaId);
             //

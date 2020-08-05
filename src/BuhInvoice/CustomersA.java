@@ -105,7 +105,26 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        executeInsertCustomer(json, DB.PHP_FUNC_FAKTURA_KUND_TO_DB);
+        String fakturaKundId = "-1";
+        //
+        try {
+            //
+            fakturaKundId = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
+            //
+            System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
+            //
+            insertCustomerAddress(fakturaKundId);
+            //
+        }else{
+            HelpA.showNotification("Kunde inte ladda up kund (Faktura Kung Id saknas)");
+        }
         //
     }
 

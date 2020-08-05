@@ -31,18 +31,5 @@ public abstract class Faktura_Entry {
 
     protected abstract void setData();
     
-    protected boolean verifyFakturaId(String fakturaId) {
-        //
-        int id;
-        //
-        try {
-            id = Integer.parseInt(fakturaId);
-        } catch (Exception ex) {
-            id = -1;
-        }
-        //
-        return id != -1;
-        //
-    }
 
 }
