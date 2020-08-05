@@ -34,7 +34,7 @@ public class InvoiceA_Update extends Invoice {
 
     protected void updateArticle(){
         //
-        if(containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())){
+        if(containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
             HelpA.showNotification(LANG.MSG_4);
             return;
         }
@@ -43,7 +43,7 @@ public class InvoiceA_Update extends Invoice {
         //
         JTable table = bim.jTable_InvoiceA_articles;
         //
-        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, 1, getConfigTableInvert_2());
+        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
         //
         String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);

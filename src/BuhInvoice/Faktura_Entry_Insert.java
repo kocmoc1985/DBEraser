@@ -28,9 +28,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     public void insertOrUpdate() {
         //
-        boolean invalidated_1 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT, 1, invoice.getConfigTableInvert());
-        boolean invalidated_2 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_2, 1, invoice.getConfigTableInvert_2());
-        boolean invalidated_3 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_3, 1, invoice.getConfigTableInvert_3());
+        boolean invalidated_1 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
+        boolean invalidated_2 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2());
+        boolean invalidated_3 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
         //
         if (invalidated_1 || invalidated_2 || invalidated_3) {
             HelpA.showNotification(LANG.MSG_4);
@@ -77,8 +77,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     protected void setData() {
         //
-        this.mainMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT, 1, invoice.getConfigTableInvert());
-        this.secMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_3, 1, invoice.getConfigTableInvert_3());
+        this.mainMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
+        this.secMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
         //
         this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
         //
@@ -137,7 +137,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     public void addArticleForDB() {
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, 1, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         //
         this.articlesList.add(map_for_adding_to_db);
         //
@@ -162,7 +162,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     public void addArticleForJTable(JTable table) {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, 1, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         this.articlesListJTable.add(map);
         //
         //

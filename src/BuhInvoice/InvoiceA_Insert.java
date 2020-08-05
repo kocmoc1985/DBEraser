@@ -33,17 +33,33 @@ public class InvoiceA_Insert extends Invoice {
     @Override
     protected void startUp() {
         //
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                showTableInvert();
+//                showTableInvert_2();
+//                showTableInvert_3();
+//            }
+//        });
+        //
+        fillJTableheader();
+        //
+    }
+
+    protected void createNewFaktura() {
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 showTableInvert();
                 showTableInvert_2();
                 showTableInvert_3();
+                //
+                refreshTableInvert(TABLE_INVERT);
+                refreshTableInvert(TABLE_INVERT_2);
+                refreshTableInvert(TABLE_INVERT_3);
             }
         });
-        //
-        fillJTableheader();
-        //
     }
 
     private void fillJTableheader() {
@@ -59,8 +75,20 @@ public class InvoiceA_Insert extends Invoice {
     public void htmlFaktura() {
         this.faktura_entry_insert.htmlFaktura();
     }
+    
+    protected void addArticle(){
+        //
+        if(containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
+            HelpA.showNotification(LANG.MSG_5);
+            return;
+        }
+        //
+        addArticleForJTable(bim.jTable_InvoiceA_articles);
+        addArticleForDB();
+        //
+    }
 
-    public void addArticleForJTable(JTable table) {
+    private void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
@@ -70,7 +98,7 @@ public class InvoiceA_Insert extends Invoice {
         //
     }
 
-    public void addArticleForDB() {
+    private void addArticleForDB() {
         this.faktura_entry_insert.addArticleForDB();
     }
 
@@ -139,7 +167,7 @@ public class InvoiceA_Insert extends Invoice {
         enhet.enableFixedValuesAdvanced();
         enhet.setUneditable();
         //
-        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", true, true, true);
+        RowDataInvert pris = new RowDataInvertB("", DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", true, true, true);
         //
         RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", true, true, false);
         //

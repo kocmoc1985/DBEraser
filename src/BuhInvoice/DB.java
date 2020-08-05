@@ -12,6 +12,12 @@ package BuhInvoice;
 public class DB {
 
     /**
+     * OBS! Has nothing with Database to to, it's for getting values/other out of the
+     * tableInvert
+     */
+    public static final int START_COLUMN = 1;
+    
+    /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";

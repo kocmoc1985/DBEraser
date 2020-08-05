@@ -122,13 +122,13 @@ public class ArticlesA extends Basic_Buh {
 
     public void insertArtikel() {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
         //
         map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, getKundId());
         //
         String json = JSon.hashMapToJSON(map);
         //
-        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_3);
             return;
         }

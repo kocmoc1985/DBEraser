@@ -74,18 +74,18 @@ public class CustomersA extends Basic_Buh {
     
     public void insertCustomer() {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, 1, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
         //
         String json = JSon.hashMapToJSON(map);
         //
-        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
             return;
         }
         //
-        if (containsEmptyObligatoryFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_5);
             return;
         }

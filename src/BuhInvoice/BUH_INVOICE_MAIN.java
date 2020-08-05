@@ -5,18 +5,11 @@
  */
 package BuhInvoice;
 
-import MCRecipe.Lang.ERRORS;
-import MyObjectTable.Table;
-import MyObjectTableInvert.ColumnValue;
-import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableInvert;
-import Reporting.InvertTableRow;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -324,6 +317,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
 
         jButton11.setText("Skapa Ny");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -539,7 +537,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        invoiceA_insert.tableInvertToCSV(invoiceA_insert.TABLE_INVERT, 1, invoiceA_insert.getConfigTableInvert(), true);
+        invoiceA_insert.tableInvertToCSV(invoiceA_insert.TABLE_INVERT, DB.START_COLUMN, invoiceA_insert.getConfigTableInvert(), true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -549,9 +547,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //
-        invoiceA_insert.addArticleForJTable(jTable_InvoiceA_articles);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                invoiceA_insert.addArticle();
+            }
+        });
         //
-        invoiceA_insert.addArticleForDB();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -607,6 +609,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         articlesA.insertArtikel();
     }//GEN-LAST:event_jButton10ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        //
+        if (invoiceA_insert == null) {
+            invoiceA_insert = new InvoiceA_Insert(this);
+        }
+        //
+        invoiceA_insert.createNewFaktura();
+        //
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

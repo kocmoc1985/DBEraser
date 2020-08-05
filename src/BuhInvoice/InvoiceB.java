@@ -66,10 +66,10 @@ public class InvoiceB extends Basic {
         //
         fillFakturaTable();
         //
-
-        //
         // fillFakturaArticlesTable();
     }
+    
+    
 
     private void fillJTableheader() {
         //
