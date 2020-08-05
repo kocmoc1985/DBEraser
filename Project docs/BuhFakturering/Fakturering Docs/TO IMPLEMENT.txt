@@ -2,6 +2,28 @@
 
 Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
 
+[2020-08-05]
+Update Lager, after making a faktura
+
+
+[2020-08-05]
+
+Allow only one address per "faktura_kund"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [2020-07-30]
 

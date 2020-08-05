@@ -40,6 +40,7 @@ public class DB {
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB = "faktura_kund_address_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTIKEL_TO_DB = "artikel_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     public static final String PHP_FUNC_EXIST = "check_if_exist"; // using php-finction: "exist()"
@@ -53,7 +54,6 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
-    
     //
     public static final String PHP_FUNC_UPDATE_AUTO = "update_auto"; // using php-function: "update()"
     //

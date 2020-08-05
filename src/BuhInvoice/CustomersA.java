@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 public class CustomersA extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
+    protected Table TABLE_INVERT_3;
     //
     private static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
     private static final String TABLE_FAKTURA_KUNDER__KUND_ID = "KUND ID";
@@ -52,7 +53,7 @@ public class CustomersA extends Basic_Buh {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_A = "TEL 1";
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
-    
+
     public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
@@ -71,14 +72,8 @@ public class CustomersA extends Basic_Buh {
         });
         //
     }
-    
+
     public void insertCustomer() {
-        //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
-        //
-        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId());
-        //
-        String json = JSon.hashMapToJSON(map);
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
@@ -90,17 +85,45 @@ public class CustomersA extends Basic_Buh {
             return;
         }
         //
+        insertCustomerData();
+        //
+        insertCustomerAddress();
+    }
+
+    private void insertCustomerAddress() {
+        //
+        String fakturaKundNamn = getValueTableInvert(DB.BUH_FAKTURA_KUND___NAMN);
+        //
+        //OBS! USE PHP -> "latest()" to get the "fakturaKundId"
+        // SELECT MAX(fakturaKundId) as `latest` FROM buh_faktura_kund WHERE kundId=1
+//        String fakturaKundId =
+        //
+//        System.out.println("fakturaKundId: " + fakturaKundId);
+    }
+
+    private void insertCustomerData() {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
+        //
+        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
+        //
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeInsertCustomer(json, DB.PHP_FUNC_FAKTURA_KUND_TO_DB);
+        //
+    }
+
+
+    private void executeInsertCustomer(String json, String phpFunc) {
         try {
             //
             HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
+                    phpFunc, json));
             //
-
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
     }
 
     protected void customersTableClicked() {
@@ -112,7 +135,6 @@ public class CustomersA extends Basic_Buh {
         });
     }
 
-    
     private void fillJTable_header_kund_addresses() {
         //
         JTable table = this.bim.jTable_kund_adresses;
@@ -158,8 +180,8 @@ public class CustomersA extends Basic_Buh {
 //        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
     }
-    
-    public void fillJTableKundAdresses(){
+
+    public void fillJTableKundAdresses() {
         //
         JTable table = this.bim.jTable_kund_adresses;
         //
@@ -189,7 +211,7 @@ public class CustomersA extends Basic_Buh {
 //        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_KUND__KUND_ID);
         //
     }
-   
+
     private void fillKundJTable() {
         //
         JTable table = bim.jTable_kunder;
@@ -216,7 +238,7 @@ public class CustomersA extends Basic_Buh {
 //        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_KUND__KUND_ID);
         //
     }
-    
+
     private void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -257,7 +279,7 @@ public class CustomersA extends Basic_Buh {
 
     @Override
     public void showTableInvert() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -267,13 +289,24 @@ public class CustomersA extends Basic_Buh {
     }
 
     public void showTableInvert_2() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_faktura_a");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel5, TABLE_INVERT_2);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
+
+    }
+
+    public void showTableInvert_3() {
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
+        TABLE_INVERT_3 = null;
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
+        showTableInvert(bim.jPanel7, TABLE_INVERT_3);
+        //
+        addTableInvertRowListener(TABLE_INVERT_3, this);
 
     }
 
@@ -342,6 +375,48 @@ public class CustomersA extends Basic_Buh {
             vatnr,
             epost,
             kategori
+        };
+        //
+        return rows;
+    }
+
+    public RowDataInvert[] getConfigTableInvert_3() {
+        //
+        JTable table = bim.jTable_kund_adresses;
+        //
+        String addr_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
+        RowDataInvert addr_a = new RowDataInvertB(addr_a_, DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);
+        //
+        String addr_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B);
+        RowDataInvert addr_b = new RowDataInvertB(addr_b_, DB.BUH_ADDR__ADDR_B, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B, "", true, true, false);
+        //
+        String visit_addr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR);
+        RowDataInvert visit_addr = new RowDataInvertB(visit_addr_, DB.BUH_ADDR__BESOKS_ADDR, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR, "", true, true, false);
+        //
+        String zip_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ZIP);
+        RowDataInvert zip = new RowDataInvertB(zip_, DB.BUH_ADDR__POSTNR_ZIP, TABLE_FAKTURA_KUND_ADDR__ZIP, "", true, true, false);
+        //
+        String ort_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ORT);
+        RowDataInvert ort = new RowDataInvertB(ort_, DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
+        //
+        String tel_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_A);
+        RowDataInvert tel_a = new RowDataInvertB(tel_a_, DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
+        //
+        String tel_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_B);
+        RowDataInvert tel_b = new RowDataInvertB(tel_b_, DB.BUH_ADDR__TEL_B, TABLE_FAKTURA_KUND_ADDR__TEL_B, "", true, true, false);
+        //
+        String other_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__OTHER);
+        RowDataInvert other = new RowDataInvertB(other_, DB.BUH_ADDR__OTHER, TABLE_FAKTURA_KUND_ADDR__OTHER, "", true, true, false);
+        //
+        RowDataInvert[] rows = {
+            addr_a,
+            addr_b,
+            visit_addr,
+            zip,
+            ort,
+            tel_a,
+            tel_b,
+            other
         };
         //
         return rows;
