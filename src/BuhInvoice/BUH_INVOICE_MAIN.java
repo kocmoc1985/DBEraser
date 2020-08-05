@@ -28,6 +28,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private InvoiceB invoiceB;
 
     private String ACTUAL_TAB_NAME;
+    private String PREVIOUS_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_CREATE_FAKTURA = "FAKTURA";
     private final static String TAB_KUDNER = "KUNDER";
@@ -52,7 +53,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.jTable_articles.addMouseListener(this);
         //
         invoiceB = new InvoiceB(this);
-        HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
+        HelpA.markLastRowJtable(jTable_invoiceB_alla_fakturor);
         jtableAllInvoicesClicked();
         //
         invoiceA_update = new InvoiceA_Update(this);
@@ -591,6 +592,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         invoiceA_update.updateArticle();
         //
+        invoiceA_update.insertOrUpdate(); // update entire faktura on updated article
+        //
+        invoiceB.refresh();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -704,10 +708,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             String title = jTabbedPane1.getTitleAt(jTabbedPane1.getSelectedIndex());
             ACTUAL_TAB_NAME = title;
             //
-            if (title.equals(TAB_INVOICES_OVERVIEW)) {
+            boolean sameTabClicked = ACTUAL_TAB_NAME.equals(PREVIOUS_TAB_NAME);
+            //
+            if (ACTUAL_TAB_NAME.equals(TAB_INVOICES_OVERVIEW)) {
                 //
                 //
-            } else if (title.equals(TAB_CREATE_FAKTURA)) {
+            } else if (ACTUAL_TAB_NAME.equals(TAB_CREATE_FAKTURA) && sameTabClicked == false) {
                 //
                 //
                 java.awt.EventQueue.invokeLater(new Runnable() {
@@ -731,19 +737,21 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 });
                 //
                 //
-            } else if (title.equals(TAB_KUDNER)) {
+            } else if (ACTUAL_TAB_NAME.equals(TAB_KUDNER)) {
                 //
                 if (customersA == null) {
                     customersA = new CustomersA(this);
                 }
                 //
-            } else if (title.equals(TAB_ARTIKLAR)) {
+            } else if (ACTUAL_TAB_NAME.equals(TAB_ARTIKLAR)) {
                 //
                 if (articlesA == null) {
                     articlesA = new ArticlesA(this);
                 }
                 //
             }
+            //
+            PREVIOUS_TAB_NAME = ACTUAL_TAB_NAME;
             //
         }
         //

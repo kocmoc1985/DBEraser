@@ -69,7 +69,11 @@ public class InvoiceB extends Basic {
         // fillFakturaArticlesTable();
     }
     
-    
+    protected void refresh(){
+        fillFakturaTable();
+//        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+//        all_invoices_table_clicked(TABLE_ALL_INVOICES__KUND);
+    }
 
     private void fillJTableheader() {
         //
@@ -143,6 +147,8 @@ public class InvoiceB extends Basic {
     private void fillFakturaTable() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        HelpA.clearAllRowsJTable(table);
         //
         String json = bim.getSELECT_kundId();
         //
