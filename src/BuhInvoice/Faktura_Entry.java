@@ -5,7 +5,6 @@
  */
 package BuhInvoice;
 
-import forall.HelpA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,12 +43,6 @@ public abstract class Faktura_Entry {
         //
         return id != -1;
         //
-    }
-
-    protected String getDateWithTime() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
     }
 
 }

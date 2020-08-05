@@ -10,6 +10,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,6 +65,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
+    public static String getDateCreated() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+    
     /**
      * OBS! Note if "kundId" does not exist it will not be possible to insert a
      * invoice because of the "foreign key constraints".

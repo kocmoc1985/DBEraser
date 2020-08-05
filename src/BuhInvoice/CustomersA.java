@@ -87,18 +87,12 @@ public class CustomersA extends Basic_Buh {
         //
         insertCustomerData();
         //
-        insertCustomerAddress();
+//        insertCustomerAddress();
+        //
     }
 
-    private void insertCustomerAddress() {
+    private void insertCustomerAddress(String fakturaKundId) {
         //
-        String fakturaKundNamn = getValueTableInvert(DB.BUH_FAKTURA_KUND___NAMN);
-        //
-        //OBS! USE PHP -> "latest()" to get the "fakturaKundId"
-        // SELECT MAX(fakturaKundId) as `latest` FROM buh_faktura_kund WHERE kundId=1
-//        String fakturaKundId =
-        //
-//        System.out.println("fakturaKundId: " + fakturaKundId);
     }
 
     private void insertCustomerData() {
@@ -107,13 +101,13 @@ public class CustomersA extends Basic_Buh {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN.getDateCreated()); // required
         //
         String json = JSon.hashMapToJSON(map);
         //
         executeInsertCustomer(json, DB.PHP_FUNC_FAKTURA_KUND_TO_DB);
         //
     }
-
 
     private void executeInsertCustomer(String json, String phpFunc) {
         try {
@@ -512,6 +506,7 @@ public class CustomersA extends Basic_Buh {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
+        //
     }
 
     private void supposeNextKundNr(JLinkInvert jli) {

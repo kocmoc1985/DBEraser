@@ -10,16 +10,13 @@ Update Lager, after making a faktura
 
 Allow only one address per "faktura_kund"
 
+FakturaEntryInsert.class -> this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN.getDateCreated());
 
+add column "date_created" to table "buh_faktura_kund"  -->  date_created varchar(30) DEFAULT 'no',
 
+Stopped HERE: CustomersA.class -> insertCustomerData() -> line:98
 
-
-
-
-
-
-
-
+Modify:
 
 
 
