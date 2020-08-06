@@ -27,33 +27,11 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     @Override
     public void insertOrUpdate() {
         //
-//        InvoiceA_Update invoice_update = (InvoiceA_Update)invoice;
-        //
-        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
-        //
         setData();
         //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
-        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
-        System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
-        //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaId) == false) {
-            HelpA.showNotification(LANG.MSG_ERROR_1);
-        }
-        //
-        try {
-            //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_UPDATE_AUTO, json));
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-//        setFakturaIdForArticles(fakturaId);
-        //
-//        articlesToHttpDB();
+        HelpBuh.update(json);
         //
     }
 
@@ -77,7 +55,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         HashMap<String, String> map_temp = HelpA.joinHashMaps(mainMap, secMap);
         //
-        this.fakturaMap = HelpA.joinHashMaps(map_temp, update_map);
+        this.fakturaMap = JSon.joinHashMaps(map_temp, update_map);
         //
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());

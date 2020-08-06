@@ -44,6 +44,7 @@ public class CustomersA extends Basic_Buh {
     private static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
+    private static final String TABLE_FAKTURA_KUND_ADDR__ID = "ID";
     private static final String TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID = "FKUNDID";
     private static final String TABLE_FAKTURA_KUND_ADDR__NAMN = "NAMN";
     private static final String TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY = "PRIMÄR";
@@ -60,6 +61,20 @@ public class CustomersA extends Basic_Buh {
         super(bim);
     }
 
+    private JTable getTableKunder() {
+        return bim.jTable_kunder;
+    }
+
+    private JTable getTableAdresses() {
+        return bim.jTable_kund_adresses;
+    }
+
+    private void refresh() {
+        fillKundJTable();
+        HelpA.markFirstRowJtable(getTableKunder());
+        bim.jTableCustomersA_kunder_clicked();
+    }
+
     @Override
     protected void startUp() {
         //
@@ -69,10 +84,8 @@ public class CustomersA extends Basic_Buh {
                 showTableInvert();
                 fillJTable_header_kunder();
                 fillJTable_header_kund_addresses();
-                fillKundJTable();
                 //
-                HelpA.markFirstRowJtable(bim.jTable_kunder);
-                bim.jTableCustomersA_kunder_clicked();
+                refresh();
                 //
             }
         });
@@ -95,7 +108,65 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
-    public void insertCustomer() {
+    public void update() {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return;
+        }
+        //
+        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        String address_id = HelpA.getValueSelectedRow(getTableAdresses(), TABLE_FAKTURA_KUND_ADDR__ID);
+        //
+        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
+            updateCustomerData(fakturaKundId);
+        }
+        //
+        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
+            updateAddressData(address_id);
+        }else{
+            
+        }
+        //
+        //
+        refresh();
+        //
+    }
+
+    private void updateCustomerData(String fakturaKundId) {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_KUND__ID, fakturaKundId, DB.TABLE__BUH_FAKTURA_KUND);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+
+    private void updateAddressData(String id) {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3());
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_ADDR__ID, id, DB.TABLE__BUH_ADDRESS);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+
+    public void insert() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
@@ -111,8 +182,7 @@ public class CustomersA extends Basic_Buh {
         //
         //
         //
-        fillKundJTable();
-        createNewFakturaKund();
+        refresh();
     }
 
     private void insertCustomerData() {
@@ -168,9 +238,10 @@ public class CustomersA extends Basic_Buh {
 
     private void fillJTable_header_kund_addresses() {
         //
-        JTable table = this.bim.jTable_kund_adresses;
+        JTable table = getTableAdresses();
         //
         String[] headers = {
+            TABLE_FAKTURA_KUND_ADDR__ID,
             TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID,
             TABLE_FAKTURA_KUND_ADDR__NAMN,
             TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY,
@@ -193,7 +264,7 @@ public class CustomersA extends Basic_Buh {
     private void fillJTable_header_kunder() {
         //
         //
-        JTable table = this.bim.jTable_kunder;
+        JTable table = getTableKunder();
         //
         String[] headers = {
             TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID,
@@ -214,11 +285,11 @@ public class CustomersA extends Basic_Buh {
 
     public void fillJTableKundAdresses() {
         //
-        JTable table = this.bim.jTable_kund_adresses;
+        JTable table = getTableAdresses();
         //
         HelpA.clearAllRowsJTable(table);
         //
-        String fakturaKundId = HelpA.getValueSelectedRow(this.bim.jTable_kunder, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         //
         String json = bim.getSELECT_fakturaKundId(fakturaKundId);
         //
@@ -245,7 +316,7 @@ public class CustomersA extends Basic_Buh {
 
     private void fillKundJTable() {
         //
-        JTable table = bim.jTable_kunder;
+        JTable table = getTableKunder();
         //
         HelpA.clearAllRowsJTable(table);
         //
@@ -275,6 +346,7 @@ public class CustomersA extends Basic_Buh {
     private void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_ADDR__ID),
             map.get(DB.BUH_ADDR__FAKTURAKUND_ID), // hidden
             map.get(DB.BUH_ADDR__NAMN),
             map.get(DB.BUH_ADDR__IS_PRIMARY_ADDR),
@@ -383,7 +455,7 @@ public class CustomersA extends Basic_Buh {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable_kunder;
+        JTable table = getTableKunder();
         //
         String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
@@ -429,7 +501,7 @@ public class CustomersA extends Basic_Buh {
      */
     public RowDataInvert[] getConfigTableInvert_3() {
         //
-        JTable table = bim.jTable_kund_adresses;
+        JTable table = getTableAdresses();
         //
         String addr_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
         RowDataInvert addr_a = new RowDataInvertB(addr_a_, DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);

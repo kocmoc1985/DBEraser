@@ -72,8 +72,9 @@ public class InvoiceB extends Basic {
 
     protected void refresh() {
         fillFakturaTable();
-//        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
-//        all_invoices_table_clicked(TABLE_ALL_INVOICES__KUND);
+        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+        String fakturaId = HelpA.getValueSelectedRow(bim.jTable_invoiceB_alla_fakturor, TABLE_ALL_INVOICES__FAKTURA_ID);
+        all_invoices_table_clicked(fakturaId);
     }
 
     private void fillJTableheader() {
@@ -281,7 +282,9 @@ public class InvoiceB extends Basic {
         //
         deleteFaktura(fakturaId);
         //
-        fillFakturaTable(); // Kind of refresh
+        //
+        refresh();
+        //
     }
 
     private void deleteFaktura(String fakturaId) {

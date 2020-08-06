@@ -51,20 +51,13 @@ public class InvoiceA_Update extends Invoice {
         // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
         map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
         //
-        HashMap<String, String>final_map = HelpA.joinHashMaps(map, updateMap);
+        HashMap<String, String>final_map = JSon.joinHashMaps(map, updateMap);
         //
         String json = JSon.hashMapToJSON(final_map);
         //
         System.out.println("UPDATE json: " + json);
         //
-        try {
-            //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_UPDATE_AUTO, json));
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        HelpBuh.update(json);
         //
         //
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));

@@ -18,6 +18,30 @@ import java.util.Set;
  * @author KOCMOC
  */
 public class JSon {
+    
+    public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {
+        //
+        HashMap joined_properties = new HashMap();
+        //
+        Set set = p1.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            String value = (String) p1.get(key);
+            joined_properties.put(key, value);
+        }
+        //
+        Set set_2 = p2.keySet();
+        Iterator it_2 = set_2.iterator();
+        //
+        while (it_2.hasNext()) {
+            String key = (String) it_2.next();
+            String value = (String) p2.get(key);
+            joined_properties.put(key, value);
+        }
+        //
+        return joined_properties;
+    }
 
     // OBS! OBS! OBS! [2020-07-16]
     // Pay attention that iam using ";" as key/value separator, in fact
@@ -52,7 +76,7 @@ public class JSon {
         //
         json += "}";
         //
-        System.out.println("json: " + json);
+        System.out.println("JSon: " + json);
         //
         return json;
         //

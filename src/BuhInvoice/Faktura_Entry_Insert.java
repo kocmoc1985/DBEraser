@@ -28,6 +28,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     public void insertOrUpdate() {
         //
+        System.out.println("INSER OR UPDATE: " + getClass().getName()+ " ***********************************");
+        //
         boolean invalidated_1 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
         boolean invalidated_2 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2());
         boolean invalidated_3 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
@@ -80,7 +82,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.mainMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
         this.secMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
         //
-        this.fakturaMap = HelpA.joinHashMaps(mainMap, secMap);
+        this.fakturaMap = JSon.joinHashMaps(mainMap, secMap);
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
         this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoice.getKundId());
@@ -102,7 +104,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         System.out.println("-------------------------------------------------");
         //
-        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
+//        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
         //
     }
 

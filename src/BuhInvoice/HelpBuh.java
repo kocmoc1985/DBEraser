@@ -13,6 +13,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
@@ -20,6 +22,17 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * @author MCREMOTE
  */
 public class HelpBuh {
+
+    public static void update(String json) {
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_UPDATE_AUTO, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * [2020-07-22] Universal function for inserting into HTTP DB
@@ -37,7 +50,7 @@ public class HelpBuh {
      * [2020-07-22] The first real method for inserting data to HTTP db
      *
      * @param json
-     * @deprecated 
+     * @deprecated
      * @return
      */
     private static String sendArticles(String json) {
@@ -48,7 +61,7 @@ public class HelpBuh {
      * Working test example [2020-07-16]
      *
      * @param json
-     * @deprecated 
+     * @deprecated
      * @return
      */
     private static String testSendJson(String json) {
@@ -56,8 +69,8 @@ public class HelpBuh {
     }
 
     /**
-     * For testing only
-     * Used by "Run_Invert_Example_C.java" [2020-07-24]
+     * For testing only Used by "Run_Invert_Example_C.java" [2020-07-24]
+     *
      * @param tablename
      * @param min
      * @param max
@@ -122,7 +135,7 @@ public class HelpBuh {
         //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
         // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"
         // because an unescaped string which i recieve looks like "\\u00e5" indeed 
-        return StringEscapeUtils.unescapeJava(value); 
+        return StringEscapeUtils.unescapeJava(value);
         //
 //        String temp = arr[1];
 //        System.out.println("HTTP REQ VAL: " + temp);

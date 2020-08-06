@@ -5,18 +5,24 @@ Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,
 [2020-08-05]
 Update Lager, after making a faktura
 
+[2020-08-06] Double faktura insertion problem:
 
-[2020-08-05]
+Faktura_Entry_Insert -> line:51
 
-Allow only one address per "faktura_kund"
 
-FakturaEntryInsert.class -> this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN.getDateCreated());
 
-add column "date_created" to table "buh_faktura_kund"  -->  date_created varchar(30) DEFAULT 'no',
 
-Stopped HERE: CustomersA.class -> insertCustomerData() -> line:98
 
-Modify:
+[2020-08-06]
+
+TO DELETE "buh_faktura_kund" entry is not so simple, you will need to remove entries first from other tables, like the "drop sequence shows":
+drop table buh_address;
+drop table buh_f_artikel;
+drop table buh_faktura;
+drop table buh_faktura_artikel;
+drop table buh_faktura_kund;
+drop table buh_kund;
+drop table buh_konsult;
 
 
 

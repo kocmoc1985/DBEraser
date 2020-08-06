@@ -35,6 +35,7 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA = "buh_faktura";
     public static final String TABLE__BUH_FAKTURA_KUND = "buh_faktura_kund";
     public static final String TABLE__BUH_FAKTURA_ARTIKEL = "buh_faktura_artikel";
+    public static final String TABLE__BUH_ADDRESS = "buh_address";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
@@ -109,6 +110,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
     //
+    public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";
     public static final String BUH_ADDR__NAMN = "namn";
     public static final String BUH_ADDR__IS_PRIMARY_ADDR = "primary_addr";

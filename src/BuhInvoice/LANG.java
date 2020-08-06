@@ -18,6 +18,14 @@ public class LANG {
     
     /**
      * VERY IMPORTANT: If it happens even once, actions shall be taken [2020-08-06]
+     * This one shall be only used in cases when you insert an entry and retrieve
+     * the newly inserted id
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
+    
+    
+    /**
+     * For cases when i don't know yet
+     */
+    public static String MSG_UNDEF = "?????";
 }
