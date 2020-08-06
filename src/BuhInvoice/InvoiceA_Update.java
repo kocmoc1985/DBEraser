@@ -41,7 +41,7 @@ public class InvoiceA_Update extends Invoice {
         //
 //        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
         //
-        JTable table = bim.jTable_InvoiceA_articles;
+        JTable table = bim.jTable_InvoiceA_Insert_articles;
         //
         HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
         //
@@ -150,7 +150,7 @@ public class InvoiceA_Update extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable_InvoiceA_articles;
+        JTable table = bim.jTable_InvoiceA_Insert_articles;
         //
         String fixedComboValues_a = JSon._get(
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),

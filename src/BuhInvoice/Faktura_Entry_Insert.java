@@ -144,7 +144,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 //        articlesListToJson(articlesList);
         //
 //        invoice.countFakturaTotal(map_for_adding_to_db);
-        JTable table = invoice.bim.jTable_InvoiceA_articles;
+        JTable table = invoice.bim.jTable_InvoiceA_Insert_articles;
         invoice.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         //
     }

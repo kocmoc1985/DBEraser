@@ -58,7 +58,7 @@ public class ArticlesA extends Basic_Buh {
     private void fillJTableheader() {
         //
         //
-        JTable table = this.bim.jTable_articles;
+        JTable table = this.bim.jTable_ArticlesA_articles;
         //
         String[] headers = {
             TABLE_ARTICLES__ID,
@@ -78,7 +78,7 @@ public class ArticlesA extends Basic_Buh {
     
     private void fillArtiklesJTable() {
         //
-        JTable table = bim.jTable_articles;
+        JTable table = bim.jTable_ArticlesA_articles;
         //
         String json = bim.getSELECT_kundId();
         //
@@ -193,7 +193,7 @@ public class ArticlesA extends Basic_Buh {
     
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable_articles;
+        JTable table = bim.jTable_ArticlesA_articles;
         //
         String namn_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_FAKTURA_ARTIKEL___NAMN, TABLE_ARTICLES__NAMN, "", true, true, true);

@@ -60,6 +60,7 @@ public class InvoiceA_Insert extends Invoice {
                 refreshTableInvert(TABLE_INVERT_3);
             }
         });
+        //
     }
 
     private void fillJTableheader() {
@@ -69,21 +70,21 @@ public class InvoiceA_Insert extends Invoice {
         //             {"", "", "", "", "", ""}
         };
         //
-        this.bim.jTable_InvoiceA_articles.setModel(new DefaultTableModel(null, headers));
+        this.bim.jTable_InvoiceA_Insert_articles.setModel(new DefaultTableModel(null, headers));
     }
 
     public void htmlFaktura() {
         this.faktura_entry_insert.htmlFaktura();
     }
-    
-    protected void addArticle(){
+
+    protected void addArticle() {
         //
-        if(containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_5);
             return;
         }
         //
-        addArticleForJTable(bim.jTable_InvoiceA_articles);
+        addArticleForJTable(bim.jTable_InvoiceA_Insert_articles);
         addArticleForDB();
         //
     }
