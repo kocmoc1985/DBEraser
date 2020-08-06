@@ -74,9 +74,6 @@ public class CustomersA extends Basic_Buh {
                 HelpA.markFirstRowJtable(bim.jTable_kunder);
                 bim.jTableCustomersA_kunder_clicked();
                 //
-                HelpA.markFirstRowJtable(bim.jTable_kund_adresses);
-                bim.jTableCustomersA_adress_clicked();
-                //
             }
         });
         //
@@ -144,20 +141,23 @@ public class CustomersA extends Basic_Buh {
             insertCustomerAddress(fakturaKundId);
             //
         } else {
-            HelpA.showNotification("Kunde inte ladda up kund (Faktura Kung Id saknas)");
+            HelpA.showNotification(LANG.MSG_7);
         }
         //
     }
 
     private void insertCustomerAddress(String fakturaKundId) {
         //
-    }
-
-    private void executeInsertCustomer(String json, String phpFunc) {
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4());
+        //
+        map.put(DB.BUH_ADDR__FAKTURAKUND_ID, fakturaKundId);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
         try {
             //
             HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    phpFunc, json));
+                    DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json));
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);

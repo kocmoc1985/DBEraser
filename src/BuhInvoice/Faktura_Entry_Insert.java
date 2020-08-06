@@ -64,7 +64,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
         } else {
             //
-            HelpA.showNotification("Kunde inte ladda up fakturan (Faktura id saknas)");
+            HelpA.showNotification(LANG.MSG_8);
             //
         }
         //
