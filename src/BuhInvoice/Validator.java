@@ -44,6 +44,7 @@ public class Validator {
         String val = jtfi.getText();
         //
         if(val.isEmpty()){
+            jtfi.setForeground(getJTextFieldInitialColor());
             return false;
         }
         //
@@ -67,11 +68,11 @@ public class Validator {
         //
         if (exist_ == 0) {
             jtfi.setForeground(getJTextFieldInitialColor());
-//            jli.setValidated(true);
+            jli.setValidated(true);
             return true;
         } else {
             jtfi.setForeground(Color.ORANGE);
-//            jli.setValidated(false);
+            jli.setValidated(false);
             return false;
         }
     }

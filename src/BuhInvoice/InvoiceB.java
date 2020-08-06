@@ -269,7 +269,7 @@ public class InvoiceB extends Basic {
 
     protected void deleteFaktura() {
         //
-        if(HelpA.confirm(LANG.MSG_6) == false){
+        if(HelpA.confirm(LANG.MSG_3) == false){
             return;
         }
         //

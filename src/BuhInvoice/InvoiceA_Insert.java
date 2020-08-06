@@ -80,7 +80,7 @@ public class InvoiceA_Insert extends Invoice {
     protected void addArticle() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_5);
+            HelpA.showNotification(LANG.MSG_2);
             return;
         }
         //

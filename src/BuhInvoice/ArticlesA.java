@@ -129,7 +129,7 @@ public class ArticlesA extends Basic_Buh {
         String json = JSon.hashMapToJSON(map);
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_3);
+            HelpA.showNotification(LANG.MSG_1);
             return;
         }
         //

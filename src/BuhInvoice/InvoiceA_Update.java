@@ -35,7 +35,7 @@ public class InvoiceA_Update extends Invoice {
     protected void updateArticle(){
         //
         if(containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
-            HelpA.showNotification(LANG.MSG_4);
+            HelpA.showNotification(LANG.MSG_1);
             return;
         }
         //

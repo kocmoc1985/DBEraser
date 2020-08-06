@@ -39,7 +39,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
         //
         if (BUH_INVOICE_MAIN.verifyId(fakturaId) == false) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_ERROR_1);
         }
         //
         try {

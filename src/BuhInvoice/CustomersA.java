@@ -97,20 +97,22 @@ public class CustomersA extends Basic_Buh {
 
     public void insertCustomer() {
         //
-        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
             HelpA.showNotification(LANG.MSG_2);
             return;
         }
         //
-        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_5);
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_1);
             return;
         }
         //
         insertCustomerData();
         //
-//        insertCustomerAddress();
         //
+        //
+        fillKundJTable();
+        createNewFakturaKund();
     }
 
     private void insertCustomerData() {
@@ -141,7 +143,7 @@ public class CustomersA extends Basic_Buh {
             insertCustomerAddress(fakturaKundId);
             //
         } else {
-            HelpA.showNotification(LANG.MSG_7);
+            HelpA.showNotification(LANG.MSG_ERROR_1);
         }
         //
     }
@@ -244,6 +246,8 @@ public class CustomersA extends Basic_Buh {
     private void fillKundJTable() {
         //
         JTable table = bim.jTable_kunder;
+        //
+        HelpA.clearAllRowsJTable(table);
         //
         String json = bim.getSELECT_kundId();
         //

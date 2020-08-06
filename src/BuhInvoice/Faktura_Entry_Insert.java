@@ -33,7 +33,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         boolean invalidated_3 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
         //
         if (invalidated_1 || invalidated_2 || invalidated_3) {
-            HelpA.showNotification(LANG.MSG_4);
+            HelpA.showNotification(LANG.MSG_1);
             return;
         }
         //
@@ -64,7 +64,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
         } else {
             //
-            HelpA.showNotification(LANG.MSG_8);
+            HelpA.showNotification(LANG.MSG_ERROR_1);
             //
         }
         //
