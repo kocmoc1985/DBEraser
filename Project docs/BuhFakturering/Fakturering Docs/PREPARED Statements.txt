@@ -7,6 +7,7 @@ https://phpdelusions.net/pdo -->  Great tutorial of using PDO
 https://www.pontikis.net/blog/dynamically-bind_param-array-mysqli  ---> Tutorial for making "DYNAMIC PREPARED STATEMENTS"
 
 
+
 ______________________________________________________________________________________________________
 ______________________________________________________________________________________________________
 

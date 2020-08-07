@@ -1,5 +1,7 @@
 [SQL INJECTION] [2020-08-07]
 
+0. "PREPARED STATEMENTS" are now implemented. At the moment [2020-08-07] only for the "UPDATE"
+
 1. [ESCAPE STRINGS] In my case i can make "escaping" on the "JAVA" side.
 
 2. [STRING ESCAPING] is done in JSon.class -> "hashMapToJSON(HashMap<String, String> map)".
