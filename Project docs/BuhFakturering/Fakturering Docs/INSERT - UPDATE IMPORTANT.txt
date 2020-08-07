@@ -1,6 +1,0 @@
-
-
-[INSERT:]
-
-For "insert" dont use "tableInvertToHashMap_updated_values_only(TABLE_INVERT_2, 1, getConfigTableInvert_2())"
-because all of the parameters must be present. For those which value is empty the 'DEFAULT' will be added in the script on the PHP side

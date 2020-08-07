@@ -65,6 +65,7 @@ public class JSon {
             //
             String key = (String) it.next();
             String value = (String) map.get(key);
+            //StringEscapeUtils.escapeHtml(value): Not working [2020-08-07]
             value = StringEscapeUtils.escapeJava(value); // ******************IMPORTANT***********************
             //
             json += "\"" + key + "\"" + ";";

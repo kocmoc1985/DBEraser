@@ -475,6 +475,42 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return false;
         //
     }
+    
+    /**
+     * [2020-08-07]
+     *
+     * This one takes into account if VALUES is STRING OR NOT
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return
+     */
+    public HashMap<String, String> tableInvertToHashMap_B(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                if(dataInvert.isString()){
+                    mapToReturn.put(dataInvert.getFieldOriginalName(),"'"+ columnValue.getValue() + "'");
+                }else{
+                   mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue()); 
+                }
+                //
+            }
+            //
+        }
+        //
+        return mapToReturn;
+    }
 
     /**
      * [2020-07-13]
