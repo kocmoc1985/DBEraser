@@ -628,7 +628,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceA_update.insertOrUpdate();
         //
         //
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

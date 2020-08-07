@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
+import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * This is taken from JkocmocLin -> MyJSON.class
@@ -64,6 +65,7 @@ public class JSon {
             //
             String key = (String) it.next();
             String value = (String) map.get(key);
+            value = StringEscapeUtils.escapeJava(value); // ******************IMPORTANT***********************
             //
             json += "\"" + key + "\"" + ";";
             if (!it.hasNext()) {

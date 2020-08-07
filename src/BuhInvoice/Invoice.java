@@ -57,8 +57,6 @@ public abstract class Invoice extends Basic_Buh {
         faktura_entry.insertOrUpdate();
     }
 
-   
-
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
     }
@@ -107,7 +105,6 @@ public abstract class Invoice extends Basic_Buh {
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
-
 
     protected void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
@@ -226,8 +223,14 @@ public abstract class Invoice extends Basic_Buh {
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
-            String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
-            setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+            //
+            JLinkInvert jli = (JLinkInvert) me.getSource();
+            //
+            if (jli.getValue().isEmpty()) {
+                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
+                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+            }
+            //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             restoreFakturaDatumIfEmty(me, ti);

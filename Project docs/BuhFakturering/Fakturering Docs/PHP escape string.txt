@@ -1,0 +1,8 @@
+1. First you will need to create a "mysqli" connection instance like:
+ "$mysqli_connection = getDBConnectionInstance();" -> OBS! "getDBConnectionInstance() is my php function from lib.php"
+ 
+2. Then do following, OBS! it will not work without passing an instance of "$mysqli_connection"
+$val = $obj[$colName];
+$val_ = mysqli_real_escape_string($mysqli_connection,$val);
+$val__ = _numericOrString($val_);
+$query .= "$colName=$val__, ";

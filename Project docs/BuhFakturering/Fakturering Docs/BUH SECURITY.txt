@@ -1,0 +1,20 @@
+[SQL INJECTION] [2020-08-07]
+
+1. [ESCAPE STRINGS] In my case i can make "escaping" on the "JAVA" side.
+
+2. [STRING ESCAPING] is done in JSon.class -> "hashMapToJSON(HashMap<String, String> map)".
+
+3. The library used for String escaping: "org.apache.commons.lang3.StringEscapeUtils"
+
+
+
+[HIGH VULNERABILITIES] [2020-08-07]
+
+1. "INSERT" and "UPDATE" procedures as they use input from user
+
+
+
+
+[LOW VULNERABILITIES] [2020-08-07]
+
+1. "SELECT" procedures seems to be "low risk" as they are not based on INPUT from user
