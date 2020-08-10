@@ -7,8 +7,6 @@ package BuhInvoice;
 
 import forall.HelpA;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 
 /**

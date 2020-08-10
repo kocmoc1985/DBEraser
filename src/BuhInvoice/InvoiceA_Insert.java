@@ -93,14 +93,16 @@ public class InvoiceA_Insert extends Invoice {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
+        
+    }
+
+    private void addArticleForDB() {
+        //
+        this.faktura_entry_insert.addArticleForDB();
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
         //
-    }
-
-    private void addArticleForDB() {
-        this.faktura_entry_insert.addArticleForDB();
     }
 
     @Override

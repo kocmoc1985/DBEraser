@@ -2285,11 +2285,8 @@ public class HelpA {
     }
 
     public static void main(String[] args) {
-        String str = "Skruv;1,Spik;2,Hammare;3";
-        ComboBoxObject[] cbo_arr = extract_comma_separated_objects(str, 2);
-        for (ComboBoxObject cbo : cbo_arr) {
-            System.out.println("ID: " + cbo.getParam_2());
-        }
+      double x = 2.54456546;
+        System.out.println("" + round_double(x));
     }
 
     public static void run_application_with_associated_application(File file) throws IOException {

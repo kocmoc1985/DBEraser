@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class InvoiceB extends Basic {
-
+    
     private final BUH_INVOICE_MAIN bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
@@ -36,7 +36,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
     //
     public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
-    public static String TABLE_ALL_INVOICES__INKL_MOMS = "TOTAL";
+    public static String TABLE_ALL_INVOICES__TOTAL_INKL_MOMS = "TOTAL";
     public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
     public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
@@ -55,12 +55,12 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
-
+    
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
-
+    
     private void initOther() {
         //
         fillJTableheader();
@@ -69,14 +69,14 @@ public class InvoiceB extends Basic {
         //
         // fillFakturaArticlesTable();
     }
-
+    
     protected void refresh() {
         fillFakturaTable();
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
         String fakturaId = HelpA.getValueSelectedRow(bim.jTable_invoiceB_alla_fakturor, TABLE_ALL_INVOICES__FAKTURA_ID);
         all_invoices_table_clicked(fakturaId);
     }
-
+    
     private void fillJTableheader() {
         //
         //
@@ -104,7 +104,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__DATUM,
             TABLE_ALL_INVOICES__FORFALLODATUM,
             TABLE_ALL_INVOICES__EXKL_MOMS,
-            TABLE_ALL_INVOICES__INKL_MOMS,
+            TABLE_ALL_INVOICES__TOTAL_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__BETALD
@@ -135,7 +135,7 @@ public class InvoiceB extends Basic {
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-
+    
     protected void all_invoices_table_clicked(String fakturaId) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -146,7 +146,7 @@ public class InvoiceB extends Basic {
             }
         });
     }
-
+    
     private void fillFakturaTable() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -172,7 +172,18 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-//        HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
+        if (GP_BUH.CUSTOMER_MODE) {
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_INKL_MOMS);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
+        }
+        //
+        //
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);
@@ -181,7 +192,7 @@ public class InvoiceB extends Basic {
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
         //
     }
-
+    
     private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -214,7 +225,7 @@ public class InvoiceB extends Basic {
         model.addRow(jtableRow);
         //
     }
-
+    
     private void fillFakturaArticlesTable(String fakturaId) {
         //
         JTable table = bim.jTable_invoiceB_faktura_artiklar;
@@ -245,10 +256,20 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
+        if (GP_BUH.CUSTOMER_MODE) {
+            //
+            hideColumnsArticlesTable(table);
+            //
+        }
         //
     }
-
+    
+    protected void hideColumnsArticlesTable(JTable table) {
+        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
+        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
+        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+    }
+    
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -267,10 +288,10 @@ public class InvoiceB extends Basic {
         model.addRow(jtableRow);
         //
     }
-
+    
     protected void deleteFaktura() {
         //
-        if(HelpA.confirm(LANG.MSG_3) == false){
+        if (HelpA.confirm(LANG.MSG_3) == false) {
             return;
         }
         //
@@ -286,7 +307,7 @@ public class InvoiceB extends Basic {
         refresh();
         //
     }
-
+    
     private void deleteFaktura(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -295,7 +316,7 @@ public class InvoiceB extends Basic {
         //
         executeDelete(json);
     }
-
+    
     private void deleteFakturaArticles(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
@@ -304,7 +325,7 @@ public class InvoiceB extends Basic {
         //
         executeDelete(json);
     }
-
+    
     private void executeDelete(String json) {
         //
         System.out.println("UPDATE json: " + json);
@@ -318,25 +339,25 @@ public class InvoiceB extends Basic {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void showTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

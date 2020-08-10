@@ -36,7 +36,6 @@ public abstract class Invoice extends Basic_Buh {
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
-    private static int INSERT_OR_UPDATE_CLASS = 0; // MUST BE STATIC [2020-07-29]
     //
     private static double FAKTURA_TOTAL_EXKL_MOMS = 0;
     private static double FAKTURA_TOTAL = 0;
@@ -129,9 +128,9 @@ public abstract class Invoice extends Basic_Buh {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + FAKTURA_TOTAL);
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + FAKTURA_TOTAL_EXKL_MOMS);
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + MOMS_TOTAL);
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
         //
     }
 
