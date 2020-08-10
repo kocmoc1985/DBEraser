@@ -339,7 +339,11 @@ public class CustomersA extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-//        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_KUND__KUND_ID);
+        if(GP_BUH.CUSTOMER_MODE){
+            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+        }
         //
     }
 

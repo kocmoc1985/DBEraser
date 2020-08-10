@@ -202,6 +202,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel7 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel4_Articles = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
@@ -492,6 +493,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jButton1.setText("DELETE");
+
         javax.swing.GroupLayout jPanel4_CustomersLayout = new javax.swing.GroupLayout(jPanel4_Customers);
         jPanel4_Customers.setLayout(jPanel4_CustomersLayout);
         jPanel4_CustomersLayout.setHorizontalGroup(
@@ -514,7 +517,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton14)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9))))
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))))
         );
         jPanel4_CustomersLayout.setVerticalGroup(
             jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +529,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jButton8)
                     .addComponent(jButton9)
                     .addComponent(jButton13)
-                    .addComponent(jButton14))
+                    .addComponent(jButton14)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -707,6 +713,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

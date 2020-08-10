@@ -20,13 +20,12 @@ Implement faktura scaling
 
 [2020-08-06]
 TO DELETE "buh_faktura_kund" entry is not so simple, you will need to remove entries first from other tables, like the "drop sequence shows":
-drop table buh_address;
-drop table buh_f_artikel;
-drop table buh_faktura;
-drop table buh_faktura_artikel;
-drop table buh_faktura_kund;
-drop table buh_kund;
-drop table buh_konsult;
+Also important to mention that deletion of a "buh_faktura_kund" will result into deletion of all invoices which are using this "faktura_kund"
+The sequence seems to be following:
+drop table buh_address; -> delete from buh_address where fakturaKundId=x
+drop table buh_f_artikel; -> delete from buh_f_artikel where fakturaId=x
+drop table buh_faktura; -> delete from buh_faktura where fakturaKundId=x
+drop table buh_faktura_kund; -> delete from buh_faktura_kund where fakturaKundId=x
 
 
 
