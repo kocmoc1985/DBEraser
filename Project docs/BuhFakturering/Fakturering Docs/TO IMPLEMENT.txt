@@ -5,16 +5,20 @@ Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,
 [2020-08-05]
 Update Lager, after making a faktura
 
-[2020-08-06] Double faktura insertion problem:
 
-Faktura_Entry_Insert -> line:51
+[2020-08-10]
+
+RABATT column. Det ska vara möjligt att ange rabatt antigen i % eller kronor
 
 
+[2020-08-10]
+Implement: send attachment with PHP.
+https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
 
-
+[2020-08-10]
+Implement faktura scaling
 
 [2020-08-06]
-
 TO DELETE "buh_faktura_kund" entry is not so simple, you will need to remove entries first from other tables, like the "drop sequence shows":
 drop table buh_address;
 drop table buh_f_artikel;
@@ -23,7 +27,6 @@ drop table buh_faktura_artikel;
 drop table buh_faktura_kund;
 drop table buh_kund;
 drop table buh_konsult;
-
 
 
 

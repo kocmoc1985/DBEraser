@@ -16,7 +16,6 @@
 
 
 
-
 [LOW VULNERABILITIES] [2020-08-07]
 
 1. "SELECT" procedures seems to be "low risk" as they are not based on INPUT from user
