@@ -38,6 +38,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         // As i see it today [2020-08-11], i should do it somehow like "updateArticle()"
         //
+        // Also look at: Faktura_Entry_Insert.class -> articlesToHttpDB()
+        //
     }
 
     protected void updateArticle() {

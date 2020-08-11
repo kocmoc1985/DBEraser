@@ -116,7 +116,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
 
-    protected void articlesToHttpDB() {
+    private void articlesToHttpDB() {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
             //
