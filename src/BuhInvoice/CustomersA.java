@@ -108,6 +108,98 @@ public class CustomersA extends Basic_Buh {
         //
     }
 
+    protected void delete() {
+        //
+        if (HelpA.confirm(LANG.MSG_3) == false) {
+            return;
+        }
+        //
+        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        //
+        String json = bim.getSELECT(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId);
+        //
+        delete__buh_address(fakturaKundId); // ********** DELETE
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID, json));
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> map : invoices) {
+                //
+                String fakturaId = map.get(DB.BUH_FAKTURA__ID__);
+                //
+                delete__buh_f_artikel(fakturaId); // ********** DELETE
+                //
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        delete__buh_faktura(fakturaKundId); // ********** DELETE
+        //
+        delete__buh_faktura_kund(fakturaKundId); // ********** DELETE
+        //
+        refresh();
+        //
+    }
+
+    private void delete__buh_address(String fakturaKundId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId, DB.TABLE__BUH_ADDRESS);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        execute_delete(json);
+        //
+    }
+
+    private void delete__buh_f_artikel(String fakturaId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        execute_delete(json);
+        //
+    }
+
+    private void delete__buh_faktura(String fakturaKundId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId, DB.TABLE__BUH_FAKTURA);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        execute_delete(json);
+        //
+    }
+
+    private void delete__buh_faktura_kund(String fakturaKundId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId, DB.TABLE__BUH_FAKTURA_KUND);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        execute_delete(json);
+        //
+    }
+
+    private void execute_delete(String json) {
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE, json));
+            //
+            System.out.println("query: " + json_str_return);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void update() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
@@ -129,8 +221,8 @@ public class CustomersA extends Basic_Buh {
         //
         if (BUH_INVOICE_MAIN.verifyId(address_id)) {
             updateAddressData(address_id);
-        }else{
-            
+        } else {
+
         }
         //
         //
@@ -339,7 +431,7 @@ public class CustomersA extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if(GP_BUH.CUSTOMER_MODE){
+        if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);

@@ -17,9 +17,9 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class InvoiceA_Update extends Invoice {
+public class InvoiceA_Update_ extends Invoice {
 
-    public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceA_Update_(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
 

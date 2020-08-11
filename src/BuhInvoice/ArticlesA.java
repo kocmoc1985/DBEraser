@@ -99,7 +99,10 @@ public class ArticlesA extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-//        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_ARTIKEL___ID);
+        if(GP_BUH.CUSTOMER_MODE){
+             HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
+             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
+        }
         //
     }
 
