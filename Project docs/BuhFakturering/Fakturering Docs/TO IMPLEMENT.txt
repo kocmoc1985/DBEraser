@@ -7,18 +7,22 @@ Update Lager, after making a faktura
 
 
 [2020-08-10]
-
 RABATT column. Det ska vara möjligt att ange rabatt antigen i % eller kronor
-
 
 [2020-08-10]
 Implement: send attachment with PHP.
 https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
 
 [2020-08-10]
-Implement faktura scaling
+Implement faktura logotype scaling
 
 [2020-08-11]
+Add article -> when updating -> Faktura_Entry_Update.class -> addArticleForDB()
+
+
+
+
+[2020-08-11][DONE]
 Delete from "buh_faktura_artikel":
 
 delete from "buh_f_artikel" where artikelid=x

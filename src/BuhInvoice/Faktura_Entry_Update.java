@@ -34,6 +34,55 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     }
 
     @Override
+    public void addArticleForDB() {
+        //
+        // As i see it today [2020-08-11], i should do it somehow like "updateArticle()"
+        //
+    }
+
+    protected void updateArticle() {
+        //
+        InvoiceA_Insert invoic = (InvoiceA_Insert) invoice;
+        //
+        if (invoic.containsInvalidatedFields(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return;
+        }
+        //
+//        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
+        //
+        JTable table = invoic.bim.jTable_InvoiceA_Insert_articles;
+        //
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2());
+        //
+        String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+        HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
+        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, updateMap);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        System.out.println("UPDATE json: " + json);
+        //
+        HelpBuh.update(json);
+        //
+        //
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        //
+        //
+        invoic.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        //
+        //
+    }
+
+    @Override
     protected void setData() {
         //
         JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;

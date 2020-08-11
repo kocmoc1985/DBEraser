@@ -19,7 +19,7 @@ import javax.swing.JTable;
 public class Faktura_Entry_Insert extends Faktura_Entry {
 
     protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
-    protected ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
+    
 
     public Faktura_Entry_Insert(Invoice invoice) {
         super(invoice);
@@ -136,6 +136,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
 
+    @Override
     public void addArticleForDB() {
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
@@ -161,24 +162,5 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         });
     }
 
-    public void addArticleForJTable(JTable table) {
-        //
-        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
-        this.articlesListJTable.add(map);
-        //
-        //
-        Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
-            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
-            map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            map.get(DB.BUH_F_ARTIKEL__ENHET),
-            map.get(DB.BUH_F_ARTIKEL__PRIS),
-            map.get(DB.BUH_F_ARTIKEL__RABATT)
-        };
-        //
-        HelpA.addRowToJTable(jtableRow, table);
-        //
-    }
 
 }

@@ -17,6 +17,8 @@ import javax.swing.JTable;
  */
 public class InvoiceA_Update extends Invoice {
 
+    private Faktura_Entry_Update faktura_entry_update;
+    
     public InvoiceA_Update(BUH_INVOICE_MAIN_ buh_invoice_main) {
         super(buh_invoice_main);
     }
@@ -28,51 +30,65 @@ public class InvoiceA_Update extends Invoice {
 
     @Override
     protected void startUp() {
+        faktura_entry_update = (Faktura_Entry_Update)faktura_entry;
     }
 
     @Override
-    protected void addArticle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void addArticleForJTable(JTable table) {
+        //
+        this.faktura_entry_update.addArticleForJTable(table);
+        //
+    }
+
+    @Override
+    protected void addArticleForDB() {
+        //
+        this.faktura_entry_update.addArticleForDB();
+        // Clearing the rows with the code below
+        showTableInvert_2();
+        refreshTableInvert(TABLE_INVERT_2);
+        //
     }
 
     
-    
     protected void updateArticle(){
         //
-        if(containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
-            HelpA.showNotification(LANG.MSG_1);
-            return;
-        }
+        faktura_entry_update.updateArticle();
         //
-//        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
-        //
-        JTable table = bim.jTable_InvoiceA_Insert_articles;
-        //
-        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
-        //
-        String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
-        HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
-        //
-        // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
-        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
-        //
-        HashMap<String, String>final_map = JSon.joinHashMaps(map, updateMap);
-        //
-        String json = JSon.hashMapToJSON(final_map);
-        //
-        System.out.println("UPDATE json: " + json);
-        //
-        HelpBuh.update(json);
-        //
-        //
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
-        //
-        //
-        countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+//        if(containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
+//            HelpA.showNotification(LANG.MSG_1);
+//            return;
+//        }
+//        //
+////        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
+//        //
+//        JTable table = bim.jTable_InvoiceA_Insert_articles;
+//        //
+//        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+//        //
+//        String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+//        HashMap<String, String>updateMap = bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
+//        //
+//        // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
+//        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
+//        //
+//        HashMap<String, String>final_map = JSon.joinHashMaps(map, updateMap);
+//        //
+//        String json = JSon.hashMapToJSON(final_map);
+//        //
+//        System.out.println("UPDATE json: " + json);
+//        //
+//        HelpBuh.update(json);
+//        //
+//        //
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+//        //
+//        //
+//        countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         //
         //
     }

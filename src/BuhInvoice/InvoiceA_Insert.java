@@ -79,25 +79,16 @@ public class InvoiceA_Insert extends Invoice {
         this.faktura_entry_insert.htmlFaktura();
     }
 
-    protected void addArticle() {
-        //
-        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return;
-        }
-        //
-        addArticleForJTable(bim.jTable_InvoiceA_Insert_articles);
-        addArticleForDB();
-        //
-    }
 
-    private void addArticleForJTable(JTable table) {
+    @Override
+    protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
     }
 
-    private void addArticleForDB() {
+    @Override
+    protected void addArticleForDB() {
         //
         this.faktura_entry_insert.addArticleForDB();
         // Clearing the rows with the code below

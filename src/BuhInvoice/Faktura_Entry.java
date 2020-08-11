@@ -5,10 +5,13 @@
  */
 package BuhInvoice;
 
+import forall.HelpA;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.swing.JTable;
 
 /**
  *
@@ -16,10 +19,12 @@ import java.util.HashMap;
  */
 public abstract class Faktura_Entry {
 
+    //
     protected final Invoice invoice;
     protected HashMap<String, String> mainMap = new HashMap<>();
     protected HashMap<String, String> secMap = new HashMap<>();
     protected HashMap<String, String> fakturaMap = new HashMap<>();
+    protected ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
     //
   
 
@@ -30,6 +35,28 @@ public abstract class Faktura_Entry {
     protected abstract void insertOrUpdate();
 
     protected abstract void setData();
+    
+    public abstract void addArticleForDB();
+    
+    public void addArticleForJTable(JTable table) {
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        this.articlesListJTable.add(map);
+        //
+        //
+        Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
+            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            map.get(DB.BUH_F_ARTIKEL__ANTAL),
+            map.get(DB.BUH_F_ARTIKEL__ENHET),
+            map.get(DB.BUH_F_ARTIKEL__PRIS),
+            map.get(DB.BUH_F_ARTIKEL__RABATT)
+        };
+        //
+        HelpA.addRowToJTable(jtableRow, table);
+        //
+    }
     
 
 }

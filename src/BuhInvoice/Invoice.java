@@ -54,7 +54,21 @@ public abstract class Invoice extends Basic_Buh {
 
     protected abstract Faktura_Entry initFakturaEntry();
     
-    protected abstract void addArticle();
+     protected void addArticle() {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        addArticleForJTable(bim.jTable_InvoiceA_Insert_articles);
+        addArticleForDB();
+        //
+    }
+     
+   protected abstract void addArticleForJTable(JTable table);
+   
+   protected abstract void addArticleForDB();
 
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();

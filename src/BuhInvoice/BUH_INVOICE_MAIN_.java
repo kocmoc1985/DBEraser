@@ -655,6 +655,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     invoiceA_insert.addArticle();
                 }else{
+//                    invoiceA_update.addArticle();
                 }
 
             }
