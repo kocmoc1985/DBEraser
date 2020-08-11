@@ -9,17 +9,15 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import forall.HelpA;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 
 /**
  *
  * @author MCREMOTE
  */
-public class InvoiceA_Update_ extends Invoice {
+public class InvoiceA_Update extends Invoice {
 
-    public InvoiceA_Update_(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceA_Update(BUH_INVOICE_MAIN_ buh_invoice_main) {
         super(buh_invoice_main);
     }
 
@@ -32,6 +30,13 @@ public class InvoiceA_Update_ extends Invoice {
     protected void startUp() {
     }
 
+    @Override
+    protected void addArticle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
     protected void updateArticle(){
         //
         if(containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())){
@@ -74,6 +79,9 @@ public class InvoiceA_Update_ extends Invoice {
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
+        //
+        CURRENT_OPERATION_INSERT = false;
+        System.out.println("CURR OPERATION INSERT = FALSE");
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //

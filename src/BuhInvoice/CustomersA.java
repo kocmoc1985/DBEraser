@@ -57,7 +57,7 @@ public class CustomersA extends Basic_Buh {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
 
-    public CustomersA(BUH_INVOICE_MAIN bim) {
+    public CustomersA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -81,7 +81,7 @@ public class CustomersA extends Basic_Buh {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                showTableInvert();
+//                showTableInvert();
                 fillJTable_header_kunder();
                 fillJTable_header_kund_addresses();
                 //
@@ -153,7 +153,7 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        execute_delete(json);
+        executeDelete(json);
         //
     }
 
@@ -163,7 +163,7 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        execute_delete(json);
+        executeDelete(json);
         //
     }
 
@@ -173,7 +173,7 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        execute_delete(json);
+        executeDelete(json);
         //
     }
 
@@ -183,22 +183,10 @@ public class CustomersA extends Basic_Buh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        execute_delete(json);
+        executeDelete(json);
         //
     }
 
-    private void execute_delete(String json) {
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_DELETE, json));
-            //
-            System.out.println("query: " + json_str_return);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public void update() {
         //
@@ -215,11 +203,11 @@ public class CustomersA extends Basic_Buh {
         String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         String address_id = HelpA.getValueSelectedRow(getTableAdresses(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
+        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
             updateCustomerData(fakturaKundId);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
+        if (BUH_INVOICE_MAIN_.verifyId(address_id)) {
             updateAddressData(address_id);
         } else {
 
@@ -283,7 +271,7 @@ public class CustomersA extends Basic_Buh {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
-        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN.getDateCreated()); // required
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN_.getDateCreated()); // required
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -297,10 +285,10 @@ public class CustomersA extends Basic_Buh {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
+        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
             //
             insertCustomerAddress(fakturaKundId);
             //

@@ -37,7 +37,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     protected void setData() {
         //
         JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
-        InvoiceA_Update_ iu = (InvoiceA_Update_) invoice;
+        InvoiceA_Update iu = (InvoiceA_Update) invoice;
         //
         this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, DB.START_COLUMN, iu.getConfigTableInvert());
         this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, DB.START_COLUMN, iu.getConfigTableInvert_3());

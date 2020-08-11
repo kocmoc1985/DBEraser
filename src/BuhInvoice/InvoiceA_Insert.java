@@ -20,7 +20,7 @@ public class InvoiceA_Insert extends Invoice {
 
     private Faktura_Entry_Insert faktura_entry_insert;
 
-    public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
+    public InvoiceA_Insert(BUH_INVOICE_MAIN_ bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }
@@ -46,11 +46,12 @@ public class InvoiceA_Insert extends Invoice {
         //
     }
 
-    protected void createNewFaktura() {
+    protected void createNew() {
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
                 showTableInvert();
                 showTableInvert_2();
                 showTableInvert_3();
@@ -58,6 +59,7 @@ public class InvoiceA_Insert extends Invoice {
                 refreshTableInvert(TABLE_INVERT);
                 refreshTableInvert(TABLE_INVERT_2);
                 refreshTableInvert(TABLE_INVERT_3);
+                //
             }
         });
         //
@@ -93,7 +95,6 @@ public class InvoiceA_Insert extends Invoice {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
-        
     }
 
     private void addArticleForDB() {
@@ -107,6 +108,9 @@ public class InvoiceA_Insert extends Invoice {
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
+        //
+        CURRENT_OPERATION_INSERT = true;
+        System.out.println("CURR OPERATION INSERT = TRUE");
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);

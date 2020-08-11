@@ -25,9 +25,9 @@ import java.util.logging.Logger;
  */
 public abstract class Basic_Buh extends Basic {
 
-    protected final BUH_INVOICE_MAIN bim;
+    protected final BUH_INVOICE_MAIN_ bim;
 
-    public Basic_Buh(BUH_INVOICE_MAIN bim) {
+    public Basic_Buh(BUH_INVOICE_MAIN_ bim) {
         this.bim = bim;
         initOther();
     }
@@ -40,6 +40,19 @@ public abstract class Basic_Buh extends Basic {
 
     protected String getKundId() {
         return bim.getKundId();
+    }
+    
+    protected void executeDelete(String json) {
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE, json));
+            //
+            System.out.println("query: " + json_str_return);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {

@@ -18,7 +18,14 @@ https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
 [2020-08-10]
 Implement faktura scaling
 
-[2020-08-06]
+[2020-08-11]
+Delete from "buh_faktura_artikel":
+
+delete from "buh_f_artikel" where artikelid=x
+delete from "buh_faktura_artikel" where artikelid=x
+
+
+[2020-08-06][DONE]
 TO DELETE "buh_faktura_kund" entry is not so simple, you will need to remove entries first from other tables, like the "drop sequence shows":
 Also important to mention that deletion of a "buh_faktura_kund" will result into deletion of all invoices which are using this "faktura_kund"
 The sequence seems to be following:

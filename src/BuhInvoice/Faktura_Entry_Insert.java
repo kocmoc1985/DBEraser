@@ -55,10 +55,10 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaId)) {
+        if (BUH_INVOICE_MAIN_.verifyId(fakturaId)) {
             //
             setFakturaIdForArticles(fakturaId);
             //
@@ -92,7 +92,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN.getDateCreated());
+        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN_.getDateCreated());
         //
         System.out.println("-------------------------------------------------");
         //
@@ -129,7 +129,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                         DB.PHP_FUNC_ARTICLES_TO_DB, json));
                 //
             } catch (Exception ex) {
-                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
         }

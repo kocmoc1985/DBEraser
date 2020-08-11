@@ -5,9 +5,9 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_moms;
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_exkl_moms;
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_inkl_moms;
+import static BuhInvoice.BUH_INVOICE_MAIN_.jTextField_moms;
+import static BuhInvoice.BUH_INVOICE_MAIN_.jTextField_total_exkl_moms;
+import static BuhInvoice.BUH_INVOICE_MAIN_.jTextField_total_inkl_moms;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -40,8 +40,10 @@ public abstract class Invoice extends Basic_Buh {
     private static double FAKTURA_TOTAL_EXKL_MOMS = 0;
     private static double FAKTURA_TOTAL = 0;
     private static double MOMS_TOTAL = 0;
+    //
+    public static boolean CURRENT_OPERATION_INSERT = false;
 
-    public Invoice(BUH_INVOICE_MAIN bim) {
+    public Invoice(BUH_INVOICE_MAIN_ bim) {
         super(bim);
         initFakturaEntry_();
     }
@@ -51,6 +53,8 @@ public abstract class Invoice extends Basic_Buh {
     }
 
     protected abstract Faktura_Entry initFakturaEntry();
+    
+    protected abstract void addArticle();
 
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
@@ -80,7 +84,7 @@ public abstract class Invoice extends Basic_Buh {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -128,9 +132,9 @@ public abstract class Invoice extends Basic_Buh {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         }
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN_.jTextField_moms.setText("" + getMomsTotal());
         //
     }
 

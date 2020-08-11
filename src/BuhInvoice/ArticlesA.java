@@ -28,8 +28,15 @@ import javax.swing.table.DefaultTableModel;
 public class ArticlesA extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
-    
-    public ArticlesA(BUH_INVOICE_MAIN bim) {
+    private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
+    private static final String TABLE_ARTICLES__KUND_ID = "KUND ID";
+    private static final String TABLE_ARTICLES__LAGER = "LAGER";
+    private static final String TABLE_ARTICLES__PRIS = "PRIS";
+    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
+    private static final String TABLE_ARTICLES__NAMN = "NAMN";
+    private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
+
+    public ArticlesA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -39,26 +46,38 @@ public class ArticlesA extends Basic_Buh {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                showTableInvert();
+//                showTableInvert();
                 fillJTableheader();
-                fillArtiklesJTable();
+                //
+                refresh();
+                //
             }
         });
         //
     }
-    
-    private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
-    private static final String TABLE_ARTICLES__KUND_ID = "KUND ID";
-    private static final String TABLE_ARTICLES__LAGER = "LAGER";
-    private static final String TABLE_ARTICLES__PRIS = "PRIS";
-    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
-    private static final String TABLE_ARTICLES__NAMN = "NAMN";
-    private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
-    
+
+    private void refresh() {
+        fillArtiklesJTable();
+        HelpA.markFirstRowJtable(getTableArticles());
+        bim.jTableArticles_clicked();
+    }
+
+    protected void createNew() {
+        //
+        showTableInvert();
+        //
+        refreshTableInvert();
+        //
+    }
+
+    private JTable getTableArticles() {
+        return this.bim.jTable_ArticlesA_articles;
+    }
+
     private void fillJTableheader() {
         //
         //
-        JTable table = this.bim.jTable_ArticlesA_articles;
+        JTable table = getTableArticles();
         //
         String[] headers = {
             TABLE_ARTICLES__ID,
@@ -75,10 +94,12 @@ public class ArticlesA extends Basic_Buh {
 //        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
     }
-    
+
     private void fillArtiklesJTable() {
         //
-        JTable table = bim.jTable_ArticlesA_articles;
+        JTable table = getTableArticles();
+        //
+        HelpA.clearAllRowsJTable(table);
         //
         String json = bim.getSELECT_kundId();
         //
@@ -99,9 +120,9 @@ public class ArticlesA extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if(GP_BUH.CUSTOMER_MODE){
-             HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
-             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
+        if (GP_BUH.CUSTOMER_MODE) {
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
         }
         //
     }
@@ -123,7 +144,43 @@ public class ArticlesA extends Basic_Buh {
         //
     }
 
-    public void insertArtikel() {
+    protected void delete() {
+        //
+        if (HelpA.confirm(LANG.MSG_3) == false) {
+            return;
+        }
+        //
+        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
+        //
+        delete__buh_f_artikel(artikelId);
+        //
+        delete__buh_faktura_artikel(artikelId);
+        //
+        refresh();
+        //
+    }
+
+    private void delete__buh_f_artikel(String artikelId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+        //
+    }
+    
+    private void delete__buh_faktura_artikel(String artikelId){
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.TABLE__BUH_FAKTURA_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+        //
+    }
+
+    protected void insert() {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
         //
@@ -145,6 +202,8 @@ public class ArticlesA extends Basic_Buh {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        refresh();
+        //
     }
 
     @Override
@@ -157,8 +216,7 @@ public class ArticlesA extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
     }
-    
-    
+
     public void showTableInvert_2() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_faktura_a");
         TABLE_INVERT_2 = null;
@@ -193,10 +251,10 @@ public class ArticlesA extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable_ArticlesA_articles;
+        JTable table = getTableArticles();
         //
         String namn_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_FAKTURA_ARTIKEL___NAMN, TABLE_ARTICLES__NAMN, "", true, true, true);
@@ -240,7 +298,7 @@ public class ArticlesA extends Basic_Buh {
             //
             Validator.validateDigitalInput(jli);
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___NAMN)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___NAMN)) {
             //
             Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
             //
