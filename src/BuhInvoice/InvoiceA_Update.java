@@ -21,6 +21,11 @@ public class InvoiceA_Update extends Invoice {
     
     public InvoiceA_Update(BUH_INVOICE_MAIN_ buh_invoice_main) {
         super(buh_invoice_main);
+        initOther();
+    }
+    
+    private void initOther(){
+        faktura_entry_update = (Faktura_Entry_Update)faktura_entry;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class InvoiceA_Update extends Invoice {
 
     @Override
     protected void startUp() {
-        faktura_entry_update = (Faktura_Entry_Update)faktura_entry;
+        
     }
 
     @Override

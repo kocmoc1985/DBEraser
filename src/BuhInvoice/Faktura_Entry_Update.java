@@ -7,6 +7,8 @@ package BuhInvoice;
 
 import forall.HelpA;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 
 /**
@@ -39,6 +41,26 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         // As i see it today [2020-08-11], i should do it somehow like "updateArticle()"
         //
         // Also look at: Faktura_Entry_Insert.class -> articlesToHttpDB()
+        //
+        //
+        InvoiceA_Update invoic = (InvoiceA_Update) invoice;
+        //
+        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
+        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        //
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2());
+        map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        try {
+            //
+            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_ARTICLES_TO_DB, json));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 
