@@ -309,10 +309,13 @@ public class InvoiceB extends Basic {
             return;
         }
         //
-        JTable table = bim.jTable_invoiceB_faktura_artiklar;
+//        JTable table = bim.jTable_invoiceB_faktura_artiklar;
         //
         String buh_f_artikel__id = bim.getFakturaArtikelId();
         //
+        if(buh_f_artikel__id == null){
+            return;
+        }
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel__id, DB.TABLE__BUH_F_ARTIKEL);
         //

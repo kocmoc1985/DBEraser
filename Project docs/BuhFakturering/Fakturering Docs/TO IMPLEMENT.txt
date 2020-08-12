@@ -22,6 +22,16 @@ When getting HashMap from TableInvert don't insert key/value pairs where value="
 Temporary solution: FakturaEntryInsert.class -> addArticleForDB() -> line: 146
 The solution can be to implement "tableInvertToHashMap()" method which does not take into account the entries where value="NULL"
 
+==============================
+RENAME/ORGanIZE:
+tableInvertToHashMap_B
+tableInvertToHashMap_BB
+==============================
+
+update buh_f_artikel set artikelId=DEFAULT WHERE id=65 ---> working so but not if "DEFAULT"
+
+https://stackoverflow.com/questions/1391777/how-do-i-insert-null-values-using-pdo
+
 
 
 [2020-08-11][DONE]

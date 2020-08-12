@@ -6,10 +6,6 @@
 package MyObjectTableInvert;
 
 import forall.HelpA;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *

@@ -270,40 +270,42 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert ti = (TableInvert) TABLE_INVERT;
         return ti.getValueAt(rowName);
     }
-    
+
     /**
      * [2020-07-31]
+     *
      * @param rowName
      * @param tableInvert
-     * @return 
+     * @return
      */
-    public boolean getValidated(String rowName, Table tableInvert){
+    public boolean getValidated(String rowName, Table tableInvert) {
         ColumnDataEntryInvert cde = getColumnDataEntryInvert(rowName, tableInvert);
         return cde.isValidated();
     }
 
     /**
-     * MEGA IMPORTANT
-     * [2020-07-31]
+     * MEGA IMPORTANT [2020-07-31]
+     *
      * @param rowName
      * @param tableInvert
-     * @return 
+     * @return
      */
     public ColumnDataEntryInvert getColumnDataEntryInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getColumnDataEntryInvertAt(rowName);
     }
-    
+
     /**
      * [2020-07-31]
+     *
      * @param rowName
      * @param tableInvert
      * @param column
-     * @return 
+     * @return
      */
     public ColumnDataEntryInvert getColumnDataEntryInvert(String rowName, Table tableInvert, int column) {
         TableInvert ti = (TableInvert) tableInvert;
-        return ti.getColumnDataEntryInvertAt(rowName,column);
+        return ti.getColumnDataEntryInvertAt(rowName, column);
     }
 
     public String getValueTableInvert(String rowName, Table tableInvert) {
@@ -439,8 +441,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return false;
         //
     }
-    
-     /**
+
+    /**
      * [2020-08-03]
      *
      * @param table_invert
@@ -462,8 +464,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 //
                 ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
                 //
-                if(dataInvert.important == true){
-                    if(cde.getActualValue().isEmpty()){
+                if (dataInvert.important == true) {
+                    if (cde.getActualValue().isEmpty()) {
                         return true;
                     }
                 }
@@ -475,45 +477,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return false;
         //
     }
-    
-    /**
-     * [2020-08-07]
-     *
-     * This one takes into account if VALUES is STRING OR NOT
-     * @param table_invert
-     * @param startColumn
-     * @param rdi
-     * @return
-     */
-    public HashMap<String, String> tableInvertToHashMap_B(Table table_invert, int startColumn, RowDataInvert[] rdi) {
-        //
-        HashMap<String, String> mapToReturn = new HashMap<>();
-        //
-        TableInvert tableInvert = (TableInvert) table_invert;
-        //
-        for (RowDataInvert dataInvert : rdi) {
-            //
-            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
-                //
-                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
-                //
-                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
-                //
-                if(dataInvert.isString()){
-                    mapToReturn.put(dataInvert.getFieldOriginalName(),"'"+ columnValue.getValue() + "'");
-                }else{
-                   mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue()); 
-                }
-                //
-            }
-            //
-        }
-        //
-        return mapToReturn;
-    }
 
     /**
-     * [2020-07-13]
+     * [2020-08-12] This method does not take parameters for which the values is
+     * empty or =NULL
      *
      * @param table_invert
      * @param startColumn
@@ -522,7 +489,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //
-        if(table_invert == null){
+        if (table_invert == null) {
             return null;
         }
         //
@@ -548,11 +515,52 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
+     * [2020-07-13]
+     *
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @return
+     */
+    public HashMap<String, String> tableInvertToHashMap_B(Table table_invert, int startColumn, RowDataInvert[] rdi) {
+        //
+        if (table_invert == null) {
+            return null;
+        }
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                String val = columnValue.getValue();
+                //
+                if (val == null || val.isEmpty() || val.equals("NULL")) {
+                    mapToReturn.put(dataInvert.getFieldOriginalName(), "DEFAULT");
+                } else {
+                    mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                }
+                //
+            }
+            //
+        }
+        //
+        return mapToReturn;
+    }
+
+    /**
      * [2020-07-30] Return only the map which contains values which were
      * considered as changed/modified/updated
      *
      * OBS! Use only with "update" methods [2020-08-03]
-     * 
+     *
      * @deprecated - this functionality must be "re-thinked"
      * @param table_invert
      * @param startColumn
@@ -587,6 +595,44 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 //
             }
             //
+        }
+        //
+        return mapToReturn;
+    }
+
+    /**
+     * [2020-07-17] This method allows you to specify manually which parameter
+     * the JComboBox will return.
+     *
+     * @param table_invert
+     * @param startColumn
+     * @param rdi
+     * @param paramToReturn
+     * @return
+     */
+    public HashMap<String, String> tableInvertToHashMap_BB(Table table_invert, int startColumn, RowDataInvert[] rdi, int paramToReturn) {
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (RowDataInvert dataInvert : rdi) {
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                String val = columnValue.getValue();
+                //
+                if (val == null || val.isEmpty() || val.equals("NULL")) {
+                    // don't add
+                } else {
+                    mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue(paramToReturn));
+                }
+                //
+            }
         }
         //
         return mapToReturn;
