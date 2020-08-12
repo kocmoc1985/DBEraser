@@ -23,11 +23,11 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public abstract class Basic_Buh extends Basic {
+public abstract class Basic_Buh_ extends Basic {
 
     protected final BUH_INVOICE_MAIN bim;
 
-    public Basic_Buh(BUH_INVOICE_MAIN bim) {
+    public Basic_Buh_(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
         initOther();
     }
@@ -72,7 +72,7 @@ public abstract class Basic_Buh extends Basic {
 //            System.out.println("combo string: " + comboString);
             //
         } catch (Exception ex) {
-            Logger.getLogger(Basic_Buh.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Basic_Buh_.class.getName()).log(Level.SEVERE, null, ex);
             comboString = null;
         }
         //

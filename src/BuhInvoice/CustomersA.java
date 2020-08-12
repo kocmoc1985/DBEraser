@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA extends Basic_Buh {
+public class CustomersA extends Basic_Buh_ {
 
     //
     protected Table TABLE_INVERT_2;

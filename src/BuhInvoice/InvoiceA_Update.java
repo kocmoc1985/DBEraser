@@ -66,7 +66,7 @@ public class InvoiceA_Update extends Invoice {
     public RowDataInvert[] getConfigTableInvert() {
         //
         CURRENT_OPERATION_INSERT = false;
-        System.out.println("CURR OPERATION INSERT = FALSE");
+        bim.setInsertOrUpdateLabel(false);
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //

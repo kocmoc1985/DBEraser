@@ -16,6 +16,9 @@ public class LANG {
     public static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
     public static String MSG_3 = "Data kommer raderas permanent! Vill du forsätta?";
     
+    public static String LBL_MSG_1 = "BEARBETA FAKTURA";
+    public static String LBL_MSG_2 = "SKAPA NY FAKTURA";
+    
     /**
      * VERY IMPORTANT: If it happens even once, actions shall be taken [2020-08-06]
      * This one shall be only used in cases when you insert an entry and retrieve
