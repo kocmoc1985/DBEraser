@@ -31,7 +31,7 @@ public abstract class Faktura_Entry {
     }
 
     protected JTable getArticlesTable(){
-        return invoice.bim.jTable_InvoiceA_Insert_articles;
+        return invoice.getArticlesTable();
     }
     
     protected abstract void insertOrUpdate();

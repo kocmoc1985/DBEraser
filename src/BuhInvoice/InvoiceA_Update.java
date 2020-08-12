@@ -53,6 +53,8 @@ public class InvoiceA_Update extends Invoice {
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
         //
+        insertOrUpdate(); // Update faktura after adding an article [2020-08-12]
+        //
     }
 
     
@@ -136,7 +138,7 @@ public class InvoiceA_Update extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = bim.jTable_InvoiceA_Insert_articles;
+        JTable table = getArticlesTable();
         //
         String fixedComboValues_a = JSon._get(
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),

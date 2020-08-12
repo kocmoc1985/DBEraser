@@ -60,6 +60,8 @@ public class InvoiceA_Insert extends Invoice {
                 refreshTableInvert(TABLE_INVERT_2);
                 refreshTableInvert(TABLE_INVERT_3);
                 //
+                fillJTableheader();
+                HelpA.clearAllRowsJTable(getArticlesTable());
             }
         });
         //
@@ -72,7 +74,7 @@ public class InvoiceA_Insert extends Invoice {
         //             {"", "", "", "", "", ""}
         };
         //
-        this.bim.jTable_InvoiceA_Insert_articles.setModel(new DefaultTableModel(null, headers));
+        getArticlesTable().setModel(new DefaultTableModel(null, headers));
     }
 
     public void htmlFaktura() {

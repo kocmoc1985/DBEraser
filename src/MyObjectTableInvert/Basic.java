@@ -522,6 +522,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, RowDataInvert[] rdi) {
         //
+        if(table_invert == null){
+            return null;
+        }
+        //
         HashMap<String, String> mapToReturn = new HashMap<>();
         //
         TableInvert tableInvert = (TableInvert) table_invert;

@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class InvoiceB extends Basic {
-    
+
     private final BUH_INVOICE_MAIN bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
@@ -55,12 +55,12 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
-    
+
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
-    
+
     private void initOther() {
         //
         fillJTableheader();
@@ -70,13 +70,27 @@ public class InvoiceB extends Basic {
         // fillFakturaArticlesTable();
     }
     
+    /**
+     * [2020-08-12]
+     * This one keeps the "marking line" on the same row as before
+     * the refresh
+     */
+    protected void refresh_b(){
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        int row = table.getSelectedRow();
+        fillFakturaTable();
+        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
+        String fakturaId = bim.getFakturaId();
+        all_invoices_table_clicked(fakturaId);
+    }
+
     protected void refresh() {
         fillFakturaTable();
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
-        String fakturaId = HelpA.getValueSelectedRow(bim.jTable_invoiceB_alla_fakturor, TABLE_ALL_INVOICES__FAKTURA_ID);
+        String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
+
     private void fillJTableheader() {
         //
         //
@@ -135,7 +149,7 @@ public class InvoiceB extends Basic {
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-    
+
     protected void all_invoices_table_clicked(String fakturaId) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -146,7 +160,7 @@ public class InvoiceB extends Basic {
             }
         });
     }
-    
+
     private void fillFakturaTable() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -192,7 +206,7 @@ public class InvoiceB extends Basic {
         HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
         //
     }
-    
+
     private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -225,7 +239,7 @@ public class InvoiceB extends Basic {
         model.addRow(jtableRow);
         //
     }
-    
+
     private void fillFakturaArticlesTable(String fakturaId) {
         //
         JTable table = bim.jTable_invoiceB_faktura_artiklar;
@@ -263,13 +277,13 @@ public class InvoiceB extends Basic {
         }
         //
     }
-    
+
     protected void hideColumnsArticlesTable(JTable table) {
         HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
         HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
         HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
     }
-    
+
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -288,16 +302,35 @@ public class InvoiceB extends Basic {
         model.addRow(jtableRow);
         //
     }
-    
+
+    protected void deleteFakturaArtikel() {
+        //
+        if (HelpA.confirm(LANG.MSG_3) == false) {
+            return;
+        }
+        //
+        JTable table = bim.jTable_invoiceB_faktura_artiklar;
+        //
+        String buh_f_artikel__id = bim.getFakturaArtikelId();
+        //
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel__id, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        // I need to count totals and update faktura
+        //
+        executeDelete(json);
+        //
+    }
+
     protected void deleteFaktura() {
         //
         if (HelpA.confirm(LANG.MSG_3) == false) {
             return;
         }
         //
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
-        //
-        String fakturaId = HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__FAKTURA_ID);
+        String fakturaId = bim.getFakturaId();
         //
         deleteFakturaArticles(fakturaId);
         //
@@ -307,7 +340,7 @@ public class InvoiceB extends Basic {
         refresh();
         //
     }
-    
+
     private void deleteFaktura(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -316,7 +349,7 @@ public class InvoiceB extends Basic {
         //
         executeDelete(json);
     }
-    
+
     private void deleteFakturaArticles(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
@@ -325,7 +358,7 @@ public class InvoiceB extends Basic {
         //
         executeDelete(json);
     }
-    
+
     private void executeDelete(String json) {
         //
         System.out.println("UPDATE json: " + json);
@@ -339,25 +372,25 @@ public class InvoiceB extends Basic {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void showTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

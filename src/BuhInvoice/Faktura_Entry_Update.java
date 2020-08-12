@@ -57,8 +57,6 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HelpA.addRowToJTable(jtableRow, table);
         //
     }
-    
-    
 
     @Override
     public void addArticleForDB() {
@@ -70,15 +68,15 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         InvoiceA_Update invoic = (InvoiceA_Update) invoice;
         //
-        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
-        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        String fakturaId = invoice.bim.getFakturaId();
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
         this.articlesList.add(map);
-        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+//        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        invoice.countFakturaTotal(getArticlesTable());
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -105,7 +103,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
 //        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
         //
-        JTable table = invoic.bim.jTable_InvoiceA_Insert_articles;
+        JTable table = getArticlesTable();
         //
         HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2());
         //
@@ -131,7 +129,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
         //
         //
-        invoic.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+//        invoic.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        invoic.countFakturaTotal(table);
         //
         //
     }
@@ -146,7 +145,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, DB.START_COLUMN, iu.getConfigTableInvert_3());
         //
         //
-        String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        String fakturaId = invoice.bim.getFakturaId();
         //
         //
         HashMap<String, String> update_map = invoice.bim.getUPDATE(DB.BUH_FAKTURA__ID__,
@@ -154,24 +153,36 @@ public class Faktura_Entry_Update extends Faktura_Entry {
                 DB.TABLE__BUH_FAKTURA
         );
         //
-        HashMap<String, String> map_temp = HelpA.joinHashMaps(mainMap, secMap);
+        HashMap<String, String> map_temp;
         //
-        this.fakturaMap = JSon.joinHashMaps(map_temp, update_map);
-        //
+        if (mainMap != null && secMap != null) { // [2020-08-12]
+            //
+            map_temp = HelpA.joinHashMaps(mainMap, secMap);
+            //
+            this.fakturaMap = JSon.joinHashMaps(map_temp, update_map);
+            //
+        } else { // The case below is for updating the "totals" only
+            //
+            map_temp = new HashMap<>();
+            //
+            this.fakturaMap = JSon.joinHashMaps(map_temp, update_map);
+            //
+        }
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
-        System.out.println("-------------------------------------------------");
         //
-        this.fakturaMap.entrySet().forEach((entry) -> {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            System.out.println(key + "=" + value);
-        });
-        //
-        System.out.println("-------------------------------------------------");
+//        System.out.println("-------------------------------------------------");
+//        //
+//        this.fakturaMap.entrySet().forEach((entry) -> {
+//            String key = entry.getKey();
+//            String value = entry.getValue();
+//            System.out.println(key + "=" + value);
+//        });
+//        //
+//        System.out.println("-------------------------------------------------");
         //
 //        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
         //

@@ -55,7 +55,9 @@ public abstract class Invoice extends Basic_Buh_ {
 
     protected abstract Faktura_Entry initFakturaEntry();
     
-    
+    protected JTable getArticlesTable(){
+        return bim.jTable_InvoiceA_Insert_articles;
+    }
     
      protected void addArticle() {
         //
@@ -64,10 +66,10 @@ public abstract class Invoice extends Basic_Buh_ {
             return;
         }
         //
-        addArticleForJTable(bim.jTable_InvoiceA_Insert_articles);
+        addArticleForJTable(getArticlesTable());
         addArticleForDB(); // Here the article is upload directly to DB [2020-08-12]
         //
-        insertOrUpdate(); // Update faktura after adding an article [2020-08-12]
+        
     }
      
    protected abstract void addArticleForJTable(JTable table);
@@ -127,7 +129,13 @@ public abstract class Invoice extends Basic_Buh_ {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
 
-    protected void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
+    protected void countFakturaTotal(JTable table){
+        String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
+        String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
+        countFakturaTotal(table, prisColumn, antalColumn);
+    }
+    
+    private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
         FAKTURA_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;

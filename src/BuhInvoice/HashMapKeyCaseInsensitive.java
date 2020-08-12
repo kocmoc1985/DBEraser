@@ -27,7 +27,13 @@ public class HashMapKeyCaseInsensitive {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 41 * hash + Objects.hashCode(this.keyValue.toLowerCase()); // ".toLowerCase()"**************
+        //
+        if(this.keyValue != null){
+            hash = 41 * hash + Objects.hashCode(this.keyValue.toLowerCase()); // ".toLowerCase()"**************
+        }else{
+            hash = 41 * hash + Objects.hashCode("null"); // ".toLowerCase()"**************
+        }
+        //
         return hash;
     }
 

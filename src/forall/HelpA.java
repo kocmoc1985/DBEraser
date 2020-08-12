@@ -1475,6 +1475,7 @@ public class HelpA {
             dm.removeRow(i);
         }
     }
+    
 
     public static void removeRowJTable(JTable table, int rowToRemove) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();

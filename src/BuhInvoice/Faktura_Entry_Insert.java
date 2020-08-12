@@ -144,8 +144,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
 //        articlesListToJson(articlesList);
         //
-//        invoice.countFakturaTotal(map_for_adding_to_db);
-        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+//        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        invoice.countFakturaTotal(getArticlesTable());
         //
     }
 
