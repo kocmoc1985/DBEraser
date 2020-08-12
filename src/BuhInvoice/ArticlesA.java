@@ -36,7 +36,7 @@ public class ArticlesA extends Basic_Buh {
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
 
-    public ArticlesA(BUH_INVOICE_MAIN_ bim) {
+    public ArticlesA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 

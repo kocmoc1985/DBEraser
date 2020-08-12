@@ -36,6 +36,31 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     }
 
     @Override
+    public void addArticleForJTable(JTable table) {
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+//        this.articlesListJTable.add(map);
+        //
+        Object[] jtableRow = new Object[]{
+            "",
+            "",
+            "",
+            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
+            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            map.get(DB.BUH_F_ARTIKEL__ANTAL),
+            map.get(DB.BUH_F_ARTIKEL__ENHET),
+            map.get(DB.BUH_F_ARTIKEL__PRIS),
+            map.get(DB.BUH_F_ARTIKEL__RABATT)
+        };
+        //
+        HelpA.addRowToJTable(jtableRow, table);
+        //
+    }
+    
+    
+
+    @Override
     public void addArticleForDB() {
         //
         // As i see it today [2020-08-11], i should do it somehow like "updateArticle()"
@@ -48,25 +73,30 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
         String fakturaId = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
         //
-        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2());
+        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2(),jcomboBoxParamToReturnManuallySpecified);
         map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        //
+        this.articlesList.add(map);
+        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         //
         String json = JSon.hashMapToJSON(map);
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+            String query = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_ARTICLES_TO_DB, json));
+//            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
 
     protected void updateArticle() {
         //
-        InvoiceA_Insert invoic = (InvoiceA_Insert) invoice;
+        InvoiceA_Update invoic = (InvoiceA_Update) invoice;
         //
         if (invoic.containsInvalidatedFields(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_1);

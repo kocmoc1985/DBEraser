@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListener, KeyListener {
+public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -40,7 +40,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
-    public BUH_INVOICE_MAIN_() {
+    public BUH_INVOICE_MAIN() {
         initComponents();
         initOhter();
     }
@@ -756,14 +756,16 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -771,7 +773,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BUH_INVOICE_MAIN_().setVisible(true);
+                new BUH_INVOICE_MAIN().setVisible(true);
             }
         });
     }
@@ -836,6 +838,8 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             //
             if (ACTUAL_TAB_NAME.equals(TAB_INVOICES_OVERVIEW)) {
                 //
+                jtable_InvoiceB_all_invoices_clicked();
+                invoiceB.refresh();
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_CREATE_FAKTURA) && sameTabClicked == false) {
                 //

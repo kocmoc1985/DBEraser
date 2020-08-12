@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceB extends Basic {
     
-    private final BUH_INVOICE_MAIN_ bim;
+    private final BUH_INVOICE_MAIN bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
@@ -56,7 +56,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
     
-    public InvoiceB(BUH_INVOICE_MAIN_ buh_invoice_main) {
+    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }

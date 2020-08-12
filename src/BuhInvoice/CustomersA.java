@@ -57,7 +57,7 @@ public class CustomersA extends Basic_Buh {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
 
-    public CustomersA(BUH_INVOICE_MAIN_ bim) {
+    public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -203,11 +203,11 @@ public class CustomersA extends Basic_Buh {
         String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         String address_id = HelpA.getValueSelectedRow(getTableAdresses(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
-        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
+        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
             updateCustomerData(fakturaKundId);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(address_id)) {
+        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
             updateAddressData(address_id);
         } else {
 
@@ -271,7 +271,7 @@ public class CustomersA extends Basic_Buh {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
-        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN_.getDateCreated()); // required
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN.getDateCreated()); // required
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -285,10 +285,10 @@ public class CustomersA extends Basic_Buh {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
+        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
             //
             insertCustomerAddress(fakturaKundId);
             //

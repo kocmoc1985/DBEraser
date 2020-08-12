@@ -18,8 +18,6 @@ import javax.swing.JTable;
  */
 public class Faktura_Entry_Insert extends Faktura_Entry {
 
-    protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
-    
 
     public Faktura_Entry_Insert(Invoice invoice) {
         super(invoice);
@@ -55,10 +53,10 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(fakturaId)) {
+        if (BUH_INVOICE_MAIN.verifyId(fakturaId)) {
             //
             setFakturaIdForArticles(fakturaId);
             //
@@ -92,7 +90,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN_.getDateCreated());
+        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN.getDateCreated());
         //
         System.out.println("-------------------------------------------------");
         //
@@ -129,7 +127,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                         DB.PHP_FUNC_ARTICLES_TO_DB, json));
                 //
             } catch (Exception ex) {
-                Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
         }
@@ -147,8 +145,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 //        articlesListToJson(articlesList);
         //
 //        invoice.countFakturaTotal(map_for_adding_to_db);
-        JTable table = invoice.bim.jTable_InvoiceA_Insert_articles;
-        invoice.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         //
     }
 

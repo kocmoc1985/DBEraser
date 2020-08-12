@@ -20,7 +20,7 @@ public class InvoiceA_Insert extends Invoice {
 
     private Faktura_Entry_Insert faktura_entry_insert;
 
-    public InvoiceA_Insert(BUH_INVOICE_MAIN_ bim) {
+    public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }

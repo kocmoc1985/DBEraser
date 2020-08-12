@@ -6,10 +6,7 @@
 package BuhInvoice;
 
 import forall.HelpA;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import javax.swing.JTable;
 
@@ -25,6 +22,7 @@ public abstract class Faktura_Entry {
     protected HashMap<String, String> secMap = new HashMap<>();
     protected HashMap<String, String> fakturaMap = new HashMap<>();
     protected ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>();
+    protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     //
   
 
@@ -32,6 +30,10 @@ public abstract class Faktura_Entry {
         this.invoice = invoice;
     }
 
+    protected JTable getArticlesTable(){
+        return invoice.bim.jTable_InvoiceA_Insert_articles;
+    }
+    
     protected abstract void insertOrUpdate();
 
     protected abstract void setData();
@@ -43,7 +45,6 @@ public abstract class Faktura_Entry {
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         this.articlesListJTable.add(map);
-        //
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
