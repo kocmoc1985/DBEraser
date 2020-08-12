@@ -140,6 +140,12 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         //
+        String artikelId = map_for_adding_to_db.get(DB.BUH_F_ARTIKEL__ARTIKELID);
+        //
+        if(artikelId.equals("NULL")){
+            map_for_adding_to_db.remove(DB.BUH_F_ARTIKEL__ARTIKELID);
+        }
+        //
         this.articlesList.add(map_for_adding_to_db);
         //
 //        articlesListToJson(articlesList);

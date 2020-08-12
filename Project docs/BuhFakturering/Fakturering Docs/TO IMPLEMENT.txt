@@ -16,9 +16,11 @@ https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
 [2020-08-10]
 Implement faktura logotype scaling
 
-[2020-08-11]
-Add article -> when updating -> Faktura_Entry_Update.class -> addArticleForDB()
 
+[2020-08-12] ***********
+When getting HashMap from TableInvert don't insert key/value pairs where value="NULL".
+Temporary solution: FakturaEntryInsert.class -> addArticleForDB() -> line: 146
+The solution can be to implement "tableInvertToHashMap()" method which does not take into account the entries where value="NULL"
 
 
 
