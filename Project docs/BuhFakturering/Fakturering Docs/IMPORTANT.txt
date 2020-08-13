@@ -1,4 +1,5 @@
 ________________________________________________________________________________________________________
+
 [SINGLE QUOTES APPENDED ON PHP SIDE][2020-08-07]
 
 Since [2020-08-07] single quotes are appended to all parameters regardless if it's String or not.
@@ -6,12 +7,13 @@ For MySql it does not make any diff. BUT adding a String without "''" single quo
 
 ________________________________________________________________________________________________________
 
-
 [TABLE INVERT - DONT FORGET TO MARK ROWS -> String OR Not] [2020-08-07]
 
 It's done from "getConfigTableInvert()" methods
 
 RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true); -----> the "false" means "NOT STRING"
+
+For the moment [2020-08-12] i don't make any use of it.
 ________________________________________________________________________________________________________
 
 [MYSQL - INSERTING ALWAYS WITH QUOTES - SUPER IMPORTANT] [2020-08-07]

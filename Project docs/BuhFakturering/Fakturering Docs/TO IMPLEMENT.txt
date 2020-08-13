@@ -1,37 +1,60 @@
-[2020-07-27]
+[2020-08-13][DELETE ADDED ARTICLE WHEN UPDATING FAKTURA - MAKE THIS FUNCTION WORK FROM THE "FAKTURA" TAB ALSO]
 
-Make tables on 1 table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
+____________________________________________________________________________________________________________________________________________________
+[2020-08-13][DELETE ADDED ARTICLE WHEN CREATING NEW FAKTURA]
 
-[2020-08-05]
-Update Lager, after making a faktura
+____________________________________________________________________________________________________________________________________________________
+[2020-08-13][EDIT ARTICLE AFTER IT WAS ADEDD WHEN CREATING A NEW FAKTURA][IMPORTANT][IMPORTANT][IMPORTANT] ***************************************************
+This is rather important and must be solved. So when i create a Faktura i cannot edit the article after i have added it 
+to the articles list. Or better to say that it can be edited but i must first "submit" the Faktura and then i can make 
+changes to it.
+
+It can be solved like following: introduce also "Skapa ny artikel" button. So if you click on the "articles" JTable 
+the tableInvert will act like  in case of "UPDATE". The main difference in this case that when i make updating of an
+article when "UPDATING" it submits the changes to DB directly. In case of "CREATING" it does not submit the article to the 
+DB when added to the list. The submitting of articles and other Faktura data is done when submitting the entire Faktura.
+____________________________________________________________________________________________________________________________________________________
+
+[2020-08-12] [PROBLEM TO UPDATE ARTICLE-NAME="EMPTY" IN FAKTURA]
+So if you try to change articles of an existing invoice and namely try to change the "artikelId" to EMPTY -> it will not work.
+The problem why it does not work is that the PHP/PDO driver does not process "DEFAULT" constant when using a prepared statement.
+
+Remember following:
+Basic.class->tableIvertToHashMap_exclude_null() -> This method is important, it does not add key/value pairs to the returned HashMap
+which value.equals("NULL"), isEmpty() or =null. This is important because otherwise sending a json string to PHP/PDO {artikelId:"NULL"}
+causes "PDOException"
+
+Basic.class-> tableInvertToHashMap_DEFAULT() -> This method as not used at the moment [2020-08-13] as sending a json string = {artikelId:"DEFAULT"}
+causes also "PDOException". Note following TEST (just running SQL Query):
+update buh_f_artikel set artikelId=DEFAULT WHERE id=65 ----> THIS WORKS
+update buh_f_artikel set artikelId="DEFAULT" WHERE id=65 ----> THIS DOES NOT WORK -> "DEFAULT"
+
+More on this subject whit DEFAULT and PHP/PDO: https://stackoverflow.com/questions/1391777/how-do-i-insert-null-values-using-pdo
+____________________________________________________________________________________________________________________________________________________
 
 
 [2020-08-10]
 RABATT column. Det ska vara möjligt att ange rabatt antigen i % eller kronor
 
+____________________________________________________________________________________________________________________________________________________
 [2020-08-10]
 Implement: send attachment with PHP.
 https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
+____________________________________________________________________________________________________________________________________________________
 
 [2020-08-10]
 Implement faktura logotype scaling
+____________________________________________________________________________________________________________________________________________________
 
+[2020-08-05]
+Update Lager, after making a faktura
 
-[2020-08-12] ***********
-When getting HashMap from TableInvert don't insert key/value pairs where value="NULL".
-Temporary solution: FakturaEntryInsert.class -> addArticleForDB() -> line: 146
-The solution can be to implement "tableInvertToHashMap()" method which does not take into account the entries where value="NULL"
+____________________________________________________________________________________________________________________________________________________
+[2020-07-27][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
-==============================
-RENAME/ORGanIZE:
-tableInvertToHashMap_B
-tableInvertToHashMap_BB
-==============================
+Make tables in one table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
 
-update buh_f_artikel set artikelId=DEFAULT WHERE id=65 ---> working so but not if "DEFAULT"
-
-https://stackoverflow.com/questions/1391777/how-do-i-insert-null-values-using-pdo
-
+____________________________________________________________________________________________________________________________________________________
 
 
 [2020-08-11][DONE]
