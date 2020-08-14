@@ -141,6 +141,18 @@ public abstract class Invoice extends Basic_Buh_ {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
 
+    
+    protected void resetFakturaTotal() {
+        //
+        FAKTURA_TOTAL = 0;
+        FAKTURA_TOTAL_EXKL_MOMS = 0;
+        MOMS_TOTAL = 0;
+        //
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+    }
+    
     protected void countFakturaTotal(JTable table) {
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;

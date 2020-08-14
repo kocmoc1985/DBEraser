@@ -63,6 +63,8 @@ public class InvoiceA_Insert extends Invoice {
                 //
                 fillJTableheader();
                 HelpA.clearAllRowsJTable(getArticlesTable());
+                //
+                resetFakturaTotal();
             }
         });
         //
@@ -92,6 +94,9 @@ public class InvoiceA_Insert extends Invoice {
 
     protected void submitEditedArticle(){
         this.faktura_entry_insert.submitEditedArticle();
+        // Clearing the rows with the code below
+        showTableInvert_2();
+        refreshTableInvert(TABLE_INVERT_2);
     }
     
     @Override
