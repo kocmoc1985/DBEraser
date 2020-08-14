@@ -168,7 +168,7 @@ public class InvoiceA_Insert extends Invoice {
             //
             EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
             //
-            return getConfigTableInvert_edit_articles(true);
+            return getConfigTableInvert_edit_articles();
             //
         } else {
             String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);

@@ -233,7 +233,7 @@ public abstract class Invoice extends Basic_Buh_ {
      * @param reverse
      * @return
      */
-    public RowDataInvert[] getConfigTableInvert_edit_articles(boolean reverse) {
+    public RowDataInvert[] getConfigTableInvert_edit_articles() {
         //
         JTable table = getArticlesTable();
         //
@@ -255,8 +255,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         String fixedComboValues_b = JSon._get_special_(
                 DB.STATIC__ENHET,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET),
-                reverse
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET)
         );
         RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
         enhet.enableFixedValuesAdvanced();

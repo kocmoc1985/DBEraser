@@ -290,8 +290,8 @@ public class JSon {
      * @param reverse
      * @return -> "Telenor;2,Securitas;1,Telia;3"
      */
-    public static String _get_special_(String jsonStr, String returnValue, boolean reverse) {
-        String toShowValue = getValueFromJSonString(jsonStr, returnValue, reverse);
+    public static String _get_special_(String jsonStr, String returnValue) {
+        String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
         return _get(toShowValue, returnValue, jsonStr);
     }
     
