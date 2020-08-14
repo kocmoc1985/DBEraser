@@ -231,6 +231,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton21 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1293, 1200));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         jTable_invoiceB_alla_fakturor.setModel(new javax.swing.table.DefaultTableModel(
@@ -315,6 +316,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane3.setViewportView(jPanel3);
 
         jTabbedPane1.addTab("ALLA FAKTUROR", jScrollPane3);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(1286, 1000));
 
         jPanel2_faktura_main.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2_faktura_main.setLayout(new java.awt.BorderLayout());
