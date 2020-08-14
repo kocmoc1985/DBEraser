@@ -605,6 +605,7 @@
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane8">
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
 
@@ -688,6 +689,8 @@
                               <Component id="jButton16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton17" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton21" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jPanel6" min="-2" pref="571" max="-2" attributes="0"/>
@@ -707,6 +710,7 @@
                           <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton16" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton21" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -779,6 +783,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton17ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="UPDATE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

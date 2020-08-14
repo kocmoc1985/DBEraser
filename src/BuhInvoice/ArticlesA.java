@@ -94,6 +94,39 @@ public class ArticlesA extends Basic_Buh_ {
 //        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
     }
+    
+    public void update(){
+         //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return;
+        }
+        //
+        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
+        //
+        updateArticleData(artikelId);
+        //
+        refresh();
+    }
+    
+     private void updateArticleData(String artikelId) {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId, DB.TABLE__BUH_FAKTURA_ARTIKEL);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
 
     private void fillArtiklesJTable() {
         //

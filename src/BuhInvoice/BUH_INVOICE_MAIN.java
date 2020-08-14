@@ -227,6 +227,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_ArticlesA_articles = new javax.swing.JTable();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -658,6 +659,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jButton21.setText("UPDATE");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4_ArticlesLayout = new javax.swing.GroupLayout(jPanel4_Articles);
         jPanel4_Articles.setLayout(jPanel4_ArticlesLayout);
         jPanel4_ArticlesLayout.setHorizontalGroup(
@@ -670,7 +678,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton17))
+                        .addComponent(jButton17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton21))
                     .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
@@ -684,7 +694,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
                     .addComponent(jButton16)
-                    .addComponent(jButton17))
+                    .addComponent(jButton17)
+                    .addComponent(jButton21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -819,6 +830,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_total_exkl_momsActionPerformed
 
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        articlesA.update();
+    }//GEN-LAST:event_jButton21ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -872,6 +887,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -897,7 +913,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
+    protected javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     protected javax.swing.JTable jTable_ArticlesA_articles;
     protected javax.swing.JTable jTable_InvoiceA_Insert_articles;

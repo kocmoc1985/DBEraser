@@ -69,6 +69,10 @@ public class CustomersA extends Basic_Buh_ {
         return bim.jTable_kund_adresses;
     }
 
+    private void hideAdressesTable() {
+        bim.jScrollPane8.setVisible(false);
+    }
+
     private void refresh() {
         fillKundJTable();
         HelpA.markFirstRowJtable(getTableKunder());
@@ -78,12 +82,17 @@ public class CustomersA extends Basic_Buh_ {
     @Override
     protected void startUp() {
         //
+        if (GP_BUH.CUSTOMER_MODE == true) {
+            hideAdressesTable();
+        }
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
 //                showTableInvert();
                 fillJTable_header_kunder();
                 fillJTable_header_kund_addresses();
+
                 //
                 refresh();
                 //
@@ -186,7 +195,6 @@ public class CustomersA extends Basic_Buh_ {
         executeDelete(json);
         //
     }
-
 
     public void update() {
         //
