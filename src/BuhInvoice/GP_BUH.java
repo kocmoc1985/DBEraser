@@ -10,5 +10,5 @@ package BuhInvoice;
  * @author KOCMOC
  */
 public class GP_BUH {
-    public static boolean CUSTOMER_MODE = false;
+    public static boolean CUSTOMER_MODE = true;
 }
