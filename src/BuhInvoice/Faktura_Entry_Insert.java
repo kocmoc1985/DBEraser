@@ -133,6 +133,28 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
     }
+    
+    protected void submitEditedArticle(){
+        //
+        JTable table = getArticlesTable();
+        //
+        int currRow = table.getSelectedRow();
+        articlesList.remove(currRow);
+        addArticleForDB();
+        //
+        //
+        //Below making changes to the edited article in the JTable
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        //
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        //
+    }
 
     @Override
     public void addArticleForDB() {

@@ -1,0 +1,7 @@
+
+[CREATE NEW "INSERT" - ADD ARTICLE]
+
+addArticleForJTable(getArticlesTable()); -> ENHET is added as "Styck" on this stage
+addArticleForDB(); // FOR INSERT the article is added to a LIST
+
+[CREATE NEW "INSERT "EDIT ARTICLE"]

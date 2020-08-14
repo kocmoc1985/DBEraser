@@ -76,7 +76,10 @@ public abstract class Invoice extends Basic_Buh_ {
         }
         //
         addArticleForJTable(getArticlesTable());
-        addArticleForDB(); // Here the article is upload directly to DB [2020-08-12]
+        //
+        // For "UPDATE" the article is submited directly to DB
+        // For "INSERT" the article is added to a LIST
+        addArticleForDB();
         //
 
     }
@@ -227,6 +230,7 @@ public abstract class Invoice extends Basic_Buh_ {
     /**
      * This config is for editing of articles
      *
+     * @param reverse
      * @return
      */
     public RowDataInvert[] getConfigTableInvert_edit_articles(boolean reverse) {

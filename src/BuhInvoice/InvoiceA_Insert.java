@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceA_Insert extends Invoice {
 
-    private Faktura_Entry_Insert faktura_entry_insert;
+    private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
 
     public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
@@ -90,13 +90,17 @@ public class InvoiceA_Insert extends Invoice {
         this.faktura_entry_insert.htmlFaktura();
     }
 
+    protected void submitEditedArticle(){
+        this.faktura_entry_insert.submitEditedArticle();
+    }
+    
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
     }
-
+    
     @Override
     protected void addArticleForDB() {
         //
@@ -164,7 +168,7 @@ public class InvoiceA_Insert extends Invoice {
             //
             EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
             //
-            return getConfigTableInvert_edit_articles(false);
+            return getConfigTableInvert_edit_articles(true);
             //
         } else {
             String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
