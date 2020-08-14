@@ -278,6 +278,9 @@ public class JSon {
     }
 
     /**
+     * IMPORTANT: [2020-08-14]
+     * This one is used when i have/get the "short name" -> like: "P" -> (Post;P,Hämtas;HAM)
+     * 
      * The idea behind all this special "_get" methods is to make a given
      * "element" first in the String
      *
@@ -298,6 +301,9 @@ public class JSon {
     
 
     /**
+     * IMPORTANT:[2020-08-14]
+     * This one is used when i have/get the "long name" -> like: "Post" -> (Post;P,Hämtas;HAM)
+     * 
      * [2020-07-29]
      * OBS! Pay attention to "HashMapKeyCaseInsensitive.class", this
      * class makes that LOWER/UPPER case does not matter for the "keys"
@@ -328,8 +334,14 @@ public class JSon {
         //
     }
     
-    public static String translate(String statics, String valToTranslate, boolean reverse){
-        HashMap<String,String>map = JSONToHashMap(statics, reverse);
+    /**
+     * This one translates the "short name" -> "long name", like: "P" -> "POST"
+     * @param statics
+     * @param valToTranslate
+     * @return 
+     */
+    public static String getLongName(String statics, String valToTranslate){
+        HashMap<String,String>map = JSONToHashMap(statics, true);
         return map.get(valToTranslate);
     }
     

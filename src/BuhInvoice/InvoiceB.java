@@ -293,7 +293,7 @@ public class InvoiceB extends Basic {
             HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            JSon.translate(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET), true),
+            JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT)
         };
