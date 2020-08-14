@@ -328,6 +328,11 @@ public class JSon {
         //
     }
     
+    public static String translate(String statics, String valToTranslate, boolean reverse){
+        HashMap<String,String>map = JSONToHashMap(statics, reverse);
+        return map.get(valToTranslate);
+    }
+    
     /**
      * USE "_get()"
      * This one uses string operations which is less clear and stable
