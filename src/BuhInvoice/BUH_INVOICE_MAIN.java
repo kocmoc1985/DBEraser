@@ -209,6 +209,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_InvoiceA_Insert_articles = new javax.swing.JTable();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
         jPanel4_Customers = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
@@ -626,7 +627,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(50, 50, 50))
         );
 
-        jTabbedPane1.addTab("KUNDER", jPanel4_Customers);
+        jScrollPane9.setViewportView(jPanel4_Customers);
+
+        jTabbedPane1.addTab("KUNDER", jScrollPane9);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel6.setLayout(new java.awt.BorderLayout());
@@ -921,6 +924,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     protected javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     protected javax.swing.JTable jTable_ArticlesA_articles;
     protected javax.swing.JTable jTable_InvoiceA_Insert_articles;
