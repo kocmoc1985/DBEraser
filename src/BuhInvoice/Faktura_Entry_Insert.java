@@ -18,7 +18,6 @@ import javax.swing.JTable;
  */
 public class Faktura_Entry_Insert extends Faktura_Entry {
 
-
     public Faktura_Entry_Insert(Invoice invoice) {
         super(invoice);
     }
@@ -26,7 +25,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     public void insertOrUpdate() {
         //
-        System.out.println("INSER OR UPDATE: " + getClass().getName()+ " ***********************************");
+        System.out.println("INSER OR UPDATE: " + getClass().getName() + " ***********************************");
         //
         boolean invalidated_1 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
 //        boolean invalidated_2 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2());
@@ -133,15 +132,12 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
     }
-    
-    protected void submitEditedArticle(){
+
+    protected void submitEditedArticle() {
         //
         JTable table = getArticlesTable();
         //
         int currRow = table.getSelectedRow();
-        articlesList.remove(currRow);
-        addArticleForDB();
-        //
         //
         //Below making changes to the edited article in the JTable
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
@@ -151,8 +147,13 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        //
+        //
+        articlesList.remove(currRow);
+        addArticleForDB();
+        //
         //
     }
 
@@ -185,6 +186,5 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             }
         });
     }
-
 
 }

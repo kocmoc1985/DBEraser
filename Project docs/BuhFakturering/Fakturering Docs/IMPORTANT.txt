@@ -1,3 +1,8 @@
+[SINGLE QUOTES APPENDED ON PHP SIDE][2020-08-14]
+
+ArticlesTable in classes InvoiceB.class and InvoiceA_Insert shall contain "LONG NAMES" only.
+So if we have following names: "Post;P,Hämtas;HAM" -> P is a "SHORT NAME" and "POST" is a "LONG NAME"
+
 ________________________________________________________________________________________________________
 
 [SINGLE QUOTES APPENDED ON PHP SIDE][2020-08-07]
@@ -5,15 +10,6 @@ ________________________________________________________________________________
 Since [2020-08-07] single quotes are appended to all parameters regardless if it's String or not.
 For MySql it does not make any diff. BUT adding a String without "''" single quotes will fail!
 
-________________________________________________________________________________________________________
-
-[TABLE INVERT - DONT FORGET TO MARK ROWS -> String OR Not] [2020-08-07]
-
-It's done from "getConfigTableInvert()" methods
-
-RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true); -----> the "false" means "NOT STRING"
-
-For the moment [2020-08-12] i don't make any use of it.
 ________________________________________________________________________________________________________
 
 [MYSQL - INSERTING ALWAYS WITH QUOTES - SUPER IMPORTANT] [2020-08-07]
@@ -50,3 +46,11 @@ So the php function returns the latest "fakturanr". Later in java i read the lat
 add (+1) for getting the nr for the faktura which is beiing inserted.
 
 ___________________________________________________________________________________________________________
+
+[TABLE INVERT - DONT FORGET TO MARK ROWS -> String OR Not] [2020-08-07]
+
+It's done from "getConfigTableInvert()" methods
+
+RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true); -----> the "false" means "NOT STRING"
+
+For the moment [2020-08-12] i don't make any use of it.
