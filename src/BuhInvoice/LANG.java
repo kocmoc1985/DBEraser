@@ -13,6 +13,7 @@ public class LANG {
 
     
     public static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
+    public static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
     public static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
     public static String MSG_3 = "Data kommer raderas permanent! Vill du forsätta?";
     

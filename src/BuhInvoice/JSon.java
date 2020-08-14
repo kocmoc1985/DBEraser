@@ -281,15 +281,20 @@ public class JSon {
      * The idea behind all this special "_get" methods is to make a given
      * "element" first in the String
      *
+     * OBS! "reverse" param: [2020-08-14]
+     * if reverse=true -> a string like: "Styck;st,Förp;Förp,Timmar;Tim" it will build 
+     * HashMap with reversing like st=Stryck; Tim=Timmar and so on
+     * 
      * @param jsonStr -> "Telenor;2,Securitas;1,Telia;3"
      * @param returnValue -> "2"
+     * @param reverse
      * @return -> "Telenor;2,Securitas;1,Telia;3"
      */
-    public static String _get_special(String jsonStr, String returnValue) {
-        String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
+    public static String _get_special_(String jsonStr, String returnValue, boolean reverse) {
+        String toShowValue = getValueFromJSonString(jsonStr, returnValue, reverse);
         return _get(toShowValue, returnValue, jsonStr);
     }
-
+    
     
 
     /**

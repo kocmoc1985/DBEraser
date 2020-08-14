@@ -18,14 +18,14 @@ import javax.swing.JTable;
 public class InvoiceA_Update extends Invoice {
 
     private Faktura_Entry_Update faktura_entry_update;
-    
+
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
         initOther();
     }
-    
-    private void initOther(){
-        faktura_entry_update = (Faktura_Entry_Update)faktura_entry;
+
+    private void initOther() {
+        faktura_entry_update = (Faktura_Entry_Update) faktura_entry;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class InvoiceA_Update extends Invoice {
 
     @Override
     protected void startUp() {
-        
+
     }
 
     @Override
@@ -57,8 +57,7 @@ public class InvoiceA_Update extends Invoice {
         //
     }
 
-    
-    protected void updateArticle(){
+    protected void updateArticle() {
         //
         faktura_entry_update.updateArticle();
         //
@@ -70,7 +69,7 @@ public class InvoiceA_Update extends Invoice {
         CURRENT_OPERATION_INSERT = false;
         bim.setInsertOrUpdateLabel(false);
         //
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        JTable table = getAllInvoicesTable();
         //
         String fixedComboValues_a = JSon._get(
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__KUND),
@@ -104,18 +103,20 @@ public class InvoiceA_Update extends Invoice {
         betal_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_c = JSon._get_special(
+        String fixedComboValues_c = JSon._get_special_(
                 DB.STATIC__LEV_VILKOR,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_VILKOR)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_VILKOR),
+                true
         );
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         lev_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_d = JSon._get_special(
+        String fixedComboValues_d = JSon._get_special_(
                 DB.STATIC__LEV_SATT,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_SATT)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_SATT),
+                true
         );
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
@@ -138,49 +139,8 @@ public class InvoiceA_Update extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = getArticlesTable();
-        //
-        String fixedComboValues_a = JSon._get(
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
-                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_F_ARTIKEL__ARTIKELID));
-//        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
-        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
-        kund.enableFixedValuesAdvanced();
-        kund.setUneditable();
-        //
-        //
-        String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
-        RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, "KOMMENTAR", "", true, true, false);
-        //
-        String ant = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
-        RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", false, true, false);
-        //
-        String fixedComboValues_b = JSon._get_special(
-                DB.STATIC__ENHET,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET)
-        );
-        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
-        enhet.enableFixedValuesAdvanced();
-        enhet.setUneditable();
-        //
-        //
-        String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
-        RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
-        //
-        String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
-        RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", false, true, false);
-        //
-        RowDataInvert[] rows = {
-            kund,
-            komment,
-            antal,
-            enhet,
-            pris,
-            rabatt
-        };
-        //
-        return rows;
+        return getConfigTableInvert_edit_articles(true);
+        //         
     }
 
     @Override
@@ -188,9 +148,10 @@ public class InvoiceA_Update extends Invoice {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        String fixedComboValues_a = JSon._get_special(
+        String fixedComboValues_a = JSon._get_special_(
                 DB.STATIC__INKL_EXKL_MOMS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS),
+                true
         );
         //
 //        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
@@ -199,9 +160,10 @@ public class InvoiceA_Update extends Invoice {
         inkl_exkl_moms.setUneditable();
         //
         //
-        String fixedComboValues_c = JSon._get_special(
+        String fixedComboValues_c = JSon._get_special_(
                 DB.STATIC__MOMS_SATS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS),
+                true
         );
         //
 //        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
@@ -216,9 +178,10 @@ public class InvoiceA_Update extends Invoice {
         String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
         RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, "FRAKT", "", false, true, false);
         //
-        String fixedComboValues_b = JSon._get_special(
+        String fixedComboValues_b = JSon._get_special_(
                 DB.STATIC__MAKULERAD_JA_NEJ,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD)
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD),
+                true
         );
         //
 //        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL

@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
+import MyObjectTableInvert.RowDataInvertB;
 import javax.swing.JTable;
 
 /**
@@ -51,30 +52,38 @@ public abstract class Invoice extends Basic_Buh_ {
     private void initFakturaEntry_() {
         faktura_entry = initFakturaEntry();
     }
-    
 
     protected abstract Faktura_Entry initFakturaEntry();
-    
-    protected JTable getArticlesTable(){
+
+    protected JTable getAllInvoicesTable() {
+        return bim.jTable_invoiceB_alla_fakturor;
+    }
+
+    protected JTable getArticlesTable() {
         return bim.jTable_InvoiceA_Insert_articles;
     }
-    
-     protected void addArticle() {
+
+    protected void addArticle() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
             return;
         }
         //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return;
+        }
+        //
         addArticleForJTable(getArticlesTable());
         addArticleForDB(); // Here the article is upload directly to DB [2020-08-12]
         //
-        
+
     }
-     
-   protected abstract void addArticleForJTable(JTable table);
-   
-   protected abstract void addArticleForDB();
+
+    protected abstract void addArticleForJTable(JTable table);
+
+    protected abstract void addArticleForDB();
 
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
@@ -129,12 +138,12 @@ public abstract class Invoice extends Basic_Buh_ {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
 
-    protected void countFakturaTotal(JTable table){
+    protected void countFakturaTotal(JTable table) {
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
         countFakturaTotal(table, prisColumn, antalColumn);
     }
-    
+
     private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
         FAKTURA_TOTAL = 0;
@@ -213,6 +222,59 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         hideMomsSatsIfExklMoms(); // **********************************
         //
+    }
+
+    /**
+     * This config is for editing of articles
+     *
+     * @return
+     */
+    public RowDataInvert[] getConfigTableInvert_edit_articles(boolean reverse) {
+        //
+        JTable table = getArticlesTable();
+        //
+        String fixedComboValues_a = JSon._get(
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
+                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_F_ARTIKEL__ARTIKELID));
+//        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
+        kund.enableFixedValuesAdvanced();
+        kund.setUneditable();
+        //
+        //
+        String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
+        RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, "KOMMENTAR", "", true, true, false);
+        //
+        String ant = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", false, true, false);
+        //
+        String fixedComboValues_b = JSon._get_special_(
+                DB.STATIC__ENHET,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET),
+                reverse
+        );
+        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
+        enhet.enableFixedValuesAdvanced();
+        enhet.setUneditable();
+        //
+        //
+        String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
+        RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
+        //
+        String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", false, true, false);
+        //
+        RowDataInvert[] rows = {
+            kund,
+            komment,
+            antal,
+            enhet,
+            pris,
+            rabatt
+        };
+        //
+        return rows;
     }
 
     protected void hideMomsSatsIfExklMoms() {
