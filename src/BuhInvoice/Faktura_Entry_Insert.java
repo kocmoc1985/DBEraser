@@ -132,6 +132,18 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
     }
+    
+    protected void deleteArtikel(){
+        //
+        JTable table = getArticlesTable();
+        //
+        int currRow = table.getSelectedRow();
+        //
+        HelpA.removeRowJTable(table, currRow);
+        //
+        articlesList.remove(currRow);
+        //
+    }
 
     protected void submitEditedArticle() {
         //

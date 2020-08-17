@@ -1086,10 +1086,10 @@ public class HelpA {
         return String.format(format, number).replace(",", ".");
     }
 
-   public static double round_double(double rst) {
+    public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
-    
+
     private static synchronized boolean isDouble(Object obj) {
         if (obj instanceof String) {
             String val = (String) obj;
@@ -1475,7 +1475,6 @@ public class HelpA {
             dm.removeRow(i);
         }
     }
-    
 
     public static void removeRowJTable(JTable table, int rowToRemove) {
         DefaultTableModel dm = (DefaultTableModel) table.getModel();
@@ -1505,7 +1504,7 @@ public class HelpA {
         }
         return -1;
     }
-    
+
     public static void setValueCurrentRow(JTable table, String colName, Object value) {
         table.setValueAt(value, table.getSelectedRow(), getColByName(table, colName));
     }
@@ -1663,6 +1662,10 @@ public class HelpA {
 
     public static boolean confirm(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    public static boolean confirmWarning(String message) {
+        return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
     public static boolean checkIfNumber(String value) {
@@ -2286,7 +2289,7 @@ public class HelpA {
     }
 
     public static void main(String[] args) {
-      double x = 2.54456546;
+        double x = 2.54456546;
         System.out.println("" + round_double(x));
     }
 
@@ -2737,7 +2740,7 @@ public class HelpA {
         }
         //
     }
-    
+
     public static boolean isNumber(String str) {
         try {
             Double.parseDouble(str);

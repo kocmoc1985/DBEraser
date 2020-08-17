@@ -55,8 +55,6 @@
                               <Group type="102" attributes="0">
                                   <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton18" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                                   <Component id="jButton15" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane5" alignment="0" min="-2" pref="1205" max="-2" attributes="0"/>
@@ -73,13 +71,12 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButton15" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton18" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" pref="399" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jScrollPane5" min="-2" pref="295" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jScrollPane5" min="-2" pref="216" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -149,14 +146,6 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton18">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Radera artikel"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
-                  </Events>
-                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -195,10 +184,10 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jPanel2_faktura_main" alignment="0" pref="580" max="32767" attributes="0"/>
+                                      <Component id="jPanel2_faktura_main" alignment="0" pref="531" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jButton11" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="503" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="446" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel_articles" max="32767" attributes="0"/>
                                   </Group>
@@ -408,7 +397,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CLEAR"/>
+                    <Property name="text" type="java.lang.String" value="DELETE ARTICLE"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>

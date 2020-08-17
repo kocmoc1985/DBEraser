@@ -80,7 +80,7 @@ public class InvoiceA_Insert extends Invoice {
             InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT
         };
-        
+
         String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
         //             {"", "", "", "", "", ""}
         };
@@ -92,20 +92,31 @@ public class InvoiceA_Insert extends Invoice {
         this.faktura_entry_insert.htmlFaktura();
     }
 
-    protected void submitEditedArticle(){
+    protected void deleteArtikel() {
+        //
+        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+            return;
+        }
+        //
+        faktura_entry_insert.deleteArtikel();
+        countFakturaTotal(getArticlesTable());
+        //
+    }
+
+    protected void submitEditedArticle() {
         this.faktura_entry_insert.submitEditedArticle();
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
     }
-    
+
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
     }
-    
+
     @Override
     protected void addArticleForDB() {
         //

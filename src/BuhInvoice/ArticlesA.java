@@ -179,7 +179,7 @@ public class ArticlesA extends Basic_Buh_ {
 
     protected void delete() {
         //
-        if (HelpA.confirm(LANG.MSG_3) == false) {
+        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
             return;
         }
         //

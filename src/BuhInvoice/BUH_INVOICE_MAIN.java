@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,6 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -62,17 +64,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         invoiceA_update = new InvoiceA_Update(this);
         //
+        this.setTitle("Fakturering");
+        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    public void setInsertOrUpdateLabel(boolean insert){
-        if(insert){
+    public void setInsertOrUpdateLabel(boolean insert) {
+        if (insert) {
             jLabel_Faktura_Insert_or_Update.setText("SKAPA NY FAKTURA");
-        }else{
+        } else {
             jLabel_Faktura_Insert_or_Update.setText("BEARBETA FAKTURA");
         }
     }
-    
+
     /**
      * OBS! Note if "kundId" does not exist it will not be possible to insert a
      * invoice because of the "foreign key constraints".
@@ -84,12 +88,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getKundId() {
         return "1";
     }
-    
-    protected String getFakturaId(){
+
+    protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
-    
-    protected String getFakturaArtikelId(){
+
+    protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_faktura_artiklar, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
 
@@ -187,7 +191,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_invoiceB_faktura_artiklar = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -275,13 +278,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jButton18.setText("Radera artikel");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -292,8 +288,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton18)
-                        .addGap(51, 51, 51)
                         .addComponent(jButton15))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1197, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -305,13 +299,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(8, 8, 8)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton12)
-                    .addComponent(jButton15)
-                    .addComponent(jButton18))
+                    .addComponent(jButton15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jScrollPane3.setViewportView(jPanel3);
@@ -378,7 +371,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jButton7.setText("CLEAR");
+        jButton7.setText("DELETE ARTICLE");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -443,10 +436,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jTextField_moms, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton11)
-                                .addGap(0, 503, Short.MAX_VALUE))
+                                .addGap(0, 446, Short.MAX_VALUE))
                             .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,7 +726,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             public void run() {
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     invoiceA_insert.addArticle();
-                }else{
+                } else {
                     invoiceA_update.addArticle();
                 }
 
@@ -763,7 +756,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        invoiceA_insert.clearAllRowsTableInvert(invoiceA_insert.TABLE_INVERT);
+//        invoiceA_insert.clearAllRowsTableInvert(invoiceA_insert.TABLE_INVERT);
+        if (InvoiceA_Insert.CURRENT_OPERATION_INSERT) {
+            //
+            invoiceA_insert.deleteArtikel();
+            //
+        } else {
+            //
+            invoiceB.deleteFakturaArtikel();
+            invoiceA_update.countFakturaTotal(jTable_invoiceB_faktura_artiklar);
+            invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
+            invoiceB.refresh_b();
+            //
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -818,13 +823,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         articlesA.delete();
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        invoiceB.deleteFakturaArtikel();
-        invoiceA_update.countFakturaTotal(jTable_invoiceB_faktura_artiklar);
-        invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
-        invoiceB.refresh_b();
-    }//GEN-LAST:event_jButton18ActionPerformed
-
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         InvoiceA_Insert.EDIT__ARTICLE_UPPON_INSERT__SWITCH = true;
         invoiceA_insert.showTableInvert_2();
@@ -832,7 +830,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-       invoiceA_insert.submitEditedArticle();
+        invoiceA_insert.submitEditedArticle();
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jTextField_total_exkl_momsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_total_exkl_momsActionPerformed
@@ -892,7 +890,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;

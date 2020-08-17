@@ -69,13 +69,12 @@ public class InvoiceB extends Basic {
         //
         // fillFakturaArticlesTable();
     }
-    
+
     /**
-     * [2020-08-12]
-     * This one keeps the "marking line" on the same row as before
+     * [2020-08-12] This one keeps the "marking line" on the same row as before
      * the refresh
      */
-    protected void refresh_b(){
+    protected void refresh_b() {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         int row = table.getSelectedRow();
         fillFakturaTable();
@@ -270,18 +269,18 @@ public class InvoiceB extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (GP_BUH.CUSTOMER_MODE) {
-            //
-            hideColumnsArticlesTable(table);
-            //
-        }
+        hideColumnsArticlesTable(table);
         //
     }
 
     protected void hideColumnsArticlesTable(JTable table) {
-        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
-        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
-        HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+        //
+        if (GP_BUH.CUSTOMER_MODE) {
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+        }
+        //
     }
 
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
@@ -305,7 +304,7 @@ public class InvoiceB extends Basic {
 
     protected void deleteFakturaArtikel() {
         //
-        if (HelpA.confirm(LANG.MSG_3) == false) {
+        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
             return;
         }
         //
@@ -313,7 +312,7 @@ public class InvoiceB extends Basic {
         //
         String buh_f_artikel__id = bim.getFakturaArtikelId();
         //
-        if(buh_f_artikel__id == null){
+        if (buh_f_artikel__id == null) {
             return;
         }
         //
@@ -329,7 +328,7 @@ public class InvoiceB extends Basic {
 
     protected void deleteFaktura() {
         //
-        if (HelpA.confirm(LANG.MSG_3) == false) {
+        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
             return;
         }
         //
