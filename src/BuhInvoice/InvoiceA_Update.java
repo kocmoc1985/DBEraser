@@ -44,6 +44,7 @@ public class InvoiceA_Update extends Invoice {
         this.faktura_entry_update.addArticleForJTable(table);
         //
     }
+    
 
     @Override
     protected void addArticleForDB() {
@@ -60,6 +61,31 @@ public class InvoiceA_Update extends Invoice {
     protected void updateArticle() {
         //
         faktura_entry_update.updateArticle();
+        //
+    }
+    
+    protected void deleteFakturaArtikel(){
+         //
+        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+            return;
+        }
+        //
+        JTable table = getArticlesTable();
+        int selectedRow = table.getSelectedRow();
+        //
+        String buh_f_artikel__id = bim.getFakturaArtikelId();
+        //
+        if (buh_f_artikel__id == null) {
+            return;
+        }
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel__id, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        HelpA.removeRowJTable(table,selectedRow);
+        //
+        executeDelete(json);
         //
     }
 

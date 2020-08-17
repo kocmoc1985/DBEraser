@@ -58,8 +58,10 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         if (insert) {
             enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
+            bim.jButton_update_article.setEnabled(false);
         } else {
             enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
+            bim.jButton_update_article.setEnabled(true);
         }
     }
     

@@ -300,31 +300,7 @@ public class InvoiceB extends Basic {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(jtableRow);
         //
-    }
-
-    protected void deleteFakturaArtikel() {
-        //
-        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
-            return;
-        }
-        //
-//        JTable table = bim.jTable_invoiceB_faktura_artiklar;
-        //
-        String buh_f_artikel__id = bim.getFakturaArtikelId();
-        //
-        if (buh_f_artikel__id == null) {
-            return;
-        }
-        //
-        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel__id, DB.TABLE__BUH_F_ARTIKEL);
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        // I need to count totals and update faktura
-        //
-        executeDelete(json);
-        //
-    }
+    }  
 
     protected void deleteFaktura() {
         //
