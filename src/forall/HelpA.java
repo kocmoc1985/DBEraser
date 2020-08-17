@@ -1256,6 +1256,10 @@ public class HelpA {
         //
         return csv;
     }
+    
+    public static boolean rowSelected(JTable table){
+        return table.getSelectedRow() != -1;
+    }
 
     public static void addRowToJTable(Object[] rowData, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();

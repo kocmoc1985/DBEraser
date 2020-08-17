@@ -130,7 +130,7 @@ public class InvoiceA_Insert extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        CURRENT_OPERATION_INSERT = true;
+        SET_CURRENT_OPERATION_INSERT(true);
         bim.setInsertOrUpdateLabel(true);
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";

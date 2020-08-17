@@ -26,6 +26,9 @@ import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
+import java.awt.Component;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 
 /**
@@ -33,7 +36,7 @@ import javax.swing.JTable;
  * @author KOCMOC
  */
 public abstract class Invoice extends Basic_Buh_ {
-
+    
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
@@ -43,26 +46,48 @@ public abstract class Invoice extends Basic_Buh_ {
     private static double MOMS_TOTAL = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
-
+    
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }
-
+    
+    protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
+        //
+        CURRENT_OPERATION_INSERT = insert;
+        //
+        if (insert) {
+            enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
+        } else {
+            enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
+        }
+    }
+    
+    private void enableDisableButtons(JPanel parent,boolean enabled) {
+        Component[] components = parent.getComponents();
+        for (Component c : components) {
+            if(c instanceof JButton){
+              c.setEnabled(enabled);  
+            }
+            
+        }
+        
+    }
+    
     private void initFakturaEntry_() {
         faktura_entry = initFakturaEntry();
     }
-
+    
     protected abstract Faktura_Entry initFakturaEntry();
-
+    
     protected JTable getAllInvoicesTable() {
         return bim.jTable_invoiceB_alla_fakturor;
     }
-
+    
     protected JTable getArticlesTable() {
         return bim.jTable_InvoiceA_Insert_articles;
     }
-
+    
     protected void addArticle() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
@@ -83,19 +108,19 @@ public abstract class Invoice extends Basic_Buh_ {
         //
 
     }
-
+    
     protected abstract void addArticleForJTable(JTable table);
-
+    
     protected abstract void addArticleForDB();
-
+    
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
     }
-
+    
     protected String getFakturaKundId() {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
     }
-
+    
     protected String getNextFakturaNr() {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -120,7 +145,7 @@ public abstract class Invoice extends Basic_Buh_ {
             return null;
         }
     }
-
+    
     public boolean getInklMoms() {
         try {
             return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
@@ -128,7 +153,7 @@ public abstract class Invoice extends Basic_Buh_ {
             return true;
         }
     }
-
+    
     public double getMomsSats() {
         try {
             return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
@@ -136,11 +161,10 @@ public abstract class Invoice extends Basic_Buh_ {
             return 0.25;
         }
     }
-
+    
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
-
     
     protected void resetFakturaTotal() {
         //
@@ -158,7 +182,7 @@ public abstract class Invoice extends Basic_Buh_ {
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
         countFakturaTotal(table, prisColumn, antalColumn);
     }
-
+    
     private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
         FAKTURA_TOTAL = 0;
@@ -187,23 +211,23 @@ public abstract class Invoice extends Basic_Buh_ {
         BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
         //
     }
-
+    
     protected double getFakturaTotal() {
         return HelpA.round_double(FAKTURA_TOTAL);
     }
-
+    
     protected double getMomsTotal() {
         return HelpA.round_double(MOMS_TOTAL);
     }
-
+    
     protected double getTotalExklMoms() {
         return HelpA.round_double(FAKTURA_TOTAL_EXKL_MOMS);
     }
-
+    
     public abstract RowDataInvert[] getConfigTableInvert_2();
-
+    
     public abstract RowDataInvert[] getConfigTableInvert_3();
-
+    
     @Override
     public void showTableInvert() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
@@ -215,7 +239,7 @@ public abstract class Invoice extends Basic_Buh_ {
         addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
-
+    
     public void showTableInvert_2() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
@@ -225,7 +249,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
-
+    
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
         TABLE_INVERT_3 = null;
@@ -298,7 +322,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         return rows;
     }
-
+    
     protected void hideMomsSatsIfExklMoms() {
         //
         System.out.println("INKL_MOMS----------------------");
@@ -327,7 +351,7 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         }
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
@@ -351,7 +375,7 @@ public abstract class Invoice extends Basic_Buh_ {
         }
         //
     }
-
+    
     private void restoreFakturaDatumIfEmty(MouseEvent me, TableInvert ti) {
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
@@ -367,17 +391,17 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         }
     }
-
+    
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
         //
@@ -456,7 +480,7 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         }
     }
-
+    
     private void referensSave(String colName) {
         //
         String er_referens = getValueTableInvert(colName);
@@ -477,7 +501,7 @@ public abstract class Invoice extends Basic_Buh_ {
         }
         //
     }
-
+    
     private void forfalloDatumAutoChange(TableInvert ti) {
         //
         String val = getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR);
@@ -488,7 +512,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
-
+        
         String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }
@@ -522,5 +546,5 @@ public abstract class Invoice extends Basic_Buh_ {
         }
         //
     }
-
+    
 }
