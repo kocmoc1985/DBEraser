@@ -5,9 +5,6 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_moms;
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_exkl_moms;
-import static BuhInvoice.BUH_INVOICE_MAIN.jTextField_total_inkl_moms;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -57,9 +54,15 @@ public abstract class Invoice extends Basic_Buh_ {
         CURRENT_OPERATION_INSERT = insert;
         //
         if (insert) {
+            //
+            bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
+            //
             enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
             bim.jButton_update_article.setEnabled(false);
         } else {
+            //
+            bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
+            //
             enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
             bim.jButton_update_article.setEnabled(true);
         }

@@ -14,7 +14,6 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -56,9 +55,32 @@ public class CustomersA extends Basic_Buh_ {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_A = "TEL 1";
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
+    //
+    public static boolean CURRENT_OPERATION_INSERT = false;
 
     public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
+    }
+
+    private void SET_CURRENT_OPERATION_INSERT(boolean insert) {
+        //
+        CURRENT_OPERATION_INSERT = insert;
+        //
+        if (insert) {
+            //
+            bim.jLabel_Kund_Insert_or_Update.setText(LANG.LBL_MSG_3);
+            //
+            bim.jButton_update_kund.setEnabled(false);
+            bim.jButton_add_customer.setEnabled(true);
+            //
+        } else {
+            //
+            bim.jLabel_Kund_Insert_or_Update.setText(LANG.LBL_MSG_4);
+            //
+            bim.jButton_update_kund.setEnabled(true);
+            bim.jButton_add_customer.setEnabled(false);
+            //
+        }
     }
 
     private JTable getTableKunder() {
@@ -474,8 +496,14 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
+    /**
+     * INSERT
+     */
     @Override
     public void showTableInvert() {
+        //
+        SET_CURRENT_OPERATION_INSERT(true);
+        //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
@@ -485,7 +513,13 @@ public class CustomersA extends Basic_Buh_ {
         addTableInvertRowListener(TABLE_INVERT, this);
     }
 
+    /**
+     * UPDATE
+     */
     public void showTableInvert_2() {
+        //
+        SET_CURRENT_OPERATION_INSERT(false);
+        //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
@@ -496,6 +530,9 @@ public class CustomersA extends Basic_Buh_ {
 
     }
 
+    /**
+     * UPDATE
+     */
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
         TABLE_INVERT_3 = null;
@@ -506,6 +543,9 @@ public class CustomersA extends Basic_Buh_ {
         addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
+    /**
+     * INSERT
+     */
     public void showTableInvert_4() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "");
         TABLE_INVERT_4 = null;
@@ -545,6 +585,11 @@ public class CustomersA extends Basic_Buh_ {
         return rows;
     }
 
+    /**
+     * UPDATE
+     *
+     * @return
+     */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         JTable table = getTableKunder();
@@ -587,7 +632,7 @@ public class CustomersA extends Basic_Buh_ {
     }
 
     /**
-     * Shows address data NOT for INSERT but for editing
+     * Shows address data NOT for INSERT but for UPDATE
      *
      * @return
      */
@@ -634,7 +679,7 @@ public class CustomersA extends Basic_Buh_ {
     }
 
     /**
-     * This one is for INSERTING of address data
+     * "INSERT" This one is for INSERTING of address data
      *
      * @return
      */
