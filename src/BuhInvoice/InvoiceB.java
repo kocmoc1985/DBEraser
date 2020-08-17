@@ -8,7 +8,6 @@ package BuhInvoice;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -279,6 +278,10 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+            //
+            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.35);
+            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
+            //
         }
         //
     }
