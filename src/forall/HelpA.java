@@ -1256,8 +1256,8 @@ public class HelpA {
         //
         return csv;
     }
-    
-    public static boolean rowSelected(JTable table){
+
+    public static boolean rowSelected(JTable table) {
         return table.getSelectedRow() != -1;
     }
 
@@ -1671,6 +1671,7 @@ public class HelpA {
     public static boolean confirmWarning(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
+
 
     public static boolean checkIfNumber(String value) {
         try {

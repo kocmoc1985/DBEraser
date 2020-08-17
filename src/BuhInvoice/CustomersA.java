@@ -110,13 +110,12 @@ public class CustomersA extends Basic_Buh_ {
             hideAdressesTable();
         }
         //
+        fillJTable_header_kunder();
+        fillJTable_header_kund_addresses();
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-//                showTableInvert();
-                fillJTable_header_kunder();
-                fillJTable_header_kund_addresses();
-
                 //
                 refresh();
                 //
@@ -143,8 +142,23 @@ public class CustomersA extends Basic_Buh_ {
 
     protected void delete() {
         //
-        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
-            return;
+        //
+        String str = bim.getForeignKeyBindings(
+                getTableKunder(),
+                TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID,
+                DB.BUH_FAKTURA__FAKTURAKUND_ID,
+                DB.PHP_FUNC_PARAM_GET_INVOICES_USING_CUSTOMER,
+                DB.BUH_FAKTURA__FAKTURANR__
+        );
+        //
+        if (str.isEmpty() == false && str.equals("null") == false) {
+            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_CUSTOMER(str)) == false) {
+                return;
+            }
+        } else {
+            if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+                return;
+            }
         }
         //
         String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);

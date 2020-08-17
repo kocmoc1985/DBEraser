@@ -31,7 +31,11 @@ public class LANG {
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
     public static String MSG_DELETE_WARNING_ARTICLE(String fakturor) {
-        return "OBS! Den valda artikeln används i följande fakturor: " + fakturor + "\n Om du raderar artikeln, raderas också de ovannämnda fakturor permanent.";
+        return "OBS! Den valda artikeln används i följande fakturor: " + fakturor + "\n Om du raderar artikeln, raderas också de ovannämnda fakturor permanent!";
+    }
+    
+    public static String MSG_DELETE_WARNING_CUSTOMER(String fakturor) {
+        return "OBS! Den valda kunden används i följande fakturor: " + fakturor + "\n Om du raderar kunden, raderas också de ovannämnda fakturor permanent!";
     }
 
     /**

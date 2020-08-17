@@ -9,6 +9,11 @@ WHERE buh_faktura.kundId=2
 
 ----------------------------------------------------------------------
 [2020-07-22]
+-----------------------------------------------------------------------
+SELECT buh_faktura.fakturanr FROM buh_faktura where buh_faktura.fakturaKundId=2 
+group by buh_faktura.fakturaKundId
+-----------------------------------------------------------------------
+[2020-08-17]
 GET ALL INVOICES WHICH USES GIVEN ARTICLE
 
 select buh_faktura.fakturanr, buh_faktura.fakturaId from buh_faktura

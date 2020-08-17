@@ -69,50 +69,17 @@ public class ArticlesA extends Basic_Buh_ {
     @Override
     protected void startUp() {
         //
+        fillJTableheader();
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-//                showTableInvert();
-                fillJTableheader();
                 //
                 refresh();
                 //
             }
         });
         //
-    }
-
-    protected String getAllInvoicesWhichUserArticleX() {
-        //
-        String fakturor = "";
-        //
-        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
-        //
-        String json = bim.getSELECT(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_INVOICES_USING_ARTICLE, json));
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            for (HashMap<String, String> map : invoices) {
-                //
-                String fakturaNr = map.get(DB.BUH_FAKTURA__FAKTURANR__);
-                //
-                fakturor += fakturaNr + ",";
-                //
-            }
-            //
-            fakturor = JSon.delete_last_letter_in_string(fakturor, ",");
-            //
-            return fakturor;
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-            return "";
-        }
     }
 
     private void refresh() {
@@ -236,12 +203,19 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
+
     protected void delete() {
         //
-        String invoices_which_use_article_x = getAllInvoicesWhichUserArticleX();
+        String str = bim.getForeignKeyBindings(
+                getTableArticles(),
+                TABLE_ARTICLES__ID,
+                DB.BUH_FAKTURA_ARTIKEL___ID,
+                DB.PHP_FUNC_PARAM_GET_INVOICES_USING_ARTICLE,
+                DB.BUH_FAKTURA__FAKTURANR__
+        );
         //
-        if (invoices_which_use_article_x.isEmpty() == false && invoices_which_use_article_x.equals("null") == false) {
-            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_ARTICLE(invoices_which_use_article_x)) == false) {
+        if (str.isEmpty() == false && str.equals("null") == false) {
+            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_ARTICLE(str)) == false) {
                 return;
             }
         } else {
@@ -249,8 +223,6 @@ public class ArticlesA extends Basic_Buh_ {
                 return;
             }
         }
-        //
-
         //
         String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
