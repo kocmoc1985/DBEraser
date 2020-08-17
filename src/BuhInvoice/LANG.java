@@ -20,10 +20,10 @@ public class LANG {
     
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
-    
-     public static String LBL_MSG_3 = "SKAPA NY KUND";
-     public static String LBL_MSG_4 = "BEARBETA KUND";
-    
+    public static String LBL_MSG_3 = "SKAPA NY KUND";
+    public static String LBL_MSG_4 = "BEARBETA KUND";
+    public static String LBL_MSG_5 = "SKAPA ARTIKEL"; 
+    public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
     /**
      * VERY IMPORTANT: If it happens even once, actions shall be taken [2020-08-06]
      * This one shall be only used in cases when you insert an entry and retrieve

@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.Invoice.CURRENT_OPERATION_INSERT;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
@@ -35,6 +36,31 @@ public class ArticlesA extends Basic_Buh_ {
     private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
+    //
+    public static boolean CURRENT_OPERATION_INSERT = false;
+    
+    protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
+        //
+        CURRENT_OPERATION_INSERT = insert;
+        //
+        if(insert){
+            //
+            bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_5);
+            //
+            bim.jButton_update_article.setEnabled(false);
+            bim.jButton_delete_article.setEnabled(false);
+            bim.jButton_add_article.setEnabled(true);
+            //
+        }else{
+            //
+            bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_6);
+            //
+            bim.jButton_update_article.setEnabled(true);
+            bim.jButton_delete_article.setEnabled(true);
+            bim.jButton_add_article.setEnabled(false);
+            //
+        }
+    }
 
     public ArticlesA(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -239,8 +265,14 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
+    /**
+     * INSERT
+     */
     @Override
     public void showTableInvert() {
+        //
+        SET_CURRENT_OPERATION_INSERT(true);
+        //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
@@ -250,7 +282,13 @@ public class ArticlesA extends Basic_Buh_ {
         addTableInvertRowListener(TABLE_INVERT, this);
     }
 
+    /**
+     * UPDATE
+     */
     public void showTableInvert_2() {
+        //
+        SET_CURRENT_OPERATION_INSERT(false);
+        //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_faktura_a");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);

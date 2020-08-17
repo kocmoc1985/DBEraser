@@ -58,13 +58,13 @@ public abstract class Invoice extends Basic_Buh_ {
             bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
             //
             enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
-            bim.jButton_update_article.setEnabled(false);
+            bim.jButton_update_articles_row.setEnabled(false);
         } else {
             //
             bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
             //
             enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
-            bim.jButton_update_article.setEnabled(true);
+            bim.jButton_update_articles_row.setEnabled(true);
         }
     }
     

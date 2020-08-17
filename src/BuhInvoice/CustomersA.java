@@ -72,6 +72,7 @@ public class CustomersA extends Basic_Buh_ {
             //
             bim.jButton_update_kund.setEnabled(false);
             bim.jButton_add_customer.setEnabled(true);
+            bim.jButton_delete_customer.setEnabled(false);
             //
         } else {
             //
@@ -79,6 +80,7 @@ public class CustomersA extends Basic_Buh_ {
             //
             bim.jButton_update_kund.setEnabled(true);
             bim.jButton_add_customer.setEnabled(false);
+            bim.jButton_delete_customer.setEnabled(true);
             //
         }
     }
