@@ -9,7 +9,14 @@ WHERE buh_faktura.kundId=2
 
 ----------------------------------------------------------------------
 [2020-07-22]
+GET ALL INVOICES WHICH USES GIVEN ARTICLE
 
+select buh_faktura.fakturanr, buh_faktura.fakturaId from buh_faktura
+INNER JOIN buh_f_artikel 
+ON buh_f_artikel.fakturaId = buh_faktura.fakturaId
+where buh_f_artikel.artikelId = 3 GROUP BY buh_faktura.fakturanr
+
+-----------------------------------------------------------------------
 IMPORTANT:
 GET FAKTURA ID (fakturaId) for the created FAKTURA with given "kundId".
 

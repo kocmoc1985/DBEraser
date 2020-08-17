@@ -38,12 +38,12 @@ public class ArticlesA extends Basic_Buh_ {
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
-    
+
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
-        if(insert){
+        if (insert) {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_5);
             //
@@ -51,7 +51,7 @@ public class ArticlesA extends Basic_Buh_ {
             bim.jButton_delete_article.setEnabled(false);
             bim.jButton_add_article.setEnabled(true);
             //
-        }else{
+        } else {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_6);
             //
@@ -80,6 +80,39 @@ public class ArticlesA extends Basic_Buh_ {
             }
         });
         //
+    }
+
+    protected String getAllInvoicesWhichUserArticleX() {
+        //
+        String fakturor = "";
+        //
+        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
+        //
+        String json = bim.getSELECT(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_INVOICES_USING_ARTICLE, json));
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> map : invoices) {
+                //
+                String fakturaNr = map.get(DB.BUH_FAKTURA__FAKTURANR__);
+                //
+                fakturor += fakturaNr + ",";
+                //
+            }
+            //
+            fakturor = JSon.delete_last_letter_in_string(fakturor, ",");
+            //
+            return fakturor;
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
     }
 
     private void refresh() {
@@ -120,9 +153,9 @@ public class ArticlesA extends Basic_Buh_ {
 //        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
         //
     }
-    
-    public void update(){
-         //
+
+    public void update() {
+        //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
             return;
@@ -139,8 +172,8 @@ public class ArticlesA extends Basic_Buh_ {
         //
         refresh();
     }
-    
-     private void updateArticleData(String artikelId) {
+
+    private void updateArticleData(String artikelId) {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
         //
@@ -205,9 +238,19 @@ public class ArticlesA extends Basic_Buh_ {
 
     protected void delete() {
         //
-        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
-            return;
+        String invoices_which_use_article_x = getAllInvoicesWhichUserArticleX();
+        //
+        if (invoices_which_use_article_x.isEmpty() == false && invoices_which_use_article_x.equals("null") == false) {
+            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_ARTICLE(invoices_which_use_article_x)) == false) {
+                return;
+            }
+        } else {
+            if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+                return;
+            }
         }
+        //
+
         //
         String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
@@ -228,8 +271,8 @@ public class ArticlesA extends Basic_Buh_ {
         executeDelete(json);
         //
     }
-    
-    private void delete__buh_faktura_artikel(String artikelId){
+
+    private void delete__buh_faktura_artikel(String artikelId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.TABLE__BUH_FAKTURA_ARTIKEL);
         //

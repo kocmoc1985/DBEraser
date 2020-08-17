@@ -56,6 +56,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID = "get_invoices_given_fakturakundid"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_INVOICES_USING_ARTICLE = "get_invoices_using_article"; // using php-function: "select()"
     //
     public static final String PHP_FUNC_UPDATE_AUTO = "update_auto"; // using php-function: "update()"
     //

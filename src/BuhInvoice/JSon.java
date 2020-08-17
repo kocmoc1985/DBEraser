@@ -411,7 +411,7 @@ public class JSon {
 
     }
 
-    private static String delete_last_letter_in_string(String str, String letter) {
+    public static String delete_last_letter_in_string(String str, String letter) {
         //
         int a = str.length() - 1;
         //
