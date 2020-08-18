@@ -31,7 +31,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private final ArrayList<HashMap<String, String>> articles_map_list;
     private final HashMap<String, String> map_a;
-
+    private final HashMap<String, String> map_b;
+    private final HashMap<String, String> map_c;
+    
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
     /**
@@ -39,11 +41,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     public HTMLPrint_A(
             ArrayList<HashMap<String, String>> articles_map_list,
-            HashMap<String, String> map_a
+            HashMap<String, String> map_a,
+            HashMap<String, String> map_b,
+            HashMap<String, String> map_c
     ) {
+        //
         initComponents();
+        //
         this.articles_map_list = articles_map_list;
+        //
         this.map_a = map_a;
+        this.map_b = map_b;
+        this.map_c = map_c;
+        //
         go();
     }
 
@@ -80,9 +90,22 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     private static final String T__FAKTURA_TITLE = "Faktura";
+    //
     public static final String T__FAKTURA_NR = "Faktura nr";
     public static final String T__KUND_NR = "Kundnr";
     public static final String T__FAKTURA_DATUM = "Fakturadatum";
+    //
+    public static final String T__FAKTURA_ER_REF = "Er referens";
+    public static final String T__FAKTURA_ERT_ORDER_NR = "Ert ordernr";
+    public static final String T__FAKTURA_LEV_VILKOR = "Leveransvilkor";
+    public static final String T__FAKTURA_LEV_SATT = "Leveranssätt";
+    public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
+    //
+    public static final String T__FAKTURA_VAR_REF = "Vår referens";
+    public static final String T__FAKTURA_BETAL_VILKOR = "Betalningvilkor";
+    public static final String T__FAKTURA_FORFALLODATUM = "Förfallodatum";
+    public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
+    public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
     private static final String COMPANY_NAME = "MixCont AB";
 
@@ -199,10 +222,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] headers_t_1 = new String[]{"Er referens", "Ert ordernr", "Leveransvilkor", "Leveranssätt", "Ert VAT nummer"};
-        String[] values_t_1 = new String[]{"Vladimir Putin", "", "Fritt Kund", "Post", "SE5546785683"};
-        String[] headers_t_2 = new String[]{"Vår referens", "Betalningsvilkor", "Förfallodatum", "Dröjsmålsränta", "Krediterar fakturanr"};
-        String[] values_t_2 = new String[]{"Aleksander Lukasjenko", "0 dagar netto", "2020-07-09", "23%", "200011"};
+        String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT, T__FAKTURA_ERT_VAT_NR};
+        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR),map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT),  map_b.get(T__FAKTURA_ERT_VAT_NR)};
+        //
+        String[] headers_t_2 = new String[]{T__FAKTURA_VAR_REF, T__FAKTURA_BETAL_VILKOR, T__FAKTURA_FORFALLODATUM, T__FAKTURA_DROJMALSRANTA, T__FAKTURA_XXXXXXX};
+        String[] values_t_2 = new String[]{map_c.get(T__FAKTURA_VAR_REF), map_c.get(T__FAKTURA_BETAL_VILKOR), map_c.get(T__FAKTURA_FORFALLODATUM), map_c.get(T__FAKTURA_DROJMALSRANTA), map_c.get(T__FAKTURA_XXXXXXX)};
         //
         html_ += "<tr>"
                 //
@@ -541,7 +565,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null,null).setVisible(true);
+                new HTMLPrint_A(null,null,null,null).setVisible(true);
             }
         });
     }

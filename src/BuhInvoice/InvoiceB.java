@@ -351,7 +351,7 @@ public class InvoiceB extends Basic {
 
     private void executeDelete(String json) {
         //
-        System.out.println("UPDATE json: " + json);
+//        System.out.println("UPDATE json: " + json);
         //
         try {
             //
@@ -361,6 +361,49 @@ public class InvoiceB extends Basic {
         } catch (Exception ex) {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private String _get(String colNameJTable){
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        return HelpA.getValueSelectedRow(table, colNameJTable);
+    }
+    
+    public void htmlFaktura_b() {
+        //
+//        BUH_INVOICE_MAIN bim = invoice.bim;
+        //
+        HashMap<String,String>map_a = new HashMap<>();
+        HashMap<String,String>map_b = new HashMap<>();
+        HashMap<String,String>map_c = new HashMap<>();
+        //
+        map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
+        map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
+        map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, _get(TABLE_ALL_INVOICES__DATUM));
+        //
+        map_b.put(HTMLPrint_A.T__FAKTURA_ER_REF, _get(TABLE_ALL_INVOICES__ER_REF));
+        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, ""); //**************************EMPTY
+        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_VILKOR, _get(TABLE_ALL_INVOICES__LEV_VILKOR));
+        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_SATT, _get(TABLE_ALL_INVOICES__LEV_SATT));
+        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_VAT_NR, ""); //**************************EMPTY
+        //
+        map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, _get(TABLE_ALL_INVOICES__VAR_REF));
+        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR, _get(TABLE_ALL_INVOICES__BET_VILKOR));
+        map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
+        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA, ""); //**************************EMPTY
+        map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
+                        bim.getArticlesActualInvoice(),
+                        map_a,
+                        map_b,
+                        map_c
+                );
+                hTMLPrint_A.setVisible(true);
+            }
+        });
     }
 
     @Override

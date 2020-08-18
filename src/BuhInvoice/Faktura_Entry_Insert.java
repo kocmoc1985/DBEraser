@@ -189,27 +189,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
     
-    public void htmlFaktura_b() {
-        //
-        BUH_INVOICE_MAIN bim = invoice.bim;
-        //
-        HashMap<String,String>map_a = new HashMap<>();
-        //
-        map_a.put(HTMLPrint_A.T__FAKTURA_NR, bim.getFakturaNr());
-        map_a.put(HTMLPrint_A.T__KUND_NR, bim.getFakturaKundNr());
-        map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, bim.getFakturaDatum());
-        //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
-                        bim.getArticlesActualInvoice(),
-                        map_a
-                );
-                hTMLPrint_A.setVisible(true);
-            }
-        });
-    }
+    
 
     public void htmlFaktura() {
         //
