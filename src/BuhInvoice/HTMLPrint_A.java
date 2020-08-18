@@ -127,16 +127,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
     public static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
-    public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP; 
-    public static final String COL_3 = DB.BUH_ADDR__ORT; 
-    public static final String COL_4 = DB.BUH_ADDR__TEL_A; 
+    public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
+    public static final String COL_3 = DB.BUH_ADDR__ORT;
+    public static final String COL_4 = DB.BUH_ADDR__TEL_A;
     //
     public static final String T__ARTIKEL_NAMN = "Artikel";
     public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
     public static final String T__ARTIKEL_ANTAL = "Antal";
     public static final String T__ARTIKEL_ENHET = "Enhet";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
-    
+
     protected String buildHTML() {
         //
         String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
@@ -167,6 +167,17 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</body>"
                 + "</html>";
         //
+    }
+
+    private String _get(HashMap<String, String> map, String param) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return val;
+        }
     }
 
     /**
@@ -224,8 +235,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, map_e.get(COL_1), map_e.get(COL_2), map_e.get(COL_3), map_e.get(COL_4)};
-        String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, map_e.get(COL_1), map_e.get(COL_2), map_e.get(COL_3), map_e.get(COL_4)};
+        
+        String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
+        String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
         //
         html_ += "<tr>"
                 //
@@ -591,7 +603,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null,null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null).setVisible(true);
             }
         });
     }
