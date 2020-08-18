@@ -505,7 +505,13 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 //
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
-                mapToReturn.put(dataInvert.getFieldOriginalName(), columnValue.getValue());
+                String val = columnValue.getValue();
+                //
+                // [2020-08-18] Not taking into account empty or null
+                // Using 'DEFAULT' in Database helps when inserting
+                if (val == null || val.isEmpty() == false) {
+                    mapToReturn.put(dataInvert.getFieldOriginalName(), val);
+                }
                 //
             }
             //
@@ -513,8 +519,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         return mapToReturn;
     }
-
-    
 
     /**
      * [2020-07-30] Return only the map which contains values which were
@@ -560,9 +564,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         return mapToReturn;
     }
-    
+
     /**
-     * [2020-08-13]
+     * [2020-08-13] Does not help with PHP/PDO, "DEFAULT" is considered as
+     * String
      *
      * @param table_invert
      * @param startColumn
@@ -603,12 +608,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
-     * [2020-08-13]
-     * This method allows you to specify manually which parameter
+     * [2020-08-13] This method allows you to specify manually which parameter
      * the JComboBox will return.
-     * 
-     * NOTE ALSO: That this method does not return key/value pairs 
-     * for which the value is empty, = null or .equals'NULL'
+     *
+     * NOTE ALSO: That this method does not return key/value pairs for which the
+     * value is empty, = null or .equals'NULL'
      *
      * @param table_invert
      * @param startColumn

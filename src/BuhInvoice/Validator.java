@@ -44,7 +44,8 @@ public class Validator {
         String val = jtfi.getText();
         //
         if(val.isEmpty()){
-            jtfi.setForeground(getJTextFieldInitialColor());
+            jtfi.setBackground(Color.red);
+//            jtfi.setForeground(getJTextFieldInitialColor());
             return false;
         }
         //
@@ -67,11 +68,13 @@ public class Validator {
         int exist_ = Integer.parseInt(exist.trim());
         //
         if (exist_ == 0) {
-            jtfi.setForeground(getJTextFieldInitialColor());
+            jtfi.setBackground(Color.WHITE);
+//            jtfi.setForeground(getJTextFieldInitialColor());
             jli.setValidated(true);
             return true;
         } else {
-            jtfi.setForeground(Color.ORANGE);
+            jtfi.setBackground(Color.ORANGE);
+//            jtfi.setForeground(Color.ORANGE);
             jli.setValidated(false);
             return false;
         }
@@ -89,17 +92,20 @@ public class Validator {
         //
         JTextField jtf = (JTextField) jli;
         //
+        //
         if (val.contains(",")) {
             val = val.replaceAll(",", ".");
             jtf.setText(val);
         }
         //
         if (HelpA.isNumber(val)) {
-            jtf.setForeground(getJTextFieldInitialColor());
+            jtf.setBackground(Color.WHITE);
+//            jtf.setForeground(getJTextFieldInitialColor());
             jli.setValidated(true);
             return true;
         } else {
-            jtf.setForeground(Color.RED);
+            jtf.setBackground(Color.RED);
+//            jtf.setForeground(Color.RED);
             jli.setValidated(false);
             return false;
         }
@@ -123,11 +129,13 @@ public class Validator {
         JTextField jtf = (JTextField) jli;
         //
         if (validated) {
-            jtf.setForeground(getJTextFieldInitialColor());
+             jtf.setBackground(Color.white);
+//            jtf.setForeground(getJTextFieldInitialColor());
             jli.setValidated(true);
             return true;
         } else {
-            jtf.setForeground(Color.RED);
+            jtf.setBackground(Color.red);
+//            jtf.setForeground(Color.RED);
             jli.setValidated(false);
             return false;
         }
@@ -143,11 +151,13 @@ public class Validator {
         JTextField jtf = (JTextField) jli;
         //
         if (validated && HelpA.isDateValid(val)) {
-            jtf.setForeground(getJTextFieldInitialColor());
+//            jtf.setForeground(getJTextFieldInitialColor());
+            jtf.setBackground(Color.WHITE);
             jli.setValidated(true);
             return true;
         } else {
-            jtf.setForeground(Color.RED);
+//            jtf.setForeground(Color.RED);
+            jtf.setBackground(Color.RED);
             jli.setValidated(false);
             return false;
         }

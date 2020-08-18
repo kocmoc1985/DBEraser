@@ -323,11 +323,11 @@ public class ArticlesA extends Basic_Buh_ {
         //
         RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___NAMN, "ARTIKEL NAMN", "", true, true, true);
         //
-        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, "PRIS", "", false, true, true);
+        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, "PRIS", "", false, true, false);
         //
-        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, true);
+        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, false);
         //
-        RowDataInvert lager = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___LAGER, "LAGER", "", false, true, true);
+        RowDataInvert lager = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___LAGER, "LAGER", "", false, true, false);
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT, "KOMMENT", "", true, true, false);
         //
@@ -335,8 +335,8 @@ public class ArticlesA extends Basic_Buh_ {
         RowDataInvert[] rows = {
             namn,
             pris,
-            inkopspris,
-            lager,
+//            inkopspris,
+//            lager,
             komment
         };
         //
@@ -366,8 +366,8 @@ public class ArticlesA extends Basic_Buh_ {
         RowDataInvert[] rows = {
             namn,
             pris,
-            inkopspris,
-            lager,
+//            inkopspris,
+//            lager,
             komment
         };
         //
