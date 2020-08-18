@@ -192,6 +192,7 @@ public class InvoiceB extends Basic {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_INKL_MOMS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
@@ -315,10 +316,6 @@ public class InvoiceB extends Basic {
     }
 
     protected void deleteFaktura() {
-        //
-        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
-            return;
-        }
         //
         String fakturaId = bim.getFakturaId();
         //

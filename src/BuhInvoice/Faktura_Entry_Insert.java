@@ -189,19 +189,5 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
     
-    
-
-    public void htmlFaktura() {
-        //
-        String fakturaId = ""; // fakturaId is defined at the moment when the faktura is comitted to DB, so at the moment i don't know how to deal with it
-        //
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(articlesListJTable);
-//                hTMLPrint_A.setVisible(true);
-//            }
-//        });
-    }
 
 }

@@ -14,7 +14,8 @@ public class LANG {
     public static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
     public static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
     public static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
-    public static String MSG_3 = "Data kommer raderas permanent! Vill du forsätta?";
+    public static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
+    public static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_4 = "Radera rad?";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
@@ -29,6 +30,8 @@ public class LANG {
      * entry and retrieve the newly inserted id
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
+    
+    
 
     public static String MSG_DELETE_WARNING_ARTICLE(String fakturor) {
         return "OBS! Den valda artikeln används i följande fakturor: " + fakturor + "\n Om du raderar artikeln, raderas också de ovannämnda fakturor permanent!";

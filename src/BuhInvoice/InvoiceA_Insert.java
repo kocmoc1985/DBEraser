@@ -88,9 +88,7 @@ public class InvoiceA_Insert extends Invoice {
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
     }
 
-    public void htmlFaktura() {
-        this.faktura_entry_insert.htmlFaktura();
-    }
+    
 
     protected void deleteArtikel() {
         //

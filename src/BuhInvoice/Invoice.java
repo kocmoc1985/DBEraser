@@ -330,7 +330,7 @@ public abstract class Invoice extends Basic_Buh_ {
     
     protected void hideMomsSatsIfExklMoms() {
         //
-        System.out.println("INKL_MOMS----------------------");
+//        System.out.println("INKL_MOMS----------------------");
         //
         boolean momsInk = getInklMoms();
         //
