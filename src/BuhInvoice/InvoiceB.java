@@ -375,6 +375,28 @@ public class InvoiceB extends Basic {
         return ""+ rst;
     }
     
+    private HashMap<String,String> getFakturaKundAddress(){
+        //
+        String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        //
+        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_KUND_ADDRESSES, json));
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return addresses.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        //
+    }
+    
     public void htmlFaktura_b() {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -383,6 +405,7 @@ public class InvoiceB extends Basic {
         HashMap<String,String>map_b = new HashMap<>();
         HashMap<String,String>map_c = new HashMap<>();
         HashMap<String,String>map_d = new HashMap<>();
+        HashMap<String,String>map_e__lev_addr = getFakturaKundAddress();
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
@@ -407,6 +430,8 @@ public class InvoiceB extends Basic {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_ATT_BETALA, _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         //
+        
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -415,7 +440,8 @@ public class InvoiceB extends Basic {
                         map_a,
                         map_b,
                         map_c,
-                        map_d
+                        map_d,
+                        map_e__lev_addr
                 );
                 hTMLPrint_A.setVisible(true);
             }

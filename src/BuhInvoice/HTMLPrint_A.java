@@ -34,6 +34,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private final HashMap<String, String> map_b;
     private final HashMap<String, String> map_c;
     private final HashMap<String, String> map_d;
+    private final HashMap<String, String> map_e;
 
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
@@ -45,7 +46,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             HashMap<String, String> map_a,
             HashMap<String, String> map_b,
             HashMap<String, String> map_c,
-            HashMap<String, String> map_d
+            HashMap<String, String> map_d,
+            HashMap<String, String> map_e
     ) {
         //
         initComponents();
@@ -56,6 +58,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         this.map_b = map_b;
         this.map_c = map_c;
         this.map_d = map_d;
+        this.map_e = map_e;
         //
         go();
     }
@@ -119,8 +122,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
-
+    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; //Leveransadress
+    //
+    public static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
+    public static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
+    public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
+    public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP; 
+    public static final String COL_3 = DB.BUH_ADDR__ORT; 
+    public static final String COL_4 = DB.BUH_ADDR__TEL_A; 
+    //
+    public static final String T__ARTIKEL_NAMN = "Artikel";
+    public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
+    public static final String T__ARTIKEL_ANTAL = "Antal";
+    public static final String T__ARTIKEL_ENHET = "Enhet";
+    public static final String T__ARTIKEL_PRIS = "A`Pris";
+    
     protected String buildHTML() {
         //
         String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
@@ -208,8 +224,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] values_a = new String[]{"Leveransadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"};
-        String[] values_b = new String[]{"Fakturaadress", "Sveagatan 19", "231-55", "Trelleborg", "Russia"};
+        String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, map_e.get(COL_1), map_e.get(COL_2), map_e.get(COL_3), map_e.get(COL_4)};
+        String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, map_e.get(COL_1), map_e.get(COL_2), map_e.get(COL_3), map_e.get(COL_4)};
         //
         html_ += "<tr>"
                 //
@@ -297,11 +313,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         html_ += "<tr>";
         //
-        html_ += "<td>" + "Artnr" + "</td>";
-        html_ += "<td>" + "Benämning" + "</td>";
-        html_ += "<td>" + "Antal" + "</td>";
-        html_ += "<td>" + "Enhet" + "</td>";
-        html_ += "<td>" + "A´Pris" + "</td>";
+        html_ += "<td>" + T__ARTIKEL_NAMN + "</td>";
+        html_ += "<td>" + T__ARTIKEL_KOMMENT + "</td>";
+        html_ += "<td>" + T__ARTIKEL_ANTAL + "</td>";
+        html_ += "<td>" + T__ARTIKEL_ENHET + "</td>";
+        html_ += "<td>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
         //
@@ -310,7 +326,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
             html_ += "<tr>";
             //
-            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ARTIKELID) + "</td>";
+            html_ += "<td>" + map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
             html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
             html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
             html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ENHET) + "</td>";
@@ -575,7 +591,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null,null).setVisible(true);
             }
         });
     }
