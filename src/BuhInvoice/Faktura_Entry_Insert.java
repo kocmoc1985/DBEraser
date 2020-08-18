@@ -49,7 +49,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             fakturaId = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_TO_DB, json));
             //
-            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
+//            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,15 +188,40 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         invoice.countFakturaTotal(getArticlesTable());
         //
     }
-
-    public void htmlFaktura() {
+    
+    public void htmlFaktura_b() {
+        //
+        BUH_INVOICE_MAIN bim = invoice.bim;
+        //
+        HashMap<String,String>map_a = new HashMap<>();
+        //
+        map_a.put(HTMLPrint_A.T__FAKTURA_NR, bim.getFakturaNr());
+        map_a.put(HTMLPrint_A.T__KUND_NR, bim.getFakturaKundNr());
+        map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, bim.getFakturaDatum());
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(articlesList);
+                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
+                        bim.getArticlesActualInvoice(),
+                        map_a
+                );
                 hTMLPrint_A.setVisible(true);
             }
         });
+    }
+
+    public void htmlFaktura() {
+        //
+        String fakturaId = ""; // fakturaId is defined at the moment when the faktura is comitted to DB, so at the moment i don't know how to deal with it
+        //
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(articlesListJTable);
+//                hTMLPrint_A.setVisible(true);
+//            }
+//        });
     }
 
 }

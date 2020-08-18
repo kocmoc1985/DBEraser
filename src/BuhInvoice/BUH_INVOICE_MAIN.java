@@ -42,7 +42,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private final static String TAB_FAKTURA = "FAKTURA";
     private final static String TAB_KUDNER = "KUNDER";
     private final static String TAB_ARTIKLAR = "ARTIKLAR";
-
+    //
+    private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
+    
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -73,12 +75,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    private void setInsertOrUpdateLabel(boolean insert) {
-        if (insert) {
-            jLabel_Faktura_Insert_or_Update.setText("SKAPA NY FAKTURA");
-        } else {
-            jLabel_Faktura_Insert_or_Update.setText("BEARBETA FAKTURA");
-        }
+    protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>>list){
+        this.ARTICLES_ACTUAL_INVOICE = list;
+    }
+    
+    protected ArrayList<HashMap<String, String>> getArticlesActualInvoice(){
+        return this.ARTICLES_ACTUAL_INVOICE;
     }
 
     /**
@@ -92,10 +94,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getKundId() {
         return "1";
     }
-
+    
+        
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
+    
+    protected String getFakturaNr() {
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
+    }
+
+    protected String getFakturaKundNr(){
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_NR);
+    }    
+    
+   protected String getFakturaDatum(){
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__DATUM);
+    } 
 
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);

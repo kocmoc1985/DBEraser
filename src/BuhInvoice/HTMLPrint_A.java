@@ -29,16 +29,21 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint_A extends javax.swing.JFrame {
 
-    private ArrayList<HashMap<String, String>> articles_map_list;
+    private final ArrayList<HashMap<String, String>> articles_map_list;
+    private final HashMap<String, String> map_a;
 
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
     /**
      * Creates new form HTMLPrint_A
      */
-    public HTMLPrint_A(ArrayList<HashMap<String, String>> articles_map_list) {
+    public HTMLPrint_A(
+            ArrayList<HashMap<String, String>> articles_map_list,
+            HashMap<String, String> map_a
+    ) {
         initComponents();
         this.articles_map_list = articles_map_list;
+        this.map_a = map_a;
         go();
     }
 
@@ -74,15 +79,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1.setText(buildHTML());
     }
 
-    private static final String T__FAKTURA = "Faktura";
-    private static final String T__FAKTURA_NR = "Faktura nr";
-    private static final String T__KUND_NR = "Kundnr";
-    private static final String T__FAKTURA_DATUM = "Fakturadatum";
+    private static final String T__FAKTURA_TITLE = "Faktura";
+    public static final String T__FAKTURA_NR = "Faktura nr";
+    public static final String T__KUND_NR = "Kundnr";
+    public static final String T__FAKTURA_DATUM = "Fakturadatum";
     //
     private static final String COMPANY_NAME = "MixCont AB";
-    private static final String FAKTURA_NR = "424";
-    private static final String KUND_NR = "114103307";
-    private static final String FAKTURA_DATUM = "2020-05-01";
 
     private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
 
@@ -117,14 +119,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</html>";
         //
     }
-    
+
     /**
      * Temporary fix [2020-07-23]
-     * @return 
+     *
+     * @return
      */
-    private String brElements(){
+    private String brElements() {
         //
-        if(articles_map_list == null){
+        if (articles_map_list == null) {
             return "";
         }
         //
@@ -133,7 +136,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         int br_to_add = 10 - articles_map_list.size();
         //
         for (int i = 0; i < br_to_add; i++) {
-            html+="<br>";
+            html += "<br>";
         }
         //
         return html;
@@ -142,7 +145,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private String faktura_header_with_logo_to_html(String imgPath) {
         //
         String[] headers = new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM};
-        String[] values = new String[]{FAKTURA_NR, KUND_NR, FAKTURA_DATUM};
+        String[] values = new String[]{map_a.get(T__FAKTURA_NR), map_a.get(T__KUND_NR), map_a.get(T__FAKTURA_DATUM)};
         //
         return "<table style='margin-top:15px;'>"
                 //
@@ -160,10 +163,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private String titleOrLogoIfExist(String imgPath) {
         if (imgPath != null) {
             return "<td rowspan='2'><img src='" + imgPath + "' alt='MCRemote'></td>" // width='32' height='32'
-                    + "<td><h2>" + T__FAKTURA + "</h2></td>";
+                    + "<td><h2>" + T__FAKTURA_TITLE + "</h2></td>";
         } else {
             return "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
-                    + "<td><h1>" + T__FAKTURA + "</h1></td>";
+                    + "<td><h1>" + T__FAKTURA_TITLE + "</h1></td>";
 
         }
     }
@@ -538,7 +541,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null).setVisible(true);
+                new HTMLPrint_A(null,null).setVisible(true);
             }
         });
     }

@@ -40,7 +40,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
-//        this.articlesListJTable.add(map);
+        //        
+        this.articlesListJTable.add(map);
         //
         Object[] jtableRow = new Object[]{
             "",

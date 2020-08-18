@@ -20,6 +20,8 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class JSon {
     
+    
+    
     public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {
         //
         HashMap joined_properties = new HashMap();
@@ -223,7 +225,7 @@ public class JSon {
             //
             HashMap<String, String> map = JSONToHashMap(json, false);
             //
-            System.out.println("map: " + map);
+//            System.out.println("map: " + map);
             //
             list.add(map);
             //
