@@ -368,6 +368,13 @@ public class InvoiceB extends Basic {
         return HelpA.getValueSelectedRow(table, colNameJTable);
     }
     
+    private String _get_percent(String colNameJTable){
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        double val = Double.parseDouble(HelpA.getValueSelectedRow(table, colNameJTable));
+        int rst = (int) (val * 100);
+        return ""+ rst;
+    }
+    
     public void htmlFaktura_b() {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -375,6 +382,7 @@ public class InvoiceB extends Basic {
         HashMap<String,String>map_a = new HashMap<>();
         HashMap<String,String>map_b = new HashMap<>();
         HashMap<String,String>map_c = new HashMap<>();
+        HashMap<String,String>map_d = new HashMap<>();
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
@@ -392,6 +400,13 @@ public class InvoiceB extends Basic {
         map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA, ""); //**************************EMPTY
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //
+        map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
+        map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, _get(TABLE_ALL_INVOICES__EXP_AVG));
+        map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
+        map_d.put(HTMLPrint_A.T__FAKTURA_ATT_BETALA, _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -399,7 +414,8 @@ public class InvoiceB extends Basic {
                         bim.getArticlesActualInvoice(),
                         map_a,
                         map_b,
-                        map_c
+                        map_c,
+                        map_d
                 );
                 hTMLPrint_A.setVisible(true);
             }

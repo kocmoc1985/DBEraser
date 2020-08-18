@@ -33,7 +33,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private final HashMap<String, String> map_a;
     private final HashMap<String, String> map_b;
     private final HashMap<String, String> map_c;
-    
+    private final HashMap<String, String> map_d;
+
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
     /**
@@ -43,7 +44,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a,
             HashMap<String, String> map_b,
-            HashMap<String, String> map_c
+            HashMap<String, String> map_c,
+            HashMap<String, String> map_d
     ) {
         //
         initComponents();
@@ -53,6 +55,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         this.map_a = map_a;
         this.map_b = map_b;
         this.map_c = map_c;
+        this.map_d = map_d;
         //
         go();
     }
@@ -69,7 +72,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
-            ".bold {font-weight:bold;}"
+            ".bold {font-weight:800;}"
         //    
         };
         //
@@ -87,9 +90,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1.setDocument(doc);
         //
         jEditorPane1.setText(buildHTML());
+        //
     }
 
+    //
     private static final String T__FAKTURA_TITLE = "Faktura";
+    private static final String COMPANY_NAME = "MixCont AB";
+    private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
     //
     public static final String T__FAKTURA_NR = "Faktura nr";
     public static final String T__KUND_NR = "Kundnr";
@@ -107,9 +114,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
-    private static final String COMPANY_NAME = "MixCont AB";
-
-    private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
+    public static final String T__FAKTURA_FRAKT = "Frakt";
+    public static final String T__FAKTURA_EXP_AVG = "Exp avg";
+    public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
+    public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
+    public static final String T__FAKTURA_MOMS_KR = "Moms kr";
+    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
 
     protected String buildHTML() {
         //
@@ -223,7 +233,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<table class='marginTop'>";
         //
         String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT, T__FAKTURA_ERT_VAT_NR};
-        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR),map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT),  map_b.get(T__FAKTURA_ERT_VAT_NR)};
+        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR), map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT), map_b.get(T__FAKTURA_ERT_VAT_NR)};
         //
         String[] headers_t_2 = new String[]{T__FAKTURA_VAR_REF, T__FAKTURA_BETAL_VILKOR, T__FAKTURA_FORFALLODATUM, T__FAKTURA_DROJMALSRANTA, T__FAKTURA_XXXXXXX};
         String[] values_t_2 = new String[]{map_c.get(T__FAKTURA_VAR_REF), map_c.get(T__FAKTURA_BETAL_VILKOR), map_c.get(T__FAKTURA_FORFALLODATUM), map_c.get(T__FAKTURA_DROJMALSRANTA), map_c.get(T__FAKTURA_XXXXXXX)};
@@ -249,8 +259,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{"Frakt", "Exp avg", "Exkl moms", "Moms %", "Moms kr", "ATT BETALA"};
-        String[] values = new String[]{"125.00", "25.00", "120.00", "25", "30.00", "150.00"};
+        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_ATT_BETALA};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
         //
         html_ += internal_table_2r_xc(headers, values, 6, "");
         //
@@ -565,7 +575,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null,null,null,null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null).setVisible(true);
             }
         });
     }
