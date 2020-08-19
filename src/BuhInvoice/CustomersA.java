@@ -752,11 +752,13 @@ public class CustomersA extends Basic_Buh_ {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
             //
-            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
+//            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
+            Validator.checkIfExistInJTable(getTableKunder(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
             //
-            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
+//            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
+            Validator.checkIfExistInJTable(getTableKunder(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
             //
         }
         //

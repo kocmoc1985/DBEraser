@@ -33,6 +33,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         HelpBuh.update(json);
         //
+        resetLists();
+        //
     }
 
     @Override

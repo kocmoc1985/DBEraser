@@ -67,6 +67,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
         }
         //
+        resetLists();
+        //
     }
 
     /**

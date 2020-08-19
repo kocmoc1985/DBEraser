@@ -65,6 +65,7 @@ public class InvoiceA_Insert extends Invoice {
                 HelpA.clearAllRowsJTable(getArticlesTable());
                 //
                 resetFakturaTotal();
+                //
             }
         });
         //
@@ -81,12 +82,9 @@ public class InvoiceA_Insert extends Invoice {
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR
         };
-
-        String[][] content = new String[][]{ //            {"", "", "", "", "", ""},
-        //             {"", "", "", "", "", ""}
-        };
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
+        //
     }
 
     protected void deleteArtikel() {

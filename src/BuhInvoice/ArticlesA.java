@@ -392,7 +392,8 @@ public class ArticlesA extends Basic_Buh_ {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___NAMN)) {
             //
-            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
+//            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
+            Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);
             //
         }
         //

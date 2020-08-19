@@ -8,11 +8,13 @@ package BuhInvoice;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import forall.HelpA;
+import static forall.HelpA.getColByName;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -27,8 +29,40 @@ public class Validator {
     private static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     /**
+     * [2020-08-19]
+     * @param table
+     * @param jli
+     * @param colName
+     * @return 
+     */
+    public static boolean checkIfExistInJTable(JTable table, JLinkInvert jli, String colName) {
+        //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        String valToCheck = jtfi.getText();
+        //
+        if (valToCheck.isEmpty()) {
+            return setValidated(jli);
+        }
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = getColByName(table, colName);
+            //
+            String val = (String) table.getValueAt(x, col);
+            //
+            if (val.equals(valToCheck)) {
+                return setNotValidated(jli, Color.orange);
+            }
+            //
+        }
+        return setValidated(jli);
+    }
+
+    /**
      * [2020-07-31]
-     *
+     * It's ok to use this method, but make note that it consumes much traffic
+     * @deprecated 
      * @param bim
      * @param jli
      * @param colName
@@ -95,15 +129,15 @@ public class Validator {
         jli.setValidated(true);
         return true;
     }
-    
+
     private static boolean setNotValidated(JLinkInvert jli) {
         JTextField jtf = (JTextField) jli;
         jtf.setBackground(Color.RED);
         jli.setValidated(false);
         return false;
     }
-    
-    private static boolean setNotValidated(JLinkInvert jli,Color color) {
+
+    private static boolean setNotValidated(JLinkInvert jli, Color color) {
         JTextField jtf = (JTextField) jli;
         jtf.setBackground(color);
         jli.setValidated(false);
@@ -152,7 +186,7 @@ public class Validator {
         if (validated) {
             return setValidated(jli);
         } else {
-           
+
             return setNotValidated(jli);
         }
         //

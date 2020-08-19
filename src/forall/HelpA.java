@@ -1257,6 +1257,19 @@ public class HelpA {
         return csv;
     }
 
+    public static boolean existInJTable(JTable table, String colName, String valToCheck) {
+        for (int x = 0; x < table.getColumnCount(); x++) {
+            //
+            String val = (String) table.getValueAt(x, getColByName(table, colName));
+            //
+            if (val.equals(valToCheck)) {
+                return true;
+            }
+            //
+        }
+        return false;
+    }
+
     public static boolean rowSelected(JTable table) {
         return table.getSelectedRow() != -1;
     }
@@ -2063,8 +2076,6 @@ public class HelpA {
             return "";
         }
     }
-    
-    
 
     public static String getComboBoxSelectedValue(JComboBox box) {
         Object val = box.getSelectedItem();
@@ -2293,7 +2304,7 @@ public class HelpA {
                 cbo = new ComboBoxObject(arr_obj[0], "", "");
             } else if (arr_obj.length == 2) {
                 cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
-            }else if (arr_obj.length == 3) {
+            } else if (arr_obj.length == 3) {
                 cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], arr_obj[2]); // [2020-08-19]
             }
             //

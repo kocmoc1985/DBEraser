@@ -1,11 +1,5 @@
-[PROBLEM WHEN CREATING INVOICE SEVERAL TIMES][2020-08-18] ***[IMPORTANT]
-
-It seems that some off ArrayList is not reset....
 ____________________________________________________________________________________________________________________________________________________
-
-[IMPLEMENT - FIELDS WHICH ARE CHECKED AGAINST DB -> SHOULD BE CHECKED USING JTABLE INSTEAD][2020-08-18] [IMPORTANT] [IMPORTANT]
-
-I think it's rather important, because it consumes much "traffic"
+IMPLEMENT "ARTIKEL KATEGORI" -> TAB [ARTIKLAR] -> make it the same way as for [CUSTOMERS]
 ____________________________________________________________________________________________________________________________________________________
 
 [IMPLEMENT FÖRETAGSINSTÄLLNINGAR TAB][2020-08-18] ***[IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]

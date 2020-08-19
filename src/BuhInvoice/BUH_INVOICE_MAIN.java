@@ -1151,6 +1151,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             @Override
             public void run() {
                 //
+                DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
+                jTable_InvoiceA_Insert_articles.setModel(dtm);
+                invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
+                //
+                HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
+                jTable_InvoiceA_Insert_articles_clicked();
+                //
+                invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
+                //
                 invoiceA_update.showTableInvert();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT);
                 //
@@ -1159,16 +1168,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
             }
         });
-        //
-        DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
-        jTable_InvoiceA_Insert_articles.setModel(dtm);
-        invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
-        //
-        HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
-        jTable_InvoiceA_Insert_articles_clicked();
-        //
-        invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
-        
+
     }
 
     @Override

@@ -25,11 +25,15 @@ public abstract class Faktura_Entry {
     protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     //
   
-
     public Faktura_Entry(Invoice invoice) {
         this.invoice = invoice;
     }
 
+    protected void resetLists(){
+        this.articlesList.clear();
+        this.articlesListJTable.clear();
+    }
+    
     protected JTable getArticlesTable(){
         return invoice.getArticlesTable();
     }
