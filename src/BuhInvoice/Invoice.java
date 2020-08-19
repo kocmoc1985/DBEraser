@@ -172,10 +172,6 @@ public abstract class Invoice extends Basic_Buh_ {
 
     public double getRabattKr() {
         //
-        if (CURRENT_OPERATION_INSERT == false) {
-            return 0;
-        }
-        //
         String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
         //
         if (HelpA.isNumber(rabatt)) {
@@ -183,7 +179,7 @@ public abstract class Invoice extends Basic_Buh_ {
         } else {
             return 0;
         }
-
+        //
     }
 
     public boolean getInklMoms() {
