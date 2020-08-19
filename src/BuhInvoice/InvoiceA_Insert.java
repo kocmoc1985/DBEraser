@@ -88,8 +88,6 @@ public class InvoiceA_Insert extends Invoice {
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
     }
 
-    
-
     protected void deleteArtikel() {
         //
         if (HelpA.confirmWarning(LANG.MSG_3) == false) {
@@ -131,7 +129,7 @@ public class InvoiceA_Insert extends Invoice {
         SET_CURRENT_OPERATION_INSERT(true);
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
-        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID);
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
@@ -184,7 +182,7 @@ public class InvoiceA_Insert extends Invoice {
             return getConfigTableInvert_edit_articles();
             //
         } else {
-            String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID);
+            String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID,DB.BUH_FAKTURA_ARTIKEL___PRIS});
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
             RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
             kund.enableFixedValuesAdvanced();

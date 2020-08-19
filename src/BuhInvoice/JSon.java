@@ -233,16 +233,45 @@ public class JSon {
         //
         return list;
     }
+    
+    /**
+     * [2020-08-19]
+     * @param phpJsonString
+     * @param keys
+     * @return 
+     */
+    public static String phpJsonResponseToComboBoxString(String phpJsonString, String[] keys) {
+        //
+        String jcomboStr = "";
+        //
+        ArrayList<String> jsons = phpJsonStringSplit(phpJsonString);
+        //
+        for (String json : jsons) {
+            //
+            HashMap<String, String> map = JSONToHashMap(json, false);
+            //
+            if(keys.length == 2){
+               jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";  
+            }else if(keys.length == 3){
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";  
+            }
+            //
+        }
+        //
+        return jcomboStr;
+        //
+    }
+    
 
     /**
      * [2020-07-23]
-     *
+     * @deprecated
      * @param phpJsonString
      * @param keyOne
      * @param keyTwo
      * @return
      */
-    public static String phpJsonResponseToComboBoxString(String phpJsonString, String keyOne, String keyTwo) {
+    protected static String phpJsonResponseToComboBoxString(String phpJsonString, String keyOne, String keyTwo) {
         //
         String jcomboStr = "";
         //
@@ -259,6 +288,8 @@ public class JSon {
         return jcomboStr;
         //
     }
+    
+    
 
     private static ArrayList<String> phpJsonStringSplit(String jsonStr) {
         //

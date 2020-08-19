@@ -154,6 +154,10 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
         }
     }
 
+    public Object getObjectAt(int column_index) {
+        return this.getComponent(column_index);
+    }
+
     public String getValueAt(int column_index) {
         //
         Component c = this.getComponent(column_index);

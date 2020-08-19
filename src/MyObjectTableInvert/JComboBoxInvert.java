@@ -38,6 +38,10 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
         return this.parent;
     }
 
+    public String getValue(int paramToReturn){
+        return HelpA.getComboBoxSelectedValue(this,paramToReturn);
+    }
+    
     @Override
     public String getValue() {
         return HelpA.getComboBoxSelectedValue(this);

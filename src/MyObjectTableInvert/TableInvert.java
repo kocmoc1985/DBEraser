@@ -367,6 +367,11 @@ public class TableInvert extends Table implements ControlsActionsIF {
         JLinkInvert jli = tableRow.getLinkInvertAt(column);
         return jli.getChildObject();
     }
+    
+    public Object getObjectAt(String rowName){
+        TableRow tableRow = getRow(getRowNrByName(rowName));
+        return tableRow.getObjectAt(1);
+    }
 
     public String getValueAt(String rowName) {
         TableRow tableRow = getRow(getRowNrByName(rowName));

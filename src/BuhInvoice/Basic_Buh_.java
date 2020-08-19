@@ -41,7 +41,7 @@ public abstract class Basic_Buh_ extends Basic {
     protected String getKundId() {
         return bim.getKundId();
     }
-    
+
     protected void executeDelete(String json) {
         try {
             //
@@ -55,7 +55,9 @@ public abstract class Basic_Buh_ extends Basic {
         }
     }
 
-    protected String requestJComboValuesHttp(String php_function, String keyOne, String keyTwo) {
+   
+
+    protected String requestJComboValuesHttp(String php_function, String[] keys) {
         //
         String comboString;
         //
@@ -67,7 +69,7 @@ public abstract class Basic_Buh_ extends Basic {
                     php_function, json));
             //
             //
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keyOne, keyTwo);
+            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys);
             //
 //            System.out.println("combo string: " + comboString);
             //
@@ -109,8 +111,6 @@ public abstract class Basic_Buh_ extends Basic {
         //
 //        fieldUpdateWatcher(me);
     }
-    
-    
 
     /**
      * [2020-07-30] Marking the field is considered to be updated.

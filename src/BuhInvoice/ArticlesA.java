@@ -15,6 +15,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -396,4 +397,23 @@ public class ArticlesA extends Basic_Buh_ {
         }
         //
     }
+    
+    @Override
+    public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
+        //
+        super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
+        //
+        String col_name = ti.getCurrentColumnName(e.getSource());
+        //
+        if (col_name == null) {
+            return;
+        }
+        //
+        if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___PRIS)) {
+            //
+            mouseWheelNumberChange(e);
+            //
+        }
+    }
+    
 }

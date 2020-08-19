@@ -45,6 +45,10 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
         return getText();
     }
     
+    public void setValue(String value){
+        setText(value);
+    }
+    
     @Override
     public boolean valueUpdated() {
         return !child.getInitialValue().equals(getValue());

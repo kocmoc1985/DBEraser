@@ -108,6 +108,54 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
+     * [2020-08-19]
+     *
+     * @param e
+     */
+    public void mouseWheelNumberChange(MouseWheelEvent e) {
+        //
+        JLinkInvert jli = (JLinkInvert) e.getSource();
+        //
+        if(jli instanceof JTextFieldInvert == false){ // This one is for JTextFieldInvert
+            return;
+        }
+        //
+        long value = getValueWheelRotation(e);
+        //
+        try {
+            //
+            long antal = Long.parseLong(jli.getValue());
+            //
+            if (value < 0 && antal == 0) {
+                return;
+            } else {
+                antal += value; // OBS! it's always "+" because value is "+" or "-"
+            }
+            //
+            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            jtf.setValue("" + antal);
+            //
+        } catch (Exception ex) {
+
+        }
+        //
+    }
+
+    /**
+     * [2020-08-19]
+     *
+     * @param e
+     */
+    public long getValueWheelRotation(MouseWheelEvent e) {
+        //
+        double wheelRotation = e.getPreciseWheelRotation();
+        //
+        double scroll = wheelRotation;
+        double scroll_rounded = Math.round(scroll);
+        return (long) scroll_rounded;
+    }
+
+    /**
      *
      * @param table
      * @param landscape - for report
@@ -306,6 +354,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public ColumnDataEntryInvert getColumnDataEntryInvert(String rowName, Table tableInvert, int column) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getColumnDataEntryInvertAt(rowName, column);
+    }
+
+    public Object getObjectTableInvert(String rowName, Table tableInvert) {
+        TableInvert ti = (TableInvert) tableInvert;
+        return ti.getObjectAt(rowName);
     }
 
     public String getValueTableInvert(String rowName, Table tableInvert) {

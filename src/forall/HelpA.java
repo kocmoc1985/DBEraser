@@ -1672,7 +1672,6 @@ public class HelpA {
         return JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
-
     public static boolean checkIfNumber(String value) {
         try {
             Double.parseDouble(value);
@@ -2064,6 +2063,8 @@ public class HelpA {
             return "";
         }
     }
+    
+    
 
     public static String getComboBoxSelectedValue(JComboBox box) {
         Object val = box.getSelectedItem();
@@ -2284,8 +2285,18 @@ public class HelpA {
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
         int i = 0;
         for (String stringObj : arr) {
+            //
             String[] arr_obj = stringObj.split(";");
-            ComboBoxObject cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
+            ComboBoxObject cbo = null;
+            //
+            if (arr_obj.length == 1) {
+                cbo = new ComboBoxObject(arr_obj[0], "", "");
+            } else if (arr_obj.length == 2) {
+                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
+            }else if (arr_obj.length == 3) {
+                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], arr_obj[2]); // [2020-08-19]
+            }
+            //
             cbo.setParamToReturn(paramToReturn);
             cbo_arr[i] = cbo;
             i++;
