@@ -169,6 +169,18 @@ public abstract class Invoice extends Basic_Buh_ {
         }
 
     }
+    
+    public double getRabattKr() {
+        //
+        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE, TABLE_INVERT_2);
+        //
+        if(HelpA.isNumber(rabatt)){
+            return Double.parseDouble(rabatt);
+        }else{
+            return 0;
+        }
+
+    }
 
     public boolean getInklMoms() {
         try {
@@ -216,6 +228,7 @@ public abstract class Invoice extends Basic_Buh_ {
         double pris_exkl_moms;
         int antal;
         double rabatt_percent = getRabattPercent();
+        double rabatt_kr = getRabattKr();
         //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             //
@@ -469,6 +482,7 @@ public abstract class Invoice extends Basic_Buh_ {
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
                 || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //
@@ -497,11 +511,24 @@ public abstract class Invoice extends Basic_Buh_ {
         if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
                 || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)
                 //
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //
             Validator.validateDigitalInput(jli);
+            //
+            if(col_name.equals(DB.BUH_F_ARTIKEL__RABATT)){
+                //
+                Validator.validatePercentInput(jli);
+                //
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE, ti, "0");
+                //
+            }else if(col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)){
+                //
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "0");
+                //
+            }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //

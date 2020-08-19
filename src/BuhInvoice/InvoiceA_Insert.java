@@ -182,8 +182,8 @@ public class InvoiceA_Insert extends Invoice {
             return getConfigTableInvert_edit_articles();
             //
         } else {
+            // String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
             String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID,DB.BUH_FAKTURA_ARTIKEL___PRIS});
-//        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
             RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
             kund.enableFixedValuesAdvanced();
             kund.setUneditable();
@@ -201,13 +201,17 @@ public class InvoiceA_Insert extends Invoice {
             //
             RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", true, true, false);
             //
+            RowDataInvert rabatt_kr = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT_KR__FAKE, "RABATT KR", "", true, true, false);
+            rabatt_kr.setDontAquireTableInvertToHashMap();
+            //
             RowDataInvert[] rows = {
                 kund,
                 komment,
                 antal,
                 enhet,
                 pris,
-                rabatt
+                rabatt,
+                rabatt_kr
             };
             //
             return rows;

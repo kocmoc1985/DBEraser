@@ -112,6 +112,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__ENHET = "enhet";
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
+    public static final String BUH_F_ARTIKEL__RABATT_KR__FAKE = "rabatt_kr"; // OBS! NOT used in DB [2020-08-19]
     //
     public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";

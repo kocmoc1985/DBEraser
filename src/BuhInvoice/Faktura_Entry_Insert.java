@@ -177,7 +177,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         // Yes it's obligatory to use "tableInvertToHashMap_exclude_null()" 
         // If not used the empty checkbox returns "NULL" as value and when sending it to PHP/PDO
         // it causes "PDOException"
-        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap_exclude_null(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
         //
         //
         this.articlesList.add(map_for_adding_to_db);

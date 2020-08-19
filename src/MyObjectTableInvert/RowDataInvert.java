@@ -43,7 +43,8 @@ public class RowDataInvert extends RowData {
     private boolean comboBoxFixedValue = false;
     private boolean comboBoxFixedValueAdvanced = false;
     //
-
+    private boolean aquire_tableInvertToHashMap = true; // Look at method Basic.class-> "tableInvertToHashMap"
+    
     public RowDataInvert() {
     }
 
@@ -125,6 +126,13 @@ public class RowDataInvert extends RowData {
         this.important = important;
     }
 
+    public void setDontAquireTableInvertToHashMap(){
+        aquire_tableInvertToHashMap = false;
+    }
+    
+    public boolean aquire(){
+        return aquire_tableInvertToHashMap;
+    }
 
     public void enableFixedValues() {
         comboBoxFixedValue = true;

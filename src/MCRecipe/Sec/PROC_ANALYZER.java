@@ -4,7 +4,7 @@
  */
 package MCRecipe.Sec;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import forall.GP;
 import forall.HelpA;
 import forall.SqlBasicLocal;
@@ -30,7 +30,7 @@ import javax.swing.text.html.StyleSheet;
  */
 public class PROC_ANALYZER extends javax.swing.JFrame {
 
-    private Properties PROPS = HelpA.properties_load_properties(MC_RECIPE.PROPERTIES_PATH, false);
+    private Properties PROPS = HelpA.properties_load_properties(MC_RECIPE_.PROPERTIES_PATH, false);
     private Sql_B sql = new Sql_B(false, false);
 
     /**

@@ -26,27 +26,23 @@ public class Validator {
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
     private static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
-    
-    
     /**
      * [2020-07-31]
-     * 
+     *
      * @param bim
      * @param jli
      * @param colName
      * @param tableName
-     * @return 
+     * @return
      */
-    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN bim,JLinkInvert jli, String colName,String tableName) {
+    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN bim, JLinkInvert jli, String colName, String tableName) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
         String val = jtfi.getText();
         //
-        if(val.isEmpty()){
-            jtfi.setBackground(Color.red);
-//            jtfi.setForeground(getJTextFieldInitialColor());
-            return false;
+        if (val.isEmpty()) {
+            return setValidated(jli);
         }
         //
         String json = bim.getExist(colName, val, tableName);
@@ -68,18 +64,52 @@ public class Validator {
         int exist_ = Integer.parseInt(exist.trim());
         //
         if (exist_ == 0) {
-            jtfi.setBackground(Color.WHITE);
-//            jtfi.setForeground(getJTextFieldInitialColor());
-            jli.setValidated(true);
-            return true;
+            return setValidated(jli);
         } else {
-            jtfi.setBackground(Color.ORANGE);
-//            jtfi.setForeground(Color.ORANGE);
-            jli.setValidated(false);
-            return false;
+            return setNotValidated(jli, Color.ORANGE);
         }
     }
+
+    public static boolean validatePercentInput(JLinkInvert jli) {
+        //
+        String val = jli.getValue();
+        //
+        try {
+            //
+            int percent = Integer.parseInt(val);
+            //
+            if (percent >= 0 && percent < 100) {
+                return setValidated(jli);
+            }
+            //
+        } catch (Exception ex) {
+            //
+        }
+        //
+        return setNotValidated(jli);
+    }
+
+    private static boolean setValidated(JLinkInvert jli) {
+        JTextField jtf = (JTextField) jli;
+        jtf.setBackground(Color.WHITE);
+        jli.setValidated(true);
+        return true;
+    }
     
+    private static boolean setNotValidated(JLinkInvert jli) {
+        JTextField jtf = (JTextField) jli;
+        jtf.setBackground(Color.RED);
+        jli.setValidated(false);
+        return false;
+    }
+    
+    private static boolean setNotValidated(JLinkInvert jli,Color color) {
+        JTextField jtf = (JTextField) jli;
+        jtf.setBackground(color);
+        jli.setValidated(false);
+        return false;
+    }
+
     /**
      * Verify input of digits/numbers
      *
@@ -92,22 +122,15 @@ public class Validator {
         //
         JTextField jtf = (JTextField) jli;
         //
-        //
         if (val.contains(",")) {
             val = val.replaceAll(",", ".");
             jtf.setText(val);
         }
         //
         if (HelpA.isNumber(val)) {
-            jtf.setBackground(Color.WHITE);
-//            jtf.setForeground(getJTextFieldInitialColor());
-            jli.setValidated(true);
-            return true;
+            return setValidated(jli);
         } else {
-            jtf.setBackground(Color.RED);
-//            jtf.setForeground(Color.RED);
-            jli.setValidated(false);
-            return false;
+            return setNotValidated(jli);
         }
         //
     }
@@ -126,18 +149,11 @@ public class Validator {
         //
         boolean validated = validate_(pattern, val);
         //
-        JTextField jtf = (JTextField) jli;
-        //
         if (validated) {
-             jtf.setBackground(Color.white);
-//            jtf.setForeground(getJTextFieldInitialColor());
-            jli.setValidated(true);
-            return true;
+            return setValidated(jli);
         } else {
-            jtf.setBackground(Color.red);
-//            jtf.setForeground(Color.RED);
-            jli.setValidated(false);
-            return false;
+           
+            return setNotValidated(jli);
         }
         //
     }
@@ -148,18 +164,10 @@ public class Validator {
         //
         boolean validated = validate_(DATE_YYYY_MM_DD, val);
         //
-        JTextField jtf = (JTextField) jli;
-        //
         if (validated && HelpA.isDateValid(val)) {
-//            jtf.setForeground(getJTextFieldInitialColor());
-            jtf.setBackground(Color.WHITE);
-            jli.setValidated(true);
-            return true;
+            return setValidated(jli);
         } else {
-//            jtf.setForeground(Color.RED);
-            jtf.setBackground(Color.RED);
-            jli.setValidated(false);
-            return false;
+            return setNotValidated(jli);
         }
         //
     }

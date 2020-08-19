@@ -7,7 +7,7 @@ package forall;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTableInvert.RowDataInvert;
 import ca.odell.glazedlists.GlazedLists;
@@ -262,7 +262,7 @@ public class HelpA {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB") || role_developer) { // 
             //
