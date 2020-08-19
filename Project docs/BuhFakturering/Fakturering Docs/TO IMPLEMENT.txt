@@ -1,7 +1,11 @@
-[SUPER IMPORTANT - PHP/PDO Cannot Record to DB if "" for a float] [2020-08-18] [SUPER IMPORTANT TO FIX] *******
+[PROBLEM WHEN CREATING INVOICE SEVERAL TIMES][2020-08-18] ***[IMPORTANT]
 
-Take a look "ARTIKLAR" TAB if you try to not specify one of "numbers/floats" 
-it will fail because as i understand when PHP/PDO recieves '' for a float it fails!
+It seems that some off ArrayList is not reset....
+____________________________________________________________________________________________________________________________________________________
+
+[IMPLEMENT - FIELDS WHICH ARE CHECKED AGAINST DB -> SHOULD BE CHECKED USING JTABLE INSTEAD][2020-08-18] [IMPORTANT] [IMPORTANT]
+
+I think it's rather important, because it consumes much "traffic"
 ____________________________________________________________________________________________________________________________________________________
 
 [IMPLEMENT FÖRETAGSINSTÄLLNINGAR TAB][2020-08-18] ***[IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]

@@ -58,6 +58,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
+    public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
@@ -146,7 +147,8 @@ public class InvoiceB extends Basic {
             TABLE_INVOICE_ARTIKLES__ANTAL,
             TABLE_INVOICE_ARTIKLES__ENHET,
             TABLE_INVOICE_ARTIKLES__PRIS,
-            TABLE_INVOICE_ARTIKLES__RABATT
+            TABLE_INVOICE_ARTIKLES__RABATT,
+            TABLE_INVOICE_ARTIKLES__RABATT_KR
         };
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
@@ -307,7 +309,8 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
-            map.get(DB.BUH_F_ARTIKEL__RABATT)
+            map.get(DB.BUH_F_ARTIKEL__RABATT),
+            map.get(DB.BUH_F_ARTIKEL__RABATT_KR)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

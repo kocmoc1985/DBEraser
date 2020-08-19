@@ -169,14 +169,18 @@ public abstract class Invoice extends Basic_Buh_ {
         }
 
     }
-    
+
     public double getRabattKr() {
         //
-        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE, TABLE_INVERT_2);
+        if (CURRENT_OPERATION_INSERT == false) {
+            return 0;
+        }
         //
-        if(HelpA.isNumber(rabatt)){
+        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
+        //
+        if (HelpA.isNumber(rabatt)) {
             return Double.parseDouble(rabatt);
-        }else{
+        } else {
             return 0;
         }
 
@@ -235,12 +239,12 @@ public abstract class Invoice extends Basic_Buh_ {
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
             //
-            if(rabatt_percent != 0){
-                double rabatt = pris_exkl_moms * rabatt_percent;
-                FAKTURA_TOTAL += (pris_exkl_moms - rabatt) * antal;
-            }else{
+            //
+            if (rabatt_percent == 0 && rabatt_kr == 0) {
                 FAKTURA_TOTAL += (pris_exkl_moms * antal);
-            }
+            } else if (rabatt_kr != 0) {
+                FAKTURA_TOTAL += (pris_exkl_moms - rabatt_kr) * antal;
+            } 
             //
         }
         //
@@ -326,16 +330,16 @@ public abstract class Invoice extends Basic_Buh_ {
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
                 requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_F_ARTIKEL__ARTIKELID}));
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
-        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, "ARTIKEL", "", true, true, true);
+        RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         kund.enableFixedValuesAdvanced();
         kund.setUneditable();
         //
         //
         String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
-        RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, "KOMMENTAR", "", true, true, false);
+        RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
         String ant = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
-        RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, "ANTAL", "", false, true, false);
+        RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", false, true, false);
         //
 //        String fixedComboValues_b = JSon._get_special_(
 //                DB.STATIC__ENHET,
@@ -348,7 +352,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 DB.STATIC__ENHET
         );
         //
-        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, "ENHET", "", true, true, false);
+        RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, "", true, true, false);
         enhet.enableFixedValuesAdvanced();
         enhet.setUneditable();
         //
@@ -357,7 +361,10 @@ public abstract class Invoice extends Basic_Buh_ {
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
         //
         String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
-        RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, "RABATT %", "", false, true, false);
+        RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", false, true, false);
+        //
+        String rabatt_kr_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+        RowDataInvert rabatt_kr = new RowDataInvertB(rabatt_kr_, DB.BUH_F_ARTIKEL__RABATT_KR, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, "", false, true, false);
         //
         RowDataInvert[] rows = {
             kund,
@@ -365,7 +372,8 @@ public abstract class Invoice extends Basic_Buh_ {
             antal,
             enhet,
             pris,
-            rabatt
+            rabatt,
+            rabatt_kr
         };
         //
         return rows;
@@ -482,7 +490,7 @@ public abstract class Invoice extends Basic_Buh_ {
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
                 || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //
@@ -511,22 +519,41 @@ public abstract class Invoice extends Basic_Buh_ {
         if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
                 || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)
+                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 //
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //
-            Validator.validateDigitalInput(jli);
+            boolean digitalInputValidated = Validator.validateDigitalInput(jli);
             //
-            if(col_name.equals(DB.BUH_F_ARTIKEL__RABATT)){
+            if (col_name.equals(DB.BUH_F_ARTIKEL__RABATT)) {
                 //
-                Validator.validatePercentInput(jli);
+                if (Validator.validatePercentInput(jli) == false || digitalInputValidated == false) {
+                    return;
+                }
                 //
-                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE, ti, "0");
+                double rabatt_percent = Double.parseDouble(jli.getValue());
+                double pris = Double.parseDouble(getValueTableInvert(DB.BUH_F_ARTIKEL__PRIS, DB.START_COLUMN, TABLE_INVERT_2));
+                double rabatt_kr = pris * (rabatt_percent / 100);
                 //
-            }else if(col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR__FAKE)){
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, ti, rabatt_kr);
+                JLinkInvert linkInvert = (JLinkInvert)getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
+                Validator.validateDigitalInput(linkInvert); // Validating after setting the value
                 //
-                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "0");
+            } else if (col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)) {
+                //
+                if (digitalInputValidated == false) {
+                    return;
+                }
+                //
+                double rabatt_kr = Double.parseDouble(jli.getValue());
+                double pris = Double.parseDouble(getValueTableInvert(DB.BUH_F_ARTIKEL__PRIS, DB.START_COLUMN, TABLE_INVERT_2));
+                double rabatt_percent = (rabatt_kr / pris) * 100;
+                rabatt_percent = HelpA.round_double(rabatt_percent);
+                //
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "" + rabatt_percent);
+                JLinkInvert linkInvert = (JLinkInvert)getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
+                Validator.validatePercentInput(linkInvert); // Validating after setting the value
                 //
             }
             //

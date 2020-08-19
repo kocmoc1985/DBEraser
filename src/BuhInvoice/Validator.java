@@ -76,7 +76,7 @@ public class Validator {
         //
         try {
             //
-            int percent = Integer.parseInt(val);
+            double percent = Double.parseDouble(val);
             //
             if (percent >= 0 && percent < 100) {
                 return setValidated(jli);
