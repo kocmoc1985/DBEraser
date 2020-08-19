@@ -44,7 +44,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private final static String TAB_ARTIKLAR = "ARTIKLAR";
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
-    
+
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -75,11 +75,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>>list){
+    protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
-    
-    protected ArrayList<HashMap<String, String>> getArticlesActualInvoice(){
+
+    protected ArrayList<HashMap<String, String>> getArticlesActualInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
     }
 
@@ -94,8 +94,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getKundId() {
         return "1";
     }
-    
-        
+
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
@@ -901,7 +900,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
-       invoiceB.htmlFaktura_b();
+        invoiceB.htmlFaktura_b();
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
@@ -1156,18 +1155,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 invoiceA_update.showTableInvert_3();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_3);
                 //
-                DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
-                jTable_InvoiceA_Insert_articles.setModel(dtm);
-                invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
-                //
-                HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
-                jTable_InvoiceA_Insert_articles_clicked();
-                //
-//                        invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
-                invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
             }
         });
         //
+        DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
+        jTable_InvoiceA_Insert_articles.setModel(dtm);
+        invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
+        //
+        HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
+        jTable_InvoiceA_Insert_articles_clicked();
+        //
+        invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
+        
     }
 
     @Override

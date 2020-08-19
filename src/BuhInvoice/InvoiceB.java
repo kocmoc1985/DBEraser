@@ -57,7 +57,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
-    public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT";
+    public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;

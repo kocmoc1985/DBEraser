@@ -1669,7 +1669,7 @@ public class HelpA {
     }
 
     public static boolean confirmWarning(String message) {
-        return JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
     public static boolean checkIfNumber(String value) {

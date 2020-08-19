@@ -153,6 +153,23 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
+    public double getRabattPercent() {
+        //
+        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
+        //
+        try {
+            double rabatt_ = Double.parseDouble(rabatt);
+            if (rabatt_ > 1) {
+                return rabatt_ / 100;
+            } else {
+                return rabatt_;
+            }
+        } catch (Exception ex) {
+            return 0;
+        }
+
+    }
+
     public boolean getInklMoms() {
         try {
             return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
@@ -196,14 +213,21 @@ public abstract class Invoice extends Basic_Buh_ {
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
         //
-        double pris;
+        double pris_exkl_moms;
         int antal;
+        double rabatt_percent = getRabattPercent();
         //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
-            pris = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
+            //
+            pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
             //
-            FAKTURA_TOTAL += (pris * antal);
+            if(rabatt_percent != 0){
+                double rabatt = pris_exkl_moms * rabatt_percent;
+                FAKTURA_TOTAL += (pris_exkl_moms - rabatt) * antal;
+            }else{
+                FAKTURA_TOTAL += (pris_exkl_moms * antal);
+            }
             //
         }
         //
@@ -211,6 +235,8 @@ public abstract class Invoice extends Basic_Buh_ {
             MOMS_TOTAL = FAKTURA_TOTAL * getMomsSats();
             FAKTURA_TOTAL += MOMS_TOTAL;
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
+        } else {
+            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
         }
         //
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
@@ -564,8 +590,8 @@ public abstract class Invoice extends Basic_Buh_ {
             //
             // Good example[2020-08-19]:
 //            JComboBoxInvert box = (JComboBoxInvert) jli;
-//            String pris = box.getValue(3);
-//            setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
+//            String pris_exkl_moms = box.getValue(3);
+//            setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris_exkl_moms);
             //
         }
         //
