@@ -1,5 +1,6 @@
-____________________________________________________________________________________________________________________________________________________
-IMPLEMENT "ARTIKEL KATEGORI" -> TAB [ARTIKLAR] -> make it the same way as for [CUSTOMERS]
+[CHECK THE CASE WHEN NO INVOICES EXIST FOR A CUSTOMER] [2020-08-20]
+
+Debug the case when no invoices exist for the customer att begining
 ____________________________________________________________________________________________________________________________________________________
 
 [IMPLEMENT FÖRETAGSINSTÄLLNINGAR TAB][2020-08-18] ***[IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]

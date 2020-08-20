@@ -56,7 +56,7 @@ public class CustomersA extends Basic_Buh_ {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
     //
-    public static boolean CURRENT_OPERATION_INSERT = false;
+    private boolean CURRENT_OPERATION_INSERT = false;
 
     public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -647,7 +647,7 @@ public class CustomersA extends Basic_Buh_ {
     }
 
     /**
-     * Shows address data NOT for INSERT but for UPDATE
+     * [UPDATE]
      *
      * @return
      */
@@ -694,7 +694,7 @@ public class CustomersA extends Basic_Buh_ {
     }
 
     /**
-     * "INSERT" This one is for INSERTING of address data
+     * [INSERT]
      *
      * @return
      */

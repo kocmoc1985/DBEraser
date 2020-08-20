@@ -1,0 +1,113 @@
+----------------------------------------------------------------------
+[2020-07-23]
+
+GET LATEST FAKTURA NR (fakturanr) for given KUND ID (kundid).
+This is needed to know which "fakturanr" to give a faktura which is beeing created at the moment
+
+SELECT MAX(buh_faktura.fakturanr) as `latest`  FROM buh_faktura
+WHERE buh_faktura.kundId=2
+
+----------------------------------------------------------------------
+[2020-07-22]
+-----------------------------------------------------------------------
+SELECT buh_faktura.fakturanr FROM buh_faktura where buh_faktura.fakturaKundId=2 
+group by buh_faktura.fakturaKundId
+-----------------------------------------------------------------------
+[2020-08-17]
+GET ALL INVOICES WHICH USES GIVEN ARTICLE
+
+select buh_faktura.fakturanr, buh_faktura.fakturaId from buh_faktura
+INNER JOIN buh_f_artikel 
+ON buh_f_artikel.fakturaId = buh_faktura.fakturaId
+where buh_f_artikel.artikelId = 3 GROUP BY buh_faktura.fakturanr
+
+-----------------------------------------------------------------------
+IMPORTANT:
+GET FAKTURA ID (fakturaId) for the created FAKTURA with given "kundId".
+
+=============================
+THIS IS THE WORKING ONE[2020-07-23]:
+SELECT buh_faktura.fakturaId FROM `buh_faktura` WHERE buh_faktura.kundId=1 AND buh_faktura.date_created='2020-07-23 10.28.28.156'
+=============================
+
+----------------------------------------------------------------------
+
+SELECT buh_faktura.namn FROM buh_faktura WHERE kundId=1
+
+----------------------------------------------------------------------
+SELECT ESSENTIAL FAKTURA DATA FOR GIVEN "KUND ID" [2020-07-24]
+This is used for getting fakturas for a kund, and building a "jtable"
+
+SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturatyp, buh_faktura.fakturadatum,
+buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura.betald,buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn
+FROM buh_faktura 
+INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId WHERE buh_faktura.kundId=1
+ORDER BY buh_faktura.fakturanr ASC
+
+
+SAME BUT IN ONE ROW FOR COPY:
+SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturatyp, buh_faktura.fakturadatum,buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura.betald,buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn FROM buh_faktura INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId WHERE buh_faktura.kundId=1 ORDER BY buh_faktura.fakturanr ASC
+
+----------------------------------------------------------------------
+SELECT buh_faktura.namn, buh_kund.namn FROM buh_kund 
+INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
+WHERE buh_kund.kundId=1
+
+-----------------------------------------------------------------------
+
+SUPER IMPORTANT QUERRY: EXTREAMLY IMPORTANT FOR UNDERSTANDING ---> OBS! PAY ATTENTION AT: "GROUP BY Buh_F_artikel.id"
+
+SELECT buh_kund.namn,buh_kund.kundId, buh_faktura.namn,buh_faktura.fakturaId, buh_faktura_artikel.namn, Buh_F_artikel.antal FROM `buh_kund`
+INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
+INNER JOIN buh_faktura_artikel ON buh_faktura_artikel.kundId = buh_kund.kundId
+INNER JOIN Buh_F_artikel ON Buh_F_artikel.artikelId = buh_faktura_artikel.artikelId
+WHERE Buh_F_artikel.antal=7 GROUP BY Buh_F_artikel.id
+
+-------------------------------------------------------------------------
+
+SELECT ALL CUSTOMERS OF SOME "KUND" --> Working
+
+SELECT buh_kund.namn, buh_faktura_kund.namn,buh_faktura_kund.kundnr FROM `buh_kund`
+INNER JOIN buh_faktura_kund ON buh_kund.kundId = buh_faktura_kund.kundId
+WHERE buh_kund.kundId=2
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA"
+
+SELECT * FROM buh_f_artikel WHERE buh_f_artikel.fakturaId=6
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ARTICLES CORRESPONDING TO SOME "FAKTURA" (ADVANCED, not showing entries where artikelId not specified)
+
+[WORKING][TESTED: 2020-07-27]
+SELECT buh_kund.namn ,buh_faktura.namn, buh_faktura.fakturaId, buh_faktura_artikel.namn, buh_f_artikel.antal FROM `buh_faktura`
+INNER JOIN buh_f_artikel ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
+INNER JOIN buh_faktura_artikel ON buh_f_artikel.artikelId = buh_faktura_artikel.artikelId
+INNER JOIN buh_kund ON buh_faktura.kundId = buh_kund.kundId
+WHERE buh_faktura.fakturaId=1
+
+
+[2020-07-27]
+SELECT buh_faktura_artikel.namn, buh_f_artikel.id, buh_f_artikel.antal, buh_f_artikel.pris, buh_f_artikel.komment FROM `buh_faktura_artikel`
+RIGHT OUTER JOIN buh_f_artikel ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
+WHERE buh_f_artikel.fakturaId=6
+
+-----------------------------------------------------------------------------
+
+SELECT ALL "ARTICLES" OF A CUSTOMER --> Working
+
+SELECT buh_kund.namn, buh_faktura_artikel.namn, buh_faktura_artikel.artikelId FROM `buh_faktura_artikel`
+INNER JOIN buh_kund ON buh_faktura_artikel.kundId = buh_kund.kundId
+WHERE buh_kund.kundId = 1
+
+-----------------------------------------------------------------------------
+
+SELECT ALL ADRESSES OF A "FAKTURA KUND" --> Working
+
+SELECT buh_address.zip,buh_address.postaddr_a,buh_address.primary_addr, buh_faktura_kund.namn, buh_faktura_kund.kundId FROM buh_faktura_kund
+INNER JOIN buh_address ON buh_address.fakturaKundId = buh_faktura_kund.fakturaKundId
+WHERE buh_faktura_kund.fakturaKundId=4
+
+-----------------------------------------------------------------------------

@@ -39,7 +39,7 @@ public class ArticlesA extends Basic_Buh_ {
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
     private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
     //
-    public static boolean CURRENT_OPERATION_INSERT = false;
+    private boolean CURRENT_OPERATION_INSERT = false;
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
@@ -336,17 +336,26 @@ public class ArticlesA extends Basic_Buh_ {
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT, "KOMMENT", "", true, true, false);
         //
         //
+        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_AND_ARTICLE__KATEGORI, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
+        kund_kategori.enableFixedValues();
+        kund_kategori.setUneditable();
+        //
         RowDataInvert[] rows = {
             namn,
             pris,
 //            inkopspris,
 //            lager,
-            komment
+            komment,
+            kund_kategori
         };
         //
         return rows;
     }
 
+    /**
+     * [UPDATE]
+     * @return 
+     */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         JTable table = getTableArticles();

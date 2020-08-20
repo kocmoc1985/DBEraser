@@ -130,4 +130,5 @@ public class DB {
     //
     //
     public static final String BUH_KUND__ID = "kundId";
+//    public static final String BUH_KUND__ID = "kundId";
 }

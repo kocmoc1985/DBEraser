@@ -1,0 +1,71 @@
+/*!40000 ALTER TABLE `buh_konsult` DISABLE KEYS */;
+INSERT INTO `buh_konsult` (`konsultId`, `namn`) VALUES
+	(1, 'Konsult A'),
+	(2, 'Konsult B');
+/*!40000 ALTER TABLE `buh_konsult` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `buh_kund` DISABLE KEYS */;
+INSERT INTO `buh_kund` (`kundId`, `konsultId`, `namn`, `orgnr`, `vatnr`, `email`, `bank_giro`, `post_giro`, `swish`) VALUES
+	(1, 1, 'Kund A', '', '', '', '', '', ''),
+	(2, 2, 'Kund B', '', '', '', '', '', '');
+/*!40000 ALTER TABLE `buh_kund` ENABLE KEYS */;
+
+
+/*!40000 ALTER TABLE `buh_faktura_kund` DISABLE KEYS */;
+INSERT INTO `buh_faktura_kund` (`fakturaKundId`, `kundId`, `kundnr`, `namn`, `orgnr`, `vatnr`, `email`, `kund_kategori`,`date_created`) VALUES
+	(1, 1, 1, 'Securitas', '', '', '', 'A',DEFAULT),
+	(2, 1, 2, 'Telenor', '', '', '', 'A',DEFAULT),
+	(3, 2, 1, 'Telia', '', '', '', 'A',DEFAULT),
+	(4, 2, 2, 'Eon', '', '', '', 'A',DEFAULT),
+	(5, 2, 3, 'Akelius', '', '', '', 'A',DEFAULT),
+	(6, 2, 4, 'Telenor', '', '', '', 'A',DEFAULT);
+/*!40000 ALTER TABLE `buh_faktura_kund` ENABLE KEYS */;
+
+
+/*!40000 ALTER TABLE `buh_faktura` DISABLE KEYS */;
+INSERT INTO `buh_faktura` (`fakturaId`, `kundId`, `fakturaKundId`, `fakturanr`, `namn`, `fakturatyp`, `inkl_moms`, `fakturadatum`, `forfallodatum`, `valuta`,`ert_ordernr`, `er_referens`, `var_referens`, `frakt`, `betal_vilkor`, `lev_vilkor`,`lev_satt`, `exp_avg`,`total_ink_moms`,`total_exkl_moms`,`moms_total`,`moms_sats`,`komment`, `important_komment`, `ska_bokforas`, `request_factoring`, `factoring_status`,`makulerad`,`betald`,`date_created`) VALUES
+	(1, 2, 5, 1, 'FAKTURA A Akelius', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' ,'', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(2, 2, 6, 2, 'FAKTURA B Telenor', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(3, 2, 3, 3, 'FAKTURA C Telia', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(4, 2, 4, 4, 'FAKTURA D Eon', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(5, 1, 1, 2, 'FAKTURA AA Securitas', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT),
+	(6, 1, 2, 3, 'FAKTURA BB Telenor', 'NORMAL', 1, '2020-07-09', '2020-07-09', 'SEK','' , '', '', 0, 10, 'FVL','P', 0, 0, 0, 0, 0, '', '', 0, 0, 0,0,DEFAULT,DEFAULT);
+/*!40000 ALTER TABLE `buh_faktura` ENABLE KEYS */;
+
+
+/*!40000 ALTER TABLE `buh_faktura_artikel` DISABLE KEYS */;
+INSERT INTO `buh_faktura_artikel` (`artikelId`, `kundId`, `lager`,`pris`,`inkopspris`, `namn`, `komment`) VALUES
+	(1, 1, 179,0, 0,'Skruv', ''),
+	(2, 1, 198,0, 0, 'Spik', ''),
+	(3, 1, 7,0, 0, 'Hammare', ''),
+	(4, 1, 2,0, 0, 'Traktor', ''),
+	(5, 1, 91,0, 0, 'Skruvmejsel', ''),
+	(6, 2, 75,0, 0, 'BMW', ''),
+	(7, 2, 3,0, 0, 'Lada', ''),
+	(8, 2, 18,0, 0, 'VW', ''),
+	(9, 2, 1,0, 0, 'Volvo', ''),
+	(10, 2, 8,0, 0, 'Saab', '');
+/*!40000 ALTER TABLE `buh_faktura_artikel` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `buh_f_artikel` DISABLE KEYS */;
+INSERT INTO `buh_f_artikel` (`id`, `fakturaId`, `artikelId`,`komment`,`antal`, `pris`, `enhet`, `rabatt`) VALUES
+	(1, 1, 2,'Spik', 15, 10, 'st', 0),
+	(2, 1, 3,'Hammare', 1, 199, 'st', 0),
+	(3, 2, 1,'Skruv', 300, 5, 'st', 0),
+	(4, 2, 5,'Skruvmejsel', 5, 70, 'st', 0),
+	(5, 3, 4,'Traktor', 2, 149000, 'st',0),
+	(6, 3, 1,'Skruv', 100, 5, 'st', 0),
+	(7, 5, 7,'Lada', 1, 79900, 'st', 0),
+	(8, 5, 10,'Saab', 2, 139000, 'st', 0),
+	(9, 6, 1,'Skruv', 400, 8, 'st',0),
+	(10, 6, 5,'Skruvmejsel', 9, 69, 'st', 0),
+	(11, 6, NULL,'Yxa', 1, 999, 'st', 0);
+/*!40000 ALTER TABLE `buh_f_artikel` ENABLE KEYS */;
+
+/*!40000 ALTER TABLE `buh_address` DISABLE KEYS */;
+INSERT INTO `buh_address` (`id`, `konsultId`, `kundId`, `fakturaKundId`, `namn`, `primary_addr`, `postaddr_a`, `postaddr_b`, `visit_addr`, `zip`, `ort`, `tel_a`, `tel_b`, `other`) VALUES
+	(1, NULL, NULL, 4, 'Eon', 1, 'Eongatan 19', '', '', '231-55', 'Vellinge', '', '', ''),
+	(2, NULL, NULL, 2, 'Telenor', 1, 'Telenorgatan 89', '', '', '231-45', 'Svedala', '', '', ''),
+	(3, NULL, NULL, 6, 'Telenor', 1, 'Telenorgatan 198', '', '', '231-57', 'Jönköping', '', '', ''),
+	(4, NULL, NULL, 4, 'Eon Sec', 0, 'Eongatan 20', '', '', '231-55', 'Vellinge', '', '', '');
+/*!40000 ALTER TABLE `buh_address` ENABLE KEYS */;
