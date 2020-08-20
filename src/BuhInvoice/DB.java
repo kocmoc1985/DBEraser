@@ -28,7 +28,7 @@ public class DB {
     public static final String STATIC__MAKULERAD_JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     //
-    public static final String STATIC__KUND_KATEGORI = "A,B,C,D,E,F,G";
+    public static final String STATIC__KUND_AND_ARTICLE__KATEGORI = "A,B,C,D,E,F,G";
     //
     //
     public static final String TABLE__BUH_F_ARTIKEL = "buh_f_artikel";
@@ -103,6 +103,7 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___PRIS = "pris";
     public static final String BUH_FAKTURA_ARTIKEL___INKOPS_PRIS = "inkopspris";
     public static final String BUH_FAKTURA_ARTIKEL___KOMMENT = "komment";
+    public static final String BUH_FAKTURA_ARTIKEL___KATEGORI = "artikel_kategori";
     //
     public static final String BUH_F_ARTIKEL__ID = "id";
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";

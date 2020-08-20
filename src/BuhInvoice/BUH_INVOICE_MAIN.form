@@ -920,9 +920,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane7" min="-2" pref="560" max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="jPanel6" min="-2" pref="233" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="377" max="32767" attributes="0"/>
+                      <EmptySpace pref="372" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

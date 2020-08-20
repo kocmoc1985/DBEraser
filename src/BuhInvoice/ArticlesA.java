@@ -37,6 +37,7 @@ public class ArticlesA extends Basic_Buh_ {
     private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
+    private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
 
@@ -113,7 +114,8 @@ public class ArticlesA extends Basic_Buh_ {
             TABLE_ARTICLES__PRIS,
             TABLE_ARTICLES__INKOPS_PRIS,
             TABLE_ARTICLES__LAGER,
-            TABLE_ARTICLES__KOMMENT
+            TABLE_ARTICLES__KOMMENT,
+            TABLE_ARTICLES__KATEGORI
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -196,7 +198,8 @@ public class ArticlesA extends Basic_Buh_ {
             map.get(DB.BUH_FAKTURA_ARTIKEL___PRIS),
             map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
             map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
-            map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT)
+            map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT),
+            map.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -363,13 +366,25 @@ public class ArticlesA extends Basic_Buh_ {
         String komment_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT, "", true, true, false);
         //
+//        String kategori_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI);
+//        RowDataInvert kategori = new RowDataInvertB(kategori_, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
+        //
+        //
+        String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI),
+                DB.STATIC__KUND_AND_ARTICLE__KATEGORI
+        );
+        //
+        RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
+        kategori.enableFixedValues();
+        kategori.setUneditable();
         //
         RowDataInvert[] rows = {
             namn,
             pris,
 //            inkopspris,
 //            lager,
-            komment
+            komment,
+            kategori
         };
         //
         return rows;
