@@ -221,6 +221,10 @@ public abstract class Invoice extends Basic_Buh_ {
 
     private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
+        if(TABLE_INVERT_2 == null){
+            return;
+        }
+        //
         FAKTURA_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;

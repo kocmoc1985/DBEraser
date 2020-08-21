@@ -255,6 +255,10 @@ public class InvoiceB extends Basic {
         //
         HelpA.clearAllRowsJTable(table);
         //
+        if(fakturaId == null || fakturaId.isEmpty()){
+            return;
+        }
+        //
         String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
         try {
