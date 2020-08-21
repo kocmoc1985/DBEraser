@@ -180,66 +180,6 @@ public class CustomersA extends CustomerAForetagA {
         //
     }
 
-    @Override
-    protected void update() {
-        //
-        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return;
-        }
-        //
-        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
-            return;
-        }
-        //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableMain(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
-        String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
-        //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
-            updateMainData(fakturaKundId);
-        }
-        //
-        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
-            updateAddressData(address_id);
-        } else {
-
-        }
-        //
-        //
-        refresh();
-        //
-    }
-
-    @Override
-    protected void updateMainData(String fakturaKundId) {
-        //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
-        //
-        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_KUND__ID, fakturaKundId, DB.TABLE__BUH_FAKTURA_KUND);
-        //
-        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
-        //
-        String json = JSon.hashMapToJSON(final_map);
-        //
-        HelpBuh.update(json);
-        //
-    }
-
-    @Override
-    protected void updateAddressData(String id) {
-        //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3());
-        //
-        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_ADDR__ID, id, DB.TABLE__BUH_ADDRESS);
-        //
-        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
-        //
-        String json = JSon.hashMapToJSON(final_map);
-        //
-        HelpBuh.update(json);
-        //
-    }
 
     public void insert() {
         //

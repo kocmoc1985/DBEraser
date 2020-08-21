@@ -99,16 +99,7 @@ public class ForetagA extends CustomerAForetagA {
      */
     @Override
     public void showTableInvert() {
-//        //
-//        SET_CURRENT_OPERATION_INSERT(true);
-//        //
-//        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
-//        TABLE_INVERT = null;
-//        TABLE_INVERT = tableBuilder.buildTable_B(this);
-//        setMargin(TABLE_INVERT, 5, 0, 5, 0);
-//        showTableInvert(bim.jPanel16); // ************************ CHANGE
-//        //
-//        addTableInvertRowListener(TABLE_INVERT, this);
+
     }
 
     public void showTableInvert_2() {
@@ -119,7 +110,7 @@ public class ForetagA extends CustomerAForetagA {
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel16, TABLE_INVERT_2); 
+        showTableInvert(bim.jPanel16, TABLE_INVERT_2);
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
@@ -129,18 +120,17 @@ public class ForetagA extends CustomerAForetagA {
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel17, TABLE_INVERT_3); 
+        showTableInvert(bim.jPanel17, TABLE_INVERT_3);
         //
         addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
-    
-    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         return null;
     }
 
+    @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         JTable table = getTableMain();
@@ -185,21 +175,6 @@ public class ForetagA extends CustomerAForetagA {
         };
         //
         return rows;
-    }
-
-    @Override
-    protected void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void updateMainData(String fakturaKundId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void updateAddressData(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

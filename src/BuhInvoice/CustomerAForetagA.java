@@ -116,6 +116,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             bim.jScrollPane8.setVisible(false);
         } else if (this instanceof ForetagA) {
             bim.jScrollPane12.setVisible(false);
+            bim.jScrollPane11.setVisible(false);
         }
     }
 
@@ -182,7 +183,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
     }
 
-
     protected void addRowJtable_adress(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -246,11 +246,82 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
 
     protected abstract void addRowJtable_main(HashMap<String, String> map, JTable table);
 
-    protected abstract void update();
+    protected void update() {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return;
+        }
+        //
+        String id = "";
+        String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
+        //
+        if (this instanceof CustomersA) {
+            id = HelpA.getValueSelectedRow(getTableMain(), CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        } else if (this instanceof ForetagA) {
+            id = HelpA.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
+        }
+        //
+        if (BUH_INVOICE_MAIN.verifyId(id)) {
+            updateMainData(id);
+        }
+        //
+        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
+            updateAddressData(address_id);
+        } else {
 
-    protected abstract void updateMainData(String fakturaKundId);
+        }
+        //
+        refresh();
+        //
+    }
+    
+    private void updateMainData(String id) {
+        //
+        String idColName = "";
+        String tableName = "";
+        //
+         if (this instanceof CustomersA) {
+             idColName = DB.BUH_FAKTURA_KUND__ID;
+             tableName = DB.TABLE__BUH_FAKTURA_KUND;
+        } else if (this instanceof ForetagA) {
+             idColName = DB.BUH_KUND__ID;
+             tableName = DB.TABLE__BUH_KUND;
+        }
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(idColName, id, tableName);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
 
-    protected abstract void updateAddressData(String id);
+
+    private void updateAddressData(String id) {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3());
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_ADDR__ID, id, DB.TABLE__BUH_ADDRESS);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+
+    public abstract RowDataInvert[] getConfigTableInvert_2();
 
     /**
      * [UPDATE ADDRESS]
@@ -298,7 +369,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         return rows;
     }
-
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
