@@ -17,22 +17,32 @@ import MyObjectTableInvert.TableBuilderInvert;
 public class ForetagA extends Basic_Buh_ {
 
     private boolean CURRENT_OPERATION_INSERT = false;
-    
+
     private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
+    private static final String TABLE_ARTICLES__NAMN = "NAMN";
+    private static final String TABLE_ARTICLES__ORGNR = "ORGNR";
+    private static final String TABLE_ARTICLES__VATNR = "VATNR";
+    private static final String TABLE_ARTICLES__EPOST = "E-POST";
+    private static final String TABLE_ARTICLES__BANK_GIRO = "BG";
+    private static final String TABLE_ARTICLES__POST_GIRO = "PG";
+    private static final String TABLE_ARTICLES__KONTO = "KONTO";
+    private static final String TABLE_ARTICLES__IBAN = "IBAN";
+    private static final String TABLE_ARTICLES__SWISH = "SWISH";
+    
     
     public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
-    
+
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
-        
+
     }
 
     @Override
     protected void startUp() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     /**
      * INSERT
      */
@@ -49,9 +59,8 @@ public class ForetagA extends Basic_Buh_ {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
     }
-    
-    
-     @Override
+
+    @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
 //        RowDataInvert kundnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
@@ -78,7 +87,7 @@ public class ForetagA extends Basic_Buh_ {
 //        };
         //
 //        return rows;
-          return null;
+        return null;
     }
-    
+
 }

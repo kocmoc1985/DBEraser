@@ -130,5 +130,13 @@ public class DB {
     //
     //
     public static final String BUH_KUND__ID = "kundId";
-//    public static final String BUH_KUND__ID = "kundId";
+    public static final String BUH_KUND__NAMN = "namn";
+    public static final String BUH_KUND__ORGNR = "orgnr";
+    public static final String BUH_KUND__VATNR = "vatnr";
+    public static final String BUH_KUND__EPOST = "email";
+    public static final String BUH_KUND__BANK_GIRO = "bank_giro";
+    public static final String BUH_KUND__POST_GIRO = "post_giro";
+    public static final String BUH_KUND__KONTO = "bank_konto";
+    public static final String BUH_KUND__IBAN = "iban";
+    public static final String BUH_KUND__SWISH = "swish";
 }

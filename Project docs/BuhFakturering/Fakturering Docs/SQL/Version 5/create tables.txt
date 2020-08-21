@@ -11,6 +11,8 @@ vatnr varchar (30) DEFAULT '',
 email varchar (320) DEFAULT '',
 bank_giro varchar (20) DEFAULT '',
 post_giro varchar (20) DEFAULT '',
+bank_konto varchar (30) DEFAULT '',
+iban varchar (30) DEFAULT '',
 swish varchar (30) DEFAULT ''
 );
 
@@ -45,15 +47,6 @@ Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 );
 
-CREATE TABLE buh_faktura_inbet (
-inbetId integer primary key not null AUTO_INCREMENT,
-fakturaId integer not null,
-inbetald float DEFAULT 0,
-betal_metod varchar(20) DEFAULT '',
-betal_datum varchar(10) DEFAULT CURDATE(),
-annat varchar(500)
-Foreign key (fakturaId) references buh_faktura(fakturaId)
-)
 
 CREATE TABLE buh_faktura (
 fakturaId integer primary key not null AUTO_INCREMENT,
@@ -66,7 +59,7 @@ inkl_moms boolean DEFAULT true,
 fakturadatum varchar(10) DEFAULT CURDATE(),
 forfallodatum varchar(10) DEFAULT CURDATE(),
 valuta varchar(3) DEFAULT 'SEK',
-ert_ordernr varchar(50) DEFAULT '',
+ert_ordernr varchar(200) DEFAULT '',
 er_referens varchar(100) DEFAULT '',
 var_referens varchar(100) DEFAULT '',
 frakt float DEFAULT 0,
@@ -89,6 +82,25 @@ date_created varchar(30) DEFAULT 'no',
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 ); 
+
+CREATE TABLE buh_faktura_inbet (
+inbetId integer primary key not null AUTO_INCREMENT,
+fakturaId integer not null,
+inbetald float DEFAULT 0,
+betal_metod varchar(20) DEFAULT '',
+betal_datum varchar(10) DEFAULT CURDATE(),
+annat varchar(500),
+Foreign key (fakturaId) references buh_faktura(fakturaId)
+);
+
+CREATE TABLE buh_faktura_send (
+sendId integer primary key not null AUTO_INCREMENT,
+fakturaId integer not null,
+send_type integer DEFAULT 0,
+send_datum varchar(10) DEFAULT CURDATE(),
+annat varchar(500),
+Foreign key (fakturaId) references buh_faktura(fakturaId)
+);
 
 CREATE TABLE buh_faktura_artikel (
 artikelId integer primary key not null AUTO_INCREMENT,
