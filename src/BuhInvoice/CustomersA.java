@@ -39,18 +39,7 @@ public class CustomersA extends CustomerAForetagA {
     private static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
-    private static final String TABLE_FAKTURA_KUND_ADDR__ID = "ID";
-    private static final String TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID = "FKUNDID";
-    private static final String TABLE_FAKTURA_KUND_ADDR__NAMN = "NAMN";
-    private static final String TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY = "PRIMÄR";
-    private static final String TABLE_FAKTURA_KUND_ADDR__POSTADDR_A = "ADRESS 1";
-    private static final String TABLE_FAKTURA_KUND_ADDR__POSTADDR_B = "ADRESS 2";
-    private static final String TABLE_FAKTURA_KUND_ADDR__BESOKSADDR = "BESÖKS ADR";
-    private static final String TABLE_FAKTURA_KUND_ADDR__ZIP = "POSTNR";
-    private static final String TABLE_FAKTURA_KUND_ADDR__ORT = "ORT";
-    private static final String TABLE_FAKTURA_KUND_ADDR__TEL_A = "TEL 1";
-    private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
-    private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
+   
     //
 
     public CustomersA(BUH_INVOICE_MAIN bim) {
@@ -81,26 +70,6 @@ public class CustomersA extends CustomerAForetagA {
         }
     }
 
-    @Override
-    protected void startUp() {
-        //
-        if (GP_BUH.CUSTOMER_MODE == true) {
-            hideAdressTable();
-        }
-        //
-        fillJTable_header_main();
-        fillJTable_header_address();
-        //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //
-                refresh();
-                //
-            }
-        });
-        //
-    }
 
     protected void createNewFakturaKund() {
         //
@@ -342,29 +311,6 @@ public class CustomersA extends CustomerAForetagA {
         }
     }
 
-    @Override
-    protected void fillJTable_header_address() {
-        //
-        JTable table = getTableAdress();
-        //
-        String[] headers = {
-            TABLE_FAKTURA_KUND_ADDR__ID,
-            TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID,
-            TABLE_FAKTURA_KUND_ADDR__NAMN,
-            TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY,
-            TABLE_FAKTURA_KUND_ADDR__POSTADDR_A,
-            TABLE_FAKTURA_KUND_ADDR__POSTADDR_B,
-            TABLE_FAKTURA_KUND_ADDR__BESOKSADDR,
-            TABLE_FAKTURA_KUND_ADDR__ZIP,
-            TABLE_FAKTURA_KUND_ADDR__ORT,
-            TABLE_FAKTURA_KUND_ADDR__TEL_A,
-            TABLE_FAKTURA_KUND_ADDR__TEL_B,
-            TABLE_FAKTURA_KUND_ADDR__OTHER
-        };
-        //
-        table.setModel(new DefaultTableModel(null, headers));
-        //
-    }
 
     @Override
     protected void fillJTable_header_main() {
@@ -399,28 +345,7 @@ public class CustomersA extends CustomerAForetagA {
         }
     }
 
-    @Override
-    protected void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
-        //
-        Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_ADDR__ID),
-            map.get(DB.BUH_ADDR__FAKTURAKUND_ID), // hidden
-            map.get(DB.BUH_ADDR__NAMN),
-            map.get(DB.BUH_ADDR__IS_PRIMARY_ADDR),
-            map.get(DB.BUH_ADDR__ADDR_A),
-            map.get(DB.BUH_ADDR__ADDR_B),
-            map.get(DB.BUH_ADDR__BESOKS_ADDR),
-            map.get(DB.BUH_ADDR__POSTNR_ZIP),
-            map.get(DB.BUH_ADDR__ORT),
-            map.get(DB.BUH_ADDR__TEL_A),
-            map.get(DB.BUH_ADDR__TEL_B),
-            map.get(DB.BUH_ADDR__OTHER)
-        };
-        //
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(jtableRow);
-        //
-    }
+   
 
     @Override
     protected void addRowJtable_main(HashMap<String, String> map, JTable table) {
@@ -573,54 +498,7 @@ public class CustomersA extends CustomerAForetagA {
         //
         return rows;
     }
-
-    /**
-     * [UPDATE]
-     *
-     * @return
-     */
-    public RowDataInvert[] getConfigTableInvert_3() {
-        //
-        JTable table = getTableAdress();
-        //
-        String addr_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
-        RowDataInvert addr_a = new RowDataInvertB(addr_a_, DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);
-        //
-        String addr_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B);
-        RowDataInvert addr_b = new RowDataInvertB(addr_b_, DB.BUH_ADDR__ADDR_B, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B, "", true, true, false);
-        //
-        String visit_addr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR);
-        RowDataInvert visit_addr = new RowDataInvertB(visit_addr_, DB.BUH_ADDR__BESOKS_ADDR, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR, "", true, true, false);
-        //
-        String zip_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ZIP);
-        RowDataInvert zip = new RowDataInvertB(zip_, DB.BUH_ADDR__POSTNR_ZIP, TABLE_FAKTURA_KUND_ADDR__ZIP, "", true, true, false);
-        //
-        String ort_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ORT);
-        RowDataInvert ort = new RowDataInvertB(ort_, DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
-        //
-        String tel_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_A);
-        RowDataInvert tel_a = new RowDataInvertB(tel_a_, DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
-        //
-        String tel_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_B);
-        RowDataInvert tel_b = new RowDataInvertB(tel_b_, DB.BUH_ADDR__TEL_B, TABLE_FAKTURA_KUND_ADDR__TEL_B, "", true, true, false);
-        //
-        String other_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__OTHER);
-        RowDataInvert other = new RowDataInvertB(other_, DB.BUH_ADDR__OTHER, TABLE_FAKTURA_KUND_ADDR__OTHER, "", true, true, false);
-        //
-        RowDataInvert[] rows = {
-            addr_a,
-            addr_b,
-            visit_addr,
-            zip,
-            ort,
-            tel_a,
-            tel_b,
-            other
-        };
-        //
-        return rows;
-    }
-
+    
     /**
      * [INSERT]
      *
@@ -658,6 +536,8 @@ public class CustomersA extends CustomerAForetagA {
         return rows;
     }
 
+    
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -692,11 +572,7 @@ public class CustomersA extends CustomerAForetagA {
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
-            //
-            vatnrAuto(jli, ti, DB.BUH_FAKTURA_KUND___ORGNR);
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+        if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
             //
             supposeNextKundNr(jli);
             //
