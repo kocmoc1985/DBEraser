@@ -1307,6 +1307,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         customersA.showTableInvert_3();
         customersA.refreshTableInvert(customersA.TABLE_INVERT_3);
     }
+    
+    protected void jTableForetagA_adress_clicked(){
+        foretagA.showTableInvert_3();
+        foretagA.refreshTableInvert(foretagA.TABLE_INVERT_3);
+    }
+    
 
     protected void jTableCustomersA_kunder_clicked() {
         //
@@ -1326,7 +1332,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         foretagA.fillAddressTable();
         //
         HelpA.markFirstRowJtable(jTable_ftg_addr);
-        jTableCustomersA_adress_clicked();
+        jTableForetagA_adress_clicked();
         //
     }
 

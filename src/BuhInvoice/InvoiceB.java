@@ -388,7 +388,7 @@ public class InvoiceB extends Basic {
         try {
             //
             String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_ADDRESSES, json));
+                    DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, json));
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
             //

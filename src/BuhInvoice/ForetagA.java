@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -40,10 +41,9 @@ public class ForetagA extends CustomerAForetagA {
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
 
     }
-    
-    
+
     @Override
-     protected void fillJTable_header_main() {
+    protected void fillJTable_header_main() {
         //
         //
         JTable table = getTableMain();
@@ -64,7 +64,37 @@ public class ForetagA extends CustomerAForetagA {
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
-   
+
+    @Override
+    protected void addRowJtable_main(HashMap<String, String> map, JTable table) {
+        //
+        Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_KUND__ID),
+            map.get(DB.BUH_KUND__NAMN),
+            map.get(DB.BUH_KUND__ORGNR),
+            map.get(DB.BUH_KUND__VATNR),
+            map.get(DB.BUH_KUND__EPOST),
+            map.get(DB.BUH_KUND__BANK_GIRO),
+            map.get(DB.BUH_KUND__POST_GIRO),
+            map.get(DB.BUH_KUND__KONTO),
+            map.get(DB.BUH_KUND__IBAN),
+            map.get(DB.BUH_KUND__SWISH)
+        };
+        //
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(jtableRow);
+        //
+    }
+
+    @Override
+    protected void hideColumnsMainTable() {
+        //
+        JTable table = getTableMain();
+        //
+        if (GP_BUH.CUSTOMER_MODE) {
+            HelpA.hideColumnByName(table, TABLE__ID);
+        }
+    }
 
     /**
      * INSERT
@@ -82,7 +112,7 @@ public class ForetagA extends CustomerAForetagA {
 //        //
 //        addTableInvertRowListener(TABLE_INVERT, this);
     }
-    
+
     public void showTableInvert_2() {
         //
         SET_CURRENT_OPERATION_INSERT(false);
@@ -91,21 +121,21 @@ public class ForetagA extends CustomerAForetagA {
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel16); // ************************ CHANGE
+        showTableInvert(bim.jPanel16, TABLE_INVERT_2); 
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
     }
-    
+
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel17); // ************************ CHANGE
+        showTableInvert(bim.jPanel17, TABLE_INVERT_3); 
         //
         addTableInvertRowListener(TABLE_INVERT_3, this);
     }
-    
+
 //    public void showTableInvert_4() {
 //        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "");
 //        TABLE_INVERT_4 = null;
@@ -115,7 +145,6 @@ public class ForetagA extends CustomerAForetagA {
 //        //
 //        addTableInvertRowListener(TABLE_INVERT_4, this);
 //    }
-
     @Override
     public RowDataInvert[] getConfigTableInvert() {
 
@@ -127,31 +156,31 @@ public class ForetagA extends CustomerAForetagA {
         JTable table = getTableMain();
         //
         String namn_ = HelpA.getValueSelectedRow(table, TABLE__NAMN);
-        RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_KUND__NAMN, TABLE__NAMN , "", true, true, true);
+        RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_KUND__NAMN, TABLE__NAMN, "", true, true, true);
         //
         String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__ORGNR);
-        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_KUND__ORGNR, TABLE__ORGNR , "", true, true, false);
+        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_KUND__ORGNR, TABLE__ORGNR, "", true, true, false);
         //
         String vatnr_ = HelpA.getValueSelectedRow(table, TABLE__VATNR);
-        RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_KUND__VATNR, TABLE__VATNR , "", true, true, false);
+        RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_KUND__VATNR, TABLE__VATNR, "", true, true, false);
         //
         String email_ = HelpA.getValueSelectedRow(table, TABLE__EPOST);
-        RowDataInvert email = new RowDataInvertB(email_, DB.BUH_KUND__EPOST, TABLE__EPOST , "", true, true, false);
+        RowDataInvert email = new RowDataInvertB(email_, DB.BUH_KUND__EPOST, TABLE__EPOST, "", true, true, false);
         //
         String bg_ = HelpA.getValueSelectedRow(table, TABLE__BANK_GIRO);
-        RowDataInvert bg = new RowDataInvertB(bg_, DB.BUH_KUND__BANK_GIRO, TABLE__BANK_GIRO , "", true, true, false);
+        RowDataInvert bg = new RowDataInvertB(bg_, DB.BUH_KUND__BANK_GIRO, TABLE__BANK_GIRO, "", true, true, false);
         //
         String pg_ = HelpA.getValueSelectedRow(table, TABLE__POST_GIRO);
-        RowDataInvert pg = new RowDataInvertB(pg_, DB.BUH_KUND__POST_GIRO, TABLE__POST_GIRO , "", true, true, false);
+        RowDataInvert pg = new RowDataInvertB(pg_, DB.BUH_KUND__POST_GIRO, TABLE__POST_GIRO, "", true, true, false);
         //
         String konto_ = HelpA.getValueSelectedRow(table, TABLE__KONTO);
-        RowDataInvert konto = new RowDataInvertB(konto_, DB.BUH_KUND__KONTO, TABLE__KONTO , "", true, true, false);
+        RowDataInvert konto = new RowDataInvertB(konto_, DB.BUH_KUND__KONTO, TABLE__KONTO, "", true, true, false);
         //
         String iban_ = HelpA.getValueSelectedRow(table, TABLE__IBAN);
-        RowDataInvert iban = new RowDataInvertB(iban_, DB.BUH_KUND__IBAN, TABLE__IBAN , "", true, true, false);
+        RowDataInvert iban = new RowDataInvertB(iban_, DB.BUH_KUND__IBAN, TABLE__IBAN, "", true, true, false);
         //
         String swish_ = HelpA.getValueSelectedRow(table, TABLE__SWISH);
-        RowDataInvert swish = new RowDataInvertB(swish_, DB.BUH_KUND__SWISH, TABLE__SWISH , "", true, true, false);
+        RowDataInvert swish = new RowDataInvertB(swish_, DB.BUH_KUND__SWISH, TABLE__SWISH, "", true, true, false);
         //
         RowDataInvert[] rows = {
             namn,
@@ -168,17 +197,6 @@ public class ForetagA extends CustomerAForetagA {
         return rows;
     }
 
-
-    @Override
-    protected void hideColumnsMainTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void addRowJtable_main(HashMap<String, String> map, JTable table) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     protected void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -193,7 +211,5 @@ public class ForetagA extends CustomerAForetagA {
     protected void updateAddressData(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
 
 }

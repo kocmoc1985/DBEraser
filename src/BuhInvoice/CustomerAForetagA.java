@@ -153,15 +153,15 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         if (this instanceof CustomersA) {
             idColName = CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
-            phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_ADDRESSES;
+            phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES;
         } else if (this instanceof ForetagA) {
             idColName = ForetagA.TABLE__ID;
-            phpFunc = null; // **********************************************
+            phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS; // **********************************************
         }
         //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableMain(), idColName);
+        String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
         //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        String json = bim.getSELECT_fakturaKundId(id);
         //
         try {
             //
@@ -216,9 +216,9 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String phpFunc = "";
         //
         if (this instanceof CustomersA) {
-            phpFunc = DB.PHP_FUNC_PARAM_GET_KUDNER_ALL_DATA;
+            phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
         } else if (this instanceof ForetagA) {
-            phpFunc = ""; // ****************************************************
+            phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_DATA; // ****************************************************
         }
         //
         try {
