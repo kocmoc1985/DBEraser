@@ -5,9 +5,7 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
 import MyObjectTable.OutPut;
-import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -136,18 +134,10 @@ public class ForetagA extends CustomerAForetagA {
         addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
-//    public void showTableInvert_4() {
-//        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "");
-//        TABLE_INVERT_4 = null;
-//        TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
-//        setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
-//        showTableInvert(bim.jPanel17); // ************************ CHANGE
-//        //
-//        addTableInvertRowListener(TABLE_INVERT_4, this);
-//    }
+    
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-
         return null;
     }
 
