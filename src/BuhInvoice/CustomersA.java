@@ -27,14 +27,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA extends Basic_Buh_ {
+public class CustomersA extends CustomerAForetagA {
 
     //
-    protected Table TABLE_INVERT_2;
-    protected Table TABLE_INVERT_3;
-    protected Table TABLE_INVERT_4;
-    //
-    private static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
+    protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
     private static final String TABLE_FAKTURA_KUNDER__KUND_ID = "KUND ID";
     private static final String TABLE_FAKTURA_KUNDER__KUNDNR = "KUNDNR";
     private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
@@ -56,13 +52,13 @@ public class CustomersA extends Basic_Buh_ {
     private static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     private static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
     //
-    private boolean CURRENT_OPERATION_INSERT = false;
 
     public CustomersA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
-    private void SET_CURRENT_OPERATION_INSERT(boolean insert) {
+    @Override
+    protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
@@ -85,33 +81,15 @@ public class CustomersA extends Basic_Buh_ {
         }
     }
 
-    private JTable getTableKunder() {
-        return bim.jTable_kunder;
-    }
-
-    private JTable getTableAdresses() {
-        return bim.jTable_kund_adresses;
-    }
-
-    private void hideAdressesTable() {
-        bim.jScrollPane8.setVisible(false);
-    }
-
-    private void refresh() {
-        fillKundJTable();
-        HelpA.markFirstRowJtable(getTableKunder());
-        bim.jTableCustomersA_kunder_clicked();
-    }
-
     @Override
     protected void startUp() {
         //
         if (GP_BUH.CUSTOMER_MODE == true) {
-            hideAdressesTable();
+            hideAdressTable();
         }
         //
-        fillJTable_header_kunder();
-        fillJTable_header_kund_addresses();
+        fillJTable_header_main();
+        fillJTable_header_address();
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -143,8 +121,7 @@ public class CustomersA extends Basic_Buh_ {
     protected void delete() {
         //
         //
-        String str = bim.getForeignKeyBindings(
-                getTableKunder(),
+        String str = bim.getForeignKeyBindings(getTableMain(),
                 TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID,
                 DB.BUH_FAKTURA__FAKTURAKUND_ID,
                 DB.PHP_FUNC_PARAM_GET_INVOICES_USING_CUSTOMER,
@@ -161,7 +138,7 @@ public class CustomersA extends Basic_Buh_ {
             }
         }
         //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        String fakturaKundId = HelpA.getValueSelectedRow(getTableMain(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         //
         String json = bim.getSELECT(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId);
         //
@@ -234,7 +211,8 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
-    public void update() {
+    @Override
+    protected void update() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
@@ -246,11 +224,11 @@ public class CustomersA extends Basic_Buh_ {
             return;
         }
         //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
-        String address_id = HelpA.getValueSelectedRow(getTableAdresses(), TABLE_FAKTURA_KUND_ADDR__ID);
+        String fakturaKundId = HelpA.getValueSelectedRow(getTableMain(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
         if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
-            updateCustomerData(fakturaKundId);
+            updateMainData(fakturaKundId);
         }
         //
         if (BUH_INVOICE_MAIN.verifyId(address_id)) {
@@ -264,7 +242,8 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
-    private void updateCustomerData(String fakturaKundId) {
+    @Override
+    protected void updateMainData(String fakturaKundId) {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
         //
@@ -278,7 +257,8 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
-    private void updateAddressData(String id) {
+    @Override
+    protected void updateAddressData(String id) {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3());
         //
@@ -304,14 +284,14 @@ public class CustomersA extends Basic_Buh_ {
             return;
         }
         //
-        insertCustomerData();
+        insertMainData();
         //
         //
         //
         refresh();
     }
 
-    private void insertCustomerData() {
+    private void insertMainData() {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
         //
@@ -336,7 +316,7 @@ public class CustomersA extends Basic_Buh_ {
         //
         if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
             //
-            insertCustomerAddress(fakturaKundId);
+            insertAddressData(fakturaKundId);
             //
         } else {
             HelpA.showNotification(LANG.MSG_ERROR_1);
@@ -344,7 +324,7 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
-    private void insertCustomerAddress(String fakturaKundId) {
+    private void insertAddressData(String fakturaKundId) {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4());
         //
@@ -362,9 +342,10 @@ public class CustomersA extends Basic_Buh_ {
         }
     }
 
-    private void fillJTable_header_kund_addresses() {
+    @Override
+    protected void fillJTable_header_address() {
         //
-        JTable table = getTableAdresses();
+        JTable table = getTableAdress();
         //
         String[] headers = {
             TABLE_FAKTURA_KUND_ADDR__ID,
@@ -383,14 +364,13 @@ public class CustomersA extends Basic_Buh_ {
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
-//        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        //
     }
 
-    private void fillJTable_header_kunder() {
+    @Override
+    protected void fillJTable_header_main() {
         //
         //
-        JTable table = getTableKunder();
+        JTable table = getTableMain();
         //
         String[] headers = {
             TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID,
@@ -405,75 +385,22 @@ public class CustomersA extends Basic_Buh_ {
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
-//        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        //
     }
 
-    public void fillJTableKundAdresses() {
+    @Override
+    protected void hideColumnsMainTable() {
         //
-        JTable table = getTableAdresses();
-        //
-        HelpA.clearAllRowsJTable(table);
-        //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableKunder(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
-        //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_ADDRESSES, json));
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            //
-            for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable_kund_adresses(invoice_map, table);
-            }
-            //
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-//        HelpA.hideColumnByName(table, DB.BUH_FAKTURA_KUND__KUND_ID);
-        //
-    }
-
-    private void fillKundJTable() {
-        //
-        JTable table = getTableKunder();
-        //
-        HelpA.clearAllRowsJTable(table);
-        //
-        String json = bim.getSELECT_kundId();
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUDNER_ALL_DATA, json));
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            //
-            for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable_kunder(invoice_map, table);
-            }
-            //
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JTable table = getTableMain();
         //
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         }
-        //
     }
 
-    private void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
+    @Override
+    protected void addRowJtable_kund_adresses(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_ADDR__ID),
@@ -495,7 +422,8 @@ public class CustomersA extends Basic_Buh_ {
         //
     }
 
-    private void addRowJtable_kunder(HashMap<String, String> map, JTable table) {
+    @Override
+    protected void addRowJtable_main(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA_KUND__ID), // hidden
@@ -608,7 +536,7 @@ public class CustomersA extends Basic_Buh_ {
      */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        JTable table = getTableKunder();
+        JTable table = getTableMain();
         //
         String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
@@ -653,7 +581,7 @@ public class CustomersA extends Basic_Buh_ {
      */
     public RowDataInvert[] getConfigTableInvert_3() {
         //
-        JTable table = getTableAdresses();
+        JTable table = getTableAdress();
         //
         String addr_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
         RowDataInvert addr_a = new RowDataInvertB(addr_a_, DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);
@@ -739,45 +667,21 @@ public class CustomersA extends Basic_Buh_ {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA_KUND___EMAIL)) {
-            //
-            Validator.validateEmail(jli);
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___ORGNR)) {
-            //
-            Validator.validateOrgnr(jli);
-            //
-            orgnr_additional(jli, ti);
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+        if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___KUNDNR, DB.TABLE__BUH_FAKTURA_KUND);
-            Validator.checkIfExistInJTable(getTableKunder(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
+            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
-            Validator.checkIfExistInJTable(getTableKunder(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
             //
         }
         //
     }
 
-    private void orgnr_additional(JLinkInvert jli, TableInvert ti) {
-        //
-        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
-        //
-        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
-        //
-        String txt = jtfi.getText();
-        //
-        if (txt.length() == 6) {
-            jtfi.setText(orgnr + "-");
-        } else if (txt.contains("--")) {
-            txt = txt.replaceAll("--", "-");
-            jtfi.setText(txt);
-        }
-    }
+    
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
@@ -790,7 +694,7 @@ public class CustomersA extends Basic_Buh_ {
         //
         if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
             //
-            vatnrAuto(jli, ti);
+            vatnrAuto(jli, ti, DB.BUH_FAKTURA_KUND___ORGNR);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
             //
@@ -808,7 +712,7 @@ public class CustomersA extends Basic_Buh_ {
             String latest = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_LATEST, json));
             //
-            System.out.println("LATEST: " + latest + "   *************************");
+//            System.out.println("LATEST: " + latest + "   *************************");
             //
             if (HelpA.checkIfNumber_b(latest)) {
                 int nr = Integer.parseInt(latest);
@@ -834,26 +738,6 @@ public class CustomersA extends Basic_Buh_ {
         jtfi.setText(next);
     }
 
-    private void vatnrAuto(JLinkInvert jli, TableInvert ti) {
-        //
-        String vatnr = "SE";
-        //
-        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
-        //
-        if (jtfi.getText().isEmpty() == false) {
-            return;
-        }
-        //
-        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
-        //
-        //
-        if (getValidated(DB.BUH_FAKTURA_KUND___ORGNR, ti)) {
-            //
-            vatnr += orgnr.replace("-", "") + "01";
-            //
-            jtfi.setText(vatnr);
-        }
-        //
-    }
+    
 
 }

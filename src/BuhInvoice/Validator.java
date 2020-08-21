@@ -30,10 +30,11 @@ public class Validator {
 
     /**
      * [2020-08-19]
+     *
      * @param table
      * @param jli
      * @param colName
-     * @return 
+     * @return
      */
     public static boolean checkIfExistInJTable(JTable table, JLinkInvert jli, String colName) {
         //
@@ -41,7 +42,7 @@ public class Validator {
         //
         String valToCheck = jtfi.getText();
         //
-        if (valToCheck.isEmpty()) {
+        if (valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);
         }
         //
@@ -60,9 +61,10 @@ public class Validator {
     }
 
     /**
-     * [2020-07-31]
-     * It's ok to use this method, but make note that it consumes much traffic
-     * @deprecated 
+     * [2020-07-31] It's ok to use this method, but make note that it consumes
+     * much traffic
+     *
+     * @deprecated
      * @param bim
      * @param jli
      * @param colName
