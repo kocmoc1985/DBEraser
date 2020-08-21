@@ -231,6 +231,8 @@ public class InvoiceA_Insert extends Invoice {
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
         //
+        RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
+        //
         RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
         //
         RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
@@ -243,6 +245,7 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert[] rows = {
             inkl_exkl_moms,
             moms,
+            order,
             expavgift,
             frakt,
             makulerad

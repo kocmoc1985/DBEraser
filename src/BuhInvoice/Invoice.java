@@ -571,6 +571,10 @@ public abstract class Invoice extends Basic_Buh_ {
                 forfalloDatumAutoChange(ti);
             }
             //
+        }else if(col_name.equals(DB.BUH_FAKTURA__ERT_ORDER)){
+            //
+            Validator.validateMaxInputLength(jli, 40); // OBS! 200 is taken from DB "buh_faktura" varchar(40)
+            //
         }
     }
 

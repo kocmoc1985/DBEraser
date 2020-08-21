@@ -72,6 +72,7 @@ public class DB {
     public static final String BUH_FAKTURA__FAKTURA_DATUM = "fakturadatum";
     public static final String BUH_FAKTURA__FORFALLO_DATUM = "forfallodatum";
     public static final String BUH_FAKTURA__ER_REFERENS = "er_referens";
+    public static final String BUH_FAKTURA__ERT_ORDER = "ert_ordernr";
     public static final String BUH_FAKTURA__VAR_REFERENS = "var_referens";
     public static final String BUH_FAKTURA__BETAL_VILKOR = "betal_vilkor";
     public static final String BUH_FAKTURA__LEV_VILKOR = "lev_vilkor";

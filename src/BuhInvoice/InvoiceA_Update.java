@@ -192,6 +192,8 @@ public class InvoiceA_Update extends Invoice {
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
         //
+        String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
+        RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);
         //
         String exp = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG);
         RowDataInvert expavgift = new RowDataInvertB(exp, DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", false, true, false);
@@ -212,6 +214,7 @@ public class InvoiceA_Update extends Invoice {
         RowDataInvert[] rows = {
             inkl_exkl_moms,
             moms,
+            order,
             expavgift,
             frakt,
             makulerad

@@ -1,3 +1,12 @@
+[OBS! TAKE ACTION HOW TO HANDLE ":" ] [2020-08-21] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
+
+As example when i try yo upload following: "Order:NN20200301" in "BESTÄLLNING / NOTIS" -> ony the "Order" is taken in this case
+
+____________________________________________________________________________________________________________________________________________________
+[MAKE "LENGTH" CHECK FOR ALL "VARCHAR" FIELDS][2020-08-21] [IMPORTANT][IMPORTANT]
+
+____________________________________________________________________________________________________________________________________________________
+
 [CHECK THE CASE WHEN NO INVOICES EXIST FOR A CUSTOMER] [2020-08-20]
 
 Debug the case when no invoices exist for the customer att begining

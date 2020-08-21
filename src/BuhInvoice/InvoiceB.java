@@ -33,6 +33,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__FORFALLODATUM = "FÖRFALLODATUM";
     public static String TABLE_ALL_INVOICES__VAR_REF = "VAR REF";
     public static String TABLE_ALL_INVOICES__ER_REF = "ER REF";
+    public static String TABLE_ALL_INVOICES__ERT_ORDER = "BESTÄLLNING / NOTIS";
     public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
@@ -102,14 +103,15 @@ public class InvoiceB extends Basic {
         // "ID" -> "buh_faktura.fakturaId"
         //
         String[] headers = {
-            TABLE_ALL_INVOICES__FAKTURA_ID, // hidden
-            TABLE_ALL_INVOICES__KUND_ID, // hidden
-            TABLE_ALL_INVOICES__KUND_NR, // hidden
-            TABLE_ALL_INVOICES__VAR_REF, // hidden
-            TABLE_ALL_INVOICES__ER_REF, // hidden
-            TABLE_ALL_INVOICES__BET_VILKOR, // hidden
-            TABLE_ALL_INVOICES__LEV_VILKOR, // hidden
-            TABLE_ALL_INVOICES__LEV_SATT, // hidden
+            TABLE_ALL_INVOICES__FAKTURA_ID, 
+            TABLE_ALL_INVOICES__KUND_ID,
+            TABLE_ALL_INVOICES__KUND_NR, 
+            TABLE_ALL_INVOICES__VAR_REF, 
+            TABLE_ALL_INVOICES__ER_REF,
+            TABLE_ALL_INVOICES__ERT_ORDER,
+            TABLE_ALL_INVOICES__BET_VILKOR, 
+            TABLE_ALL_INVOICES__LEV_VILKOR, 
+            TABLE_ALL_INVOICES__LEV_SATT, 
             TABLE_ALL_INVOICES__IS_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
@@ -195,6 +197,7 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_INKL_MOMS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
@@ -218,14 +221,15 @@ public class InvoiceB extends Basic {
     private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_FAKTURA__ID__), // hidden
-            map.get(DB.BUH_FAKTURA_KUND__ID), // hidden
-            map.get(DB.BUH_FAKTURA_KUND___KUNDNR), // hidden
-            map.get(DB.BUH_FAKTURA__VAR_REFERENS), // hidden
-            map.get(DB.BUH_FAKTURA__ER_REFERENS), // hidden
-            map.get(DB.BUH_FAKTURA__BETAL_VILKOR), // hidden
-            map.get(DB.BUH_FAKTURA__LEV_VILKOR), // hidden
-            map.get(DB.BUH_FAKTURA__LEV_SATT), // hidden
+            map.get(DB.BUH_FAKTURA__ID__),
+            map.get(DB.BUH_FAKTURA_KUND__ID), 
+            map.get(DB.BUH_FAKTURA_KUND___KUNDNR), 
+            map.get(DB.BUH_FAKTURA__VAR_REFERENS), 
+            map.get(DB.BUH_FAKTURA__ER_REFERENS), 
+            map.get(DB.BUH_FAKTURA__ERT_ORDER),
+            map.get(DB.BUH_FAKTURA__BETAL_VILKOR),
+            map.get(DB.BUH_FAKTURA__LEV_VILKOR),
+            map.get(DB.BUH_FAKTURA__LEV_SATT), 
             map.get(DB.BUH_FAKTURA__INKL_MOMS),
             map.get(DB.BUH_FAKTURA__MOMS_SATS),
             map.get(DB.BUH_FAKTURA__FRAKT),
