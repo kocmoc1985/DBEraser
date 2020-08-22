@@ -113,7 +113,7 @@ public class Validator {
         if(val.length() <= length){
             setValidated(jli);
         }else{
-            setNotValidated(jli);
+            setNotValidated(jli,new Color(140,218,255)); // 223, 243, 248
         }
     }
 
