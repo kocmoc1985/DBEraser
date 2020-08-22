@@ -561,13 +561,13 @@ public abstract class Invoice extends Basic_Buh_ {
             //
             referensSave(DB.BUH_FAKTURA__VAR_REFERENS);
             //
-            Validator.validateMaxInputLength(jli, 40);
+            Validator.validateMaxInputLength(jli, 100);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
             referensSave(DB.BUH_FAKTURA__ER_REFERENS);
             //
-            Validator.validateMaxInputLength(jli, 40);
+            Validator.validateMaxInputLength(jli, 100);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
