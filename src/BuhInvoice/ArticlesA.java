@@ -49,23 +49,27 @@ public class ArticlesA extends Basic_Buh_ {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_5);
             //
-            bim.jButton_update_article.setEnabled(false);
+//            bim.jButton_update_article.setEnabled(false);
             bim.jButton_delete_article.setEnabled(false);
-            bim.jButton_add_article.setEnabled(true);
+//            bim.jButton_add_article.setEnabled(true);
             //
         } else {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_6);
             //
-            bim.jButton_update_article.setEnabled(true);
+//            bim.jButton_update_article.setEnabled(true);
             bim.jButton_delete_article.setEnabled(true);
-            bim.jButton_add_article.setEnabled(false);
+//            bim.jButton_add_article.setEnabled(false);
             //
         }
     }
 
     public ArticlesA(BUH_INVOICE_MAIN bim) {
         super(bim);
+    }
+    
+    protected boolean getCurrentOperationInsert(){
+        return CURRENT_OPERATION_INSERT;
     }
 
     @Override

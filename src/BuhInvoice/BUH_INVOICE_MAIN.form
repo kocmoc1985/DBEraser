@@ -884,7 +884,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jPanel6" min="-2" pref="571" max="-2" attributes="0"/>
-                          <Component id="jPanel14" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="jPanel14" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -908,7 +908,7 @@
                           <Component id="jScrollPane7" min="-2" pref="560" max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" pref="233" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="1560" max="32767" attributes="0"/>
+                      <EmptySpace pref="1565" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -982,20 +982,6 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
                   </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton_add_article">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icons/add.png"/>
-                    </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="L&#xe4;gg till artikel"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_add_articleActionPerformed"/>
-                  </Events>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_update_article">
                   <Properties>
