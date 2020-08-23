@@ -23,9 +23,15 @@ public class Faktura_Entry_Update extends Faktura_Entry {
 
     /**
      * [2020-07-29] Here it's for the update purpose
+     *
+     * @return
      */
     @Override
-    public void insertOrUpdate() {
+    public boolean insertOrUpdate() {
+        //
+        if (super.insertOrUpdate() == false) {
+            return false;
+        }
         //
         setData();
         //
@@ -34,6 +40,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HelpBuh.update(json);
         //
         resetLists();
+        //
+        return true;
         //
     }
 

@@ -55,16 +55,16 @@ public class CustomersA extends CustomerAForetagA {
             //
             bim.jLabel_Kund_Insert_or_Update.setText(LANG.LBL_MSG_3);
             //
-            bim.jButton_update_kund.setEnabled(false);
-            bim.jButton_add_customer.setEnabled(true);
+//            bim.jButton_update_kund.setEnabled(false);
+//            bim.jButton_add_customer.setEnabled(true);
             bim.jButton_delete_customer.setEnabled(false);
             //
         } else {
             //
             bim.jLabel_Kund_Insert_or_Update.setText(LANG.LBL_MSG_4);
             //
-            bim.jButton_update_kund.setEnabled(true);
-            bim.jButton_add_customer.setEnabled(false);
+//            bim.jButton_update_kund.setEnabled(true);
+//            bim.jButton_add_customer.setEnabled(false);
             bim.jButton_delete_customer.setEnabled(true);
             //
         }

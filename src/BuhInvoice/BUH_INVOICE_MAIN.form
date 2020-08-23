@@ -670,9 +670,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel13" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                       <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jPanel13" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -707,7 +707,7 @@
                               <Component id="jScrollPane8" pref="0" max="32767" attributes="0"/>
                               <Component id="jPanel7" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" pref="1294" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" pref="1302" max="32767" attributes="0"/>
                           <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -820,20 +820,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="jButton_add_customer">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/add.png"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="L&#xe4;gg till kund"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_add_customerActionPerformed"/>
-                      </Events>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_update_kund">
                       <Properties>
@@ -1085,15 +1071,15 @@
                           <Component id="jButton_update_kund_data" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel16" max="32767" attributes="0"/>
                               <Component id="jScrollPane11" pref="418" max="32767" attributes="0"/>
+                              <Component id="jPanel16" pref="418" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane12" pref="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane12" pref="366" max="32767" attributes="0"/>
                               <Component id="jPanel17" pref="366" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="1309" max="32767" attributes="0"/>
+                          <EmptySpace pref="1312" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1107,6 +1093,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+                  </AccessibilityProperties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>

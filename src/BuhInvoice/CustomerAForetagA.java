@@ -54,6 +54,10 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     }
 
     protected abstract void SET_CURRENT_OPERATION_INSERT(boolean insert);
+    
+    protected boolean getCurrentOperationInsert(){
+        return CURRENT_OPERATION_INSERT;
+    }
 
     @Override
     protected void startUp() {
