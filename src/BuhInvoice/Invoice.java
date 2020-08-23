@@ -579,6 +579,10 @@ public abstract class Invoice extends Basic_Buh_ {
             //
             Validator.validateMaxInputLength(jli, 40); // OBS! 200 is taken from DB "buh_faktura" varchar(40)
             //
+        }else if(col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)){
+            //
+            Validator.validateMaxInputLength(jli, 200);
+            //
         }
     }
 
