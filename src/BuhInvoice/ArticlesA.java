@@ -67,8 +67,8 @@ public class ArticlesA extends Basic_Buh_ {
     public ArticlesA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
-    
-    protected boolean getCurrentOperationInsert(){
+
+    protected boolean getCurrentOperationInsert() {
         return CURRENT_OPERATION_INSERT;
     }
 
@@ -128,17 +128,23 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
-    public void update() {
+    public boolean fieldsValidated() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
-            return;
+            return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_1);
-            return;
+            return false;
         }
+        //
+        return true;
+        //
+    }
+
+    public void update() {
         //
         String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
@@ -189,6 +195,7 @@ public class ArticlesA extends Basic_Buh_ {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__LAGER);
         }
         //
     }
@@ -210,7 +217,6 @@ public class ArticlesA extends Basic_Buh_ {
         model.addRow(jtableRow);
         //
     }
-
 
     protected void delete() {
         //
@@ -269,16 +275,6 @@ public class ArticlesA extends Basic_Buh_ {
         map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, getKundId());
         //
         String json = JSon.hashMapToJSON(map);
-        //
-        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return;
-        }
-        //
-        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_1);
-            return;
-        }
         //
         try {
             //
@@ -347,8 +343,8 @@ public class ArticlesA extends Basic_Buh_ {
         RowDataInvert[] rows = {
             namn,
             pris,
-//            inkopspris,
-//            lager,
+            //            inkopspris,
+            //            lager,
             komment,
             kund_kategori
         };
@@ -358,7 +354,8 @@ public class ArticlesA extends Basic_Buh_ {
 
     /**
      * [UPDATE]
-     * @return 
+     *
+     * @return
      */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -394,8 +391,8 @@ public class ArticlesA extends Basic_Buh_ {
         RowDataInvert[] rows = {
             namn,
             pris,
-//            inkopspris,
-//            lager,
+            //            inkopspris,
+            //            lager,
             komment,
             kategori
         };
@@ -426,7 +423,7 @@ public class ArticlesA extends Basic_Buh_ {
         }
         //
     }
-    
+
     @Override
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
         //
@@ -444,5 +441,5 @@ public class ArticlesA extends Basic_Buh_ {
             //
         }
     }
-    
+
 }

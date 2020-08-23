@@ -929,9 +929,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton_update_kundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_kundActionPerformed
-        if(customersA.getCurrentOperationInsert()){
+        if (customersA.getCurrentOperationInsert()) {
             customersA.insert();
-        }else{
+        } else {
             customersA.update();
         }
     }//GEN-LAST:event_jButton_update_kundActionPerformed
@@ -960,12 +960,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_delete_articleActionPerformed
 
     private void jButton_update_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articleActionPerformed
-        if(articlesA.getCurrentOperationInsert()){
-            articlesA.insert();
-        }else{
-            articlesA.update();
+        if (articlesA.getCurrentOperationInsert()) {
+            if (articlesA.fieldsValidated()) {
+                articlesA.insert();
+            }
+        } else {
+            if (articlesA.fieldsValidated()) {
+                articlesA.update();
+            }
         }
-        
+
     }//GEN-LAST:event_jButton_update_articleActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -1220,7 +1224,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     jTableArticles_clicked();
                 }
                 //
-            }else if (ACTUAL_TAB_NAME.equals(TAB_FTG_SETUP)) {
+            } else if (ACTUAL_TAB_NAME.equals(TAB_FTG_SETUP)) {
                 //
                 if (foretagA == null) {
                     foretagA = new ForetagA(this);
@@ -1303,12 +1307,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         customersA.showTableInvert_3();
         customersA.refreshTableInvert(customersA.TABLE_INVERT_3);
     }
-    
-    protected void jTableForetagA_adress_clicked(){
+
+    protected void jTableForetagA_adress_clicked() {
         foretagA.showTableInvert_3();
         foretagA.refreshTableInvert(foretagA.TABLE_INVERT_3);
     }
-    
 
     protected void jTableCustomersA_kunder_clicked() {
         //
@@ -1320,7 +1323,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTableCustomersA_adress_clicked();
         //
     }
-    
+
     protected void jTableForetagA_ftg_table_clicked() {
         //
         foretagA.showTableInvert_2();
