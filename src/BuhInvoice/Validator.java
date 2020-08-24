@@ -71,7 +71,7 @@ public class Validator {
      * @param tableName
      * @return
      */
-    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN bim, JLinkInvert jli, String colName, String tableName) {
+    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN_ bim, JLinkInvert jli, String colName, String tableName) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
@@ -105,15 +105,15 @@ public class Validator {
             return setNotValidated(jli, Color.ORANGE);
         }
     }
-    
-    public static void validateMaxInputLength(JLinkInvert jli,int length){
-         //
+
+    public static void validateMaxInputLength(JLinkInvert jli, int length) {
+        //
         String val = jli.getValue();
         //
-        if(val.length() <= length){
+        if (val.length() <= length) {
             setValidated(jli);
-        }else{
-            setNotValidated(jli,new Color(140,218,255)); // 223, 243, 248
+        } else {
+            setNotValidated(jli, new Color(140, 218, 255)); // 223, 243, 248
         }
     }
 
@@ -194,12 +194,15 @@ public class Validator {
         //
         String val = jli.getValue();
         //
+        if (val.isEmpty()) {
+            return setValidated(jli);
+        }
+        //
         boolean validated = validate_(pattern, val);
         //
         if (validated) {
             return setValidated(jli);
         } else {
-
             return setNotValidated(jli);
         }
         //

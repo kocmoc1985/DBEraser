@@ -25,9 +25,9 @@ import java.util.logging.Logger;
  */
 public abstract class Basic_Buh_ extends Basic {
 
-    protected final BUH_INVOICE_MAIN bim;
+    protected final BUH_INVOICE_MAIN_ bim;
 
-    public Basic_Buh_(BUH_INVOICE_MAIN bim) {
+    public Basic_Buh_(BUH_INVOICE_MAIN_ bim) {
         this.bim = bim;
         initOther();
     }
@@ -80,6 +80,8 @@ public abstract class Basic_Buh_ extends Basic {
         //
         return comboString;
     }
+    
+    protected abstract boolean fieldsValidated(boolean insert);
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {

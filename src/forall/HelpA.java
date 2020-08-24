@@ -552,7 +552,7 @@ public class HelpA {
         "dd/MM/yy", "dd/MM/yyyy", "dd-MM-yy", "dd-MM-yyyy",
         "dd:MM:yy", "dd:MM:yyyy"};
 
-    public static long dateToMillisConverter3(String date, String date_format) {
+    public static synchronized long dateToMillisConverter3(String date, String date_format) {
         DateFormat formatter = new SimpleDateFormat(date_format);
         try {
             return formatter.parse(date).getTime();
@@ -2561,9 +2561,9 @@ public class HelpA {
         return sdf.parse(date_yyyy_mm_dd, new ParsePosition(0)) != null;
     }
 
-    public static String get_date_time_plus_some_time_in_days(String date, long days) {
+    public static synchronized String get_date_time_plus_some_time_in_days(String date, long days) {
         String date_format = "yyyy-MM-dd";
-        long time_to_plus = 86400000 * days;
+        long time_to_plus = 115200000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
         long ms = dateToMillisConverter3(date, date_format);
         long new_date_in_ms = ms + time_to_plus;
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);

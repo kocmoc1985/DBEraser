@@ -21,7 +21,7 @@ public class InvoiceA_Insert extends Invoice {
     private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
 
-    public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
+    public InvoiceA_Insert(BUH_INVOICE_MAIN_ bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }

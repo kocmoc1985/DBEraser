@@ -46,7 +46,7 @@ public abstract class Invoice extends Basic_Buh_ {
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
 
-    public Invoice(BUH_INVOICE_MAIN bim) {
+    public Invoice(BUH_INVOICE_MAIN_ bim) {
         super(bim);
         initFakturaEntry_();
     }
@@ -116,6 +116,39 @@ public abstract class Invoice extends Basic_Buh_ {
 
     }
 
+    @Override
+    protected boolean fieldsValidated(boolean insert) {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
+    }
+
+    protected boolean fieldsValidatedArticle() {
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
+    }
+
     protected abstract void addArticleForJTable(JTable table);
 
     protected abstract void addArticleForDB();
@@ -148,7 +181,7 @@ public abstract class Invoice extends Basic_Buh_ {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -208,9 +241,9 @@ public abstract class Invoice extends Basic_Buh_ {
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN_.jTextField_moms.setText("" + getMomsTotal());
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -221,7 +254,7 @@ public abstract class Invoice extends Basic_Buh_ {
 
     private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
         //
-        if(TABLE_INVERT_2 == null){
+        if (TABLE_INVERT_2 == null) {
             return;
         }
         //
@@ -244,7 +277,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 FAKTURA_TOTAL += (pris_exkl_moms * antal);
             } else if (rabatt_kr != 0) {
                 FAKTURA_TOTAL += (pris_exkl_moms - rabatt_kr) * antal;
-            } 
+            }
             //
         }
         //
@@ -256,9 +289,9 @@ public abstract class Invoice extends Basic_Buh_ {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
         }
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN_.jTextField_moms.setText("" + getMomsTotal());
         //
     }
 
@@ -463,6 +496,8 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
         //
+        JLinkInvert jli = (JLinkInvert) e.getSource();
+        //
         String col_name = ti.getCurrentColumnName(e.getSource());
         //
         if (col_name == null) {
@@ -472,6 +507,8 @@ public abstract class Invoice extends Basic_Buh_ {
         if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             long value = getValueWheelRotation(e);
+            //
+//            System.out.println("VALUE: " + value);
             //
             String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM);
             //
@@ -486,6 +523,8 @@ public abstract class Invoice extends Basic_Buh_ {
             setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
             //
             forfalloDatumAutoChange(ti);
+            //
+            Validator.validateDate(jli);
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
@@ -537,7 +576,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 double rabatt_kr = pris * (rabatt_percent / 100);
                 //
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, ti, rabatt_kr);
-                JLinkInvert linkInvert = (JLinkInvert)getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
+                JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
                 Validator.validateDigitalInput(linkInvert); // Validating after setting the value
                 //
             } else if (col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)) {
@@ -552,7 +591,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 rabatt_percent = HelpA.round_double(rabatt_percent);
                 //
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "" + rabatt_percent);
-                JLinkInvert linkInvert = (JLinkInvert)getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
+                JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
                 Validator.validatePercentInput(linkInvert); // Validating after setting the value
                 //
             }
@@ -575,11 +614,11 @@ public abstract class Invoice extends Basic_Buh_ {
                 forfalloDatumAutoChange(ti);
             }
             //
-        }else if(col_name.equals(DB.BUH_FAKTURA__ERT_ORDER)){
+        } else if (col_name.equals(DB.BUH_FAKTURA__ERT_ORDER)) {
             //
             Validator.validateMaxInputLength(jli, 40); // OBS! 200 is taken from DB "buh_faktura" varchar(40)
             //
-        }else if(col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)){
+        } else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
             //
             Validator.validateMaxInputLength(jli, 200);
             //

@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
+public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -50,7 +50,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
-    public BUH_INVOICE_MAIN() {
+    public BUH_INVOICE_MAIN_() {
         initComponents();
         initOhter();
     }
@@ -930,9 +930,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_update_kundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_kundActionPerformed
         if (customersA.getCurrentOperationInsert()) {
-            customersA.insert();
+            if (customersA.fieldsValidated(true)) {
+                customersA.insert();
+            }
         } else {
-            customersA.update();
+            if (customersA.fieldsValidated(false)) {
+                customersA.update();
+            }
         }
     }//GEN-LAST:event_jButton_update_kundActionPerformed
 
@@ -961,11 +965,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_update_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articleActionPerformed
         if (articlesA.getCurrentOperationInsert()) {
-            if (articlesA.fieldsValidated()) {
+            if (articlesA.fieldsValidated(true)) {
                 articlesA.insert();
             }
         } else {
-            if (articlesA.fieldsValidated()) {
+            if (articlesA.fieldsValidated(false)) {
                 articlesA.update();
             }
         }
@@ -1003,11 +1007,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_update_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articles_rowActionPerformed
         //
-        invoiceA_update.updateArticle();
+        if (invoiceA_update.fieldsValidatedArticle()) {
+            invoiceA_update.updateArticle();
+            //
+            invoiceA_update.insertOrUpdate(); // update entire faktura on updated article
+            //
+            invoiceB.refresh_b();
+        }
         //
-        invoiceA_update.insertOrUpdate(); // update entire faktura on updated article
-        //
-        invoiceB.refresh_b();
     }//GEN-LAST:event_jButton_update_articles_rowActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1016,10 +1023,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             @Override
             public void run() {
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
-                    invoiceA_insert.addArticle();
+                    if (invoiceA_insert.fieldsValidatedArticle()) {
+                        invoiceA_insert.addArticle();
+                    }
                 } else {
-                    invoiceA_update.addArticle();
-                    invoiceB.refresh_b();
+                    if (invoiceA_update.fieldsValidatedArticle()) {
+                        invoiceA_update.addArticle();
+                        invoiceB.refresh_b();
+                    }
                 }
 
             }
@@ -1051,12 +1062,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // "FAKTURA HTTP" BTN
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
-            invoiceA_insert.insertOrUpdate();
+            if (invoiceA_insert.fieldsValidated(true)) {
+                invoiceA_insert.insertOrUpdate();
+                invoiceB.refresh();
+            }
         } else {
-            invoiceA_update.insertOrUpdate();
+            if (invoiceA_update.fieldsValidated(false)) {
+                invoiceA_update.insertOrUpdate();
+                invoiceB.refresh();
+            }
         }
         //
-        invoiceB.refresh();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -1094,14 +1110,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1111,7 +1131,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BUH_INVOICE_MAIN().setVisible(true);
+                new BUH_INVOICE_MAIN_().setVisible(true);
             }
         });
     }

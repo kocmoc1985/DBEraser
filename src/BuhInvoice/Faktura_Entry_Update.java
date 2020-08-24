@@ -27,11 +27,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
      * @return
      */
     @Override
-    public boolean insertOrUpdate() {
-        //
-        if (super.insertOrUpdate() == false) {
-            return false;
-        }
+    public void insertOrUpdate() {
         //
         setData();
         //
@@ -40,8 +36,6 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HelpBuh.update(json);
         //
         resetLists();
-        //
-        return true;
         //
     }
 
@@ -102,7 +96,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -110,11 +104,6 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     protected void updateArticle() {
         //
         InvoiceA_Update invoic = (InvoiceA_Update) invoice;
-        //
-        if (invoic.containsInvalidatedFields(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
-            return;
-        }
         //
 //        ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
         //

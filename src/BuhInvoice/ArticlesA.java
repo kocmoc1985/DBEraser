@@ -64,7 +64,7 @@ public class ArticlesA extends Basic_Buh_ {
         }
     }
 
-    public ArticlesA(BUH_INVOICE_MAIN bim) {
+    public ArticlesA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -128,16 +128,32 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
-    public boolean fieldsValidated() {
+    public boolean fieldsValidated(boolean insert) {
         //
-        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return false;
-        }
-        //
-        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
-            return false;
+        if (insert) {
+            //
+            if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                HelpA.showNotification(LANG.MSG_2);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            //
+        } else {
+            //
+            if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+                HelpA.showNotification(LANG.MSG_2);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            //
         }
         //
         return true;

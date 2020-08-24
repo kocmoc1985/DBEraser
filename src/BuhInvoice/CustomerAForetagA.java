@@ -49,13 +49,13 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
 
     //
-    public CustomerAForetagA(BUH_INVOICE_MAIN bim) {
+    public CustomerAForetagA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
     protected abstract void SET_CURRENT_OPERATION_INSERT(boolean insert);
-    
-    protected boolean getCurrentOperationInsert(){
+
+    protected boolean getCurrentOperationInsert() {
         return CURRENT_OPERATION_INSERT;
     }
 
@@ -252,16 +252,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
 
     protected void update() {
         //
-        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_2);
-            return;
-        }
-        //
-        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
-            return;
-        }
-        //
         String id = "";
         String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
@@ -271,11 +261,11 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             id = HelpA.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(id)) {
+        if (BUH_INVOICE_MAIN_.verifyId(id)) {
             updateMainData(id);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(address_id)) {
+        if (BUH_INVOICE_MAIN_.verifyId(address_id)) {
             updateAddressData(address_id);
         } else {
 
@@ -284,18 +274,18 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         refresh();
         //
     }
-    
+
     private void updateMainData(String id) {
         //
         String idColName = "";
         String tableName = "";
         //
-         if (this instanceof CustomersA) {
-             idColName = DB.BUH_FAKTURA_KUND__ID;
-             tableName = DB.TABLE__BUH_FAKTURA_KUND;
+        if (this instanceof CustomersA) {
+            idColName = DB.BUH_FAKTURA_KUND__ID;
+            tableName = DB.TABLE__BUH_FAKTURA_KUND;
         } else if (this instanceof ForetagA) {
-             idColName = DB.BUH_KUND__ID;
-             tableName = DB.TABLE__BUH_KUND;
+            idColName = DB.BUH_KUND__ID;
+            tableName = DB.TABLE__BUH_KUND;
         }
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
@@ -309,7 +299,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         HelpBuh.update(json);
         //
     }
-
 
     private void updateAddressData(String id) {
         //
@@ -325,6 +314,53 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
     }
 
+    @Override
+    protected boolean fieldsValidated(boolean insert) {
+        //
+        if (insert) {
+            //
+            if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                HelpA.showNotification(LANG.MSG_2);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            // 
+        } else {
+            //
+            if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+                HelpA.showNotification(LANG.MSG_2);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            //
+            if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
+                HelpA.showNotification(LANG.MSG_1);
+                return false;
+            }
+            // 
+        }
+
+        return true;
+    }
+
+    /**
+     * [UPDATE]
+     *
+     * @return
+     */
     public abstract RowDataInvert[] getConfigTableInvert_2();
 
     /**
@@ -374,6 +410,8 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         return rows;
     }
 
+    public abstract RowDataInvert[] getConfigTableInvert_4();
+
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
@@ -414,7 +452,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     }
 
     private int prevLengthOrgnr;
-    
+
     private void orgnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
@@ -423,7 +461,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         String txt = jtfi.getText();
         //
-        if (txt.length() == 6 && prevLengthOrgnr  == 5) {
+        if (txt.length() == 6 && prevLengthOrgnr == 5) {
             jtfi.setText(orgnr + "-");
         } else if (txt.contains("--")) {
             txt = txt.replaceAll("--", "-");

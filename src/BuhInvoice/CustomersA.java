@@ -39,10 +39,9 @@ public class CustomersA extends CustomerAForetagA {
     private static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
-   
-    //
 
-    public CustomersA(BUH_INVOICE_MAIN bim) {
+    //
+    public CustomersA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -69,7 +68,6 @@ public class CustomersA extends CustomerAForetagA {
             //
         }
     }
-
 
     protected void createNewFakturaKund() {
         //
@@ -180,6 +178,7 @@ public class CustomersA extends CustomerAForetagA {
         //
     }
 
+   
 
     public void insert() {
         //
@@ -206,7 +205,7 @@ public class CustomersA extends CustomerAForetagA {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
-        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN.getDateCreated()); // required
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN_.getDateCreated()); // required
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -220,10 +219,10 @@ public class CustomersA extends CustomerAForetagA {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN.verifyId(fakturaKundId)) {
+        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
             //
             insertAddressData(fakturaKundId);
             //
@@ -250,7 +249,6 @@ public class CustomersA extends CustomerAForetagA {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     @Override
     protected void fillJTable_header_main() {
@@ -284,8 +282,6 @@ public class CustomersA extends CustomerAForetagA {
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         }
     }
-
-   
 
     @Override
     protected void addRowJtable_main(HashMap<String, String> map, JTable table) {
@@ -399,6 +395,7 @@ public class CustomersA extends CustomerAForetagA {
      *
      * @return
      */
+    @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         JTable table = getTableMain();
@@ -438,7 +435,7 @@ public class CustomersA extends CustomerAForetagA {
         //
         return rows;
     }
-    
+
     /**
      * [INSERT]
      *
@@ -476,8 +473,6 @@ public class CustomersA extends CustomerAForetagA {
         return rows;
     }
 
-    
-
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -502,8 +497,6 @@ public class CustomersA extends CustomerAForetagA {
         }
         //
     }
-
-    
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
@@ -555,7 +548,5 @@ public class CustomersA extends CustomerAForetagA {
         //
         jtfi.setText(next);
     }
-
-    
 
 }

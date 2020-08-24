@@ -38,19 +38,7 @@ public abstract class Faktura_Entry {
         return invoice.getArticlesTable();
     }
     
-    protected boolean insertOrUpdate(){
-        boolean invalidated_1 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
-//        boolean invalidated_2 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2());
-        boolean invalidated_3 = invoice.containsInvalidatedFields(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
-        //
-        if (invalidated_1 || invalidated_3) {
-            HelpA.showNotification(LANG.MSG_1);
-            return false;
-        }else{
-            return true;
-        }
-        //
-    }
+    protected abstract void insertOrUpdate();
 
     protected abstract void setData();
     

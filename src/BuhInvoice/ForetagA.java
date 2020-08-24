@@ -31,7 +31,7 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__IBAN = "IBAN";
     private static final String TABLE__SWISH = "SWISH";
 
-    public ForetagA(BUH_INVOICE_MAIN bim) {
+    public ForetagA(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -175,6 +175,11 @@ public class ForetagA extends CustomerAForetagA {
         };
         //
         return rows;
+    }
+
+    @Override
+    public RowDataInvert[] getConfigTableInvert_4() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
