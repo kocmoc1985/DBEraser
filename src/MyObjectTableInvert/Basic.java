@@ -531,19 +531,17 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
     }
 
-    
-    
-    
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
-        return tableInvertToHashMap(table_invert,startColumn,-1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
+        return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
     }
 
     /**
      * Important changes made on [2020-08-24]
+     *
      * @param table_invert
      * @param startColumn
      * @param jcomboParamToReturn
-     * @return 
+     * @return
      */
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, int jcomboParamToReturn) {
         //
@@ -555,7 +553,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
-        for (int i = 0; i < tableInvert.getRowCount(); i++){
+        for (int i = 0; i < tableInvert.getRowCount(); i++) {
             //
             RowDataInvert dataInvert = tableInvert.getRowConfig(i);
             //
@@ -567,11 +565,13 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 //
                 String val;
                 //
-                if(jcomboParamToReturn == -1){
-                      val = columnValue.getValue();
-                }else{
+                if (jcomboParamToReturn == -1) {
+                    val = columnValue.getValue();
+                } else {
                     val = columnValue.getValue(jcomboParamToReturn);
                 }
+                //
+//                val = val.replaceAll(":", "xcv");
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting
@@ -594,7 +594,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         return mapToReturn;
     }
-    
 
     /**
      * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10] Use
