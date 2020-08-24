@@ -1090,7 +1090,9 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }//GEN-LAST:event_jTextField_total_exkl_momsActionPerformed
 
     private void jButton_update_kund_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_kund_dataActionPerformed
-        foretagA.update();
+        if (foretagA.fieldsValidated(false)) {
+            foretagA.update();
+        }
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     /**
