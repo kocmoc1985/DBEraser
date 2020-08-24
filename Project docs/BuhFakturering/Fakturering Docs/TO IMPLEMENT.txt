@@ -1,3 +1,8 @@
+[NOT ABLE TO SAVE EMPTY VALUES] [2020-08-24] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
+
+If i had some value in a field and then i will try to delete all and save "Empty" it will not 
+work as Basic.class-> tableInvertToHashMap(...) does not take into account empty values
+____________________________________________________________________________________________________________________________________________________
 [OBS! TAKE ACTION HOW TO HANDLE ":" ] [2020-08-21] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
 As example when i try yo upload following: "Order:NN20200301" in "BESTÄLLNING / NOTIS" -> ony the "Order" is taken in this case

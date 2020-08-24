@@ -6,10 +6,13 @@
 package BuhInvoice;
 
 import MyObjectTable.OutPut;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -180,6 +183,34 @@ public class ForetagA extends CustomerAForetagA {
     @Override
     public RowDataInvert[] getConfigTableInvert_4() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
+        super.keyReleasedForward(ti, ke);
+        //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(ke.getSource());
+        //
+        if (col_name.equals(DB.BUH_KUND__NAMN)) {
+            //
+            Validator.validateMaxInputLength(jli, 150);
+            //
+        }else if(col_name.equals(DB.BUH_KUND__ORGNR) || col_name.equals(DB.BUH_KUND__VATNR)){
+            //
+            Validator.validateMaxInputLength(jli, 30);
+            //
+        }else if(col_name.equals(DB.BUH_KUND__BANK_GIRO) || col_name.equals(DB.BUH_KUND__POST_GIRO) ){
+            //
+            Validator.validateMaxInputLength(jli, 20);
+            //
+        }else if(col_name.equals(DB.BUH_KUND__KONTO) || col_name.equals(DB.BUH_KUND__IBAN)){
+            //
+            Validator.validateMaxInputLength(jli, 30);
+            //
+        }
     }
 
 }
