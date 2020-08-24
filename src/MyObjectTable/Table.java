@@ -186,7 +186,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         //
     }
 
-    public int getNrRows() {
+    public int getRowCount() {
         return this.NR_ROWS;
     }
 

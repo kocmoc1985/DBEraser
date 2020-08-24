@@ -201,7 +201,7 @@ public class CustomersA extends CustomerAForetagA {
 
     private void insertMainData() {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
@@ -234,7 +234,7 @@ public class CustomersA extends CustomerAForetagA {
 
     private void insertAddressData(String fakturaKundId) {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN);
         //
         map.put(DB.BUH_ADDR__FAKTURAKUND_ID, fakturaKundId);
         //

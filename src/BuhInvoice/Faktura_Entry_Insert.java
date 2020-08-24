@@ -66,8 +66,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     protected void setData() {
         //
-        this.mainMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT, DB.START_COLUMN, invoice.getConfigTableInvert());
-        this.secMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_3, DB.START_COLUMN, invoice.getConfigTableInvert_3());
+        this.mainMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT, DB.START_COLUMN);
+        this.secMap = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_3, DB.START_COLUMN);
         //
         this.fakturaMap = JSon.joinHashMaps(mainMap, secMap);
         //

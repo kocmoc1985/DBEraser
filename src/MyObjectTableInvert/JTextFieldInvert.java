@@ -68,4 +68,14 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
         child.setValidated(validated);
     }
     
+   public void setSaveEmptyStringValue(){
+       //
+       RowDataInvert rdi = parent.getRowConfig();
+       //
+       if(rdi.isString() && getValue().isEmpty()){
+           rdi.setSaveEmptyStringValue();
+       }
+       //
+   }
+    
 }

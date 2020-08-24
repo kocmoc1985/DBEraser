@@ -288,7 +288,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             tableName = DB.TABLE__BUH_KUND;
         }
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
         //
         HashMap<String, String> update_map = bim.getUPDATE(idColName, id, tableName);
         //
@@ -302,7 +302,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
 
     private void updateAddressData(String id) {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN);
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_ADDR__ID, id, DB.TABLE__BUH_ADDRESS);
         //

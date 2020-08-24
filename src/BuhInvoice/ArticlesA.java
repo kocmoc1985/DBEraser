@@ -5,7 +5,6 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.Invoice.CURRENT_OPERATION_INSERT;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
@@ -171,7 +170,7 @@ public class ArticlesA extends Basic_Buh_ {
 
     private void updateArticleData(String artikelId) {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId, DB.TABLE__BUH_FAKTURA_ARTIKEL);
         //
@@ -286,7 +285,7 @@ public class ArticlesA extends Basic_Buh_ {
 
     protected void insert() {
         //
-        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
         map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, getKundId());
         //

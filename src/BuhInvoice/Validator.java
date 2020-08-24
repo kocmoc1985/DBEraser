@@ -137,7 +137,8 @@ public class Validator {
     }
 
     private static boolean setValidated(JLinkInvert jli) {
-        JTextField jtf = (JTextField) jli;
+        JTextFieldInvert jtf = (JTextFieldInvert) jli;
+        jtf.setSaveEmptyStringValue();
         jtf.setBackground(Color.WHITE);
         jli.setValidated(true);
         return true;

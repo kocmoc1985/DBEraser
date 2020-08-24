@@ -29,5 +29,6 @@ public interface JLinkInvert {
     public void setFieldUpdatedAuto();
     
     public void setValidated(boolean validated);
+    
 
 }

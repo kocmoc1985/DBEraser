@@ -109,7 +109,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         JTable table = getArticlesTable();
         //
-        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2());
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN);
         //
         String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
@@ -145,8 +145,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
         InvoiceA_Update iu = (InvoiceA_Update) invoice;
         //
-        this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, DB.START_COLUMN, iu.getConfigTableInvert());
-        this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, DB.START_COLUMN, iu.getConfigTableInvert_3());
+        this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, DB.START_COLUMN);
+        this.secMap = iu.tableInvertToHashMap(iu.TABLE_INVERT_3, DB.START_COLUMN);
         //
         //
         String fakturaId = invoice.bim.getFakturaId();
