@@ -143,7 +143,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         //Below making changes to the edited article in the JTable
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
@@ -167,7 +167,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         // Yes it's obligatory to use "tableInvertToHashMap_exclude_null()" 
         // If not used the empty checkbox returns "NULL" as value and when sending it to PHP/PDO
         // it causes "PDOException"
-        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
         //
         this.articlesList.add(map_for_adding_to_db);

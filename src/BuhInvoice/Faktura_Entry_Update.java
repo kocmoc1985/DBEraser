@@ -43,7 +43,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     public void addArticleForJTable(JTable table) {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
-        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, invoice.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //        
         this.articlesListJTable.add(map);
         //
@@ -80,7 +80,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         // Yes it's obligatory to use "tableInvertToHashMap_exclude_null()" 
         // If not used the empty checkbox returns "NULL" as value and when sending it to PHP/PDO
         // it causes "PDOException"
-        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, invoic.getConfigTableInvert_2(), jcomboBoxParamToReturnManuallySpecified);
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
         this.articlesList.add(map);
