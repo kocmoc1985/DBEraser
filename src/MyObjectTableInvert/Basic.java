@@ -4,6 +4,7 @@
  */
 package MyObjectTableInvert;
 
+import BuhInvoice.JSon;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
 import static MCRecipe.MC_RECIPE.USER_ROLE;
@@ -74,6 +75,20 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         } else {
             return obj.getClass().getName();
         }
+    }
+    
+    public String getLongName(String statics, String valToTranslate){
+        return JSon.getLongName(statics, valToTranslate);
+    }
+
+    public String getValueHashMap(String value) {
+        //
+        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
+            return "";
+        } else {
+            return value;
+        }
+        //
     }
 
     /**
@@ -571,7 +586,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                     val = columnValue.getValue(jcomboParamToReturn);
                 }
                 //
-//                val = val.replaceAll(":", "xcv");
+                val = val.replaceAll(":", "#");
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting

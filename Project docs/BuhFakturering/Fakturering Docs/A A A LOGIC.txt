@@ -1,0 +1,2 @@
+
+1. Faktura cannot be updated if an "inbetalning" exists for it.

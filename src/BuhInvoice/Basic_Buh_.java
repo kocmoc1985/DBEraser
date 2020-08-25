@@ -16,6 +16,7 @@ import java.awt.AWTEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,6 +43,22 @@ public abstract class Basic_Buh_ extends Basic {
         return bim.getKundId();
     }
 
+    protected void executeSetFakturaBetald(String fakturaId, boolean betald) {
+        //
+        HashMap<String, String> map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        if (betald) {
+            map.put(DB.BUH_FAKTURA__BETALD, "1");
+        } else {
+            map.put(DB.BUH_FAKTURA__BETALD, "0");
+        }
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+
     protected void executeDelete(String json) {
         try {
             //
@@ -54,8 +71,6 @@ public abstract class Basic_Buh_ extends Basic {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-   
 
     protected String requestJComboValuesHttp(String php_function, String[] keys) {
         //
@@ -80,7 +95,7 @@ public abstract class Basic_Buh_ extends Basic {
         //
         return comboString;
     }
-    
+
     protected abstract boolean fieldsValidated(boolean insert);
 
     @Override
@@ -88,12 +103,8 @@ public abstract class Basic_Buh_ extends Basic {
         //
         super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
         //
-        JLinkInvert jli = (JLinkInvert) ke.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(ke.getSource());
-        //
 //        TEST_REFERENSES(ke);
-        fieldUpdateWatcher(ke);
+//        fieldUpdateWatcher(ke);
         //
     }
 
@@ -102,7 +113,7 @@ public abstract class Basic_Buh_ extends Basic {
         //
         super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
         //
-        fieldUpdateWatcher(ie);
+//        fieldUpdateWatcher(ie);
         //       
     }
 

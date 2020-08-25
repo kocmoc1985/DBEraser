@@ -103,15 +103,15 @@ public class InvoiceB extends Basic {
         // "ID" -> "buh_faktura.fakturaId"
         //
         String[] headers = {
-            TABLE_ALL_INVOICES__FAKTURA_ID, 
+            TABLE_ALL_INVOICES__FAKTURA_ID,
             TABLE_ALL_INVOICES__KUND_ID,
-            TABLE_ALL_INVOICES__KUND_NR, 
-            TABLE_ALL_INVOICES__VAR_REF, 
+            TABLE_ALL_INVOICES__KUND_NR,
+            TABLE_ALL_INVOICES__VAR_REF,
             TABLE_ALL_INVOICES__ER_REF,
             TABLE_ALL_INVOICES__ERT_ORDER,
-            TABLE_ALL_INVOICES__BET_VILKOR, 
-            TABLE_ALL_INVOICES__LEV_VILKOR, 
-            TABLE_ALL_INVOICES__LEV_SATT, 
+            TABLE_ALL_INVOICES__BET_VILKOR,
+            TABLE_ALL_INVOICES__LEV_VILKOR,
+            TABLE_ALL_INVOICES__LEV_SATT,
             TABLE_ALL_INVOICES__IS_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
@@ -222,14 +222,14 @@ public class InvoiceB extends Basic {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA__ID__),
-            map.get(DB.BUH_FAKTURA_KUND__ID), 
-            map.get(DB.BUH_FAKTURA_KUND___KUNDNR), 
-            map.get(DB.BUH_FAKTURA__VAR_REFERENS), 
-            map.get(DB.BUH_FAKTURA__ER_REFERENS), 
+            map.get(DB.BUH_FAKTURA_KUND__ID),
+            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
+            map.get(DB.BUH_FAKTURA__VAR_REFERENS),
+            map.get(DB.BUH_FAKTURA__ER_REFERENS),
             map.get(DB.BUH_FAKTURA__ERT_ORDER),
             map.get(DB.BUH_FAKTURA__BETAL_VILKOR),
             map.get(DB.BUH_FAKTURA__LEV_VILKOR),
-            map.get(DB.BUH_FAKTURA__LEV_SATT), 
+            map.get(DB.BUH_FAKTURA__LEV_SATT),
             map.get(DB.BUH_FAKTURA__INKL_MOMS),
             map.get(DB.BUH_FAKTURA__MOMS_SATS),
             map.get(DB.BUH_FAKTURA__FRAKT),
@@ -245,7 +245,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__TOTAL__),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
-            map.get(DB.BUH_FAKTURA__BETALD)
+            getLongName(DB.STATIC__MAKULERAD_BETALD_JA_NEJ, map.get(DB.BUH_FAKTURA__BETALD))
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -259,7 +259,7 @@ public class InvoiceB extends Basic {
         //
         HelpA.clearAllRowsJTable(table);
         //
-        if(fakturaId == null || fakturaId.isEmpty()){
+        if (fakturaId == null || fakturaId.isEmpty()) {
             return;
         }
         //
@@ -311,11 +311,11 @@ public class InvoiceB extends Basic {
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ID),
             map.get(DB.BUH_F_ARTIKEL__FAKTURAID),
-            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___ID)),
-            HelpA.getValHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
+            getValueHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___ID)),
+            getValueHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
+            getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT),
             map.get(DB.BUH_F_ARTIKEL__RABATT_KR)
@@ -332,6 +332,8 @@ public class InvoiceB extends Basic {
         //
         deleteFakturaArticles(fakturaId);
         //
+        deleteFakturaInbetalningar(fakturaId);
+        //
         deleteFaktura(fakturaId);
         //
         //
@@ -342,6 +344,15 @@ public class InvoiceB extends Basic {
     private void deleteFaktura(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+    }
+
+    private void deleteFakturaInbetalningar(String fakturaId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_INBET__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_INBET);
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -370,20 +381,20 @@ public class InvoiceB extends Basic {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private String _get(String colNameJTable){
+
+    private String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         return HelpA.getValueSelectedRow(table, colNameJTable);
     }
-    
-    private String _get_percent(String colNameJTable){
+
+    private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         double val = Double.parseDouble(HelpA.getValueSelectedRow(table, colNameJTable));
         int rst = (int) (val * 100);
-        return ""+ rst;
+        return "" + rst;
     }
-    
-    private HashMap<String,String> getFakturaKundAddress(){
+
+    private HashMap<String, String> getFakturaKundAddress() {
         //
         String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
         //
@@ -404,16 +415,16 @@ public class InvoiceB extends Basic {
         }
         //
     }
-    
+
     public void htmlFaktura_b() {
         //
 //        BUH_INVOICE_MAIN_ bim = invoice.bim;
         //
-        HashMap<String,String>map_a = new HashMap<>();
-        HashMap<String,String>map_b = new HashMap<>();
-        HashMap<String,String>map_c = new HashMap<>();
-        HashMap<String,String>map_d = new HashMap<>();
-        HashMap<String,String>map_e__lev_addr = getFakturaKundAddress();
+        HashMap<String, String> map_a = new HashMap<>();
+        HashMap<String, String> map_b = new HashMap<>();
+        HashMap<String, String> map_c = new HashMap<>();
+        HashMap<String, String> map_d = new HashMap<>();
+        HashMap<String, String> map_e__lev_addr = getFakturaKundAddress();
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
@@ -438,7 +449,7 @@ public class InvoiceB extends Basic {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_ATT_BETALA, _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         //
-        
+
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

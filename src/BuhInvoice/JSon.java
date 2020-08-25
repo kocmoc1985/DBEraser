@@ -177,6 +177,7 @@ public class JSon {
                 value = null;
             } else {
                 value = jsonObj[1];
+                value = value.replaceFirst("#", ":");
             }
             //
             if (reverse) {

@@ -1,4 +1,14 @@
-[SINGLE QUOTES APPENDED ON PHP SIDE][2020-08-14]
+[SEMI COLON SEND JSON][2020-08-25]
+
+It's a problem when you have to send ":" (semicolon) as json to php.
+
+So have a look at:
+1. Basic ->  "tableInvertToHashMap(...)" -> look for: "val = val.replaceAll(":", "#");"
+2. JSon -> "JSONToHashMap(...)" -> look for: "value = value.replaceFirst("#", ":");"
+
+OBS! Nothing on PHP side, 1000% SURE!
+________________________________________________________________________________________________________
+[InvoiceB.class and InvoiceA_Insert - USE LONG NAMES][2020-08-14]
 
 ArticlesTable in classes InvoiceB.class and InvoiceA_Insert shall contain "LONG NAMES" only.
 So if we have following names: "Post;P,Hämtas;HAM" -> P is a "SHORT NAME" and "POST" is a "LONG NAME"
@@ -9,6 +19,8 @@ ________________________________________________________________________________
 
 Since [2020-08-07] single quotes are appended to all parameters regardless if it's String or not.
 For MySql it does not make any diff. BUT adding a String without "''" single quotes will fail!
+
+Also adding "''" for a column which is a number/float will fail
 
 ________________________________________________________________________________________________________
 

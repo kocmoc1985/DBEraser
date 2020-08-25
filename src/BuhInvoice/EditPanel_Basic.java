@@ -37,7 +37,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
     private static final String TABLE_INBET__FAKTURA_ID = "F ID";
     private static final String TABLE_INBET__INBETALD = "INBETALD";
     private static final String TABLE_INBET__INBET_METOD = "BETALMETOD";
-    private static final String TABLE_INBET__ANNAT = "ANNAT";
+    private static final String TABLE_INBET__ANNAT = "KOMMENT";
     private static final String TABLE_INBET__DATUM = "DATUM";
 
     /**
@@ -61,9 +61,13 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle();
         initBasicTab();
+        //
+        fillJTableheader();
+        fillInbetalningarJTable();
+        basic.showTableInvert();
     }
-    
-    private JTable getTableInbet(){
+
+    private JTable getTableInbet() {
         return jTable_faktura_inbets;
     }
 
@@ -71,14 +75,14 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         this.jLabel_fakturanr_value.setText("Fakturanr: " + fakturaNr);
         this.jLabel_kund_value.setText("Fakturakund: " + fakturaKund);
     }
-    
-     private void refresh() {
+
+    private void refresh() {
         fillInbetalningarJTable();
 //        HelpA.markFirstRowJtable(getTableInbet());
 //        bim.jTableArticles_clicked();
     }
-     
-     private void insert() {
+
+    private void insert() {
         //
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
         //
@@ -137,7 +141,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             map.get(DB.BUH_FAKTURA_INBET__INBET_ID), // hidden
             map.get(DB.BUH_FAKTURA_INBET__FAKTURA_ID), // hidden
             map.get(DB.BUH_FAKTURA_INBET__INBETALD),
-            map.get(DB.BUH_FAKTURA_INBET__BETAL_METHOD),
+            basic.getLongName(DB.STATIC__BETAL_METHODS, map.get(DB.BUH_FAKTURA_INBET__BETAL_METHOD)),
             map.get(DB.BUH_FAKTURA_INBET__ANNAT),
             map.get(DB.BUH_FAKTURA_INBET__BETAL_DATUM)
         };
@@ -171,9 +175,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
             @Override
             protected void startUp() {
-                fillJTableheader();
-                fillInbetalningarJTable();
-                showTableInvert();
+
             }
 
             @Override
@@ -262,6 +264,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel_fakturanr_value = new javax.swing.JLabel();
         jLabel_kund_value = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -299,6 +302,13 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jLabel_kund_value.setForeground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jLabel_kund_value);
 
+        jButton2.setText("Betald");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,6 +321,8 @@ public class EditPanel_Basic extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(30, 30, 30)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
@@ -318,9 +330,11 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -332,10 +346,14 @@ public class EditPanel_Basic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if(basic.fieldsValidated(true)){
-          insert(); 
-       }
+        if (basic.fieldsValidated(true)) {
+            insert();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        basic.executeSetFakturaBetald(fakturaId, false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,11 +393,11 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel_fakturanr_value;
     private javax.swing.JLabel jLabel_kund_value;
     protected javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable jTable_faktura_inbets;
     // End of variables declaration//GEN-END:variables

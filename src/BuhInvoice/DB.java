@@ -25,7 +25,7 @@ public class DB {
     public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
     public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
     public static final String STATIC__MOMS_SATS = "25%;0.25,12%;0.12,6%;0.06,0%;0";
-    public static final String STATIC__MAKULERAD_JA_NEJ = "Nej;0,Ja;1";
+    public static final String STATIC__MAKULERAD_BETALD_JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     //
