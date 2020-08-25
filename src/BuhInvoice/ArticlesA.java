@@ -127,6 +127,7 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
+    @Override
     public boolean fieldsValidated(boolean insert) {
         //
         if (insert) {

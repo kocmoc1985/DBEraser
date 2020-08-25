@@ -27,6 +27,7 @@ public class DB {
     public static final String STATIC__MOMS_SATS = "25%;0.25,12%;0.12,6%;0.06,0%;0";
     public static final String STATIC__MAKULERAD_JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
+    public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     //
     public static final String STATIC__KUND_AND_ARTICLE__KATEGORI = "A,B,C,D,E,F,G";
     //
@@ -143,4 +144,14 @@ public class DB {
     public static final String BUH_KUND__KONTO = "bank_konto";
     public static final String BUH_KUND__IBAN = "iban";
     public static final String BUH_KUND__SWISH = "swish";
+    //
+    //
+    public static final String BUH_FAKTURA_INBET__INBET_ID = "inbetId";
+    public static final String BUH_FAKTURA_INBET__FAKTURA_ID = "fakturaId";
+    public static final String BUH_FAKTURA_INBET__INBETALD = "inbetald";
+    public static final String BUH_FAKTURA_INBET__BETAL_METHOD = "betal_metod";
+    public static final String BUH_FAKTURA_INBET__BETAL_DATUM = "betal_datum";
+    public static final String BUH_FAKTURA_INBET__ANNAT = "annat";
+    
+    //
 }
