@@ -96,13 +96,25 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected String getKundId() {
         return "1";
     }
-
+    
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
+    
+    protected String getFakturaNr() {
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
+    }
 
+    protected String getFakturaKund() {
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
+    }
+    
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+    }
+    
+    protected String getSELECT_fakturaId() {
+        return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
 
     protected String getSELECT_kundId() {
@@ -1108,7 +1120,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditPanel_Basic epb = new EditPanel_Basic(this);
+        EditPanel_Basic epb = new EditPanel_Basic(this,getFakturaId(),getFakturaNr(),getFakturaKund());
         epb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

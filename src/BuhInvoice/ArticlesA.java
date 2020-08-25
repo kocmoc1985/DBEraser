@@ -123,8 +123,6 @@ public class ArticlesA extends Basic_Buh_ {
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
-//        table.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        //
     }
 
     @Override

@@ -38,9 +38,11 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA_ARTIKEL = "buh_faktura_artikel";
     public static final String TABLE__BUH_ADDRESS = "buh_address";
     public static final String TABLE__BUH_KUND = "buh_kund";
+    public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_IBET_TO_DB = "faktura_inbet_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB = "faktura_kund_address_to_db"; // using php-function: "insert()"
@@ -51,6 +53,7 @@ public class DB {
     public static final String PHP_FUNC_DELETE = "delete_entry"; // using php-finction: "latest()"
     //
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_DATA = "get_kund_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
