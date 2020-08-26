@@ -250,11 +250,12 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         jButton18 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel_Artikel_Insert_or_Update1 = new javax.swing.JLabel();
         jLabel_Artikel_Insert_or_Update2 = new javax.swing.JLabel();
         jLabel_all_invoices_list = new javax.swing.JLabel();
         jLabel_all_invoices_list1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -377,6 +378,16 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             }
         });
         jPanel4.add(jButton_print_faktura);
+        jPanel4.add(jLabel1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
+        jButton1.setToolTipText("Inbetalningar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1);
 
         jLabel_Artikel_Insert_or_Update1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_Artikel_Insert_or_Update1.setForeground(new java.awt.Color(153, 153, 153));
@@ -391,13 +402,6 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         jLabel_all_invoices_list1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_all_invoices_list1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_all_invoices_list1.setText("FAKTURA ARTIKLAR");
-
-        jButton1.setText("PAYMENT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -414,10 +418,8 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(218, 218, 218)
-                                .addComponent(jButton1)
-                                .addGap(590, 590, 590)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(773, 773, 773)
                                 .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(12, 12, 12))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,9 +439,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                    .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1192,6 +1192,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected javax.swing.JButton jButton_update_articles_row;
     protected javax.swing.JButton jButton_update_kund;
     protected javax.swing.JButton jButton_update_kund_data;
+    private javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update1;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update2;
