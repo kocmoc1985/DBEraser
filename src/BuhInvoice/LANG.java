@@ -16,6 +16,7 @@ public class LANG {
     public static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
     public static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
+    public static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_4 = "Radera rad?";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";

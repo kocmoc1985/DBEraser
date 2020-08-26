@@ -1,3 +1,8 @@
+
+IMPLEMENT: DON*T ALLOW TO UPDATE FAKTURA IF "BETAL STATUS" = 1,2,3  [2020-08-26]
+
+https://iconarchive.com/
+____________________________________________________________________________________________________________________________________________________
 [NOT ABLE TO SAVE EMPTY VALUES] [2020-08-24] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
 If i had some value in a field and then i will try to delete all and save "Empty" it will not 

@@ -1145,7 +1145,13 @@ public class HelpA {
             //
             int col = HelpA.getColByName(table, colName);
             //
-            double toAdd = Double.parseDouble((String)table.getValueAt(x, col)) ;
+            String val = (String)table.getValueAt(x, col);
+            //
+            if(val == null || val.isEmpty() || val.equals("null")){
+                continue;
+            }
+            //
+            double toAdd = Double.parseDouble(val) ;
             //
             sum += toAdd;
             //

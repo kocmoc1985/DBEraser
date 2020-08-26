@@ -1,2 +1,4 @@
 
-1. Faktura cannot be updated if an "inbetalning" exists for it.
+1. It shall not be possible to update a Faktura for which "inbetalningar" exist
+
+2. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald

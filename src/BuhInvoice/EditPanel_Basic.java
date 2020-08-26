@@ -11,12 +11,14 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
+import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -58,8 +60,12 @@ public class EditPanel_Basic extends javax.swing.JFrame {
     }
 
     private void init() {
+        //
+        this.setTitle("Inbetalning");
+        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle();
+        //
         initBasicTab();
         //
         fillJTableheader();
@@ -85,7 +91,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         fillInbetalningarJTable();
         basic.clearAllRowsTableInvert_jcombobox_special(basic.TABLE_INVERT, 1);
 
-        bim.invoiceB.refresh_b();
 //        HelpA.markFirstRowJtable(getTableInbet());
 //        bim.jTableArticles_clicked();
     }
@@ -100,6 +105,10 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         //
         double inbetTotal = coundInbetald();
         //
+        if (inbetTotal == 0) {
+            return 0;
+        }
+        //
         if (fakturaTotal == inbetTotal) {
             return 1; // BETALD
         } else if (inbetTotal < fakturaTotal) {
@@ -109,6 +118,32 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         } else {
             return 0; // INTE BETALD
         }
+    }
+
+    private void delete_insert_end_action() {
+        //
+        refresh();
+        //
+        basic.executeSetFakturaBetald(fakturaId, defineBetaldStatus());
+        //
+        countRestToPayAndShow();
+        //
+        bim.invoiceB.refresh_b();
+    }
+
+    private void delete() {
+        //
+        String inbetId = HelpA.getValueSelectedRow(getTableInbet(), TABLE_INBET__ID);
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_INBET__INBET_ID, inbetId, DB.TABLE__BUH_FAKTURA_INBET);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        basic.executeDelete(json);
+        //
+        //
+        delete_insert_end_action();
+        //
     }
 
     private void insert() {
@@ -128,11 +163,8 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        refresh();
         //
-        basic.executeSetFakturaBetald(fakturaId, defineBetaldStatus());
-        //
-        countRestToPayAndShow();
+        delete_insert_end_action();
         //
     }
 
@@ -148,6 +180,11 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             double restToPay = total - inbetald;
             basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
+        } else if (inbetald == total) {
+            basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "BETALD");
+        } else if (inbetald > total) {
+            double overbet = inbetald - total;
+            basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "ÖVERBETALD  (" + overbet + ")");
         }
         //
     }
@@ -174,7 +211,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             //
             //
         } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditPanel_Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
@@ -315,10 +352,12 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_faktura_inbets = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel_fakturanr_value = new javax.swing.JLabel();
         jLabel_kund_value = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -338,14 +377,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable_faktura_inbets);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton1.setToolTipText("Registrera inbetalning");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
         jLabel_fakturanr_value.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -355,6 +386,26 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jLabel_kund_value.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_kund_value.setForeground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jLabel_kund_value);
+
+        jPanel3.setLayout(new java.awt.GridLayout(1, 2));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton1.setToolTipText("Registrera inbetalning");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton2.setToolTipText("Radera Inbetalning");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -366,8 +417,8 @@ public class EditPanel_Basic extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
@@ -375,14 +426,14 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -393,6 +444,20 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             insert();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //
+        if (HelpA.rowSelected(getTableInbet()) == false) {
+            return;
+        }
+        //
+        if (HelpA.confirmWarning(LANG.MSG_3_2) == false) {
+            return;
+        }
+        //
+        delete();
+        //
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,10 +497,12 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel_fakturanr_value;
     private javax.swing.JLabel jLabel_kund_value;
     protected javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable jTable_faktura_inbets;
     // End of variables declaration//GEN-END:variables
