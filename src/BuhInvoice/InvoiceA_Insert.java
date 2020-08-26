@@ -237,7 +237,7 @@ public class InvoiceA_Insert extends Invoice {
         //
         RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
         //
-        String fixedComboValues_b = DB.STATIC__MAKULERAD_BETALD_JA_NEJ; // This will aquired from SQL
+        String fixedComboValues_b = DB.STATIC__MAKULERAD_JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();

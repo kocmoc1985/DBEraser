@@ -65,10 +65,15 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         fillJTableheader();
         fillInbetalningarJTable();
         basic.showTableInvert();
+        countRestToPayAndShow();
     }
 
     private JTable getTableInbet() {
         return jTable_faktura_inbets;
+    }
+    
+    private double getFakturaTotal(){
+        return bim.getFakturaTotal();
     }
 
     private void setTitle() {
@@ -78,8 +83,31 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
     private void refresh() {
         fillInbetalningarJTable();
+        basic.clearAllRowsTableInvert(basic.TABLE_INVERT);
+        bim.invoiceB.refresh_b();
 //        HelpA.markFirstRowJtable(getTableInbet());
 //        bim.jTableArticles_clicked();
+    }
+    
+    private double coundInbetald(){
+        return HelpA.countSumJTable(jTable_faktura_inbets, TABLE_INBET__INBETALD);
+    }
+    
+    private int defineBetaldStatus(){
+        //
+        double fakturaTotal = getFakturaTotal();
+        //
+        double inbetTotal = coundInbetald();
+        //
+        if(fakturaTotal == inbetTotal){
+            return 1; // BETALD
+        }else if(inbetTotal < fakturaTotal){
+            return 2; // DELVIS
+        }else if(inbetTotal > fakturaTotal){
+            return 3; // ÖVERBETALD
+        }else{
+            return 0; // INTE BETALD
+        }
     }
 
     private void insert() {
@@ -100,6 +128,26 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         }
         //
         refresh();
+        //
+        basic.executeSetFakturaBetald(fakturaId, defineBetaldStatus());
+        //
+        countRestToPayAndShow();
+        //
+    }
+    
+    private final String kvar_att_betala_tableinvert_fake = "kvar";
+    
+    private void countRestToPayAndShow(){
+        //
+        double total = getFakturaTotal();
+        //
+        double inbetald = coundInbetald();
+        //
+        if(inbetald < total){
+            double restToPay = total - inbetald;
+            basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
+            basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
+        }
         //
     }
 
@@ -197,6 +245,10 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             @Override
             public RowDataInvert[] getConfigTableInvert() {
                 //
+                RowDataInvert kvar_att_betala = new RowDataInvertB("", kvar_att_betala_tableinvert_fake, "KVAR ATT BETALA", "", true, true, false);
+                kvar_att_betala.setDontAquireTableInvertToHashMap();
+                kvar_att_betala.setUneditable();
+                //
                 RowDataInvert inbetald_kr = new RowDataInvertB("", DB.BUH_FAKTURA_INBET__INBETALD, TABLE_INBET__INBETALD, "", false, true, true);
                 //
                 RowDataInvert annat = new RowDataInvertB("", DB.BUH_FAKTURA_INBET__ANNAT, TABLE_INBET__ANNAT, "", true, true, false);
@@ -206,6 +258,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
                 betalmetod.setUneditable();
                 //
                 RowDataInvert[] rows = {
+                    kvar_att_betala,
                     inbetald_kr,
                     betalmetod,
                     annat
@@ -264,7 +317,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel_fakturanr_value = new javax.swing.JLabel();
         jLabel_kund_value = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -302,13 +354,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         jLabel_kund_value.setForeground(new java.awt.Color(153, 153, 153));
         jPanel2.add(jLabel_kund_value);
 
-        jButton2.setText("Betald");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,8 +366,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(30, 30, 30)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
@@ -330,11 +373,9 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -350,10 +391,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             insert();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        basic.executeSetFakturaBetald(fakturaId, false);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,7 +430,6 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel_fakturanr_value;
     private javax.swing.JLabel jLabel_kund_value;
     protected javax.swing.JPanel jPanel1;

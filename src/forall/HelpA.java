@@ -1130,6 +1130,30 @@ public class HelpA {
         }
 
     }
+    
+    /**
+     * [2020-08-26]
+     * @param table
+     * @param colName
+     * @return 
+     */
+     public static double countSumJTable(JTable table, String colName) {
+        //
+        double sum = 0;
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = HelpA.getColByName(table, colName);
+            //
+            double toAdd = Double.parseDouble((String)table.getValueAt(x, col)) ;
+            //
+            sum += toAdd;
+            //
+        }
+        //
+        return sum;
+        //
+    }
 
     public static String jTableToHTML(JTable table, JEditorPane pane, String[] CSSRules) {
         //

@@ -245,7 +245,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__TOTAL__),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
-            getLongName(DB.STATIC__MAKULERAD_BETALD_JA_NEJ, map.get(DB.BUH_FAKTURA__BETALD))
+            getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD))
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

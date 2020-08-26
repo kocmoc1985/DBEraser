@@ -77,7 +77,7 @@ ska_bokforas boolean DEFAULT false,
 request_factoring boolean DEFAULT false,
 factoring_status integer DEFAULT 0,
 makulerad boolean DEFAULT false,
-betald boolean DEFAULT false,
+betald integer DEFAULT 0,
 date_created varchar(30) DEFAULT 'no',
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
@@ -89,7 +89,7 @@ fakturaId integer not null,
 inbetald float DEFAULT 0,
 betal_metod varchar(20) DEFAULT '',
 betal_datum varchar(10) DEFAULT CURDATE(),
-annat varchar(50),
+annat varchar(50) DEFAULT '',
 Foreign key (fakturaId) references buh_faktura(fakturaId)
 );
 

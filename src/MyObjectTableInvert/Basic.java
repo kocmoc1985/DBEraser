@@ -80,6 +80,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public String getLongName(String statics, String valToTranslate){
         return JSon.getLongName(statics, valToTranslate);
     }
+    
+    
 
     public String getValueHashMap(String value) {
         //
@@ -90,6 +92,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
         //
     }
+    
+    
 
     /**
      * Call from: TableRowInvertB
@@ -154,6 +158,70 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
         }
         //
+    }
+    
+     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
+        return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
+    }
+
+    /**
+     * Important changes made on [2020-08-24]
+     *
+     * @param table_invert
+     * @param startColumn
+     * @param jcomboParamToReturn
+     * @return
+     */
+    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, int jcomboParamToReturn) {
+        //
+        if (table_invert == null) {
+            return null;
+        }
+        //
+        HashMap<String, String> mapToReturn = new HashMap<>();
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        for (int i = 0; i < tableInvert.getRowCount(); i++) {
+            //
+            RowDataInvert dataInvert = tableInvert.getRowConfig(i);
+            //
+            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
+                //
+                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
+                //
+                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
+                //
+                String val;
+                //
+                if (jcomboParamToReturn == -1) {
+                    val = columnValue.getValue();
+                } else {
+                    val = columnValue.getValue(jcomboParamToReturn);
+                }
+                //
+                val = val.replaceAll(":", "#");
+                //
+                // [2020-08-18] Not taking into account empty or null
+                // Using 'DEFAULT' in Database helps when inserting
+                if (val == null || val.isEmpty() || val.equals("NULL") || val.equals("null")) {
+                    //
+                    if (dataInvert.saveEmptyStringValue()) {
+                        mapToReturn.put(dataInvert.getFieldOriginalName(), "");
+                    }
+                    //
+                } else {
+                    //
+                    if (dataInvert.aquire()) {
+                        mapToReturn.put(dataInvert.getFieldOriginalName(), val);
+                    }
+                    //
+                }
+                //
+            }
+        }
+        //
+        return mapToReturn;
     }
 
     /**
@@ -546,69 +614,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
     }
 
-    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
-        return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
-    }
-
-    /**
-     * Important changes made on [2020-08-24]
-     *
-     * @param table_invert
-     * @param startColumn
-     * @param jcomboParamToReturn
-     * @return
-     */
-    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn, int jcomboParamToReturn) {
-        //
-        if (table_invert == null) {
-            return null;
-        }
-        //
-        HashMap<String, String> mapToReturn = new HashMap<>();
-        //
-        TableInvert tableInvert = (TableInvert) table_invert;
-        //
-        for (int i = 0; i < tableInvert.getRowCount(); i++) {
-            //
-            RowDataInvert dataInvert = tableInvert.getRowConfig(i);
-            //
-            for (int x = startColumn; x < getColumnCount(table_invert); x++) {
-                //
-                HashMap<String, ColumnValue> map = tableInvert.getColumnData(x);
-                //
-                ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
-                //
-                String val;
-                //
-                if (jcomboParamToReturn == -1) {
-                    val = columnValue.getValue();
-                } else {
-                    val = columnValue.getValue(jcomboParamToReturn);
-                }
-                //
-                val = val.replaceAll(":", "#");
-                //
-                // [2020-08-18] Not taking into account empty or null
-                // Using 'DEFAULT' in Database helps when inserting
-                if (val == null || val.isEmpty() || val.equals("NULL") || val.equals("null")) {
-                    //
-                    if (dataInvert.saveEmptyStringValue()) {
-                        mapToReturn.put(dataInvert.getFieldOriginalName(), "");
-                    }
-                    //
-                } else {
-                    //
-                    if (dataInvert.aquire()) {
-                        mapToReturn.put(dataInvert.getFieldOriginalName(), val);
-                    }
-                    //
-                }
-                //
-            }
-        }
-        //
-        return mapToReturn;
-    }
+   
 
     /**
      * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10] Use

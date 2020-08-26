@@ -76,9 +76,7 @@ public abstract class Invoice extends Basic_Buh_ {
             if (c instanceof JButton) {
                 c.setEnabled(enabled);
             }
-
         }
-
     }
 
     private void initFakturaEntry_() {

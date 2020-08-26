@@ -35,7 +35,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     private CustomersA customersA;
     private ForetagA foretagA;
     private ArticlesA articlesA;
-    private InvoiceB invoiceB;
+    protected InvoiceB invoiceB;
 
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
@@ -107,6 +107,10 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     protected String getFakturaKund() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
+    }
+    
+    protected double getFakturaTotal(){
+        return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
     
     protected String getFakturaArtikelId() {
