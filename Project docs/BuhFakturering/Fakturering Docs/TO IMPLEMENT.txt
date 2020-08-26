@@ -1,7 +1,11 @@
+FIX: HTML Faktura - "Beskrivning:null", "Rabatt not showing"  [2020-08-26]
 
+FIX: Rabatt does not influence Total - not always  [2020-08-26]
+
+FIX: "RABATT KR" like 3.5 is rounded to 4 when uploaded to DB
+____________________________________________________________________________________________________________________________________________________
 IMPLEMENT: DON*T ALLOW TO UPDATE FAKTURA IF "BETAL STATUS" = 1,2,3  [2020-08-26]
 
-https://iconarchive.com/
 ____________________________________________________________________________________________________________________________________________________
 [NOT ABLE TO SAVE EMPTY VALUES] [2020-08-24] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
