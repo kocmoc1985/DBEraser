@@ -293,6 +293,30 @@ public class TableInvert extends Table implements ControlsActionsIF {
             }
         }
     }
+    
+     public void clearAllRowsJComboBoxSpecial(int jcomboSelecetedIndex) {
+        //
+        for (Object rowInvert : rows_list) {
+            //
+            TableRowInvert tri = (TableRowInvert) rowInvert;
+            //
+            Object obj;
+            //
+            try {
+                obj = tri.getComponentAt(2);
+            } catch (Exception ex) {
+                obj = tri.getComponentAt(1);
+            }
+            //
+            if (obj instanceof JTextField) {
+                JTextField jtf = (JTextField) obj;
+                jtf.setText("");
+            } else if (obj instanceof JComboBox) {
+                JComboBox jcb = (JComboBox) obj;
+                jcb.setSelectedIndex(jcomboSelecetedIndex);
+            }
+        }
+    }
 
     public void clearRows(int start, int notToClearFromEnd) {
         for (int i = start; i < rows_list.size() - notToClearFromEnd; i++) {

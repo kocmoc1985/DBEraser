@@ -130,6 +130,10 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                     jtf.setEditable(false);
                 }
                 //
+                if(getRowConfig().isEnabled()== false){
+                    jtf.setEnabled(false);
+                }
+                //
                 if (getRowConfig().toolTipTextEnabled()) {
                     jtf.setToolTipText((String) cde.getObject());
                 }
@@ -150,6 +154,10 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                 //
                 if (getRowConfig().isEditable() == false) {
                     box.setEditable(false);
+                }
+                //
+                if (getRowConfig().isEnabled() == false) {
+                    box.setEnabled(false);
                 }
                 //
                 if (getRowConfig().getImportant()){

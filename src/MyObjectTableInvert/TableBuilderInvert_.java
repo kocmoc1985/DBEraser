@@ -27,7 +27,7 @@ import java.util.TimeZone;
  *
  * @author mcab
  */
-public class TableBuilderInvert {
+public class TableBuilderInvert_ {
 
     private final SqlBasicLocal sql;
     private final RowDataInvert[] CONFIG;
@@ -35,7 +35,7 @@ public class TableBuilderInvert {
     private final ShowMessage SM;
     private final String TABLE_NAME;
 
-    public TableBuilderInvert(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
+    public TableBuilderInvert_(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
         this.sql = sql;
         this.SM = sm;
         this.CONFIG = config;

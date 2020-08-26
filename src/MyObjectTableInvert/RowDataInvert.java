@@ -37,6 +37,7 @@ public class RowDataInvert extends RowData {
     private boolean keyIsString;
     //
     private boolean editable = true;
+    private boolean enabled = true;
     private boolean JTextFieldToolTipText = false;
     private boolean comboBoxMultipleValue = false;
     private boolean comboBoxFakeValue = false;
@@ -175,6 +176,14 @@ public class RowDataInvert extends RowData {
         return JTextFieldToolTipText;
     }
 
+    public void setDisabled() {
+        enabled = false;
+    }
+    
+     public boolean isEnabled() {
+        return enabled;
+    }
+    
     public void setUneditable() {
         editable = false;
     }

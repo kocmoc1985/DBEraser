@@ -9,7 +9,7 @@ import MCRecipe.MC_RECIPE;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
 import forall.GP;
 import forall.HelpA;
@@ -37,7 +37,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
     public final SqlBasicLocal sql_additional;
 //    private Table TABLE_INVERT;
     public BasicTab basicTab;
-    public TableBuilderInvert TABLE_BUILDER_INVERT;
+    public TableBuilderInvert_ TABLE_BUILDER_INVERT;
     public String TABLE_NAME = "Recipe_Group";
     public String TABLE_ID = "Recipe_Group_ID";
     
@@ -130,7 +130,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
 
             @Override
             public void showTableInvert() {
-                TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "vendors_2");
+                TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "vendors_2");
                 //
                 TABLE_INVERT = null;
                 //

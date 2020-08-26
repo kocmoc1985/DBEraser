@@ -7,7 +7,7 @@ package MCCompound;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import forall.GP;
@@ -36,9 +36,9 @@ import javax.swing.JTable;
 public class ProdPlan extends BasicTab {
 
     private final PROD_PLAN P_P;
-    private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     public Table TABLE_INVERT_2;
-    private TableBuilderInvert TABLE_BUILDER_INVERT_2;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
     private LinkedList<Integer> rowsToHighlight = new LinkedList<Integer>();
     public final static String ID = "id";
     public final static String PROD_ORDER = "Prod#Order";
@@ -489,7 +489,7 @@ public class ProdPlan extends BasicTab {
         OUT.showMessage("Selected id: " + SELECTED_ORDER);
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "prod_plan_1");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "prod_plan_1");
         //
         TABLE_INVERT = null;
         //
@@ -514,7 +514,7 @@ public class ProdPlan extends BasicTab {
         OUT.showMessage("Selected id: " + id);
         //
         //
-        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert2(), false, "prod_plan_2");
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert2(), false, "prod_plan_2");
         //
         TABLE_INVERT_2 = null;
         //

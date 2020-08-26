@@ -338,8 +338,21 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert tableInvert = (TableInvert) table_invert;
         return tableInvert.getColumnCount();
     }
+    
+    public void clearAllRowsTableInvert_jcombobox_special(Table table_invert,int jcomboSelecetedIndex) {
+        //
+        TableInvert tableInvert = (TableInvert) table_invert;
+        //
+        if (tableInvert == null) {
+            return;
+        }
+        //
+        tableInvert.clearAllRowsJComboBoxSpecial(jcomboSelecetedIndex);
+        //
+    }
 
     public void clearAllRowsTableInvert(Table table_invert) {
+        //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
         if (tableInvert == null) {
@@ -347,6 +360,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
         //
         tableInvert.clearAllRows();
+        //
     }
 
     public void clearRows(Table table_invert, int start) {

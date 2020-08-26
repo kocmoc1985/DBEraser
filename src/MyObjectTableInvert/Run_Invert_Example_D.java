@@ -37,7 +37,7 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
     private final JButton button = new JButton("TEST");
     private final JPanel container = new JPanel(new BorderLayout());
     private final JFrame table_container_frame = new JFrame("test");
-    private TableBuilderInvert tableBuilder;
+    private TableBuilderInvert_ tableBuilder;
 
     public Run_Invert_Example_D() {
         initOther();
@@ -57,7 +57,7 @@ public class Run_Invert_Example_D extends Basic implements MouseListener {
 //            Logger.getLogger(Run_Invert_Example_D.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         //
-        tableBuilder = new TableBuilderInvert(sm, null, getConfigTableInvert(), false, "buh_f_artikel_entry");
+        tableBuilder = new TableBuilderInvert_(sm, null, getConfigTableInvert(), false, "buh_f_artikel_entry");
         //
         ccp = new CommonControllsPanel((TableInvert) TABLE_INVERT);
         //

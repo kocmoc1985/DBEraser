@@ -13,7 +13,7 @@ import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import images.IconUrls;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTable.SaveIndicator;
 import forall.HelpA;
@@ -42,7 +42,7 @@ import mySwing.JTableM;
 public class Ingredients extends BasicTab {
 
     private final MC_RECIPE mCRecipe;
-    private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     protected LinkedList<Integer> unsavedRows_table_3 = new LinkedList<Integer>();
     protected LinkedList<Integer> addedRows_table_3 = new LinkedList<Integer>();
     public boolean table1Build = false;
@@ -775,7 +775,7 @@ public class Ingredients extends BasicTab {
         String name = HelpA.getValueSelectedRow(table, "Name");
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), true, "ingredients_1");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), true, "ingredients_1");
         //
         TABLE_INVERT = null;
         //

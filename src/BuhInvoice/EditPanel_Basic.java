@@ -9,7 +9,7 @@ import MyObjectTable.OutPut;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
@@ -71,8 +71,8 @@ public class EditPanel_Basic extends javax.swing.JFrame {
     private JTable getTableInbet() {
         return jTable_faktura_inbets;
     }
-    
-    private double getFakturaTotal(){
+
+    private double getFakturaTotal() {
         return bim.getFakturaTotal();
     }
 
@@ -83,29 +83,30 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
     private void refresh() {
         fillInbetalningarJTable();
-        basic.clearAllRowsTableInvert(basic.TABLE_INVERT);
+        basic.clearAllRowsTableInvert_jcombobox_special(basic.TABLE_INVERT, 1);
+
         bim.invoiceB.refresh_b();
 //        HelpA.markFirstRowJtable(getTableInbet());
 //        bim.jTableArticles_clicked();
     }
-    
-    private double coundInbetald(){
+
+    private double coundInbetald() {
         return HelpA.countSumJTable(jTable_faktura_inbets, TABLE_INBET__INBETALD);
     }
-    
-    private int defineBetaldStatus(){
+
+    private int defineBetaldStatus() {
         //
         double fakturaTotal = getFakturaTotal();
         //
         double inbetTotal = coundInbetald();
         //
-        if(fakturaTotal == inbetTotal){
+        if (fakturaTotal == inbetTotal) {
             return 1; // BETALD
-        }else if(inbetTotal < fakturaTotal){
+        } else if (inbetTotal < fakturaTotal) {
             return 2; // DELVIS
-        }else if(inbetTotal > fakturaTotal){
+        } else if (inbetTotal > fakturaTotal) {
             return 3; // ÖVERBETALD
-        }else{
+        } else {
             return 0; // INTE BETALD
         }
     }
@@ -134,16 +135,16 @@ public class EditPanel_Basic extends javax.swing.JFrame {
         countRestToPayAndShow();
         //
     }
-    
+
     private final String kvar_att_betala_tableinvert_fake = "kvar";
-    
-    private void countRestToPayAndShow(){
+
+    private void countRestToPayAndShow() {
         //
         double total = getFakturaTotal();
         //
         double inbetald = coundInbetald();
         //
-        if(inbetald < total){
+        if (inbetald < total) {
             double restToPay = total - inbetald;
             basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
@@ -248,6 +249,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
                 RowDataInvert kvar_att_betala = new RowDataInvertB("", kvar_att_betala_tableinvert_fake, "KVAR ATT BETALA", "", true, true, false);
                 kvar_att_betala.setDontAquireTableInvertToHashMap();
                 kvar_att_betala.setUneditable();
+//                kvar_att_betala.setDisabled();
                 //
                 RowDataInvert inbetald_kr = new RowDataInvertB("", DB.BUH_FAKTURA_INBET__INBETALD, TABLE_INBET__INBETALD, "", false, true, true);
                 //
@@ -269,7 +271,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
 
             @Override
             public void showTableInvert() {
-                TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
+                TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "");
                 TABLE_INVERT = null;
                 TABLE_INVERT = tableBuilder.buildTable_B(this);
                 setMargin(TABLE_INVERT, 5, 0, 5, 0);

@@ -54,7 +54,7 @@ public class Run_Invert_Example_A implements MouseListener {
             Logger.getLogger(Run_Invert_Example_A.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        final TableBuilderInvert tableBuilder = new TableBuilderInvert(sm, sql, getConfigTableInvert(), true, "");
+        final TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(sm, sql, getConfigTableInvert(), true, "");
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

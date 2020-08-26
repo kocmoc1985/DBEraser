@@ -9,7 +9,7 @@ import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JComboBoxInvert;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
@@ -311,7 +311,7 @@ public abstract class Invoice extends Basic_Buh_ {
 
     @Override
     public void showTableInvert() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -322,7 +322,7 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     public void showTableInvert_2() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -334,7 +334,7 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     public void showTableInvert_3() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);

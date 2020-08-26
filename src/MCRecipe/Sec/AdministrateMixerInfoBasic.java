@@ -9,7 +9,7 @@ import MCRecipe.MC_RECIPE;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableBuilderInvert_;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.HeadlessException;
@@ -87,7 +87,7 @@ public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups {
             @Override
             public void showTableInvert() {
                 //
-                TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "vendors_2");
+                TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "vendors_2");
                 //
                 TABLE_INVERT = null;
                 //
