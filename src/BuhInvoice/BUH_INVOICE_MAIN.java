@@ -11,6 +11,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.ProtocolException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -955,20 +957,34 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-//        customersA.getNextKundnr();
+
+        //        customersA.getNextKundnr();
         //
         //
         //
-        HashMap<String, String> map = new HashMap<>();
-        map.put("testkey", "testvalue");
-        String json = JSon.hashMapToJSON(map);
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("testkey", "testvalue");
+//        String json = JSon.hashMapToJSON(map);
+//        //
+//        try {
+//            String response = HelpBuh.executePHPScript(DB.PHP_SCRIPT_MAIN, "test_email" , json);
+//            //
+//        } catch (Exception ex) {
+//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//
         //
         try {
-            String response = HelpBuh.executePHPScript(DB.PHP_SCRIPT_MAIN, "test_email" , json);
-            //
-        } catch (Exception ex) {
+            HelpBuh.http_send_image();
+        } catch (ProtocolException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
 
     }//GEN-LAST:event_jButton9ActionPerformed
 

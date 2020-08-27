@@ -173,13 +173,13 @@ public class HelpBuh {
     public static void http_send_image() throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
 //        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL("http://www.mypage.org/upload.php").openConnection();
-        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL("http://www.mypage.org/_u_u_u_x_upload?filename=abc.def").openConnection();
+        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL("http://www.mixcont.com/_u_u_u_x_upload.php?filename=php/test.pdf").openConnection();
         httpUrlConnection.setDoOutput(true);
         httpUrlConnection.setRequestMethod("POST");
         OutputStream os = httpUrlConnection.getOutputStream();
         //
         Thread.sleep(1000);
-        BufferedInputStream fis = new BufferedInputStream(new FileInputStream("tmpfile.tmp"));
+        BufferedInputStream fis = new BufferedInputStream(new FileInputStream("test.pdf"));
         //
         long totalByte = fis.available();
         long byteTrasferred = 0;
@@ -190,9 +190,7 @@ public class HelpBuh {
         }
         //
         os.close();
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(
-                        httpUrlConnection.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
         //
         String s = null;
         //

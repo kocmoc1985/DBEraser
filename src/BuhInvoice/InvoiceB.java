@@ -465,7 +465,11 @@ public class InvoiceB extends Basic {
                         map_d,
                         map_e__lev_addr
                 );
+                //
                 hTMLPrint_A.setVisible(true);
+                //
+//                hTMLPrint_A.printSilent();
+                //
             }
         });
     }

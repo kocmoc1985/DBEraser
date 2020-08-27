@@ -66,14 +66,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         go();
         //
     }
-    
-    private void initOther(){
+
+    private void initOther() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     private void go() {
         //
-        
+
         //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
@@ -104,6 +104,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         jEditorPane1.setText(buildHTML());
         //
+
     }
 
     //
@@ -245,7 +246,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        
+
         String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
         String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
         //
@@ -532,7 +533,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         print();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void print() {
+    protected void print() {
         //
         int actHeight = jEditorPane1.getHeight();
         //
@@ -574,6 +575,50 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
+    /**
+     * BY [2020-08-27] only in test study
+     */
+    protected void printSilent() {
+        //
+        int actHeight = jEditorPane1.getHeight();
+        //
+        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
+        //
+        if (actHeight >= A4_PAPER.getHeight()) {
+            HelpA.showNotification("A4 Heigh exceeded");
+        }
+        //
+        Paper paper = new Paper();
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        //
+//        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
+//                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
+        //
+        // This one sets the margins
+        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
+        //
+        PageFormat pageFormat = new PageFormat();
+        pageFormat.setPaper(paper);
+        //
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        //
+        PageFormat validatedFormat = pj.validatePage(pageFormat);
+        //
+        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
+        //
+        // This one shows additional Dialog displaying the margins, can be skipped
+//        PageFormat pf = pj.pageDialog(pageFormat);
+        //
+        try {
+            pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
+            pj.print();
+           
+        } catch (PrinterException ex) {
+            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //
+
     private static double fromCMToPPI(double cm) {
         return toPPI(cm * 0.393700787);
     }
@@ -596,16 +641,24 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HTMLPrint_A.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HTMLPrint_A.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HTMLPrint_A.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HTMLPrint_A.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -620,7 +673,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JEditorPane jEditorPane1;
+    protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
