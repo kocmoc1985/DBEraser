@@ -158,14 +158,17 @@ public class InvoiceB extends Basic {
     }
 
     protected void all_invoices_table_clicked(String fakturaId) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //
-                fillFakturaArticlesTable(fakturaId);
-                //
-            }
-        });
+        //
+         fillFakturaArticlesTable(fakturaId);
+        //
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                //
+//               
+//                //
+//            }
+//        });
     }
 
     private void fillFakturaTable() {

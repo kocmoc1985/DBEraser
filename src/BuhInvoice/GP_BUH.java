@@ -5,7 +5,9 @@
  */
 package BuhInvoice;
 
+import forall.HelpA;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -23,4 +25,18 @@ public class GP_BUH {
     public static boolean confirmWarning(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
+    
+    
+    /**
+     * [2020-08-12] This one keeps the "marking line" on the same row as before
+     * the refresh
+     */
+//    protected void refresh_b() {
+//        JTable table = bim.jTable_invoiceB_alla_fakturor;
+//        int row = table.getSelectedRow();
+//        fillFakturaTable();
+//        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
+//        String fakturaId = bim.getFakturaId();
+//        all_invoices_table_clicked(fakturaId);
+//    }
 }

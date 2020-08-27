@@ -1025,7 +1025,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
-        fakturaTablClicked();
+        fakturaTabClicked();
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
@@ -1065,7 +1065,13 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             //
             invoiceA_update.insertOrUpdate(); // update entire faktura on updated article
             //
+            int selected_row = jTable_InvoiceA_Insert_articles.getSelectedRow();
+            //
             invoiceB.refresh_b();
+            //
+            HelpA.markGivenRow(jTable_InvoiceA_Insert_articles, selected_row);
+            jTable_InvoiceA_Insert_articles_clicked();
+            //
         }
         //
     }//GEN-LAST:event_jButton_update_articles_rowActionPerformed
@@ -1292,7 +1298,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_FAKTURA) && sameTabClicked == false) {
                 //
-                fakturaTablClicked();
+                fakturaTabClicked();
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_KUDNER)) {
                 //
@@ -1326,7 +1332,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
     }
 
-    private void fakturaTablClicked() {
+    private void fakturaTabClicked() {
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

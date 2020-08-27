@@ -185,9 +185,9 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     
-    public double getRabattPercent_JTable(JTable table) {
+    public double getRabattPercent_JTable(JTable table, int row) {
         //
-        String rabatt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        String rabatt = HelpA.getValueGivenRow(table,row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         //
         try {
             double rabatt_ = Double.parseDouble(rabatt);
@@ -202,9 +202,9 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     
-    public double getRabattKr_JTable(JTable table) {
+    public double getRabattKr_JTable(JTable table,int row) {
         //
-        String rabatt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+        String rabatt = HelpA.getValueGivenRow(table,row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
         if (HelpA.isNumber(rabatt)) {
             return Double.parseDouble(rabatt);
@@ -266,8 +266,8 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             //
-            double rabatt_percent = getRabattPercent_JTable(table);
-            double rabatt_kr = getRabattKr_JTable(table);
+            double rabatt_percent = getRabattPercent_JTable(table,i);
+            double rabatt_kr = getRabattKr_JTable(table,i);
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
