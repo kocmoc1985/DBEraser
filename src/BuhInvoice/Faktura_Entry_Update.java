@@ -96,7 +96,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }

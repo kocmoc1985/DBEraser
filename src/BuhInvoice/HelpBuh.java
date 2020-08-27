@@ -35,10 +35,23 @@ public class HelpBuh {
     }
 
     /**
+     * [2020-08-27]
+     * @param phpScriptName - example: "_http_buh"
+     * @param phpFunctionName - example: "delete_entry"
+     * @param json
+     * @return
+     * @throws Exception 
+     */
+    public static String executePHPScript(String phpScriptName, String phpFunctionName, String json) throws Exception {
+        String url = execute(phpScriptName, phpFunctionName, json);
+        return http_get_content_post(url);
+    }
+
+    /**
      * [2020-07-22] Universal function for inserting into HTTP DB
      *
-     * @param phpScriptName
-     * @param phpFunctionName
+     * @param phpScriptName - example: "_http_buh"
+     * @param phpFunctionName - example: "delete_entry"
      * @param json
      * @return
      */

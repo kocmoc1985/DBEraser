@@ -1,0 +1,30 @@
+[FROM STACKOVERFLOW]
+
+I agree with @MihaiIorga in the comments – use the PHPMailer script. You sound like you're rejecting it because you want the easier option. Trust me, PHPMailer is the easier option by a very large margin compared to trying to do it yourself with PHP's built-in mail() function. PHP's mail() function really isn't very good.
+
+To use PHPMailer:
+
+    Download the PHPMailer script from here: http://github.com/PHPMailer/PHPMailer
+    Extract the archive and copy the script's folder to a convenient place in your project.
+    Include the main script file -- require_once('path/to/file/class.phpmailer.php');
+
+Now, sending emails with attachments goes from being insanely difficult to incredibly easy:
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$email = new PHPMailer();
+$email->SetFrom('you@example.com', 'Your Name'); //Name is optional
+$email->Subject   = 'Message Subject';
+$email->Body      = $bodytext;
+$email->AddAddress( 'destinationaddress@example.com' );
+
+$file_to_attach = 'PATH_OF_YOUR_FILE_HERE';
+
+$email->AddAttachment( $file_to_attach , 'NameOfFile.pdf' );
+
+return $email->Send();
+
+It's just that one line $email->AddAttachment(); -- you couldn't ask for any easier.
+
+If you do it with PHP's mail() function, you'll be writing stacks of code, and you'll probably have lots of really difficult to find bugs.

@@ -63,7 +63,7 @@ public class ArticlesA extends Basic_Buh_ {
         }
     }
 
-    public ArticlesA(BUH_INVOICE_MAIN_ bim) {
+    public ArticlesA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 

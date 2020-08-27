@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListener, KeyListener {
+public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -50,7 +50,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
-    public BUH_INVOICE_MAIN_() {
+    public BUH_INVOICE_MAIN() {
         initComponents();
         initOhter();
     }
@@ -96,11 +96,11 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected String getKundId() {
         return "1";
     }
-    
+
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
-    
+
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
@@ -108,15 +108,15 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected String getFakturaKund() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
     }
-    
-    protected double getFakturaTotal(){
+
+    protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-    
+
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
-    
+
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
@@ -955,7 +955,21 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        customersA.getNextKundnr();
+//        customersA.getNextKundnr();
+        //
+        //
+        //
+        HashMap<String, String> map = new HashMap<>();
+        map.put("testkey", "testvalue");
+        String json = JSon.hashMapToJSON(map);
+        //
+        try {
+            String response = HelpBuh.executePHPScript(DB.PHP_SCRIPT_MAIN, "test_email" , json);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1155,7 +1169,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditPanel_Inbet epb = new EditPanel_Inbet(this,getFakturaId(),getFakturaNr(),getFakturaKund());
+        EditPanel_Inbet epb = new EditPanel_Inbet(this, getFakturaId(), getFakturaNr(), getFakturaKund());
         epb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1176,14 +1190,22 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1197,7 +1219,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BUH_INVOICE_MAIN_().setVisible(true);
+                new BUH_INVOICE_MAIN().setVisible(true);
             }
         });
     }
@@ -1477,5 +1499,4 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
     }
 
-   
 }

@@ -26,9 +26,9 @@ import java.util.logging.Logger;
  */
 public abstract class Basic_Buh_ extends Basic {
 
-    protected final BUH_INVOICE_MAIN_ bim;
+    protected final BUH_INVOICE_MAIN bim;
 
-    public Basic_Buh_(BUH_INVOICE_MAIN_ bim) {
+    public Basic_Buh_(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
         initOther();
     }

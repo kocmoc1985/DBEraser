@@ -40,7 +40,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaId)) {
@@ -116,7 +116,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                         DB.PHP_FUNC_ARTICLES_TO_DB, json));
                 //
             } catch (Exception ex) {
-                Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
         }
