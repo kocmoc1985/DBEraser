@@ -261,11 +261,11 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             id = HelpA.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(id)) {
+        if (GP_BUH.verifyId(id)) {
             updateMainData(id);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(address_id)) {
+        if (GP_BUH.verifyId(address_id)) {
             updateAddressData(address_id);
         } else {
 

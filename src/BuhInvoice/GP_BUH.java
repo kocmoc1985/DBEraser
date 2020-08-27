@@ -5,9 +5,10 @@
  */
 package BuhInvoice;
 
-import forall.HelpA;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -24,6 +25,26 @@ public class GP_BUH {
     
     public static boolean confirmWarning(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
+    }
+    
+     public static String getDateCreated() {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+
+    public static boolean verifyId(String fakturaId) {
+        //
+        int id;
+        //
+        try {
+            id = Integer.parseInt(fakturaId);
+        } catch (Exception ex) {
+            id = -1;
+        }
+        //
+        return id != -1;
+        //
     }
     
     

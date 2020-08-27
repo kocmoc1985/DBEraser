@@ -1477,23 +1477,5 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
     }
 
-    public static String getDateCreated() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
-        Calendar calendar = Calendar.getInstance();
-        return formatter.format(calendar.getTime());
-    }
-
-    public static boolean verifyId(String fakturaId) {
-        //
-        int id;
-        //
-        try {
-            id = Integer.parseInt(fakturaId);
-        } catch (Exception ex) {
-            id = -1;
-        }
-        //
-        return id != -1;
-        //
-    }
+   
 }

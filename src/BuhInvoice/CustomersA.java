@@ -205,7 +205,7 @@ public class CustomersA extends CustomerAForetagA {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
         //
-        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, BUH_INVOICE_MAIN_.getDateCreated()); // required
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated()); // required
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -222,7 +222,7 @@ public class CustomersA extends CustomerAForetagA {
             Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(fakturaKundId)) {
+        if (GP_BUH.verifyId(fakturaKundId)) {
             //
             insertAddressData(fakturaKundId);
             //

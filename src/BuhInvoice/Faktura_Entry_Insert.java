@@ -43,7 +43,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (BUH_INVOICE_MAIN_.verifyId(fakturaId)) {
+        if (GP_BUH.verifyId(fakturaId)) {
             //
             setFakturaIdForArticles(fakturaId);
             //
@@ -79,7 +79,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, BUH_INVOICE_MAIN_.getDateCreated());
+        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         //
         System.out.println("-------------------------------------------------");
         //
