@@ -68,7 +68,7 @@ public class InvoiceA_Update extends Invoice {
     
     protected void deleteFakturaArtikel(){
          //
-        if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
             return;
         }
         //

@@ -89,7 +89,7 @@ public class InvoiceA_Insert extends Invoice {
 
     protected void deleteArtikel() {
         //
-        if (HelpA.confirmWarning(LANG.MSG_4) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_4) == false) {
             return;
         }
         //

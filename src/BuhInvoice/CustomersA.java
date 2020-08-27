@@ -96,11 +96,11 @@ public class CustomersA extends CustomerAForetagA {
         );
         //
         if (str.isEmpty() == false && str.equals("null") == false) {
-            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_CUSTOMER(str)) == false) {
+            if (GP_BUH.confirmWarning(LANG.MSG_DELETE_WARNING_CUSTOMER(str)) == false) {
                 return;
             }
         } else {
-            if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+            if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
                 return;
             }
         }

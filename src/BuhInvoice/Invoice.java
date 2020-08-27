@@ -184,9 +184,10 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
-    public double getRabattPercent() {
+    
+    public double getRabattPercent_JTable(JTable table) {
         //
-        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
+        String rabatt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         //
         try {
             double rabatt_ = Double.parseDouble(rabatt);
@@ -198,12 +199,12 @@ public abstract class Invoice extends Basic_Buh_ {
         } catch (Exception ex) {
             return 0;
         }
-
     }
 
-    public double getRabattKr() {
+    
+    public double getRabattKr_JTable(JTable table) {
         //
-        String rabatt = getValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
+        String rabatt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
         if (HelpA.isNumber(rabatt)) {
             return Double.parseDouble(rabatt);
@@ -262,10 +263,11 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         double pris_exkl_moms;
         int antal;
-        double rabatt_percent = getRabattPercent();
-        double rabatt_kr = getRabattKr();
         //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
+            //
+            double rabatt_percent = getRabattPercent_JTable(table);
+            double rabatt_kr = getRabattKr_JTable(table);
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
@@ -294,15 +296,15 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     protected double getFakturaTotal() {
-        return HelpA.round_double(FAKTURA_TOTAL);
+        return GP_BUH.round_double(FAKTURA_TOTAL);
     }
 
     protected double getMomsTotal() {
-        return HelpA.round_double(MOMS_TOTAL);
+        return GP_BUH.round_double(MOMS_TOTAL);
     }
 
     protected double getTotalExklMoms() {
-        return HelpA.round_double(FAKTURA_TOTAL_EXKL_MOMS);
+        return GP_BUH.round_double(FAKTURA_TOTAL_EXKL_MOMS);
     }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
@@ -573,7 +575,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 double pris = Double.parseDouble(getValueTableInvert(DB.BUH_F_ARTIKEL__PRIS, DB.START_COLUMN, TABLE_INVERT_2));
                 double rabatt_kr = pris * (rabatt_percent / 100);
                 //
-                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, ti, rabatt_kr);
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, ti, GP_BUH.round_double(rabatt_kr));
                 JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2);
                 Validator.validateDigitalInput(linkInvert); // Validating after setting the value
                 //
@@ -586,7 +588,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 double rabatt_kr = Double.parseDouble(jli.getValue());
                 double pris = Double.parseDouble(getValueTableInvert(DB.BUH_F_ARTIKEL__PRIS, DB.START_COLUMN, TABLE_INVERT_2));
                 double rabatt_percent = (rabatt_kr / pris) * 100;
-                rabatt_percent = HelpA.round_double(rabatt_percent);
+                rabatt_percent = GP_BUH.round_double(rabatt_percent);
                 //
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "" + rabatt_percent);
                 JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);

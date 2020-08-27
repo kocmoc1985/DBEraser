@@ -964,7 +964,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             return;
         }
         //
-        if (HelpA.confirmWarning(LANG.MSG_3_1) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_3_1) == false) {
             return;
         }
         //
@@ -1054,7 +1054,13 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_update_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articles_rowActionPerformed
         //
+        if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
+            GP_BUH.confirmWarning(LANG.MSG_5);
+            return;
+        }
+        //
         if (invoiceA_update.fieldsValidatedArticle()) {
+            //
             invoiceA_update.updateArticle();
             //
             invoiceA_update.insertOrUpdate(); // update entire faktura on updated article

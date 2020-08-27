@@ -243,11 +243,11 @@ public class ArticlesA extends Basic_Buh_ {
         );
         //
         if (str.isEmpty() == false && str.equals("null") == false) {
-            if (HelpA.confirmWarning(LANG.MSG_DELETE_WARNING_ARTICLE(str)) == false) {
+            if (GP_BUH.confirmWarning(LANG.MSG_DELETE_WARNING_ARTICLE(str)) == false) {
                 return;
             }
         } else {
-            if (HelpA.confirmWarning(LANG.MSG_3) == false) {
+            if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
                 return;
             }
         }

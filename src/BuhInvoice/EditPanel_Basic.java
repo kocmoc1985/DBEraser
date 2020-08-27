@@ -451,7 +451,7 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             return;
         }
         //
-        if (HelpA.confirmWarning(LANG.MSG_3_2) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_3_2) == false) {
             return;
         }
         //

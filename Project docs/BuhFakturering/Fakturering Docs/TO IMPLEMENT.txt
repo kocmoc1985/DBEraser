@@ -3,6 +3,8 @@ FIX: HTML Faktura - "Beskrivning:null", "Rabatt not showing"  [2020-08-26]
 FIX: Rabatt does not influence Total - not always  [2020-08-26]
 
 FIX: "RABATT KR" like 3.5 is rounded to 4 when uploaded to DB
+
+FIX: Mouse wheel DO change rabatt percent but it does not trigger recalculation of "rabatt kr"
 ____________________________________________________________________________________________________________________________________________________
 IMPLEMENT: DON*T ALLOW TO UPDATE FAKTURA IF "BETAL STATUS" = 1,2,3  [2020-08-26]
 
