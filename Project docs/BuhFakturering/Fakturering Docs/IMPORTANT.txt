@@ -29,11 +29,7 @@ ________________________________________________________________________________
 So as it turned out, you can insert String and not string using always "''" (single quotes)
 
 ________________________________________________________________________________________________________
-[INSERT with tableInvertToHashMap_updated_values_only(...)] [2020-08-07]
 
-For "insert" dont use "tableInvertToHashMap_updated_values_only(TABLE_INVERT_2, 1, getConfigTableInvert_2())"
-because all of the parameters must be present. For those which value is empty the 'DEFAULT' will be added in the script on the PHP side
-___________________________________________________________________________________________________________
 [REGARDING FAKTURA ID (fakturaId) TABLE: "buh_faktura"]
 
 PHP_FUNC: 'fakturaToDb()'
@@ -61,8 +57,12 @@ ________________________________________________________________________________
 
 [TABLE INVERT - DONT FORGET TO MARK ROWS -> String OR Not] [2020-08-07]
 
+Setting "String=false/true" is used by: "JTextFieldInvert -> public void setSaveEmptyStringValue()" [2020-08-27]
+
 It's done from "getConfigTableInvert()" methods
 
 RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true); -----> the "false" means "NOT STRING"
 
 For the moment [2020-08-12] i don't make any use of it.
+
+___________________________________________________________________________________________________________

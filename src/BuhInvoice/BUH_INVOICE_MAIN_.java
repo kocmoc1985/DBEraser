@@ -1155,7 +1155,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditPanel_Basic epb = new EditPanel_Basic(this,getFakturaId(),getFakturaNr(),getFakturaKund());
+        EditPanel_Inbet epb = new EditPanel_Inbet(this,getFakturaId(),getFakturaNr(),getFakturaKund());
         epb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

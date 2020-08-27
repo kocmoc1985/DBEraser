@@ -1,42 +1,14 @@
+
+____________________________________________________________________________________________________________________________________________________
+
+IMPLEMENT: Faktura urval - Alla, Betalda, Obetalda .....
+
 FIX: HTML Faktura - "Beskrivning:null", "Rabatt not showing"  [2020-08-26]
-
-FIX: Rabatt does not influence Total - not always  [2020-08-26]
-
-FIX: "RABATT KR" like 3.5 is rounded to 4 when uploaded to DB
-
-FIX: Mouse wheel DO change rabatt percent but it does not trigger recalculation of "rabatt kr"
 ____________________________________________________________________________________________________________________________________________________
 IMPLEMENT: DON*T ALLOW TO UPDATE FAKTURA IF "BETAL STATUS" = 1,2,3  [2020-08-26]
 
 ____________________________________________________________________________________________________________________________________________________
-[NOT ABLE TO SAVE EMPTY VALUES] [2020-08-24] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
-If i had some value in a field and then i will try to delete all and save "Empty" it will not 
-work as Basic.class-> tableInvertToHashMap(...) does not take into account empty values
-____________________________________________________________________________________________________________________________________________________
-[OBS! TAKE ACTION HOW TO HANDLE ":" ] [2020-08-21] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
-
-As example when i try yo upload following: "Order:NN20200301" in "BESTÄLLNING / NOTIS" -> ony the "Order" is taken in this case
-
-____________________________________________________________________________________________________________________________________________________
-[MAKE "LENGTH" CHECK FOR ALL "VARCHAR" FIELDS][2020-08-21] [IMPORTANT][IMPORTANT]
-
-____________________________________________________________________________________________________________________________________________________
-
-[CHECK THE CASE WHEN NO INVOICES EXIST FOR A CUSTOMER] [2020-08-20]
-
-Debug the case when no invoices exist for the customer att begining
-____________________________________________________________________________________________________________________________________________________
-
-[IMPLEMENT FÖRETAGSINSTÄLLNINGAR TAB][2020-08-18] ***[IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
-
-So it must be possible to edit the companies own "settings".
-DB Table -> "buh_kund"
-
-The main problem is: who creates the "buh_kund", shall the "buh_kund->kundId" be implemented with program distribution? Or
-Shall the user be able to create one it self?
-
-____________________________________________________________________________________________________________________________________________________
 
 [ANNALYZE THIS ERROR][2020-08-18]
 
@@ -55,11 +27,6 @@ at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection
 
 ____________________________________________________________________________________________________________________________________________________
 
-
-[2020-08-10]
-RABATT column. Det ska vara möjligt att ange rabatt antigen i % eller kronor
-
-____________________________________________________________________________________________________________________________________________________
 [2020-08-10]
 Implement: send attachment with PHP.
 https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
@@ -69,40 +36,9 @@ ________________________________________________________________________________
 Implement faktura logotype scaling
 ____________________________________________________________________________________________________________________________________________________
 
-[2020-08-05]
-Update Lager, after making a faktura
-
-____________________________________________________________________________________________________________________________________________________
 [2020-07-27][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
+It's not high priority
 Make tables in one table for "Statics" like "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB" and others
 
 ____________________________________________________________________________________________________________________________________________________
-
-
-[2020-08-11][DONE]
-Delete from "buh_faktura_artikel":
-
-delete from "buh_f_artikel" where artikelid=x
-delete from "buh_faktura_artikel" where artikelid=x
-
-
-[2020-08-06][DONE]
-TO DELETE "buh_faktura_kund" entry is not so simple, you will need to remove entries first from other tables, like the "drop sequence shows":
-Also important to mention that deletion of a "buh_faktura_kund" will result into deletion of all invoices which are using this "faktura_kund"
-The sequence seems to be following:
-drop table buh_address; -> delete from buh_address where fakturaKundId=x
-drop table buh_f_artikel; -> delete from buh_f_artikel where fakturaId=x -> so i need to get all "fakturaId" of invoices which use the  "fakturakundId" -> "select * from buh_faktura where fakturaKundId=3"
-drop table buh_faktura; -> delete from buh_faktura where fakturaKundId=x
-drop table buh_faktura_kund; -> delete from buh_faktura_kund where fakturaKundId=x
-
-
-
-
-[2020-07-30]
-
-Make check for "float" inputs and namely check for "," 
-
-MySql allows point "." !!!!!!
-
-MySql allows inserting values without single quotes -> '' 
