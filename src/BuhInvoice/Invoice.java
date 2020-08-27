@@ -528,8 +528,8 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
+//                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+//                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //

@@ -374,6 +374,11 @@ public class TableInvert extends Table implements ControlsActionsIF {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         tableRow.setValueAt(1, value);
     }
+    
+     public void setColorAt(String rowName, Color color) {
+        TableRow tableRow = getRow(getRowNrByName(rowName));
+        tableRow.setColorAt(1, color);
+    }
 
     public Object getComponentAt(String rowName, int column) {
         TableRow tableRow = getRow(getRowNrByName(rowName));

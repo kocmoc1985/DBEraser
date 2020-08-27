@@ -6,6 +6,7 @@ package MyObjectTable;
 
 import MyObjectTableInvert.JLinkInvert;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -137,6 +138,16 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
             JComboBox jcb = (JComboBox) c;
             jcb.setSelectedItem(value);
         }
+    }
+    
+    public void setColorAt(int column_index, Color color) {
+        Component c = this.getComponent(column_index);
+        //
+        if (c instanceof JTextField) {
+            JTextField jtf = (JTextField) c;
+            jtf.setBackground(color);
+        }
+        //
     }
 
     public Object getComponentAt(int column_index) {

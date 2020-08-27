@@ -13,6 +13,7 @@ import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
 import forall.GP;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -180,11 +181,14 @@ public class EditPanel_Basic extends javax.swing.JFrame {
             double restToPay = total - inbetald;
             basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.white);
         } else if (inbetald == total) {
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "BETALD");
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.green);
         } else if (inbetald > total) {
             double overbet = inbetald - total;
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "ÖVERBETALD  (" + overbet + ")");
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.yellow);
         }
         //
     }

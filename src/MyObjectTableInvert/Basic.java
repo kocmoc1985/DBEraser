@@ -387,6 +387,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert ti = (TableInvert) tableInvert;
         ti.setValueAt(rowName, value, defineValueColumnIndex(tableInvert));
     }
+    
+    public void setColorTableInvert(String rowName, Table tableInvert, Color color) {
+        TableInvert ti = (TableInvert) tableInvert;
+        ti.setColorAt(rowName, color);
+    }
 
     /**
      *
