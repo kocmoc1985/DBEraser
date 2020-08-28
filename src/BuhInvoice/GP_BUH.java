@@ -18,6 +18,13 @@ public class GP_BUH {
 
     public static boolean CUSTOMER_MODE = true;
     
+    public static String getValHashMap(String value) {
+        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
+            return "";
+        } else {
+            return value;
+        }
+    }
     
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));

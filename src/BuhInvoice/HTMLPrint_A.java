@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import forall.GP;
 import forall.HelpA;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.text.Document;
@@ -52,6 +54,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     ) {
         //
         initComponents();
+        //
+        this.setTitle("Skriv ut faktura");
+        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
         //
         this.articles_map_list = articles_map_list;
         //
@@ -349,11 +354,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
             html_ += "<tr>";
             //
-            html_ += "<td>" + map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
-            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
-            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
-            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__ENHET) + "</td>";
-            html_ += "<td>" + map.get(DB.BUH_F_ARTIKEL__PRIS) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";
             //

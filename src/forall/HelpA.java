@@ -2788,15 +2788,7 @@ public class HelpA {
         return joined_properties;
     }
 
-    public static String getValHashMap(String value) {
-        //
-        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
-            return "";
-        } else {
-            return value;
-        }
-        //
-    }
+    
 
     public static boolean isNumber(String str) {
         try {
