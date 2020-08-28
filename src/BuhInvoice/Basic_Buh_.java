@@ -63,8 +63,8 @@ public abstract class Basic_Buh_ extends Basic {
     protected void executeDelete(String json) {
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_DELETE, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE, json);
             //
             System.out.println("query: " + json_str_return);
             //
@@ -81,8 +81,8 @@ public abstract class Basic_Buh_ extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    php_function, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    php_function, json);
             //
             //
             comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys);

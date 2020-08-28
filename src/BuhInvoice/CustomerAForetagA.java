@@ -170,8 +170,8 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    phpFunc, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunc, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -227,8 +227,8 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    phpFunc, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunc, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //

@@ -91,8 +91,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         try {
             //
-            String query = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_ARTICLES_TO_DB, json));
+            String query = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,DB.PHP_FUNC_ARTICLES_TO_DB, json);
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {

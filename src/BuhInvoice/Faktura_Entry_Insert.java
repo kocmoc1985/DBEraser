@@ -34,8 +34,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         try {
             //
-            fakturaId = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_TO_DB, json));
+            fakturaId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_TO_DB, json);
             //
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
@@ -112,8 +112,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             try {
                 //
 //                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
-                HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                        DB.PHP_FUNC_ARTICLES_TO_DB, json));
+                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_ARTICLES_TO_DB, json);
                 //
             } catch (Exception ex) {
                 Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);

@@ -38,8 +38,8 @@ public class HelpBuh {
      * @return
      * @throws Exception
      */
-    public static String executePHPScript(String phpScriptName, String phpFunctionName, String json) throws Exception {
-        String url = execute(phpScriptName, phpFunctionName, json);
+    public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
+        String url = buildUrl(phpScriptName, phpFunctionName, json);
         return http_get_content_post(url);
     }
 
@@ -53,7 +53,7 @@ public class HelpBuh {
      * @param json
      * @return
      */
-    public static String execute(String phpScriptName, String phpFunctionName, String json) {
+    private static String buildUrl(String phpScriptName, String phpFunctionName, String json) {
         return String.format("http://www.mixcont.com/php/%s?%s=true&json=%s", phpScriptName + ".php", phpFunctionName, json);
     }
 
@@ -74,7 +74,7 @@ public class HelpBuh {
     public static void update(String json) {
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
+            HelpBuh.http_get_content_post(HelpBuh.buildUrl(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_UPDATE_AUTO, json));
             //
         } catch (Exception ex) {

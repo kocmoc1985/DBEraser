@@ -113,8 +113,8 @@ public class CustomersA extends CustomerAForetagA {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -213,8 +213,8 @@ public class CustomersA extends CustomerAForetagA {
         //
         try {
             //
-            fakturaKundId = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json));
+            fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
             //
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
@@ -242,8 +242,8 @@ public class CustomersA extends CustomerAForetagA {
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json));
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
@@ -520,8 +520,8 @@ public class CustomersA extends CustomerAForetagA {
         //
         try {
             //
-            String latest = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_LATEST, json));
+            String latest = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_LATEST, json);
             //
 //            System.out.println("LATEST: " + latest + "   *************************");
             //

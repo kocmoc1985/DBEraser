@@ -157,8 +157,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_IBET_TO_DB, json));
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_IBET_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,8 +203,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM__GET_FAKTURA_INBET, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM__GET_FAKTURA_INBET, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //

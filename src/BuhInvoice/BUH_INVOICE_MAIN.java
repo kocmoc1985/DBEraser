@@ -209,7 +209,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN, phpFunc, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpFunc, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -967,7 +967,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //        String json = JSon.hashMapToJSON(map);
 //        //
 //        try {
-//            String response = HelpBuh.executePHPScript(DB.PHP_SCRIPT_MAIN, "test_email" , json);
+//            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, "test_email" , json);
 //            //
 //        } catch (Exception ex) {
 //            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);

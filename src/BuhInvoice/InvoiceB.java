@@ -159,7 +159,7 @@ public class InvoiceB extends Basic {
 
     protected void all_invoices_table_clicked(String fakturaId) {
         //
-         fillFakturaArticlesTable(fakturaId);
+        fillFakturaArticlesTable(fakturaId);
         //
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            @Override
@@ -181,8 +181,8 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -270,8 +270,8 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
             //
             if (json_str_return.equals("empty")) { // this value='empty' is returned by PHP script
@@ -377,8 +377,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_DELETE, json));
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_DELETE, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
@@ -405,8 +404,8 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, json);
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
             //

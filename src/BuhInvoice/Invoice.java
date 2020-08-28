@@ -167,8 +167,8 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         try {
             //
-            String fakturaNr = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json));
+            String fakturaNr = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json);
             //
             if (HelpA.checkIfNumber_b(fakturaNr)) {
                 int nr = Integer.parseInt(fakturaNr);

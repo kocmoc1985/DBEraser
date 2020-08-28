@@ -191,8 +191,8 @@ public class ArticlesA extends Basic_Buh_ {
         //
         try {
             //
-            String json_str_return = HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA, json));
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -292,8 +292,8 @@ public class ArticlesA extends Basic_Buh_ {
         //
         try {
             //
-            HelpBuh.http_get_content_post(HelpBuh.execute(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_ARTIKEL_TO_DB, json));
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_ARTIKEL_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
