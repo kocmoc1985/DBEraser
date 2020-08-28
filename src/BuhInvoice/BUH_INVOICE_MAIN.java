@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
 import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
@@ -34,7 +35,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
-    private CustomersA customersA;
+    private CustomersA_ customersA;
     private ForetagA foretagA;
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
@@ -254,8 +255,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_print_faktura = new javax.swing.JButton();
         jLabel_btn_separator_1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel_Artikel_Insert_or_Update1 = new javax.swing.JLabel();
-        jLabel_Artikel_Insert_or_Update2 = new javax.swing.JLabel();
         jLabel_all_invoices_list = new javax.swing.JLabel();
         jLabel_all_invoices_list1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -399,12 +398,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel4.add(jButton1);
 
-        jLabel_Artikel_Insert_or_Update1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_Artikel_Insert_or_Update1.setForeground(new java.awt.Color(153, 153, 153));
-
-        jLabel_Artikel_Insert_or_Update2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_Artikel_Insert_or_Update2.setForeground(new java.awt.Color(153, 153, 153));
-
         jLabel_all_invoices_list.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_all_invoices_list.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_all_invoices_list.setText("FAKTUROR");
@@ -432,16 +425,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                                 .addGap(773, 773, 773)
                                 .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(12, 12, 12))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(520, 520, 520)
-                    .addComponent(jLabel_Artikel_Insert_or_Update1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(523, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(532, Short.MAX_VALUE)
-                    .addComponent(jLabel_Artikel_Insert_or_Update2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(511, 511, 511)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,16 +440,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(487, 487, 487)
-                    .addComponent(jLabel_Artikel_Insert_or_Update1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(488, Short.MAX_VALUE)))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(497, Short.MAX_VALUE)
-                    .addComponent(jLabel_Artikel_Insert_or_Update2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(478, 478, 478)))
         );
 
         jScrollPane3.setViewportView(jPanel3);
@@ -753,6 +726,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
                         .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -763,8 +737,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
                                 .addComponent(jScrollPane8))
-                            .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton9))
+                            .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(14, 14, 14))
         );
         jPanel4_CustomersLayout.setVerticalGroup(
@@ -782,7 +755,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
                 .addComponent(jButton9)
                 .addContainerGap())
         );
@@ -961,29 +934,41 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //        customersA.getNextKundnr();
         //
         //
-        //
+        //[TEST SEND EMAIL WITH ATTACHMENT - TESTED AND WORKING - 2020-08-27]
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("testkey", "testvalue");
 //        String json = JSon.hashMapToJSON(map);
 //        //
 //        try {
+//            //
 //            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, "test_email" , json);
 //            //
 //        } catch (Exception ex) {
 //            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-//
-//
         //
-        try {
-            HelpBuh.http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "test.pdf", "test.pdf");
-        } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //
+        //[TEST SEND EMAIL WITH ATTACHMENT V2 - 2020-08-28]
+       boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+                "BuhInvoice",
+                "andrej.brassas@gmail.com",
+                "Faktura",
+                "This is a test email for testing attachment sending",
+                "test.pdf"
+        );
+       //
+        System.out.println("Email sending status: " + sent);
+        //
+        // [TEST UPLOAD IMAGE - 2020-08-28]
+//        try {
+//            HelpBuh.http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "test.pdf", "test.pdf");
+//        } catch (ProtocolException ex) {
+//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         //
 
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -1265,8 +1250,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
-    protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update1;
-    protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update2;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
     protected javax.swing.JLabel jLabel_all_invoices_list;
@@ -1341,7 +1324,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             } else if (ACTUAL_TAB_NAME.equals(TAB_KUDNER)) {
                 //
                 if (customersA == null) {
-                    customersA = new CustomersA(this);
+                    customersA = new CustomersA_(this);
                 } else {
                     jTableCustomersA_kunder_clicked();
                 }

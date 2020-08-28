@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.HashMapKeyCaseInsensitive;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;

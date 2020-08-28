@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.EmailSendingStatus;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -19,6 +20,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -58,6 +60,50 @@ public class HelpBuh {
     }
 
     /**
+     *
+     * @param from
+     * @param fromNameOptional
+     * @param to
+     * @param subject
+     * @param body
+     * @param filePathAttachment - attachment file path on php-server, OBS! The
+     * path is relative to the "upload" script
+     * @return
+     */
+    public static boolean sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("from_email", from);
+        map.put("to", to);
+        map.put("from_name", fromNameOptional);
+        map.put("subject", subject);
+        map.put("body", body);
+        //
+        map.put("path", filePathAttachment);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        EmailSendingStatus ess;
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EMAIL_WITH_ATTACHMENT, json);
+            //
+            ess = new EmailSendingStatus(response);
+            //
+//            System.out.println("EMAIL RESP: " + response);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        //
+        return ess.bothAttachmentAndSendingSuccessful();
+        //
+    }
+
+    /**
      * [2020-07-22] Universal function for inserting into HTTP DB This one goes
      * through "index.php" generating additional useless traffic
      *
@@ -67,7 +113,7 @@ public class HelpBuh {
      * @param json
      * @return
      */
-    private static String execute_b(String phpScriptName, String phpFunctionName, String json) {
+    private static String buildUrl_b(String phpScriptName, String phpFunctionName, String json) {
         return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
     }
 

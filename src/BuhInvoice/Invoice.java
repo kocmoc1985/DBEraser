@@ -5,6 +5,8 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.IO;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JComboBoxInvert;

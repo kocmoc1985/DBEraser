@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA extends CustomerAForetagA {
+public class CustomersA_ extends CustomerAForetagA {
 
     //
     protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
@@ -41,7 +42,7 @@ public class CustomersA extends CustomerAForetagA {
     //
 
     //
-    public CustomersA(BUH_INVOICE_MAIN bim) {
+    public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -246,7 +247,7 @@ public class CustomersA extends CustomerAForetagA {
                     DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -534,9 +535,10 @@ public class CustomersA extends CustomerAForetagA {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
+        //
         //
     }
 
