@@ -138,20 +138,24 @@ public class HelpBuh {
      * @throws MalformedURLException
      * @throws InterruptedException
      */
-    public static void uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
-        http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+    public static boolean uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
+       return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
     }
 
     public static final String SERVER_UPLOAD_PATH = "uploads/";
+//    public static final String SERVER_UPLOAD_PATH = "uploadss/";
 
     public static void main(String[] args) {
-//        test__uploadFile();
-        test__sendEmailWithAttachment();
+        test__uploadFile();
+//        test__sendEmailWithAttachment();
     }
 
     private static void test__uploadFile() {
+        //
+        boolean upload_success = false;
+        //
         try {
-            HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
+          upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -159,6 +163,9 @@ public class HelpBuh {
         } catch (InterruptedException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        System.out.println("Upload Succeded: " + upload_success);
+        //
     }
 
     private static void test__sendEmailWithAttachment() {
@@ -262,7 +269,7 @@ public class HelpBuh {
      * @throws IOException
      * @throws InterruptedException
      */
-    public static void http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
+    private static boolean http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
         String url = url_ + fileNameAndPathServerSide;
         //
@@ -288,13 +295,17 @@ public class HelpBuh {
         BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
         //
         String s;
+        String retur = "";
         //
         while ((s = in.readLine()) != null) {
             System.out.println(s);
+            retur = "" + s; // yes it's needed [2020-08-28]
         }
         //
         in.close();
         fis.close();
+        //
+        return retur.equals("1");
         //
     }
 

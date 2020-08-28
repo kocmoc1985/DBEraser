@@ -35,7 +35,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
-    private CustomersA_ customersA;
+    private CustomersA customersA;
     private ForetagA foretagA;
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
@@ -287,7 +287,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane9 = new javax.swing.JScrollPane();
         jPanel4_Customers = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable_kunder = new javax.swing.JTable();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -650,13 +649,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jButton9.setText("TEST LATEST");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
         jTable_kunder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -725,19 +717,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
-                        .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
-                                .addComponent(jScrollPane8))
-                            .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                        .addComponent(jScrollPane8))
+                    .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
         jPanel4_CustomersLayout.setVerticalGroup(
@@ -755,9 +744,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton9)
-                .addContainerGap())
+                .addGap(142, 142, 142))
         );
 
         jScrollPane9.setViewportView(jPanel4_Customers);
@@ -928,51 +915,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-
-        //        customersA.getNextKundnr();
-        //
-        //
-        //[TEST SEND EMAIL WITH ATTACHMENT - TESTED AND WORKING - 2020-08-27]
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("testkey", "testvalue");
-//        String json = JSon.hashMapToJSON(map);
-//        //
-//        try {
-//            //
-//            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, "test_email" , json);
-//            //
-//        } catch (Exception ex) {
-//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        //
-        //
-        //[TEST SEND EMAIL WITH ATTACHMENT V2 -TESTED- 2020-08-28]
-       boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                "BuhInvoice",
-                "andrej.brassas@gmail.com",
-                "Faktura",
-                "This is a test email for testing attachment sending",
-                "test.pdf"
-        );
-        System.out.println("Email sending status: " + sent);
-        //
-        //
-        //
-        // [TEST UPLOAD IMAGE - 2020-08-28]
-        try {
-            HelpBuh.uploadFile("test.pdf", "../pdfs/test.pdf"); //[clientPath][ServerPath]
-        } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-
-    }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         //
@@ -1238,7 +1180,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton9;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
@@ -1325,7 +1266,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             } else if (ACTUAL_TAB_NAME.equals(TAB_KUDNER)) {
                 //
                 if (customersA == null) {
-                    customersA = new CustomersA_(this);
+                    customersA = new CustomersA(this);
                 } else {
                     jTableCustomersA_kunder_clicked();
                 }

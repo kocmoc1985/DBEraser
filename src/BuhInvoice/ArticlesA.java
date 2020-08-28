@@ -297,7 +297,7 @@ public class ArticlesA extends Basic_Buh_ {
                     DB.PHP_FUNC_ARTIKEL_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         refresh();

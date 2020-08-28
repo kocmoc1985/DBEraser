@@ -11,6 +11,7 @@ https://stackoverflow.com/questions/1407459/silent-printing-of-pdf-from-within-j
 1.2 Create .pdf faktura
 1.3 Upload faktura to "http"
 1.4 Send faktura with PHPMailer
+1.5 Delete faktura after sending
 
 2. Faktura Logotype - change size in java and save...
 3. Kredit faktura, Kontant Nota
@@ -19,6 +20,8 @@ https://stackoverflow.com/questions/1407459/silent-printing-of-pdf-from-within-j
 6. Code obfuscation
 ____________________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________________
+
+AVOID "###" in http requests, it's now possible as i am not longer using "index.php" [2020-08-28]  ******IMPORTANT*******************************************************
 
 IMPLEMENT: Faktura urval - Alla, Betalda, Obetalda .....
 

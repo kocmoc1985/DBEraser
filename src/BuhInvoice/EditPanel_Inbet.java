@@ -162,7 +162,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
                     DB.PHP_FUNC_FAKTURA_IBET_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         //
