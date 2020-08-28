@@ -1,0 +1,14 @@
+
+[MCWebNew.proj]
+Look at:
+
+1. php/_http_buh.php -> email()
+2. php/_u_u_u_x_upload.php -> contains the script for uploading the attachment from "java"
+3. php/PHPMailer.php -> this is an external lib for sending emails
+4. php/Exception.php -> This one is a "part" of PHPMailer.php -> And is obligatory
+
+[Buh_Invoice/DBEraser.proj]
+Look at:
+
+1. HelpBuh -> uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide)
+2. HelpBuh -> sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment)

@@ -1,8 +1,3 @@
 https://stackoverflow.com/questions/1314249/upload-and-post-file-to-php-page-with-java
 
 
-
-
-
-HttpURLConnection httpUrlConnection = (HttpURLConnection)new URL("http://www.mypage.org/upload.php").openConnection();
-HttpURLConnection httpUrlConnection = (HttpURLConnection)new URL("http://www.mypage.org/upload.php?filename=abc.def").openConnection();

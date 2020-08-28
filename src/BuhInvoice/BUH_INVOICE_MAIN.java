@@ -948,7 +948,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //        }
         //
         //
-        //[TEST SEND EMAIL WITH ATTACHMENT V2 - 2020-08-28]
+        //[TEST SEND EMAIL WITH ATTACHMENT V2 -TESTED- 2020-08-28]
        boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                 "BuhInvoice",
                 "andrej.brassas@gmail.com",
@@ -956,19 +956,20 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 "This is a test email for testing attachment sending",
                 "test.pdf"
         );
-       //
         System.out.println("Email sending status: " + sent);
         //
+        //
+        //
         // [TEST UPLOAD IMAGE - 2020-08-28]
-//        try {
-//            HelpBuh.http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "test.pdf", "test.pdf");
-//        } catch (ProtocolException ex) {
-//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            HelpBuh.uploadFile("test.pdf", "../pdfs/test.pdf"); //[clientPath][ServerPath]
+        } catch (ProtocolException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
 
     }//GEN-LAST:event_jButton9ActionPerformed

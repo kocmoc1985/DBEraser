@@ -38,6 +38,10 @@ public class EmailSendingStatus {
         toString();
         return attachmentStatus == 1 && emailStatus == 1;
     }
+    
+    public boolean emailSendingSuccessful(){
+        return emailStatus == 1;
+    }
 
     @Override
     public String toString() {
