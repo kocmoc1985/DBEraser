@@ -16,7 +16,10 @@ public class DB {
      * tableInvert
      */
     public static final int START_COLUMN = 1;
-    
+    //
+    public static final String PHP_SCRIPT_MAIN = "_http_buh";
+    public static final String PHP_SCRIPT_UPLOAD_URL = "http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=";
+    //
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
@@ -41,7 +44,8 @@ public class DB {
     public static final String TABLE__BUH_KUND = "buh_kund";
     public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
     //
-    public static final String PHP_SCRIPT_MAIN = "_http_buh";
+    
+    //
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_IBET_TO_DB = "faktura_inbet_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"

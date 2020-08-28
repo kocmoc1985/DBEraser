@@ -976,7 +976,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //
         //
         try {
-            HelpBuh.http_send_image();
+            HelpBuh.http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "test.pdf", "test.pdf");
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
