@@ -38,6 +38,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private final HashMap<String, String> map_c;
     private final HashMap<String, String> map_d;
     private final HashMap<String, String> map_e;
+    private final HashMap<String, String> map_f;
+    private final HashMap<String, String> map_g;
 
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
@@ -50,7 +52,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             HashMap<String, String> map_b,
             HashMap<String, String> map_c,
             HashMap<String, String> map_d,
-            HashMap<String, String> map_e
+            HashMap<String, String> map_e,
+            HashMap<String, String> map_f,
+            HashMap<String, String> map_g
     ) {
         //
         initComponents();
@@ -65,6 +69,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         this.map_c = map_c;
         this.map_d = map_d;
         this.map_e = map_e;
+        this.map_f = map_f;
+        this.map_g = map_g;
         //
         initOther();
         //
@@ -320,7 +326,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         String[] headers = new String[]{"Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr", "Innehar F-skattebevis"};
-        String[] values = new String[]{"014051764", "ask@mixcont.com", "5129-0542", "556251-6806", "SE556251680601", "Ja"};
+        String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST), _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR), _get(map_f, DB.BUH_KUND__IBAN), "Ja"};
         //
         html_ += internal_table_2r_xc(headers, values, -1, "");
         //
@@ -671,7 +677,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null,null,null).setVisible(true);
             }
         });
     }

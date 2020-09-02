@@ -418,6 +418,27 @@ public class InvoiceB extends Basic {
         //
     }
 
+    
+    private HashMap<String, String> getForetagData(String phpFunction) {
+        //
+        String json = bim.getSELECT_kundId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            ArrayList<HashMap<String, String>> list = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return list.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return null;
+    }
+
     public void htmlFaktura_b() {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -427,6 +448,8 @@ public class InvoiceB extends Basic {
         HashMap<String, String> map_c = new HashMap<>();
         HashMap<String, String> map_d = new HashMap<>();
         HashMap<String, String> map_e__lev_addr = getFakturaKundAddress();
+        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_DATA);
+        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS);
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
@@ -462,7 +485,9 @@ public class InvoiceB extends Basic {
                         map_b,
                         map_c,
                         map_d,
-                        map_e__lev_addr
+                        map_e__lev_addr,
+                        map_f__ftg_data,
+                        map_g__ftg_addr
                 );
                 //
                 hTMLPrint_A.setVisible(true);
