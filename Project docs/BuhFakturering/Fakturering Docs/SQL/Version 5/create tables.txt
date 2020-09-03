@@ -13,7 +13,8 @@ bank_giro varchar (20) DEFAULT '',
 post_giro varchar (20) DEFAULT '',
 bank_konto varchar (30) DEFAULT '',
 iban varchar (30) DEFAULT '',
-swish varchar (30) DEFAULT ''
+swish varchar (30) DEFAULT '',
+f_skatt boolean DEFAULT false,
 );
 
 CREATE TABLE buh_faktura_kund (

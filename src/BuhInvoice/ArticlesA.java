@@ -400,7 +400,7 @@ public class ArticlesA extends Basic_Buh_ {
         );
         //
         RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
-        kategori.enableFixedValues();
+        kategori.enableFixedValuesAdvanced();
         kategori.setUneditable();
         //
         RowDataInvert[] rows = {

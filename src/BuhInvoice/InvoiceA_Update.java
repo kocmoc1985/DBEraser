@@ -204,7 +204,7 @@ public class InvoiceA_Update extends Invoice {
         String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
         RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, "FRAKT", "", false, true, false);
         //
-        String fixedComboValues_b = JSon._get_special_(DB.STATIC__MAKULERAD_JA_NEJ,
+        String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ,
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD)
         );
         //

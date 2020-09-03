@@ -33,6 +33,7 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__KONTO = "KONTO";
     private static final String TABLE__IBAN = "IBAN";
     private static final String TABLE__SWISH = "SWISH";
+    private static final String TABLE__F_SKATT = "F-SKATT";
 
     public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -59,7 +60,8 @@ public class ForetagA extends CustomerAForetagA {
             TABLE__POST_GIRO,
             TABLE__KONTO,
             TABLE__IBAN,
-            TABLE__SWISH
+            TABLE__SWISH,
+            TABLE__F_SKATT
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -79,7 +81,8 @@ public class ForetagA extends CustomerAForetagA {
             map.get(DB.BUH_KUND__POST_GIRO),
             map.get(DB.BUH_KUND__KONTO),
             map.get(DB.BUH_KUND__IBAN),
-            map.get(DB.BUH_KUND__SWISH)
+            map.get(DB.BUH_KUND__SWISH),
+            map.get(DB.BUH_KUND__F_SKATT)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -165,9 +168,18 @@ public class ForetagA extends CustomerAForetagA {
         String swish_ = HelpA.getValueSelectedRow(table, TABLE__SWISH);
         RowDataInvert swish = new RowDataInvertB(swish_, DB.BUH_KUND__SWISH, TABLE__SWISH, "", true, true, false);
         //
+        //
+        String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ,
+                HelpA.getValueSelectedRow(table, TABLE__F_SKATT));
+        //
+        RowDataInvert f_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_KUND__F_SKATT, TABLE__F_SKATT, "", true, true, false);
+        f_skatt.enableFixedValuesAdvanced();
+        f_skatt.setUneditable();
+        //
         RowDataInvert[] rows = {
             namn,
             orgnr,
+            f_skatt,
             vatnr,
             email,
             bg,
@@ -184,7 +196,7 @@ public class ForetagA extends CustomerAForetagA {
     public RowDataInvert[] getConfigTableInvert_4() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -198,15 +210,15 @@ public class ForetagA extends CustomerAForetagA {
             //
             Validator.validateMaxInputLength(jli, 150);
             //
-        }else if(col_name.equals(DB.BUH_KUND__ORGNR) || col_name.equals(DB.BUH_KUND__VATNR)){
+        } else if (col_name.equals(DB.BUH_KUND__ORGNR) || col_name.equals(DB.BUH_KUND__VATNR)) {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
-        }else if(col_name.equals(DB.BUH_KUND__BANK_GIRO) || col_name.equals(DB.BUH_KUND__POST_GIRO) ){
+        } else if (col_name.equals(DB.BUH_KUND__BANK_GIRO) || col_name.equals(DB.BUH_KUND__POST_GIRO)) {
             //
             Validator.validateMaxInputLength(jli, 20);
             //
-        }else if(col_name.equals(DB.BUH_KUND__KONTO) || col_name.equals(DB.BUH_KUND__IBAN)){
+        } else if (col_name.equals(DB.BUH_KUND__KONTO) || col_name.equals(DB.BUH_KUND__IBAN)) {
             //
             Validator.validateMaxInputLength(jli, 30);
             //

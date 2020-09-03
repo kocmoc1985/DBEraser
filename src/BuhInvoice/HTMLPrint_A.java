@@ -202,6 +202,17 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         }
     }
 
+    private String _get_longname(HashMap<String, String> map, String param, String statics) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return JSon.getLongName(statics, val);
+        }
+    }
+
     /**
      * Temporary fix [2020-07-23]
      *
@@ -326,7 +337,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         String[] headers = new String[]{"Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr", "Innehar F-skattebevis"};
-        String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST), _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR), _get(map_f, DB.BUH_KUND__IBAN), "Ja"};
+        String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST),
+            _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR),
+            _get(map_f, DB.BUH_KUND__IBAN), _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ)};
         //
         html_ += internal_table_2r_xc(headers, values, -1, "");
         //
@@ -623,7 +636,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         try {
             pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
             pj.print();
-           
+
         } catch (PrinterException ex) {
             Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -677,7 +690,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null,null,null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }
