@@ -158,7 +158,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__ARTIKEL_ANTAL = "Antal";
     public static final String T__ARTIKEL_ENHET = "Enhet";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
-
+    //
+    public static final String T__FTG_TELEFON = "Telefon"; // Innehar F-skattebevis
+    public static final String T__FTG_EPOST = "E-post";
+    public static final String T__FTG_BANKGIRO = "Bankgiro";
+    public static final String T__FTG_ORGNR = "Organisationsnr";
+    public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
+    public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
+    
     protected String buildHTML() {
         //
         String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
@@ -336,7 +343,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{"Telefon", "E-post", "Bankgiro", "Organisationsnr", "Momsreg.nr", "Innehar F-skattebevis"};
+        String[] headers = new String[]{T__FTG_TELEFON, T__FTG_EPOST, T__FTG_BANKGIRO, T__FTG_ORGNR, T__FTG_MOMS_REG_NR, T__FTG_F_SKATT};
         String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST),
             _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR),
             _get(map_f, DB.BUH_KUND__IBAN), _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ)};
