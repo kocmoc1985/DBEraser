@@ -44,7 +44,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private String PREVIOUS_TAB_NAME;
     private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
     private final static String TAB_FAKTURA = "FAKTURA";
-    private final static String TAB_KUDNER = "KUNDER";
+    public final static String TAB_KUDNER = "KUNDER";
     private final static String TAB_ARTIKLAR = "ARTIKLAR";
     private final static String TAB_FTG_SETUP = "FÖRETAGS INSTÄLLNINGAR";
     //

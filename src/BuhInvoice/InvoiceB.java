@@ -418,6 +418,30 @@ public class InvoiceB extends Basic {
         //
     }
 
+    //  DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES
+    //  DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA
+    
+     private HashMap<String, String> getFakturaKundData(String phpFunction) {
+        //
+        String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        //
+        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return addresses.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        //
+    }
     
     private HashMap<String, String> getForetagData(String phpFunction) {
         //
@@ -447,7 +471,8 @@ public class InvoiceB extends Basic {
         HashMap<String, String> map_b = new HashMap<>();
         HashMap<String, String> map_c = new HashMap<>();
         HashMap<String, String> map_d = new HashMap<>();
-        HashMap<String, String> map_e__lev_addr = getFakturaKundAddress();
+        HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES);
+        HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA);
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_DATA);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS);
         //
@@ -486,6 +511,7 @@ public class InvoiceB extends Basic {
                         map_c,
                         map_d,
                         map_e__lev_addr,
+                        map_e__lev_data,
                         map_f__ftg_data,
                         map_g__ftg_addr
                 );

@@ -43,6 +43,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private final HashMap<String, String> map_c;
     private final HashMap<String, String> map_d;
     private final HashMap<String, String> map_e;
+    private final HashMap<String, String> map_e_2__lev_data;
     private final HashMap<String, String> map_f;
     private final HashMap<String, String> map_g;
 
@@ -58,6 +59,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             HashMap<String, String> map_c,
             HashMap<String, String> map_d,
             HashMap<String, String> map_e,
+            HashMap<String, String> map_e_2,
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
@@ -74,6 +76,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         this.map_c = map_c;
         this.map_d = map_d;
         this.map_e = map_e;
+        this.map_e_2__lev_data = map_e_2;
         this.map_f = map_f;
         this.map_g = map_g;
         //
@@ -527,6 +530,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -535,19 +539,23 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1);
 
-        jButton2.setText("E-MAIL");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -557,19 +565,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -585,20 +588,39 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_7) == false) {
+        String faktura_kund_email = _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
+        String ftg_name = _get(map_f, DB.BUH_KUND__NAMN);
+        //
+        if(faktura_kund_email == null || faktura_kund_email.isEmpty()){
+            HelpA.showNotification(LANG.MSG_7);
             return;
         }
         //
-        print_upload_sendmail("uploads/", "faktura.pdf");
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email)) == false) {
+            return;
+        }
+        //
+//        System.out.println("faktura_kund_email: " + faktura_kund_email);
+//        System.out.println("ftg_name: " + ftg_name);
+        //
+        print_upload_sendmail(
+                "uploads/",
+                "faktura.pdf",
+                faktura_kund_email,
+                ftg_name
+        );
         //
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * [2020-09-03]
+     *
      * @param serverPath - must end with "/"
      * @param fileName - like: "test.pdf"
+     * @param sendToEmail
+     * @param ftgName - The company from which this email is sent
      */
-    protected void print_upload_sendmail(String serverPath, String fileName) {
+    protected void print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
         print_java(fileName);
         //
@@ -622,13 +644,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         Boolean email_sending_ok = false;
         //
+        String body = "Du har fått faktura från: " + ftgName;
+        //
         if (upload_success) {
             //
             email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                     "BuhInvoice", // This one is shown as name instead of the email it's self
-                    "andrej.brassas@gmail.com",
+                    sendToEmail,
                     "Faktura",
-                    "This is a test email for testing attachment sending",
+                    body,
                     serverPath + fileName
             );
             //
@@ -770,7 +794,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }
@@ -779,6 +803,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     protected javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

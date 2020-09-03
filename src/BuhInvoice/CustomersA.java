@@ -37,7 +37,7 @@ public class CustomersA extends CustomerAForetagA {
     private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
     private static final String TABLE_FAKTURA_KUNDER__ORGNR = "ORGNR";
     private static final String TABLE_FAKTURA_KUNDER__VATNR = "VATNR";
-    private static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
+    public static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
 

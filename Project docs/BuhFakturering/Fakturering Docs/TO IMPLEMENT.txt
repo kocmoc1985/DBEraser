@@ -1,18 +1,9 @@
 ____________________________________________________________________________________________________________________________________________________
-IMPLEMENT "Innehar F Skattebevis" column for "buh_kund" [2020-09-02]
+ADD "BESTÄLLNING / NOTIS" to HTML faktura [2020-09-03]
 ____________________________________________________________________________________________________________________________________________________
-
-
-Apache PDFBox
-https://stackoverflow.com/questions/1407459/silent-printing-of-pdf-from-within-java
 
 [BIG THINGS TO SOLVE:]
 
-1. Send faktura via PHP, the steps are following:
-1.2 Create .pdf faktura
-1.3 Upload faktura to "http"
-1.4 Send faktura with PHPMailer
-1.5 Delete faktura after sending
 
 2. Faktura Logotype - change size in java and save...
 3. Kredit faktura, Kontant Nota
