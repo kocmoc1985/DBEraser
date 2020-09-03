@@ -389,7 +389,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jLabel_btn_separator_1);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
-        jButton1.setToolTipText("Inbetalningar");
+        jButton1.setToolTipText("Registrera inbetalning");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

@@ -19,6 +19,7 @@ public class LANG {
     public static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_4 = "Radera rad?";
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
+    public static String MSG_7 = "Skicka e-post?";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

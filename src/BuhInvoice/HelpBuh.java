@@ -143,11 +143,11 @@ public class HelpBuh {
     }
 
     public static final String SERVER_UPLOAD_PATH = "uploads/";
-//    public static final String SERVER_UPLOAD_PATH = "uploadss/";
+//    public static final String SERVER_UPLOAD_PATH = "";
 
     public static void main(String[] args) {
-        test__uploadFile();
-//        test__sendEmailWithAttachment();
+//        test__uploadFile();
+        test__sendEmailWithAttachment();
     }
 
     private static void test__uploadFile() {
@@ -174,7 +174,7 @@ public class HelpBuh {
                 "andrej.brassas@gmail.com",
                 "Faktura",
                 "This is a test email for testing attachment sending",
-                SERVER_UPLOAD_PATH + "test.pdf"
+                SERVER_UPLOAD_PATH + "faktura.pdf"
         );
         //
         System.out.println("Email sending status: " + sent);

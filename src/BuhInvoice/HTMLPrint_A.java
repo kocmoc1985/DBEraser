@@ -5,6 +5,9 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
+import BuhInvoice.sec.LANG;
+import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.GP;
 import forall.HelpA;
 import java.awt.Dimension;
@@ -14,6 +17,8 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.IOException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -165,7 +170,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FTG_ORGNR = "Organisationsnr";
     public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
     public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
-    
+
     protected String buildHTML() {
         //
         String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
@@ -523,6 +528,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -536,6 +542,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("E-MAIL");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -544,14 +557,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -560,11 +578,67 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        print();
+        print_normal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    protected void print() {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_7) == false) {
+            return;
+        }
+        //
+        print_upload_sendmail("uploads/", "faktura.pdf");
+        //
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * [2020-09-03]
+     * @param serverPath - must end with "/"
+     * @param fileName - like: "test.pdf"
+     */
+    protected void print_upload_sendmail(String serverPath, String fileName) {
+        //
+        print_java(fileName);
+        //
+        System.out.println("Print pdf complete");
+        //
+        //
+        boolean upload_success = false;
+        //
+        try {
+            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
+        } catch (ProtocolException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        System.out.println("Upload to PHP: " + upload_success);
+        //
+        //
+        Boolean email_sending_ok = false;
+        //
+        if (upload_success) {
+            //
+            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+                    "BuhInvoice", // This one is shown as name instead of the email it's self
+                    "andrej.brassas@gmail.com",
+                    "Faktura",
+                    "This is a test email for testing attachment sending",
+                    serverPath + fileName
+            );
+            //
+        }
+        //
+        System.out.println("Email sending: " + email_sending_ok);
+        //
+    }
+
+    protected void print_normal() {
         //
         int actHeight = jEditorPane1.getHeight();
         //
@@ -607,23 +681,22 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     /**
-     * BY [2020-08-27] only in test study
+     * [2020-09-03] uses: jPDFWriter.v2016R1.00.jar Enables silent print_java
+     *
+     * @param filename
      */
-    protected void printSilent() {
+    protected void print_java(String filename) {
         //
         int actHeight = jEditorPane1.getHeight();
         //
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
         if (actHeight >= A4_PAPER.getHeight()) {
-            HelpA.showNotification("A4 Heigh exceeded");
+            HelpA.showNotification("A4 Height exceeded");
         }
         //
         Paper paper = new Paper();
         paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
-        //
-//        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
-//                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
         //
         // This one sets the margins
         paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
@@ -631,24 +704,24 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         PageFormat pageFormat = new PageFormat();
         pageFormat.setPaper(paper);
         //
-        PrinterJob pj = PrinterJob.getPrinterJob();
+//        PrinterJob pj = PrinterJob.getPrinterJob(); // old
+        PDFPrinterJob pj = (PDFPrinterJob) PDFPrinterJob.getPrinterJob(); // ******[JAVA PDF PRINT][2020-09-03]
         //
         PageFormat validatedFormat = pj.validatePage(pageFormat);
         //
         pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
         //
-        // This one shows additional Dialog displaying the margins, can be skipped
-//        PageFormat pf = pj.pageDialog(pageFormat);
+        //
+        pj.setJobName(filename);
         //
         try {
-            pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
-            pj.print();
-
+//            pj.print_java();
+            pj.print(filename); // [JAVA PDF PRINT]******[SILENT PRINT]
         } catch (PrinterException ex) {
             Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
     }
-    //
 
     private static double fromCMToPPI(double cm) {
         return toPPI(cm * 0.393700787);
@@ -704,6 +777,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
