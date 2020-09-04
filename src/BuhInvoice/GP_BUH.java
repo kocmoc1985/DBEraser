@@ -5,6 +5,8 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
+import forall.HelpA;
 import java.awt.Component;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -64,19 +66,43 @@ public class GP_BUH {
         //
     }
 
-    public static void resizeImage() throws IOException {
+    public static void resizeImage_example() throws IOException {
         Thumbnails.of(new File("mc_logo.png"))
                 .size(160, 69)
                 .toFile(new File("logo.png"));
     }
+    
+    public static void chooseLogo(Component parent){
+         //
+        String path = chooseFile(null);
+        //
+        try {
+            resizeLogo(path);
+        } catch (IOException ex) {
+            Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
 
-    public static void resizeLogo(String path) throws IOException {
+    private static void resizeLogo(String path) throws IOException {
+        //
+        if(path == null || path.isEmpty()){
+            return;
+        }
         //
         int MAX_WIDTH = 170;
+        int MIN_WIDTH = 120;
+        int MAX_HEIGHT = 90;
         //
         BufferedImage img = ImageIO.read(new File(path));
+        //
         int w_orig = img.getWidth();
         int h_orig = img.getHeight();
+        //
+        if(w_orig < MIN_WIDTH){
+            HelpA.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
+            return;
+        }
         //
         double wh_proportion = (double)w_orig / (double)h_orig;
         //
@@ -86,12 +112,19 @@ public class GP_BUH {
         int w_new = 0;
         int h_new = 0;
         //
-        if(w_orig > MAX_WIDTH){
+        if(w_orig > MAX_WIDTH ){
            w_new = MAX_WIDTH;
-           h_new = (int) (w_new /wh_proportion);
+           //
+           if(h_orig > MAX_HEIGHT){
+             h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
+           }else{
+             h_new = (int) (w_new /wh_proportion);
+           }
+           //
+          
         }
         //
-        System.out.println("new w: " + w_new);
+        System.out.println("w_new: " + w_new);
         System.out.println("h_new: " + h_new);
         //
         File f = new File(path);
@@ -103,7 +136,7 @@ public class GP_BUH {
         //
     }
 
-    public static String chooseFile(Component parent) {
+    private static String chooseFile(Component parent) {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, PNG, BMP Images", "jpg", "png", "bmp");

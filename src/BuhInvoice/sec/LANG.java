@@ -24,6 +24,7 @@ public class LANG {
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
+    
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
@@ -38,6 +39,10 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
+    public static String LOGOTYP_TO_SMALL(String requiredMinWidth, String widthActual) {
+        return "Logotyp är för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
+    }
+    
     public static String CONFIRM_SEND_MAIL(String sendTo) {
         return "Skicka faktura till: " + sendTo + " ?";
     }

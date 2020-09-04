@@ -95,7 +95,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         //
-        int height = (int) (d.height * 0.9);
+        int height = (int) (d.height * 0.8);
         //
         setSize(getWidth(), height);
         //
@@ -112,8 +112,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private void go() {
         //
-
-        //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -125,6 +123,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
+            ".paddingLeft {padding-left: 5px;}",
             ".bold {font-weight:800;}"
         //    
         };
@@ -144,7 +143,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         jEditorPane1.setText(buildHTML());
         //
-
     }
 
     //
@@ -323,7 +321,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String titleOrLogoIfExist(String imgPath) {
         if (imgPath != null) {
-            return "<td rowspan='2'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
+            return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
                     + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
         } else {
             return "<td rowspan='2'><h1 class='marginLeft'>" + COMPANY_NAME + "</h1></td>"
@@ -592,13 +590,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1_separator = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -615,6 +615,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
+        jPanel1.add(jLabel1_separator);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
+        jButton3.setToolTipText("Välj logotyp");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -623,9 +633,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -674,6 +684,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         );
         //
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //
+        GP_BUH.chooseLogo(this);
+        //
+        go();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * [2020-09-03]
@@ -778,9 +795,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
-        if (actHeight >= A4_PAPER.getHeight()) {
-            HelpA.showNotification("A4 Height exceeded");
-        }
+//        if (actHeight >= A4_PAPER.getHeight()) {
+//            HelpA.showNotification("A4 Height exceeded");
+//        }
         //
         Paper paper = new Paper();
         paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
@@ -865,7 +882,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     protected javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1_separator;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
