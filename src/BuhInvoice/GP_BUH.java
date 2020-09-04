@@ -5,6 +5,8 @@
  */
 package BuhInvoice;
 
+import java.awt.Component;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -12,7 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import net.coobird.thumbnailator.Thumbnails;
 
 /**
@@ -61,16 +66,68 @@ public class GP_BUH {
 
     public static void resizeImage() throws IOException {
         Thumbnails.of(new File("mc_logo.png"))
-        .size(160, 69)
-        .toFile(new File("logo.png"));
+                .size(160, 69)
+                .toFile(new File("logo.png"));
     }
-    
+
+    public static void resizeLogo(String path) throws IOException {
+        //
+        int MAX_WIDTH = 170;
+        //
+        BufferedImage img = ImageIO.read(new File(path));
+        int w_orig = img.getWidth();
+        int h_orig = img.getHeight();
+        //
+        double wh_proportion = (double)w_orig / (double)h_orig;
+        //
+        System.out.println("Original img w: " + w_orig + " height: " + h_orig);
+        System.out.println("wh_proportion: " + wh_proportion);
+        //
+        int w_new = 0;
+        int h_new = 0;
+        //
+        if(w_orig > MAX_WIDTH){
+           w_new = MAX_WIDTH;
+           h_new = (int) (w_new /wh_proportion);
+        }
+        //
+        System.out.println("new w: " + w_new);
+        System.out.println("h_new: " + h_new);
+        //
+        File f = new File(path);
+        //
+        //
+        Thumbnails.of(f)
+                .size(w_new, h_new)
+                .toFile(new File("logo.png"));
+        //
+    }
+
+    public static String chooseFile(Component parent) {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG, PNG, BMP Images", "jpg", "png", "bmp");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(parent); // this one is needed to test icon
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String path = chooser.getSelectedFile().getPath();
+            System.out.println("You chose to open this file: " + path);
+            return path;
+        } else {
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
+        //
+        String path = chooseFile(null);
+        //
         try {
-            resizeImage();
+            resizeLogo(path);
         } catch (IOException ex) {
             Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
     }
 
     /**
