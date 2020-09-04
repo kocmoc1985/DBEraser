@@ -17,7 +17,9 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -122,6 +124,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
+            ".marginLeft {margin-left: 10px;}",
             ".bold {font-weight:800;}"
         //    
         };
@@ -192,11 +195,43 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
     public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
 
-    protected String buildHTML() {
+    /**
+     * Use this one when, getting the image from the "inside project / .jar file"
+     * @param path
+     * @param imgName
+     * @return - like: "file:/J:/MyDocs/src/...."
+     */
+    private String getPathResources(String path, String imgName){
+        return getImageIconURL(path, imgName).toString();
+    }
+    
+    /**
+     *  Use this one when, getting the image from inside the "project dir / root"
+     * @param pathAndFileName
+     * @return - like: "file:/J:/MyDocs/src/...."
+     */
+    private String getPathNormal(String pathAndFileName){
         //
-        String img_a = getImageIconURL("images", "mixcont_logo_md.png").toString();
-//        String img_b = getImageIconURL("images", "rado.png").toString();
-//        String img_c = getImageIconURL("images/images_b", "star.png").toString();
+        File f = new File(pathAndFileName);
+        //
+        if(f.exists() == false){
+            return null;
+        }
+        //
+        try {
+            return new File(pathAndFileName).toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    protected String buildHTML() {
+        // 
+//        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
+        // 
+        String img_a = getPathNormal("logo.png");
+        //
         //
         return "<html>"
                 + "<body>" //style='background-color:#F1F3F6'
@@ -288,11 +323,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String titleOrLogoIfExist(String imgPath) {
         if (imgPath != null) {
-            return "<td rowspan='2'><img src='" + imgPath + "' alt='MCRemote'></td>" // width='32' height='32'
-                    + "<td><h2>" + T__FAKTURA_TITLE + "</h2></td>";
+            return "<td rowspan='2'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
+                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
         } else {
-            return "<td rowspan='2'><h1>" + COMPANY_NAME + "</h1></td>"
-                    + "<td><h1>" + T__FAKTURA_TITLE + "</h1></td>";
+            return "<td rowspan='2'><h1 class='marginLeft'>" + COMPANY_NAME + "</h1></td>"
+                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
 
         }
     }
@@ -530,6 +565,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     protected URL getImageIconURL(String path, String picName) {
         //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
         return HTMLPrint_A.class.getResource("/" + path + "/" + picName);
+    }
+
+     protected URL getImageIconURL(String picName) {
+        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
+        return HTMLPrint_A.class.getResource("../../../../../" + picName);
     }
 
     public Point position_window_in_center_of_the_screen(JDialog window) {
