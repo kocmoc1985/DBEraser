@@ -5,7 +5,6 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.GP;
@@ -95,7 +94,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         //
-        int height = (int) (d.height * 0.8);
+        int height = (int) (d.height * 0.9);
         //
         setSize(getWidth(), height);
         //
@@ -597,6 +596,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         setResizable(false);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jEditorPane1.setMaximumSize(new java.awt.Dimension(545, 842));
+        jEditorPane1.setMinimumSize(new java.awt.Dimension(545, 842));
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 

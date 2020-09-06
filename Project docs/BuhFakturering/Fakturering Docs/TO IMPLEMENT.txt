@@ -4,12 +4,9 @@ ________________________________________________________________________________
 
 [BIG THINGS TO SOLVE:]
 
-
-2. Faktura Logotype - change size in java and save...
-3. Kredit faktura, Kontant Nota
-4. Ommit using "index.php" for linking to "_http_buh.php"
-5. Extract "HTTP_BUH.proj" to a stand alone project.
-6. Code obfuscation
+1. Kredit faktura, Kontant Nota
+2. Extract "HTTP_BUH.proj" to a stand alone project.
+3. Code obfuscation
 ____________________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________________
 

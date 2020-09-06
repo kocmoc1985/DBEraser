@@ -481,7 +481,7 @@ public class InvoiceB extends Basic {
         map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, _get(TABLE_ALL_INVOICES__DATUM));
         //
         map_b.put(HTMLPrint_A.T__FAKTURA_ER_REF, _get(TABLE_ALL_INVOICES__ER_REF));
-        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, ""); //**************************EMPTY
+        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, _get(TABLE_ALL_INVOICES__ERT_ORDER)); //**************************EMPTY
         map_b.put(HTMLPrint_A.T__FAKTURA_LEV_VILKOR, _get(TABLE_ALL_INVOICES__LEV_VILKOR));
         map_b.put(HTMLPrint_A.T__FAKTURA_LEV_SATT, _get(TABLE_ALL_INVOICES__LEV_SATT));
         map_b.put(HTMLPrint_A.T__FAKTURA_ERT_VAT_NR, ""); //**************************EMPTY
