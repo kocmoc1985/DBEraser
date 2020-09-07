@@ -1,6 +1,8 @@
 Implement "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
 Implement "Transaction history" -> and namely events like "email faktura sent", "påminnelse sent" etc...
 
+Fix Urgently: Bearbeta Faktura -> delete all articles -> TableInvert2 (in the low left corner) -> Then add an article and it will show "NULLS"
+:: Look at Invoice->"setArticlePrise()"
 ____________________________________________________________________________________________________________________________________________________
 
 [BIG THINGS TO SOLVE:]

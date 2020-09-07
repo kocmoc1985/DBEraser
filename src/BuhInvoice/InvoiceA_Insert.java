@@ -118,6 +118,7 @@ public class InvoiceA_Insert extends Invoice {
     protected void addArticleForDB() {
         //
         this.faktura_entry_insert.addArticleForDB();
+        //
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
@@ -183,39 +184,7 @@ public class InvoiceA_Insert extends Invoice {
             return getConfigTableInvert_edit_articles();
             //
         } else {
-            // String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
-            String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID,DB.BUH_FAKTURA_ARTIKEL___PRIS});
-            RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
-            kund.enableFixedValuesAdvanced();
-            kund.setUneditable();
-            //
-            RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
-            //
-            RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", true, true, false);
-            //
-            String fixedComboValues_b = DB.STATIC__ENHET;
-            RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, "", true, true, false);
-            enhet.enableFixedValuesAdvanced();
-            enhet.setUneditable();
-            //
-            RowDataInvert pris = new RowDataInvertB("", DB.BUH_F_ARTIKEL__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, "", true, true, true);
-            //
-            RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", true, true, false);
-            //
-            RowDataInvert rabatt_kr = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT_KR, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, "", true, true, false);
-//            rabatt_kr.setDontAquireTableInvertToHashMap();
-            //
-            RowDataInvert[] rows = {
-                kund,
-                komment,
-                antal,
-                enhet,
-                pris,
-                rabatt,
-                rabatt_kr
-            };
-            //
-            return rows;
+            return getConfigTableInvert_insert();
         }
         //
     }
@@ -227,11 +196,13 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
+        disableMomsJComboIf(inkl_exkl_moms);
         //
         String fixedComboValues_c = DB.STATIC__MOMS_SATS; // This will aquired from SQL
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
+        disableMomsJComboIf(moms);
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //

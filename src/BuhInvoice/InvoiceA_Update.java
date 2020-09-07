@@ -51,6 +51,7 @@ public class InvoiceA_Update extends Invoice {
     protected void addArticleForDB() {
         //
         this.faktura_entry_update.addArticleForDB();
+        //
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
@@ -165,8 +166,12 @@ public class InvoiceA_Update extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        return getConfigTableInvert_edit_articles();
-        //         
+        if(articlesJTableEmpty() == false){
+            return getConfigTableInvert_edit_articles();
+        }else{
+            return getConfigTableInvert_insert();
+        }
+        //
     }
 
     @Override
@@ -183,6 +188,7 @@ public class InvoiceA_Update extends Invoice {
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", false, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
+        disableMomsJComboIf(inkl_exkl_moms); // *****
         //
         //
         String fixedComboValues_c = JSon._get_special_(
@@ -194,6 +200,7 @@ public class InvoiceA_Update extends Invoice {
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
+        disableMomsJComboIf(moms); // *****
         //
         String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);

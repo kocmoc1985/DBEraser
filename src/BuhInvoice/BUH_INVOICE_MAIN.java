@@ -995,12 +995,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             invoiceA_insert.deleteArtikel();
             //
+            invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice.disableMomsJComboIf()"
+            //
         } else {
             //
             invoiceA_update.deleteFakturaArtikel();
             invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
             invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
             invoiceB.refresh_b();
+            //
+            invoiceA_update.showTableInvert_2(); // some kind of redraw, OBS! needed
+            invoiceA_update.showTableInvert_3(); // some kind of redraw, OBS! needed
             //
         }
     }//GEN-LAST:event_jButton_delete_articles_rowActionPerformed
@@ -1302,7 +1307,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();
-                invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
                 //
                 invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
                 //
@@ -1390,7 +1394,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (jTable_InvoiceA_Insert_articles.getModel().getRowCount() != 0 && Invoice.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();
-            
+//            invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
+        }else if(jTable_InvoiceA_Insert_articles.getModel().getRowCount() == 0 && Invoice.CURRENT_OPERATION_INSERT == false){
+            invoiceA_update.showTableInvert_2();
         }
         //
     }

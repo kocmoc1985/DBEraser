@@ -46,6 +46,7 @@ public abstract class Invoice extends Basic_Buh_ {
     private static double MOMS_TOTAL = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
+    //
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -101,6 +102,20 @@ public abstract class Invoice extends Basic_Buh_ {
         return !betald.equals(DB.STATIC_BET_STATUS_NEJ);
         //
     }
+    
+    protected boolean articlesJTableEmpty(){
+        if(getArticlesTable().getModel().getRowCount() > 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    protected void disableMomsJComboIf(RowDataInvert rdi){
+        if(articlesJTableEmpty() == false){
+            rdi.setDisabled();
+        }
+    }
 
     private void enableDisableButtons(JPanel parent, boolean enabled) {
         Component[] components = parent.getComponents();
@@ -143,7 +158,12 @@ public abstract class Invoice extends Basic_Buh_ {
         // For "INSERT" the article is added to a LIST
         addArticleForDB();
         //
-
+        //
+        // This statement is needed to redraw the tableInvert because if some
+        // element was disabled it muste be redrawn. [2020-09-07] i implemented that
+        // after adding one article the user is not able to change "moms" anymore
+        showTableInvert_3();
+        //
     }
 
     @Override
@@ -363,6 +383,7 @@ public abstract class Invoice extends Basic_Buh_ {
         addTableInvertRowListener(TABLE_INVERT_2, this);
         //
         setArticlePrise(); // [2020-08-19]
+        //
     }
 
     public void showTableInvert_3() {
@@ -378,6 +399,42 @@ public abstract class Invoice extends Basic_Buh_ {
         //
     }
 
+    public RowDataInvert[] getConfigTableInvert_insert() {
+         // String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
+            String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID,DB.BUH_FAKTURA_ARTIKEL___PRIS});
+            RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
+            kund.enableFixedValuesAdvanced();
+            kund.setUneditable();
+            //
+            RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
+            //
+            RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", true, true, false);
+            //
+            String fixedComboValues_b = DB.STATIC__ENHET;
+            RowDataInvert enhet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_F_ARTIKEL__ENHET, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, "", true, true, false);
+            enhet.enableFixedValuesAdvanced();
+            enhet.setUneditable();
+            //
+            RowDataInvert pris = new RowDataInvertB("", DB.BUH_F_ARTIKEL__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, "", true, true, true);
+            //
+            RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", true, true, false);
+            //
+            RowDataInvert rabatt_kr = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT_KR, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, "", true, true, false);
+//            rabatt_kr.setDontAquireTableInvertToHashMap();
+            //
+            RowDataInvert[] rows = {
+                kund,
+                komment,
+                antal,
+                enhet,
+                pris,
+                rabatt,
+                rabatt_kr
+            };
+            //
+            return rows;
+    }
+    
     /**
      * This config is for editing of articles
      *
@@ -525,6 +582,10 @@ public abstract class Invoice extends Basic_Buh_ {
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
         //
         super.mouseWheelForward(ti, e); //To change body of generated methods, choose Tools | Templates.
+        //
+        if(e.getSource() instanceof JLinkInvert == false){
+            return;
+        }
         //
         JLinkInvert jli = (JLinkInvert) e.getSource();
         //
@@ -733,7 +794,12 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     private void setArticlePrise() {
-        if (CURRENT_OPERATION_INSERT) {
+        //
+        boolean conditionSpecial = CURRENT_OPERATION_INSERT == false && articlesJTableEmpty() == true;
+        //
+        if (CURRENT_OPERATION_INSERT || conditionSpecial) {
+            //
+            System.out.println("set article prise***************************************");
             //
             JComboBox box = (JComboBox) getObjectTableInvert(DB.BUH_FAKTURA_ARTIKEL___ID, TABLE_INVERT_2);
             HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
@@ -741,6 +807,7 @@ public abstract class Invoice extends Basic_Buh_ {
             setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
             //
         }
+        //
     }
 
 }
