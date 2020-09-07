@@ -1,3 +1,6 @@
+Implement "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
+Implement "Transaction history" -> and namely events like "email faktura sent", "påminnelse sent" etc...
+
 ____________________________________________________________________________________________________________________________________________________
 
 [BIG THINGS TO SOLVE:]
@@ -14,7 +17,7 @@ IMPLEMENT: Faktura urval - Alla, Betalda, Obetalda .....
 
 FIX: HTML Faktura - "Beskrivning:null", "Rabatt not showing"  [2020-08-26]
 ____________________________________________________________________________________________________________________________________________________
-IMPLEMENT: DON*T ALLOW TO UPDATE FAKTURA IF "BETAL STATUS" = 1,2,3  [2020-08-26]
+
 
 ____________________________________________________________________________________________________________________________________________________
 

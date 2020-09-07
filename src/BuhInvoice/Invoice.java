@@ -9,7 +9,6 @@ import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
-import MyObjectTableInvert.JComboBoxInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
@@ -62,14 +61,45 @@ public abstract class Invoice extends Basic_Buh_ {
             bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
             //
             enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
+            enableDisableButtons(bim.jPanel12, true);
+            bim.jButton_confirm_insert_update.setEnabled(true);
+            //
             bim.jButton_update_articles_row.setEnabled(false);
+            //
         } else {
             //
-            bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
-            //
             enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
-            bim.jButton_update_articles_row.setEnabled(true);
+            //
+            if (fakturaBetald()) {
+                //
+                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_2);
+                //
+                enableDisableButtons(bim.jPanel12, false);
+                bim.jButton_confirm_insert_update.setEnabled(false);
+                //
+                bim.jButton_update_articles_row.setEnabled(false);
+                //
+            } else {
+                //
+                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
+                //
+                //
+                enableDisableButtons(bim.jPanel12, true);
+                bim.jButton_confirm_insert_update.setEnabled(true);
+                //
+                bim.jButton_update_articles_row.setEnabled(true);
+                //
+            }
+            //
         }
+    }
+
+    private boolean fakturaBetald() {
+        //
+        String betald = HelpA.getValueSelectedRow(getAllInvoicesTable(), InvoiceB.TABLE_ALL_INVOICES__BETALD);
+        //
+        return !betald.equals(DB.STATIC_BET_STATUS_NEJ);
+        //
     }
 
     private void enableDisableButtons(JPanel parent, boolean enabled) {
@@ -186,10 +216,9 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
-    
     public double getRabattPercent_JTable(JTable table, int row) {
         //
-        String rabatt = HelpA.getValueGivenRow(table,row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        String rabatt = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         //
         try {
             double rabatt_ = Double.parseDouble(rabatt);
@@ -203,10 +232,9 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
-    
-    public double getRabattKr_JTable(JTable table,int row) {
+    public double getRabattKr_JTable(JTable table, int row) {
         //
-        String rabatt = HelpA.getValueGivenRow(table,row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+        String rabatt = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
         if (HelpA.isNumber(rabatt)) {
             return Double.parseDouble(rabatt);
@@ -268,8 +296,8 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             //
-            double rabatt_percent = getRabattPercent_JTable(table,i);
-            double rabatt_kr = getRabattKr_JTable(table,i);
+            double rabatt_percent = getRabattPercent_JTable(table, i);
+            double rabatt_kr = getRabattKr_JTable(table, i);
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
@@ -530,8 +558,8 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
-//                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
-//                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
+                //                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
+                //                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
                 || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
             //

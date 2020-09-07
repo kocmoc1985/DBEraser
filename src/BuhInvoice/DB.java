@@ -12,8 +12,8 @@ package BuhInvoice;
 public class DB {
 
     /**
-     * OBS! Has nothing with Database to to, it's for getting values/other out of the
-     * tableInvert
+     * OBS! Has nothing with Database to to, it's for getting values/other out
+     * of the tableInvert
      */
     public static final int START_COLUMN = 1;
     //
@@ -29,9 +29,11 @@ public class DB {
     public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
     public static final String STATIC__MOMS_SATS = "25%;0.25,12%;0.12,6%;0.06,0%;0";
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
-    public static final String STATIC__BETAL_STATUS = "Nej;0,Ja;1,Delvis;2,Ja - Överbetald;3";
+
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
+    public static final String STATIC_BET_STATUS_NEJ = "Nej";
+    public static final String STATIC__BETAL_STATUS = STATIC_BET_STATUS_NEJ + ";0,Ja;1,Delvis;2,Ja - Överbetald;3";
     //
     public static final String STATIC__KUND_AND_ARTICLE__KATEGORI = "A,B,C,D,E,F,G";
     //
@@ -112,7 +114,7 @@ public class DB {
     public static final String BUH_FAKTURA_KUND___EMAIL = "email";
     public static final String BUH_FAKTURA_KUND___KATEGORI = "kund_kategori";
     public static final String BUH_FAKTURA_KUND__DATE_CREATED = "date_created";
-    
+
     //
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";
     public static final String BUH_FAKTURA_ARTIKEL___KUND_ID = "kundId";
@@ -131,7 +133,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__ENHET = "enhet";
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
-    public static final String BUH_F_ARTIKEL__RABATT_KR = "rabatt_kr"; 
+    public static final String BUH_F_ARTIKEL__RABATT_KR = "rabatt_kr";
     //
     public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";
@@ -166,6 +168,6 @@ public class DB {
     public static final String BUH_FAKTURA_INBET__BETAL_METHOD = "betal_metod";
     public static final String BUH_FAKTURA_INBET__BETAL_DATUM = "betal_datum";
     public static final String BUH_FAKTURA_INBET__ANNAT = "annat";
-    
+
     //
 }

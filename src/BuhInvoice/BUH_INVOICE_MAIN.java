@@ -263,13 +263,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_InvoiceA_Insert_articles = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_confirm_insert_update = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        jButton_add_article = new javax.swing.JButton();
         jButton_update_articles_row = new javax.swing.JButton();
         jButton_delete_articles_row = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
@@ -483,14 +483,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel9.add(jButton11);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton3.setToolTipText("Spara faktura (insert or update)");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_confirm_insert_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton_confirm_insert_update.setToolTipText("Spara faktura (insert or update)");
+        jButton_confirm_insert_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_confirm_insert_updateActionPerformed(evt);
             }
         });
-        jPanel9.add(jButton3);
+        jPanel9.add(jButton_confirm_insert_update);
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -516,14 +516,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jPanel12.setLayout(new java.awt.GridLayout(1, 3));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        jButton5.setToolTipText("Lägg till artikel");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButton_add_article.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_add_article.setToolTipText("Lägg till artikel");
+        jButton_add_article.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton_add_articleActionPerformed(evt);
             }
         });
-        jPanel12.add(jButton5);
+        jPanel12.add(jButton_add_article);
 
         jButton_update_articles_row.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButton_update_articles_row.setToolTipText("Uppdatera artikel");
@@ -586,24 +586,24 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
                     .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1029,7 +1029,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton_update_articles_rowActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton_add_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_add_articleActionPerformed
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -1048,7 +1048,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
         //
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton_add_articleActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         //
@@ -1071,7 +1071,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton19ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_confirm_insert_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirm_insert_updateActionPerformed
         // "FAKTURA HTTP" BTN
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
@@ -1085,7 +1085,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         }
         //
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         //
@@ -1173,8 +1173,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    protected javax.swing.JButton jButton_add_article;
+    protected javax.swing.JButton jButton_confirm_insert_update;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
@@ -1195,7 +1195,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     protected javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
+    protected javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
@@ -1302,6 +1302,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();
+                invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
                 //
                 invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
                 //
@@ -1389,7 +1390,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (jTable_InvoiceA_Insert_articles.getModel().getRowCount() != 0 && Invoice.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();
-            invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
+            
         }
         //
     }

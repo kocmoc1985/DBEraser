@@ -1,8 +1,7 @@
 
-1. It shall not be possible to update a Faktura for which "inbetalningar" exist [NOT IMPLEMENTED]
+1. It shall not be possible to update a Faktura for which "betal status = 1,2,3" [IMPLEMENTED][2020-09-07]
 
 2. It shall not be possible to change "inkl/exkl moms" when an article was added to a new invoice [NOT IMPLEMENTED]
-
 
 
 A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald
