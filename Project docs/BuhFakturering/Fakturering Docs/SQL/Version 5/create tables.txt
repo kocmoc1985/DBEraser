@@ -98,6 +98,7 @@ CREATE TABLE buh_faktura_send (
 sendId integer primary key not null AUTO_INCREMENT,
 fakturaId integer not null,
 send_type integer DEFAULT 0,
+send_ok boolean DEFAULT false,
 send_datum varchar(10) DEFAULT CURDATE(),
 annat varchar(500),
 Foreign key (fakturaId) references buh_faktura(fakturaId)

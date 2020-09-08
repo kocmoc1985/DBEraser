@@ -45,6 +45,7 @@ public class DB {
     public static final String TABLE__BUH_ADDRESS = "buh_address";
     public static final String TABLE__BUH_KUND = "buh_kund";
     public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
+    public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
     //
     //
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
@@ -168,6 +169,11 @@ public class DB {
     public static final String BUH_FAKTURA_INBET__BETAL_METHOD = "betal_metod";
     public static final String BUH_FAKTURA_INBET__BETAL_DATUM = "betal_datum";
     public static final String BUH_FAKTURA_INBET__ANNAT = "annat";
-
     //
+    public static final String BUH_FAKTURA_SEND__INBET_ID = "sendId";
+    public static final String BUH_FAKTURA_SEND__FAKTURA_ID = "fakturaId";
+    public static final String BUH_FAKTURA_SEND__SEND_TYPE = "send_type";
+    public static final String BUH_FAKTURA_SEND__SEND_OK = "send_ok";
+    public static final String BUH_FAKTURA_SEND__SEND_DATUM = "send_datum";
+    public static final String BUH_FAKTURA_SEND__ANNAT = "annat";
 }
