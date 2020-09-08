@@ -31,8 +31,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditPanel_Inbet extends javax.swing.JFrame {
 
-    private Basic_Buh_ basic;
-    private final BUH_INVOICE_MAIN bim;
+    protected Basic_Buh_ basic;
+    protected final BUH_INVOICE_MAIN_ bim;
     private final String fakturaId;
     private final String fakturaNr;
     private final String fakturaKund;
@@ -52,53 +52,57 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet(BUH_INVOICE_MAIN bim, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet(BUH_INVOICE_MAIN_ bim, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
         this.fakturaId = fakturaId;
         this.fakturaNr = fakturaNr;
         this.fakturaKund = fakturaKund;
+        init_();
+    }
+    
+    private void init_(){
         init();
     }
 
-    private void init() {
+    protected void init() {
         //
         this.setTitle("Inbetalning");
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setTitle();
+        setHeader();
         //
         initBasicTab();
         //
         fillJTableheader();
-        fillInbetalningarJTable();
+        fillJTable();
         basic.showTableInvert();
         countRestToPayAndShow();
     }
 
-    private JTable getTableInbet() {
-        return jTable_faktura_inbets;
+    protected JTable getJTable() {
+        return jTable_1;
     }
 
     private double getFakturaTotal() {
         return bim.getFakturaTotal();
     }
 
-    private void setTitle() {
+    protected void setHeader() {
         this.jLabel_fakturanr_value.setText("Fakturanr: " + fakturaNr);
         this.jLabel_kund_value.setText("Fakturakund: " + fakturaKund);
     }
 
-    private void refresh() {
-        fillInbetalningarJTable();
+    protected void refresh() {
+        fillJTable();
         basic.clearAllRowsTableInvert_jcombobox_special(basic.TABLE_INVERT, 1);
 
-//        HelpA.markFirstRowJtable(getTableInbet());
+//        HelpA.markFirstRowJtable(getJTable());
 //        bim.jTableArticles_clicked();
     }
 
     private double coundInbetald() {
-        return HelpA.countSumJTable(jTable_faktura_inbets, TABLE_INBET__INBETALD);
+        return HelpA.countSumJTable(jTable_1, TABLE_INBET__INBETALD);
     }
 
     private int defineBetaldStatus() {
@@ -135,7 +139,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
 
     private void delete() {
         //
-        String inbetId = HelpA.getValueSelectedRow(getTableInbet(), TABLE_INBET__ID);
+        String inbetId = HelpA.getValueSelectedRow(getJTable(), TABLE_INBET__ID);
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_INBET__INBET_ID, inbetId, DB.TABLE__BUH_FAKTURA_INBET);
         //
@@ -158,8 +162,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
         try {
             //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_FAKTURA_IBET_TO_DB, json);
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_INBET_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
@@ -194,9 +197,9 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
     }
 
-    private void fillInbetalningarJTable() {
+    protected void fillJTable() {
         //
-        JTable table = getTableInbet();
+        JTable table = getJTable();
         //
         HelpA.clearAllRowsJTable(table);
         //
@@ -226,7 +229,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
     }
 
-    private void addRowJtable(HashMap<String, String> map, JTable table) {
+    protected void addRowJtable(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA_INBET__INBET_ID), // hidden
@@ -242,10 +245,10 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
     }
 
-    private void fillJTableheader() {
+    protected void fillJTableheader() {
         //
         //
-        JTable table = getTableInbet();
+        JTable table = getJTable();
         //
         String[] headers = {
             TABLE_INBET__ID,
@@ -356,7 +359,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_faktura_inbets = new javax.swing.JTable();
+        jTable_1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel_fakturanr_value = new javax.swing.JLabel();
         jLabel_kund_value = new javax.swing.JLabel();
@@ -369,7 +372,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTable_faktura_inbets.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -380,7 +383,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable_faktura_inbets);
+        jScrollPane2.setViewportView(jTable_1);
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 2));
 
@@ -452,7 +455,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //
-        if (HelpA.rowSelected(getTableInbet()) == false) {
+        if (HelpA.rowSelected(getJTable()) == false) {
             return;
         }
         //
@@ -509,6 +512,6 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
-    protected javax.swing.JTable jTable_faktura_inbets;
+    protected javax.swing.JTable jTable_1;
     // End of variables declaration//GEN-END:variables
 }

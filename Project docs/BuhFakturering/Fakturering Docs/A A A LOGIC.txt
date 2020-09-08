@@ -5,3 +5,5 @@
 2.2 In fact it would probably make sence to bind "moms" to faktura article instead of "faktura" -> in this case it would be possible to have "faktura-articles" with different "moms-sats"
 
 A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO]
+
+B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse

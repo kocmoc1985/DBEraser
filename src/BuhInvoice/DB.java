@@ -29,7 +29,9 @@ public class DB {
     public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
     public static final String STATIC__MOMS_SATS = "25%;0.25,12%;0.12,6%;0.06,0%;0";
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
-
+    public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1";
+    
+    
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     public static final String STATIC_BET_STATUS_NEJ = "Nej";
@@ -51,7 +53,8 @@ public class DB {
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
     //
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
-    public static final String PHP_FUNC_FAKTURA_IBET_TO_DB = "faktura_inbet_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_INBET_TO_DB = "faktura_inbet_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_SEND_TO_DB = "faktura_send_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTICLES_TO_DB = "articles_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB = "faktura_kund_address_to_db"; // using php-function: "insert()"
@@ -66,6 +69,7 @@ public class DB {
     //
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND = "get_faktura_send"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA = "get_one_faktura_kund_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_DATA = "get_kund_data"; // using php-function: "select()"
@@ -170,7 +174,7 @@ public class DB {
     public static final String BUH_FAKTURA_INBET__BETAL_DATUM = "betal_datum";
     public static final String BUH_FAKTURA_INBET__ANNAT = "annat";
     //
-    public static final String BUH_FAKTURA_SEND__INBET_ID = "sendId";
+    public static final String BUH_FAKTURA_SEND__ID = "sendId";
     public static final String BUH_FAKTURA_SEND__FAKTURA_ID = "fakturaId";
     public static final String BUH_FAKTURA_SEND__SEND_TYPE = "send_type";
     public static final String BUH_FAKTURA_SEND__SEND_OK = "send_ok";

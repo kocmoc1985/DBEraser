@@ -39,6 +39,7 @@ import javax.swing.text.html.StyleSheet;
 public class HTMLPrint_A extends javax.swing.JFrame {
 
     private final ArrayList<HashMap<String, String>> articles_map_list;
+    private final HashMap<String, String> map_a_0;
     private final HashMap<String, String> map_a;
     private final HashMap<String, String> map_b;
     private final HashMap<String, String> map_c;
@@ -55,6 +56,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     public HTMLPrint_A(
             ArrayList<HashMap<String, String>> articles_map_list,
+            HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
             HashMap<String, String> map_b,
             HashMap<String, String> map_c,
@@ -72,6 +74,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         this.articles_map_list = articles_map_list;
         //
+        this.map_a_0 = map_a_0;
         this.map_a = map_a;
         this.map_b = map_b;
         this.map_c = map_c;
@@ -193,25 +196,28 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
 
     /**
-     * Use this one when, getting the image from the "inside project / .jar file"
+     * Use this one when, getting the image from the "inside project / .jar
+     * file"
+     *
      * @param path
      * @param imgName
      * @return - like: "file:/J:/MyDocs/src/...."
      */
-    private String getPathResources(String path, String imgName){
+    private String getPathResources(String path, String imgName) {
         return getImageIconURL(path, imgName).toString();
     }
-    
+
     /**
-     *  Use this one when, getting the image from inside the "project dir / root"
+     * Use this one when, getting the image from inside the "project dir / root"
+     *
      * @param pathAndFileName
      * @return - like: "file:/J:/MyDocs/src/...."
      */
-    private String getPathNormal(String pathAndFileName){
+    private String getPathNormal(String pathAndFileName) {
         //
         File f = new File(pathAndFileName);
         //
-        if(f.exists() == false){
+        if (f.exists() == false) {
             return null;
         }
         //
@@ -222,7 +228,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             return null;
         }
     }
-    
+
     protected String buildHTML() {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
@@ -564,7 +570,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return HTMLPrint_A.class.getResource("/" + path + "/" + picName);
     }
 
-     protected URL getImageIconURL(String picName) {
+    protected URL getImageIconURL(String picName) {
         //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
         return HTMLPrint_A.class.getResource("../../../../../" + picName);
     }
@@ -678,12 +684,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
-        print_upload_sendmail(
+        boolean ok = print_upload_sendmail(
                 "uploads/",
                 "faktura.pdf",
                 faktura_kund_email,
                 ftg_name
         );
+        //
+        String fakturaId = map_a_0.get(DB.BUH_FAKTURA__ID__);
+        // 
+        // [2020-09-08]
+        if (ok) {
+            EditPanel_Send.insert(fakturaId,true, true);
+        }else{
+            EditPanel_Send.insert(fakturaId,false, true);
+        }
         //
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -702,7 +717,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * @param sendToEmail
      * @param ftgName - The company from which this email is sent
      */
-    protected void print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
+    protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
         print_java(fileName);
         //
@@ -714,11 +729,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         System.out.println("Upload to PHP: " + upload_success);
@@ -740,7 +755,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
         }
         //
-        System.out.println("Email sending: " + email_sending_ok);
+        if (upload_success && email_sending_ok) {
+            System.out.println("Email sending: " + email_sending_ok);
+            return true;
+        } else {
+            return false;
+        }
         //
     }
 
@@ -876,7 +896,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }

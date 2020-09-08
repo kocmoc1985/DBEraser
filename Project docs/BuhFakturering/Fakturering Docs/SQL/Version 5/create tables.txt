@@ -100,7 +100,7 @@ fakturaId integer not null,
 send_type integer DEFAULT 0,
 send_ok boolean DEFAULT false,
 send_datum varchar(10) DEFAULT CURDATE(),
-annat varchar(500),
+annat varchar(50) DEFAULT '',
 Foreign key (fakturaId) references buh_faktura(fakturaId)
 );
 

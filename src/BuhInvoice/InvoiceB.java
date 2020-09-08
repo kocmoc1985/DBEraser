@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceB extends Basic {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final BUH_INVOICE_MAIN_ bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
@@ -61,7 +61,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
 
-    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceB(BUH_INVOICE_MAIN_ buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
@@ -467,8 +467,9 @@ public class InvoiceB extends Basic {
 
     public void htmlFaktura_b() {
         //
-//        BUH_INVOICE_MAIN bim = invoice.bim;
+//        BUH_INVOICE_MAIN_ bim = invoice.bim;
         //
+        HashMap<String, String> map_a_0 = new HashMap<>();
         HashMap<String, String> map_a = new HashMap<>();
         HashMap<String, String> map_b = new HashMap<>();
         HashMap<String, String> map_c = new HashMap<>();
@@ -477,6 +478,8 @@ public class InvoiceB extends Basic {
         HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA);
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_DATA);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS);
+        //
+        map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
@@ -508,6 +511,7 @@ public class InvoiceB extends Basic {
             public void run() {
                 HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
                         bim.getArticlesActualInvoice(),
+                        map_a_0,
                         map_a,
                         map_b,
                         map_c,
