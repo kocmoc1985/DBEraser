@@ -172,7 +172,7 @@ public class InvoiceA_Update extends Invoice {
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        if(articlesJTableEmpty() == false){
+        if(articlesJTableRowSelected()){
             return getConfigTableInvert_edit_articles();
         }else{
             return getConfigTableInvert_insert();

@@ -111,6 +111,15 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
     
+    protected boolean articlesJTableRowSelected(){
+        int selectedRow = getArticlesTable().getSelectedRow();
+        return selectedRow != -1;
+    }
+    
+    protected void deselectRowArticlesTable(){
+        getArticlesTable().clearSelection();
+    }
+    
     protected void disableMomsJComboIf(RowDataInvert rdi){
         if(articlesJTableEmpty() == false){
             rdi.setDisabled();

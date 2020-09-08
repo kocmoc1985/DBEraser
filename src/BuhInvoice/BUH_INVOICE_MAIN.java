@@ -1000,6 +1000,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else {
             //
             invoiceA_update.deleteFakturaArtikel();
+            invoiceA_update.deselectRowArticlesTable(); // Deselecting due to "InvoiceA_Updte->getConfigTableInvert_2() -> articlesJTableRowSelected()"
             invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
             invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
             invoiceB.refresh_b();
@@ -1045,8 +1046,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {
+                        invoiceA_update.deselectRowArticlesTable(); // Deselecting due to "InvoiceA_Updte->getConfigTableInvert_2() -> articlesJTableRowSelected()"
                         invoiceA_update.addArticle();
-                        invoiceB.refresh_b();
+                        invoiceB.refresh_b(); // correct
                     }
                 }
 
@@ -1392,10 +1394,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
-        if (jTable_InvoiceA_Insert_articles.getModel().getRowCount() != 0 && Invoice.CURRENT_OPERATION_INSERT == false) {
-            invoiceA_update.showTableInvert_2();
-//            invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
-        }else if(jTable_InvoiceA_Insert_articles.getModel().getRowCount() == 0 && Invoice.CURRENT_OPERATION_INSERT == false){
+        if (Invoice.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();
         }
         //

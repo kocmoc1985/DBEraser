@@ -94,6 +94,8 @@ public class InvoiceB extends Basic {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
+    
+    
 
     private void fillJTableheader() {
         //
