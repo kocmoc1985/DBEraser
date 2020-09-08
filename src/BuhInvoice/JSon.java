@@ -20,9 +20,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  * @author KOCMOC
  */
 public class JSon {
-    
-    
-    
+
     public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {
         //
         HashMap joined_properties = new HashMap();
@@ -87,7 +85,7 @@ public class JSon {
         return json;
         //
     }
-    
+
     public static String hashMapToCommaSeparatedString__(HashMap<HashMapKeyCaseInsensitive, String> map) {
         //
         String rst = "";
@@ -101,11 +99,11 @@ public class JSon {
             String key = obj_key.getKeyValue();
             String value = (String) map.get(obj_key);
             //
-            rst += key  + ";";
+            rst += key + ";";
             if (!it.hasNext()) {
-                rst +=  value;
+                rst += value;
             } else {
-                rst +=  value + ",";
+                rst += value + ",";
             }
             //
         }
@@ -117,7 +115,7 @@ public class JSon {
         return rst;
         //
     }
-    
+
     public static String hashMapToCommaSeparatedString(HashMap<String, String> map) {
         //
         String rst = "";
@@ -130,11 +128,11 @@ public class JSon {
             String key = (String) it.next();
             String value = (String) map.get(key);
             //
-            rst += key  + ";";
+            rst += key + ";";
             if (!it.hasNext()) {
-                rst +=  value;
+                rst += value;
             } else {
-                rst +=  value + ",";
+                rst += value + ",";
             }
             //
         }
@@ -153,6 +151,10 @@ public class JSon {
     }
 
     public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
+        return JSONToHashMap(json, reverse, 1);
+    }
+
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex) {
         //
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         //
@@ -177,7 +179,7 @@ public class JSon {
 //                System.out.println("key, emptie value=" + key);
                 value = null;
             } else {
-                value = jsonObj[1];
+                value = jsonObj[valueIndex];
                 value = value.replaceFirst("#", ":");
             }
             //
@@ -235,12 +237,13 @@ public class JSon {
         //
         return list;
     }
-    
+
     /**
      * [2020-08-19]
+     *
      * @param phpJsonString
      * @param keys
-     * @return 
+     * @return
      */
     public static String phpJsonResponseToComboBoxString(String phpJsonString, String[] keys) {
         //
@@ -252,10 +255,10 @@ public class JSon {
             //
             HashMap<String, String> map = JSONToHashMap(json, false);
             //
-            if(keys.length == 2){
-               jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";  
-            }else if(keys.length == 3){
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";  
+            if (keys.length == 2) {
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";
+            } else if (keys.length == 3) {
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";
             }
             //
         }
@@ -263,10 +266,10 @@ public class JSon {
         return jcomboStr;
         //
     }
-    
 
     /**
      * [2020-07-23]
+     *
      * @deprecated
      * @param phpJsonString
      * @param keyOne
@@ -290,8 +293,6 @@ public class JSon {
         return jcomboStr;
         //
     }
-    
-    
 
     private static ArrayList<String> phpJsonStringSplit(String jsonStr) {
         //
@@ -313,16 +314,16 @@ public class JSon {
     }
 
     /**
-     * IMPORTANT: [2020-08-14]
-     * This one is used when i have/get the "short name" -> like: "P" -> (Post;P,Hämtas;HAM)
-     * 
+     * IMPORTANT: [2020-08-14] This one is used when i have/get the "short name"
+     * -> like: "P" -> (Post;P,Hämtas;HAM)
+     *
      * The idea behind all this special "_get" methods is to make a given
      * "element" first in the String
      *
-     * OBS! "reverse" param: [2020-08-14]
-     * if reverse=true -> a string like: "Styck;st,Förp;Förp,Timmar;Tim" it will build 
-     * HashMap with reversing like st=Stryck; Tim=Timmar and so on
-     * 
+     * OBS! "reverse" param: [2020-08-14] if reverse=true -> a string like:
+     * "Styck;st,Förp;Förp,Timmar;Tim" it will build HashMap with reversing like
+     * st=Stryck; Tim=Timmar and so on
+     *
      * @param jsonStr -> "Telenor;2,Securitas;1,Telia;3"
      * @param returnValue -> "2"
      * @param reverse
@@ -332,16 +333,14 @@ public class JSon {
         String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
         return _get(toShowValue, returnValue, jsonStr);
     }
-    
-    
 
     /**
-     * IMPORTANT:[2020-08-14]
-     * This one is used when i have/get the "long name" -> like: "Post" -> (Post;P,Hämtas;HAM)
-     * 
-     * [2020-07-29]
-     * OBS! Pay attention to "HashMapKeyCaseInsensitive.class", this
-     * class makes that LOWER/UPPER case does not matter for the "keys"
+     * IMPORTANT:[2020-08-14] This one is used when i have/get the "long name"
+     * -> like: "Post" -> (Post;P,Hämtas;HAM)
+     *
+     * [2020-07-29] OBS! Pay attention to "HashMapKeyCaseInsensitive.class",
+     * this class makes that LOWER/UPPER case does not matter for the "keys"
+     *
      * @param showVal "Telenor"
      * @param returnVal "2"
      * @param all "Telenor;2,Securitas;1,Telia;3"
@@ -368,22 +367,64 @@ public class JSon {
         return hashMapToCommaSeparatedString__(map);
         //
     }
-    
+
+    public static String _get__with_merge(String showVal, String returnVal, String all) {
+        //
+        LinkedHashMap<HashMapKeyCaseInsensitive, String> map = new LinkedHashMap<>();
+        //
+        if ((showVal == null || showVal.isEmpty()) && (returnVal == null || returnVal.isEmpty())) {
+            map.put(new HashMapKeyCaseInsensitive(" "), "-1");
+        } else {
+            map.put(new HashMapKeyCaseInsensitive(showVal), returnVal);
+        }
+        //
+        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false);
+        //
+        map_all.entrySet().forEach((entry) -> {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            map.put(new HashMapKeyCaseInsensitive(key), value);
+        });
+        //
+        return merge(all, map);
+    }
+
+    private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
+        //
+        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2);
+        //
+        String str = "";
+        //
+        Set set = map.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            HashMapKeyCaseInsensitive hk = (HashMapKeyCaseInsensitive) it.next();
+            String key = hk.getKeyValue();
+            String value_id = (String) map.get(hk);
+            String value_price = mapListPrice.get(key);
+            str+= key + ";" + value_id + ";" + value_price + ",";
+        }
+        //
+        return str;
+    }
+
     /**
      * This one translates the "short name" -> "long name", like: "P" -> "POST"
+     *
      * @param statics
      * @param valToTranslate
-     * @return 
+     * @return
      */
-    public static String getLongName(String statics, String valToTranslate){
-        HashMap<String,String>map = JSONToHashMap(statics, true);
+    public static String getLongName(String statics, String valToTranslate) {
+        HashMap<String, String> map = JSONToHashMap(statics, true);
         return map.get(valToTranslate);
     }
-    
+
     /**
-     * USE "_get()"
-     * This one uses string operations which is less clear and stable
-     * @deprecated 
+     * USE "_get()" This one uses string operations which is less clear and
+     * stable
+     *
+     * @deprecated
      * @param showVal "Telenor"
      * @param returnVal "2"
      * @param all "Telenor;2,Securitas;1,Telia;3"

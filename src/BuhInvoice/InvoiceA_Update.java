@@ -8,7 +8,9 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.event.ItemEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
 
@@ -93,6 +95,8 @@ public class InvoiceA_Update extends Invoice {
         //
     }
 
+    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -163,6 +167,8 @@ public class InvoiceA_Update extends Invoice {
         return rows;
     }
 
+    
+    
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
