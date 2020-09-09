@@ -245,6 +245,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         jTable_invoiceB_faktura_artiklar = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton15 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
@@ -345,7 +346,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         ));
         jScrollPane5.setViewportView(jTable_invoiceB_faktura_artiklar);
 
-        jPanel4.setLayout(new java.awt.GridLayout(1, 7));
+        jPanel4.setLayout(new java.awt.GridLayout(1, 8));
 
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/refresh.png"))); // NOI18N
         jButton15.setToolTipText("Uppdatera");
@@ -355,6 +356,15 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             }
         });
         jPanel4.add(jButton15);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton3.setToolTipText("Skapa ny faktura");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3);
 
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         jButton18.setToolTipText("Bearbeta faktura");
@@ -425,8 +435,8 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(709, 709, 709)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(659, 659, 659)
                                 .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(12, 12, 12))
         );
@@ -1104,7 +1114,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void createNewFaktura(){
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert(this);
@@ -1112,6 +1122,10 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
         invoiceA_insert.createNew();
         //
+    }
+    
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        createNewFaktura();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField_total_exkl_momsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_total_exkl_momsActionPerformed
@@ -1133,6 +1147,11 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
          EditPanel_Send eps = new EditPanel_Send(this, getFakturaId(), getFakturaNr(), getFakturaKund());
          eps.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
+        createNewFaktura();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1212,6 +1231,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton3;
     protected javax.swing.JButton jButton_add_article;
     protected javax.swing.JButton jButton_confirm_insert_update;
     protected javax.swing.JButton jButton_delete_article;
