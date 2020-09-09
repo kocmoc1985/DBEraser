@@ -228,7 +228,7 @@
                     <Component class="javax.swing.JButton" name="jButton2">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/hist.png"/>
+                          <Image iconType="3" name="/icons/event.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Se historia &#xf6;ver skickade e-post och p&#xe5;minnelser"/>
                       </Properties>

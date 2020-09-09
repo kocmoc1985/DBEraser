@@ -403,7 +403,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         });
         jPanel4.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hist.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/event.png"))); // NOI18N
         jButton2.setToolTipText("Se historia över skickade e-post och påminnelser");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
