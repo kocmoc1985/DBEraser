@@ -276,7 +276,7 @@ public class InvoiceB extends Basic {
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
             //
-            if (json_str_return.equals("empty")) { // this value='empty' is returned by PHP script
+            if (json_str_return.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) { // this value='empty' is returned by PHP script
                 return;
             }
             //

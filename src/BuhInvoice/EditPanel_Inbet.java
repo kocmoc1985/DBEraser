@@ -16,6 +16,8 @@ import forall.GP;
 import forall.HelpA;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -29,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class EditPanel_Inbet extends javax.swing.JFrame {
+public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener {
 
     protected Basic_Buh_ basic;
     protected final BUH_INVOICE_MAIN_ bim;
@@ -60,8 +62,9 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         this.fakturaKund = fakturaKund;
         init_();
     }
-    
-    private void init_(){
+
+    private void init_() {
+        getJTable().addMouseListener(this);
         init();
     }
 
@@ -185,14 +188,14 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
             double restToPay = total - inbetald;
             basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
-            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.white);
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.white);
         } else if (inbetald == total) {
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "BETALD");
-            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.green);
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.green);
         } else if (inbetald > total) {
             double overbet = inbetald - total;
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "ÖVERBETALD  (" + overbet + ")");
-            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake,  basic.TABLE_INVERT, Color.yellow);
+            basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.yellow);
         }
         //
     }
@@ -365,7 +368,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         jLabel_kund_value = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton2_delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -406,14 +409,14 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
-        jButton2.setToolTipText("Radera Inbetalning");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton2_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton2_delete.setToolTipText("Radera Inbetalning");
+        jButton2_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton2_deleteActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2);
+        jPanel3.add(jButton2_delete);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,12 +451,16 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton1ActionPerformed();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    protected void jButton1ActionPerformed() {
         if (basic.fieldsValidated(true)) {
             insert();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_deleteActionPerformed
         //
         if (HelpA.rowSelected(getJTable()) == false) {
             return;
@@ -465,7 +472,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
         //
         delete();
         //
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton2_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,7 +512,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    protected javax.swing.JButton jButton2_delete;
     private javax.swing.JLabel jLabel_fakturanr_value;
     private javax.swing.JLabel jLabel_kund_value;
     protected javax.swing.JPanel jPanel1;
@@ -514,4 +521,24 @@ public class EditPanel_Inbet extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable jTable_1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 }

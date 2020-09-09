@@ -15,6 +15,7 @@ import MyObjectTableInvert.TableInvert;
 import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -48,15 +49,42 @@ public class EditPanel_Send extends EditPanel_Inbet {
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();
+        jButton2_delete.setVisible(false);
         //
         initBasicTab();
         //
+        //
         fillJTableheader();
-        fillJTable();
-        basic.showTableInvert();
+        refresh();
         //
     }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //
+        if (e.getSource() == getJTable() && (e.getClickCount() == 1)) {
+            //
+            basic.showTableInvert();
+            //
+        }
+        //
+    }
+
+    @Override
+    protected void refresh() {
+        //
+        JTable table = getJTable();
+        //
+        fillJTable();
+        //
+        if(table.getRowCount() != 0){
+            HelpA.markFirstRowJtable(table);
+        }
+        //
+        basic.showTableInvert();
+    }
+    
+    
     @Override
     protected void fillJTableheader() {
         //
@@ -82,7 +110,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
             map.get(DB.BUH_FAKTURA_SEND__ID), // hidden
             map.get(DB.BUH_FAKTURA_SEND__FAKTURA_ID), // hidden
             basic.getLongName(DB.STATIC__SEND_TYPES, map.get(DB.BUH_FAKTURA_SEND__SEND_TYPE)),
-            basic.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA_SEND__SEND_OK)),
+            basic.getLongName(DB.STATIC__SKICKAD_EJ_SKICKAD, map.get(DB.BUH_FAKTURA_SEND__SEND_OK)),
             map.get(DB.BUH_FAKTURA_SEND__SEND_DATUM),
             map.get(DB.BUH_FAKTURA_SEND__ANNAT)
         };
@@ -157,6 +185,41 @@ public class EditPanel_Send extends EditPanel_Inbet {
         }
         //
     }
+    
+    @Override
+    protected void jButton1ActionPerformed(){
+        //
+        if (HelpA.rowSelected(getJTable()) == false) {
+            return;
+        }
+        //
+        if(basic.fieldsValidated(false)){
+            //
+            updateKomment();
+            //
+            refresh();
+            //
+        }
+        //
+    }
+    
+    private void updateKomment(){
+        //
+        JTable table = getJTable();
+        //
+        String fakturaId = HelpA.getValueSelectedRow(table, TABLE_SEND__FAKTURA_ID);
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_SEND);
+        //
+        HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        HelpBuh.update(json);
+        //
+    }
 
     @Override
     public void initBasicTab() {
@@ -184,8 +247,24 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 return true;
             }
 
+            /**
+             * Show Empty purpose ...
+             * @return 
+             */
             @Override
             public RowDataInvert[] getConfigTableInvert() {
+                //
+                JTable table = getJTable();
+                //
+                if(table.getRowCount() == 0 || table.getSelectedRow() == -1){
+                    return getConfigTableInvert_show_empty();
+                }else{
+                   return getConfigTableInvert_update();
+                }
+                //
+            }
+            
+            public RowDataInvert[] getConfigTableInvert_show_empty() {
                 //
                 RowDataInvert send_type = new RowDataInvertB("", DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", true, true, false);
                 RowDataInvert send_ok = new RowDataInvertB("", DB.BUH_FAKTURA_SEND__SEND_OK, TABLE_SEND__SEND_OK, "", true, true, false);
@@ -195,6 +274,42 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 send_type.setUneditable();
                 send_ok.setUneditable();
                 datum.setUneditable();
+                //
+                RowDataInvert[] rows = {
+                    send_type,
+                    send_ok,
+                    datum,
+                    komment
+                };
+                //
+                return rows;
+            }
+            
+            public RowDataInvert[] getConfigTableInvert_update() {
+                //
+                JTable table = getJTable();
+                //
+                String send_type_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_TYPE);
+                RowDataInvert send_type = new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", false, true, false);
+                //
+                String send_ok_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_OK);
+                RowDataInvert send_ok = new RowDataInvertB(send_ok_, DB.BUH_FAKTURA_SEND__SEND_OK, TABLE_SEND__SEND_OK, "", false, true, false);
+                //
+                String datum_ = HelpA.getValueSelectedRow(table, TABLE_SEND__DATUM);
+                RowDataInvert datum = new RowDataInvertB(datum_, DB.BUH_FAKTURA_SEND__SEND_DATUM, TABLE_SEND__DATUM, "", false, true, false);
+                //
+                String komment_ = HelpA.getValueSelectedRow(table, TABLE_SEND__ANNAT);
+                RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_SEND__ANNAT, TABLE_SEND__ANNAT, "", false, true, false);
+                //
+                send_type.setDisabled();
+                send_ok.setDisabled();
+                datum.setDisabled();
+                //
+                send_type.setDontAquireTableInvertToHashMap();
+                send_ok.setDontAquireTableInvertToHashMap();
+                datum.setDontAquireTableInvertToHashMap();
+                //
+                komment.enableToolTipTextJTextField();
                 //
                 RowDataInvert[] rows = {
                     send_type,
@@ -216,6 +331,8 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 //
                 addTableInvertRowListener(TABLE_INVERT, this);
             }
+            
+            
 
             @Override
             public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
@@ -226,15 +343,11 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 //
                 String col_name = ti.getCurrentColumnName(ke.getSource());
                 //
-//                if (col_name.equals(DB.BUH_FAKTURA_INBET__INBETALD)) {
-//                    //
-//                    Validator.validateDigitalInput(jli);
-//                    //
-//                } else if (col_name.equals(DB.BUH_FAKTURA_INBET__ANNAT)) {
-//                    //
-//                    Validator.validateMaxInputLength(jli, 50);
-//                    //
-//                }
+               if (col_name.equals(DB.BUH_FAKTURA_SEND__ANNAT)) {
+                    //
+                    Validator.validateMaxInputLength(jli, 5);
+                    //
+                }
             }
 
         };

@@ -223,6 +223,10 @@ public class JSon {
         //
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         //
+        if (phpJsonString.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) { //[2020-09-09] this value='empty' is returned by PHP script
+            return list;
+        }
+        //
         ArrayList<String> jsonEnriesList = phpJsonStringSplit(phpJsonString);
         //
         for (String json : jsonEnriesList) {
@@ -402,7 +406,7 @@ public class JSon {
             String key = hk.getKeyValue();
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
-            str+= key + ";" + value_id + ";" + value_price + ",";
+            str += key + ";" + value_id + ";" + value_price + ",";
         }
         //
         return str;
