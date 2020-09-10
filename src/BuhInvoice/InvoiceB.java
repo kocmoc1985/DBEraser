@@ -8,6 +8,7 @@ package BuhInvoice;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class InvoiceB extends Basic {
+public class InvoiceB extends Basic  {
 
     private final BUH_INVOICE_MAIN_ bim;
     //
@@ -37,6 +38,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__BET_VILKOR = "B VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_VILKOR = "LEV VILKOR";
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
+    public static String TABLE_ALL_INVOICES__IMPORTANT_KOMMENT = "IKOMM";
     //
     public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
     public static String TABLE_ALL_INVOICES__TOTAL_INKL_MOMS = "TOTAL";
@@ -94,8 +96,6 @@ public class InvoiceB extends Basic {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
-    
 
     private void fillJTableheader() {
         //
@@ -129,7 +129,8 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__TOTAL_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
-            TABLE_ALL_INVOICES__BETALD
+            TABLE_ALL_INVOICES__BETALD,
+            TABLE_ALL_INVOICES__IMPORTANT_KOMMENT
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -163,14 +164,39 @@ public class InvoiceB extends Basic {
         //
         fillFakturaArticlesTable(fakturaId);
         //
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                //
-//               
-//                //
-//            }
-//        });
+        showImportantKomment();
+        //
+    }
+
+    private void showImportantKomment() {
+        //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        String komment = HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
+        //
+        bim.jTextArea_faktura_komment.setText(komment);
+        //
+    }
+
+    protected void updateKomment() {
+        //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        String fakturaId = bim.getFakturaId();
+        //
+        String important_komment = bim.jTextArea_faktura_komment.getText();
+        //
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        update_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, important_komment);
+        //
+        String json = JSon.hashMapToJSON(update_map);
+        //
+        HelpBuh.update(json);
+        //
+        // OBS! This is done to skip refreshing the entire faktura list
+        HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
+        //
     }
 
     private void fillFakturaTable() {
@@ -216,10 +242,8 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
         }
-        //
-        //
-
         //
     }
 
@@ -250,7 +274,8 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__TOTAL__),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
-            getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD))
+            getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
+            map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -422,8 +447,7 @@ public class InvoiceB extends Basic {
 
     //  DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES
     //  DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA
-    
-     private HashMap<String, String> getFakturaKundData(String phpFunction) {
+    private HashMap<String, String> getFakturaKundData(String phpFunction) {
         //
         String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
         //
@@ -444,7 +468,7 @@ public class InvoiceB extends Basic {
         }
         //
     }
-    
+
     private HashMap<String, String> getForetagData(String phpFunction) {
         //
         String json = bim.getSELECT_kundId();
