@@ -426,7 +426,10 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         jLabel_all_invoices_list1.setText("FAKTURA ARTIKLAR");
 
         jTextArea_faktura_komment.setColumns(20);
-        jTextArea_faktura_komment.setRows(5);
+        jTextArea_faktura_komment.setLineWrap(true);
+        jTextArea_faktura_komment.setRows(2);
+        jTextArea_faktura_komment.setToolTipText("Skriv faktura kommentar här");
+        jTextArea_faktura_komment.setWrapStyleWord(true);
 
         jButton4_save_faktura_komment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButton4_save_faktura_komment.setToolTipText("Uppdatera faktura kommentar");
@@ -454,7 +457,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(153, 153, 153)
                                 .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(2, 2, 2)
                                 .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(130, 130, 130)
                                 .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -465,9 +468,9 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1521,7 +1524,9 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             //
             JTextAreaJLink txt = (JTextAreaJLink)jTextArea_faktura_komment;
             //
-            Validator.validateMaxInputLength(txt, 5);
+            Validator.validateMaxInputLength(txt, 100);
+            //
+            System.out.println(""  + txt.getText().length());
             //
         }
         //

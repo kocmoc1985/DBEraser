@@ -12,12 +12,13 @@ import javax.swing.JTextArea;
 
 /**
  * OBS! Not used by "TableInvert"
+ *
  * @author KOCMOC
  */
-public class JTextAreaJLink extends JTextArea implements JLinkInvert{
+public class JTextAreaJLink extends JTextArea implements JLinkInvert {
 
     private boolean validated;
-    
+
     @Override
     public void setChildObject(ColumnDataEntryInvert child) {
     }
@@ -48,16 +49,18 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert{
 
     @Override
     public void setFieldUpdatedAuto() {
-        
+
     }
 
     @Override
     public void setValidated(boolean validated) {
         this.validated = validated;
     }
-    
-    public boolean getValidated(){
+
+    public boolean getValidated() {
         return validated;
     }
-    
+
+  
+
 }

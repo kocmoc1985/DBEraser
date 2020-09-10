@@ -24,7 +24,7 @@ public class LANG {
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN_.TAB_KUDNER + "\" och fyll i \"" + CustomersA.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
-    
+    public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

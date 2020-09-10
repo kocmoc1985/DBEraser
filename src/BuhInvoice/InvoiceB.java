@@ -5,6 +5,8 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.JTextAreaJLink;
+import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
@@ -176,9 +178,18 @@ public class InvoiceB extends Basic  {
         //
         bim.jTextArea_faktura_komment.setText(komment);
         //
+        Validator.resetValidation(bim.jTextArea_faktura_komment);
+        //
     }
 
     protected void updateKomment() {
+        //
+        JTextAreaJLink jtxt = (JTextAreaJLink)bim.jTextArea_faktura_komment;
+        //
+        if(jtxt.getValidated() == false){
+           HelpA.showNotification(LANG.MSG_8);
+           return;
+        }
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //

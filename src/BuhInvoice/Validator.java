@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -135,31 +136,37 @@ public class Validator {
         return setNotValidated(jli);
     }
 
+    public static void resetValidation(JComponent jc) {
+        if (jc instanceof JLinkInvert) {
+            JLinkInvert jli = (JLinkInvert) jc;
+            setValidated(jli);
+        }
+    }
+
     private static boolean setValidated(JLinkInvert jli) {
         //
-        JTextFieldInvert jtf = (JTextFieldInvert) jli;
+        if (jli instanceof JTextFieldInvert) {
+            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            jtf.setSaveEmptyStringValue();
+        }
         //
-        jtf.setSaveEmptyStringValue();
+        JComponent c = (JComponent) jli;
         //
-//        String val = jtf.getValue();
-//        val = val.replaceAll(":", ";");
-//        jtf.setValue(val);
-        //
-        jtf.setBackground(Color.WHITE);
+        c.setBackground(Color.WHITE);
         jli.setValidated(true);
         return true;
     }
 
     private static boolean setNotValidated(JLinkInvert jli) {
-        JTextField jtf = (JTextField) jli;
-        jtf.setBackground(Color.RED);
+        JComponent c = (JComponent) jli;
+        c.setBackground(Color.RED);
         jli.setValidated(false);
         return false;
     }
 
     private static boolean setNotValidated(JLinkInvert jli, Color color) {
-        JTextField jtf = (JTextField) jli;
-        jtf.setBackground(color);
+        JComponent c = (JComponent) jli;
+        c.setBackground(color);
         jli.setValidated(false);
         return false;
     }
