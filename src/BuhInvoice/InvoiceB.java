@@ -5,17 +5,23 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
+import forall.ErrorOutputListener;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -208,7 +214,12 @@ public class InvoiceB extends Basic  {
         // OBS! This is done to skip refreshing the entire faktura list
         HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
         //
+        //
+        BlinkThread bt = new BlinkThread(jtxt, false);
+        //
     }
+    
+    
 
     private void fillFakturaTable() {
         //
