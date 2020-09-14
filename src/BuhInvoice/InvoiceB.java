@@ -182,7 +182,7 @@ public class InvoiceB extends Basic {
         //
     }
 
-    protected void updateKomment() {
+    protected void updateKomment(boolean clear) {
         //
         JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_faktura_komment;
         //
@@ -195,7 +195,14 @@ public class InvoiceB extends Basic {
         //
         String fakturaId = bim.getFakturaId();
         //
-        String important_komment = bim.jTextArea_faktura_komment.getText();
+        String important_komment;
+        //
+        if (clear) {
+            important_komment = "";
+            jtxt.setText("");
+        } else {
+            important_komment = bim.jTextArea_faktura_komment.getText();
+        }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
         //
@@ -209,8 +216,16 @@ public class InvoiceB extends Basic {
         HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
         //
         //
-        BlinkThread bt = new BlinkThread(jtxt, false);
+        if(clear){
+            BlinkThread bt = new BlinkThread(jtxt, true);
+        }else{
+            BlinkThread bt = new BlinkThread(jtxt, false);
+        }
         //
+    }
+
+    protected void deleteComment() {
+        updateKomment(true);
     }
 
     private void fillFakturaTable() {
@@ -469,7 +484,7 @@ public class InvoiceB extends Basic {
             //
             boolean ok = copy_b__faktura_articles_to_db(faktura_articles, fakturaId_new);
             //
-            if(ok){
+            if (ok) {
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaId, fakturaId_new));
             }
             //
@@ -514,7 +529,6 @@ public class InvoiceB extends Basic {
         return fakturaId;
         //
     }
-    
 
     private void processFakturaMapCopy(HashMap<String, String> faktura_data_map) {
         //
