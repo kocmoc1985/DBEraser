@@ -1151,7 +1151,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 
-    private void createNewFaktura(){
+    private void createNewFaktura() {
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert(this);
@@ -1160,7 +1160,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceA_insert.createNew();
         //
     }
-    
+
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         createNewFaktura();
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -1181,8 +1181,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         EditPanel_Send eps = new EditPanel_Send(this, getFakturaId(), getFakturaNr(), getFakturaKund());
-         eps.setVisible(true);
+        EditPanel_Send eps = new EditPanel_Send(this, getFakturaId(), getFakturaNr(), getFakturaKund());
+        eps.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1195,6 +1195,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton4_save_faktura_kommentActionPerformed
 
     private void jButton4_copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_copyActionPerformed
+        //
+        if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
+            return;
+        }
+        //
+        if (GP_BUH.confirm(LANG.FAKTURA_COPY_MSG_A(getFakturaNr())) == false) {
+            return;
+        }
+        //
         invoiceB.copy();
     }//GEN-LAST:event_jButton4_copyActionPerformed
 
@@ -1569,13 +1578,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             jtable_InvoiceB_all_invoices_clicked();
             //
-        }else if(e.getSource() == jTextArea_faktura_komment){
+        } else if (e.getSource() == jTextArea_faktura_komment) {
             //
-            JTextAreaJLink txt = (JTextAreaJLink)jTextArea_faktura_komment;
+            JTextAreaJLink txt = (JTextAreaJLink) jTextArea_faktura_komment;
             //
             Validator.validateMaxInputLength(txt, 100);
             //
-            System.out.println(""  + txt.getText().length());
+            System.out.println("" + txt.getText().length());
             //
         }
         //

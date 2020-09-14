@@ -107,7 +107,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
 
-    protected static void articlesToHttpDB(ArrayList<HashMap<String, String>> articles) {
+    protected static boolean articlesToHttpDB(ArrayList<HashMap<String, String>> articles) {
         //
         for (HashMap<String, String> article_row_map : articles) {
             //
@@ -119,9 +119,12 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                 //
             } catch (Exception ex) {
                 Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
             }
             //
         }
+        //
+        return true;
         //
     }
 

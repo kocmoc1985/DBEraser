@@ -467,16 +467,20 @@ public class InvoiceB extends Basic {
         //
         if (GP_BUH.verifyId(fakturaId_new) && faktura_articles != null && faktura_articles.size() > 0) {
             //
-            copy_b__faktura_articles_to_db(faktura_articles, fakturaId_new);
+            boolean ok = copy_b__faktura_articles_to_db(faktura_articles, fakturaId_new);
+            //
+            if(ok){
+                HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaId, fakturaId_new));
+            }
             //
         }
         //
         //
-        refresh_b();
+        refresh();
         //
     }
 
-    private void copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
+    private boolean copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
         //
         for (HashMap<String, String> article_row_map : faktura_articles) {
             article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
@@ -485,7 +489,7 @@ public class InvoiceB extends Basic {
             article_row_map = JSon.removeEntriesWhereValueNull(article_row_map);
         }
         //
-        Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
+        return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
         //
     }
 

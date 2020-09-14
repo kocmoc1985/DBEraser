@@ -40,10 +40,18 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
+    public static String FAKTURA_COPY_MSG_A(String fakturaCopy) {
+        return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + " ?";
+    }
+    
+    public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {
+        return "Du kopierade precis fakturanummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
+    }
+
     public static String LOGOTYP_TO_SMALL(String requiredMinWidth, String widthActual) {
         return "Logotyp är för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
     }
-    
+
     public static String CONFIRM_SEND_MAIL(String sendTo) {
         return "Skicka faktura till: " + sendTo + " ?";
     }
