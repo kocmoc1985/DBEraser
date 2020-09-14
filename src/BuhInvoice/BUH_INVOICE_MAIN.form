@@ -68,10 +68,8 @@
                                       <Component id="jScrollPane5" alignment="0" min="-2" pref="1205" max="-2" attributes="0"/>
                                       <Component id="jLabel_all_invoices_list1" alignment="1" min="-2" pref="174" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jPanel4" min="-2" pref="400" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton4_copy" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                                          <Component id="jPanel4" min="-2" pref="450" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                                           <Component id="jTextArea_faktura_komment" min="-2" pref="319" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                           <Component id="jButton4_save_faktura_komment" min="-2" pref="50" max="-2" attributes="0"/>
@@ -89,14 +87,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel_all_invoices_list" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="jTextArea_faktura_komment" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="jButton4_save_faktura_komment" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jButton4_copy" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel_all_invoices_list" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="jTextArea_faktura_komment" pref="50" max="32767" attributes="0"/>
+                              <Component id="jButton4_save_faktura_komment" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
@@ -176,6 +171,17 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JButton" name="jButton18">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/edit.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Bearbeta faktura"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+                      </Events>
+                    </Component>
                     <Component class="javax.swing.JButton" name="jButton3">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -187,15 +193,15 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton18">
+                    <Component class="javax.swing.JButton" name="jButton4_copy">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/edit.png"/>
+                          <Image iconType="3" name="/icons/copy.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Bearbeta faktura"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_copyActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton12">
@@ -303,14 +309,6 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton4_copy">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="COPY"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_copyActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
