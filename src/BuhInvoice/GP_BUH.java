@@ -30,6 +30,10 @@ public class GP_BUH {
 
     public static boolean CUSTOMER_MODE = true;
 
+    public static String replaceColon(String text){
+        return text.replaceAll(":", "#");
+    }
+    
     public static String getValHashMap(String value) {
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
             return "";

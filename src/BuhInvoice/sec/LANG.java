@@ -41,7 +41,7 @@ public class LANG {
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
     public static String FAKTURA_COPY_MSG_A(String fakturaCopy) {
-        return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + " ?";
+        return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + "?";
     }
     
     public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {

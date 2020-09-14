@@ -4,6 +4,7 @@
  */
 package MyObjectTableInvert;
 
+import BuhInvoice.GP_BUH;
 import BuhInvoice.JSon;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
@@ -200,7 +201,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                     val = columnValue.getValue(jcomboParamToReturn);
                 }
                 //
-                val = val.replaceAll(":", "#");
+//                val = val.replaceAll(":", "#");
+                val = GP_BUH.replaceColon(val); // replace ":" with "#"
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting

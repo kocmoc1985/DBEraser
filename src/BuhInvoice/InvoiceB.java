@@ -202,6 +202,7 @@ public class InvoiceB extends Basic {
             jtxt.setText("");
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
+            important_komment = GP_BUH.replaceColon(important_komment);
         }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -458,7 +459,9 @@ public class InvoiceB extends Basic {
         //
         faktura_data_map = JSon.removeEntriesWhereValueNull(faktura_data_map);
         //
-        processFakturaMapCopy(faktura_data_map); // Remove/Reset some entries like "faktura datum" etc.
+        String fakturaNrCopy = bim.getFakturaNr();
+        //
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy); // Remove/Reset some entries like "faktura datum" etc.
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -484,8 +487,10 @@ public class InvoiceB extends Basic {
             //
             boolean ok = copy_b__faktura_articles_to_db(faktura_articles, fakturaId_new);
             //
+            String newFakturaNr = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURANR__);
+            //
             if (ok) {
-                HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaId, fakturaId_new));
+                HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
             }
             //
         }
@@ -530,20 +535,22 @@ public class InvoiceB extends Basic {
         //
     }
 
-    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map) {
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy) {
         //
         String kundId = bim.getKundId();
+        //
+        String komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
+        faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         //
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
         faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
         faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
         faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
-        faktura_data_map.remove(DB.BUH_FAKTURA__IMPORTANT_KOMMENT);
         faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
         //
     }
