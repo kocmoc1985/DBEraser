@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener {
 
     protected Basic_Buh_ basic;
-    protected final BUH_INVOICE_MAIN_ bim;
+    protected final BUH_INVOICE_MAIN bim;
     private final String fakturaId;
     private final String fakturaNr;
     private final String fakturaKund;
@@ -54,7 +54,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet(BUH_INVOICE_MAIN_ bim, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet(BUH_INVOICE_MAIN bim, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
         this.fakturaId = fakturaId;
@@ -168,7 +168,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
             HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_INBET_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         //

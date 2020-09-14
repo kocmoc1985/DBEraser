@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA extends CustomerAForetagA {
+public class CustomersA_ extends CustomerAForetagA {
 
     //
     protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
@@ -42,7 +42,7 @@ public class CustomersA extends CustomerAForetagA {
     //
 
     //
-    public CustomersA(BUH_INVOICE_MAIN_ bim) {
+    public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -220,7 +220,7 @@ public class CustomersA extends CustomerAForetagA {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaKundId)) {
@@ -247,7 +247,7 @@ public class CustomersA extends CustomerAForetagA {
                     DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -535,9 +535,13 @@ public class CustomersA extends CustomerAForetagA {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
+        //
+        //
+        //
+        //
         //
         //
         //

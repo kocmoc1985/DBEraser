@@ -48,7 +48,7 @@ public abstract class Invoice extends Basic_Buh_ {
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
     
-    public Invoice(BUH_INVOICE_MAIN_ bim) {
+    public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }
@@ -220,10 +220,10 @@ public abstract class Invoice extends Basic_Buh_ {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
     }
 
-    protected String getNextFakturaNr() {
+    protected static String getNextFakturaNr(String kundId) {
         //
         HashMap<String, String> map = new HashMap<>();
-        map.put(DB.BUH_FAKTURA__KUNDID__, bim.getKundId());
+        map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
         String json = JSon.hashMapToJSON(map);
         //
         try {
@@ -240,7 +240,7 @@ public abstract class Invoice extends Basic_Buh_ {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -299,9 +299,9 @@ public abstract class Invoice extends Basic_Buh_ {
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
         //
-        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN_.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -348,9 +348,9 @@ public abstract class Invoice extends Basic_Buh_ {
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
         }
         //
-        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN_.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
+        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
         //
     }
 

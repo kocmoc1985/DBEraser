@@ -41,14 +41,14 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaId)) {
             //
             setFakturaIdForArticles(fakturaId);
             //
-            articlesToHttpDB();
+            articlesToHttpDB(articlesList);
             //
         } else {
             //
@@ -73,8 +73,11 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap = JSon.joinHashMaps(mainMap, secMap);
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
-        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, invoice.getKundId());
-        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, invoice.getNextFakturaNr()); // OBS! Aquired from http
+        //
+        String kundId = invoice.getKundId();
+        //
+        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, kundId);
+        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
@@ -104,19 +107,18 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
 
-    private void articlesToHttpDB() {
+    protected static void articlesToHttpDB(ArrayList<HashMap<String, String>> articles) {
         //
-        for (HashMap<String, String> article_row_map : articlesList) {
+        for (HashMap<String, String> article_row_map : articles) {
             //
             String json = JSon.hashMapToJSON(article_row_map);
             //
             try {
                 //
-//                HelpBuh.http_get_content_post(HelpBuh.sendArticles(json));
                 HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_ARTICLES_TO_DB, json);
                 //
             } catch (Exception ex) {
-                Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
         }

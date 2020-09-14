@@ -38,7 +38,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
     private static final String TABLE_SEND__DATUM = "DATUM";
     private static final String TABLE_SEND__ANNAT = "KOMMENT";
 
-    public EditPanel_Send(BUH_INVOICE_MAIN_ bim, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Send(BUH_INVOICE_MAIN bim, String fakturaId, String fakturaNr, String fakturaKund) {
         super(bim, fakturaId, fakturaNr, fakturaKund);
     }
 
@@ -181,7 +181,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
             HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
             //
         } catch (Exception ex) {
-            Logger.getLogger(CustomersA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }

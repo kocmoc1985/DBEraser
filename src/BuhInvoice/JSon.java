@@ -44,6 +44,28 @@ public class JSon {
         //
         return joined_properties;
     }
+    
+    public static HashMap<String, String> removeEntriesWhereValueNull(HashMap<String, String> map){
+        //
+        Set set = map.keySet();
+        Iterator it = set.iterator();
+        //
+        while (it.hasNext()) {
+            //
+            String key = (String) it.next();
+            String value = (String) map.get(key);
+            //
+            if(value == null || value.equals("null") || value.equals("NULL")){
+                //
+                it.remove();
+                //
+            }
+            //
+        }
+        //
+        return map;
+        //
+    }
 
     // OBS! OBS! OBS! [2020-07-16]
     // Pay attention that iam using ";" as key/value separator, in fact

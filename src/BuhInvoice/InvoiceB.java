@@ -10,27 +10,21 @@ import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
-import forall.ErrorOutputListener;
 import forall.HelpA;
-import java.awt.Color;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JTable;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author KOCMOC
  */
-public class InvoiceB extends Basic  {
+public class InvoiceB extends Basic {
 
-    private final BUH_INVOICE_MAIN_ bim;
+    private final BUH_INVOICE_MAIN bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
@@ -71,7 +65,7 @@ public class InvoiceB extends Basic  {
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
 
-    public InvoiceB(BUH_INVOICE_MAIN_ buh_invoice_main) {
+    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         this.bim = buh_invoice_main;
         initOther();
     }
@@ -190,11 +184,11 @@ public class InvoiceB extends Basic  {
 
     protected void updateKomment() {
         //
-        JTextAreaJLink jtxt = (JTextAreaJLink)bim.jTextArea_faktura_komment;
+        JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_faktura_komment;
         //
-        if(jtxt.getValidated() == false){
-           HelpA.showNotification(LANG.MSG_8);
-           return;
+        if (jtxt.getValidated() == false) {
+            HelpA.showNotification(LANG.MSG_8);
+            return;
         }
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -218,8 +212,6 @@ public class InvoiceB extends Basic  {
         BlinkThread bt = new BlinkThread(jtxt, false);
         //
     }
-    
-    
 
     private void fillFakturaTable() {
         //
@@ -445,16 +437,107 @@ public class InvoiceB extends Basic  {
         return "" + rst;
     }
 
-    private HashMap<String, String> getFakturaKundAddress() {
+    protected void copy() {
         //
-        String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        HashMap<String, String> faktura_data_map = getOneFakturaData();
         //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        faktura_data_map = JSon.removeEntriesWhereValueNull(faktura_data_map);
+        //
+        processFakturaMapCopy(faktura_data_map); // Remove/Reset some entries like "faktura datum" etc.
+        //
+        String fakturaId = bim.getFakturaId();
+        //
+        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        //
+        ArrayList<HashMap<String, String>> faktura_articles = null;
         //
         try {
             //
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, json);
+                    DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
+            //
+            faktura_articles = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        String fakturaId_new = copy_a__faktura_to_db(faktura_data_map);
+        //
+        //
+        if (GP_BUH.verifyId(fakturaId_new) && faktura_articles != null && faktura_articles.size() > 0) {
+            //
+            copy_b__faktura_articles_to_db(faktura_articles, fakturaId_new);
+            //
+        }
+        //
+        //
+        refresh_b();
+        //
+    }
+
+    private void copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
+        //
+        for (HashMap<String, String> article_row_map : faktura_articles) {
+            article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+            article_row_map.remove(DB.BUH_F_ARTIKEL__ID); // [IMPORTANT]
+            article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___NAMN); // [IMPORTANT]
+            article_row_map = JSon.removeEntriesWhereValueNull(article_row_map);
+        }
+        //
+        Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
+        //
+    }
+
+    private String copy_a__faktura_to_db(HashMap<String, String> faktura_data_map) {
+        //
+        String json = JSon.hashMapToJSON(faktura_data_map);
+        //
+        String fakturaId;
+        //
+        try {
+            //
+            fakturaId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_FAKTURA_TO_DB, json);
+            //
+//            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            fakturaId = "-1";
+        }
+        //
+        return fakturaId;
+        //
+    }
+    
+
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map) {
+        //
+        String kundId = bim.getKundId();
+        //
+        faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
+        faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
+        //
+        faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
+        faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
+        faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
+        faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);
+        faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
+        faktura_data_map.remove(DB.BUH_FAKTURA__IMPORTANT_KOMMENT);
+        faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
+        //
+    }
+
+    private HashMap<String, String> getOneFakturaData() {
+        //
+        String json = bim.getSELECT_fakturaId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA, json);
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -513,7 +596,7 @@ public class InvoiceB extends Basic  {
 
     public void htmlFaktura_b() {
         //
-//        BUH_INVOICE_MAIN_ bim = invoice.bim;
+//        BUH_INVOICE_MAIN bim = invoice.bim;
         //
         HashMap<String, String> map_a_0 = new HashMap<>();
         HashMap<String, String> map_a = new HashMap<>();

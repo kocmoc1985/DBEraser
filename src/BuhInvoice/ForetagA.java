@@ -35,7 +35,7 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
 
-    public ForetagA(BUH_INVOICE_MAIN_ bim) {
+    public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 

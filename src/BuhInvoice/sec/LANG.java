@@ -5,8 +5,8 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN_;
-import BuhInvoice.CustomersA;
+import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.CustomersA_;
 
 /**
  *
@@ -23,7 +23,7 @@ public class LANG {
     public static String MSG_4 = "Radera rad?";
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
-            + " \"" + BUH_INVOICE_MAIN_.TAB_KUDNER + "\" och fyll i \"" + CustomersA.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
+            + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";

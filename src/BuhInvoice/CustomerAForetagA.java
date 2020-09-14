@@ -6,7 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
-import static BuhInvoice.CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
+import static BuhInvoice.CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -50,7 +50,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
 
     //
-    public CustomerAForetagA(BUH_INVOICE_MAIN_ bim) {
+    public CustomerAForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -86,7 +86,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         fillMainTable();
         HelpA.markFirstRowJtable(getTableMain());
         //
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             bim.jTableCustomersA_kunder_clicked();
         } else if (this instanceof ForetagA) {
             bim.jTableForetagA_ftg_table_clicked();
@@ -97,7 +97,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     protected abstract void fillJTable_header_main();
 
     protected JTable getTableMain() {
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             return bim.jTable_kunder;
         } else if (this instanceof ForetagA) {
             return bim.jTable_ftg;
@@ -107,7 +107,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     }
 
     protected JTable getTableAdress() {
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             return bim.jTable_kund_adresses;
         } else if (this instanceof ForetagA) {
             return bim.jTable_ftg_addr;
@@ -117,7 +117,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     }
 
     protected void hideAdressTable() {
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             bim.jScrollPane8.setVisible(false);
         } else if (this instanceof ForetagA) {
             bim.jScrollPane12.setVisible(false);
@@ -157,8 +157,8 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String idColName = "";
         String phpFunc = "";
         //
-        if (this instanceof CustomersA) {
-            idColName = CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
+        if (this instanceof CustomersA_) {
+            idColName = CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
             phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES;
         } else if (this instanceof ForetagA) {
             idColName = ForetagA.TABLE__ID;
@@ -220,7 +220,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         String phpFunc = "";
         //
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
         } else if (this instanceof ForetagA) {
             phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_DATA; // ****************************************************
@@ -256,8 +256,8 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String id = "";
         String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
-        if (this instanceof CustomersA) {
-            id = HelpA.getValueSelectedRow(getTableMain(), CustomersA.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        if (this instanceof CustomersA_) {
+            id = HelpA.getValueSelectedRow(getTableMain(), CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         } else if (this instanceof ForetagA) {
             id = HelpA.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
         }
@@ -281,7 +281,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String idColName = "";
         String tableName = "";
         //
-        if (this instanceof CustomersA) {
+        if (this instanceof CustomersA_) {
             idColName = DB.BUH_FAKTURA_KUND__ID;
             tableName = DB.TABLE__BUH_FAKTURA_KUND;
         } else if (this instanceof ForetagA) {
