@@ -50,6 +50,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();
         jButton2_delete.setVisible(false);
+        jButton1_commit.setToolTipText("Spara kommentar");
         //
         initBasicTab();
         //

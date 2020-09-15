@@ -52,7 +52,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
-    public static String TABLE_ALL_INVOICES__EPOST_SENT = "Skickad";
+    public static String TABLE_ALL_INVOICES__EPOST_SENT = "SKICKAD";
     public static String TABLE_ALL_INVOICES__KOMMENT_$ = "KOMMENT"; // OBS! This field will be used for diff purposes as for example like in case with kredit faktura when i save the invoice which was "krediterat"
     //
     //
@@ -402,6 +402,8 @@ public class InvoiceB extends Basic {
         //
         deleteFakturaInbetalningar(fakturaId);
         //
+        deleteFakturaSend(fakturaId);
+        //
         deleteFaktura(fakturaId);
         //
         //
@@ -425,6 +427,16 @@ public class InvoiceB extends Basic {
         String json = JSon.hashMapToJSON(map);
         //
         executeDelete(json);
+    }
+    
+    private void deleteFakturaSend(String fakturaId) {
+        //
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_SEND);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        executeDelete(json);
+        //
     }
 
     private void deleteFakturaArticles(String fakturaId) {
