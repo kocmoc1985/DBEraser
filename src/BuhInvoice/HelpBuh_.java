@@ -29,7 +29,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  *
  * @author MCREMOTE
  */
-public class HelpBuh {
+public class HelpBuh_ {
 
     /**
      * [2020-08-27]
@@ -106,7 +106,7 @@ public class HelpBuh {
         //
         try {
             //
-            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EMAIL_WITH_ATTACHMENT, json);
+            String response = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EMAIL_WITH_ATTACHMENT, json);
             //
             ess = new EmailSendingStatus(response);
             //
@@ -155,7 +155,7 @@ public class HelpBuh {
         boolean upload_success = false;
         //
         try {
-          upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
+          upload_success = HelpBuh_.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -169,7 +169,7 @@ public class HelpBuh {
     }
 
     private static void test__sendEmailWithAttachment() {
-        boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+        boolean sent = HelpBuh_.sendEmailWithAttachment("ask@mixcont.com",
                 "BuhInvoice", // This one is shown as name instead of the email it's self
                 "andrej.brassas@gmail.com",
                 "Faktura",

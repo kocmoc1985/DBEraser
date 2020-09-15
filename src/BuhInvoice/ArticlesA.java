@@ -178,7 +178,7 @@ public class ArticlesA extends Basic_Buh_ {
         //
         String json = JSon.hashMapToJSON(final_map);
         //
-        HelpBuh.update(json);
+        HelpBuh_.update(json);
         //
     }
 
@@ -192,7 +192,7 @@ public class ArticlesA extends Basic_Buh_ {
         //
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -293,7 +293,7 @@ public class ArticlesA extends Basic_Buh_ {
         //
         try {
             //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_ARTIKEL_TO_DB, json);
             //
         } catch (Exception ex) {

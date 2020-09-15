@@ -6,7 +6,7 @@
 
 3. It shall not be possible to "kreditera" faktura if it's payed
 
-A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO]
+A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO], 4 = kreditfaktura (shows "-" in table)
 
 B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse
 

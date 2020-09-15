@@ -126,6 +126,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
            return false;
        }
     }
+    
+    /**
+     * OBS! Remember the "komment" field is used internally for different purposes.
+     * One of usages is to save the "krediterad" invoice number [2020-09-15]
+     * @return 
+     */
+    protected String getKomment_$(){
+       String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
+       return GP_BUH.getValNoNull(val);
+    }
 
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
@@ -217,7 +227,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpFunc, json);
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, phpFunc, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -696,9 +706,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1263,6 +1271,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
     
     private void jButton4_delete_faktura_komment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_delete_faktura_komment1ActionPerformed
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_3_3) == false) {
+            return;
+        }
+        //
         invoiceB.deleteComment();
     }//GEN-LAST:event_jButton4_delete_faktura_komment1ActionPerformed
 

@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import BuhInvoice.HelpBuh;
+import BuhInvoice.HelpBuh_;
 import MCCompound.PROD_PLAN;
 import MyObjectTable.CommonControllsPanel;
 import MyObjectTable.OutPut;
@@ -118,7 +118,7 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         String str_a = "";
         //
         try {
-            str_a = HelpBuh.http_get_content_post(HelpBuh.getAllClientsInInterval("httpcom", 0, 20000));
+            str_a = HelpBuh_.http_get_content_post(HelpBuh_.getAllClientsInInterval("httpcom", 0, 20000));
         } catch (Exception ex) {
             Logger.getLogger(Run_Invert_Example_C.class.getName()).log(Level.SEVERE, null, ex);
         }

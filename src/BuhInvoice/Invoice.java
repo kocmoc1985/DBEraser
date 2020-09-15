@@ -92,7 +92,8 @@ public abstract class Invoice extends Basic_Buh_ {
                   //
                 }else{
                   // OBS! KREDIT FAKTURA [2020-09-15]  
-                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3);
+                  String krediteradFakturaNr = bim.getKomment_$();
+                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3(krediteradFakturaNr));
                   bim.jButton_add_article.setEnabled(false); // Shall not be possible to add articles
                   //
                 }
@@ -240,7 +241,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         try {
             //
-            String fakturaNr = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String fakturaNr = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json);
             //
             if (HelpA.checkIfNumber_b(fakturaNr)) {

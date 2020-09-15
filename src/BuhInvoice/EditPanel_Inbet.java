@@ -165,7 +165,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         try {
             //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_INBET_TO_DB, json);
+            HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_INBET_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
@@ -210,7 +210,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__GET_FAKTURA_INBET, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);

@@ -33,7 +33,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         String json = JSon.hashMapToJSON(this.fakturaMap);
         //
-        HelpBuh.update(json);
+        HelpBuh_.update(json);
         //
         resetLists();
         //
@@ -91,7 +91,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         try {
             //
-            String query = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,DB.PHP_FUNC_ARTICLES_TO_DB, json);
+            String query = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,DB.PHP_FUNC_ARTICLES_TO_DB, json);
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
@@ -122,7 +122,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         System.out.println("UPDATE json: " + json);
         //
-        HelpBuh.update(json);
+        HelpBuh_.update(json);
         //
         //
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));

@@ -56,14 +56,14 @@ public abstract class Basic_Buh_ extends Basic {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        HelpBuh.update(json);
+        HelpBuh_.update(json);
         //
     }
 
     protected void executeDelete(String json) {
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_DELETE, json);
             //
             System.out.println("query: " + json_str_return);
@@ -81,7 +81,7 @@ public abstract class Basic_Buh_ extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     php_function, json);
             //
             //

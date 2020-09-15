@@ -34,7 +34,7 @@ public class GP_BUH {
         return text.replaceAll(":", "#");
     }
     
-    public static String getValHashMap(String value) {
+    public static String getValNoNull(String value) {
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
             return "";
         } else {

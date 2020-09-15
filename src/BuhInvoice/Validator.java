@@ -88,7 +88,7 @@ public class Validator {
         //
         try {
             //
-            exist = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EXIST, json);
+            exist = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EXIST, json);
             //
             System.out.println("VALUE: " + val + " exists: " + exist);
             //

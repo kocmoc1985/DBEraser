@@ -20,6 +20,7 @@ public class LANG {
     public static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
+    public static String MSG_3_3 = "Radera kommentar?";
     public static String MSG_4 = "Radera rad?";
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
@@ -29,11 +30,15 @@ public class LANG {
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
     public static String LBL_MSG_2_2 = "FAKTURA BETALD - REDIGERING EJ MÖJLIG";
-    public static String LBL_MSG_2_3 = "KREDITFAKTURA";
     public static String LBL_MSG_3 = "SKAPA NY KUND";
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
+    
+    public static String LBL_MSG_2_3(String fakturaCopy) {
+        return "KREDITERAR FAKTURA: " + fakturaCopy;
+    }
+    
     /**
      * VERY IMPORTANT: If it happens even once, actions shall be taken
      * [2020-08-06] This one shall be only used in cases when you insert an
@@ -41,6 +46,8 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
+    
+    
      public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {
         return "Vill du verkligen kreditera fakturanummer: " + fakturaCopy + "?";
      }

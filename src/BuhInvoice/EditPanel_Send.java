@@ -131,7 +131,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         try {
             //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__GET_FAKTURA_SEND, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -178,7 +178,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         try {
             //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
+            HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,7 +217,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         String json = JSon.hashMapToJSON(final_map);
         //
-        HelpBuh.update(json);
+        HelpBuh_.update(json);
         //
     }
 
