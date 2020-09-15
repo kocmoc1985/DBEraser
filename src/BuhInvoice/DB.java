@@ -33,9 +33,13 @@ public class DB {
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__SKICKAD_EJ_SKICKAD = "Ej Skickad;0,Skickad;1";
     public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1";
-    public static final String STATIC__FAKTURA_TYPES = "NORMAL;0,KREDIT;1,KONTANT;2";
-    
-    
+
+    public static final String STATIC__FAKTURA_TYPE_NORMAL = "NORMAL";
+    public static final String STATIC__FAKTURA_TYPE_KREDIT = "KREDIT";
+    public static final String STATIC__FAKTURA_TYPE_KONTANT = "KONTANT";
+    public static final String STATIC__FAKTURA_TYPES = STATIC__FAKTURA_TYPE_NORMAL + ";0,"
+            + STATIC__FAKTURA_TYPE_KREDIT + ";1," + STATIC__FAKTURA_TYPE_KONTANT + ";2";// "NORMAL;0,KREDIT;1,KONTANT;2"
+
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     public static final String STATIC_BET_STATUS_NEJ = "Nej";

@@ -4,6 +4,8 @@
 2. It shall not be possible to change "inkl/exkl moms" when an article was added to a new invoice [NOT IMPLEMENTED]
 2.2 In fact it would probably make sence to bind "moms" to faktura article instead of "faktura" -> in this case it would be possible to have "faktura-articles" with different "moms-sats"
 
+3. It shall not be possible to "kreditera" faktura if it's payed
+
 A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO]
 
 B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse

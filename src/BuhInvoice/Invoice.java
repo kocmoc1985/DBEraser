@@ -48,17 +48,13 @@ public abstract class Invoice extends Basic_Buh_ {
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
-    public static boolean FAKTYRA_TYPE__KREDIT_FAKTURA = false;
-    //
     
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }
     
-    public static void SET_TYPE_KREDIT_FAKTURA(boolean kredit){
-        FAKTYRA_TYPE__KREDIT_FAKTURA = kredit;
-    }
+   
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
@@ -89,18 +85,19 @@ public abstract class Invoice extends Basic_Buh_ {
                 //
             } else {
                 //
-                if(FAKTYRA_TYPE__KREDIT_FAKTURA == false){
+                if(bim.isKreditFaktura() == false){
                   //
-                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);  
+                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
+                  enableDisableButtons(bim.jPanel12, true);
                   //
                 }else{
                   // OBS! KREDIT FAKTURA [2020-09-15]  
                   bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3);
+                  bim.jButton_add_article.setEnabled(false); // Shall not be possible to add articles
                   //
                 }
                 //
                 //
-                enableDisableButtons(bim.jPanel12, true);
                 bim.jButton_confirm_insert_update.setEnabled(true);
                 //
                 bim.jButton_update_articles_row.setEnabled(true);

@@ -41,7 +41,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     //
     private static final String TABLE_INBET__ID = "ID";
     private static final String TABLE_INBET__FAKTURA_ID = "F ID";
-    private static final String TABLE_INBET__INBETALD = "INBETALD";
+    private static final String TABLE_INBET__INBETALD = "AKTUELL INBETALNING";
     private static final String TABLE_INBET__INBET_METOD = "BETALMETOD";
     private static final String TABLE_INBET__ANNAT = "KOMMENT";
     private static final String TABLE_INBET__DATUM = "DATUM";
@@ -185,7 +185,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         double inbetald = coundInbetald();
         //
         if (inbetald < total) {
-            double restToPay = total - inbetald;
+            double restToPay = GP_BUH.round_double(total - inbetald);
             basic.setValueTableInvert(DB.BUH_FAKTURA_INBET__INBETALD, basic.TABLE_INVERT, "" + restToPay);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "" + restToPay);
             basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.white);
@@ -193,7 +193,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "BETALD");
             basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.green);
         } else if (inbetald > total) {
-            double overbet = inbetald - total;
+            double overbet = GP_BUH.round_double(inbetald - total);
             basic.setValueTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, "ÖVERBETALD  (" + overbet + ")");
             basic.setColorTableInvert(kvar_att_betala_tableinvert_fake, basic.TABLE_INVERT, Color.yellow);
         }

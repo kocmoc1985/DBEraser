@@ -117,6 +117,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
+    
+    protected boolean isKreditFaktura(){
+       String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+       if(fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
+           return true;
+       }else{
+           return false;
+       }
+    }
 
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
@@ -537,7 +546,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel3_faktura_sec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3_faktura_sec.setLayout(new java.awt.GridLayout(1, 0));
 
-        jLabel_Faktura_Insert_or_Update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_Faktura_Insert_or_Update.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel_Faktura_Insert_or_Update.setForeground(new java.awt.Color(153, 153, 153));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1237,7 +1246,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        if (GP_BUH.confirm(LANG.FAKTURA_COPY_MSG_A(getFakturaNr())) == false) {
+        String msg;
+        //
+        if(isKreditFaktura){
+            msg = LANG.FAKTURA_KREDIT_MSG(getFakturaNr());
+        }else{
+            msg = LANG.FAKTURA_COPY_MSG_A(getFakturaNr());
+        }
+        //
+        if (GP_BUH.confirm(msg) == false) {
             return;
         }
         //
@@ -1250,8 +1267,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton4_delete_faktura_komment1ActionPerformed
 
     private void jButton_kredit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kredit_fakturaActionPerformed
-        copyFaktura(true);
-        
+        copyFaktura(true); // true = "kreditfaktura"
     }//GEN-LAST:event_jButton_kredit_fakturaActionPerformed
 
     /**

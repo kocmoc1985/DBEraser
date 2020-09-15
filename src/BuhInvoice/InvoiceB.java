@@ -462,7 +462,7 @@ public class InvoiceB extends Basic {
         //
         String fakturaNrCopy = bim.getFakturaNr();
         //
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy,isKreditFaktura); // Remove/Reset some entries like "faktura datum" etc.
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura); // Remove/Reset some entries like "faktura datum" etc.
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -490,21 +490,16 @@ public class InvoiceB extends Basic {
             //
             String newFakturaNr = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURANR__);
             //
-            if (ok) {
+            //
+            if (isKreditFaktura == false && ok) {
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
+                refresh();
+            } else if(isKreditFaktura && ok) {
+                refresh();
+                bim.editFakturaBtnKlicked();
             }
             //
         }
-        //
-        //
-        if (isKreditFaktura == false) {
-            refresh();
-        } else {
-            refresh();
-            Invoice.SET_TYPE_KREDIT_FAKTURA(true);
-            bim.editFakturaBtnKlicked();
-        }
-        //
     }
 
     private boolean copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
@@ -548,10 +543,10 @@ public class InvoiceB extends Basic {
         //
         String komment;
         //
-        if(isKreditFaktura){
+        if (isKreditFaktura) {
             faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "1"); // 1 = KREDIT FAKTURA
             komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
-        }else{
+        } else {
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
         }
         //
