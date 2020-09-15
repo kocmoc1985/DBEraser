@@ -78,6 +78,7 @@ request_factoring boolean DEFAULT false,
 factoring_status integer DEFAULT 0,
 makulerad boolean DEFAULT false,
 betald integer DEFAULT 0,
+sent_with_email integer DEFAULT 0,
 date_created varchar(30) DEFAULT 'no',
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)

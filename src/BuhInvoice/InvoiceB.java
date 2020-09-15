@@ -52,6 +52,7 @@ public class InvoiceB extends Basic {
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
+    public static String TABLE_ALL_INVOICES__EPOST_SENT = "Skickad";
     public static String TABLE_ALL_INVOICES__KOMMENT_$ = "KOMMENT"; // OBS! This field will be used for diff purposes as for example like in case with kredit faktura when i save the invoice which was "krediterat"
     //
     //
@@ -133,6 +134,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__BETALD,
+            TABLE_ALL_INVOICES__EPOST_SENT,
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
             TABLE_ALL_INVOICES__KOMMENT_$,
         };
@@ -213,7 +215,7 @@ public class InvoiceB extends Basic {
         //
         String json = JSon.hashMapToJSON(update_map);
         //
-        HelpBuh_.update(json);
+        HelpBuh.update(json);
         //
         // OBS! This is done to skip refreshing the entire faktura list
         HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
@@ -241,7 +243,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -309,6 +311,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
             getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
+            getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__SENT)),
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),
             map.get(DB.BUH_FAKTURA__KOMMENT)
         };
@@ -332,7 +335,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
             //
@@ -439,7 +442,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_DELETE, json);
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_DELETE, json);
             //
         } catch (Exception ex) {
             Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
@@ -476,7 +479,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
             faktura_articles = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -527,7 +530,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            fakturaId = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            fakturaId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_TO_DB, json);
             //
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
@@ -579,7 +582,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA, json);
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -603,7 +606,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     phpFunction, json);
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -623,7 +626,7 @@ public class InvoiceB extends Basic {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     phpFunction, json);
             //
             ArrayList<HashMap<String, String>> list = JSon.phpJsonResponseToHashMap(json_str_return);

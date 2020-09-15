@@ -112,7 +112,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         String betald = HelpA.getValueSelectedRow(getAllInvoicesTable(), InvoiceB.TABLE_ALL_INVOICES__BETALD);
         //
-        return !betald.equals(DB.STATIC_BET_STATUS_NEJ);
+        return !betald.equals(DB.STATIC_BET_STATUS_NEJ) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
         //
     }
     
@@ -225,6 +225,8 @@ public abstract class Invoice extends Basic_Buh_ {
 
     protected abstract void addArticleForDB();
 
+    
+    
     public void insertOrUpdate() {
         faktura_entry.insertOrUpdate();
     }
@@ -241,7 +243,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         try {
             //
-            String fakturaNr = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String fakturaNr = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json);
             //
             if (HelpA.checkIfNumber_b(fakturaNr)) {

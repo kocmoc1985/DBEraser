@@ -80,11 +80,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jScrollPane4" min="-2" pref="1205" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jPanel4" min="-2" pref="450" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jButton_kredit_faktura" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jPanel4" min="-2" pref="500" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -96,25 +92,17 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton4_save_faktura_komment" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel_all_invoices_list" alignment="1" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jTextArea_faktura_komment" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <Component id="jPanel4" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jButton4_delete_faktura_komment1" min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
+                              <Component id="jButton4_save_faktura_komment" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel_all_invoices_list" alignment="1" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jTextArea_faktura_komment" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="jPanel4" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton_kredit_faktura" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jButton4_delete_faktura_komment1" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                           <Component id="jLabel_all_invoices_list1" min="-2" pref="29" max="-2" attributes="0"/>
@@ -214,7 +202,18 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton4_copy">
+                    <Component class="javax.swing.JButton" name="jButton_kredit_faktura">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/new_b.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Skapa kreditfaktura - v&#xe4;lj f&#xf6;rst en faktura ur listan och tryck sedan p&#xe5; knappen"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_kredit_fakturaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton4_copy_faktura">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/copy.png"/>
@@ -222,7 +221,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_copyActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_copy_fakturaActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton12">
@@ -252,7 +251,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel_btn_separator_1">
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="jButton1_inbetalning">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/payed.png"/>
@@ -260,7 +259,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Registrera inbetalning"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1_inbetalningActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton2">
@@ -344,14 +343,6 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton_kredit_faktura">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Kredit"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_kredit_fakturaActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

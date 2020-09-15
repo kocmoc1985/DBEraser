@@ -49,6 +49,15 @@ SAME BUT IN ONE ROW FOR COPY:
 SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturatyp, buh_faktura.fakturadatum,buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura.betald,buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn FROM buh_faktura INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId WHERE buh_faktura.kundId=1 ORDER BY buh_faktura.fakturanr ASC
 
 ----------------------------------------------------------------------
+SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturatyp, buh_faktura.fakturadatum,
+buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura.betald,buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn,
+buh_faktura_send.send_ok
+FROM buh_faktura 
+INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId
+INNER JOIN buh_faktura_send ON buh_faktura.fakturaId =
+buh_faktura_send.fakturaId
+WHERE buh_faktura.kundId=1
+----------------------------------------------------------------------
 SELECT buh_faktura.namn, buh_kund.namn FROM buh_kund 
 INNER JOIN buh_faktura ON buh_faktura.kundId = buh_kund.kundId
 WHERE buh_kund.kundId=1

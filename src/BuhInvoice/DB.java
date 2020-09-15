@@ -43,7 +43,8 @@ public class DB {
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     public static final String STATIC_BET_STATUS_NEJ = "Nej";
-    public static final String STATIC__BETAL_STATUS = STATIC_BET_STATUS_NEJ + ";0,Ja;1,Delvis;2,Ja - Överbetald;3,-;4";
+    public static final String STATIC_BET_STATUS_KREDIT = "-";
+    public static final String STATIC__BETAL_STATUS = STATIC_BET_STATUS_NEJ + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //
     public static final String STATIC__KUND_AND_ARTICLE__KATEGORI = "A,B,C,D,E,F,G";
     //
@@ -117,6 +118,7 @@ public class DB {
     public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
     public static final String BUH_FAKTURA__VALUTA = "valuta";
     public static final String BUH_FAKTURA__BETALD = "betald";
+    public static final String BUH_FAKTURA__SENT = "sent_with_email";
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     public static final String BUH_FAKTURA__IMPORTANT_KOMMENT = "important_komment"; // length 100
     public static final String BUH_FAKTURA__KOMMENT = "komment"; // length 200 -> OBS! Writing to this field is only possbile internaly - from code

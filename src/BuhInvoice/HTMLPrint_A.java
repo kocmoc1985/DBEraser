@@ -695,7 +695,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         // 
         // [2020-09-08]
         if (ok) {
-            EditPanel_Send.insert(fakturaId,true, true);
+            //
+            EditPanel_Send.insert(fakturaId,true, true); // "buh_faktura_send" table
+            //
+            Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+            //
         }else{
             EditPanel_Send.insert(fakturaId,false, true);
         }
@@ -727,7 +731,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         boolean upload_success = false;
         //
         try {
-            upload_success = HelpBuh_.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
+            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -745,7 +749,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (upload_success) {
             //
-            email_sending_ok = HelpBuh_.sendEmailWithAttachment("ask@mixcont.com",
+            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                     "BuhInvoice", // This one is shown as name instead of the email it's self
                     sendToEmail,
                     "Faktura",

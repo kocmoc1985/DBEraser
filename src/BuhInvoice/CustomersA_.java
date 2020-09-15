@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA_ extends CustomerAForetagA {
+public class CustomersA_ extends CustomerAForetagA_ {
 
     //
     protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
@@ -114,7 +114,7 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         try {
             //
-            String json_str_return = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID, json);
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
@@ -214,7 +214,7 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         try {
             //
-            fakturaKundId = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
             //
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
@@ -243,7 +243,7 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         try {
             //
-            HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB, json);
             //
         } catch (Exception ex) {
@@ -521,7 +521,7 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         try {
             //
-            String latest = HelpBuh_.executePHP(DB.PHP_SCRIPT_MAIN,
+            String latest = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_LATEST, json);
             //
 //            System.out.println("LATEST: " + latest + "   *************************");

@@ -23,6 +23,7 @@ public class LANG {
     public static String MSG_3_3 = "Radera kommentar?";
     public static String MSG_4 = "Radera rad?";
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
+    public static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";

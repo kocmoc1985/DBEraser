@@ -4,10 +4,11 @@
 2. It shall not be possible to change "inkl/exkl moms" when an article was added to a new invoice [NOT IMPLEMENTED]
 2.2 In fact it would probably make sence to bind "moms" to faktura article instead of "faktura" -> in this case it would be possible to have "faktura-articles" with different "moms-sats"
 
-3. It shall not be possible to "kreditera" faktura if it's payed
 
 A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO], 4 = kreditfaktura (shows "-" in table)
 
-B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse
+B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse -> db table "buh_faktura_send"
 
-C. "FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT"
+C. "FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT" -> db table "buh_faktura"
+
+D. FAKTURA SEND STATUS: 0 = "Nej", 1 = "Ja (Ja bara om sending successful)" -> db table "buh_faktura" -> column "sent_with_email"

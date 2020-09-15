@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class ForetagA extends CustomerAForetagA {
+public class ForetagA extends CustomerAForetagA_ {
 
     protected static final String TABLE__ID = "KUND ID";
     private static final String TABLE__NAMN = "NAMN";
