@@ -7,3 +7,5 @@
 A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO]
 
 B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse
+
+C. "FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT"

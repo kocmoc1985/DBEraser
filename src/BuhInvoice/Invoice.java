@@ -37,6 +37,7 @@ import javax.swing.JTable;
  */
 public abstract class Invoice extends Basic_Buh_ {
 
+    //
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
@@ -47,10 +48,16 @@ public abstract class Invoice extends Basic_Buh_ {
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
+    public static boolean FAKTYRA_TYPE__KREDIT_FAKTURA = false;
+    //
     
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
+    }
+    
+    public static void SET_TYPE_KREDIT_FAKTURA(boolean kredit){
+        FAKTYRA_TYPE__KREDIT_FAKTURA = kredit;
     }
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
@@ -82,7 +89,15 @@ public abstract class Invoice extends Basic_Buh_ {
                 //
             } else {
                 //
-                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
+                if(FAKTYRA_TYPE__KREDIT_FAKTURA == false){
+                  //
+                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);  
+                  //
+                }else{
+                  // OBS! KREDIT FAKTURA [2020-09-15]  
+                  bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3);
+                  //
+                }
                 //
                 //
                 enableDisableButtons(bim.jPanel12, true);

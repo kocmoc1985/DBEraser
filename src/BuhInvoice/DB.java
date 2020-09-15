@@ -33,6 +33,7 @@ public class DB {
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__SKICKAD_EJ_SKICKAD = "Ej Skickad;0,Skickad;1";
     public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1";
+    public static final String STATIC__FAKTURA_TYPES = "NORMAL;0,KREDIT;1,KONTANT;2";
     
     
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";

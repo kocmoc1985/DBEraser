@@ -217,9 +217,9 @@ public class InvoiceB extends Basic {
         HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
         //
         //
-        if(clear){
+        if (clear) {
             BlinkThread bt = new BlinkThread(jtxt, true);
-        }else{
+        } else {
             BlinkThread bt = new BlinkThread(jtxt, false);
         }
         //
@@ -296,7 +296,8 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__MAKULERAD),
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
-            map.get(DB.BUH_FAKTURA__FAKTURATYP),
+            //            map.get(DB.BUH_FAKTURA__FAKTURATYP),
+            getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
             map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
             map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
@@ -453,7 +454,7 @@ public class InvoiceB extends Basic {
         return "" + rst;
     }
 
-    protected void copy() {
+    protected void copy(boolean isKreditFaktura) {
         //
         HashMap<String, String> faktura_data_map = getOneFakturaData();
         //
@@ -461,7 +462,7 @@ public class InvoiceB extends Basic {
         //
         String fakturaNrCopy = bim.getFakturaNr();
         //
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy); // Remove/Reset some entries like "faktura datum" etc.
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy,isKreditFaktura); // Remove/Reset some entries like "faktura datum" etc.
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -496,7 +497,13 @@ public class InvoiceB extends Basic {
         }
         //
         //
-        refresh();
+        if (isKreditFaktura == false) {
+            refresh();
+        } else {
+            refresh();
+            Invoice.SET_TYPE_KREDIT_FAKTURA(true);
+            bim.editFakturaBtnKlicked();
+        }
         //
     }
 
@@ -535,11 +542,18 @@ public class InvoiceB extends Basic {
         //
     }
 
-    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy) {
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura) {
         //
         String kundId = bim.getKundId();
         //
-        String komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
+        String komment;
+        //
+        if(isKreditFaktura){
+            faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "1"); // 1 = KREDIT FAKTURA
+            komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
+        }else{
+            komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
+        }
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
