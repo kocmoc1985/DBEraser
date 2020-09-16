@@ -107,9 +107,7 @@ Foreign key (fakturaId) references buh_faktura(fakturaId)
 CREATE TABLE buh_faktura_artikel (
 artikelId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
-lager integer DEFAULT 1,
 pris float DEFAULT 0,
-inkopspris float DEFAULT 0,
 namn varchar(50) DEFAULT '',
 komment varchar(500) DEFAULT '',
 artikel_kategori varchar (1) DEFAULT 'A',
