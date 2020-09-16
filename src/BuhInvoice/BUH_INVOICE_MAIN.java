@@ -309,7 +309,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea_faktura_komment = new JTextAreaJLink();
         jButton4_save_faktura_komment = new javax.swing.JButton();
         jButton4_delete_faktura_komment1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
         jPanel_articles = new JPanel();
@@ -762,9 +762,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(1520, 1520, 1520))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        jScrollPane1_faktura.setViewportView(jPanel1);
 
-        jTabbedPane1.addTab("FAKTURA", jScrollPane1);
+        jTabbedPane1.addTab("FAKTURA", jScrollPane1_faktura);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -1466,10 +1466,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     protected javax.swing.JScrollPane jScrollPane11;
     protected javax.swing.JScrollPane jScrollPane12;
+    protected javax.swing.JScrollPane jScrollPane1_faktura;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

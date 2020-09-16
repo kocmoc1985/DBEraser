@@ -25,7 +25,9 @@ import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
+import java.awt.Color;
 import java.awt.Component;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -70,7 +72,7 @@ public abstract class Invoice extends Basic_Buh_ {
             //
             bim.jButton_update_articles_row.setEnabled(false);
             //
-        } else {
+        } else { // UPDATE
             //
             enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
             //
@@ -84,6 +86,11 @@ public abstract class Invoice extends Basic_Buh_ {
                 bim.jButton_update_articles_row.setEnabled(false);
                 //
             } else {
+                //
+                if(bim.isMakulerad()){
+//                    bim.jScrollPane1_faktura.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+                    HelpA.showNotification_separate_thread(LANG.MSG_9);
+                }
                 //
                 if(bim.isKreditFaktura() == false){
                   //

@@ -27,6 +27,7 @@ public class LANG {
     public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
+    public static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

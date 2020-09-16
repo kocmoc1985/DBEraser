@@ -4,6 +4,7 @@
  */
 package forall;
 
+import BuhInvoice.HTMLPrint_A;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
@@ -1700,6 +1701,19 @@ public class HelpA {
 
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);
+    }
+    
+    public static void showNotification_separate_thread(String msg) {
+       Thread x = new Thread(() -> {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JOptionPane.showMessageDialog(null, msg);
+            }
+        });
+           
+       });
+        x.start();
     }
 
     public static void showNotification_Data_Truncation_Error() {
