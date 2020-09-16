@@ -167,6 +167,10 @@ public abstract class CustomerAForetagA_ extends Basic_Buh_ {
         //
         String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
         //
+        if(id == null || id.isEmpty()){
+            return;
+        }
+        //
         String json = bim.getSELECT_fakturaKundId(id);
         //
         try {
@@ -454,7 +458,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh_ {
 
     private int prevLengthOrgnr;
 
-    private void orgnr_additional(JLinkInvert jli, TableInvert ti) {
+    protected void orgnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //

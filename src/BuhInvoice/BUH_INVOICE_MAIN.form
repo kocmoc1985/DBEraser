@@ -180,7 +180,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton15ActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton18">
+                    <Component class="javax.swing.JButton" name="jButton_edit_faktura">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/edit.png"/>
@@ -188,10 +188,10 @@
                         <Property name="toolTipText" type="java.lang.String" value="Bearbeta faktura"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_edit_fakturaActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton3">
+                    <Component class="javax.swing.JButton" name="jButton_create_new_faktura">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/new.png"/>
@@ -199,7 +199,18 @@
                         <Property name="toolTipText" type="java.lang.String" value="Skapa ny faktura"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_create_new_fakturaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton_copy_faktura">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/copy.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_copy_fakturaActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_kredit_faktura">
@@ -213,18 +224,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_kredit_fakturaActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton4_copy_faktura">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/copy.png"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_copy_fakturaActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="jButton12">
+                    <Component class="javax.swing.JButton" name="jButton_delete_faktura">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/cancel-1.png"/>
@@ -232,7 +232,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Radera faktura"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_delete_fakturaActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_print_faktura">
@@ -251,7 +251,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel_btn_separator_1">
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1_inbetalning">
+                    <Component class="javax.swing.JButton" name="jButton_inbetalning">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/payed.png"/>
@@ -259,10 +259,10 @@
                         <Property name="toolTipText" type="java.lang.String" value="Registrera inbetalning"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1_inbetalningActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_inbetalningActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton2">
+                    <Component class="javax.swing.JButton" name="jButton_show_actions">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/event.png"/>
@@ -270,7 +270,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Se historia &#xf6;ver skickade e-post och p&#xe5;minnelser"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_show_actionsActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

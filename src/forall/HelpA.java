@@ -1581,14 +1581,14 @@ public class HelpA {
             //
             String value = "" + table.getValueAt(selected_row, getColByName(table, colName));
             //
-            if (value.trim().equals("null")) {
+            if (value.trim().equals("null") || value.trim().equals("NULL")) {
                 return "";
             } else {
                 return value;
             }
             //
         } catch (Exception ex) {
-            return null;
+            return "";
         }
     }
 

@@ -98,7 +98,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "1";
+        return "2";
     }
 
     protected String getFakturaId() {
@@ -120,35 +120,42 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
-    
-    protected boolean isMakulerad(){
+
+    protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
         //
-        if(makulerad.equals(DB.STATIC__YES)){
+        if (makulerad.equals(DB.STATIC__YES)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    protected boolean isKreditFaktura(){
-       String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
-       if(fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
-           return true;
-       }else{
-           return false;
-       }
+
+    protected boolean isKreditFaktura() {
+        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        //
+        if (fakturaTyp == null) {
+            return false;
+        }
+        //
+        if (fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     /**
-     * OBS! Remember the "komment" field is used internally for different purposes.
-     * One of usages is to save the "krediterad" invoice number [2020-09-15]
-     * @return 
+     * OBS! Remember the "komment" field is used internally for different
+     * purposes. One of usages is to save the "krediterad" invoice number
+     * [2020-09-15]
+     *
+     * @return
      */
-    protected String getKomment_$(){
-       String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
-       return GP_BUH.getValNoNull(val);
+    protected String getKomment_$() {
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
+        return GP_BUH.getValNoNull(val);
     }
 
     protected String getSELECT_fakturaId() {
@@ -203,7 +210,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return map;
     }
-    
+
     protected static HashMap<String, String> getUPDATE_static(String whereColName, String whereValue, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -272,8 +279,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return "";
         }
     }
-    
-    public void setValueAllInvoicesJTable(String colName,String value){
+
+    public void setValueAllInvoicesJTable(String colName, String value) {
         HelpA.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
     }
 
@@ -295,15 +302,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTable_invoiceB_faktura_artiklar = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton15 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_edit_faktura = new javax.swing.JButton();
+        jButton_create_new_faktura = new javax.swing.JButton();
+        jButton_copy_faktura = new javax.swing.JButton();
         jButton_kredit_faktura = new javax.swing.JButton();
-        jButton4_copy_faktura = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        jButton_delete_faktura = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
         jLabel_btn_separator_1 = new javax.swing.JLabel();
-        jButton1_inbetalning = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton_inbetalning = new javax.swing.JButton();
+        jButton_show_actions = new javax.swing.JButton();
         jLabel_all_invoices_list = new javax.swing.JLabel();
         jLabel_all_invoices_list1 = new javax.swing.JLabel();
         jTextArea_faktura_komment = new JTextAreaJLink();
@@ -412,23 +419,32 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel4.add(jButton15);
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        jButton18.setToolTipText("Bearbeta faktura");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        jButton_edit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jButton_edit_faktura.setToolTipText("Bearbeta faktura");
+        jButton_edit_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                jButton_edit_fakturaActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton18);
+        jPanel4.add(jButton_edit_faktura);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
-        jButton3.setToolTipText("Skapa ny faktura");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_create_new_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton_create_new_faktura.setToolTipText("Skapa ny faktura");
+        jButton_create_new_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_create_new_fakturaActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3);
+        jPanel4.add(jButton_create_new_faktura);
+
+        jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_copy_faktura.setToolTipText("Kopiera faktura");
+        jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_copy_fakturaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton_copy_faktura);
 
         jButton_kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
         jButton_kredit_faktura.setToolTipText("Skapa kreditfaktura - välj först en faktura ur listan och tryck sedan på knappen");
@@ -439,23 +455,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel4.add(jButton_kredit_faktura);
 
-        jButton4_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
-        jButton4_copy_faktura.setToolTipText("Kopiera faktura");
-        jButton4_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
+        jButton_delete_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_delete_faktura.setToolTipText("Radera faktura");
+        jButton_delete_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4_copy_fakturaActionPerformed(evt);
+                jButton_delete_fakturaActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton4_copy_faktura);
-
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
-        jButton12.setToolTipText("Radera faktura");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton12);
+        jPanel4.add(jButton_delete_faktura);
 
         jButton_print_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButton_print_faktura.setToolTipText("Skriv ut faktura");
@@ -467,23 +474,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jButton_print_faktura);
         jPanel4.add(jLabel_btn_separator_1);
 
-        jButton1_inbetalning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
-        jButton1_inbetalning.setToolTipText("Registrera inbetalning");
-        jButton1_inbetalning.addActionListener(new java.awt.event.ActionListener() {
+        jButton_inbetalning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
+        jButton_inbetalning.setToolTipText("Registrera inbetalning");
+        jButton_inbetalning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1_inbetalningActionPerformed(evt);
+                jButton_inbetalningActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1_inbetalning);
+        jPanel4.add(jButton_inbetalning);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/event.png"))); // NOI18N
-        jButton2.setToolTipText("Se historia över skickade e-post och påminnelser");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_show_actions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/event.png"))); // NOI18N
+        jButton_show_actions.setToolTipText("Se historia över skickade e-post och påminnelser");
+        jButton_show_actions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_show_actionsActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2);
+        jPanel4.add(jButton_show_actions);
 
         jLabel_all_invoices_list.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_all_invoices_list.setForeground(new java.awt.Color(153, 153, 153));
@@ -1036,7 +1043,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void jButton_delete_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_fakturaActionPerformed
         //
         if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
             return;
@@ -1047,7 +1054,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
         invoiceB.deleteFaktura();
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_jButton_delete_fakturaActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         customersA.createNewFakturaKund();
@@ -1101,15 +1108,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     }//GEN-LAST:event_jButton_update_articleActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void jButton_edit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_edit_fakturaActionPerformed
         editFakturaBtnKlicked();
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_jButton_edit_fakturaActionPerformed
 
-    public void editFakturaBtnKlicked(){
+    public void editFakturaBtnKlicked() {
         HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
         fakturaTabClicked();
     }
-    
+
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         invoiceB.htmlFaktura_b();
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
@@ -1236,7 +1243,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-         if (GP_BUH.confirmWarning(LANG.MSG_5_1) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_5_1) == false) {
             return;
         }
         createNewFaktura();
@@ -1252,30 +1259,30 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
-    private void jButton1_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_inbetalningActionPerformed
+    private void jButton_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inbetalningActionPerformed
         EditPanel_Inbet epb = new EditPanel_Inbet(this, getFakturaId(), getFakturaNr(), getFakturaKund());
         epb.setVisible(true);
-    }//GEN-LAST:event_jButton1_inbetalningActionPerformed
+    }//GEN-LAST:event_jButton_inbetalningActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton_show_actionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_show_actionsActionPerformed
         EditPanel_Send eps = new EditPanel_Send(this, getFakturaId(), getFakturaNr(), getFakturaKund());
         eps.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton_show_actionsActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_create_new_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_fakturaActionPerformed
         HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
         createNewFaktura();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton_create_new_fakturaActionPerformed
 
     private void jButton4_save_faktura_kommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_save_faktura_kommentActionPerformed
         invoiceB.updateKomment(false);
     }//GEN-LAST:event_jButton4_save_faktura_kommentActionPerformed
 
-    private void jButton4_copy_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_copy_fakturaActionPerformed
+    private void jButton_copy_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_copy_fakturaActionPerformed
         copyFaktura(false);
-    }//GEN-LAST:event_jButton4_copy_fakturaActionPerformed
+    }//GEN-LAST:event_jButton_copy_fakturaActionPerformed
 
-    private void copyFaktura(boolean isKreditFaktura){
+    private void copyFaktura(boolean isKreditFaktura) {
         //
         if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
             return;
@@ -1283,9 +1290,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         String msg;
         //
-        if(isKreditFaktura){
+        if (isKreditFaktura) {
             msg = LANG.FAKTURA_KREDIT_MSG(getFakturaNr());
-        }else{
+        } else {
             msg = LANG.FAKTURA_COPY_MSG_A(getFakturaNr());
         }
         //
@@ -1296,7 +1303,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceB.copy(isKreditFaktura);
         //
     }
-    
+
     private void jButton4_delete_faktura_komment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_delete_faktura_komment1ActionPerformed
         //
         if (GP_BUH.confirmWarning(LANG.MSG_3_3) == false) {
@@ -1411,26 +1418,26 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton1_inbetalning;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4_copy_faktura;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
     protected javax.swing.JButton jButton_add_article;
     protected javax.swing.JButton jButton_confirm_insert_update;
+    private javax.swing.JButton jButton_copy_faktura;
+    private javax.swing.JButton jButton_create_new_faktura;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
+    private javax.swing.JButton jButton_delete_faktura;
+    private javax.swing.JButton jButton_edit_faktura;
+    private javax.swing.JButton jButton_inbetalning;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
+    private javax.swing.JButton jButton_show_actions;
     protected javax.swing.JButton jButton_update_article;
     protected javax.swing.JButton jButton_update_articles_row;
     protected javax.swing.JButton jButton_update_kund;
@@ -1493,8 +1500,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected static javax.swing.JTextField jTextField_total_inkl_moms;
     // End of variables declaration//GEN-END:variables
 
-    
-    private void mousePressedOnTab(MouseEvent me) {      
+    private void mousePressedOnTab(MouseEvent me) {
         //
         if (me.getSource() == jTabbedPane1) {
             //
@@ -1659,20 +1665,31 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
 
-    protected void hideShowButtonsDependingOnFakturaType(){
+    protected void hideShowButtonsDependingOnConditions() {
         //
-        if(isKreditFaktura()){
+        if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
+            jButton_edit_faktura.setEnabled(false);
+            jButton_copy_faktura.setEnabled(false);
             jButton_kredit_faktura.setEnabled(false);
-            jButton4_copy_faktura.setEnabled(false);
-            jButton1_inbetalning.setEnabled(false);
-        }else{
+            jButton_delete_faktura.setEnabled(false);
+            jButton_print_faktura.setEnabled(false);
+            jButton_inbetalning.setEnabled(false);
+            jButton_show_actions.setEnabled(false);
+            return;
+        }
+        //
+        if (isKreditFaktura()) {
+            jButton_kredit_faktura.setEnabled(false);
+            jButton_copy_faktura.setEnabled(false);
+            jButton_inbetalning.setEnabled(false);
+        } else {
             jButton_kredit_faktura.setEnabled(true);
-            jButton4_copy_faktura.setEnabled(true);
-            jButton1_inbetalning.setEnabled(true);
+            jButton_copy_faktura.setEnabled(true);
+            jButton_inbetalning.setEnabled(true);
         }
         //
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
@@ -1700,7 +1717,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (e.getSource() == jTable_invoiceB_alla_fakturor && cond_1) {
             //
-             Thread x = new Thread(() -> {
+            Thread x = new Thread(() -> {
                 jtable_InvoiceB_all_invoices_clicked();
             });
             //
@@ -1717,7 +1734,5 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
-    
 
 }

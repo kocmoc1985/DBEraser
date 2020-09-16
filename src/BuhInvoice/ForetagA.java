@@ -210,10 +210,6 @@ public class ForetagA extends CustomerAForetagA_ {
             //
             Validator.validateMaxInputLength(jli, 150);
             //
-        } else if (col_name.equals(DB.BUH_KUND__ORGNR) || col_name.equals(DB.BUH_KUND__VATNR)) {
-            //
-            Validator.validateMaxInputLength(jli, 30);
-            //
         } else if (col_name.equals(DB.BUH_KUND__BANK_GIRO) || col_name.equals(DB.BUH_KUND__POST_GIRO)) {
             //
             Validator.validateMaxInputLength(jli, 20);

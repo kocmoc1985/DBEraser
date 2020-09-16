@@ -344,9 +344,9 @@ public class ArticlesA extends Basic_Buh_ {
         //
         RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, "PRIS", "", false, true, false);
         //
-        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, false);
+//        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, false);
         //
-        RowDataInvert lager = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___LAGER, "LAGER", "", false, true, false);
+//        RowDataInvert lager = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___LAGER, "LAGER", "", false, true, false);
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT, "KOMMENT", "", true, true, false);
         //

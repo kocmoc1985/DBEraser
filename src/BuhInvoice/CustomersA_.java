@@ -442,6 +442,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
      *
      * @return
      */
+    @Override
     public RowDataInvert[] getConfigTableInvert_4() {
         //
         RowDataInvert addr_a = new RowDataInvertB("", DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);
