@@ -33,7 +33,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
 
     private static final String TABLE_SEND__ID = "ID";
     private static final String TABLE_SEND__FAKTURA_ID = "F ID";
-    private static final String TABLE_SEND__SEND_TYPE = "TYPE";
+    private static final String TABLE_SEND__SEND_TYPE = "TYP";
     private static final String TABLE_SEND__SEND_OK = "STATUS";
     private static final String TABLE_SEND__DATUM = "DATUM";
     private static final String TABLE_SEND__ANNAT = "KOMMENT";

@@ -37,12 +37,12 @@ public class DB {
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__JA_NEJ__EMPTY_NEJ = "-;0,Ja;1";
     //===
-    public static final String STATIC__SENT_STATUS = "Ej Skickad;0,Skickad;1,Ok;2";
-    public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1,Makulerad;2,Utskriven;3";
+    public static final String STATIC__SENT_STATUS = "Ej Skickad;0,Skickad;1,;2";
+    public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1,Makulerad;2,Utskriven;3,Kopierad;4";
     //
     public static final String STATIC__SENT_STATUS__EJ_SKICKAD = "0";
     public static final String STATIC__SENT_STATUS__SKICKAD = "1";
-    public static final String STATIC__SENT_STATUS__OK = "2";
+    public static final String STATIC__SENT_STATUS__OTHER = "2";
     public static final String STATIC__SENT_TYPE_FAKTURA = "0";
     public static final String STATIC__SENT_TYPE_PAMMINELSE = "1";
     public static final String STATIC__SENT_TYPE_MAKULERAD = "2";
