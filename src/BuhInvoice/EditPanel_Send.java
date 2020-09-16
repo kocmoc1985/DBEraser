@@ -111,7 +111,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
             map.get(DB.BUH_FAKTURA_SEND__ID), // hidden
             map.get(DB.BUH_FAKTURA_SEND__FAKTURA_ID), // hidden
             basic.getLongName(DB.STATIC__SEND_TYPES, map.get(DB.BUH_FAKTURA_SEND__SEND_TYPE)),
-            basic.getLongName(DB.STATIC__SKICKAD_EJ_SKICKAD, map.get(DB.BUH_FAKTURA_SEND__SEND_OK)),
+            basic.getLongName(DB.STATIC__SENT_STATUS, map.get(DB.BUH_FAKTURA_SEND__SEND_OK)),
             map.get(DB.BUH_FAKTURA_SEND__SEND_DATUM),
             map.get(DB.BUH_FAKTURA_SEND__ANNAT)
         };
@@ -157,23 +157,24 @@ public class EditPanel_Send extends EditPanel_Inbet {
     /**
      * Static because needed to be called from "outside"
      *
+     * 
+     * Status: Ej Skickad;0,Skickad;1,-;2
+     * Send_type: "Faktura;0,Påminnelse;1,Makulerad;2,Utskriven;3"
+     * 
      * @param fakturaId
      * @param status
+     * @param type
      * @param faktura
      */
-    protected static void insert(String fakturaId, boolean status, boolean faktura) {
+    protected static void insert(String fakturaId, String status, String type) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
         map.put(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId);
         //
-        if(status){
-            map.put(DB.BUH_FAKTURA_SEND__SEND_OK, "1"); // 0 is default
-        }
+        map.put(DB.BUH_FAKTURA_SEND__SEND_OK, status); // 0 is default
         //
-        if (faktura == false) { // faktura = false -> means a Påminnelse
-            map.put(DB.BUH_FAKTURA_SEND__SEND_TYPE, "1"); // 0 is default
-        }
+        map.put(DB.BUH_FAKTURA_SEND__SEND_TYPE, type); // 0 is default
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -186,6 +187,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         }
         //
     }
+    
     
     @Override
     protected void jButton1ActionPerformed(){
@@ -208,11 +210,15 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         JTable table = getJTable();
         //
-        String fakturaId = HelpA.getValueSelectedRow(table, TABLE_SEND__FAKTURA_ID);
+        String send_id = HelpA.getValueSelectedRow(table, TABLE_SEND__ID);
         //
-        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_SEND);
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_SEND__ID, send_id, DB.TABLE__BUH_FAKTURA_SEND);
         //
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
+        //
+        if(map.containsKey(DB.BUH_FAKTURA_SEND__ANNAT) == false){
+            map.put(DB.BUH_FAKTURA_SEND__ANNAT, ""); // This is for delete purpose
+        }
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
         //

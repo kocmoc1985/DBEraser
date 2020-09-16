@@ -677,7 +677,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        print_normal();
+        boolean print_ok = print_normal();
+        //
+        if(print_ok){
+            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__OK, DB.STATIC__SENT_TYPE_UTSKRIVEN);
+        }
+        //
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -740,13 +745,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 // [2020-09-08]
                 if (ok) {
                     //
-                    EditPanel_Send.insert(fakturaId, true, true); // "buh_faktura_send" table
+                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
+                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
                     //
                     Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
                     bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
                     //
                 } else {
-                    EditPanel_Send.insert(fakturaId, false, true);
+                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+                            DB.STATIC__SENT_TYPE_FAKTURA);
                 }
             }
         });
@@ -815,7 +822,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-    protected void print_normal() {
+    protected boolean print_normal() {
         //
         int actHeight = jEditorPane1.getHeight();
         //
@@ -850,10 +857,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             try {
                 pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
                 pj.print();
+                return true;
             } catch (PrinterException ex) {
                 Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
             }
         }
+        //
+        return false;
         //
     }
 
