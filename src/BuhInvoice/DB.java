@@ -25,6 +25,10 @@ public class DB {
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
+    
+    public static final String STATIC__YES = "Ja";
+    public static final String STATIC__NO = "Nej";
+    
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
     public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
     public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
@@ -42,9 +46,8 @@ public class DB {
 
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
-    public static final String STATIC_BET_STATUS_NEJ = "Nej";
     public static final String STATIC_BET_STATUS_KREDIT = "-";
-    public static final String STATIC__BETAL_STATUS = STATIC_BET_STATUS_NEJ + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
+    public static final String STATIC__BETAL_STATUS = STATIC__NO + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //
     public static final String STATIC__KUND_AND_ARTICLE__KATEGORI = "A,B,C,D,E,F,G";
     //

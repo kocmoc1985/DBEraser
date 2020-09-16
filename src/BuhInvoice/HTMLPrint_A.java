@@ -38,6 +38,7 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint_A extends javax.swing.JFrame {
 
+    private final BUH_INVOICE_MAIN bim;
     private final ArrayList<HashMap<String, String>> articles_map_list;
     private final HashMap<String, String> map_a_0;
     private final HashMap<String, String> map_a;
@@ -55,6 +56,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint_A(
+            BUH_INVOICE_MAIN bim,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -74,6 +76,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         this.articles_map_list = articles_map_list;
         //
+        this.bim = bim;
         this.map_a_0 = map_a_0;
         this.map_a = map_a;
         this.map_b = map_b;
@@ -699,6 +702,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             EditPanel_Send.insert(fakturaId,true, true); // "buh_faktura_send" table
             //
             Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+            bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
             //
         }else{
             EditPanel_Send.insert(fakturaId,false, true);
@@ -900,7 +904,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null,null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }

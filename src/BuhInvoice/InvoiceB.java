@@ -685,6 +685,7 @@ public class InvoiceB extends Basic {
             @Override
             public void run() {
                 HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
+                        bim,
                         bim.getArticlesActualInvoice(),
                         map_a_0,
                         map_a,

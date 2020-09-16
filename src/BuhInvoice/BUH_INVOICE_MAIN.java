@@ -258,6 +258,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return "";
         }
     }
+    
+    public void setValueAllInvoicesJTable(String colName,String value){
+        HelpA.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
