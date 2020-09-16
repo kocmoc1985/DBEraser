@@ -121,6 +121,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
     
+    protected boolean isMakulerad(){
+        //
+        String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
+        //
+        if(makulerad.equals(DB.STATIC__YES)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     protected boolean isKreditFaktura(){
        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
        if(fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){

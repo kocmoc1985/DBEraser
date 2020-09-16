@@ -47,7 +47,6 @@ public class InvoiceA_Update extends Invoice {
         this.faktura_entry_update.addArticleForJTable(table);
         //
     }
-    
 
     @Override
     protected void addArticleForDB() {
@@ -62,16 +61,14 @@ public class InvoiceA_Update extends Invoice {
         //
     }
 
-   
-    
     protected void updateArticle() {
         //
         faktura_entry_update.updateArticle();
         //
     }
-    
-    protected void deleteFakturaArtikel(){
-         //
+
+    protected void deleteFakturaArtikel() {
+        //
         if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
             return;
         }
@@ -89,13 +86,11 @@ public class InvoiceA_Update extends Invoice {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        HelpA.removeRowJTable(table,selectedRow);
+        HelpA.removeRowJTable(table, selectedRow);
         //
         executeDelete(json);
         //
     }
-
-    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -167,14 +162,12 @@ public class InvoiceA_Update extends Invoice {
         return rows;
     }
 
-    
-    
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        if(articlesJTableRowSelected()){
+        if (articlesJTableRowSelected()) {
             return getConfigTableInvert_edit_articles();
-        }else{
+        } else {
             return getConfigTableInvert_insert();
         }
         //
@@ -217,9 +210,10 @@ public class InvoiceA_Update extends Invoice {
         String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
         RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, "FRAKT", "", false, true, false);
         //
-        String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD)
-        );
+        String valSelectedRow = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
+        String valSelectedRow_translated = GP_BUH.translateJaNejEmptyLineChar(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
+        //
+        String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
         //
 //        String fixedComboValues_b = "Nej;0,Ja;1"; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", false, true, false);

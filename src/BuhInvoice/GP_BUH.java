@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -32,6 +33,11 @@ public class GP_BUH {
 
     public static String replaceColon(String text){
         return text.replaceAll(":", "#");
+    }
+    
+    public static String translateJaNejEmptyLineChar(String staticJaNej,String value){
+         HashMap<String,String>map = JSon.JSONToHashMap(staticJaNej, false);
+         return getValNoNull(map.get(value));
     }
     
     public static String getValNoNull(String value) {

@@ -129,7 +129,6 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
             TABLE_ALL_INVOICES__EXP_AVG,
-            TABLE_ALL_INVOICES__MAKULERAD,
             //
             TABLE_ALL_INVOICES__FAKTURANR,
             TABLE_ALL_INVOICES__FAKTURA_TYP,
@@ -140,6 +139,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__TOTAL_INKL_MOMS,
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
+            TABLE_ALL_INVOICES__MAKULERAD,
             TABLE_ALL_INVOICES__BETALD,
             TABLE_ALL_INVOICES__EPOST_SENT,
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
@@ -275,7 +275,7 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
             //
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
@@ -306,10 +306,8 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__MOMS_SATS),
             map.get(DB.BUH_FAKTURA__FRAKT),
             map.get(DB.BUH_FAKTURA__EXP_AVG),
-            map.get(DB.BUH_FAKTURA__MAKULERAD),
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
-            //            map.get(DB.BUH_FAKTURA__FAKTURATYP),
             getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
             map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
@@ -318,6 +316,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__TOTAL__),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
+            getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__MAKULERAD)),
             getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
             getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__SENT)),
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),

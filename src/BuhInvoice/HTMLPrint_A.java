@@ -697,9 +697,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
+        String fakturaFileName =  "faktura_" + bim.getKundId() + ".pdf";
+        //
         print_upload_sendmail__thr(
                 "uploads/",
-                "faktura.pdf",
+                fakturaFileName,
                 faktura_kund_email,
                 ftg_name
         );
@@ -774,8 +776,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         boolean upload_success = false;
         //
         try {
-            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
-            displayStatus("Faktura uppladdad",null);
+           upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
