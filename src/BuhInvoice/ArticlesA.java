@@ -32,9 +32,9 @@ public class ArticlesA extends Basic_Buh_ {
     protected Table TABLE_INVERT_2;
     private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
     private static final String TABLE_ARTICLES__KUND_ID = "KUND ID";
-    private static final String TABLE_ARTICLES__LAGER = "LAGER";
+//    private static final String TABLE_ARTICLES__LAGER = "LAGER";
     private static final String TABLE_ARTICLES__PRIS = "PRIS";
-    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
+//    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
     private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
@@ -116,8 +116,8 @@ public class ArticlesA extends Basic_Buh_ {
             TABLE_ARTICLES__KUND_ID,
             TABLE_ARTICLES__NAMN,
             TABLE_ARTICLES__PRIS,
-            TABLE_ARTICLES__INKOPS_PRIS,
-            TABLE_ARTICLES__LAGER,
+//            TABLE_ARTICLES__INKOPS_PRIS,
+//            TABLE_ARTICLES__LAGER,
             TABLE_ARTICLES__KOMMENT,
             TABLE_ARTICLES__KATEGORI
         };
@@ -210,7 +210,7 @@ public class ArticlesA extends Basic_Buh_ {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
-            HelpA.hideColumnByName(table, TABLE_ARTICLES__LAGER);
+//            HelpA.hideColumnByName(table, TABLE_ARTICLES__LAGER);
         }
         //
     }
@@ -222,8 +222,8 @@ public class ArticlesA extends Basic_Buh_ {
             map.get(DB.BUH_FAKTURA_ARTIKEL___KUND_ID), // hidden
             map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN),
             map.get(DB.BUH_FAKTURA_ARTIKEL___PRIS),
-            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
-            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
+//            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
+//            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI)
         };
@@ -382,11 +382,11 @@ public class ArticlesA extends Basic_Buh_ {
         String pris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_ARTICLES__PRIS, "", true, true, false);
         //
-        String inkopspris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__INKOPS_PRIS);
-        RowDataInvert inkopspris = new RowDataInvertB(inkopspris_, DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, TABLE_ARTICLES__INKOPS_PRIS, "", true, true, false);
+//        String inkopspris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__INKOPS_PRIS);
+//        RowDataInvert inkopspris = new RowDataInvertB(inkopspris_, DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, TABLE_ARTICLES__INKOPS_PRIS, "", true, true, false);
         //
-        String lager_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__LAGER);
-        RowDataInvert lager = new RowDataInvertB(lager_, DB.BUH_FAKTURA_ARTIKEL___LAGER, TABLE_ARTICLES__LAGER, "", true, true, false);
+//        String lager_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__LAGER);
+//        RowDataInvert lager = new RowDataInvertB(lager_, DB.BUH_FAKTURA_ARTIKEL___LAGER, TABLE_ARTICLES__LAGER, "", true, true, false);
         //
         String komment_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT, "", true, true, false);
