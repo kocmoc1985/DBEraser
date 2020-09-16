@@ -9,6 +9,7 @@ import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.GP;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -651,8 +652,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -696,26 +697,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
-        boolean ok = print_upload_sendmail(
+        print_upload_sendmail__thr(
                 "uploads/",
                 "faktura.pdf",
                 faktura_kund_email,
                 ftg_name
         );
         //
-        String fakturaId = map_a_0.get(DB.BUH_FAKTURA__ID__);
-        // 
-        // [2020-09-08]
-        if (ok) {
-            //
-            EditPanel_Send.insert(fakturaId,true, true); // "buh_faktura_send" table
-            //
-            Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
-            bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
-            //
-        }else{
-            EditPanel_Send.insert(fakturaId,false, true);
-        }
+
         //
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -726,12 +715,44 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public static void displayStatus(String msg){
+    public static void displayStatus(String msg, Color c) {
+        //
+        if (c != null) {
+            jLabel_status.setForeground(c);
+        } 
         //
         jLabel_status.setText(msg);
         //
     }
-    
+
+    private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
+        Thread x = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //
+                //
+                boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
+                //
+                String fakturaId = map_a_0.get(DB.BUH_FAKTURA__ID__);
+                // 
+                // [2020-09-08]
+                if (ok) {
+                    //
+                    EditPanel_Send.insert(fakturaId, true, true); // "buh_faktura_send" table
+                    //
+                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+                    //
+                } else {
+                    EditPanel_Send.insert(fakturaId, false, true);
+                }
+            }
+        });
+        //
+        x.start();
+        //
+    }
+
     /**
      * [2020-09-03]
      *
@@ -742,17 +763,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
+        displayStatus("Skapar PDF faktura",null);
+        //
         print_java(fileName);
         //
-        System.out.println("Print pdf complete");
-        displayStatus("Faktura .pdf file created");
+//        System.out.println("Print pdf complete");
+        displayStatus("Laddar upp faktura",null);
         //
         //
         boolean upload_success = false;
         //
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
-            displayStatus("Faktura uploaded");
+            displayStatus("Faktura uppladdad",null);
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -761,7 +784,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        System.out.println("Upload to PHP: " + upload_success);
+//        System.out.println("Upload to PHP: " + upload_success);
         //
         //
         Boolean email_sending_ok = false;
@@ -782,10 +805,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (upload_success && email_sending_ok) {
             System.out.println("Email sending: " + email_sending_ok);
-            displayStatus("Faktura skickad");
+            displayStatus("Faktura skickad!", null);
             return true;
         } else {
-            displayStatus("Faktura ej skickad");
+            displayStatus("Faktura ej skickad",Color.red);
             return false;
         }
         //
@@ -923,7 +946,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null,null, null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }

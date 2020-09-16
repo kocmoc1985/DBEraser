@@ -1202,14 +1202,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
                 invoiceB.refresh();
-                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
         } else {
             if (invoiceA_update.fieldsValidated(false)) {
                 invoiceA_update.insertOrUpdate();
-                invoiceB.refresh();
+                invoiceB.refresh_c(getFakturaNr());
             }
         }
+        //
+        HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 

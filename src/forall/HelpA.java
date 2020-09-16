@@ -1628,6 +1628,11 @@ public class HelpA {
         int rowToMove = getRowByValue(table, colName, rowValue);
         dtm.moveRow(rowToMove, rowToMove, rowToMoveTo);
     }
+    
+    public static void markRowByValue(JTable table, String colName,String colValue){
+        int row = getRowByValue(table, colName, colValue);
+        setSelectedRow(table, row);
+    }
 
     public static void selectNextRow(JTable table) {
         try {
@@ -1654,6 +1659,8 @@ public class HelpA {
     public static void markLastRowJtable(JTable table) {
         markGivenRow(table, table.getRowCount() - 1);
     }
+    
+    
 
     public static void markGivenRow(JTable table, int row) {
         try {

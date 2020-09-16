@@ -100,6 +100,13 @@ public class InvoiceB extends Basic {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
+    
+    protected void refresh_c(String fakturaNr) {
+        fillFakturaTable();
+        HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+        String fakturaId = bim.getFakturaId();
+        all_invoices_table_clicked(fakturaId);
+    }
 
     private void fillJTableheader() {
         //
