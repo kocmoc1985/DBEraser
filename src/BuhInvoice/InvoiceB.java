@@ -172,6 +172,7 @@ public class InvoiceB extends Basic {
         //
         showImportantKomment();
         //
+        bim.hideShowButtonsDependingOnFakturaType();
     }
 
     private void showImportantKomment() {

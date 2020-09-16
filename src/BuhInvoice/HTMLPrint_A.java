@@ -600,6 +600,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -637,22 +638,30 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3);
 
+        jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -717,6 +726,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    public static void displayStatus(String msg){
+        //
+        jLabel_status.setText(msg);
+        //
+    }
+    
     /**
      * [2020-09-03]
      *
@@ -730,12 +745,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         print_java(fileName);
         //
         System.out.println("Print pdf complete");
+        displayStatus("Faktura .pdf file created");
         //
         //
         boolean upload_success = false;
         //
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
+            displayStatus("Faktura uploaded");
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -765,8 +782,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (upload_success && email_sending_ok) {
             System.out.println("Email sending: " + email_sending_ok);
+            displayStatus("Faktura skickad");
             return true;
         } else {
+            displayStatus("Faktura ej skickad");
             return false;
         }
         //
@@ -915,6 +934,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1_separator;
+    protected static javax.swing.JLabel jLabel_status;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;

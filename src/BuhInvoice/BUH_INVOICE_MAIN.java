@@ -21,6 +21,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,13 +40,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
-    private final static String TAB_INVOICES_OVERVIEW = "FAKTUROR";
+    public final static String TAB_INVOICES_OVERVIEW = "ALLA FAKTUROR";
     private final static String TAB_FAKTURA = "FAKTURA";
     public final static String TAB_KUDNER = "KUNDER";
     private final static String TAB_ARTIKLAR = "ARTIKLAR";
     private final static String TAB_FTG_SETUP = "FÖRETAGS INSTÄLLNINGAR";
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
+    //
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -1199,6 +1202,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
                 invoiceB.refresh();
+                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
         } else {
             if (invoiceA_update.fieldsValidated(false)) {
@@ -1477,7 +1481,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected static javax.swing.JTextField jTextField_total_inkl_moms;
     // End of variables declaration//GEN-END:variables
 
-    private void mousePressedOnTab(MouseEvent me) {
+    
+    private void mousePressedOnTab(MouseEvent me) {      
         //
         if (me.getSource() == jTabbedPane1) {
             //
@@ -1636,15 +1641,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected void jtable_InvoiceB_all_invoices_clicked() {
         //
-        hideShowButtonsDependingOnFakturaType();
-        //
         String fakturaId = getFakturaId();
         //
         invoiceB.all_invoices_table_clicked(fakturaId);
         //
     }
 
-    private void hideShowButtonsDependingOnFakturaType(){
+    protected void hideShowButtonsDependingOnFakturaType(){
         //
         if(isKreditFaktura()){
             jButton_kredit_faktura.setEnabled(false);
@@ -1702,5 +1705,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
+
+    
 
 }
