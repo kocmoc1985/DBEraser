@@ -367,7 +367,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         jLabel_fakturanr_value = new javax.swing.JLabel();
         jLabel_kund_value = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButton1_commit = new javax.swing.JButton();
         jButton2_delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -400,14 +400,14 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
 
         jPanel3.setLayout(new java.awt.GridLayout(1, 2));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton1.setToolTipText("Registrera inbetalning");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1_commit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton1_commit.setToolTipText("Registrera inbetalning");
+        jButton1_commit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton1_commitActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1);
+        jPanel3.add(jButton1_commit);
 
         jButton2_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
         jButton2_delete.setToolTipText("Radera Inbetalning");
@@ -450,9 +450,9 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1_commitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_commitActionPerformed
         jButton1ActionPerformed();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton1_commitActionPerformed
 
     protected void jButton1ActionPerformed() {
         if (basic.fieldsValidated(true)) {
@@ -511,7 +511,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    protected javax.swing.JButton jButton1_commit;
     protected javax.swing.JButton jButton2_delete;
     private javax.swing.JLabel jLabel_fakturanr_value;
     private javax.swing.JLabel jLabel_kund_value;
