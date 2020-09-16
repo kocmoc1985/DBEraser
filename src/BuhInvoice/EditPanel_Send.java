@@ -316,7 +316,9 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 send_ok.setDontAquireTableInvertToHashMap();
                 datum.setDontAquireTableInvertToHashMap();
                 //
-                komment.enableToolTipTextJTextField();
+                if(komment_.isEmpty() == false){
+                   komment.enableToolTipTextJTextField(); 
+                }
                 //
                 RowDataInvert[] rows = {
                     send_type,
@@ -352,7 +354,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 //
                if (col_name.equals(DB.BUH_FAKTURA_SEND__ANNAT)) {
                     //
-                    Validator.validateMaxInputLength(jli, 5);
+                    Validator.validateMaxInputLength(jli, 50);
                     //
                 }
             }

@@ -50,6 +50,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
             articlesToHttpDB(articlesList);
             //
+            EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+            //
         } else {
             //
             HelpA.showNotification(LANG.MSG_ERROR_1);

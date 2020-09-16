@@ -41,7 +41,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     //
     private static final String TABLE_INBET__ID = "ID";
     private static final String TABLE_INBET__FAKTURA_ID = "F ID";
-    private static final String TABLE_INBET__INBETALD = "AKTUELL INBETALNING";
+    private static final String TABLE_INBET__INBETALD = "INBETALNING";
     private static final String TABLE_INBET__INBET_METOD = "BETALMETOD";
     private static final String TABLE_INBET__ANNAT = "KOMMENT";
     private static final String TABLE_INBET__DATUM = "DATUM";

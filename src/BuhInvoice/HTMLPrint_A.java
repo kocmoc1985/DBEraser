@@ -680,7 +680,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         boolean print_ok = print_normal();
         //
         if(print_ok){
-            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__OTHER, DB.STATIC__SENT_TYPE_UTSKRIVEN);
+            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
         }
         //
     }//GEN-LAST:event_jButton1ActionPerformed

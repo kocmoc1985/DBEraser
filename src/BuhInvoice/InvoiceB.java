@@ -517,10 +517,15 @@ public class InvoiceB extends Basic {
             String newFakturaNr = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURANR__);
             //
             //
-            if (isKreditFaktura == false && ok) {
+            if (isKreditFaktura == false && ok) { // COPY
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
+                //
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                //
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                //
                 refresh();
-            } else if(isKreditFaktura && ok) {
+            } else if(isKreditFaktura && ok) { // KREDIT FAKTURA
                 refresh();
                 bim.editFakturaBtnKlicked();
             }
