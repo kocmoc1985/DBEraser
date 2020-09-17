@@ -28,6 +28,11 @@ public class LANG {
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
     public static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
+    
+    public static String MSG_10 = "Skapar PDF faktura";
+    public static String MSG_10_1 = "Laddar upp faktura";
+    public static String MSG_10_2 = "Faktura skickad!";
+    public static String MSG_10_3 = "Faktura ej skickad!";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
@@ -36,6 +41,8 @@ public class LANG {
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
+    
+    
     
     public static String LBL_MSG_2_3(String fakturaCopy) {
         return "KREDITERAR FAKTURA: " + fakturaCopy;

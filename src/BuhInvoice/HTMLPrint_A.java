@@ -772,12 +772,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
-        displayStatus("Skapar PDF faktura",null);
+        displayStatus(LANG.MSG_10,null);
         //
         print_java(fileName);
         //
 //        System.out.println("Print pdf complete");
-        displayStatus("Laddar upp faktura",null);
+        displayStatus(LANG.MSG_10_1,null);
         //
         //
         boolean upload_success = false;
@@ -802,7 +802,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         if (upload_success) {
             //
             email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                    "BuhInvoice", // This one is shown as name instead of the email it's self
+                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
                     sendToEmail,
                     "Faktura",
                     body,
@@ -813,10 +813,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (upload_success && email_sending_ok) {
             System.out.println("Email sending: " + email_sending_ok);
-            displayStatus("Faktura skickad!", null);
+            displayStatus(LANG.MSG_10_2, null);
             return true;
         } else {
-            displayStatus("Faktura ej skickad",Color.red);
+            displayStatus(LANG.MSG_10_3,Color.red);
             return false;
         }
         //
