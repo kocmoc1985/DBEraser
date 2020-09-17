@@ -190,6 +190,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
     public static final String T__ARTIKEL_ANTAL = "Antal";
     public static final String T__ARTIKEL_ENHET = "Enhet";
+    public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
     public static final String T__FTG_TELEFON = "Telefon"; // Innehar F-skattebevis
@@ -439,6 +440,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         html_ += "<td>" + T__ARTIKEL_KOMMENT + "</td>";
         html_ += "<td>" + T__ARTIKEL_ANTAL + "</td>";
         html_ += "<td>" + T__ARTIKEL_ENHET + "</td>";
+        html_ += "<td>" + T__ARTIKEL_RABATT + "</td>";
         html_ += "<td>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
@@ -452,6 +454,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
             html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
             html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
             html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";
@@ -598,7 +601,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton_send_faktura_email = new javax.swing.JButton();
         jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
@@ -614,6 +617,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
+        jButton1.setToolTipText("Skriv ut faktura");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -621,13 +625,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
+        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post");
+        jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_send_faktura_emailActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanel1.add(jButton_send_faktura_email);
         jPanel1.add(jLabel1_separator);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
@@ -685,7 +690,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
         String faktura_kund_email = _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
         String ftg_name = _get(map_f, DB.BUH_KUND__NAMN);
@@ -713,7 +718,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
 
         //
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
@@ -965,8 +970,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_send_faktura_email;
     protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1_separator;
     protected static javax.swing.JLabel jLabel_status;

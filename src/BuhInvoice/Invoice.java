@@ -25,9 +25,7 @@ import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import java.awt.Color;
 import java.awt.Component;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -46,6 +44,7 @@ public abstract class Invoice extends Basic_Buh_ {
     //
     private static double FAKTURA_TOTAL_EXKL_MOMS = 0;
     private static double FAKTURA_TOTAL = 0;
+    private static double RABATT_TOTAL = 0;
     private static double MOMS_TOTAL = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;

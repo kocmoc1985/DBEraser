@@ -21,8 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -98,7 +96,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "2";
+        return "1";
     }
 
     protected String getFakturaId() {
