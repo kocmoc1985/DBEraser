@@ -169,7 +169,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     //
     public static final String T__FAKTURA_VAR_REF = "Vår referens";
     public static final String T__FAKTURA_BETAL_VILKOR = "Betalningvilkor";
-    public static final String T__FAKTURA_FORFALLODATUM = "Förfallodatum";
+    public static final String T__FAKTURA_FORFALLODATUM = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
@@ -201,7 +201,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FTG_BANKGIRO = "Bankgiro";
     public static final String T__FTG_ORGNR = "Organisationsnr";
     public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
-    public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
+    public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     /**
      * Use this one when, getting the image from the "inside project / .jar
@@ -280,7 +280,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //            return val;
 //        }
 //    }
-
     private String _get_longname(HashMap<String, String> map, String param, String statics) {
         //
         String val = map.get(param);
@@ -349,7 +348,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
 
         String[] values_a = new String[]{_get(map_e_2__lev_data, COL_0), _get(map_e, COL_1), _get(map_e, COL_2) + " " + _get(map_e, COL_3)};
-        String[] values_b = new String[]{_get(map_e_2__lev_data, COL_0), _get(map_e, COL_1), _get(map_e, COL_2) + " " + _get(map_e, COL_3)};
+        String[] values_b = new String[]{
+            T__FAKTURA_FORFALLODATUM + ": " + map_c.get(T__FAKTURA_FORFALLODATUM),
+            T__FAKTURA_BETAL_VILKOR + ": " + map_c.get(T__FAKTURA_BETAL_VILKOR),
+            T__FAKTURA_DROJMALSRANTA + ": " + map_c.get(T__FAKTURA_DROJMALSRANTA)
+            };
         //
         html_ += "<tr>"
                 //
@@ -372,11 +375,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT, T__FAKTURA_ERT_VAT_NR};
-        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR), map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT), map_b.get(T__FAKTURA_ERT_VAT_NR)};
+        String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF,T__FAKTURA_VAR_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT};
+        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF),map_c.get(T__FAKTURA_VAR_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR), map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT)};
         //
-        String[] headers_t_2 = new String[]{T__FAKTURA_VAR_REF, T__FAKTURA_BETAL_VILKOR, T__FAKTURA_FORFALLODATUM, T__FAKTURA_DROJMALSRANTA, T__FAKTURA_XXXXXXX};
-        String[] values_t_2 = new String[]{map_c.get(T__FAKTURA_VAR_REF), map_c.get(T__FAKTURA_BETAL_VILKOR), map_c.get(T__FAKTURA_FORFALLODATUM), map_c.get(T__FAKTURA_DROJMALSRANTA), map_c.get(T__FAKTURA_XXXXXXX)};
+        String[] headers_t_2 = new String[]{};
+        String[] values_t_2 = new String[]{};
         //
         html_ += "<tr>"
                 //
@@ -385,7 +388,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + "</td>"
                 //
                 + "<td>"
-                + internal_table_xr_2c(headers_t_2, values_t_2)
+//                + internal_table_xr_2c(headers_t_2, values_t_2)
                 + "</td>"
                 //
                 + "</tr>";
@@ -400,7 +403,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_ATT_BETALA};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR),map_d.get(T__FAKTURA_RABATT_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
         //
         html_ += internal_table_2r_xc(headers, values, 6, "");
         //
@@ -687,7 +690,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean print_ok = print_normal();
         //
-        if(print_ok){
+        if (print_ok) {
             EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
         }
         //
@@ -710,7 +713,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
-        String fakturaFileName =  "faktura_" + bim.getKundId() + ".pdf";
+        String fakturaFileName = "faktura_" + bim.getKundId() + ".pdf";
         //
         print_upload_sendmail__thr(
                 "uploads/",
@@ -734,7 +737,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (c != null) {
             jLabel_status.setForeground(c);
-        } 
+        }
         //
         jLabel_status.setText(msg);
         //
@@ -780,18 +783,18 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
-        displayStatus(LANG.MSG_10,null);
+        displayStatus(LANG.MSG_10, null);
         //
         print_java(fileName);
         //
 //        System.out.println("Print pdf complete");
-        displayStatus(LANG.MSG_10_1,null);
+        displayStatus(LANG.MSG_10_1, null);
         //
         //
         boolean upload_success = false;
         //
         try {
-           upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
+            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -824,7 +827,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             displayStatus(LANG.MSG_10_2, null);
             return true;
         } else {
-            displayStatus(LANG.MSG_10_3,Color.red);
+            displayStatus(LANG.MSG_10_3, Color.red);
             return false;
         }
         //
