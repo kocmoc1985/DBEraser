@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.GP;
@@ -180,8 +181,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
     public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; //Leveransadress
     //
-    public static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
-    public static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
+    private static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
+    private static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
+    public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
     public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
     public static final String COL_3 = DB.BUH_ADDR__ORT;
@@ -268,16 +270,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-    private String _get(HashMap<String, String> map, String param) {
-        //
-        String val = map.get(param);
-        //
-        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
-            return "";
-        } else {
-            return val;
-        }
-    }
+//    private String _get(HashMap<String, String> map, String param) {
+//        //
+//        String val = map.get(param);
+//        //
+//        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+//            return "";
+//        } else {
+//            return val;
+//        }
+//    }
 
     private String _get_longname(HashMap<String, String> map, String param, String statics) {
         //
@@ -346,17 +348,17 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<table class='marginTop'>";
         //
 
-        String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
-        String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
+        String[] values_a = new String[]{_get(map_e_2__lev_data, COL_0), _get(map_e, COL_1), _get(map_e, COL_2) + " " + _get(map_e, COL_3)};
+        String[] values_b = new String[]{_get(map_e_2__lev_data, COL_0), _get(map_e, COL_1), _get(map_e, COL_2) + " " + _get(map_e, COL_3)};
         //
         html_ += "<tr>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(5, values_a, true)
+                + internal_table_x_r_1c(3, values_a, true)
                 + "</td>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(5, values_b, true)
+                + internal_table_x_r_1c(3, values_b, true)
                 + "</td>"
                 //
                 + "</tr>";

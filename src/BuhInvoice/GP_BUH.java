@@ -61,6 +61,17 @@ public class GP_BUH {
             return value;
         }
     }
+    
+    public static String _get(HashMap<String, String> map, String param) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return val;
+        }
+    }
 
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));

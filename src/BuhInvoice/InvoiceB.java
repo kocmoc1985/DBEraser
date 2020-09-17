@@ -477,16 +477,7 @@ public class InvoiceB extends Basic {
         return HelpA.getValueSelectedRow(table, colNameJTable);
     }
     
-    private String _get(HashMap<String, String> map, String param) {
-        //
-        String val = map.get(param);
-        //
-        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
-            return "";
-        } else {
-            return val;
-        }
-    }
+   
 
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -703,7 +694,7 @@ public class InvoiceB extends Basic {
         map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, _get(TABLE_ALL_INVOICES__ERT_ORDER)); //**************************EMPTY
         map_b.put(HTMLPrint_A.T__FAKTURA_LEV_VILKOR, _get(TABLE_ALL_INVOICES__LEV_VILKOR));
         map_b.put(HTMLPrint_A.T__FAKTURA_LEV_SATT, _get(TABLE_ALL_INVOICES__LEV_SATT));
-        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_VAT_NR, _get(map_e__lev_data, DB.BUH_FAKTURA_KUND___VATNR)); //**************************EMPTY
+        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_VAT_NR, GP_BUH._get(map_e__lev_data, DB.BUH_FAKTURA_KUND___VATNR)); //**************************EMPTY
         //
         map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, _get(TABLE_ALL_INVOICES__VAR_REF));
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR, _get(TABLE_ALL_INVOICES__BET_VILKOR));
