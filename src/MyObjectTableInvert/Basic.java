@@ -201,8 +201,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                     val = columnValue.getValue(jcomboParamToReturn);
                 }
                 //
-//                val = val.replaceAll(":", "#");
-                val = GP_BUH.replaceColon(val); // replace ":" with "#"
+                val = GP_BUH.replaceColon(val,false); // replace ":" with "#"
+                val = GP_BUH.replaceComma(val,false); // replace "," with "¤"
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting

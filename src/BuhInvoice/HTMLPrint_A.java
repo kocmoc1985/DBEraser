@@ -177,6 +177,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
+    public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
     public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; //Leveransadress
     //
     public static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
@@ -396,8 +397,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_ATT_BETALA};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
+        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_ATT_BETALA};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR),map_d.get(T__FAKTURA_RABATT_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
         //
         html_ += internal_table_2r_xc(headers, values, 6, "");
         //

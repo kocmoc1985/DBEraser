@@ -44,7 +44,7 @@ public class InvoiceB extends Basic {
     //
     public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
     public static String TABLE_ALL_INVOICES__TOTAL_INKL_MOMS = "TOTAL";
-    public static String TABLE_ALL_INVOICES__RABATT_TOTAL = "RABATT";
+    public static String TABLE_ALL_INVOICES__RABATT_TOTAL_KR = "RABATT";
     public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
     public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
@@ -138,7 +138,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__FORFALLODATUM,
             TABLE_ALL_INVOICES__EXKL_MOMS,
             TABLE_ALL_INVOICES__TOTAL_INKL_MOMS,
-            TABLE_ALL_INVOICES__RABATT_TOTAL,
+            TABLE_ALL_INVOICES__RABATT_TOTAL_KR,
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__MAKULERAD,
@@ -216,7 +216,7 @@ public class InvoiceB extends Basic {
             jtxt.setText("");
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
-            important_komment = GP_BUH.replaceColon(important_komment);
+            important_komment = GP_BUH.replaceColon(important_komment,false);
         }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -279,7 +279,7 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL_KR);
             //
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
@@ -705,9 +705,9 @@ public class InvoiceB extends Basic {
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
+        map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
         map_d.put(HTMLPrint_A.T__FAKTURA_ATT_BETALA, _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         //
-
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

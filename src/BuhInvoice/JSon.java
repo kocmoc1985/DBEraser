@@ -190,19 +190,14 @@ public class JSon {
             String[] jsonObj = entry.split(";");
             String key = jsonObj[0];
             //
-//            if (keyIsInteger(key)) {
-////                System.out.println("Continue");
-//                continue;
-//            }
-            //
             String value;
             //
             if (jsonObj.length == 1) {
-//                System.out.println("key, emptie value=" + key);
                 value = null;
             } else {
                 value = jsonObj[valueIndex];
-                value = value.replaceFirst("#", ":");
+                value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
+                value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
             }
             //
             if (reverse) {

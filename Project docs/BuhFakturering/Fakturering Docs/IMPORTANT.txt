@@ -1,10 +1,13 @@
-[SEMI COLON SEND JSON][2020-08-25]
+[SEMI COLON SEND JSON][2020-08-25][2020-09-17]
 
-It's a problem when you have to send ":" (semicolon) as json to php.
+It's a problem when you have to send ":" (semicolon) as json to php. -> This fails because of URL "specialities"
+It's also a problem sending "," (comma) as json to php.
+
+Note: sending ";" is NOT a problem!
 
 So have a look at:
-1. Basic ->  "tableInvertToHashMap(...)" -> look for: "val = val.replaceAll(":", "#");"
-2. JSon -> "JSONToHashMap(...)" -> look for: "value = value.replaceFirst("#", ":");"
+1. Basic ->  "tableInvertToHashMap(...)" -> look for: "val = val = GP_BUH.replaceColon(val,false);" -> replacing ":" with "#"
+2. JSon -> "JSONToHashMap(...)" -> look for: "value = GP_BUH.replaceColon(val,true);" -> reverse replacing "#" with ":"
 
 OBS! Nothing on PHP side, 1000% SURE!
 ________________________________________________________________________________________________________

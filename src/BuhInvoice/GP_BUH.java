@@ -32,8 +32,21 @@ public class GP_BUH {
     public static final String PRODUCT_NAME = "BuhInvoice";
     public static boolean CUSTOMER_MODE = true;
 
-    public static String replaceColon(String text){
-        return text.replaceAll(":", "#");
+    public static String replaceColon(String text,boolean reverse){
+        if(reverse == false){
+            return text.replaceAll(":", "#");
+        }else{
+            return text.replaceAll("#", ":");
+        }
+        
+    }
+    
+    public static String replaceComma(String text, boolean reverse){
+        if(reverse == false){
+          return text.replaceAll(",", "¤");  
+        }else{
+          return text.replaceAll("¤", ",");  
+        }
     }
     
     public static String translateJaNejEmptyLineChar(String staticJaNej,String value){

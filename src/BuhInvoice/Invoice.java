@@ -323,6 +323,7 @@ public abstract class Invoice extends Basic_Buh_ {
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
         BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -373,6 +374,7 @@ public abstract class Invoice extends Basic_Buh_ {
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
         BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
         //
     }
     
