@@ -316,6 +316,7 @@ public abstract class Invoice extends Basic_Buh_ {
     protected void resetFakturaTotal() {
         //
         FAKTURA_TOTAL = 0;
+        RABATT_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
         //
@@ -356,6 +357,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 FAKTURA_TOTAL += (pris_exkl_moms * antal);
             } else if (rabatt_kr != 0) {
                 FAKTURA_TOTAL += (pris_exkl_moms - rabatt_kr) * antal;
+                RABATT_TOTAL += (rabatt_kr * antal);
             }
             //
         }
@@ -372,6 +374,10 @@ public abstract class Invoice extends Basic_Buh_ {
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
         BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
         //
+    }
+    
+    protected double getRabattTotal(){
+        return GP_BUH.round_double(RABATT_TOTAL);
     }
 
     protected double getFakturaTotal() {
