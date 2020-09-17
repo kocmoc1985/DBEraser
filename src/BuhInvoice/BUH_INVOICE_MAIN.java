@@ -1125,7 +1125,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
-        invoiceB.htmlFaktura_b();
+        invoiceB.htmlFaktura();
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
