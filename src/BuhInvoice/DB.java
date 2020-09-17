@@ -129,6 +129,7 @@ public class DB {
     public static final String BUH_FAKTURA__MOMS_SATS = "moms_sats";
     public static final String BUH_FAKTURA__TOTAL__ = "total_ink_moms";
     public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
+    public static final String BUH_FAKTURA__RABATT_TOTAL = "rabatt_total";
     public static final String BUH_FAKTURA__MOMS_TOTAL__ = "moms_total";
     public static final String BUH_FAKTURA__VALUTA = "valuta";
     public static final String BUH_FAKTURA__BETALD = "betald";

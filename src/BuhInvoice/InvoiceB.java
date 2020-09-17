@@ -44,6 +44,7 @@ public class InvoiceB extends Basic {
     //
     public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
     public static String TABLE_ALL_INVOICES__TOTAL_INKL_MOMS = "TOTAL";
+    public static String TABLE_ALL_INVOICES__RABATT_TOTAL = "RABATT";
     public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
     public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
@@ -137,6 +138,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__FORFALLODATUM,
             TABLE_ALL_INVOICES__EXKL_MOMS,
             TABLE_ALL_INVOICES__TOTAL_INKL_MOMS,
+            TABLE_ALL_INVOICES__RABATT_TOTAL,
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__MAKULERAD,
@@ -277,6 +279,7 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL);
             //
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
@@ -314,6 +317,7 @@ public class InvoiceB extends Basic {
             map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
             map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__),
             map.get(DB.BUH_FAKTURA__TOTAL__),
+            map.get(DB.BUH_FAKTURA__RABATT_TOTAL),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
             getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__MAKULERAD)),
