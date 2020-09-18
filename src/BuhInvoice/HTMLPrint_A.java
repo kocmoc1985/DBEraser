@@ -392,7 +392,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String[] values_t_2 = new String[]{
             T__FAKTURA_ERT_ORDER_NR + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
-            T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + " " + map_b.get(T__FAKTURA_LEV_SATT),};
+            T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + ": " + map_b.get(T__FAKTURA_LEV_SATT)};
         //
         html_ += "<tr>"
                 //
@@ -411,9 +411,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return html_;
     }
 
-    private String _getIfExist(String name, String value) {
+    private String _get_exist_a(String name, String value) {
         if (value.isEmpty() == false) {
-            return ", " + name + " " + value;
+            return ", <span class='bold'>" + name + "</span>: " + value;
+        } else {
+            return "";
+        }
+    }
+
+    private String _get_exist_b(String name, String value, boolean first) {
+        if (value.isEmpty() == false) {
+            if (first) {
+                return name + ": " + value;
+            } else {
+                return ". " + name + ": " + value;
+            }
         } else {
             return "";
         }
@@ -428,32 +440,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         html_ += "<td>";
         html_ += T__FTG_BETALA_TILL
-                + _getIfExist(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                + _getIfExist(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                + _getIfExist(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+                + _get_exist_a(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
+                + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
+                + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
         html_ += "</td>";
         //
         html_ += "</tr>";
         //
         html_ += "</table>";
-        //
-        return html_;
-    }
-
-    private String betal_alternativ_to_html___() {
-        //
-        String html_ = "<div class='marginTop'>";
-        //
-        html_ += "<div class='fontStd'>";
-        html_ += T__FTG_BETALA_TILL
-                + _getIfExist(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                + _getIfExist(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                + _getIfExist(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
-        html_ += "<div>";
-        //
-        html_ += "</div>";
         //
         return html_;
     }
@@ -483,7 +478,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         html_ += "</p>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
+        html_ += _get_exist_b(T__FTG_TELEFON, _get(map_g, DB.BUH_ADDR__TEL_A), true)
+                + _get_exist_b(T__FTG_EPOST, _get(map_f, DB.BUH_KUND__EPOST), false) + ".";
+
+//        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
         html_ += "</div>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
