@@ -421,6 +421,28 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String betal_alternativ_to_html() {
         //
+        String html_ = "<table class='marginTop'>";
+        //
+        //
+        html_ += "<tr>";
+        //
+        html_ += "<td>";
+        html_ += T__FTG_BETALA_TILL
+                + _getIfExist(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                + _getIfExist(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
+                + _getIfExist(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
+                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        html_ += "</td>";
+        //
+        html_ += "</tr>";
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    private String betal_alternativ_to_html___() {
+        //
         String html_ = "<div class='marginTop'>";
         //
         html_ += "<div class='fontStd'>";
@@ -428,8 +450,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + _getIfExist(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                 + _getIfExist(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
                 + _getIfExist(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO))
-                ;
+                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
         html_ += "<div>";
         //
         html_ += "</div>";
