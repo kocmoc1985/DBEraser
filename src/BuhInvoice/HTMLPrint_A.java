@@ -262,11 +262,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + betal_alternativ_to_html()
                 //
+                + faktura_data_B_to_html()
+                //
                 + articles_to_html(articles_map_list)
                 //
                 + brElements()
-                //
-                + faktura_data_B_to_html()
                 //
                 + faktura_data_C_to_html()
                 //
