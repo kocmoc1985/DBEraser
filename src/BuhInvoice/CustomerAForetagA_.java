@@ -162,7 +162,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh_ {
             phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES;
         } else if (this instanceof ForetagA) {
             idColName = ForetagA.TABLE__ID;
-            phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS; // **********************************************
+            phpFunc = DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS; // **********************************************
         }
         //
         String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
@@ -227,7 +227,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh_ {
         if (this instanceof CustomersA_) {
             phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
         } else if (this instanceof ForetagA) {
-            phpFunc = DB.PHP_FUNC_PARAM_GET_KUND_DATA; // ****************************************************
+            phpFunc = DB.PHP_FUNC_PARAM_GET_FORETAG_DATA; // ****************************************************
         }
         //
         try {

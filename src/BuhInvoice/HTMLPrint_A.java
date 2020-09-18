@@ -123,6 +123,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
             //            "img {width: 20px}", not working from here
+            ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black;}",
@@ -196,11 +197,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
-    public static final String T__FTG_TELEFON = "Telefon"; // Innehar F-skattebevis
-    public static final String T__FTG_EPOST = "E-post";
-    public static final String T__FTG_BANKGIRO = "Bankgiro";
+    public static final String T__FTG_BETALA_TILL = "Betala till";
+    public static final String T__FTG_TELEFON = "Telefon, ring";
+    public static final String T__FTG_EPOST = "Mejla oss på";
+    public static final String T__FTG_BANKGIRO = "BG";
+    public static final String T__FTG_POSTGIRO = "PG";
+    public static final String T__FTG_KONTO = "Konto";
+    public static final String T__FTG_SWISH = "Swish";
     public static final String T__FTG_ORGNR = "Organisationsnr";
-    public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
+    public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     /**
@@ -253,6 +258,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 + adresses_to_html()
                 //
                 + faktura_data_A_to_html()
+                //
+                + betal_alternativ_to_html()
                 //
                 + articles_to_html(articles_map_list)
                 //
@@ -347,17 +354,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         String html_ = "<table class='marginTop'>";
         //
 
-        String[] values_a = new String[]{_get(map_e_2__lev_data, COL_0), _get(map_e, COL_1), _get(map_e, COL_2) + " " + _get(map_e, COL_3)};
+        String[] values_a = new String[]{
+            _get(map_e_2__lev_data, COL_0),
+            _get(map_e, COL_1),
+            _get(map_e, COL_2) + " " + _get(map_e, COL_3)
+        };
         String[] values_b = new String[]{
             T__FAKTURA_FORFALLODATUM + ": " + map_c.get(T__FAKTURA_FORFALLODATUM),
             T__FAKTURA_BETAL_VILKOR + ": " + map_c.get(T__FAKTURA_BETAL_VILKOR),
             T__FAKTURA_DROJMALSRANTA + ": " + map_c.get(T__FAKTURA_DROJMALSRANTA)
-            };
+        };
         //
         html_ += "<tr>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(3, values_a, true)
+                + internal_table_x_r_1c(3, values_a, false)
                 + "</td>"
                 //
                 + "<td>"
@@ -375,25 +386,53 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF,T__FAKTURA_VAR_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT};
-        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF),map_c.get(T__FAKTURA_VAR_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR), map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT)};
+        String[] values_t_1 = new String[]{
+            T__FAKTURA_ER_REF + ": " + map_b.get(T__FAKTURA_ER_REF),
+            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),};
         //
-        String[] headers_t_2 = new String[]{};
-        String[] values_t_2 = new String[]{};
+        String[] values_t_2 = new String[]{
+            T__FAKTURA_ERT_ORDER_NR + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
+            T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + " " + map_b.get(T__FAKTURA_LEV_SATT),};
         //
         html_ += "<tr>"
                 //
                 + "<td>"
-                + internal_table_xr_2c(headers_t_1, values_t_1)
+                + internal_table_x_r_1c(2, values_t_1, false)
                 + "</td>"
                 //
                 + "<td>"
-//                + internal_table_xr_2c(headers_t_2, values_t_2)
+                + internal_table_x_r_1c(2, values_t_2, false)
                 + "</td>"
                 //
                 + "</tr>";
         //
         html_ += "</table>";
+        //
+        return html_;
+    }
+
+    private String _getIfExist(String name, String value) {
+        if (value.isEmpty() == false) {
+            return ", " + name + " " + value;
+        } else {
+            return "";
+        }
+    }
+
+    private String betal_alternativ_to_html() {
+        //
+        String html_ = "<div class='marginTop'>";
+        //
+        html_ += "<div class='fontStd'>";
+        html_ += T__FTG_BETALA_TILL
+                + _getIfExist(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                + _getIfExist(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
+                + _getIfExist(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
+                + _getIfExist(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO))
+                ;
+        html_ += "<div>";
+        //
+        html_ += "</div>";
         //
         return html_;
     }
@@ -418,12 +457,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{T__FTG_TELEFON, T__FTG_EPOST, T__FTG_BANKGIRO, T__FTG_ORGNR, T__FTG_MOMS_REG_NR, T__FTG_F_SKATT};
-        String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST),
-            _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR),
-            _get(map_f, DB.BUH_KUND__IBAN), _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ)};
+        html_ += "<p class='fontStd' style='text-align:center'>";
+        html_ += _get(map_f, DB.BUH_KUND__NAMN) + "," + _get(map_g, DB.BUH_ADDR__POSTNR_ZIP) + " " + _get(map_g, DB.BUH_ADDR__ADDR_A) + ".";
+        html_ += "</p>";
         //
-        html_ += internal_table_2r_xc(headers, values, -1, "");
+        html_ += "<div class='fontStd' style='text-align:center'>";
+        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
+        html_ += "</div>";
+        //
+        html_ += "<div class='fontStd' style='text-align:center'>";
+        html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
+                + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
+                + T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
+        html_ += "</div>";
         //
         html_ += "</div>";
         //
