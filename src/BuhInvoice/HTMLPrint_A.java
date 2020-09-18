@@ -262,7 +262,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + betal_alternativ_to_html()
                 //
-                + faktura_data_B_to_html()
+                + faktura_data_B_to_html__totals()
                 //
                 + articles_to_html(articles_map_list)
                 //
@@ -450,7 +450,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         return html_;
     }
 
-    private String faktura_data_B_to_html() {
+    private String faktura_data_B_to_html__totals() {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
