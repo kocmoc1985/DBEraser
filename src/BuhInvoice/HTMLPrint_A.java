@@ -312,7 +312,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html = "";
         //
-        int br_to_add = 10 - articles_map_list.size();
+        int br_to_add = 17 - articles_map_list.size();
         //
         for (int i = 0; i < br_to_add; i++) {
             html += "<br>";
