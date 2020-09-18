@@ -218,7 +218,12 @@ public class ForetagA extends CustomerAForetagA_ {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
+        }else if (col_name.equals(DB.BUH_ADDR__TEL_A) || col_name.equals(DB.BUH_ADDR__TEL_B)) {
+            //
+            Validator.validateMaxInputLength(jli, 50);
+            //
         }
+        
     }
 
 }

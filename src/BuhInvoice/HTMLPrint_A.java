@@ -197,6 +197,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
+    public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
     public static final String T__FTG_BETALA_TILL = "Betala till";
     public static final String T__FTG_TELEFON = "Telefon, ring";
     public static final String T__FTG_EPOST = "Mejla oss på";
@@ -419,13 +420,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         }
     }
 
-    private String _get_exist_b(String name, String value, boolean first) {
+    private String _get_exist_b(String name, String value) {
         if (value.isEmpty() == false) {
-            if (first) {
-                return name + ": " + value;
-            } else {
-                return ". " + name + ": " + value;
-            }
+            return ", " + name + ": " + value;
         } else {
             return "";
         }
@@ -478,8 +475,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         html_ += "</p>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += _get_exist_b(T__FTG_TELEFON, _get(map_g, DB.BUH_ADDR__TEL_A), true)
-                + _get_exist_b(T__FTG_EPOST, _get(map_f, DB.BUH_KUND__EPOST), false) + ".";
+        html_ += T__FTG_KONTAKTA_OSS + _get_exist_b(T__FTG_TELEFON, _get(map_g, DB.BUH_ADDR__TEL_A))
+                + _get_exist_b(T__FTG_EPOST, _get(map_f, DB.BUH_KUND__EPOST)) + ".";
 
 //        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
         html_ += "</div>";

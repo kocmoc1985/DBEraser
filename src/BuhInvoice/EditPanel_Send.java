@@ -216,9 +216,9 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
         //
-        if(map.containsKey(DB.BUH_FAKTURA_SEND__ANNAT) == false){
-            map.put(DB.BUH_FAKTURA_SEND__ANNAT, ""); // This is for delete purpose
-        }
+//        if(map.containsKey(DB.BUH_FAKTURA_SEND__ANNAT) == false){
+//            map.put(DB.BUH_FAKTURA_SEND__ANNAT, ""); // This is for delete purpose
+//        }
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
         //
@@ -297,16 +297,16 @@ public class EditPanel_Send extends EditPanel_Inbet {
                 JTable table = getJTable();
                 //
                 String send_type_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_TYPE);
-                RowDataInvert send_type = new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", false, true, false);
+                RowDataInvert send_type = new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", true, true, false);
                 //
                 String send_ok_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_OK);
-                RowDataInvert send_ok = new RowDataInvertB(send_ok_, DB.BUH_FAKTURA_SEND__SEND_OK, TABLE_SEND__SEND_OK, "", false, true, false);
+                RowDataInvert send_ok = new RowDataInvertB(send_ok_, DB.BUH_FAKTURA_SEND__SEND_OK, TABLE_SEND__SEND_OK, "", true, true, false);
                 //
                 String datum_ = HelpA.getValueSelectedRow(table, TABLE_SEND__DATUM);
-                RowDataInvert datum = new RowDataInvertB(datum_, DB.BUH_FAKTURA_SEND__SEND_DATUM, TABLE_SEND__DATUM, "", false, true, false);
+                RowDataInvert datum = new RowDataInvertB(datum_, DB.BUH_FAKTURA_SEND__SEND_DATUM, TABLE_SEND__DATUM, "", true, true, false);
                 //
                 String komment_ = HelpA.getValueSelectedRow(table, TABLE_SEND__ANNAT);
-                RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_SEND__ANNAT, TABLE_SEND__ANNAT, "", false, true, false);
+                RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_SEND__ANNAT, TABLE_SEND__ANNAT, "", true, true, false);
                 //
                 send_type.setDisabled();
                 send_ok.setDisabled();
