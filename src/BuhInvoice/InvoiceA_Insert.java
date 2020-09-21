@@ -255,25 +255,4 @@ public class InvoiceA_Insert extends Invoice {
     }
     
     
-    
-    @Override
-    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
-        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(ie.getSource());
-        //
-        JLinkInvert jli = (JLinkInvert) ie.getSource();
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
-            //
-            momsSaveEntry.setMomsSats(jli.getValue());
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
-            //
-            momsSaveEntry.setInklExklMoms(jli.getValue());
-            //
-        }
-        //
-    }
-    
 }

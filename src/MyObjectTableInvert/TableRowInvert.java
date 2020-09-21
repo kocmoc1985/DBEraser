@@ -33,7 +33,7 @@ import javax.swing.JTextField;
  *
  * @author mcab
  */
-public class TableRowInvert extends TableRow implements KeyListener,MouseWheelListener, ItemListener {
+public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
 
     private ArrayList<TableRowInvertListener> tableRowListenerList = new ArrayList<TableRowInvertListener>();
 
@@ -61,6 +61,15 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
         return (RowDataInvert) ROW_COLUMN_DATA;
     }
 
+    protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
+        if (hi.getTableName() != null) {
+            HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
+        } else {
+            HelpA.setTrackingToolTip(label, hi.getRealColName());
+        }
+
+    }
+
     @Override
     protected void addColumn(Object obj) {
         Component add_component = null;
@@ -75,11 +84,12 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                 //
                 if (getRowConfig().getImportant()) {
                     label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + " *" + "</p></html>");
-                }else{
+                } else {
                     label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + "</p></html>");
                 }
                 //
-                HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
+//                HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
+                setTrackingToolTip(hi, label);
                 //
                 add_component = label;
                 addComponent(add_component);
@@ -106,8 +116,8 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
             //
             ColumnDataEntryInvert cde = (ColumnDataEntryInvert) obj;
             //
-            if(cde.getObject() instanceof JLinkInvert){
-                JLinkInvert jpi = (JLinkInvert)cde.getObject();
+            if (cde.getObject() instanceof JLinkInvert) {
+                JLinkInvert jpi = (JLinkInvert) cde.getObject();
                 jpi.setParentObj(this);
             }
             //
@@ -130,7 +140,7 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                     jtf.setEditable(false);
                 }
                 //
-                if(getRowConfig().isEnabled()== false){
+                if (getRowConfig().isEnabled() == false) {
                     jtf.setEnabled(false);
                 }
                 //
@@ -160,9 +170,9 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
                     box.setEnabled(false);
                 }
                 //
-                if (getRowConfig().getImportant()){
+                if (getRowConfig().getImportant()) {
                     Font f = box.getFont();
-                    box.setFont(new Font(f.getFamily(),  Font.BOLD, f.getSize()+1));
+                    box.setFont(new Font(f.getFamily(), Font.BOLD, f.getSize() + 1));
 //                    box.setFont(new Font("SansSerif", Font.BOLD, 20));
                 }
                 //
@@ -292,7 +302,7 @@ public class TableRowInvert extends TableRow implements KeyListener,MouseWheelLi
     public void mouseClicked(MouseEvent me) {
         TableInvert t = (TableInvert) getTable();
         for (TableRowInvertListener tril : tableRowListenerList) {
-            tril.mouseClicked(me,t.getCurrentColumn(me.getSource()),t.getCurrentRow(), t.getTABLE_NAME(), t);
+            tril.mouseClicked(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
         }
     }
 

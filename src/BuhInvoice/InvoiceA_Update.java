@@ -173,15 +173,41 @@ public class InvoiceA_Update extends Invoice {
         //
     }
 
+    private String defineMomsSats(JTable table) {
+        //
+        if (momsSaveEntry.getMomsSats() == null) {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS)
+            );
+        } else {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    momsSaveEntry.getMomsSats()
+            );
+        }
+    }
+
+    private String defineInklExklMoms(JTable table) {
+        if (momsSaveEntry.getInklExklMoms() == null) {
+            return JSon._get_special_(
+                    DB.STATIC__INKL_EXKL_MOMS,
+                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS)
+            );
+        } else {
+            return JSon._get_special_(
+                    DB.STATIC__INKL_EXKL_MOMS,
+                    momsSaveEntry.getInklExklMoms()
+            );
+        }
+    }
+
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        String fixedComboValues_a = JSon._get_special_(
-                DB.STATIC__INKL_EXKL_MOMS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS)
-        );
+        String fixedComboValues_a = defineInklExklMoms(table);
         //
 //        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", false, true, false);
@@ -190,10 +216,7 @@ public class InvoiceA_Update extends Invoice {
         disableMomsJComboIf(inkl_exkl_moms); // *****
         //
         //
-        String fixedComboValues_c = JSon._get_special_(
-                DB.STATIC__MOMS_SATS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS)
-        );
+        String fixedComboValues_c = defineMomsSats(table);
         //
 //        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);

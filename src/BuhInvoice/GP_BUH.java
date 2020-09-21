@@ -31,6 +31,7 @@ public class GP_BUH {
 
     public static final String PRODUCT_NAME = "BuhInvoice";
     public static boolean CUSTOMER_MODE = true;
+    public static boolean TRACKING_TOOL_TIP_ENABLED = true;
 
     public static String replaceColon(String text,boolean reverse){
         if(reverse == false){

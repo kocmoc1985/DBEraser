@@ -6,7 +6,8 @@
 package BuhInvoice.sec;
 
 /**
- *
+ * This class is for saving actual "moms sats" & "inkl exkl moms" when the
+ * jcombobox state is changed
  * @author KOCMOC
  */
 public class Moms {
@@ -14,6 +15,11 @@ public class Moms {
     private String momsSats;
     private String inklExklMoms;
 
+    public void reset(){
+        momsSats = null;
+        inklExklMoms = null;
+    }
+    
     public void setInklExklMoms(String inklExklMoms) {
         this.inklExklMoms = inklExklMoms;
     }
