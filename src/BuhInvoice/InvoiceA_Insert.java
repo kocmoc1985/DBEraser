@@ -23,20 +23,20 @@ import javax.swing.table.DefaultTableModel;
  * @author MCREMOTE
  */
 public class InvoiceA_Insert extends Invoice {
-
+    
     private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
-
+    
     public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }
-
+    
     @Override
     protected Faktura_Entry initFakturaEntry() {
         return new Faktura_Entry_Insert(this);
     }
-
+    
     @Override
     protected void startUp() {
         //
@@ -52,7 +52,7 @@ public class InvoiceA_Insert extends Invoice {
         fillJTableheader();
         //
     }
-
+    
     protected void createNew() {
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -76,7 +76,7 @@ public class InvoiceA_Insert extends Invoice {
         });
         //
     }
-
+    
     private void fillJTableheader() {
         //
         String[] headers = {
@@ -92,7 +92,7 @@ public class InvoiceA_Insert extends Invoice {
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
         //
     }
-
+    
     protected void deleteArtikel() {
         //
         if (GP_BUH.confirmWarning(LANG.MSG_4) == false) {
@@ -103,21 +103,21 @@ public class InvoiceA_Insert extends Invoice {
         countFakturaTotal(getArticlesTable());
         //
     }
-
+    
     protected void submitEditedArticle() {
         this.faktura_entry_insert.submitEditedArticle();
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
     }
-
+    
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
     }
-
+    
     @Override
     protected void addArticleForDB() {
         //
@@ -128,7 +128,7 @@ public class InvoiceA_Insert extends Invoice {
         refreshTableInvert(TABLE_INVERT_2);
         //
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -177,7 +177,7 @@ public class InvoiceA_Insert extends Invoice {
         //
         return rows;
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -193,18 +193,39 @@ public class InvoiceA_Insert extends Invoice {
         //
     }
     
+    private String defineMomsSats() {
+        if (momsSaveEntry.getMomsSats() == null) {
+            return DB.STATIC__MOMS_SATS;
+        } else {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    momsSaveEntry.getMomsSats()
+            );
+        }
+    }
     
-
+    private String defineInklExklMoms(){
+        if (momsSaveEntry.getInklExklMoms() == null) {
+            return DB.STATIC__INKL_EXKL_MOMS;
+        }else{
+            return JSon._get_special_(
+                    DB.STATIC__INKL_EXKL_MOMS,
+                    momsSaveEntry.getInklExklMoms()
+            );
+        }
+    }
+    
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
-        String fixedComboValues_a = DB.STATIC__INKL_EXKL_MOMS; // This will aquired from SQL
+        String fixedComboValues_a = defineInklExklMoms();
         RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
         inkl_exkl_moms.enableFixedValuesAdvanced();
         inkl_exkl_moms.setUneditable();
         disableMomsJComboIf(inkl_exkl_moms);
         //
-        String fixedComboValues_c = DB.STATIC__MOMS_SATS; // This will aquired from SQL
+        String fixedComboValues_c = defineMomsSats();
+        //
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
@@ -232,8 +253,8 @@ public class InvoiceA_Insert extends Invoice {
         //
         return rows;
     }
-
-    private final Moms momsSaveEntry = new Moms();
+    
+    
     
     @Override
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
@@ -245,10 +266,14 @@ public class InvoiceA_Insert extends Invoice {
         //
         if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
             //
-            momsSaveEntry.setMomsSats(Double.parseDouble(jli.getValue()));
+            momsSaveEntry.setMomsSats(jli.getValue());
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
+            //
+            momsSaveEntry.setInklExklMoms(jli.getValue());
             //
         }
         //
     }
-
+    
 }

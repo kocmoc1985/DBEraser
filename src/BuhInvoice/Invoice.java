@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
+import BuhInvoice.sec.Moms;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -49,6 +50,7 @@ public abstract class Invoice extends Basic_Buh_ {
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
+    protected final Moms momsSaveEntry = new Moms();
     
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);

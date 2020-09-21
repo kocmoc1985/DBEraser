@@ -11,26 +11,22 @@ package BuhInvoice.sec;
  */
 public class Moms {
 
-    private double momsSats;
-    private int inklExklMoms;
+    private String momsSats;
+    private String inklExklMoms;
 
-    public Moms() {
-      
-    }
-
-    public void setInklExklMoms(int inklExklMoms) {
+    public void setInklExklMoms(String inklExklMoms) {
         this.inklExklMoms = inklExklMoms;
     }
 
-    public void setMomsSats(double momsSats) {
+    public void setMomsSats(String momsSats) {
         this.momsSats = momsSats;
     }
-    
-    public double getMomsSats() {
+
+    public String getMomsSats() {
         return momsSats;
     }
 
-    public int getInklExklMoms() {
+    public String getInklExklMoms() {
         return inklExklMoms;
     }
 
