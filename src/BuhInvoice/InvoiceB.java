@@ -378,7 +378,7 @@ public class InvoiceB extends Basic {
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
             //
-            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.35);
+            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
             HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
             //
         }
@@ -681,8 +681,8 @@ public class InvoiceB extends Basic {
         HashMap<String, String> map_d = new HashMap<>();
         HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES);
         HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA);
-        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_DATA);
-        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_KUND_ADDRESS);
+        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
+        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
         //

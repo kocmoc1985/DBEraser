@@ -13,6 +13,25 @@ OBS! Nothing on PHP side, 1000% SURE!
 
 "artikelId";"4","kundId";"1","pris";"27.9","namn";"Dörrhandtag","komment";"Färg, guld","artikel_kategori";"A"
 ________________________________________________________________________________________________________
+[SAVING EMPTIE VALUES] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][2020-09-18]
+
+See "Validator.class" -> "setValidated(JLinkInvert jli)" -> "jtf.setSaveEmptyStringValue();"
+Also very very important -> "JTextFieldInvert.class" -> "setSaveEmptyStringValue()" -> pay attention at "rdi.isString()"
+
+So if a "String" field is not controlled by "Validator.class" you will not be able so save an "EMPTY" value.
+An example of such behaviour is when you want to erase an existing value and save an "empty" one.
+
+For "STRING":
+1. Make sure you have proper setting when configuring "public RowDataInvert[] getConfigTableInvert()"
+so you must have true for the "isString" parameter the one marked with "*true*:
+new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", *true*, true, false);
+
+2. You must use the "Validator.class" on that field -> it set's "setSaveEmptyStringValue()" on the element
+
+For "FLOAT":
+1. Use: "Validator.validateDigitalInput(jli)" -> This one does not prevent from saving, but will set "validated=false" if the input is empty.
+2. Use: "Basic_Buh.fieldsValidated(boolean insert)" -> And here it will prevent from inserting/updating if some "unvalidated" fields are present.
+________________________________________________________________________________________________________
 [InvoiceB.class and InvoiceA_Insert - USE LONG NAMES][2020-08-14]
 
 ArticlesTable in classes InvoiceB.class and InvoiceA_Insert shall contain "LONG NAMES" only.

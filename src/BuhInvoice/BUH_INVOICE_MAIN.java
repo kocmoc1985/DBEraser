@@ -689,6 +689,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel3.setText("Moms");
         jPanel15.add(jLabel3);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(103, 103, 103));
         jLabel1.setText("Rabatt ");
         jPanel15.add(jLabel1);
 
@@ -938,7 +940,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4_ArticlesLayout.setHorizontalGroup(
             jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1009,7 +1011,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1020,7 +1022,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGap(38, 38, 38)
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton_update_kund_data, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
