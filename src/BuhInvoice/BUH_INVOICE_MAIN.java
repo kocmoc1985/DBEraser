@@ -129,6 +129,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
+    
+    protected String getFakturaType() {
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+    }
 
     protected boolean isMakulerad() {
         //
@@ -1138,6 +1142,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
+        String fakturaTyp = getFakturaType();
+//        System.out.println("AA " + fakturaTyp);
         invoiceB.htmlFaktura();
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
@@ -1585,7 +1591,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-
+                //
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();
                 //

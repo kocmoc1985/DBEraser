@@ -167,7 +167,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
     //
     public static final String T__FAKTURA_VAR_REF = "Vår referens";
-    public static final String T__FAKTURA_BETAL_VILKOR = "Betalningvilkor";
+    public static final String T__FAKTURA_BETAL_VILKOR = "Betalningsvilkor";
     public static final String T__FAKTURA_FORFALLODATUM = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";

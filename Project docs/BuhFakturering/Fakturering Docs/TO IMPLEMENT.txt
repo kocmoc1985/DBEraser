@@ -1,8 +1,20 @@
-Implement "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
-Implement "Transaction history" -> and namely events like "email faktura sent", "påminnelse sent" etc...
 
-Fix Urgently: Bearbeta Faktura -> delete all articles -> TableInvert2 (in the low left corner) -> Then add an article and it will show "NULLS"
-:: Look at Invoice->"setArticlePrise()"
+
+1. "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
+2. Skicka Påminnelser
+3. Faktura urval - Alla, Betalda, Obetalda .....
+
+[KREDIT FAKTURA]
+-> Have name "Kreditfaktura"
+-> Have field "Krediterar fakturanr"
+-> Have "ATT ERHÅLA" instead of "ATT BETALA"
+-> Don't have "dröjsmålsränta"
+
+[KONTANT NOTA]
+-> Can be just named "Kvitto"
+-> Dont have "Förfallodatum"
+-> Don't have field "Betalnings vilkor"
+-> Set status "betald" direkt efter registrering av fakturan
 ____________________________________________________________________________________________________________________________________________________
 
 [BIG THINGS TO SOLVE:]
@@ -10,17 +22,11 @@ ________________________________________________________________________________
 1. Kredit faktura, Kontant Nota
 2. Extract "HTTP_BUH.proj" to a stand alone project.
 3. Code obfuscation
+4. Implement Security
 ____________________________________________________________________________________________________________________________________________________
 ____________________________________________________________________________________________________________________________________________________
 
 AVOID "###" in http requests, it's now possible as i am not longer using "index.php" [2020-08-28]  ******IMPORTANT*******************************************************
-
-IMPLEMENT: Faktura urval - Alla, Betalda, Obetalda .....
-
-FIX: HTML Faktura - "Beskrivning:null", "Rabatt not showing"  [2020-08-26]
-____________________________________________________________________________________________________________________________________________________
-
-
 ____________________________________________________________________________________________________________________________________________________
 
 
