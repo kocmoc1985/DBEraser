@@ -12,7 +12,6 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -49,7 +47,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();
-        jButton2_delete.setVisible(false);
+//        jButton2_delete.setVisible(false);
         jButton1_commit.setToolTipText("Spara kommentar");
         //
         initBasicTab();
@@ -187,10 +185,31 @@ public class EditPanel_Send extends EditPanel_Inbet {
         }
         //
     }
+
+    @Override
+    protected void jButton2ActionPerformed() {
+         //
+        if (HelpA.rowSelected(getJTable()) == false) {
+            return;
+        }
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_3_3) == false) {
+            return;
+        }
+        //
+        updateKomment(true);
+    }
+
+    
+    
     
     
     @Override
     protected void jButton1ActionPerformed(){
+        updateKomment(false);
+    }
+    
+    private void updateKomment(boolean saveEmpty){
         //
         if (HelpA.rowSelected(getJTable()) == false) {
             return;
@@ -198,7 +217,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         if(basic.fieldsValidated(false)){
             //
-            updateKomment();
+            updateKomment_(saveEmpty);
             //
             refresh();
             //
@@ -206,7 +225,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
     }
     
-    private void updateKomment(){
+    private void updateKomment_(boolean saveEmpty){
         //
         JTable table = getJTable();
         //
@@ -216,9 +235,9 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
         //
-//        if(map.containsKey(DB.BUH_FAKTURA_SEND__ANNAT) == false){
-//            map.put(DB.BUH_FAKTURA_SEND__ANNAT, ""); // This is for delete purpose
-//        }
+        if(saveEmpty){
+            map.put(DB.BUH_FAKTURA_SEND__ANNAT, ""); // This is for delete purpose
+        }
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);
         //

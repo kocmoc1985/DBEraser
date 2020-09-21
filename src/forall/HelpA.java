@@ -2627,11 +2627,11 @@ public class HelpA {
         //
         if(new_date.equals(date)){
             new_date_in_ms += 28800000;
-            System.out.println("CATCH IT*****************************************");
             return millisToDateConverter("" + new_date_in_ms, date_format);
         }
         //
         return new_date;
+        //
     }
 
     public static String get_date_time_minus_some_time_in_days(String date, long days) {

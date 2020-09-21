@@ -461,6 +461,10 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     }
 
     private void jButton2_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_deleteActionPerformed
+       jButton2ActionPerformed();
+    }//GEN-LAST:event_jButton2_deleteActionPerformed
+
+    protected void jButton2ActionPerformed(){
         //
         if (HelpA.rowSelected(getJTable()) == false) {
             return;
@@ -472,8 +476,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         delete();
         //
-    }//GEN-LAST:event_jButton2_deleteActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
