@@ -2613,11 +2613,24 @@ public class HelpA {
     }
 
     public static synchronized String get_date_time_plus_some_time_in_days(String date, long days) {
+        //
         String date_format = "yyyy-MM-dd";
-        long time_to_plus = 115200000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
+        //
+        if(days > 10){ // Yes it's needed [2020-09-21] Otherwise 2020-10-02 "+30days" = 2020-10-31
+            days+= 1;
+        }
+        //
+        long time_to_plus = (long)86400000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
         long ms = dateToMillisConverter3(date, date_format);
         long new_date_in_ms = ms + time_to_plus;
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        //
+        if(new_date.equals(date)){
+            new_date_in_ms += 28800000;
+            System.out.println("CATCH IT*****************************************");
+            return millisToDateConverter("" + new_date_in_ms, date_format);
+        }
+        //
         return new_date;
     }
 

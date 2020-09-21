@@ -7,7 +7,6 @@ package BuhInvoice;
 
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
-import forall.GP;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
