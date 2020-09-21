@@ -74,7 +74,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         initComponents();
         //
         this.setTitle("Skriv ut faktura");
-        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         this.articles_map_list = articles_map_list;
         //

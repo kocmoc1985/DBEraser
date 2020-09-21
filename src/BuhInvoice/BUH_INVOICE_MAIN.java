@@ -75,7 +75,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceA_update = new InvoiceA_Update(this);
         //
         this.setTitle("Fakturering");
-        this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage());
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 

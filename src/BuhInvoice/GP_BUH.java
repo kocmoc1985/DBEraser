@@ -6,8 +6,11 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
+import forall.GP;
 import forall.HelpA;
 import java.awt.Component;
+import java.awt.Frame;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +21,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -175,13 +179,21 @@ public class GP_BUH {
                 .toFile(new File("logo.png"));
         //
     }
+    
+    public static Image getBuhInvoicePrimIcon(){
+        return new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage();
+    }
 
     private static String chooseFile(Component parent) {
         JFileChooser chooser = new JFileChooser();
+        //
+        Frame window=new Frame();
+        window.setIconImage(getBuhInvoicePrimIcon());
+        //
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, PNG, BMP Images", "jpg", "png", "bmp");
         chooser.setFileFilter(filter);
-        int returnVal = chooser.showOpenDialog(parent); // this one is needed to test icon
+        int returnVal = chooser.showOpenDialog(window); // this one is needed to test icon
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String path = chooser.getSelectedFile().getPath();
             System.out.println("You chose to open this file: " + path);
