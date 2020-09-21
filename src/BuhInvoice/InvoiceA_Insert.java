@@ -7,10 +7,14 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
+import BuhInvoice.sec.Moms;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -188,6 +192,8 @@ public class InvoiceA_Insert extends Invoice {
         }
         //
     }
+    
+    
 
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
@@ -227,10 +233,22 @@ public class InvoiceA_Insert extends Invoice {
         return rows;
     }
 
-    public void test() {
-        TableInvert table = (TableInvert) TABLE_INVERT_3;
-        table.printRowList();
-        table.resizeRows();
+    private final Moms momsSaveEntry = new Moms();
+    
+    @Override
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
+        //
+        String col_name = ti.getCurrentColumnName(ie.getSource());
+        //
+        JLinkInvert jli = (JLinkInvert) ie.getSource();
+        //
+        if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
+            //
+            momsSaveEntry.setMomsSats(Double.parseDouble(jli.getValue()));
+            //
+        }
+        //
     }
 
 }
