@@ -566,7 +566,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Spara faktura (insert or update)"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara faktura"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_confirm_insert_updateActionPerformed"/>
@@ -599,7 +599,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/edit.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Bearbeta artikel (insert)"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Bearbeta artikel"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton19ActionPerformed"/>
@@ -610,7 +610,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Bekr&#xe4;fta &#xe4;ndringar (insert)"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Bekr&#xe4;fta &#xe4;ndringar"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton20ActionPerformed"/>

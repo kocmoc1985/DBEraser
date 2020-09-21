@@ -618,7 +618,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel9.add(jButton11);
 
         jButton_confirm_insert_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_confirm_insert_update.setToolTipText("Spara faktura (insert or update)");
+        jButton_confirm_insert_update.setToolTipText("Spara faktura");
         jButton_confirm_insert_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_confirm_insert_updateActionPerformed(evt);
@@ -631,7 +631,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel11.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        jButton19.setToolTipText("Bearbeta artikel (insert)");
+        jButton19.setToolTipText("Bearbeta artikel");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -640,7 +640,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel11.add(jButton19);
 
         jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton20.setToolTipText("Bekräfta ändringar (insert)");
+        jButton20.setToolTipText("Bekräfta ändringar");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton20ActionPerformed(evt);
