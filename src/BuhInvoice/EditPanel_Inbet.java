@@ -12,7 +12,6 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.GP;
 import forall.HelpA;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -64,7 +62,11 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     }
 
     private void init_() {
+        //
         getJTable().addMouseListener(this);
+        //
+        HelpA.setUneditableJTable(jTable_1);
+        //
         init();
     }
 
@@ -79,6 +81,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         fillJTableheader();
         fillJTable();
+        //
         basic.showTableInvert();
         countRestToPayAndShow();
     }

@@ -72,9 +72,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         invoiceA_update = new InvoiceA_Update(this);
         //
+        setUneditableAllJTables();
+        //
         this.setTitle("Fakturering");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    private void setUneditableAllJTables() {
+        HelpA.setUneditableJTable(jTable_invoiceB_alla_fakturor);
+        HelpA.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
+        HelpA.setUneditableJTable(jTable_InvoiceA_Insert_articles);
+        HelpA.setUneditableJTable(jTable_ArticlesA_articles);
+        HelpA.setUneditableJTable(jTable_ftg);
+        HelpA.setUneditableJTable(jTable_ftg_addr);
+        HelpA.setUneditableJTable(jTable_kund_adresses);
+        HelpA.setUneditableJTable(jTable_kunder);
     }
 
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
@@ -1565,14 +1578,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void fakturaTabClicked() {
         //
+        DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
+        jTable_InvoiceA_Insert_articles.setModel(dtm);
+        invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //
-                DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
-                jTable_InvoiceA_Insert_articles.setModel(dtm);
-                invoiceB.hideColumnsArticlesTable(jTable_InvoiceA_Insert_articles); //***
-                //
+
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();
                 //

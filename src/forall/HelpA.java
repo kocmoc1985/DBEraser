@@ -1287,6 +1287,10 @@ public class HelpA {
         //
         return csv;
     }
+    
+    public static void setUneditableJTable(JTable table){
+        table.setDefaultEditor(Object.class, null);
+    }
 
     public static boolean existInJTable(JTable table, String colName, String valToCheck) {
         for (int x = 0; x < table.getColumnCount(); x++) {
