@@ -146,6 +146,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected boolean isKreditFaktura() {
+        //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
         //
         if (fakturaTyp == null) {
@@ -153,6 +154,21 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
         if (fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    protected boolean isKontantFaktura() {
+        //
+        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        //
+        if (fakturaTyp == null) {
+            return false;
+        }
+        //
+        if (fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return true;
         } else {
             return false;
@@ -455,6 +471,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jButton_kontant_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/kontantfaktura.png"))); // NOI18N
         jButton_kontant_faktura.setToolTipText("Skapa ny kontantfaktura");
+        jButton_kontant_faktura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_kontant_fakturaActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton_kontant_faktura);
 
         jButton_kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
@@ -1265,7 +1286,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 
-    private void createNewFaktura() {
+    private void createNewFaktura(boolean isKontantfaktura) {
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert(this);
@@ -1273,15 +1294,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         invoiceA_insert.resetSavedMoms();
         //
-        invoiceA_insert.createNew();
+        invoiceA_insert.createNew(isKontantfaktura);
         //
     }
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        //
         if (GP_BUH.confirmWarning(LANG.MSG_5_1) == false) {
             return;
         }
-        createNewFaktura();
+        //
+        createNewFaktura(false);
+        //
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField_total_exkl_momsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_total_exkl_momsActionPerformed
@@ -1306,7 +1330,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_create_new_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_fakturaActionPerformed
         HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
-        createNewFaktura();
+        createNewFaktura(false);
     }//GEN-LAST:event_jButton_create_new_fakturaActionPerformed
 
     private void jButton4_save_faktura_kommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_save_faktura_kommentActionPerformed
@@ -1351,6 +1375,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_kredit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kredit_fakturaActionPerformed
         copyFaktura(true); // true = "kreditfaktura"
     }//GEN-LAST:event_jButton_kredit_fakturaActionPerformed
+
+    private void jButton_kontant_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kontant_fakturaActionPerformed
+        HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
+        createNewFaktura(true);
+    }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
     /**
      * @param args the command line arguments

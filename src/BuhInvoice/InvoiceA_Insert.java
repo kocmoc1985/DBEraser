@@ -27,6 +27,7 @@ public class InvoiceA_Insert extends Invoice {
     private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
     
+    
     public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
@@ -40,20 +41,13 @@ public class InvoiceA_Insert extends Invoice {
     @Override
     protected void startUp() {
         //
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                showTableInvert();
-//                showTableInvert_2();
-//                showTableInvert_3();
-//            }
-//        });
-        //
         fillJTableheader();
         //
     }
     
-    protected void createNew() {
+    protected void createNew(boolean isKontantfaktura) {
+        //
+        CREATE_KONTANT_FAKTURA__OPERATION_INSERT = isKontantfaktura;
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

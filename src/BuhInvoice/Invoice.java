@@ -51,6 +51,9 @@ public abstract class Invoice extends Basic_Buh_ {
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
     protected final Moms momsSaveEntry = new Moms();
+    //
+    protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
+    //
 
     public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -63,7 +66,15 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         if (insert) {
             //
-            bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
+            if (bim.isKontantFaktura() || CREATE_KONTANT_FAKTURA__OPERATION_INSERT == true) {
+                // KONTANT FAKTURA
+                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1_2);
+                //
+            } else {
+                // NORMAL FAKTURA
+                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
+                //
+            }
             //
             enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
             enableDisableButtons(bim.jPanel12, true);
@@ -114,10 +125,10 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
-    protected void resetSavedMoms(){
+    protected void resetSavedMoms() {
         momsSaveEntry.reset();
     }
-    
+
     private boolean fakturaBetald() {
         //
         String betald = HelpA.getValueSelectedRow(getAllInvoicesTable(), InvoiceB.TABLE_ALL_INVOICES__BETALD);
@@ -538,8 +549,6 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         return rows;
     }
-    
-    
 
     protected void hideMomsSatsIfExklMoms() {
         //

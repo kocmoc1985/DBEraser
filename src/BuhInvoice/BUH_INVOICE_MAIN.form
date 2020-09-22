@@ -209,6 +209,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Skapa ny kontantfaktura"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_kontant_fakturaActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_kredit_faktura">
                       <Properties>
