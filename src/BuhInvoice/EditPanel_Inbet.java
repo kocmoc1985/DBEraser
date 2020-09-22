@@ -99,6 +99,11 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     private double getFakturaTotal() {
         return bim.getFakturaTotal();
     }
+    
+    protected void setHeaderAfterCreationOfKontantFaktura() {
+        this.jLabel_fakturanr_value.setText("Kontantfaktura: " + fakturaNr + ", " + fakturaKund);
+        this.jLabel_kund_value.setText("Viktigt! Välj betalmetod och spara");
+    }
 
     protected void setHeader() {
         this.jLabel_fakturanr_value.setText("Fakturanr: " + fakturaNr);

@@ -208,14 +208,38 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             return null;
         }
     }
-
-    private String getDrojsmalsrantaColDependentOnType() {
+    
+    private String getForfalloDatumFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
-            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
+           return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
+            return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
+            return  _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
+        } else {
+            return null;
+        }
+    }
+    
+    private String getBetalVilkorFlexCol() {
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+           return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
+            return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
+            return  _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
+        } else {
+            return null;
+        }
+    }
+
+    private String getDrojsmalsrantaFlexCol() {
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
-            return  _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
+            return  "";
         } else {
             return null;
         }
@@ -233,10 +257,11 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
     //
     public static final String T__FAKTURA_VAR_REF = "Vår referens";
-    public static final String T__FAKTURA_BETAL_VILKOR = "Betalningsvilkor";
-    public static final String T__FAKTURA_FORFALLODATUM = "Förfallodag";
-    public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
-    public static final String T__FAKTURA_BETAL_METOD = "Betalmetod";
+    public static final String T__FAKTURA_BETAL_VILKOR__FLEX = "Betalningsvilkor";
+    public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
+    public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
+    public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
+    public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // only for "kontantfaktura"
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
@@ -416,9 +441,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         };
         //
         String[] values_b = new String[]{
-            _get_colon_sep(T__FAKTURA_FORFALLODATUM, map_c),
-            _get_colon_sep(T__FAKTURA_BETAL_VILKOR, map_c),
-            getDrojsmalsrantaColDependentOnType()
+            getForfalloDatumFlexCol(),
+            getBetalVilkorFlexCol(),
+            getDrojsmalsrantaFlexCol()
         };
         //
         html_ += "<tr>"

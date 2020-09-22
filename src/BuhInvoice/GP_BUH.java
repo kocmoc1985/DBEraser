@@ -11,6 +11,7 @@ import forall.HelpA;
 import java.awt.Component;
 import java.awt.Frame;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import net.coobird.thumbnailator.Thumbnails;
@@ -112,6 +114,17 @@ public class GP_BUH {
         //
         return id != -1;
         //
+    }
+    
+    public static void centerAndBringToFront(JFrame frame){
+        Point p = HelpA.position_window_in_center_of_the_screen(frame);
+        frame.setLocation(p);
+        frame.setVisible(true);
+        //
+        java.awt.EventQueue.invokeLater(() -> {
+            frame.toFront();
+            frame.repaint();
+        });
     }
 
     public static void resizeImage_example() throws IOException {

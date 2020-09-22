@@ -8,6 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -1306,7 +1307,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             boolean isKontantFaktura = isKontantFaktura();
             //
             if (isKontantFaktura) {
-                makeInbetalning(isKontantFaktura);
+                makeInbetalning(isKontantFaktura,true);
             }
             //
         } else {
@@ -1354,21 +1355,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     private void jButton_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inbetalningActionPerformed
-        makeInbetalning(isKontantFaktura());
+        makeInbetalning(isKontantFaktura(), false);
     }//GEN-LAST:event_jButton_inbetalningActionPerformed
 
-    private void makeInbetalning(boolean isKontantFaktura) {
+    private void makeInbetalning(boolean isKontantFaktura, boolean directlyAfterCreation) {
         //
         EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
-        epb.setVisible(true);
         //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                epb.toFront();
-                epb.repaint();
-            }
-        });
+        if(directlyAfterCreation){
+             epb.setHeaderAfterCreationOfKontantFaktura();
+        }
+        //
+        GP_BUH.centerAndBringToFront(epb);
+        //
     }
 
     private void jButton_show_actionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_show_actionsActionPerformed
