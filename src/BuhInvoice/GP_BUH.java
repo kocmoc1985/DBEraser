@@ -37,6 +37,10 @@ public class GP_BUH {
     public static boolean CUSTOMER_MODE = true;
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
 
+    //
+    // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
+    //
+    
     public static String replaceColon(String text,boolean reverse){
         if(reverse == false){
             return text.replaceAll(":", "#");

@@ -209,6 +209,18 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         }
     }
 
+    private String getDrojsmalsrantaColDependentOnType() {
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
+            return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
+            return  _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
+        } else {
+            return null;
+        }
+    }
+
     //
     public static final String T__FAKTURA_NR = "Faktura nr";
     public static final String T__KUND_NR = "Kundnr";
@@ -224,6 +236,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_BETAL_VILKOR = "Betalningsvilkor";
     public static final String T__FAKTURA_FORFALLODATUM = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
+    public static final String T__FAKTURA_BETAL_METOD = "Betalmetod";
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
@@ -390,18 +403,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
         }
         //
-    }
-    
-    private String getDrojsmalsrantaColDependentOnType(){
-         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
-            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
-        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
-            return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
-        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
-            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
-        } else {
-            return null;
-        }
     }
 
     private String adresses_to_html() {
@@ -875,8 +876,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-   
-    
     /**
      * [2020-09-03]
      *
@@ -914,7 +913,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String fakturaTitle = getFakturaTitleBasedOnType();
         //
-        String body = "Du har fått "+ fakturaTitle.toLowerCase() + " från: " + ftgName;
+        String body = "Du har fått " + fakturaTitle.toLowerCase() + " från: " + ftgName;
         //
         if (upload_success) {
             //

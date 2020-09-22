@@ -674,6 +674,28 @@ public class InvoiceB extends Basic {
         //
         return null;
     }
+    
+    private String getKontantFakturaBetalMetod(){
+        //
+        String json = bim.getSELECT_fakturaId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM__GET_FAKTURA_INBET, json);
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            String betalMetod_shortName = addresses.get(0).get(DB.BUH_FAKTURA_INBET__BETAL_METHOD);
+            //
+            return getLongName(DB.STATIC__BETAL_METHODS, betalMetod_shortName);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        //
+    }
 
     public void htmlFaktura(String fakturatype) {
         //
@@ -705,6 +727,7 @@ public class InvoiceB extends Basic {
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR, _get(TABLE_ALL_INVOICES__BET_VILKOR));
         map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
         map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA, ""); //**************************EMPTY
+        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
         map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$()); 
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //

@@ -1302,6 +1302,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 invoiceA_insert.resetSavedMoms_jCombo();
                 invoiceB.refresh();
             }
+            //
+            boolean isKontantFaktura = isKontantFaktura();
+            //
+            if (isKontantFaktura) {
+                makeInbetalning(isKontantFaktura);
+            }
+            //
         } else {
             if (invoiceA_update.fieldsValidated(false)) {
                 invoiceA_update.insertOrUpdate();
@@ -1347,12 +1354,25 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_update_kund_dataActionPerformed
 
     private void jButton_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inbetalningActionPerformed
-        EditPanel_Inbet epb = new EditPanel_Inbet(this, getFakturaId(), getFakturaNr(), getFakturaKund());
-        epb.setVisible(true);
+        makeInbetalning(isKontantFaktura());
     }//GEN-LAST:event_jButton_inbetalningActionPerformed
 
+    private void makeInbetalning(boolean isKontantFaktura) {
+        //
+        EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
+        epb.setVisible(true);
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                epb.toFront();
+                epb.repaint();
+            }
+        });
+    }
+
     private void jButton_show_actionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_show_actionsActionPerformed
-        EditPanel_Send eps = new EditPanel_Send(this, getFakturaId(), getFakturaNr(), getFakturaKund());
+        EditPanel_Send eps = new EditPanel_Send(this, isKontantFaktura(), getFakturaId(), getFakturaNr(), getFakturaKund());
         eps.setVisible(true);
     }//GEN-LAST:event_jButton_show_actionsActionPerformed
 

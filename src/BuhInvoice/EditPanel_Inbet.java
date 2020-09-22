@@ -37,6 +37,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     private final String fakturaNr;
     private final String fakturaKund;
     //
+    private final boolean IS_KONTANT_FAKTURA;
+    //
     private static final String TABLE_INBET__ID = "ID";
     private static final String TABLE_INBET__FAKTURA_ID = "F ID";
     private static final String TABLE_INBET__INBETALD = "INBETALNING";
@@ -48,13 +50,15 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
      * Creates new form EditPanel
      *
      * @param bim
+     * @param isKontantFaktura
      * @param fakturaId
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet(BUH_INVOICE_MAIN bim, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
+        this.IS_KONTANT_FAKTURA = isKontantFaktura;
         this.fakturaId = fakturaId;
         this.fakturaNr = fakturaNr;
         this.fakturaKund = fakturaKund;
@@ -86,6 +90,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         countRestToPayAndShow();
     }
 
+   
+    
     protected JTable getJTable() {
         return jTable_1;
     }
@@ -303,6 +309,10 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
 //                kvar_att_betala.setDisabled();
                 //
                 RowDataInvert inbetald_kr = new RowDataInvertB("", DB.BUH_FAKTURA_INBET__INBETALD, TABLE_INBET__INBETALD, "", false, true, true);
+                //
+                if(IS_KONTANT_FAKTURA){
+                    inbetald_kr.setUneditable();
+                }
                 //
                 RowDataInvert annat = new RowDataInvertB("", DB.BUH_FAKTURA_INBET__ANNAT, TABLE_INBET__ANNAT, "", true, true, false);
                 //
