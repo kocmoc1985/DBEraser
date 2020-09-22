@@ -5,9 +5,9 @@
 3. Faktura urval - Alla, Betalda, Obetalda .....
 
 [KREDIT FAKTURA]
--> Have name "Kreditfaktura"
--> Have field "Krediterar fakturanr"
--> Have "ATT ERHÅLA" instead of "ATT BETALA"
+-> Have name "Kreditfaktura"  [DONE]
+-> Have field "Krediterar fakturanr" 
+-> Have "ATT ERHÅLA" instead of "ATT BETALA" [DONE]
 -> Don't have "dröjsmålsränta"
 
 [KONTANT NOTA]

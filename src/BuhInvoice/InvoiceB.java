@@ -670,7 +670,7 @@ public class InvoiceB extends Basic {
         return null;
     }
 
-    public void htmlFaktura() {
+    public void htmlFaktura(String fakturatype) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //
@@ -708,7 +708,7 @@ public class InvoiceB extends Basic {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
-        map_d.put(HTMLPrint_A.T__FAKTURA_ATT_BETALA, _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         //
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -716,6 +716,7 @@ public class InvoiceB extends Basic {
             public void run() {
                 HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
                         bim,
+                        fakturatype,
                         bim.getArticlesActualInvoice(),
                         map_a_0,
                         map_a,

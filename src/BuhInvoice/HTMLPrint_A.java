@@ -49,6 +49,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private final HashMap<String, String> map_e_2__lev_data;
     private final HashMap<String, String> map_f;
     private final HashMap<String, String> map_g;
+    private final String FAKTURA_TYPE;
 
     private final static Dimension A4_PAPER = new Dimension(545, 842);
 
@@ -57,6 +58,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      */
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
+            String fakturatype,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -77,6 +79,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         this.articles_map_list = articles_map_list;
         //
         this.bim = bim;
+        this.FAKTURA_TYPE = fakturatype;
         this.map_a_0 = map_a_0;
         this.map_a = map_a;
         this.map_b = map_b;
@@ -150,11 +153,31 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1.setText(buildHTML());
         //
     }
+    
+    private String getFakturaTitleBasedOnType(){
+        if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)){
+            return "Faktura";
+        }else if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
+            return "Kreditfaktura";
+        }else if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
+            return "Kvitto";
+        }else{
+            return null;
+        }
+    }
+    
+    protected final static String getAttBetalaTitle(String fakturatype){
+        if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)){
+            return "ATT BETALA";
+        }else if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
+            return "ATT ERHÅLLA";
+        }else if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
+            return "BETALD";
+        }else{
+            return null;
+        }
+    }
 
-    //
-    private static final String T__FAKTURA_TITLE = "Faktura";
-    private static final String COMPANY_NAME = "MixCont AB";
-    private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
     //
     public static final String T__FAKTURA_NR = "Faktura nr";
     public static final String T__KUND_NR = "Kundnr";
@@ -178,10 +201,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; //Leveransadress
+    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; 
     //
-    private static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
-    private static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
     public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
     public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
@@ -336,16 +357,20 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + "</table>";
     }
+    
+    
 
     private String titleOrLogoIfExist(String imgPath) {
+        //
         if (imgPath != null) {
             return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
-                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType() + "</h1></td>";
         } else {
-            return "<td rowspan='2'><h1 class='marginLeft'>" + COMPANY_NAME + "</h1></td>"
-                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
+            return "<td rowspan='2'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
+                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType() + "</h1></td>";
 
         }
+        //
     }
 
     private String adresses_to_html() {
@@ -452,8 +477,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_ATT_BETALA};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
+        String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
+        //
+        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
         //
         html_ += internal_table_2r_xc(headers, values, 7, "");
         //
@@ -1029,7 +1056,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null,null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }
