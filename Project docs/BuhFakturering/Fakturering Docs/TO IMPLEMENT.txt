@@ -11,6 +11,7 @@
 -> Have field "Krediterar fakturanr" [DONE]
 -> Have "ATT ERHÅLA" instead of "ATT BETALA" [DONE]
 -> Don't have "dröjsmålsränta" [DONE]
+-> "Betala till" row shall be ommited
 
 [KONTANT NOTA]
 -> Can be just named "Kvitto" [DONE]

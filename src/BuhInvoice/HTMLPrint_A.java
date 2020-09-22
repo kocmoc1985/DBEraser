@@ -111,8 +111,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         setSize(getWidth(), height);
         //
     }
-    
-    private String getPdfFakturaFileName(){
+
+    private String getPdfFakturaFileName() {
         return "faktura_" + bim.getKundId() + ".pdf";
     }
 
@@ -883,15 +883,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         sendWithOutLook();
 //        sendWithOutlookB();
     }//GEN-LAST:event_jButton2ActionPerformed
- 
-    private void sendWithOutlookB(){
+
+    private void sendWithOutlookB() {
         ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
         String[] commands = new String[5];
         commands[0] = "C:\\Program Files\\Outlook Express\\msimn.exe";
         commands[1] = "/c";
         commands[2] = "ipm.note";
         commands[3] = "/a";
-        commands[4] =  getPathNormal(getPdfFakturaFileName());
+        commands[4] = getPathNormal(getPdfFakturaFileName());
         ProcessBuilder builder = new ProcessBuilder(commands);
         try {
             builder.start();
@@ -899,15 +899,18 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * This will work with all mail clients, but it does not attach automatically.
-     * So the solution is to silently write ".pdf" to desktop, and give the user
-     * a message where to find the file
+     * This will work with all mail clients, but it does not attach
+     * automatically. So the solution is to silently write ".pdf" to desktop,
+     * and give the user a message where to find the file
      */
     private void sendWithOutLook() {
         //
-        String absoluteFilePath = getPathNormal(getPdfFakturaFileName());
+        String desktopPath = System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName();
+        print_java(desktopPath);
+        //
+//        String absoluteFilePath = getPathNormal(getPdfFakturaFileName());
         Desktop desktop = Desktop.getDesktop();
         String url;
         URI mailTo;
@@ -915,12 +918,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         try {
             //
             //Without attachment
-//            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"
-//                    + "&body=" + "TEST%20BODY";
+            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"
+                    + "&body=" + "TEST%20BODY";
             //
-            // With attachment
-            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"   
-               + "&body=" + "TEST%20BODY"+"&attachment=" + absoluteFilePath.replaceAll("file:/", "file:///");   
+            // With attachment - does not work, it's deprecated
+//            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"   
+//               + "&body=" + "TEST%20BODY"+"&attachment=" + absoluteFilePath.replaceAll("file:/", "file:///");   
             //
             System.out.println("URL: " + url);
             //
