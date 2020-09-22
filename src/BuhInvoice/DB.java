@@ -49,6 +49,9 @@ public class DB {
     public static final String STATIC__SENT_TYPE_FAKTURA = "0";
     public static final String STATIC__SENT_TYPE_PAMMINELSE = "1";
     //===
+    public static final String STATIC__FAKTURA_TYPE_NORMAL__NUM = "0";
+    public static final String STATIC__FAKTURA_TYPE_KREDIT__NUM = "1";
+    public static final String STATIC__FAKTURA_TYPE_KONTANT__NUM = "2";
     public static final String STATIC__FAKTURA_TYPE_NORMAL = "NORMAL";
     public static final String STATIC__FAKTURA_TYPE_KREDIT = "KREDIT";
     public static final String STATIC__FAKTURA_TYPE_KONTANT = "KONTANT";

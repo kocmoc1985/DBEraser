@@ -582,7 +582,7 @@ public class InvoiceB extends Basic {
         //
         if (isKreditFaktura) {
             //
-            faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "1"); // 1 = KREDIT FAKTURA
+            faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KREDIT__NUM); // 1 = KREDIT FAKTURA
             faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "4"); // 4 = KREDIT FAKTURA -> shows "-" in table
             faktura_data_map.put(DB.BUH_FAKTURA__KOMMENT, fakturaNrCopy); // Saving the "krediterad" invoice
             //

@@ -3,6 +3,8 @@
 1. "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
 2. Skicka Påminnelser
 3. Faktura urval - Alla, Betalda, Obetalda .....
+4. Implement send with Outlook functionality
+5. Print Address of Customer for sending with common post
 
 [KREDIT FAKTURA]
 -> Have name "Kreditfaktura"  [DONE]

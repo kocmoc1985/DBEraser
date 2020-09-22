@@ -1271,13 +1271,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
-                invoiceA_insert.resetSavedMoms();
+                invoiceA_insert.resetSavedMoms_jCombo();
                 invoiceB.refresh();
             }
         } else {
             if (invoiceA_update.fieldsValidated(false)) {
                 invoiceA_update.insertOrUpdate();
-                invoiceA_update.resetSavedMoms();
+                invoiceA_update.resetSavedMoms_jCombo();
                 invoiceB.refresh_c(getFakturaNr());
             }
         }
@@ -1292,7 +1292,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_insert = new InvoiceA_Insert(this);
         }
         //
-        invoiceA_insert.resetSavedMoms();
+        invoiceA_insert.resetSavedMoms_jCombo();
         //
         invoiceA_insert.createNew(isKontantfaktura);
         //

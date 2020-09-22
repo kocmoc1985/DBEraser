@@ -66,7 +66,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         if (insert) {
             //
-            if (bim.isKontantFaktura() || CREATE_KONTANT_FAKTURA__OPERATION_INSERT == true) {
+            if (CREATE_KONTANT_FAKTURA__OPERATION_INSERT == true) {
                 // KONTANT FAKTURA
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1_2);
                 //
@@ -102,17 +102,19 @@ public abstract class Invoice extends Basic_Buh_ {
                     HelpA.showNotification_separate_thread(LANG.MSG_9);
                 }
                 //
-                if (bim.isKreditFaktura() == false) {
-                    //
-                    bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
-                    enableDisableButtons(bim.jPanel12, true);
-                    //
-                } else {
+                if (bim.isKreditFaktura()) {
                     // OBS! KREDIT FAKTURA [2020-09-15]  
                     String krediteradFakturaNr = bim.getKomment_$();
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3(krediteradFakturaNr));
                     bim.jButton_add_article.setEnabled(false); // Shall not be possible to add articles
                     //
+                } else if (bim.isKontantFaktura()) {
+                    bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1);
+                    enableDisableButtons(bim.jPanel12, true);
+                } else {
+                    // NORMAL FAKTURA
+                    bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
+                    enableDisableButtons(bim.jPanel12, true);
                 }
                 //
                 //
@@ -125,7 +127,7 @@ public abstract class Invoice extends Basic_Buh_ {
         }
     }
 
-    protected void resetSavedMoms() {
+    protected void resetSavedMoms_jCombo() {
         momsSaveEntry.reset();
     }
 

@@ -86,6 +86,12 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
+        //OBS! KONTANT FAKTURA [2020-09-22]
+        if(Invoice.CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
+            this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KONTANT__NUM); // 2 = KONTANT FAKTURA
+        }
+        //
+        //
         this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         //
         System.out.println("-------------------------------------------------");
