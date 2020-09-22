@@ -686,6 +686,10 @@ public class InvoiceB extends Basic {
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
             //
+            if(addresses.isEmpty()){
+                return "";
+            }
+            //
             String betalMetod_shortName = addresses.get(0).get(DB.BUH_FAKTURA_INBET__BETAL_METHOD);
             //
             return getLongName(DB.STATIC__BETAL_METHODS, betalMetod_shortName);

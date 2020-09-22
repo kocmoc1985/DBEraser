@@ -10,6 +10,7 @@ import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,6 +110,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         setSize(getWidth(), height);
         //
+    }
+    
+    private String getPdfFakturaFileName(){
+        return "faktura_" + bim.getKundId() + ".pdf";
     }
 
     private void scrollToTop() {
@@ -208,26 +215,26 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             return null;
         }
     }
-    
+
     private String getForfalloDatumFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
-           return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
-            return  _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
+            return _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
         } else {
             return null;
         }
     }
-    
+
     private String getBetalVilkorFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
-           return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
-            return  _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
+            return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
         } else {
             return null;
         }
@@ -239,7 +246,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
-            return  "";
+            return "";
         } else {
             return null;
         }
@@ -739,6 +746,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -781,6 +789,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
 
+        jButton2.setText("Outlook");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -791,7 +806,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(83, 83, 83)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(50, 50, 50))
         );
@@ -801,7 +818,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -841,7 +859,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
-        String fakturaFileName = "faktura_" + bim.getKundId() + ".pdf";
+        String fakturaFileName = getPdfFakturaFileName();
         //
         print_upload_sendmail__thr(
                 "uploads/",
@@ -860,6 +878,58 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        sendWithOutLook();
+//        sendWithOutlookB();
+    }//GEN-LAST:event_jButton2ActionPerformed
+ 
+    private void sendWithOutlookB(){
+        ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
+        String[] commands = new String[5];
+        commands[0] = "C:\\Program Files\\Outlook Express\\msimn.exe";
+        commands[1] = "/c";
+        commands[2] = "ipm.note";
+        commands[3] = "/a";
+        commands[4] =  getPathNormal(getPdfFakturaFileName());
+        ProcessBuilder builder = new ProcessBuilder(commands);
+        try {
+            builder.start();
+        } catch (IOException ex) {
+            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * This will work with all mail clients, but it does not attach automatically.
+     * So the solution is to silently write ".pdf" to desktop, and give the user
+     * a message where to find the file
+     */
+    private void sendWithOutLook() {
+        //
+        String absoluteFilePath = getPathNormal(getPdfFakturaFileName());
+        Desktop desktop = Desktop.getDesktop();
+        String url;
+        URI mailTo;
+        //
+        try {
+            //
+            //Without attachment
+//            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"
+//                    + "&body=" + "TEST%20BODY";
+            //
+            // With attachment
+            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"   
+               + "&body=" + "TEST%20BODY"+"&attachment=" + absoluteFilePath.replaceAll("file:/", "file:///");   
+            //
+            System.out.println("URL: " + url);
+            //
+            mailTo = new URI(url);
+            desktop.mail(mailTo);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void displayStatus(String msg, Color c) {
         //
@@ -1106,6 +1176,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_send_faktura_email;
     protected javax.swing.JEditorPane jEditorPane1;
