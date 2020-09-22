@@ -109,7 +109,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jButton_inbetalning.setEnabled(false);
         } else if (isKontantFaktura()) {
             jButton_kredit_faktura.setEnabled(false);
-            jButton_inbetalning.setEnabled(false);
+//            jButton_inbetalning.setEnabled(false);
         } else {
             jButton_kredit_faktura.setEnabled(true);
             jButton_copy_faktura.setEnabled(true);

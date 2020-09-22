@@ -398,7 +398,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
-            return "XXXXXXX";
+            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
         } else {
             return null;
         }

@@ -14,8 +14,9 @@
 
 [KONTANT NOTA]
 -> Can be just named "Kvitto" [DONE]
--> Dont have "Förfallodatum" 
+-> Dont have "Förfallodatum" - > Replace with "Betalmetod" [IMPORTANT]
 -> Don't have field "Betalnings vilkor"
+-> Don't have "dröjsmålsränta"
 -> Set status "betald" direkt efter registrering av fakturan [DONE]
 ____________________________________________________________________________________________________________________________________________________
 
