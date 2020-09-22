@@ -588,6 +588,11 @@ public class InvoiceB extends Basic {
             //
             komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             //
+        }else if(bim.isKontantFaktura()){
+            //
+            faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "1");
+            komment = "Kopierad från fakturanummer# " + fakturaNrCopy;
+            //
         } else {
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);

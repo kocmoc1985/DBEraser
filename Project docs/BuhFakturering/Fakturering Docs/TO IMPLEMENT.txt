@@ -13,10 +13,10 @@
 -> Don't have "dröjsmålsränta" [DONE]
 
 [KONTANT NOTA]
--> Can be just named "Kvitto"
--> Dont have "Förfallodatum"
+-> Can be just named "Kvitto" [DONE]
+-> Dont have "Förfallodatum" 
 -> Don't have field "Betalnings vilkor"
--> Set status "betald" direkt efter registrering av fakturan
+-> Set status "betald" direkt efter registrering av fakturan [DONE]
 ____________________________________________________________________________________________________________________________________________________
 
 [BIG THINGS TO SOLVE:]

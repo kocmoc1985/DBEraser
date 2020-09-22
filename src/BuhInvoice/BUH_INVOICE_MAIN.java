@@ -90,6 +90,34 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         HelpA.setUneditableJTable(jTable_kunder);
     }
 
+    protected void hideShowButtonsDependingOnConditions() {
+        //
+        if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
+            jButton_edit_faktura.setEnabled(false);
+            jButton_copy_faktura.setEnabled(false);
+            jButton_kredit_faktura.setEnabled(false);
+            jButton_delete_faktura.setEnabled(false);
+            jButton_print_faktura.setEnabled(false);
+            jButton_inbetalning.setEnabled(false);
+            jButton_show_actions.setEnabled(false);
+            return;
+        }
+        //
+        if (isKreditFaktura()) {
+            jButton_kredit_faktura.setEnabled(false);
+            jButton_copy_faktura.setEnabled(false);
+            jButton_inbetalning.setEnabled(false);
+        } else if (isKontantFaktura()) {
+            jButton_kredit_faktura.setEnabled(false);
+            jButton_inbetalning.setEnabled(false);
+        } else {
+            jButton_kredit_faktura.setEnabled(true);
+            jButton_copy_faktura.setEnabled(true);
+            jButton_inbetalning.setEnabled(true);
+        }
+        //
+    }
+
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
@@ -129,7 +157,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
-    
+
     protected String getFakturaType() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
@@ -159,7 +187,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-    
+
     protected boolean isKontantFaktura() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -1338,10 +1366,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton4_save_faktura_kommentActionPerformed
 
     private void jButton_copy_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_copy_fakturaActionPerformed
-        copyFaktura(false);
+        copyFaktura_createKreditFaktura(false);
     }//GEN-LAST:event_jButton_copy_fakturaActionPerformed
 
-    private void copyFaktura(boolean isKreditFaktura) {
+    private void copyFaktura_createKreditFaktura(boolean isKreditFaktura) {
         //
         if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
             return;
@@ -1373,7 +1401,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton4_delete_faktura_komment1ActionPerformed
 
     private void jButton_kredit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kredit_fakturaActionPerformed
-        copyFaktura(true); // true = "kreditfaktura"
+        copyFaktura_createKreditFaktura(true); // true = "kreditfaktura"
     }//GEN-LAST:event_jButton_kredit_fakturaActionPerformed
 
     private void jButton_kontant_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kontant_fakturaActionPerformed
@@ -1729,31 +1757,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         String fakturaId = getFakturaId();
         //
         invoiceB.all_invoices_table_clicked(fakturaId);
-        //
-    }
-
-    protected void hideShowButtonsDependingOnConditions() {
-        //
-        if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
-            jButton_edit_faktura.setEnabled(false);
-            jButton_copy_faktura.setEnabled(false);
-            jButton_kredit_faktura.setEnabled(false);
-            jButton_delete_faktura.setEnabled(false);
-            jButton_print_faktura.setEnabled(false);
-            jButton_inbetalning.setEnabled(false);
-            jButton_show_actions.setEnabled(false);
-            return;
-        }
-        //
-        if (isKreditFaktura()) {
-            jButton_kredit_faktura.setEnabled(false);
-            jButton_copy_faktura.setEnabled(false);
-            jButton_inbetalning.setEnabled(false);
-        } else {
-            jButton_kredit_faktura.setEnabled(true);
-            jButton_copy_faktura.setEnabled(true);
-            jButton_inbetalning.setEnabled(true);
-        }
         //
     }
 
