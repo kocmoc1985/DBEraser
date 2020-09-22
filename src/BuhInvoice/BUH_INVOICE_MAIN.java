@@ -317,8 +317,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton15 = new javax.swing.JButton();
         jButton_edit_faktura = new javax.swing.JButton();
         jButton_create_new_faktura = new javax.swing.JButton();
-        jButton_copy_faktura = new javax.swing.JButton();
         jButton_kredit_faktura = new javax.swing.JButton();
+        jButton_copy_faktura = new javax.swing.JButton();
         jButton_delete_faktura = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
         jLabel_btn_separator_1 = new javax.swing.JLabel();
@@ -452,15 +452,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel4.add(jButton_create_new_faktura);
 
-        jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
-        jButton_copy_faktura.setToolTipText("Kopiera faktura");
-        jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_copy_fakturaActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton_copy_faktura);
-
         jButton_kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
         jButton_kredit_faktura.setToolTipText("Skapa kreditfaktura - välj först en faktura ur listan och tryck sedan på knappen");
         jButton_kredit_faktura.addActionListener(new java.awt.event.ActionListener() {
@@ -469,6 +460,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
         jPanel4.add(jButton_kredit_faktura);
+
+        jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_copy_faktura.setToolTipText("Kopiera faktura");
+        jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_copy_fakturaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton_copy_faktura);
 
         jButton_delete_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
         jButton_delete_faktura.setToolTipText("Radera faktura");

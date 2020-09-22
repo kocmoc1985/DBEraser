@@ -153,27 +153,58 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1.setText(buildHTML());
         //
     }
-    
-    private String getFakturaTitleBasedOnType(){
-        if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)){
+
+    private String _get_colon_sep(String key, HashMap<String, String> map) {
+        return key + ": " + map.get(key);
+    }
+
+    private String _get_exist_a(String name, String value) {
+        if (value.isEmpty() == false) {
+            return ", <span class='bold'>" + name + "</span>: " + value;
+        } else {
+            return "";
+        }
+    }
+
+    private String _get_exist_b(String name, String value) {
+        if (value.isEmpty() == false) {
+            return ", " + name + ": " + value;
+        } else {
+            return "";
+        }
+    }
+
+    private String _get_longname(HashMap<String, String> map, String param, String statics) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return JSon.getLongName(statics, val);
+        }
+    }
+
+    private String getFakturaTitleBasedOnType() {
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return "Faktura";
-        }else if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return "Kreditfaktura";
-        }else if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "Kvitto";
-        }else{
+        } else {
             return null;
         }
     }
-    
-    protected final static String getAttBetalaTitle(String fakturatype){
-        if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)){
+
+    protected final static String getAttBetalaTitle(String fakturatype) {
+        if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return "ATT BETALA";
-        }else if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)){
+        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return "ATT ERHÅLLA";
-        }else if(fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
+        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "BETALD";
-        }else{
+        } else {
             return null;
         }
     }
@@ -193,6 +224,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_BETAL_VILKOR = "Betalningsvilkor";
     public static final String T__FAKTURA_FORFALLODATUM = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
+    public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
     public static final String T__FAKTURA_FRAKT = "Frakt";
@@ -201,7 +233,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; 
+    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
     //
     public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
@@ -307,17 +339,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //            return val;
 //        }
 //    }
-    private String _get_longname(HashMap<String, String> map, String param, String statics) {
-        //
-        String val = map.get(param);
-        //
-        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
-            return "";
-        } else {
-            return JSon.getLongName(statics, val);
-        }
-    }
-
     /**
      * Temporary fix [2020-07-23]
      *
@@ -357,8 +378,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 + "</table>";
     }
-    
-    
 
     private String titleOrLogoIfExist(String imgPath) {
         //
@@ -372,21 +391,33 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         }
         //
     }
+    
+    private String getDrojsmalsrantaColDependentOnType(){
+         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
+            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
+            return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
+            return "XXXXXXX";
+        } else {
+            return null;
+        }
+    }
 
     private String adresses_to_html() {
         //
         String html_ = "<table class='marginTop'>";
         //
-
         String[] values_a = new String[]{
             _get(map_e_2__lev_data, COL_0),
             _get(map_e, COL_1),
             _get(map_e, COL_2) + " " + _get(map_e, COL_3)
         };
+        //
         String[] values_b = new String[]{
-            T__FAKTURA_FORFALLODATUM + ": " + map_c.get(T__FAKTURA_FORFALLODATUM),
-            T__FAKTURA_BETAL_VILKOR + ": " + map_c.get(T__FAKTURA_BETAL_VILKOR),
-            T__FAKTURA_DROJMALSRANTA + ": " + map_c.get(T__FAKTURA_DROJMALSRANTA)
+            _get_colon_sep(T__FAKTURA_FORFALLODATUM, map_c),
+            _get_colon_sep(T__FAKTURA_BETAL_VILKOR, map_c),
+            getDrojsmalsrantaColDependentOnType()
         };
         //
         html_ += "<tr>"
@@ -433,22 +464,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         html_ += "</table>";
         //
         return html_;
-    }
-
-    private String _get_exist_a(String name, String value) {
-        if (value.isEmpty() == false) {
-            return ", <span class='bold'>" + name + "</span>: " + value;
-        } else {
-            return "";
-        }
-    }
-
-    private String _get_exist_b(String name, String value) {
-        if (value.isEmpty() == false) {
-            return ", " + name + ": " + value;
-        } else {
-            return "";
-        }
     }
 
     private String betal_alternativ_to_html() {
@@ -1056,7 +1071,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_A(null,null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }

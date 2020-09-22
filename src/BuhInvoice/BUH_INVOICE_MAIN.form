@@ -202,17 +202,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_create_new_fakturaActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton_copy_faktura">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/copy.png"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_copy_fakturaActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JButton" name="jButton_kredit_faktura">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -222,6 +211,17 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_kredit_fakturaActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton_copy_faktura">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/copy.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_copy_fakturaActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_delete_faktura">

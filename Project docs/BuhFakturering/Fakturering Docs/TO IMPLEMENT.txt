@@ -6,9 +6,9 @@
 
 [KREDIT FAKTURA]
 -> Have name "Kreditfaktura"  [DONE]
--> Have field "Krediterar fakturanr" 
+-> Have field "Krediterar fakturanr" [DONE]
 -> Have "ATT ERHÅLA" instead of "ATT BETALA" [DONE]
--> Don't have "dröjsmålsränta"
+-> Don't have "dröjsmålsränta" [DONE]
 
 [KONTANT NOTA]
 -> Can be just named "Kvitto"

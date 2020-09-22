@@ -700,6 +700,7 @@ public class InvoiceB extends Basic {
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR, _get(TABLE_ALL_INVOICES__BET_VILKOR));
         map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
         map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA, ""); //**************************EMPTY
+        map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$()); 
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
