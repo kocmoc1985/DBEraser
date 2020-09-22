@@ -875,6 +875,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
+   
+    
     /**
      * [2020-09-03]
      *
@@ -910,14 +912,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         Boolean email_sending_ok = false;
         //
-        String body = "Du har fått faktura från: " + ftgName;
+        String fakturaTitle = getFakturaTitleBasedOnType();
+        //
+        String body = "Du har fått "+ fakturaTitle.toLowerCase() + " från: " + ftgName;
         //
         if (upload_success) {
             //
             email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                     GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
                     sendToEmail,
-                    "Faktura",
+                    fakturaTitle,
                     body,
                     serverPath + fileName
             );
