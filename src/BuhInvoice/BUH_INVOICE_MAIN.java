@@ -317,6 +317,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton15 = new javax.swing.JButton();
         jButton_edit_faktura = new javax.swing.JButton();
         jButton_create_new_faktura = new javax.swing.JButton();
+        jButton_kontant_faktura = new javax.swing.JButton();
         jButton_kredit_faktura = new javax.swing.JButton();
         jButton_copy_faktura = new javax.swing.JButton();
         jButton_delete_faktura = new javax.swing.JButton();
@@ -452,6 +453,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel4.add(jButton_create_new_faktura);
 
+        jButton_kontant_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/kontantfaktura.png"))); // NOI18N
+        jButton_kontant_faktura.setToolTipText("Skapa ny kontantfaktura");
+        jPanel4.add(jButton_kontant_faktura);
+
         jButton_kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
         jButton_kredit_faktura.setToolTipText("Skapa kreditfaktura - välj först en faktura ur listan och tryck sedan på knappen");
         jButton_kredit_faktura.addActionListener(new java.awt.event.ActionListener() {
@@ -562,7 +567,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addContainerGap()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(12, 12, 12))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1465,6 +1470,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_delete_faktura;
     private javax.swing.JButton jButton_edit_faktura;
     private javax.swing.JButton jButton_inbetalning;
+    private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
     private javax.swing.JButton jButton_show_actions;
