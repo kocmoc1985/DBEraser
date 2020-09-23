@@ -136,7 +136,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
             ".paddingLeft {padding-left: 5px;}",
-            ".bold {font-weight:800;}"
+            ".bold {color:red;}", // font-weight:800;
+            ".no-border {border: 0px}",
+            ".border-a {border: 1px solid black;}"
         //    
         };
         //
@@ -607,14 +609,14 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             return "";
         }
         //
-        html_ += "<tr>";
+        html_ += "<tr class='bold'>";
         //
-        html_ += "<td>" + T__ARTIKEL_NAMN + "</td>";
-        html_ += "<td>" + T__ARTIKEL_KOMMENT + "</td>";
-        html_ += "<td>" + T__ARTIKEL_ANTAL + "</td>";
-        html_ += "<td>" + T__ARTIKEL_ENHET + "</td>";
-        html_ += "<td>" + T__ARTIKEL_RABATT + "</td>";
-        html_ += "<td>" + T__ARTIKEL_PRIS + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
         //
@@ -623,12 +625,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
             html_ += "<tr>";
             //
-            html_ += "<td>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
-            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
-            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
-            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
-            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
-            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";
             //
