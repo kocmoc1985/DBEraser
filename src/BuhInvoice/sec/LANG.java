@@ -43,6 +43,12 @@ public class LANG {
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
+    
+    public static String FRAME_TITLE_1 = "Skriv ut faktura";
+    public static String FRAME_TITLE_1_2 = "Skriv ut påminnelse";
+    
+    public static String FAKTURA = "Faktura";
+    public static String PAMINNELSE = "Faktura";
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
         return "KREDITERAR FAKTURA: " + fakturaCopy;

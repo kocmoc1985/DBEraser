@@ -368,6 +368,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_delete_faktura = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
         jLabel_btn_separator_1 = new javax.swing.JLabel();
+        jButton_send_påmminelse = new javax.swing.JButton();
         jButton_inbetalning = new javax.swing.JButton();
         jButton_show_actions = new javax.swing.JButton();
         jLabel_all_invoices_list = new javax.swing.JLabel();
@@ -544,6 +545,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jButton_print_faktura);
         jPanel4.add(jLabel_btn_separator_1);
 
+        jButton_send_påmminelse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
+        jButton_send_påmminelse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_send_påmminelseActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton_send_påmminelse);
+
         jButton_inbetalning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
         jButton_inbetalning.setToolTipText("Registrera inbetalning");
         jButton_inbetalning.addActionListener(new java.awt.event.ActionListener() {
@@ -602,13 +611,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(571, 571, 571)
-                                .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(142, 142, 142)
+                                .addGap(1099, 1099, 1099)
                                 .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(1043, 1043, 1043)
@@ -617,7 +620,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addContainerGap()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(2, 2, 2)
+                                    .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(12, 12, 12))
         );
         jPanel3Layout.setVerticalGroup(
@@ -628,7 +638,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
@@ -1199,7 +1209,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         String fakturatype = getFakturaType();
 //        System.out.println("AA " + fakturaTyp);
-        invoiceB.htmlFaktura(fakturatype);
+        invoiceB.htmlFakturaOrReminder(fakturatype,false);
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
@@ -1428,6 +1438,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         createNewFaktura(true);
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
+    private void jButton_send_påmminelseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_påmminelseActionPerformed
+         invoiceB.htmlFakturaOrReminder(null,true);
+    }//GEN-LAST:event_jButton_send_påmminelseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1549,6 +1563,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
+    private javax.swing.JButton jButton_send_påmminelse;
     private javax.swing.JButton jButton_show_actions;
     protected javax.swing.JButton jButton_update_article;
     protected javax.swing.JButton jButton_update_articles_row;

@@ -5,12 +5,11 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
+import forall.GP;
 import forall.HelpA;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -18,27 +17,47 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
+import javax.swing.JFrame;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 /**
  *
  * @author KOCMOC
  */
-public class HTMLPrint_B extends HTMLPrint {
+public class HTMLPrint_Backup extends javax.swing.JFrame {
 
-    public HTMLPrint_B(
+    private final BUH_INVOICE_MAIN bim;
+    private final ArrayList<HashMap<String, String>> articles_map_list;
+    private final HashMap<String, String> map_a_0;
+    private final HashMap<String, String> map_a;
+    private final HashMap<String, String> map_b;
+    private final HashMap<String, String> map_c;
+    private final HashMap<String, String> map_d;
+    private final HashMap<String, String> map_e;
+    private final HashMap<String, String> map_e_2__lev_data;
+    private final HashMap<String, String> map_f;
+    private final HashMap<String, String> map_g;
+
+    private final static Dimension A4_PAPER = new Dimension(545, 842);
+
+    /**
+     * Creates new form HTMLPrint_A
+     */
+    public HTMLPrint_Backup(
             BUH_INVOICE_MAIN bim,
-            String fakturatype,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -50,31 +69,59 @@ public class HTMLPrint_B extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+        //
+        initComponents();
+        //
+        this.setTitle("Skriv ut faktura");
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
+        //
+        this.articles_map_list = articles_map_list;
+        //
+        this.bim = bim;
+        this.map_a_0 = map_a_0;
+        this.map_a = map_a;
+        this.map_b = map_b;
+        this.map_c = map_c;
+        this.map_d = map_d;
+        this.map_e = map_e;
+        this.map_e_2__lev_data = map_e_2;
+        this.map_f = map_f;
+        this.map_g = map_g;
+        //
+        initOther();
+        //
+        go();
+        //
+        scrollToTop();
     }
 
-    @Override
-    protected String getWindowTitle() {
-        return LANG.FRAME_TITLE_1_2;
-    }
-    
-    @Override
-    protected JEditorPane getEditorPane() {
-        return this.jEditorPane1;
-    }
-
-    @Override
-    protected JScrollPane getJScrollPane() {
-        return jScrollPane2;
+    private void initOther() {
+        //
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        //
+        int height = (int) (d.height * 0.9);
+        //
+        setSize(getWidth(), height);
+        //
     }
 
-    @Override
-    protected String[] getCssRules() {
+    private void scrollToTop() {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                jScrollPane2.getVerticalScrollBar().setValue(0);
+            }
+        });
+    }
+
+    private void go() {
+        //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
             //            "img {width: 20px}", not working from here
-            ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",
             "td {border: 1px solid black;}",
@@ -83,32 +130,31 @@ public class HTMLPrint_B extends HTMLPrint {
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
             ".paddingLeft {padding-left: 5px;}",
-            ".bold {color:red;}", // font-weight:800;
-            ".no-border {border: 0px}",
-            ".border-a {border: 1px solid black;}"
+            ".bold {font-weight:800;}"
         //    
         };
         //
-        return CSSRules;
+        HTMLEditorKit kit = new HTMLEditorKit();
+        jEditorPane1.setEditorKit(kit);
+        //
+        StyleSheet styleSheet = kit.getStyleSheet();
+        //
+        //
+        for (int i = 0; i < CSSRules.length; i++) {
+            styleSheet.addRule(CSSRules[i]);
+        }
+        //
+        Document doc = kit.createDefaultDocument();
+        jEditorPane1.setDocument(doc);
+        //
+        jEditorPane1.setText(buildHTML());
         //
     }
 
-    protected final static String getAttBetalaTitle() {
-        return "ATT BETALA";
-    }
-
-    private String getForfalloDatumFlexCol() {
-        return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
-    }
-
-    private String getBetalVilkorFlexCol() {
-        return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
-    }
-
-    private String getDrojsmalsrantaFlexCol() {
-        return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c);
-    }
-
+    //
+    private static final String T__FAKTURA_TITLE = "Faktura";
+    private static final String COMPANY_NAME = "MixCont AB";
+    private static final String LONG_TEXT = "Adaddsvs dfsdfkdsöfk lkflödkfldsöf dlfkslödfklödsf dllkdöslfksödlfkd  dsöfkdsöf";
     //
     public static final String T__FAKTURA_NR = "Faktura nr";
     public static final String T__KUND_NR = "Kundnr";
@@ -121,12 +167,9 @@ public class HTMLPrint_B extends HTMLPrint {
     public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
     //
     public static final String T__FAKTURA_VAR_REF = "Vår referens";
-    public static final String T__FAKTURA_BETAL_VILKOR__FLEX = "Betalningsvilkor";
-    public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
-    public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
-    public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
-    public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // only for "kontantfaktura"
-    public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
+    public static final String T__FAKTURA_BETAL_VILKOR = "Betalningvilkor";
+    public static final String T__FAKTURA_FORFALLODATUM = "Förfallodatum";
+    public static final String T__FAKTURA_DROJMALSRANTA = "Dröjsmålsränta";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
     public static final String T__FAKTURA_FRAKT = "Frakt";
@@ -135,9 +178,10 @@ public class HTMLPrint_B extends HTMLPrint {
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
+    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA"; //Leveransadress
     //
-    public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
+    public static final String T__FAKTURA_LEV_ADDR_TITLE = "Leveransadress";
+    public static final String T__FAKTURA_INVOICE_ADDR_TITLE = "Fakturaadress";
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
     public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
     public static final String COL_3 = DB.BUH_ADDR__ORT;
@@ -150,19 +194,47 @@ public class HTMLPrint_B extends HTMLPrint {
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
-    public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
-    public static final String T__FTG_BETALA_TILL = "Betala till";
-    public static final String T__FTG_TELEFON = "Telefon, ring";
-    public static final String T__FTG_EPOST = "Mejla oss på";
-    public static final String T__FTG_BANKGIRO = "BG";
-    public static final String T__FTG_POSTGIRO = "PG";
-    public static final String T__FTG_KONTO = "Konto";
-    public static final String T__FTG_SWISH = "Swish";
+    public static final String T__FTG_TELEFON = "Telefon"; // Innehar F-skattebevis
+    public static final String T__FTG_EPOST = "E-post";
+    public static final String T__FTG_BANKGIRO = "Bankgiro";
     public static final String T__FTG_ORGNR = "Organisationsnr";
-    public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
-    public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
+    public static final String T__FTG_MOMS_REG_NR = "Momsreg.nr";
+    public static final String T__FTG_F_SKATT = "Innehar F-skattebevis";
 
-    @Override
+    /**
+     * Use this one when, getting the image from the "inside project / .jar
+     * file"
+     *
+     * @param path
+     * @param imgName
+     * @return - like: "file:/J:/MyDocs/src/...."
+     */
+    private String getPathResources(String path, String imgName) {
+        return getImageIconURL(path, imgName).toString();
+    }
+
+    /**
+     * Use this one when, getting the image from inside the "project dir / root"
+     *
+     * @param pathAndFileName
+     * @return - like: "file:/J:/MyDocs/src/...."
+     */
+    private String getPathNormal(String pathAndFileName) {
+        //
+        File f = new File(pathAndFileName);
+        //
+        if (f.exists() == false) {
+            return null;
+        }
+        //
+        try {
+            return new File(pathAndFileName).toURI().toURL().toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
     protected String buildHTML() {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
@@ -180,13 +252,11 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 + faktura_data_A_to_html()
                 //
-                + betal_alternativ_to_html()
-                //
-                + faktura_data_B_to_html__totals()
-                //
                 + articles_to_html(articles_map_list)
                 //
                 + brElements()
+                //
+                + faktura_data_B_to_html()
                 //
                 + faktura_data_C_to_html()
                 //
@@ -196,6 +266,28 @@ public class HTMLPrint_B extends HTMLPrint {
                 + "</body>"
                 + "</html>";
         //
+    }
+
+    private String _get(HashMap<String, String> map, String param) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return val;
+        }
+    }
+
+    private String _get_longname(HashMap<String, String> map, String param, String statics) {
+        //
+        String val = map.get(param);
+        //
+        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
+            return "";
+        } else {
+            return JSon.getLongName(statics, val);
+        }
     }
 
     /**
@@ -211,7 +303,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html = "";
         //
-        int br_to_add = 17 - articles_map_list.size();
+        int br_to_add = 10 - articles_map_list.size();
         //
         for (int i = 0; i < br_to_add; i++) {
             html += "<br>";
@@ -238,48 +330,33 @@ public class HTMLPrint_B extends HTMLPrint {
                 + "</table>";
     }
 
-    @Override
-    protected String getHTMLPrintTitle() {
-        return "Påminnelse";
-    }
-
     private String titleOrLogoIfExist(String imgPath) {
-        //
         if (imgPath != null) {
             return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
-                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
         } else {
-            return "<td rowspan='2'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
-                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
+            return "<td rowspan='2'><h1 class='marginLeft'>" + COMPANY_NAME + "</h1></td>"
+                    + "<td><h1 class='marginLeft'>" + T__FAKTURA_TITLE + "</h1></td>";
 
         }
-        //
     }
 
     private String adresses_to_html() {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] values_a = new String[]{
-            _get(map_e_2__lev_data, COL_0),
-            _get(map_e, COL_1),
-            _get(map_e, COL_2) + " " + _get(map_e, COL_3)
-        };
-        //
-        String[] values_b = new String[]{
-            getForfalloDatumFlexCol(),
-            getBetalVilkorFlexCol(),
-            getDrojsmalsrantaFlexCol()
-        };
+
+        String[] values_a = new String[]{T__FAKTURA_LEV_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
+        String[] values_b = new String[]{T__FAKTURA_INVOICE_ADDR_TITLE, _get(map_e, COL_1), _get(map_e, COL_2), _get(map_e, COL_3), _get(map_e, COL_4)};
         //
         html_ += "<tr>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(3, values_a, false)
+                + internal_table_x_r_1c(5, values_a, true)
                 + "</td>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(3, values_b, true)
+                + internal_table_x_r_1c(5, values_b, true)
                 + "</td>"
                 //
                 + "</tr>";
@@ -293,22 +370,20 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html_ = "<table class='marginTop'>";
         //
-        String[] values_t_1 = new String[]{
-            T__FAKTURA_ER_REF + ": " + map_b.get(T__FAKTURA_ER_REF),
-            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),};
+        String[] headers_t_1 = new String[]{T__FAKTURA_ER_REF, T__FAKTURA_ERT_ORDER_NR, T__FAKTURA_LEV_VILKOR, T__FAKTURA_LEV_SATT, T__FAKTURA_ERT_VAT_NR};
+        String[] values_t_1 = new String[]{map_b.get(T__FAKTURA_ER_REF), map_b.get(T__FAKTURA_ERT_ORDER_NR), map_b.get(T__FAKTURA_LEV_VILKOR), map_b.get(T__FAKTURA_LEV_SATT), map_b.get(T__FAKTURA_ERT_VAT_NR)};
         //
-        String[] values_t_2 = new String[]{
-            T__FAKTURA_ERT_ORDER_NR + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
-            T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + ": " + map_b.get(T__FAKTURA_LEV_SATT)};
+        String[] headers_t_2 = new String[]{T__FAKTURA_VAR_REF, T__FAKTURA_BETAL_VILKOR, T__FAKTURA_FORFALLODATUM, T__FAKTURA_DROJMALSRANTA, T__FAKTURA_XXXXXXX};
+        String[] values_t_2 = new String[]{map_c.get(T__FAKTURA_VAR_REF), map_c.get(T__FAKTURA_BETAL_VILKOR), map_c.get(T__FAKTURA_FORFALLODATUM), map_c.get(T__FAKTURA_DROJMALSRANTA), map_c.get(T__FAKTURA_XXXXXXX)};
         //
         html_ += "<tr>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(2, values_t_1, false)
+                + internal_table_xr_2c(headers_t_1, values_t_1)
                 + "</td>"
                 //
                 + "<td>"
-                + internal_table_x_r_1c(2, values_t_2, false)
+                + internal_table_xr_2c(headers_t_2, values_t_2)
                 + "</td>"
                 //
                 + "</tr>";
@@ -318,42 +393,14 @@ public class HTMLPrint_B extends HTMLPrint {
         return html_;
     }
 
-    private String betal_alternativ_to_html() {
-        //
-        if (bim.isKreditFaktura() || bim.isKontantFaktura()) {
-            return "";
-        }
-        //
-        String html_ = "<table class='marginTop'>";
-        //
-        //
-        html_ += "<tr>";
-        //
-        html_ += "<td>";
-        html_ += T__FTG_BETALA_TILL
-                + _get_exist_a(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
-        html_ += "</td>";
-        //
-        html_ += "</tr>";
-        //
-        html_ += "</table>";
-        //
-        return html_;
-    }
-
-    private String faktura_data_B_to_html__totals() {
+    private String faktura_data_B_to_html() {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        String ATT_BETALA_TITLE = getAttBetalaTitle();
+        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_ATT_BETALA};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR),map_d.get(T__FAKTURA_RABATT_KR), map_d.get(T__FAKTURA_ATT_BETALA)};
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
-        //
-        html_ += internal_table_2r_xc(headers, values, 7, "");
+        html_ += internal_table_2r_xc(headers, values, 6, "");
         //
         html_ += "</div>";//</table>
         //
@@ -366,22 +413,12 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + "," + _get(map_g, DB.BUH_ADDR__POSTNR_ZIP) + " " + _get(map_g, DB.BUH_ADDR__ADDR_A) + ".";
-        html_ += "</p>";
+        String[] headers = new String[]{T__FTG_TELEFON, T__FTG_EPOST, T__FTG_BANKGIRO, T__FTG_ORGNR, T__FTG_MOMS_REG_NR, T__FTG_F_SKATT};
+        String[] values = new String[]{_get(map_g, DB.BUH_ADDR__TEL_A), _get(map_f, DB.BUH_KUND__EPOST),
+            _get(map_f, DB.BUH_KUND__BANK_GIRO), _get(map_f, DB.BUH_KUND__ORGNR),
+            _get(map_f, DB.BUH_KUND__IBAN), _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ)};
         //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_KONTAKTA_OSS + _get_exist_b(T__FTG_TELEFON, _get(map_g, DB.BUH_ADDR__TEL_A))
-                + _get_exist_b(T__FTG_EPOST, _get(map_f, DB.BUH_KUND__EPOST)) + ".";
-
-//        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
-        html_ += "</div>";
-        //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
-                + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
-                + T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
-        html_ += "</div>";
+        html_ += internal_table_2r_xc(headers, values, -1, "");
         //
         html_ += "</div>";
         //
@@ -394,20 +431,18 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html_ = "<table class='marginTop' style='border: 1px solid black'>";
         //
-        html_ += "<span class='no-border'>";
-        //
         if (list == null || list.isEmpty()) {
             return "";
         }
         //
-        html_ += "<tr class='bold'>";
+        html_ += "<tr>";
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
+        html_ += "<td>" + T__ARTIKEL_NAMN + "</td>";
+        html_ += "<td>" + T__ARTIKEL_KOMMENT + "</td>";
+        html_ += "<td>" + T__ARTIKEL_ANTAL + "</td>";
+        html_ += "<td>" + T__ARTIKEL_ENHET + "</td>";
+        html_ += "<td>" + T__ARTIKEL_RABATT + "</td>";
+        html_ += "<td>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
         //
@@ -416,18 +451,16 @@ public class HTMLPrint_B extends HTMLPrint {
             //
             html_ += "<tr>";
             //
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
+            html_ += "<td>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";
             //
         }
-        //
-        html_ += "</span>"; // "class='no-border'"
         //
         html_ += "</table>";
         //
@@ -457,7 +490,27 @@ public class HTMLPrint_B extends HTMLPrint {
         return html_;
     }
 
-    
+    private String internal_table_xr_2c(String[] headers_t_1, String[] values_t_1) {
+        //
+        String html_ = "<table>";
+        //
+        int rows_t1_col1 = headers_t_1.length;
+        //
+        for (int i = 0; i < rows_t1_col1; i++) {
+            //
+            html_ += "<tr>";
+            //
+            html_ += "<td>" + headers_t_1[i] + "</td>";
+            html_ += "<td>" + values_t_1[i] + "</td>";
+            //
+            html_ += "</tr>";
+            //
+        }
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
 
     /**
      * Build a table which is inserted into "<tr>" element of another table
@@ -514,15 +567,23 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     //==========================================================================
-    public Point position_window_in_center_of_the_screen(JDialog window) {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
+    /**
+     *
+     * @param path - path to image folder, play around to get the path working
+     * @param picName
+     * @return
+     */
+    protected URL getImageIconURL(String path, String picName) {
+        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
+        return HTMLPrint_Backup.class.getResource("/" + path + "/" + picName);
     }
 
-    @Override
-    protected void initComponents_() {
-        initComponents();
+    protected URL getImageIconURL(String picName) {
+        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
+        return HTMLPrint_Backup.class.getResource("../../../../../" + picName);
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -538,9 +599,7 @@ public class HTMLPrint_B extends HTMLPrint {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel2_separator = new javax.swing.JLabel();
         jButton_send_faktura_email = new javax.swing.JButton();
-        jButton_send_with_outlook = new javax.swing.JButton();
         jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
@@ -556,36 +615,26 @@ public class HTMLPrint_B extends HTMLPrint {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
-        jButton1.setToolTipText("Skriv ut påminnelse");
+        jButton1.setToolTipText("Skriv ut faktura");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jPanel1.add(jLabel2_separator);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton_send_faktura_email.setToolTipText("Skicka påminnelse per E-post, automatiskt");
+        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post");
         jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_send_faktura_emailActionPerformed(evt);
             }
         });
         jPanel1.add(jButton_send_faktura_email);
-
-        jButton_send_with_outlook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/send_b.png"))); // NOI18N
-        jButton_send_with_outlook.setToolTipText("Skicka påminnelse per E-post med Outlook");
-        jButton_send_with_outlook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_send_with_outlookActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton_send_with_outlook);
         jPanel1.add(jLabel1_separator);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
-        jButton3.setToolTipText("Välj logotyp / bild");
+        jButton3.setToolTipText("Välj logotyp");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -601,14 +650,14 @@ public class HTMLPrint_B extends HTMLPrint {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,10 +680,9 @@ public class HTMLPrint_B extends HTMLPrint {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //
         boolean print_ok = print_normal();
         //
-        if (print_ok) {
+        if(print_ok){
             EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
         }
         //
@@ -642,8 +690,8 @@ public class HTMLPrint_B extends HTMLPrint {
 
     private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
-        String faktura_kund_email = getFakturaKundEmail();
-        String ftg_name = getForetagsNamn();
+        String faktura_kund_email = _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
+        String ftg_name = _get(map_f, DB.BUH_KUND__NAMN);
         //
         if (faktura_kund_email == null || faktura_kund_email.isEmpty()) {
             HelpA.showNotification(LANG.MSG_7);
@@ -654,7 +702,10 @@ public class HTMLPrint_B extends HTMLPrint {
             return;
         }
         //
-        String fakturaFileName = getPdfFakturaFileName(true);
+//        System.out.println("faktura_kund_email: " + faktura_kund_email);
+//        System.out.println("ftg_name: " + ftg_name);
+        //
+        String fakturaFileName =  "faktura_" + bim.getKundId() + ".pdf";
         //
         print_upload_sendmail__thr(
                 "uploads/",
@@ -674,16 +725,11 @@ public class HTMLPrint_B extends HTMLPrint {
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
-        sendWithStandardEmailClient();
-    }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
-
-
     public static void displayStatus(String msg, Color c) {
         //
         if (c != null) {
             jLabel_status.setForeground(c);
-        }
+        } 
         //
         jLabel_status.setText(msg);
         //
@@ -697,18 +743,16 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
                 //
-                String fakturaId = getFakturaId();
+                String fakturaId = map_a_0.get(DB.BUH_FAKTURA__ID__);
                 // 
                 // [2020-09-08]
                 if (ok) {
                     //
-                    fakturaSentPerEpost_saveToDb(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD);
+                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
+                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
                     //
-//                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
-//                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
-//                    //
-//                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
-//                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
@@ -719,6 +763,166 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         x.start();
         //
+    }
+
+    /**
+     * [2020-09-03]
+     *
+     * @param serverPath - must end with "/"
+     * @param fileName - like: "test.pdf"
+     * @param sendToEmail
+     * @param ftgName - The company from which this email is sent
+     */
+    protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
+        //
+        displayStatus(LANG.MSG_10,null);
+        //
+        print_java(fileName);
+        //
+//        System.out.println("Print pdf complete");
+        displayStatus(LANG.MSG_10_1,null);
+        //
+        //
+        boolean upload_success = false;
+        //
+        try {
+           upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
+        } catch (ProtocolException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+//        System.out.println("Upload to PHP: " + upload_success);
+        //
+        //
+        Boolean email_sending_ok = false;
+        //
+        String body = "Du har fått faktura från: " + ftgName;
+        //
+        if (upload_success) {
+            //
+            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
+                    sendToEmail,
+                    "Faktura",
+                    body,
+                    serverPath + fileName
+            );
+            //
+        }
+        //
+        if (upload_success && email_sending_ok) {
+            System.out.println("Email sending: " + email_sending_ok);
+            displayStatus(LANG.MSG_10_2, null);
+            return true;
+        } else {
+            displayStatus(LANG.MSG_10_3,Color.red);
+            return false;
+        }
+        //
+    }
+
+    protected boolean print_normal() {
+        //
+        int actHeight = jEditorPane1.getHeight();
+        //
+        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
+        //
+        if (actHeight >= A4_PAPER.getHeight()) {
+            HelpA.showNotification("A4 Heigh exceeded");
+        }
+        //
+        Paper paper = new Paper();
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        //
+//        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
+//                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
+        //
+        // This one sets the margins
+        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
+        //
+        PageFormat pageFormat = new PageFormat();
+        pageFormat.setPaper(paper);
+        //
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        //
+        PageFormat validatedFormat = pj.validatePage(pageFormat);
+        //
+        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
+        //
+        // This one shows additional Dialog displaying the margins, can be skipped
+        PageFormat pf = pj.pageDialog(pageFormat);
+        //
+        if (pj.printDialog()) {
+            try {
+                pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
+                pj.print();
+                return true;
+            } catch (PrinterException ex) {
+                Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+        //
+        return false;
+        //
+    }
+
+    /**
+     * [2020-09-03] uses: jPDFWriter.v2016R1.00.jar Enables silent print_java
+     *
+     * @param filename
+     */
+    protected void print_java(String filename) {
+        //
+        int actHeight = jEditorPane1.getHeight();
+        //
+        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
+        //
+//        if (actHeight >= A4_PAPER.getHeight()) {
+//            HelpA.showNotification("A4 Height exceeded");
+//        }
+        //
+        Paper paper = new Paper();
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        //
+        // This one sets the margins
+        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
+        //
+        PageFormat pageFormat = new PageFormat();
+        pageFormat.setPaper(paper);
+        //
+//        PrinterJob pj = PrinterJob.getPrinterJob(); // old
+        PDFPrinterJob pj = (PDFPrinterJob) PDFPrinterJob.getPrinterJob(); // ******[JAVA PDF PRINT][2020-09-03]
+        //
+        PageFormat validatedFormat = pj.validatePage(pageFormat);
+        //
+        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
+        //
+        //
+        pj.setJobName(filename);
+        //
+        try {
+//            pj.print_java();
+            pj.print(filename); // [JAVA PDF PRINT]******[SILENT PRINT]
+        } catch (PrinterException ex) {
+            Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        //
+        //
+        //
+    }
+
+    private static double fromCMToPPI(double cm) {
+        return toPPI(cm * 0.393700787);
+    }
+
+    private static double toPPI(double inch) {
+        return inch * 72d;
     }
 
     /**
@@ -739,21 +943,23 @@ public class HTMLPrint_B extends HTMLPrint {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_B.class
+            java.util.logging.Logger.getLogger(HTMLPrint_Backup.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_B.class
+            java.util.logging.Logger.getLogger(HTMLPrint_Backup.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_B.class
+            java.util.logging.Logger.getLogger(HTMLPrint_Backup.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_B.class
+            java.util.logging.Logger.getLogger(HTMLPrint_Backup.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -761,7 +967,7 @@ public class HTMLPrint_B extends HTMLPrint {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new HTMLPrint_B(null, null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
+                new HTMLPrint_Backup(null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
             }
         });
     }
@@ -770,10 +976,8 @@ public class HTMLPrint_B extends HTMLPrint {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_send_faktura_email;
-    private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1_separator;
-    private javax.swing.JLabel jLabel2_separator;
     protected static javax.swing.JLabel jLabel_status;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

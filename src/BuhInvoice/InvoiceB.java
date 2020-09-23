@@ -101,7 +101,7 @@ public class InvoiceB extends Basic {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
+
     protected void refresh_c(String fakturaNr) {
         fillFakturaTable();
         HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
@@ -145,8 +145,7 @@ public class InvoiceB extends Basic {
             TABLE_ALL_INVOICES__BETALD,
             TABLE_ALL_INVOICES__EPOST_SENT,
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
-            TABLE_ALL_INVOICES__KOMMENT_$,
-        };
+            TABLE_ALL_INVOICES__KOMMENT_$,};
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
@@ -216,7 +215,7 @@ public class InvoiceB extends Basic {
             jtxt.setText("");
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
-            important_komment = GP_BUH.replaceColon(important_komment,false);
+            important_komment = GP_BUH.replaceColon(important_komment, false);
         }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -439,7 +438,7 @@ public class InvoiceB extends Basic {
         //
         executeDelete(json);
     }
-    
+
     private void deleteFakturaSend(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_SEND);
@@ -476,8 +475,6 @@ public class InvoiceB extends Basic {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         return HelpA.getValueSelectedRow(table, colNameJTable);
     }
-    
-   
 
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -531,7 +528,7 @@ public class InvoiceB extends Basic {
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
                 refresh();
-            } else if(isKreditFaktura && ok) { // KREDIT FAKTURA
+            } else if (isKreditFaktura && ok) { // KREDIT FAKTURA
                 refresh();
                 bim.editFakturaBtnKlicked();
             }
@@ -588,7 +585,7 @@ public class InvoiceB extends Basic {
             //
             komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             //
-        }else if(bim.isKontantFaktura()){
+        } else if (bim.isKontantFaktura()) {
             //
             faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "1");
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy;
@@ -674,8 +671,8 @@ public class InvoiceB extends Basic {
         //
         return null;
     }
-    
-    private String getKontantFakturaBetalMetod(){
+
+    private String getKontantFakturaBetalMetod() {
         //
         String json = bim.getSELECT_fakturaId();
         //
@@ -686,7 +683,7 @@ public class InvoiceB extends Basic {
             //
             ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            if(addresses.isEmpty()){
+            if (addresses.isEmpty()) {
                 return "";
             }
             //
@@ -701,7 +698,7 @@ public class InvoiceB extends Basic {
         //
     }
 
-    public void htmlFaktura(String fakturatype) {
+    public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //
@@ -733,7 +730,7 @@ public class InvoiceB extends Basic {
         map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, ""); //**************************EMPTY
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
         map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, HelpA.get_proper_date_time_same_format_on_all_computers());
-        map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$()); 
+        map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$());
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
@@ -742,33 +739,64 @@ public class InvoiceB extends Basic {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
-        map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        //
+        if (paminnelse == false) {
+            map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        }else{
+            map_d.put(HTMLPrint_B.getAttBetalaTitle(), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        }
         //
         //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
-                        bim,
-                        fakturatype,
-                        bim.getArticlesActualInvoice(),
-                        map_a_0,
-                        map_a,
-                        map_b,
-                        map_c,
-                        map_d,
-                        map_e__lev_addr,
-                        map_e__lev_data,
-                        map_f__ftg_data,
-                        map_g__ftg_addr
-                );
-                //
-                hTMLPrint_A.setVisible(true);
-                //
+        if (paminnelse == false) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
+                            bim,
+                            fakturatype,
+                            bim.getArticlesActualInvoice(),
+                            map_a_0,
+                            map_a,
+                            map_b,
+                            map_c,
+                            map_d,
+                            map_e__lev_addr,
+                            map_e__lev_data,
+                            map_f__ftg_data,
+                            map_g__ftg_addr
+                    );
+                    //
+                    hTMLPrint_A.setVisible(true);
+                    //
 //                hTMLPrint_A.printSilent();
-                //
-            }
-        });
+                    //
+                }
+            });
+        } else {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    HTMLPrint_B hTMLPrint_B = new HTMLPrint_B(
+                            bim,
+                            fakturatype,
+                            bim.getArticlesActualInvoice(),
+                            map_a_0,
+                            map_a,
+                            map_b,
+                            map_c,
+                            map_d,
+                            map_e__lev_addr,
+                            map_e__lev_data,
+                            map_f__ftg_data,
+                            map_g__ftg_addr
+                    );
+                    //
+                    hTMLPrint_B.setVisible(true);
+                    //
+                }
+            });
+        }
+
     }
 
     @Override

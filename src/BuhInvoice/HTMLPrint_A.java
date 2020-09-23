@@ -53,6 +53,11 @@ public class HTMLPrint_A extends HTMLPrint {
            super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
      }
 
+     @Override
+    protected String getWindowTitle() {
+        return LANG.FRAME_TITLE_1;
+    }
+     
     @Override
     protected JEditorPane getEditorPane() {
         return this.jEditorPane1;
@@ -273,10 +278,10 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         if (imgPath != null) {
             return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
-                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType_subject() + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
         } else {
             return "<td rowspan='2'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
-                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType_subject() + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
 
         }
         //
@@ -727,67 +732,6 @@ public class HTMLPrint_A extends HTMLPrint {
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
-    private String mailTo(String mailto, String subject, String body) {
-        //
-        String mailToFunc = "mailTo:" + mailto + "?subject=" + subject.replaceAll(" ", "%20")
-                + "&body=" + body.replaceAll(" ", "%20");
-        //
-        return mailToFunc;
-    }
-
-    /**
-     * This will work with all mail clients, but it does not attach
-     * automatically. So the solution is to silently write ".pdf" to desktop,
-     * and give the user a message where to find the file
-     */
-    private void sendWithStandardEmailClient() {
-        //
-        String mailto = getFakturaKundEmail();
-        String subject = getFakturaTitleBasedOnType_subject();
-        String body = getEmailBody();
-        String desktopPath = getFakturaDesktopPath();
-        //
-        print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFakturaFileName(false)));
-        //
-        Desktop desktop = Desktop.getDesktop();
-        String url;
-        URI mailTo;
-        //
-        try {
-            // Attachments not working with "mailTo:" 100% verified [2020-09-23]
-            url = mailTo(mailto, subject, body);
-            //
-            System.out.println("URL: " + url);
-            //
-            mailTo = new URI(url);
-            desktop.mail(mailTo);
-            //
-            //
-            fakturaSentPerEpost_saveToDb(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK);
-            //
-            //
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void sendWithOutlookB() {
-        ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
-        // see also:  https://stackoverflow.com/questions/6045816/to-open-outlook-mail-from-java-program-and-to-attach-file-to-the-mail-from-direc
-        String[] commands = new String[5];
-        commands[0] = "C:\\Program Files\\Outlook Express\\msimn.exe";
-        commands[1] = "/c";
-        commands[2] = "ipm.note";
-        commands[3] = "/a";
-        commands[4] = getPathNormal(getPdfFakturaFileName(true));
-        ProcessBuilder builder = new ProcessBuilder(commands);
-        try {
-            builder.start();
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public static void displayStatus(String msg, Color c) {
         //
@@ -829,174 +773,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         x.start();
         //
-    }
-
-    private void fakturaSentPerEpost_saveToDb(String fakturaId,String sendStatus) {
-        //
-        EditPanel_Send.insert(fakturaId, sendStatus,
-                DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
-        //
-        Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
-        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
-        //
-    }
-
-    /**
-     * [2020-09-03]
-     *
-     * @param serverPath - must end with "/"
-     * @param fileName - like: "test.pdf"
-     * @param sendToEmail
-     * @param ftgName - The company from which this email is sent
-     */
-    protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
-        //
-        displayStatus(LANG.MSG_10, null);
-        //
-        print_java(fileName);
-        //
-//        System.out.println("Print pdf complete");
-        displayStatus(LANG.MSG_10_1, null);
-        //
-        //
-        boolean upload_success = false;
-        //
-        try {
-            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
-        } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-//        System.out.println("Upload to PHP: " + upload_success);
-        //
-        //
-        Boolean email_sending_ok = false;
-        //
-        String subject = getFakturaTitleBasedOnType_subject();
-        String body = getEmailBody();
-        //
-        if (upload_success) {
-            //
-            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
-                    sendToEmail,
-                    subject,
-                    body,
-                    serverPath + fileName
-            );
-            //
-        }
-        //
-        if (upload_success && email_sending_ok) {
-            System.out.println("Email sending: " + email_sending_ok);
-            displayStatus(LANG.MSG_10_2, null);
-            return true;
-        } else {
-            displayStatus(LANG.MSG_10_3, Color.red);
-            return false;
-        }
-        //
-    }
-
-    protected boolean print_normal() {
-        //
-        int actHeight = jEditorPane1.getHeight();
-        //
-        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
-        //
-        if (actHeight > A4_PAPER.getHeight()) {
-            HelpA.showNotification("A4 Heigh exceeded");
-        }
-        //
-        Paper paper = new Paper();
-        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
-        //
-//        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
-//                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
-        //
-        // This one sets the margins
-        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
-        //
-        PageFormat pageFormat = new PageFormat();
-        pageFormat.setPaper(paper);
-        //
-        PrinterJob pj = PrinterJob.getPrinterJob();
-        //
-        PageFormat validatedFormat = pj.validatePage(pageFormat);
-        //
-        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
-        //
-        // This one shows additional Dialog displaying the margins, can be skipped
-        PageFormat pf = pj.pageDialog(pageFormat);
-        //
-        if (pj.printDialog()) {
-            try {
-                pj.setJobName("Faktura"); // This changes the name of file if printed to ".pdf"
-                pj.print();
-                return true;
-            } catch (PrinterException ex) {
-                Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
-            }
-        }
-        //
-        return false;
-        //
-    }
-
-    /**
-     * [2020-09-03] uses: jPDFWriter.v2016R1.00.jar Enables silent print_java
-     *
-     * @param filename
-     */
-    protected void print_java(String filename) {
-        //
-        int actHeight = jEditorPane1.getHeight();
-        //
-        System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
-        //
-//        if (actHeight >= A4_PAPER.getHeight()) {
-//            HelpA.showNotification("A4 Height exceeded");
-//        }
-        //
-        Paper paper = new Paper();
-        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
-        //
-        // This one sets the margins
-        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
-        //
-        PageFormat pageFormat = new PageFormat();
-        pageFormat.setPaper(paper);
-        //
-//        PrinterJob pj = PrinterJob.getPrinterJob(); // old
-        PDFPrinterJob pj = (PDFPrinterJob) PDFPrinterJob.getPrinterJob(); // ******[JAVA PDF PRINT][2020-09-03]
-        //
-        PageFormat validatedFormat = pj.validatePage(pageFormat);
-        //
-        pj.setPrintable(jEditorPane1.getPrintable(null, null), validatedFormat);
-        //
-        //
-        pj.setJobName(filename);
-        //
-        try {
-//            pj.print_java();
-            pj.print(filename); // [JAVA PDF PRINT]******[SILENT PRINT]
-        } catch (PrinterException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
-    private static double fromCMToPPI(double cm) {
-        return toPPI(cm * 0.393700787);
-    }
-
-    private static double toPPI(double inch) {
-        return inch * 72d;
     }
 
     /**
