@@ -112,8 +112,31 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-    private String getPdfFakturaFileName() {
-        return "faktura_" + bim.getKundId() + ".pdf";
+    private String getPdfFakturaFileName(boolean appendKundId) {
+        //
+        if (appendKundId) {
+            return "faktura_" + bim.getKundId() + ".pdf";
+        } else {
+            return "faktura.pdf";
+        }
+        //
+    }
+
+    private String getFakturaKundEmail() {
+        return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
+    }
+
+    private String getForetagsNamn() {
+        return _get(map_f, DB.BUH_KUND__NAMN);
+    }
+
+    private String getFakturaDesktopPath() {
+        return System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName(false);
+    }
+
+    private String getEmailBody() {
+        String body = "Du har fått " + getFakturaTitleBasedOnType_subject().toLowerCase() + " från: " + getForetagsNamn();
+        return body;
     }
 
     private void scrollToTop() {
@@ -192,7 +215,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         }
     }
 
-    private String getFakturaTitleBasedOnType() {
+    private String getFakturaTitleBasedOnType_subject() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return "Faktura";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
@@ -428,10 +451,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         if (imgPath != null) {
             return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image'></td>" // width='32' height='32'
-                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType() + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType_subject() + "</h1></td>";
         } else {
             return "<td rowspan='2'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
-                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType() + "</h1></td>";
+                    + "<td><h1 class='marginLeft'>" + getFakturaTitleBasedOnType_subject() + "</h1></td>";
 
         }
         //
@@ -742,11 +765,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel2_separator = new javax.swing.JLabel();
         jButton_send_faktura_email = new javax.swing.JButton();
+        jButton_send_with_outlook = new javax.swing.JButton();
         jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -766,15 +790,25 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
+        jPanel1.add(jLabel2_separator);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post");
+        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post, automatiskt");
         jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_send_faktura_emailActionPerformed(evt);
             }
         });
         jPanel1.add(jButton_send_faktura_email);
+
+        jButton_send_with_outlook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/send_b.png"))); // NOI18N
+        jButton_send_with_outlook.setToolTipText("Skicka faktura per E-post med Outlook");
+        jButton_send_with_outlook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_send_with_outlookActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_send_with_outlook);
         jPanel1.add(jLabel1_separator);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
@@ -789,28 +823,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
 
-        jButton2.setText("Outlook");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(50, 50, 50))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163)
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(120, 120, 120))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -818,8 +845,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -844,8 +870,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
-        String faktura_kund_email = _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
-        String ftg_name = _get(map_f, DB.BUH_KUND__NAMN);
+        String faktura_kund_email = getFakturaKundEmail();
+        String ftg_name = getForetagsNamn();
         //
         if (faktura_kund_email == null || faktura_kund_email.isEmpty()) {
             HelpA.showNotification(LANG.MSG_7);
@@ -859,7 +885,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);
         //
-        String fakturaFileName = getPdfFakturaFileName();
+        String fakturaFileName = getPdfFakturaFileName(true);
         //
         print_upload_sendmail__thr(
                 "uploads/",
@@ -879,25 +905,18 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        sendWithOutLook();
-//        sendWithOutlookB();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
+        sendWithStandardEmailClient();
+    }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
-    private void sendWithOutlookB() {
-        ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
-        String[] commands = new String[5];
-        commands[0] = "C:\\Program Files\\Outlook Express\\msimn.exe";
-        commands[1] = "/c";
-        commands[2] = "ipm.note";
-        commands[3] = "/a";
-        commands[4] = getPathNormal(getPdfFakturaFileName());
-        ProcessBuilder builder = new ProcessBuilder(commands);
-        try {
-            builder.start();
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+
+    private String mailTo(String mailto, String subject, String body) {
+        //
+        String mailToFunc = "mailTo:" + mailto + "?subject=" + subject.replaceAll(" ", "%20")
+                + "&body=" + body.replaceAll(" ", "%20");
+        //
+        return mailToFunc;
     }
 
     /**
@@ -905,25 +924,23 @@ public class HTMLPrint_A extends javax.swing.JFrame {
      * automatically. So the solution is to silently write ".pdf" to desktop,
      * and give the user a message where to find the file
      */
-    private void sendWithOutLook() {
+    private void sendWithStandardEmailClient() {
         //
-        String desktopPath = System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName();
+        String mailto = getFakturaKundEmail();
+        String subject = getFakturaTitleBasedOnType_subject();
+        String body = getEmailBody();
+        String desktopPath = getFakturaDesktopPath();
+        //
         print_java(desktopPath);
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFakturaFileName(false)));
         //
-//        String absoluteFilePath = getPathNormal(getPdfFakturaFileName());
         Desktop desktop = Desktop.getDesktop();
         String url;
         URI mailTo;
         //
         try {
-            //
-            //Without attachment
-            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"
-                    + "&body=" + "TEST%20BODY";
-            //
-            // With attachment - does not work, it's deprecated
-//            url = "mailTo:test@gmail.com" + "?subject=" + "TEST%20SUBJECT"   
-//               + "&body=" + "TEST%20BODY"+"&attachment=" + absoluteFilePath.replaceAll("file:/", "file:///");   
+            // Attachments not working with "mailTo:" 100% verified [2020-09-23]
+            url = mailTo(mailto, subject, body);
             //
             System.out.println("URL: " + url);
             //
@@ -931,6 +948,24 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             desktop.mail(mailTo);
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    
+    private void sendWithOutlookB() {
+        ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
+        // see also:  https://stackoverflow.com/questions/6045816/to-open-outlook-mail-from-java-program-and-to-attach-file-to-the-mail-from-direc
+        String[] commands = new String[5];
+        commands[0] = "C:\\Program Files\\Outlook Express\\msimn.exe";
+        commands[1] = "/c";
+        commands[2] = "ipm.note";
+        commands[3] = "/a";
+        commands[4] = getPathNormal(getPdfFakturaFileName(true));
+        ProcessBuilder builder = new ProcessBuilder(commands);
+        try {
+            builder.start();
+        } catch (IOException ex) {
+            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1009,16 +1044,15 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         Boolean email_sending_ok = false;
         //
-        String fakturaTitle = getFakturaTitleBasedOnType();
-        //
-        String body = "Du har fått " + fakturaTitle.toLowerCase() + " från: " + ftgName;
+        String subject = getFakturaTitleBasedOnType_subject();
+        String body = getEmailBody();
         //
         if (upload_success) {
             //
             email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                     GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
                     sendToEmail,
-                    fakturaTitle,
+                    subject,
                     body,
                     serverPath + fileName
             );
@@ -1179,11 +1213,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_send_faktura_email;
+    private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1_separator;
+    private javax.swing.JLabel jLabel2_separator;
     protected static javax.swing.JLabel jLabel_status;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

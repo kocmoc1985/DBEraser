@@ -28,7 +28,7 @@ public class LANG {
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
     public static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
-    
+
     public static String MSG_10 = "Skapar PDF faktura";
     public static String MSG_10_1 = "Laddar upp faktura";
     public static String MSG_10_2 = "Faktura skickad!";
@@ -43,13 +43,11 @@ public class LANG {
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
-    
-    
-    
+
     public static String LBL_MSG_2_3(String fakturaCopy) {
         return "KREDITERAR FAKTURA: " + fakturaCopy;
     }
-    
+
     /**
      * VERY IMPORTANT: If it happens even once, actions shall be taken
      * [2020-08-06] This one shall be only used in cases when you insert an
@@ -57,16 +55,18 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    
-    
-     public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName) {
+        return "Fakturan sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga fakturan i din e-post klient";
+    }
+
+    public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {
         return "Vill du verkligen kreditera fakturanummer: " + fakturaCopy + "?";
-     }
-    
+    }
+
     public static String FAKTURA_COPY_MSG_A(String fakturaCopy) {
         return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + "?";
     }
-    
+
     public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {
         return "Du kopierade precis fakturanummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
     }
