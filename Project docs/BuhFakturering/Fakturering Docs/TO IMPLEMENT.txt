@@ -2,7 +2,10 @@ ________________________________________________________________________________
 
 [SEND PÅMMINELSE:]
 
-1. 
+1. Add "utskrivet datum"
+2. Add "Handlägarens" tel and email
+3. Not working for Kontant faktura why? -> in did it shall not work....
+4. Shall not work for kredit faktura!!
 
 ____________________________________________________________________________________________________________________________________________________
 [AAMOUNT OF ARTICLES FAKTURA PDF PRINT]

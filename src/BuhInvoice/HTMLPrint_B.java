@@ -85,7 +85,8 @@ public class HTMLPrint_B extends HTMLPrint {
             ".paddingLeft {padding-left: 5px;}",
             ".bold {color:red;}", // font-weight:800;
             ".no-border {border: 0px}",
-            ".border-a {border: 1px solid black;}"
+            ".border-a {border: 1px solid black;}",
+            ".text-md {font-size:11pt; color:black;}"    
         //    
         };
         //
@@ -152,8 +153,8 @@ public class HTMLPrint_B extends HTMLPrint {
     //
     public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
     public static final String T__FTG_BETALA_TILL = "Betala till";
-    public static final String T__FTG_TELEFON = "Telefon, ring";
-    public static final String T__FTG_EPOST = "Mejla oss på";
+    public static final String T__FTG_TELEFON = "Telefon";
+    public static final String T__FTG_EPOST = "Mejla";
     public static final String T__FTG_BANKGIRO = "BG";
     public static final String T__FTG_POSTGIRO = "PG";
     public static final String T__FTG_KONTO = "Konto";
@@ -180,11 +181,13 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 + faktura_data_A_to_html()
                 //
+                + reminder_message()
+                //
                 + betal_alternativ_to_html()
                 //
                 + faktura_data_B_to_html__totals()
                 //
-                + articles_to_html(articles_map_list)
+//                + articles_to_html(articles_map_list)
                 //
                 + brElements()
                 //
@@ -211,13 +214,17 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html = "";
         //
-        int br_to_add = 17 - articles_map_list.size();
+        int br_to_add = 15;
         //
         for (int i = 0; i < br_to_add; i++) {
             html += "<br>";
         }
         //
         return html;
+    }
+    
+    private String getFakturaNr(){
+        return map_a.get(T__FAKTURA_NR);
     }
 
     private String faktura_header_with_logo_to_html(String imgPath) {
@@ -312,6 +319,28 @@ public class HTMLPrint_B extends HTMLPrint {
                 + "</td>"
                 //
                 + "</tr>";
+        //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+    
+    private String reminder_message() {
+        //
+        if (bim.isKreditFaktura() || bim.isKontantFaktura()) {
+            return "";
+        }
+        //
+        String html_ = "<table class='marginTop'>";
+        //
+        //
+        html_ += "<tr>";
+        //
+        html_ += "<td class='text-md'>";
+        html_ += LANG.PAMMINELSE_MSG_MAIN(getFakturaNr());
+        html_ += "</td>";
+        //
+        html_ += "</tr>";
         //
         html_ += "</table>";
         //

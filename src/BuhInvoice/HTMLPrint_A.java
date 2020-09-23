@@ -185,8 +185,8 @@ public class HTMLPrint_A extends HTMLPrint {
     //
     public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
     public static final String T__FTG_BETALA_TILL = "Betala till";
-    public static final String T__FTG_TELEFON = "Telefon, ring";
-    public static final String T__FTG_EPOST = "Mejla oss på";
+    public static final String T__FTG_TELEFON = "Telefon";
+    public static final String T__FTG_EPOST = "Mejla";
     public static final String T__FTG_BANKGIRO = "BG";
     public static final String T__FTG_POSTGIRO = "PG";
     public static final String T__FTG_KONTO = "Konto";

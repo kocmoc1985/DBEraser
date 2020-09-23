@@ -17,9 +17,9 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class Faktura_Entry_Insert extends Faktura_Entry {
+public class Faktura_Entry_Insert_ extends Faktura_Entry {
 
-    public Faktura_Entry_Insert(Invoice invoice) {
+    public Faktura_Entry_Insert_(Invoice invoice) {
         super(invoice);
     }
 

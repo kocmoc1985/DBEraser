@@ -49,6 +49,14 @@ public class LANG {
     
     public static String FAKTURA = "Faktura";
     public static String PAMINNELSE = "Faktura";
+    
+    
+    public static String PAMMINELSE_MSG_MAIN(String fakturanr){
+        return "Fakturanr ("+ fakturanr +") är enligt våra noteringar fortfarande obetald.\n "+
+            "Därför ber vi er att omgående betala in det förfallna beloppet.\n" +
+            "Vänligen uppge fakturanummer vid betalning.\n" + 
+            "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
+    }
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
         return "KREDITERAR FAKTURA: " + fakturaCopy;

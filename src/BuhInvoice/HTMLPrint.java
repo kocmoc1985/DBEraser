@@ -205,6 +205,7 @@ public abstract class HTMLPrint extends JFrame {
         }
     }
     
+    
     protected String getFakturaId(){
         return  map_a_0.get(DB.BUH_FAKTURA__ID__);
     }
