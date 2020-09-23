@@ -260,8 +260,8 @@ public class CustomersA_ extends CustomerAForetagA {
         String[] headers = {
             TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID,
             TABLE_FAKTURA_KUNDER__KUND_ID,
-            TABLE_FAKTURA_KUNDER__KUNDNR,
             TABLE_FAKTURA_KUNDER__KUND_NAMN,
+            TABLE_FAKTURA_KUNDER__KUNDNR,
             TABLE_FAKTURA_KUNDER__ORGNR,
             TABLE_FAKTURA_KUNDER__VATNR,
             TABLE_FAKTURA_KUNDER__EPOST,
@@ -280,7 +280,9 @@ public class CustomersA_ extends CustomerAForetagA {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
-            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+//            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__EPOST);
+            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__VATNR);
         }
     }
 
@@ -290,8 +292,8 @@ public class CustomersA_ extends CustomerAForetagA {
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA_KUND__ID), // hidden
             map.get(DB.BUH_FAKTURA_KUND__KUND_ID), // hidden
-            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
+            map.get(DB.BUH_FAKTURA_KUND___KUNDNR),
             map.get(DB.BUH_FAKTURA_KUND___ORGNR),
             map.get(DB.BUH_FAKTURA_KUND___VATNR),
             map.get(DB.BUH_FAKTURA_KUND___EMAIL),

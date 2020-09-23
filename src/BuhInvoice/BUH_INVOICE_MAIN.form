@@ -269,6 +269,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/bell.png"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Skicka p&#xe5;minnelse"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_send_p&#xe5;mminelseActionPerformed"/>

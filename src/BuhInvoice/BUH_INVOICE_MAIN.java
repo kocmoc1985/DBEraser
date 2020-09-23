@@ -546,6 +546,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jLabel_btn_separator_1);
 
         jButton_send_påmminelse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
+        jButton_send_påmminelse.setToolTipText("Skicka påminnelse");
         jButton_send_påmminelse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_send_påmminelseActionPerformed(evt);

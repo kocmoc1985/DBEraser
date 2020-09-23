@@ -538,10 +538,8 @@ public class HTMLPrint_A extends HTMLPrint {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel2_separator = new javax.swing.JLabel();
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
-        jLabel1_separator = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
 
@@ -563,7 +561,6 @@ public class HTMLPrint_A extends HTMLPrint {
             }
         });
         jPanel1.add(jButton1);
-        jPanel1.add(jLabel2_separator);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
         jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post, automatiskt");
@@ -582,7 +579,6 @@ public class HTMLPrint_A extends HTMLPrint {
             }
         });
         jPanel1.add(jButton_send_with_outlook);
-        jPanel1.add(jLabel1_separator);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
         jButton3.setToolTipText("Välj logotyp / bild");
@@ -602,11 +598,11 @@ public class HTMLPrint_A extends HTMLPrint {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
@@ -615,7 +611,7 @@ public class HTMLPrint_A extends HTMLPrint {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -765,8 +761,6 @@ public class HTMLPrint_A extends HTMLPrint {
     private javax.swing.JButton jButton_send_faktura_email;
     private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JLabel jLabel1_separator;
-    private javax.swing.JLabel jLabel2_separator;
     protected static javax.swing.JLabel jLabel_status;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
