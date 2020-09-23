@@ -112,33 +112,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-    private String getPdfFakturaFileName(boolean appendKundId) {
-        //
-        if (appendKundId) {
-            return "faktura_" + bim.getKundId() + ".pdf";
-        } else {
-            return "faktura.pdf";
-        }
-        //
-    }
-
-    private String getFakturaKundEmail() {
-        return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
-    }
-
-    private String getForetagsNamn() {
-        return _get(map_f, DB.BUH_KUND__NAMN);
-    }
-
-    private String getFakturaDesktopPath() {
-        return System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName(false);
-    }
-
-    private String getEmailBody() {
-        String body = "Du har fått " + getFakturaTitleBasedOnType_subject().toLowerCase() + " från: " + getForetagsNamn();
-        return body;
-    }
-
     private void scrollToTop() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -182,6 +155,33 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         jEditorPane1.setText(buildHTML());
         //
+    }
+    
+     private String getPdfFakturaFileName(boolean appendKundId) {
+        //
+        if (appendKundId) {
+            return "faktura_" + bim.getKundId() + ".pdf";
+        } else {
+            return "faktura.pdf";
+        }
+        //
+    }
+
+    private String getFakturaKundEmail() {
+        return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
+    }
+
+    private String getForetagsNamn() {
+        return _get(map_f, DB.BUH_KUND__NAMN);
+    }
+
+    private String getFakturaDesktopPath() {
+        return System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName(false);
+    }
+
+    private String getEmailBody() {
+        String body = "Du har fått " + getFakturaTitleBasedOnType_subject().toLowerCase() + " från: " + getForetagsNamn();
+        return body;
     }
 
     private String _get_colon_sep(String key, HashMap<String, String> map) {
@@ -524,6 +524,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String betal_alternativ_to_html() {
         //
+        if(bim.isKreditFaktura() || bim.isKontantFaktura()){
+          return "";  
+        }
+        //
         String html_ = "<table class='marginTop'>";
         //
         //
@@ -812,7 +816,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         jPanel1.add(jLabel1_separator);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
-        jButton3.setToolTipText("Välj logotyp");
+        jButton3.setToolTipText("Välj logotyp / bild");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -829,15 +833,13 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(120, 120, 120))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
