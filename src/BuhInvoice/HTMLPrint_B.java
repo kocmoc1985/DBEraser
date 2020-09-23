@@ -6,26 +6,15 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HTMLPrint_A.T__FAKTURA_UTSKRIVET;
 import BuhInvoice.sec.LANG;
-import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.print.PageFormat;
-import java.awt.print.Paper;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.io.IOException;
-import java.net.ProtocolException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -57,7 +46,7 @@ public class HTMLPrint_B extends HTMLPrint {
     protected String getWindowTitle() {
         return LANG.FRAME_TITLE_1_2;
     }
-    
+
     @Override
     protected JEditorPane getEditorPane() {
         return this.jEditorPane1;
@@ -86,7 +75,7 @@ public class HTMLPrint_B extends HTMLPrint {
             ".bold {color:red;}", // font-weight:800;
             ".no-border {border: 0px}",
             ".border-a {border: 1px solid black;}",
-            ".text-md {font-size:11pt; color:black;}"    
+            ".text-md {font-size:11pt; color:black;}"
         //    
         };
         //
@@ -103,7 +92,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     private String getBetalVilkorFlexCol() {
-        return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+        return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
     }
 
     private String getDrojsmalsrantaFlexCol() {
@@ -187,7 +176,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 + faktura_data_B_to_html__totals()
                 //
-//                + articles_to_html(articles_map_list)
+                //                + articles_to_html(articles_map_list)
                 //
                 + brElements()
                 //
@@ -222,8 +211,8 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html;
     }
-    
-    private String getFakturaNr(){
+
+    private String getFakturaNr() {
         return map_a.get(T__FAKTURA_NR);
     }
 
@@ -301,12 +290,12 @@ public class HTMLPrint_B extends HTMLPrint {
         String html_ = "<table class='marginTop'>";
         //
         String[] values_t_1 = new String[]{
-            T__FAKTURA_ER_REF + ": " + map_b.get(T__FAKTURA_ER_REF),
-            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),};
+            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),
+            T__FTG_TELEFON + ": " + _get(map_g, DB.BUH_ADDR__TEL_A)};
         //
         String[] values_t_2 = new String[]{
-            T__FAKTURA_ERT_ORDER_NR + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
-            T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + ": " + map_b.get(T__FAKTURA_LEV_SATT)};
+            T__FTG_EPOST + ": " + _get(map_f, DB.BUH_KUND__EPOST),
+            ""};
         //
         html_ += "<tr>"
                 //
@@ -324,7 +313,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html_;
     }
-    
+
     private String reminder_message() {
         //
         if (bim.isKreditFaktura() || bim.isKontantFaktura()) {
@@ -336,7 +325,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>";
         //
-        html_ += "<td class='text-md'>";
+        html_ += "<td class='text-md' style='padding:10 10 10 10px;'>";
         html_ += LANG.PAMMINELSE_MSG_MAIN(getFakturaNr());
         html_ += "</td>";
         //
@@ -358,7 +347,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>";
         //
-        html_ += "<td>";
+        html_ += "<td style='padding:5 5 5 5px;>";
         html_ += T__FTG_BETALA_TILL
                 + _get_exist_a(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                 + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
@@ -485,8 +474,6 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html_;
     }
-
-    
 
     /**
      * Build a table which is inserted into "<tr>" element of another table
@@ -706,7 +693,6 @@ public class HTMLPrint_B extends HTMLPrint {
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
-
 
     public static void displayStatus(String msg, Color c) {
         //
