@@ -18,48 +18,25 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.text.Document;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.html.StyleSheet;
+import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author KOCMOC
  */
-public class HTMLPrint_A extends javax.swing.JFrame {
+public class HTMLPrint_A extends HTMLPrint {
 
-    private final BUH_INVOICE_MAIN bim;
-    private final ArrayList<HashMap<String, String>> articles_map_list;
-    private final HashMap<String, String> map_a_0;
-    private final HashMap<String, String> map_a;
-    private final HashMap<String, String> map_b;
-    private final HashMap<String, String> map_c;
-    private final HashMap<String, String> map_d;
-    private final HashMap<String, String> map_e;
-    private final HashMap<String, String> map_e_2__lev_data;
-    private final HashMap<String, String> map_f;
-    private final HashMap<String, String> map_g;
-    private final String FAKTURA_TYPE;
-
-    private final static Dimension A4_PAPER = new Dimension(545, 842);
-
-    /**
-     * Creates new form HTMLPrint_A
-     */
-    public HTMLPrint_A(
+     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
             ArrayList<HashMap<String, String>> articles_map_list,
@@ -73,56 +50,21 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        //
-        initComponents();
-        //
-        this.setTitle("Skriv ut faktura");
-        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-        //
-        this.articles_map_list = articles_map_list;
-        //
-        this.bim = bim;
-        this.FAKTURA_TYPE = fakturatype;
-        this.map_a_0 = map_a_0;
-        this.map_a = map_a;
-        this.map_b = map_b;
-        this.map_c = map_c;
-        this.map_d = map_d;
-        this.map_e = map_e;
-        this.map_e_2__lev_data = map_e_2;
-        this.map_f = map_f;
-        this.map_g = map_g;
-        //
-        initOther();
-        //
-        go();
-        //
-        scrollToTop();
+           super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+     }
+
+    @Override
+    protected JEditorPane getEditorPane() {
+        return this.jEditorPane1;
     }
 
-    private void initOther() {
-        //
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        //
-        int height = (int) (d.height * 0.9);
-        //
-        setSize(getWidth(), height);
-        //
+    @Override
+    protected JScrollPane getJScrollPane() {
+        return jScrollPane2;
     }
-
-    private void scrollToTop() {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                jScrollPane2.getVerticalScrollBar().setValue(0);
-            }
-        });
-    }
-
-    private void go() {
-        //
+    
+     @Override
+    protected String[] getCssRules(){
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -142,97 +84,10 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //    
         };
         //
-        HTMLEditorKit kit = new HTMLEditorKit();
-        jEditorPane1.setEditorKit(kit);
-        //
-        StyleSheet styleSheet = kit.getStyleSheet();
-        //
-        //
-        for (int i = 0; i < CSSRules.length; i++) {
-            styleSheet.addRule(CSSRules[i]);
-        }
-        //
-        Document doc = kit.createDefaultDocument();
-        jEditorPane1.setDocument(doc);
-        //
-        jEditorPane1.setText(buildHTML());
-        //
-    }
-    
-    
-    private String getFakturaId(){
-        return  map_a_0.get(DB.BUH_FAKTURA__ID__);
-    }
-
-    private String getPdfFakturaFileName(boolean appendKundId) {
-        //
-        if (appendKundId) {
-            return "faktura_" + bim.getKundId() + ".pdf";
-        } else {
-            return "faktura.pdf";
-        }
+        return CSSRules;
         //
     }
 
-    private String getFakturaKundEmail() {
-        return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
-    }
-
-    private String getForetagsNamn() {
-        return _get(map_f, DB.BUH_KUND__NAMN);
-    }
-
-    private String getFakturaDesktopPath() {
-        return System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName(false);
-    }
-
-    private String getEmailBody() {
-        String body = "Du har fått " + getFakturaTitleBasedOnType_subject().toLowerCase() + " från: " + getForetagsNamn();
-        return body;
-    }
-
-    private String _get_colon_sep(String key, HashMap<String, String> map) {
-        return key + ": " + map.get(key);
-    }
-
-    private String _get_exist_a(String name, String value) {
-        if (value.isEmpty() == false) {
-            return ", <span class='bold'>" + name + "</span>: " + value;
-        } else {
-            return "";
-        }
-    }
-
-    private String _get_exist_b(String name, String value) {
-        if (value.isEmpty() == false) {
-            return ", " + name + ": " + value;
-        } else {
-            return "";
-        }
-    }
-
-    private String _get_longname(HashMap<String, String> map, String param, String statics) {
-        //
-        String val = map.get(param);
-        //
-        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
-            return "";
-        } else {
-            return JSon.getLongName(statics, val);
-        }
-    }
-
-    private String getFakturaTitleBasedOnType_subject() {
-        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
-            return "Faktura";
-        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
-            return "Kreditfaktura";
-        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
-            return "Kvitto";
-        } else {
-            return null;
-        }
-    }
 
     protected final static String getAttBetalaTitle(String fakturatype) {
         if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
@@ -335,40 +190,9 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
-    /**
-     * Use this one when, getting the image from the "inside project / .jar
-     * file"
-     *
-     * @param path
-     * @param imgName
-     * @return - like: "file:/J:/MyDocs/src/...."
-     */
-    private String getPathResources(String path, String imgName) {
-        return getImageIconURL(path, imgName).toString();
-    }
+    
 
-    /**
-     * Use this one when, getting the image from inside the "project dir / root"
-     *
-     * @param pathAndFileName
-     * @return - like: "file:/J:/MyDocs/src/...."
-     */
-    private String getPathNormal(String pathAndFileName) {
-        //
-        File f = new File(pathAndFileName);
-        //
-        if (f.exists() == false) {
-            return null;
-        }
-        //
-        try {
-            return new File(pathAndFileName).toURI().toURL().toString();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
+     @Override
     protected String buildHTML() {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
@@ -404,16 +228,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
 
-//    private String _get(HashMap<String, String> map, String param) {
-//        //
-//        String val = map.get(param);
-//        //
-//        if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
-//            return "";
-//        } else {
-//            return val;
-//        }
-//    }
+
     /**
      * Temporary fix [2020-07-23]
      *
@@ -745,27 +560,19 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     }
 
     //==========================================================================
-    /**
-     *
-     * @param path - path to image folder, play around to get the path working
-     * @param picName
-     * @return
-     */
-    protected URL getImageIconURL(String path, String picName) {
-        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
-        return HTMLPrint_A.class.getResource("/" + path + "/" + picName);
-    }
-
-    protected URL getImageIconURL(String picName) {
-        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
-        return HTMLPrint_A.class.getResource("../../../../../" + picName);
-    }
+    
 
     public Point position_window_in_center_of_the_screen(JDialog window) {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
 
+    @Override
+    protected void initComponents_() {
+        initComponents();
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

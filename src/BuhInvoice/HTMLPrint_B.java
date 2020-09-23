@@ -583,10 +583,7 @@ public class HTMLPrint_B extends javax.swing.JFrame {
         return HTMLPrint_B.class.getResource("../../../../../" + picName);
     }
 
-    public Point position_window_in_center_of_the_screen(JDialog window) {
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -1,9 +1,16 @@
+____________________________________________________________________________________________________________________________________________________
 
+[SEND PÅMMINELSE:]
+
+1. 
+
+____________________________________________________________________________________________________________________________________________________
 [AAMOUNT OF ARTICLES FAKTURA PDF PRINT]
 
 The below is prelim conclusions presented:
 1. Normal faktura -> Max 14
 2. Kredit & Kontant -> Max 15 -> due to "Betala till" row is not present
+____________________________________________________________________________________________________________________________________________________
 
 1. "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
 2. Skicka Påminnelser
