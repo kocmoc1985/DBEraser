@@ -35,6 +35,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author KOCMOC
@@ -109,7 +110,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String T__FTG_ORGNR = "Organisationsnr";
     public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
-    
+
     /**
      * Creates new form HTMLPrint_A
      */
@@ -150,25 +151,25 @@ public abstract class HTMLPrint extends JFrame {
         init();
         //
     }
-    
+
     protected abstract String getWindowTitle();
-    
+
     protected abstract void initComponents_();
 
     protected abstract JEditorPane getEditorPane();
-    
+
     protected abstract JScrollPane getJScrollPane();
-    
+
     protected abstract String[] getCssRules();
-    
+
     protected abstract String buildHTML();
-    
+
     private void init() {
         initOther();
         go();
         scrollToTop();
     }
-    
+
     protected void initOther() {
         //
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -180,7 +181,7 @@ public abstract class HTMLPrint extends JFrame {
         setSize(getWidth(), height);
         //
     }
-    
+
     protected void scrollToTop() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -189,7 +190,7 @@ public abstract class HTMLPrint extends JFrame {
             }
         });
     }
-    
+
     protected void go() {
         //
         JEditorPane jep = getEditorPane();
@@ -212,7 +213,7 @@ public abstract class HTMLPrint extends JFrame {
         jep.setText(buildHTML());
         //
     }
-    
+
     /**
      * Use this one when, getting the image from the "inside project / .jar
      * file"
@@ -224,7 +225,7 @@ public abstract class HTMLPrint extends JFrame {
     protected String getPathResources(String path, String imgName) {
         return getImageIconURL(path, imgName).toString();
     }
-    
+
     /**
      *
      * @param path - path to image folder, play around to get the path working
@@ -235,7 +236,6 @@ public abstract class HTMLPrint extends JFrame {
         //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
         return HTMLPrint.class.getResource("/" + path + "/" + picName);
     }
-
 
     /**
      * Use this one when, getting the image from inside the "project dir / root"
@@ -258,10 +258,9 @@ public abstract class HTMLPrint extends JFrame {
             return null;
         }
     }
-    
-    
-    protected String getFakturaId(){
-        return  map_a_0.get(DB.BUH_FAKTURA__ID__);
+
+    protected String getFakturaId() {
+        return map_a_0.get(DB.BUH_FAKTURA__ID__);
     }
 
     protected String getPdfFakturaFileName(boolean appendKundId) {
@@ -321,7 +320,7 @@ public abstract class HTMLPrint extends JFrame {
             return JSon.getLongName(statics, val);
         }
     }
-    
+
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return "Faktura";
@@ -333,9 +332,7 @@ public abstract class HTMLPrint extends JFrame {
             return null;
         }
     }
-    
-    
-    
+
     /**
      * [2020-09-03]
      *
@@ -343,7 +340,7 @@ public abstract class HTMLPrint extends JFrame {
      * @param fileName - like: "test.pdf"
      * @param sendToEmail
      * @param ftgName - The company from which this email is sent
-     * @return 
+     * @return
      */
     protected boolean print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
@@ -397,8 +394,8 @@ public abstract class HTMLPrint extends JFrame {
         }
         //
     }
-    
-     private String mailTo(String mailto, String subject, String body) {
+
+    private String mailTo(String mailto, String subject, String body) {
         //
         String mailToFunc = "mailTo:" + mailto + "?subject=" + subject.replaceAll(" ", "%20")
                 + "&body=" + body.replaceAll(" ", "%20");
@@ -435,18 +432,21 @@ public abstract class HTMLPrint extends JFrame {
             desktop.mail(mailTo);
             //
             //
-            fakturaSentPerEpost_saveToDb(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK);
+            if (this instanceof HTMLPrint_A) {
+                loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK, DB.STATIC__SENT_TYPE_FAKTURA);
+            } else if (this instanceof HTMLPrint_B) {
+                loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK, DB.STATIC__SENT_TYPE_PAMMINELSE);
+            }
             //
             //
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
     }
-    
-    protected void fakturaSentPerEpost_saveToDb(String fakturaId,String sendStatus) {
+
+    protected void loggDocumentSent(String fakturaId, String sendStatus, String sendType) {
         //
-        EditPanel_Send.insert(fakturaId, sendStatus,
-                DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
+        EditPanel_Send.insert(fakturaId, sendStatus, sendType); // "buh_faktura_send" table
         //
         Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
@@ -454,7 +454,7 @@ public abstract class HTMLPrint extends JFrame {
     }
 
     protected boolean print_normal() {
-         //
+        //
         JEditorPane jep = getEditorPane();
         //
         int actHeight = jep.getHeight();
@@ -488,11 +488,11 @@ public abstract class HTMLPrint extends JFrame {
         //
         if (pj.printDialog()) {
             try {
-                if(this instanceof HTMLPrint_A){
+                if (this instanceof HTMLPrint_A) {
                     pj.setJobName(LANG.FAKTURA); // This changes the name of file if printed to ".pdf"
-                }else if(this instanceof HTMLPrint_B){
+                } else if (this instanceof HTMLPrint_B) {
                     pj.setJobName(LANG.PAMINNELSE); // This changes the name of file if printed to ".pdf"
-                }else{
+                } else {
                     pj.setJobName("Print job undefined");
                 }
                 //
@@ -560,5 +560,5 @@ public abstract class HTMLPrint extends JFrame {
     private static double toPPI(double inch) {
         return inch * 72d;
     }
-    
+
 }

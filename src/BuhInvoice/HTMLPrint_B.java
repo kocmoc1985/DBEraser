@@ -717,13 +717,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 // [2020-09-08]
                 if (ok) {
                     //
-                    fakturaSentPerEpost_saveToDb(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD);
-                    //
-//                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
-//                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
-//                    //
-//                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
-//                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+                    loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_PAMMINELSE);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
