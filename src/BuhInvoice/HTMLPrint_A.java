@@ -157,7 +157,12 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
     }
     
-     private String getPdfFakturaFileName(boolean appendKundId) {
+    
+    private String getFakturaId(){
+        return  map_a_0.get(DB.BUH_FAKTURA__ID__);
+    }
+
+    private String getPdfFakturaFileName(boolean appendKundId) {
         //
         if (appendKundId) {
             return "faktura_" + bim.getKundId() + ".pdf";
@@ -524,8 +529,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
     private String betal_alternativ_to_html() {
         //
-        if(bim.isKreditFaktura() || bim.isKontantFaktura()){
-          return "";  
+        if (bim.isKreditFaktura() || bim.isKontantFaktura()) {
+            return "";
         }
         //
         String html_ = "<table class='marginTop'>";
@@ -862,6 +867,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //
         boolean print_ok = print_normal();
         //
         if (print_ok) {
@@ -883,9 +889,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email)) == false) {
             return;
         }
-        //
-//        System.out.println("faktura_kund_email: " + faktura_kund_email);
-//        System.out.println("ftg_name: " + ftg_name);
         //
         String fakturaFileName = getPdfFakturaFileName(true);
         //
@@ -910,8 +913,6 @@ public class HTMLPrint_A extends javax.swing.JFrame {
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
-
-    
 
     private String mailTo(String mailto, String subject, String body) {
         //
@@ -948,12 +949,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             //
             mailTo = new URI(url);
             desktop.mail(mailTo);
+            //
+            //
+            fakturaSentPerEpost_saveToDb(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK);
+            //
+            //
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     private void sendWithOutlookB() {
         ///"path/to/Outlook.exe /c ipm.note /a \"path/to/attachment\""
         // see also:  https://stackoverflow.com/questions/6045816/to-open-outlook-mail-from-java-program-and-to-attach-file-to-the-mail-from-direc
@@ -989,16 +994,18 @@ public class HTMLPrint_A extends javax.swing.JFrame {
                 //
                 boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
                 //
-                String fakturaId = map_a_0.get(DB.BUH_FAKTURA__ID__);
+                String fakturaId = getFakturaId();
                 // 
                 // [2020-09-08]
                 if (ok) {
                     //
-                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
-                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
+                    fakturaSentPerEpost_saveToDb(fakturaId,DB.STATIC__SENT_STATUS__SKICKAD);
                     //
-                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
-                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+//                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
+//                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
+//                    //
+//                    Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+//                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
@@ -1008,6 +1015,16 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         });
         //
         x.start();
+        //
+    }
+
+    private void fakturaSentPerEpost_saveToDb(String fakturaId,String sendStatus) {
+        //
+        EditPanel_Send.insert(fakturaId, sendStatus,
+                DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
+        //
+        Basic_Buh_.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
         //
     }
 
@@ -1078,7 +1095,7 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
-        if (actHeight >= A4_PAPER.getHeight()) {
+        if (actHeight > A4_PAPER.getHeight()) {
             HelpA.showNotification("A4 Heigh exceeded");
         }
         //
