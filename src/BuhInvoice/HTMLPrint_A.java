@@ -605,6 +605,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
         //
         String html_ = "<table class='marginTop' style='border: 1px solid black'>";
         //
+        html_ += "<span class='no-border'>";
+        //
         if (list == null || list.isEmpty()) {
             return "";
         }
@@ -635,6 +637,8 @@ public class HTMLPrint_A extends javax.swing.JFrame {
             html_ += "</tr>";
             //
         }
+        //
+        html_ += "</span>"; // "class='no-border'"
         //
         html_ += "</table>";
         //
