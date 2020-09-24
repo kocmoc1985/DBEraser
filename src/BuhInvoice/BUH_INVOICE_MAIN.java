@@ -9,6 +9,7 @@ import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,6 +47,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
     //
+    private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -78,8 +81,24 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.setTitle("Fakturering");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //
+        initToggleBtnList();
+        //
     }
 
+    private void initToggleBtnList(){
+        toggleBtnList.add(jToggleButton_not_send_filter);
+        toggleBtnList.add(jToggleButton_obetald_filter);
+    }
+    
+    private void untoggleAllExcept(JToggleButton exceptBtn){
+        for (JToggleButton btn : toggleBtnList) {
+            if(btn.equals(exceptBtn) == false){
+                btn.setSelected(false);
+            }
+        }
+    }
+    
     private void setUneditableAllJTables() {
         HelpA.setUneditableJTable(jTable_invoiceB_alla_fakturor);
         HelpA.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
@@ -376,6 +395,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea_faktura_komment = new JTextAreaJLink();
         jButton4_save_faktura_komment = new javax.swing.JButton();
         jButton4_delete_faktura_komment1 = new javax.swing.JButton();
+        jPanel18 = new javax.swing.JPanel();
+        jToggleButton_obetald_filter = new javax.swing.JToggleButton();
+        jToggleButton_not_send_filter = new javax.swing.JToggleButton();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -602,34 +624,56 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jPanel18.setLayout(new java.awt.GridLayout(1, 4));
+
+        jToggleButton_obetald_filter.setText("OBETALDA");
+        jToggleButton_obetald_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton_obetald_filterActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jToggleButton_obetald_filter);
+
+        jToggleButton_not_send_filter.setText("EJ SKICKADE");
+        jToggleButton_not_send_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton_not_send_filterActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jToggleButton_not_send_filter);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(1099, 1099, 1099)
-                                .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(1043, 1043, 1043)
-                                .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(2, 2, 2)
-                                    .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(12, 12, 12))
+                                    .addGap(1099, 1099, 1099)
+                                    .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addGap(1043, 1043, 1043)
+                                    .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextArea_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -643,7 +687,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1210,7 +1256,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         String fakturatype = getFakturaType();
 //        System.out.println("AA " + fakturaTyp);
-        invoiceB.htmlFakturaOrReminder(fakturatype,false);
+        invoiceB.htmlFakturaOrReminder(fakturatype, false);
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
@@ -1318,7 +1364,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             boolean isKontantFaktura = isKontantFaktura();
             //
             if (isKontantFaktura) {
-                makeInbetalning(isKontantFaktura,true);
+                makeInbetalning(isKontantFaktura, true);
             }
             //
         } else {
@@ -1373,8 +1419,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
         //
-        if(directlyAfterCreation){
-             epb.setHeaderAfterCreationOfKontantFaktura();
+        if (directlyAfterCreation) {
+            epb.setHeaderAfterCreationOfKontantFaktura();
         }
         //
         GP_BUH.centerAndBringToFront(epb);
@@ -1440,9 +1486,26 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
     private void jButton_send_påmminelseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_påmminelseActionPerformed
-         invoiceB.htmlFakturaOrReminder(null,true);
+        invoiceB.htmlFakturaOrReminder(null, true);
     }//GEN-LAST:event_jButton_send_påmminelseActionPerformed
 
+    public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DYNAMIC = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
+    
+    
+    private void jToggleButton_obetald_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_obetald_filterActionPerformed
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD, evt);
+    }//GEN-LAST:event_jToggleButton_obetald_filterActionPerformed
+
+    private void jToggleButton_not_send_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_not_send_filterActionPerformed
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__EJ_SKICKAD, evt);
+    }//GEN-LAST:event_jToggleButton_not_send_filterActionPerformed
+
+    private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt){
+        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DYNAMIC = phpFunc;
+        invoiceB.refresh();
+        untoggleAllExcept((JToggleButton)evt.getSource());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1589,6 +1652,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel15;
     protected javax.swing.JPanel jPanel16;
     protected javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
@@ -1628,6 +1692,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected static javax.swing.JTextField jTextField_rabatt_total;
     protected static javax.swing.JTextField jTextField_total_exkl_moms;
     protected static javax.swing.JTextField jTextField_total_inkl_moms;
+    private javax.swing.JToggleButton jToggleButton_not_send_filter;
+    private javax.swing.JToggleButton jToggleButton_obetald_filter;
     // End of variables declaration//GEN-END:variables
 
     private void mousePressedOnTab(MouseEvent me) {
