@@ -76,7 +76,7 @@ public class InvoiceB extends Basic_Buh_ {
            //
         fillJTableheader();
         //
-        fillFakturaTable();
+        fillFakturaTable(null);
         //
         fillJComboSearchByFakturaKund();
         //
@@ -89,6 +89,7 @@ public class InvoiceB extends Basic_Buh_ {
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
         HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
     }
+    
 
     /**
      * [2020-08-12] This one keeps the "marking line" on the same row as before
@@ -97,21 +98,21 @@ public class InvoiceB extends Basic_Buh_ {
     protected void refresh_b() {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         int row = table.getSelectedRow();
-        fillFakturaTable();
+        fillFakturaTable(null);
         HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
 
-    protected void refresh() {
-        fillFakturaTable();
+    protected void refresh(String secondWhereValue) {
+        fillFakturaTable(secondWhereValue);
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
 
     protected void refresh_c(String fakturaNr) {
-        fillFakturaTable();
+        fillFakturaTable(null);
         HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
@@ -250,18 +251,26 @@ public class InvoiceB extends Basic_Buh_ {
         updateKomment(true);
     }
 
-    private void fillFakturaTable() {
+    private void fillFakturaTable(String secondWhereValue) {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
         HelpA.clearAllRowsJTable(table);
         //
-        String json = bim.getSELECT_kundId();
+        String json;
+        //
+        if(secondWhereValue != null){
+            json = bim.getSELECT_kundId__doubleWhere(secondWhereValue);
+        }else{
+            json = bim.getSELECT_kundId();
+        }         
         //
         try {
             //
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, json);
+            //
+            bim.RESET_SEARCH_FILTER();
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
@@ -425,7 +434,7 @@ public class InvoiceB extends Basic_Buh_ {
         deleteFaktura(fakturaId);
         //
         //
-        refresh();
+        refresh(null);
         //
     }
 
@@ -523,9 +532,9 @@ public class InvoiceB extends Basic_Buh_ {
                 //
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
-                refresh();
+                refresh(null);
             } else if (isKreditFaktura && ok) { // KREDIT FAKTURA
-                refresh();
+                refresh(null);
                 bim.editFakturaBtnKlicked();
             }
             //
