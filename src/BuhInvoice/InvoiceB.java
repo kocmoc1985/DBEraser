@@ -89,21 +89,8 @@ public class InvoiceB extends Basic_Buh_ {
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
         HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
     }
+
     
-
-    /**
-     * [2020-08-12] This one keeps the "marking line" on the same row as before
-     * the refresh
-     */
-    protected void refresh_b() {
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
-        int row = table.getSelectedRow();
-        fillFakturaTable(null);
-        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
-        String fakturaId = bim.getFakturaId();
-        all_invoices_table_clicked(fakturaId);
-    }
-
     protected void refresh(String secondWhereValue) {
         fillFakturaTable(secondWhereValue);
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
@@ -111,9 +98,24 @@ public class InvoiceB extends Basic_Buh_ {
         all_invoices_table_clicked(fakturaId);
     }
 
-    protected void refresh_c(String fakturaNr) {
+    protected void refresh_c() {
+        String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
         fillFakturaTable(null);
         HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+        String fakturaId = bim.getFakturaId();
+        all_invoices_table_clicked(fakturaId);
+    }
+    
+    /**
+     * [2020-08-12] This one keeps the "marking line" on the same row as before
+     * the refresh
+     * @deprecated
+     */
+    private void refresh_b() {
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        int row = table.getSelectedRow();
+        fillFakturaTable(null);
+        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
@@ -270,7 +272,16 @@ public class InvoiceB extends Basic_Buh_ {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, json);
             //
+            //=======
+            //
+            //
+            if(bim.isInitialFilter()){
+                bim.untoggleAll();
+            }
+            //
             bim.RESET_SEARCH_FILTER();
+            //
+            //=======
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //

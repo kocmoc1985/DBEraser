@@ -151,7 +151,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         countRestToPayAndShow();
         //
-        bim.invoiceB.refresh_b();
+        bim.invoiceB.refresh_c();
     }
 
     private void delete() {
