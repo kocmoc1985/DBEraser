@@ -106,7 +106,9 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD = "get_kund_fakturor__obetald"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DELVIS_BETALD = "get_kund_fakturor__delvis"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__EJ_SKICKAD = "get_kund_fakturor__unsend"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__MAKULERAD = "get_kund_fakturor__makulerad"; // using php-function: "select()"
     
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"

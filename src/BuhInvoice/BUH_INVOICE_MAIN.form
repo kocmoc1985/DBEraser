@@ -90,7 +90,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel18" min="-2" pref="507" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -391,12 +391,28 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_obetald_filterActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JToggleButton" name="jToggleButton_delvis_betald_filter">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="DELVIS BETALD"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_delvis_betald_filterActionPerformed"/>
+                      </Events>
+                    </Component>
                     <Component class="javax.swing.JToggleButton" name="jToggleButton_not_send_filter">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="EJ SKICKADE"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_not_send_filterActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JToggleButton" name="jToggleButton_makulerad_filter">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="MAKULERADE"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_makulerad_filterActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
