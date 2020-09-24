@@ -425,6 +425,14 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_makulerad_filterActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JToggleButton" name="jToggleButton_act_month_filter">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="M&#xc5;NAD"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_act_month_filterActionPerformed"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JComboBox" name="jComboBox_faktura_kunder_filter">

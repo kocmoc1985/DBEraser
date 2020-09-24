@@ -96,6 +96,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         toggleBtnList.add(jToggleButton_obetald_filter);
         toggleBtnList.add(jToggleButton_delvis_betald_filter);
         toggleBtnList.add(jToggleButton_makulerad_filter);
+        toggleBtnList.add(jToggleButton_act_month_filter);
     }
 
     private void untoggleAll() {
@@ -417,6 +418,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jToggleButton_delvis_betald_filter = new javax.swing.JToggleButton();
         jToggleButton_not_send_filter = new javax.swing.JToggleButton();
         jToggleButton_makulerad_filter = new javax.swing.JToggleButton();
+        jToggleButton_act_month_filter = new javax.swing.JToggleButton();
         jComboBox_faktura_kunder_filter = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
@@ -678,6 +680,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
         jPanel18.add(jToggleButton_makulerad_filter);
+
+        jToggleButton_act_month_filter.setText("MÅNAD");
+        jToggleButton_act_month_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton_act_month_filterActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jToggleButton_act_month_filter);
 
         jComboBox_faktura_kunder_filter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1564,8 +1574,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND;
         String fakturaKundId = HelpA.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2);
+        untoggleAll();
         invoiceB.refresh(fakturaKundId);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jToggleButton_act_month_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_act_month_filterActionPerformed
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, evt);
+    }//GEN-LAST:event_jToggleButton_act_month_filterActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
@@ -1761,6 +1776,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected static javax.swing.JTextField jTextField_rabatt_total;
     protected static javax.swing.JTextField jTextField_total_exkl_moms;
     protected static javax.swing.JTextField jTextField_total_inkl_moms;
+    private javax.swing.JToggleButton jToggleButton_act_month_filter;
     private javax.swing.JToggleButton jToggleButton_delvis_betald_filter;
     private javax.swing.JToggleButton jToggleButton_makulerad_filter;
     private javax.swing.JToggleButton jToggleButton_not_send_filter;
