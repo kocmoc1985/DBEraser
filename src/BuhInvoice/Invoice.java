@@ -854,9 +854,16 @@ public abstract class Invoice extends Basic_Buh_ {
         if (CURRENT_OPERATION_INSERT || conditionSpecial || force) {
             //
             JComboBox box = (JComboBox) getObjectTableInvert(DB.BUH_FAKTURA_ARTIKEL___ID, TABLE_INVERT_2);
-            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
-            String pris = cbo.getParam_3();
-            setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
+            //
+            Object selectedObj = box.getSelectedItem();
+            //
+            if (selectedObj instanceof HelpA.ComboBoxObject) {
+                HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
+                String pris = cbo.getParam_3();
+                setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
+            }else{ // This is when choosing empty
+                setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
+            }
             //
             if (force && CURRENT_OPERATION_INSERT == false) {
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_INVERT_2, "");

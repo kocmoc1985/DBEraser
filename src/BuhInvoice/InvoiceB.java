@@ -60,7 +60,7 @@ public class InvoiceB extends Basic_Buh_ {
     public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
-    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "KOMMENT";
+    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "BESKRIVNING";
     public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
@@ -547,6 +547,9 @@ public class InvoiceB extends Basic_Buh_ {
             } else if (isKreditFaktura && ok) { // KREDIT FAKTURA
                 refresh(null);
                 bim.editFakturaBtnKlicked();
+                //
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                //
             }
             //
         }
@@ -621,6 +624,7 @@ public class InvoiceB extends Basic_Buh_ {
         faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
         faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
+        faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
         //
     }
 
