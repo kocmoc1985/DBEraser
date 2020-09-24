@@ -22,9 +22,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class InvoiceB extends Basic {
+public class InvoiceB extends Basic_Buh_ {
 
-    private final BUH_INVOICE_MAIN bim;
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
@@ -69,17 +68,26 @@ public class InvoiceB extends Basic {
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
-        this.bim = buh_invoice_main;
-        initOther();
+        super(buh_invoice_main);
     }
-
-    private void initOther() {
-        //
+    
+    @Override
+    protected void startUp() {
+           //
         fillJTableheader();
         //
         fillFakturaTable();
         //
+        fillJComboSearchByFakturaKund();
+        //
         // fillFakturaArticlesTable();
+    }
+
+    
+    private void fillJComboSearchByFakturaKund(){
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
+        HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
+        HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
     }
 
     /**
@@ -458,18 +466,6 @@ public class InvoiceB extends Basic {
         executeDelete(json);
     }
 
-    private void executeDelete(String json) {
-        //
-//        System.out.println("UPDATE json: " + json);
-        //
-        try {
-            //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_DELETE, json);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     private String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -816,6 +812,13 @@ public class InvoiceB extends Basic {
 
     @Override
     public boolean getUnsaved(int nr) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    @Override
+    protected boolean fieldsValidated(boolean insert) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
