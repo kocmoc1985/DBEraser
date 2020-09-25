@@ -1,5 +1,5 @@
 
-Optimize: HelpA.loadLastEntered(...)
+Påminnelsen filen sparas som "faktura.pdf" OCKSÅ notification shows "Faktura instead of Påminnesle"
 ____________________________________________________________________________________________________________________________________________________
 
 [TO DO BEFORE GO FOR TEST:]
