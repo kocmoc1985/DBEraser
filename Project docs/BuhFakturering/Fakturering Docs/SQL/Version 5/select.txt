@@ -120,3 +120,8 @@ INNER JOIN buh_address ON buh_address.fakturaKundId = buh_faktura_kund.fakturaKu
 WHERE buh_faktura_kund.fakturaKundId=4
 
 -----------------------------------------------------------------------------
+
+
+select * from buh_faktura WHERE buh_faktura.kundId=1 AND buh_faktura.betald=0 AND CURRENT_DATE() > buh_faktura.forfallodatum
+
+select * from buh_faktura WHERE buh_faktura.kundId=1 AND buh_faktura.betald=0 AND CURRENT_DATE() > buh_faktura.forfallodatum AND makulerad=0 AND fakturatyp=0

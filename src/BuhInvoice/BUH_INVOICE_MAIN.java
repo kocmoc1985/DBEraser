@@ -8,7 +8,6 @@ package BuhInvoice;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -57,15 +56,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         initComponents();
         initOhter();
     }
-    
-    protected void RESET_SEARCH_FILTER(){
+
+    protected void RESET_SEARCH_FILTER() {
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
     }
-    
-    protected boolean isInitialFilter(){
-        if(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR)){
+
+    protected boolean isInitialFilter() {
+        if (PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -150,15 +149,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jButton_kredit_faktura.setEnabled(false);
             jButton_copy_faktura.setEnabled(false);
             jButton_inbetalning.setEnabled(false);
+            jButton_send_reminder.setEnabled(false);
         } else if (isKontantFaktura()) {
-//            jButton_kredit_faktura.setEnabled(false);
-//            jButton_inbetalning.setEnabled(false);
+            jButton_kredit_faktura.setEnabled(false);
+            jButton_send_reminder.setEnabled(false);
+            setEnabledCommonSet();
         } else {
+            jButton_send_reminder.setEnabled(true);
             jButton_kredit_faktura.setEnabled(true);
-            jButton_copy_faktura.setEnabled(true);
-            jButton_inbetalning.setEnabled(true);
+            setEnabledCommonSet();
         }
         //
+    }
+
+    private void setEnabledCommonSet() {
+        jButton_copy_faktura.setEnabled(true);
+        jButton_inbetalning.setEnabled(true);
     }
 
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
@@ -414,7 +420,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_delete_faktura = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
         jLabel_btn_separator_1 = new javax.swing.JLabel();
-        jButton_send_påmminelse = new javax.swing.JButton();
+        jButton_send_reminder = new javax.swing.JButton();
         jButton_inbetalning = new javax.swing.JButton();
         jButton_show_actions = new javax.swing.JButton();
         jLabel_all_invoices_list = new javax.swing.JLabel();
@@ -600,14 +606,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jButton_print_faktura);
         jPanel4.add(jLabel_btn_separator_1);
 
-        jButton_send_påmminelse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
-        jButton_send_påmminelse.setToolTipText("Skicka påminnelse");
-        jButton_send_påmminelse.addActionListener(new java.awt.event.ActionListener() {
+        jButton_send_reminder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
+        jButton_send_reminder.setToolTipText("Skicka påminnelse");
+        jButton_send_reminder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_send_påmminelseActionPerformed(evt);
+                jButton_send_reminderActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton_send_påmminelse);
+        jPanel4.add(jButton_send_reminder);
 
         jButton_inbetalning.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
         jButton_inbetalning.setToolTipText("Registrera inbetalning");
@@ -668,6 +674,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel18.add(jToggleButton_obetald_filter);
 
         jToggleButton_forfallen_filter.setText("FÖRFALLNA");
+        jToggleButton_forfallen_filter.setToolTipText("Visar förfallna, ej betalda, ej makulerade fakturor av typen NORMAL");
         jToggleButton_forfallen_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton_forfallen_filterActionPerformed(evt);
@@ -1563,9 +1570,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         createNewFaktura(true);
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
-    private void jButton_send_påmminelseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_påmminelseActionPerformed
+    private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         invoiceB.htmlFakturaOrReminder(null, true);
-    }//GEN-LAST:event_jButton_send_påmminelseActionPerformed
+    }//GEN-LAST:event_jButton_send_reminderActionPerformed
 
 
     private void jToggleButton_obetald_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_obetald_filterActionPerformed
@@ -1727,7 +1734,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
-    private javax.swing.JButton jButton_send_påmminelse;
+    private javax.swing.JButton jButton_send_reminder;
     private javax.swing.JButton jButton_show_actions;
     protected javax.swing.JButton jButton_update_article;
     protected javax.swing.JButton jButton_update_articles_row;

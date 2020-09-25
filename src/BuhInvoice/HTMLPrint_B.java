@@ -6,7 +6,6 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
-import static BuhInvoice.HTMLPrint_A.T__FAKTURA_UTSKRIVET;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
 import java.awt.Color;
@@ -72,7 +71,7 @@ public class HTMLPrint_B extends HTMLPrint {
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
             ".paddingLeft {padding-left: 5px;}",
-            ".bold {color:red;}", // font-weight:800;
+            ".bold {font-weight:800;}", // font-weight:800;
             ".no-border {border: 0px}",
             ".border-a {border: 1px solid black;}",
             ".text-md {font-size:11pt; color:black;}"
@@ -315,10 +314,6 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     private String reminder_message() {
-        //
-        if (bim.isKreditFaktura() || bim.isKontantFaktura()) {
-            return "";
-        }
         //
         String html_ = "<table class='marginTop'>";
         //

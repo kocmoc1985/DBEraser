@@ -726,6 +726,20 @@ public class HelpA {
         return obj;
     }
 
+    /**
+     * [2020-09-25]
+     * Is added each time as the table is filled 
+     * @param table 
+     */
+    public static void rowsorter_jtable_add_reset(JTable table) {
+        //
+        if (table.getRowSorter() != null) {
+            table.getRowSorter().setSortKeys(null);
+        }
+        //
+        table.setAutoCreateRowSorter(true);
+    }
+
     public static synchronized void build_table_common_with_rounding_properties(ResultSet rs, String q, Properties props, JTable jTable, String defaultFormat, String[] skipColumnsNames, String[] sortAsInt) {
         //
         if (rs == null) {

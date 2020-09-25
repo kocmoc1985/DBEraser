@@ -1,6 +1,8 @@
 ____________________________________________________________________________________________________________________________________________________
 
-Mark forfallna fakturor in the Table
+TO DO BEFORE GO FOR TEST:
+1. Dröjsmålsränta -> buh_faktura (table) -> I have thaugt a lot but it's logically the only table which can take this param.
+2. Check And Limit ammount of articles which can be added to a Faktura.
 ____________________________________________________________________________________________________________________________________________________
 
 [SEND PÅMMINELSE:]

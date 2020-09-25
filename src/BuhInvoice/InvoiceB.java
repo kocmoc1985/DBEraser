@@ -69,10 +69,10 @@ public class InvoiceB extends Basic_Buh_ {
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
-    
+
     @Override
     protected void startUp() {
-           //
+        //
         fillJTableheader();
         //
         fillFakturaTable(null);
@@ -82,14 +82,12 @@ public class InvoiceB extends Basic_Buh_ {
         // fillFakturaArticlesTable();
     }
 
-    
-    private void fillJComboSearchByFakturaKund(){
+    private void fillJComboSearchByFakturaKund() {
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
         HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
     }
 
-    
     protected void refresh(String secondWhereValue) {
         fillFakturaTable(secondWhereValue);
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
@@ -104,10 +102,11 @@ public class InvoiceB extends Basic_Buh_ {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
+
     /**
      * [2020-08-12] This one keeps the "marking line" on the same row as before
      * the refresh
+     *
      * @deprecated
      */
     private void refresh_b() {
@@ -258,15 +257,17 @@ public class InvoiceB extends Basic_Buh_ {
         //
         HelpA.clearAllRowsJTable(table);
         //
+        HelpA.rowsorter_jtable_add_reset(table);
+        //
         table.setDefaultRenderer(Object.class, GP_BUH.getRendererForfalloDatum());
         //
         String json;
         //
-        if(secondWhereValue != null){
+        if (secondWhereValue != null) {
             json = bim.getSELECT_kundId__doubleWhere(secondWhereValue);
-        }else{
+        } else {
             json = bim.getSELECT_kundId();
-        }         
+        }
         //
         try {
             //
@@ -276,7 +277,7 @@ public class InvoiceB extends Basic_Buh_ {
             //=======
             //
             //
-            if(bim.isInitialFilter()){
+            if (bim.isInitialFilter()) {
                 bim.untoggleAll();
             }
             //
@@ -486,7 +487,6 @@ public class InvoiceB extends Basic_Buh_ {
         //
         executeDelete(json);
     }
-
 
     private String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -763,7 +763,7 @@ public class InvoiceB extends Basic_Buh_ {
         //
         if (paminnelse == false) {
             map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
-        }else{
+        } else {
             map_d.put(HTMLPrint_B.getAttBetalaTitle(), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         }
         //
@@ -839,8 +839,6 @@ public class InvoiceB extends Basic_Buh_ {
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
 
     @Override
     protected boolean fieldsValidated(boolean insert) {

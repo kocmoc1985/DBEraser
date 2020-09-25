@@ -61,7 +61,7 @@ public class DB {
             + STATIC__FAKTURA_TYPE_KREDIT + ";1," + STATIC__FAKTURA_TYPE_KONTANT + ";2";// "NORMAL;0,KREDIT;1,KONTANT;2"
 
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
-    public static final String STATIC__BETAL_METHODS = "Kontant;ko,Bank Giro;bg,Plus Giro;pg,Bank Konto;bk,Swish;sw";
+    public static final String STATIC__BETAL_METHODS = "Bank Giro;bg,Kontant;ko,Plus Giro;pg,Bank Konto;bk,Swish;sw";
     public static final String STATIC_BET_STATUS_KREDIT = "-";
     public static final String STATIC__BETAL_STATUS = STATIC__NO + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //

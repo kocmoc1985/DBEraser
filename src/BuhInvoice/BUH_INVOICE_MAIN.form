@@ -274,7 +274,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel_btn_separator_1">
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton_send_p&#xe5;mminelse">
+                    <Component class="javax.swing.JButton" name="jButton_send_reminder">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/bell.png"/>
@@ -282,7 +282,7 @@
                         <Property name="toolTipText" type="java.lang.String" value="Skicka p&#xe5;minnelse"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_send_p&#xe5;mminelseActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_send_reminderActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton_inbetalning">
@@ -396,6 +396,7 @@
                     <Component class="javax.swing.JToggleButton" name="jToggleButton_forfallen_filter">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="F&#xd6;RFALLNA"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Visar f&#xf6;rfallna, ej betalda, ej makulerade fakturor av typen NORMAL"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_forfallen_filterActionPerformed"/>

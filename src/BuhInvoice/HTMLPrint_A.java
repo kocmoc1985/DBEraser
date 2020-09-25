@@ -7,25 +7,13 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
-import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.print.PageFormat;
-import java.awt.print.Paper;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.io.IOException;
-import java.net.ProtocolException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -83,7 +71,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
             ".paddingLeft {padding-left: 5px;}",
-            ".bold {color:red;}", // font-weight:800;
+            ".bold {font-weight:800;}", // font-weight:800;
             ".no-border {border: 0px}",
             ".border-a {border: 1px solid black;}"
         //    
