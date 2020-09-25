@@ -227,9 +227,11 @@ public class InvoiceA_Insert extends Invoice {
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
-        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", true, true, false);
+        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", true, true, false);
         //
-        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, "FRAKT", "", true, true, false);
+        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
+        //
+        RowDataInvert drojsmalsranta = new RowDataInvertB("0", DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
@@ -242,6 +244,7 @@ public class InvoiceA_Insert extends Invoice {
             order,
             expavgift,
             frakt,
+            drojsmalsranta,
             makulerad
         };
         //

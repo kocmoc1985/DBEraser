@@ -531,8 +531,8 @@
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jPanel3_faktura_sec" min="-2" pref="325" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jPanel3_faktura_sec" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel12" pref="50" max="32767" attributes="0"/>
                                       <Component id="jPanel11" max="32767" attributes="0"/>

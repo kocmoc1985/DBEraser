@@ -120,7 +120,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String getDrojsmalsrantaFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
-            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT

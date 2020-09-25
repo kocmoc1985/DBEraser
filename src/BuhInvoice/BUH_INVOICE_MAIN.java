@@ -974,8 +974,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1444,6 +1444,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 invoiceA_insert.insertOrUpdate();
                 invoiceA_insert.resetSavedMoms_jCombo();
                 invoiceB.refresh(null);
+                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //
             boolean isKontantFaktura = isKontantFaktura();
@@ -1453,14 +1454,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
             //
         } else {
-            if (invoiceA_update.fieldsValidated(false)) {
+            if (invoiceA_update.fieldsValidated(true)) {
                 invoiceA_update.insertOrUpdate();
                 invoiceA_update.resetSavedMoms_jCombo();
                 invoiceB.refresh_c();
+                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
         }
         //
-        HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+        
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
 

@@ -95,7 +95,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     private String getDrojsmalsrantaFlexCol() {
-        return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c);
+        return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
     }
 
     //

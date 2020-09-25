@@ -228,10 +228,14 @@ public class InvoiceA_Update extends Invoice {
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);
         //
         String exp = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG);
-        RowDataInvert expavgift = new RowDataInvertB(exp, DB.BUH_FAKTURA__EXP_AVG, "EXPEDITIONSAVGIFT", "", false, true, false);
+        RowDataInvert expavgift = new RowDataInvertB(exp, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", false, true, false);
         //
         String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
-        RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, "FRAKT", "", false, true, false);
+        RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", false, true, false);
+        //
+        String drojranta_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA);
+        RowDataInvert drojranta = new RowDataInvertB(drojranta_, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", false, true, false);
+        //
         //
         String valSelectedRow = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
         String valSelectedRow_translated = GP_BUH.translateJaNejEmptyLineChar(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
@@ -249,6 +253,7 @@ public class InvoiceA_Update extends Invoice {
             order,
             expavgift,
             frakt,
+            drojranta,
             makulerad
         };
         //

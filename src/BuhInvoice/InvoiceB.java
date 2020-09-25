@@ -47,7 +47,8 @@ public class InvoiceB extends Basic_Buh_ {
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
     public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
     public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
-    public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP AVG";
+    public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP. AVGIFT";
+    public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
@@ -139,6 +140,7 @@ public class InvoiceB extends Basic_Buh_ {
             TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
             TABLE_ALL_INVOICES__EXP_AVG,
+            TABLE_ALL_INVOICES__DROJSMALSRANTA,
             //
             TABLE_ALL_INVOICES__FAKTURANR,
             TABLE_ALL_INVOICES__FAKTURA_TYP,
@@ -306,6 +308,7 @@ public class InvoiceB extends Basic_Buh_ {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL_KR);
@@ -338,6 +341,7 @@ public class InvoiceB extends Basic_Buh_ {
             map.get(DB.BUH_FAKTURA__MOMS_SATS),
             map.get(DB.BUH_FAKTURA__FRAKT),
             map.get(DB.BUH_FAKTURA__EXP_AVG),
+            map.get(DB.BUH_FAKTURA__DROJSMALSRANTA),
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
             getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
@@ -748,7 +752,7 @@ public class InvoiceB extends Basic_Buh_ {
         map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, _get(TABLE_ALL_INVOICES__VAR_REF));
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR__FLEX, _get(TABLE_ALL_INVOICES__BET_VILKOR));
         map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM__FLEX, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
-        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, ""); //**************************EMPTY
+        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, _get(TABLE_ALL_INVOICES__DROJSMALSRANTA)); 
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
         map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, GP_BUH.getDateTime_yyyy_MM_dd());
         map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$());

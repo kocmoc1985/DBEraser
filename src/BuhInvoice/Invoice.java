@@ -675,7 +675,8 @@ public abstract class Invoice extends Basic_Buh_ {
                 //                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT)
                 //                || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
-                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
+                || col_name.equals(DB.BUH_FAKTURA__FRAKT)
+                || col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)) {
             //
             mouseWheelNumberChange(e);
             //
@@ -705,7 +706,8 @@ public abstract class Invoice extends Basic_Buh_ {
                 || col_name.equals(DB.BUH_F_ARTIKEL__RABATT_KR)
                 //
                 || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
-                || col_name.equals(DB.BUH_FAKTURA__FRAKT)) {
+                || col_name.equals(DB.BUH_FAKTURA__FRAKT)
+                || col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)) {
             //
             boolean digitalInputValidated = Validator.validateDigitalInput(jli);
             //
