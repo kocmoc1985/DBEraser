@@ -135,8 +135,11 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
         //
-        RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
-        RowDataInvert var_referens = new RowDataInvertB(HelpA.loadLastEntered(IO.VAR_REFERENS,""), DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
+        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
+        RowDataInvert er_ref = new RowDataInvertB(er_referens_last, DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
+        //
+        String var_ref = HelpA.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");
+        RowDataInvert var_referens = new RowDataInvertB(var_ref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__BETAL_VILKOR;
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", true, true, false);
@@ -222,9 +225,11 @@ public class InvoiceA_Insert extends Invoice {
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
-        RowDataInvert expavgift = new RowDataInvertB("0", DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", true, true, false);
+        String expavgift_ = HelpA.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
+        RowDataInvert expavgift = new RowDataInvertB(expavgift_, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", true, true, false);
         //
-        RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
+        String frakt_ = HelpA.loadLastEntered(DB.BUH_FAKTURA__FRAKT,"0");
+        RowDataInvert frakt = new RowDataInvertB(frakt_, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
         //
         String ranta = HelpA.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
         RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);

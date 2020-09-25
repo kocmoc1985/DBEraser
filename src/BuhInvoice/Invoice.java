@@ -253,7 +253,7 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     protected String getFakturaKundId() {
-        return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT); // "fakturaKundId"
+        return bim.getFakturaKundId();
     }
 
     protected static String getNextFakturaNr(String kundId) {
@@ -588,16 +588,7 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
-            //
-            JLinkInvert jli = (JLinkInvert) me.getSource();
-            //
-            if (jli.getValue().isEmpty()) {
-                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
-                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
-            }
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+        if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             restoreFakturaDatumIfEmty(me, ti);
             //
@@ -740,9 +731,11 @@ public abstract class Invoice extends Basic_Buh_ {
                 JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
                 Validator.validatePercentInput(linkInvert); // Validating after setting the value
                 //
-            } else if (col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)) {
+            } else if (col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA) 
+                    || col_name.equals(DB.BUH_FAKTURA__FRAKT) 
+                    || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
                 //
-                referensSave(DB.BUH_FAKTURA__DROJSMALSRANTA);
+                referensSave(col_name);
                 //
             }
             //
@@ -783,7 +776,7 @@ public abstract class Invoice extends Basic_Buh_ {
             String value = getValueTableInvert(colName);
             //
             try {
-                HelpA.writeToFile(IO.VAR_REFERENS, value);
+                HelpA.writeToFile(DB.BUH_FAKTURA__VAR_REFERENS, value);
             } catch (IOException ex) {
                 Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -797,12 +790,14 @@ public abstract class Invoice extends Basic_Buh_ {
             } catch (IOException ex) {
                 Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(colName.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)){
+        }else if(colName.equals(DB.BUH_FAKTURA__DROJSMALSRANTA) 
+                || colName.equals(DB.BUH_FAKTURA__FRAKT)
+                ||colName.equals(DB.BUH_FAKTURA__EXP_AVG)){
             //
             String value = getValueTableInvert(colName,TABLE_INVERT_3);
             //
             try {
-                HelpA.writeToFile(IO.DROJSMALSRANTA, value);
+                HelpA.writeToFile(colName, value);
             } catch (IOException ex) {
                 Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
