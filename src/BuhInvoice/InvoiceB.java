@@ -8,7 +8,6 @@ package BuhInvoice;
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
-import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
 import java.util.ArrayList;
@@ -258,6 +257,8 @@ public class InvoiceB extends Basic_Buh_ {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
         HelpA.clearAllRowsJTable(table);
+        //
+        table.setDefaultRenderer(Object.class, GP_BUH.getRendererForfalloDatum());
         //
         String json;
         //
@@ -749,7 +750,7 @@ public class InvoiceB extends Basic_Buh_ {
         map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM__FLEX, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
         map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, ""); //**************************EMPTY
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
-        map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, HelpA.get_proper_date_time_same_format_on_all_computers());
+        map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, GP_BUH.getDateTime_yyyy_MM_dd());
         map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$());
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //

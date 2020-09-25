@@ -31,6 +31,13 @@ new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_
 For "FLOAT":
 1. Use: "Validator.validateDigitalInput(jli)" -> This one does not prevent from saving, but will set "validated=false" if the input is empty.
 2. Use: "Basic_Buh.fieldsValidated(boolean insert)" -> And here it will prevent from inserting/updating if some "unvalidated" fields are present.
+
+________________________________________________________________________________________________________
+[JTABLE MARKING FORFALLNA FAKTUROR][2020-09-25]
+
+The conditions of mark as "forfallen" is "forfallen==true && isFakturaTypeNormal==true && isBetald == false && isMakulerad == false"
+
+See: "InvoiceB.class" -> "fillFakturaTable()" -> "table.setDefaultRenderer(Object.class, GP_BUH.getRendererForfalloDatum());"
 ________________________________________________________________________________________________________
 [InvoiceB.class and InvoiceA_Insert - USE LONG NAMES][2020-08-14]
 

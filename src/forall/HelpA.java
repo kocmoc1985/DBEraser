@@ -8,7 +8,7 @@ import BuhInvoice.HTMLPrint_A;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTableInvert.RowDataInvert;
 import ca.odell.glazedlists.GlazedLists;
@@ -263,7 +263,7 @@ public class HelpA {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB") || role_developer) { // 
             //
@@ -1131,14 +1131,15 @@ public class HelpA {
         }
 
     }
-    
+
     /**
      * [2020-08-26]
+     *
      * @param table
      * @param colName
-     * @return 
+     * @return
      */
-     public static double countSumJTable(JTable table, String colName) {
+    public static double countSumJTable(JTable table, String colName) {
         //
         double sum = 0;
         //
@@ -1146,13 +1147,13 @@ public class HelpA {
             //
             int col = HelpA.getColByName(table, colName);
             //
-            String val = (String)table.getValueAt(x, col);
+            String val = (String) table.getValueAt(x, col);
             //
-            if(val == null || val.isEmpty() || val.equals("null")){
+            if (val == null || val.isEmpty() || val.equals("null")) {
                 continue;
             }
             //
-            double toAdd = Double.parseDouble(val) ;
+            double toAdd = Double.parseDouble(val);
             //
             sum += toAdd;
             //
@@ -1287,8 +1288,8 @@ public class HelpA {
         //
         return csv;
     }
-    
-    public static void setUneditableJTable(JTable table){
+
+    public static void setUneditableJTable(JTable table) {
         table.setDefaultEditor(Object.class, null);
     }
 
@@ -1479,6 +1480,68 @@ public class HelpA {
         return -1;
     }
 
+    /**
+     *
+     * SUPER IMPORTANT - Let's you paint certain rows according to conditions
+     *
+     * @return
+     */
+    public static DefaultTableCellRenderer getTableRendererAdjusted() {
+        //
+        return new DefaultTableCellRenderer() {
+            JLabel label = new JLabel();
+
+            //
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                //
+                String status = (String) table.getModel().getValueAt(row, col);
+                //
+                if (status.equals("Nej")) {
+                    label.setOpaque(true);
+                    label.setText("" + value);
+                    label.setBorder(BorderFactory.createLineBorder(Color.red));
+                    return label;
+                } else {
+                    return this;
+                }
+            }
+        };
+    }
+
+    public static void paintTableRow(JTable table, int col, int row, final Color borederColor) {
+        //
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+        TableColumn tc = tcm.getColumn(col);
+        //
+        TableCellRenderer renderer = new DefaultTableCellRenderer() {
+            JLabel label = new JLabel();
+
+            //
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+
+                String status = (String) table.getModel().getValueAt(row, col);
+
+                if (status.equals("1")) {
+                    label.setOpaque(true);
+                    label.setText("" + value);
+                    label.setBorder(BorderFactory.createLineBorder(borederColor));
+                    return label;
+                } else {
+                    return this;
+                }
+            }
+        };
+        //
+        tc.setHeaderRenderer(renderer);
+        th.repaint();
+        //
+    }
+
     //
     public static void paintTableHeaderBorderOneColumn(JTable table, int column, final Color borederColor) {
         JTableHeader th = table.getTableHeader();
@@ -1502,6 +1565,19 @@ public class HelpA {
         //
         tc.setHeaderRenderer(renderer);
         th.repaint();
+    }
+
+    public static String getColumnName(JTable table, int col) {
+        //
+        if (col == -1) {
+            return null;
+        }
+        //
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+        TableColumn tc = tcm.getColumn(col);
+        //
+        return (String) tc.getHeaderValue();
     }
 
     public static void resetTableHeaderPainting(JTable table, int column) {
@@ -1633,8 +1709,8 @@ public class HelpA {
         int rowToMove = getRowByValue(table, colName, rowValue);
         dtm.moveRow(rowToMove, rowToMove, rowToMoveTo);
     }
-    
-    public static void markRowByValue(JTable table, String colName,String colValue){
+
+    public static void markRowByValue(JTable table, String colName, String colValue) {
         int row = getRowByValue(table, colName, colValue);
         setSelectedRow(table, row);
     }
@@ -1664,8 +1740,6 @@ public class HelpA {
     public static void markLastRowJtable(JTable table) {
         markGivenRow(table, table.getRowCount() - 1);
     }
-    
-    
 
     public static void markGivenRow(JTable table, int row) {
         try {
@@ -1706,17 +1780,17 @@ public class HelpA {
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);
     }
-    
+
     public static void showNotification_separate_thread(String msg) {
-       Thread x = new Thread(() -> {
+        Thread x = new Thread(() -> {
             java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JOptionPane.showMessageDialog(null, msg);
-            }
+                @Override
+                public void run() {
+                    JOptionPane.showMessageDialog(null, msg);
+                }
+            });
+
         });
-           
-       });
         x.start();
     }
 
@@ -2583,6 +2657,24 @@ public class HelpA {
         System.out.println("copy files done");
     }
 
+    public static boolean compareDates(String date1, String date_format1, String date2, String date_format2) {
+        //
+        long ms_date1 = dateToMillisConverter3(date1, date_format1);
+        long ms_date2 = dateToMillisConverter3(date2, date_format2);
+        //
+        if (ms_date1 > ms_date2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static long get_diff_between_two_dates(String date1, String date_format1, String date2, String date_format2) {
+        long ms_date1 = dateToMillisConverter3(date1, date_format1);
+        long ms_date2 = dateToMillisConverter3(date2, date_format2);
+        return ms_date1 - ms_date2;
+    }
+
     public static String get_proper_date_yyyy_MM_dd() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
@@ -2620,16 +2712,16 @@ public class HelpA {
         //
         String date_format = "yyyy-MM-dd";
         //
-        if(days > 10){ // Yes it's needed [2020-09-21] Otherwise 2020-10-02 "+30days" = 2020-10-31
-            days+= 1;
+        if (days > 10) { // Yes it's needed [2020-09-21] Otherwise 2020-10-02 "+30days" = 2020-10-31
+            days += 1;
         }
         //
-        long time_to_plus = (long)86400000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
+        long time_to_plus = (long) 86400000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
         long ms = dateToMillisConverter3(date, date_format);
         long new_date_in_ms = ms + time_to_plus;
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
         //
-        if(new_date.equals(date)){
+        if (new_date.equals(date)) {
             new_date_in_ms += 28800000;
             return millisToDateConverter("" + new_date_in_ms, date_format);
         }
@@ -2825,8 +2917,6 @@ public class HelpA {
         //
         return joined_properties;
     }
-
-    
 
     public static boolean isNumber(String str) {
         try {

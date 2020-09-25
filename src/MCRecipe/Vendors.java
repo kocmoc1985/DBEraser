@@ -41,7 +41,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
     public Table TABLE_INVERT_4_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_4_2;
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
     public int currentVendorId = -1;
     private String currentTradeNameId = "";
     private String currentTradeName = "";
@@ -49,7 +49,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     private String currentVendorContactName = "";
     private String currentId = "";
 
-    public Vendors(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mc_recipe) {
+    public Vendors(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mc_recipe) {
         super(sql, sql_additional, mc_recipe);
         this.mCRecipe = mc_recipe;
         //

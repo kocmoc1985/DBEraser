@@ -8,6 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import forall.GP;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Frame;
 import java.awt.Image;
@@ -22,11 +23,15 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
 
 /**
@@ -38,33 +43,34 @@ public class GP_BUH {
     public static final String PRODUCT_NAME = "BuhInvoice";
     public static boolean CUSTOMER_MODE = true;
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
-
+    //
+    public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
-    
-    public static String replaceColon(String text,boolean reverse){
-        if(reverse == false){
+
+    public static String replaceColon(String text, boolean reverse) {
+        if (reverse == false) {
             return text.replaceAll(":", "#");
-        }else{
+        } else {
             return text.replaceAll("#", ":");
         }
-        
+
     }
-    
-    public static String replaceComma(String text, boolean reverse){
-        if(reverse == false){
-          return text.replaceAll(",", "¤");  
-        }else{
-          return text.replaceAll("¤", ",");  
+
+    public static String replaceComma(String text, boolean reverse) {
+        if (reverse == false) {
+            return text.replaceAll(",", "¤");
+        } else {
+            return text.replaceAll("¤", ",");
         }
     }
-    
-    public static String translateJaNejEmptyLineChar(String staticJaNej,String value){
-         HashMap<String,String>map = JSon.JSONToHashMap(staticJaNej, false);
-         return getValNoNull(map.get(value));
+
+    public static String translateJaNejEmptyLineChar(String staticJaNej, String value) {
+        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
+        return getValNoNull(map.get(value));
     }
-    
+
     public static String getValNoNull(String value) {
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
             return "";
@@ -72,7 +78,7 @@ public class GP_BUH {
             return value;
         }
     }
-    
+
     public static String _get(HashMap<String, String> map, String param) {
         //
         String val = map.get(param);
@@ -91,9 +97,17 @@ public class GP_BUH {
     public static boolean confirmWarning(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
-    
-      public static boolean confirm(String message) {
+
+    public static boolean confirm(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    public static String getDate_yyyy_MM_dd() {
+        return HelpA.get_proper_date_yyyy_MM_dd();
+    }
+
+    public static String getDateTime_yyyy_MM_dd() {
+        return HelpA.get_proper_date_time_same_format_on_all_computers();
     }
 
     public static String getDateCreated() {
@@ -115,8 +129,8 @@ public class GP_BUH {
         return id != -1;
         //
     }
-    
-    public static void centerAndBringToFront(JFrame frame){
+
+    public static void centerAndBringToFront(JFrame frame) {
         Point p = HelpA.position_window_in_center_of_the_screen(frame);
         frame.setLocation(p);
         frame.setVisible(true);
@@ -132,9 +146,9 @@ public class GP_BUH {
                 .size(160, 69)
                 .toFile(new File("logo.png"));
     }
-    
-    public static void chooseLogo(Component parent){
-         //
+
+    public static void chooseLogo(Component parent) {
+        //
         String path = chooseFile(null);
         //
         try {
@@ -147,7 +161,7 @@ public class GP_BUH {
 
     private static void resizeLogo(String path) throws IOException {
         //
-        if(path == null || path.isEmpty()){
+        if (path == null || path.isEmpty()) {
             return;
         }
         //
@@ -160,12 +174,12 @@ public class GP_BUH {
         int w_orig = img.getWidth();
         int h_orig = img.getHeight();
         //
-        if(w_orig < MIN_WIDTH){
+        if (w_orig < MIN_WIDTH) {
             HelpA.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
             return;
         }
         //
-        double wh_proportion = (double)w_orig / (double)h_orig;
+        double wh_proportion = (double) w_orig / (double) h_orig;
         //
         System.out.println("Original img w: " + w_orig + " height: " + h_orig);
         System.out.println("wh_proportion: " + wh_proportion);
@@ -173,16 +187,16 @@ public class GP_BUH {
         int w_new = 0;
         int h_new = 0;
         //
-        if(w_orig > MAX_WIDTH ){
-           w_new = MAX_WIDTH;
-           //
-           if(h_orig > MAX_HEIGHT){
-             h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
-           }else{
-             h_new = (int) (w_new /wh_proportion);
-           }
-           //
-          
+        if (w_orig > MAX_WIDTH) {
+            w_new = MAX_WIDTH;
+            //
+            if (h_orig > MAX_HEIGHT) {
+                h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
+            } else {
+                h_new = (int) (w_new / wh_proportion);
+            }
+            //
+
         }
         //
         System.out.println("w_new: " + w_new);
@@ -196,15 +210,15 @@ public class GP_BUH {
                 .toFile(new File("logo.png"));
         //
     }
-    
-    public static Image getBuhInvoicePrimIcon(){
+
+    public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage();
     }
 
     private static String chooseFile(Component parent) {
         JFileChooser chooser = new JFileChooser();
         //
-        Frame window=new Frame();
+        Frame window = new Frame();
         window.setIconImage(getBuhInvoicePrimIcon());
         //
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -218,6 +232,51 @@ public class GP_BUH {
         } else {
             return null;
         }
+    }
+
+    public static DefaultTableCellRenderer getRendererForfalloDatum() {
+        //
+        return new DefaultTableCellRenderer() {
+            //
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                //
+                boolean isSelctedRow = table.getSelectedRow() == row;
+                boolean isBetald = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
+                boolean isMakulerad = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
+                boolean isFakturaTypeNormal = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
+                //
+                if (HelpA.getColumnName(table, col).equals(InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM) == false) {
+                    //
+                    if (isSelctedRow) {
+                        this.setForeground(Color.white);
+                    } else {
+                        this.setForeground(Color.black);
+                    }
+                    //
+                    return this;
+                }
+                //
+                String cellValue = (String) table.getModel().getValueAt(row, col);
+                //
+                String dateNow = getDate_yyyy_MM_dd();
+                //
+                boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, cellValue, DATE_FORMAT_BASIC);
+                //
+                if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false && isSelctedRow == false) {
+                    this.setForeground(Color.red);
+                    return this;
+                } else {
+                    if (isSelctedRow) {
+                        this.setForeground(Color.white);
+                    } else {
+                        this.setForeground(Color.black);
+                    }
+                    return this;
+                }
+            }
+        };
     }
 
     public static void main(String[] args) {

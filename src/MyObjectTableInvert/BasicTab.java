@@ -4,8 +4,8 @@
  */
 package MyObjectTableInvert;
 
-import static MCRecipe.MC_RECIPE.USER_ROLE;
-import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
+import static MCRecipe.MC_RECIPE_.USER_ROLE;
+import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
 import MyObjectTable.ShowMessage;
 import forall.HelpA;

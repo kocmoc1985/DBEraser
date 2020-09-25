@@ -7,7 +7,7 @@ package MyObjectTable;
 
 import MyObjectTable.ShowMessage;
 import FreeQuery.FQ;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MyObjectTable.RowData;
 import MyObjectTable.SelectRowButton;
 import MyObjectTable.Table;
@@ -81,7 +81,7 @@ public class TableBuilderBasic {
     }
 
     private void defineHeadVariables() {
-        this.PROPERTIES_PATH = MC_RECIPE.PROPERTIES_PATH;
+        this.PROPERTIES_PATH = MC_RECIPE_.PROPERTIES_PATH;
         this.PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
         GP.MSSQL_CREATE_STATEMENT_SIMPLE = "false";
         GP.SQL_LIBRARY_JTDS = true;
