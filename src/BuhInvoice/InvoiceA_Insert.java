@@ -7,14 +7,9 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
-import BuhInvoice.sec.Moms;
-import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -141,7 +136,7 @@ public class InvoiceA_Insert extends Invoice {
         forfalo_datum.setUneditable();
         //
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
-        RowDataInvert var_referens = new RowDataInvertB(HelpA.loadLastEntered(IO.VAR_REFERENS), DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
+        RowDataInvert var_referens = new RowDataInvertB(HelpA.loadLastEntered(IO.VAR_REFERENS,""), DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__BETAL_VILKOR;
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", true, true, false);
@@ -231,7 +226,8 @@ public class InvoiceA_Insert extends Invoice {
         //
         RowDataInvert frakt = new RowDataInvertB("0", DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
         //
-        RowDataInvert drojsmalsranta = new RowDataInvertB("0", DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
+        String ranta = HelpA.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
+        RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);

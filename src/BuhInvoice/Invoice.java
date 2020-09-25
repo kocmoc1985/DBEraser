@@ -593,7 +593,7 @@ public abstract class Invoice extends Basic_Buh_ {
             JLinkInvert jli = (JLinkInvert) me.getSource();
             //
             if (jli.getValue().isEmpty()) {
-                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()));
+                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
                 setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
             }
             //
@@ -740,6 +740,10 @@ public abstract class Invoice extends Basic_Buh_ {
                 JLinkInvert linkInvert = (JLinkInvert) getObjectTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2);
                 Validator.validatePercentInput(linkInvert); // Validating after setting the value
                 //
+            } else if (col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)) {
+                //
+                referensSave(DB.BUH_FAKTURA__DROJSMALSRANTA);
+                //
             }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
@@ -773,18 +777,32 @@ public abstract class Invoice extends Basic_Buh_ {
 
     private void referensSave(String colName) {
         //
-        String er_referens = getValueTableInvert(colName);
         //
         if (colName.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
+            //
+            String value = getValueTableInvert(colName);
+            //
             try {
-                HelpA.writeToFile(IO.VAR_REFERENS, er_referens);
+                HelpA.writeToFile(IO.VAR_REFERENS, value);
             } catch (IOException ex) {
                 Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
         } else if (colName.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
+            //
+            String value = getValueTableInvert(colName);
+            //
             try {
-                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), er_referens);
+                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), value);
+            } catch (IOException ex) {
+                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(colName.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)){
+            //
+            String value = getValueTableInvert(colName,TABLE_INVERT_3);
+            //
+            try {
+                HelpA.writeToFile(IO.DROJSMALSRANTA, value);
             } catch (IOException ex) {
                 Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -863,7 +881,7 @@ public abstract class Invoice extends Basic_Buh_ {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
-            }else{ // This is when choosing empty
+            } else { // This is when choosing empty
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
             }
             //

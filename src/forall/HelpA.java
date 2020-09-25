@@ -2833,7 +2833,7 @@ public class HelpA {
         return System.getProperty("user.home") + "\\" + "Desktop";
     }
 
-    public static String loadLastEntered(String filePath) {
+    public static String loadLastEntered(String filePath, String defaultValue) {
         //
         String previous = "";
         ArrayList<String> list;
@@ -2848,7 +2848,11 @@ public class HelpA {
             //
         }
         //
-        return previous;
+        if(previous == null || previous.isEmpty()){
+            return defaultValue;
+        }else{
+            return previous;
+        }
         //
     }
 
