@@ -253,7 +253,7 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     protected String getFakturaKundId() {
-        return bim.getFakturaKundId();
+        return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID);
     }
 
     protected static String getNextFakturaNr(String kundId) {
@@ -588,7 +588,16 @@ public abstract class Invoice extends Basic_Buh_ {
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+        if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
+            //
+            JLinkInvert jli = (JLinkInvert) me.getSource();
+            //
+            if (jli.getValue().isEmpty()) {
+                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
+                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+            }
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             restoreFakturaDatumIfEmty(me, ti);
             //

@@ -135,8 +135,8 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
         //
-        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
-        RowDataInvert er_ref = new RowDataInvertB(er_referens_last, DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
+//        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
+        RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         //
         String var_ref = HelpA.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");
         RowDataInvert var_referens = new RowDataInvertB(var_ref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
