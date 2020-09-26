@@ -78,7 +78,7 @@ public class InvoiceB extends Basic_Buh_ {
         //
         fillFakturaTable(null);
         //
-        fillJComboSearchByFakturaKund();
+//        fillJComboSearchByFakturaKund();
         //
         // fillFakturaArticlesTable();
     }
