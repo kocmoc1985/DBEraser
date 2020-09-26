@@ -1,5 +1,8 @@
 
 Påminnelsen filen sparas som "faktura.pdf" OCKSÅ notification shows "Faktura instead of Påminnesle"
+
+Skapa "Artikel" when the article list is empty, as example when new customer... You must remember that
+you must click on "Create new" button other wise saving will not work!!!!!
 ____________________________________________________________________________________________________________________________________________________
 
 [TO DO BEFORE GO FOR TEST:]

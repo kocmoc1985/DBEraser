@@ -86,7 +86,10 @@ public class InvoiceB extends Basic_Buh_ {
     private void fillJComboSearchByFakturaKund() {
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
-        HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
+        if(boxObjects[0].getParam_2().equals("null") == false){
+            HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null); 
+        }
+       
     }
 
     protected void refresh(String secondWhereValue) {
