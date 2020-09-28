@@ -374,6 +374,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         boolean containsArticleNames = listContainsAtLeastOne(list, DB.BUH_FAKTURA_ARTIKEL___NAMN);
         boolean containsRabatt = listContainsAtLeastOne_b(list, DB.BUH_F_ARTIKEL__RABATT);
+        boolean containsKomment = listContainsAtLeastOne(list, DB.BUH_F_ARTIKEL__KOMMENT);
         //
         //
         html_ += "<tr class='bold'>";
@@ -381,12 +382,17 @@ public class HTMLPrint_A extends HTMLPrint {
         if (containsArticleNames) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
         }
-        html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
+        //
+        if(containsKomment){
+            html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
+        }
+        //
         html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
         html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
         if (containsRabatt) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
         }
+        //
         html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
@@ -399,12 +405,17 @@ public class HTMLPrint_A extends HTMLPrint {
             if (containsArticleNames) {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
             }
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+            //
+            if(containsKomment){
+               html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>"; 
+            }
+            //
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
             if (containsRabatt) {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
             }
+            //
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";

@@ -184,7 +184,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "2";
+        return "3";
     }
     
     protected String getFakturaId() {
@@ -214,9 +214,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaType() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
-    
-    
-    
     
     protected boolean isMakulerad() {
         //
@@ -1876,6 +1873,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
+                if(getFakturaNr() == null || getFakturaNr().isEmpty()){
+                    //It's for the cases when the faktura list is empty
+                    createNewFaktura(false);
+                    return;
+                }
                 //
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();

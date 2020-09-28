@@ -134,6 +134,7 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
+        
         //
 //        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
@@ -155,6 +156,11 @@ public class InvoiceA_Insert extends Invoice {
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
+        //
+        if(CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
+            forfalo_datum.setVisible_(false);
+            betal_vilkor.setVisible_(false);
+        }
         //
         RowDataInvert[] rows = {
             kund,

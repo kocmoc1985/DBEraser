@@ -133,6 +133,10 @@ public abstract class Invoice extends Basic_Buh_ {
 
     private boolean fakturaBetald() {
         //
+        if(getAllInvoicesTable().getRowCount() == 0){
+            return false;
+        }
+        //
         String betald = HelpA.getValueSelectedRow(getAllInvoicesTable(), InvoiceB.TABLE_ALL_INVOICES__BETALD);
         //
         return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
@@ -140,7 +144,7 @@ public abstract class Invoice extends Basic_Buh_ {
     }
 
     protected boolean articlesJTableEmpty() {
-        if (getArticlesTable().getModel().getRowCount() > 0) {
+        if (getArticlesTable().getRowCount() > 0) {
             return false;
         } else {
             return true;

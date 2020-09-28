@@ -89,7 +89,8 @@ public class Faktura_Entry_Insert_ extends Faktura_Entry {
         //OBS! KONTANT FAKTURA [2020-09-22]
         if(Invoice.CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KONTANT__NUM); // 2 = KONTANT FAKTURA
-            this.fakturaMap.put(DB.BUH_FAKTURA__BETALD, "1"); // 1 = Betald
+            this.fakturaMap.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
+//            this.fakturaMap.put(DB.BUH_FAKTURA__BETALD, "1"); // 1 = Betald
         }
         //
         //
