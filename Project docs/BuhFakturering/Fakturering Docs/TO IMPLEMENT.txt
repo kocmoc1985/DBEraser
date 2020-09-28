@@ -1,4 +1,6 @@
 
+KREDIT FAKTURA FAILS when making kredit faktura on a faktura which contains "article without artikel" [IMPORTANT]
+
 Påminnelsen filen sparas som "faktura.pdf" OCKSÅ notification shows "Faktura instead of Påminnesle"
 
 Skapa "Artikel" when the article list is empty, as example when new customer... You must remember that

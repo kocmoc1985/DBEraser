@@ -165,6 +165,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void setEnabledCommonSet() {
         jButton_copy_faktura.setEnabled(true);
         jButton_inbetalning.setEnabled(true);
+        jButton_print_faktura.setEnabled(true);
+        jButton_delete_faktura.setEnabled(true);
+        jButton_show_actions.setEnabled(true);
+        jButton_edit_faktura.setEnabled(true);
     }
     
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
