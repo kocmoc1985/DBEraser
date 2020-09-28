@@ -907,7 +907,8 @@ public abstract class Invoice extends Basic_Buh_ {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
                 if(pris.isEmpty()){
-                    setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
+                // Don't have this enabled because it's empty in order that the user shall not forget to fill it    
+                //  setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
                 }else{
                     setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
                 }
