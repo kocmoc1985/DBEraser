@@ -2433,6 +2433,7 @@ public class HelpA {
      * @return
      */
     public static ComboBoxObject[] extract_comma_separated_objects(String str, int paramToReturn) {
+        
         str = str.trim();
         String[] arr = str.split(",");
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
