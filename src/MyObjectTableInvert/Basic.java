@@ -622,9 +622,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 ColumnDataEntryInvert cde = columnValue.getColumnDataEntryInvert();
                 //
                 if (dataInvert.important == true) {
-                    if (cde.getActualValue().isEmpty()) {
+                    //
+                    if (cde.getActualValue().isEmpty() || cde.getActualValue().equals("NULL")) {
                         return true;
                     }
+                    //
                 }
                 //
             }

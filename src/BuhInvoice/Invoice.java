@@ -338,7 +338,7 @@ public abstract class Invoice extends Basic_Buh_ {
 
     public double getMomsSats() {
 //        try {
-            return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
+        return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
 //        } catch (Exception ex) {
 //            return 0.25;
 //        }
@@ -480,6 +480,7 @@ public abstract class Invoice extends Basic_Buh_ {
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
         articles.setUneditable();
+        articles.enableEmptyValue(); //[2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
@@ -528,6 +529,7 @@ public abstract class Invoice extends Basic_Buh_ {
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
         articles.setUneditable();
+        articles.setDisabled();
         //
         //
         String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
@@ -790,7 +792,7 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__ERT_ORDER)) {
             //
-            Validator.validateMaxInputLength(jli, 40); // OBS! 200 is taken from DB "buh_faktura" varchar(40)
+            Validator.validateMaxInputLength(jli, 150);
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
             //
@@ -906,10 +908,9 @@ public abstract class Invoice extends Basic_Buh_ {
             if (selectedObj instanceof HelpA.ComboBoxObject) {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
-                if(pris.isEmpty()){
-                // Don't have this enabled because it's empty in order that the user shall not forget to fill it    
-                //  setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
-                }else{
+                if (pris.isEmpty()) {
+                    setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
+                } else {
                     setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, pris);
                 }
             } else { // This is when choosing empty

@@ -114,7 +114,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
         //
         // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
-//        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
+        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, updateMap);
         //

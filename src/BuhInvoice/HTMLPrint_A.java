@@ -25,7 +25,7 @@ import org.apache.commons.lang.ArrayUtils;
  */
 public class HTMLPrint_A extends HTMLPrint {
 
-     public HTMLPrint_A(
+    public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
             ArrayList<HashMap<String, String>> articles_map_list,
@@ -39,14 +39,14 @@ public class HTMLPrint_A extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-           super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
-     }
+        super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+    }
 
-     @Override
+    @Override
     protected String getWindowTitle() {
         return LANG.FRAME_TITLE_1;
     }
-     
+
     @Override
     protected JEditorPane getEditorPane() {
         return this.jEditorPane1;
@@ -56,9 +56,9 @@ public class HTMLPrint_A extends HTMLPrint {
     protected JScrollPane getJScrollPane() {
         return jScrollPane2;
     }
-    
-     @Override
-    protected String[] getCssRules(){
+
+    @Override
+    protected String[] getCssRules() {
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -81,7 +81,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return CSSRules;
         //
     }
-
 
     protected final static String getAttBetalaTitle(String fakturatype) {
         if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
@@ -131,8 +130,7 @@ public class HTMLPrint_A extends HTMLPrint {
         }
     }
 
-    
-     @Override
+    @Override
     protected String buildHTML() {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
@@ -167,7 +165,6 @@ public class HTMLPrint_A extends HTMLPrint {
                 + "</html>";
         //
     }
-
 
     /**
      * Temporary fix [2020-07-23]
@@ -322,9 +319,9 @@ public class HTMLPrint_A extends HTMLPrint {
         String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        if(moms_kr.equals("0")){
-            headers = (String[])ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
-            values = (String[])ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
+        if (moms_kr.equals("0")) {
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
         }
         //
         html_ += internal_table_2r_xc(headers, values, 7, "");
@@ -374,13 +371,22 @@ public class HTMLPrint_A extends HTMLPrint {
             return "";
         }
         //
+        //
+        boolean containsArticleNames = listContainsAtLeastOne(list, DB.BUH_FAKTURA_ARTIKEL___NAMN);
+        boolean containsRabatt = listContainsAtLeastOne_b(list, DB.BUH_F_ARTIKEL__RABATT);
+        //
+        //
         html_ += "<tr class='bold'>";
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
+        if (containsArticleNames) {
+            html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
+        }
         html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
         html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
         html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
+        if (containsRabatt) {
+            html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
+        }
         html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
@@ -390,11 +396,15 @@ public class HTMLPrint_A extends HTMLPrint {
             //
             html_ += "<tr>";
             //
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+            if (containsArticleNames) {
+                html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+            }
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
+            if (containsRabatt) {
+                html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
+            }
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
             //
             html_ += "</tr>";
@@ -508,8 +518,6 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     //==========================================================================
-    
-
     public Point position_window_in_center_of_the_screen(JDialog window) {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
@@ -520,7 +528,6 @@ public class HTMLPrint_A extends HTMLPrint {
         initComponents();
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -671,7 +678,6 @@ public class HTMLPrint_A extends HTMLPrint {
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
-
     public static void displayStatus(String msg, Color c) {
         //
         if (c != null) {
@@ -695,7 +701,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 // [2020-09-08]
                 if (ok) {
                     //
-                    loggDocumentSent(fakturaId,DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                    loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,

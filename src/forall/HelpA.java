@@ -2407,7 +2407,9 @@ public class HelpA {
             list.add(initialValue);
         }
         //
-        list.addAll(Arrays.asList(values));
+        if(values != null){
+            list.addAll(Arrays.asList(values));
+        }
         //
         Object[] arr = list.toArray();
         //
@@ -2415,8 +2417,14 @@ public class HelpA {
         AutoCompleteSupport support = AutoCompleteSupport.install(
                 jbox, GlazedLists.eventListOf(arr));
         //
+        if(arr.length == 1){
+          jbox.setSelectedIndex(0);  
+        }else{
+           jbox.setSelectedIndex(1);
+        }
+        //
 //        jbox.setSelectedIndex(0);
-        jbox.setSelectedIndex(1);
+//        jbox.setSelectedIndex(1);
         //
         return jbox;
     }
@@ -2433,7 +2441,9 @@ public class HelpA {
      * @return
      */
     public static ComboBoxObject[] extract_comma_separated_objects(String str, int paramToReturn) {
-        
+        if(str.isEmpty()){
+            return null;
+        }
         str = str.trim();
         String[] arr = str.split(",");
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];

@@ -100,7 +100,13 @@ public class InvoiceB extends Basic_Buh_ {
     }
 
     protected void refresh_c() {
+        //
         String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
+        //
+        if(fakturaNr.isEmpty()){
+            return;
+        }
+        //
         fillFakturaTable(null);
         HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
         String fakturaId = bim.getFakturaId();

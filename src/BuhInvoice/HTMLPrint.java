@@ -64,7 +64,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String T__FAKTURA_DATUM = "Fakturadatum";
     //
     public static final String T__FAKTURA_ER_REF = "Er referens";
-    public static final String T__FAKTURA_ERT_ORDER_NR = "Ert ordernr";
+    public static final String T__FAKTURA_ERT_ORDER_NR = "Order / Notis";
     public static final String T__FAKTURA_LEV_VILKOR = "Leveransvilkor";
     public static final String T__FAKTURA_LEV_SATT = "Leveranssätt";
     public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
@@ -319,6 +319,37 @@ public abstract class HTMLPrint extends JFrame {
         } else {
             return JSon.getLongName(statics, val);
         }
+    }
+    
+    protected boolean listContainsAtLeastOne(ArrayList<HashMap<String, String>> list, String param) {
+        for (HashMap<String, String> map : list) {
+            //
+            String val = _get(map, param);
+            //
+            if (val.isEmpty() == false) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    protected boolean listContainsAtLeastOne_b(ArrayList<HashMap<String, String>> list, String param) {
+        //
+        int i = 0;
+        //
+        for (HashMap<String, String> map : list) {
+            //
+            String val = _get(map, param);
+            //
+            if (val.equals("0")) {
+                //
+            }else{
+               i++; 
+            }
+            //
+        }
+        //
+        return i!=0;
     }
 
     protected String getHTMLPrintTitle() {

@@ -47,7 +47,9 @@ public class RowDataInvert extends RowData {
     private boolean aquire_tableInvertToHashMap = true; // Look at method Basic.class-> "tableInvertToHashMap"
     //
     private boolean save_EmptyStringValue = false;
-    
+    //
+    private boolean enableEmptyValue = false;
+
     public RowDataInvert() {
     }
 
@@ -129,24 +131,28 @@ public class RowDataInvert extends RowData {
         this.important = important;
     }
 
-    public void setSaveEmptyStringValue(){
+    public void setSaveEmptyStringValue() {
         save_EmptyStringValue = true;
     }
-    
-    public boolean saveEmptyStringValue(){
+
+    public boolean saveEmptyStringValue() {
         return save_EmptyStringValue;
     }
-    
-    public void setDontAquireTableInvertToHashMap(){
+
+    public void setDontAquireTableInvertToHashMap() {
         aquire_tableInvertToHashMap = false;
     }
-    
-    public boolean aquire(){
+
+    public boolean aquire() {
         return aquire_tableInvertToHashMap;
     }
 
     public void enableFixedValues() {
         comboBoxFixedValue = true;
+    }
+
+    public void enableEmptyValue() {
+        this.enableEmptyValue = true;
     }
 
     /**
@@ -179,11 +185,11 @@ public class RowDataInvert extends RowData {
     public void setDisabled() {
         enabled = false;
     }
-    
-     public boolean isEnabled() {
+
+    public boolean isEnabled() {
         return enabled;
     }
-    
+
     public void setUneditable() {
         editable = false;
     }
@@ -212,8 +218,15 @@ public class RowDataInvert extends RowData {
                 String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, comboboxValues, value);
             } else if (comboBoxFixedValueAdvanced) {
+                //
                 HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
+                //
+                if (enableEmptyValue) {
+                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", ""));
+                } else {
+                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
+                }
+                //
             } else {
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, false);
             }
@@ -246,11 +259,10 @@ public class RowDataInvert extends RowData {
     public boolean getVisible() {
         return visible;
     }
-    
-    public void setVisible_(boolean visible){
+
+    public void setVisible_(boolean visible) {
         this.visible = visible;
     }
-    
 
     public boolean getImportant() {
         return important;
