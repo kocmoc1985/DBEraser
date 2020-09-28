@@ -28,14 +28,14 @@ import javax.swing.table.DefaultTableModel;
  * @author MCREMOTE
  */
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
-
+    
     private InvoiceA_Insert invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
     private CustomersA_ customersA;
     private ForetagA foretagA;
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
-
+    
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
     public final static String TAB_INVOICES_OVERVIEW = "ALLA FAKTUROR";
@@ -56,11 +56,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         initComponents();
         initOhter();
     }
-
+    
     protected void RESET_SEARCH_FILTER() {
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
     }
-
+    
     protected boolean isInitialFilter() {
         if (PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR)) {
             return true;
@@ -68,7 +68,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-
+    
     private void initOhter() {
         //
         this.jTabbedPane1.addMouseListener(this);
@@ -97,7 +97,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         initToggleBtnList();
         //
     }
-
+    
     private void initToggleBtnList() {
         toggleBtnList.add(jToggleButton_not_send_filter);
         toggleBtnList.add(jToggleButton_obetald_filter);
@@ -106,13 +106,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         toggleBtnList.add(jToggleButton_act_month_filter);
         toggleBtnList.add(jToggleButton_forfallen_filter);
     }
-
+    
     protected void untoggleAll() {
         for (JToggleButton btn : toggleBtnList) {
             btn.setSelected(false);
         }
     }
-
+    
     private void untoggleAllExcept(JToggleButton exceptBtn) {
         for (JToggleButton btn : toggleBtnList) {
             if (btn.equals(exceptBtn) == false) {
@@ -120,7 +120,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         }
     }
-
+    
     private void setUneditableAllJTables() {
         HelpA.setUneditableJTable(jTable_invoiceB_alla_fakturor);
         HelpA.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
@@ -131,7 +131,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         HelpA.setUneditableJTable(jTable_kund_adresses);
         HelpA.setUneditableJTable(jTable_kunder);
     }
-
+    
     protected void hideShowButtonsDependingOnConditions() {
         //
         if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
@@ -161,16 +161,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
+    
     private void setEnabledCommonSet() {
         jButton_copy_faktura.setEnabled(true);
         jButton_inbetalning.setEnabled(true);
     }
-
+    
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
-
+    
     protected ArrayList<HashMap<String, String>> getArticlesActualInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
     }
@@ -184,21 +184,21 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "2";
+        return "3";
     }
-
+    
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
-
+    
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
-
+    
     protected String getFakturaKund() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
     }
-
+    
     protected String getFakturaKundId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_ID);
     }
@@ -206,15 +206,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-
+    
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
-
+    
     protected String getFakturaType() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
-
+    
+    
+    
+    
     protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
@@ -225,7 +228,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-
+    
     protected boolean isKreditFaktura() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -240,7 +243,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-
+    
     protected boolean isKontantFaktura() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -267,23 +270,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
         return GP_BUH.getValNoNull(val);
     }
-
+    
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
-
+    
     protected String getSELECT_kundId() {
         return getSELECT(DB.BUH_FAKTURA__KUNDID__, getKundId());
     }
-
+    
     protected String getSELECT_kundId__doubleWhere(String secondWhereValue) {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, getKundId(), DB.BUH_FAKTURA_KUND__ID, secondWhereValue);
     }
-
+    
     protected String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
     }
-
+    
     protected String getSELECT(String whereColName, String whereValue) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -292,7 +295,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getSELECT_doubleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -324,7 +327,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return map;
     }
-
+    
     protected static HashMap<String, String> getUPDATE_static(String whereColName, String whereValue, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -334,11 +337,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return map;
     }
-
+    
     protected HashMap<String, String> getDELETE(String whereColName, String whereValue, String tableName) {
         return getUPDATE(whereColName, whereValue, tableName);
     }
-
+    
     protected String getExist(String columnName, String value, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -350,7 +353,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getLatest(String columnName, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -361,7 +364,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getForeignKeyBindings(JTable table, String idColName, String whereParam, String phpFunc, String getFromMapParam) {
         //
         String returnStr = "";
@@ -393,7 +396,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return "";
         }
     }
-
+    
     public void setValueAllInvoicesJTable(String colName, String value) {
         HelpA.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
     }
@@ -1336,7 +1339,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_edit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_edit_fakturaActionPerformed
         editFakturaBtnKlicked();
     }//GEN-LAST:event_jButton_edit_fakturaActionPerformed
-
+    
     public void editFakturaBtnKlicked() {
         HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
         fakturaTabClicked();
@@ -1414,7 +1417,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         invoiceB.refresh_c(); // correct
                     }
                 }
-
+                
             }
         });
         //
@@ -1466,10 +1469,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         }
         //
-        
+
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
-
+    
     private void createNewFaktura(boolean isKontantfaktura) {
         //
         if (invoiceA_insert == null) {
@@ -1505,7 +1508,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inbetalningActionPerformed
         makeInbetalning(isKontantFaktura(), false);
     }//GEN-LAST:event_jButton_inbetalningActionPerformed
-
+    
     private void makeInbetalning(boolean isKontantFaktura, boolean directlyAfterCreation) {
         //
         EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
@@ -1535,7 +1538,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_copy_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_copy_fakturaActionPerformed
         copyFaktura_createKreditFaktura(false);
     }//GEN-LAST:event_jButton_copy_fakturaActionPerformed
-
+    
     private void copyFaktura_createKreditFaktura(boolean isKreditFaktura) {
         //
         if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
@@ -1579,7 +1582,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         invoiceB.htmlFakturaOrReminder(null, true);
     }//GEN-LAST:event_jButton_send_reminderActionPerformed
-
+    
 
     private void jToggleButton_obetald_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_obetald_filterActionPerformed
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD, evt);
@@ -1611,7 +1614,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jToggleButton_forfallen_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_forfallen_filterActionPerformed
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FORFALLEN, evt);
     }//GEN-LAST:event_jToggleButton_forfallen_filterActionPerformed
-
+    
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
         invoiceB.refresh(null);
@@ -1863,7 +1866,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
+    
     private void fakturaTabClicked() {
         //
         DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
@@ -1877,23 +1880,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                 jTable_InvoiceA_Insert_articles_clicked();
                 //
-                invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
-                //
                 invoiceA_update.showTableInvert();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT);
                 //
                 invoiceA_update.showTableInvert_3();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_3);
                 //
+                invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
+                //
             }
         });
-
+        
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         //
@@ -1925,22 +1928,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
         }
     }
-
+    
     protected void jTableArticles_clicked() {
         articlesA.showTableInvert_2();
         articlesA.refreshTableInvert(articlesA.TABLE_INVERT_2);
     }
-
+    
     protected void jTableCustomersA_adress_clicked() {
         customersA.showTableInvert_3();
         customersA.refreshTableInvert(customersA.TABLE_INVERT_3);
     }
-
+    
     protected void jTableForetagA_adress_clicked() {
         foretagA.showTableInvert_3();
         foretagA.refreshTableInvert(foretagA.TABLE_INVERT_3);
     }
-
+    
     protected void jTableCustomersA_kunder_clicked() {
         //
         customersA.showTableInvert_2();
@@ -1951,7 +1954,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTableCustomersA_adress_clicked();
         //
     }
-
+    
     protected void jTableForetagA_ftg_table_clicked() {
         //
         foretagA.showTableInvert_2();
@@ -1962,7 +1965,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTableForetagA_adress_clicked();
         //
     }
-
+    
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
         if (Invoice.CURRENT_OPERATION_INSERT == false) {
@@ -1970,7 +1973,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
+    
     protected void jtable_InvoiceB_all_invoices_clicked() {
         //
         String fakturaId = getFakturaId();
@@ -1978,27 +1981,27 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceB.all_invoices_table_clicked(fakturaId);
         //
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
         //
@@ -2023,5 +2026,5 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
+    
 }

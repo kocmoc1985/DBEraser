@@ -4,7 +4,6 @@
  */
 package forall;
 
-import BuhInvoice.HTMLPrint_A;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;

@@ -100,6 +100,9 @@ public abstract class Basic_Buh_ extends Basic {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     php_function, json);
             //
+            if(json_str_return.equals(DB.PHP_SCRIPT_RETURN_EMPTY)){
+                return "";
+            }
             //
             comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys);
             //
