@@ -611,6 +611,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
+        boolean contains = false;
+        //
         for (RowDataInvert dataInvert : rdi) {
             //
             for (int x = startColumn; x < getColumnCount(table_invert); x++) {
@@ -624,7 +626,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 if (dataInvert.important == true) {
                     //
                     if (cde.getActualValue().isEmpty() || cde.getActualValue().equals("NULL")) {
-                        return true;
+                        cde.markInvalidated();
+                        contains = true;
                     }
                     //
                 }
@@ -633,7 +636,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
             //
         }
         //
-        return false;
+        return contains;
         //
     }
 

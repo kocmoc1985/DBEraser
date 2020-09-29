@@ -5,7 +5,8 @@
  */
 package MyObjectTableInvert;
 
-import javax.swing.JTextArea;
+import java.awt.Color;
+import javax.swing.JComponent;
 
 /**
  *
@@ -58,6 +59,20 @@ public class ColumnDataEntryInvert {
         this.object = object;
     }
 
+    public void markInvalidated(){
+        //
+        if (parent != null && parent instanceof JComponent) {
+            JComponent jc = (JComponent)parent;
+            jc.setBackground(Color.red);
+        }
+        //
+        if(object instanceof JComboBoxInvert){
+          JComboBoxInvert jcbi = (JComboBoxInvert)object;
+          jcbi.setBackground(Color.red);
+        }
+        //
+    }
+    
     /**
      * [2020-08-03]
      *
