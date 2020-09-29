@@ -36,7 +36,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public abstract class Invoice extends Basic_Buh_ {
+public abstract class Invoice_ extends Basic_Buh_ {
 
     //
     protected Table TABLE_INVERT_2;
@@ -55,7 +55,7 @@ public abstract class Invoice extends Basic_Buh_ {
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
 
-    public Invoice(BUH_INVOICE_MAIN bim) {
+    public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }

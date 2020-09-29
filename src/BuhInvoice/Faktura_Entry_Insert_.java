@@ -19,7 +19,7 @@ import javax.swing.JTable;
  */
 public class Faktura_Entry_Insert_ extends Faktura_Entry {
 
-    public Faktura_Entry_Insert_(Invoice invoice) {
+    public Faktura_Entry_Insert_(Invoice_ invoice) {
         super(invoice);
     }
 
@@ -79,7 +79,7 @@ public class Faktura_Entry_Insert_ extends Faktura_Entry {
         String kundId = invoice.getKundId();
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, kundId);
-        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
+        this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr(kundId)); // OBS! Aquired from http
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
         this.fakturaMap.put(DB.BUH_FAKTURA__RABATT_TOTAL, "" + invoice.getRabattTotal());
@@ -87,7 +87,7 @@ public class Faktura_Entry_Insert_ extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
         //OBS! KONTANT FAKTURA [2020-09-22]
-        if(Invoice.CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
+        if(Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KONTANT__NUM); // 2 = KONTANT FAKTURA
             this.fakturaMap.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
 //            this.fakturaMap.put(DB.BUH_FAKTURA__BETALD, "1"); // 1 = Betald

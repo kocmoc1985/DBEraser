@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -83,7 +84,10 @@ public class InvoiceB extends Basic_Buh_ {
         // fillFakturaArticlesTable();
     }
 
-    
+    /**
+     * This one can not be called several times because of using "AutoCompleteSupport"
+     * from "glazedlists_java15-1.9.1.jar"
+     */
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
@@ -92,7 +96,11 @@ public class InvoiceB extends Basic_Buh_ {
         if(boxObjects != null){
             HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null); 
         }
-       
+        //
+        if(bim.jComboBox_faktura_kunder_filter.getItemCount() == 0){
+            bim.jComboBox_faktura_kunder_filter.setVisible(false);
+            bim.jButton_search_by_kund.setVisible(false);
+        }
     }
 
     protected void refresh(String secondWhereValue) {
@@ -633,7 +641,7 @@ public class InvoiceB extends Basic_Buh_ {
         }
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
-        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr(kundId)); // OBS! Aquired from http
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr(kundId)); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         //

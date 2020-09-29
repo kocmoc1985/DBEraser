@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class InvoiceA_Insert extends Invoice {
+public class InvoiceA_Insert extends Invoice_ {
     
     private final Faktura_Entry_Insert_ faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;

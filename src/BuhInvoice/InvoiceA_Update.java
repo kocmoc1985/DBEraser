@@ -18,7 +18,7 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class InvoiceA_Update extends Invoice {
+public class InvoiceA_Update extends Invoice_ {
 
     private Faktura_Entry_Update faktura_entry_update;
 
