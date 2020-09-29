@@ -228,6 +228,20 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
 
+     protected boolean fakturaBetald() {
+        //
+        JTable table = jTable_invoiceB_alla_fakturor;
+        //
+        if(table.getRowCount() == 0){
+            return false;
+        }
+        //
+        String betald = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BETALD);
+        //
+        return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
+        //
+    }
+    
     protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
@@ -1607,6 +1621,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
+        //
+        if(fakturaBetald()){
+            HelpA.showNotification_separate_thread(LANG.MSG_12);
+        }
+        //
         invoiceB.htmlFakturaOrReminder(null, true);
     }//GEN-LAST:event_jButton_send_reminderActionPerformed
 

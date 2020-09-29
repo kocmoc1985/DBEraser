@@ -133,13 +133,7 @@ public abstract class Invoice_ extends Basic_Buh_ {
 
     private boolean fakturaBetald() {
         //
-        if(getAllInvoicesTable().getRowCount() == 0){
-            return false;
-        }
-        //
-        String betald = HelpA.getValueSelectedRow(getAllInvoicesTable(), InvoiceB.TABLE_ALL_INVOICES__BETALD);
-        //
-        return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
+        return bim.fakturaBetald();
         //
     }
 
