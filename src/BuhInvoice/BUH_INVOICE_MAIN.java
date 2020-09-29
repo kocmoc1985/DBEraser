@@ -1495,6 +1495,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_insert = new InvoiceA_Insert(this);
         }
         //
+        if(noCustomersPresent()){
+            HelpA.showNotification_separate_thread(LANG.MSG_11);
+        }
+        //
         invoiceA_insert.resetSavedMoms_jCombo();
         //
         invoiceA_insert.createNew(isKontantfaktura);

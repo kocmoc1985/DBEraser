@@ -84,29 +84,33 @@ public class InvoiceB extends Basic_Buh_ {
     }
 
     /**
-     * This one can not be called several times because of using "AutoCompleteSupport"
-     * from "glazedlists_java15-1.9.1.jar"
+     * This one can not be called several times because of using
+     * "AutoCompleteSupport" from "glazedlists_java15-1.9.1.jar"
      */
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
         //
-        if(boxObjects != null){
-            HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null); 
+        if (boxObjects != null) {
+            HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
         }
         //
-        if(bim.jComboBox_faktura_kunder_filter.getItemCount() == 0){
+        if (bim.jComboBox_faktura_kunder_filter.getItemCount() == 0) {
             bim.jComboBox_faktura_kunder_filter.setVisible(false);
             bim.jButton_search_by_kund.setVisible(false);
-            
+
         }
         //
     }
-    
-    protected boolean noCustomersPresent(){
-        String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
-        return customers.isEmpty();
+
+    protected boolean noCustomersPresent() {
+        try {
+            String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
+            return customers.isEmpty();
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     protected void refresh(String secondWhereValue) {
@@ -120,7 +124,7 @@ public class InvoiceB extends Basic_Buh_ {
         //
         String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
         //
-        if(fakturaNr.isEmpty()){
+        if (fakturaNr.isEmpty()) {
             return;
         }
         //
@@ -775,7 +779,7 @@ public class InvoiceB extends Basic_Buh_ {
         map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, _get(TABLE_ALL_INVOICES__VAR_REF));
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR__FLEX, _get(TABLE_ALL_INVOICES__BET_VILKOR));
         map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM__FLEX, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
-        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, _get(TABLE_ALL_INVOICES__DROJSMALSRANTA)); 
+        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, _get(TABLE_ALL_INVOICES__DROJSMALSRANTA));
         map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
         map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, GP_BUH.getDateTime_yyyy_MM_dd());
         map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$());

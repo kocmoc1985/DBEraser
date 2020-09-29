@@ -44,6 +44,8 @@ public class LANG {
     public static String MSG_10_1 = "Laddar upp";
     public static String MSG_10_2 = "Filen skickad!";
     public static String MSG_10_3 = "Filen ej skickad!";
+    
+    public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
