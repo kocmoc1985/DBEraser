@@ -235,7 +235,7 @@ public class HTMLPrint_B extends HTMLPrint {
 
     @Override
     protected String getHTMLPrintTitle() {
-        return "Påminnelse";
+        return LANG.PAMINNELSE;
     }
 
     private String titleOrLogoIfExist(String imgPath) {
@@ -657,11 +657,11 @@ public class HTMLPrint_B extends HTMLPrint {
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email)) == false) {
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email,this)) == false) {
             return;
         }
         //
-        String fakturaFileName = getPdfFakturaFileName(true);
+        String fakturaFileName = getPdfFileName(true);
         //
         print_upload_sendmail__thr(
                 "uploads/",

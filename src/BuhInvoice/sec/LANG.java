@@ -7,12 +7,23 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.CustomersA_;
+import BuhInvoice.HTMLPrint;
+import BuhInvoice.HTMLPrint_A;
+import BuhInvoice.HTMLPrint_B;
 
 /**
  *
  * @author KOCMOC
  */
 public class LANG {
+
+    public final static String FAKTURA = "Faktura";
+    public final static String PAMINNELSE = "Påminnelse";
+    
+    public final static String FRAME_TITLE_1 = "Skriv ut " + FAKTURA.toLowerCase();
+    public final static String FRAME_TITLE_1_2 = "Skriv ut " +  PAMINNELSE.toLowerCase();
+
+    
 
     public static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
     public static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
@@ -43,19 +54,12 @@ public class LANG {
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
-    
-    public static String FRAME_TITLE_1 = "Skriv ut faktura";
-    public static String FRAME_TITLE_1_2 = "Skriv ut påminnelse";
-    
-    public static String FAKTURA = "Faktura";
-    public static String PAMINNELSE = "Faktura";
-    
-    
-    public static String PAMMINELSE_MSG_MAIN(String fakturanr){
-        return "Fakturanr ("+ fakturanr +") är enligt våra noteringar fortfarande obetald.\n "+
-            "Därför ber vi er att omgående betala in det förfallna beloppet.\n" +
-            "Vänligen uppge fakturanummer vid betalning.\n" + 
-            "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
+
+    public static String PAMMINELSE_MSG_MAIN(String fakturanr) {
+        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald.\n "
+                + "Därför ber vi er att omgående betala in det förfallna beloppet.\n"
+                + "Vänligen uppge fakturanummer vid betalning.\n"
+                + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
     }
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
@@ -89,8 +93,15 @@ public class LANG {
         return "Logotyp är för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
     }
 
-    public static String CONFIRM_SEND_MAIL(String sendTo) {
-        return "Skicka faktura till: " + sendTo + " ?";
+    public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print) {
+        if(print instanceof HTMLPrint_A){
+            return "Skicka "+ FAKTURA.toLowerCase() + " till: " + sendTo + " ?";
+        }else if(print instanceof HTMLPrint_B){
+            return "Skicka "+ PAMINNELSE.toLowerCase() + " till: " + sendTo + " ?";
+        }else{
+            return "undefined";
+        }
+        
     }
 
     public static String MSG_DELETE_WARNING_ARTICLE(String fakturor) {

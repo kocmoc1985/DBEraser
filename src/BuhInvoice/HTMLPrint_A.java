@@ -661,11 +661,11 @@ public class HTMLPrint_A extends HTMLPrint {
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email)) == false) {
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email,this)) == false) {
             return;
         }
         //
-        String fakturaFileName = getPdfFakturaFileName(true);
+        String fakturaFileName = getPdfFileName(true);
         //
         print_upload_sendmail__thr(
                 "uploads/",

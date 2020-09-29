@@ -7,11 +7,9 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
-import forall.GP;
 import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
@@ -26,8 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -698,9 +694,9 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email)) == false) {
-            return;
-        }
+//        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email,this)) == false) {
+//            return;
+//        }
         //
 //        System.out.println("faktura_kund_email: " + faktura_kund_email);
 //        System.out.println("ftg_name: " + ftg_name);

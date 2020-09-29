@@ -263,12 +263,22 @@ public abstract class HTMLPrint extends JFrame {
         return map_a_0.get(DB.BUH_FAKTURA__ID__);
     }
 
-    protected String getPdfFakturaFileName(boolean appendKundId) {
+    protected String getPdfFileName(boolean appendKundId) {
+        //
+        String fileName;
+        //
+        if (this instanceof HTMLPrint_A) {
+            fileName = LANG.FAKTURA.toLowerCase();
+        } else if (this instanceof HTMLPrint_B) {
+            fileName = LANG.PAMINNELSE.toLowerCase();
+        } else {
+            fileName = "undefined";
+        }
         //
         if (appendKundId) {
-            return "faktura_" + bim.getKundId() + ".pdf";
+            return fileName + "_" + bim.getKundId() + ".pdf";
         } else {
-            return "faktura.pdf";
+            return fileName + ".pdf";
         }
         //
     }
@@ -282,7 +292,7 @@ public abstract class HTMLPrint extends JFrame {
     }
 
     protected String getFakturaDesktopPath() {
-        return System.getProperty("user.home") + "/Desktop/" + getPdfFakturaFileName(false);
+        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
     }
 
     protected String getEmailBody() {
@@ -320,7 +330,7 @@ public abstract class HTMLPrint extends JFrame {
             return JSon.getLongName(statics, val);
         }
     }
-    
+
     protected boolean listContainsAtLeastOne(ArrayList<HashMap<String, String>> list, String param) {
         for (HashMap<String, String> map : list) {
             //
@@ -332,7 +342,7 @@ public abstract class HTMLPrint extends JFrame {
         }
         return false;
     }
-    
+
     protected boolean listContainsAtLeastOne_b(ArrayList<HashMap<String, String>> list, String param) {
         //
         int i = 0;
@@ -343,18 +353,18 @@ public abstract class HTMLPrint extends JFrame {
             //
             if (val.equals("0")) {
                 //
-            }else{
-               i++; 
+            } else {
+                i++;
             }
             //
         }
         //
-        return i!=0;
+        return i != 0;
     }
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
-            return "Faktura";
+            return LANG.FAKTURA;
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return "Kreditfaktura";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
@@ -447,7 +457,7 @@ public abstract class HTMLPrint extends JFrame {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFakturaFileName(false)));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false)));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
