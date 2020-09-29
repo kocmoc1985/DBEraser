@@ -680,6 +680,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel18.setLayout(new java.awt.GridLayout(1, 4));
 
         jToggleButton_obetald_filter.setText("OBETALDA");
+        jToggleButton_obetald_filter.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jToggleButton_obetald_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton_obetald_filterActionPerformed(evt);
@@ -730,7 +731,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jComboBox_faktura_kunder_filter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
-        jButton_search_by_kund.setText("SÖK");
+        jButton_search_by_kund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        jButton_search_by_kund.setToolTipText("Sök");
         jButton_search_by_kund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_search_by_kundActionPerformed(evt);
@@ -766,7 +768,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addGap(10, 10, 10)
                             .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton_search_by_kund)
+                            .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
@@ -785,7 +787,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)

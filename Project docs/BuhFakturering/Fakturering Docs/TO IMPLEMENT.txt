@@ -1,18 +1,3 @@
-____________________________________________________________________________________________________________________________________________________
-Total beloppet ska inkludera moms på frakt och exp. avgift.
-
-Momssatsen för frakt- och fakturaavgiften/expeditionsavgiften på fakturan/fakturorna blir den momssats som du har på den största summan/beloppet
-på din faktura. Ifall du inte vill att det ska bli på det viset så kan du lägga din moms för
-dessa avgifter som artiklar på fakturan istället. Detta är viktigt för enligt
-mervärdesskattelagen ska beskattningsunderlaget för fraktkostnad och fakturaavgift
-fördelas på beskattningsunderlaget för respektive vara. Det innebär att du behöver 
-fördela frakt och fakturaavgifter på olika momssatser.
-____________________________________________________________________________________________________________________________________________________
-"Validator.validateMaxInputLength(jli, 150)" -> Cannot be used with other validations. Example:
-If i have this validations one after another than the "checkIfExistInJTable" validation is overwritten by "validateMaxInputLength"
-Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
-Validator.validateMaxInputLength(jli, 150);
-____________________________________________________________________________________________________________________________________________________
 
 KREDIT FAKTURA FAILS when making kredit faktura on a faktura which contains "article without artikel" [IMPORTANT]
 
