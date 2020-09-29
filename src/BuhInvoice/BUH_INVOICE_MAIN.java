@@ -388,9 +388,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
             }
             //
-            returnStr = JSon.delete_last_letter_in_string(returnStr, ",");
-            //
-            return returnStr;
+            if(returnStr.isEmpty()){
+                return returnStr;
+            }else{
+                return JSon.delete_last_letter_in_string(returnStr, ",");
+            }
             //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);

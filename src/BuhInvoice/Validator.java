@@ -106,14 +106,16 @@ public class Validator {
         }
     }
 
-    public static void validateMaxInputLength(JLinkInvert jli, int length) {
+    public static boolean validateMaxInputLength(JLinkInvert jli, int length) {
         //
         String val = jli.getValue();
         //
         if (val.length() <= length) {
             setValidated(jli);
+            return true;
         } else {
             setNotValidated(jli, new Color(140, 218, 255)); // 223, 243, 248
+            return false;
         }
     }
 

@@ -167,7 +167,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
         //
-        if(id == null || id.isEmpty()){
+        if (id == null || id.isEmpty()) {
             return;
         }
         //
@@ -444,13 +444,16 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         //
         if (col_name.equals(DB.BUH_FAKTURA_KUND___EMAIL)) {
             //
-            Validator.validateEmail(jli);
+            if (Validator.validateMaxInputLength(jli, 320)) {
+                Validator.validateEmail(jli);
+            }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___ORGNR)) {
             //
-            Validator.validateOrgnr(jli);
-            //
-            orgnr_additional(jli, ti);
+            if (Validator.validateMaxInputLength(jli, 30)) {
+                Validator.validateOrgnr(jli);
+                orgnr_additional(jli, ti);
+            }
             //
         }
         //

@@ -2947,6 +2947,11 @@ public class HelpA {
     }
 
     public static boolean isNumber(String str) {
+        //
+        if(str.contains("f") || str.contains("F") || str.contains("d") || str.contains("D")){
+            return false;
+        }
+        //
         try {
             Double.parseDouble(str);
             return true;

@@ -83,6 +83,7 @@ public class InvoiceB extends Basic_Buh_ {
         // fillFakturaArticlesTable();
     }
 
+    
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});

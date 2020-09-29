@@ -179,8 +179,6 @@ public class CustomersA_ extends CustomerAForetagA {
         //
     }
 
-   
-
     public void insert() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
@@ -494,10 +492,10 @@ public class CustomersA_ extends CustomerAForetagA {
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND___NAMN)) {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
-            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
             //
-            // [2020-09-29] OBS! You can't have this enabled, because it will overwrite the previous validation
-//            Validator.validateMaxInputLength(jli, 150);
+            if (Validator.validateMaxInputLength(jli, 150)) {
+                Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+            }
             //
         }
         //

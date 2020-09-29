@@ -402,22 +402,30 @@ public abstract class Invoice extends Basic_Buh_ {
             //
         }
         //
-        if (getInklMoms()) {
-            MOMS_TOTAL = FAKTURA_TOTAL * getMomsSats();
+        double momsSats = getMomsSats();
+        double frakt = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
+        double exp_avg = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
+        //
+//        if (getInklMoms()) {
+            MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
             FAKTURA_TOTAL += MOMS_TOTAL;
             FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
-        } else {
-            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
-        }
+//        } else {
+//            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
+//        }
         //
-        FAKTURA_TOTAL += getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
-        FAKTURA_TOTAL += getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
+        FAKTURA_TOTAL += frakt;
+        FAKTURA_TOTAL += exp_avg;
         //
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
         BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
         BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
         //
+    }
+    
+    private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats){
+        return (frakt + expAvg) * momsSats;
     }
 
     protected double getRabattTotal() {
@@ -772,7 +780,15 @@ public abstract class Invoice extends Basic_Buh_ {
                     || col_name.equals(DB.BUH_FAKTURA__FRAKT)
                     || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
                 //
+                if (digitalInputValidated == false) {
+                    return;
+                }
+                //
                 referensSave(col_name);
+                //
+                if(col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)){
+                    countFakturaTotal(getArticlesTable());
+                }
                 //
             }
             //

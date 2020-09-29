@@ -1,3 +1,13 @@
+________________________________________________________________________________________________________
+[HOW TO USE "Validator.validateMaxInputLength(jli, 30)" with other validations][2020-09-29]
+Use like following, other wise one validation will overwrite the other one:
+
+if (Validator.validateMaxInputLength(jli, 30)) { // Validating with other methods only if passed
+	Validator.validateOrgnr(jli);
+	orgnr_additional(jli, ti);
+}
+
+________________________________________________________________________________________________________
 [SEMI COLON & COMMA SEND JSON][2020-08-25][2020-09-17]
 
 It's a problem when you have to send ":" (semicolon) as json to php. -> This fails because of HTTP URL "specialities"
