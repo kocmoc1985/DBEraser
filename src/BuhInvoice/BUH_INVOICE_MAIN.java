@@ -661,6 +661,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_all_invoices_list1.setText("FAKTURA ARTIKLAR");
 
         jTextArea_faktura_komment.setColumns(20);
+        jTextArea_faktura_komment.setForeground(new java.awt.Color(102, 102, 102));
         jTextArea_faktura_komment.setLineWrap(true);
         jTextArea_faktura_komment.setRows(2);
         jTextArea_faktura_komment.setToolTipText("Skriv faktura kommentar här");
@@ -684,6 +685,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jPanel18.setLayout(new java.awt.GridLayout(1, 4));
 
+        jToggleButton_obetald_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_obetald_filter.setText("OBETALDA");
         jToggleButton_obetald_filter.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jToggleButton_obetald_filter.addActionListener(new java.awt.event.ActionListener() {
@@ -693,6 +695,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_obetald_filter);
 
+        jToggleButton_forfallen_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_forfallen_filter.setText("FÖRFALLNA");
         jToggleButton_forfallen_filter.setToolTipText("Visar förfallna, ej betalda, ej makulerade fakturor av typen NORMAL");
         jToggleButton_forfallen_filter.addActionListener(new java.awt.event.ActionListener() {
@@ -702,6 +705,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_forfallen_filter);
 
+        jToggleButton_delvis_betald_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_delvis_betald_filter.setText("DELVIS BETALD");
         jToggleButton_delvis_betald_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -710,6 +714,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_delvis_betald_filter);
 
+        jToggleButton_not_send_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_not_send_filter.setText("EJ SKICKADE");
         jToggleButton_not_send_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -718,6 +723,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_not_send_filter);
 
+        jToggleButton_makulerad_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_makulerad_filter.setText("MAKULERADE");
         jToggleButton_makulerad_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -726,6 +732,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_makulerad_filter);
 
+        jToggleButton_act_month_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_act_month_filter.setText("AKT. MÅNAD");
         jToggleButton_act_month_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
