@@ -189,10 +189,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "3";
+        return "1";
     }
-    
-    protected boolean noCustomersPresent(){
+
+    protected boolean noCustomersPresent() {
         return invoiceB.noCustomersPresent();
     }
 
@@ -1495,7 +1495,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_insert = new InvoiceA_Insert(this);
         }
         //
-        if(noCustomersPresent()){
+        if (noCustomersPresent()) {
             HelpA.showNotification_separate_thread(LANG.MSG_11);
         }
         //
@@ -1636,9 +1636,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_forfallen_filterActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
-        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
-        invoiceB.refresh(null);
-        untoggleAllExcept((JToggleButton) evt.getSource());
+        //
+        JToggleButton jtb = (JToggleButton) evt.getSource();
+        //
+        if (jtb.isSelected() == true) {
+            PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
+            invoiceB.refresh(null);
+            untoggleAllExcept((JToggleButton) evt.getSource());
+        }else{
+            jtb.setSelected(false);
+            invoiceB.refresh(null);
+        }
+
     }
 
     /**
