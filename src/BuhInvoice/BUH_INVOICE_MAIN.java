@@ -142,6 +142,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jButton_print_faktura.setEnabled(false);
             jButton_inbetalning.setEnabled(false);
             jButton_show_actions.setEnabled(false);
+            jButton_send_reminder.setEnabled(false);
             return;
         }
         //
