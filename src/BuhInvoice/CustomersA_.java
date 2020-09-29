@@ -125,13 +125,13 @@ public class CustomersA_ extends CustomerAForetagA {
                 //
                 delete__buh_f_artikel(fakturaId); // ********** DELETE
                 //
+                bim.deleteFaktura(fakturaId); // ********** DELETE
+                //
             }
             //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
-        delete__buh_faktura(fakturaKundId); // ********** DELETE
         //
         delete__buh_faktura_kund(fakturaKundId); // ********** DELETE
         //
@@ -152,16 +152,6 @@ public class CustomersA_ extends CustomerAForetagA {
     private void delete__buh_f_artikel(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        executeDelete(json);
-        //
-    }
-
-    private void delete__buh_faktura(String fakturaKundId) {
-        //
-        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId, DB.TABLE__BUH_FAKTURA);
         //
         String json = JSon.hashMapToJSON(map);
         //

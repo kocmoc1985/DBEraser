@@ -195,6 +195,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
 
+    protected void deleteFaktura(String fakturaId){
+        invoiceB.deleteFakturaPrimary(fakturaId);
+    }
+    
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
@@ -1284,9 +1288,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        invoiceB.deleteFaktura();
+        deleteFaktura(getFakturaId());
+        //
     }//GEN-LAST:event_jButton_delete_fakturaActionPerformed
 
+    
+    
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         customersA.createNewFakturaKund();
     }//GEN-LAST:event_jButton13ActionPerformed

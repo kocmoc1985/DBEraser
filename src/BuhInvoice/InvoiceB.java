@@ -458,9 +458,7 @@ public class InvoiceB extends Basic_Buh_ {
         //
     }
 
-    protected void deleteFaktura() {
-        //
-        String fakturaId = bim.getFakturaId();
+    protected void deleteFakturaPrimary(String fakturaId) {
         //
         deleteFakturaArticles(fakturaId);
         //
@@ -469,7 +467,6 @@ public class InvoiceB extends Basic_Buh_ {
         deleteFakturaSend(fakturaId);
         //
         deleteFaktura(fakturaId);
-        //
         //
         refresh(null);
         //
