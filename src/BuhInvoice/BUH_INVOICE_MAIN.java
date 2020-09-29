@@ -195,10 +195,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
 
-    protected void deleteFaktura(String fakturaId){
+    protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
     }
-    
+
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
@@ -392,9 +392,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
             }
             //
-            if(returnStr.isEmpty()){
+            if (returnStr.isEmpty()) {
                 return returnStr;
-            }else{
+            } else {
                 return JSon.delete_last_letter_in_string(returnStr, ",");
             }
             //
@@ -1292,8 +1292,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }//GEN-LAST:event_jButton_delete_fakturaActionPerformed
 
-    
-    
+
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         customersA.createNewFakturaKund();
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -1946,8 +1945,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected void jTableArticles_clicked() {
-        articlesA.showTableInvert_2();
-        articlesA.refreshTableInvert(articlesA.TABLE_INVERT_2);
+        if (articlesA.getTableArticles().getRowCount() == 0) {
+            articlesA.showTableInvert();
+            articlesA.refreshTableInvert();
+        } else {
+            articlesA.showTableInvert_2();
+            articlesA.refreshTableInvert(articlesA.TABLE_INVERT_2);
+        }
+
     }
 
     protected void jTableCustomersA_adress_clicked() {

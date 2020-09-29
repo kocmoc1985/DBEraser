@@ -118,6 +118,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FORETAG_ADDRESS = "get_kund_addr"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID = "get_invoices_given_fakturakundid"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_INVOICES_GIVEN_ARTICLEID = "get_invoices_given_artikelId"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_USING_ARTICLE = "get_invoices_using_article"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_USING_CUSTOMER = "get_invoices_using_customer"; // using php-function: "select()"
     //

@@ -102,7 +102,7 @@ public class ArticlesA extends Basic_Buh_ {
         //
     }
 
-    private JTable getTableArticles() {
+    protected JTable getTableArticles() {
         return this.bim.jTable_ArticlesA_articles;
     }
 
@@ -255,23 +255,33 @@ public class ArticlesA extends Basic_Buh_ {
         //
         String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
-        delete__buh_f_artikel(artikelId);
+        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId);
         //
-        delete__buh_faktura_artikel(artikelId);
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_INVOICES_GIVEN_ARTICLEID, json);
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> map : invoices) {
+                //
+                String fakturaId = map.get(DB.BUH_FAKTURA__ID__);
+                //
+                bim.deleteFaktura(fakturaId); // ********** DELETE
+                //
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        delete__buh_faktura_artikel(artikelId); // ********** DELETE
         //
         refresh();
         //
     }
 
-    private void delete__buh_f_artikel(String artikelId) {
-        //
-        HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.TABLE__BUH_F_ARTIKEL);
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        executeDelete(json);
-        //
-    }
 
     private void delete__buh_faktura_artikel(String artikelId) {
         //
