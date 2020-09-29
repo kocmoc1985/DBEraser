@@ -689,7 +689,8 @@ public class HTMLPrint_A extends HTMLPrint {
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
-    public static void displayStatus(String msg, Color c) {
+    @Override
+    protected void displayStatus(String msg, Color c) {
         //
         if (c != null) {
             jLabel_status.setForeground(c);

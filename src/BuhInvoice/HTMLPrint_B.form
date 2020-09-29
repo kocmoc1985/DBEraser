@@ -47,7 +47,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jPanel1" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel_status" min="-2" pref="241" max="-2" attributes="0"/>
+                              <Component id="jLabel_status_reminder" min="-2" pref="241" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jEditorPane1" min="-2" pref="545" max="-2" attributes="0"/>
                       </Group>
@@ -61,7 +61,7 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel1" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel_status" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="jLabel_status_reminder" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jEditorPane1" min="-2" pref="842" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel_status">
+            <Component class="javax.swing.JLabel" name="jLabel_status_reminder">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>

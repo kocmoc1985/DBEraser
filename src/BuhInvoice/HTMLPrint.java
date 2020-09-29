@@ -16,7 +16,6 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
-import static BuhInvoice.HTMLPrint_A.displayStatus;
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
@@ -374,6 +373,8 @@ public abstract class HTMLPrint extends JFrame {
         }
     }
 
+    protected abstract void displayStatus(String msg, Color c);
+    
     /**
      * [2020-09-03]
      *

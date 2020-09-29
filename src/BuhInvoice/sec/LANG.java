@@ -40,10 +40,10 @@ public class LANG {
     public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
     public static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
 
-    public static String MSG_10 = "Skapar PDF faktura";
-    public static String MSG_10_1 = "Laddar upp faktura";
-    public static String MSG_10_2 = "Faktura skickad!";
-    public static String MSG_10_3 = "Faktura ej skickad!";
+    public static String MSG_10 = "Skapar PDF";
+    public static String MSG_10_1 = "Laddar upp";
+    public static String MSG_10_2 = "Filen skickad!";
+    public static String MSG_10_3 = "Filen ej skickad!";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

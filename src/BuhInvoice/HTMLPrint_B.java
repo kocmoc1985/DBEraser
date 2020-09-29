@@ -236,6 +236,7 @@ public class HTMLPrint_B extends HTMLPrint {
     @Override
     protected String getHTMLPrintTitle() {
         return LANG.PAMINNELSE;
+//          return "Påminnelse";
     }
 
     private String titleOrLogoIfExist(String imgPath) {
@@ -552,7 +553,7 @@ public class HTMLPrint_B extends HTMLPrint {
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel_status = new javax.swing.JLabel();
+        jLabel_status_reminder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -600,8 +601,8 @@ public class HTMLPrint_B extends HTMLPrint {
         });
         jPanel1.add(jButton3);
 
-        jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_status_reminder.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_status_reminder.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -613,7 +614,7 @@ public class HTMLPrint_B extends HTMLPrint {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel_status_reminder, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
@@ -623,7 +624,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_status_reminder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -685,13 +686,14 @@ public class HTMLPrint_B extends HTMLPrint {
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
-    public static void displayStatus(String msg, Color c) {
+    @Override
+    protected void displayStatus(String msg, Color c) {
         //
         if (c != null) {
-            jLabel_status.setForeground(c);
+            jLabel_status_reminder.setForeground(c);
         }
         //
-        jLabel_status.setText(msg);
+        jLabel_status_reminder.setText(msg);
         //
     }
 
@@ -772,7 +774,7 @@ public class HTMLPrint_B extends HTMLPrint {
     private javax.swing.JButton jButton_send_faktura_email;
     private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
-    protected static javax.swing.JLabel jLabel_status;
+    protected static javax.swing.JLabel jLabel_status_reminder;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
