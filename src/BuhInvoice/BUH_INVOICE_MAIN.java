@@ -191,6 +191,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getKundId() {
         return "3";
     }
+    
+    protected boolean noCustomersPresent(){
+        return invoiceB.noCustomersPresent();
+    }
 
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);

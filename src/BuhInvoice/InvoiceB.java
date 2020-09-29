@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -100,7 +99,14 @@ public class InvoiceB extends Basic_Buh_ {
         if(bim.jComboBox_faktura_kunder_filter.getItemCount() == 0){
             bim.jComboBox_faktura_kunder_filter.setVisible(false);
             bim.jButton_search_by_kund.setVisible(false);
+            
         }
+        //
+    }
+    
+    protected boolean noCustomersPresent(){
+        String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
+        return customers.isEmpty();
     }
 
     protected void refresh(String secondWhereValue) {
