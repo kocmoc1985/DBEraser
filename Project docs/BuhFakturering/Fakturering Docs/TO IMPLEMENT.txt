@@ -1,3 +1,9 @@
+____________________________________________________________________________________________________________________________________________________
+"Validator.validateMaxInputLength(jli, 150)" -> Cannot be used with other validations. Example:
+If i have this validations one after another than the "checkIfExistInJTable" validation is overwritten by "validateMaxInputLength"
+Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+Validator.validateMaxInputLength(jli, 150);
+____________________________________________________________________________________________________________________________________________________
 
 A Failute occurs when i delete a "Kund"
 

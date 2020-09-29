@@ -496,7 +496,8 @@ public class CustomersA_ extends CustomerAForetagA {
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
             Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
             //
-            Validator.validateMaxInputLength(jli, 150);
+            // [2020-09-29] OBS! You can't have this enabled, because it will overwrite the previous validation
+//            Validator.validateMaxInputLength(jli, 150);
             //
         }
         //

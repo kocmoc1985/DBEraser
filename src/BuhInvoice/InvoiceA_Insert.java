@@ -6,7 +6,6 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
-import BuhInvoice.sec.IO;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import forall.HelpA;

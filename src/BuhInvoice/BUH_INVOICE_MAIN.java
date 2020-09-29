@@ -1831,6 +1831,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 invoiceB.refresh_c();
                 jtable_InvoiceB_all_invoices_clicked();
+                invoiceB.fillJComboSearchByFakturaKund();
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_FAKTURA) && sameTabClicked == false) {
                 //
@@ -1957,15 +1958,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             // This makes that when there are no custmers it's opened directly not for "update" but for "insert" [2020-09-29]
             customersA.showTableInvert();
             customersA.refreshTableInvert();
+            customersA.showTableInvert_4();
+            customersA.refreshTableInvert(customersA.TABLE_INVERT_4);
         } else {
             customersA.showTableInvert_2();
             customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
+            //
+            customersA.fillAddressTable();
+            HelpA.markFirstRowJtable(jTable_kund_adresses);
+            jTableCustomersA_adress_clicked();
         }
-        //
-        customersA.fillAddressTable();
-        //
-        HelpA.markFirstRowJtable(jTable_kund_adresses);
-        jTableCustomersA_adress_clicked();
         //
     }
 
