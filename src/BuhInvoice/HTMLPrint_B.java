@@ -342,7 +342,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>";
         //
-        html_ += "<td style='padding:5 5 5 5px;>";
+        html_ += "<td style='padding:5 5 5 5px;'>";
         html_ += T__FTG_BETALA_TILL
                 + _get_exist_a(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                 + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
