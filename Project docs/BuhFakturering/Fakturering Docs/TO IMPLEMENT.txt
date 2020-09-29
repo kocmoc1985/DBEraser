@@ -1,4 +1,6 @@
 
+A Failute occurs when i delete a "Kund"
+
 KREDIT FAKTURA FAILS when making kredit faktura on a faktura which contains "article without artikel" [IMPORTANT]
 
 Påminnelsen filen sparas som "faktura.pdf" OCKSÅ notification shows "Faktura instead of Påminnesle"

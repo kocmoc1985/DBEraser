@@ -78,15 +78,17 @@ public class InvoiceB extends Basic_Buh_ {
         //
         fillFakturaTable(null);
         //
-//        fillJComboSearchByFakturaKund();
+        fillJComboSearchByFakturaKund();
         //
         // fillFakturaArticlesTable();
     }
 
     private void fillJComboSearchByFakturaKund() {
+        //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
-        if(boxObjects[0].getParam_2().equals("null") == false){
+        //
+        if(boxObjects != null){
             HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null); 
         }
        
