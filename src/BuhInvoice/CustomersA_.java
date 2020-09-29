@@ -504,6 +504,8 @@ public class CustomersA_ extends CustomerAForetagA {
             //
             supposeNextKundNr(jli);
             //
+            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
+            //
         }
     }
 
