@@ -433,6 +433,7 @@
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="EJ SKICKADE"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Visar obetalda fakturor av typen NORMAL"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_not_send_filterActionPerformed"/>

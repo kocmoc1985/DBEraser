@@ -783,6 +783,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jToggleButton_not_send_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_not_send_filter.setText("EJ SKICKADE");
+        jToggleButton_not_send_filter.setToolTipText("Visar obetalda fakturor av typen NORMAL");
         jToggleButton_not_send_filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton_not_send_filterActionPerformed(evt);
