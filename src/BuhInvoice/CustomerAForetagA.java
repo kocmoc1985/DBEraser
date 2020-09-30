@@ -37,7 +37,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     //
     protected static final String TABLE_FAKTURA_KUND_ADDR__ID = "ID";
     protected static final String TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID = "FKUNDID";
-    protected static final String TABLE_FAKTURA_KUND_ADDR__NAMN = "NAMN";
     protected static final String TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY = "PRIMÄR";
     protected static final String TABLE_FAKTURA_KUND_ADDR__POSTADDR_A = "ADRESS 1";
     protected static final String TABLE_FAKTURA_KUND_ADDR__POSTADDR_B = "ADRESS 2";
@@ -132,7 +131,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String[] headers = {
             TABLE_FAKTURA_KUND_ADDR__ID,
             TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID,
-            TABLE_FAKTURA_KUND_ADDR__NAMN,
             TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY,
             TABLE_FAKTURA_KUND_ADDR__POSTADDR_A,
             TABLE_FAKTURA_KUND_ADDR__POSTADDR_B,
@@ -198,7 +196,6 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_ADDR__ID),
             map.get(DB.BUH_ADDR__FAKTURAKUND_ID), // hidden
-            map.get(DB.BUH_ADDR__NAMN),
             map.get(DB.BUH_ADDR__IS_PRIMARY_ADDR),
             map.get(DB.BUH_ADDR__ADDR_A),
             map.get(DB.BUH_ADDR__ADDR_B),
@@ -460,6 +457,31 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
                 Validator.validateOrgnr(jli);
                 orgnr_additional(jli, ti);
             }
+            //
+        } //
+        //
+        // This is for both "CustomersA" & "ForetagA" [2020-09-30]
+        else if (col_name.equals(DB.BUH_ADDR__ADDR_A)
+                || col_name.equals(DB.BUH_ADDR__ADDR_B)
+                || col_name.equals(DB.BUH_ADDR__BESOKS_ADDR)) {
+            //
+            Validator.validateMaxInputLength(jli, 300);
+            //
+        } else if (col_name.equals(DB.BUH_ADDR__POSTNR_ZIP)) {
+            //
+            Validator.validateMaxInputLength(jli, 10);
+            //
+        } else if (col_name.equals(DB.BUH_ADDR__ORT) || col_name.equals(DB.BUH_ADDR__LAND)) {
+            //
+            Validator.validateMaxInputLength(jli, 100);
+            //
+        } else if (col_name.equals(DB.BUH_ADDR__TEL_A) || col_name.equals(DB.BUH_ADDR__TEL_B)) {
+            //
+            Validator.validateMaxInputLength(jli, 50);
+            //
+        } else if (col_name.equals(DB.BUH_ADDR__OTHER)) {
+            //
+            Validator.validateMaxInputLength(jli, 500);
             //
         }
         //

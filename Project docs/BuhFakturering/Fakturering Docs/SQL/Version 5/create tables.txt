@@ -34,7 +34,6 @@ CREATE TABLE buh_address (
 id integer primary key not null AUTO_INCREMENT,
 kundId integer,
 fakturaKundId integer,
-namn varchar(150) DEFAULT '',
 primary_addr boolean DEFAULT true,
 postaddr_a varchar (300) DEFAULT '',
 postaddr_b varchar (300) DEFAULT '',
