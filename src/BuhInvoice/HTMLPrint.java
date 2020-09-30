@@ -510,6 +510,7 @@ public abstract class HTMLPrint extends JFrame {
         JEditorPane jep = getEditorPane();
         //
         int actHeight = jep.getHeight();
+        System.out.println("DOC LENGHT: " + getEditorPane().getDocument().getEndPosition());
         //
         System.out.println("jeditorPane height: " + jep.getHeight());
         //
