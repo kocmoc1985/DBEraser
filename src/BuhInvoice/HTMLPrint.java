@@ -74,6 +74,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
     public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
     public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // only for "kontantfaktura"
+    public static final String T__FAKTURA_VALFRI_TEXT = "Valfri text:"; // only for "kontantfaktura"
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
@@ -89,6 +90,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
     public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
     public static final String COL_3 = DB.BUH_ADDR__ORT;
+    public static final String COL_3_1 = DB.BUH_ADDR__LAND;
     public static final String COL_4 = DB.BUH_ADDR__TEL_A;
     //
     public static final String T__ARTIKEL_NAMN = "Artikel";
@@ -314,6 +316,14 @@ public abstract class HTMLPrint extends JFrame {
     protected String _get_exist_b(String name, String value) {
         if (value.isEmpty() == false) {
             return ", " + name + ": " + value;
+        } else {
+            return "";
+        }
+    }
+    
+     protected String _get_exist_c(String value) {
+        if (value.isEmpty() == false) {
+            return ", " + value;
         } else {
             return "";
         }

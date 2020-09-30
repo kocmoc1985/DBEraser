@@ -98,58 +98,6 @@ public class HTMLPrint_B extends HTMLPrint {
         return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
     }
 
-    //
-    public static final String T__FAKTURA_NR = "Faktura nr";
-    public static final String T__KUND_NR = "Kundnr";
-    public static final String T__FAKTURA_DATUM = "Fakturadatum";
-    //
-    public static final String T__FAKTURA_ER_REF = "Er referens";
-    public static final String T__FAKTURA_ERT_ORDER_NR = "Ert ordernr";
-    public static final String T__FAKTURA_LEV_VILKOR = "Leveransvilkor";
-    public static final String T__FAKTURA_LEV_SATT = "Leveranssätt";
-    public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
-    //
-    public static final String T__FAKTURA_VAR_REF = "Vår referens";
-    public static final String T__FAKTURA_BETAL_VILKOR__FLEX = "Betalningsvilkor";
-    public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
-    public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
-    public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
-    public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // only for "kontantfaktura"
-    public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
-    public static final String T__FAKTURA_XXXXXXX = "Ledig*";
-    //
-    public static final String T__FAKTURA_FRAKT = "Frakt";
-    public static final String T__FAKTURA_EXP_AVG = "Exp avg";
-    public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
-    public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
-    public static final String T__FAKTURA_MOMS_KR = "Moms kr";
-    public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
-    //
-    public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
-    public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
-    public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
-    public static final String COL_3 = DB.BUH_ADDR__ORT;
-    public static final String COL_4 = DB.BUH_ADDR__TEL_A;
-    //
-    public static final String T__ARTIKEL_NAMN = "Artikel";
-    public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
-    public static final String T__ARTIKEL_ANTAL = "Antal";
-    public static final String T__ARTIKEL_ENHET = "Enhet";
-    public static final String T__ARTIKEL_RABATT = "Rabatt%";
-    public static final String T__ARTIKEL_PRIS = "A`Pris";
-    //
-    public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
-    public static final String T__FTG_BETALA_TILL = "Betala till";
-    public static final String T__FTG_TELEFON = "Telefon";
-    public static final String T__FTG_EPOST = "Mejla";
-    public static final String T__FTG_BANKGIRO = "BG";
-    public static final String T__FTG_POSTGIRO = "PG";
-    public static final String T__FTG_KONTO = "Konto";
-    public static final String T__FTG_SWISH = "Swish";
-    public static final String T__FTG_ORGNR = "Organisationsnr";
-    public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
-    public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     @Override
     protected String buildHTML() {
@@ -259,7 +207,7 @@ public class HTMLPrint_B extends HTMLPrint {
         String[] values_a = new String[]{
             _get(map_e_2__lev_data, COL_0),
             _get(map_e, COL_1),
-            _get(map_e, COL_2) + " " + _get(map_e, COL_3)
+            _get(map_e, COL_2) + " " + _get(map_e, COL_3) + _get_exist_c(_get(map_e, COL_3_1))
         };
         //
         String[] values_b = new String[]{
