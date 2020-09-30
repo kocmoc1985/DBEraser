@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener {
 
-    protected Basic_Buh_ basic;
+    protected Basic_Buh basic;
     protected final BUH_INVOICE_MAIN bim;
     private final String fakturaId;
     private final String fakturaNr;
@@ -282,7 +282,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
 
     public void initBasicTab() {
         //
-        basic = new Basic_Buh_(bim) {
+        basic = new Basic_Buh(bim) {
 
             @Override
             protected void startUp() {

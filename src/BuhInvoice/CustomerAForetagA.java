@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public abstract class CustomerAForetagA extends Basic_Buh_ {
+public abstract class CustomerAForetagA extends Basic_Buh {
 
     //
     protected Table TABLE_INVERT_2;

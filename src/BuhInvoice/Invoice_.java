@@ -36,7 +36,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public abstract class Invoice_ extends Basic_Buh_ {
+public abstract class Invoice_ extends Basic_Buh {
 
     //
     protected Table TABLE_INVERT_2;

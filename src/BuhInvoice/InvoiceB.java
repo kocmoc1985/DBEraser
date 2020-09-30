@@ -9,12 +9,12 @@ import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class InvoiceB extends Basic_Buh_ {
+public class InvoiceB extends Basic_Buh {
 
     //
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
@@ -149,13 +149,11 @@ public class InvoiceB extends Basic_Buh_ {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
-    protected void displayArticlesCount(){
+
+    protected void displayArticlesCount() {
         int articlesCount = bim.getInvoiceArticleCount();
-        bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>"+ articlesCount +"</div></html>");
-//        bim.jLabel_ammount_of_articles_.setText(""+articlesCount);
+        bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>" + articlesCount + "</div></html>");
     }
-    
 
     private void fillJTableheader() {
         //
@@ -690,9 +688,15 @@ public class InvoiceB extends Basic_Buh_ {
 
     //  DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES
     //  DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA
-    private HashMap<String, String> getFakturaKundData(String phpFunction) {
+    private HashMap<String, String> getFakturaKundData(String phpFunction, TableInvert ti) {
         //
-        String fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        String fakturaKundId;
+        //
+        if (ti == null) {
+            fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        } else {
+            fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
+        }
         //
         String json = bim.getSELECT_fakturaKundId(fakturaKundId);
         //
@@ -767,8 +771,8 @@ public class InvoiceB extends Basic_Buh_ {
         HashMap<String, String> map_b = new HashMap<>();
         HashMap<String, String> map_c = new HashMap<>();
         HashMap<String, String> map_d = new HashMap<>();
-        HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES);
-        HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA);
+        HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, null);
+        HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, null);
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
         //
@@ -858,48 +862,52 @@ public class InvoiceB extends Basic_Buh_ {
         }
 
     }
-    
-    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse) {
+
+    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
+        //
+        TableInvert ti = bim.getTableInvert();
+        TableInvert ti_2 = bim.getTableInvert_2();
+        TableInvert ti_3 = bim.getTableInvert_3();
         //
         HashMap<String, String> map_a_0 = new HashMap<>();
         HashMap<String, String> map_a = new HashMap<>();
         HashMap<String, String> map_b = new HashMap<>();
         HashMap<String, String> map_c = new HashMap<>();
         HashMap<String, String> map_d = new HashMap<>();
-        HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES);
-        HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA);
+        HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, ti);
+        HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
         //
-        map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
-        map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
-        map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, _get(TABLE_ALL_INVOICES__DATUM));
+        map_a.put(HTMLPrint_A.T__FAKTURA_NR, "-");
+        map_a.put(HTMLPrint_A.T__KUND_NR, "-");
+        map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti));
         //
-        map_b.put(HTMLPrint_A.T__FAKTURA_ER_REF, _get(TABLE_ALL_INVOICES__ER_REF));
-        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, _get(TABLE_ALL_INVOICES__ERT_ORDER)); //**************************EMPTY
-        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_VILKOR, _get(TABLE_ALL_INVOICES__LEV_VILKOR));
-        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_SATT, _get(TABLE_ALL_INVOICES__LEV_SATT));
+        map_b.put(HTMLPrint_A.T__FAKTURA_ER_REF, getValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, ti));
+        map_b.put(HTMLPrint_A.T__FAKTURA_ERT_ORDER_NR, getValueTableInvert(DB.BUH_FAKTURA__ERT_ORDER, ti_3)); //**************************EMPTY
+        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_VILKOR, getValueTableInvert(DB.BUH_FAKTURA__LEV_VILKOR, ti));
+        map_b.put(HTMLPrint_A.T__FAKTURA_LEV_SATT, getValueTableInvert(DB.BUH_FAKTURA__LEV_SATT, ti));
         map_b.put(HTMLPrint_A.T__FAKTURA_ERT_VAT_NR, GP_BUH._get(map_e__lev_data, DB.BUH_FAKTURA_KUND___VATNR)); //**************************EMPTY
         //
-        map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, _get(TABLE_ALL_INVOICES__VAR_REF));
-        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR__FLEX, _get(TABLE_ALL_INVOICES__BET_VILKOR));
-        map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM__FLEX, _get(TABLE_ALL_INVOICES__FORFALLODATUM));
-        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, _get(TABLE_ALL_INVOICES__DROJSMALSRANTA));
-        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, getKontantFakturaBetalMetod());
+        map_c.put(HTMLPrint_A.T__FAKTURA_VAR_REF, getValueTableInvert(DB.BUH_FAKTURA__VAR_REFERENS, ti));
+        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_VILKOR__FLEX, getValueTableInvert(DB.BUH_FAKTURA__BETAL_VILKOR, ti));
+        map_c.put(HTMLPrint_A.T__FAKTURA_FORFALLODATUM__FLEX, getValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti));
+        map_c.put(HTMLPrint_A.T__FAKTURA_DROJMALSRANTA__FLEX, getValueTableInvert(DB.BUH_FAKTURA__DROJSMALSRANTA, ti_3));
+        map_c.put(HTMLPrint_A.T__FAKTURA_BETAL_METOD, ""); // getKontantFakturaBetalMetod()
         map_c.put(HTMLPrint_A.T__FAKTURA_UTSKRIVET, GP_BUH.getDateTime_yyyy_MM_dd());
-        map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, bim.getKomment_$());
+        map_c.put(HTMLPrint_A.T__FAKTURA_KREDITERAR_FAKTURA_NR, ""); // bim.getKomment_$()
         map_c.put(HTMLPrint_A.T__FAKTURA_XXXXXXX, ""); //**************************EMPTY
         //
-        map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
-        map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, _get(TABLE_ALL_INVOICES__EXP_AVG));
-        map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
+        map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, getValueTableInvert(DB.BUH_FAKTURA__FRAKT, ti_3));
+        map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, getValueTableInvert(DB.BUH_FAKTURA__EXP_AVG, ti_3));
+        map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, "" + invoice.getTotalExklMoms());
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "" + ((int)invoice.getMomsSats() * 100));
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
+        map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //
         if (paminnelse == false) {
             map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));

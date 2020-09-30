@@ -250,7 +250,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
     @Override
     public void initBasicTab() {
         //
-        basic = new Basic_Buh_(bim) {
+        basic = new Basic_Buh(bim) {
 
             @Override
             protected void startUp() {

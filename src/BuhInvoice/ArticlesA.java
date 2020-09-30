@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class ArticlesA extends Basic_Buh_ {
+public class ArticlesA extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
     private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
