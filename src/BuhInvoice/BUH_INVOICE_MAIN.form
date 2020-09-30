@@ -537,7 +537,8 @@
                               </Group>
                               <Component id="jLabel_Faktura_Insert_or_Update" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="jLabel_ammount_of_articles" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jPanel15" min="-2" pref="400" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -580,7 +581,10 @@
                               <Component id="jPanel_articles" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel15" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jPanel15" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="jLabel_ammount_of_articles" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="1520" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -915,6 +919,17 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="jLabel_ammount_of_articles">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="99" green="99" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="..."/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

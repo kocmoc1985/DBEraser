@@ -64,6 +64,8 @@ public abstract class Invoice_ extends Basic_Buh_ {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
+        bim.displayArticlesCount();
+        //
         if (insert) {
             //
             if (CREATE_KONTANT_FAKTURA__OPERATION_INSERT == true) {

@@ -1,4 +1,8 @@
 
+Show ToolTip for Validator, for example when "input is to long"
+
+Print Address of Customer for sending with common post
+
 Implement ERROR_OUTPUT to FILE
 
 ____________________________________________________________________________________________________________________________________________________
@@ -23,10 +27,7 @@ The below is prelim conclusions presented:
 2. Kredit & Kontant -> Max 15 -> due to "Betala till" row is not present
 ____________________________________________________________________________________________________________________________________________________
 
-1. "dröjsmålsränta" -> think were to have it implemented to "faktura" or some kind of general settings  [2020-09-07]
-2. Skicka Påminnelser
-3. Faktura urval - Alla, Betalda, Obetalda .....
-4. Implement send with Outlook functionality
+
 5. Print Address of Customer for sending with common post
 
 [KREDIT FAKTURA]

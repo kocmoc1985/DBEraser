@@ -148,6 +148,11 @@ public class InvoiceB extends Basic_Buh_ {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
+    
+    protected void displayArticlesCount(){
+        int articlesCount = bim.jTable_InvoiceA_Insert_articles.getRowCount();
+        bim.jLabel_ammount_of_articles.setText(""+articlesCount);
+    }
 
     private void fillJTableheader() {
         //
