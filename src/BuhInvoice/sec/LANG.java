@@ -31,6 +31,7 @@ public class LANG {
     public static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
     public static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
+    public static String MSG_3_2_2 = "Ingen inbetalning vald! Markera en i tabellen nedan och prova igen";
     public static String MSG_3_3 = "Radera kommentar?";
     public static String MSG_4 = "Radera rad?";
     public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";

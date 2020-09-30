@@ -362,7 +362,12 @@ public abstract class Invoice_ extends Basic_Buh_ {
     }
 
     protected void countFakturaTotal(JTable table) {
+        //
+        // Some methods are called from here because this method (countFakturaTotal)
+        // is executed uppon almost all actions [2020-09-30]
         bim.displayArticlesCount();
+        bim.insertUpdateArticleAdditionalLogic(false);
+        //
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
         countFakturaTotal(table, prisColumn, antalColumn);
@@ -898,6 +903,11 @@ public abstract class Invoice_ extends Basic_Buh_ {
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)) {
             //
             setArticlePrise(true);
+            //
+            if(CURRENT_OPERATION_INSERT == false){
+               bim.insertUpdateArticleAdditionalLogic(true);
+            }
+            //
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
             //

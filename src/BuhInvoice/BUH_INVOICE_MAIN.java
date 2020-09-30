@@ -131,6 +131,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         HelpA.setUneditableJTable(jTable_kund_adresses);
         HelpA.setUneditableJTable(jTable_kunder);
     }
+    
+    
+    protected void insertUpdateArticleAdditionalLogic(boolean hide){
+        if(hide){
+             jButton_update_articles_row.setEnabled(false);
+             jButton_delete_articles_row.setEnabled(false);
+        }else{
+            jButton_update_articles_row.setEnabled(true);
+            jButton_delete_articles_row.setEnabled(true);
+        }
+    }
 
     protected void hideShowButtonsDependingOnConditions() {
         //
@@ -2012,6 +2023,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected void jTableArticles_clicked() {
+        //
         if (articlesA.getTableArticles().getRowCount() == 0) {
             articlesA.showTableInvert();
             articlesA.refreshTableInvert();
@@ -2061,8 +2073,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTableForetagA_adress_clicked();
         //
     }
+    
+    
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
+        //
+        insertUpdateArticleAdditionalLogic(false);
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();

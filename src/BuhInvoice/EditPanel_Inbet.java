@@ -485,6 +485,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
     protected void jButton2ActionPerformed(){
         //
         if (HelpA.rowSelected(getJTable()) == false) {
+            HelpA.showNotification(LANG.MSG_3_2_2);
             return;
         }
         //
