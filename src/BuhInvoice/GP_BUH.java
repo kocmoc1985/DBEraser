@@ -46,7 +46,8 @@ public class GP_BUH {
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
-
+    public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
+    
     public static String replaceColon(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll(":", "#");

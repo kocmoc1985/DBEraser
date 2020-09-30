@@ -210,6 +210,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected boolean noCustomersPresent() {
         return invoiceB.noCustomersPresent();
     }
+    
+    protected boolean articlesLimitReached(){
+        if(getInvoiceArticleCount() >= GP_BUH.MAX_AMMOUNT_ARTICLES__FAKTURA){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected int getInvoiceArticleCount(){
+        return jTable_InvoiceA_Insert_articles.getRowCount();
+    }
 
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
@@ -1473,6 +1485,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
+                if(articlesLimitReached()){
+                    HelpA.showNotification(LANG.MSG_5_2);
+                    return;
+                }
+                //
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();

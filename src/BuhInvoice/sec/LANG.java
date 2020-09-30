@@ -25,21 +25,22 @@ public class LANG {
 
     
 
-    public static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
-    public static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
-    public static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
-    public static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
-    public static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
-    public static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
-    public static String MSG_3_2_2 = "Ingen inbetalning vald! Markera en i tabellen nedan och prova igen";
-    public static String MSG_3_3 = "Radera kommentar?";
-    public static String MSG_4 = "Radera rad?";
-    public static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
-    public static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
-    public static String MSG_7 = "Kund e-post saknas, var god gå till flik"
+    public final static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
+    public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
+    public final static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
+    public final static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
+    public final static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
+    public final static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
+    public final static String MSG_3_2_2 = "Ingen inbetalning vald! Markera en i tabellen nedan och prova igen";
+    public final static String MSG_3_3 = "Radera kommentar?";
+    public final static String MSG_4 = "Radera rad?";
+    public final static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
+    public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
+    public final static String MSG_5_2 = "Du kan inte lägga till fler artiklar!";
+    public final static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
-    public static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
-    public static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
+    public final static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
+    public final static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
 
     public static String MSG_10 = "Skapar PDF";
     public static String MSG_10_1 = "Laddar upp";
