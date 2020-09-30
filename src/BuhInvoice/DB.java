@@ -193,6 +193,7 @@ public class DB {
     public static final String BUH_ADDR__BESOKS_ADDR = "visit_addr";
     public static final String BUH_ADDR__POSTNR_ZIP = "zip";
     public static final String BUH_ADDR__ORT = "ort";
+    public static final String BUH_ADDR__LAND = "land";
     public static final String BUH_ADDR__TEL_A = "tel_a";
     public static final String BUH_ADDR__TEL_B = "tel_b";
     public static final String BUH_ADDR__OTHER = "other";

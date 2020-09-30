@@ -7,7 +7,6 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import MyObjectTable.OutPut;
-import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
@@ -445,6 +444,8 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         RowDataInvert ort = new RowDataInvertB("", DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
         //
+        RowDataInvert land = new RowDataInvertB("", DB.BUH_ADDR__LAND, TABLE_FAKTURA_KUND_ADDR__LAND, "", true, true, false);
+        //
         RowDataInvert tel_a = new RowDataInvertB("", DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
         //
         RowDataInvert tel_b = new RowDataInvertB("", DB.BUH_ADDR__TEL_B, TABLE_FAKTURA_KUND_ADDR__TEL_B, "", true, true, false);
@@ -457,6 +458,7 @@ public class CustomersA_ extends CustomerAForetagA {
             visit_addr,
             zip,
             ort,
+            land,
             tel_a,
             tel_b,
             other

@@ -6,7 +6,6 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
-import static BuhInvoice.CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -45,6 +44,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
     protected static final String TABLE_FAKTURA_KUND_ADDR__BESOKSADDR = "BESÖKS ADR";
     protected static final String TABLE_FAKTURA_KUND_ADDR__ZIP = "POSTNR";
     protected static final String TABLE_FAKTURA_KUND_ADDR__ORT = "ORT";
+    protected static final String TABLE_FAKTURA_KUND_ADDR__LAND = "LAND";
     protected static final String TABLE_FAKTURA_KUND_ADDR__TEL_A = "TEL 1";
     protected static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
@@ -139,6 +139,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             TABLE_FAKTURA_KUND_ADDR__BESOKSADDR,
             TABLE_FAKTURA_KUND_ADDR__ZIP,
             TABLE_FAKTURA_KUND_ADDR__ORT,
+            TABLE_FAKTURA_KUND_ADDR__LAND,
             TABLE_FAKTURA_KUND_ADDR__TEL_A,
             TABLE_FAKTURA_KUND_ADDR__TEL_B,
             TABLE_FAKTURA_KUND_ADDR__OTHER
@@ -204,6 +205,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             map.get(DB.BUH_ADDR__BESOKS_ADDR),
             map.get(DB.BUH_ADDR__POSTNR_ZIP),
             map.get(DB.BUH_ADDR__ORT),
+            map.get(DB.BUH_ADDR__LAND),
             map.get(DB.BUH_ADDR__TEL_A),
             map.get(DB.BUH_ADDR__TEL_B),
             map.get(DB.BUH_ADDR__OTHER)
@@ -392,6 +394,9 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
         String ort_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ORT);
         RowDataInvert ort = new RowDataInvertB(ort_, DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
         //
+        String land_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__LAND);
+        RowDataInvert land = new RowDataInvertB(land_, DB.BUH_ADDR__LAND, TABLE_FAKTURA_KUND_ADDR__LAND, "", true, true, false);
+        //
         String tel_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_A);
         RowDataInvert tel_a = new RowDataInvertB(tel_a_, DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
         //
@@ -407,6 +412,7 @@ public abstract class CustomerAForetagA extends Basic_Buh_ {
             visit_addr,
             zip,
             ort,
+            land,
             tel_a,
             tel_b,
             other
