@@ -23,8 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang3.StringEscapeUtils;
-
+import org.apache.commons.lang.StringEscapeUtils;
 /**
  *
  * @author MCREMOTE

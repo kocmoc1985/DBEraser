@@ -23,7 +23,7 @@ OBS! Nothing on PHP side, 1000% SURE!
 
 "artikelId";"4","kundId";"1","pris";"27.9","namn";"Dörrhandtag","komment";"Färg, guld","artikel_kategori";"A"
 ________________________________________________________________________________________________________
-[SAVING EMPTIE VALUES] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][2020-09-18]
+[SAVING EMPTY VALUES] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][2020-09-18]
 
 See "Validator.class" -> "setValidated(JLinkInvert jli)" -> "jtf.setSaveEmptyStringValue();"
 Also very very important -> "JTextFieldInvert.class" -> "setSaveEmptyStringValue()" -> pay attention at "rdi.isString()"

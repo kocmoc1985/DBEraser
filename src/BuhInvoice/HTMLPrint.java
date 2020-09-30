@@ -269,7 +269,7 @@ public abstract class HTMLPrint extends JFrame {
         if (this instanceof HTMLPrint_A) {
             fileName = LANG.FAKTURA.toLowerCase();
         } else if (this instanceof HTMLPrint_B) {
-            fileName = LANG.PAMINNELSE.toLowerCase();
+            fileName = LANG.PAMINNELSE.replaceAll("å", "a").toLowerCase(); // I can't have "å" as it's not accepted on server side[2020-09-30]
         } else {
             fileName = "undefined";
         }

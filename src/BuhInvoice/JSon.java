@@ -488,24 +488,11 @@ public class JSon {
 
     public static void main(String[] args) {
         //
-//        String rst = "{\"name\";\"myname\",\"age\";\"20\"}";
-//        //
-//        System.out.println("" + JSONToHashMap(rst));
+        String value = "Åland";
         //
-        String phpJsonStr = "{\"0\";\"Telia\",\"namn\";\"Telia\",\"1\";\"3\",\"fakturaKundId\";\"3\"},{\"0\";\"Eon\",\"namn\";\"Eon\",\"1\";\"4\",\"fakturaKundId\";\"4\"},{\"0\";\"Akelius\",\"namn\";\"Akelius\",\"1\";\"5\",\"fakturaKundId\";\"5\"},{\"0\";\"Telenor\",\"namn\";\"Telenor\",\"1\";\"6\",\"fakturaKundId\";\"6\"}";
+        value = StringEscapeUtils.escapeJava(value);
         //
-        String phpJsonStr_b = "{\"fakturaId\";\"6\",\"kundId\";\"2\",\"fakturaKundId\";\"1\",\"fakturanr\";\"2\",\"namn\";\"FAKTURA BB\",\"fakturatyp\";\"NORMAL\",\"inkl_moms\";\"1\",\"fakturadatum\";\"2020-07-09\",\"forfallodatum\";\"2020-07-09\",\"valuta\";\"SEK\",\"ert_ordernr\";\"\",\"er_referens\";\"\",\"var_referens\";\"\",\"frakt\";\"0\",\"betal_vilkor\";\"10\",\"lev_vilkor\";\"FVL\",\"lev_satt\";\"P\",\"exp_avg\";\"0\",\"total_ink_moms\";\"0\",\"total_exkl_moms\";\"0\",\"moms_total\";\"0\",\"moms_sats\";\"0\",\"komment\";\"\",\"important_komment\";\"\",\"ska_bokforas\";\"0\",\"request_factoring\";\"0\",\"factoring_status\";\"0\",\"makulerad\";\"0\",\"date_created\";\"n\\/a\"},{\"fakturaId\";\"5\",\"kundId\";\"2\",\"fakturaKundId\";\"3\",\"fakturanr\";\"1\",\"namn\";\"FAKTURA AA\",\"fakturatyp\";\"NORMAL\",\"inkl_moms\";\"1\",\"fakturadatum\";\"2020-07-09\",\"forfallodatum\";\"2020-07-09\",\"valuta\";\"SEK\",\"ert_ordernr\";\"\",\"er_referens\";\"\",\"var_referens\";\"\",\"frakt\";\"0\",\"betal_vilkor\";\"10\",\"lev_vilkor\";\"FVL\",\"lev_satt\";\"P\",\"exp_avg\";\"0\",\"total_ink_moms\";\"0\",\"total_exkl_moms\";\"0\",\"moms_total\";\"0\",\"moms_sats\";\"0\",\"komment\";\"\",\"important_komment\";\"\",\"ska_bokforas\";\"0\",\"request_factoring\";\"0\",\"factoring_status\";\"0\",\"makulerad\";\"0\",\"date_created\";\"n\\/a\"}";
-        //
-//        phpJsonStringSplit(phpJsonStr_b);
-        //
-//        System.out.println("" + phpJsonResponseToComboBoxString(phpJsonStr, "namn", "fakturaKundId"));
-        //
-//        phpJsonResponseToHashMap(phpJsonStr_b);
-
-        System.out.println("_get:  " + _get("Telenor", "2", "Securitas;1,telenor;2,Telia;3"));
-        System.out.println("_get_:  " + _get_("Telenor", "2", "Securitas;1,telenor;2,Telia;3"));
-//        System.out.println("" + _get_simple("10", "30,60,20,15,10,5"));
-
+        System.out.println("" + value);
     }
 
     public static String delete_last_letter_in_string(String str, String letter) {
