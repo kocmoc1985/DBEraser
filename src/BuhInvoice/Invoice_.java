@@ -54,6 +54,7 @@ public abstract class Invoice_ extends Basic_Buh {
     //
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
+    
 
     public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -71,10 +72,12 @@ public abstract class Invoice_ extends Basic_Buh {
             if (CREATE_KONTANT_FAKTURA__OPERATION_INSERT == true) {
                 // KONTANT FAKTURA
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1_2);
+                bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
                 //
             } else {
                 // NORMAL FAKTURA
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
+                bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
                 //
             }
             //
@@ -109,14 +112,17 @@ public abstract class Invoice_ extends Basic_Buh {
                     String krediteradFakturaNr = bim.getKomment_$();
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3(krediteradFakturaNr));
                     bim.jButton_add_article.setEnabled(false); // Shall not be possible to add articles
+                    bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KREDIT;
                     //
-                } else if (bim.isKontantFaktura()) {
+                } else if (bim.isKontantFaktura()) { // KONTANT FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1);
                     enableDisableButtons(bim.jPanel12, true);
+                    bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
                 } else {
                     // NORMAL FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
                     enableDisableButtons(bim.jPanel12, true);
+                    bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
                 }
                 //
                 //

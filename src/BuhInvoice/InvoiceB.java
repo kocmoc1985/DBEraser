@@ -868,7 +868,6 @@ public class InvoiceB extends Basic_Buh {
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //
         TableInvert ti = bim.getTableInvert();
-        TableInvert ti_2 = bim.getTableInvert_2();
         TableInvert ti_3 = bim.getTableInvert_3();
         //
         HashMap<String, String> map_a_0 = new HashMap<>();

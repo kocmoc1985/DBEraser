@@ -49,7 +49,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     //
     public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
     private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
-
+    //
+    protected String FAKTURA_TYPE_CURRENT__OPERATION;
+    
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -192,14 +194,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
     
-     protected TableInvert getTableInvert_2(){
-        if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
-            return (TableInvert)invoiceA_insert.TABLE_INVERT_2;
-        }else{
-            return (TableInvert)invoiceA_update.TABLE_INVERT_2;
-        }
-    }
-     
      protected TableInvert getTableInvert_3(){
         if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
             return (TableInvert)invoiceA_insert.TABLE_INVERT_3;
@@ -280,6 +274,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
 
+    protected String getFakturaType_actual_operation() {
+        return FAKTURA_TYPE_CURRENT__OPERATION;
+    }
+    
      protected boolean fakturaBetald() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
@@ -535,6 +533,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton11 = new javax.swing.JButton();
         jButton_confirm_insert_update = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
@@ -553,7 +552,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_rabatt_total = new javax.swing.JTextField();
         jTextField_total_inkl_moms = new javax.swing.JTextField();
         jLabel_ammount_of_articles = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         jPanel4_Customers = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -937,6 +935,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 0));
 
+        jButton1.setToolTipText("Förhandsgranska");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton1);
+
         jPanel11.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
@@ -1038,13 +1044,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_ammount_of_articles.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_ammount_of_articles.setText("...");
 
-        jButton1.setText("preview");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1054,8 +1053,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
@@ -1083,8 +1080,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1747,9 +1743,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
-            invoiceB.htmlFakturaOrReminder_preview("NORMAL", false, invoiceA_insert);
+            invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_insert);
         }else{
-            invoiceB.htmlFakturaOrReminder_preview("NORMAL", false,invoiceA_update);
+            invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false,invoiceA_update);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
