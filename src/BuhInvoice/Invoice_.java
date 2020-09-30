@@ -64,7 +64,7 @@ public abstract class Invoice_ extends Basic_Buh_ {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
-        bim.displayArticlesCount();
+//        bim.displayArticlesCount();
         //
         if (insert) {
             //
@@ -362,6 +362,7 @@ public abstract class Invoice_ extends Basic_Buh_ {
     }
 
     protected void countFakturaTotal(JTable table) {
+        bim.displayArticlesCount();
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
         countFakturaTotal(table, prisColumn, antalColumn);
@@ -446,6 +447,7 @@ public abstract class Invoice_ extends Basic_Buh_ {
 
     @Override
     public void showTableInvert() {
+        //
         TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);

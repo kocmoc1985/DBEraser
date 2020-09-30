@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -151,7 +152,8 @@ public class InvoiceB extends Basic_Buh_ {
     
     protected void displayArticlesCount(){
         int articlesCount = bim.jTable_InvoiceA_Insert_articles.getRowCount();
-        bim.jLabel_ammount_of_articles.setText(""+articlesCount);
+        bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>"+ articlesCount +"</div></html>");
+//        bim.jLabel_ammount_of_articles_.setText(""+articlesCount);
     }
 
     private void fillJTableheader() {

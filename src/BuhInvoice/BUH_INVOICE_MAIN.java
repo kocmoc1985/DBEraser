@@ -494,6 +494,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_add_article = new javax.swing.JButton();
         jButton_update_articles_row = new javax.swing.JButton();
         jButton_delete_articles_row = new javax.swing.JButton();
+        jLabel_ammount_of_articles_ = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -936,6 +937,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel12.add(jButton_delete_articles_row);
 
+        jLabel_ammount_of_articles_.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel_ammount_of_articles_.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_ammount_of_articles_.setToolTipText("Antal artiklar");
+        jLabel_ammount_of_articles_.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel12.add(jLabel_ammount_of_articles_);
+
         jPanel15.setLayout(new java.awt.GridLayout(2, 4));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1000,7 +1007,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1424,8 +1431,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
         }
         //
-        displayArticlesCount();
-        //
     }//GEN-LAST:event_jButton_delete_articles_rowActionPerformed
 
     private void jButton_update_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articles_rowActionPerformed
@@ -1468,8 +1473,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         invoiceB.refresh_c(); // correct
                     }
                 }
-                //
-                displayArticlesCount();
                 //
             }
         });
@@ -1831,6 +1834,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles;
+    protected javax.swing.JLabel jLabel_ammount_of_articles_;
     private javax.swing.JLabel jLabel_btn_separator_1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
