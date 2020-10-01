@@ -137,42 +137,30 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected void hideShowButtonsDependingOnConditions() {
         //
+        GP_BUH.enableDisableButtons(jPanel4, true); // Enable ALL
+        //
         if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
-            jButton_edit_faktura.setEnabled(false);
-            jButton_copy_faktura.setEnabled(false);
-            jButton_kredit_faktura.setEnabled(false);
-            jButton_delete_faktura.setEnabled(false);
-            jButton_print_faktura.setEnabled(false);
-            jButton_inbetalning.setEnabled(false);
-            jButton_show_actions.setEnabled(false);
-            jButton_send_reminder.setEnabled(false);
+            GP_BUH.setEnabled(jButton_edit_faktura, false);
+            GP_BUH.setEnabled(jButton_copy_faktura, false);
+            GP_BUH.setEnabled(jButton_kredit_faktura, false);
+            GP_BUH.setEnabled(jButton_delete_faktura, false);
+            GP_BUH.setEnabled(jButton_print_faktura, false);
+            GP_BUH.setEnabled(jButton_inbetalning, false);
+            GP_BUH.setEnabled(jButton_show_actions, false);
+            GP_BUH.setEnabled(jButton_send_reminder, false);
+            //
             return;
         }
         //
         if (isKreditFaktura()) {
-            jButton_kredit_faktura.setEnabled(false);
-            jButton_copy_faktura.setEnabled(false);
-            jButton_inbetalning.setEnabled(false);
-            jButton_send_reminder.setEnabled(false);
+            GP_BUH.setEnabled(jButton_kredit_faktura, false);
+            GP_BUH.setEnabled(jButton_copy_faktura, false);
+            GP_BUH.setEnabled(jButton_inbetalning, false);
+            GP_BUH.setEnabled(jButton_send_reminder, false);
         } else if (isKontantFaktura()) {
-            jButton_kredit_faktura.setEnabled(false);
-            jButton_send_reminder.setEnabled(false);
-            setEnabledCommonSet();
-        } else {
-            jButton_send_reminder.setEnabled(true);
-            jButton_kredit_faktura.setEnabled(true);
-            setEnabledCommonSet();
-        }
-        //
-    }
-
-    private void setEnabledCommonSet() {
-        jButton_copy_faktura.setEnabled(true);
-        jButton_inbetalning.setEnabled(true);
-        jButton_print_faktura.setEnabled(true);
-        jButton_delete_faktura.setEnabled(true);
-        jButton_show_actions.setEnabled(true);
-        jButton_edit_faktura.setEnabled(true);
+            GP_BUH.setEnabled(jButton_kredit_faktura, false);
+            GP_BUH.setEnabled(jButton_send_reminder, false);
+        } 
     }
 
     protected TableInvert getTableInvert() {
@@ -216,7 +204,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "1";
+        return "3";
     }
 
     protected boolean noCustomersPresent() {
