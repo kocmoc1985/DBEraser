@@ -224,6 +224,8 @@ public abstract class Invoice_ extends Basic_Buh {
             return false;
         }
         //
+        // Yes it's 100% correct that TABLE_INVERT_2 is not validated [2020-10-01]
+        //
         if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
             HelpA.showNotification(LANG.MSG_1);
             return false;
@@ -495,7 +497,7 @@ public abstract class Invoice_ extends Basic_Buh {
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS});
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
-        articles.setUneditable();
+//        articles.setUneditable();
         articles.enableEmptyValue(); //[2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
@@ -544,7 +546,7 @@ public abstract class Invoice_ extends Basic_Buh {
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
-        articles.setUneditable();
+//        articles.setUneditable();
 //        articles.setDisabled();
         //
         //
@@ -897,11 +899,13 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             forfalloDatumAutoChange(ti);
             //
-        } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
+        }  else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
             System.out.println("FAKTURA MAKULERAD");
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)) {
+            //
+             Validator.validateJComboInput((JComboBox)ie.getSource());
             //
             setArticlePrise(true);
             //

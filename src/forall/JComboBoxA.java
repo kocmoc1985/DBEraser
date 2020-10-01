@@ -8,18 +8,8 @@ import MCRecipe.Sec.CBoxParam;
 import ca.odell.glazedlists.BasicEventList;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
-import static forall.HelpA.getValueResultSet;
-import static forall.HelpA.initialComboBoxBorder;
-import static forall.HelpA.setCursorWait;
-import static forall.HelpA.setTrackingToolTip;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.border.Border;
 
 /**
  *

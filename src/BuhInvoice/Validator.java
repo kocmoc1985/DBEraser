@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -106,7 +108,19 @@ public class Validator {
             return setNotValidated(jli, Color.ORANGE);
         }
     }
-    
+
+    public static void validateJComboInput(JComboBox box) {
+        if (box.getSelectedIndex() == -1) {
+            // OBS! The border is set here and not from "setNotValidater()" because
+            // setting border is the only method that works in this situation
+            box.setBorder(BorderFactory.createLineBorder(Color.red, 3));
+            setNotValidated((JLinkInvert)box);
+        } else {
+            box.setBorder(null);
+            setValidated((JLinkInvert)box);
+        }
+    }
+
     private static void unsetToolTip(JLinkInvert jli) {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
