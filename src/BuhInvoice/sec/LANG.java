@@ -51,6 +51,8 @@ public class LANG {
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald";
     
+    public static String MSG_14 = "För många tecken, max antal:";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import forall.HelpA;
@@ -105,6 +106,20 @@ public class Validator {
             return setNotValidated(jli, Color.ORANGE);
         }
     }
+    
+    private static void unsetToolTip(JLinkInvert jli) {
+        if (jli instanceof JComponent) {
+            JComponent jc = (JComponent) jli;
+            jc.setToolTipText(null);
+        }
+    }
+
+    private static void setToolTip(JLinkInvert jli, String message) {
+        if (jli instanceof JComponent) {
+            JComponent jc = (JComponent) jli;
+            jc.setToolTipText(message);
+        }
+    }
 
     public static boolean validateMaxInputLength(JLinkInvert jli, int length) {
         //
@@ -112,9 +127,16 @@ public class Validator {
         //
         if (val.length() <= length) {
             setValidated(jli);
+            //
+            unsetToolTip(jli);
+            //
             return true;
         } else {
+            //
             setNotValidated(jli, new Color(140, 218, 255)); // 223, 243, 248
+            //
+            setToolTip(jli, LANG.MSG_14 + " " + length);
+            //
             return false;
         }
     }
