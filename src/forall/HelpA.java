@@ -46,6 +46,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.RandomAccessFile;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -99,6 +100,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
+import supplementary.HelpM;
 
 /**
  *
@@ -217,11 +219,40 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+     /**
+     * SUPER GOOD Introduced [2020-04-29]
+     *
+     * @return
+     */
+    public static boolean runningInNetBeans() {
+        //
+        File currentJar = null;
+        //
+        try {
+            currentJar = new File(HelpA.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(HelpM.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        if (currentJar == null) {
+            return false; // As it was running from ".jar" to make output to file
+        }
+        //
+        /* is it a jar file? */
+        if (!currentJar.getName().endsWith(".jar")) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 
     /**
      * Used to know if you are running from NetBeans, this to know if to use
      * err_output_to_file()
      *
+     * @deprecated 
      * @param path
      * @return
      */

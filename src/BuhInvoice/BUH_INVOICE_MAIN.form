@@ -532,7 +532,7 @@
                               <Component id="jPanel3_faktura_sec" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel2" pref="560" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel12" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jPanel12" min="-2" pref="250" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jPanel11" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
@@ -827,6 +827,8 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel5_separator">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel_ammount_of_articles_">
                       <Properties>

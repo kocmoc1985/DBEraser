@@ -54,7 +54,6 @@ public abstract class Invoice_ extends Basic_Buh {
     //
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
-    
 
     public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -65,7 +64,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
-//        bim.displayArticlesCount();
+        bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
         //
         if (insert) {
             //
@@ -97,8 +96,6 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 enableDisableButtons(bim.jPanel12, false);
                 bim.jButton_confirm_insert_update.setEnabled(false);
-                //
-                bim.jButton_update_articles_row.setEnabled(false);
                 //
             } else {
                 //
@@ -169,12 +166,18 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     private void enableDisableButtons(JPanel parent, boolean enabled) {
-        Component[] components = parent.getComponents();
-        for (Component c : components) {
-            if (c instanceof JButton) {
-                c.setEnabled(enabled);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Component[] components = parent.getComponents();
+                for (Component c : components) {
+                    if (c instanceof JButton) {
+                        c.setEnabled(enabled);
+                    }
+                }
             }
-        }
+        });
+
     }
 
     private void initFakturaEntry_() {
@@ -415,9 +418,9 @@ public abstract class Invoice_ extends Basic_Buh {
         double exp_avg = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
         //
 //        if (getInklMoms()) {
-            MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
-            FAKTURA_TOTAL += MOMS_TOTAL;
-            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
+        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
+        FAKTURA_TOTAL += MOMS_TOTAL;
+        FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
 //        } else {
 //            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
 //        }
@@ -431,8 +434,8 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
         //
     }
-    
-    private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats){
+
+    private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats) {
         return (frakt + expAvg) * momsSats;
     }
 
@@ -795,7 +798,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 referensSave(col_name);
                 //
-                if(col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)){
+                if (col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
                     countFakturaTotal(getArticlesTable());
                 }
                 //
@@ -910,8 +913,8 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             setArticlePrise(true);
             //
-            if(CURRENT_OPERATION_INSERT == false){
-               bim.insertUpdateArticleAdditionalLogic(true);
+            if (CURRENT_OPERATION_INSERT == false) {
+                bim.insertUpdateArticleAdditionalLogic(true);
             }
             //
             //

@@ -818,6 +818,7 @@ public class InvoiceB extends Basic_Buh {
                     HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
                             bim,
                             fakturatype,
+                            false,
                             bim.getArticlesActualInvoice(),
                             map_a_0,
                             map_a,
@@ -843,6 +844,7 @@ public class InvoiceB extends Basic_Buh {
                     HTMLPrint_B hTMLPrint_B = new HTMLPrint_B(
                             bim,
                             fakturatype,
+                            false,
                             bim.getArticlesActualInvoice(),
                             map_a_0,
                             map_a,
@@ -922,6 +924,7 @@ public class InvoiceB extends Basic_Buh {
                     HTMLPrint_A hTMLPrint_A = new HTMLPrint_A(
                             bim,
                             fakturatype,
+                            true,
                             bim.getArticlesActualInvoice(),
                             map_a_0,
                             map_a,
@@ -947,6 +950,7 @@ public class InvoiceB extends Basic_Buh {
                     HTMLPrint_B hTMLPrint_B = new HTMLPrint_B(
                             bim,
                             fakturatype,
+                            true,
                             bim.getArticlesActualInvoice(),
                             map_a_0,
                             map_a,

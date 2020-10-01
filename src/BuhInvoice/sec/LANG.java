@@ -22,6 +22,7 @@ public class LANG {
     
     public final static String FRAME_TITLE_1 = "Skriv ut " + FAKTURA.toLowerCase();
     public final static String FRAME_TITLE_1_2 = "Skriv ut " +  PAMINNELSE.toLowerCase();
+    public final static String FRAME_TITLE_1_3 = "Förhandsgranska";
 
     
 

@@ -541,6 +541,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_add_article = new javax.swing.JButton();
         jButton_update_articles_row = new javax.swing.JButton();
         jButton_delete_articles_row = new javax.swing.JButton();
+        jLabel5_separator = new javax.swing.JLabel();
         jLabel_ammount_of_articles_ = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -992,6 +993,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
         jPanel12.add(jButton_delete_articles_row);
+        jPanel12.add(jLabel5_separator);
 
         jLabel_ammount_of_articles_.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel_ammount_of_articles_.setForeground(new java.awt.Color(153, 153, 153));
@@ -1063,7 +1065,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1792,70 +1794,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+        //
+        if(HelpA.runningInNetBeans() == false){
+            HelpA.err_output_to_file();
+        }
+        //
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -1900,6 +1843,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5_separator;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;

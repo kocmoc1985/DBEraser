@@ -1,5 +1,5 @@
 
-Implement Faktura Preview
+Påminnelse text should be adjustable
 
 Show ToolTip for Validator, for example when "input is to long"
 

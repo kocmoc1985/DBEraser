@@ -53,6 +53,7 @@ public abstract class HTMLPrint extends JFrame {
     protected final HashMap<String, String> map_f;
     protected final HashMap<String, String> map_g;
     protected final String FAKTURA_TYPE;
+    protected final boolean preview;
     //
     protected final static Dimension A4_PAPER = new Dimension(545, 842);
     //
@@ -118,6 +119,7 @@ public abstract class HTMLPrint extends JFrame {
     public HTMLPrint(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
+            boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -132,13 +134,13 @@ public abstract class HTMLPrint extends JFrame {
         //
         initComponents_();
         //
-        this.setTitle(getWindowTitle());
-        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         this.articles_map_list = articles_map_list;
         //
         this.bim = bim;
         this.FAKTURA_TYPE = fakturatype;
+        this.preview = preview;
+        //
         this.map_a_0 = map_a_0;
         this.map_a = map_a;
         this.map_b = map_b;
@@ -148,6 +150,9 @@ public abstract class HTMLPrint extends JFrame {
         this.map_e_2__lev_data = map_e_2;
         this.map_f = map_f;
         this.map_g = map_g;
+        //
+        this.setTitle(getWindowTitle());
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         init();
         //

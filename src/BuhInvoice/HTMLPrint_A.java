@@ -28,6 +28,7 @@ public class HTMLPrint_A extends HTMLPrint {
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
+            boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -39,12 +40,17 @@ public class HTMLPrint_A extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        super(bim, fakturatype, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+        super(bim, fakturatype,preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
     }
 
     @Override
     protected String getWindowTitle() {
-        return LANG.FRAME_TITLE_1;
+        if(preview){
+            return LANG.FRAME_TITLE_1_3; 
+        }else{
+           return LANG.FRAME_TITLE_1; 
+        }
+        
     }
 
     @Override
@@ -726,49 +732,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HTMLPrint_A.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new HTMLPrint_A(null, null, null, null, null, null, null, null, null, null, null, null).setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
