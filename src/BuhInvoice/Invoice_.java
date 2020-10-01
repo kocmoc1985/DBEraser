@@ -60,16 +60,16 @@ public abstract class Invoice_ extends Basic_Buh {
         initFakturaEntry_();
     }
     
-    private void enableAllBtns(){
+    private void buttonLogic(){
         //
-        enableDisableButtons(bim.jPanel9, true);
-        enableDisableButtons(bim.jPanel11, true);
-        enableDisableButtons(bim.jPanel12, true);
+        GP_BUH.enableDisableButtons(bim.jPanel9, true);
+        GP_BUH.enableDisableButtons(bim.jPanel11, true);
+        GP_BUH.enableDisableButtons(bim.jPanel12, true);
         //
         if(articlesJTableEmpty()){
             GP_BUH.setEnabled(bim.jButton_update_articles_row, false);
             GP_BUH.setEnabled(bim.jButton_delete_articles_row, false);
-            enableDisableButtons(bim.jPanel11, false);
+            GP_BUH.enableDisableButtons(bim.jPanel11, false);
         }
         //
     }
@@ -80,7 +80,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
         //
-        enableAllBtns();
+        buttonLogic();
         //
         if (insert) {
             //
@@ -100,13 +100,13 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         } else { // UPDATE
             //
-            enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
+            GP_BUH.enableDisableButtons(bim.jPanel11, false); // Hide/Show Edit and Submit btns for editing of article when "INSERT"
             //
             if (fakturaBetald()) {
                 //
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_2);
                 //
-                enableDisableButtons(bim.jPanel12, false);
+                GP_BUH.enableDisableButtons(bim.jPanel12, false);
                 GP_BUH.setEnabled(bim.jButton_confirm_insert_update, false);
                 //
             } else {
@@ -170,20 +170,6 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    private void enableDisableButtons(JPanel parent, boolean enabled) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Component[] components = parent.getComponents();
-                for (Component c : components) {
-                    if (c instanceof JButton) {
-                        c.setEnabled(enabled);
-                    }
-                }
-            }
-        });
-
-    }
 
     private void initFakturaEntry_() {
         faktura_entry = initFakturaEntry();

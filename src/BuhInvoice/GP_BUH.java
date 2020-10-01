@@ -24,10 +24,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -91,12 +93,21 @@ public class GP_BUH {
    }
     
     
-    public static void setEnabled(JComponent c, boolean enabled){
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-               c.setEnabled(enabled);
+    public static void enableDisableButtons(JPanel parent, boolean enabled) {
+        java.awt.EventQueue.invokeLater(() -> {
+            Component[] components = parent.getComponents();
+            for (Component c : components) {
+                if (c instanceof JButton) {
+                    c.setEnabled(enabled);
+                }
             }
+        });
+
+    }
+    
+    public static void setEnabled(JComponent c, boolean enabled){
+        java.awt.EventQueue.invokeLater(() -> {
+            c.setEnabled(enabled);
         });
     }
     
