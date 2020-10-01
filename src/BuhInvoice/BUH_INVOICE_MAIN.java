@@ -195,12 +195,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         invoiceB.displayArticlesCount();
     }
 
-    protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
+    protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
 
-    protected ArrayList<HashMap<String, String>> getArticlesActualInvoice() {
+    protected ArrayList<HashMap<String, String>> getArticlesMarkedInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
+    }
+    
+    protected ArrayList<HashMap<String, String>> getArticlesCurrInvoiceJTable() {
+        return JSon.JTableToHashMaps(jTable_InvoiceA_Insert_articles, InvoiceB.ARTICLES_TABLE_DICT);
     }
 
     /**

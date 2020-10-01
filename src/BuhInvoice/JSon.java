@@ -6,12 +6,14 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.HashMapKeyCaseInsensitive;
-import forall.HelpA;
+import static forall.HelpA.columnIsVisible;
+import static forall.HelpA.getColumnName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
+import javax.swing.JTable;
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
@@ -511,6 +513,47 @@ public class JSon {
         int a = str.length() - 1;
         int b = str.length();
         return str.substring(a, b);
+    }
+    
+    
+    /**
+     * [2020-10-01]
+     * OBS! Only visible column taken into account
+     * @param table
+     * @param dictionary
+     * @return 
+     */
+    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String,String>dictionary) {
+        //
+        ArrayList rowValues = new ArrayList();
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            HashMap<String, String> map = new HashMap();
+            //
+            for (int col = 0; col < table.getColumnCount(); col++) {
+                //
+                if (columnIsVisible(table, col)) {
+                    //
+                    String colname;
+                    //
+                    if(dictionary == null){
+                        colname = getColumnName(table, col);
+                    }else{
+                        colname = dictionary.get(getColumnName(table, col));
+                    }
+                    //
+                    String value = "" + table.getValueAt(row, col);
+                    map.put(colname, value);
+                }
+                //
+            }
+            //
+            rowValues.add(map);
+            //
+        }
+        //
+        return rowValues;
     }
 
 }

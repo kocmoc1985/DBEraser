@@ -61,13 +61,25 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__ID = "ID";
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_ID = "ARTIKEL ID"; // hidden
     public static String TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN = "ARTIKEL";
-    public static String TABLE_INVOICE_ARTIKLES__KOMMENT = "BESKRIVNING";
+    public final static String TABLE_INVOICE_ARTIKLES__KOMMENT = "BESKRIVNING";
     public static String TABLE_INVOICE_ARTIKLES__ANTAL = "ANTAL";
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
 
+    public static final HashMap<String,String>ARTICLES_TABLE_DICT = new HashMap<>();
+    
+    static{
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__KOMMENT, DB.BUH_F_ARTIKEL__KOMMENT);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT, DB.BUH_F_ARTIKEL__RABATT);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT_KR, DB.BUH_F_ARTIKEL__RABATT_KR);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, DB.BUH_FAKTURA_ARTIKEL___NAMN);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__PRIS, DB.BUH_F_ARTIKEL__PRIS);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ANTAL, DB.BUH_F_ARTIKEL__ANTAL);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
+    }
+    
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
@@ -426,7 +438,7 @@ public class InvoiceB extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> articles = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            bim.setArticlesActualInvoice(articles); //[2020-08-18]
+            bim.setArticlesMarkedInvoice(articles); //[2020-08-18]
             //
             for (HashMap<String, String> articles_map : articles) {
                 addRowJtable_faktura_articles(articles_map, table);
@@ -819,7 +831,7 @@ public class InvoiceB extends Basic_Buh {
                             bim,
                             fakturatype,
                             false,
-                            bim.getArticlesActualInvoice(),
+                            bim.getArticlesMarkedInvoice(),
                             map_a_0,
                             map_a,
                             map_b,
@@ -845,7 +857,7 @@ public class InvoiceB extends Basic_Buh {
                             bim,
                             fakturatype,
                             false,
-                            bim.getArticlesActualInvoice(),
+                            bim.getArticlesMarkedInvoice(),
                             map_a_0,
                             map_a,
                             map_b,
@@ -925,7 +937,7 @@ public class InvoiceB extends Basic_Buh {
                             bim,
                             fakturatype,
                             true,
-                            bim.getArticlesActualInvoice(),
+                            bim.getArticlesCurrInvoiceJTable(), // OBS! Important [2020-10-01]
                             map_a_0,
                             map_a,
                             map_b,
@@ -951,7 +963,7 @@ public class InvoiceB extends Basic_Buh {
                             bim,
                             fakturatype,
                             true,
-                            bim.getArticlesActualInvoice(),
+                            bim.getArticlesCurrInvoiceJTable(), // OBS! Important [2020-10-01]
                             map_a_0,
                             map_a,
                             map_b,

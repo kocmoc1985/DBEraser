@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -90,6 +89,7 @@ public class GP_BUH {
             return val;
         }
    }
+    
     
     public static void setEnabled(JComponent c, boolean enabled){
         java.awt.EventQueue.invokeLater(new Runnable() {

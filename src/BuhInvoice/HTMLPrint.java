@@ -34,6 +34,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -188,6 +189,17 @@ public abstract class HTMLPrint extends JFrame {
         //
     }
 
+    protected static ArrayList<HashMap<String, String>> jTableToList(JTable table) {
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            ArrayList rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
+            //
+        }
+        //
+        return null;
+    }
+
     protected void scrollToTop() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -325,8 +337,8 @@ public abstract class HTMLPrint extends JFrame {
             return "";
         }
     }
-    
-     protected String _get_exist_c(String value) {
+
+    protected String _get_exist_c(String value) {
         if (value.isEmpty() == false) {
             return ", " + value;
         } else {
@@ -389,7 +401,7 @@ public abstract class HTMLPrint extends JFrame {
     }
 
     protected abstract void displayStatus(String msg, Color c);
-    
+
     /**
      * [2020-09-03]
      *

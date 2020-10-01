@@ -219,8 +219,8 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     /**
+
+    /**
      * SUPER GOOD Introduced [2020-04-29]
      *
      * @return
@@ -252,7 +252,7 @@ public class HelpA {
      * Used to know if you are running from NetBeans, this to know if to use
      * err_output_to_file()
      *
-     * @deprecated 
+     * @deprecated
      * @param path
      * @return
      */
@@ -757,9 +757,9 @@ public class HelpA {
     }
 
     /**
-     * [2020-09-25]
-     * Is added each time as the table is filled 
-     * @param table 
+     * [2020-09-25] Is added each time as the table is filled
+     *
+     * @param table
      */
     public static void rowsorter_jtable_add_reset(JTable table) {
         //
@@ -1383,6 +1383,31 @@ public class HelpA {
             }
         }
 
+        return rowValues;
+    }
+
+    public static ArrayList<HashMap<String, String>> getValuesVisibleColsOnly(JTable table) {
+        //
+        ArrayList rowValues = new ArrayList();
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            HashMap<String, String> map = new HashMap();
+            //
+            for (int col = 0; col < table.getColumnCount(); col++) {
+                //
+                if (columnIsVisible(table, col)) {
+                    String colname = getColumnName(table, col);
+                    String value = "" + table.getValueAt(row, col);
+                    map.put(colname, value);
+                }
+                //
+            }
+            //
+            rowValues.add(map);
+            //
+        }
+        //
         return rowValues;
     }
 
@@ -2438,7 +2463,7 @@ public class HelpA {
             list.add(initialValue);
         }
         //
-        if(values != null){
+        if (values != null) {
             list.addAll(Arrays.asList(values));
         }
         //
@@ -2448,10 +2473,10 @@ public class HelpA {
         AutoCompleteSupport support = AutoCompleteSupport.install(
                 jbox, GlazedLists.eventListOf(arr));
         //
-        if(arr.length == 1){
-          jbox.setSelectedIndex(0);  
-        }else{
-           jbox.setSelectedIndex(1);
+        if (arr.length == 1) {
+            jbox.setSelectedIndex(0);
+        } else {
+            jbox.setSelectedIndex(1);
         }
         //
 //        jbox.setSelectedIndex(0);
@@ -2472,7 +2497,7 @@ public class HelpA {
      * @return
      */
     public static ComboBoxObject[] extract_comma_separated_objects(String str, int paramToReturn) {
-        if(str.isEmpty()){
+        if (str.isEmpty()) {
             return null;
         }
         str = str.trim();
@@ -2889,9 +2914,9 @@ public class HelpA {
             //
         }
         //
-        if(previous == null || previous.isEmpty()){
+        if (previous == null || previous.isEmpty()) {
             return defaultValue;
-        }else{
+        } else {
             return previous;
         }
         //
@@ -2979,7 +3004,7 @@ public class HelpA {
 
     public static boolean isNumber(String str) {
         //
-        if(str.contains("f") || str.contains("F") || str.contains("d") || str.contains("D")){
+        if (str.contains("f") || str.contains("F") || str.contains("d") || str.contains("D")) {
             return false;
         }
         //
