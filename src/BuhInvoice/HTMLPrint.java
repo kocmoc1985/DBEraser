@@ -152,12 +152,11 @@ public abstract class HTMLPrint extends JFrame {
         this.map_f = map_f;
         this.map_g = map_g;
         //
-        this.setTitle(getWindowTitle());
-        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-        //
         init();
         //
     }
+    
+    protected abstract void buttonLogic();
 
     protected abstract String getWindowTitle();
 
@@ -172,6 +171,12 @@ public abstract class HTMLPrint extends JFrame {
     protected abstract String buildHTML();
 
     private void init() {
+        //
+        this.setTitle(getWindowTitle());
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
+        //
+        buttonLogic();
+        //
         initOther();
         go();
         scrollToTop();

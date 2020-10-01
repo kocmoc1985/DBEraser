@@ -99,6 +99,7 @@ public class GP_BUH {
             }
         });
     }
+    
 
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));

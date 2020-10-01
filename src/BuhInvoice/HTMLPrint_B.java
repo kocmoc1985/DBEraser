@@ -43,6 +43,12 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     @Override
+    protected void buttonLogic() {
+        //
+    }
+    
+    
+    @Override
     protected String getWindowTitle() {
         if(preview){
             return LANG.FRAME_TITLE_1_3; 

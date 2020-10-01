@@ -44,6 +44,16 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     @Override
+    protected void buttonLogic() {
+        if(preview){
+            GP_BUH.setEnabled(jButton_send_faktura_email, false);
+            GP_BUH.setEnabled(jButton_send_with_outlook, false);
+        }
+    }
+
+    
+    
+    @Override
     protected String getWindowTitle() {
         if(preview){
             return LANG.FRAME_TITLE_1_3; 

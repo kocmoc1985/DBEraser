@@ -22,6 +22,46 @@ import org.apache.commons.lang.StringEscapeUtils;
  * @author KOCMOC
  */
 public class JSon {
+    
+    /**
+     * [2020-10-01]
+     * OBS! Only visible column taken into account
+     * @param table
+     * @param dictionary
+     * @return 
+     */
+    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String,String>dictionary) {
+        //
+        ArrayList rowValues = new ArrayList();
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            HashMap<String, String> map = new HashMap();
+            //
+            for (int col = 0; col < table.getColumnCount(); col++) {
+                //
+                if (columnIsVisible(table, col)) {
+                    //
+                    String colname;
+                    //
+                    if(dictionary == null){
+                        colname = getColumnName(table, col);
+                    }else{
+                        colname = dictionary.get(getColumnName(table, col));
+                    }
+                    //
+                    String value = "" + table.getValueAt(row, col);
+                    map.put(colname, value);
+                }
+                //
+            }
+            //
+            rowValues.add(map);
+            //
+        }
+        //
+        return rowValues;
+    }
 
     public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {
         //
@@ -516,44 +556,6 @@ public class JSon {
     }
     
     
-    /**
-     * [2020-10-01]
-     * OBS! Only visible column taken into account
-     * @param table
-     * @param dictionary
-     * @return 
-     */
-    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String,String>dictionary) {
-        //
-        ArrayList rowValues = new ArrayList();
-        //
-        for (int row = 0; row < table.getRowCount(); row++) {
-            //
-            HashMap<String, String> map = new HashMap();
-            //
-            for (int col = 0; col < table.getColumnCount(); col++) {
-                //
-                if (columnIsVisible(table, col)) {
-                    //
-                    String colname;
-                    //
-                    if(dictionary == null){
-                        colname = getColumnName(table, col);
-                    }else{
-                        colname = dictionary.get(getColumnName(table, col));
-                    }
-                    //
-                    String value = "" + table.getValueAt(row, col);
-                    map.put(colname, value);
-                }
-                //
-            }
-            //
-            rowValues.add(map);
-            //
-        }
-        //
-        return rowValues;
-    }
+    
 
 }
