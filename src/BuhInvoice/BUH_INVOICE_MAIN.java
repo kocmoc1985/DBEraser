@@ -51,7 +51,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
     //
     protected String FAKTURA_TYPE_CURRENT__OPERATION;
-    
+
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
@@ -134,9 +134,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         HelpA.setUneditableJTable(jTable_kund_adresses);
         HelpA.setUneditableJTable(jTable_kunder);
     }
-    
-    
-    
 
     protected void hideShowButtonsDependingOnConditions() {
         //
@@ -177,27 +174,27 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_show_actions.setEnabled(true);
         jButton_edit_faktura.setEnabled(true);
     }
-    
-    protected TableInvert getTableInvert(){
-        if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
-            return (TableInvert)invoiceA_insert.TABLE_INVERT;
-        }else{
-            return (TableInvert)invoiceA_update.TABLE_INVERT;
-        }
-    }
-    
-     protected TableInvert getTableInvert_3(){
-        if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
-            return (TableInvert)invoiceA_insert.TABLE_INVERT_3;
-        }else{
-            return (TableInvert)invoiceA_update.TABLE_INVERT_3;
+
+    protected TableInvert getTableInvert() {
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+            return (TableInvert) invoiceA_insert.TABLE_INVERT;
+        } else {
+            return (TableInvert) invoiceA_update.TABLE_INVERT;
         }
     }
 
-    protected void displayArticlesCount(){
+    protected TableInvert getTableInvert_3() {
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+            return (TableInvert) invoiceA_insert.TABLE_INVERT_3;
+        } else {
+            return (TableInvert) invoiceA_update.TABLE_INVERT_3;
+        }
+    }
+
+    protected void displayArticlesCount() {
         invoiceB.displayArticlesCount();
     }
-    
+
     protected void setArticlesActualInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
@@ -221,16 +218,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected boolean noCustomersPresent() {
         return invoiceB.noCustomersPresent();
     }
-    
-    protected boolean articlesLimitReached(){
-        if(getInvoiceArticleCount() >= GP_BUH.MAX_AMMOUNT_ARTICLES__FAKTURA){
+
+    protected boolean articlesLimitReached() {
+        if (getInvoiceArticleCount() >= GP_BUH.MAX_AMMOUNT_ARTICLES__FAKTURA) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    protected int getInvoiceArticleCount(){
+
+    protected int getInvoiceArticleCount() {
         return jTable_InvoiceA_Insert_articles.getRowCount();
     }
 
@@ -269,12 +266,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
-    
-     protected boolean fakturaBetald() {
+
+    protected boolean fakturaBetald() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
         //
-        if(table.getRowCount() == 0){
+        if (table.getRowCount() == 0) {
             return false;
         }
         //
@@ -283,7 +280,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
         //
     }
-    
+
     protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
@@ -970,7 +967,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel12.add(jButton_add_article);
 
         jButton_update_articles_row.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_articles_row.setToolTipText("Uppdatera artikel");
+        jButton_update_articles_row.setToolTipText("Uppdatera artikel (gör ändringar i tabellen till vänster)");
         jButton_update_articles_row.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_articles_rowActionPerformed(evt);
@@ -1514,7 +1511,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             @Override
             public void run() {
                 //
-                if(articlesLimitReached()){
+                if (articlesLimitReached()) {
                     HelpA.showNotification(LANG.MSG_5_2);
                     return;
                 }
@@ -1698,7 +1695,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
-        if(fakturaBetald()){
+        if (fakturaBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12);
         }
         //
@@ -1738,12 +1735,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_forfallen_filterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null){
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_insert);
-        }else{
-            invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false,invoiceA_update);
+        } else {
+            invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_update);
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
@@ -1754,7 +1751,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
             invoiceB.refresh(null);
             untoggleAllExcept((JToggleButton) evt.getSource());
-        }else{
+        } else {
             jtb.setSelected(false);
             invoiceB.refresh(null);
         }
@@ -1788,7 +1785,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //</editor-fold>
         //
-        if(HelpA.runningInNetBeans() == false){
+        if (HelpA.runningInNetBeans() == false) {
             HelpA.err_output_to_file();
         }
         //
@@ -1968,11 +1965,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     return;
                 }
                 //
-                HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
-                jTable_InvoiceA_Insert_articles_clicked();
                 //
                 invoiceA_update.showTableInvert();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT);
+                //
+                if (getInvoiceArticleCount() > 0) {
+                    HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
+                    jTable_InvoiceA_Insert_articles_clicked();
+                } else {
+                    invoiceA_update.showTableInvert_2();
+                    invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
+                }
                 //
                 invoiceA_update.showTableInvert_3();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_3);
@@ -2071,8 +2074,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTableForetagA_adress_clicked();
         //
     }
-    
-    
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //

@@ -1,8 +1,7 @@
 
+Optmize the button logics for the "ALL_INVOICES" TAB
 
 For the print preview articles are not taken for the actual Faktura [IMPORTANT]
-
-When editing a faktura which does not contain articles -- fails [IMPORTANT]
 
 Skicka email till vald address
 
