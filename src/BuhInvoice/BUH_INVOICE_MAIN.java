@@ -1235,7 +1235,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel14.add(jButton16);
 
         jButton_update_article.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_article.setToolTipText("Uppdatera artikel data");
+        jButton_update_article.setToolTipText("Uppdatera / lägga till artikel");
         jButton_update_article.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_articleActionPerformed(evt);
@@ -1426,7 +1426,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_update_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articleActionPerformed
         if (articlesA.getCurrentOperationInsert()) {
             if (articlesA.fieldsValidated(true)) {
+                //
                 articlesA.insert();
+                //
+                articlesA.createNew(); // To be able to create several in row without clicking new each time [2020-10-01]
+                //
             }
         } else {
             if (articlesA.fieldsValidated(false)) {

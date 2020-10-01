@@ -1295,7 +1295,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/correct.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Uppdatera artikel data"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Uppdatera / l&#xe4;gga till artikel"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_update_articleActionPerformed"/>
