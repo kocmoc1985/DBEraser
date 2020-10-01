@@ -59,12 +59,28 @@ public abstract class Invoice_ extends Basic_Buh {
         super(bim);
         initFakturaEntry_();
     }
+    
+    private void enableAllBtns(){
+        //
+        enableDisableButtons(bim.jPanel9, true);
+        enableDisableButtons(bim.jPanel11, true);
+        enableDisableButtons(bim.jPanel12, true);
+        //
+        if(articlesJTableEmpty()){
+            GP_BUH.setEnabled(bim.jButton_update_articles_row, false);
+            GP_BUH.setEnabled(bim.jButton_delete_articles_row, false);
+            enableDisableButtons(bim.jPanel11, false);
+        }
+        //
+    }
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
         bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
+        //
+        enableAllBtns();
         //
         if (insert) {
             //
@@ -80,11 +96,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             }
             //
-            enableDisableButtons(bim.jPanel11, true);// Hide/Show Edit and Submit btns for editing of article when "INSERT"
-            enableDisableButtons(bim.jPanel12, true);
-            bim.jButton_confirm_insert_update.setEnabled(true);
-            //
-            bim.jButton_update_articles_row.setEnabled(false);
+            GP_BUH.setEnabled(bim.jButton_update_articles_row, false);
             //
         } else { // UPDATE
             //
@@ -95,12 +107,11 @@ public abstract class Invoice_ extends Basic_Buh {
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_2);
                 //
                 enableDisableButtons(bim.jPanel12, false);
-                bim.jButton_confirm_insert_update.setEnabled(false);
+                GP_BUH.setEnabled(bim.jButton_confirm_insert_update, false);
                 //
             } else {
                 //
                 if (bim.isMakulerad()) {
-//                    bim.jScrollPane1_faktura.setBorder(BorderFactory.createLineBorder(Color.red, 4));
                     HelpA.showNotification_separate_thread(LANG.MSG_9);
                 }
                 //
@@ -113,19 +124,13 @@ public abstract class Invoice_ extends Basic_Buh {
                     //
                 } else if (bim.isKontantFaktura()) { // KONTANT FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1);
-                    enableDisableButtons(bim.jPanel12, true);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
                 } else {
                     // NORMAL FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
-                    enableDisableButtons(bim.jPanel12, true);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
                 }
                 //
-                //
-                bim.jButton_confirm_insert_update.setEnabled(true);
-                //
-                bim.jButton_update_articles_row.setEnabled(true);
                 //
             }
             //
@@ -375,7 +380,8 @@ public abstract class Invoice_ extends Basic_Buh {
         // Some methods are called from here because this method (countFakturaTotal)
         // is executed uppon almost all actions [2020-09-30]
         bim.displayArticlesCount();
-        bim.insertUpdateArticleAdditionalLogic(false);
+        //
+        SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
         //
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
@@ -912,10 +918,6 @@ public abstract class Invoice_ extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)) {
             //
             setArticlePrise(true);
-            //
-            if (CURRENT_OPERATION_INSERT == false) {
-                bim.insertUpdateArticleAdditionalLogic(true);
-            }
             //
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {

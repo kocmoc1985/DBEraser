@@ -1,11 +1,16 @@
 
+
+For the print preview articles are not taken for the actual Faktura [IMPORTANT]
+
+When editing a faktura which does not contain articles -- fails [IMPORTANT]
+
+Skicka email till vald address
+
 Påminnelse text should be adjustable
 
 Show ToolTip for Validator, for example when "input is to long"
 
 Print Address of Customer for sending with common post
-
-Implement ERROR_OUTPUT to FILE
 
 ____________________________________________________________________________________________________________________________________________________
 

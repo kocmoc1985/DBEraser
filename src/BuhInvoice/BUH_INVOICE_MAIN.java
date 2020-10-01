@@ -136,15 +136,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
     
     
-    protected void insertUpdateArticleAdditionalLogic(boolean hide){
-        if(hide){
-             jButton_update_articles_row.setEnabled(false);
-             jButton_delete_articles_row.setEnabled(false);
-        }else{
-            jButton_update_articles_row.setEnabled(true);
-            jButton_delete_articles_row.setEnabled(true);
-        }
-    }
+    
 
     protected void hideShowButtonsDependingOnConditions() {
         //
@@ -937,6 +929,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jPanel10.setLayout(new java.awt.GridLayout(1, 0));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/print_preview.png"))); // NOI18N
         jButton1.setToolTipText("Förhandsgranska");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1873,7 +1866,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel6;
     protected javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    protected javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
     private javax.swing.JScrollPane jScrollPane10;
     protected javax.swing.JScrollPane jScrollPane11;
@@ -2082,8 +2075,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
-        //
-        insertUpdateArticleAdditionalLogic(false);
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();
