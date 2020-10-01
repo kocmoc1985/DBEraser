@@ -119,7 +119,7 @@ public abstract class Invoice_ extends Basic_Buh {
                     // OBS! KREDIT FAKTURA [2020-09-15]  
                     String krediteradFakturaNr = bim.getKomment_$();
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3(krediteradFakturaNr));
-                    bim.jButton_add_article.setEnabled(false); // Shall not be possible to add articles
+                    GP_BUH.setEnabled(bim.jButton_add_article, false);// Shall not be possible to add articles
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KREDIT;
                     //
                 } else if (bim.isKontantFaktura()) { // KONTANT FAKTURA

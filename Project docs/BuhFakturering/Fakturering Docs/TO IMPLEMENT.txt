@@ -1,6 +1,4 @@
 
-Optmize the button logics for the "ALL_INVOICES" TAB
-
 Skicka email till vald address
 
 Påminnelse text should be adjustable

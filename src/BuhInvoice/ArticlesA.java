@@ -49,17 +49,13 @@ public class ArticlesA extends Basic_Buh {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_5);
             //
-//            bim.jButton_update_article.setEnabled(false);
-            bim.jButton_delete_article.setEnabled(false);
-//            bim.jButton_add_article.setEnabled(true);
+            GP_BUH.setEnabled(bim.jButton_delete_article, false);
             //
         } else {
             //
             bim.jLabel_Artikel_Insert_or_Update.setText(LANG.LBL_MSG_6);
             //
-//            bim.jButton_update_article.setEnabled(true);
-            bim.jButton_delete_article.setEnabled(true);
-//            bim.jButton_add_article.setEnabled(false);
+            GP_BUH.setEnabled(bim.jButton_delete_article, true);
             //
         }
     }
