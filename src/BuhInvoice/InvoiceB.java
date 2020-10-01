@@ -656,7 +656,7 @@ public class InvoiceB extends Basic_Buh {
             //
         } else if (bim.isKontantFaktura()) {
             //
-            faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "1");
+            faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "0");
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy;
             //
         } else {

@@ -138,6 +138,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected void hideShowButtonsDependingOnConditions() {
         //
         GP_BUH.enableDisableButtons(jPanel4, true); // Enable ALL
+        GP_BUH.setEnabled(jButton4_save_faktura_komment, true);
+        GP_BUH.setEnabled(jButton4_delete_faktura_komment1, true);
         //
         if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
             GP_BUH.setEnabled(jButton_edit_faktura, false);
@@ -148,6 +150,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             GP_BUH.setEnabled(jButton_inbetalning, false);
             GP_BUH.setEnabled(jButton_show_actions, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
+            //
+            GP_BUH.setEnabled(jButton4_save_faktura_komment, false);
+            GP_BUH.setEnabled(jButton4_delete_faktura_komment1, false);
             //
             return;
         }
@@ -160,7 +165,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else if (isKontantFaktura()) {
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
-        } 
+        }
     }
 
     protected TableInvert getTableInvert() {
@@ -190,7 +195,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected ArrayList<HashMap<String, String>> getArticlesMarkedInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
     }
-    
+
     protected ArrayList<HashMap<String, String>> getArticlesCurrInvoiceJTable() {
         return JSon.JTableToHashMaps(jTable_InvoiceA_Insert_articles, InvoiceB.ARTICLES_TABLE_DICT);
     }
