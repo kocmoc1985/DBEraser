@@ -59,14 +59,14 @@ public abstract class Invoice_ extends Basic_Buh {
         super(bim);
         initFakturaEntry_();
     }
-    
-    private void buttonLogic(){
+
+    private void buttonLogic() {
         //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
         //
-        if(articlesJTableEmpty()){
+        if (articlesJTableEmpty()) {
             GP_BUH.setEnabled(bim.jButton_update_articles_row, false);
             GP_BUH.setEnabled(bim.jButton_delete_articles_row, false);
             GP_BUH.enableDisableButtons(bim.jPanel11, false);
@@ -169,7 +169,6 @@ public abstract class Invoice_ extends Basic_Buh {
             rdi.setDisabled();
         }
     }
-
 
     private void initFakturaEntry_() {
         faktura_entry = initFakturaEntry();
@@ -899,16 +898,19 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             forfalloDatumAutoChange(ti);
             //
-        }  else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
             System.out.println("FAKTURA MAKULERAD");
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)) {
             //
-             Validator.validateJComboInput((JComboBox)ie.getSource());
+            Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
             setArticlePrise(true);
             //
+        }else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
+            //
+            Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
             //

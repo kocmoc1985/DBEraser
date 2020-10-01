@@ -8,9 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import java.awt.event.ItemEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
 
@@ -106,7 +104,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", false, true, true);
         kund.enableFixedValuesAdvanced();
-        kund.setUneditable();
+//        kund.setUneditable();
         //
         //
         String faktura_datum_val = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DATUM);

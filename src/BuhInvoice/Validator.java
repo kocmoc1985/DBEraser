@@ -109,6 +109,10 @@ public class Validator {
         }
     }
 
+    /**
+     * [2020-10-01]
+     * @param box 
+     */
     public static void validateJComboInput(JComboBox box) {
         if (box.getSelectedIndex() == -1) {
             // OBS! The border is set here and not from "setNotValidater()" because

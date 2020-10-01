@@ -126,7 +126,7 @@ public class InvoiceA_Insert extends Invoice_ {
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", true, true, true);
         kund.enableFixedValuesAdvanced();
-        kund.setUneditable();
+//        kund.setUneditable();
         //
         String faktura_datum_val = HelpA.get_proper_date_yyyy_MM_dd();
         String faktura_datum_forfallo = HelpA.get_today_plus_x_days(30);
