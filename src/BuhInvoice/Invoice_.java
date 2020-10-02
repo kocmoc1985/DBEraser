@@ -447,6 +447,17 @@ public abstract class Invoice_ extends Basic_Buh {
     protected double getTotalExklMoms() {
         return GP_BUH.round_double(FAKTURA_TOTAL_EXKL_MOMS);
     }
+    
+    protected String defineMomsSats() {
+        if (momsSaveEntry.getMomsSats() == null) {
+            return DB.STATIC__MOMS_SATS;
+        } else {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    momsSaveEntry.getMomsSats()
+            );
+        }
+    }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
 
@@ -531,7 +542,6 @@ public abstract class Invoice_ extends Basic_Buh {
     /**
      * This config is for editing of articles
      *
-     * @param reverse
      * @return
      */
     public RowDataInvert[] getConfigTableInvert_edit_articles() {
@@ -548,6 +558,12 @@ public abstract class Invoice_ extends Basic_Buh {
 //        articles.setUneditable();
 //        articles.setDisabled();
         //
+        //
+        String fixedComboValues_c = defineMomsSats();
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        moms.enableFixedValuesAdvanced();
+        moms.setUneditable();
+//        disableMomsJComboIf(moms);
         //
         String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
@@ -582,6 +598,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         RowDataInvert[] rows = {
             articles,
+            moms,
             komment,
             antal,
             enhet,

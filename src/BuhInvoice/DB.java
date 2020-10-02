@@ -183,6 +183,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__PRIS = "pris";
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
     public static final String BUH_F_ARTIKEL__RABATT_KR = "rabatt_kr";
+    public static final String BUH_F_ARTIKEL__MOMS_SATS = "moms_sats";
     //
     public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";

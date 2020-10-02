@@ -190,16 +190,7 @@ public class InvoiceA_Insert extends Invoice_ {
         //
     }
     
-    private String defineMomsSats() {
-        if (momsSaveEntry.getMomsSats() == null) {
-            return DB.STATIC__MOMS_SATS;
-        } else {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    momsSaveEntry.getMomsSats()
-            );
-        }
-    }
+    
     
     private String defineInklExklMoms(){
         if (momsSaveEntry.getInklExklMoms() == null) {

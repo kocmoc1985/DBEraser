@@ -67,13 +67,15 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
-
+    public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS";
+    
     public static final HashMap<String,String>ARTICLES_TABLE_DICT = new HashMap<>();
     
     static{
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__KOMMENT, DB.BUH_F_ARTIKEL__KOMMENT);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT, DB.BUH_F_ARTIKEL__RABATT);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT_KR, DB.BUH_F_ARTIKEL__RABATT_KR);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__MOMS_SATS, DB.BUH_F_ARTIKEL__MOMS_SATS);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, DB.BUH_FAKTURA_ARTIKEL___NAMN);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__PRIS, DB.BUH_F_ARTIKEL__PRIS);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ANTAL, DB.BUH_F_ARTIKEL__ANTAL);
@@ -226,7 +228,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_INVOICE_ARTIKLES__ENHET,
             TABLE_INVOICE_ARTIKLES__PRIS,
             TABLE_INVOICE_ARTIKLES__RABATT,
-            TABLE_INVOICE_ARTIKLES__RABATT_KR
+            TABLE_INVOICE_ARTIKLES__RABATT_KR,
+            TABLE_INVOICE_ARTIKLES__MOMS_SATS
         };
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
@@ -478,7 +481,8 @@ public class InvoiceB extends Basic_Buh {
             getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT),
-            map.get(DB.BUH_F_ARTIKEL__RABATT_KR)
+            map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
+            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
