@@ -2,6 +2,7 @@ DROP DATABASE if EXISTS buh;
 CREATE DATABASE buh;
 USE buh;
 
+OBS! OBS! OBS! Since Version 7, "MOMS" was moved to from "buh_faktura" -> "buh_f_artikel" ---> This allows to have different moms for different articles in the same faktura
 
 CREATE TABLE buh_kund (
 kundId integer primary key not null AUTO_INCREMENT,
@@ -55,7 +56,6 @@ kundId integer not null,
 fakturaKundId integer,
 fakturanr integer DEFAULT 0,
 fakturatyp integer DEFAULT 0,
-inkl_moms boolean DEFAULT true,
 fakturadatum varchar(10) DEFAULT CURDATE(),
 forfallodatum varchar(10) DEFAULT CURDATE(),
 valuta varchar(3) DEFAULT 'SEK',
@@ -72,7 +72,6 @@ total_ink_moms float DEFAULT 0,
 total_exkl_moms float DEFAULT 0,
 rabatt_total float DEFAULT 0,
 moms_total float DEFAULT 0,
-moms_sats float DEFAULT 0,
 komment varchar(200) DEFAULT '',
 important_komment varchar(100) DEFAULT '',
 ska_bokforas boolean DEFAULT false,

@@ -171,26 +171,6 @@ public class InvoiceA_Update extends Invoice_ {
         //
     }
 
-    
-
-    /**
-     * @deprecated 
-     * @param table
-     * @return 
-     */
-    private String defineInklExklMoms(JTable table) {
-//        if (momsSaveEntry.getInklExklMoms() == null) {
-            return JSon._get_special_(
-                    DB.STATIC__INKL_EXKL_MOMS,
-                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS));
-//            );
-//        } else {
-//            return JSon._get_special_(
-//                    DB.STATIC__INKL_EXKL_MOMS,
-//                    momsSaveEntry.getInklExklMoms()
-//            );
-//        }
-    }
 
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {

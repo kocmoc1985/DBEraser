@@ -1,4 +1,6 @@
 
+Implement column "artikelnr" for the "buh_f_articles"
+
 OBS! The articles are downloaded each time when the TableInvert_2 is redrawn. This refers to when i create/update faktura. THis problem probably exists at other locations to.
 
 Skicka email till vald address

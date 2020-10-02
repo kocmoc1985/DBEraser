@@ -144,12 +144,7 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    /**
-     * 
-     */
-//    protected void resetSavedMoms_jCombo() {
-////        momsSaveEntry.reset();
-//    }
+  
 
     private boolean fakturaBetald() {
         //
@@ -358,23 +353,18 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    /**
-     * @deprecated @return
-     */
-    public boolean getInklMoms() {
-        return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
-    }
+    
 
-    /**
-     * @deprecated @return
-     */
-    public double getMomsSats() {
-//        try {
-        return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
-//        } catch (Exception ex) {
-//            return 0.25;
-//        }
-    }
+//    /**
+//     * @deprecated @return
+//     */
+//    public double getMomsSats() {
+////        try {
+//        return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
+////        } catch (Exception ex) {
+////            return 0.25;
+////        }
+//    }
 
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
@@ -647,7 +637,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         //
         String fixedComboValues_c = defineMomsSats();
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
         //
@@ -702,7 +692,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         //
         String fixedComboValues_c = defineMomsSats(table);
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", false, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
 //        disableMomsJComboIf(moms); // *****
@@ -752,37 +742,7 @@ public abstract class Invoice_ extends Basic_Buh {
         return rows;
     }
 
-    /**
-     * @deprecated 
-     */
-    protected void hideMomsSatsIfExklMoms() {
-        //
-//        System.out.println("INKL_MOMS----------------------");
-        //
-        boolean momsInk = getInklMoms();
-        //
-        TableInvert table = (TableInvert) TABLE_INVERT_3;
-        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__MOMS_SATS);
-        RowDataInvert rdi = tri.getRowConfig();
-        //
-        if (momsInk == false) {
-            //
-            // Both ways below working (regarding: "setVisible()")
-//                tri.setVisible(false);
-            rdi.setVisible_(false);
-            //
-            refreshTableInvert(TABLE_INVERT_3);
-            //
-        } else {
-            //
-            // Both ways below working
-//                tri.setVisible(true);
-            rdi.setVisible_(true);
-            //
-            refreshTableInvert(TABLE_INVERT_3);
-            //
-        }
-    }
+    
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {

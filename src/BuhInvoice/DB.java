@@ -140,9 +140,9 @@ public class DB {
     public static final String BUH_FAKTURA__EXP_AVG = "exp_avg";
     public static final String BUH_FAKTURA__DROJSMALSRANTA = "drojsmalsranta";
     public static final String BUH_FAKTURA__FRAKT = "frakt";
-    public static final String BUH_FAKTURA__INKL_MOMS = "inkl_moms";
+//    public static final String BUH_FAKTURA__INKL_MOMS = "inkl_moms"; // deleted [2020-10-02]
     public static final String BUH_FAKTURA__MAKULERAD = "makulerad";
-    public static final String BUH_FAKTURA__MOMS_SATS = "moms_sats";
+//    public static final String BUH_FAKTURA__MOMS_SATS = "moms_sats"; // deleted [2020-10-02]
     public static final String BUH_FAKTURA__TOTAL__ = "total_ink_moms";
     public static final String BUH_FAKTURA__TOTAL_EXKL_MOMS__ = "total_exkl_moms";
     public static final String BUH_FAKTURA__RABATT_TOTAL = "rabatt_total";

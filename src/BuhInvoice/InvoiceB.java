@@ -41,12 +41,10 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__LEV_SATT = "LEV SATT";
     public static String TABLE_ALL_INVOICES__IMPORTANT_KOMMENT = "IKOMM";
     //
-    public static String TABLE_ALL_INVOICES__IS_INKL_MOMS = "MOMS INKL";
     public static String TABLE_ALL_INVOICES__TOTAL_INKL_MOMS = "TOTAL";
     public static String TABLE_ALL_INVOICES__RABATT_TOTAL_KR = "RABATT";
     public static String TABLE_ALL_INVOICES__EXKL_MOMS = "EXKL MOMS";
     public static String TABLE_ALL_INVOICES__MOMS = "MOMS";
-    public static String TABLE_ALL_INVOICES__MOMS_SATS = "MOMS SATS";
     public static String TABLE_ALL_INVOICES__FRAKT = "FRAKT";
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP. AVGIFT";
     public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
@@ -186,8 +184,6 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__BET_VILKOR,
             TABLE_ALL_INVOICES__LEV_VILKOR,
             TABLE_ALL_INVOICES__LEV_SATT,
-            TABLE_ALL_INVOICES__IS_INKL_MOMS,
-            TABLE_ALL_INVOICES__MOMS_SATS,
             TABLE_ALL_INVOICES__FRAKT,
             TABLE_ALL_INVOICES__EXP_AVG,
             TABLE_ALL_INVOICES__DROJSMALSRANTA,
@@ -355,8 +351,6 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_INKL_MOMS);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MOMS_SATS);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
@@ -388,8 +382,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__BETAL_VILKOR),
             map.get(DB.BUH_FAKTURA__LEV_VILKOR),
             map.get(DB.BUH_FAKTURA__LEV_SATT),
-            map.get(DB.BUH_FAKTURA__INKL_MOMS),
-            map.get(DB.BUH_FAKTURA__MOMS_SATS),
+//            map.get(DB.BUH_FAKTURA__INKL_MOMS), // deleted [2020-10-02]
+//            map.get(DB.BUH_FAKTURA__MOMS_SATS), // deleted [2020-10-02]
             map.get(DB.BUH_FAKTURA__FRAKT),
             map.get(DB.BUH_FAKTURA__EXP_AVG),
             map.get(DB.BUH_FAKTURA__DROJSMALSRANTA),
@@ -816,7 +810,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, _get(TABLE_ALL_INVOICES__EXP_AVG));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, _get_percent(TABLE_ALL_INVOICES__MOMS_SATS));
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "");
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
         //
@@ -922,7 +916,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, getValueTableInvert(DB.BUH_FAKTURA__FRAKT, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, getValueTableInvert(DB.BUH_FAKTURA__EXP_AVG, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, "" + invoice.getTotalExklMoms());
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "" + ((int)invoice.getMomsSats() * 100));
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "" ); // "" + ((int)invoice.getMomsSats() * 100)
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //
