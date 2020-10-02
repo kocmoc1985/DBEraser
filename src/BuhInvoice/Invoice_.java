@@ -54,6 +54,8 @@ public abstract class Invoice_ extends Basic_Buh {
     private static double FAKTURA_TOTAL = 0;
     private static double RABATT_TOTAL = 0;
     private static double MOMS_TOTAL = 0;
+    private static double MOMS_ARTIKLAR = 0;
+    private static double MOMS_FRAKT_AND_EXP_AVG = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
@@ -383,11 +385,16 @@ public abstract class Invoice_ extends Basic_Buh {
         RABATT_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
+        MOMS_ARTIKLAR = 0;
+        MOMS_FRAKT_AND_EXP_AVG = 0;
         //
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getMomsTotal());
         BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getMomsArtiklarTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getMomsFraktExpAvgTotal());
+        //
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -455,18 +462,23 @@ public abstract class Invoice_ extends Basic_Buh {
         double exp_avg = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
         //
 //        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
-        MOMS_TOTAL += countMomsFraktAndExpAvg(frakt, exp_avg, moms_map);
+        //
+        MOMS_ARTIKLAR = MOMS_TOTAL;
+        MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(frakt, exp_avg, moms_map);
+        MOMS_TOTAL += MOMS_FRAKT_AND_EXP_AVG;
         FAKTURA_TOTAL += MOMS_TOTAL;
         FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
-
+        //
         //
         FAKTURA_TOTAL += frakt;
         FAKTURA_TOTAL += exp_avg;
         //
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms.setText("" + getMomsTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getMomsTotal());
         BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getMomsArtiklarTotal());
+        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getMomsFraktExpAvgTotal());
         //
     }
 
@@ -524,6 +536,14 @@ public abstract class Invoice_ extends Basic_Buh {
         return (frakt + expAvg) * momsSats;
     }
 
+    protected double getMomsArtiklarTotal() {
+        return GP_BUH.round_double(MOMS_ARTIKLAR);
+    }
+    
+    protected double getMomsFraktExpAvgTotal() {
+        return GP_BUH.round_double(MOMS_FRAKT_AND_EXP_AVG);
+    }
+    
     protected double getRabattTotal() {
         return GP_BUH.round_double(RABATT_TOTAL);
     }
