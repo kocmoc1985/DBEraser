@@ -25,6 +25,7 @@ import java.awt.event.MouseWheelEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -858,6 +859,48 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                 }
             });
         }
+    }
+    
+    /**
+     * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
+     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
+     *       String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     *       return removeFromTableConfigInvert(rows, toRemove);
+     *   } else {
+     *       return rows;
+     *   }
+     * 
+     * @param arr
+     * @param columnsToRemove
+     * @return 
+     */
+    public  RowDataInvert[] removeFromTableConfigInvert(RowDataInvert[] arr, String[] columnsToRemove) {
+        //
+        ArrayList<RowDataInvert> list = new ArrayList<RowDataInvert>();
+        //
+        list.addAll(Arrays.asList(arr));
+        //
+        RowDataInvert[] toReturn = new RowDataInvert[list.size() - columnsToRemove.length];
+        //
+        int flag = 0;
+        //
+        for (RowDataInvert rdi : list) {
+            if (a01(columnsToRemove, rdi.getFieldNickName()) == false) {
+                toReturn[flag] = rdi;
+                flag++;
+            }
+        }
+        //
+        return toReturn;
+    }
+
+    private  boolean a01(String[] columnsToRemove, String currColName) {
+        for (String colName : columnsToRemove) {
+            if (currColName.equals(colName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void paint_selected_rows_a(final LinkedList<Integer> rowsToPaint, final JTable jTable, final Color color) {

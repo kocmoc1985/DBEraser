@@ -336,34 +336,6 @@ public class HelpA {
         }
     }
 
-    public static RowDataInvert[] removeGivenEntriesFromArray(RowDataInvert[] arr, String[] columnsToRemove) {
-        //
-        ArrayList<RowDataInvert> list = new ArrayList<RowDataInvert>();
-        //
-        list.addAll(Arrays.asList(arr));
-        //
-        RowDataInvert[] toReturn = new RowDataInvert[list.size() - columnsToRemove.length];
-        //
-        int flag = 0;
-        //
-        for (RowDataInvert rdi : list) {
-            if (a01(columnsToRemove, rdi.getFieldNickName()) == false) {
-                toReturn[flag] = rdi;
-                flag++;
-            }
-        }
-        //
-        return toReturn;
-    }
-
-    private static boolean a01(String[] columnsToRemove, String currColName) {
-        for (String colName : columnsToRemove) {
-            if (currColName.equals(colName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static String getCurrentTabName(JTabbedPane jtp) {
         int i = jtp.getSelectedIndex();

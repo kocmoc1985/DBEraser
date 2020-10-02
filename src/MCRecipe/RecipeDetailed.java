@@ -1120,7 +1120,7 @@ public class RecipeDetailed extends BasicTab {
         //
         if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
             String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-            return HelpA.removeGivenEntriesFromArray(rows, toRemove);
+            return removeFromTableConfigInvert(rows, toRemove);
         } else {
             return rows;
         }
@@ -1241,7 +1241,7 @@ public class RecipeDetailed extends BasicTab {
         //
 //        if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
 //            String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-//            config = HelpA.removeGivenEntriesFromArray(getConfigTableInvert(), toRemove);
+//            config = HelpA.removeFromTableConfigInvert(getConfigTableInvert(), toRemove);
 //        } else {
 //            config = getConfigTableInvert();
 //        }
