@@ -171,20 +171,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
     }
 
-    private String defineMomsSats(JTable table) {
-        //
-        if (momsSaveEntry.getMomsSats() == null) {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MOMS_SATS)
-            );
-        } else {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    momsSaveEntry.getMomsSats()
-            );
-        }
-    }
+    
 
     private String defineInklExklMoms(JTable table) {
         if (momsSaveEntry.getInklExklMoms() == null) {

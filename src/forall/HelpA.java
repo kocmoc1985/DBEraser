@@ -336,7 +336,6 @@ public class HelpA {
         }
     }
 
-
     public static String getCurrentTabName(JTabbedPane jtp) {
         int i = jtp.getSelectedIndex();
         return jtp.getTitleAt(i);
@@ -2948,6 +2947,37 @@ public class HelpA {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+    }
+
+    public static HashMap increase_map_value_with_x(Object key, Object value, HashMap map) {
+        if (map.containsKey(key)) {
+            Object result = null;
+            if (map.get(key) instanceof Integer && value instanceof Integer) {
+                int val_1 = (Integer) map.get(key);
+                int val_2 = (Integer) value;
+                result = val_1 + val_2;
+            } else if (map.get(key) instanceof Integer && value instanceof Double) {
+                int val_1 = (Integer) map.get(key);
+                double val_2 = (Double) value;
+                result = (double) (val_1 + val_2);
+            } else if (map.get(key) instanceof Double && value instanceof Double) {
+                double val_1 = (Double) map.get(key);
+                double val_2 = (Double) value;
+                result = (double) (val_1 + val_2);
+            }
+            //
+            return update_value_hash_map(key, result, map);
+            //
+        } else {
+            map.put(key, value);
+            return map;
+        }
+    }
+    
+     private static HashMap update_value_hash_map(Object key, Object value, HashMap map) {
+        map.remove(key);
+        map.put(key, value);
+        return map;
     }
 
     public static HashMap<String, String> joinHashMaps(HashMap p1, HashMap p2) {

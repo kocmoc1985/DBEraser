@@ -49,6 +49,11 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public Basic() {
     }
 
+    public String getLongName(String statics, String valToTranslate){
+        return JSon.getLongName(statics, valToTranslate);
+    }
+    
+    
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
         //
@@ -79,12 +84,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
     }
     
-    public String getLongName(String statics, String valToTranslate){
-        return JSon.getLongName(statics, valToTranslate);
-    }
-    
-    
-
     public String getValueHashMap(String value) {
         //
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {

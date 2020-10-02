@@ -67,7 +67,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
-    public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS";
+    public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
     
     public static final HashMap<String,String>ARTICLES_TABLE_DICT = new HashMap<>();
     

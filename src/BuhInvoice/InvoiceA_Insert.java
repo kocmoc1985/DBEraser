@@ -74,7 +74,8 @@ public class InvoiceA_Insert extends Invoice_ {
             InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET,
             InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT,
-            InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR
+            InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR,
+            InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS
         };
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));

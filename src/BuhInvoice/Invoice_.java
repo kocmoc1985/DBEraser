@@ -8,6 +8,8 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.Moms;
+import BuhInvoice.sec.MomsBuh_F_artikel;
+import BuhInvoice.sec.MomsComporator;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
@@ -27,6 +29,11 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -307,36 +314,57 @@ public abstract class Invoice_ extends Basic_Buh {
      */
     private double getDoubleJTable(JTable table, int row, String parameter) {
         //
-        String rabatt = HelpA.getValueGivenRow(table, row, parameter);
+        String value = HelpA.getValueGivenRow(table, row, parameter);
         //
-        if (HelpA.isNumber(rabatt)) {
-            return Double.parseDouble(rabatt);
+        if (HelpA.isNumber(value)) {
+            return Double.parseDouble(value);
         } else {
             return 0;
         }
         //
     }
 
-    public double getRabattPercent_JTable(JTable table, int row) {
+//    public double getRabattPercent_JTable(JTable table, int row) {
+//        //
+//        String rabatt = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+//        //
+//        try {
+//            double rabatt_ = Double.parseDouble(rabatt);
+//            if (rabatt_ > 1) {
+//                return rabatt_ / 100;
+//            } else {
+//                return rabatt_;
+//            }
+//        } catch (Exception ex) {
+//            return 0;
+//        }
+//    }
+    public double getPercent_JTable(JTable table, int row, String parameter) {
         //
-        String rabatt = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        String value = HelpA.getValueGivenRow(table, row, parameter);
         //
         try {
-            double rabatt_ = Double.parseDouble(rabatt);
-            if (rabatt_ > 1) {
-                return rabatt_ / 100;
+            double value_ = Double.parseDouble(value);
+            if (value_ > 1) {
+                return value_ / 100;
             } else {
-                return rabatt_;
+                return value_;
             }
         } catch (Exception ex) {
             return 0;
         }
     }
 
+    /**
+     * @deprecated @return
+     */
     public boolean getInklMoms() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__INKL_MOMS, TABLE_INVERT_3)) == 1;
     }
 
+    /**
+     * @deprecated @return
+     */
     public double getMomsSats() {
 //        try {
         return Double.parseDouble(getValueTableInvert(DB.BUH_FAKTURA__MOMS_SATS, TABLE_INVERT_3));
@@ -388,35 +416,49 @@ public abstract class Invoice_ extends Basic_Buh {
         double pris_exkl_moms;
         int antal;
         //
+        HashMap<Double, Double> moms_map = new HashMap<>();
+        //
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             //
-            double rabatt_percent = getRabattPercent_JTable(table, i);
+            double rabatt_percent = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
             double rabatt_kr = getDoubleJTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+            double moms_sats = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
             //
             //
             if (rabatt_percent == 0 && rabatt_kr == 0) {
-                FAKTURA_TOTAL += (pris_exkl_moms * antal);
+                double actPris = (pris_exkl_moms * antal);
+                FAKTURA_TOTAL += actPris;
+                double actMoms = (pris_exkl_moms * antal) * moms_sats;
+                //
+                HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
+                //
+                MOMS_TOTAL += actMoms;
+                //
             } else if (rabatt_kr != 0) {
-                FAKTURA_TOTAL += (pris_exkl_moms - rabatt_kr) * antal;
+                double actPris = (pris_exkl_moms - rabatt_kr) * antal;
+                FAKTURA_TOTAL += actPris;
                 RABATT_TOTAL += (rabatt_kr * antal);
+                double actMoms = ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+                //
+                HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
+                //
+                MOMS_TOTAL += actMoms;
             }
             //
         }
         //
-        double momsSats = getMomsSats();
+//        double momsSats = getMomsSats();
         double frakt = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
         double exp_avg = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
         //
-//        if (getInklMoms()) {
-        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
+//        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
+        MOMS_TOTAL += countMomsFraktAndExpAvg(frakt, exp_avg, moms_map);
         FAKTURA_TOTAL += MOMS_TOTAL;
         FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
-//        } else {
-//            FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL;
-//        }
+
         //
         FAKTURA_TOTAL += frakt;
         FAKTURA_TOTAL += exp_avg;
@@ -428,6 +470,56 @@ public abstract class Invoice_ extends Basic_Buh {
         //
     }
 
+    /**
+     * Under development [2020-10-02]
+     * Moms logic for "frakt" & "exp. avgift"
+     * Momssatsen för frakt- och fakturaavgiften/expeditionsavgiften på
+     * fakturan/fakturorna blir den momssats som du har på den största summan/beloppet på din faktura.
+     * Ifall du inte vill att det ska bli på det viset så kan du lägga din moms för 
+     * dessa avgifter som artiklar på fakturan istället. 
+     * Detta är viktigt för enligt mervärdesskattelagen ska beskattningsunderlaget för fraktkostnad
+     * och fakturaavgift fördelas på beskattningsunderlaget
+     * för respektive vara. Det innebär att du behöver fördela frakt och fakturaavgifter på olika momssatser.
+     * @param frakt
+     * @param expAvg
+     * @return
+     */
+    private double countMomsFraktAndExpAvg(double frakt, double expAvg, HashMap<Double, Double> map) {
+        //
+        List<MomsBuh_F_artikel> list = new ArrayList<>();
+        //
+        for (Map.Entry<Double, Double> entry : map.entrySet()) {
+            Double moms = entry.getKey();
+            Double sum = entry.getValue();
+            //
+            list.add(new MomsBuh_F_artikel(moms, sum));
+            //
+        }
+        //
+        Collections.sort(list, new MomsComporator());
+        //
+        //
+        list.forEach((a) -> {
+            System.out.println(a.getMomsSats() + "  : " + a.getSum() + ", ");
+        });
+        //
+        double momsSats = 0.25;
+        //
+        if (list.isEmpty() == false) {
+            momsSats = list.get(0).getMomsSats();
+        }
+        //
+        System.out.println("Defined MOMS SATS: " + momsSats);
+        //
+        return (frakt + expAvg) * momsSats;
+    }
+
+    /**
+     * @deprecated @param frakt
+     * @param expAvg
+     * @param momsSats
+     * @return
+     */
     private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats) {
         return (frakt + expAvg) * momsSats;
     }
@@ -447,10 +539,25 @@ public abstract class Invoice_ extends Basic_Buh {
     protected double getTotalExklMoms() {
         return GP_BUH.round_double(FAKTURA_TOTAL_EXKL_MOMS);
     }
-    
+
     protected String defineMomsSats() {
         if (momsSaveEntry.getMomsSats() == null) {
             return DB.STATIC__MOMS_SATS;
+        } else {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    momsSaveEntry.getMomsSats()
+            );
+        }
+    }
+
+    protected String defineMomsSats(JTable table) {
+        //
+        if (momsSaveEntry.getMomsSats() == null) {
+            return JSon._get_special_(
+                    DB.STATIC__MOMS_SATS,
+                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS)
+            );
         } else {
             return JSon._get_special_(
                     DB.STATIC__MOMS_SATS,
@@ -510,6 +617,12 @@ public abstract class Invoice_ extends Basic_Buh {
 //        articles.setUneditable();
         articles.enableEmptyValue(); //[2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
         //
+        //
+        String fixedComboValues_c = defineMomsSats();
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        moms.enableFixedValuesAdvanced();
+        moms.setUneditable();
+        //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
         RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", true, true, false);
@@ -528,6 +641,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         RowDataInvert[] rows = {
             articles,
+            moms,
             komment,
             antal,
             enhet,
@@ -559,11 +673,11 @@ public abstract class Invoice_ extends Basic_Buh {
 //        articles.setDisabled();
         //
         //
-        String fixedComboValues_c = defineMomsSats();
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+        String fixedComboValues_c = defineMomsSats(table);
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
-//        disableMomsJComboIf(moms);
+//        disableMomsJComboIf(moms); // *****
         //
         String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
@@ -925,7 +1039,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             setArticlePrise(true);
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //

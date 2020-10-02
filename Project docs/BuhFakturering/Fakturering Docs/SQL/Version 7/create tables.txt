@@ -127,6 +127,7 @@ pris float DEFAULT 0,
 enhet varchar(30) DEFAULT 'St',
 rabatt integer DEFAULT 0,
 rabatt_kr float DEFAULT 0,
+moms_sats integer DEFAULT 0,
 Foreign key (fakturaId) references buh_faktura(fakturaId),
 Foreign key (artikelId) references buh_faktura_artikel(artikelId)
 );
