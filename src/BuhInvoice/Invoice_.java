@@ -28,15 +28,11 @@ import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 
 /**
@@ -56,6 +52,8 @@ public abstract class Invoice_ extends Basic_Buh {
     private static double MOMS_TOTAL = 0;
     private static double MOMS_ARTIKLAR = 0;
     private static double MOMS_FRAKT_AND_EXP_AVG = 0;
+    //
+    private static double MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
@@ -388,13 +386,21 @@ public abstract class Invoice_ extends Basic_Buh {
         MOMS_ARTIKLAR = 0;
         MOMS_FRAKT_AND_EXP_AVG = 0;
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getMomsTotal());
-        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
-        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getMomsArtiklarTotal());
-        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getMomsFraktExpAvgTotal());
+        MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
         //
+        displayTotals();
+        //
+    }
+
+    private void displayTotals() {
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
+        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
+        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
+        //
+        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG));
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -473,25 +479,21 @@ public abstract class Invoice_ extends Basic_Buh {
         FAKTURA_TOTAL += frakt;
         FAKTURA_TOTAL += exp_avg;
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getFakturaTotal());
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotalExklMoms());
-        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getMomsTotal());
-        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getRabattTotal());
-        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getMomsArtiklarTotal());
-        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getMomsFraktExpAvgTotal());
+        displayTotals();
         //
     }
 
     /**
-     * Under development [2020-10-02]
-     * Moms logic for "frakt" & "exp. avgift"
+     * Under development [2020-10-02] Moms logic for "frakt" & "exp. avgift"
      * Momssatsen för frakt- och fakturaavgiften/expeditionsavgiften på
-     * fakturan/fakturorna blir den momssats som du har på den största summan/beloppet på din faktura.
-     * Ifall du inte vill att det ska bli på det viset så kan du lägga din moms för 
-     * dessa avgifter som artiklar på fakturan istället. 
-     * Detta är viktigt för enligt mervärdesskattelagen ska beskattningsunderlaget för fraktkostnad
-     * och fakturaavgift fördelas på beskattningsunderlaget
-     * för respektive vara. Det innebär att du behöver fördela frakt och fakturaavgifter på olika momssatser.
+     * fakturan/fakturorna blir den momssats som du har på den största
+     * summan/beloppet på din faktura. Ifall du inte vill att det ska bli på det
+     * viset så kan du lägga din moms för dessa avgifter som artiklar på
+     * fakturan istället. Detta är viktigt för enligt mervärdesskattelagen ska
+     * beskattningsunderlaget för fraktkostnad och fakturaavgift fördelas på
+     * beskattningsunderlaget för respektive vara. Det innebär att du behöver
+     * fördela frakt och fakturaavgifter på olika momssatser.
+     *
      * @param frakt
      * @param expAvg
      * @return
@@ -511,9 +513,9 @@ public abstract class Invoice_ extends Basic_Buh {
         Collections.sort(list, new MomsComporator());
         //
         //
-        list.forEach((a) -> {
-            System.out.println(a.getMomsSats() + "  : " + a.getSum() + ", ");
-        });
+//        list.forEach((a) -> {
+//            System.out.println(a.getMomsSats() + "  : " + a.getSum() + ", ");
+//        });
         //
         double momsSats = 0.25;
         //
@@ -521,7 +523,8 @@ public abstract class Invoice_ extends Basic_Buh {
             momsSats = list.get(0).getMomsSats();
         }
         //
-        System.out.println("Defined MOMS SATS: " + momsSats);
+        MOMS_SATS__FRAKT_AND_EXP_AVG = momsSats;
+//        System.out.println("Defined MOMS SATS: " + momsSats);
         //
         return (frakt + expAvg) * momsSats;
     }
@@ -536,14 +539,18 @@ public abstract class Invoice_ extends Basic_Buh {
         return (frakt + expAvg) * momsSats;
     }
 
+    protected double getTotal(double total) {
+        return GP_BUH.round_double(total);
+    }
+
     protected double getMomsArtiklarTotal() {
         return GP_BUH.round_double(MOMS_ARTIKLAR);
     }
-    
+
     protected double getMomsFraktExpAvgTotal() {
         return GP_BUH.round_double(MOMS_FRAKT_AND_EXP_AVG);
     }
-    
+
     protected double getRabattTotal() {
         return GP_BUH.round_double(RABATT_TOTAL);
     }

@@ -532,12 +532,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel15 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField_total_exkl_moms = new javax.swing.JTextField();
         jTextField_moms_artiklar = new javax.swing.JTextField();
+        jTextField_moms_sats_frakt_exp_avg = new javax.swing.JTextField();
         jTextField_moms_frakt_expavg = new javax.swing.JTextField();
         jTextField_moms_total = new javax.swing.JTextField();
         jTextField_rabatt_total = new javax.swing.JTextField();
@@ -1003,9 +1005,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel5.setText("Moms artiklar");
         jPanel15.add(jLabel5);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("M. sats");
+        jPanel15.add(jLabel7);
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Moms frakt");
+        jLabel6.setToolTipText("Moms på frakt och avgifter");
         jPanel15.add(jLabel6);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1035,6 +1043,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_moms_artiklar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField_moms_artiklar.setText("0");
         jPanel15.add(jTextField_moms_artiklar);
+
+        jTextField_moms_sats_frakt_exp_avg.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField_moms_sats_frakt_exp_avg.setText("0");
+        jPanel15.add(jTextField_moms_sats_frakt_exp_avg);
 
         jTextField_moms_frakt_expavg.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField_moms_frakt_expavg.setText("0");
@@ -1850,6 +1862,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel5_separator;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
@@ -1904,6 +1917,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected static javax.swing.JTextField jTextField_moms_artiklar;
     protected static javax.swing.JTextField jTextField_moms_frakt_expavg;
+    protected static javax.swing.JTextField jTextField_moms_sats_frakt_exp_avg;
     protected static javax.swing.JTextField jTextField_moms_total;
     protected static javax.swing.JTextField jTextField_rabatt_total;
     protected static javax.swing.JTextField jTextField_total_exkl_moms;
