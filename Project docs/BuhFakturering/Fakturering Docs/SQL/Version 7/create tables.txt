@@ -110,6 +110,7 @@ artikelId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
 pris float DEFAULT 0,
 namn varchar(50) DEFAULT '',
+artnr varchar(50) DEFAULT '',
 komment varchar(500) DEFAULT '',
 artikel_kategori varchar (1) DEFAULT 'A',
 Foreign key (kundId) references buh_kund(kundId)

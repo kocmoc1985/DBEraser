@@ -1,5 +1,5 @@
 
-Implement column "artikelnr" for the "buh_f_articles"
+Implement column "artikelnr" for the "buh_faktura_artikel" -> it should be also verified against the JTable and namely if exits already or not..
 
 OBS! The articles are downloaded each time when the TableInvert_2 is redrawn. This refers to when i create/update faktura. THis problem probably exists at other locations to.
 

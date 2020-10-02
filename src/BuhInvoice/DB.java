@@ -168,6 +168,7 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___ID = "artikelId";
     public static final String BUH_FAKTURA_ARTIKEL___KUND_ID = "kundId";
     public static final String BUH_FAKTURA_ARTIKEL___NAMN = "namn";
+    public static final String BUH_FAKTURA_ARTIKEL___ARTNR = "artnr";
     public static final String BUH_FAKTURA_ARTIKEL___LAGER = "lager";
     public static final String BUH_FAKTURA_ARTIKEL___PRIS = "pris";
     public static final String BUH_FAKTURA_ARTIKEL___INKOPS_PRIS = "inkopspris";

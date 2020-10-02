@@ -36,6 +36,7 @@ public class ArticlesA extends Basic_Buh {
     private static final String TABLE_ARTICLES__PRIS = "PRIS";
 //    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
+    private static final String TABLE_ARTICLES__ARTNR = "ARTIKELNR";
     private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
     private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
     //
@@ -111,6 +112,7 @@ public class ArticlesA extends Basic_Buh {
             TABLE_ARTICLES__ID,
             TABLE_ARTICLES__KUND_ID,
             TABLE_ARTICLES__NAMN,
+            TABLE_ARTICLES__ARTNR,
             TABLE_ARTICLES__PRIS,
 //            TABLE_ARTICLES__INKOPS_PRIS,
 //            TABLE_ARTICLES__LAGER,
@@ -217,6 +219,7 @@ public class ArticlesA extends Basic_Buh {
             map.get(DB.BUH_FAKTURA_ARTIKEL___ID), // hidden
             map.get(DB.BUH_FAKTURA_ARTIKEL___KUND_ID), // hidden
             map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN),
+            map.get(DB.BUH_FAKTURA_ARTIKEL___ARTNR),
             map.get(DB.BUH_FAKTURA_ARTIKEL___PRIS),
 //            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
 //            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
@@ -348,6 +351,8 @@ public class ArticlesA extends Basic_Buh {
         //
         RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___NAMN, "ARTIKEL NAMN", "", true, true, true);
         //
+        RowDataInvert artnr = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___ARTNR, TABLE_ARTICLES__ARTNR, "", true, true, false);
+        //
         RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, "PRIS", "", false, true, false);
         //
 //        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, false);
@@ -363,6 +368,7 @@ public class ArticlesA extends Basic_Buh {
         //
         RowDataInvert[] rows = {
             namn,
+            artnr,
             pris,
             //            inkopspris,
             //            lager,
@@ -384,6 +390,9 @@ public class ArticlesA extends Basic_Buh {
         //
         String namn_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_FAKTURA_ARTIKEL___NAMN, TABLE_ARTICLES__NAMN, "", true, true, true);
+        //
+        String artnr_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__ARTNR);
+        RowDataInvert artnr = new RowDataInvertB(artnr_, DB.BUH_FAKTURA_ARTIKEL___ARTNR, TABLE_ARTICLES__ARTNR, "", true, true, false);
         //
         String pris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_ARTICLES__PRIS, "", true, true, false);
@@ -411,6 +420,7 @@ public class ArticlesA extends Basic_Buh {
         //
         RowDataInvert[] rows = {
             namn,
+            artnr,
             pris,
             //            inkopspris,
             //            lager,
@@ -439,7 +449,15 @@ public class ArticlesA extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___NAMN)) {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
-            Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);
+            if(Validator.validateMaxInputLength(jli, 50)){
+              Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);  
+            }
+            //
+        }else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ARTNR)) {
+            //
+            if(Validator.validateMaxInputLength(jli, 50)){
+              Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__ARTNR);  
+            }
             //
         }
         //

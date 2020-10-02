@@ -118,9 +118,9 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             } else {
                 //
-                if (bim.isMakulerad()) {
-                    HelpA.showNotification_separate_thread(LANG.MSG_9);
-                }
+//                if (bim.isMakulerad()) {
+//                    HelpA.showNotification_separate_thread(LANG.MSG_9);
+//                }
                 //
                 if (bim.isKreditFaktura()) {
                     // OBS! KREDIT FAKTURA [2020-09-15]  

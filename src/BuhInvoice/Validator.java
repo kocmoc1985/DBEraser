@@ -46,7 +46,7 @@ public class Validator {
         //
         String valToCheck = jtfi.getText();
         //
-        if (valToCheck.isEmpty() || table.getRowCount() == 0) {
+        if (valToCheck == null ||valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);
         }
         //
@@ -56,7 +56,12 @@ public class Validator {
             //
             String val = (String) table.getValueAt(x, col);
             //
+            if(val == null){
+                 return setValidated(jli);
+            }
+            //
             if (val.equals(valToCheck)) {
+                setToolTip(jli, LANG.MSG_14_2);
                 return setNotValidated(jli, Color.orange);
             }
             //
@@ -146,8 +151,6 @@ public class Validator {
         if (val.length() <= length) {
             setValidated(jli);
             //
-            unsetToolTip(jli);
-            //
             return true;
         } else {
             //
@@ -191,6 +194,8 @@ public class Validator {
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             jtf.setSaveEmptyStringValue();
         }
+        //
+        unsetToolTip(jli);
         //
         JComponent c = (JComponent) jli;
         //
