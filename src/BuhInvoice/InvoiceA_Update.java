@@ -173,18 +173,23 @@ public class InvoiceA_Update extends Invoice_ {
 
     
 
+    /**
+     * @deprecated 
+     * @param table
+     * @return 
+     */
     private String defineInklExklMoms(JTable table) {
-        if (momsSaveEntry.getInklExklMoms() == null) {
+//        if (momsSaveEntry.getInklExklMoms() == null) {
             return JSon._get_special_(
                     DB.STATIC__INKL_EXKL_MOMS,
-                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS)
-            );
-        } else {
-            return JSon._get_special_(
-                    DB.STATIC__INKL_EXKL_MOMS,
-                    momsSaveEntry.getInklExklMoms()
-            );
-        }
+                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__IS_INKL_MOMS));
+//            );
+//        } else {
+//            return JSon._get_special_(
+//                    DB.STATIC__INKL_EXKL_MOMS,
+//                    momsSaveEntry.getInklExklMoms()
+//            );
+//        }
     }
 
     @Override
@@ -192,22 +197,18 @@ public class InvoiceA_Update extends Invoice_ {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        String fixedComboValues_a = defineInklExklMoms(table);
-        //
-//        String fixedComboValues_a = "Inkl moms;1,Exkl moms;0"; // This will aquired from SQL
-        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", false, true, false);
-        inkl_exkl_moms.enableFixedValuesAdvanced();
-        inkl_exkl_moms.setUneditable();
-        disableMomsJComboIf(inkl_exkl_moms); // *****
-        //
-        //
-        String fixedComboValues_c = defineMomsSats(table);
-        //
-//        String fixedComboValues_c = "25%;0.25,12%;0.12,6%;0.06"; // This will aquired from SQL
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);
-        moms.enableFixedValuesAdvanced();
-        moms.setUneditable();
-        disableMomsJComboIf(moms); // *****
+//        String fixedComboValues_a = defineInklExklMoms(table);
+//        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", false, true, false);
+//        inkl_exkl_moms.enableFixedValuesAdvanced();
+//        inkl_exkl_moms.setUneditable();
+//        disableMomsJComboIf(inkl_exkl_moms); // *****
+//        //
+//        //
+//        String fixedComboValues_c = defineMomsSats(table);
+//        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", false, true, false);
+//        moms.enableFixedValuesAdvanced();
+//        moms.setUneditable();
+//        disableMomsJComboIf(moms); // *****
         //
         String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);
@@ -233,8 +234,8 @@ public class InvoiceA_Update extends Invoice_ {
         makulerad.setUneditable();
         //
         RowDataInvert[] rows = {
-            inkl_exkl_moms,
-            moms,
+//            inkl_exkl_moms,
+//            moms,
             order,
             expavgift,
             frakt,

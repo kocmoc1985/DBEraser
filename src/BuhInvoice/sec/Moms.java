@@ -8,6 +8,8 @@ package BuhInvoice.sec;
 /**
  * This class is for saving actual "moms sats" & "inkl exkl moms" when the
  * jcombobox state is changed
+ * 
+ * OBS! Not in use since [2020-10-02]
  * @author KOCMOC
  */
 public class Moms {

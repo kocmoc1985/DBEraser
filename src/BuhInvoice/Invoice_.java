@@ -57,7 +57,7 @@ public abstract class Invoice_ extends Basic_Buh {
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
     //
-    protected final Moms momsSaveEntry = new Moms();
+//    protected final Moms momsSaveEntry = new Moms();
     //
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
@@ -144,9 +144,12 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    protected void resetSavedMoms_jCombo() {
-        momsSaveEntry.reset();
-    }
+    /**
+     * 
+     */
+//    protected void resetSavedMoms_jCombo() {
+////        momsSaveEntry.reset();
+//    }
 
     private boolean fakturaBetald() {
         //
@@ -568,29 +571,29 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     protected String defineMomsSats() {
-        if (momsSaveEntry.getMomsSats() == null) {
+//        if (momsSaveEntry.getMomsSats() == null) {
             return DB.STATIC__MOMS_SATS;
-        } else {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    momsSaveEntry.getMomsSats()
-            );
-        }
+//        } else {
+//            return JSon._get_special_(
+//                    DB.STATIC__MOMS_SATS,
+//                    momsSaveEntry.getMomsSats()
+//            );
+//        }
     }
 
     protected String defineMomsSats(JTable table) {
         //
-        if (momsSaveEntry.getMomsSats() == null) {
+//        if (momsSaveEntry.getMomsSats() == null) {
             return JSon._get_special_(
                     DB.STATIC__MOMS_SATS,
-                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS)
-            );
-        } else {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    momsSaveEntry.getMomsSats()
-            );
-        }
+                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
+//            );
+//        } else {
+//            return JSon._get_special_(
+//                    DB.STATIC__MOMS_SATS,
+//                    momsSaveEntry.getMomsSats()
+//            );
+//        }
     }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
@@ -631,8 +634,6 @@ public abstract class Invoice_ extends Basic_Buh {
         showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
         //
         addTableInvertRowListener(TABLE_INVERT_3, this);
-        //
-        hideMomsSatsIfExklMoms(); // **********************************
         //
     }
 
@@ -751,6 +752,9 @@ public abstract class Invoice_ extends Basic_Buh {
         return rows;
     }
 
+    /**
+     * @deprecated 
+     */
     protected void hideMomsSatsIfExklMoms() {
         //
 //        System.out.println("INKL_MOMS----------------------");
@@ -1070,17 +1074,20 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
-        } else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
-            //
-            momsSaveEntry.setMomsSats(jli.getValue());
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
-            //
-            momsSaveEntry.setInklExklMoms(jli.getValue());
-            //
-            hideMomsSatsIfExklMoms();
-            //
-        }
+        } 
+        
+        
+//        else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
+//            //
+//            momsSaveEntry.setMomsSats(jli.getValue());
+//            //
+//        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
+//            //
+//            momsSaveEntry.setInklExklMoms(jli.getValue());
+//            //
+//            hideMomsSatsIfExklMoms();
+//            //
+//        }
         //
     }
 

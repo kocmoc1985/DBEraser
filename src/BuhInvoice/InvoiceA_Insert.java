@@ -193,32 +193,36 @@ public class InvoiceA_Insert extends Invoice_ {
     
     
     
+    /**
+     * @deprecated 
+     * @return 
+     */
     private String defineInklExklMoms(){
-        if (momsSaveEntry.getInklExklMoms() == null) {
+//        if (momsSaveEntry.getInklExklMoms() == null) {
             return DB.STATIC__INKL_EXKL_MOMS;
-        }else{
-            return JSon._get_special_(
-                    DB.STATIC__INKL_EXKL_MOMS,
-                    momsSaveEntry.getInklExklMoms()
-            );
-        }
+//        }else{
+//            return JSon._get_special_(
+//                    DB.STATIC__INKL_EXKL_MOMS,
+//                    momsSaveEntry.getInklExklMoms()
+//            );
+//        }
     }
     
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
-        String fixedComboValues_a = defineInklExklMoms();
-        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
-        inkl_exkl_moms.enableFixedValuesAdvanced();
-        inkl_exkl_moms.setUneditable();
-        disableMomsJComboIf(inkl_exkl_moms);
-        //
-        String fixedComboValues_c = defineMomsSats();
-        //
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
-        moms.enableFixedValuesAdvanced();
-        moms.setUneditable();
-        disableMomsJComboIf(moms);
+//        String fixedComboValues_a = defineInklExklMoms();
+//        RowDataInvert inkl_exkl_moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__INKL_MOMS, "INKL MOMS", "", true, true, false);
+//        inkl_exkl_moms.enableFixedValuesAdvanced();
+//        inkl_exkl_moms.setUneditable();
+//        disableMomsJComboIf(inkl_exkl_moms);
+//        //
+//        //
+//        String fixedComboValues_c = defineMomsSats();
+//        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__MOMS_SATS, "MOMS", "", true, true, false);
+//        moms.enableFixedValuesAdvanced();
+//        moms.setUneditable();
+//        disableMomsJComboIf(moms);
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
@@ -237,8 +241,8 @@ public class InvoiceA_Insert extends Invoice_ {
         makulerad.setUneditable();
         //
         RowDataInvert[] rows = {
-            inkl_exkl_moms,
-            moms,
+//            inkl_exkl_moms,
+//            moms,
             order,
             expavgift,
             frakt,
