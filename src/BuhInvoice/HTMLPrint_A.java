@@ -391,6 +391,7 @@ public class HTMLPrint_A extends HTMLPrint {
         boolean containsArticleNames = listContainsAtLeastOne(list, DB.BUH_FAKTURA_ARTIKEL___NAMN);
         boolean containsRabatt = listContainsAtLeastOne_b(list, DB.BUH_F_ARTIKEL__RABATT);
         boolean containsKomment = listContainsAtLeastOne(list, DB.BUH_F_ARTIKEL__KOMMENT);
+        boolean containsSameMomsSats = listContainsSameEntries(list, DB.BUH_F_ARTIKEL__MOMS_SATS);
         //
         //
         html_ += "<tr class='bold'>";
@@ -409,7 +410,11 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
         }
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
+        if(containsSameMomsSats == false){
+           html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS + "</td>"; 
+        }
+        //
+        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>"; 
         //
         html_ += "</tr>";
         //
@@ -430,6 +435,10 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
             if (containsRabatt) {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
+            }
+            //
+            if(containsSameMomsSats == false){
+               html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__MOMS_SATS) + "</td>";
             }
             //
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";

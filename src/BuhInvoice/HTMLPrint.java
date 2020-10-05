@@ -32,6 +32,7 @@ import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -100,6 +101,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String T__ARTIKEL_ANTAL = "Antal";
     public static final String T__ARTIKEL_ENHET = "Enhet";
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
+    public static final String T__ARTIKEL_MOMS_SATS = "Moms%";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
     public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
@@ -360,6 +362,20 @@ public abstract class HTMLPrint extends JFrame {
         } else {
             return JSon.getLongName(statics, val);
         }
+    }
+    
+    protected boolean listContainsSameEntries(ArrayList<HashMap<String, String>> list, String param) {
+        //
+        HashSet<String>set = new HashSet<>();
+        //
+        for (HashMap<String, String> map : list) {
+            //
+            set.add(_get(map, param));
+            //
+        }
+        //
+        return set.size() == 1;
+        //
     }
 
     protected boolean listContainsAtLeastOne(ArrayList<HashMap<String, String>> list, String param) {
