@@ -86,9 +86,21 @@ public class ArticlesA extends Basic_Buh {
     }
 
     private void refresh() {
-        fillArtiklesJTable();
-        HelpA.markFirstRowJtable(getTableArticles());
-        bim.jTableArticles_clicked();
+        //
+        //#THREAD#
+        Thread x = new Thread(() -> {
+            //
+            fillArtiklesJTable();
+            HelpA.markFirstRowJtable(getTableArticles());
+            //
+            java.awt.EventQueue.invokeLater(() -> {
+                bim.jTableArticles_clicked();
+            });
+            //
+        });
+        //
+        x.start();
+
     }
 
     protected void createNew() {
@@ -114,8 +126,8 @@ public class ArticlesA extends Basic_Buh {
             TABLE_ARTICLES__NAMN,
             TABLE_ARTICLES__ARTNR,
             TABLE_ARTICLES__PRIS,
-//            TABLE_ARTICLES__INKOPS_PRIS,
-//            TABLE_ARTICLES__LAGER,
+            //            TABLE_ARTICLES__INKOPS_PRIS,
+            //            TABLE_ARTICLES__LAGER,
             TABLE_ARTICLES__KOMMENT,
             TABLE_ARTICLES__KATEGORI
         };
@@ -221,8 +233,8 @@ public class ArticlesA extends Basic_Buh {
             map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN),
             map.get(DB.BUH_FAKTURA_ARTIKEL___ARTNR),
             map.get(DB.BUH_FAKTURA_ARTIKEL___PRIS),
-//            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
-//            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
+            //            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
+            //            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI)
         };
@@ -280,7 +292,6 @@ public class ArticlesA extends Basic_Buh {
         refresh();
         //
     }
-
 
     private void delete__buh_faktura_artikel(String artikelId) {
         //
@@ -449,14 +460,14 @@ public class ArticlesA extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___NAMN)) {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
-            if(Validator.validateMaxInputLength(jli, 50)){
-              Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);  
+            if (Validator.validateMaxInputLength(jli, 50)) {
+                Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);
             }
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ARTNR)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ARTNR)) {
             //
-            if(Validator.validateMaxInputLength(jli, 50)){
-              Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__ARTNR);  
+            if (Validator.validateMaxInputLength(jli, 50)) {
+                Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__ARTNR);
             }
             //
         }

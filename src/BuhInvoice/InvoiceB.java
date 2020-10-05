@@ -66,10 +66,10 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
     public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
-    
-    public static final HashMap<String,String>ARTICLES_TABLE_DICT = new HashMap<>();
-    
-    static{
+
+    public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
+
+    static {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__KOMMENT, DB.BUH_F_ARTIKEL__KOMMENT);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT, DB.BUH_F_ARTIKEL__RABATT);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT_KR, DB.BUH_F_ARTIKEL__RABATT_KR);
@@ -79,19 +79,25 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ANTAL, DB.BUH_F_ARTIKEL__ANTAL);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
     }
-    
+
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
 
     @Override
     protected void startUp() {
-        //
-        fillJTableheader();
-        //
-        fillFakturaTable(null);
+        //#THREAD#
+        Thread x = new Thread(() -> {
+            //
+            fillJTableheader();
+            //
+            fillFakturaTable(null);
+            //
+        });
         //
         fillJComboSearchByFakturaKund();
+        //
+        x.start();
         //
         // fillFakturaArticlesTable();
     }
@@ -127,24 +133,36 @@ public class InvoiceB extends Basic_Buh {
     }
 
     protected void refresh(String secondWhereValue) {
-        fillFakturaTable(secondWhereValue);
-        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
-        String fakturaId = bim.getFakturaId();
-        all_invoices_table_clicked(fakturaId);
+        //#THREAD#
+        Thread x = new Thread(() -> {
+            fillFakturaTable(secondWhereValue);
+            HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+            String fakturaId = bim.getFakturaId();
+            all_invoices_table_clicked(fakturaId);
+        });
+        //
+        x.start();
+        //
     }
 
     protected void refresh_c() {
+        //#THREAD#
+        Thread x = new Thread(() -> {
+            //
+            String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
+            //
+            if (fakturaNr.isEmpty()) {
+                return;
+            }
+            //
+            fillFakturaTable(null);
+            //
+            HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+            String fakturaId = bim.getFakturaId();
+            all_invoices_table_clicked(fakturaId);
+        });
         //
-        String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
-        //
-        if (fakturaNr.isEmpty()) {
-            return;
-        }
-        //
-        fillFakturaTable(null);
-        HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
-        String fakturaId = bim.getFakturaId();
-        all_invoices_table_clicked(fakturaId);
+        x.start();
     }
 
     /**
@@ -382,8 +400,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__BETAL_VILKOR),
             map.get(DB.BUH_FAKTURA__LEV_VILKOR),
             map.get(DB.BUH_FAKTURA__LEV_SATT),
-//            map.get(DB.BUH_FAKTURA__INKL_MOMS), // deleted [2020-10-02]
-//            map.get(DB.BUH_FAKTURA__MOMS_SATS), // deleted [2020-10-02]
+            //            map.get(DB.BUH_FAKTURA__INKL_MOMS), // deleted [2020-10-02]
+            //            map.get(DB.BUH_FAKTURA__MOMS_SATS), // deleted [2020-10-02]
             map.get(DB.BUH_FAKTURA__FRAKT),
             map.get(DB.BUH_FAKTURA__EXP_AVG),
             map.get(DB.BUH_FAKTURA__DROJSMALSRANTA),
@@ -916,7 +934,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, getValueTableInvert(DB.BUH_FAKTURA__FRAKT, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, getValueTableInvert(DB.BUH_FAKTURA__EXP_AVG, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, "" + invoice.getTotalExklMoms());
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "" ); // "" + ((int)invoice.getMomsSats() * 100)
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, ""); // "" + ((int)invoice.getMomsSats() * 100)
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //

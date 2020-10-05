@@ -1,4 +1,23 @@
 ________________________________________________________________________________________________________
+[THREADS - THREDIFYING THE CODE][2020-10-05]
+
+Search for tag: "#THREAD#" in the project
+
+See following construction, very useful, especially when "autofill" is used for comboboxes which requires to be run in the  "AWT" thread.
+
+Thread x = new Thread(() -> {
+		//
+		// DO SOMETHING HERE
+		//
+		java.awt.EventQueue.invokeLater(() -> {
+			// FILL JCOMBOBOXES HERE
+		});
+		//
+	});
+	//
+	x.start();
+
+________________________________________________________________________________________________________
 [HOW TO USE "Validator.validateMaxInputLength(jli, 30)" with other validations][2020-09-29]
 Use like following, other wise one validation will overwrite the other one:
 

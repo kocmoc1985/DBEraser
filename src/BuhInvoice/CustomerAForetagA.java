@@ -81,15 +81,23 @@ public abstract class CustomerAForetagA extends Basic_Buh {
     }
 
     protected void refresh() {
+        //#THREAD#
+        Thread x = new Thread(() -> {
+            //
+            fillMainTable();
+            HelpA.markFirstRowJtable(getTableMain());
+            //
+            java.awt.EventQueue.invokeLater(() -> {
+                if (this instanceof CustomersA_) {
+                    bim.jTableCustomersA_kunder_clicked();
+                } else if (this instanceof ForetagA) {
+                    bim.jTableForetagA_ftg_table_clicked();
+                }
+            });
+            //
+        });
         //
-        fillMainTable();
-        HelpA.markFirstRowJtable(getTableMain());
-        //
-        if (this instanceof CustomersA_) {
-            bim.jTableCustomersA_kunder_clicked();
-        } else if (this instanceof ForetagA) {
-            bim.jTableForetagA_ftg_table_clicked();
-        }
+        x.start();
         //
     }
 
