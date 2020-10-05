@@ -7,7 +7,6 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
-import BuhInvoice.sec.Moms;
 import BuhInvoice.sec.MomsBuh_F_artikel;
 import BuhInvoice.sec.MomsComporator;
 import MyObjectTable.OutPut;
@@ -15,7 +14,6 @@ import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;

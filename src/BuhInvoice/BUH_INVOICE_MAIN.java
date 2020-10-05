@@ -209,7 +209,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "1";
+        return "2";
     }
 
     protected boolean noCustomersPresent() {

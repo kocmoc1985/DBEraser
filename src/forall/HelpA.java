@@ -1147,6 +1147,27 @@ public class HelpA {
 
     }
 
+    public static boolean allRowsEmptyColumn(JTable table, String colName) {
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = HelpA.getColByName(table, colName);
+            //
+            String val = (String) table.getValueAt(x, col);
+            //
+            if (val == null || val.isEmpty()) {
+                //
+            }else{
+                return false;
+            }
+            //
+        }
+        //
+        return true;
+        //
+    }
+    
+    
     /**
      * [2020-08-26]
      *

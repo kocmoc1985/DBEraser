@@ -87,17 +87,18 @@ public class InvoiceB extends Basic_Buh {
     @Override
     protected void startUp() {
         //#THREAD#
-        Thread x = new Thread(() -> {
+//        Thread x = new Thread(() -> {
             //
             fillJTableheader();
             //
-            fillFakturaTable(null);
+            refresh(null); // fillTable done here
+//            fillFakturaTable(null);
             //
-        });
+//        });
         //
         fillJComboSearchByFakturaKund();
         //
-        x.start();
+//        x.start();
         //
         // fillFakturaArticlesTable();
     }

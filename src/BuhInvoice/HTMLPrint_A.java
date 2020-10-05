@@ -354,7 +354,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + "," + _get(map_g, DB.BUH_ADDR__POSTNR_ZIP) + " " + _get(map_g, DB.BUH_ADDR__ADDR_A) + ".";
+        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) +  _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A))  + ".";
         html_ += "</p>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
