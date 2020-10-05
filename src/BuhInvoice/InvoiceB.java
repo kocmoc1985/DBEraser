@@ -13,6 +13,7 @@ import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -88,12 +89,12 @@ public class InvoiceB extends Basic_Buh {
     protected void startUp() {
         //#THREAD#
 //        Thread x = new Thread(() -> {
-            //
-            fillJTableheader();
-            //
-            refresh(null); // fillTable done here, and also marking first row
+        //
+        fillJTableheader();
+        //
+        refresh(null); // fillTable done here, and also marking first row
 //            fillFakturaTable(null);
-            //
+        //
 //        });
         //
         fillJComboSearchByFakturaKund();
@@ -791,6 +792,47 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
+    private String getMomsSatsString() {
+        //
+        JTable table = bim.jTable_invoiceB_faktura_artiklar;
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = HelpA.getColByName(table, TABLE_INVOICE_ARTIKLES__MOMS_SATS);
+            //
+            String val = (String) table.getValueAt(x, col);
+            //
+            if (val == null || val.isEmpty() || val.equals("null")) {
+                //
+            } else {
+                map.put(val, "");
+            }
+            //
+        }
+        //
+        String str = "";
+        int i = 0;
+        //
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            //
+            String key = entry.getKey();
+            //
+            if (i == 0) {
+                str += key + "%";
+            }else{
+                str += ", " + key + "%";
+            }
+            //
+            i++;
+            //
+        }
+        //
+        return str;
+        //
+    }
+
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -829,7 +871,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, _get(TABLE_ALL_INVOICES__EXP_AVG));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, "");
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString());
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
         //
