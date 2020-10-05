@@ -142,7 +142,25 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-  
+    /**
+     * Good idea, but must be re-thinked. There are many things
+     * which makes it complicated.. [2020-10-05]
+     *
+     * @deprecated
+     */
+    protected void hideColumnsWithEmptyRows() {
+        //
+        JTable table = getArticlesTable();
+        //
+        String[] arr = new String[]{InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT};
+        //
+        for (String columnName : arr) {
+            if (HelpA.allRowsEmptyColumn(getArticlesTable(), columnName)) {
+                HelpA.hideColumnByName(table, columnName);
+            }
+        }
+        //
+    }
 
     private boolean fakturaBetald() {
         //
@@ -351,8 +369,6 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    
-
 //    /**
 //     * @deprecated @return
 //     */
@@ -363,7 +379,6 @@ public abstract class Invoice_ extends Basic_Buh {
 ////            return 0.25;
 ////        }
 //    }
-
     public boolean getMakulerad() {
         return Integer.parseInt(getValueTableInvert(DB.BUH_FAKTURA__MAKULERAD, TABLE_INVERT_3)) == 1;
     }
@@ -560,7 +575,7 @@ public abstract class Invoice_ extends Basic_Buh {
 
     protected String defineMomsSats() {
 //        if (momsSaveEntry.getMomsSats() == null) {
-            return DB.STATIC__MOMS_SATS;
+        return DB.STATIC__MOMS_SATS;
 //        } else {
 //            return JSon._get_special_(
 //                    DB.STATIC__MOMS_SATS,
@@ -572,9 +587,9 @@ public abstract class Invoice_ extends Basic_Buh {
     protected String defineMomsSats(JTable table) {
         //
 //        if (momsSaveEntry.getMomsSats() == null) {
-            return JSon._get_special_(
-                    DB.STATIC__MOMS_SATS,
-                    HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
+        return JSon._get_special_(
+                DB.STATIC__MOMS_SATS,
+                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
 //            );
 //        } else {
 //            return JSon._get_special_(
@@ -739,8 +754,6 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         return rows;
     }
-
-    
 
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
@@ -1032,9 +1045,8 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
-        } 
-        
-        
+        }
+
 //        else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
 //            //
 //            momsSaveEntry.setMomsSats(jli.getValue());

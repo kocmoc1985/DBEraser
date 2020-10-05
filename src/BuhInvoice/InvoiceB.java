@@ -91,7 +91,7 @@ public class InvoiceB extends Basic_Buh {
             //
             fillJTableheader();
             //
-            refresh(null); // fillTable done here
+            refresh(null); // fillTable done here, and also marking first row
 //            fillFakturaTable(null);
             //
 //        });

@@ -1157,7 +1157,7 @@ public class HelpA {
             //
             if (val == null || val.isEmpty()) {
                 //
-            }else{
+            } else {
                 return false;
             }
             //
@@ -1166,8 +1166,7 @@ public class HelpA {
         return true;
         //
     }
-    
-    
+
     /**
      * [2020-08-26]
      *
@@ -2994,8 +2993,8 @@ public class HelpA {
             return map;
         }
     }
-    
-     private static HashMap update_value_hash_map(Object key, Object value, HashMap map) {
+
+    private static HashMap update_value_hash_map(Object key, Object value, HashMap map) {
         map.remove(key);
         map.put(key, value);
         return map;
