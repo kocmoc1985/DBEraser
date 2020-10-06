@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -22,18 +24,26 @@ import javax.swing.JTextField;
 public class TextFieldCheck extends JTextField implements KeyListener {
 
     public SqlBasicLocal sql;
-    private String entryExistQuery;
-    private String regex;
-    private final Font FONT_1 = new Font("Arial", Font.BOLD, 16);
+    private  String entryExistQuery;
+    private  String regex;
+    private  Pattern pattern;
+    private final Font FONT_1 = new Font("Arial", Font.BOLD, 14);
     public static int OK_RESULT = 0;
     public static int WRONG_FORMAT_RESULT = 1;
     public static int ALREADY_EXIST_RESULT = 2;
     public int RESULT;
+    private boolean validated = false;
 
     public TextFieldCheck(SqlBasicLocal sql, String q, String regex, int columns) {
         this.sql = sql;
         this.entryExistQuery = q;
         this.regex = regex;
+        setColumns(columns);
+        initOther();
+    }
+    
+    public TextFieldCheck(Pattern regexPattern, int columns) {
+        this.pattern  = regexPattern;
         setColumns(columns);
         initOther();
     }
@@ -72,7 +82,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         //
         String str = getText_();
         //
-        if (str.matches(regex)) {
+        if (validate_(str)) {
             //
             prepareQuery(entryExistQuery, str, null);
             //
@@ -80,13 +90,28 @@ public class TextFieldCheck extends JTextField implements KeyListener {
                 setForeground(Color.ORANGE);
                 RESULT = ALREADY_EXIST_RESULT;
             } else {
-                setForeground(Color.GREEN);
+                validated = true;
+                setForeground(Color.BLACK);
                 RESULT = OK_RESULT;
             }
             //
         } else {
+            validated = false;
             setForeground(Color.RED);
             RESULT = WRONG_FORMAT_RESULT;
+        }
+    }
+    
+    public boolean getValidated(){
+        return validated;
+    }
+    
+    private boolean validate_(String strToValidate){
+        if(pattern != null){
+            Matcher matcher = pattern.matcher(strToValidate);
+            return matcher.matches();
+        }else{
+            return strToValidate.matches(regex);
         }
     }
 

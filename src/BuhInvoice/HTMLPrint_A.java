@@ -7,7 +7,9 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
+import MCRecipe.Lang.REGEX;
 import forall.HelpA;
+import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -46,7 +48,7 @@ public class HTMLPrint_A extends HTMLPrint {
     @Override
     protected void buttonLogic() {
         if(preview){
-            GP_BUH.setEnabled(jButton_send_faktura_email, false);
+            GP_BUH.setEnabled(jButton_send_faktura_email_to_me, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);
         }
     }
@@ -607,7 +609,8 @@ public class HTMLPrint_A extends HTMLPrint {
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton_send_faktura_email = new javax.swing.JButton();
+        jButton_send_faktura_email_to_me = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
@@ -631,14 +634,21 @@ public class HTMLPrint_A extends HTMLPrint {
         });
         jPanel1.add(jButton1);
 
-        jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post, automatiskt");
-        jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
+        jButton_send_faktura_email_to_me.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
+        jButton_send_faktura_email_to_me.setToolTipText("Skicka faktura per E-post till sig själv, automatiskt");
+        jButton_send_faktura_email_to_me.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_send_faktura_emailActionPerformed(evt);
+                jButton_send_faktura_email_to_meActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton_send_faktura_email);
+        jPanel1.add(jButton_send_faktura_email_to_me);
+
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
 
         jButton_send_with_outlook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/send_b.png"))); // NOI18N
         jButton_send_with_outlook.setToolTipText("Skicka faktura per E-post med Outlook");
@@ -669,7 +679,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -705,17 +715,24 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
+    private void jButton_send_faktura_email_to_meActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_email_to_meActionPerformed
         //
         String faktura_kund_email = getFakturaKundEmail();
+        //
+        sendFaktura(faktura_kund_email);
+        //
+    }//GEN-LAST:event_jButton_send_faktura_email_to_meActionPerformed
+
+    private void sendFaktura(String toEmail){
+        //
         String ftg_name = getForetagsNamn();
         //
-        if (faktura_kund_email == null || faktura_kund_email.isEmpty()) {
+        if (toEmail == null || toEmail.isEmpty()) {
             HelpA.showNotification(LANG.MSG_7);
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(faktura_kund_email,this)) == false) {
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail,this)) == false) {
             return;
         }
         //
@@ -724,14 +741,12 @@ public class HTMLPrint_A extends HTMLPrint {
         print_upload_sendmail__thr(
                 "uploads/",
                 fakturaFileName,
-                faktura_kund_email,
+                toEmail,
                 ftg_name
         );
         //
-
-        //
-    }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
-
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
         GP_BUH.chooseLogo(this);
@@ -742,6 +757,18 @@ public class HTMLPrint_A extends HTMLPrint {
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
         sendWithStandardEmailClient();
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //
+        TextFieldCheck tfc = new TextFieldCheck(Validator.EMAIL, 20);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Skriv en e-post du vill skicka till");
+        String toEmail = tfc.getText_();
+        //
+        if(yesNo && toEmail != null && tfc.getValidated()){
+            sendFaktura(toEmail);
+        }
+        //
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     @Override
     protected void displayStatus(String msg, Color c) {
@@ -784,8 +811,9 @@ public class HTMLPrint_A extends HTMLPrint {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton_send_faktura_email;
+    private javax.swing.JButton jButton_send_faktura_email_to_me;
     private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
     protected static javax.swing.JLabel jLabel_status;
