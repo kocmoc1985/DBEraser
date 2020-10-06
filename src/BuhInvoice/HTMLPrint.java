@@ -312,6 +312,10 @@ public abstract class HTMLPrint extends JFrame {
     protected String getFakturaKundEmail() {
         return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
     }
+    
+    protected String getForetagsEmail() {
+        return _get(map_f, DB.BUH_KUND__EPOST);
+    }
 
     protected String getForetagsNamn() {
         return _get(map_f, DB.BUH_KUND__NAMN);

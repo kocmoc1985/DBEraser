@@ -27,7 +27,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     private  String entryExistQuery;
     private  String regex;
     private  Pattern pattern;
-    private final Font FONT_1 = new Font("Arial", Font.BOLD, 14);
+    private final Font FONT_1 = new Font("Arial", Font.BOLD, 12);
     public static int OK_RESULT = 0;
     public static int WRONG_FORMAT_RESULT = 1;
     public static int ALREADY_EXIST_RESULT = 2;
@@ -42,10 +42,14 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         initOther();
     }
     
-    public TextFieldCheck(Pattern regexPattern, int columns) {
+    public TextFieldCheck(String initialValue,Pattern regexPattern, int columns) {
         this.pattern  = regexPattern;
         setColumns(columns);
         initOther();
+        if(initialValue!= null && initialValue.isEmpty() == false){
+            validated = true;
+        }
+        this.setText(initialValue);
     }
 
     public int getRESULT() {
@@ -87,17 +91,20 @@ public class TextFieldCheck extends JTextField implements KeyListener {
             prepareQuery(entryExistQuery, str, null);
             //
             if (isPresent()) {
-                setForeground(Color.ORANGE);
+//                setForeground(Color.ORANGE);
+                setBackground(Color.ORANGE);
                 RESULT = ALREADY_EXIST_RESULT;
             } else {
                 validated = true;
-                setForeground(Color.BLACK);
+//                setForeground(Color.BLACK);
+                setBackground(Color.WHITE);
                 RESULT = OK_RESULT;
             }
             //
         } else {
             validated = false;
-            setForeground(Color.RED);
+//            setForeground(Color.RED);
+            setBackground(Color.RED);
             RESULT = WRONG_FORMAT_RESULT;
         }
     }

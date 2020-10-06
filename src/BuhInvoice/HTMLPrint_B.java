@@ -508,10 +508,10 @@ public class HTMLPrint_B extends HTMLPrint {
         jPanel2 = new javax.swing.JPanel();
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel_status_reminder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -522,7 +522,16 @@ public class HTMLPrint_B extends HTMLPrint {
         jEditorPane1.setMaximumSize(new java.awt.Dimension(545, 842));
         jEditorPane1.setMinimumSize(new java.awt.Dimension(545, 842));
 
-        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
+        jButton3.setToolTipText("Välj logotyp / bild");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButton1.setToolTipText("Skriv ut påminnelse");
@@ -550,15 +559,6 @@ public class HTMLPrint_B extends HTMLPrint {
             }
         });
         jPanel1.add(jButton_send_with_outlook);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
-        jButton3.setToolTipText("Välj logotyp / bild");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3);
 
         jLabel_status_reminder.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_status_reminder.setForeground(new java.awt.Color(153, 153, 153));
@@ -607,6 +607,13 @@ public class HTMLPrint_B extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //
+        GP_BUH.chooseLogo(this);
+        //
+        go();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
         String faktura_kund_email = getFakturaKundEmail();
@@ -624,22 +631,15 @@ public class HTMLPrint_B extends HTMLPrint {
         String fakturaFileName = getPdfFileName(true);
         //
         print_upload_sendmail__thr(
-                "uploads/",
-                fakturaFileName,
-                faktura_kund_email,
-                ftg_name
+            "uploads/",
+            fakturaFileName,
+            faktura_kund_email,
+            ftg_name
         );
         //
 
         //
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        //
-        GP_BUH.chooseLogo(this);
-        //
-        go();
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
         sendWithStandardEmailClient();

@@ -9,7 +9,6 @@ import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
-import MyObjectTableInvert.RowDataInvert;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
 import com.michaelbaranov.microba.calendar.DatePicker;
