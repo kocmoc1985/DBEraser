@@ -135,20 +135,24 @@ public class InvoiceB extends Basic_Buh {
 
     protected void refresh(String secondWhereValue) {
         //#THREAD#
-//        Thread x = new Thread(() -> {
+        Thread x = new Thread(() -> {
             fillFakturaTable(secondWhereValue);
             HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
-//        });
+        });
         //
-//        x.start();
+        x.start();
         //
     }
 
+    /**
+     * Think twice when using "refresh_c" because it downloads entire
+     * data each time
+     */
     protected void refresh_c() {
         //#THREAD#
-//        Thread x = new Thread(() -> {
+        Thread x = new Thread(() -> {
             //
             String fakturaNr = bim.getFakturaNr();// OBS! Important before "fill"
             //
@@ -161,9 +165,9 @@ public class InvoiceB extends Basic_Buh {
             HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
-//        });
+        });
         //
-//        x.start();
+        x.start();
     }
 
     /**

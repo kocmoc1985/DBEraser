@@ -227,7 +227,7 @@ public abstract class Invoice_ extends Basic_Buh {
         // This statement is needed to redraw the tableInvert because if some
         // element was disabled it muste be redrawn. [2020-09-07] i implemented that
         // after adding one article the user is not able to change "moms" anymore
-        showTableInvert_3();
+//        showTableInvert_3();
         //
     }
 

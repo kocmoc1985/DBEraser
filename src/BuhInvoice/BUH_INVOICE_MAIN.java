@@ -1502,10 +1502,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_update.deselectRowArticlesTable(); // Deselecting due to "InvoiceA_Updte->getConfigTableInvert_2() -> articlesJTableRowSelected()"
             invoiceA_update.countFakturaTotal(jTable_InvoiceA_Insert_articles);
             invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
-            invoiceB.refresh_c();
+//            invoiceB.refresh_c();
             //
             invoiceA_update.showTableInvert_2(); // some kind of redraw, OBS! needed
-            invoiceA_update.showTableInvert_3(); // some kind of redraw, OBS! needed
+//            invoiceA_update.showTableInvert_3(); // some kind of redraw, OBS! needed
             //
         }
         //
@@ -1526,7 +1526,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             int selected_row = jTable_InvoiceA_Insert_articles.getSelectedRow();
             //
-            invoiceB.refresh_c();
+//            invoiceB.refresh_c();
             //
             HelpA.markGivenRow(jTable_InvoiceA_Insert_articles, selected_row);
             jTable_InvoiceA_Insert_articles_clicked();
@@ -1554,7 +1554,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     if (invoiceA_update.fieldsValidatedArticle()) {
                         invoiceA_update.deselectRowArticlesTable(); // Deselecting due to "InvoiceA_Updte->getConfigTableInvert_2() -> articlesJTableRowSelected()"
                         invoiceA_update.addArticle();
-                        invoiceB.refresh_c(); // correct
+//                        invoiceB.refresh_c(); // correct
                     }
                 }
                 //
@@ -1589,7 +1589,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
-//                invoiceA_insert.resetSavedMoms_jCombo();
                 invoiceB.refresh(null);
                 HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
@@ -1603,7 +1602,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else {
             if (invoiceA_update.fieldsValidated(true)) {
                 invoiceA_update.insertOrUpdate();
-//                invoiceA_update.resetSavedMoms_jCombo();
                 invoiceB.refresh_c();
                 HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }

@@ -1,13 +1,8 @@
 
-Moms is not shown any longer in HTMLPrint after switching to "moms bound to articles".
 
-OBS! The articles are downloaded each time when the TableInvert_2 is redrawn. This refers to when i create/update faktura. THis problem probably exists at other locations to.
-
-Skicka email till vald address
+POP3 Email sending with customers email credentials
 
 Påminnelse text should be adjustable
-
-Show ToolTip for Validator, for example when "input is to long"
 
 Print Address of Customer for sending with common post
 
