@@ -406,10 +406,14 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
         BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
-        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG));
+        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG)*100);
     }
 
     protected void countFakturaTotal(JTable table) {
+        //
+        if(table.equals(bim.jTable_InvoiceA_Insert_articles) == false){
+           HelpA.showNotification("WRONG Articles Table!!");
+        }
         //
         // Some methods are called from here because this method (countFakturaTotal)
         // is executed uppon almost all actions [2020-09-30]

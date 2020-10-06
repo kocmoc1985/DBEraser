@@ -56,7 +56,9 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__ENHET),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
-            map.get(DB.BUH_F_ARTIKEL__RABATT)
+            map.get(DB.BUH_F_ARTIKEL__RABATT),
+            map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
+            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", "")
         };
         //
         HelpA.addRowToJTable(jtableRow, table);
