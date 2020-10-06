@@ -19,6 +19,7 @@ import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
+import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.print.PageFormat;
@@ -428,6 +429,81 @@ public abstract class HTMLPrint extends JFrame {
 
     protected abstract void displayStatus(String msg, Color c);
 
+    protected void sendMailTargeted(){
+        //
+        TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(),Validator.EMAIL, 25);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
+        String toEmail = tfc.getText_();
+        //
+        if(yesNo && toEmail != null && tfc.getValidated()){
+            sendMail(toEmail);
+        }
+    }
+    
+    protected void sendMail(String toEmail){
+        //
+        String ftg_name = getForetagsNamn();
+        //
+        if (toEmail == null || toEmail.isEmpty()) {
+            HelpA.showNotification(LANG.MSG_7);
+            return;
+        }
+        //
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail,this)) == false) {
+            return;
+        }
+        //
+        String fakturaFileName = getPdfFileName(true);
+        //
+        print_upload_sendmail__thr(
+                "uploads/",
+                fakturaFileName,
+                toEmail,
+                ftg_name
+        );
+        //
+    }
+    
+    private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
+        //
+        HTMLPrint htmlprint = this;
+        //
+        Thread x = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //
+                //
+                boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
+                //
+                String fakturaId = getFakturaId();
+                // 
+                // [2020-09-08]
+                if (ok) {
+                    //
+                    if(htmlprint instanceof HTMLPrint_A){
+                        loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                    }else{
+                        loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_PAMMINELSE);
+                    }
+                    
+                    //
+                } else {
+                    if(htmlprint instanceof HTMLPrint_A){
+                        EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+                            DB.STATIC__SENT_TYPE_FAKTURA);
+                    }else{
+                         EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+                            DB.STATIC__SENT_TYPE_PAMMINELSE);
+                    }
+                   
+                }
+            }
+        });
+        //
+        x.start();
+        //
+    }
+    
     /**
      * [2020-09-03]
      *

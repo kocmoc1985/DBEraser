@@ -7,9 +7,6 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
-import MCRecipe.Lang.REGEX;
-import forall.HelpA;
-import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -50,6 +47,7 @@ public class HTMLPrint_A extends HTMLPrint {
         if(preview){
             GP_BUH.setEnabled(jButton_send_faktura_email, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);
+            GP_BUH.setEnabled(jButton_send_faktura_any_email, false);
         }
     }
 
@@ -721,33 +719,10 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String faktura_kund_email = getFakturaKundEmail();
         //
-        sendFaktura(faktura_kund_email);
+        sendMail(faktura_kund_email);
         //
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
-    private void sendFaktura(String toEmail){
-        //
-        String ftg_name = getForetagsNamn();
-        //
-        if (toEmail == null || toEmail.isEmpty()) {
-            HelpA.showNotification(LANG.MSG_7);
-            return;
-        }
-        //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail,this)) == false) {
-            return;
-        }
-        //
-        String fakturaFileName = getPdfFileName(true);
-        //
-        print_upload_sendmail__thr(
-                "uploads/",
-                fakturaFileName,
-                toEmail,
-                ftg_name
-        );
-        //
-    }
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
@@ -762,13 +737,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_send_faktura_any_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_any_emailActionPerformed
         //
-        TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(),Validator.EMAIL, 25);
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Skriv en e-post du vill skicka till");
-        String toEmail = tfc.getText_();
-        //
-        if(yesNo && toEmail != null && tfc.getValidated()){
-            sendFaktura(toEmail);
-        }
+        sendMailTargeted();
         //
     }//GEN-LAST:event_jButton_send_faktura_any_emailActionPerformed
 
