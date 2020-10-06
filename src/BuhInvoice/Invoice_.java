@@ -566,7 +566,7 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     protected double getFakturaTotal() {
-        return GP_BUH.round_double(FAKTURA_TOTAL);
+        return GP_BUH.round_double_b(FAKTURA_TOTAL); // OBS! Rounding till "Whole Number"
     }
 
     protected double getMomsTotal() {

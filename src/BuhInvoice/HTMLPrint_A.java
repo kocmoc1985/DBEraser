@@ -241,7 +241,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String[] values_a = new String[]{
             _get(map_e_2__lev_data, COL_0),
-            _get(map_e, COL_1),
+            _get(map_e, COL_1) + ", " + _get(map_e, COL_1_2),
             _get(map_e, COL_2) + " " + _get(map_e, COL_3)  + _get_exist_c(_get(map_e, COL_3_1))
         };
         //
@@ -329,18 +329,42 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
         //
+        int colToMakeBold = 7;
+        //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
+        String frakt = map_d.get(T__FAKTURA_FRAKT);
+        String exp = map_d.get(T__FAKTURA_EXP_AVG);
+        String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
         //
         String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
         String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
         if (moms_kr.equals("0")) {
+            colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
         }
         //
-        html_ += internal_table_2r_xc(headers, values, 7, "");
+        if(frakt.equals("0")){
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
+        }
+        //
+        if(exp.equals("0")){
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
+        }
+        //
+        if(rabatt.equals("0")){
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));
+        }
+        //
+        html_ += internal_table_2r_xc(headers, values, colToMakeBold, "");
         //
         html_ += "</div>";//</table>
         //
@@ -412,7 +436,7 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
         }
         //
-        if(containsSameMomsSats == false || containsKomment || containsRabatt){
+        if(containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt){
             html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + " / " + T__ARTIKEL_ENHET + "</td>";
         }else{
             html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
@@ -453,7 +477,7 @@ public class HTMLPrint_A extends HTMLPrint {
                html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>"; 
             }
             //
-            if(containsSameMomsSats == false || containsKomment || containsRabatt){
+            if(containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt){
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + " (" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + ")" + "</td>";
             }else{
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";

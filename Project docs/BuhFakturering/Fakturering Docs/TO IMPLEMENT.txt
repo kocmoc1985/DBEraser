@@ -1,4 +1,5 @@
 
+Avrunda "Att betala" till heltal
 
 POP3 Email sending with customers email credentials
 
@@ -11,15 +12,6 @@ ________________________________________________________________________________
 [TO DO BEFORE GO FOR TEST:]
 1. Dröjsmålsränta -> buh_faktura (table) -> I have thaugt a lot but it's logically the only table which can take this param.
 2. Check And Limit ammount of articles which can be added to a Faktura.
-____________________________________________________________________________________________________________________________________________________
-
-[SEND PÅMMINELSE:]
-
-1. Add "utskrivet datum"
-2. Add "Handlägarens" tel and email
-3. Not working for Kontant faktura why? -> in deed it shall not work....
-4. Shall not work for kredit faktura!!
-
 ____________________________________________________________________________________________________________________________________________________
 [AAMOUNT OF ARTICLES FAKTURA PDF PRINT]
 

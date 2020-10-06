@@ -115,6 +115,10 @@ public class GP_BUH {
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
+    
+    public static double round_double_b(double rst) {
+        return Double.parseDouble(String.format("%2.0f", rst).replace(",", "."));
+    }
 
     public static boolean confirmWarning(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;

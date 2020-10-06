@@ -640,7 +640,7 @@ public class InvoiceB extends Basic_Buh {
             article_row_map = JSon.removeEntriesWhereValueNull(article_row_map);
         }
         //
-        return Faktura_Entry_Insert_.articlesToHttpDB(faktura_articles);
+        return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
         //
     }
 

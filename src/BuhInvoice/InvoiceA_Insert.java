@@ -18,18 +18,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceA_Insert extends Invoice_ {
     
-    private final Faktura_Entry_Insert_ faktura_entry_insert;
+    private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
     
     
     public InvoiceA_Insert(BUH_INVOICE_MAIN bim) {
         super(bim);
-        this.faktura_entry_insert = (Faktura_Entry_Insert_) faktura_entry;
+        this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }
     
     @Override
     protected Faktura_Entry initFakturaEntry() {
-        return new Faktura_Entry_Insert_(this);
+        return new Faktura_Entry_Insert(this);
     }
     
     @Override

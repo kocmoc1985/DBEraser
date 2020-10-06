@@ -214,7 +214,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String[] values_a = new String[]{
             _get(map_e_2__lev_data, COL_0),
-            _get(map_e, COL_1),
+            _get(map_e, COL_1) + ", " + _get(map_e, COL_1_2),
             _get(map_e, COL_2) + " " + _get(map_e, COL_3) + _get_exist_c(_get(map_e, COL_3_1))
         };
         //

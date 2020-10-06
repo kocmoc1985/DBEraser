@@ -92,6 +92,7 @@ public abstract class HTMLPrint extends JFrame {
     //
     public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;
+    public static final String COL_1_2 = DB.BUH_ADDR__ADDR_B;
     public static final String COL_2 = DB.BUH_ADDR__POSTNR_ZIP;
     public static final String COL_3 = DB.BUH_ADDR__ORT;
     public static final String COL_3_1 = DB.BUH_ADDR__LAND;
