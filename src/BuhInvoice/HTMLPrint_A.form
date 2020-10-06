@@ -118,7 +118,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/post.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Skicka faktura per E-post till sig sj&#xe4;lv, automatiskt"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Skicka faktura per E-post till sig, automatiskt"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_send_faktura_emailActionPerformed"/>

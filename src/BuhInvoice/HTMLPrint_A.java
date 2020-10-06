@@ -642,7 +642,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jPanel1.add(jButton3);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post till sig själv, automatiskt");
+        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post till sig, automatiskt");
         jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_send_faktura_emailActionPerformed(evt);

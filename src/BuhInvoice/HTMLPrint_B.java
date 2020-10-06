@@ -7,7 +7,6 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
-import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -39,21 +38,20 @@ public class HTMLPrint_B extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        super(bim, fakturatype,preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
     }
 
     @Override
     protected void buttonLogic() {
         //
     }
-    
-    
+
     @Override
     protected String getWindowTitle() {
-        if(preview){
-            return LANG.FRAME_TITLE_1_3; 
-        }else{
-           return LANG.FRAME_TITLE_1_2; 
+        if (preview) {
+            return LANG.FRAME_TITLE_1_3;
+        } else {
+            return LANG.FRAME_TITLE_1_2;
         }
     }
 
@@ -108,7 +106,6 @@ public class HTMLPrint_B extends HTMLPrint {
     private String getDrojsmalsrantaFlexCol() {
         return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
     }
-
 
     @Override
     protected String buildHTML() {
@@ -254,7 +251,8 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String[] values_t_2 = new String[]{
             T__FTG_EPOST + ": " + _get(map_f, DB.BUH_KUND__EPOST),
-            ""};
+            "Notis" + ": "
+        };
         //
         html_ += "<tr>"
                 //
@@ -677,7 +675,6 @@ public class HTMLPrint_B extends HTMLPrint {
         //
     }
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
