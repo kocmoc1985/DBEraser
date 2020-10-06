@@ -88,20 +88,19 @@ public class InvoiceB extends Basic_Buh {
     @Override
     protected void startUp() {
         //#THREAD#
-//        Thread x = new Thread(() -> {
-        //
         fillJTableheader();
+        hideColumnsFakturaTable(bim.jTable_invoiceB_alla_fakturor);
+        refresh(null); // this is used instead of fillFakturaTable
+//        fillFakturaTable(null);
+//        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+//        String fakturaId = bim.getFakturaId();
+//        all_invoices_table_clicked(fakturaId);
+        java.awt.EventQueue.invokeLater(() -> {
+            fillJComboSearchByFakturaKund();
+        });
         //
-        refresh(null); // fillTable done here, and also marking first row
-//            fillFakturaTable(null);
+//        refresh(null); // fillTable done here, and also marking first row
         //
-//        });
-        //
-        fillJComboSearchByFakturaKund();
-        //
-//        x.start();
-        //
-        // fillFakturaArticlesTable();
     }
 
     /**
@@ -366,7 +365,12 @@ public class InvoiceB extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        if (GP_BUH.CUSTOMER_MODE) {
+        hideColumnsFakturaTable(table);
+        //
+    }
+    
+    private void hideColumnsFakturaTable(JTable table){
+         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
@@ -821,7 +825,7 @@ public class InvoiceB extends Basic_Buh {
             //
             if (i == 0) {
                 str += key + "%";
-            }else{
+            } else {
                 str += ", " + key + "%";
             }
             //
