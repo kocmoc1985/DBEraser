@@ -412,8 +412,9 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
         }
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
-        html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + " / " + T__ARTIKEL_ENHET + "</td>";
+//        html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
+        //
         if (containsRabatt) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
         }
@@ -447,8 +448,9 @@ public class HTMLPrint_A extends HTMLPrint {
                html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>"; 
             }
             //
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
-            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + " (" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + ")" + "</td>";
+//            html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
+            //
             if (containsRabatt) {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
             }
