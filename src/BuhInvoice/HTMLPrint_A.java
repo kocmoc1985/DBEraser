@@ -377,6 +377,14 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
+    private String countMoms(HashMap<String, String> map){
+        int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));
+        double pris = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__PRIS));
+        double momsSats = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__MOMS_SATS)) / 100;
+        double momsKr = (antal * pris) * momsSats;
+        return ""+GP_BUH.round_double(momsKr);
+    }
+    
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
         String html_ = "<table class='marginTop' style='border: 1px solid black'>";
@@ -412,6 +420,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         if(containsSameMomsSats == false){
            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS + "</td>"; 
+           html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR + "</td>"; 
         }
         //
         html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>"; 
@@ -420,6 +429,13 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         //
         for (HashMap<String, String> map : list) {
+            //
+            String moms_kr = "";
+            //
+            if(containsSameMomsSats == false){
+                moms_kr = countMoms(map);
+            }
+            //
             //
             html_ += "<tr>";
             //
@@ -439,6 +455,7 @@ public class HTMLPrint_A extends HTMLPrint {
             //
             if(containsSameMomsSats == false){
                html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__MOMS_SATS) + "</td>";
+               html_ += "<td class='no-border'>" + moms_kr + "</td>";
             }
             //
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";

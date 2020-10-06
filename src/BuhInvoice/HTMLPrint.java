@@ -102,6 +102,7 @@ public abstract class HTMLPrint extends JFrame {
     public static final String T__ARTIKEL_ENHET = "Enhet";
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_MOMS_SATS = "Moms%";
+    public static final String T__ARTIKEL_MOMS_KR = "Moms Kr";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     //
     public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
