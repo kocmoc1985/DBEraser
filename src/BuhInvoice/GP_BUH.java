@@ -45,6 +45,10 @@ public class GP_BUH {
     public static boolean CUSTOMER_MODE = true;
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
     //
+    public static String KUND_ID;
+    public static String USER = "user";
+    public static String PASS = "pass";
+    //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************

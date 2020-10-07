@@ -6,6 +6,8 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.EmailSendingStatus;
+import BuhInvoice.sec.LANG;
+import forall.HelpA;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -24,6 +26,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang.StringEscapeUtils;
+
 /**
  *
  * @author MCREMOTE
@@ -31,7 +34,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class HelpBuh {
 
     /**
-     * [2020-08-27]
+     * [2020-09-07]
      *
      * @param phpScriptName - example: "_http_buh"
      * @param phpFunctionName - example: "delete_entry"
@@ -40,6 +43,18 @@ public class HelpBuh {
      * @throws Exception
      */
     public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
+        //
+        HashMap<String, String> map = JSon.JSONToHashMap(json, false);
+        //
+        map.put("user", GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
+        map.put("pass", GP_BUH.PASS); // [#SEQURITY#]
+        //
+        String url = buildUrl(phpScriptName, phpFunctionName, JSon.hashMapToJSON(map));
+        //
+        return http_get_content_post(url);
+    }
+    
+    public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
         String url = buildUrl(phpScriptName, phpFunctionName, json);
         return http_get_content_post(url);
     }
@@ -71,13 +86,13 @@ public class HelpBuh {
     }
 
     /**
-     *[2020-08-28]
-     * 
+     * [2020-08-28]
+     *
      * By [2020-08-28] i only now how to upload the file inside the dir where
      * the "upload" script is placed. Or also inside which is inside the dir
      * where the script is. So working paths ("fileNameAndPathServerSide") for
      * the moment are: "test.pdf" OR "uploads/test.pdf"
-     * 
+     *
      * @param from
      * @param fromNameOptional
      * @param to
@@ -138,7 +153,7 @@ public class HelpBuh {
      * @throws InterruptedException
      */
     public static boolean uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
-       return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+        return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
     }
 
     public static final String SERVER_UPLOAD_PATH = "uploads/";
@@ -154,7 +169,7 @@ public class HelpBuh {
         boolean upload_success = false;
         //
         try {
-          upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
+            upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -194,6 +209,9 @@ public class HelpBuh {
         return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
     }
 
+    public static final String VALIDATION_ERROR_01_U_P_NOT_SET = "V_ERR_01"; //user_or_pass_is_not_set
+    public static final String VALIDATION_ERROR_02_U_P_NOT_MATCH = "V_ERR_02"; //user_or_pass_does_not_match
+    
     /**
      * Implemented [2020-06-02] Yes this one is working
      *
@@ -202,7 +220,7 @@ public class HelpBuh {
      * @throws MalformedURLException
      * @throws IOException
      */
-    public static String http_get_content_post(String url_) throws Exception {
+    public static synchronized String http_get_content_post(String url_) throws Exception {
         //
         String urlParameters = url_.split("\\?")[1];
         byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
@@ -244,6 +262,16 @@ public class HelpBuh {
         String value = temp.split(":")[1];
         //
         System.out.println("HTTP REQ VAL: " + value);
+        //
+        //[#SEQURITY#]
+        if(value.equals(VALIDATION_ERROR_01_U_P_NOT_SET) 
+                || value.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)){
+            //
+             HelpA.showNotification(LANG.VALIDATION_MSG_2);
+            //
+            System.exit(0);
+            //
+        }
         //
         //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
         // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"

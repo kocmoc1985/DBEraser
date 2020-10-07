@@ -77,6 +77,7 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
     public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
     //
+    public static final String PHP_FUNC_DEFINE_KUNDID = "define_kundid"; // using php-function: "defineKundId()"
     //
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
     //

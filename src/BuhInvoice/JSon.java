@@ -227,6 +227,10 @@ public class JSon {
         json = json.replaceAll("\\}", "");
         String[] arr = json.split(",");
         //
+        if(arr[0].isEmpty()){ // [2020-10-07]
+            return map;
+        }
+        //
         for (String entry : arr) {
             //
             String[] jsonObj = entry.split(";");

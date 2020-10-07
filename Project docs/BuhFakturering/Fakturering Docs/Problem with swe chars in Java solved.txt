@@ -1,6 +1,6 @@
 
 ________________________________________________________________________________________________________
-ESCAPE / UNESCAPE -> ALL "SCAPING" IS DONE ON JAVA SIDE
+ESCAPE / UNESCAPE -> ALL "ESCAPING" IS DONE ON JAVA SIDE
 
 [INCOMMING FROM PHP -> JAVA]
 See: HelpBuh.class -> http_get_content_post(..) -> "return StringEscapeUtils.unescapeJava(value)"

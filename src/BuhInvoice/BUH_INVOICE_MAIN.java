@@ -74,6 +74,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void initOhter() {
         //
+        DEFINE_KUNDID();
+        //
         this.jTabbedPane1.addMouseListener(this);
         this.jTable_invoiceB_alla_fakturor.addMouseListener(this);
         this.jTable_invoiceB_alla_fakturor.addKeyListener(this);
@@ -209,7 +211,27 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * @return
      */
     protected String getKundId() {
-        return "1";
+        return GP_BUH.KUND_ID;
+    }
+
+    private void DEFINE_KUNDID() {
+        //[#SEQURITY#]
+        HashMap<String, String> map = new HashMap();
+        //
+        try {
+            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DEFINE_KUNDID, JSon.hashMapToJSON(map));
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            GP_BUH.KUND_ID = "-1";
+            
+        }
+        //
+        if( GP_BUH.KUND_ID.equals("-1")){
+            HelpA.showNotification(LANG.VALIDATION_MSG_1);
+            System.exit(0);
+        }
+        //
     }
 
     protected boolean noCustomersPresent() {

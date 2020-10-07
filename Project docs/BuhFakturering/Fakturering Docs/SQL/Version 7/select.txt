@@ -1,4 +1,7 @@
 ----------------------------------------------------------------------
+[2020-10-07]
+SELECT * FROM `buh_licens` WHERE user='user' and pass='pass'
+----------------------------------------------------------------------
 [2020-07-23]
 
 GET LATEST FAKTURA NR (fakturanr) for given KUND ID (kundid).
