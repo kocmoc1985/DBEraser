@@ -1,3 +1,20 @@
+________________________________________________________________________________________________________
+[HASHING]
+
+OBS! Use 255 characters for password
+
+https://stackoverflow.com/questions/38553004/how-to-get-the-random-salt-from-password-hash-in-php
+Note that password_hash() returns the algorithm, cost and salt as part of the returned hash. Therefore, all information that's needed to verify the hash is included in it. This allows the verify function to verify the hash without needing separate storage for the salt or algorithm information.
+This function is safe against timing attacks. 
+
+So the main idea with hashing is that if a hacker get access to the DATABASE he will not be able to unhash a password.
+So the idea is not that the hacker attacks from the login-page.
+
+The comments below (A,B) are taken from StackOverflow:
+A. Upon registration, the user sends her password to the server. The server generates a random salt, and stores the salted hash and the salt.
+B. Upon login, the user again sends her password to the server. The server retrieves the stored salt for that user, rehashes the password with it, and compares it to the stored hash.
+Salts create unique passwords even in the instance of two users choosing the same passwords. Salts help us mitigate rainbow table attacks by forcing attackers to re-compute them using the salts.
+________________________________________________________________________________________________________
 [USER VALIDATION][2020-10-07]
 
 OBS! Switch to only using "PDO" for all DB requests!!!!********************************IMPORTANT****************
