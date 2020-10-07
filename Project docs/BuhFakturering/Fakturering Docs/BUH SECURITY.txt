@@ -1,7 +1,20 @@
 [USER VALIDATION][2020-10-07]
 
-OBS! Switch to only using "PDO" for all DB requests!!!!********************************IMPORTANT*****************
+OBS! Switch to only using "PDO" for all DB requests!!!!********************************IMPORTANT****************
+Functions still using the "mysqli":
+- latest() - phpFunc: get_latest
+- getLatestFakturaNr() - phpFunc:  get_latest_faktura_nr
+- insert_buh_faktura_kund_return_fakturaKundId()  - phpFunc: faktura_kund_to_db
+
+$stmt = executeSelectQuery_ASSOC_PDO($q);
+$row = $stmt->fetch();
+$kundId = $row['kundId'];
+
+OBS!!!!!!!!!!!!!!!!!!!!!! Fix "insert()" FUNCTION ******************************************
+
 Search for "pdo execute select with fetch" in google
+
+
 
 OBS! "Salting" is obligatory in cases when 2 users accedentially have same username & password. If i generate users by my self it's not the case.
 

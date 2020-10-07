@@ -46,6 +46,11 @@ public class GP_BUH {
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
     //
     public static String KUND_ID;
+    /**
+     * By [2020-10-07]
+     * For my test Bolag "kundId=1" use: "user"/"pass"
+     * For Alex Bolag "kundId=1" use: "alex"/"alex"
+     */
     public static String USER = "user";
     public static String PASS = "pass";
     //
