@@ -1,35 +1,14 @@
 ________________________________________________________________________________________________________
-[HASHING]
+[PASSWORD HASHING & USER VALIDATION][2020-10-07]
 
 So the main idea with hashing is that if a hacker get access to the DATABASE he will not be able to unhash a password.
 So the idea is not that the hacker attacks from the login-page.
 
-The comments below (A,B) are taken from StackOverflow:
-A. Upon registration, the user sends her password to the server. The server generates a random salt, and stores the salted hash and the salt.
-B. Upon login, the user again sends her password to the server. The server retrieves the stored salt for that user, rehashes the password with it, and compares it to the stored hash.
-Salts create unique passwords even in the instance of two users choosing the same passwords. Salts help us mitigate rainbow table attacks by forcing attackers to re-compute them using the salts.
+HASHING IS DONE IN: "_http_buh.php" -> "createAccount()" ----------> Using PHP's embeded "password_hash($pass,PASSWORD_DEFAULT)"
+PASS VALIDATION IS DONE: _http_buh.php" -> "check_login($user, $pass)" ---------> Using PHP's embeded "password_verify($pass, $passHashed)"
+
 ________________________________________________________________________________________________________
-[USER VALIDATION][2020-10-07]
-
-OBS! Switch to only using "PDO" for all DB requests!!!!********************************IMPORTANT****************
-Functions still using the "mysqli":
-- latest() - phpFunc: get_latest
-- getLatestFakturaNr() - phpFunc:  get_latest_faktura_nr
-- insert_buh_faktura_kund_return_fakturaKundId()  - phpFunc: faktura_kund_to_db
-
-$stmt = executeSelectQuery_ASSOC_PDO($q);
-$row = $stmt->fetch();
-$kundId = $row['kundId'];
-
-OBS!!!!!!!!!!!!!!!!!!!!!! Fix "insert()" FUNCTION ******************************************
-
-Search for "pdo execute select with fetch" in google
-
-
-
-OBS! "Salting" is obligatory in cases when 2 users accedentially have same username & password. If i generate users by my self it's not the case.
-
-____________
+[SEQURITY FUNCTIONS][2020-10-07]
 
 Search for TAG: [#SEQURITY#] in both "DBEraser" and "MCWebNew" projects
 
@@ -41,15 +20,22 @@ Java side, see: "HelpBuh.class -> executePHP(String phpScriptName, String phpFun
 
 A. Even if a hacker nows some "kundId" it's not possible to use it somehow as the validation is done uppon ALL of the requests.
 ________________________________________________________________________________________________________
-[SQL INJECTION] [2020-08-07]
+[SQL INJECTION - PREPARED STATEMENTS] [2020-08-07]
 
 See in "lib.php": "function connectPDO()" && "function executePreparedQueryPdo($q, $valuesArray)"
 
-======================
+__________
 
-"PREPARED STATEMENTS" are implemented for "INSERT" and "UPDATE" [2020-08-XX] 
+"PREPARED STATEMENTS":
 
-======================
+Note important to know when using:
+1. Pay attentione at this example: $q = "SELECT MAX($column) as `latest` FROM $table WHERE kundId=?"; ---> PDO does not support replacing "$column" and "$table" with "?" [2020-10-08]
+2. The values which are set instead of "?" should not contain additional "''"
+
+IMPLEMENTED prepared statements for **ALL** functions including SELECT and other [2020-10-08]
+
+
+__________
 
 ESCAPE / UNESCAPE -> ALL "ESCAPING" IS DONE ON JAVA SIDE
 
