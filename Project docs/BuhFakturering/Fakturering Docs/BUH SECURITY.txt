@@ -1,12 +1,6 @@
 ________________________________________________________________________________________________________
 [HASHING]
 
-OBS! Use 255 characters for password
-
-https://stackoverflow.com/questions/38553004/how-to-get-the-random-salt-from-password-hash-in-php
-Note that password_hash() returns the algorithm, cost and salt as part of the returned hash. Therefore, all information that's needed to verify the hash is included in it. This allows the verify function to verify the hash without needing separate storage for the salt or algorithm information.
-This function is safe against timing attacks. 
-
 So the main idea with hashing is that if a hacker get access to the DATABASE he will not be able to unhash a password.
 So the idea is not that the hacker attacks from the login-page.
 

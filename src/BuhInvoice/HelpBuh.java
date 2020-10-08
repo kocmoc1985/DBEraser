@@ -54,6 +54,28 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
     
+    public static boolean createAccountPHP(String kundId){
+        //[#SEQURITY#]
+        HashMap<String, String> map = new HashMap();
+        //
+        map.put(DB.BUH_KUND__ID, kundId);
+        //
+        try {
+            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_CREATE_ACCOUNT, JSon.hashMapToJSON(map));
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public static void main(String[] args) {
+        GP_BUH.USER = "chaki";
+        GP_BUH.PASS = "pass";
+        createAccountPHP("3");
+    }
+    
     public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
         String url = buildUrl(phpScriptName, phpFunctionName, json);
         return http_get_content_post(url);
@@ -159,10 +181,7 @@ public class HelpBuh {
     public static final String SERVER_UPLOAD_PATH = "uploads/";
 //    public static final String SERVER_UPLOAD_PATH = "";
 
-    public static void main(String[] args) {
-//        test__uploadFile();
-        test__sendEmailWithAttachment();
-    }
+   
 
     private static void test__uploadFile() {
         //

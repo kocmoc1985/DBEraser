@@ -207,7 +207,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * invoice because of the "foreign key constraints".
      *
      * It will maybe make sense to verify if the "kundId" exist in cloud
-     *
+     * 
+     * BY[2020-10-08]
+     * To login with needed account goto GP_BUH and change "USER" & "PASS"
      * @return
      */
     protected String getKundId() {

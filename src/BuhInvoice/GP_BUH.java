@@ -48,11 +48,15 @@ public class GP_BUH {
     public static String KUND_ID;
     /**
      * By [2020-10-07]
-     * For my test Bolag "kundId=1" use: "user"/"pass"
-     * For Alex Bolag "kundId=1" use: "alex"/"alex"
+     * For MixCont test Bolag "kundId=1" use: "mixcont"/"mixcont4765"
+     * For Alex Bolag "kundId=2" use: "alex"/"alex1980"
+     * For Chaki Bolag "kundId=3" use: "chaki"/"pass"
      */
-    public static String USER = "user";
-    public static String PASS = "pass";
+//    public static String USER = "mixcont";
+//    public static String PASS = "mixcont4765";
+    //
+    public static String USER = "alex";
+    public static String PASS = "alex1980";
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     //

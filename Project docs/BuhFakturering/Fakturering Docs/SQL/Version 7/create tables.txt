@@ -18,6 +18,16 @@ swish varchar (30) DEFAULT '',
 f_skatt boolean DEFAULT false,
 );
 
+
+CREATE TABLE buh_licens (
+licensId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+user varchar(100) DEFAULT '',
+pass varchar(255) DEFAULT '',
+Foreign key (kundId) references buh_kund(kundId),
+UNIQUE (user)
+);
+
 CREATE TABLE buh_faktura_kund (
 fakturaKundId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
