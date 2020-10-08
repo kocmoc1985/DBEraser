@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang.StringEscapeUtils;
-
 /**
  *
  * @author MCREMOTE
@@ -295,7 +294,7 @@ public class HelpBuh {
         //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
         // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"
         // because an unescaped string which i recieve looks like "\\u00e5" indeed 
-        return StringEscapeUtils.unescapeJava(value);
+        return StringEscapeUtils.unescapeJava(value);//[#ESCAPE#]
         //
 //        String temp = arr[1];
 //        System.out.println("HTTP REQ VAL: " + temp);

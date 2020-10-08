@@ -2,13 +2,20 @@
 ________________________________________________________________________________________________________
 ESCAPE / UNESCAPE -> ALL "ESCAPING" IS DONE ON JAVA SIDE
 
+Search for "[#ESCAPE#]" tag in the "DBEraser.proj"
+
 [INCOMMING FROM PHP -> JAVA]
 See: HelpBuh.class -> http_get_content_post(..) -> "return StringEscapeUtils.unescapeJava(value)"
 
-[OUTGOING FROM JAVA -> PHP]
+[OUTGOING FROM JAVA -> PHP (**NOT NEEDED**)]---------------------------->OBS!OBS!OBS! since about [2020-10-XX] discovered on [2020-10-08] NOT LONGER NEEDED:
+The reason is totally unclear, initially i thought it could be because of switching all of the functions to "prepared statements" - but sending
+email were database is not involved caused same problem. I also thaught it could be because of the newely itroduced "_http_buh.php->validate()" method which is
+called before each other execution, but the test was made with "validate()" method turned off and the problem remained.
+
 See: JSon.hashMapToJSON() -> StringEscapeUtils.escapeJava(value):
 As example a String="Åland" is escaped to "\u00C5land"
 
+commons-lang3-3.4.jar --> NOT NEEDED
 ________________________________________________________________________________________________________
 
 PROBLEM WITH UT8-8 FOR EMAIL SUBJECT AND ATTACHED FILENAME

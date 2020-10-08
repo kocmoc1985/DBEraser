@@ -189,6 +189,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected void displayArticlesCount() {
         invoiceB.displayArticlesCount();
     }
+    
+    protected void resetArticlesCount(){
+         invoiceB.resetArticlesCount();
+    }
 
     protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;

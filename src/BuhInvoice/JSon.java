@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 import javax.swing.JTable;
-import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * This is taken from JkocmocLin -> MyJSON.class
@@ -131,7 +130,8 @@ public class JSon {
             String key = (String) it.next();
             String value = (String) map.get(key);
             //StringEscapeUtils.escapeHtml(value): Not working [2020-08-07]
-            value = StringEscapeUtils.escapeJava(value); // ******************IMPORTANT***********************
+//            value = StringEscapeUtils.escapeJava(value); //[#ESCAPE#] ******************IMPORTANT***********************
+            
             //
             json += "\"" + key + "\"" + ";";
             if (!it.hasNext()) {
@@ -532,14 +532,14 @@ public class JSon {
         return rst;
     }
 
-    public static void main(String[] args) {
-        //
-        String value = "Åland";
-        //
-        value = StringEscapeUtils.escapeJava(value);
-        //
-        System.out.println("" + value);
-    }
+//    public static void main(String[] args) {
+//        //
+//        String value = "Åland";
+//        //
+//        value = StringEscapeUtils.escapeJava(value);
+//        //
+//        System.out.println("" + value);
+//    }
 
     public static String delete_last_letter_in_string(String str, String letter) {
         //

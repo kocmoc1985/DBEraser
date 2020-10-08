@@ -385,6 +385,8 @@ public abstract class Invoice_ extends Basic_Buh {
 
     protected void resetFakturaTotal() {
         //
+        bim.resetArticlesCount();
+        //
         FAKTURA_TOTAL = 0;
         RABATT_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;

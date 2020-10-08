@@ -189,6 +189,10 @@ public class InvoiceB extends Basic_Buh {
         int articlesCount = bim.getInvoiceArticleCount();
         bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>" + articlesCount + "</div></html>");
     }
+    
+    protected void resetArticlesCount(){
+        bim.jLabel_ammount_of_articles_.setText("");
+    }
 
     private void fillJTableheader() {
         //

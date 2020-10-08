@@ -46,7 +46,7 @@ public class GP_BUH {
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
     //
     public static String KUND_ID;
-    /**
+    /*
      * By [2020-10-07]
      * For MixCont test Bolag "kundId=1" use: "mixcont"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex"/"alex1980"
@@ -55,8 +55,8 @@ public class GP_BUH {
 //    public static String USER = "mixcont";
 //    public static String PASS = "mixcont4765";
     //
-    public static String USER = "alex";
-    public static String PASS = "alex1980";
+    public static String USER = "mixcont";
+    public static String PASS = "mixcont4765";
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     //
