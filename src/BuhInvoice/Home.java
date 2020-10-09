@@ -12,6 +12,8 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.HelpA;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +38,32 @@ public class Home extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        System.out.println("");
+        GP_BUH.USER = map.get(DB.BUH_LICENS__USER);
+        GP_BUH.PASS = map.get(DB.BUH_LICENS__PASS);
+        //
+        if (validateAndefineKundId()) {
+
+        } else {
+            HelpA.showNotification(LANG.VALIDATION_MSG_1);
+//            System.exit(0);
+        }
+        //
+    }
+
+    private boolean validateAndefineKundId() {
+        //[#SEQURITY#]
+        HashMap<String, String> map = new HashMap();
+        //
+        try {
+            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DEFINE_KUNDID, JSon.hashMapToJSON(map));
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            GP_BUH.KUND_ID = "-1";
+
+        }
+        //
+        return GP_BUH.KUND_ID.equals("-1") == false;
     }
 
     @Override

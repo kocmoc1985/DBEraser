@@ -17,7 +17,7 @@ import BuhInvoice.HTMLPrint_B;
  */
 public class LANG {
 
-    public final static String VALIDATION_MSG_1 = "Kunde inte faställa din unika kund id";
+    public final static String VALIDATION_MSG_1 = "Inloggning misslyckades";
     public final static String VALIDATION_MSG_2 = "Autentiseringsproblem - användare och/eller lösenord matchar ej";
     
     public final static String FAKTURA = "Faktura";

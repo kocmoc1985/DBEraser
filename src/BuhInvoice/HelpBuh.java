@@ -45,8 +45,8 @@ public class HelpBuh {
         //
         HashMap<String, String> map = JSon.JSONToHashMap(json, false);
         //
-        map.put("user", GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
-        map.put("pass", GP_BUH.PASS); // [#SEQURITY#]
+        map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
+        map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]
         //
         String url = buildUrl(phpScriptName, phpFunctionName, JSon.hashMapToJSON(map));
         //
