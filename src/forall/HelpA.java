@@ -2869,10 +2869,13 @@ public class HelpA {
                 list.add(rs);
                 rs = br.readLine();
             }
-
+            //
+            br.close(); // Important to "release file" [2020-10-09]
+            //
         } catch (IOException e) {
 //            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
         }
+        //
         //
         return list;
     }

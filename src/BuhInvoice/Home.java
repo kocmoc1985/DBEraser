@@ -30,13 +30,29 @@ public class Home extends Basic_Buh {
     private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
     private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
 
+    public static final String CHECK_BOX__SAVE_LOGIN_STATE = "chkbox";
+
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
     @Override
     protected void startUp() {
+        loadCheckBoxSaveLoginState();
         refresh();
+    }
+
+    private void loadCheckBoxSaveLoginState() {
+        //
+        String state = IO.loadLastEntered(CHECK_BOX__SAVE_LOGIN_STATE, "0");
+        //
+        if (state.equals("1")) {
+            bim.jCheckBox_spara_inloggning.setSelected(true);
+        }
+    }
+
+    private boolean saveInloggning() {
+        return bim.jCheckBox_spara_inloggning.isSelected();
     }
 
     protected void refresh() {
@@ -45,7 +61,7 @@ public class Home extends Basic_Buh {
 
     protected void loggaIn() {
         //
-        if(fieldsValidated(false) == false){
+        if (fieldsValidated(false) == false) {
             return;
         }
         //
@@ -96,7 +112,7 @@ public class Home extends Basic_Buh {
             int kundid = Integer.parseInt(responce);
             //
             if (kundid > 0) {
-                GP_BUH.KUND_ID = ""+kundid; // *********IMPORTANT
+                GP_BUH.KUND_ID = "" + kundid; // *********IMPORTANT
                 return true;
             }
         } else {
@@ -106,7 +122,7 @@ public class Home extends Basic_Buh {
                 HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_0);
             } else if (responce.equals(VALIDATION__V_ERR_01)) {
                 HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_01);
-            }else if(responce.equals(VALIDATION__V_ERR_02)){
+            } else if (responce.equals(VALIDATION__V_ERR_02)) {
                 HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_02);
             }
             //
@@ -114,7 +130,6 @@ public class Home extends Basic_Buh {
         //
         return false;
     }
-
 
     @Override
     public void showTableInvert() {
@@ -132,10 +147,10 @@ public class Home extends Basic_Buh {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        String user_ = IO.loadLastEntered(DB.BUH_LICENS__USER,"");
+        String user_ = IO.loadLastEntered(DB.BUH_LICENS__USER, "");
         RowDataInvert user = new RowDataInvertB(user_, DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
         //
-        String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS,"");
+        String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS, "");
         RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
         //
         RowDataInvert[] rows = {
@@ -174,15 +189,33 @@ public class Home extends Basic_Buh {
         //
         if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT)) {
             if (Validator.validateMaxInputLength(jli, 100)) { // The length 100 has also nothing with db to do
-                IO.writeToFile(DB.BUH_LICENS__USER, jli.getValue());
+                save(DB.BUH_LICENS__USER, jli.getValue());
             }
-        }else if(col_name.equals(DB.BUH_LICENS__PASS) && ti.equals(TABLE_INVERT)){
-             if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
-                IO.writeToFile(DB.BUH_LICENS__PASS, jli.getValue());
+        } else if (col_name.equals(DB.BUH_LICENS__PASS) && ti.equals(TABLE_INVERT)) {
+            if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
+                save(DB.BUH_LICENS__PASS, jli.getValue());
             }
         }
+        //
     }
     
+    /**
+     * Saving when the checkBox state changed to "1/selected"
+     */
+    protected void saveUserAndPass(){
+         save(DB.BUH_LICENS__USER, getValueTableInvert(DB.BUH_LICENS__USER));
+         save(DB.BUH_LICENS__PASS, getValueTableInvert(DB.BUH_LICENS__PASS));
+    }
     
+    protected void deleteUserAndPass(){
+        IO.delete(DB.BUH_LICENS__USER);
+        IO.delete(DB.BUH_LICENS__PASS);
+    }
+    
+    private void save(String param, String value) {
+        if (saveInloggning()) {
+            IO.writeToFile(param, value);
+        }
+    }
 
 }

@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.TableInvert;
@@ -500,6 +501,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel19 = new javax.swing.JPanel();
         jPanel_inloggning = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jCheckBox_spara_inloggning = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -616,6 +619,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jCheckBox_spara_inloggning.setText("Spara Inloggning");
+        jCheckBox_spara_inloggning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_spara_inloggningActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("Inloggning");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -624,16 +638,24 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addContainerGap()
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox_spara_inloggning))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(747, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jCheckBox_spara_inloggning))
                 .addContainerGap(775, Short.MAX_VALUE))
         );
 
@@ -1837,6 +1859,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         home.loggaIn();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jCheckBox_spara_inloggningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_spara_inloggningActionPerformed
+        if(jCheckBox_spara_inloggning.isSelected()){
+            IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "1");
+            home.saveUserAndPass();
+        }else{
+            IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "0");
+            home.deleteUserAndPass();
+        }
+    }//GEN-LAST:event_jCheckBox_spara_inloggningActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -1923,6 +1955,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_update_articles_row;
     protected javax.swing.JButton jButton_update_kund;
     protected javax.swing.JButton jButton_update_kund_data;
+    protected javax.swing.JCheckBox jCheckBox_spara_inloggning;
     protected javax.swing.JComboBox<String> jComboBox_faktura_kunder_filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1932,6 +1965,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel5_separator;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
