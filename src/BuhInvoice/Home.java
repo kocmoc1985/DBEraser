@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.event.KeyEvent;
@@ -171,11 +172,11 @@ public class Home extends Basic_Buh {
         //
         if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT)) {
             if (Validator.validateMaxInputLength(jli, 100)) { // The length 100 has also nothing with db to do
-                
+                IO.writeToFile(DB.BUH_LICENS__USER, jli.getValue());
             }
         }else if(col_name.equals(DB.BUH_LICENS__PASS) && ti.equals(TABLE_INVERT)){
              if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
-                
+                IO.writeToFile(DB.BUH_LICENS__PASS, jli.getValue());
             }
         }
     }
