@@ -48,9 +48,9 @@ public class ColumnValue {
         } else if (value instanceof JComboBoxInvert) {
             JComboBoxInvert comboBox = (JComboBoxInvert) value;
             return HelpA.getComboBoxSelectedValue(comboBox);
-        } else if (value instanceof JTextFieldInvert) {
-            JTextFieldInvert jtf = (JTextFieldInvert) value;
-            return (String) jtf.getText();
+        } else if (value instanceof JTextFieldInvert || value instanceof JPassWordFieldInvert) {
+            JLinkInvert jli = (JLinkInvert)value;
+            return jli.getValue();
         } else if (value instanceof JButtonInvert) {
             JButtonInvert jb = (JButtonInvert) value;
             return (String) jb.getText();

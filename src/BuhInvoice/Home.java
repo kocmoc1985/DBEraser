@@ -5,10 +5,13 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.LANG;
 import MyObjectTable.OutPut;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
+import forall.HelpA;
+import java.util.HashMap;
 
 /**
  *
@@ -29,6 +32,13 @@ public class Home extends Basic_Buh {
         showTableInvert();
     }
 
+    protected void loggaIn() {
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
+        //
+        System.out.println("");
+    }
+
     @Override
     public void showTableInvert() {
         //
@@ -47,7 +57,7 @@ public class Home extends Basic_Buh {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
         //
-        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", DB.BUH_FAKTURA_ARTIKEL___ARTNR, "LÖSENORD", "", true, true, true);
+        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
         //
         RowDataInvert[] rows = {
             user,
@@ -59,7 +69,19 @@ public class Home extends Basic_Buh {
 
     @Override
     protected boolean fieldsValidated(boolean insert) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
     }
 
 }

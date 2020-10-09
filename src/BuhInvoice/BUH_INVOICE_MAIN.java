@@ -509,6 +509,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel19 = new javax.swing.JPanel();
         jPanel_inloggning = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -615,7 +616,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
+        jPanel_inloggning.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_inloggning.setLayout(new java.awt.BorderLayout());
+
+        jButton2.setText("Logga in");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -623,7 +632,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addContainerGap(747, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
@@ -631,7 +642,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(818, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(775, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -1830,6 +1843,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        home.loggaIn();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -1892,6 +1909,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
