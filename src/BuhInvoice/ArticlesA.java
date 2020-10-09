@@ -339,6 +339,7 @@ public class ArticlesA extends Basic_Buh {
         showTableInvert(bim.jPanel6);
         //
         addTableInvertRowListener(TABLE_INVERT, this);
+        //
     }
 
     /**

@@ -36,9 +36,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private ForetagA foretagA;
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
+    protected Home home;
 
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
+    public final static String TAB_HOME = "HEM";
     public final static String TAB_INVOICES_OVERVIEW = "ALLA FAKTUROR";
     private final static String TAB_FAKTURA = "FAKTURA";
     public final static String TAB_KUDNER = "KUNDER";
@@ -86,6 +88,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         this.jTable_ArticlesA_articles.addMouseListener(this);
         //
         this.jTextArea_faktura_komment.addKeyListener(this);
+        //
+        home = new Home(this);
         //
         invoiceB = new InvoiceB(this);
         HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
@@ -501,6 +505,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel19 = new javax.swing.JPanel();
+        jPanel_inloggning = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -606,6 +613,29 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
+
+        jPanel_inloggning.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(747, Short.MAX_VALUE))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jPanel_inloggning, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(818, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel19);
+
+        jTabbedPane1.addTab("HEM", jScrollPane1);
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(1290, 500));
 
@@ -1910,6 +1940,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel16;
     protected javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
@@ -1923,6 +1954,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel8;
     protected javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
+    protected javax.swing.JPanel jPanel_inloggning;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     protected javax.swing.JScrollPane jScrollPane11;
     protected javax.swing.JScrollPane jScrollPane12;
