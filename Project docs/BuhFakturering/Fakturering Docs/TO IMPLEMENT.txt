@@ -1,5 +1,8 @@
 
 Implement statistics like on "Home" tab like, "antal obetalda, antal förfallna" -> Kanske i forsättningen även göra det i form av graf
+SELECT COUNT(betald) as ´BETALDA´ FROM buh_faktura WHERE kundId=1 AND betald=1
+SELECT COUNT(makulerad) as ´MAKULERADE´ FROM buh_faktura WHERE kundId=1 AND makulerad=1
+SELECT COUNT(fakturaId) as ´FAKTUROR´ FROM buh_faktura WHERE kundId=1 AND MONTH(buh_faktura.fakturadatum)=MONTH(CURRENT_DATE()) AND YEAR(buh_faktura.fakturadatum)=YEAR(CURRENT_DATE())
 
 Don't forget to create a "buh_kund" uppon registration of user
 
