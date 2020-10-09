@@ -1,4 +1,6 @@
 
+Implement statistics like on "Home" tab like, "antal obetalda, antal förfallna" -> Kanske i forsättningen även göra det i form av graf
+
 Don't forget to create a "buh_kund" uppon registration of user
 
 To each email send add the name of Company with webb address

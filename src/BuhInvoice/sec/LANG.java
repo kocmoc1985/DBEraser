@@ -7,6 +7,7 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.CustomersA_;
+import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
@@ -21,6 +22,10 @@ public class LANG {
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";
     public final static String VALIDATION_MSG__V_ERR_01 = "Fel användarnamn";
     public final static String VALIDATION_MSG__V_ERR_02 = "Fel lösenord";
+    
+    public static final String getInloggningsMsg(String customerCompanyName){
+        return "Inloggad som: " + customerCompanyName;
+    }
     
     public final static String FAKTURA = "Faktura";
     public final static String PAMINNELSE = "Påminnelse";

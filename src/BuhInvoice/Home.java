@@ -41,6 +41,10 @@ public class Home extends Basic_Buh {
         loadCheckBoxSaveLoginState();
         refresh();
     }
+    
+    private void setInloggningsLabel(String text){
+        bim.jLabel_inloggning.setText(text);
+    }
 
     private void loadCheckBoxSaveLoginState() {
         //
@@ -75,6 +79,7 @@ public class Home extends Basic_Buh {
             bim.enableTabs(true);
             refresh();
             getFtgName();
+            setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
             bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
