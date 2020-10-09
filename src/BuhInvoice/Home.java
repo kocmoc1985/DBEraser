@@ -14,18 +14,18 @@ import MyObjectTableInvert.TableBuilderInvert_;
  *
  * @author KOCMOC
  */
-public class Home extends Basic_Buh{
+public class Home extends Basic_Buh {
 
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
-    
+
     @Override
     protected void startUp() {
-       refresh();
+        refresh();
     }
-    
-    protected void refresh(){
+
+    protected void refresh() {
         showTableInvert();
     }
 
@@ -47,7 +47,7 @@ public class Home extends Basic_Buh{
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
         //
-        RowDataInvert pass = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___ARTNR, "LÖSENORD", "", true, true, true);
+        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", DB.BUH_FAKTURA_ARTIKEL___ARTNR, "LÖSENORD", "", true, true, true);
         //
         RowDataInvert[] rows = {
             user,
@@ -57,11 +57,9 @@ public class Home extends Basic_Buh{
         return rows;
     }
 
-    
-
     @Override
     protected boolean fieldsValidated(boolean insert) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

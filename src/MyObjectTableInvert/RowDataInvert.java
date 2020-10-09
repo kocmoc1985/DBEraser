@@ -8,6 +8,7 @@ package MyObjectTableInvert;
 import MyObjectTable.RowData;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -20,6 +21,7 @@ public class RowDataInvert extends RowData {
     public static final int TYPE_JBUTTON = 2;
     public static final int TYPE_JLABEL = 3;
     public static final int TYPE_JCOMBOBOX_PREFILED = 4;
+    public static final int TYPE_JPASSWORD_FIELD = 5;
     //
     protected int type = 0;
     protected String additionalInfo;
@@ -239,6 +241,9 @@ public class RowDataInvert extends RowData {
         } else if (type == TYPE_JLABEL) {
             JLabelInvert jli = new JLabelInvert();
             return jli;
+        }else if(type == TYPE_JPASSWORD_FIELD){
+            JPassWordFieldInvert jpf = new JPassWordFieldInvert();
+            return jpf;
         }
         //
         return null;

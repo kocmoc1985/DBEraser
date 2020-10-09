@@ -176,6 +176,9 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
 //                    box.setFont(new Font("SansSerif", Font.BOLD, 20));
                 }
                 //
+            }else if (cde.getObject() instanceof JPassWordFieldInvert) {
+                add_component = (Component) cde.getObject();
+                addComponent(add_component);
             }
             //
             table_invert.row_col_object__column_count__map.put(add_component, COLUMN_COUNT);
