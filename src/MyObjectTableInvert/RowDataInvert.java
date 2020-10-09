@@ -243,6 +243,7 @@ public class RowDataInvert extends RowData {
             return jli;
         }else if(type == TYPE_JPASSWORD_FIELD){
             JPassWordFieldInvert jpf = new JPassWordFieldInvert();
+            jpf.setText(additionalInfo);
             return jpf;
         }
         //

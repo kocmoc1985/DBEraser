@@ -132,9 +132,11 @@ public class Home extends Basic_Buh {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
+        String user_ = IO.loadLastEntered(DB.BUH_LICENS__USER,"");
+        RowDataInvert user = new RowDataInvertB(user_, DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
         //
-        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
+        String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS,"");
+        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
         //
         RowDataInvert[] rows = {
             user,
