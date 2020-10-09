@@ -19,6 +19,15 @@ public class Home extends Basic_Buh{
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
+    
+    @Override
+    protected void startUp() {
+       refresh();
+    }
+    
+    protected void refresh(){
+        showTableInvert();
+    }
 
     @Override
     public void showTableInvert() {
@@ -48,10 +57,7 @@ public class Home extends Basic_Buh{
         return rows;
     }
 
-    @Override
-    protected void startUp() {
-        showTableInvert();
-    }
+    
 
     @Override
     protected boolean fieldsValidated(boolean insert) {

@@ -91,9 +91,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         home = new Home(this);
         //
-        invoiceB = new InvoiceB(this);
-        HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
-        jtable_InvoiceB_all_invoices_clicked();
+//        invoiceB = new InvoiceB(this);
+//        HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
+//        jtable_InvoiceB_all_invoices_clicked();
         //
         invoiceA_update = new InvoiceA_Update(this);
         //
@@ -193,9 +193,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected void displayArticlesCount() {
         invoiceB.displayArticlesCount();
     }
-    
-    protected void resetArticlesCount(){
-         invoiceB.resetArticlesCount();
+
+    protected void resetArticlesCount() {
+        invoiceB.resetArticlesCount();
     }
 
     protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
@@ -215,9 +215,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      * invoice because of the "foreign key constraints".
      *
      * It will maybe make sense to verify if the "kundId" exist in cloud
-     * 
-     * BY[2020-10-08]
-     * To login with needed account goto GP_BUH and change "USER" & "PASS"
+     *
+     * BY[2020-10-08] To login with needed account goto GP_BUH and change "USER"
+     * & "PASS"
+     *
      * @return
      */
     protected String getKundId() {
@@ -234,10 +235,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             GP_BUH.KUND_ID = "-1";
-            
+
         }
         //
-        if( GP_BUH.KUND_ID.equals("-1")){
+        if (GP_BUH.KUND_ID.equals("-1")) {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
             System.exit(0);
         }
@@ -2004,8 +2005,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             if (ACTUAL_TAB_NAME.equals(TAB_INVOICES_OVERVIEW)) {
                 //
-                invoiceB.refresh_c();
-                jtable_InvoiceB_all_invoices_clicked();
+                if (invoiceB == null) {
+                    invoiceB = new InvoiceB(this);
+                    HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
+                    jtable_InvoiceB_all_invoices_clicked();
+                } else {
+                    invoiceB.refresh_c();
+                    jtable_InvoiceB_all_invoices_clicked();
+                }
+                //
+            } else if (ACTUAL_TAB_NAME.equals(TAB_HOME) && sameTabClicked == false) {
+                //
+                home.refresh();
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_FAKTURA) && sameTabClicked == false) {
                 //
