@@ -179,6 +179,8 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             }else if (cde.getObject() instanceof JPassWordFieldInvert) {
                 add_component = (Component) cde.getObject();
                 addComponent(add_component);
+                cde.setParent(add_component);
+                add_component.addKeyListener(this);
             }
             //
             table_invert.row_col_object__column_count__map.put(add_component, COLUMN_COUNT);

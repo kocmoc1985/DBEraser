@@ -31,8 +31,8 @@ public class ColumnDataEntryInvert {
     }
 
     /**
-     * [2020-08-03]
-     * This is only in case of "JTextFieldInvert"
+     * [2020-08-03][2020-10-09]
+     * This is only in case of "JTextFieldInvert" & "JPassWordFieldInvert"
      * @param parent
      */
     public void setParent(Object parent) {
