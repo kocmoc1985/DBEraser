@@ -46,7 +46,12 @@ public class Home extends Basic_Buh {
         GP_BUH.PASS = _get(map, DB.BUH_LICENS__PASS);
         //
         if (validateAndefineKundId()) {
-            
+            //
+            bim.enableTabs(true);
+            refresh();
+            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+            bim.allInvoicesTabClicked();
+            //
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
 //            System.exit(0);
@@ -82,6 +87,7 @@ public class Home extends Basic_Buh {
             int kundid = Integer.parseInt(responce);
             //
             if (kundid > 0) {
+                GP_BUH.KUND_ID = ""+kundid; // *********IMPORTANT
                 return true;
             }
         } else {

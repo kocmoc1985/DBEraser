@@ -74,9 +74,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
 
+    protected void enableTabs(boolean enable) {
+        jTabbedPane1.setEnabled(enable);
+    }
+
     private void initOhter() {
         //
 //        DEFINE_KUNDID();
+        //
+        enableTabs(false);
         //
         this.jTabbedPane1.addMouseListener(this);
         this.jTable_invoiceB_alla_fakturor.addMouseListener(this);
@@ -128,6 +134,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 btn.setSelected(false);
             }
         }
+    }
+    
+    protected void openTabByName(String tabName){
+        HelpA.openTabByName(jTabbedPane1, tabName);
     }
 
     private void setUneditableAllJTables() {
@@ -224,8 +234,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getKundId() {
         return GP_BUH.KUND_ID;
     }
-
-    
 
     protected boolean noCustomersPresent() {
         return invoiceB.noCustomersPresent();
@@ -1528,7 +1536,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_edit_fakturaActionPerformed
 
     public void editFakturaBtnKlicked() {
-        HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
+        openTabByName(TAB_FAKTURA);
         fakturaTabClicked();
     }
 
@@ -1644,7 +1652,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
                 invoiceB.refresh(null);
-                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //
             boolean isKontantFaktura = isKontantFaktura();
@@ -1657,7 +1665,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             if (invoiceA_update.fieldsValidated(true)) {
                 invoiceA_update.insertOrUpdate();
                 invoiceB.refresh_c();
-                HelpA.openTabByName(jTabbedPane1, BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
         }
         //
@@ -1723,7 +1731,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_show_actionsActionPerformed
 
     private void jButton_create_new_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_fakturaActionPerformed
-        HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
+        openTabByName(TAB_FAKTURA);
         createNewFaktura(false);
     }//GEN-LAST:event_jButton_create_new_fakturaActionPerformed
 
@@ -1771,7 +1779,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_kredit_fakturaActionPerformed
 
     private void jButton_kontant_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kontant_fakturaActionPerformed
-        HelpA.openTabByName(jTabbedPane1, TAB_FAKTURA);
+        openTabByName(TAB_FAKTURA);
         createNewFaktura(true);
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
@@ -2005,14 +2013,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             if (ACTUAL_TAB_NAME.equals(TAB_INVOICES_OVERVIEW)) {
                 //
-                if (invoiceB == null) {
-                    invoiceB = new InvoiceB(this);
-                    HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
-                    jtable_InvoiceB_all_invoices_clicked();
-                } else {
-                    invoiceB.refresh_c();
-                    jtable_InvoiceB_all_invoices_clicked();
-                }
+                allInvoicesTabClicked();
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_HOME) && sameTabClicked == false) {
                 //
@@ -2052,6 +2053,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
         }
         //
+    }
+
+    protected void allInvoicesTabClicked() {
+        if (invoiceB == null) {
+            invoiceB = new InvoiceB(this);
+            HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
+            jtable_InvoiceB_all_invoices_clicked();
+        } else {
+            invoiceB.refresh_c();
+            jtable_InvoiceB_all_invoices_clicked();
+        }
     }
 
     private void fakturaTabClicked() {
