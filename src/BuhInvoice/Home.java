@@ -25,8 +25,9 @@ import java.awt.event.KeyEvent;
  */
 public class Home extends Basic_Buh {
 
-    private final String VALIDATION_ERROR_01_U_P_NOT_SET = "V_ERR_01"; //user_or_pass_is_not_set
-    private final String VALIDATION_ERROR_02_U_P_NOT_MATCH = "V_ERR_02"; //user_or_pass_does_not_match
+    private final String VALIDATION__V_ERR_0 = "V_ERR_0"; // user or pass parameters not set
+    private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
+    private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
 
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -99,11 +100,13 @@ public class Home extends Basic_Buh {
             }
         } else {
             //
-            if (responce.equals(VALIDATION_ERROR_01_U_P_NOT_SET)) {
+            if (responce.equals(VALIDATION__V_ERR_0)) {
                 // This on can infact never happen [2020-10-09]
-                HelpA.showNotification(LANG.VALIDATION_MSG_2);
-            } else if (responce.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)) {
-                HelpA.showNotification(LANG.VALIDATION_MSG_3);
+                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_0);
+            } else if (responce.equals(VALIDATION__V_ERR_01)) {
+                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_01);
+            }else if(responce.equals(VALIDATION__V_ERR_02)){
+                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_02);
             }
             //
         }

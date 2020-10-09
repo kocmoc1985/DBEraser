@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
@@ -139,7 +140,7 @@ public class InvoiceA_Insert extends Invoice_ {
 //        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         //
-        String var_ref = HelpA.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");
+        String var_ref = IO.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");
         RowDataInvert var_referens = new RowDataInvertB(var_ref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__BETAL_VILKOR;
@@ -226,13 +227,13 @@ public class InvoiceA_Insert extends Invoice_ {
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
-        String expavgift_ = HelpA.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
+        String expavgift_ = IO.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
         RowDataInvert expavgift = new RowDataInvertB(expavgift_, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", true, true, false);
         //
-        String frakt_ = HelpA.loadLastEntered(DB.BUH_FAKTURA__FRAKT,"0");
+        String frakt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FRAKT,"0");
         RowDataInvert frakt = new RowDataInvertB(frakt_, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
         //
-        String ranta = HelpA.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
+        String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
         RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL

@@ -143,8 +143,8 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     /**
-     * Good idea, but must be re-thinked. There are many things
-     * which makes it complicated.. [2020-10-05]
+     * Good idea, but must be re-thinked. There are many things which makes it
+     * complicated.. [2020-10-05]
      *
      * @deprecated
      */
@@ -408,13 +408,13 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
         BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
-        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG)*100);
+        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
     }
 
     protected void countFakturaTotal(JTable table) {
         //
-        if(table.equals(bim.jTable_InvoiceA_Insert_articles) == false){
-           HelpA.showNotification("WRONG Articles Table!!");
+        if (table.equals(bim.jTable_InvoiceA_Insert_articles) == false) {
+            HelpA.showNotification("WRONG Articles Table!!");
         }
         //
         // Some methods are called from here because this method (countFakturaTotal)
@@ -773,7 +773,7 @@ public abstract class Invoice_ extends Basic_Buh {
             JLinkInvert jli = (JLinkInvert) me.getSource();
             //
             if (jli.getValue().isEmpty()) {
-                String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()), "");
+                String er_referens_last = IO.loadLastEntered(IO.getErReferens(getFakturaKundId()), "");
                 setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
             }
             //
@@ -928,7 +928,7 @@ public abstract class Invoice_ extends Basic_Buh {
                     return;
                 }
                 //
-                referensSave(col_name);
+                saveInput(col_name);
                 //
                 if (col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
                     countFakturaTotal(getArticlesTable());
@@ -938,13 +938,13 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
-            referensSave(DB.BUH_FAKTURA__VAR_REFERENS);
+            saveInput(DB.BUH_FAKTURA__VAR_REFERENS);
             //
             Validator.validateMaxInputLength(jli, 100);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
-            referensSave(DB.BUH_FAKTURA__ER_REFERENS);
+            saveInput(DB.BUH_FAKTURA__ER_REFERENS);
             //
             Validator.validateMaxInputLength(jli, 100);
             //
@@ -965,39 +965,29 @@ public abstract class Invoice_ extends Basic_Buh {
         }
     }
 
-    private void referensSave(String colName) {
+    private void saveInput(String colName) {
         //
         //
         if (colName.equals(DB.BUH_FAKTURA__VAR_REFERENS)) {
             //
             String value = getValueTableInvert(colName);
             //
-            try {
-                HelpA.writeToFile(DB.BUH_FAKTURA__VAR_REFERENS, value);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            IO.writeToFile(DB.BUH_FAKTURA__VAR_REFERENS, value);
             //
         } else if (colName.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
             String value = getValueTableInvert(colName);
             //
-            try {
-                HelpA.writeToFile(IO.getErReferens(getFakturaKundId()), value);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            IO.writeToFile(IO.getErReferens(getFakturaKundId()), value);
+            //
         } else if (colName.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)
                 || colName.equals(DB.BUH_FAKTURA__FRAKT)
                 || colName.equals(DB.BUH_FAKTURA__EXP_AVG)) {
             //
             String value = getValueTableInvert(colName, TABLE_INVERT_3);
             //
-            try {
-                HelpA.writeToFile(colName, value);
-            } catch (IOException ex) {
-                Logger.getLogger(InvoiceA_Insert.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            IO.writeToFile(colName, value);
+            //
         }
         //
     }
