@@ -14,12 +14,16 @@ import forall.HelpA;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static BuhInvoice.GP_BUH._get;
 
 /**
  *
  * @author KOCMOC
  */
 public class Home extends Basic_Buh {
+
+    private final String VALIDATION_ERROR_01_U_P_NOT_SET = "V_ERR_01"; //user_or_pass_is_not_set
+    private final String VALIDATION_ERROR_02_U_P_NOT_MATCH = "V_ERR_02"; //user_or_pass_does_not_match
 
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -38,11 +42,11 @@ public class Home extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        GP_BUH.USER = map.get(DB.BUH_LICENS__USER);
-        GP_BUH.PASS = map.get(DB.BUH_LICENS__PASS);
+        GP_BUH.USER = _get(map, DB.BUH_LICENS__USER);
+        GP_BUH.PASS = _get(map, DB.BUH_LICENS__PASS);
         //
         if (validateAndefineKundId()) {
-
+            
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
 //            System.exit(0);
@@ -54,17 +58,46 @@ public class Home extends Basic_Buh {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
         //
+        String responce;
+        //
         try {
-            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            //
+            responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_DEFINE_KUNDID, JSon.hashMapToJSON(map));
+            //
+            return validateResponce(responce);
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            GP_BUH.KUND_ID = "-1";
+            return false;
+        }
+    }
 
+    private boolean validateResponce(String responce) {
+        //[#SEQURITY#]
+        boolean isNumber = HelpA.isNumber(responce);
+        //
+        if (isNumber) {
+            //
+            int kundid = Integer.parseInt(responce);
+            //
+            if (kundid > 0) {
+                return true;
+            }
+        } else {
+            //
+            if (responce.equals(VALIDATION_ERROR_01_U_P_NOT_SET)) {
+                // This on can infact never happen [2020-10-09]
+                HelpA.showNotification(LANG.VALIDATION_MSG_2);
+            } else if (responce.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)) {
+                HelpA.showNotification(LANG.VALIDATION_MSG_3);
+            }
+            //
         }
         //
-        return GP_BUH.KUND_ID.equals("-1") == false;
+        return false;
     }
+
 
     @Override
     public void showTableInvert() {

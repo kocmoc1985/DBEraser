@@ -227,8 +227,7 @@ public class HelpBuh {
         return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
     }
 
-    public static final String VALIDATION_ERROR_01_U_P_NOT_SET = "V_ERR_01"; //user_or_pass_is_not_set
-    public static final String VALIDATION_ERROR_02_U_P_NOT_MATCH = "V_ERR_02"; //user_or_pass_does_not_match
+    
     
     /**
      * Implemented [2020-06-02] Yes this one is working
@@ -282,14 +281,14 @@ public class HelpBuh {
         System.out.println("HTTP REQ VAL: " + value);
         //
         //[#SEQURITY#]
-        if(value.equals(VALIDATION_ERROR_01_U_P_NOT_SET) 
-                || value.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)){
-            //
-             HelpA.showNotification(LANG.VALIDATION_MSG_2);
-            //
-            System.exit(0);
-            //
-        }
+//        if(value.equals(VALIDATION_ERROR_01_U_P_NOT_SET) 
+//                || value.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)){
+//            //
+//             HelpA.showNotification(LANG.VALIDATION_MSG_2);
+//            //
+//            System.exit(0);
+//            //
+//        }
         //
         //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
         // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"
