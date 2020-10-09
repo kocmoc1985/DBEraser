@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public abstract class CustomerAForetagA extends Basic_Buh {
+public abstract class CustomerAForetagA_ extends Basic_Buh {
 
     //
     protected Table TABLE_INVERT_2;
@@ -49,7 +49,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
 
     //
-    public CustomerAForetagA(BUH_INVOICE_MAIN bim) {
+    public CustomerAForetagA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 

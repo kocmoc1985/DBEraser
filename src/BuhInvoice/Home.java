@@ -74,6 +74,7 @@ public class Home extends Basic_Buh {
             //
             bim.enableTabs(true);
             refresh();
+            getFtgName();
             bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
@@ -82,6 +83,26 @@ public class Home extends Basic_Buh {
 //            System.exit(0);
         }
         //
+    }
+    
+    private void getFtgName(){
+        //
+        String req = bim.getSELECT(DB.BUH_KUND__ID, GP_BUH.KUND_ID);
+       //         
+        try {
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM__GET_FTG_NAME, req);
+            //
+            HashMap<String, String> map = JSon.JSONToHashMap(responce, false);
+            //
+            GP_BUH.CUSTOMER_COMPANY_NAME = map.get(DB.BUH_KUND__NAMN);
+            //
+//            System.out.println("CUSTOMER_COMPANY_NAME: " + GP_BUH.CUSTOMER_COMPANY_NAME);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private boolean validateAndefineKundId() {

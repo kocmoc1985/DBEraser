@@ -1,4 +1,6 @@
 
+Don't forget to create a "buh_kund" uppon registration of user
+
 To each email send add the name of Company with webb address
 
 POP3 Email sending with customers email credentials

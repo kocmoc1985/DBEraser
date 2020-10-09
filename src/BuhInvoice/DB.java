@@ -97,6 +97,7 @@ public class DB {
     public static final String PHP_FUNC_LATEST = "get_latest"; // using php-finction: "latest()"
     public static final String PHP_FUNC_DELETE = "delete_entry"; // using php-finction: "latest()"
     //
+    public static final String PHP_FUNC_PARAM__GET_FTG_NAME = "get_ftg_name"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND = "get_faktura_send"; // using php-function: "select()"
