@@ -13,7 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-The program does not longer prompt to make inbetalning after registering kontant faktura, Now it works but inbetalning does not work properly, it seems to be a problem with "fakturaId"
+The program does not longer prompt to make inbetalning after registering kontant faktura, Now it works but inbetalning does not work properly,
+ it seems to be a problem with "fakturaId". Ok now i understand it's because of making refresh with "invoke.later"
 
 Don't forget to create a "buh_kund" uppon registration of user
 
