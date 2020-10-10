@@ -11,7 +11,9 @@ SELECT COUNT(betald) FROM buh_faktura WHERE kundId=1 AND betald=1
 SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1    
 )as `MAKULERADE`
 
+--------------
 
+The program does not longer prompt to make inbetalning after registering kontant faktura, Now it works but inbetalning does not work properly, it seems to be a problem with "fakturaId"
 
 Don't forget to create a "buh_kund" uppon registration of user
 

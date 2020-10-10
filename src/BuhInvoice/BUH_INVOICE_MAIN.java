@@ -1677,7 +1677,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //
-            boolean isKontantFaktura = isKontantFaktura();
+//            boolean isKontantFaktura = isKontantFaktura();
+             boolean isKontantFaktura = Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
             //
             if (isKontantFaktura) {
                 makeInbetalning(isKontantFaktura, true);
