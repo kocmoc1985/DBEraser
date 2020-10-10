@@ -4,6 +4,15 @@ SELECT COUNT(betald) as ´BETALDA´ FROM buh_faktura WHERE kundId=1 AND betald=1
 SELECT COUNT(makulerad) as ´MAKULERADE´ FROM buh_faktura WHERE kundId=1 AND makulerad=1
 SELECT COUNT(fakturaId) as ´FAKTUROR´ FROM buh_faktura WHERE kundId=1 AND MONTH(buh_faktura.fakturadatum)=MONTH(CURRENT_DATE()) AND YEAR(buh_faktura.fakturadatum)=YEAR(CURRENT_DATE())
 
+SELECT(
+SELECT COUNT(betald) FROM buh_faktura WHERE kundId=1 AND betald=1
+)as `BETALDA`,
+(
+SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1    
+)as `MAKULERADE`
+
+
+
 Don't forget to create a "buh_kund" uppon registration of user
 
 To each email send add the name of Company with webb address
