@@ -13,6 +13,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
+OBS! Problem regarding ":" & "," see: HelpBuh.class -> executePhp(...) -> JSon.JSONToHashMap(json, false)
 
 Don't forget to create a "buh_kund" uppon registration of user
 
