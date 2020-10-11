@@ -13,7 +13,9 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-Edit article when inserting fails regarding moms!!!
+Faktura preview fails when first creating a faktura and then editing and trying to make preview
+
+Edit article when inserting fails regarding moms!!! ----> Not sure it's true keep on monitoring
 
 Don't forget to create a "buh_kund" uppon registration of user
 
