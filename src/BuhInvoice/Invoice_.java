@@ -655,7 +655,11 @@ public abstract class Invoice_ extends Basic_Buh {
         articles.enableEmptyValue(); //[2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
         //
         //
-        String fixedComboValues_c = defineMomsSats();
+        String fixedComboValues_c = JSon._get_special_(
+                DB.STATIC__MOMS_SATS,
+                IO.loadLastEntered(DB.BUH_F_ARTIKEL__MOMS_SATS, "25")
+        );
+//        String fixedComboValues_c = defineMomsSats();
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", true, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
@@ -1040,6 +1044,10 @@ public abstract class Invoice_ extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
+            //
+        } else if(col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)){
+            //
+            IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
             //
         }
 

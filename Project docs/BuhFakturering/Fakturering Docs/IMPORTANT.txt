@@ -30,7 +30,8 @@ ________________________________________________________________________________
 [SEMI COLON & COMMA SEND JSON][2020-08-25][2020-09-17]
 
 It's a problem when you have to send ":" (semicolon) as json to php. -> This fails because of HTTP URL "specialities"
-It's also a problem sending "," (comma) as json to php. -> This is uploaded without problems to HTTP -> but fails when recieving back in "JSon.JSONToHashMap()" -> Due to "split separator" = ","
+It's also a problem sending "," (comma) as json to php. -> This is uploaded without problems to HTTP -> but fails when recieving
+back in "JSon.JSONToHashMap()" -> Due to "split separator" = ","
 
 Note: sending ";" is NOT a problem!
 
