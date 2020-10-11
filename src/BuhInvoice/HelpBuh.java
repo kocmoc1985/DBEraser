@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.JSon.JSONToHashMap;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
@@ -43,7 +44,8 @@ public class HelpBuh {
      */
     public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
         //
-        HashMap<String, String> map = JSon.JSONToHashMap(json, false);
+        // OBS! Last "false" means don't replace special chars - very important [2020-10-11]
+        HashMap<String, String> map = JSONToHashMap(json, false, 1, false);
         //
         map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
         map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]

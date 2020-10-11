@@ -21,15 +21,15 @@ import javax.swing.JTable;
  * @author KOCMOC
  */
 public class JSon {
-    
+
     /**
-     * [2020-10-01]
-     * OBS! Only visible column taken into account
+     * [2020-10-01] OBS! Only visible column taken into account
+     *
      * @param table
      * @param dictionary
-     * @return 
+     * @return
      */
-    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String,String>dictionary) {
+    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String, String> dictionary) {
         //
         ArrayList rowValues = new ArrayList();
         //
@@ -43,9 +43,9 @@ public class JSon {
                     //
                     String colname;
                     //
-                    if(dictionary == null){
+                    if (dictionary == null) {
                         colname = getColumnName(table, col);
-                    }else{
+                    } else {
                         colname = dictionary.get(getColumnName(table, col));
                     }
                     //
@@ -85,8 +85,8 @@ public class JSon {
         //
         return joined_properties;
     }
-    
-    public static HashMap<String, String> removeEntriesWhereValueNull(HashMap<String, String> map){
+
+    public static HashMap<String, String> removeEntriesWhereValueNull(HashMap<String, String> map) {
         //
         Set set = map.keySet();
         Iterator it = set.iterator();
@@ -96,7 +96,7 @@ public class JSon {
             String key = (String) it.next();
             String value = (String) map.get(key);
             //
-            if(value == null || value.equals("null") || value.equals("NULL")){
+            if (value == null || value.equals("null") || value.equals("NULL")) {
                 //
                 it.remove();
                 //
@@ -131,7 +131,7 @@ public class JSon {
             String value = (String) map.get(key);
             //StringEscapeUtils.escapeHtml(value): Not working [2020-08-07]
 //            value = StringEscapeUtils.escapeJava(value); //[#ESCAPE#] ******************IMPORTANT***********************
-            
+
             //
             json += "\"" + key + "\"" + ";";
             if (!it.hasNext()) {
@@ -209,16 +209,35 @@ public class JSon {
         //
     }
 
+    public static String appendStaticAppendValidationProps(String initialJSonString) {
+        String rst = delete_last_letter_in_string(initialJSonString, "}");
+        rst += ";" + DB.BUH_LICENS__USER + ":" + GP_BUH.USER;
+        rst += ";" + DB.BUH_LICENS__PASS + ":" + GP_BUH.PASS;
+        rst += "}";
+        return rst;
+    }
+
+    public static String appendToJSonString(String initialJSonString, String key, String value) {
+        StringBuilder sb = new StringBuilder(initialJSonString);
+        delete_last_letter_in_string(initialJSonString, "}");
+        sb.append(";");
+        sb.append(key);
+        sb.append(":");
+        sb.append(value);
+        sb.append("}");
+        return sb.toString();
+    }
+
     public static String getValueFromJSonString(String json, String key, boolean reverse) {
         HashMap<String, String> map = JSONToHashMap(json, reverse);
         return map.get(key);
     }
 
     public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
-        return JSONToHashMap(json, reverse, 1);
+        return JSONToHashMap(json, reverse, 1, true);
     }
 
-    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex) {
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars) {
         //
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         //
@@ -227,7 +246,7 @@ public class JSon {
         json = json.replaceAll("\\}", "");
         String[] arr = json.split(",");
         //
-        if(arr[0].isEmpty()){ // [2020-10-07]
+        if (arr[0].isEmpty()) { // [2020-10-07]
             return map;
         }
         //
@@ -242,8 +261,10 @@ public class JSon {
                 value = null;
             } else {
                 value = jsonObj[valueIndex];
-                value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
-                value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
+                if (replaceSpecialChars) {
+                    value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
+                    value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
+                }
             }
             //
             if (reverse) {
@@ -458,7 +479,7 @@ public class JSon {
 
     private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
         //
-        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2);
+        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true);
         //
         String str = "";
         //
@@ -540,7 +561,6 @@ public class JSon {
 //        //
 //        System.out.println("" + value);
 //    }
-
     public static String delete_last_letter_in_string(String str, String letter) {
         //
         int a = str.length() - 1;
@@ -558,8 +578,5 @@ public class JSon {
         int b = str.length();
         return str.substring(a, b);
     }
-    
-    
-    
 
 }
