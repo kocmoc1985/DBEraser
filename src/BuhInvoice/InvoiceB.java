@@ -133,6 +133,16 @@ public class InvoiceB extends Basic_Buh {
         }
     }
 
+    protected void refresh_sync(String secondWhereValue) {
+        //#THREAD#
+        fillFakturaTable(secondWhereValue);
+        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+        String fakturaId = bim.getFakturaId();
+        all_invoices_table_clicked(fakturaId);
+
+        //
+    }
+
     protected void refresh(String secondWhereValue) {
         //#THREAD#
         Thread x = new Thread(() -> {
@@ -147,8 +157,8 @@ public class InvoiceB extends Basic_Buh {
     }
 
     /**
-     * Think twice when using "refresh_c" because it downloads entire
-     * data each time
+     * Think twice when using "refresh_c" because it downloads entire data each
+     * time
      */
     protected void refresh_c() {
         //#THREAD#
@@ -189,8 +199,8 @@ public class InvoiceB extends Basic_Buh {
         int articlesCount = bim.getInvoiceArticleCount();
         bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>" + articlesCount + "</div></html>");
     }
-    
-    protected void resetArticlesCount(){
+
+    protected void resetArticlesCount() {
         bim.jLabel_ammount_of_articles_.setText("");
     }
 
@@ -376,9 +386,9 @@ public class InvoiceB extends Basic_Buh {
         hideColumnsFakturaTable(table);
         //
     }
-    
-    private void hideColumnsFakturaTable(JTable table){
-         if (GP_BUH.CUSTOMER_MODE) {
+
+    private void hideColumnsFakturaTable(JTable table) {
+        if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);

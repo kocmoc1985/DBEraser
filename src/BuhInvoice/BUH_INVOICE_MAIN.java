@@ -1673,7 +1673,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
                 invoiceA_insert.insertOrUpdate();
-                invoiceB.refresh(null);
+                invoiceB.refresh_sync(null);// OBS! Important [2020-10-11]
                 openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //
