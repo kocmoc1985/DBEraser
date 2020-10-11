@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.GP_BUH._get;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,26 +25,26 @@ public abstract class Faktura_Entry {
     protected ArrayList<HashMap<String, String>> articlesListJTable = new ArrayList<>(); // It was not used somehow [2020-08-14]
     protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     //
-  
+
     public Faktura_Entry(Invoice_ invoice) {
         this.invoice = invoice;
     }
 
-    protected void resetLists(){
+    protected void resetLists() {
         this.articlesList.clear();
         this.articlesListJTable.clear();
     }
-    
-    protected JTable getArticlesTable(){
+
+    protected JTable getArticlesTable() {
         return invoice.getArticlesTable();
     }
-    
+
     protected abstract void insertOrUpdate();
 
     protected abstract void setData();
-    
+
     public abstract void addArticleForDB();
-    
+
     public void addArticleForJTable(JTable table) {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
@@ -53,7 +54,8 @@ public abstract class Faktura_Entry {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
-            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            //            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__ENHET),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
@@ -65,6 +67,5 @@ public abstract class Faktura_Entry {
         HelpA.addRowToJTable(jtableRow, table);
         //
     }
-    
 
 }

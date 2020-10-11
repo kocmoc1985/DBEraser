@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.GP_BUH._get;
 import forall.HelpA;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -93,7 +94,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         try {
             //
-            String query = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,DB.PHP_FUNC_ARTICLES_TO_DB, json);
+            String query = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_ARTICLES_TO_DB, json);
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
@@ -126,8 +127,10 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         HelpBuh.update(json);
         //
+
         //
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, invoic.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
@@ -141,10 +144,10 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         //
     }
-    
-    private void checkIfMakuleradAndReport(String fakturaId){
+
+    private void checkIfMakuleradAndReport(String fakturaId) {
         String makulerad = secMap.get(DB.BUH_FAKTURA__MAKULERAD);
-        if(makulerad.equals("1")){
+        if (makulerad.equals("1")) {
             EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__MAKULERAD, DB.STATIC__SENT_TYPE_FAKTURA);
         }
     }

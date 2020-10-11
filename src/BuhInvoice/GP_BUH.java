@@ -64,7 +64,7 @@ public class GP_BUH {
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
-    
+
     public static String replaceColon(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll(":", "#");
@@ -96,17 +96,26 @@ public class GP_BUH {
     }
 
     public static String _get(HashMap<String, String> map, String param) {
+        return _get(map, param, false);
+    }
+
+    public static String _get(HashMap<String, String> map, String param, boolean replaceSpecialChars) {
         //
         String val = map.get(param);
         //
         if (val == null || val.isEmpty() || val.equals("null") || val.equals("NULL")) {
             return "";
         } else {
+            //
+            if (replaceSpecialChars) {
+                val = replaceColon(val, true);
+                val = replaceComma(val, true);
+            }
+            //
             return val;
         }
-   }
-    
-    
+    }
+
     public static void enableDisableButtons(JPanel parent, boolean enabled) {
         java.awt.EventQueue.invokeLater(() -> {
             Component[] components = parent.getComponents();
@@ -118,18 +127,17 @@ public class GP_BUH {
         });
 
     }
-    
-    public static void setEnabled(JComponent c, boolean enabled){
+
+    public static void setEnabled(JComponent c, boolean enabled) {
         java.awt.EventQueue.invokeLater(() -> {
             c.setEnabled(enabled);
         });
     }
-    
 
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
-    
+
     public static double round_double_b(double rst) {
         return Double.parseDouble(String.format("%2.0f", rst).replace(",", "."));
     }

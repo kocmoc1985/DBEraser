@@ -13,10 +13,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-OBS! Problem regarding ":" & "," see: HelpBuh.class -> executePhp(...) -> JSon.JSONToHashMap(json, false)
-See: Also "Faktura_Entry_Update.class" -> updateArticle() -> HelpBuh.update(json);
-The solution is to append to the json string instead of converting to hashMap and then back again..
-{"komment";"test¤test¤test","rabatt";"0","rabatt_kr";"0","antal";"1","pris";"900","where";"id","id";"406","enhet";"st","moms_sats";"12","table";"buh_f_artikel"}
+Edit article when inserting fails regarding moms!!!
 
 Don't forget to create a "buh_kund" uppon registration of user
 
