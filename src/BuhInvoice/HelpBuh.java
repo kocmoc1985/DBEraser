@@ -7,8 +7,8 @@ package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
 import BuhInvoice.sec.EmailSendingStatus;
-import BuhInvoice.sec.LANG;
-import forall.HelpA;
+import BuhInvoice.sec.IO;
+import BuhInvoice.sec.SMTP;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang.StringEscapeUtils;
+
 /**
  *
  * @author MCREMOTE
@@ -54,8 +55,8 @@ public class HelpBuh {
         //
         return http_get_content_post(url);
     }
-    
-    public static boolean createAccountPHP(String kundId){
+
+    public static boolean createAccountPHP(String kundId) {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
         //
@@ -70,13 +71,9 @@ public class HelpBuh {
         }
         return true;
     }
+
     
-    public static void main(String[] args) {
-        GP_BUH.USER = "chaki";
-        GP_BUH.PASS = "pass";
-        createAccountPHP("3");
-    }
-    
+
     public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
         String url = buildUrl(phpScriptName, phpFunctionName, json);
         return http_get_content_post(url);
@@ -129,9 +126,9 @@ public class HelpBuh {
         //
         HashMap<String, String> map = new HashMap<>();
         //
-        map.put("from_email", from);
+        map.put("from_email", from); // smtp
+        map.put("from_name", fromNameOptional); // smtp 
         map.put("to", to);
-        map.put("from_name", fromNameOptional);
         map.put("subject", subject);
         map.put("body", body);
         //
@@ -153,6 +150,49 @@ public class HelpBuh {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+        //
+        return ess.bothAttachmentAndSendingSuccessful();
+        //
+    }
+
+    
+    /**
+     * [2020-10-12]
+     * @param smtp
+     * @param to
+     * @param subject
+     * @param body
+     * @param filePathAttachment
+     * @return 
+     */
+    public static boolean sendEmailWithAttachment_SMTP(SMTP smtp, String to, String subject, String body, String filePathAttachment) {
+        //
+        HashMap<String, String> map = smtp.getMap();
+        //
+        map.put("to", to);
+        map.put("subject", subject);
+        map.put("body", body);
+        //
+        map.put("path", filePathAttachment);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        EmailSendingStatus ess;
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_EMAIL_WITH_ATTACHMENT__SMTP, json);
+            //
+            System.out.println("RESPOSNCE: " + response);
+            //
+            ess = new EmailSendingStatus(response);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        //
+        System.out.println("Email SENT OK: " + ess.emailSendingSuccessful());
         //
         return ess.bothAttachmentAndSendingSuccessful();
         //
@@ -182,8 +222,6 @@ public class HelpBuh {
     public static final String SERVER_UPLOAD_PATH = "uploads/";
 //    public static final String SERVER_UPLOAD_PATH = "";
 
-   
-
     private static void test__uploadFile() {
         //
         boolean upload_success = false;
@@ -203,16 +241,29 @@ public class HelpBuh {
     }
 
     private static void test__sendEmailWithAttachment() {
-        boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                "BuhInvoice", // This one is shown as name instead of the email it's self
-                "andrej.brassas@gmail.com",
-                "Faktura",
-                "This is a test email for testing attachment sending",
-                SERVER_UPLOAD_PATH + "faktura.pdf"
-        );
+//        boolean sent = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+//                "BuhInvoice", // This one is shown as name instead of the email it's self
+//                "andrej.brassas@gmail.com",
+//                "Faktura",
+//                "This is a test email for testing attachment sending",
+//                SERVER_UPLOAD_PATH + "faktura.pdf"
+//        );
+//        //
+//        System.out.println("Email sending status: " + sent);
         //
-        System.out.println("Email sending status: " + sent);
         //
+        //
+        SMTP smtp =  IO.loadSMTP();
+        boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "andrei.brassas@mixcont.com", "Faktura", "This is a test email for testing attachment sending", SERVER_UPLOAD_PATH + "faktura.pdf");
+        //
+        System.out.println("Email sending status: " + sent_b);
+    }
+    
+    public static void main(String[] args) {
+        GP_BUH.USER = "chaki";
+        GP_BUH.PASS = "pass";
+//        createAccountPHP("3");
+        test__sendEmailWithAttachment();
     }
 
     /**
@@ -229,8 +280,6 @@ public class HelpBuh {
         return String.format("http://www.mixcont.com/index.php?link=%s&%s=true&json=%s", phpScriptName, phpFunctionName, json);
     }
 
-    
-    
     /**
      * Implemented [2020-06-02] Yes this one is working
      *

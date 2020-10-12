@@ -5,7 +5,6 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.JSon;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -15,6 +14,7 @@ import java.util.HashMap;
  */
 public class SMTP implements Serializable{
 
+    public static final long serialVersionUID = -7737096419321204313L;
     private final String host; //"smtp.gmail.com"
     private final String u; // (u) user is also used as "from"
     private final String p; // (p) password
@@ -28,16 +28,15 @@ public class SMTP implements Serializable{
         this.port = port;
         this.from_name = from_name;
     }
-
-    public String toJSon() {
-        HashMap<String, String> values = new HashMap<>();
-        values.put("host", host);
-        values.put("u", u);
-        values.put("p", p);
-        values.put("port", port);
-        values.put("from_name", from_name);
-        //
-        return JSon.hashMapToJSON(values);
+    
+    public HashMap<String, String> getMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("host", host);
+        map.put("u", u);
+        map.put("p", p);
+        map.put("port", port);
+        map.put("from_name", from_name);
+        return map;
     }
 
 }

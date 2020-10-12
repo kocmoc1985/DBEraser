@@ -1897,13 +1897,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jCheckBox_spara_inloggningActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SMTP smtp = new SMTP("smtp.gmail.com", "kocmoc1985@gmail.com", "Kocmoc4765koc", "587", "BuhInvoice");
+        SMTP smtp = new SMTP("smtp.gmail.com", "kocmoc1985@gmail.com", "Kocmoc4765koc", "465", "BuhInvoice");
         IO.saveSMTP(smtp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         SMTP smtp = IO.loadSMTP();
-        System.out.println("" + smtp.toJSon());
+//        System.out.println("" + smtp.toJSon());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {

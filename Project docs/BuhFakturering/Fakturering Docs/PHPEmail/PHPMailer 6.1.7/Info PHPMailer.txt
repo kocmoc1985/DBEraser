@@ -4,11 +4,13 @@ OBS! You will need 2 files PHPMailer.php and Exception.php -> it was not working
 
 1. Look at "index.php":
 include_once ("php/PHPMailer.php");
+include_once ("php/SMTP.php");
 include_once ("php/Exception.php");
 
 2. In the script you will use "PHPMailer" have this 2 lines implemented at the very top of the document, like:
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 Have a look at _http_buh.php
