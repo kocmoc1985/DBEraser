@@ -8,6 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.SMTP;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.event.ActionEvent;
@@ -31,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
-    private InvoiceA_Insert invoiceA_insert;
+    private InvoiceA_Insert_ invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
     private CustomersA_ customersA;
     private ForetagA foretagA;
@@ -503,6 +504,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton2 = new javax.swing.JButton();
         jCheckBox_spara_inloggning = new javax.swing.JCheckBox();
         jLabel_inloggning = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -630,19 +633,38 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_inloggning.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_inloggning.setText("Inloggning");
 
+        jButton3.setText("SMTP");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("SMTP Load");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                        .addGroup(jPanel19Layout.createSequentialGroup()
+                            .addComponent(jButton2)
+                            .addGap(18, 18, 18)
+                            .addComponent(jCheckBox_spara_inloggning))
+                        .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCheckBox_spara_inloggning))
-                    .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)))
                 .addContainerGap(749, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
@@ -656,7 +678,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jCheckBox_spara_inloggning))
-                .addContainerGap(775, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(689, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -1574,7 +1600,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        if (InvoiceA_Insert.CURRENT_OPERATION_INSERT) {
+        if (InvoiceA_Insert_.CURRENT_OPERATION_INSERT) {
             //
             invoiceA_insert.deleteArtikel();
             //
@@ -1662,7 +1688,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        InvoiceA_Insert.EDIT__ARTICLE_UPPON_INSERT__SWITCH = true;
+        InvoiceA_Insert_.EDIT__ARTICLE_UPPON_INSERT__SWITCH = true;
         invoiceA_insert.showTableInvert_2();
         invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_2);
         //
@@ -1699,7 +1725,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void createNewFaktura(boolean isKontantfaktura) {
         //
         if (invoiceA_insert == null) {
-            invoiceA_insert = new InvoiceA_Insert(this);
+            invoiceA_insert = new InvoiceA_Insert_(this);
         }
         //
         if (noCustomersPresent()) {
@@ -1870,6 +1896,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }//GEN-LAST:event_jCheckBox_spara_inloggningActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        SMTP smtp = new SMTP("smtp.gmail.com", "kocmoc1985@gmail.com", "Kocmoc4765koc", "587", "BuhInvoice");
+        IO.saveSMTP(smtp);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        SMTP smtp = IO.loadSMTP();
+        System.out.println("" + smtp.toJSon());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -1934,6 +1970,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
     protected javax.swing.JButton jButton_add_article;

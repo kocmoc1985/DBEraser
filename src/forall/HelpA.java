@@ -709,20 +709,28 @@ public class HelpA {
         return table.getColumnModel().getColumn(colIndex).getWidth();
     }
 
-    private static void objectToFile(String path, Object obj) {
+    public static void objectToFile(String path, Object obj) {
         try {
             FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(obj);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private static Object fileToObject(String path) throws IOException, ClassNotFoundException {
+    public static Object fileToObject(String path) throws IOException, ClassNotFoundException {
         FileInputStream fas = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fas);
         Object obj = ois.readObject();
+        return obj;
+    }
+    
+    public static Object fileToObject_with_close(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fas = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fas);
+        Object obj = ois.readObject();
+        ois.close();
         return obj;
     }
 
@@ -2687,6 +2695,10 @@ public class HelpA {
         }
     }
 
+  
+
+    
+    
     /**
      * VERY
      * IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

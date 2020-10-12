@@ -81,6 +81,7 @@ public class DB {
     public static final String PHP_FUNC_CREATE_ACCOUNT = "create_account"; // using php-function: "createAccount()"
     //
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
+    public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT__SMTP = "send_email_with_attachment_smtp"; // using php-function: "email_smtp()"
     //
     public static final String PHP_FUNC_FAKTURA_TO_DB = "faktura_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_INBET_TO_DB = "faktura_inbet_to_db"; // using php-function: "insert()"
