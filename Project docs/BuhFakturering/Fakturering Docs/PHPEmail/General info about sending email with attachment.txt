@@ -12,3 +12,4 @@ Look at:
 
 1. HelpBuh -> uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide)
 2. HelpBuh -> sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment)
+3. HelpBuh -> public static boolean sendEmailWithAttachment_SMTP(SMTP smtp, String to, String subject, String body, String filePathAttachment)

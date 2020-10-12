@@ -1,0 +1,33 @@
+[HOW TO DECLARE AND USE][2020-10-12]
+
+OBS! You will need 3 files PHPMailer.php, SMTP.php, Exception.php -> it was not working without "Exception.php"
+
+1. Look at "_http_buh.php", it looks like -> it's working 100% [2020-10-12]:
+require 'lib.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'Exception.php';
+require 'PHPMailer.php';
+require 'SMTP.php';
+
+___________________
+OBS! Regarding SMTP i didn't managed to get it working with gmail. I tested many things even enabling special property
+for "less secure application" from google accounts. 
+
+With one.com it was working fine [2020-10-12]
+___________________
+
+[HOW TO USE]
+
+1. EDIT AND SAVE SMTP MAIL SETTINGS
+SMTP smtp = new SMTP("send.one.com", "andrei.brassas@mixcont.com", "Kocmoc4765", "587", "BuhInvoice");
+IO.saveSMTP(smtp);
+
+2. LOAD SETTINGS AND SEND
+SMTP smtp =  IO.loadSMTP();
+boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "kocmoc1985@gmail.com", "Faktura", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
+
+

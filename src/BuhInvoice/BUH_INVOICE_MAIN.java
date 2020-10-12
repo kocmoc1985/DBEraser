@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -640,7 +641,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jButton4.setText("SMTP Load");
+        jButton4.setText("SMTP Send");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -1897,13 +1898,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jCheckBox_spara_inloggningActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        SMTP smtp = new SMTP("smtp.gmail.com", "kocmoc1985@gmail.com", "Kocmoc4765koc", "465", "BuhInvoice");
+        SMTP smtp = new SMTP("send.one.com", "andrei.brassas@mixcont.com", "Kocmoc4765", "587", "BuhInvoice");
         IO.saveSMTP(smtp);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SMTP smtp = IO.loadSMTP();
-//        System.out.println("" + smtp.toJSon());
+        SMTP smtp =  IO.loadSMTP();
+        boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "kocmoc1985@gmail.com", "Faktura", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
+        //
+        System.out.println("Email sending status: " + sent_b);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
