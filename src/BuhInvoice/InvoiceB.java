@@ -975,7 +975,7 @@ public class InvoiceB extends Basic_Buh {
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
         //
-        map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
+        map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID)); // In fact not needed for preview as the "id" is required for sending
         //
         map_a.put(HTMLPrint_A.T__FAKTURA_NR, "-");
         map_a.put(HTMLPrint_A.T__KUND_NR, "-");
@@ -1003,10 +1003,12 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //
+        String fakturaTotal = ""+invoice.getFakturaTotal();
+        //
         if (paminnelse == false) {
-            map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+            map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), fakturaTotal);//_get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS)
         } else {
-            map_d.put(HTMLPrint_B.getAttBetalaTitle(), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+            map_d.put(HTMLPrint_B.getAttBetalaTitle(), fakturaTotal); //_get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS)
         }
         //
         //

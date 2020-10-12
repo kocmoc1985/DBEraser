@@ -550,6 +550,10 @@ public abstract class Invoice_ extends Basic_Buh {
     private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats) {
         return (frakt + expAvg) * momsSats;
     }
+    
+    protected double getFakturaTotal() {
+        return GP_BUH.round_double(FAKTURA_TOTAL); // OBS! Rounding till "Whole Number"
+    }
 
     protected double getTotal(double total) {
         return GP_BUH.round_double(total);
@@ -567,9 +571,7 @@ public abstract class Invoice_ extends Basic_Buh {
         return GP_BUH.round_double(RABATT_TOTAL);
     }
 
-    protected double getFakturaTotal() {
-        return FAKTURA_TOTAL; // OBS! Rounding till "Whole Number"
-    }
+    
 
     protected double getMomsTotal() {
         return GP_BUH.round_double(MOMS_TOTAL);
