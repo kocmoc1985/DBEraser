@@ -27,6 +27,7 @@ if (Validator.validateMaxInputLength(jli, 30)) { // Validating with other method
 }
 
 ________________________________________________________________________________________________________
+
 [SEMI COLON & COMMA SEND JSON][2020-08-25][2020-09-17]
 
 It's a problem when you have to send ":" (semicolon) as json to php. -> This fails because of HTTP URL "specialities"

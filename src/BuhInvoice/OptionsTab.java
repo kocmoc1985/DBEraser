@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
+import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
@@ -56,13 +57,20 @@ public class OptionsTab extends Basic_Buh {
             String toEmail = tfc.getText_();
             //
             if (yesNo && toEmail != null && tfc.getValidated()) {
-                boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, toEmail, "SMTP Test", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
-                System.out.println("Email sending status: " + sent_b);
+                //
+                EmailSendingStatus ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp, toEmail, "SMTP Test", "This is a test email", "");
+                //
+                if (ess.emailSendingSuccessful()) {
+                    HelpA.showNotification(LANG.MSG_15_4);
+                }else{
+                   HelpA.showNotification(LANG.MSG_15_5); 
+                }
             }
             //
+        } else {
+            HelpA.showNotification(LANG.MSG_15_3);
         }
         //
-
     }
 
     protected void saveSmtpSettings() {

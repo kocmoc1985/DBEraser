@@ -34,7 +34,7 @@ public class EmailSendingStatus {
         //
     }
 
-    public boolean bothAttachmentAndSendingSuccessful() {
+    public boolean allSuccessful() {
         toString();
         return attachmentStatus == 1 && emailStatus == 1;
     }

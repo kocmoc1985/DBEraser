@@ -17,7 +17,14 @@ ___________________
 OBS! Regarding SMTP i didn't managed to get it working with gmail. I tested many things even enabling special property
 for "less secure application" from google accounts. 
 
-With one.com it was working fine [2020-10-12]
+With "one.com" it was working fine [2020-10-12]
+Tested with following settings:
+host: send.one.com
+port: 587 (STARTTLS)
+email: andrei.brassas@mixcont.com
+pass: K....65
+
+
 ___________________
 
 [HOW TO USE]

@@ -16,6 +16,7 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
@@ -543,6 +544,7 @@ public abstract class HTMLPrint extends JFrame {
         //
         //
         Boolean email_sending_ok = false;
+        EmailSendingStatus ess = null;
         //
         String subject = getHTMLPrintTitle();
         String body = getEmailBody();
@@ -552,14 +554,14 @@ public abstract class HTMLPrint extends JFrame {
             SMTP smtp = IO.loadSMTP();
             //
             if (smtp != null && smtp.allFilled()) {
-                email_sending_ok = HelpBuh.sendEmailWithAttachment_SMTP(smtp,
+                ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp,
                         sendToEmail,
                         subject,
                         body,
                         serverPath + fileName
                 );
             } else {
-                email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+                ess = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
                         GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
                         sendToEmail,
                         subject,
@@ -570,7 +572,7 @@ public abstract class HTMLPrint extends JFrame {
             //
         }
         //
-        if (upload_success && email_sending_ok) {
+        if (upload_success && ess != null && ess.allSuccessful()) {
             System.out.println("Email sending: " + email_sending_ok);
             displayStatus(LANG.MSG_10_2, null);
             return true;

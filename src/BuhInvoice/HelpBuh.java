@@ -122,7 +122,7 @@ public class HelpBuh {
      * path is relative to the "upload" script
      * @return
      */
-    public static boolean sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment) {
+    public static EmailSendingStatus sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
@@ -136,7 +136,7 @@ public class HelpBuh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        EmailSendingStatus ess;
+        EmailSendingStatus ess = null;
         //
         try {
             //
@@ -148,10 +148,9 @@ public class HelpBuh {
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
         //
-        return ess.bothAttachmentAndSendingSuccessful();
+        return ess;
         //
     }
 
@@ -165,7 +164,7 @@ public class HelpBuh {
      * @param filePathAttachment
      * @return 
      */
-    public static boolean sendEmailWithAttachment_SMTP(SMTP smtp, String to, String subject, String body, String filePathAttachment) {
+    public static EmailSendingStatus sendEmailWithAttachment_SMTP(SMTP smtp, String to, String subject, String body, String filePathAttachment) {
         //
         HashMap<String, String> map = smtp.getMap();
         //
@@ -177,7 +176,7 @@ public class HelpBuh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        EmailSendingStatus ess;
+        EmailSendingStatus ess = null;
         //
         try {
             //
@@ -189,12 +188,9 @@ public class HelpBuh {
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
         //
-        System.out.println("Email SENT OK: " + ess.emailSendingSuccessful());
-        //
-        return ess.bothAttachmentAndSendingSuccessful();
+        return ess;
         //
     }
 
@@ -254,9 +250,9 @@ public class HelpBuh {
         //
         //
         SMTP smtp =  IO.loadSMTP();
-        boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "andrei.brassas@mixcont.com", "Faktura", "This is a test email for testing attachment sending", SERVER_UPLOAD_PATH + "faktura.pdf");
+        EmailSendingStatus ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "andrei.brassas@mixcont.com", "Faktura", "This is a test email for testing attachment sending", SERVER_UPLOAD_PATH + "faktura.pdf");
         //
-        System.out.println("Email sending status: " + sent_b);
+        System.out.println("Email sending status: " + ess.allSuccessful());
     }
     
     public static void main(String[] args) {

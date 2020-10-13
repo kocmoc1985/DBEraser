@@ -131,7 +131,10 @@ public class JSon {
             String value = (String) map.get(key);
             //StringEscapeUtils.escapeHtml(value): Not working [2020-08-07]
 //            value = StringEscapeUtils.escapeJava(value); //[#ESCAPE#] ******************IMPORTANT***********************
-
+            //
+            if(value == null){
+                value = ""; // SUPER IMPORTANT [2020-10-13]
+            }
             //
             json += "\"" + key + "\"" + ";";
             if (!it.hasNext()) {
@@ -258,7 +261,10 @@ public class JSon {
             String value;
             //
             if (jsonObj.length == 1) {
-                value = null;
+                //
+                // THINK TWICE BEFORE CHANGING!!!
+                value = ""; //before: value = null; [2020-10-13]*****************************************OBS!!
+                //
             } else {
                 value = jsonObj[valueIndex];
                 if (replaceSpecialChars) {
@@ -272,7 +278,7 @@ public class JSon {
             } else {
                 map.put(key, value);
             }
-
+            
         }
         //
         return map;

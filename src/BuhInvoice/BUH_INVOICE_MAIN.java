@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
+import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -1969,9 +1970,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         SMTP smtp = IO.loadSMTP();
-        boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "kocmoc1985@gmail.com", "Faktura", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
+        EmailSendingStatus ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "kocmoc1985@gmail.com", "Faktura", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
         //
-        System.out.println("Email sending status: " + sent_b);
+        System.out.println("Email sending status: " + ess.allSuccessful());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_save_smtp_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_save_smtp_settingsActionPerformed
@@ -1979,7 +1980,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_save_smtp_settingsActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        optionsTab.testSmtpSettings();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
