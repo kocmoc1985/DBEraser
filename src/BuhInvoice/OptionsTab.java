@@ -6,17 +6,29 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.IO;
+import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
 import MyObjectTable.OutPut;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableInvert;
+import forall.HelpA;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 /**
  *
  * @author KOCMOC
  */
 public class OptionsTab extends Basic_Buh {
+
+    private final static String SMTP_HOST = "host";
+    private final static String SMTP_PORT = "port";
+    private final static String SMTP_YOUR_EMAIL = "user";
+    private final static String SMTP_PASS = "pass";
+    private final static String SMTP_FROM_NAME = "name";
 
     public OptionsTab(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -31,9 +43,38 @@ public class OptionsTab extends Basic_Buh {
         refresh();
     }
 
+    protected void saveSmtpSettings() {
+        //
+        if (fieldsValidated(false) == false) {
+            return;
+        }
+        //
+        HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
+//        SMTP smtp = new SMTP("send.one.com", "andrei.brassas@mixcont.com", "Kocmoc4765", "587", "BuhInvoice");
+        SMTP smtp = new SMTP(map.get(SMTP_HOST), map.get(SMTP_YOUR_EMAIL), map.get(SMTP_PASS), map.get(SMTP_PORT), map.get(SMTP_FROM_NAME));
+        //
+        if (IO.saveSMTP(smtp)) {
+            HelpA.showNotification(LANG.MSG_15);
+        } else {
+            HelpA.showNotification(LANG.MSG_15_2);
+        }
+    }
+
     @Override
     protected boolean fieldsValidated(boolean insert) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
     }
 
     @Override
@@ -70,22 +111,68 @@ public class OptionsTab extends Basic_Buh {
     public RowDataInvert[] getConfigTableInvert_settings_exist(SMTP smtp) {
         //
         String host_ = smtp.getHost();
-        RowDataInvert host = new RowDataInvertB(host_, "host", "UTGÅENDE SERVERNAMN", "", true, true, true);
+        RowDataInvert host = new RowDataInvertB(host_, SMTP_HOST, "UTGÅENDE SERVERNAMN", "", true, true, true);
+        //
+        String port_ = smtp.getPort();
+        RowDataInvert port = new RowDataInvertB(port_, SMTP_PORT, "PORT", "", true, true, true);
         //
         String user_ = smtp.getU();
-        RowDataInvert user = new RowDataInvertB(user_, "user", "DIN E-POSTADRESS", "", true, true, true);
+        RowDataInvert user = new RowDataInvertB(user_, SMTP_YOUR_EMAIL, "DIN E-POSTADRESS", "", true, true, true);
+        //
+        String pass_ = smtp.getP();
+        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, SMTP_PASS, "DIN LÖSENORD", "", true, true, true);
+        //
+        String namn_ = smtp.getFrom_name();
+        RowDataInvert namn = new RowDataInvertB(namn_, SMTP_FROM_NAME, "NAMN", "", true, true, false);
         //
         RowDataInvert[] rows = {
             host,
-            user
+            port,
+            user,
+            pass,
+            namn
         };
         //
         return rows;
     }
 
     public RowDataInvert[] getConfigTableInvert_settings_dont_exist() {
-        RowDataInvert[] rows = {};
+        //
+        RowDataInvert host = new RowDataInvertB("", SMTP_HOST, "UTGÅENDE SERVERNAMN", "", true, true, true);
+        //
+        RowDataInvert port = new RowDataInvertB("", SMTP_PORT, "PORT", "", true, true, true);
+        //
+        RowDataInvert user = new RowDataInvertB("", SMTP_YOUR_EMAIL, "DIN E-POSTADRESS", "", true, true, true);
+        //
+        RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", SMTP_PASS, "DIN LÖSENORD", "", true, true, true);
+        //
+        RowDataInvert namn = new RowDataInvertB("", SMTP_FROM_NAME, "NAMN", "", true, true, false);
+        //
+        RowDataInvert[] rows = {
+            host,
+            port,
+            user,
+            pass,
+            namn
+        };
         //
         return rows;
+    }
+
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
+        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(ke.getSource());
+        //
+        if (col_name.equals(SMTP_PORT) && ti.equals(TABLE_INVERT)) {
+            Validator.validateDigitalInput(jli);
+        } else if (col_name.equals(SMTP_YOUR_EMAIL) && ti.equals(TABLE_INVERT)) {
+            Validator.validateEmail(jli);
+        }
+        //
     }
 }

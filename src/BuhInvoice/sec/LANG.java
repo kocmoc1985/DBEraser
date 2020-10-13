@@ -65,6 +65,9 @@ public class LANG {
     public static String MSG_14 = "För många tecken, max antal:";
     public static String MSG_14_2 = "Det angivna värdet finns redan"; 
     
+    public static String MSG_15 = "E-Post inställningar sparades";
+    public static String MSG_15_2 = "E-Post inställningar kunde ej sparas";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

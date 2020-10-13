@@ -16,7 +16,9 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.SMTP;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import forall.TextFieldCheck;
@@ -160,7 +162,7 @@ public abstract class HTMLPrint extends JFrame {
         init();
         //
     }
-    
+
     protected abstract void buttonLogic();
 
     protected abstract String getWindowTitle();
@@ -314,7 +316,7 @@ public abstract class HTMLPrint extends JFrame {
     protected String getFakturaKundEmail() {
         return _get(map_e_2__lev_data, DB.BUH_FAKTURA_KUND___EMAIL);
     }
-    
+
     protected String getForetagsEmail() {
         return _get(map_f, DB.BUH_KUND__EPOST);
     }
@@ -370,10 +372,10 @@ public abstract class HTMLPrint extends JFrame {
             return JSon.getLongName(statics, val);
         }
     }
-    
+
     protected boolean listContainsSameEntries(ArrayList<HashMap<String, String>> list, String param) {
         //
-        HashSet<String>set = new HashSet<>();
+        HashSet<String> set = new HashSet<>();
         //
         for (HashMap<String, String> map : list) {
             //
@@ -430,18 +432,18 @@ public abstract class HTMLPrint extends JFrame {
 
     protected abstract void displayStatus(String msg, Color c);
 
-    protected void sendMailTargeted(){
+    protected void sendMailTargeted() {
         //
-        TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(),Validator.EMAIL, 25);
+        TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(), Validator.EMAIL, 25);
         boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
         String toEmail = tfc.getText_();
         //
-        if(yesNo && toEmail != null && tfc.getValidated()){
+        if (yesNo && toEmail != null && tfc.getValidated()) {
             sendMail(toEmail);
         }
     }
-    
-    protected void sendMail(String toEmail){
+
+    protected void sendMail(String toEmail) {
         //
         String ftg_name = getForetagsNamn();
         //
@@ -450,7 +452,7 @@ public abstract class HTMLPrint extends JFrame {
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail,this)) == false) {
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail, this)) == false) {
             return;
         }
         //
@@ -464,7 +466,7 @@ public abstract class HTMLPrint extends JFrame {
         );
         //
     }
-    
+
     private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
         HTMLPrint htmlprint = this;
@@ -481,22 +483,22 @@ public abstract class HTMLPrint extends JFrame {
                 // [2020-09-08]
                 if (ok) {
                     //
-                    if(htmlprint instanceof HTMLPrint_A){
+                    if (htmlprint instanceof HTMLPrint_A) {
                         loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
-                    }else{
+                    } else {
                         loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_PAMMINELSE);
                     }
-                    
+
                     //
                 } else {
-                    if(htmlprint instanceof HTMLPrint_A){
+                    if (htmlprint instanceof HTMLPrint_A) {
                         EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
-                            DB.STATIC__SENT_TYPE_FAKTURA);
-                    }else{
-                         EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
-                            DB.STATIC__SENT_TYPE_PAMMINELSE);
+                                DB.STATIC__SENT_TYPE_FAKTURA);
+                    } else {
+                        EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+                                DB.STATIC__SENT_TYPE_PAMMINELSE);
                     }
-                   
+
                 }
             }
         });
@@ -504,7 +506,8 @@ public abstract class HTMLPrint extends JFrame {
         x.start();
         //
     }
-    
+
+
     /**
      * [2020-09-03]
      *
@@ -546,13 +549,24 @@ public abstract class HTMLPrint extends JFrame {
         //
         if (upload_success) {
             //
-            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
-                    sendToEmail,
-                    subject,
-                    body,
-                    serverPath + fileName
-            );
+            SMTP smtp = IO.loadSMTP();
+            //
+            if (smtp != null && smtp.allFilled()) {
+                email_sending_ok = HelpBuh.sendEmailWithAttachment_SMTP(smtp,
+                        sendToEmail,
+                        subject,
+                        body,
+                        serverPath + fileName
+                );
+            } else {
+                email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+                        GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
+                        sendToEmail,
+                        subject,
+                        body,
+                        serverPath + fileName
+                );
+            }
             //
         }
         //
