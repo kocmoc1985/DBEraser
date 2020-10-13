@@ -48,23 +48,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jPanel_inloggning" alignment="0" pref="529" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox_spara_inloggning" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel_inloggning" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel_inloggning" alignment="0" pref="529" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox_spara_inloggning" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jLabel_inloggning" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="773" max="32767" attributes="0"/>
+                          <EmptySpace pref="775" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -80,12 +73,7 @@
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jCheckBox_spara_inloggning" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="754" max="32767" attributes="0"/>
+                          <EmptySpace pref="846" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -137,22 +125,6 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton3">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="SMTP"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="jButton4">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="SMTP Send"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1875,9 +1847,10 @@
                   <SubComponents>
                     <Component class="javax.swing.JTextArea" name="jTextArea1">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="H&#xe4;r &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du skulle vilja ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du skulle vilja ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1891,9 +1864,11 @@
                   <SubComponents>
                     <Component class="javax.swing.JTextArea" name="jTextArea2">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte SMTP anv&#xe4;ndning.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte SMTP &#xa;anv&#xe4;ndning.&#xa;"/>
+                        <Property name="wrapStyleWord" type="boolean" value="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
