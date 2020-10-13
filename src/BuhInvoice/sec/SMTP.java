@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @author KOCMOC
  */
-public class SMTP implements Serializable{
+public class SMTP implements Serializable {
 
     public static final long serialVersionUID = -7737096419321204313L;
     private final String host; //"smtp.gmail.com"
@@ -28,7 +28,17 @@ public class SMTP implements Serializable{
         this.port = port;
         this.from_name = from_name;
     }
-    
+
+    public boolean allFilled() {
+        boolean filled = (host != null && host.isEmpty() == false) && (u != null && u.isEmpty() == false)
+                && (p != null && p.isEmpty() == false) && (port != null && port.isEmpty() == false);
+        if (filled) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public HashMap<String, String> getMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put("host", host);
@@ -39,4 +49,24 @@ public class SMTP implements Serializable{
         return map;
     }
 
+    public String getHost() {
+        return host;
+    }
+
+    public String getU() {
+        return u;
+    }
+
+    public String getP() {
+        return p;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public String getFrom_name() {
+        return from_name;
+    }
+    
 }

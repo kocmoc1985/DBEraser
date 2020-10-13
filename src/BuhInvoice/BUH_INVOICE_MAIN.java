@@ -40,6 +40,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
     protected Home home;
+    protected OptionsTab optionsTab;
 
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
@@ -49,6 +50,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     public final static String TAB_KUDNER = "KUNDER";
     private final static String TAB_ARTIKLAR = "ARTIKLAR";
     private final static String TAB_FTG_SETUP = "FÖRETAGS INSTÄLLNINGAR";
+    private final static String TAB_OTHER_SETUP = "ÖVRIGA INSTÄLLNINGAR";
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
     //
@@ -138,8 +140,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         }
     }
-    
-    protected void openTabByName(String tabName){
+
+    protected void openTabByName(String tabName) {
         HelpA.openTabByName(jTabbedPane1, tabName);
     }
 
@@ -609,6 +611,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane12 = new javax.swing.JScrollPane();
         jTable_ftg_addr = new javax.swing.JTable();
         jButton_update_kund_data = new javax.swing.JButton();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jPanel20 = new javax.swing.JPanel();
+        jPanel_email_client_options = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -1207,7 +1213,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1503,6 +1509,37 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jTabbedPane1.addTab("FÖRETAGS INSTÄLLNINGAR", jScrollPane10);
 
+        jPanel_email_client_options.setLayout(new java.awt.BorderLayout());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("E-Post SMTP intällningar");
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(795, Short.MAX_VALUE))
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(585, Short.MAX_VALUE))
+        );
+
+        jScrollPane13.setViewportView(jPanel20);
+
+        jTabbedPane1.addTab("ÖVRIGA INSTÄLLNINGAR", jScrollPane13);
+
         getContentPane().add(jTabbedPane1);
 
         pack();
@@ -1705,7 +1742,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
             //
 //            boolean isKontantFaktura = isKontantFaktura();
-             boolean isKontantFaktura = Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
+            boolean isKontantFaktura = Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
             //
             if (isKontantFaktura) {
                 makeInbetalning(isKontantFaktura, true);
@@ -1888,10 +1925,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox_spara_inloggningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_spara_inloggningActionPerformed
-        if(jCheckBox_spara_inloggning.isSelected()){
+        if (jCheckBox_spara_inloggning.isSelected()) {
             IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "1");
             home.saveUserAndPass();
-        }else{
+        } else {
             IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "0");
             home.deleteUserAndPass();
         }
@@ -1903,7 +1940,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SMTP smtp =  IO.loadSMTP();
+        SMTP smtp = IO.loadSMTP();
         boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "kocmoc1985@gmail.com", "Faktura", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
         //
         System.out.println("Email sending status: " + sent_b);
@@ -2007,6 +2044,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel5_separator;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
@@ -2027,6 +2065,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
@@ -2039,11 +2078,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel8;
     protected javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
+    protected javax.swing.JPanel jPanel_email_client_options;
     protected javax.swing.JPanel jPanel_inloggning;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     protected javax.swing.JScrollPane jScrollPane11;
     protected javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     protected javax.swing.JScrollPane jScrollPane1_faktura;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2121,6 +2162,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     foretagA = new ForetagA(this);
                 } else {
                     jTableForetagA_ftg_table_clicked();
+                }
+                //
+            } else if (ACTUAL_TAB_NAME.equals(TAB_OTHER_SETUP) && sameTabClicked == false) {
+                //
+                if (optionsTab == null) {
+                    optionsTab = new OptionsTab(this);
+                } else {
+                    optionsTab.refresh();
                 }
                 //
             }
