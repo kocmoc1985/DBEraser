@@ -41,6 +41,7 @@ public class SMTP implements Serializable {
 
     public HashMap<String, String> getMap() {
         HashMap<String, String> map = new HashMap<>();
+        //OBS! parameter names "host,u,p..." are the ones used on PHP side
         map.put("host", host);
         map.put("u", u);
         map.put("p", p);

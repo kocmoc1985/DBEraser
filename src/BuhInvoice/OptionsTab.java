@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
@@ -15,6 +16,7 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import forall.TextFieldCheck;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
@@ -41,6 +43,26 @@ public class OptionsTab extends Basic_Buh {
     @Override
     protected void startUp() {
         refresh();
+    }
+
+    protected void testSmtpSettings() {
+        //
+        SMTP smtp = IO.loadSMTP();
+        //
+        if (smtp != null && smtp.allFilled()) {
+            //    
+            TextFieldCheck tfc = new TextFieldCheck("", Validator.EMAIL, 25);
+            boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
+            String toEmail = tfc.getText_();
+            //
+            if (yesNo && toEmail != null && tfc.getValidated()) {
+                boolean sent_b = HelpBuh.sendEmailWithAttachment_SMTP(smtp, toEmail, "SMTP Test", "This is a test email", SERVER_UPLOAD_PATH + "faktura.pdf");
+                System.out.println("Email sending status: " + sent_b);
+            }
+            //
+        }
+        //
+
     }
 
     protected void saveSmtpSettings() {
