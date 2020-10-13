@@ -129,11 +129,11 @@ public class JSon {
             //
             String key = (String) it.next();
             String value = (String) map.get(key);
-            //StringEscapeUtils.escapeHtml(value): Not working [2020-08-07]
-//            value = StringEscapeUtils.escapeJava(value); //[#ESCAPE#] ******************IMPORTANT***********************
+            // [#ESCAPE#] Not using since [2020-10-XX], suddenly it turned out that it's not longer needed
+//            value = StringEscapeUtils.escapeJava(value); // ******************IMPORTANT***********************
             //
             if(value == null){
-                value = ""; // SUPER IMPORTANT [2020-10-13]
+                value = ""; // [#EMPTY/NULL#]SUPER IMPORTANT [2020-10-13] **************************************************
             }
             //
             json += "\"" + key + "\"" + ";";
@@ -262,7 +262,7 @@ public class JSon {
             //
             if (jsonObj.length == 1) {
                 //
-                // THINK TWICE BEFORE CHANGING!!!
+                // THINK TWICE BEFORE CHANGING!!! [#EMPTY/NULL#]
                 value = ""; //before: value = null; [2020-10-13]*****************************************OBS!!
                 //
             } else {

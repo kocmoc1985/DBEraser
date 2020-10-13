@@ -618,7 +618,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel8 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jButton_save_smtp_settings = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButton_test_smtp = new javax.swing.JButton();
+        jButton_delete_smtp_settings = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -1531,13 +1532,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel21.add(jButton_save_smtp_settings);
 
-        jButton5.setToolTipText("Testa intsällningar, en test e-post skickas till angiven adress");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButton_test_smtp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/send_b.png"))); // NOI18N
+        jButton_test_smtp.setToolTipText("Testa intsällningar, en test e-post skickas till angiven adress");
+        jButton_test_smtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton_test_smtpActionPerformed(evt);
             }
         });
-        jPanel21.add(jButton5);
+        jPanel21.add(jButton_test_smtp);
+
+        jButton_delete_smtp_settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_delete_smtp_settings.setToolTipText("Radera SMTP inställningar");
+        jButton_delete_smtp_settings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_delete_smtp_settingsActionPerformed(evt);
+            }
+        });
+        jPanel21.add(jButton_delete_smtp_settings);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -1547,7 +1558,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8))
                     .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1979,9 +1990,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         optionsTab.saveSmtpSettings();
     }//GEN-LAST:event_jButton_save_smtp_settingsActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton_test_smtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_test_smtpActionPerformed
         optionsTab.testSmtpSettings();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButton_test_smtpActionPerformed
+
+    private void jButton_delete_smtp_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_smtp_settingsActionPerformed
+        optionsTab.deleteSmtpSettings();
+    }//GEN-LAST:event_jButton_delete_smtp_settingsActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
@@ -2051,7 +2066,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton4;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
-    private javax.swing.JButton jButton5;
     protected javax.swing.JButton jButton_add_article;
     protected javax.swing.JButton jButton_confirm_insert_update;
     private javax.swing.JButton jButton_copy_faktura;
@@ -2060,6 +2074,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
     private javax.swing.JButton jButton_delete_faktura;
+    protected javax.swing.JButton jButton_delete_smtp_settings;
     private javax.swing.JButton jButton_edit_faktura;
     private javax.swing.JButton jButton_inbetalning;
     private javax.swing.JButton jButton_kontant_faktura;
@@ -2069,6 +2084,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_search_by_kund;
     private javax.swing.JButton jButton_send_reminder;
     private javax.swing.JButton jButton_show_actions;
+    protected javax.swing.JButton jButton_test_smtp;
     protected javax.swing.JButton jButton_update_article;
     protected javax.swing.JButton jButton_update_articles_row;
     protected javax.swing.JButton jButton_update_kund;

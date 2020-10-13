@@ -16,10 +16,12 @@ public class SMTP implements Serializable {
 
     public static final long serialVersionUID = -7737096419321204313L;
     private final String host; //"smtp.gmail.com"
+    
     private final String u; // (u) user is also used as "from"
     private final String p; // (p) password
     private final String port;
     private final String from_name;
+    private final static String CRYPT = "STARTTLS";
 
     public SMTP(String host, String u, String p, String port, String from_name) {
         this.host = host;
@@ -69,5 +71,10 @@ public class SMTP implements Serializable {
     public String getFrom_name() {
         return from_name;
     }
+
+    public static String getCrypt() {
+        return CRYPT;
+    }
+    
     
 }

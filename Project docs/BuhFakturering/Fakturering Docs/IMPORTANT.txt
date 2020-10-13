@@ -27,6 +27,14 @@ if (Validator.validateMaxInputLength(jli, 30)) { // Validating with other method
 }
 
 ________________________________________________________________________________________________________
+[SENDING "EMPTY" AND "NULL" VALUES ][2020-10-13]
+
+search for tag "[#EMPTY/NULL#]"
+
+On [2020-10-13] i noticed that sending a "" (empty) value caused that the value was sent as a String = "null", see in the example below:
+{"p";"Kocmoc4765","path";"null","u";"andrei.brassas@mixcont.com","port";"587","subject";"SMTP Test","host";"send.one.com","to";"andrej.brassas@gmail.com","from_name";"MixCont","body";"This is a test email","user";"mixcont","pass";"mixcont4765"}
+
+________________________________________________________________________________________________________
 
 [SEMI COLON & COMMA SEND JSON][2020-08-25][2020-09-17]
 

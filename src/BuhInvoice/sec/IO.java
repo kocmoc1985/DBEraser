@@ -73,11 +73,17 @@ public class IO {
             return null;
         }
     }
+    
+    public static boolean deleteSMTP(){
+        File f = new File(LAST_INPUT_DIR + "smtp");
+        return f.delete();
+    }
 
     private static void objectToFile(String fileName, Object obj) throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(obj);
+        oos.close();
     }
 
     private static Object fileToObject(String fileName) throws IOException, ClassNotFoundException {

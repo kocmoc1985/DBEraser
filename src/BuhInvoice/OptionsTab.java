@@ -29,6 +29,7 @@ public class OptionsTab extends Basic_Buh {
 
     private final static String SMTP_HOST = "host";
     private final static String SMTP_PORT = "port";
+    private final static String SMTP_KRYPT = "krypt";
     private final static String SMTP_YOUR_EMAIL = "user";
     private final static String SMTP_PASS = "pass";
     private final static String SMTP_FROM_NAME = "name";
@@ -43,6 +44,11 @@ public class OptionsTab extends Basic_Buh {
 
     @Override
     protected void startUp() {
+        refresh();
+    }
+    
+    protected void deleteSmtpSettings(){
+        IO.deleteSMTP();
         refresh();
     }
 
@@ -146,6 +152,11 @@ public class OptionsTab extends Basic_Buh {
         String port_ = smtp.getPort();
         RowDataInvert port = new RowDataInvertB(port_, SMTP_PORT, "PORT", "", true, true, true);
         //
+        String krypt_ = SMTP.getCrypt();
+        RowDataInvert krypt = new RowDataInvertB(krypt_, SMTP_KRYPT, "KRYPTERING", "", true, true, true);
+        krypt.setDisabled();
+        krypt.setDontAquireTableInvertToHashMap();
+        //
         String user_ = smtp.getU();
         RowDataInvert user = new RowDataInvertB(user_, SMTP_YOUR_EMAIL, "DIN E-POSTADRESS", "", true, true, true);
         //
@@ -158,6 +169,7 @@ public class OptionsTab extends Basic_Buh {
         RowDataInvert[] rows = {
             host,
             port,
+            krypt,
             user,
             pass,
             namn
@@ -172,6 +184,11 @@ public class OptionsTab extends Basic_Buh {
         //
         RowDataInvert port = new RowDataInvertB("", SMTP_PORT, "PORT", "", true, true, true);
         //
+        String krypt_ = SMTP.getCrypt();
+        RowDataInvert krypt = new RowDataInvertB(krypt_, SMTP_KRYPT, "KRYPTERING", "", true, true, true);
+        krypt.setDisabled();
+        krypt.setDontAquireTableInvertToHashMap();
+        //
         RowDataInvert user = new RowDataInvertB("", SMTP_YOUR_EMAIL, "DIN E-POSTADRESS", "", true, true, true);
         //
         RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, "", SMTP_PASS, "DIN LÖSENORD", "", true, true, true);
@@ -181,6 +198,7 @@ public class OptionsTab extends Basic_Buh {
         RowDataInvert[] rows = {
             host,
             port,
+            krypt,
             user,
             pass,
             namn
