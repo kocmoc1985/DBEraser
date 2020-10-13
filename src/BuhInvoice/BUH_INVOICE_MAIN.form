@@ -1692,7 +1692,12 @@
                                   <Component id="jLabel9" min="-2" pref="212" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="658" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane15" pref="554" max="32767" attributes="0"/>
+                              <Component id="jScrollPane16" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="88" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1705,15 +1710,21 @@
                               <Component id="jPanel21" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                          <Component id="jPanel_email_client_options" min="-2" pref="316" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane16" max="32767" attributes="0"/>
+                              <Component id="jPanel_email_client_options" pref="316" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel22" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane14" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace pref="407" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane15" max="32767" attributes="0"/>
+                              <Component id="jScrollPane14" pref="171" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="412" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1852,6 +1863,38 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_delete_reminder_msgActionPerformed"/>
                       </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane15">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="jTextArea1">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="H&#xe4;r &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du skulle vilja ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane16">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="jTextArea2">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte SMTP anv&#xe4;ndning.&#xa;"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

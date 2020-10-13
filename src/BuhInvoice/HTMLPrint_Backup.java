@@ -800,13 +800,13 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         //
         if (upload_success) {
             //
-            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
-                    sendToEmail,
-                    "Faktura",
-                    body,
-                    serverPath + fileName
-            );
+//            email_sending_ok = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
+//                    GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
+//                    sendToEmail,
+//                    "Faktura",
+//                    body,
+//                    serverPath + fileName
+//            );
             //
         }
         //
