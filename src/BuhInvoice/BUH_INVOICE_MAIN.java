@@ -620,6 +620,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_save_smtp_settings = new javax.swing.JButton();
         jButton_test_smtp = new javax.swing.JButton();
         jButton_delete_smtp_settings = new javax.swing.JButton();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTextArea_reminder_message = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel22 = new javax.swing.JPanel();
+        jButton_save_reminder_msg = new javax.swing.JButton();
+        jButton_delete_reminder_msg = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -677,7 +683,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)))
-                .addContainerGap(749, Short.MAX_VALUE))
+                .addContainerGap(773, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -694,7 +700,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(723, Short.MAX_VALUE))
+                .addContainerGap(754, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -1200,14 +1206,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 458, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 470, Short.MAX_VALUE)
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                             .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1490,7 +1496,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGap(38, 38, 38)
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton_update_kund_data, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1550,18 +1556,51 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel21.add(jButton_delete_smtp_settings);
 
+        jTextArea_reminder_message.setColumns(20);
+        jTextArea_reminder_message.setRows(5);
+        jScrollPane14.setViewportView(jTextArea_reminder_message);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("Påmminelse meddelande");
+
+        jPanel22.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButton_save_reminder_msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton_save_reminder_msg.setToolTipText("Spara meddelande som kommer visas i påminnelsen");
+        jButton_save_reminder_msg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_save_reminder_msgActionPerformed(evt);
+            }
+        });
+        jPanel22.add(jButton_save_reminder_msg);
+
+        jButton_delete_reminder_msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_delete_reminder_msg.setToolTipText("Återställ påminnelse");
+        jButton_delete_reminder_msg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_delete_reminder_msgActionPerformed(evt);
+            }
+        });
+        jPanel22.add(jButton_delete_reminder_msg);
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane14)
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                         .addComponent(jLabel8))
-                    .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(658, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
@@ -1573,7 +1612,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(654, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(407, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel20);
@@ -1998,6 +2043,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         optionsTab.deleteSmtpSettings();
     }//GEN-LAST:event_jButton_delete_smtp_settingsActionPerformed
 
+    private void jButton_save_reminder_msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_save_reminder_msgActionPerformed
+        optionsTab.saveReminderMessage();
+    }//GEN-LAST:event_jButton_save_reminder_msgActionPerformed
+
+    private void jButton_delete_reminder_msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_reminder_msgActionPerformed
+        optionsTab.restoreReminderMessage();
+    }//GEN-LAST:event_jButton_delete_reminder_msgActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -2074,12 +2127,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
     private javax.swing.JButton jButton_delete_faktura;
+    private javax.swing.JButton jButton_delete_reminder_msg;
     protected javax.swing.JButton jButton_delete_smtp_settings;
     private javax.swing.JButton jButton_edit_faktura;
     private javax.swing.JButton jButton_inbetalning;
     private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
+    private javax.swing.JButton jButton_save_reminder_msg;
     protected javax.swing.JButton jButton_save_smtp_settings;
     protected javax.swing.JButton jButton_search_by_kund;
     private javax.swing.JButton jButton_send_reminder;
@@ -2100,6 +2155,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
@@ -2122,6 +2178,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
@@ -2141,6 +2198,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JScrollPane jScrollPane11;
     protected javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     protected javax.swing.JScrollPane jScrollPane1_faktura;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2160,6 +2218,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JTable jTable_kund_adresses;
     protected javax.swing.JTable jTable_kunder;
     protected javax.swing.JTextArea jTextArea_faktura_komment;
+    protected javax.swing.JTextArea jTextArea_reminder_message;
     protected static javax.swing.JTextField jTextField_moms_artiklar;
     protected static javax.swing.JTextField jTextField_moms_frakt_expavg;
     protected static javax.swing.JTextField jTextField_moms_sats_frakt_exp_avg;

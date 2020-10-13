@@ -51,9 +51,9 @@ public class IO {
         return HelpA.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
     }
 
-    public static void delete(String fileName) {
+    public static boolean delete(String fileName) {
         File f = new File(LAST_INPUT_DIR + fileName);
-        f.delete();
+        return f.delete();
     }
 
     public static boolean saveSMTP(Object obj) {
@@ -75,8 +75,29 @@ public class IO {
     }
     
     public static boolean deleteSMTP(){
-        File f = new File(LAST_INPUT_DIR + "smtp");
-        return f.delete();
+        return delete("smtp");
+    }
+    
+    public static String loadReminderMsg(){
+        try {
+            return (String) fileToObject(LAST_INPUT_DIR + "remindermsg");
+        } catch (IOException | ClassNotFoundException ex) {
+            return null;
+        }
+    }
+    
+    public static boolean saveReminderMsg(Object obj){
+         try {
+            objectToFile(LAST_INPUT_DIR + "remindermsg", obj);
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public static void deleteReminderMsg(){
+        delete("remindermsg");
     }
 
     private static void objectToFile(String fileName, Object obj) throws FileNotFoundException, IOException {

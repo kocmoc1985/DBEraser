@@ -279,7 +279,7 @@ public class HTMLPrint_B extends HTMLPrint {
         html_ += "<tr>";
         //
         html_ += "<td class='text-md' style='padding:10 10 10 10px;'>";
-        html_ += LANG.PAMMINELSE_MSG_MAIN(getFakturaNr());
+        html_ += LANG.PAMMINELSE_MSG_MAIN__AUTO(getFakturaNr());
         html_ += "</td>";
         //
         html_ += "</tr>";

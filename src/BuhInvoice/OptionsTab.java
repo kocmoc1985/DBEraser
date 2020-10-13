@@ -5,7 +5,7 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.HelpBuh.SERVER_UPLOAD_PATH;
+import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
@@ -20,38 +20,44 @@ import forall.HelpA;
 import forall.TextFieldCheck;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author KOCMOC
  */
 public class OptionsTab extends Basic_Buh {
-
+    
     private final static String SMTP_HOST = "host";
     private final static String SMTP_PORT = "port";
     private final static String SMTP_KRYPT = "krypt";
     private final static String SMTP_YOUR_EMAIL = "user";
     private final static String SMTP_PASS = "pass";
     private final static String SMTP_FROM_NAME = "name";
-
+    
     public OptionsTab(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
-
+    
     protected void refresh() {
         showTableInvert();
     }
-
+    
     @Override
     protected void startUp() {
         refresh();
+        initOther();
     }
     
-    protected void deleteSmtpSettings(){
+    private void initOther(){
+        showReminderOption();
+    }
+    
+    protected void deleteSmtpSettings() {
         IO.deleteSMTP();
         refresh();
     }
-
+    
     protected void testSmtpSettings() {
         //
         SMTP smtp = IO.loadSMTP();
@@ -68,8 +74,8 @@ public class OptionsTab extends Basic_Buh {
                 //
                 if (ess.emailSendingSuccessful()) {
                     HelpA.showNotification(LANG.MSG_15_4);
-                }else{
-                   HelpA.showNotification(LANG.MSG_15_5); 
+                } else {
+                    HelpA.showNotification(LANG.MSG_15_5);                    
                 }
             }
             //
@@ -78,7 +84,7 @@ public class OptionsTab extends Basic_Buh {
         }
         //
     }
-
+    
     protected void saveSmtpSettings() {
         //
         if (fieldsValidated(false) == false) {
@@ -95,7 +101,7 @@ public class OptionsTab extends Basic_Buh {
             HelpA.showNotification(LANG.MSG_15_2);
         }
     }
-
+    
     @Override
     protected boolean fieldsValidated(boolean insert) {
         //
@@ -112,7 +118,7 @@ public class OptionsTab extends Basic_Buh {
         return true;
         //
     }
-
+    
     @Override
     public void showTableInvert() {
         //
@@ -143,7 +149,7 @@ public class OptionsTab extends Basic_Buh {
         }
         //
     }
-
+    
     public RowDataInvert[] getConfigTableInvert_settings_exist(SMTP smtp) {
         //
         String host_ = smtp.getHost();
@@ -177,7 +183,7 @@ public class OptionsTab extends Basic_Buh {
         //
         return rows;
     }
-
+    
     public RowDataInvert[] getConfigTableInvert_settings_dont_exist() {
         //
         RowDataInvert host = new RowDataInvertB("", SMTP_HOST, "UTGÅENDE SERVERNAMN", "", true, true, true);
@@ -206,7 +212,7 @@ public class OptionsTab extends Basic_Buh {
         //
         return rows;
     }
-
+    
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -223,4 +229,38 @@ public class OptionsTab extends Basic_Buh {
         }
         //
     }
+    
+    
+    protected void saveReminderMessage(){
+        JTextArea jtxt = bim.jTextArea_reminder_message;
+        //
+        if(IO.saveReminderMsg(jtxt.getText())){
+            BlinkThread bt = new BlinkThread(jtxt, false);
+        }else{
+            BlinkThread bt = new BlinkThread(jtxt, true);
+        }
+        //
+        showReminderOption();
+        //
+    }
+    
+    protected void restoreReminderMessage(){
+        //
+        IO.deleteReminderMsg();
+        //
+        showReminderOption();
+        //
+    }
+    
+    private void showReminderOption() {
+        //
+        String remindMsg = LANG.PAMMINELSE_MSG_MAIN__AUTO("?");
+        //
+        JTextArea jtxt = bim.jTextArea_reminder_message;
+        //
+        jtxt.setText(remindMsg);
+        //
+    }
+    
+    
 }

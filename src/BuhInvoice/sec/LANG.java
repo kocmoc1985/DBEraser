@@ -22,19 +22,17 @@ public class LANG {
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";
     public final static String VALIDATION_MSG__V_ERR_01 = "Fel användarnamn";
     public final static String VALIDATION_MSG__V_ERR_02 = "Fel lösenord";
-    
-    public static final String getInloggningsMsg(String customerCompanyName){
+
+    public static final String getInloggningsMsg(String customerCompanyName) {
         return "Inloggad som: " + customerCompanyName;
     }
-    
+
     public final static String FAKTURA = "Faktura";
     public final static String PAMINNELSE = "Påminnelse";
-    
-    public final static String FRAME_TITLE_1 = "Skriv ut " + FAKTURA.toLowerCase();
-    public final static String FRAME_TITLE_1_2 = "Skriv ut " +  PAMINNELSE.toLowerCase();
-    public final static String FRAME_TITLE_1_3 = "Förhandsgranska";
 
-    
+    public final static String FRAME_TITLE_1 = "Skriv ut " + FAKTURA.toLowerCase();
+    public final static String FRAME_TITLE_1_2 = "Skriv ut " + PAMINNELSE.toLowerCase();
+    public final static String FRAME_TITLE_1_3 = "Förhandsgranska";
 
     public final static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
     public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
@@ -58,20 +56,20 @@ public class LANG {
     public static String MSG_10_1 = "Laddar upp";
     public static String MSG_10_2 = "Filen skickad!";
     public static String MSG_10_3 = "Filen ej skickad!";
-    
+
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald";
-    
+
     public static String MSG_14 = "För många tecken, max antal:";
-    public static String MSG_14_2 = "Det angivna värdet finns redan"; 
-    
+    public static String MSG_14_2 = "Det angivna värdet finns redan";
+
     public static String MSG_15 = "E-Post inställningar sparades";
     public static String MSG_15_2 = "E-Post inställningar kunde ej sparas";
-    
+
     public static String MSG_15_3 = "SMTP inställningar saknas eller är felaktiga";
     public static String MSG_15_4 = "E-Post skickades, SMTP inställningar fungerar!";
     public static String MSG_15_5 = "E-Post skickades ej, prova att ändra inställningar";
-    
+
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
@@ -82,11 +80,27 @@ public class LANG {
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
 
-    public static String PAMMINELSE_MSG_MAIN(String fakturanr) {
-        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald.\n "
+    private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
+        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald.\n"
                 + "Därför ber vi er att omgående betala in det förfallna beloppet.\n"
                 + "Vänligen uppge fakturanummer vid betalning.\n"
                 + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
+    }
+
+    public static String PAMMINELSE_MSG_MAIN__AUTO(String fakturanr) {
+        //
+        String savedReminderMsg = IO.loadReminderMsg();
+        //
+        if (savedReminderMsg != null && savedReminderMsg.isEmpty() == false) {
+          if(savedReminderMsg.contains("%s")){
+              return String.format(savedReminderMsg, fakturanr);
+          }else{
+              return savedReminderMsg;
+          }  
+        }else{
+          return PAMMINELSE_MSG_MAIN(fakturanr);
+        }
+        
     }
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
@@ -121,14 +135,14 @@ public class LANG {
     }
 
     public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print) {
-        if(print instanceof HTMLPrint_A){
-            return "Skicka "+ FAKTURA.toLowerCase() + " till: " + sendTo + " ?";
-        }else if(print instanceof HTMLPrint_B){
-            return "Skicka "+ PAMINNELSE.toLowerCase() + " till: " + sendTo + " ?";
-        }else{
+        if (print instanceof HTMLPrint_A) {
+            return "Skicka " + FAKTURA.toLowerCase() + " till: " + sendTo + " ?";
+        } else if (print instanceof HTMLPrint_B) {
+            return "Skicka " + PAMINNELSE.toLowerCase() + " till: " + sendTo + " ?";
+        } else {
             return "undefined";
         }
-        
+
     }
 
     public static String MSG_DELETE_WARNING_ARTICLE(String fakturor) {
