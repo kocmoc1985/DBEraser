@@ -105,7 +105,35 @@ public class HelpBuh {
         //
 //        test__sendEmailWithAttachment();
         //
-        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+        deleteCustomer_a("10", "Vxuw6lpMzF");
+        //
+    }
+    
+    /**
+     * Deletes "buh_kund","buh_address","buh_licens"
+     * @param kundId
+     * @param admPass 
+     */
+    public static void deleteCustomer_a(String kundId,String admPass){
+        //
+        HashMap<String, String> map = new HashMap();
+        map.put(DB.BUH_KUND__ID, kundId);
+        map.put("admpass", admPass);
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE_CUSTOMER__A, JSon.hashMapToJSON(map));
+            //
+            System.out.println("response: " + response);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
 
     /**

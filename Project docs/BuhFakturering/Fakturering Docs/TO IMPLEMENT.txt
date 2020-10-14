@@ -13,23 +13,11 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-Register User:
+Delete:
+"buh_address"
+"buh_licens"
+"buh_kund"
 
-1. Create mail function which will send the user it's password
-1.2 The username shall be the email of the user
-1.3 Ask additionaly for Company Name and OrgNr
-
-2. Create Kund and Address uppon the registration process
-
-3. Don't allow several registrations from same IP, Same Company....
-
-Creating account:
-1. Check if user already exist
-2. 
-
-Returning ID uppon creation of "buh_kund"
-1. Insert "buh_kund" with predefined "date_created" 
-2. Aquire the "buh_kund" with date created
 --------------
 
 Implement "changed by", now i have the logged in user so it can be done
