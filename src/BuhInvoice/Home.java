@@ -44,8 +44,8 @@ public class Home extends Basic_Buh {
         loadCheckBoxSaveLoginState();
         refresh();
     }
-    
-    private void setInloggningsLabel(String text){
+
+    private void setInloggningsLabel(String text) {
         bim.jLabel_inloggning.setText(text);
     }
 
@@ -93,11 +93,11 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
-    private void getFtgName(){
+
+    private void getFtgName() {
         //
         String req = bim.getSELECT(DB.BUH_KUND__ID, GP_BUH.KUND_ID);
-       //         
+        //         
         try {
             //
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
@@ -173,7 +173,7 @@ public class Home extends Basic_Buh {
         addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
-    
+
     public void showTableInvert_2() {
         //
         TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
@@ -202,14 +202,14 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "E-POST", "", true, true, true);
         //
-        RowDataInvert ftg_name = new RowDataInvertB("", DB.BUH_LICENS__USER, "FÖRETAGSNAMN", "", true, true, true);
+        RowDataInvert ftg_name = new RowDataInvertB("", DB.BUH_KUND__NAMN, "FÖRETAGSNAMN", "", true, true, true);
         //
-        RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_LICENS__USER, "ORGNR", "", true, true, true);
+        RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_KUND__ORGNR, "ORGNR", "", true, true, true);
         //
         RowDataInvert[] rows = {
             user,
@@ -254,23 +254,31 @@ public class Home extends Basic_Buh {
             if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
                 save(DB.BUH_LICENS__PASS, jli.getValue());
             }
+            //
+            //
+        } else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_2)) {
+            Validator.validateEmail(jli);
+        } else if (col_name.equals(DB.BUH_KUND__NAMN) && ti.equals(TABLE_INVERT_2)) {
+            Validator.validateMaxInputLength(jli, 50);
+        }else if (col_name.equals(DB.BUH_KUND__ORGNR) && ti.equals(TABLE_INVERT_2)) {
+            Validator.validateOrgnr(jli);
         }
         //
     }
-    
+
     /**
      * Saving when the checkBox state changed to "1/selected"
      */
-    protected void saveUserAndPass(){
-         save(DB.BUH_LICENS__USER, getValueTableInvert(DB.BUH_LICENS__USER));
-         save(DB.BUH_LICENS__PASS, getValueTableInvert(DB.BUH_LICENS__PASS));
+    protected void saveUserAndPass() {
+        save(DB.BUH_LICENS__USER, getValueTableInvert(DB.BUH_LICENS__USER));
+        save(DB.BUH_LICENS__PASS, getValueTableInvert(DB.BUH_LICENS__PASS));
     }
-    
-    protected void deleteUserAndPass(){
+
+    protected void deleteUserAndPass() {
         IO.delete(DB.BUH_LICENS__USER);
         IO.delete(DB.BUH_LICENS__PASS);
     }
-    
+
     private void save(String param, String value) {
         if (saveInloggning()) {
             IO.writeToFile(param, value);
