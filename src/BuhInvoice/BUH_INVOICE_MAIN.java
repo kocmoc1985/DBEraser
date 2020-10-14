@@ -510,6 +510,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_inloggning = new javax.swing.JLabel();
         jPanel_register_new = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jButton_register_new_user = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -662,6 +663,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel10.setForeground(new java.awt.Color(153, 153, 153));
         jLabel10.setText("Saknar du konto? Registrera en");
 
+        jButton_register_new_user.setText("Registrera");
+        jButton_register_new_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_register_new_userActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -677,7 +685,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addComponent(jCheckBox_spara_inloggning))
                         .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_register_new_user))
                 .addContainerGap(775, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
@@ -695,7 +704,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_register_new, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(522, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_register_new_user)
+                .addContainerGap(484, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -2055,6 +2066,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         optionsTab.restoreReminderMessage();
     }//GEN-LAST:event_jButton_delete_reminder_msgActionPerformed
 
+    private void jButton_register_new_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_register_new_userActionPerformed
+        home.processUserRegistration();
+    }//GEN-LAST:event_jButton_register_new_userActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -2136,6 +2151,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_print_faktura;
+    private javax.swing.JButton jButton_register_new_user;
     private javax.swing.JButton jButton_save_reminder_msg;
     protected javax.swing.JButton jButton_save_smtp_settings;
     protected javax.swing.JButton jButton_search_by_kund;

@@ -60,6 +60,7 @@
                                   <Component id="jLabel_inloggning" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel10" alignment="0" min="-2" pref="257" max="-2" attributes="0"/>
+                              <Component id="jButton_register_new_user" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="775" max="32767" attributes="0"/>
                       </Group>
@@ -81,7 +82,9 @@
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_register_new" min="-2" pref="191" max="-2" attributes="0"/>
-                          <EmptySpace pref="522" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jButton_register_new_user" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="484" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -158,6 +161,14 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Saknar du konto? Registrera en"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton_register_new_user">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Registrera"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_register_new_userActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

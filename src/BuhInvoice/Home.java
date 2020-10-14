@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
-import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.event.KeyEvent;
@@ -43,6 +42,18 @@ public class Home extends Basic_Buh {
     protected void startUp() {
         loadCheckBoxSaveLoginState();
         refresh();
+    }
+    
+    protected void processUserRegistration(){
+        //
+        HashMap<String,String>map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
+        //
+        String userEmail = map.get(DB.BUH_LICENS__USER);
+        String ftgName = map.get(DB.BUH_KUND__NAMN);
+        String orgnr = map.get(DB.BUH_KUND__ORGNR);
+        //
+        HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
+        //
     }
 
     private void setInloggningsLabel(String text) {

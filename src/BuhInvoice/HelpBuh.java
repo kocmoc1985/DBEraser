@@ -101,7 +101,7 @@ public class HelpBuh {
         //
 //        GP_BUH.USER = "mixcont";
 //        GP_BUH.PASS = "mixcont4765";
-//        createAccountPHP("1");
+//        createAccountPHP_existing_customer("1");
         //
 //        test__sendEmailWithAttachment();
         //
@@ -110,11 +110,12 @@ public class HelpBuh {
 
     /**
      * This one is used for creating of an account for an existing "buh_kund"
-     *
+     * So if a "buh_licens" already exist, you will not be able to use this.
+     * @deprecated 
      * @param kundId
      * @return
      */
-    public static boolean createAccountPHP(String kundId) {
+    public static boolean createAccountPHP_existing_customer(String kundId) {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
         //
@@ -128,7 +129,7 @@ public class HelpBuh {
         //
         try {
             GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_CREATE_ACCOUNT, JSon.hashMapToJSON(map));
+                    DB.PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER, JSon.hashMapToJSON(map));
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             return false;

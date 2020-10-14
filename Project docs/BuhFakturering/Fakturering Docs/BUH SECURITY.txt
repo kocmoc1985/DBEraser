@@ -1,3 +1,11 @@
+[CREATION OF USER ACCOUNT][2020-10-14]
+
+PHP see: "_http_buh.php" -> "createAccountMain()"
+Java see: "HelpBuh.class" -> "createAccountPHP_main(String emailUserName, String ftgname, String orgnr)"
+
+OBS! The password is created at PHP-side randomly
+
+Important to mention: when the user account is created "buh_kund" and "buh_address" are also created
 ________________________________________________________________________________________________________
 [PASSWORD HASHING & USER VALIDATION][2020-10-07]
 
