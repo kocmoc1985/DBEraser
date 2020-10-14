@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
@@ -54,7 +55,9 @@ public class Home extends Basic_Buh {
             String ftgName = map.get(DB.BUH_KUND__NAMN);
             String orgnr = map.get(DB.BUH_KUND__ORGNR);
             //
-            HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
+            CreateAccountStatus cas = HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
+            //
+            HelpA.showNotification("Create successful: " + cas.getMessage());
             //
         }
         //

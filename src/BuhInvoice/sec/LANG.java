@@ -7,7 +7,6 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.CustomersA_;
-import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
@@ -70,6 +69,8 @@ public class LANG {
     public static String MSG_15_4 = "E-Post skickades, SMTP inställningar fungerar!";
     public static String MSG_15_5 = "E-Post skickades ej, prova att ändra inställningar";
 
+    public static String MSG_16 = "Kunde ej skapa, användare finns redan";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";

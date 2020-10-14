@@ -16,6 +16,8 @@ public class CreateAccountStatus {
     //
     private final String CAS_ERR_01__USER_EXIST = "CASS_ERR_01";
     private final String CAS_ERR_02__MORE_THEN_TWO_SAME_MAC = "CASS_ERR_02";
+    //
+    private String messageToShow;
 
     public CreateAccountStatus(String responce) {
         this.responce = responce;
@@ -23,11 +25,21 @@ public class CreateAccountStatus {
     }
 
     
+    public boolean isSuccessful(){
+        return successful;
+    }
+    
+    public String getMessage(){
+        return messageToShow;
+    }
     
     private void defineStatus(){
         //
         if(responce == null || responce.isEmpty()){
              this.successful = false;
+        }else if(responce.equals(CAS_ERR_01__USER_EXIST)){
+            this.messageToShow = LANG.MSG_16;
+            this.successful = false;
         }
         //
     }
