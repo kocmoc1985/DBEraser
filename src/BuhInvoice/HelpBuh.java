@@ -57,6 +57,63 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
+    /**
+     * This oe is used for creating of account + creating of "buh_kund" +
+     * creating of "buh_address"
+     *
+     * @param emailUserName
+     * @param ftgname
+     * @param orgnr
+     * @return
+     */
+    public static boolean createAccountPHP_main(String emailUserName, String ftgname, String orgnr) {
+        //[#SEQURITY#]
+        HashMap<String, String> map = new HashMap();
+        //
+        //User and pass are added when calling executePHP
+        //
+        GP_BUH.USER = emailUserName;
+        GP_BUH.PASS = null;
+//        map.put(DB.BUH_LICENS__USER, emailUserName);
+        //
+        map.put(DB.BUH_KUND__NAMN, ftgname);
+        map.put(DB.BUH_KUND__ORGNR, orgnr);
+        //
+        map.put(DB.BUH_KUND__DATE_CREATED, GP_BUH.getDateCreated());
+        //
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
+        //
+        try {
+            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_CREATE_ACCOUNT_MAIN, JSon.hashMapToJSON(map));
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        //
+//        GP_BUH.USER = "mixcont";
+//        GP_BUH.PASS = "mixcont4765";
+//        createAccountPHP("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+    }
+
+    /**
+     * This one is used for creating of an account for an existing "buh_kund"
+     *
+     * @param kundId
+     * @return
+     */
     public static boolean createAccountPHP(String kundId) {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
@@ -78,15 +135,6 @@ public class HelpBuh {
         }
         return true;
     }
-    
-     public static void main(String[] args) {
-        GP_BUH.USER = "mixcont";
-        GP_BUH.PASS = "mixcont4765";
-        createAccountPHP("1");
-//        test__sendEmailWithAttachment();
-    }
-
-    
 
     public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
         String url = buildUrl(phpScriptName, phpFunctionName, json);
@@ -168,15 +216,15 @@ public class HelpBuh {
         //
     }
 
-    
     /**
      * [2020-10-12]
+     *
      * @param smtp
      * @param to
      * @param subject
      * @param body
      * @param filePathAttachment
-     * @return 
+     * @return
      */
     public static EmailSendingStatus sendEmailWithAttachment_SMTP(SMTP smtp, String to, String subject, String body, String filePathAttachment) {
         //
@@ -263,13 +311,11 @@ public class HelpBuh {
         //
         //
         //
-        SMTP smtp =  IO.loadSMTP();
+        SMTP smtp = IO.loadSMTP();
         EmailSendingStatus ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp, "andrei.brassas@mixcont.com", "Faktura", "This is a test email for testing attachment sending", SERVER_UPLOAD_PATH + "faktura.pdf");
         //
         System.out.println("Email sending status: " + ess.allSuccessful());
     }
-    
-   
 
     /**
      * [2020-07-22] Universal function for inserting into HTTP DB This one goes

@@ -26,6 +26,10 @@ Register User:
 Creating account:
 1. Check if user already exist
 2. 
+
+Returning ID uppon creation of "buh_kund"
+1. Insert "buh_kund" with predefined "date_created" 
+2. Aquire the "buh_kund" with date created
 --------------
 
 Implement "changed by", now i have the logged in user so it can be done

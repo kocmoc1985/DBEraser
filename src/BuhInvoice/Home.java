@@ -237,6 +237,22 @@ public class Home extends Basic_Buh {
         //
     }
 
+    protected boolean fieldsValidated_tableInvert_2(boolean insert) {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+
+    }
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -260,7 +276,7 @@ public class Home extends Basic_Buh {
             Validator.validateEmail(jli);
         } else if (col_name.equals(DB.BUH_KUND__NAMN) && ti.equals(TABLE_INVERT_2)) {
             Validator.validateMaxInputLength(jli, 50);
-        }else if (col_name.equals(DB.BUH_KUND__ORGNR) && ti.equals(TABLE_INVERT_2)) {
+        } else if (col_name.equals(DB.BUH_KUND__ORGNR) && ti.equals(TABLE_INVERT_2)) {
             Validator.validateOrgnr(jli);
         }
         //

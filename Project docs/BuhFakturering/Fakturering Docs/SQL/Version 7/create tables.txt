@@ -16,6 +16,7 @@ bank_konto varchar (30) DEFAULT '',
 iban varchar (30) DEFAULT '',
 swish varchar (30) DEFAULT '',
 f_skatt boolean DEFAULT false,
+date_created varchar(30) DEFAULT 'no',
 );
 
 

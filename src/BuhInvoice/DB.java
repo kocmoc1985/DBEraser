@@ -78,6 +78,7 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
     //
     public static final String PHP_FUNC_DEFINE_KUNDID = "define_kundid"; // using php-function: "defineKundId()"
+    public static final String PHP_FUNC_CREATE_ACCOUNT_MAIN = "create_account_main"; // using php-function: "createAccount()"
     public static final String PHP_FUNC_CREATE_ACCOUNT = "create_account"; // using php-function: "createAccount()"
     //
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
@@ -215,6 +216,7 @@ public class DB {
     public static final String BUH_KUND__IBAN = "iban";
     public static final String BUH_KUND__SWISH = "swish";
     public static final String BUH_KUND__F_SKATT = "f_skatt";
+    public static final String BUH_KUND__DATE_CREATED = "date_created";
     //
     //
     public static final String BUH_FAKTURA_INBET__INBET_ID = "inbetId";
