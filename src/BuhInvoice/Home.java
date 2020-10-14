@@ -16,6 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.IO;
+import MyObjectTable.Table;
+import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.event.KeyEvent;
@@ -26,6 +28,7 @@ import java.awt.event.KeyEvent;
  */
 public class Home extends Basic_Buh {
 
+    protected Table TABLE_INVERT_2;
     private final String VALIDATION__V_ERR_0 = "V_ERR_0"; // user or pass parameters not set
     private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
     private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
@@ -61,6 +64,7 @@ public class Home extends Basic_Buh {
 
     protected void refresh() {
         showTableInvert();
+        showTableInvert_2();
     }
 
     protected void loggaIn() {
@@ -169,6 +173,18 @@ public class Home extends Basic_Buh {
         addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
+    
+    public void showTableInvert_2() {
+        //
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
+        TABLE_INVERT_2 = null;
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
+        showTableInvert(bim.jPanel_register_new, TABLE_INVERT_2);
+        //
+        addTableInvertRowListener(TABLE_INVERT_2, this);
+        //
+    }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -182,6 +198,23 @@ public class Home extends Basic_Buh {
         RowDataInvert[] rows = {
             user,
             pass
+        };
+        //
+        return rows;
+    }
+    
+    public RowDataInvert[] getConfigTableInvert_2() {
+        //
+        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "E-POST", "", true, true, true);
+        //
+        RowDataInvert ftg_name = new RowDataInvertB("", DB.BUH_LICENS__USER, "FÖRETAGSNAMN", "", true, true, true);
+        //
+        RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_LICENS__USER, "ORGNR", "", true, true, true);
+        //
+        RowDataInvert[] rows = {
+            user,
+            ftg_name,
+            org_nr
         };
         //
         return rows;

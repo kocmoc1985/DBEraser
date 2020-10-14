@@ -13,6 +13,19 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
+Register User:
+
+1. Create mail function which will send the user it's password
+1.2 The username shall be the email of the user
+1.3 Ask additionaly for Company Name and OrgNr
+
+2. Create Kund and Address uppon the registration process
+
+3. Don't allow several registrations from same IP, Same Company....
+--------------
+
+Implement "changed by", now i have the logged in user so it can be done
+
 Faktura preview fails when first creating a faktura and then editing and trying to make preview
 
 Edit article when inserting fails regarding moms!!! ----> Not sure it's true keep on monitoring

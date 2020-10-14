@@ -11,6 +11,7 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
 import MyObjectTable.OutPut;
+import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
@@ -27,6 +28,7 @@ import javax.swing.JTextArea;
  * @author KOCMOC
  */
 public class OptionsTab extends Basic_Buh {
+    
     
     private final static String SMTP_HOST = "host";
     private final static String SMTP_PORT = "port";
@@ -131,6 +133,8 @@ public class OptionsTab extends Basic_Buh {
         addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
+    
+    
 
     /**
      * For the SMTP Settings
