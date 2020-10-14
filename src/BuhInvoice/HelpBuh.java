@@ -9,6 +9,7 @@ import static BuhInvoice.JSon.JSONToHashMap;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.SMTP;
+import forall.HelpA;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -61,6 +62,12 @@ public class HelpBuh {
         HashMap<String, String> map = new HashMap();
         //
         map.put(DB.BUH_KUND__ID, kundId);
+        //User and pass are added when calling executePHP
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
             GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
@@ -70,6 +77,13 @@ public class HelpBuh {
             return false;
         }
         return true;
+    }
+    
+     public static void main(String[] args) {
+        GP_BUH.USER = "mixcont";
+        GP_BUH.PASS = "mixcont4765";
+        createAccountPHP("1");
+//        test__sendEmailWithAttachment();
     }
 
     
@@ -255,12 +269,7 @@ public class HelpBuh {
         System.out.println("Email sending status: " + ess.allSuccessful());
     }
     
-    public static void main(String[] args) {
-        GP_BUH.USER = "chaki";
-        GP_BUH.PASS = "pass";
-//        createAccountPHP("3");
-        test__sendEmailWithAttachment();
-    }
+   
 
     /**
      * [2020-07-22] Universal function for inserting into HTTP DB This one goes

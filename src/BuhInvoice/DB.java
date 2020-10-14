@@ -233,4 +233,9 @@ public class DB {
     //
     public static final String BUH_LICENS__USER = "user";
     public static final String BUH_LICENS__PASS = "pass";
+    public static final String BUH_LICENS__MAC_ADDR = "mac";
+    public static final String BUH_LICENS__OS = "os";
+    public static final String BUH_LICENS__LANG = "lang";
+    public static final String BUH_LICENS__PC_USER_NAME = "pc_user_name";
+    public static final String BUH_LICENS__JAVA = "java";
 }

@@ -45,6 +45,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.RandomAccessFile;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.CallableStatement;
@@ -3049,6 +3051,44 @@ public class HelpA {
             return true;
         } catch (Exception ex) {
             return false;
+        }
+    }
+    
+    public static String getJavaVersionAndBitAndVendor_b() {
+        return System.getProperty("java.version") + "_" + System.getProperty("sun.arch.data.model") + "_" + System.getProperty("java.vendor");
+    }
+    
+    public static String getOperatingSystem() {
+        return System.getProperty("os.name");
+    }
+    
+    public static String getUserLanguge() {
+        return System.getProperty("user.language");
+    }
+    
+     public static String getUserName() {
+        return System.getProperty("user.name");
+    }
+    
+    public static String getMacAddress() {
+        InetAddress ip;
+        try {
+
+            ip = InetAddress.getLocalHost();
+
+            NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+
+            byte[] mac = network.getHardwareAddress();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < mac.length; i++) {
+                sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+            }
+            //
+            return sb.toString();
+            //
+        } catch (Exception e) {
+            return "";
         }
     }
 
