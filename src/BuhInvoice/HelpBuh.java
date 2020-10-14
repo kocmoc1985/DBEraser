@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
+import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.SMTP;
@@ -66,8 +67,9 @@ public class HelpBuh {
      * @param orgnr
      * @return
      */
-    public static boolean createAccountPHP_main(String emailUserName, String ftgname, String orgnr) {
+    public static CreateAccountStatus createAccountPHP_main(String emailUserName, String ftgname, String orgnr) {
         //[#SEQURITY#]
+        //
         HashMap<String, String> map = new HashMap();
         //
         //User and pass are added when calling executePHP
@@ -88,13 +90,17 @@ public class HelpBuh {
         map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
-            GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_CREATE_ACCOUNT_MAIN, JSon.hashMapToJSON(map));
+            //
+            return new CreateAccountStatus(responce);
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return new CreateAccountStatus(null);
         }
-        return true;
+        //
     }
 
     public static void main(String[] args) {
