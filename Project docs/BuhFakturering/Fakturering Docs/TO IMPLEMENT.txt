@@ -20,7 +20,9 @@ Delete:
 
 --------------
 
-Kredit faktura fungerar ej....
+Om man skapar Kredit faktura 2 gånger i rad, faktura artiklar visas inte
+
+Add to faktura TAB frakt & exp. avg to "totals"
 
 Think what to do with "Dröjsmålsränta" finally implement....
 

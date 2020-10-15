@@ -86,7 +86,7 @@ public class JSon {
         return joined_properties;
     }
 
-    public static HashMap<String, String> removeEntriesWhereValueNull(HashMap<String, String> map) {
+    public static HashMap<String, String> removeEntriesWhereValueNullOrEmpty(HashMap<String, String> map) {
         //
         Set set = map.keySet();
         Iterator it = set.iterator();
@@ -96,7 +96,7 @@ public class JSon {
             String key = (String) it.next();
             String value = (String) map.get(key);
             //
-            if (value == null || value.equals("null") || value.equals("NULL")) {
+            if (value == null || value.equals("null") || value.equals("NULL") || value.isEmpty()) {
                 //
                 it.remove();
                 //

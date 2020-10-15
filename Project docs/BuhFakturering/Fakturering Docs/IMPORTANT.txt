@@ -1,4 +1,14 @@
 ________________________________________________________________________________________________________
+[INSERT JAVA->PHP ESSENTIALS][2020-10-15]
+
+It's a problem if inserting when some values are empty, this applies mainly for the prepared statements.
+Consider following: INSERT INTO buh_f_artikel (fakturaId, artikelId, antal, enhet, pris, rabatt, rabatt_kr, moms_sats) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+so if you have empty values it will cause problems as the ammount of values will missmatch with declared parameters.
+
+The solution is following:
+Use: JSon.class-> removeEntriesWhereValueNullOrEmpty(HashMap<String, String> map) 
+
+________________________________________________________________________________________________________
 [THREADS - THREDIFYING THE CODE][2020-10-05]
 
 Search for tag: "#THREAD#" in the project

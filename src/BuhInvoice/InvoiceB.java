@@ -594,7 +594,7 @@ public class InvoiceB extends Basic_Buh {
         //
         HashMap<String, String> faktura_data_map = getOneFakturaData();
         //
-        faktura_data_map = JSon.removeEntriesWhereValueNull(faktura_data_map);
+        faktura_data_map = JSon.removeEntriesWhereValueNullOrEmpty(faktura_data_map);
         //
         String fakturaNrCopy = bim.getFakturaNr();
         //
@@ -652,7 +652,7 @@ public class InvoiceB extends Basic_Buh {
             article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
             article_row_map.remove(DB.BUH_F_ARTIKEL__ID); // [IMPORTANT]
             article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___NAMN); // [IMPORTANT]
-            article_row_map = JSon.removeEntriesWhereValueNull(article_row_map);
+            article_row_map = JSon.removeEntriesWhereValueNullOrEmpty(article_row_map);
         }
         //
         return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
