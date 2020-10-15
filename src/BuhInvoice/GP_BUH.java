@@ -52,7 +52,7 @@ public class GP_BUH {
      * For MixCont test Bolag "kundId=1" use: "mixcont"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex"/"alex1980"
      * For Chaki Bolag "kundId=3" use: "chaki"/"pass"
-     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "yVRAX9hF1o"
+     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "w8DN3hKjyk"
      */
 //    public static String USER = "mixcont";
 //    public static String PASS = "mixcont4765";

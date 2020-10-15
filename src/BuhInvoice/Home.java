@@ -50,6 +50,11 @@ public class Home extends Basic_Buh {
 
     protected void processForgotPass() {
         if (fieldsValidated_tableInvert_3(false)) {
+            //
+            HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN);
+            //
+            String userEmail = map.get(DB.BUH_LICENS__USER);
+            //
             
         }
     }
@@ -296,6 +301,22 @@ public class Home extends Basic_Buh {
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
+    }
+    
+    private boolean fieldsValidated_tableInvert_3(boolean insert) {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
             HelpA.showNotification(LANG.MSG_1);
             return false;
         }

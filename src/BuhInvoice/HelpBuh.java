@@ -58,6 +58,43 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
+    public static void restorePwd(String emailUserName) {
+        //
+        HashMap<String, String> map = new HashMap();
+        //
+        GP_BUH.USER = emailUserName;
+        GP_BUH.PASS = null;
+        //
+        try {
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_RESTORE_PWD, JSon.hashMapToJSON(map));
+            //
+            System.out.println("RESPONCE: " + responce);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public static void main(String[] args) {
+        //
+//        GP_BUH.USER = "mixcont";
+//        GP_BUH.PASS = "mixcont4765";
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("16", "Vxuw6lpMzF");
+        //
+        //
+        restorePwd("andrej.brassas@gmail.com");
+        //
+    }
+
     /**
      * This oe is used for creating of account + creating of "buh_kund" +
      * creating of "buh_address"
@@ -103,27 +140,15 @@ public class HelpBuh {
         //
     }
 
-    public static void main(String[] args) {
-        //
-//        GP_BUH.USER = "mixcont";
-//        GP_BUH.PASS = "mixcont4765";
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-        deleteCustomer_a("16", "Vxuw6lpMzF");
-        //
-    }
-    
+   
+
     /**
      * Deletes "buh_kund","buh_address","buh_licens"
+     *
      * @param kundId
-     * @param admPass 
+     * @param admPass
      */
-    public static void deleteCustomer_a(String kundId,String admPass){
+    public static void deleteCustomer_a(String kundId, String admPass) {
         //
         HashMap<String, String> map = new HashMap();
         map.put(DB.BUH_KUND__ID, kundId);
@@ -143,9 +168,10 @@ public class HelpBuh {
     }
 
     /**
-     * This one is used for creating of an account for an existing "buh_kund"
-     * So if a "buh_licens" already exist, you will not be able to use this.
-     * @deprecated 
+     * This one is used for creating of an account for an existing "buh_kund" So
+     * if a "buh_licens" already exist, you will not be able to use this.
+     *
+     * @deprecated
      * @param kundId
      * @return
      */
