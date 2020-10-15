@@ -86,6 +86,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
+        map.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID); // [2020-10-15]
+        //
         this.articlesList.add(map);
 //        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         invoice.countFakturaTotal(getArticlesTable());
@@ -117,7 +119,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
         //
         // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
-        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // 
+        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); //     
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, updateMap);
         //
@@ -126,8 +128,6 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         System.out.println("UPDATE json: " + json);
         //
         HelpBuh.update(json);
-        //
-
         //
 //        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));

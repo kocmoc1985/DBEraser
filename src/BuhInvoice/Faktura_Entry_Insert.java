@@ -188,6 +188,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         // it causes "PDOException"
         HashMap<String, String> map_for_adding_to_db = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
+        map_for_adding_to_db.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID); // [2020-10-15]
         //
         this.articlesList.add(map_for_adding_to_db);
         //

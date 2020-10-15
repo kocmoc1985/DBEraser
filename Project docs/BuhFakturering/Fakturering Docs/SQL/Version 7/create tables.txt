@@ -137,6 +137,7 @@ Foreign key (kundId) references buh_kund(kundId)
 
 CREATE TABLE buh_f_artikel (
 id integer primary key not null AUTO_INCREMENT,
+kundId integer DEFAULT 0,
 fakturaId integer not null,
 artikelId integer,
 komment varchar (200) DEFAULT '',

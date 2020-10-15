@@ -184,6 +184,7 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___KATEGORI = "artikel_kategori";
     //
     public static final String BUH_F_ARTIKEL__ID = "id";
+    public static final String BUH_F_ARTIKEL__KUND_ID = "kundId"; // added on[2020-10-15]
     public static final String BUH_F_ARTIKEL__FAKTURAID = "fakturaId";
     public static final String BUH_F_ARTIKEL__ARTIKELID = "artikelId";
     public static final String BUH_F_ARTIKEL__KOMMENT = "komment";

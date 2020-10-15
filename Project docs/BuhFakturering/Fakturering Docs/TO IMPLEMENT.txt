@@ -20,19 +20,13 @@ Delete:
 
 --------------
 
+Rabatt Wrongly calculated adds each time when adding article
+
 Implement "changed by", now i have the logged in user so it can be done
-
-Faktura preview fails when first creating a faktura and then editing and trying to make preview
-
-Edit article when inserting fails regarding moms!!! ----> Not sure it's true keep on monitoring
 
 Don't forget to create a "buh_kund" uppon registration of user
 
 To each email send add the name of Company with webb address
-
-POP3 Email sending with customers email credentials
-
-Påminnelse text should be adjustable
 
 Print Address of Customer for sending with common post
 

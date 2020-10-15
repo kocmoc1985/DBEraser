@@ -27,7 +27,7 @@ delete from ("buh_faktura_artikel")
 
 [TABLES WITHOUT ("kundId")][2020-10-15]
 table buh_address -> OBS! PARTIALLY WITHOUT 
-table buh_f_artikel 
+----------------------------------------------------table buh_f_artikel --------------------------> OBS! Since [2020-10-15] it has "kundId"
 table buh_faktura_inbet
 buh_faktura_send
 ________________________________________________________________________________________
