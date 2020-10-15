@@ -35,11 +35,12 @@ public class CreateAccountStatus {
     
     private void defineStatus(){
         //
-        if(responce == null || responce.isEmpty()){
-             this.successful = false;
+        if(responce == null || responce.isEmpty() || responce.equals("null")){
+             this.messageToShow = LANG.MSG_16;
         }else if(responce.equals(CAS_ERR_01__USER_EXIST)){
-            this.messageToShow = LANG.MSG_16;
-            this.successful = false;
+            this.messageToShow = LANG.MSG_16_1;
+        }else if(responce.equals(CAS_ERR_02__MORE_THEN_TWO_SAME_MAC)){
+            this.messageToShow = LANG.MSG_16_2;
         }
         //
     }

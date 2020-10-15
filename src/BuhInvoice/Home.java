@@ -57,7 +57,7 @@ public class Home extends Basic_Buh {
             //
             CreateAccountStatus cas = HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
             //
-            HelpA.showNotification("Create successful: " + cas.getMessage());
+            HelpA.showNotification(cas.getMessage());
             //
         }
         //
