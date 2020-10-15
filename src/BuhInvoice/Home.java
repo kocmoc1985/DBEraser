@@ -29,11 +29,14 @@ import java.awt.event.KeyEvent;
 public class Home extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
+    protected Table TABLE_INVERT_3;
     private final String VALIDATION__V_ERR_0 = "V_ERR_0"; // user or pass parameters not set
     private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
     private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
 
     public static final String CHECK_BOX__SAVE_LOGIN_STATE = "chkbox";
+
+    private static final String LOGIN = "E-POST - ANVÄNDARNAMN";
 
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -43,6 +46,12 @@ public class Home extends Basic_Buh {
     protected void startUp() {
         loadCheckBoxSaveLoginState();
         refresh();
+    }
+
+    protected void processForgotPass() {
+        if (fieldsValidated_tableInvert_3(false)) {
+            
+        }
     }
 
     protected void processUserRegistration() {
@@ -83,6 +92,7 @@ public class Home extends Basic_Buh {
     protected void refresh() {
         showTableInvert();
         showTableInvert_2();
+        showTableInvert_3();
     }
 
     protected void loggaIn() {
@@ -204,11 +214,23 @@ public class Home extends Basic_Buh {
         //
     }
 
+    public void showTableInvert_3() {
+        //
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "register_new");
+        TABLE_INVERT_3 = null;
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
+        showTableInvert(bim.jPanel_restore_password, TABLE_INVERT_3);
+        //
+        addTableInvertRowListener(TABLE_INVERT_3, this);
+        //
+    }
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
         String user_ = IO.loadLastEntered(DB.BUH_LICENS__USER, "");
-        RowDataInvert user = new RowDataInvertB(user_, DB.BUH_LICENS__USER, "ANVÄNDARNAMN", "", true, true, true);
+        RowDataInvert user = new RowDataInvertB(user_, DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
         //
         String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS, "");
         RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
@@ -223,7 +245,7 @@ public class Home extends Basic_Buh {
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, "E-POST", "", true, true, true);
+        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
         //
         RowDataInvert ftg_name = new RowDataInvertB("", DB.BUH_KUND__NAMN, "FÖRETAGSNAMN", "", true, true, true);
         //
@@ -233,6 +255,17 @@ public class Home extends Basic_Buh {
             user,
             ftg_name,
             org_nr
+        };
+        //
+        return rows;
+    }
+
+    public RowDataInvert[] getConfigTableInvert_3() {
+        //
+        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
+        //
+        RowDataInvert[] rows = {
+            user
         };
         //
         return rows;
@@ -255,7 +288,7 @@ public class Home extends Basic_Buh {
         //
     }
 
-    protected boolean fieldsValidated_tableInvert_2(boolean insert) {
+    private boolean fieldsValidated_tableInvert_2(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
@@ -268,7 +301,7 @@ public class Home extends Basic_Buh {
         }
         //
         return true;
-
+        //
     }
 
     @Override
@@ -296,6 +329,10 @@ public class Home extends Basic_Buh {
             Validator.validateMaxInputLength(jli, 50);
         } else if (col_name.equals(DB.BUH_KUND__ORGNR) && ti.equals(TABLE_INVERT_2)) {
             Validator.validateOrgnr(jli);
+        } //
+        //
+        else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_3)) {
+            Validator.validateEmail(jli);
         }
         //
     }
