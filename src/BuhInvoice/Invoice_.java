@@ -437,6 +437,7 @@ public abstract class Invoice_ extends Basic_Buh {
         FAKTURA_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
         MOMS_TOTAL = 0;
+        RABATT_TOTAL = 0;
         //
         double pris_exkl_moms;
         int antal;

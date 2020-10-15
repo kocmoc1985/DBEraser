@@ -395,7 +395,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
 //            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL_KR);
@@ -497,6 +497,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
             //
             HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
             HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);

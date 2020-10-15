@@ -20,7 +20,9 @@ Delete:
 
 --------------
 
-Rabatt Wrongly calculated adds each time when adding article
+Kredit faktura fungerar ej....
+
+Think what to do with "Dröjsmålsränta" finally implement....
 
 Implement "changed by", now i have the logged in user so it can be done
 
