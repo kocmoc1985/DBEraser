@@ -155,7 +155,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     @Override
     protected void setData() {
         //
-        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
+//        JTable table = invoice.bim.jTable_invoiceB_alla_fakturor;
         InvoiceA_Update iu = (InvoiceA_Update) invoice;
         //
         this.mainMap = iu.tableInvertToHashMap(iu.TABLE_INVERT, DB.START_COLUMN);

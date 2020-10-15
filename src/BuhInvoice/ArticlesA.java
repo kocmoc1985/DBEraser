@@ -87,19 +87,23 @@ public class ArticlesA extends Basic_Buh {
 
     private void refresh() {
         //
-        //#THREAD#
-        Thread x = new Thread(() -> {
-            //
-            fillArtiklesJTable();
-            HelpA.markFirstRowJtable(getTableArticles());
-            //
-            java.awt.EventQueue.invokeLater(() -> {
-                bim.jTableArticles_clicked();
-            });
-            //
-        });
+        fillArtiklesJTable();
+        HelpA.markFirstRowJtable(getTableArticles());
+        bim.jTableArticles_clicked();
         //
-        x.start();
+        //#THREAD# Causes trouble due to asynchron execution [2020-10-15]
+//        Thread x = new Thread(() -> {
+//            //
+//            fillArtiklesJTable();
+//            HelpA.markFirstRowJtable(getTableArticles());
+//            //
+//            java.awt.EventQueue.invokeLater(() -> {
+//                bim.jTableArticles_clicked();
+//            });
+//            //
+//        });
+//        //
+//        x.start();
 
     }
 

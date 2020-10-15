@@ -10,6 +10,28 @@ drop table buh_kund;
 
 
 
+[DELETE FAKTURA ("buh_faktura") SEQUENCE][2020-10-15]
+deleteFakturaArticles(fakturaId); // "buh_f_artikel"
+deleteFakturaInbetalningar(fakturaId); // "buh_faktura_inbet"
+deleteFakturaSend(fakturaId); // "buh_faktura_send"
+deleteFaktura(fakturaId); //"buh_faktura"
+
+[DELETE FAKTURA-ARTICLE ("buh_faktura_artikel") SEQUENCE][2020-10-15]
+deleteFakturaArticles(fakturaId); // "buh_f_artikel"
+deleteFakturaInbetalningar(fakturaId); // "buh_faktura_inbet"
+deleteFakturaSend(fakturaId); // "buh_faktura_send"
+deleteFaktura(fakturaId); //"buh_faktura"
++
+delete from ("buh_faktura_artikel")
+
+
+[TABLES WITHOUT ("kundId")][2020-10-15]
+table buh_address -> OBS! PARTIALLY WITHOUT 
+table buh_f_artikel 
+table buh_faktura_inbet
+buh_faktura_send
+________________________________________________________________________________________
+
 PREV:
 drop table buh_address;
 drop table buh_f_artikel;
