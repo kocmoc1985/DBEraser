@@ -611,6 +611,8 @@ public class InvoiceB extends Basic_Buh {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
+//            System.out.println("aaaaaaaaaaaaaaaaaaaArticles: " + json_str_return);
+            //
             faktura_articles = JSon.phpJsonResponseToHashMap(json_str_return);
             //
         } catch (Exception ex) {
@@ -618,7 +620,6 @@ public class InvoiceB extends Basic_Buh {
         }
         //
         String fakturaId_new = copy_a__faktura_to_db(faktura_data_map);
-        //
         //
         if (GP_BUH.verifyId(fakturaId_new) && faktura_articles != null && faktura_articles.size() > 0) {
             //
@@ -628,15 +629,19 @@ public class InvoiceB extends Basic_Buh {
             //
             //
             if (isKreditFaktura == false && ok) { // COPY
+                //
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
-                refresh(null);
+                refresh_sync(null);
+                //
             } else if (isKreditFaktura && ok) { // KREDIT FAKTURA
-                refresh(null);
+                //
+                refresh_sync(null);
+                //
                 bim.editFakturaBtnKlicked();
                 //
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
