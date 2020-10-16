@@ -653,7 +653,12 @@ public class InvoiceB extends Basic_Buh {
             article_row_map.remove(DB.BUH_F_ARTIKEL__ID); // [IMPORTANT]
             article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___NAMN); // [IMPORTANT]
             article_row_map = JSon.removeEntriesWhereValueNullOrEmpty(article_row_map);
+            //
+            article_row_map.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID);
+            //
         }
+        //
+
         //
         return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
         //
@@ -1004,7 +1009,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //
-        String fakturaTotal = ""+invoice.getFakturaTotal();
+        String fakturaTotal = "" + invoice.getFakturaTotal();
         //
         if (paminnelse == false) {
             map_d.put(HTMLPrint_A.getAttBetalaTitle(fakturatype), fakturaTotal);//_get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS)
