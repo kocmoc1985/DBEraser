@@ -20,9 +20,7 @@ Delete:
 
 --------------
 
-kundId not inserted when faktura is copied or kredited -> see: removeEntriesWhereValueNullOrEmpty(HashMap<String, String> map) 
-
-Om man skapar Kredit faktura 2 gånger i rad, faktura artiklar visas inte
+Enhet column visas when inserting.....
 
 Add to faktura TAB frakt & exp. avg to "totals"
 
