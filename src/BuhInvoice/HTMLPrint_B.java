@@ -338,15 +338,16 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
-        double drojAvg = countDrojsmalsAvgift();
+        double drojAvg = GP_BUH.round_double(countDrojsmalsAvgift());
         System.out.println("Dröj avg************************************************: " + drojAvg);
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
+        Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
+        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR,T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
+        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR),""+drojAvg, ""+totalInkDrojAvg};
         //
-        html_ += internal_table_2r_xc(headers, values, 7, "");
+        html_ += internal_table_2r_xc(headers, values, 8, "");
         //
         html_ += "</div>";//</table>
         //

@@ -31,6 +31,8 @@ Alltså om fakturan har förfallit 15 dagar, avgiften blir 0.192 * 15 = 2.88 :-
 
 --------------
 
+Dont show rabatt if 0 in Påminnelse
+
 Enhet column visas when inserting.....
 
 Add to faktura TAB frakt & exp. avg to "totals"
