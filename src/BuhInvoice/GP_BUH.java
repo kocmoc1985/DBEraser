@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -158,6 +159,8 @@ public class GP_BUH {
     public static String getDateTime_yyyy_MM_dd() {
         return HelpA.get_proper_date_time_same_format_on_all_computers();
     }
+    
+    
 
     public static String getDateCreated() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");

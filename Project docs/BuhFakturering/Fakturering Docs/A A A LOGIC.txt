@@ -15,8 +15,12 @@ C. "FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT" -> db table "buh_
 D. FAKTURA SEND STATUS: 0 = "Nej", 1 = "Ja (Ja bara om sending successful)" -> db table "buh_faktura" -> column "sent_with_email"
 
 E. "MOMS på FRAKT och EXP. AVG" -> jag beräknar moms på de genom att använda den momsats som används för artiklar i fakturan. Lagen lyder annars följande:
-
 Momssatsen för frakt- och fakturaavgiften/expeditionsavgiften på fakturan/fakturorna blir den momssats som du har på den största summan/beloppet på din faktura.
 Ifall du inte vill att det ska bli på det viset så kan du lägga din moms för dessa avgifter som artiklar på fakturan istället. 
 Detta är viktigt för enligt mervärdesskattelagen ska beskattningsunderlaget för fraktkostnad och fakturaavgift fördelas på beskattningsunderlaget
 för respektive vara. Det innebär att du behöver fördela frakt och fakturaavgifter på olika momssatser.
+
+F. Dröjsmåls avg är kalkulerat enligt följande:
+För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms, multiplicerar med den avtalade dröjsmålsräntan
+och dividerar sedan med årets antal dagar, det vill säga 365.
+

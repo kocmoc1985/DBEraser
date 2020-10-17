@@ -19,6 +19,17 @@ Delete:
 "buh_kund"
 
 --------------
+För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms,
+multiplicerar med den avtalade dröjsmålsräntan och dividerar sedan med årets antal dagar, det vill säga 365.
+
+Total inkl moms: 1000:-
+
+(1000 * 0.07) / 365 = 0.192 kr/dag
+
+Alltså om fakturan har förfallit 15 dagar, avgiften blir 0.192 * 15 = 2.88 :-
+
+
+--------------
 
 Enhet column visas when inserting.....
 

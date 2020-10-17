@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
+import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -314,10 +315,31 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html_;
     }
+    
+    private double countDrojsmalsAvgift(){
+       String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
+       String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
+       String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
+       double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
+       String dateFormat = "yyyy-MM-dddd";
+       //
+       int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+       System.out.println("Days forfallen: " + daysForfallen);
+       double percent = Double.parseDouble(drojmalsranta) / 100;
+       double oneDayRanta = (totalInklMoms * percent) / 365;
+       //
+       return daysForfallen * oneDayRanta;
+       //
+    }
+    
+  
 
     private String faktura_data_B_to_html__totals() {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
+        //
+        double drojAvg = countDrojsmalsAvgift();
+        System.out.println("Dröj avg************************************************: " + drojAvg);
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         //

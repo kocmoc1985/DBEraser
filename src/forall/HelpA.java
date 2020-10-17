@@ -2758,6 +2758,12 @@ public class HelpA {
         long ms_date2 = dateToMillisConverter3(date2, date_format2);
         return ms_date1 - ms_date2;
     }
+    
+     public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2){
+        long diff= get_diff_between_two_dates(date1, date_format1, date2, date_format2);
+        long days = diff / 86400000;
+        return (int)Math.abs(days);
+    }
 
     public static String get_proper_date_yyyy_MM_dd() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
