@@ -6,6 +6,8 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
+import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
 import java.awt.Color;
@@ -17,6 +19,7 @@ import java.util.HashMap;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
+import org.apache.commons.lang.ArrayUtils;
 
 /**
  *
@@ -341,13 +344,22 @@ public class HTMLPrint_B extends HTMLPrint {
         double drojAvg = GP_BUH.round_double(countDrojsmalsAvgift());
         System.out.println("Dröj avg************************************************: " + drojAvg);
         //
+        int colToMakeBold = 8;
+        //
+        String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
+        String frakt = map_d.get(T__FAKTURA_FRAKT);
+        String exp = map_d.get(T__FAKTURA_EXP_AVG);
+        String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
+        //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
         //
         String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR,T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR),""+drojAvg, ""+totalInkDrojAvg};
+        String[] values = new String[]{frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt,""+drojAvg, ""+totalInkDrojAvg};
         //
-        html_ += internal_table_2r_xc(headers, values, 8, "");
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt);
+        //
+        html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
         html_ += "</div>";//</table>
         //

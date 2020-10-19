@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -340,31 +341,9 @@ public class HTMLPrint_A extends HTMLPrint {
         String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        if (moms_kr.equals("0")) {
-            colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
-        }
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt);
         //
-        if(frakt.equals("0")){
-            colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
-        }
-        //
-        if(exp.equals("0")){
-            colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
-        }
-        //
-        if(rabatt.equals("0")){
-            colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));
-        }
-        //
-        html_ += internal_table_2r_xc(headers, values, colToMakeBold, "");
+        html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
         html_ += "</div>";//</table>
         //

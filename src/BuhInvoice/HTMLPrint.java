@@ -17,6 +17,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.EmailSendingStatus;
+import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
@@ -40,6 +41,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import org.apache.commons.lang.ArrayUtils;
 
 /**
  *
@@ -433,6 +435,35 @@ public abstract class HTMLPrint extends JFrame {
 
     protected abstract void displayStatus(String msg, Color c);
 
+    protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr, String frakt, String exp, String rabbat_kr) {
+        //
+        if (moms_kr.equals("0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
+        }
+        //
+        if (frakt.equals("0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
+        }
+        //
+        if (exp.equals("0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
+        }
+        //
+        if (rabbat_kr.equals("0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));
+        }
+        //
+        return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);
+    }
+
     protected void sendMailTargeted() {
         //
         TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(), Validator.EMAIL, 25);
@@ -507,7 +538,6 @@ public abstract class HTMLPrint extends JFrame {
         x.start();
         //
     }
-
 
     /**
      * [2020-09-03]
