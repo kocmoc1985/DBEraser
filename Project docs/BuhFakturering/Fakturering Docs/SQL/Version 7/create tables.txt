@@ -19,6 +19,18 @@ f_skatt boolean DEFAULT false,
 date_created varchar(30) DEFAULT 'no',
 );
 
+CREATE TABLE buh_visitors (
+visitId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+user varchar(100) DEFAULT '',
+ip varchar(50) DEFAULT '',
+mac varchar(50) DEFAULT '',
+os varchar(50) DEFAULT '',
+lang varchar(20) DEFAULT '',
+pc_user_name varchar(100) DEFAULT '',
+java varchar(100) DEFAULT '',
+date_visit timestamp DEFAULT CURRENT_TIMESTAMP()
+);
 
 CREATE TABLE buh_licens (
 licensId integer primary key not null AUTO_INCREMENT,
