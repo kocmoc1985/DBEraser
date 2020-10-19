@@ -327,6 +327,11 @@ public class HTMLPrint_B extends HTMLPrint {
        String dateFormat = "yyyy-MM-dddd";
        //
        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+       //
+       if(daysForfallen <=0){
+           return 0;
+       }
+       //
        System.out.println("Days forfallen: " + daysForfallen);
        double percent = Double.parseDouble(drojmalsranta) / 100;
        double oneDayRanta = (totalInklMoms * percent) / 365;

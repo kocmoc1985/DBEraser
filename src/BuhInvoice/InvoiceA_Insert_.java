@@ -72,7 +72,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
             InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN,
             InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL,
-            InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET,
+//            InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET,
             InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR,
