@@ -31,17 +31,13 @@ Alltså om fakturan har förfallit 15 dagar, avgiften blir 0.192 * 15 = 2.88 :-
 
 --------------
 
-Dont show rabatt if 0 in Påminnelse
+I need additional table "buh_visitors" for activity tracking
 
 Enhet column visas when inserting.....
 
 Add to faktura TAB frakt & exp. avg to "totals"
 
-Think what to do with "Dröjsmålsränta" finally implement....
-
 Implement "changed by", now i have the logged in user so it can be done
-
-Don't forget to create a "buh_kund" uppon registration of user
 
 To each email send add the name of Company with webb address
 
