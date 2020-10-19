@@ -324,7 +324,7 @@ public class HTMLPrint_B extends HTMLPrint {
        String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
        String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
        double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
-       String dateFormat = "yyyy-MM-dddd";
+       String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
        //
        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
        //

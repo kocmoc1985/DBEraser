@@ -304,6 +304,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
 
+    protected boolean isForfallen() {
+        //
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
+        String forfallodatum = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
+        //
+        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+        //
+        if(daysForfallen <0){
+            return false;
+        }else{
+            return true;
+        }
+        //
+    }
+
     protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
@@ -2011,6 +2027,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (fakturaBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12);
+        }
+        //
+        if(isForfallen() == false){
+            HelpA.showNotification_separate_thread(LANG.MSG_12_2);
         }
         //
         invoiceB.htmlFakturaOrReminder(null, true);

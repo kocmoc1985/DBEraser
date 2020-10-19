@@ -22,7 +22,9 @@ Delete:
 
 --------------
 
-Enhet column visas when inserting.....
+Enhet not showing in faktura preview
+
+Enhet column visas when inserting......
 
 Add to faktura TAB frakt & exp. avg to "totals"
 

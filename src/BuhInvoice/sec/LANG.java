@@ -57,7 +57,8 @@ public class LANG {
     public static String MSG_10_3 = "Filen ej skickad!";
 
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
-    public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald";
+    public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
+    public static String MSG_12_2 = "Var god observera, fakturan har inte förfallit till betalning!";
 
     public static String MSG_14 = "För många tecken, max antal:";
     public static String MSG_14_2 = "Det angivna värdet finns redan";
@@ -69,11 +70,10 @@ public class LANG {
     public static String MSG_15_4 = "E-Post skickades, SMTP inställningar fungerar!";
     public static String MSG_15_5 = "E-Post skickades ej, prova att ändra inställningar";
 
-    
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
     public static String MSG_16_1 = "Kunde ej skapa, användare finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";
-    
+
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
@@ -96,15 +96,15 @@ public class LANG {
         String savedReminderMsg = IO.loadReminderMsg();
         //
         if (savedReminderMsg != null && savedReminderMsg.isEmpty() == false) {
-          if(savedReminderMsg.contains("%s")){
-              return String.format(savedReminderMsg, fakturanr);
-          }else{
-              return savedReminderMsg;
-          }  
-        }else{
-          return PAMMINELSE_MSG_MAIN(fakturanr);
+            if (savedReminderMsg.contains("%s")) {
+                return String.format(savedReminderMsg, fakturanr);
+            } else {
+                return savedReminderMsg;
+            }
+        } else {
+            return PAMMINELSE_MSG_MAIN(fakturanr);
         }
-        
+
     }
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
