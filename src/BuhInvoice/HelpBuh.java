@@ -123,7 +123,7 @@ public class HelpBuh {
     }
 
     /**
-     * Deletes "buh_kund","buh_address","buh_licens"
+     * OBS! Deletes ALL tables since [2020-10-20]
      *
      * @param kundId
      * @param admPass
@@ -158,10 +158,10 @@ public class HelpBuh {
 //        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
         //
         //
-//        deleteCustomer_a("16", "Vxuw6lpMzF");
+        deleteCustomer_a("20", "Vxuw6lpMzF");
         //
         //
-        restorePwd("andrej.brassas@gmail.com");
+//        restorePwd("andrej.brassas@gmail.com");
         //
     }
 

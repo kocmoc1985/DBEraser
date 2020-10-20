@@ -8,6 +8,8 @@ drop table buh_faktura_kund;
 drop table buh_licens;
 drop table buh_kund;
 
+The sequence of deleting is approved on  [2020-10-20]
+________________________________________________________________________________________
 
 
 [DELETE FAKTURA ("buh_faktura") SEQUENCE][2020-10-15]
@@ -45,6 +47,17 @@ Delete ALL "buh_address" for given "buh_kund"
 
 ________________________________________________________________________________________
 
+DELETE FROM buh_address WHERE kundId=13;
+DELETE FROM buh_f_artikel WHERE kundId=13;
+DELETE FROM buh_faktura_inbet WHERE kundId=13;
+DELETE FROM buh_faktura_send WHERE kundId=13;
+DELETE FROM buh_faktura WHERE kundId=13;
+DELETE FROM buh_faktura_artikel WHERE kundId=13;
+DELETE FROM buh_faktura_kund WHERE kundId=13;
+DELETE FROM buh_licens WHERE kundId=13;
+DELETE FROM buh_kund WHERE kundId=13;
+
+________________________________________________________________________________________
 
 
 

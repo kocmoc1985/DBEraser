@@ -825,9 +825,15 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private String getMomsSatsString() {
+    private String getMomsSatsString(boolean preview) {
         //
-        JTable table = bim.jTable_invoiceB_faktura_artiklar;
+        JTable table;
+        //
+        if(preview){
+            table = bim.jTable_InvoiceA_Insert_articles;
+        }else{
+            table = bim.jTable_invoiceB_faktura_artiklar;
+        }
         //
         HashMap<String, String> map = new HashMap<>();
         //
@@ -904,7 +910,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, _get(TABLE_ALL_INVOICES__FRAKT));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, _get(TABLE_ALL_INVOICES__EXP_AVG));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, _get(TABLE_ALL_INVOICES__EXKL_MOMS));
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString());
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString(false));
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, _get(TABLE_ALL_INVOICES__MOMS));
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, _get(TABLE_ALL_INVOICES__RABATT_TOTAL_KR));
         //
@@ -1010,7 +1016,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, getValueTableInvert(DB.BUH_FAKTURA__FRAKT, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, getValueTableInvert(DB.BUH_FAKTURA__EXP_AVG, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, "" + invoice.getTotalExklMoms());
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString()); // "" + ((int)invoice.getMomsSats() * 100)
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString(true)); // "" + ((int)invoice.getMomsSats() * 100)
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //
