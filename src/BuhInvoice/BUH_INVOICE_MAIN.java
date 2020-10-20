@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -1845,6 +1846,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             invoiceA_update.updateArticle();
             //
+//            BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
+            //
             invoiceA_update.insertOrUpdate(); // update entire faktura on updated article
             //
             int selected_row = jTable_InvoiceA_Insert_articles.getSelectedRow();
@@ -1872,6 +1875,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
+                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {

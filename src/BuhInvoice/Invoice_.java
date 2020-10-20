@@ -78,6 +78,8 @@ public abstract class Invoice_ extends Basic_Buh {
             GP_BUH.enableDisableButtons(bim.jPanel11, false);
         }
         //
+        
+        //
     }
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {

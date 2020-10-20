@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  *
  * @author KOCMOC
  */
-public class BlinkThread implements Runnable{
+public class BlinkThread implements Runnable {
 
     private final JComponent component;
     private final boolean red;
@@ -27,21 +27,23 @@ public class BlinkThread implements Runnable{
         this.red = red;
         startThread();
     }
-    
-    private void startThread(){
-        Thread x  = new Thread(this);
+
+    private void startThread() {
+        Thread x = new Thread(this);
         x.start();
     }
-    
+
     @Override
     public void run() {
-        if(red){
-            blink(component, Color.red);
-        }else{
-            blink(component, Color.green);
-        }
+        
+            if (red) {
+                blink(component, Color.red);
+            } else {
+                blink(component, Color.green);
+            }
+        
     }
-    
+
     private void blink(JComponent jc, Color color) {
 //        System.out.println("FILE CHANGED");
         if (jc != null) {
@@ -55,7 +57,7 @@ public class BlinkThread implements Runnable{
             jc.setBorder(prevBorder);
         }
     }
-    
+
     private synchronized void wait_(int millis) {
         try {
             wait(millis);
@@ -63,5 +65,5 @@ public class BlinkThread implements Runnable{
             Logger.getLogger(ErrorOutputListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }
