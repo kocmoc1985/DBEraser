@@ -1050,6 +1050,9 @@ public class InvoiceB extends Basic_Buh {
                 }
             });
         } else {
+            //
+            // Here is for Påminnelse Preview but indeed it's not used by now [2020-10-20]
+            //
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {

@@ -19,10 +19,9 @@ import java.util.HashMap;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
-import org.apache.commons.lang.ArrayUtils;
 
 /**
- *
+ * This class is for "REMINDER"
  * @author KOCMOC
  */
 public class HTMLPrint_B extends HTMLPrint {

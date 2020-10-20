@@ -19,7 +19,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 
 /**
- *
+ * "COMMON INVOICE" & "INVOICE PREVIEW"
  * @author KOCMOC
  */
 public class HTMLPrint_A extends HTMLPrint {

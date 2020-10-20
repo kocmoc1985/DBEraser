@@ -2592,7 +2592,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             Validator.validateMaxInputLength(txt, 100);
             //
-            System.out.println("" + txt.getText().length());
+//            System.out.println("" + txt.getText().length());
             //
         }
         //
