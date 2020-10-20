@@ -220,7 +220,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected ArrayList<HashMap<String, String>> getArticlesCurrInvoiceJTable() {
-        return JSon.JTableToHashMaps(jTable_InvoiceA_Insert_articles, InvoiceB.ARTICLES_TABLE_DICT);
+        return JSon.jTableToHashMaps(jTable_InvoiceA_Insert_articles, InvoiceB.ARTICLES_TABLE_DICT);
     }
 
     /**

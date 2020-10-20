@@ -54,10 +54,9 @@ public abstract class Faktura_Entry {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
-            //            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-//            map.get(DB.BUH_F_ARTIKEL__ENHET),
+            map.get(DB.BUH_F_ARTIKEL__ENHET),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT),
             map.get(DB.BUH_F_ARTIKEL__RABATT_KR),

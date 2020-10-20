@@ -17,7 +17,6 @@ import java.util.HashMap;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
-import org.apache.commons.lang.ArrayUtils;
 
 /**
  *

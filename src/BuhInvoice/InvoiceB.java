@@ -1010,7 +1010,7 @@ public class InvoiceB extends Basic_Buh {
         map_d.put(HTMLPrint_A.T__FAKTURA_FRAKT, getValueTableInvert(DB.BUH_FAKTURA__FRAKT, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXP_AVG, getValueTableInvert(DB.BUH_FAKTURA__EXP_AVG, ti_3));
         map_d.put(HTMLPrint_A.T__FAKTURA_EXKL_MOMS, "" + invoice.getTotalExklMoms());
-        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, ""); // "" + ((int)invoice.getMomsSats() * 100)
+        map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_PERCENT, getMomsSatsString()); // "" + ((int)invoice.getMomsSats() * 100)
         map_d.put(HTMLPrint_A.T__FAKTURA_MOMS_KR, "" + invoice.getMomsTotal());
         map_d.put(HTMLPrint_A.T__FAKTURA_RABATT_KR, "" + invoice.getRabattTotal());
         //

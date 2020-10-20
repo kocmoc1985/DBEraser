@@ -68,11 +68,13 @@ public class InvoiceA_Insert_ extends Invoice_ {
     
     private void fillJTableheader() {
         //
+        JTable table = getArticlesTable();
+        //
         String[] headers = {
             InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN,
             InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL,
-//            InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET,
+            InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET,
             InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR,
@@ -80,6 +82,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
         };
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
+        //
+        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET);
         //
     }
     

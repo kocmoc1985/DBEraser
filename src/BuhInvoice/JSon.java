@@ -29,7 +29,7 @@ public class JSon {
      * @param dictionary
      * @return
      */
-    public static ArrayList<HashMap<String, String>> JTableToHashMaps(JTable table, HashMap<String, String> dictionary) {
+    public static ArrayList<HashMap<String, String>> jTableToHashMaps(JTable table, HashMap<String, String> dictionary) {
         //
         ArrayList rowValues = new ArrayList();
         //
@@ -39,7 +39,7 @@ public class JSon {
             //
             for (int col = 0; col < table.getColumnCount(); col++) {
                 //
-                if (columnIsVisible(table, col)) {
+//                if (columnIsVisible(table, col)) {
                     //
                     String colname;
                     //
@@ -51,7 +51,7 @@ public class JSon {
                     //
                     String value = "" + table.getValueAt(row, col);
                     map.put(colname, value);
-                }
+//                }
                 //
             }
             //
