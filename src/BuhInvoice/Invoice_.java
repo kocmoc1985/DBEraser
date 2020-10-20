@@ -68,6 +68,8 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private void buttonLogic() {
         //
+        boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
+        //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
@@ -78,7 +80,10 @@ public abstract class Invoice_ extends Basic_Buh {
             GP_BUH.enableDisableButtons(bim.jPanel11, false);
         }
         //
-        
+        if(rowSelected == false){
+            GP_BUH.enableDisableButtons(bim.jPanel11, false);
+            GP_BUH.setEnabled(bim.jButton_delete_articles_row, false);
+        }
         //
     }
 
@@ -632,6 +637,7 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     public void showTableInvert_2() {
+        //
         TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);

@@ -20,6 +20,8 @@ Delete:
 
 --------------
 
+Faktura articles editing not working properly when inserting. The moms is changed with "%" which is not correct
+
 It seems i must implement "kundId" in any case for the "buh_address" table - to be able to delete all customer related data: ----> [DONE]
 So when adding an address for a "buh_faktura_kund" -> insert both "kundId" & "fakturaKundId" ----> [DONE]
 When inserting an address for a "buh_kund" -> insert only "kundId" ----> [DONE]

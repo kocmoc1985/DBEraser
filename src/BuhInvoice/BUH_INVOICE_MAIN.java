@@ -2545,6 +2545,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.showTableInvert_2();
+        }else{
+            invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true);
         }
         //
     }
