@@ -9,6 +9,7 @@ import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
@@ -194,6 +195,27 @@ public abstract class Basic_Buh extends Basic {
             System.out.println("");
             //
         }
+        //
+    }
+    
+    private int prevLengthOrgnr;
+    
+    protected  void orgnr_additional(JLinkInvert jli, TableInvert ti) {
+        //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
+        //
+        String txt = jtfi.getText();
+        //
+        if (txt.length() == 6 && prevLengthOrgnr == 5) {
+            jtfi.setText(orgnr + "-");
+        } else if (txt.contains("--")) {
+            txt = txt.replaceAll("--", "-");
+            jtfi.setText(txt);
+        }
+        //
+        prevLengthOrgnr = txt.length();
         //
     }
 

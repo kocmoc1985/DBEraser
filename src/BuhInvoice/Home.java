@@ -357,6 +357,7 @@ public class Home extends Basic_Buh {
             Validator.validateMaxInputLength(jli, 50);
         } else if (col_name.equals(DB.BUH_KUND__ORGNR) && ti.equals(TABLE_INVERT_2)) {
             Validator.validateOrgnr(jli);
+            orgnr_additional(jli, ti);
         } //
         //
         else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_3)) {

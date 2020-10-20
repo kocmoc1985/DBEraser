@@ -495,26 +495,6 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
     }
 
-    private int prevLengthOrgnr;
-
-    protected void orgnr_additional(JLinkInvert jli, TableInvert ti) {
-        //
-        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
-        //
-        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_KUND___ORGNR, ti);
-        //
-        String txt = jtfi.getText();
-        //
-        if (txt.length() == 6 && prevLengthOrgnr == 5) {
-            jtfi.setText(orgnr + "-");
-        } else if (txt.contains("--")) {
-            txt = txt.replaceAll("--", "-");
-            jtfi.setText(txt);
-        }
-        //
-        prevLengthOrgnr = txt.length();
-        //
-    }
 
     protected void vatnrAuto(JLinkInvert jli, TableInvert ti, String param) {
         //
