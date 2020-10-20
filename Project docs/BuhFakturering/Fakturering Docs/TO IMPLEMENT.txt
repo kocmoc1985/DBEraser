@@ -22,12 +22,6 @@ Delete:
 
 --------------
 
-Enhet not showing in faktura preview
-
-Enhet column visas when inserting......
-
-Add to faktura TAB frakt & exp. avg to "totals"
-
 Implement "changed by", now i have the logged in user so it can be done
 
 To each email send add the name of Company with webb address

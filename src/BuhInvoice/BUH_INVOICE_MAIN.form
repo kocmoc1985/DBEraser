@@ -97,7 +97,7 @@
                           <Component id="jPanel_restore_password" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton_forgot_password" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="290" max="32767" attributes="0"/>
+                          <EmptySpace pref="310" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -710,23 +710,23 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jPanel15" min="-2" pref="786" max="-2" attributes="0"/>
+                                  <Component id="jPanel15" min="-2" pref="886" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jPanel9" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <EmptySpace pref="470" max="32767" attributes="0"/>
+                                          <EmptySpace pref="471" max="32767" attributes="0"/>
                                           <Component id="jPanel10" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jPanel2_faktura_main" alignment="0" pref="620" max="32767" attributes="0"/>
+                                      <Component id="jPanel2_faktura_main" alignment="0" pref="621" max="32767" attributes="0"/>
                                       <Component id="jPanel_articles" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jPanel3_faktura_sec" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel2" pref="591" max="32767" attributes="0"/>
+                                      <Component id="jPanel2" pref="592" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel12" min="-2" pref="250" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -1051,7 +1051,7 @@
                     <Property name="rows" type="int" value="2"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel2">
+                    <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
@@ -1059,7 +1059,30 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Exkl. moms"/>
+                        <Property name="text" type="java.lang.String" value="Frakt"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel12">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Exp. Avg"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="0"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Moms frakt"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Moms p&#xe5; frakt och avgifter"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -1084,7 +1107,7 @@
                         <Property name="text" type="java.lang.String" value="Moms frakt %"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel6">
+                    <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="0"/>
@@ -1092,8 +1115,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Moms frakt"/>
-                        <Property name="toolTipText" type="java.lang.String" value="Moms p&#xe5; frakt och avgifter"/>
+                        <Property name="text" type="java.lang.String" value="Exkl. moms"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -1129,16 +1151,35 @@
                         <Property name="text" type="java.lang.String" value="Total"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField_total_exkl_moms">
+                    <Component class="javax.swing.JTextField" name="jTextField_frakt">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_total_exkl_momsActionPerformed"/>
-                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextField_exp_avg">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextField_moms_frakt_expavg">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
                       </AuxValues>
@@ -1165,13 +1206,16 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField_moms_frakt_expavg">
+                    <Component class="javax.swing.JTextField" name="jTextField_total_exkl_moms">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_total_exkl_momsActionPerformed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="12"/>
                       </AuxValues>
@@ -1600,7 +1644,7 @@
                               </Group>
                               <Component id="jButton_update_kund_data" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="112" max="32767" attributes="0"/>
+                          <EmptySpace pref="114" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

@@ -50,6 +50,8 @@ public abstract class Invoice_ extends Basic_Buh {
     private static double MOMS_ARTIKLAR = 0;
     private static double MOMS_FRAKT_AND_EXP_AVG = 0;
     //
+    private static double FRAKT = 0;
+    private static double EXP_AVG = 0;
     private static double MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
     //
     public static boolean CURRENT_OPERATION_INSERT = false;
@@ -408,6 +410,9 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
         BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
+        //
+        BUH_INVOICE_MAIN.jTextField_frakt.setText(""  + getTotal(FRAKT));
+        BUH_INVOICE_MAIN.jTextField_exp_avg.setText(""  + getTotal(EXP_AVG));
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -476,20 +481,20 @@ public abstract class Invoice_ extends Basic_Buh {
         }
         //
 //        double momsSats = getMomsSats();
-        double frakt = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
-        double exp_avg = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
+        FRAKT = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
+        EXP_AVG = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
         //
 //        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
         //
         MOMS_ARTIKLAR = MOMS_TOTAL;
-        MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(frakt, exp_avg, moms_map);
+        MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(FRAKT, EXP_AVG, moms_map);
         MOMS_TOTAL += MOMS_FRAKT_AND_EXP_AVG;
         FAKTURA_TOTAL += MOMS_TOTAL;
         FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         //
         //
-        FAKTURA_TOTAL += frakt;
-        FAKTURA_TOTAL += exp_avg;
+        FAKTURA_TOTAL += FRAKT;
+        FAKTURA_TOTAL += EXP_AVG;
         //
         displayTotals();
         //
