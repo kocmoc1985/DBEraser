@@ -73,6 +73,8 @@ public class LANG {
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
     public static String MSG_16_1 = "Kunde ej skapa, användare finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";
+    
+    public static String MSG_17 = "Logotypen finns redan, vill du radera den befintliga?";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
@@ -135,7 +137,7 @@ public class LANG {
     }
 
     public static String LOGOTYP_TO_SMALL(String requiredMinWidth, String widthActual) {
-        return "Logotyp är för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
+        return "Logotyp för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
     }
 
     public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print) {

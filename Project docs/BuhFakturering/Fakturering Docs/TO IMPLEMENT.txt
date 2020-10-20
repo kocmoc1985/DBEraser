@@ -20,6 +20,8 @@ Delete:
 
 --------------
 
+Find a better icon for the application windows
+
 Implement "changed by", now i have the logged in user so it can be done
 
 To each email send add the name of Company with webb address

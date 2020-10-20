@@ -42,7 +42,7 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class GP_BUH {
 
-    public static final String PRODUCT_NAME = "BuhInvoice";
+//    public static final String PRODUCT_NAME = "BuhInvoice";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
@@ -62,6 +62,7 @@ public class GP_BUH {
     public static String PASS = "mixcont4765";
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
+    public static final String LOGO_PATH = "io/logo.png";
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
@@ -193,13 +194,20 @@ public class GP_BUH {
         });
     }
 
-    public static void resizeImage_example() throws IOException {
-        Thumbnails.of(new File("mc_logo.png"))
-                .size(160, 69)
-                .toFile(new File("logo.png"));
+    private static boolean logoExistAlready(){
+        File f = new File(GP_BUH.LOGO_PATH);
+        return f.exists();
     }
 
     public static void chooseLogo(Component parent) {
+        //
+        if(logoExistAlready()){
+             if(confirm(LANG.MSG_17)){
+                 File f = new File(GP_BUH.LOGO_PATH);
+                 f.delete();
+                 return;
+             }
+        }
         //
         String path = chooseFile(null);
         //
@@ -249,6 +257,9 @@ public class GP_BUH {
             }
             //
 
+        }else{
+            w_new = w_orig;
+            h_new = h_orig;
         }
         //
         System.out.println("w_new: " + w_new);
@@ -259,7 +270,7 @@ public class GP_BUH {
         //
         Thumbnails.of(f)
                 .size(w_new, h_new)
-                .toFile(new File("logo.png"));
+                .toFile(new File(GP_BUH.LOGO_PATH));
         //
     }
 

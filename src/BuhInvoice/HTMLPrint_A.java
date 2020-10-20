@@ -151,7 +151,7 @@ public class HTMLPrint_A extends HTMLPrint {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
         // 
-        String img_a = getPathNormal("logo.png");
+        String img_a = getPathNormal(GP_BUH.LOGO_PATH);
         //
         //
         return "<html>"
@@ -635,7 +635,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jPanel1.add(jButton1);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
-        jButton3.setToolTipText("Välj logotyp / bild");
+        jButton3.setToolTipText("Sätt eller radera logotyp");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -644,7 +644,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jPanel1.add(jButton3);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
-        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post till sig, automatiskt");
+        jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post automatiskt, inga inställningar behövs");
         jButton_send_faktura_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_send_faktura_emailActionPerformed(evt);

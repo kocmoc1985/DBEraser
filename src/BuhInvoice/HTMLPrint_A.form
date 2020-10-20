@@ -107,7 +107,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/image.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="V&#xe4;lj logotyp / bild"/>
+                    <Property name="toolTipText" type="java.lang.String" value="S&#xe4;tt eller radera logotyp"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -118,7 +118,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/post.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Skicka faktura per E-post till sig, automatiskt"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Skicka faktura per E-post automatiskt, inga inst&#xe4;llningar beh&#xf6;vs"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_send_faktura_emailActionPerformed"/>

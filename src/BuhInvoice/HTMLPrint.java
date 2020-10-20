@@ -592,7 +592,7 @@ public abstract class HTMLPrint extends JFrame {
                 );
             } else {
                 ess = HelpBuh.sendEmailWithAttachment("ask@mixcont.com",
-                        GP_BUH.PRODUCT_NAME, // This one is shown as name instead of the email it's self
+                        GP_BUH.CUSTOMER_COMPANY_NAME, // This one is shown as name instead of the email it's self
                         sendToEmail,
                         subject,
                         body,
