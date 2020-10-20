@@ -32,6 +32,22 @@ table buh_faktura_inbet
 buh_faktura_send
 ________________________________________________________________________________________
 
+
+Delete ALL "buh_address" for "buh_faktura_kund"
+"DELETE FROM buh_address where kundId=13 AND fakturaKundId IS NOT NULL"
+
+Delete "buh_address" for "buh_kund"
+"DELETE FROM buh_address where kundId=13 AND fakturaKundId IS NULL"
+
+Delete ALL "buh_address" for given "buh_kund"
+"DELETE FROM buh_address where kundId=13
+
+________________________________________________________________________________________
+
+
+
+
+
 PREV:
 drop table buh_address;
 drop table buh_f_artikel;

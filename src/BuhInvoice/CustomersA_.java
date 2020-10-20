@@ -221,6 +221,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN);
         //
         map.put(DB.BUH_ADDR__FAKTURAKUND_ID, fakturaKundId);
+        map.put(DB.BUH_ADDR__KUND_ID, GP_BUH.KUND_ID);
         //
         String json = JSon.hashMapToJSON(map);
         //

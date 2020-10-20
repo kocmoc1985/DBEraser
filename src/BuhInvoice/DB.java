@@ -196,6 +196,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__MOMS_SATS = "moms_sats";
     //
     public static final String BUH_ADDR__ID = "id";
+    public static final String BUH_ADDR__KUND_ID = "kundId";
     public static final String BUH_ADDR__FAKTURAKUND_ID = "fakturaKundId";
     public static final String BUH_ADDR__IS_PRIMARY_ADDR = "primary_addr";
     public static final String BUH_ADDR__ADDR_A = "postaddr_a";

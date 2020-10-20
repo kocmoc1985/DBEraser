@@ -76,24 +76,6 @@ public class HelpBuh {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     public static void main(String[] args) {
-        //
-//        GP_BUH.USER = "mixcont";
-//        GP_BUH.PASS = "mixcont4765";
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-//        deleteCustomer_a("16", "Vxuw6lpMzF");
-        //
-        //
-        restorePwd("andrej.brassas@gmail.com");
-        //
-    }
 
     /**
      * This oe is used for creating of account + creating of "buh_kund" +
@@ -140,8 +122,6 @@ public class HelpBuh {
         //
     }
 
-   
-
     /**
      * Deletes "buh_kund","buh_address","buh_licens"
      *
@@ -164,6 +144,24 @@ public class HelpBuh {
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+    }
+
+    public static void main(String[] args) {
+        //
+//        GP_BUH.USER = "mixcont";
+//        GP_BUH.PASS = "mixcont4765";
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("16", "Vxuw6lpMzF");
+        //
+        //
+        restorePwd("andrej.brassas@gmail.com");
         //
     }
 
