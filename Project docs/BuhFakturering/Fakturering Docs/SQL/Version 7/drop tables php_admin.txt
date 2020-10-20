@@ -26,10 +26,11 @@ delete from ("buh_faktura_artikel")
 
 
 [TABLES WITHOUT ("kundId")][2020-10-15]
-table buh_address -> OBS! PARTIALLY WITHOUT 
-----------------------------------------------------table buh_f_artikel --------------------------> OBS! Since [2020-10-15] it has "kundId"
-table buh_faktura_inbet
-buh_faktura_send
+So now [2020-10-20] ALL TABLES DO HAVE "kundId"
+table buh_address -> --------------------------> OBS! Since [2020-10-20] it has always "kundId"
+table buh_f_artikel --------------------------> OBS! Since [2020-10-15] it has "kundId"
+table buh_faktura_inbet  --------------------------> OBS! Since [2020-10-20] it has "kundId"
+buh_faktura_send --------------------------> OBS! Since [2020-10-20] it has "kundId"
 ________________________________________________________________________________________
 
 

@@ -168,6 +168,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         HashMap<String, String> map = new HashMap<>();
         //
+        map.put(DB.BUH_FAKTURA_SEND__KUND_ID, GP_BUH.KUND_ID); // added: [2020-10-20]
         map.put(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId);
         //
         map.put(DB.BUH_FAKTURA_SEND__SEND_OK, status); // 0 is default

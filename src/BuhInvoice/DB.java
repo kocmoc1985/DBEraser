@@ -225,6 +225,7 @@ public class DB {
     //
     //
     public static final String BUH_FAKTURA_INBET__INBET_ID = "inbetId";
+    public static final String BUH_FAKTURA_INBET__KUND_ID = "kundId";
     public static final String BUH_FAKTURA_INBET__FAKTURA_ID = "fakturaId";
     public static final String BUH_FAKTURA_INBET__INBETALD = "inbetald";
     public static final String BUH_FAKTURA_INBET__BETAL_METHOD = "betal_metod";
@@ -232,6 +233,7 @@ public class DB {
     public static final String BUH_FAKTURA_INBET__ANNAT = "annat";
     //
     public static final String BUH_FAKTURA_SEND__ID = "sendId";
+    public static final String BUH_FAKTURA_SEND__KUND_ID = "kundId";
     public static final String BUH_FAKTURA_SEND__FAKTURA_ID = "fakturaId";
     public static final String BUH_FAKTURA_SEND__SEND_TYPE = "send_type";
     public static final String BUH_FAKTURA_SEND__SEND_OK = "send_ok";

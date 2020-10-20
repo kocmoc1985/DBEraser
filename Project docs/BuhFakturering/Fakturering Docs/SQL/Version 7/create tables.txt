@@ -117,22 +117,26 @@ Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 
 CREATE TABLE buh_faktura_inbet (
 inbetId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
 fakturaId integer not null,
 inbetald float DEFAULT 0,
 betal_metod varchar(20) DEFAULT '',
 betal_datum varchar(10) DEFAULT CURDATE(),
 annat varchar(50) DEFAULT '',
-Foreign key (fakturaId) references buh_faktura(fakturaId)
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (kundId) references buh_kund(kundId)
 );
 
 CREATE TABLE buh_faktura_send (
 sendId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
 fakturaId integer not null,
 send_type integer DEFAULT 0,
 send_ok integer DEFAULT 0,
 send_datum varchar(10) DEFAULT CURDATE(),
 annat varchar(50) DEFAULT '',
-Foreign key (fakturaId) references buh_faktura(fakturaId)
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (kundId) references buh_kund(kundId)
 );
 
 CREATE TABLE buh_faktura_artikel (
