@@ -13,8 +13,6 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-OBS! Having Frakt and/or Exp.avg empty causes error, when saving invoice
-
 Validation of removing digital input and setting "0" per aut, was not a good idea. Need to be documented: see: Validator.java -> line:198
 
 Implement security check for failing login in row

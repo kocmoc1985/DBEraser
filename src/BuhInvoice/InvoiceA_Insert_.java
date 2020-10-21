@@ -236,13 +236,13 @@ public class InvoiceA_Insert_ extends Invoice_ {
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
         String expavgift_ = IO.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
-        RowDataInvert expavgift = new RowDataInvertB(expavgift_, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", true, true, false);
+        RowDataInvert expavgift = new RowDataInvertB(expavgift_, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", false, true, false);
         //
         String frakt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FRAKT,"0");
-        RowDataInvert frakt = new RowDataInvertB(frakt_, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", true, true, false);
+        RowDataInvert frakt = new RowDataInvertB(frakt_, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", false, true, false);
         //
         String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
-        RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
+        RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", false, true, false);
         //
         
         //
