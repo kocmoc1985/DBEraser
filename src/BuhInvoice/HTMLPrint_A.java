@@ -81,8 +81,8 @@ public class HTMLPrint_A extends HTMLPrint {
             //            "img {width: 20px}", not working from here
             ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
-            //            "table {border: 1px solid black}",
-            "td {border: 1px solid black;}",
+//            "table {border: 1px solid black}",//----------------------------->!!!!!!
+            "td {border: 1px solid black;}",//------------------------------------>!!!!!
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",

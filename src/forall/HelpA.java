@@ -1721,6 +1721,25 @@ public class HelpA {
     public static String getValueGivenRow(JTable table, int row, String colName) {
         return "" + table.getValueAt(row, getColByName(table, colName));
     }
+    
+    public static String getValueSelectedRow_replace_zero(JTable table, String colName) {
+        //
+        int selected_row = table.getSelectedRow();
+        //
+        try {
+            //
+            String value = "" + table.getValueAt(selected_row, getColByName(table, colName));
+            //
+            if (value.equals("0")) {
+                return "";
+            } else {
+                return value;
+            }
+            //
+        } catch (Exception ex) {
+            return "";
+        }
+    }
 
     public static String getValueSelectedRow(JTable table, String colName) {
         //

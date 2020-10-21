@@ -190,7 +190,7 @@ public class InvoiceA_Update extends Invoice_ {
 //        moms.setUneditable();
 //        disableMomsJComboIf(moms); // *****
         //
-        String fakturanr_alt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
+        String fakturanr_alt_ = HelpA.getValueSelectedRow_replace_zero(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
         RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
         fakturanr_alt.setToolTipFixed(LANG.MSG_19);
         //

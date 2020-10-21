@@ -11,7 +11,7 @@ SELECT COUNT(betald) FROM buh_faktura WHERE kundId=1 AND betald=1
 SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1    
 )as `MAKULERADE`
 
---------------
+-------------- 
 
 Validation of removing digital input and setting "0" per aut, was not a good idea. Need to be documented: see: Validator.java -> line:198
 
