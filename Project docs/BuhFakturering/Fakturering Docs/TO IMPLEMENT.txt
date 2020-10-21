@@ -15,11 +15,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 Implement security check for failing login in row
 
-Implement alternativ fakturaNr
-
 Implement öres avrundning, and rounding of total --- OR??
-
-Restore account function dont have any returned status implemented for evaluating the result of creation.
 
 Implement share of the account with another USER.
 

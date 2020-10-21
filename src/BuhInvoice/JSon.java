@@ -270,6 +270,7 @@ public class JSon {
                 if (replaceSpecialChars) {
                     value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
                     value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
+                    value = GP_BUH.replacePlus(value, true); //value.replaceAll("£", "+");
                 }
             }
             //

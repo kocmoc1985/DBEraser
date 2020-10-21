@@ -53,14 +53,16 @@ public class GP_BUH {
      * For Alex Bolag "kundId=2" use: "alex"/"alex1980"
      * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "L5xpPomI41"
      */
-//    public static String USER = "mixcont";
-//    public static String PASS = "mixcont4765";
     //
-    public static String USER = "mixcont";
-    public static String PASS = "mixcont4765";
+    public static String USER = "";
+    public static String PASS = "";
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
-    public static final String LOGO_PATH = "io/logo.png";
+    private static final String LOGO_PATH = "io/logo.png";
+
+    public static final String LOGO_PATH() {
+        return "io/logo_" + KUND_ID + ".png";
+    }
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
@@ -79,6 +81,14 @@ public class GP_BUH {
             return text.replaceAll(",", "¤");
         } else {
             return text.replaceAll("¤", ",");
+        }
+    }
+    
+    public static String replacePlus(String text, boolean reverse) {
+        if (reverse == false) {
+            return text.replaceAll("\\+", "£");
+        } else {
+            return text.replaceAll("£", "+");
         }
     }
 
@@ -157,8 +167,6 @@ public class GP_BUH {
     public static String getDateTime_yyyy_MM_dd() {
         return HelpA.get_proper_date_time_same_format_on_all_computers();
     }
-    
-    
 
     public static String getDateCreated() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
@@ -191,19 +199,19 @@ public class GP_BUH {
         });
     }
 
-    private static boolean logoExistAlready(){
-        File f = new File(GP_BUH.LOGO_PATH);
+    private static boolean logoExistAlready() {
+        File f = new File(GP_BUH.LOGO_PATH());
         return f.exists();
     }
 
     public static void chooseLogo(Component parent) {
         //
-        if(logoExistAlready()){
-             if(confirm(LANG.MSG_17)){
-                 File f = new File(GP_BUH.LOGO_PATH);
-                 f.delete();
-                 return;
-             }
+        if (logoExistAlready()) {
+            if (confirm(LANG.MSG_17)) {
+                File f = new File(GP_BUH.LOGO_PATH());
+                f.delete();
+                return;
+            }
         }
         //
         String path = chooseFile(null);
@@ -254,7 +262,7 @@ public class GP_BUH {
             }
             //
 
-        }else{
+        } else {
             w_new = w_orig;
             h_new = h_orig;
         }
@@ -267,7 +275,7 @@ public class GP_BUH {
         //
         Thumbnails.of(f)
                 .size(w_new, h_new)
-                .toFile(new File(GP_BUH.LOGO_PATH));
+                .toFile(new File(GP_BUH.LOGO_PATH()));
         //
     }
 

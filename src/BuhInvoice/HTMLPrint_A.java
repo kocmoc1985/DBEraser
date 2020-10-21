@@ -151,7 +151,7 @@ public class HTMLPrint_A extends HTMLPrint {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
         // 
-        String img_a = getPathNormal(GP_BUH.LOGO_PATH);
+        String img_a = getPathNormal(GP_BUH.LOGO_PATH());
         //
         //
         return "<html>"
