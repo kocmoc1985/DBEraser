@@ -49,14 +49,17 @@ public class Home extends Basic_Buh {
     }
 
     protected void processForgotPass() {
+        //
         if (fieldsValidated_tableInvert_3(false)) {
             //
             HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN);
             //
             String userEmail = map.get(DB.BUH_LICENS__USER);
             //
-            
+            HelpBuh.restorePwd(userEmail);
+            //
         }
+        //
     }
 
     protected void processUserRegistration() {

@@ -20,12 +20,10 @@ Delete:
 
 --------------
 
-Faktura articles editing not working properly when inserting. The moms is changed with "%" which is not correct
+Implement share of the account with another USER.
 
-It seems i must implement "kundId" in any case for the "buh_address" table - to be able to delete all customer related data: ----> [DONE]
-So when adding an address for a "buh_faktura_kund" -> insert both "kundId" & "fakturaKundId" ----> [DONE]
-When inserting an address for a "buh_kund" -> insert only "kundId" ----> [DONE]
-For selecting address for "buh_faktura_kund" -> "SELECT * FROM buh_address WHERE kundId=1 AND fakturaKundId IS NULL ORDER BY id ASC" -> pay attention to  "IS" ----> [DONE]
+Making installers for MAC OS:
+https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-software
 
 Find a better icon for the application windows
 

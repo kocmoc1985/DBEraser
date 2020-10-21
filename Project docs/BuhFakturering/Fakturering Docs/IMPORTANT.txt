@@ -1,3 +1,7 @@
+[MOMS SATS REPLACING THE "%" IN JTABLE][2020-10-21]
+
+Search for: replaceAll("%", "")
+
 ________________________________________________________________________________________________________
 [INSERT JAVA->PHP ESSENTIALS][2020-10-15]
 
@@ -11,7 +15,7 @@ Use: JSon.class-> removeEntriesWhereValueNullOrEmpty(HashMap<String, String> map
 ________________________________________________________________________________________________________
 [THREADS - THREDIFYING THE CODE][2020-10-05]
 
-Search for tag: "#THREAD#" in the project
+Search for tag: "#THREAD#" in the project ---> Almost not used as causing "sequential problems (something is executed before it should)" [2020-01-21]
 
 See following construction, very useful, especially when "autofill" is used for comboboxes which requires to be run in the  "AWT" thread.
 

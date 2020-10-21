@@ -80,7 +80,7 @@ public abstract class Invoice_ extends Basic_Buh {
             GP_BUH.enableDisableButtons(bim.jPanel11, false);
         }
         //
-        if(rowSelected == false){
+        if (rowSelected == false) {
             GP_BUH.enableDisableButtons(bim.jPanel11, false);
             GP_BUH.setEnabled(bim.jButton_delete_articles_row, false);
         }
@@ -418,8 +418,8 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
         //
-        BUH_INVOICE_MAIN.jTextField_frakt.setText(""  + getTotal(FRAKT));
-        BUH_INVOICE_MAIN.jTextField_exp_avg.setText(""  + getTotal(EXP_AVG));
+        BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
+        BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -562,7 +562,7 @@ public abstract class Invoice_ extends Basic_Buh {
     private double countMomsFraktAndExpAvg(double frakt, double expAvg, double momsSats) {
         return (frakt + expAvg) * momsSats;
     }
-    
+
     protected double getFakturaTotal() {
         return GP_BUH.round_double(FAKTURA_TOTAL); // OBS! Rounding till "Whole Number"
     }
@@ -582,8 +582,6 @@ public abstract class Invoice_ extends Basic_Buh {
     protected double getRabattTotal() {
         return GP_BUH.round_double(RABATT_TOTAL);
     }
-
-    
 
     protected double getMomsTotal() {
         return GP_BUH.round_double(MOMS_TOTAL);
@@ -910,7 +908,12 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             boolean digitalInputValidated = Validator.validateDigitalInput(jli);
             //
-            if (col_name.equals(DB.BUH_F_ARTIKEL__RABATT)) {
+            if (col_name.equals(DB.BUH_F_ARTIKEL__PRIS)) {
+                //
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, ti, "0");
+                setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, ti, "0");
+                //
+            } else if (col_name.equals(DB.BUH_F_ARTIKEL__RABATT)) {
                 //
                 if (Validator.validatePercentInput(jli) == false || digitalInputValidated == false) {
                     return;
@@ -1060,7 +1063,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
-        } else if(col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)){
+        } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
             IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
             //
