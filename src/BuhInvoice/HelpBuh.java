@@ -243,11 +243,11 @@ public class HelpBuh {
      * path is relative to the "upload" script
      * @return
      */
-    public static EmailSendingStatus sendEmailWithAttachment(String from, String fromNameOptional, String to, String subject, String body, String filePathAttachment) {
+    public static EmailSendingStatus sendEmailWithAttachment(String fromNameOptional, String to, String subject, String body, String filePathAttachment) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
-        map.put("from_email", from); // smtp
+//        map.put("from_email", from); // smtp
         map.put("from_name", fromNameOptional); // smtp 
         map.put("to", to);
         map.put("subject", subject);

@@ -20,6 +20,8 @@ Delete:
 
 --------------
 
+Restore account function dont have any returned status implemented for evaluating the result of creation.
+
 Implement share of the account with another USER.
 
 Making installers for MAC OS:
