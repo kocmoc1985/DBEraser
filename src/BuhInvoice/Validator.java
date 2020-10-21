@@ -192,7 +192,11 @@ public class Validator {
         //
         if (jli instanceof JTextFieldInvert) {
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            //
             jtf.setSaveEmptyStringValue();
+            //
+            jtf.setSaveEmptyNumber();
+            //
         }
         //
         unsetToolTip(jli);
@@ -238,7 +242,6 @@ public class Validator {
         }
         //
         if(val.isEmpty()){
-            jtf.setText("0");
             return setValidated(jli);
         }
         //

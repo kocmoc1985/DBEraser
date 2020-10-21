@@ -210,6 +210,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                         mapToReturn.put(dataInvert.getFieldOriginalName(), "");
                     }
                     //
+                    if(dataInvert.saveEmptyNumber()){
+                        mapToReturn.put(dataInvert.getFieldOriginalName(), "0");
+                    }
+                    //
                 } else {
                     //
                     if (dataInvert.aquire()) {

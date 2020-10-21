@@ -133,6 +133,15 @@ public class RowDataInvert extends RowData {
         this.visible = visible;
         this.important = important;
     }
+    
+    private boolean save_EmptyNumber = false;
+    public void setSaveEmptyNumber(){
+        this.save_EmptyNumber = true;
+    }
+    
+    public boolean saveEmptyNumber(){
+        return save_EmptyNumber;
+    }
 
     public void setSaveEmptyStringValue() {
         save_EmptyStringValue = true;

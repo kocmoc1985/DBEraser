@@ -77,5 +77,15 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
        }
        //
    }
+   
+   public void setSaveEmptyNumber(){
+       //
+       RowDataInvert rdi = parent.getRowConfig();
+       //
+       if(rdi.isString() == false && getValue().isEmpty()){
+           rdi.setSaveEmptyNumber();
+       }
+       //
+   }
     
 }
