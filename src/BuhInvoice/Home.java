@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.AccountRestoreStatus;
 import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
@@ -56,7 +57,9 @@ public class Home extends Basic_Buh {
             //
             String userEmail = map.get(DB.BUH_LICENS__USER);
             //
-            HelpBuh.restorePwd(userEmail);
+            AccountRestoreStatus ars = HelpBuh.restorePwd(userEmail);
+            //
+            HelpA.showNotification(ars.getMessage());
             //
         }
         //

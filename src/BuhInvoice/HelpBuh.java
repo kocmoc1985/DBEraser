@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
+import BuhInvoice.sec.AccountRestoreStatus;
 import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
@@ -58,7 +59,7 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
-    public static void restorePwd(String emailUserName) {
+    public static AccountRestoreStatus restorePwd(String emailUserName) {
         //
         HashMap<String, String> map = new HashMap();
         //
@@ -70,10 +71,11 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_RESTORE_PWD, JSon.hashMapToJSON(map));
             //
-            System.out.println("RESPONCE: " + responce);
+            return new AccountRestoreStatus(responce);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return new AccountRestoreStatus(null);
         }
     }
 

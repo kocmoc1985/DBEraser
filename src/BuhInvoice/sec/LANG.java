@@ -77,6 +77,10 @@ public class LANG {
     
     public static String MSG_17 = "Logotypen finns redan, vill du radera den befintliga?";
 
+    public static String MSG_18_0 = "Återställning lyckades, kolla din e-post för det nya lösenordet";
+    public static String MSG_18 = "Återställning misslyckades, den angivna användaren finns ej";
+    public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
