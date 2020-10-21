@@ -229,8 +229,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
 //        moms.setUneditable();
 //        disableMomsJComboIf(moms);
         //
-        String fakturanr_alt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FAKTURANR_ALT,"0");
-        RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", true, true, false);
+//        String fakturanr_alt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FAKTURANR_ALT,"0");
+        RowDataInvert fakturanr_alt = new RowDataInvertB("0", DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", true, true, false);
         fakturanr_alt.setToolTipFixed(LANG.MSG_19);
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);

@@ -277,7 +277,23 @@ public class InvoiceB extends Basic_Buh {
         //
         showImportantKomment();
         //
+        showLowPriorityKomment();
+        //
         bim.hideShowButtonsDependingOnConditions();
+    }
+    
+    private void showLowPriorityKomment(){
+        //
+        if(bim.jTextArea_faktura_komment.getText().isEmpty()){
+          //
+          String fakturannr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
+          //
+          if(fakturannr_alt.equals("0") == false){
+              bim.jTextArea_faktura_komment.setText("Alternativ fakturanummer: " + fakturannr_alt);
+          }
+          //
+        }
+        //
     }
 
     private void showImportantKomment() {
@@ -394,7 +410,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURANR_ALT);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURANR_ALT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
