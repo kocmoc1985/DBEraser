@@ -13,6 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
+Implement security check for failing login in row
+
 Implement alternativ fakturaNr
 
 Implement öres avrundning, and rounding of total --- OR??
