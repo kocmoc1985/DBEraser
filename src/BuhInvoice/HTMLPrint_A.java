@@ -89,7 +89,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ".marginLeft {margin-left: 10px;}",
             ".paddingLeft {padding-left: 5px;}",
             ".bold {font-weight:800;}", // font-weight:800;
-            ".no-border {border: 0px}",
+            ".no-border {border: 0px}", // search for: [#no-border#]
             ".border-a {border: 1px solid black;}"
         //    
         };
@@ -494,9 +494,9 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<tr>";
             //
             if (markFirstTd && i == 0) {
-                html_ += "<td class='bold'>" + values[i] + "</td>";
+                html_ += "<td class='bold'>" + values[i] + "</td>"; // [#no-border#]
             } else {
-                html_ += "<td>" + values[i] + "</td>";
+                html_ += "<td>" + values[i] + "</td>"; // [#no-border#]
             }
             //
             html_ += "</tr>";
@@ -559,7 +559,7 @@ public class HTMLPrint_A extends HTMLPrint {
                     if (j == (colToMakeBold - 1)) {
                         html_ += "<td class='bold'>" + headers[j] + "</td>";
                     } else {
-                        html_ += "<td>" + headers[j] + "</td>";
+                        html_ += "<td>" + headers[j] + "</td>"; //[#no-border#]
                     }
                 }
                 //
@@ -569,7 +569,7 @@ public class HTMLPrint_A extends HTMLPrint {
                     if (j == (colToMakeBold - 1)) {
                         html_ += "<td class='bold'>" + values[j] + "</td>";
                     } else {
-                        html_ += "<td>" + values[j] + "</td>";
+                        html_ += "<td>" + values[j] + "</td>"; //[#no-border#]
                     }
                 }
                 //
