@@ -437,25 +437,25 @@ public abstract class HTMLPrint extends JFrame {
 
     protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr, String frakt, String exp, String rabbat_kr) {
         //
-        if (moms_kr.equals("0")) {
+        if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
         }
         //
-        if (frakt.equals("0")) {
+        if (frakt.equals("0") || frakt.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
         }
         //
-        if (exp.equals("0")) {
+        if (exp.equals("0")|| exp.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
         }
         //
-        if (rabbat_kr.equals("0")) {
+        if (rabbat_kr.equals("0") || rabbat_kr.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));

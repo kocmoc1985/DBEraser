@@ -13,12 +13,9 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 --------------
 
-Delete:
-"buh_address"
-"buh_licens"
-"buh_kund"
+Implement alternativ fakturaNr
 
---------------
+Implement öres avrundning, and rounding of total --- OR??
 
 Restore account function dont have any returned status implemented for evaluating the result of creation.
 
