@@ -229,6 +229,10 @@ public class InvoiceA_Insert_ extends Invoice_ {
 //        moms.setUneditable();
 //        disableMomsJComboIf(moms);
         //
+        String fakturanr_alt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FAKTURANR_ALT,"0");
+        RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", true, true, false);
+        fakturanr_alt.setToolTipFixed(LANG.MSG_19);
+        //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
         String expavgift_ = IO.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
@@ -240,6 +244,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
         String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
         RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", true, true, false);
         //
+        
+        //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
@@ -248,6 +254,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         RowDataInvert[] rows = {
 //            inkl_exkl_moms,
 //            moms,
+            fakturanr_alt,
             order,
             expavgift,
             frakt,

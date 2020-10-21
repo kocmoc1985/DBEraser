@@ -49,11 +49,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public Basic() {
     }
 
-    public String getLongName(String statics, String valToTranslate){
+    public String getLongName(String statics, String valToTranslate) {
         return JSon.getLongName(statics, valToTranslate);
     }
-    
-    
+
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
         //
@@ -83,7 +82,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
             return obj.getClass().getName();
         }
     }
-    
+
     public String getValueHashMap(String value) {
         //
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
@@ -93,8 +92,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
         //
     }
-    
-    
 
     /**
      * Call from: TableRowInvertB
@@ -160,8 +157,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
         //
     }
-    
-     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
+
+    public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
         return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
     }
 
@@ -201,8 +198,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                     val = columnValue.getValue(jcomboParamToReturn);
                 }
                 //
-                val = GP_BUH.replaceColon(val,false); // replace ":" with "#"
-                val = GP_BUH.replaceComma(val,false); // replace "," with "¤"
+                val = GP_BUH.replaceColon(val, false); // replace ":" with "#"
+                val = GP_BUH.replaceComma(val, false); // replace "," with "¤"
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting
@@ -340,8 +337,8 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert tableInvert = (TableInvert) table_invert;
         return tableInvert.getColumnCount();
     }
-    
-    public void clearAllRowsTableInvert_jcombobox_special(Table table_invert,int jcomboSelecetedIndex) {
+
+    public void clearAllRowsTableInvert_jcombobox_special(Table table_invert, int jcomboSelecetedIndex) {
         //
         TableInvert tableInvert = (TableInvert) table_invert;
         //
@@ -389,7 +386,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         TableInvert ti = (TableInvert) tableInvert;
         ti.setValueAt(rowName, value, defineValueColumnIndex(tableInvert));
     }
-    
+
     public void setColorTableInvert(String rowName, Table tableInvert, Color color) {
         TableInvert ti = (TableInvert) tableInvert;
         ti.setColorAt(rowName, color);
@@ -463,6 +460,19 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public Object getObjectTableInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getObjectAt(rowName);
+    }
+
+    /**
+     * [2020-10-21]
+     * This one is for getting other values which are not shown from JCombo
+     * @param rowName
+     * @param tableInvert
+     * @param paramToReturn
+     * @return 
+     */
+    public String getValueTableInvertJComboBox(String rowName, Table tableInvert, int paramToReturn) {
+        TableInvert ti = (TableInvert) tableInvert;
+        return ti.getValueAtJComboBox(rowName, paramToReturn);
     }
 
     public String getValueTableInvert(String rowName, Table tableInvert) {
@@ -639,8 +649,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return contains;
         //
     }
-
-   
 
     /**
      * OBS! Try using "startColumn=1 or 2" will not work with 0 [2020-07-10] Use
@@ -859,21 +867,19 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
             });
         }
     }
-    
+
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
-     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) {
-     *       String[] toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-     *       return removeFromTableConfigInvert(rows, toRemove);
-     *   } else {
-     *       return rows;
-     *   }
-     * 
+     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
+     *
      * @param arr
      * @param columnsToRemove
-     * @return 
+     * @return
      */
-    public  RowDataInvert[] removeFromTableConfigInvert(RowDataInvert[] arr, String[] columnsToRemove) {
+    public RowDataInvert[] removeFromTableConfigInvert(RowDataInvert[] arr, String[] columnsToRemove) {
         //
         ArrayList<RowDataInvert> list = new ArrayList<RowDataInvert>();
         //
@@ -893,7 +899,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         return toReturn;
     }
 
-    private  boolean a01(String[] columnsToRemove, String currColName) {
+    private boolean a01(String[] columnsToRemove, String currColName) {
         for (String colName : columnsToRemove) {
             if (currColName.equals(colName)) {
                 return true;

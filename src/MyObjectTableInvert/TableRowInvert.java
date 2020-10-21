@@ -148,6 +148,10 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                     jtf.setToolTipText((String) cde.getObject());
                 }
                 //
+                if(getRowConfig().toolTipFixedTextPresent()){
+                    jtf.setToolTipText(getRowConfig().getToolTipFixedText());
+                }
+                //
                 add_component = jtf;
                 //
                 addComponent(add_component);
@@ -247,6 +251,17 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         } else if (c instanceof JButton) {
             JButton jb = (JButton) c;
             return (String) jb.getText();
+        } else {
+            return null;
+        }
+    }
+    
+    public String getValueAtJComboBox(int column_index,int paramToReturn) {
+        Component c = this.getComponent(column_index);
+        //
+         if (c instanceof JComboBox) {
+            JComboBox comboBox = (JComboBox) c;
+            return HelpA.getComboBoxSelectedValue(comboBox,paramToReturn);
         } else {
             return null;
         }

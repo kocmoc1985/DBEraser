@@ -3045,6 +3045,21 @@ public class HelpA {
         //
         return joined_properties;
     }
+    
+     public static boolean isInteger(String str) {
+        //
+        if (str.contains("f") || str.contains("F") || str.contains("d") || str.contains("D")) {
+            return false;
+        }
+        //
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+    
 
     public static boolean isNumber(String str) {
         //

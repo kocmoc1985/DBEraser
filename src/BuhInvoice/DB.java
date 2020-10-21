@@ -135,6 +135,7 @@ public class DB {
     public static final String BUH_FAKTURA__ID__ = "fakturaId";
     public static final String BUH_FAKTURA__KUNDID__ = "kundId"; // "__" additional prefix on the end means not aquired form TableInvert
     public static final String BUH_FAKTURA__FAKTURANR__ = "fakturanr";
+    public static final String BUH_FAKTURA__FAKTURANR_ALT = "fakturanr_alt"; // [2020-10-21]
     public static final String BUH_FAKTURA__FAKTURATYP = "fakturatyp";
     public static final String BUH_FAKTURA__FAKTURAKUND_ID = "fakturaKundId";
     public static final String BUH_FAKTURA__FAKTURA_DATUM = "fakturadatum";

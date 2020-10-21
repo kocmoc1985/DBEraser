@@ -217,6 +217,8 @@ public class Validator {
         jli.setValidated(false);
         return false;
     }
+    
+    
 
     /**
      * Verify input of digits/numbers
@@ -235,6 +237,11 @@ public class Validator {
             jtf.setText(val);
         }
         //
+        if(val.isEmpty()){
+            jtf.setText("0");
+            return setValidated(jli);
+        }
+        //
         if (HelpA.isNumber(val)) {
             return setValidated(jli);
         } else {
@@ -242,6 +249,8 @@ public class Validator {
         }
         //
     }
+    
+    
 
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);

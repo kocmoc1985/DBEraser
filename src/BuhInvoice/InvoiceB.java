@@ -29,6 +29,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__FAKTURA_ID = "ID";
     public static String TABLE_ALL_INVOICES__KUND = "KUND";
     public static String TABLE_ALL_INVOICES__FAKTURANR = "FAKTURANR";
+    public static String TABLE_ALL_INVOICES__FAKTURANR_ALT = "ALTERNATIV FAKTURANR";
     public static String TABLE_ALL_INVOICES__FAKTURA_TYP = "FAKTURATYP";
     public static String TABLE_ALL_INVOICES__KUND_ID = "KUND ID";
     public static String TABLE_ALL_INVOICES__KUND_NR = "KUND NR";
@@ -226,6 +227,7 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__DROJSMALSRANTA,
             //
             TABLE_ALL_INVOICES__FAKTURANR,
+            TABLE_ALL_INVOICES__FAKTURANR_ALT,
             TABLE_ALL_INVOICES__FAKTURA_TYP,
             TABLE_ALL_INVOICES__KUND,
             TABLE_ALL_INVOICES__DATUM,
@@ -392,6 +394,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURANR_ALT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
@@ -431,6 +434,7 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__DROJSMALSRANTA),
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
+            map.get(DB.BUH_FAKTURA__FAKTURANR_ALT),
             getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
             map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
@@ -872,6 +876,15 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
+    private String getFakturaNrCommonOrAlt(){
+        String fakturanr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
+        if(fakturanr_alt.equals("0") == false){
+            return _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
+        }else{
+            return _get(TABLE_ALL_INVOICES__FAKTURANR);
+        }
+    }
+    
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -888,7 +901,7 @@ public class InvoiceB extends Basic_Buh {
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
         //
-        map_a.put(HTMLPrint_A.T__FAKTURA_NR, _get(TABLE_ALL_INVOICES__FAKTURANR));
+        map_a.put(HTMLPrint_A.T__FAKTURA_NR, getFakturaNrCommonOrAlt());
         map_a.put(HTMLPrint_A.T__KUND_NR, _get(TABLE_ALL_INVOICES__KUND_NR));
         map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, _get(TABLE_ALL_INVOICES__DATUM));
         //
@@ -975,6 +988,16 @@ public class InvoiceB extends Basic_Buh {
 
     }
 
+    private String getFakturaNrAltIfExist(Invoice_ invoice){
+        TableInvert ti3 = (TableInvert)invoice.TABLE_INVERT_3;
+        String fakturanr_alt = ti3.getValueAt(DB.BUH_FAKTURA__FAKTURANR_ALT);
+        if(fakturanr_alt.equals("0") == false){
+            return fakturanr_alt;
+        }else{
+            return "-";
+        }
+    }
+    
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -994,8 +1017,8 @@ public class InvoiceB extends Basic_Buh {
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID)); // In fact not needed for preview as the "id" is required for sending
         //
-        map_a.put(HTMLPrint_A.T__FAKTURA_NR, "-");
-        map_a.put(HTMLPrint_A.T__KUND_NR, "-");
+        map_a.put(HTMLPrint_A.T__FAKTURA_NR, getFakturaNrAltIfExist(invoice));
+        map_a.put(HTMLPrint_A.T__KUND_NR, ti.getValueAtJComboBox(DB.BUH_FAKTURA__FAKTURAKUND_ID, 2));
         map_a.put(HTMLPrint_A.T__FAKTURA_DATUM, getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti));
         //
         map_b.put(HTMLPrint_A.T__FAKTURA_ER_REF, getValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, ti));

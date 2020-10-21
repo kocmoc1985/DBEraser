@@ -980,7 +980,12 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateMaxInputLength(jli, 150);
             //
-        } else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
+        }else if (col_name.equals(DB.BUH_FAKTURA__FAKTURANR_ALT)) {
+            //
+            Validator.validateDigitalInput(jli);
+            //
+        }   
+        else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
             //
             Validator.validateMaxInputLength(jli, 200);
             //

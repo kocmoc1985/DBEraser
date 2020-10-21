@@ -40,7 +40,8 @@ public class RowDataInvert extends RowData {
     //
     private boolean editable = true;
     private boolean enabled = true;
-    private boolean JTextFieldToolTipText = false;
+    private boolean jTextFieldToolTipText = false;
+    private String  toolTipTextFixed = null;
     private boolean comboBoxMultipleValue = false;
     private boolean comboBoxFakeValue = false;
     private boolean comboBoxFixedValue = false;
@@ -177,11 +178,28 @@ public class RowDataInvert extends RowData {
     }
 
     public void enableToolTipTextJTextField() {
-        JTextFieldToolTipText = true;
+        jTextFieldToolTipText = true;
     }
+    
+    //===============================<TOOL TIP FIXED>[2020-10-21]===========================
+    
+    public void setToolTipFixed(String text){
+        this.toolTipTextFixed = text;
+    }
+    
+    public boolean toolTipFixedTextPresent(){
+        return toolTipTextFixed != null && toolTipTextFixed.isEmpty() == false;
+    }
+    
+    
+    public String getToolTipFixedText(){
+        return this.toolTipTextFixed;
+    }
+    
+    //========================</TOOL TIP FIXED>=================================
 
     public boolean toolTipTextEnabled() {
-        return JTextFieldToolTipText;
+        return jTextFieldToolTipText;
     }
 
     public void setDisabled() {

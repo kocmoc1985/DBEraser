@@ -401,6 +401,19 @@ public class TableInvert extends Table implements ControlsActionsIF {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         return tableRow.getObjectAt(1);
     }
+    
+    /**
+     * [2020-10-21]
+     * This one is for getting other values which are not shown from JCombo
+     * @param rowName
+     * @param paramToReturn
+     * @return 
+     */
+    public String getValueAtJComboBox(String rowName,int paramToReturn) {
+        TableRowInvert tableRow = getRow(getRowNrByName(rowName));
+        String value = tableRow.getValueAtJComboBox(1, paramToReturn);
+        return value;
+    }
 
     public String getValueAt(String rowName) {
         TableRow tableRow = getRow(getRowNrByName(rowName));

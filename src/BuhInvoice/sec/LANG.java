@@ -81,6 +81,8 @@ public class LANG {
     public static String MSG_18 = "Återställning misslyckades, den angivna användaren finns ej";
     public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
     
+    public static String MSG_19 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
