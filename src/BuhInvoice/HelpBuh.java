@@ -59,6 +59,29 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
+    public static void shareAccount(String userEmailToShareWith) {
+        //
+        HashMap<String, String> map = new HashMap();
+        //
+        map.put("share_with_user", userEmailToShareWith);
+        //
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
+        //
+        try {
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_SHARE_ACCOUNT, JSon.hashMapToJSON(map));
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
     public static AccountRestoreStatus restorePwd(String emailUserName) {
         //
         HashMap<String, String> map = new HashMap();

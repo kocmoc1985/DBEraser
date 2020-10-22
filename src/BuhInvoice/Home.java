@@ -31,6 +31,7 @@ public class Home extends Basic_Buh {
 
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
+    protected Table TABLE_INVERT_4;
     private final String VALIDATION__V_ERR_0 = "V_ERR_0"; // user or pass parameters not set
     private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
     private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
@@ -47,6 +48,20 @@ public class Home extends Basic_Buh {
     protected void startUp() {
         loadCheckBoxSaveLoginState();
         refresh();
+    }
+    
+    protected void processShareAccount(){
+        //
+        if (fieldsValidated_tableInvert_4(false)) {
+            //
+            HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_4, DB.START_COLUMN);
+            //
+            String userEmailToShareWith = map.get(DB.BUH_LICENS__USER);
+            //
+            HelpBuh.shareAccount(userEmailToShareWith);
+            //
+        }
+        //
     }
 
     protected void processForgotPass() {
@@ -104,6 +119,7 @@ public class Home extends Basic_Buh {
         showTableInvert();
         showTableInvert_2();
         showTableInvert_3();
+        showTableInvert_4();
     }
 
     protected void loggaIn() {
@@ -207,10 +223,14 @@ public class Home extends Basic_Buh {
         return false;
     }
 
+    
+    /**
+     * LOG IN
+     */
     @Override
     public void showTableInvert() {
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "login");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -220,6 +240,9 @@ public class Home extends Basic_Buh {
         //
     }
 
+    /**
+     * CREATE ACCOUNT
+     */
     public void showTableInvert_2() {
         //
         TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
@@ -232,15 +255,31 @@ public class Home extends Basic_Buh {
         //
     }
 
+    /**
+     * RESTORE ACCOUNT
+     */
     public void showTableInvert_3() {
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "register_new");
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "restore");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_restore_password, TABLE_INVERT_3);
         //
         addTableInvertRowListener(TABLE_INVERT_3, this);
+        //
+    }
+    
+     public void showTableInvert_4() {
+        //
+        // Yes, it's correct that "getConfigTableInvert_3()" is used
+        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
+        TABLE_INVERT_4 = null;
+        TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
+        showTableInvert(bim.jPanel_share_account, TABLE_INVERT_4);
+        //
+        addTableInvertRowListener(TABLE_INVERT_4, this);
         //
     }
 
@@ -288,6 +327,20 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
+    
+    public RowDataInvert[] getConfigTableInvert_4() {
+        //
+        RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
+//        user.setToolTipFixed("E-post");
+        //
+        RowDataInvert[] rows = {
+            user
+        };
+        //
+        return rows;
+    }
+    
+    
 
     @Override
     protected boolean fieldsValidated(boolean insert) {
@@ -337,6 +390,22 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
+    
+    private boolean fieldsValidated_tableInvert_4(boolean insert) {
+        //
+        if (containsEmptyObligatoryFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
+            HelpA.showNotification(LANG.MSG_2);
+            return false;
+        }
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
+            HelpA.showNotification(LANG.MSG_1);
+            return false;
+        }
+        //
+        return true;
+        //
+    }
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
@@ -370,6 +439,9 @@ public class Home extends Basic_Buh {
             Validator.validateEmail(jli);
         }
         //
+        else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_4)) {
+            Validator.validateEmail(jli);
+        }
     }
 
     /**
