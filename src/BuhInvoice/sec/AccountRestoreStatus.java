@@ -12,7 +12,7 @@ package BuhInvoice.sec;
 public class AccountRestoreStatus {
 
     private final String responce;
-    private final String ARS_ERR_01__USER_NOT_EXIST = "ARS_ERR_01";
+    private final String ARS_ERR_02__USER_NOT_EXIST = "ARS_ERR_01";
     private final String ARS_ERR_01__OTHER = "ARS_ERR_02";
     private String messageToShow;
 
@@ -29,7 +29,7 @@ public class AccountRestoreStatus {
         //
         if (responce == null || responce.isEmpty() || responce.equals("null")) {
             this.messageToShow = LANG.MSG_18_1;
-        } else if (responce.equals(ARS_ERR_01__USER_NOT_EXIST)) {
+        } else if (responce.equals(ARS_ERR_02__USER_NOT_EXIST)) {
             this.messageToShow = LANG.MSG_18;
         } else if (responce.equals(ARS_ERR_01__OTHER)) {
             this.messageToShow = LANG.MSG_18_1;
