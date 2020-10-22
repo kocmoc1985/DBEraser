@@ -72,7 +72,7 @@ public class LANG {
 
     public static String MSG_16_0 = "Registrering lyckades, kolla din e-post för lösenord!";
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
-    public static String MSG_16_1 = "Kunde ej skapa, användare finns redan";
+    public static String MSG_16_1 = "Kunde ej skapa, den angivna användaren finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";
     
     public static String MSG_17 = "Logotypen finns redan, vill du radera den befintliga?";
@@ -82,6 +82,11 @@ public class LANG {
     public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
     
     public static String MSG_19 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
+    
+    public static String MSG_20_0 = "Delning av konto lyckades, kolla din e-post för det nya lösenordet";
+    public static String MSG_20 = "Delning av konto misslyckades, anledning oklar";
+    public static String MSG_20_1 = "Delning av konto misslyckades, en konto kan inte delas av en gästanvändare";
+    public static String MSG_20_2 = "Kunde ej slutföra, den angivna användaren finns redan";
     
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

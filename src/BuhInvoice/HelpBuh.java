@@ -11,6 +11,8 @@ import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.SMTP;
+import BuhInvoice.sec.ShareAccountStatus;
+import BuhInvoice.sec.Status;
 import forall.HelpA;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -59,11 +61,12 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
-    public static void shareAccount(String userEmailToShareWith) {
+    public static Status shareAccount(String userEmailToShareWith) {
         //
         HashMap<String, String> map = new HashMap();
         //
         map.put("share_with_user", userEmailToShareWith);
+        map.put(DB.BUH_KUND__NAMN,GP_BUH.CUSTOMER_COMPANY_NAME);
         //
         map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
         map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
@@ -76,8 +79,11 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_SHARE_ACCOUNT, JSon.hashMapToJSON(map));
             //
+            return new ShareAccountStatus(responce);
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return new ShareAccountStatus(null);
         }
         //
     }

@@ -43,7 +43,7 @@ os varchar(50) DEFAULT '',
 lang varchar(20) DEFAULT '',
 pc_user_name varchar(100) DEFAULT '',
 java varchar(100) DEFAULT '',
-date_created date DEFAULT CURDATE(),
+date_created timestamp DEFAULT CURRENT_TIMESTAMP(),
 Foreign key (kundId) references buh_kund(kundId),
 UNIQUE (user)
 );

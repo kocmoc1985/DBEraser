@@ -1,3 +1,18 @@
+________________________________________________________________________________________________________
+[SHARING OF USER ACCOUNT][2020-10-22]
+
+PHP see: "_http_buh.php" -> "shareAccount()"
+Java see: "HelpBuh.class" -> shareAccount(String userEmailToShareWith)
+
+USERNAME('user') -> IS UNIQUE on DB level
+
+[GUEST ACCOUNT FORMAT]
+Guest account format: "guest_[kundId]_[email]" -> "guest_21_kocmoc1985@gmail.com"
+
+[GUEST ACCOUNT RESTRICTIONS]
+No possibility to share account
+
+________________________________________________________________________________________________________
 [CREATION OF USER ACCOUNT][2020-10-14]
 
 PHP see: "_http_buh.php" -> "createAccountMain()"
