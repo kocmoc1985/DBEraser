@@ -244,7 +244,6 @@ public class InvoiceA_Insert_ extends Invoice_ {
         String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
         RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", false, true, false);
         //
-        
         //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
