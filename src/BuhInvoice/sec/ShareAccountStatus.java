@@ -23,7 +23,7 @@ public class ShareAccountStatus extends Status{
     @Override
     protected void defineStatus() {
         //
-        if (responce == null || responce.isEmpty() || responce.equals("null")) {
+        if (responce == null || responce.isEmpty() || responce.equals("null")|| responce.contains("_ERR_")) {
             setMessage(null, LANG.MSG_20);
         } else if (responce.equals(SAS_ERR_01__KUND_ID__NOT_DEFINED)) {
             setMessage(SAS_ERR_01__KUND_ID__NOT_DEFINED, LANG.MSG_20);

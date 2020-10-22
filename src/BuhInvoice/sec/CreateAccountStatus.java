@@ -34,7 +34,7 @@ public class CreateAccountStatus {
 
     private void defineStatus() {
         //
-        if (responce == null || responce.isEmpty() || responce.equals("null")) {
+        if (responce == null || responce.isEmpty() || responce.equals("null") || responce.contains("_ERR_")) {
             this.messageToShow = LANG.MSG_16;
         } else if (responce.equals(CAS_ERR_01__USER_EXIST)) {
             this.messageToShow = LANG.MSG_16_1;
