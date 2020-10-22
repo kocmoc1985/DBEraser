@@ -191,6 +191,7 @@ public class Validator {
     private static boolean setValidated(JLinkInvert jli) {
         //
         if (jli instanceof JTextFieldInvert) {
+            //
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             //
             jtf.setSaveEmptyStringValue();

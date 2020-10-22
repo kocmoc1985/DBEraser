@@ -13,13 +13,16 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-Validation of removing digital input and setting "0" per aut, was not a good idea. Need to be documented: see: Validator.java -> line:198
+Backup of all data
+
+Prepare distribution with installation maker
 
 Implement security check for failing login in row
 
 Implement öres avrundning, and rounding of total --- OR??
 
-Implement share of the account with another USER.
+Implement share of the account with another USER:
+1. For sharing the account send to php: user & pass -> at php, the kundId will be defined -> The new user wiil be bound to the existing/defined kundId 
 
 Making installers for MAC OS:
 https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-software
