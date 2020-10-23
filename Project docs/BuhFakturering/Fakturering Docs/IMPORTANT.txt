@@ -50,7 +50,24 @@ On [2020-10-13] i noticed that sending a "" (empty) value caused that the value 
 
 ________________________________________________________________________________________________________
 
-[SEMI COLON, COMMA & PLUS SEND JSON][2020-08-25][2020-09-17]
+[RECIEVING VALUE FROM PHP WHICH CONTAINS ";" (PHP->JAVA)] [2020-10-23] [UNSOLVED]
+
+Consider the aquired string below, pay attention at "date_created";"2020-10-23 09;11;49"
+HTTP REQ VAL: {"user";"guest_21_kocmoc1985@gmail.com","date_created";"2020-10-23 09;11;49"}
+
+So the problem is that when i recieve such param -> "date_created";"2020-10-23 09;11;49"
+the JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars) -> Will failure, because of splitting difficulties because of to many ";".
+So as the result it will put following into the map --------> map.put("date_created","2020-10-23 09")
+
+So have a look at: JSon.class->JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars)--->String[] jsonObj = entry.split(";")
+
+
+The place where this problems exist is:
+Home.class-> addRowJTableSharedUsers(HashMap<String, String> map,JTable table)---->.substring(0, 9)
+
+________________________________________________________________________________________________________
+
+[SEMI COLON, COMMA & PLUS SEND JSON (JAVA->PHP)][2020-08-25][2020-09-17]
 
 So the "special chars" which are replaced are: ":" -> "," -> "+"
 

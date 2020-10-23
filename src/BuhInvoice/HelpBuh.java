@@ -66,11 +66,12 @@ public class HelpBuh {
         map.put("share_with_user", userEmailToShareWith);
         map.put(DB.BUH_KUND__NAMN, GP_BUH.CUSTOMER_COMPANY_NAME);
         //
-        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
-        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
-        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
-        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
-        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
+        // It does not make sence sending this parameters as they are the same as for master account
+//        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+//        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+//        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+//        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+//        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
             //

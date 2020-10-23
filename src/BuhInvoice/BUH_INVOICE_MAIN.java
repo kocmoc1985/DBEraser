@@ -536,6 +536,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel_share_account = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jButton_share_account = new javax.swing.JButton();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTable_shared_users = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -730,6 +733,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jTable_shared_users.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane17.setViewportView(jTable_shared_users);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel15.setText("Du delar konto med följande användare");
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -737,11 +757,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jPanel_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel_restore_password, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel14)
+                        .addComponent(jPanel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                        .addComponent(jPanel_restore_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                                 .addGroup(jPanel19Layout.createSequentialGroup()
@@ -751,10 +772,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                                 .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                                 .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_register_new_user)))
-                    .addComponent(jLabel11)
-                    .addComponent(jButton_forgot_password)
-                    .addComponent(jButton_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton_register_new_user))
+                        .addComponent(jLabel11)
+                        .addComponent(jButton_forgot_password)
+                        .addComponent(jButton_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane17)))
                 .addContainerGap(875, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
@@ -786,7 +808,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addComponent(jPanel_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_share_account)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(270, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -2309,6 +2335,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2366,6 +2393,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     protected javax.swing.JScrollPane jScrollPane1_faktura;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2384,6 +2412,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JTable jTable_invoiceB_faktura_artiklar;
     protected javax.swing.JTable jTable_kund_adresses;
     protected javax.swing.JTable jTable_kunder;
+    protected javax.swing.JTable jTable_shared_users;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     protected javax.swing.JTextArea jTextArea_faktura_komment;

@@ -21,6 +21,9 @@ import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,13 +34,13 @@ public class Home extends Basic_Buh {
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Table TABLE_INVERT_4;
-    private final String VALIDATION__V_ERR_0 = "V_ERR_0"; // user or pass parameters not set
-    private final String VALIDATION__V_ERR_01 = "V_ERR_01"; // user does not exist
-    private final String VALIDATION__V_ERR_02 = "V_ERR_02"; // password wrong
 
     public static final String CHECK_BOX__SAVE_LOGIN_STATE = "chkbox";
 
     private static final String LOGIN = "E-POST - ANVÄNDARNAMN";
+    //
+    private static final String TABLE_SHARED_USERS__USER = "ANVÄNDARE";
+    private static final String TABLE_SHARED_USERS__DATE_CREATED = "SKAPAD";
 
     public Home(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -46,7 +49,55 @@ public class Home extends Basic_Buh {
     @Override
     protected void startUp() {
         loadCheckBoxSaveLoginState();
+        fillJTableHeader();
         refresh();
+    }
+
+    private void fillJTableHeader() {
+        //
+        JTable table = this.bim.jTable_shared_users;
+        //
+        String[] headers_b = {
+            TABLE_SHARED_USERS__USER,
+            TABLE_SHARED_USERS__DATE_CREATED
+        };
+        //
+        table.setModel(new DefaultTableModel(null, headers_b));
+        //
+    }
+    
+    private void fillSharedUsersTable(){
+        //
+        JTable table = bim.jTable_shared_users;
+        //
+        String req = bim.getSELECT(DB.BUH_LICENS__KUND_ID, GP_BUH.KUND_ID);
+        //
+         try {
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM__SHARED_USERS, req);
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(responce);
+            //
+            for (HashMap<String, String> map : invoices) {
+                addRowJTableSharedUsers(map, table);
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void addRowJTableSharedUsers(HashMap<String, String> map,JTable table){
+        //
+        Object[] jtableRow = new Object[]{
+            map.get(DB.BUH_LICENS__USER),
+            map.get(DB.BUH_LICENS__DATE_CREATED).substring(0, 10)
+        };
+        //
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(jtableRow);
+        //
     }
 
     protected void processShareAccount() {
@@ -121,6 +172,11 @@ public class Home extends Basic_Buh {
         showTableInvert_2();
         showTableInvert_3();
         showTableInvert_4();
+        //
+        if(GP_BUH.loggedIn()){
+            fillSharedUsersTable();
+        }
+        //
     }
 
     protected void loggaIn() {
@@ -302,12 +358,12 @@ public class Home extends Basic_Buh {
         //
         RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_KUND__ORGNR, "ORGNR", "", true, true, true);
         //
-        if(GP_BUH.loggedIn()){
-           user.setDisabled();
-           ftg_name.setDisabled();
-           org_nr.setDisabled();
-           bim.jButton_register_new_user.setEnabled(false);
-        }else{
+        if (GP_BUH.loggedIn()) {
+            user.setDisabled();
+            ftg_name.setDisabled();
+            org_nr.setDisabled();
+            bim.jButton_register_new_user.setEnabled(false);
+        } else {
             bim.jButton_register_new_user.setEnabled(true);
         }
         //
@@ -324,10 +380,10 @@ public class Home extends Basic_Buh {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
         //
-        if(GP_BUH.loggedIn()){
-           user.setDisabled();
-           bim.jButton_forgot_password.setEnabled(false);
-        }else{
+        if (GP_BUH.loggedIn()) {
+            user.setDisabled();
+            bim.jButton_forgot_password.setEnabled(false);
+        } else {
             bim.jButton_forgot_password.setEnabled(true);
         }
         //

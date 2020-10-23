@@ -103,6 +103,7 @@ public class DB {
     public static final String PHP_FUNC_LATEST = "get_latest"; // using php-finction: "latest()"
     public static final String PHP_FUNC_DELETE = "delete_entry"; // using php-finction: "latest()"
     //
+     public static final String PHP_FUNC_PARAM__SHARED_USERS = "get_shared_users"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FTG_NAME = "get_ftg_name"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
@@ -242,6 +243,9 @@ public class DB {
     public static final String BUH_FAKTURA_SEND__SEND_DATUM = "send_datum";
     public static final String BUH_FAKTURA_SEND__ANNAT = "annat";
     //
+    public static final String BUH_LICENS__LICENS_ID = "licensId";
+    public static final String BUH_LICENS__KUND_ID = "kundId";
+    public static final String BUH_LICENS__MASTER = "master";
     public static final String BUH_LICENS__USER = "user";
     public static final String BUH_LICENS__PASS = "pass";
     public static final String BUH_LICENS__MAC_ADDR = "mac";
@@ -249,4 +253,5 @@ public class DB {
     public static final String BUH_LICENS__LANG = "lang";
     public static final String BUH_LICENS__PC_USER_NAME = "pc_user_name";
     public static final String BUH_LICENS__JAVA = "java";
+    public static final String BUH_LICENS__DATE_CREATED = "date_created";
 }
