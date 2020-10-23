@@ -13,11 +13,9 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-Implement share of the account with another USER:
-1. For sharing the account send to php: user & pass -> at php, the kundId will be defined -> The new user wiil be bound to the existing/defined kundId ---> [DONE]
-2. Make check, exist already... ? -> It appears to be a problem -> 
+Show table with users which you are sharing account with, also implement possibility for deleting and "password renewal"
 
-guest_[licensId]_kocmoc1985@gmail.com
+Version check - it should checked wether a new version is available
 
 Backup of all data
 

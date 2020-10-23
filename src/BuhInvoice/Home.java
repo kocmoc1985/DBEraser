@@ -213,15 +213,6 @@ public class Home extends Basic_Buh {
             HttpResponce resp = new HttpResponce(responce, null);
             resp.defineStatus();
             //
-//            if (responce.equals(VALIDATION__V_ERR_0)) {
-//                // This on can infact never happen [2020-10-09]
-//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_0);
-//            } else if (responce.equals(VALIDATION__V_ERR_01)) {
-//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_01);
-//            } else if (responce.equals(VALIDATION__V_ERR_02)) {
-//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_02);
-//            }
-            //
         }
         //
         return false;
@@ -311,6 +302,15 @@ public class Home extends Basic_Buh {
         //
         RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_KUND__ORGNR, "ORGNR", "", true, true, true);
         //
+        if(GP_BUH.loggedIn()){
+           user.setDisabled();
+           ftg_name.setDisabled();
+           org_nr.setDisabled();
+           bim.jButton_register_new_user.setEnabled(false);
+        }else{
+            bim.jButton_register_new_user.setEnabled(true);
+        }
+        //
         RowDataInvert[] rows = {
             user,
             ftg_name,
@@ -323,6 +323,13 @@ public class Home extends Basic_Buh {
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
+        //
+        if(GP_BUH.loggedIn()){
+           user.setDisabled();
+           bim.jButton_forgot_password.setEnabled(false);
+        }else{
+            bim.jButton_forgot_password.setEnabled(true);
+        }
         //
         RowDataInvert[] rows = {
             user

@@ -2274,13 +2274,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_delete_reminder_msg;
     protected javax.swing.JButton jButton_delete_smtp_settings;
     private javax.swing.JButton jButton_edit_faktura;
-    private javax.swing.JButton jButton_forgot_password;
+    protected javax.swing.JButton jButton_forgot_password;
     private javax.swing.JButton jButton_inbetalning;
     private javax.swing.JButton jButton_kontant_faktura;
     private javax.swing.JButton jButton_kredit_faktura;
-    private javax.swing.JButton jButton_logg_in;
+    protected javax.swing.JButton jButton_logg_in;
     protected javax.swing.JButton jButton_print_faktura;
-    private javax.swing.JButton jButton_register_new_user;
+    protected javax.swing.JButton jButton_register_new_user;
     private javax.swing.JButton jButton_save_reminder_msg;
     protected javax.swing.JButton jButton_save_smtp_settings;
     protected javax.swing.JButton jButton_search_by_kund;
