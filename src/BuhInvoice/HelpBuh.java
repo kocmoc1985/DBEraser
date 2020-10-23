@@ -177,6 +177,23 @@ public class HelpBuh {
         //
     }
 
+    public static void deleteGuestAccount(String guestUser) {
+        HashMap<String, String> map = new HashMap();
+        map.put(DB.BUH_LICENS__USER, guestUser);
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE_GUEST, JSon.hashMapToJSON(map));
+            //
+            System.out.println("response: " + response);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
     public static void main(String[] args) {
         //
 //        GP_BUH.USER = "mixcont";

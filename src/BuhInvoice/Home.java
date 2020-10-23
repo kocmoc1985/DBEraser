@@ -100,6 +100,11 @@ public class Home extends Basic_Buh {
         //
     }
 
+    protected void processDeleteGuest(){
+        String guestUser = HelpA.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
+        HelpBuh.deleteGuestAccount(guestUser);
+    }
+    
     protected void processShareAccount() {
         //
         if (fieldsValidated_tableInvert_4(false)) {
@@ -112,6 +117,7 @@ public class Home extends Basic_Buh {
             //
             responce.defineStatus();
             //
+            refresh();
         }
         //
     }

@@ -84,6 +84,7 @@ public class DB {
     public static final String PHP_FUNC_SHARE_ACCOUNT = "share_user_account"; 
     //
     public static final String PHP_FUNC_DELETE_CUSTOMER__A = "delete_customer_a"; // 
+    public static final String PHP_FUNC_DELETE_GUEST = "delete_guest";
     //
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT = "send_email_with_attachment"; // using php-function: "email()"
     public static final String PHP_FUNC_EMAIL_WITH_ATTACHMENT__SMTP = "send_email_with_attachment_smtp"; // using php-function: "email_smtp()"
