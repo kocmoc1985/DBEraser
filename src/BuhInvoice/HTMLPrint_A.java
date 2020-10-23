@@ -82,7 +82,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
 //            "table {border: 1px solid black}",//----------------------------->!!!!!!
-            "td {border: 1px solid black;}",//------------------------------------>!!!!!
+            "td {border: 1px solid gray;}",//------------------------------------>!!!!!
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
@@ -90,7 +90,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ".paddingLeft {padding-left: 5px;}",
             ".bold {font-weight:800;}", // font-weight:800;
             ".no-border {border: 0px}", // search for: [#no-border#]
-            ".border-a {border: 1px solid black;}"
+            ".border-a {border: 1px solid gray;}"
         //    
         };
         //
@@ -389,7 +389,7 @@ public class HTMLPrint_A extends HTMLPrint {
     
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
-        String html_ = "<table class='marginTop' style='border: 1px solid black'>";
+        String html_ = "<table class='marginTop' style='border: 1px solid gray'>";
         //
         html_ += "<span class='no-border'>";
         //

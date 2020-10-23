@@ -13,6 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Printpreview not working when going to FAKTURA tab directly
+
 Show table with users which you are sharing account with, also implement possibility for deleting and "password renewal"
 SELECT * from buh_licens where kundId=21 and master=0 
 
