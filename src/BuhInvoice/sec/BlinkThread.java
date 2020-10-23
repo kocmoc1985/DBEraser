@@ -21,6 +21,7 @@ public class BlinkThread implements Runnable {
 
     private final JComponent component;
     private final boolean red;
+    private static boolean ready = true;
 
     public BlinkThread(JComponent component, boolean red) {
         this.component = component;
@@ -29,6 +30,9 @@ public class BlinkThread implements Runnable {
     }
 
     private void startThread() {
+        if(ready == false){
+            return;
+        }
         Thread x = new Thread(this);
         x.start();
     }
@@ -46,6 +50,7 @@ public class BlinkThread implements Runnable {
 
     private void blink(JComponent jc, Color color) {
 //        System.out.println("FILE CHANGED");
+        ready = false;
         if (jc != null) {
             Border prevBorder = jc.getBorder();
             jc.setBorder(BorderFactory.createLineBorder(color, 2));
@@ -55,6 +60,8 @@ public class BlinkThread implements Runnable {
             jc.setBorder(BorderFactory.createLineBorder(color, 2));
             wait_(500);
             jc.setBorder(prevBorder);
+            //
+            ready = true;
         }
     }
 
