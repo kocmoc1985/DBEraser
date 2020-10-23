@@ -70,7 +70,7 @@ public class LANG {
     public static String MSG_15_4 = "E-Post skickades, SMTP inställningar fungerar!";
     public static String MSG_15_5 = "E-Post skickades ej, prova att ändra inställningar";
 
-    public static String MSG_16_0 = "Registrering lyckades, kolla din e-post för lösenord!";
+    public static String MSG_16_0 = "Registrering lyckades, kolla din e-post för lösenord! Kolla i \"skräppost\" om du inte hittar e-post från oss";
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
     public static String MSG_16_1 = "Kunde ej skapa, den angivna användaren finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";

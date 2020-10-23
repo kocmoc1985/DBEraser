@@ -281,17 +281,17 @@ public class InvoiceB extends Basic_Buh {
         //
         bim.hideShowButtonsDependingOnConditions();
     }
-    
-    private void showLowPriorityKomment(){
+
+    private void showLowPriorityKomment() {
         //
-        if(bim.jTextArea_faktura_komment.getText().isEmpty()){
-          //
-          String fakturannr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
-          //
-          if(fakturannr_alt.equals("0") == false){
-              bim.jTextArea_faktura_komment.setText("Alternativ fakturanummer: " + fakturannr_alt);
-          }
-          //
+        if (bim.jTextArea_faktura_komment.getText().isEmpty()) {
+            //
+            String fakturannr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
+            //
+            if (fakturannr_alt.equals("0") == false) {
+                bim.jTextArea_faktura_komment.setText("Alternativ fakturanummer: " + fakturannr_alt);
+            }
+            //
         }
         //
     }
@@ -519,8 +519,12 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
             //
-            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
-            HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
+            try {
+                HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
+                HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
+            } catch (Exception ex) {
+                
+            }
             //
         }
         //
@@ -849,9 +853,9 @@ public class InvoiceB extends Basic_Buh {
         //
         JTable table;
         //
-        if(preview){
+        if (preview) {
             table = bim.jTable_InvoiceA_Insert_articles;
-        }else{
+        } else {
             table = bim.jTable_invoiceB_faktura_artiklar;
         }
         //
@@ -892,15 +896,15 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private String getFakturaNrCommonOrAlt(){
+    private String getFakturaNrCommonOrAlt() {
         String fakturanr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
-        if(fakturanr_alt.equals("0") == false){
+        if (fakturanr_alt.equals("0") == false) {
             return _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
-        }else{
+        } else {
             return _get(TABLE_ALL_INVOICES__FAKTURANR);
         }
     }
-    
+
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -1004,16 +1008,16 @@ public class InvoiceB extends Basic_Buh {
 
     }
 
-    private String getFakturaNrAltIfExist(Invoice_ invoice){
-        TableInvert ti3 = (TableInvert)invoice.TABLE_INVERT_3;
+    private String getFakturaNrAltIfExist(Invoice_ invoice) {
+        TableInvert ti3 = (TableInvert) invoice.TABLE_INVERT_3;
         String fakturanr_alt = ti3.getValueAt(DB.BUH_FAKTURA__FAKTURANR_ALT);
-        if(fakturanr_alt.equals("0") == false){
+        if (fakturanr_alt.equals("0") == false) {
             return fakturanr_alt;
-        }else{
+        } else {
             return "-";
         }
     }
-    
+
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
