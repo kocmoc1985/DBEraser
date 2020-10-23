@@ -2188,7 +2188,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_update);
         }
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton_logg_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_logg_inActionPerformed

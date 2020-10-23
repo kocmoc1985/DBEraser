@@ -284,7 +284,7 @@ public class InvoiceB extends Basic_Buh {
 
     private void showLowPriorityKomment() {
         //
-        if (bim.jTextArea_faktura_komment.getText().isEmpty()) {
+        if (bim.jTextArea_faktura_komment.getText().isEmpty() && bim.jTable_invoiceB_alla_fakturor.getRowCount() != 0) {
             //
             String fakturannr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
             //
