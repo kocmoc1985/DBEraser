@@ -45,6 +45,7 @@ public class HttpResponce {
         map.put("CAS_ERR_01", LANG.MSG_16_1);
         map.put("CAS_ERR_02", LANG.MSG_16_2);
         //
+        map.put("DG_ERR_01",LANG.MSG_21_1);
     }
 
     private void showNotification(String errMsg) {

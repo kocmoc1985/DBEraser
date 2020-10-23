@@ -177,9 +177,11 @@ public class HelpBuh {
         //
     }
 
-    public static void deleteGuestAccount(String guestUser) {
+    public static HttpResponce deleteGuestAccount(String guestUser) {
+        //
         HashMap<String, String> map = new HashMap();
-        map.put(DB.BUH_LICENS__USER, guestUser);
+        //
+        map.put("guest", guestUser);
         //
         try {
             //
@@ -188,8 +190,11 @@ public class HelpBuh {
             //
             System.out.println("response: " + response);
             //
+            return new HttpResponce(response, LANG.MSG_21_0);
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return new HttpResponce(null, LANG.MSG_21_0);
         }
         //
     }

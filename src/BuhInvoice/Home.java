@@ -101,8 +101,14 @@ public class Home extends Basic_Buh {
     }
 
     protected void processDeleteGuest(){
+        //
         String guestUser = HelpA.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
-        HelpBuh.deleteGuestAccount(guestUser);
+        //
+        HttpResponce res = HelpBuh.deleteGuestAccount(guestUser);
+        //
+        refresh();
+        //
+        res.defineStatus();
     }
     
     protected void processShareAccount() {
@@ -172,14 +178,20 @@ public class Home extends Basic_Buh {
     private boolean saveInloggning() {
         return bim.jCheckBox_spara_inloggning.isSelected();
     }
+    
+    private JTable getJTable(){
+        return bim.jTable_shared_users;
+    }
 
     protected void refresh() {
+        //
         showTableInvert();
         showTableInvert_2();
         showTableInvert_3();
         showTableInvert_4();
         //
         if(GP_BUH.loggedIn()){
+            HelpA.clearAllRowsJTable(getJTable());
             fillSharedUsersTable();
         }
         //

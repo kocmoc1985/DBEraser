@@ -88,6 +88,9 @@ public class LANG {
     public static String MSG_20_1 = "Delning av konto misslyckades, en konto kan inte delas av en gästanvändare";
     public static String MSG_20_2 = "Kunde ej slutföra, den angivna användaren finns redan";
     
+    public static String MSG_21_0 = "Kontodelning borttagen";
+    public static String MSG_21_1 = "Ett okänt fel inträffade";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
