@@ -6,13 +6,11 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
-import BuhInvoice.sec.AccountRestoreStatus;
-import BuhInvoice.sec.CreateAccountStatus;
 import BuhInvoice.sec.EmailSendingStatus;
+import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
+import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
-import BuhInvoice.sec.ShareAccountStatus;
-import BuhInvoice.sec.Status;
 import forall.HelpA;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -61,12 +59,12 @@ public class HelpBuh {
         return http_get_content_post(url);
     }
 
-    public static Status shareAccount(String userEmailToShareWith) {
+    public static HttpResponce shareAccount(String userEmailToShareWith) {
         //
         HashMap<String, String> map = new HashMap();
         //
         map.put("share_with_user", userEmailToShareWith);
-        map.put(DB.BUH_KUND__NAMN,GP_BUH.CUSTOMER_COMPANY_NAME);
+        map.put(DB.BUH_KUND__NAMN, GP_BUH.CUSTOMER_COMPANY_NAME);
         //
         map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
         map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
@@ -79,16 +77,16 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_SHARE_ACCOUNT, JSon.hashMapToJSON(map));
             //
-            return new ShareAccountStatus(responce);
+            return new HttpResponce(responce, LANG.MSG_20_0);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return new ShareAccountStatus(null);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_20_0);
         }
         //
     }
 
-    public static AccountRestoreStatus restorePwd(String emailUserName) {
+    public static HttpResponce restorePwd(String emailUserName) {
         //
         HashMap<String, String> map = new HashMap();
         //
@@ -100,11 +98,11 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_RESTORE_PWD, JSon.hashMapToJSON(map));
             //
-            return new AccountRestoreStatus(responce);
+            return new HttpResponce(responce, LANG.MSG_18_0);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return new AccountRestoreStatus(null);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_18_0);
         }
     }
 
@@ -117,7 +115,7 @@ public class HelpBuh {
      * @param orgnr
      * @return
      */
-    public static CreateAccountStatus createAccountPHP_main(String emailUserName, String ftgname, String orgnr) {
+    public static HttpResponce createAccountPHP_main(String emailUserName, String ftgname, String orgnr) {
         //[#SEQURITY#]
         //
         HashMap<String, String> map = new HashMap();
@@ -144,11 +142,11 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_CREATE_ACCOUNT_MAIN, JSon.hashMapToJSON(map));
             //
-            return new CreateAccountStatus(responce);
+            return new HttpResponce(responce, LANG.MSG_16_0);
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return new CreateAccountStatus(null);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0);
         }
         //
     }

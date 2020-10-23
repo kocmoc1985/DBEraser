@@ -15,10 +15,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
-import BuhInvoice.sec.AccountRestoreStatus;
-import BuhInvoice.sec.CreateAccountStatus;
+import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
-import BuhInvoice.sec.Status;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
@@ -50,8 +48,8 @@ public class Home extends Basic_Buh {
         loadCheckBoxSaveLoginState();
         refresh();
     }
-    
-    protected void processShareAccount(){
+
+    protected void processShareAccount() {
         //
         if (fieldsValidated_tableInvert_4(false)) {
             //
@@ -59,9 +57,9 @@ public class Home extends Basic_Buh {
             //
             String userEmailToShareWith = map.get(DB.BUH_LICENS__USER);
             //
-            Status status = HelpBuh.shareAccount(userEmailToShareWith);
+            HttpResponce responce = HelpBuh.shareAccount(userEmailToShareWith);
             //
-            status.showNotification();
+            responce.defineStatus();
             //
         }
         //
@@ -75,9 +73,9 @@ public class Home extends Basic_Buh {
             //
             String userEmail = map.get(DB.BUH_LICENS__USER);
             //
-            AccountRestoreStatus ars = HelpBuh.restorePwd(userEmail);
+            HttpResponce responce = HelpBuh.restorePwd(userEmail);
             //
-            HelpA.showNotification(ars.getMessage());
+            responce.defineStatus();
             //
         }
         //
@@ -93,9 +91,9 @@ public class Home extends Basic_Buh {
             String ftgName = map.get(DB.BUH_KUND__NAMN);
             String orgnr = map.get(DB.BUH_KUND__ORGNR);
             //
-            CreateAccountStatus cas = HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
+            HttpResponce responce = HelpBuh.createAccountPHP_main(userEmail, ftgName, orgnr);
             //
-            HelpA.showNotification(cas.getMessage());
+            responce.defineStatus();
             //
         }
         //
@@ -142,8 +140,8 @@ public class Home extends Basic_Buh {
             refresh();
             getFtgName();
             setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
-            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
-            bim.allInvoicesTabClicked();
+//            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+//            bim.allInvoicesTabClicked();
             //
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
@@ -212,21 +210,23 @@ public class Home extends Basic_Buh {
             }
         } else {
             //
-            if (responce.equals(VALIDATION__V_ERR_0)) {
-                // This on can infact never happen [2020-10-09]
-                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_0);
-            } else if (responce.equals(VALIDATION__V_ERR_01)) {
-                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_01);
-            } else if (responce.equals(VALIDATION__V_ERR_02)) {
-                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_02);
-            }
+            HttpResponce resp = new HttpResponce(responce, null);
+            resp.defineStatus();
+            //
+//            if (responce.equals(VALIDATION__V_ERR_0)) {
+//                // This on can infact never happen [2020-10-09]
+//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_0);
+//            } else if (responce.equals(VALIDATION__V_ERR_01)) {
+//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_01);
+//            } else if (responce.equals(VALIDATION__V_ERR_02)) {
+//                HelpA.showNotification(LANG.VALIDATION_MSG__V_ERR_02);
+//            }
             //
         }
         //
         return false;
     }
 
-    
     /**
      * LOG IN
      */
@@ -272,8 +272,8 @@ public class Home extends Basic_Buh {
         addTableInvertRowListener(TABLE_INVERT_3, this);
         //
     }
-    
-     public void showTableInvert_4() {
+
+    public void showTableInvert_4() {
         //
         // Yes, it's correct that "getConfigTableInvert_3()" is used
         TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
@@ -330,10 +330,17 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_4() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
+        //
+        if (GP_BUH.loggedIn() == false) {
+            user.setDisabled();
+            bim.jButton_share_account.setEnabled(false);
+        } else {
+            bim.jButton_share_account.setEnabled(true);
+        }
 //        user.setToolTipFixed("E-post");
         //
         RowDataInvert[] rows = {
@@ -342,8 +349,6 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
-    
 
     @Override
     protected boolean fieldsValidated(boolean insert) {
@@ -377,7 +382,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     private boolean fieldsValidated_tableInvert_3(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
@@ -393,7 +398,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     private boolean fieldsValidated_tableInvert_4(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
@@ -443,8 +448,7 @@ public class Home extends Basic_Buh {
         //
         else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_3)) {
             Validator.validateEmail(jli);
-        }
-        //
+        } //
         else if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT_4)) {
             Validator.validateEmail(jli);
         }

@@ -47,6 +47,10 @@ public class GP_BUH {
     public static boolean TRACKING_TOOL_TIP_ENABLED = true;
     //
     public static String KUND_ID;
+    //
+    public static boolean loggedIn(){
+       return KUND_ID != null;
+    }
     /*
      * By [2020-10-07]
      * For MixCont test Bolag "kundId=1" use: "mixcont"/"mixcont4765"

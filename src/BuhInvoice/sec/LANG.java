@@ -83,7 +83,7 @@ public class LANG {
     
     public static String MSG_19 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
     
-    public static String MSG_20_0 = "Delning av konto lyckades, kolla din e-post för det nya lösenordet";
+    public static String MSG_20_0 = "Delning av konto lyckades, e-post med lösenordet har skickats";
     public static String MSG_20 = "Delning av konto misslyckades, anledning oklar";
     public static String MSG_20_1 = "Delning av konto misslyckades, en konto kan inte delas av en gästanvändare";
     public static String MSG_20_2 = "Kunde ej slutföra, den angivna användaren finns redan";
