@@ -23,14 +23,21 @@ PROBLEM WITH **UT8-8** FOR EMAIL SUBJECT AND ATTACHED FILENAME
 The problem is that if send "Påminnelse" for subject it will not be displayed correctly because: 
 "The subject line of an e-mail is a header by itself, and headers must contain only ASCII characters" -> taken from: "https://www.telemessage.com/developer/faq/how-do-i-encode-non-ascii-characters-in-an-email-subject-line/"
 
-SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******JAVA->PHP*****:
-See: "_http_buh.php" -> "email()" -> "$email->Subject = '=?utf-8?B?'.base64_encode($subject).'?='; 
-
-SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******PHP->PHP*****:
-See: "_http_buh.php" ->  "sendMailLocal($from_email, $from_name, $to, $subject, $body)" --> $email->Subject = utf8_decode($subject); *******************[2020-10-15]
+SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******PHP->PHP, JAVA->PHP*****:
+OBS! This applies to PHPMailer.php module
+$email->CharSet = 'UTF-8'; --> This is by the moment used in to places: "sendMailLocal($from_email, $from_name, $to, $subject, $body)"
+and in: "smtp()"
 
 SOLVING THE PROBLEM WITH "FILENAME":
 By [2020-09-30] i don't have any perfect solution. So i only replace "å" with "a" for the filename.
 See: "HTMLPrint.class" -> "getPdfFileName()"
 
+______
+
+[THE BELOW SOLUTIONS ARE OUTDATED - IT ONLY MADE IT WORKING FOR GMAIL][2020-10-24]
+SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******JAVA->PHP*****:
+See: "_http_buh.php" -> "email()" -> "$email->Subject = '=?utf-8?B?'.base64_encode($subject).'?='; 
+
+SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******PHP->PHP*****:
+See: "_http_buh.php" ->  "sendMailLocal($from_email, $from_name, $to, $subject, $body)" --> $email->Subject = utf8_decode($subject); *******************[2020-10-15]
 ________________________________________________________________________________________________________

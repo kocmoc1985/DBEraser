@@ -2001,8 +2001,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         // "FAKTURA HTTP" BTN
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
+                //
                 invoiceA_insert.insertOrUpdate();
-                invoiceB.refresh_sync(null);// OBS! Important [2020-10-11]
+                //
+                if (invoiceB != null) {
+                    invoiceB.refresh_sync(null);// OBS! Important [2020-10-11]  
+                } else {
+                    invoiceB = new InvoiceB(this);
+                }
+                //
                 openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //

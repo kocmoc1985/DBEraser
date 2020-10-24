@@ -12,7 +12,6 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 )as `MAKULERADE`
 
 -------------- 
-Faktura cannot be created if FAKTURA tab is opened directly
 
 Printpreview not working when going to FAKTURA tab directly
 
