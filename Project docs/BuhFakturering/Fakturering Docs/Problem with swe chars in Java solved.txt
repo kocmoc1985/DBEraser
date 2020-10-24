@@ -25,7 +25,8 @@ The problem is that if send "Påminnelse" for subject it will not be displayed co
 
 SOLVING THE PROBLEM WITH "SUBJECT" --> OBS! THIS APPLIES TO WHEN SENT ******PHP->PHP, JAVA->PHP*****:
 OBS! This applies to PHPMailer.php module
-$email->CharSet = 'UTF-8'; --> This is by the moment used in to places: "sendMailLocal($from_email, $from_name, $to, $subject, $body)"
+$email->CharSet = 'UTF-8'; --> This is by the moment used in to places: 
+"sendMailLocal($from_email, $from_name, $to, $subject, $body)"
 and in: "smtp()"
 
 SOLVING THE PROBLEM WITH "FILENAME":
