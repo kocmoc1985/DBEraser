@@ -22,6 +22,7 @@ public class BlinkThread implements Runnable {
     private final JComponent component;
     private final boolean red;
     private static boolean ready = true;
+    private boolean blinkText = false;
 
     public BlinkThread(JComponent component, boolean red) {
         this.component = component;
@@ -29,8 +30,12 @@ public class BlinkThread implements Runnable {
         startThread();
     }
 
+    public void setBlinkText() {
+        this.blinkText = true;
+    }
+
     private void startThread() {
-        if(ready == false){
+        if (ready == false) {
             return;
         }
         Thread x = new Thread(this);
@@ -39,17 +44,23 @@ public class BlinkThread implements Runnable {
 
     @Override
     public void run() {
-        
+        if (blinkText) {
+            if (red) {
+                blinkText(component, Color.red);
+            } else {
+                blinkText(component, Color.green);
+            }
+        } else {
             if (red) {
                 blink(component, Color.red);
             } else {
                 blink(component, Color.green);
             }
-        
+        }
+
     }
 
     private void blink(JComponent jc, Color color) {
-//        System.out.println("FILE CHANGED");
         ready = false;
         if (jc != null) {
             Border prevBorder = jc.getBorder();
@@ -60,6 +71,22 @@ public class BlinkThread implements Runnable {
             jc.setBorder(BorderFactory.createLineBorder(color, 2));
             wait_(500);
             jc.setBorder(prevBorder);
+            //
+            ready = true;
+        }
+    }
+
+    private void blinkText(JComponent jc, Color color) {
+        ready = false;
+        if (jc != null) {
+            Color prevColor = jc.getForeground();
+            jc.setForeground(color);
+            wait_(500);
+            jc.setForeground(prevColor);
+            wait_(500);
+            jc.setForeground(color);
+            wait_(500);
+            jc.setForeground(prevColor);
             //
             ready = true;
         }

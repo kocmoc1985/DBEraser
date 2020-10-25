@@ -49,9 +49,7 @@ public class GP_BUH {
     //
     public static String KUND_ID;
     //
-    public static boolean loggedIn(){
-       return KUND_ID != null;
-    }
+    
     /*
      * By [2020-10-07]
      * For MixCont test Bolag "kundId=1" use: "mixcont"/"mixcont4765"
@@ -65,14 +63,24 @@ public class GP_BUH {
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     private static final String LOGO_PATH = "io/logo.png";
 
-    public static final String LOGO_PATH() {
-        return "io/logo_" + KUND_ID + ".png";
-    }
+    
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
+    public static final String LOGO_PATH() {
+        return "io/logo_" + KUND_ID + ".png";
+    }
+    
+    public static boolean loggedIn(){
+       return KUND_ID != null;
+    }
+    
+    public static boolean isGuestUser(){
+        return !(USER == null || !USER.contains("guest_"));
+    }
+    
     public static String replaceColon(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll(":", "#");

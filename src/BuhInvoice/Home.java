@@ -15,11 +15,13 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -164,6 +166,8 @@ public class Home extends Basic_Buh {
 
     private void setInloggningsLabel(String text) {
         bim.jLabel_inloggning.setText(text);
+        BlinkThread bt = new BlinkThread(bim.jLabel_inloggning, false);
+        bt.setBlinkText();
     }
 
     private void loadCheckBoxSaveLoginState() {
@@ -214,6 +218,7 @@ public class Home extends Basic_Buh {
             refresh();
             getFtgName();
             setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
+            //
 //            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
 //            bim.allInvoicesTabClicked();
             //
@@ -416,7 +421,7 @@ public class Home extends Basic_Buh {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
         //
-        if (GP_BUH.loggedIn() == false) {
+        if (GP_BUH.loggedIn() == false || GP_BUH.isGuestUser()) {
             user.setDisabled();
             bim.jButton_share_account.setEnabled(false);
         } else {
