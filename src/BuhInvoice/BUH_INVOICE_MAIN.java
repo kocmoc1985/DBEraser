@@ -101,10 +101,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         home = new Home(this);
         //
-//        invoiceB = new InvoiceB(this);
-//        HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
-//        jtable_InvoiceB_all_invoices_clicked();
-        //
         invoiceA_update = new InvoiceA_Update(this);
         //
         setUneditableAllJTables();

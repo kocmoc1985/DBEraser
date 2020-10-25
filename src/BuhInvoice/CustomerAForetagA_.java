@@ -227,6 +227,8 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
         HelpA.clearAllRowsJTable(table);
         //
+        HelpA.rowsorter_jtable_add_reset(table);
+        //
         String json = bim.getSELECT_kundId();
         //
         String phpFunc = "";
