@@ -365,6 +365,10 @@ public class Home extends Basic_Buh {
         String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS, "");
         RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
         //
+        if (GP_BUH.loggedIn()) {
+            bim.jButton_logg_in.setEnabled(false);
+        }
+        //
         RowDataInvert[] rows = {
             user,
             pass

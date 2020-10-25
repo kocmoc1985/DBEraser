@@ -1855,6 +1855,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton_delete_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articleActionPerformed
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_4_2) == false) {
+            return;
+        }
+        //
         articlesA.delete();
     }//GEN-LAST:event_jButton_delete_articleActionPerformed
 
@@ -1885,6 +1890,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
+        //
+        if (isMakulerad()) {
+            HelpA.showNotification_separate_thread(LANG.MSG_9);
+        }
+        //
         String fakturatype = getFakturaType();
 //        System.out.println("AA " + fakturaTyp);
         invoiceB.htmlFakturaOrReminder(fakturatype, false);
@@ -2250,6 +2260,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_share_accountActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         home.processDeleteGuest();
     }//GEN-LAST:event_jButton2ActionPerformed
 
