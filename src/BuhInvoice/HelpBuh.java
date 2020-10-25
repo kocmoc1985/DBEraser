@@ -479,7 +479,10 @@ public class HelpBuh {
         String result = "";
         while ((inputLine = in.readLine()) != null) {
             result += inputLine;
+            
         }
+        //
+        System.out.println("BYTES TOTAl: " + result.getBytes().length + "   URL: " + url_.toString());
         //
         String[] arr = result.split("###");
         //

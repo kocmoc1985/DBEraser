@@ -1,0 +1,34 @@
+[METRICS]
+
+1 KB - 1000 B
+1 MB - 1024 KB, 1000 000 B
+
+_____________________________________________________________________________________________________
+
+[MEASSURE PERFORMANCE]
+
+See HelpBuh.class:
+
+while ((inputLine = in.readLine()) != null) {
+            result += inputLine;
+            
+}
+        
+System.out.println("BYTES TOTAl: " + result.getBytes().length + "   URL: " + url_.toString());
+
+
+12 INVOICES:
+BYTES TOTAl: 6748   URL: http://www.mixcont.com/php/_http_buh.php?get_kund_fakturor=true&json={"kundId";"21","where";"kundId","user";"andrej.brassas@gmail.com","pass";"L5xpPomI41"}
+
+11 INVOICES: 
+BYTES TOTAl: 6198
+
+10 INVOICES:
+BYTES TOTAl: 5146
+
+_____________________
+
+10 FAKTURA ARTICLES - WITHOUT KOMMENTS
+BYTES TOTAl: 1734   URL: http://www.mixcont.com/php/_http_buh.php?get_faktura_articles=true&json={"fakturaId";"257","where";"fakturaId","user";"andrej.brassas@gmail.com","pass";"L5xpPomI41"}
+
+_____________________________________________________________________________________________________
