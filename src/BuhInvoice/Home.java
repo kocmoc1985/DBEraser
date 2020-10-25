@@ -166,8 +166,8 @@ public class Home extends Basic_Buh {
 
     private void setInloggningsLabel(String text) {
         bim.jLabel_inloggning.setText(text);
-        BlinkThread bt = new BlinkThread(bim.jLabel_inloggning, false);
-        bt.setBlinkText();
+//        BlinkThread bt = new BlinkThread(bim.jLabel_inloggning, false);
+//        bt.setBlinkText();
     }
 
     private void loadCheckBoxSaveLoginState() {
@@ -219,8 +219,8 @@ public class Home extends Basic_Buh {
             getFtgName();
             setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
             //
-//            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
-//            bim.allInvoicesTabClicked();
+            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+            bim.allInvoicesTabClicked();
             //
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
