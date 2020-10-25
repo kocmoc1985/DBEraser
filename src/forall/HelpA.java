@@ -727,7 +727,7 @@ public class HelpA {
         Object obj = ois.readObject();
         return obj;
     }
-    
+
     public static Object fileToObject_with_close(String path) throws IOException, ClassNotFoundException {
         FileInputStream fas = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fas);
@@ -1721,7 +1721,7 @@ public class HelpA {
     public static String getValueGivenRow(JTable table, int row, String colName) {
         return "" + table.getValueAt(row, getColByName(table, colName));
     }
-    
+
     public static String getValueSelectedRow_replace_zero(JTable table, String colName) {
         //
         int selected_row = table.getSelectedRow();
@@ -2078,7 +2078,7 @@ public class HelpA {
                         //
                     } else {
                         //
-                        list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3)));
+                        list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3), ""));
                         //
                     }
                 }
@@ -2167,7 +2167,7 @@ public class HelpA {
                         //
                     } else {
                         //
-                        list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3)));
+                        list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3), ""));
                         //
                     }
                 }
@@ -2269,7 +2269,7 @@ public class HelpA {
             while (rs.next()) {
                 String val = rs.getString(1);
                 if (val != null && val.isEmpty() == false) {
-                    list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3)));
+                    list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3), ""));
                 }
             }
             //
@@ -2412,12 +2412,14 @@ public class HelpA {
         String param_1;
         String param_2;
         String param_3;
+        String param_4;
         int paramToReturn = 1;
 
-        public ComboBoxObject(String param_1, String param_2, String param_3) {
+        public ComboBoxObject(String param_1, String param_2, String param_3, String param_4) {
             this.param_1 = param_1;
             this.param_2 = param_2;
             this.param_3 = param_3;
+            this.param_4 = param_4;
         }
 
         public void setParamToReturn(int paramToReturn) {
@@ -2429,12 +2431,22 @@ public class HelpA {
             paramMap.put(1, param_1);
             paramMap.put(2, param_2);
             paramMap.put(3, param_3);
+            paramMap.put(4, param_4);
             return paramMap.get(paramToReturn);
         }
 
+//        @Override
+//        public String toString() {
+//            return param_1;
+//        }
         @Override
         public String toString() {
-            return param_1;
+            if (param_4 != null || param_4.isEmpty() == false) {
+                return param_1 + "  " + param_4;
+            } else {
+                return param_1;
+            }
+
         }
 
         public String getParam_1() {
@@ -2453,7 +2465,7 @@ public class HelpA {
     public static class ComboBoxObjectB extends ComboBoxObject {
 
         public ComboBoxObjectB(String param_1, String param_2, String param_3) {
-            super(param_1, param_2, param_3);
+            super(param_1, param_2, param_3, "");
         }
 
         @Override
@@ -2465,7 +2477,7 @@ public class HelpA {
     public static class ComboBoxObjectC extends ComboBoxObject {
 
         public ComboBoxObjectC(String param_1, String param_2, String param_3) {
-            super(param_1, param_2, param_3);
+            super(param_1, param_2, param_3, "");
         }
 
         @Override
@@ -2529,11 +2541,13 @@ public class HelpA {
             ComboBoxObject cbo = null;
             //
             if (arr_obj.length == 1) {
-                cbo = new ComboBoxObject(arr_obj[0], "", "");
+                cbo = new ComboBoxObject(arr_obj[0], "", "", "");
             } else if (arr_obj.length == 2) {
-                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "");
+                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], "", "");
             } else if (arr_obj.length == 3) {
-                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], arr_obj[2]); // [2020-08-19]
+                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], arr_obj[2], ""); // [2020-08-19]
+            } else if (arr_obj.length == 4) {
+                cbo = new ComboBoxObject(arr_obj[0], arr_obj[1], arr_obj[2], arr_obj[3]); // [2020-10-24]
             }
             //
             cbo.setParamToReturn(paramToReturn);
@@ -2716,10 +2730,6 @@ public class HelpA {
         }
     }
 
-  
-
-    
-    
     /**
      * VERY
      * IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -2777,11 +2787,11 @@ public class HelpA {
         long ms_date2 = dateToMillisConverter3(date2, date_format2);
         return ms_date1 - ms_date2;
     }
-    
-     public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2){
-        long diff= get_diff_between_two_dates(date1, date_format1, date2, date_format2);
+
+    public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2) {
+        long diff = get_diff_between_two_dates(date1, date_format1, date2, date_format2);
         long days = diff / 86400000;
-        return (int)days;
+        return (int) days;
     }
 
     public static String get_proper_date_yyyy_MM_dd() {
@@ -3064,8 +3074,8 @@ public class HelpA {
         //
         return joined_properties;
     }
-    
-     public static boolean isInteger(String str) {
+
+    public static boolean isInteger(String str) {
         //
         if (str.contains("f") || str.contains("F") || str.contains("d") || str.contains("D")) {
             return false;
@@ -3078,7 +3088,6 @@ public class HelpA {
             return false;
         }
     }
-    
 
     public static boolean isNumber(String str) {
         //
@@ -3093,23 +3102,23 @@ public class HelpA {
             return false;
         }
     }
-    
+
     public static String getJavaVersionAndBitAndVendor_b() {
         return System.getProperty("java.version") + "_" + System.getProperty("sun.arch.data.model") + "_" + System.getProperty("java.vendor");
     }
-    
+
     public static String getOperatingSystem() {
         return System.getProperty("os.name");
     }
-    
+
     public static String getUserLanguge() {
         return System.getProperty("user.language");
     }
-    
-     public static String getUserName() {
+
+    public static String getUserName() {
         return System.getProperty("user.name");
     }
-    
+
     public static String getMacAddress() {
         InetAddress ip;
         try {

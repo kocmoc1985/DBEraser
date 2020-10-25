@@ -251,7 +251,7 @@ public class RowDataInvert extends RowData {
                 HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);
                 //
                 if (enableEmptyValue) {
-                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", ""));
+                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", "",""));
                 } else {
                     jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
                 }

@@ -354,6 +354,8 @@ public class JSon {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";
             } else if (keys.length == 3) {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";
+            }else if(keys.length == 4){
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ";"+ map.get(keys[3]) + ",";
             }
             //
         }
