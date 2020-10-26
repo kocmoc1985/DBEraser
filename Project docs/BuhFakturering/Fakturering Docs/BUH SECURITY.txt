@@ -15,6 +15,9 @@ Search for tag [#KUND-ID-INSERT#] in the Java project
 [MAKE URGENTLY]: search for usage of "GP_BUH.KUND_ID"
 In all cases with insert replace with "777" and mark the place with [#KUND-ID-INSERT#] tag
 
+[MAKE URGENTLY, NEXT]
+delete() function does not use prepared quries AND does not explicetly use the "kundId", which is dangerous
+
 To check later:
 exist() funtction still using "mysqli". Also recieving "kundId" from USER
 ________________________________________________________________________________________________________
