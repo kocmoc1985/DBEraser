@@ -489,6 +489,7 @@ public class JSon {
     private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
         //
         LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true);
+        LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true);
         //
         String str = "";
         //
@@ -499,7 +500,8 @@ public class JSon {
             String key = hk.getKeyValue();
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
-            str += key + ";" + value_id + ";" + value_price + ",";
+            String art_nr = mapArtNr.get(key);
+            str += key + ";" + value_id + ";" + value_price + ";"+ art_nr + ",";
         }
         //
         return str;
