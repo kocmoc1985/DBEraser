@@ -313,7 +313,7 @@ public class ArticlesA extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, getKundId());
+        map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, "777"); //[#KUND-ID-INSERT#]
         //
         String json = JSon.hashMapToJSON(map);
         //

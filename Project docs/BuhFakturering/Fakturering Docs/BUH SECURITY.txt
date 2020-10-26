@@ -11,6 +11,7 @@ OBS! NOTE: The user MUST send the "kundId" in any case, this is needed for creat
 has no meaning and is replaced with the real "kundId" at the PHP-Side.
 Search for tag [#KUND-ID-INSERT#] in the Java project
 
+OBS! [#KUND-ID-INSERT#] tag is valid not only for insert
 
 [MAKE URGENTLY]: search for usage of "GP_BUH.KUND_ID"
 In all cases with insert replace with "777" and mark the place with [#KUND-ID-INSERT#] tag

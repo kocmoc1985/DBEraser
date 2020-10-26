@@ -699,17 +699,16 @@ public class InvoiceB extends Basic_Buh {
     private boolean copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
         //
         for (HashMap<String, String> article_row_map : faktura_articles) {
+            //
             article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
             article_row_map.remove(DB.BUH_F_ARTIKEL__ID); // [IMPORTANT]
             article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___NAMN); // [IMPORTANT]
             article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___ARTNR); // [IMPORTANT]
             article_row_map = JSon.removeEntriesWhereValueNullOrEmpty(article_row_map);
             //
-            article_row_map.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID);
+            article_row_map.put(DB.BUH_F_ARTIKEL__KUND_ID, "777"); // [#KUND-ID-INSERT#]
             //
         }
-        //
-
         //
         return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
         //

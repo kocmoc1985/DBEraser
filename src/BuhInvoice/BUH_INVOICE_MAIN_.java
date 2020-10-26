@@ -457,7 +457,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         map.put("column", columnName);
         map.put("value", value);
         map.put("table", tableName);
-        map.put("kundId", getKundId());
+        map.put("kundId", "777"); // [#KUND-ID-INSERT#]
         //
         return JSon.hashMapToJSON(map);
     }
@@ -468,7 +468,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
         map.put("column", columnName);
         map.put("table", tableName);
-        map.put("kundId", getKundId());
+        map.put("kundId", "777"); //[#KUND-ID-INSERT#]
         //
         return JSon.hashMapToJSON(map);
     }

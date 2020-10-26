@@ -86,7 +86,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
-        map.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID); // [2020-10-15]
+        map.put(DB.BUH_F_ARTIKEL__KUND_ID, "777"); // [#KUND-ID-INSERT#]
         //
         this.articlesList.add(map);
 //        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);

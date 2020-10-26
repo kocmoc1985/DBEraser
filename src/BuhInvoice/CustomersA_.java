@@ -187,7 +187,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, getKundId()); // required
+        map.put(DB.BUH_FAKTURA_KUND__KUND_ID, "777"); //[#KUND-ID-INSERT#]
         //
         map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated()); // required
         //

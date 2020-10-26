@@ -35,7 +35,7 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint_Backup extends javax.swing.JFrame {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final BUH_INVOICE_MAIN_ bim;
     private final ArrayList<HashMap<String, String>> articles_map_list;
     private final HashMap<String, String> map_a_0;
     private final HashMap<String, String> map_a;
@@ -53,7 +53,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint_Backup(
-            BUH_INVOICE_MAIN bim,
+            BUH_INVOICE_MAIN_ bim,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,
@@ -784,11 +784,11 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         try {
            upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HTMLPrint_Backup.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
 //        System.out.println("Upload to PHP: " + upload_success);
