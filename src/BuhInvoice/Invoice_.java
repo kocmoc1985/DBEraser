@@ -537,10 +537,6 @@ public abstract class Invoice_ extends Basic_Buh {
         Collections.sort(list, new MomsComporator());
         //
         //
-//        list.forEach((a) -> {
-//            System.out.println(a.getMomsSats() + "  : " + a.getSum() + ", ");
-//        });
-        //
         double momsSats = 0.25;
         //
         if (list.isEmpty() == false) {
@@ -548,7 +544,6 @@ public abstract class Invoice_ extends Basic_Buh {
         }
         //
         MOMS_SATS__FRAKT_AND_EXP_AVG = momsSats;
-//        System.out.println("Defined MOMS SATS: " + momsSats);
         //
         return (frakt + expAvg) * momsSats;
     }
@@ -719,7 +714,7 @@ public abstract class Invoice_ extends Basic_Buh {
         String fixedComboValues_a = JSon._get__with_merge(
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
-                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS}));
+                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS,DB.BUH_FAKTURA_ARTIKEL___ARTNR}));
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();

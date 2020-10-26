@@ -11,11 +11,13 @@ import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import icons.ICON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -134,13 +136,29 @@ public class InvoiceB extends Basic_Buh {
         }
     }
 
+    private void checkIfForfallnaFakturorExist() {
+        //
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        JButton button = bim.jButton_send_reminder;
+        int forfallna = GP_BUH.countForfallnaFakturorJTable(table, TABLE_ALL_INVOICES__FORFALLODATUM);
+        //
+        if (forfallna > 0) {
+            button.setIcon(ICON.getImageIcon("bell_b.png", 32, 32));
+        } else {
+            button.setIcon(ICON.getImageIcon("bell.png", 32, 32));
+        }
+        //
+        button.setToolTipText(LANG.TOOL_TIP_1(forfallna));
+        //
+    }
+
     protected void refresh_sync(String secondWhereValue) {
         //#THREAD#
         fillFakturaTable(secondWhereValue);
+        checkIfForfallnaFakturorExist();
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
-
         //
     }
 
@@ -148,6 +166,7 @@ public class InvoiceB extends Basic_Buh {
         //#THREAD#
         Thread x = new Thread(() -> {
             fillFakturaTable(secondWhereValue);
+            checkIfForfallnaFakturorExist();
             HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
@@ -172,10 +191,12 @@ public class InvoiceB extends Basic_Buh {
             }
             //
             fillFakturaTable(null);
+            checkIfForfallnaFakturorExist();
             //
             HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
+
         });
         //
         x.start();
@@ -523,7 +544,7 @@ public class InvoiceB extends Basic_Buh {
                 HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
                 HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
             } catch (Exception ex) {
-                
+
             }
             //
         }

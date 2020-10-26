@@ -75,23 +75,23 @@ public class LANG {
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
     public static String MSG_16_1 = "Kunde ej skapa, den angivna användaren finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";
-    
+
     public static String MSG_17 = "Logotypen finns redan, vill du radera den befintliga?";
 
     public static String MSG_18_0 = "Återställning lyckades, kolla din e-post för det nya lösenordet";
     public static String MSG_18 = "Återställning misslyckades, den angivna användaren finns ej";
     public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
-    
+
     public static String MSG_19 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
-    
+
     public static String MSG_20_0 = "Delning av konto lyckades, e-post med lösenordet har skickats";
     public static String MSG_20 = "Delning av konto misslyckades, anledning oklar";
     public static String MSG_20_1 = "Delning av konto misslyckades, en konto kan inte delas av en gästanvändare";
     public static String MSG_20_2 = "Kunde ej slutföra, den angivna användaren finns redan";
-    
+
     public static String MSG_21_0 = "Kontodelning borttagen";
     public static String MSG_21_1 = "Ett okänt fel inträffade";
-    
+
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
@@ -101,6 +101,21 @@ public class LANG {
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
+
+    public static String TOOL_TIP_1 = "Skicka påminnelse";
+
+    public static String TOOL_TIP_1(int antalForfallna) {
+        //
+        String basicStr = "Skicka påminnelse";
+        //
+        if (antalForfallna == 1) {
+            return basicStr + " (du har " + antalForfallna + " förfallen faktura)";
+        } else if (antalForfallna > 1) {
+            return basicStr + " (du har " + antalForfallna + " förfallna fakturor)";
+        } else {
+            return basicStr;
+        }
+    }
 
     private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
         return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald.\n"

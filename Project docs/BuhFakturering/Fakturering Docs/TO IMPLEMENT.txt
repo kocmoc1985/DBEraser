@@ -13,15 +13,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-HelpA -> countSumJTable() ->countOcurrenciesJTable()
-ue = (String) table.getModel().getValueAt(row, col);
-String dateNow = getDate_yyyy_MM_dd();
-boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, cellValue, DATE_FORMAT_BASIC);
-
 Printpreview not working when going to FAKTURA tab directly
-
-Show table with users which you are sharing account with, also implement possibility for deleting and "password renewal"
-SELECT * from buh_licens where kundId=21 and master=0 
 
 Version check - it should checked wether a new version is available
 

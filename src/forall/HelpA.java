@@ -4,8 +4,10 @@
  */
 package forall;
 
+import BuhInvoice.DB;
 import static BuhInvoice.GP_BUH.DATE_FORMAT_BASIC;
 import static BuhInvoice.GP_BUH.getDate_yyyy_MM_dd;
+import BuhInvoice.InvoiceB;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
@@ -1178,27 +1180,7 @@ public class HelpA {
         //
     }
 
-    public static int countOcurrenciesJTable(JTable table, String colName) {
-        //
-        for (int x = 0; x < table.getRowCount(); x++) {
-            //
-            int col = HelpA.getColByName(table, colName);
-            //
-            String val = (String) table.getValueAt(x, col);
-            //
-            if (val == null || val.isEmpty() || val.equals("null")) {
-                continue;
-            }
-            //
-            String dateNow = getDate_yyyy_MM_dd();
-            boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, val, DATE_FORMAT_BASIC);
-            //    
-            //
-        }
-        //
-        return 0;
-        //
-    }
+    
 
     /**
      * [2020-08-26]

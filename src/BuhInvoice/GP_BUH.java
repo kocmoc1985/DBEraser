@@ -34,6 +34,7 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
+import supplementary.HelpM;
 
 /**
  *
@@ -138,6 +139,8 @@ public class GP_BUH {
             return val;
         }
     }
+    
+    
 
     public static void enableDisableButtons(JPanel parent, boolean enabled) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -295,6 +298,8 @@ public class GP_BUH {
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage();
     }
+    
+   
 
     private static String chooseFile(Component parent) {
         JFileChooser chooser = new JFileChooser();
@@ -313,6 +318,36 @@ public class GP_BUH {
         } else {
             return null;
         }
+    }
+    
+    public static int countForfallnaFakturorJTable(JTable table, String colName) {
+        //
+        int forfallna = 0;
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = HelpA.getColByName(table, colName);
+            //
+            String val = (String) table.getValueAt(x, col);
+            //
+            if (val == null || val.isEmpty() || val.equals("null")) {
+                continue;
+            }
+            //
+            String dateNow = getDate_yyyy_MM_dd();
+            boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, val, DATE_FORMAT_BASIC);
+            boolean isBetald = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
+            boolean isMakulerad = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
+            boolean isFakturaTypeNormal = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
+            //
+            if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false){
+                forfallna++;
+            }
+            //
+        }
+        //
+        return forfallna;
+        //
     }
 
     public static DefaultTableCellRenderer getRendererForfalloDatum() {
