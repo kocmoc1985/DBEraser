@@ -762,7 +762,7 @@ public class InvoiceB extends Basic_Buh {
             faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
         }
         //
-        faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
+        faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);

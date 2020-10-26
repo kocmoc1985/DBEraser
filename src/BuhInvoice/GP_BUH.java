@@ -34,7 +34,6 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
-import supplementary.HelpM;
 
 /**
  *

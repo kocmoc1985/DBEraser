@@ -2674,6 +2674,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
+            invoiceA_update.SET_CURRENT_OPERATION_INSERT(false);
             invoiceA_update.showTableInvert_2();
         } else {
             invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true);

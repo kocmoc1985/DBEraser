@@ -173,7 +173,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
         //
-        map.put(DB.BUH_FAKTURA_INBET__KUND_ID, GP_BUH.KUND_ID);// added: [2020-10-20]
+        map.put(DB.BUH_FAKTURA_INBET__KUND_ID, "777");//[#KUND-ID-INSERT#]
         map.put(DB.BUH_FAKTURA_INBET__FAKTURA_ID, fakturaId);
         //
         String json = JSon.hashMapToJSON(map);

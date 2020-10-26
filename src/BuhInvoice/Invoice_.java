@@ -73,6 +73,7 @@ public abstract class Invoice_ extends Basic_Buh {
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
+        GP_BUH.setEnabled(bim.jButton_delete_articles_row, true);
         //
         if (articlesJTableEmpty()) {
             GP_BUH.setEnabled(bim.jButton_update_articles_row, false);

@@ -2,11 +2,18 @@
 
 KUND ID SHALL BE NEVER SENT TO PHP BUT DEFINED AT PHP-SIDE
 
-DEFINE KUND ID IN "validate()"
-
-"kundId" is now defined each time in the "validate()" function. Search for the [#$KUND_ID$#] tag
+"kundId" is now defined each time in the "validate()" function. Search for the [#$KUND_ID$#] tag -> in the _http_buh.php
 
 So function "update()" is now secured by the "kundId" which is NOT SENT by the user but validated at the PHP side
+
+The "insert()" function is now not taking into account the "kundId" sent by the user. The "kundId" is defined always on PHP side!
+OBS! NOTE: The user MUST send the "kundId" in any case, this is needed for creating the prepared query. The value which is sent
+has no meaning and is replaced with the real "kundId" at the PHP-Side.
+Search for tag [#KUND-ID-INSERT#] in the Java project
+
+
+[MAKE URGENTLY]: search for usage of "GP_BUH.KUND_ID"
+In all cases with insert replace with "777" and mark the place with [#KUND-ID-INSERT#] tag
 
 To check later:
 exist() funtction still using "mysqli". Also recieving "kundId" from USER

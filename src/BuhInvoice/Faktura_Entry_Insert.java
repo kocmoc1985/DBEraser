@@ -79,7 +79,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         String kundId = invoice.getKundId();
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, kundId);
+        this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
         this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
