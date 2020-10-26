@@ -13,6 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Create an email: faktura@mixcont.com and use it instead of ask@mixcont.com
+
 Version check - it should checked wether a new version is available
 The steps are following generate -> there shall be some method of comparing of the versions..
 So as idea is to store a file at PHP side where the last version is written.

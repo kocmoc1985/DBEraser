@@ -9,18 +9,20 @@ So function "update()" is now secured by the "kundId" which is NOT SENT by the u
 The "insert()" function is now not taking into account the "kundId" sent by the user. The "kundId" is defined always on PHP side!
 OBS! NOTE: The user MUST send the "kundId" in any case, this is needed for creating the prepared query. The value which is sent
 has no meaning and is replaced with the real "kundId" at the PHP-Side.
-Search for tag [#KUND-ID-INSERT#] in the Java project
+Search for tag [#KUND-ID-INSERT#] in the Java project.
+
+The "select()" function, is now also using "kundId" on PHP side
 
 OBS! [#KUND-ID-INSERT#] tag is valid not only for insert
 
-[MAKE URGENTLY]: search for usage of "GP_BUH.KUND_ID"
+[MAKE URGENTLY]: search for usage of "GP_BUH.KUND_ID" --> [DONE]
 In all cases with insert replace with "777" and mark the place with [#KUND-ID-INSERT#] tag
 
 [MAKE URGENTLY, NEXT]
 delete() function does not use prepared quries AND does not explicetly use the "kundId", which is dangerous
 
 To check later:
-exist() funtction still using "mysqli". Also recieving "kundId" from USER
+exist() funtction still using "mysqli". "kundId" is now set on PHP side
 ________________________________________________________________________________________________________
 [BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
 

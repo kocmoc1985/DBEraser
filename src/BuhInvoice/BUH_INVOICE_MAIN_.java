@@ -384,11 +384,11 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }
 
     protected String getSELECT_kundId() {
-        return getSELECT(DB.BUH_FAKTURA__KUNDID__, getKundId());
+        return getSELECT(DB.BUH_FAKTURA__KUNDID__, "777");// [#KUND-ID-INSERT#]
     }
 
     protected String getSELECT_kundId__doubleWhere(String secondWhereValue) {
-        return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, getKundId(), DB.BUH_FAKTURA_KUND__ID, secondWhereValue);
+        return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA_KUND__ID, secondWhereValue); // [#KUND-ID-INSERT#]
     }
 
     protected String getSELECT_fakturaKundId(String fakturaKundId) {
