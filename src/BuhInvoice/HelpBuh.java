@@ -58,6 +58,27 @@ public class HelpBuh {
         //
         return http_get_content_post(url);
     }
+    
+    public static void update(String json) {
+        //
+        try {
+            //
+            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_UPDATE_AUTO, json);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+    
+    /**
+     * @deprecated 
+     * @throws Exception 
+     */
+    public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
+        String url = buildUrl(phpScriptName, phpFunctionName, json);
+        return http_get_content_post(url);
+    }
 
     public static HttpResponce shareAccount(String userEmailToShareWith) {
         //
@@ -81,7 +102,7 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_20_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_20_0);
         }
         //
@@ -102,7 +123,7 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_18_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_18_0);
         }
     }
@@ -146,7 +167,7 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_16_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0);
         }
         //
@@ -172,7 +193,7 @@ public class HelpBuh {
             System.out.println("response: " + response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -193,7 +214,7 @@ public class HelpBuh {
             return new HttpResponce(response, LANG.MSG_21_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(null, LANG.MSG_21_0);
         }
         //
@@ -241,28 +262,15 @@ public class HelpBuh {
             GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER, JSon.hashMapToJSON(map));
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
     }
 
-    public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
-        String url = buildUrl(phpScriptName, phpFunctionName, json);
-        return http_get_content_post(url);
-    }
+    
 
-    public static void update(String json) {
-        //
-        try {
-            //
-            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_UPDATE_AUTO, json);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
+    
 
     /**
      * [2020-08-28] OBS! This one does not go via "index.php" This reduces
@@ -320,7 +328,7 @@ public class HelpBuh {
 //            System.out.println("EMAIL RESP: " + response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return ess;
@@ -360,7 +368,7 @@ public class HelpBuh {
             ess = new EmailSendingStatus(response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return ess;
@@ -398,11 +406,11 @@ public class HelpBuh {
         try {
             upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         System.out.println("Upload Succeded: " + upload_success);

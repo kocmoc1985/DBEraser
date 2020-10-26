@@ -49,7 +49,7 @@ import org.apache.commons.lang.ArrayUtils;
  */
 public abstract class HTMLPrint extends JFrame {
 
-    protected final BUH_INVOICE_MAIN bim;
+    protected final BUH_INVOICE_MAIN_ bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
     protected final HashMap<String, String> map_a_0;
     protected final HashMap<String, String> map_a;
@@ -128,7 +128,7 @@ public abstract class HTMLPrint extends JFrame {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint(
-            BUH_INVOICE_MAIN bim,
+            BUH_INVOICE_MAIN_ bim,
             String fakturatype,
             boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,
@@ -563,11 +563,11 @@ public abstract class HTMLPrint extends JFrame {
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
 //        System.out.println("Upload to PHP: " + upload_success);

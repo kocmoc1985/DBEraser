@@ -84,7 +84,7 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
     }
 
-    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceB(BUH_INVOICE_MAIN_ buh_invoice_main) {
         super(buh_invoice_main);
     }
 
@@ -702,6 +702,7 @@ public class InvoiceB extends Basic_Buh {
             article_row_map.put(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
             article_row_map.remove(DB.BUH_F_ARTIKEL__ID); // [IMPORTANT]
             article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___NAMN); // [IMPORTANT]
+            article_row_map.remove(DB.BUH_FAKTURA_ARTIKEL___ARTNR); // [IMPORTANT]
             article_row_map = JSon.removeEntriesWhereValueNullOrEmpty(article_row_map);
             //
             article_row_map.put(DB.BUH_F_ARTIKEL__KUND_ID, GP_BUH.KUND_ID);
@@ -728,7 +729,7 @@ public class InvoiceB extends Basic_Buh {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             fakturaId = "-1";
         }
         //
@@ -762,7 +763,7 @@ public class InvoiceB extends Basic_Buh {
         }
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
-        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr(kundId)); // OBS! Aquired from http
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         //
@@ -928,7 +929,7 @@ public class InvoiceB extends Basic_Buh {
 
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
-//        BUH_INVOICE_MAIN bim = invoice.bim;
+//        BUH_INVOICE_MAIN_ bim = invoice.bim;
         //
         HashMap<String, String> map_a_0 = new HashMap<>();
         HashMap<String, String> map_a = new HashMap<>();
@@ -1041,7 +1042,7 @@ public class InvoiceB extends Basic_Buh {
 
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
-//        BUH_INVOICE_MAIN bim = invoice.bim;
+//        BUH_INVOICE_MAIN_ bim = invoice.bim;
         //
         TableInvert ti = bim.getTableInvert();
         TableInvert ti_3 = bim.getTableInvert_3();

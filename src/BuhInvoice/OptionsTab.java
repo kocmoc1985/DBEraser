@@ -37,7 +37,7 @@ public class OptionsTab extends Basic_Buh {
     private final static String SMTP_PASS = "pass";
     private final static String SMTP_FROM_NAME = "name";
     
-    public OptionsTab(BUH_INVOICE_MAIN bim) {
+    public OptionsTab(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
     

@@ -61,7 +61,7 @@ public abstract class Invoice_ extends Basic_Buh {
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
 
-    public Invoice_(BUH_INVOICE_MAIN bim) {
+    public Invoice_(BUH_INVOICE_MAIN_ bim) {
         super(bim);
         initFakturaEntry_();
     }
@@ -286,10 +286,10 @@ public abstract class Invoice_ extends Basic_Buh {
         return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID);
     }
 
-    protected static String getNextFakturaNr(String kundId) {
+    protected static String getNextFakturaNr() {
         //
         HashMap<String, String> map = new HashMap<>();
-        map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
+//        map.put(DB.BUH_FAKTURA__KUNDID__, kundId);
         String json = JSon.hashMapToJSON(map);
         //
         try {
@@ -306,7 +306,7 @@ public abstract class Invoice_ extends Basic_Buh {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -409,17 +409,17 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     private void displayTotals() {
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
-        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
-        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
+        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
+        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
+        BUH_INVOICE_MAIN_.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
+        BUH_INVOICE_MAIN_.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
+        BUH_INVOICE_MAIN_.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
+        BUH_INVOICE_MAIN_.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
-        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
+        BUH_INVOICE_MAIN_.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
         //
-        BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
-        BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
+        BUH_INVOICE_MAIN_.jTextField_frakt.setText("" + getTotal(FRAKT));
+        BUH_INVOICE_MAIN_.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
     }
 
     protected void countFakturaTotal(JTable table) {

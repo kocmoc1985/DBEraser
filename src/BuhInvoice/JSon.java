@@ -40,17 +40,17 @@ public class JSon {
             for (int col = 0; col < table.getColumnCount(); col++) {
                 //
 //                if (columnIsVisible(table, col)) {
-                    //
-                    String colname;
-                    //
-                    if (dictionary == null) {
-                        colname = getColumnName(table, col);
-                    } else {
-                        colname = dictionary.get(getColumnName(table, col));
-                    }
-                    //
-                    String value = "" + table.getValueAt(row, col);
-                    map.put(colname, value);
+                //
+                String colname;
+                //
+                if (dictionary == null) {
+                    colname = getColumnName(table, col);
+                } else {
+                    colname = dictionary.get(getColumnName(table, col));
+                }
+                //
+                String value = "" + table.getValueAt(row, col);
+                map.put(colname, value);
 //                }
                 //
             }
@@ -132,7 +132,7 @@ public class JSon {
             // [#ESCAPE#] Not using since [2020-10-XX], suddenly it turned out that it's not longer needed
 //            value = StringEscapeUtils.escapeJava(value); // ******************IMPORTANT***********************
             //
-            if(value == null){
+            if (value == null) {
                 value = ""; // [#EMPTY/NULL#]SUPER IMPORTANT [2020-10-13] **************************************************
             }
             //
@@ -266,7 +266,13 @@ public class JSon {
                 value = ""; //before: value = null; [2020-10-13]*****************************************OBS!!
                 //
             } else {
-                value = jsonObj[valueIndex];
+                //
+                try {
+                    value = jsonObj[valueIndex];
+                } catch (Exception ex) {
+                    value = ""; // OBS! Important [2020-10-26]
+                }
+                //
                 if (replaceSpecialChars) {
                     value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
                     value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
@@ -279,7 +285,7 @@ public class JSon {
             } else {
                 map.put(key, value);
             }
-            
+
         }
         //
         return map;
@@ -354,8 +360,8 @@ public class JSon {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";
             } else if (keys.length == 3) {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";
-            }else if(keys.length == 4){
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ";"+ map.get(keys[3]) + ",";
+            } else if (keys.length == 4) {
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ";" + map.get(keys[3]) + ",";
             }
             //
         }
@@ -501,7 +507,7 @@ public class JSon {
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
             String art_nr = mapArtNr.get(key);
-            str += key + ";" + value_id + ";" + value_price + ";"+ art_nr + ",";
+            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + ",";
         }
         //
         return str;

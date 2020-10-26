@@ -36,7 +36,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
     private static final String TABLE_SEND__DATUM = "DATUM";
     private static final String TABLE_SEND__ANNAT = "KOMMENT";
 
-    public EditPanel_Send(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Send(BUH_INVOICE_MAIN_ bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         super(bim,isKontantFaktura, fakturaId, fakturaNr, fakturaKund);
     }
 

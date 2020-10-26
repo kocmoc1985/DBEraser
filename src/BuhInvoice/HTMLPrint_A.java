@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     public HTMLPrint_A(
-            BUH_INVOICE_MAIN bim,
+            BUH_INVOICE_MAIN_ bim,
             String fakturatype,
             boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,

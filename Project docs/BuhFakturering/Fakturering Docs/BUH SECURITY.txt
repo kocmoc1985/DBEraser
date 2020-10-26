@@ -1,3 +1,16 @@
+[FUNCTION update() SECURITY THREAT DISCOVERED]
+
+KUND ID SHALL BE NEVER SENT TO PHP BUT DEFINED AT PHP-SIDE
+
+DEFINE KUND ID IN "validate()"
+
+"kundId" is now defined each time in the "validate()" function. Search for the [#$KUND_ID$#] tag
+
+So function "update()" is now secured by the "kundId" which is NOT SENT by the user but validated at the PHP side
+
+To check later:
+exist() funtction still using "mysqli". Also recieving "kundId" from USER
+________________________________________________________________________________________________________
 [BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
 
 ________________________________________________________________________________________________________

@@ -41,7 +41,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
     //
 
     //
-    public CustomersA_(BUH_INVOICE_MAIN bim) {
+    public CustomersA_(BUH_INVOICE_MAIN_ bim) {
         super(bim);
     }
 
@@ -203,7 +203,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaKundId)) {

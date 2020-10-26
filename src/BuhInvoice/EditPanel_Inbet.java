@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener {
 
     protected Basic_Buh basic;
-    protected final BUH_INVOICE_MAIN bim;
+    protected final BUH_INVOICE_MAIN_ bim;
     private final String fakturaId;
     private final String fakturaNr;
     private final String fakturaKund;
@@ -55,7 +55,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet(BUH_INVOICE_MAIN_ bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
         this.IS_KONTANT_FAKTURA = isKontantFaktura;
