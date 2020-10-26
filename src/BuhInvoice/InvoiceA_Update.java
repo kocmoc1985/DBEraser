@@ -146,6 +146,11 @@ public class InvoiceA_Update extends Invoice_ {
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
         //
+        if(bim.isKontantFaktura()){
+            forfalo_datum.setVisible_(false);
+            betal_vilkor.setVisible_(false);
+        }
+        //
         RowDataInvert[] rows = {
             kund,
             faktura_datum,
