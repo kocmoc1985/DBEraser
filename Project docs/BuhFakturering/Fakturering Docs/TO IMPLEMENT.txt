@@ -13,6 +13,10 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Obfuscation
+
+All libraries to one jar
+
 Create an email: faktura@mixcont.com and use it instead of ask@mixcont.com
 
 Version check - it should checked wether a new version is available

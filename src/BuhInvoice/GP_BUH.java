@@ -73,6 +73,10 @@ public class GP_BUH {
         return "io/logo_" + KUND_ID + ".png";
     }
     
+    public static Image getBuhInvoicePrimIcon() {
+        return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
+    }
+    
     public static boolean loggedIn(){
        return KUND_ID != null;
     }
@@ -294,9 +298,7 @@ public class GP_BUH {
         //
     }
 
-    public static Image getBuhInvoicePrimIcon() {
-        return new ImageIcon(GP.IMAGE_ICON_URL_PROD_PLAN).getImage();
-    }
+    
     
    
 
