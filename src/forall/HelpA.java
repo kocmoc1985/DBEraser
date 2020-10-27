@@ -314,6 +314,23 @@ public class HelpA {
         }
     }
 
+    public static void setTrackingToolTip_b(JComponent jc, String text) {
+        //
+        if (jc == null) {
+            return;
+        }
+        //
+        if (jc instanceof JComboBoxA) {
+            jc.setToolTipText(text);
+        } else if (jc instanceof JComboBox) {//Combo from InvertTable
+            JComboBox box = (JComboBox) jc;
+            box.setRenderer(new MyComboBoxRenderer(text));
+        } else {
+            jc.setToolTipText(text);
+        }
+        //
+    }
+
     static class MyComboBoxRenderer extends BasicComboBoxRenderer {
 
         private String toolTipText;
@@ -1179,8 +1196,6 @@ public class HelpA {
         return true;
         //
     }
-
-    
 
     /**
      * [2020-08-26]
@@ -2448,7 +2463,7 @@ public class HelpA {
         @Override
         public String toString() {
             if (param_4 != null && param_4.isEmpty() == false) {
-                return param_1 + "  (" + param_4+ ")";
+                return param_1 + "  (" + param_4 + ")";
             } else {
                 return param_1;
             }
