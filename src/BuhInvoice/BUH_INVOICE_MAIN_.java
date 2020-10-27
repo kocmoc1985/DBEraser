@@ -2118,10 +2118,12 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
         String msg;
         //
+        String fakturaNr = getFakturaNr();
+        //
         if (isKreditFaktura) {
-            msg = LANG.FAKTURA_KREDIT_MSG(getFakturaNr());
+            msg = LANG.FAKTURA_KREDIT_MSG(fakturaNr);
         } else {
-            msg = LANG.FAKTURA_COPY_MSG_A(getFakturaNr());
+            msg = LANG.FAKTURA_COPY_MSG_A(fakturaNr);
         }
         //
         if (GP_BUH.confirm(msg) == false) {

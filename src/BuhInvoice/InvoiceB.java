@@ -643,7 +643,7 @@ public class InvoiceB extends Basic_Buh {
         //
         String fakturaNrCopy = bim.getFakturaNr();
         //
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura); // Remove/Reset some entries like "faktura datum" etc.
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -735,14 +735,17 @@ public class InvoiceB extends Basic_Buh {
         return fakturaId;
         //
     }
+    
+    
 
     private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura) {
-        //
-        String kundId = bim.getKundId();
         //
         String komment;
         //
         if (isKreditFaktura) {
+            //
+            faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
+            faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
             //
             faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KREDIT__NUM); // 1 = KREDIT FAKTURA
             faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "4"); // 4 = KREDIT FAKTURA -> shows "-" in table
@@ -752,6 +755,9 @@ public class InvoiceB extends Basic_Buh {
             //
         } else if (bim.isKontantFaktura()) {
             //
+            faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
+            faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
+            //
             faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "0");
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy;
             //
@@ -759,6 +765,7 @@ public class InvoiceB extends Basic_Buh {
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);
             faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
+            faktura_data_map = setForfalloDatumCopy(faktura_data_map);
         }
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
@@ -767,11 +774,16 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         //
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
-        faktura_data_map.remove(DB.BUH_FAKTURA__FAKTURA_DATUM);
-        faktura_data_map.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
         faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
         //
+    }
+    
+    private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
+        String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
+        String forfallodatum = HelpA.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
+        faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
+        return faktura_data_map;
     }
 
     private HashMap<String, String> getOneFakturaData() {

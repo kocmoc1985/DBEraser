@@ -1025,7 +1025,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
-
+        //
         String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }

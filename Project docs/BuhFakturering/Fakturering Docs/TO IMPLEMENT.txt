@@ -21,16 +21,11 @@ So as idea is to store a file at PHP side where the last version is written.
 
 Implemented "Updated By"
 
-Printpreview not working when going to FAKTURA tab directly
-
 Backup of all data
-
-Prepare distribution with installation maker
 
 Implement security check for failing login in row
 
 Implement öres avrundning, and rounding of total --- OR??
-
 
 
 Making installers for MAC OS:
