@@ -495,6 +495,7 @@ public abstract class Invoice_ extends Basic_Buh {
 //        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
         //
         MOMS_ARTIKLAR = MOMS_TOTAL;
+        //here below is "MOMS_SATS__FRAKT_AND_EXP_AVG" calculated
         MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(FRAKT, EXP_AVG, moms_map);
         MOMS_TOTAL += MOMS_FRAKT_AND_EXP_AVG;
         FAKTURA_TOTAL += MOMS_TOTAL;
@@ -657,7 +658,7 @@ public abstract class Invoice_ extends Basic_Buh {
 
     public RowDataInvert[] getConfigTableInvert_insert() {
         // String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
-        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS,DB.BUH_FAKTURA_ARTIKEL___ARTNR});
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS, DB.BUH_FAKTURA_ARTIKEL___ARTNR});
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
 //        articles.setUneditable();
@@ -715,7 +716,7 @@ public abstract class Invoice_ extends Basic_Buh {
         String fixedComboValues_a = JSon._get__with_merge(
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
-                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS,DB.BUH_FAKTURA_ARTIKEL___ARTNR}));
+                requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS, DB.BUH_FAKTURA_ARTIKEL___ARTNR}));
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
@@ -976,12 +977,11 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateMaxInputLength(jli, 150);
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA__FAKTURANR_ALT)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURANR_ALT)) {
             //
             Validator.validateDigitalInput(jli);
             //
-        }   
-        else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
+        } else if (col_name.equals(DB.BUH_F_ARTIKEL__KOMMENT)) {
             //
             Validator.validateMaxInputLength(jli, 200);
             //
@@ -1106,7 +1106,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
             }
             //
-            if (force && CURRENT_OPERATION_INSERT == false) {
+            if (force ) { // && CURRENT_OPERATION_INSERT == false
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_INVERT_2, "");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__ANTAL, TABLE_INVERT_2, "1");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2, "0");

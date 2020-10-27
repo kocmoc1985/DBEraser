@@ -83,6 +83,16 @@ So have a look at (regarding both ":" and ","):
 1. Basic ->  "tableInvertToHashMap(...)" -> look for: "val = val = GP_BUH.replaceColon(val,false);" -> replacing ":" with "#"
 2. JSon -> "JSONToHashMap(...)" -> look for: "value = GP_BUH.replaceColon(val,true);" -> reverse replacing "#" with ":"
 
+[2020-10-27] Consider also a very important case for copy/crediting of an invoice: JSon.class -> phpJsonResponseToHashMap__for_copy_and_krediting(String phpJsonString)
+The comment from the method is following:
+**This one is SUPER important. The problem i discovered on [2020-10-27]
+was that if i copy/kredit an invoice it failed. So it turned out that
+it was because of "," in the comment. So when the invoice was copied 
+the special characters were not "converted" as usual. So if you
+look here, consider "JSONToHashMap(json, false, 1, true, false)"
+the last "false" argument makes so that the special character are converted
+when copied**
+
 OBS! Nothing on PHP side, 1000% SURE!
 
 "artikelId";"4","kundId";"1","pris";"27.9","namn";"Dörrhandtag","komment";"Färg, guld","artikel_kategori";"A"

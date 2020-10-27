@@ -6,7 +6,6 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.HashMapKeyCaseInsensitive;
-import static forall.HelpA.columnIsVisible;
 import static forall.HelpA.getColumnName;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -237,10 +236,10 @@ public class JSon {
     }
 
     public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
-        return JSONToHashMap(json, reverse, 1, true);
+        return JSONToHashMap(json, reverse, 1, true, true);
     }
 
-    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars) {
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars, boolean specialCharsRevers) {
         //
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         //
@@ -274,9 +273,9 @@ public class JSon {
                 }
                 //
                 if (replaceSpecialChars) {
-                    value = GP_BUH.replaceColon(value, true); // value.replaceAll("#", ":");
-                    value = GP_BUH.replaceComma(value, true); // value.replaceAll("¤", ",");
-                    value = GP_BUH.replacePlus(value, true); //value.replaceAll("£", "+");
+                    value = GP_BUH.replaceColon(value, specialCharsRevers); // value.replaceAll("#", ":");
+                    value = GP_BUH.replaceComma(value, specialCharsRevers); // value.replaceAll("¤", ",");
+                    value = GP_BUH.replacePlus(value, specialCharsRevers); //value.replaceAll("£", "+");
                 }
             }
             //
@@ -308,6 +307,40 @@ public class JSon {
             return false;
         }
         //
+    }
+
+    /**
+     * [2020-10-27]
+     * This one is SUPER important. The problem i discovered on [2020-10-27]
+     * was that if i copy/kredit an invoice it failed. So it turned out that
+     * it was because of "," in the comment. So when the invoice was copied 
+     * the special characters were not "converted" as usual. So if you
+     * look here, consider "JSONToHashMap(json, false, 1, true, false)"
+     * the last "false" argument makes so that the special character are converted
+     * when copied
+     * @param phpJsonString
+     * @return 
+     */
+    public static ArrayList<HashMap<String, String>> phpJsonResponseToHashMap__for_copy_and_krediting(String phpJsonString) {
+        //
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        //
+        if (phpJsonString.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) {
+            return list;
+        }
+        //
+        ArrayList<String> jsonEnriesList = phpJsonStringSplit(phpJsonString);
+        //
+        for (String json : jsonEnriesList) {
+            //
+            // OBS!!! LAST "false" is the one which is IMPORTANT HERE----*************************
+            HashMap<String, String> map = JSONToHashMap(json, false, 1, true, false);  
+            //
+            list.add(map);
+            //
+        }
+        //
+        return list;
     }
 
     /**
@@ -494,8 +527,8 @@ public class JSon {
 
     private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
         //
-        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true);
-        LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true);
+        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true, true);
+        LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true, true);
         //
         String str = "";
         //

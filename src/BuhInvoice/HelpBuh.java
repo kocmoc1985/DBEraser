@@ -48,8 +48,8 @@ public class HelpBuh {
      */
     public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
         //
-        // OBS! Last "false" means don't replace special chars - very important [2020-10-11]
-        HashMap<String, String> map = JSONToHashMap(json, false, 1, false);
+        // OBS! Prev-Last "false" means don't replace special chars - very important [2020-10-11]
+        HashMap<String, String> map = JSONToHashMap(json, false, 1, false,false);
         //
         map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
         map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]

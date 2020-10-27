@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class EditPanel_Send extends EditPanel_Inbet {
+public class EditPanel_Send extends EditPanel_Inbet_ {
 
     private static final String TABLE_SEND__ID = "ID";
     private static final String TABLE_SEND__FAKTURA_ID = "F ID";
@@ -142,7 +142,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
             //
             //
         } catch (Exception ex) {
-            Logger.getLogger(EditPanel_Inbet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditPanel_Inbet_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {

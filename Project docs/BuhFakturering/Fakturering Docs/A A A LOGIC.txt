@@ -24,3 +24,4 @@ F. Dröjsmåls avg är kalkulerat enligt följande:
 För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms, multiplicerar med den avtalade dröjsmålsräntan
 och dividerar sedan med årets antal dagar, det vill säga 365.
 
+G. Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;

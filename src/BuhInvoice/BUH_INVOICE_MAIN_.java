@@ -760,8 +760,8 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel16.setText("LAFakturering");
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("LAFakturering...");
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -771,35 +771,32 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 .addGap(15, 15, 15)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(jButton2))
-                        .addContainerGap(1104, Short.MAX_VALUE))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel14)
-                            .addComponent(jPanel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                            .addComponent(jPanel_restore_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                                    .addGroup(jPanel19Layout.createSequentialGroup()
-                                        .addComponent(jButton_logg_in)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox_spara_inloggning))
-                                    .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                                    .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton_register_new_user))
-                            .addComponent(jLabel11)
-                            .addComponent(jButton_forgot_password)
-                            .addComponent(jButton_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane17))
+                            .addComponent(jButton2)
+                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel14)
+                                .addComponent(jPanel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                .addComponent(jPanel_restore_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                        .addGroup(jPanel19Layout.createSequentialGroup()
+                                            .addComponent(jButton_logg_in)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jCheckBox_spara_inloggning))
+                                        .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                        .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_register_new_user))
+                                .addComponent(jLabel11)
+                                .addComponent(jButton_forgot_password)
+                                .addComponent(jButton_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane17)))
                         .addContainerGap(887, Short.MAX_VALUE))))
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2097,7 +2094,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void makeInbetalning(boolean isKontantFaktura, boolean directlyAfterCreation) {
         //
-        EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
+        EditPanel_Inbet_ epb = new EditPanel_Inbet_(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
         //
         if (directlyAfterCreation) {
             epb.setHeaderAfterCreationOfKontantFaktura();

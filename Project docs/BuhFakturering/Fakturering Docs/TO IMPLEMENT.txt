@@ -13,6 +13,10 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Förfallodag och Betalningsvillkor, hur relevant är det för en Kreditfaktura
+
+Comma in komments is failing - at least when making a KreditFaktura/CopyFaktura from an existing Invoice
+
 Obfuscation
 
 All libraries to one jar

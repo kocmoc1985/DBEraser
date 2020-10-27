@@ -55,44 +55,40 @@
                           <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel16" min="-2" pref="360" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="1104" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel_share_account" pref="530" max="32767" attributes="0"/>
-                                      <Component id="jPanel_restore_password" alignment="1" pref="530" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jPanel_inloggning" alignment="0" pref="530" max="32767" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jButton_logg_in" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jCheckBox_spara_inloggning" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jPanel_share_account" pref="530" max="32767" attributes="0"/>
+                                          <Component id="jPanel_restore_password" alignment="1" pref="530" max="32767" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jPanel_inloggning" alignment="0" pref="530" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jButton_logg_in" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="jCheckBox_spara_inloggning" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jPanel_register_new" pref="530" max="32767" attributes="0"/>
+                                                  <Component id="jLabel_inloggning" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="jPanel_register_new" pref="530" max="32767" attributes="0"/>
-                                              <Component id="jLabel_inloggning" max="32767" attributes="0"/>
+                                              <Component id="jLabel10" alignment="0" min="-2" pref="257" max="-2" attributes="0"/>
+                                              <Component id="jButton_register_new_user" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jLabel10" alignment="0" min="-2" pref="257" max="-2" attributes="0"/>
-                                          <Component id="jButton_register_new_user" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton_forgot_password" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton_share_account" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane17" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton_forgot_password" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton_share_account" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane17" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="887" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          <Component id="jLabel16" min="-2" pref="328" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -347,9 +343,9 @@
                       <Font name="Tahoma" size="48" style="2"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="99" green="99" red="99" type="rgb"/>
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="LAFakturering"/>
+                    <Property name="text" type="java.lang.String" value="LAFakturering..."/>
                   </Properties>
                 </Component>
               </SubComponents>

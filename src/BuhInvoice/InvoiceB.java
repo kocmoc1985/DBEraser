@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.JSon.JSONToHashMap;
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -14,6 +15,7 @@ import forall.HelpA;
 import icons.ICON;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -656,9 +658,10 @@ public class InvoiceB extends Basic_Buh {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json);
             //
-//            System.out.println("aaaaaaaaaaaaaaaaaaaArticles: " + json_str_return);
+//            System.out.println("Articles: " + json_str_return);
             //
-            faktura_articles = JSon.phpJsonResponseToHashMap(json_str_return);
+//            faktura_articles = JSon.phpJsonResponseToHashMap(json_str_return);
+            faktura_articles = JSon.phpJsonResponseToHashMap__for_copy_and_krediting(json_str_return);
             //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
