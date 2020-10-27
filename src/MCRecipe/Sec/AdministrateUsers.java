@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateUsers extends AdministrateRecipeGroups {
+public class AdministrateUsers extends AdministrateRecipeGroups_ {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
 

@@ -84,7 +84,7 @@ public class AdminTools extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (mcRecipe.administrateRecipeGroups == null) {
             String title = "Administrate recipe groups";
-            mcRecipe.administrateRecipeGroups = new AdministrateRecipeGroups(title, mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
+            mcRecipe.administrateRecipeGroups = new AdministrateRecipeGroups_(title, mcRecipe, mcRecipe.sql, mcRecipe.sql_additional);
             mcRecipe.administrateRecipeGroups.setVisible(true);
         } else {
             mcRecipe.administrateRecipeGroups.setVisible(true);

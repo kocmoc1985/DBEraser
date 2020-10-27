@@ -29,7 +29,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class AdministrateRecipeGroups extends javax.swing.JFrame implements MouseListener {
+public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements MouseListener {
 
     protected final String TITLE;
     public final MC_RECIPE_ mc_recipe;
@@ -44,7 +44,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
     /**
      * Creates new form AdministrateUsers
      */
-    public AdministrateRecipeGroups(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateRecipeGroups_(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         initComponents();
         this.TITLE = title;
         this.mc_recipe = mc_recipe;
@@ -87,7 +87,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
             ResultSet rs = sql.execute(q, mc_recipe);
             HelpA.build_table_common(rs, jTable1, q);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         actionsAfterShowTable();
@@ -195,7 +195,6 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1320, 520));
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
 
@@ -313,7 +312,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         try {
             sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         showTable();
@@ -333,7 +332,7 @@ public class AdministrateRecipeGroups extends javax.swing.JFrame implements Mous
         try {
             sql.execute(q, mc_recipe);
         } catch (SQLException ex) {
-            Logger.getLogger(AdministrateRecipeGroups.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdministrateRecipeGroups_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         showTable();

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups {
+public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
 
     public AdministrateMixerInfoBasic(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title,mc_recipe, sql, sql_additional);

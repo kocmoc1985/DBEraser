@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateIngredGroups extends AdministrateRecipeGroups {
+public class AdministrateIngredGroups extends AdministrateRecipeGroups_ {
 
     public AdministrateIngredGroups(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title,mc_recipe, sql, sql_additional);

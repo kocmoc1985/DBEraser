@@ -19,7 +19,7 @@ import MCRecipe.Lang.VENDOR_A_B;
 import MCRecipe.Sec.AdminTools;
 import MCRecipe.Sec.AdministrateIngredGroups;
 import MCRecipe.Sec.AdministrateMixerInfoBasic;
-import MCRecipe.Sec.AdministrateRecipeGroups;
+import MCRecipe.Sec.AdministrateRecipeGroups_;
 import MCRecipe.Sec.AdministrateUsers;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Sec.JComboBox_ING_A;
@@ -97,7 +97,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public JComboBox jComboBoxVenorsTradnames = new JComboBox();
     private CompareRecipes compareRecipes;
     private AdministrateUsers administrateUsers;
-    public AdministrateRecipeGroups administrateRecipeGroups;
+    public AdministrateRecipeGroups_ administrateRecipeGroups;
     public AdministrateIngredGroups administrateIngredGroups;
     public AdministrateMixerInfoBasic administrateMixerInfoBasic;
     private AdminTools adminTools;
@@ -112,6 +112,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public final static String ROLE_DEVELOPER = "developer";
     //
     public static final HashSet<String> USER_ROLES_ADMIN_DEVELOPER_ACCESS = new HashSet<String>();
+
     //
     static {
         USER_ROLES_ADMIN_DEVELOPER_ACCESS.add(ROLE_DEVELOPER);
@@ -4153,22 +4154,27 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         }
         //</editor-fold>
         //
-        final boolean runInNetbeans = HelpA.runningInNetBeans("MCRecipe.jar");
+        boolean runInNetbeans = HelpA.runningInNetBeans(); 
+        //
+        if (runInNetbeans == false) {
+            HelpA.err_output_to_file();
+        }
         //
 //        if (runInNetbeans == false) {
 //            HelpA.err_output_to_file();
 //        }
         //
-        HelpA.err_output_to_file();
-        //
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //
                 new MC_RECIPE_().setVisible(true);
+                //
                 if (runInNetbeans == false) {
                     HelpA.console_output_to_jtextpane(jTextPane1); // must be placed here!
                 }
+                //
             }
         });
     }
