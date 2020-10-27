@@ -114,7 +114,7 @@ public class HTMLPrint_A extends HTMLPrint {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
-            return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
             return _get_colon_sep(T__FAKTURA_BETAL_METOD, map_c);
         } else {
@@ -126,7 +126,7 @@ public class HTMLPrint_A extends HTMLPrint {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
-            return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
             return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
         } else {
@@ -138,7 +138,7 @@ public class HTMLPrint_A extends HTMLPrint {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
-            return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
+            return HTMLPrint.T__FAKTURA_VALFRI_TEXT;
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
             return HTMLPrint.T__FAKTURA_VALFRI_TEXT;
         } else {
