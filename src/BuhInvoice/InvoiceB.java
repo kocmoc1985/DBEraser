@@ -56,7 +56,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
-    public static String TABLE_ALL_INVOICES__EPOST_SENT = "SKICKAD";
+    public static String TABLE_ALL_INVOICES__SKICKAD = "SKICKAD";
     public static String TABLE_ALL_INVOICES__KOMMENT_$ = "KOMMENT"; // OBS! This field will be used for diff purposes as for example like in case with kredit faktura when i save the invoice which was "krediterat"
     public static String TABLE_ALL_INVOICES__CHANGED_BY = "CHANGED BY";
     public static String TABLE_ALL_INVOICES__DATE_CREATED = "DATE CREATED";
@@ -263,7 +263,7 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__MAKULERAD,
             TABLE_ALL_INVOICES__BETALD,
-            TABLE_ALL_INVOICES__EPOST_SENT,
+            TABLE_ALL_INVOICES__SKICKAD,
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
             TABLE_ALL_INVOICES__KOMMENT_$,
             TABLE_ALL_INVOICES__CHANGED_BY,
@@ -306,12 +306,27 @@ public class InvoiceB extends Basic_Buh {
         //
         showLowPriorityKomment();
         //
-        showFakturaChangedOrCreatedBy();
+        showOtherFakturaInfo();
+        //
+        showInfoIcons();
         //
         bim.hideShowButtonsDependingOnConditions();
     }
     
-    private void showFakturaChangedOrCreatedBy() {
+    private void showInfoIcons(){
+        boolean faktura_betald = bim.isBetald();
+        boolean forfallen = bim.isForfallen();
+        boolean makulerad = bim.isMakulerad();
+        boolean skickad = bim.isSent();
+        //
+        System.out.println("BETALD: " + faktura_betald);
+        System.out.println("FORFALLEN: " + forfallen);
+        System.out.println("MAKULERAD: " + makulerad);
+        System.out.println("SKICKAD: " + skickad);
+        //
+    }
+    
+    private void showOtherFakturaInfo() {
         //
         bim.jLabel_faktura_changed_by__user.setText(""); // Reset
         //

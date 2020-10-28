@@ -748,7 +748,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
                             DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
                     //
                     Basic_Buh.executeSetFakturaSentPerEmail(fakturaId,true); // "buh_faktura" table -> update sent status
-                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+                    bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,

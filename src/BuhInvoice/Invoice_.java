@@ -173,7 +173,7 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private boolean fakturaBetald() {
         //
-        return bim.fakturaBetald();
+        return bim.isBetald();
         //
     }
 

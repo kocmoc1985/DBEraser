@@ -469,7 +469,7 @@ public abstract class HTMLPrint extends JFrame {
      */
     protected void setSentByCommonPost() {
         loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
-        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         HelpA.showNotification(LANG.MSG_10_4);
     }
 
@@ -676,7 +676,7 @@ public abstract class HTMLPrint extends JFrame {
         EditPanel_Send.insert(fakturaId, sendStatus, sendType); // "buh_faktura_send" table
         //
         Basic_Buh.executeSetFakturaSentPerEmail(fakturaId,true); // "buh_faktura" table -> update sent status
-        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         //
     }
 

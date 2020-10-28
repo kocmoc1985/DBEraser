@@ -296,7 +296,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
 
-    protected boolean fakturaBetald() {
+    protected boolean isBetald() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
         //
@@ -309,12 +309,30 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
         //
     }
+    
+    protected boolean isSent() {
+        //
+        JTable table = jTable_invoiceB_alla_fakturor;
+        //
+        if (table.getRowCount() == 0) {
+            return false;
+        }
+        //
+        String sent = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__SKICKAD);
+        //
+        return sent.equals(DB.STATIC__YES);
+        //
+    }
 
     protected boolean isForfallen() {
         //
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
         String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
         String forfallodatum = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
+        //
+        if(forfallodatum == null || forfallodatum.isEmpty()){
+            return false;
+        }
         //
         int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
@@ -2170,7 +2188,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
-        if (fakturaBetald()) {
+        if (isBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12);
         }
         //
