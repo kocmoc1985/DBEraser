@@ -1,3 +1,11 @@
+[DESKTOP PATH - FOLLOW THIS SUBJECT] [2020-10-28]
+
+I discovered that on Linas PC the faktura was not printed to desktop when choosing option, send with Outlook.
+
+I found following method for getting desktop path: javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory()
+
+I dont now if it fixes the problem with Linas PC yet
+_______________________________________________________________________________________________________
 [MOMS SATS REPLACING THE "%" IN JTABLE][2020-10-21]
 
 Search for: replaceAll("%", "")

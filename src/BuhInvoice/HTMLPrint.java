@@ -42,6 +42,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.SystemUtils;
 
 /**
  *
@@ -328,8 +329,10 @@ public abstract class HTMLPrint extends JFrame {
         return _get(map_f, DB.BUH_KUND__NAMN);
     }
 
+
     protected String getFakturaDesktopPath() {
-        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
+//        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
+        return javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory() + "/" + getPdfFileName(false);
     }
 
     protected String getEmailBody() {
@@ -643,7 +646,7 @@ public abstract class HTMLPrint extends JFrame {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false),reminder));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
@@ -675,7 +678,7 @@ public abstract class HTMLPrint extends JFrame {
         //
         EditPanel_Send.insert(fakturaId, sendStatus, sendType); // "buh_faktura_send" table
         //
-        Basic_Buh.executeSetFakturaSentPerEmail(fakturaId,true); // "buh_faktura" table -> update sent status
+        Basic_Buh.executeSetFakturaSentPerEmail(fakturaId, true); // "buh_faktura" table -> update sent status
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         //
     }
