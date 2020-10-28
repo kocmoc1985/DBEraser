@@ -3,8 +3,8 @@
 1. If the "insert" procedure is automatic like the "_http_buh.php->insert()" where the query is populated automatically depending on the
 json string recieved ---> IT'S NOT a problem when some columns are added in case if "DEFAULT" value is specified on the level of DB.
 
-1.2 It is not a problem if you added NEW columns to DB but didn't make changes on [JAVA] side -> in this case the "DEFAULT" values on DB level will fix this.
-__
+1.2 IT'S NOT A PROBLEM if you added NEW columns to DB but didn't make changes on [JAVA] side -> in this case the "DEFAULT" values on DB level will fix this.
+___
 
 1.3 Having "insert" functions which do not populate quiries automatically may cause troubles as you must always be sure that
 ammount of parameters is the same as values. Pay attention especially at those cases when such "insert" method is called from 

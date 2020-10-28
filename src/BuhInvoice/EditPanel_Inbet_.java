@@ -45,6 +45,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
     private static final String TABLE_INBET__INBET_METOD = "BETALMETOD";
     private static final String TABLE_INBET__ANNAT = "KOMMENT";
     private static final String TABLE_INBET__DATUM = "DATUM";
+    private static final String TABLE_INBET__DONE_BY = "ANVÄNDARE";
 
     /**
      * Creates new form EditPanel
@@ -174,6 +175,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
         HashMap<String, String> map = basic.tableInvertToHashMap(basic.TABLE_INVERT, DB.START_COLUMN);
         //
         map.put(DB.BUH_FAKTURA_INBET__KUND_ID, "777");//[#KUND-ID-INSERT#]
+        map.put(DB.BUH_FAKTURA_INBET__DONE_BY, GP_BUH.getChangedBy());
         map.put(DB.BUH_FAKTURA_INBET__FAKTURA_ID, fakturaId);
         //
         String json = JSon.hashMapToJSON(map);
@@ -255,7 +257,8 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
             map.get(DB.BUH_FAKTURA_INBET__INBETALD),
             basic.getLongName(DB.STATIC__BETAL_METHODS, map.get(DB.BUH_FAKTURA_INBET__BETAL_METHOD)),
             map.get(DB.BUH_FAKTURA_INBET__ANNAT),
-            map.get(DB.BUH_FAKTURA_INBET__BETAL_DATUM)
+            map.get(DB.BUH_FAKTURA_INBET__BETAL_DATUM),
+            map.get(DB.BUH_FAKTURA_INBET__DONE_BY)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -274,7 +277,8 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
             TABLE_INBET__INBETALD,
             TABLE_INBET__INBET_METOD,
             TABLE_INBET__ANNAT,
-            TABLE_INBET__DATUM
+            TABLE_INBET__DATUM,
+            TABLE_INBET__DONE_BY
         };
         //
         table.setModel(new DefaultTableModel(null, headers));

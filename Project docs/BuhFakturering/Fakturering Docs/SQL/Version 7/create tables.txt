@@ -127,6 +127,7 @@ inbetald float DEFAULT 0,
 betal_metod varchar(20) DEFAULT '',
 betal_datum varchar(10) DEFAULT CURDATE(),
 annat varchar(50) DEFAULT '',
+done_by varchar(100) DEFAULT '',
 Foreign key (fakturaId) references buh_faktura(fakturaId),
 Foreign key (kundId) references buh_kund(kundId)
 );
@@ -139,6 +140,7 @@ send_type integer DEFAULT 0,
 send_ok integer DEFAULT 0,
 send_datum varchar(10) DEFAULT CURDATE(),
 annat varchar(50) DEFAULT '',
+done_by varchar(100) DEFAULT '',
 Foreign key (fakturaId) references buh_faktura(fakturaId),
 Foreign key (kundId) references buh_kund(kundId)
 );

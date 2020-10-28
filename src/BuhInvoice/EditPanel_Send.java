@@ -35,6 +35,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
     private static final String TABLE_SEND__SEND_OK = "STATUS";
     private static final String TABLE_SEND__DATUM = "DATUM";
     private static final String TABLE_SEND__ANNAT = "KOMMENT";
+    private static final String TABLE_SEND__DONE_BY = "ANVÄNDARE";
 
     public EditPanel_Send(BUH_INVOICE_MAIN_ bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         super(bim,isKontantFaktura, fakturaId, fakturaNr, fakturaKund);
@@ -95,7 +96,8 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
             TABLE_SEND__SEND_TYPE,
             TABLE_SEND__SEND_OK,
             TABLE_SEND__DATUM,
-            TABLE_SEND__ANNAT
+            TABLE_SEND__ANNAT,
+            TABLE_SEND__DONE_BY
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -111,7 +113,8 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
             basic.getLongName(DB.STATIC__SEND_TYPES, map.get(DB.BUH_FAKTURA_SEND__SEND_TYPE)),
             basic.getLongName(DB.STATIC__SENT_STATUS, map.get(DB.BUH_FAKTURA_SEND__SEND_OK)),
             map.get(DB.BUH_FAKTURA_SEND__SEND_DATUM),
-            map.get(DB.BUH_FAKTURA_SEND__ANNAT)
+            map.get(DB.BUH_FAKTURA_SEND__ANNAT),
+            map.get(DB.BUH_FAKTURA_SEND__DONE_BY)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -169,6 +172,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         HashMap<String, String> map = new HashMap<>();
         //
         map.put(DB.BUH_FAKTURA_SEND__KUND_ID, "777"); // [#KUND-ID-INSERT#]
+        map.put(DB.BUH_FAKTURA_SEND__DONE_BY, GP_BUH.getChangedBy());
         map.put(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId);
         //
         map.put(DB.BUH_FAKTURA_SEND__SEND_OK, status); // 0 is default
