@@ -314,6 +314,10 @@ public class InvoiceB extends Basic_Buh {
     }
     
     private void showInfoIcons(){
+        //
+        bim.jLabel_info__forfallen.setVisible(false);
+        bim.jLabel_info__sent.setVisible(false);
+        //
         boolean faktura_betald = bim.isBetald();
         boolean forfallen = bim.isForfallen();
         boolean makulerad = bim.isMakulerad();
