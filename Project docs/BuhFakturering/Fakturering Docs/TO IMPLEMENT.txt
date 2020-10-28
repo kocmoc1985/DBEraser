@@ -13,7 +13,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-Delete not working from "Händelser"
+For the later stage, maybe have faktura rabatt implemented -> so you can set the rabatt once for all articles in the Invoice.
 
 Implement icons to the right from "all_invoices_table" which shows info about the faktura
 1. Betald
