@@ -13,9 +13,11 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Implement $_SERVER['HTTP_USER_AGENT'] to buh_licens & buh_visitora -> make also a check were the browsers are banned
+
 Obfuscation
 
-All libraries to one jar
+All libraries to one jar -> https://www.oracle.com/technical-resources/articles/javase/single-jar.html
 
 Version check - it should checked wether a new version is available
 The steps are following generate -> there shall be some method of comparing of the versions..

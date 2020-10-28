@@ -33,21 +33,29 @@ Java see: "HelpBuh.class" -> shareAccount(String userEmailToShareWith)
 
 USERNAME('user') -> IS UNIQUE on DB level
 
+Guest account -> field "master" in DB (value:0 = guest)
+
 [GUEST ACCOUNT FORMAT]
 Guest account format: "guest_[kundId]_[email]" -> "guest_21_kocmoc1985@gmail.com"
 
-[GUEST ACCOUNT RESTRICTIONS]
+[RESTRICTIONS]
 No possibility to share account
 
 ________________________________________________________________________________________________________
-[CREATION OF USER ACCOUNT][2020-10-14]
+[CREATION OF USER ACCOUNT (MASTER)][2020-10-14]
 
 PHP see: "_http_buh.php" -> "createAccountMain()"
 Java see: "HelpBuh.class" -> "createAccountPHP_main(String emailUserName, String ftgname, String orgnr)"
 
 OBS! The password is created at PHP-side randomly
 
+Master account -> field "master" in DB (value:1 = master)
+
 Important to mention: when the user account is created "buh_kund" and "buh_address" are also created
+
+[RESTRICTIONS]
+1. You cannot create 2 users with the same username. User -> IS UNIQUE on DB level.
+2. The user is not allowed to create more then 2 accounts from the same PC (MAC-ADDR) check.
 ________________________________________________________________________________________________________
 [PASSWORD HASHING & USER VALIDATION][2020-10-07]
 

@@ -197,7 +197,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         String fakturanr_alt_ = HelpA.getValueSelectedRow_replace_zero(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
         RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
-        fakturanr_alt.setToolTipFixed(LANG.MSG_19);
+        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3);
         //
         String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);

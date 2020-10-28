@@ -82,8 +82,6 @@ public class LANG {
     public static String MSG_18 = "Återställning misslyckades, den angivna användaren finns ej";
     public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
 
-    public static String MSG_19 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
-
     public static String MSG_20_0 = "Delning av konto lyckades, e-post med lösenordet har skickats";
     public static String MSG_20 = "Delning av konto misslyckades, anledning oklar";
     public static String MSG_20_1 = "Delning av konto misslyckades, en konto kan inte delas av en gästanvändare";
@@ -102,7 +100,8 @@ public class LANG {
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
 
-    public static String TOOL_TIP_1 = "Skicka påminnelse";
+    public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
+    public static String TOOL_TIP_3 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
 
     public static String TOOL_TIP_1(int antalForfallna) {
         //

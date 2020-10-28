@@ -231,7 +231,7 @@ public class HelpBuh {
 //        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
         //
         //
-        deleteCustomer_a("20", "Vxuw6lpMzF");
+        deleteCustomer_a("24", "Vxuw6lpMzF");
         //
         //
 //        restorePwd("andrej.brassas@gmail.com");

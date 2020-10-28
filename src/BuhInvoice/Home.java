@@ -384,6 +384,7 @@ public class Home extends Basic_Buh {
         RowDataInvert ftg_name = new RowDataInvertB("", DB.BUH_KUND__NAMN, "FÖRETAGSNAMN", "", true, true, true);
         //
         RowDataInvert org_nr = new RowDataInvertB("", DB.BUH_KUND__ORGNR, "ORGNR", "", true, true, true);
+        org_nr.setToolTipFixed(LANG.TOOL_TIP_2);
         //
         if (GP_BUH.loggedIn()) {
             user.setDisabled();

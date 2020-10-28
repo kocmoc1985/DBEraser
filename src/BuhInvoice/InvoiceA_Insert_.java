@@ -231,7 +231,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
 //        String fakturanr_alt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FAKTURANR_ALT,"0");
         RowDataInvert fakturanr_alt = new RowDataInvertB("", DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
-        fakturanr_alt.setToolTipFixed(LANG.MSG_19);
+        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3);
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
