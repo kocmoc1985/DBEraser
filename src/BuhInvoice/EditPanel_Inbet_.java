@@ -484,10 +484,10 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
     }
 
     private void jButton2_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_deleteActionPerformed
-       jButton2ActionPerformed();
+       jButton2ActionPerformed_delete();
     }//GEN-LAST:event_jButton2_deleteActionPerformed
 
-    protected void jButton2ActionPerformed(){
+    protected void jButton2ActionPerformed_delete(){
         //
         if (HelpA.rowSelected(getJTable()) == false) {
             HelpA.showNotification(LANG.MSG_3_2_2);

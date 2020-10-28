@@ -13,7 +13,12 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Delete not working from "Händelser"
+
 Implement icons to the right from "all_invoices_table" which shows info about the faktura
+1. Betald
+2. Forfallen
+3. Sent
 
 Obfuscation
 

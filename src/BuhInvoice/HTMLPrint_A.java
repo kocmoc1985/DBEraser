@@ -613,6 +613,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_faktura_any_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
+        jButton_send_with_common_post = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -670,6 +671,15 @@ public class HTMLPrint_A extends HTMLPrint {
         });
         jPanel1.add(jButton_send_with_outlook);
 
+        jButton_send_with_common_post.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/common_mail.png"))); // NOI18N
+        jButton_send_with_common_post.setToolTipText("Markera fakturan som skickad med vanlig post");
+        jButton_send_with_common_post.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_send_with_common_postActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_send_with_common_post);
+
         jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -681,7 +691,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -743,6 +753,15 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton_send_faktura_any_emailActionPerformed
 
+    private void jButton_send_with_common_postActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_common_postActionPerformed
+         //
+        if (GP_BUH.confirmWarning(LANG.MSG_10_5) == false) {
+            return;
+        }
+        //
+        setSentByCommonPost();
+    }//GEN-LAST:event_jButton_send_with_common_postActionPerformed
+
     @Override
     protected void displayStatus(String msg, Color c) {
         //
@@ -787,6 +806,7 @@ public class HTMLPrint_A extends HTMLPrint {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_send_faktura_any_email;
     private javax.swing.JButton jButton_send_faktura_email;
+    private javax.swing.JButton jButton_send_with_common_post;
     private javax.swing.JButton jButton_send_with_outlook;
     protected javax.swing.JEditorPane jEditorPane1;
     protected static javax.swing.JLabel jLabel_status;

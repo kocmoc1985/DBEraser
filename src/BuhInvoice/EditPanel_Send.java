@@ -48,8 +48,9 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();
-//        jButton2_delete.setVisible(false);
-        jButton1_commit.setToolTipText("Spara kommentar");
+        //
+        jButton1_commit.setToolTipText(LANG.TOOL_TIP_4);
+        jButton2_delete.setToolTipText(LANG.TOOL_TIP_5);
         //
         initBasicTab();
         //
@@ -192,7 +193,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
     }
 
     @Override
-    protected void jButton2ActionPerformed() {
+    protected void jButton2ActionPerformed_delete() {
          //
         if (HelpA.rowSelected(getJTable()) == false) {
             return;
@@ -205,9 +206,6 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         updateKomment(true);
     }
 
-    
-    
-    
     
     @Override
     protected void jButton1ActionPerformed(){

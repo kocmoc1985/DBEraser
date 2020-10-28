@@ -449,7 +449,7 @@ public abstract class HTMLPrint extends JFrame {
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
         }
         //
-        if (exp.equals("0")|| exp.equals("0.0")) {
+        if (exp.equals("0") || exp.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
@@ -462,6 +462,15 @@ public abstract class HTMLPrint extends JFrame {
         }
         //
         return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);
+    }
+
+    /**
+     * Marks as is the invoice was sent by the common/physical post
+     */
+    protected void setSentByCommonPost() {
+        loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
+        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
+        HelpA.showNotification(LANG.MSG_10_4);
     }
 
     protected void sendMailTargeted() {
@@ -666,7 +675,7 @@ public abstract class HTMLPrint extends JFrame {
         //
         EditPanel_Send.insert(fakturaId, sendStatus, sendType); // "buh_faktura_send" table
         //
-        Basic_Buh.executeSetFakturaSentPerEmail(fakturaId); // "buh_faktura" table -> update sent status
+        Basic_Buh.executeSetFakturaSentPerEmail(fakturaId,true); // "buh_faktura" table -> update sent status
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__EPOST_SENT, DB.STATIC__YES);
         //
     }

@@ -56,6 +56,9 @@ public class LANG {
     public static String MSG_10_1 = "Laddar upp";
     public static String MSG_10_2 = "Filen skickad!";
     public static String MSG_10_3 = "Filen ej skickad!";
+    
+    public static String MSG_10_4 = "Fakturan markerad som skickad med vanlig post!";
+    public static String MSG_10_5 = "Vill du att fakturan ska markeras som skickad?";
 
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN_.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
@@ -89,6 +92,7 @@ public class LANG {
 
     public static String MSG_21_0 = "Kontodelning borttagen";
     public static String MSG_21_1 = "Ett okänt fel inträffade";
+    
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
@@ -110,6 +114,8 @@ public class LANG {
     
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
     public static String TOOL_TIP_3 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
+    public static String TOOL_TIP_4 = "Spara kommentar";
+    public static String TOOL_TIP_5 = "Radera kommentar";
 
     public static String TOOL_TIP_1(int antalForfallna) {
         //

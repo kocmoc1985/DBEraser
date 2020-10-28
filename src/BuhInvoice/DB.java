@@ -37,7 +37,7 @@ public class DB {
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";
     public static final String STATIC__JA_NEJ__EMPTY_NEJ = "-;0,Ja;1";
     //===
-    public static final String STATIC__SENT_STATUS = "Ej Skickad;0,Skickad;1,Makulerad;2,Utskriven;3,Kopierad;4,Skapad;5,Skickad med Outlook;6";
+    public static final String STATIC__SENT_STATUS = "Ej Skickad;0,Skickad;1,Makulerad;2,Utskriven;3,Kopierad;4,Skapad;5,Skickad med Outlook;6,Skickad med vanlig post;7";
     public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1";
     //
     public static final String STATIC__SENT_STATUS__EJ_SKICKAD = "0";
@@ -47,6 +47,7 @@ public class DB {
     public static final String STATIC__SENT_STATUS__KOPIERAD = "4";
     public static final String STATIC__SENT_STATUS__SKAPAD = "5";
     public static final String STATIC__SENT_STATUS__SKICKAD_OUTLOOK = "6"; // Det betyder att försöket gjordes, men resultatet är ej känt
+    public static final String STATIC__SENT_STATUS__SKICKAD_COMMON_POST = "7"; // [2020-10-28]
     //
     public static final String STATIC__SENT_TYPE_FAKTURA = "0";
     public static final String STATIC__SENT_TYPE_PAMMINELSE = "1";
