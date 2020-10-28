@@ -189,6 +189,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //
         }
         //
+        this.fakturaMap.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
+        //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
         this.fakturaMap.put(DB.BUH_FAKTURA__RABATT_TOTAL, "" + invoice.getRabattTotal());
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, "" + invoice.getTotalExklMoms());

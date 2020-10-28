@@ -100,6 +100,14 @@ public class LANG {
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
 
+    public static String LBL_MSG_7(String txt){
+        return "skapad: " + txt;
+    }
+    
+    public static String LBL_MSG_8(String txt){
+        return "ändrad sist av: " + txt;
+    }
+    
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
     public static String TOOL_TIP_3 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
 

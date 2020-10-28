@@ -54,11 +54,16 @@ public class GP_BUH {
      * By [2020-10-07]
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
-     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "L5xpPomI41"
+     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "L5xpPomI41" 
+     * Guest Account "guest_21_kocmoc1985@gmail.com" "H8iQzm9nTB"
      */
     //
     public static String USER = "";
     public static String PASS = "";
+    //
+    public static String getChangedBy(){
+        return USER.split("@")[0];
+    }
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     private static final String LOGO_PATH = "io/logo.png";
@@ -394,18 +399,6 @@ public class GP_BUH {
                 }
             }
         };
-    }
-
-    public static void main(String[] args) {
-        //
-        String path = chooseFile(null);
-        //
-        try {
-            resizeLogo(path);
-        } catch (IOException ex) {
-            Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
     }
 
     /**

@@ -77,9 +77,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         //Adding obligatory values not present in the "TABLE_INVERT"
         //
-        String kundId = invoice.getKundId();
-        //
         this.fakturaMap.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
+        this.fakturaMap.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
         this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
