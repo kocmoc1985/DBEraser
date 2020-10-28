@@ -13,7 +13,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-Implement $_SERVER['HTTP_USER_AGENT'] to buh_licens & buh_visitora -> make also a check were the browsers are banned
+Implement icons to the right from "all_invoices_table" which shows info about the faktura
 
 Obfuscation
 
