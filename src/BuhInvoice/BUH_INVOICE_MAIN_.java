@@ -938,7 +938,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         });
         jPanel4.add(jButton_delete_faktura);
 
-        jButton_print_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
+        jButton_print_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/print_send.png"))); // NOI18N
         jButton_print_faktura.setToolTipText("Skriv ut eller skicka faktura");
         jButton_print_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

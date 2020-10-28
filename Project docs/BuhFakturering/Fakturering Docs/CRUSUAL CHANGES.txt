@@ -10,3 +10,12 @@ ___
 ammount of parameters is the same as values. Pay attention especially at those cases when such "insert" method is called from 
 different locations - as it's easy to forget to make changes in all corresponding places. As the example see -> "insert_to_buh_licens_q__local()" which 
 exist per [2020-10-28] and is called from 3 diff. locations.
+
+
+
+
+[CASES WHEN NOTHING HAVE TO BE DONE ON PHP-SIDE]
+1.  You are using the "insert()" which populates the query automatically
+1.2 You added some columns to a DB table
+1.3 You made corresponding changes in [JAVA]
+1.4 Yes nothing has to be done at the PHP-Side
