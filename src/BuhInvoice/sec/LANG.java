@@ -56,7 +56,7 @@ public class LANG {
     public static String MSG_10_1 = "Laddar upp";
     public static String MSG_10_2 = "Filen skickad!";
     public static String MSG_10_3 = "Filen ej skickad!";
-    
+
     public static String MSG_10_4 = "Fakturan markerad som skickad med vanlig post!";
     public static String MSG_10_5 = "Vill du att fakturan ska markeras som skickad?";
 
@@ -92,7 +92,6 @@ public class LANG {
 
     public static String MSG_21_0 = "Kontodelning borttagen";
     public static String MSG_21_1 = "Ett okänt fel inträffade";
-    
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
@@ -104,14 +103,14 @@ public class LANG {
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
     public static String LBL_MSG_6 = "BEARBETA ARTIKEL";
 
-    public static String LBL_MSG_7(String txt){
+    public static String LBL_MSG_7(String txt) {
         return "skapad: " + txt;
     }
-    
-    public static String LBL_MSG_8(String txt){
+
+    public static String LBL_MSG_8(String txt) {
         return "ändrad sist av: " + txt;
     }
-    
+
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
     public static String TOOL_TIP_3 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
     public static String TOOL_TIP_4 = "Spara kommentar";
@@ -164,8 +163,16 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName) {
-        return "Fakturan sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga fakturan i din e-post klient";
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder) {
+        String fakturaOrReminder = "";
+        //
+        if (remminder) {
+            fakturaOrReminder = "Påminnelsen";
+        } else {
+            fakturaOrReminder = "Fakturan";
+        }
+        //
+        return fakturaOrReminder + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga fakturan i din e-post klient";
     }
 
     public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {

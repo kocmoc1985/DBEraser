@@ -635,7 +635,7 @@ public abstract class HTMLPrint extends JFrame {
      * automatically. So the solution is to silently write ".pdf" to desktop,
      * and give the user a message where to find the file
      */
-    protected void sendWithStandardEmailClient() {
+    protected void sendWithStandardEmailClient(boolean reminder) {
         //
         String mailto = getFakturaKundEmail();
         String subject = getHTMLPrintTitle();
@@ -643,7 +643,7 @@ public abstract class HTMLPrint extends JFrame {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false)));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false),reminder));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;

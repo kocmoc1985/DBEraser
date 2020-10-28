@@ -48,6 +48,7 @@ public class HTMLPrint_A extends HTMLPrint {
             GP_BUH.setEnabled(jButton_send_faktura_email, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);
             GP_BUH.setEnabled(jButton_send_faktura_any_email, false);
+            GP_BUH.setEnabled(jButton_send_with_common_post, false);
         }
     }
 
@@ -744,7 +745,7 @@ public class HTMLPrint_A extends HTMLPrint {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
-        sendWithStandardEmailClient();
+        sendWithStandardEmailClient(false);
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
     private void jButton_send_faktura_any_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_any_emailActionPerformed
