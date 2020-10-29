@@ -169,6 +169,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
         HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
         HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT));
         //
         //
         articlesList.remove(currRow);

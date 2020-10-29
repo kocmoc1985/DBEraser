@@ -601,15 +601,15 @@ public abstract class Invoice_ extends Basic_Buh {
 //        }
     }
 
-    protected String defineMomsSats(JTable table,boolean isOmvantMoms) {
+    protected String defineMomsSats(JTable table, boolean isOmvantMoms) {
         //
-        if(isOmvantMoms){
-            return JSon._get_special_(DB.STATIC__MOMS_SATS,"0"); 
-        }else{
-           return JSon._get_special_(DB.STATIC__MOMS_SATS,
-                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS)); 
+        if (isOmvantMoms) {
+            return JSon._get_special_(DB.STATIC__MOMS_SATS, "0");
+        } else {
+            return JSon._get_special_(DB.STATIC__MOMS_SATS,
+                    HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
         }
-        
+
     }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
@@ -639,7 +639,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
         //
-        setArticlePrise(false); // [2020-08-19]
+        setArticlePrise__and_other(false); // [2020-08-19]
         //
     }
 
@@ -710,10 +710,10 @@ public abstract class Invoice_ extends Basic_Buh {
         return rows;
     }
 
-    private boolean isOmvant(String shortVal){
+    private boolean isOmvant(String shortVal) {
         return shortVal.equals("1");
     }
-    
+
     /**
      * This config is for editing of articles
      *
@@ -742,11 +742,11 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean omvant = isOmvant(valSelectedRow_translated);
         //
-        String fixedComboValues_c = defineMomsSats(table,omvant);
+        String fixedComboValues_c = defineMomsSats(table, omvant);
         RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", false, true, false);
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
-        if(omvant){
+        if (omvant) {
             moms.setDisabled();
         }
 //        disableMomsJComboIf(moms); // *****
@@ -1080,7 +1080,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
-            setArticlePrise(true);
+            setArticlePrise__and_other(true);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
             //
@@ -1108,25 +1108,11 @@ public abstract class Invoice_ extends Basic_Buh {
                 box.setEnabled(true);
             }
             //
-            System.out.println("OMVÄNT: " + omvant);
-            //
         }
 
-//        else if (col_name.equals(DB.BUH_FAKTURA__MOMS_SATS)) {
-//            //
-//            momsSaveEntry.setMomsSats(jli.getValue());
-//            //
-//        } else if (col_name.equals(DB.BUH_FAKTURA__INKL_MOMS)) {
-//            //
-//            momsSaveEntry.setInklExklMoms(jli.getValue());
-//            //
-//            hideMomsSatsIfExklMoms();
-//            //
-//        }
-        //
     }
 
-    private void setArticlePrise(boolean force) {
+    private void setArticlePrise__and_other(boolean force) {
         //
         boolean conditionSpecial = CURRENT_OPERATION_INSERT == false && articlesJTableEmpty() == true;
         //
@@ -1153,6 +1139,9 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_F_ARTIKEL__ANTAL, TABLE_INVERT_2, "1");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2, "0");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2, "0");
+                setValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, TABLE_INVERT_2, new HelpA_.ComboBoxObject("Nej", "", "", ""));
+                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA_.ComboBoxObject("25%", "", "", ""));
+
             }
             //
         }
