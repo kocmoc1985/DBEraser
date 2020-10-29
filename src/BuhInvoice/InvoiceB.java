@@ -328,6 +328,13 @@ public class InvoiceB extends Basic_Buh {
         boolean makulerad = bim.isMakulerad();
         boolean skickad = bim.isSent();
         //
+        if(forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false){
+            bim.jLabel_info__forfallen.setVisible(true);
+        }
+        if(skickad){
+            bim.jLabel_info__sent.setVisible(true);
+        }
+        //
         System.out.println("BETALD: " + faktura_betald);
         System.out.println("FORFALLEN: " + forfallen);
         System.out.println("MAKULERAD: " + makulerad);
