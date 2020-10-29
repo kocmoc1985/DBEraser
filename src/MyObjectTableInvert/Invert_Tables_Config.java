@@ -1,7 +1,6 @@
 package MyObjectTableInvert;
 
 import MCRecipe.SQL_B;
-import forall.HelpA;
 import forall.SqlBasicLocal;
 
 /*

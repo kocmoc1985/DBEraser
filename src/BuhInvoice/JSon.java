@@ -27,8 +27,8 @@ public class JSon {
         return map.get(valToTranslate);
     }
     
-    public static String getShortName(String staticJaNej, String value) {
-        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
+    public static String getShortName(String staticString, String value) {
+        HashMap<String, String> map = JSon.JSONToHashMap(staticString, false);
         return getValNoNull(map.get(value));
     }
     

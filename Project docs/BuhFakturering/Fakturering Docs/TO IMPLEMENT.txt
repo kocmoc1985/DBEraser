@@ -18,6 +18,8 @@ Omvand skatt:
 2. Make changes to calculations
 3. Make changes to HTML Faktura
 
+IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind
+
 Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"
 
 For the "buh_faktura_artikel" -> implement so you can save moms and omvänd momssats so when you create an article those values are automatically set

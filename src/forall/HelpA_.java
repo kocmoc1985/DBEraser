@@ -69,6 +69,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TimeZone;
@@ -2497,6 +2498,36 @@ public class HelpA_ {
         public String getParam_3() {
             return param_3;
         }
+
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final ComboBoxObject other = (ComboBoxObject) obj;
+            if (!Objects.equals(this.param_1, other.param_1)) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 3;
+            hash = 13 * hash + Objects.hashCode(this.param_1);
+            return hash;
+        }
+       
+       
+        
+        
     }
 
     public static class ComboBoxObjectB extends ComboBoxObject {

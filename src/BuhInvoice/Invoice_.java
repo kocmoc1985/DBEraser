@@ -1081,7 +1081,25 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
-            IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
+            String omvant = getValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, ti);
+            if (omvant.equals("0")) {
+                IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
+            }
+            //
+        } else if (col_name.equals(DB.BUH_F_ARTIKEL__OMVANT_SKATT)) {
+            //
+            String omvant = jli.getValue();
+            //
+            if(omvant.equals("1")){ // Means using omvänt skattskyldighet
+                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("0%", "", "", "")); 
+//                box.setEnabled(false);
+            }else if(omvant.equals("0")){
+                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("25%", "", "", "")); 
+//                box.setEnabled(true);
+                
+            }
+            //
+            System.out.println("OMVÄNT: " + omvant);
             //
         }
 
@@ -1121,7 +1139,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
             }
             //
-            if (force ) { // && CURRENT_OPERATION_INSERT == false
+            if (force) { // && CURRENT_OPERATION_INSERT == false
                 setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_INVERT_2, "");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__ANTAL, TABLE_INVERT_2, "1");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2, "0");
