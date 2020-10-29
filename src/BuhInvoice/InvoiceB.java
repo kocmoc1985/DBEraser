@@ -550,7 +550,6 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__KOMMENT),
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
             map.get(DB.BUH_FAKTURA__DATE_CREATED__),
-            map.get(DB.BUH_FAKTURA__OMVANT_SKATTSKYLDIGHET)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

@@ -167,7 +167,7 @@ public class DB {
     public static final String BUH_FAKTURA__KOMMENT = "komment"; // length 200 -> OBS! Writing to this field is only possbile internaly - from code
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     public static final String BUH_FAKTURA__CHANGED_BY = "changed_by"; // [2020-10-28]
-    public static final String BUH_FAKTURA__OMVANT_SKATTSKYLDIGHET = "omvant_skatt"; // [2020-10-29]
+    
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND__KUND_ID = "kundId";
@@ -201,6 +201,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
     public static final String BUH_F_ARTIKEL__RABATT_KR = "rabatt_kr";
     public static final String BUH_F_ARTIKEL__MOMS_SATS = "moms_sats";
+    public static final String BUH_F_ARTIKEL__OMVANT_SKATTSKYLDIGHET = "omvant_skatt"; // [2020-10-29]OMVANT_SKATTSKYLDIGHET
     //
     public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__KUND_ID = "kundId";

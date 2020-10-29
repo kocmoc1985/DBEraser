@@ -250,11 +250,6 @@ public class InvoiceA_Insert_ extends Invoice_ {
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
         //
-        String fixedComboValues_c = DB.STATIC__JA_NEJ; // This will aquired from SQL
-        RowDataInvert omvantSkatteskylldighet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__OMVANT_SKATTSKYLDIGHET, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET, "", true, true, false);
-        omvantSkatteskylldighet.enableFixedValuesAdvanced();
-        omvantSkatteskylldighet.setUneditable();
-        //
         RowDataInvert[] rows = {
 //            inkl_exkl_moms,
 //            moms,
@@ -262,8 +257,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
             order,
             expavgift,
             frakt,
-            drojsmalsranta,
-            omvantSkatteskylldighet,
+            drojsmalsranta
 //            makulerad
         };
         //
