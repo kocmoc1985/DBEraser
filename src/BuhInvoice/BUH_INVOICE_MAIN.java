@@ -394,7 +394,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
      */
     protected String getKomment_$() {
         String val = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
-        return GP_BUH.getValNoNull(val);
+        return JSon.getValNoNull(val);
     }
 
     protected String getSELECT_fakturaId() {

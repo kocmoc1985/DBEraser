@@ -209,7 +209,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         //
         String valSelectedRow = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
-        String valSelectedRow_translated = GP_BUH.getShortName(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
+        String valSelectedRow_translated = JSon.getShortName(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
         String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
         //
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD, "", false, true, false);

@@ -49,10 +49,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public Basic() {
     }
 
-//    public String getLongName(String statics, String valToTranslate) {
-//        return JSon.getLongName(statics, valToTranslate);
-//    }
-
     @Override
     public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
         //

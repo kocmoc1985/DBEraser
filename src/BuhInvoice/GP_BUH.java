@@ -114,22 +114,22 @@ public class GP_BUH {
         }
     }
 
-    public static String getShortName(String staticJaNej, String value) {
-        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
-        return getValNoNull(map.get(value));
-    }
-    
-    public static void main(String[] args) {
-        System.out.println("" + getShortName(DB.STATIC__JA_NEJ, "Ja"));
-    }
-
-    public static String getValNoNull(String value) {
-        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
-            return "";
-        } else {
-            return value;
-        }
-    }
+//    public static String getShortName(String staticJaNej, String value) {
+//        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
+//        return getValNoNull(map.get(value));
+//    }
+//    
+//    public static void main(String[] args) {
+//        System.out.println("" + getShortName(DB.STATIC__JA_NEJ, "Ja"));
+//    }
+//
+//    public static String getValNoNull(String value) {
+//        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
+//            return "";
+//        } else {
+//            return value;
+//        }
+//    }
 
     public static String _get(HashMap<String, String> map, String param) {
         return _get(map, param, false);

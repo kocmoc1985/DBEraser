@@ -21,21 +21,28 @@ import javax.swing.JTable;
  */
 public class JSon {
 
-    
-//     public static String getLongName(String statics, String valToTranslate) {
-//        return JSon.getLongName(statics, valToTranslate);
-//    }
      
-     /**
-     * This one translates the "short name" -> "long name", like: "P" -> "POST"
-     *
-     * @param statics
-     * @param valToTranslate
-     * @return
-     */
     public static String getLongName(String statics, String valToTranslate) {
         HashMap<String, String> map = JSONToHashMap(statics, true);
         return map.get(valToTranslate);
+    }
+    
+    public static String getShortName(String staticJaNej, String value) {
+        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
+        return getValNoNull(map.get(value));
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("LONG_NAME: " + getLongName(DB.STATIC__JA_NEJ, "0"));
+        System.out.println("SHORT_NAME: " + getShortName(DB.STATIC__JA_NEJ, "Ja"));
+    }
+
+    public static String getValNoNull(String value) {
+        if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
+            return "";
+        } else {
+            return value;
+        }
     }
     
     /**

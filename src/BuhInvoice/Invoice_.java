@@ -738,7 +738,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         //
         String valSelectedRow = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
-        String valSelectedRow_translated = GP_BUH.getShortName(DB.STATIC__JA_NEJ, valSelectedRow);
+        String valSelectedRow_translated = JSon.getShortName(DB.STATIC__JA_NEJ, valSelectedRow);
         String fixedComboValues_d = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
         RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
         omvant_skatt.enableFixedValuesAdvanced();
