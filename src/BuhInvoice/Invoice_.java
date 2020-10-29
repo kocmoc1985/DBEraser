@@ -11,6 +11,8 @@ import BuhInvoice.sec.MomsBuh_F_artikel;
 import BuhInvoice.sec.MomsComporator;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
+import MyObjectTableInvert.Basic;
+import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
@@ -599,18 +601,15 @@ public abstract class Invoice_ extends Basic_Buh {
 //        }
     }
 
-    protected String defineMomsSats(JTable table) {
+    protected String defineMomsSats(JTable table,boolean isOmvantMoms) {
         //
-//        if (momsSaveEntry.getMomsSats() == null) {
-        return JSon._get_special_(DB.STATIC__MOMS_SATS,
-                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
-//            );
-//        } else {
-//            return JSon._get_special_(
-//                    DB.STATIC__MOMS_SATS,
-//                    momsSaveEntry.getMomsSats()
-//            );
-//        }
+        if(isOmvantMoms){
+            return JSon._get_special_(DB.STATIC__MOMS_SATS,"0"); 
+        }else{
+           return JSon._get_special_(DB.STATIC__MOMS_SATS,
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS)); 
+        }
+        
     }
 
     public abstract RowDataInvert[] getConfigTableInvert_2();
@@ -711,6 +710,10 @@ public abstract class Invoice_ extends Basic_Buh {
         return rows;
     }
 
+    private boolean isOmvant(String shortVal){
+        return shortVal.equals("1");
+    }
+    
     /**
      * This config is for editing of articles
      *
@@ -730,19 +733,23 @@ public abstract class Invoice_ extends Basic_Buh {
 //        articles.setDisabled();
         //
         //
-        String fixedComboValues_c = defineMomsSats(table);
-        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", false, true, false);
-        moms.enableFixedValuesAdvanced();
-        moms.setUneditable();
-//        disableMomsJComboIf(moms); // *****
-        //
-        //
         String valSelectedRow = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
         String valSelectedRow_translated = JSon.getShortName(DB.STATIC__JA_NEJ, valSelectedRow);
         String fixedComboValues_d = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
         RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
+        //
+        boolean omvant = isOmvant(valSelectedRow_translated);
+        //
+        String fixedComboValues_c = defineMomsSats(table,omvant);
+        RowDataInvert moms = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_F_ARTIKEL__MOMS_SATS, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, "", false, true, false);
+        moms.enableFixedValuesAdvanced();
+        moms.setUneditable();
+        if(omvant){
+            moms.setDisabled();
+        }
+//        disableMomsJComboIf(moms); // *****
         //
         //
         String komm = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
@@ -1090,13 +1097,15 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             String omvant = jli.getValue();
             //
-            if(omvant.equals("1")){ // Means using omvänt skattskyldighet
-                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("0%", "", "", "")); 
-//                box.setEnabled(false);
-            }else if(omvant.equals("0")){
-                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("25%", "", "", "")); 
-//                box.setEnabled(true);
-                
+            ColumnDataEntryInvert cde = getColumnDataEntryInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti);
+            JComboBox box = (JComboBox) cde.getObject();
+            //
+            if (omvant.equals("1")) { // Means using omvänt skattskyldighet
+                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("0%", "", "", ""));
+                box.setEnabled(false);
+            } else if (omvant.equals("0")) {
+                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA_.ComboBoxObject("25%", "", "", ""));
+                box.setEnabled(true);
             }
             //
             System.out.println("OMVÄNT: " + omvant);
