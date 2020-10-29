@@ -75,9 +75,9 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
     public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
     public static String TABLE_INVOICE_ARTIKLES__OMVANT_SKATT = "OMVÄNT SKATTSKYLDIGHET";
-    
+
     public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
-    
+
     static {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__KOMMENT, DB.BUH_F_ARTIKEL__KOMMENT);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__RABATT, DB.BUH_F_ARTIKEL__RABATT);
@@ -89,11 +89,11 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
     }
-    
+
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
-    
+
     @Override
     protected void startUp() {
         //#THREAD#
@@ -128,11 +128,11 @@ public class InvoiceB extends Basic_Buh {
         if (bim.jComboBox_faktura_kunder_filter.getItemCount() == 0) {
             bim.jComboBox_faktura_kunder_filter.setVisible(false);
             bim.jButton_search_by_kund.setVisible(false);
-            
+
         }
         //
     }
-    
+
     protected boolean noCustomersPresent() {
         try {
             String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
@@ -141,7 +141,7 @@ public class InvoiceB extends Basic_Buh {
             return false;
         }
     }
-    
+
     private void checkIfForfallnaFakturorExist() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -157,7 +157,7 @@ public class InvoiceB extends Basic_Buh {
         button.setToolTipText(LANG.TOOL_TIP_1(forfallna));
         //
     }
-    
+
     protected void refresh_sync(String secondWhereValue) {
         //#THREAD#
         fillFakturaTable(secondWhereValue);
@@ -167,7 +167,7 @@ public class InvoiceB extends Basic_Buh {
         all_invoices_table_clicked(fakturaId);
         //
     }
-    
+
     protected void refresh(String secondWhereValue) {
         //#THREAD#
         Thread x = new Thread(() -> {
@@ -202,7 +202,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA_.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
-            
+
         });
         //
         x.start();
@@ -222,16 +222,16 @@ public class InvoiceB extends Basic_Buh {
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
-    
+
     protected void displayArticlesCount() {
         int articlesCount = bim.getInvoiceArticleCount();
         bim.jLabel_ammount_of_articles_.setText("<html><div style='margin-left:5px'>" + articlesCount + "</div></html>");
     }
-    
+
     protected void resetArticlesCount() {
         bim.jLabel_ammount_of_articles_.setText("");
     }
-    
+
     private void fillJTableheader() {
         //
         //
@@ -271,7 +271,7 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__KOMMENT_$,
             TABLE_ALL_INVOICES__CHANGED_BY,
             TABLE_ALL_INVOICES__DATE_CREATED,
-            TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET    
+            TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -302,7 +302,7 @@ public class InvoiceB extends Basic_Buh {
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-    
+
     protected void all_invoices_table_clicked(String fakturaId) {
         //
         fillFakturaArticlesTable(fakturaId);
@@ -317,22 +317,27 @@ public class InvoiceB extends Basic_Buh {
         //
         bim.hideShowButtonsDependingOnConditions();
     }
-    
-    private void showInfoIcons(){
+
+    private void showInfoIcons() {
         //
         bim.jLabel_info__forfallen.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
+        bim.jLabel_info__betald.setVisible(false);
         //
         boolean faktura_betald = bim.isBetald();
         boolean forfallen = bim.isForfallen();
         boolean makulerad = bim.isMakulerad();
         boolean skickad = bim.isSent();
+        boolean betald = bim.isBetald();
         //
-        if(forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false){
+        if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
         }
-        if(skickad){
+        if (skickad) {
             bim.jLabel_info__sent.setVisible(true);
+        }
+        if (betald) {
+            bim.jLabel_info__betald.setVisible(true);
         }
         //
         System.out.println("BETALD: " + faktura_betald);
@@ -341,7 +346,7 @@ public class InvoiceB extends Basic_Buh {
         System.out.println("SKICKAD: " + skickad);
         //
     }
-    
+
     private void showOtherFakturaInfo() {
         //
         bim.jLabel_faktura_changed_by__user.setText(""); // Reset
@@ -349,7 +354,7 @@ public class InvoiceB extends Basic_Buh {
         String changedBy = _get(TABLE_ALL_INVOICES__CHANGED_BY);
         String date_created = _get(TABLE_ALL_INVOICES__DATE_CREATED);
         //
-        if(date_created != null && date_created.isEmpty() == false){
+        if (date_created != null && date_created.isEmpty() == false) {
             date_created = date_created.substring(0, 19).replaceAll("\\.", ":");
             setText_(LANG.LBL_MSG_7(date_created));
         }
@@ -359,19 +364,19 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
-    private void setText_(String txt){
+
+    private void setText_(String txt) {
         JLabel lbl = bim.jLabel_faktura_changed_by__user;
         String actText = lbl.getText();
         //
-        if(actText == null || actText.isEmpty()){
+        if (actText == null || actText.isEmpty()) {
             lbl.setText(txt);
-        }else{
+        } else {
             lbl.setText(actText + "          " + txt); // 10 spaces
         }
         //
     }
-    
+
     private void showLowPriorityKomment() {
         //
         if (bim.jTextArea_faktura_komment.getText().isEmpty() && bim.jTable_invoiceB_alla_fakturor.getRowCount() != 0) {
@@ -385,7 +390,7 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
+
     private void showImportantKomment() {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -397,7 +402,7 @@ public class InvoiceB extends Basic_Buh {
         Validator.resetValidation(bim.jTextArea_faktura_komment);
         //
     }
-    
+
     protected void updateKomment(boolean clear) {
         //
         JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_faktura_komment;
@@ -440,11 +445,11 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
+
     protected void deleteComment() {
         updateKomment(true);
     }
-    
+
     private void fillFakturaTable(String secondWhereValue) {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -494,7 +499,7 @@ public class InvoiceB extends Basic_Buh {
         hideColumnsFakturaTable(table);
         //
     }
-    
+
     private void hideColumnsFakturaTable(JTable table) {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
@@ -523,7 +528,7 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
+
     private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -559,14 +564,13 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),
             map.get(DB.BUH_FAKTURA__KOMMENT),
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
-            map.get(DB.BUH_FAKTURA__DATE_CREATED__),
-        };
+            map.get(DB.BUH_FAKTURA__DATE_CREATED__),};
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(jtableRow);
         //
     }
-    
+
     private void fillFakturaArticlesTable(String fakturaId) {
         //
         JTable table = bim.jTable_invoiceB_faktura_artiklar;
@@ -605,7 +609,7 @@ public class InvoiceB extends Basic_Buh {
         hideColumnsArticlesTable(table);
         //
     }
-    
+
     protected void hideColumnsArticlesTable(JTable table) {
         //
         if (GP_BUH.CUSTOMER_MODE) {
@@ -619,13 +623,13 @@ public class InvoiceB extends Basic_Buh {
                 HelpA_.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
                 HelpA_.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
             } catch (Exception ex) {
-                
+
             }
             //
         }
         //
     }
-    
+
     private void addRowJtable_faktura_articles(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -647,7 +651,7 @@ public class InvoiceB extends Basic_Buh {
         model.addRow(jtableRow);
         //
     }
-    
+
     protected void deleteFakturaPrimary(String fakturaId) {
         //
         deleteFakturaArticles(fakturaId);
@@ -661,7 +665,7 @@ public class InvoiceB extends Basic_Buh {
         refresh(null);
         //
     }
-    
+
     private void deleteFaktura(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -670,7 +674,7 @@ public class InvoiceB extends Basic_Buh {
         //
         executeDelete(json);
     }
-    
+
     private void deleteFakturaInbetalningar(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_INBET__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_INBET);
@@ -679,7 +683,7 @@ public class InvoiceB extends Basic_Buh {
         //
         executeDelete(json);
     }
-    
+
     private void deleteFakturaSend(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_SEND__FAKTURA_ID, fakturaId, DB.TABLE__BUH_FAKTURA_SEND);
@@ -689,7 +693,7 @@ public class InvoiceB extends Basic_Buh {
         executeDelete(json);
         //
     }
-    
+
     private void deleteFakturaArticles(String fakturaId) {
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId, DB.TABLE__BUH_F_ARTIKEL);
@@ -698,19 +702,19 @@ public class InvoiceB extends Basic_Buh {
         //
         executeDelete(json);
     }
-    
+
     private String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         return HelpA_.getValueSelectedRow(table, colNameJTable);
     }
-    
+
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         double val = Double.parseDouble(HelpA_.getValueSelectedRow(table, colNameJTable));
         int rst = (int) (val * 100);
         return "" + rst;
     }
-    
+
     protected void copy(boolean isKreditFaktura) {
         //
         HashMap<String, String> faktura_data_map = getOneFakturaData();
@@ -772,7 +776,7 @@ public class InvoiceB extends Basic_Buh {
             //
         }
     }
-    
+
     private boolean copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId) {
         //
         for (HashMap<String, String> article_row_map : faktura_articles) {
@@ -790,7 +794,7 @@ public class InvoiceB extends Basic_Buh {
         return Faktura_Entry_Insert.articlesToHttpDB(faktura_articles);
         //
     }
-    
+
     private String copy_a__faktura_to_db(HashMap<String, String> faktura_data_map) {
         //
         String json = JSon.hashMapToJSON(faktura_data_map);
@@ -812,7 +816,7 @@ public class InvoiceB extends Basic_Buh {
         return fakturaId;
         //
     }
-    
+
     private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura) {
         //
         String komment;
@@ -855,14 +859,14 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
         //
     }
-    
+
     private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
         String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
         String forfallodatum = HelpA_.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
         faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
         return faktura_data_map;
     }
-    
+
     private HashMap<String, String> getOneFakturaData() {
         //
         String json = bim.getSELECT_fakturaId();
@@ -912,7 +916,7 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
+
     private HashMap<String, String> getForetagData(String phpFunction) {
         //
         String json = bim.getSELECT_kundId();
@@ -932,7 +936,7 @@ public class InvoiceB extends Basic_Buh {
         //
         return null;
     }
-    
+
     private String getKontantFakturaBetalMetod() {
         //
         String json = bim.getSELECT_fakturaId();
@@ -958,7 +962,7 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
+
     private String getMomsSatsString(boolean preview) {
         //
         JTable table;
@@ -1005,7 +1009,7 @@ public class InvoiceB extends Basic_Buh {
         return str;
         //
     }
-    
+
     private String getFakturaNrCommonOrAlt() {
         String fakturanr_alt = _get(TABLE_ALL_INVOICES__FAKTURANR_ALT);
         if (fakturanr_alt.equals("0") == false) {
@@ -1014,7 +1018,7 @@ public class InvoiceB extends Basic_Buh {
             return _get(TABLE_ALL_INVOICES__FAKTURANR);
         }
     }
-    
+
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -1115,9 +1119,9 @@ public class InvoiceB extends Basic_Buh {
                 }
             });
         }
-        
+
     }
-    
+
     private String getFakturaNrAltIfExist(Invoice_ invoice) {
         TableInvert ti3 = (TableInvert) invoice.TABLE_INVERT_3;
         String fakturanr_alt = ti3.getValueAt(DB.BUH_FAKTURA__FAKTURANR_ALT);
@@ -1127,7 +1131,7 @@ public class InvoiceB extends Basic_Buh {
             return "-";
         }
     }
-    
+
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
@@ -1236,32 +1240,32 @@ public class InvoiceB extends Basic_Buh {
                 }
             });
         }
-        
+
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void showTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     protected boolean fieldsValidated(boolean insert) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
