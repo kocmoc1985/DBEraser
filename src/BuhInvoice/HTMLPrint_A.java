@@ -8,6 +8,7 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
+import forall.HelpA_;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -20,9 +21,12 @@ import javax.swing.JScrollPane;
 
 /**
  * "COMMON INVOICE" & "INVOICE PREVIEW"
+ *
  * @author KOCMOC
  */
 public class HTMLPrint_A extends HTMLPrint {
+
+    private boolean OMVANT_SKATT__EXIST = false;
 
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
@@ -39,12 +43,12 @@ public class HTMLPrint_A extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        super(bim, fakturatype,preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
     }
 
     @Override
     protected void buttonLogic() {
-        if(preview){
+        if (preview) {
             GP_BUH.setEnabled(jButton_send_faktura_email, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);
             GP_BUH.setEnabled(jButton_send_faktura_any_email, false);
@@ -52,16 +56,14 @@ public class HTMLPrint_A extends HTMLPrint {
         }
     }
 
-    
-    
     @Override
     protected String getWindowTitle() {
-        if(preview){
-            return LANG.FRAME_TITLE_1_3; 
-        }else{
-           return LANG.FRAME_TITLE_1; 
+        if (preview) {
+            return LANG.FRAME_TITLE_1_3;
+        } else {
+            return LANG.FRAME_TITLE_1;
         }
-        
+
     }
 
     @Override
@@ -82,7 +84,7 @@ public class HTMLPrint_A extends HTMLPrint {
             //            "img {width: 20px}", not working from here
             ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
-//            "table {border: 1px solid black}",//----------------------------->!!!!!!
+            //            "table {border: 1px solid black}",//----------------------------->!!!!!!
             "td {border: 1px solid gray;}",//------------------------------------>!!!!!
             "td {padding-left: 4px;}",
             //
@@ -97,6 +99,19 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return CSSRules;
         //
+    }
+
+    private boolean ertVatNrExist() {
+        if (getErtVatNr() != null && getErtVatNr().isEmpty() == false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private String getErtVatNr() {
+        String ert_vatt = _get(map_b, T__FAKTURA_ERT_VAT_NR);
+        return _get_exist_a("Ert Vatnr", ert_vatt);
     }
 
     protected final static String getAttBetalaTitle(String fakturatype) {
@@ -171,6 +186,8 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + articles_to_html(articles_map_list)
                 //
+                + ovmvantSkattNotation()
+                //
                 + brElements()
                 //
                 + faktura_data_C_to_html()
@@ -243,7 +260,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String[] values_a = new String[]{
             _get(map_e_2__lev_data, COL_0),
             _get(map_e, COL_1) + ", " + _get(map_e, COL_1_2),
-            _get(map_e, COL_2) + " " + _get(map_e, COL_3)  + _get_exist_c(_get(map_e, COL_3_1))
+            _get(map_e, COL_2) + " " + _get(map_e, COL_3) + _get_exist_c(_get(map_e, COL_3_1))
         };
         //
         String[] values_b = new String[]{
@@ -357,7 +374,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) +  _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A))  + ".";
+        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A)) + ".";
         html_ += "</p>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
@@ -380,14 +397,32 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-    private String countMoms(HashMap<String, String> map){
+    private String countMoms(HashMap<String, String> map) {
         int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));
         double pris = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__PRIS));
         double momsSats = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__MOMS_SATS)) / 100;
         double momsKr = (antal * pris) * momsSats;
-        return ""+GP_BUH.round_double(momsKr);
+        return "" + GP_BUH.round_double(momsKr);
     }
-    
+
+    private boolean isOmvantMoms(HashMap<String, String> map) {
+        //
+        boolean omvant = map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT).equals("1")
+                || map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT).equals("Ja");
+        //
+        if (omvant && OMVANT_SKATT__EXIST == false) {
+            //
+            OMVANT_SKATT__EXIST = true;
+            //
+            if(ertVatNrExist() == false){
+                HelpA_.showNotification_separate_thread(LANG.MSG_22);
+            }
+            //
+        }
+        //
+        return omvant;
+    }
+
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
         String html_ = "<table class='marginTop' style='border: 1px solid gray'>";
@@ -404,6 +439,7 @@ public class HTMLPrint_A extends HTMLPrint {
         boolean containsKomment = listContainsAtLeastOne(list, DB.BUH_F_ARTIKEL__KOMMENT);
         boolean containsSameMomsSats = listContainsSameEntries(list, DB.BUH_F_ARTIKEL__MOMS_SATS);
         //
+
         //
         html_ += "<tr class='bold'>";
         //
@@ -411,13 +447,13 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
         }
         //
-        if(containsKomment){
+        if (containsKomment) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
         }
         //
-        if(containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt){
+        if (containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + " / " + T__ARTIKEL_ENHET + "</td>";
-        }else{
+        } else {
             html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
             html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
         }
@@ -427,38 +463,55 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_RABATT + "</td>";
         }
         //
-        if(containsSameMomsSats == false){
-           html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS + "</td>"; 
-           html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR + "</td>"; 
+        if (containsSameMomsSats == false) {
+            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR + "</td>";
         }
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>"; 
+        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
         //
         //
         for (HashMap<String, String> map : list) {
             //
+            boolean isOmvantMoms = isOmvantMoms(map);
+            //
             String moms_kr = "";
             //
-            if(containsSameMomsSats == false){
+            if (containsSameMomsSats == false) {
                 moms_kr = countMoms(map);
             }
             //
             //
             html_ += "<tr>";
             //
+            boolean omvantMomsMarkingSet = false;
+            //
             if (containsArticleNames) {
-                html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+                //
+                if (isOmvantMoms) {
+                    html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + " **</td>";
+                    omvantMomsMarkingSet = true;
+                } else {
+                    html_ += "<td class='no-border'>" + _get(map, DB.BUH_FAKTURA_ARTIKEL___NAMN) + "</td>";
+                }
+                //
             }
             //
-            if(containsKomment){
-               html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>"; 
+            if (containsKomment) {
+                //
+                if (omvantMomsMarkingSet == false && isOmvantMoms) {
+                    html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + " **</td>";
+                } else {
+                    html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__KOMMENT) + "</td>";
+                }
+                //
             }
             //
-            if(containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt){
+            if (containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt) {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + " (" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + ")" + "</td>";
-            }else{
+            } else {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ENHET) + "</td>";
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__ANTAL) + "</td>";
             }
@@ -468,9 +521,9 @@ public class HTMLPrint_A extends HTMLPrint {
                 html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__RABATT) + "</td>";
             }
             //
-            if(containsSameMomsSats == false){
-               html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__MOMS_SATS) + "</td>";
-               html_ += "<td class='no-border'>" + moms_kr + "</td>";
+            if (containsSameMomsSats == false) {
+                html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__MOMS_SATS) + "</td>";
+                html_ += "<td class='no-border'>" + moms_kr + "</td>";
             }
             //
             html_ += "<td class='no-border'>" + _get(map, DB.BUH_F_ARTIKEL__PRIS) + "</td>";
@@ -484,6 +537,17 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "</table>";
         //
         return html_;
+    }
+
+    private String ovmvantSkattNotation() {
+        //
+        String str = "** Omvänd skattskylldighet" + getErtVatNr();
+        //
+        if (OMVANT_SKATT__EXIST) {
+            return "<p class='fontStd'>" + str + "</p>";
+        } else {
+            return "";
+        }
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {
@@ -736,7 +800,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
-    
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
         GP_BUH.chooseLogo(this);
@@ -755,7 +819,7 @@ public class HTMLPrint_A extends HTMLPrint {
     }//GEN-LAST:event_jButton_send_faktura_any_emailActionPerformed
 
     private void jButton_send_with_common_postActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_common_postActionPerformed
-         //
+        //
         if (GP_BUH.confirmWarning(LANG.MSG_10_5) == false) {
             return;
         }
@@ -800,7 +864,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

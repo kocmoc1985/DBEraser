@@ -93,6 +93,9 @@ public class LANG {
     public static String MSG_21_0 = "Kontodelning borttagen";
     public static String MSG_21_1 = "Ett okänt fel inträffade";
 
+    public static String MSG_22 = "OBS! Du använder \"Omvänd skattskyldighet\" men motpartens VAT nr saknas.\n"
+            + "Gå till flik KUNDER och ange VAT nr för den aktuella kunden.";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
