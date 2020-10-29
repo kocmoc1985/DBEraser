@@ -246,9 +246,14 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         //
         String fixedComboValues_b = DB.STATIC__JA_NEJ; // This will aquired from SQL
-        RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, "MAKULERAD", "", true, true, false);
+        RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD, "", true, true, false);
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
+        //
+        String fixedComboValues_c = DB.STATIC__JA_NEJ; // This will aquired from SQL
+        RowDataInvert omvantSkatteskylldighet = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__OMVANT_SKATTSKYLDIGHET, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET, "", true, true, false);
+        omvantSkatteskylldighet.enableFixedValuesAdvanced();
+        omvantSkatteskylldighet.setUneditable();
         //
         RowDataInvert[] rows = {
 //            inkl_exkl_moms,
@@ -258,7 +263,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
             expavgift,
             frakt,
             drojsmalsranta,
-            makulerad
+            omvantSkatteskylldighet,
+//            makulerad
         };
         //
         return rows;

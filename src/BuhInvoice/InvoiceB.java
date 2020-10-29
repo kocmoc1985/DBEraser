@@ -54,6 +54,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP. AVGIFT";
     public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
+    public static String TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET = "OMVÄNT SKATTSKYLDIGHET";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
     public static String TABLE_ALL_INVOICES__SKICKAD = "SKICKAD";
@@ -267,7 +268,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
             TABLE_ALL_INVOICES__KOMMENT_$,
             TABLE_ALL_INVOICES__CHANGED_BY,
-            TABLE_ALL_INVOICES__DATE_CREATED
+            TABLE_ALL_INVOICES__DATE_CREATED,
+            TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET    
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -507,6 +509,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KOMMENT_$);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CHANGED_BY);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET);
         }
         //
     }
@@ -546,7 +549,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),
             map.get(DB.BUH_FAKTURA__KOMMENT),
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
-            map.get(DB.BUH_FAKTURA__DATE_CREATED__)
+            map.get(DB.BUH_FAKTURA__DATE_CREATED__),
+            map.get(DB.BUH_FAKTURA__OMVANT_SKATTSKYLDIGHET)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
