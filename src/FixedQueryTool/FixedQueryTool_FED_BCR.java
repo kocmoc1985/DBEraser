@@ -14,7 +14,7 @@ import FreeQuery.*;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_A;
 import java.awt.Color;
 import java.awt.Component;
@@ -139,7 +139,7 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     }
 
     private void addToOutPutWindow(String str) {
-        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea2.append("\n " + HelpA_.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {
@@ -493,7 +493,7 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
             java.util.logging.Logger.getLogger(FixedQueryTool_FED_BCR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //
-        HelpA.err_output_to_file();
+        HelpA_.err_output_to_file();
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

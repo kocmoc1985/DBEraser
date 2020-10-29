@@ -14,7 +14,7 @@ import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
 import forall.Sql_A;
 import exporterMills.Mills.Dbentry;
-import forall.HelpA;
+import forall.HelpA_;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,7 +35,7 @@ import javax.swing.ImageIcon;
  * @author Administrator
  */
 public class Exporter extends javax.swing.JFrame implements Runnable {
-    public final static Properties EXPORTER_PROPERTIES = HelpA.choose_properties(".");
+    public final static Properties EXPORTER_PROPERTIES = HelpA_.choose_properties(".");
     //=================================================
     public final static String EXPORTER_MILLS__MAIN_TABLE_NAME = EXPORTER_PROPERTIES.getProperty("main_table_name", "MainTable");
     public final static String EXPORTER_MILLS__CURVES_TABLE_NAME = EXPORTER_PROPERTIES.getProperty("curves_table_name", "Curvestable");
@@ -65,8 +65,8 @@ public class Exporter extends javax.swing.JFrame implements Runnable {
         this.setVisible(true);
         this.setTitle("DBExporter - Mills (" + monitor.currentPid() + ")");
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage()); 
-        jTextField1.setText(HelpA.updatedOn());
-        jTextField2.setText(HelpA.updatedOn());
+        jTextField1.setText(HelpA_.updatedOn());
+        jTextField2.setText(HelpA_.updatedOn());
     }
 
     private void connect() {
@@ -124,7 +124,7 @@ public class Exporter extends javax.swing.JFrame implements Runnable {
     }
 
     private void show_info(String msg) {
-        textArea1.append(HelpA.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
+        textArea1.append(HelpA_.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
     }
 
     private void fileOperations() {
@@ -137,7 +137,7 @@ public class Exporter extends javax.swing.JFrame implements Runnable {
         }
 
         try {
-            HelpA.copyFile("lib/mills_export_empty.mdb", "mills_export.mdb");
+            HelpA_.copyFile("lib/mills_export_empty.mdb", "mills_export.mdb");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Exporter.class.getName()).log(Level.SEVERE, null, ex);
             show_info("mills_export_empty.mdb  NOT FOUND");
@@ -156,7 +156,7 @@ public class Exporter extends javax.swing.JFrame implements Runnable {
     private void export() {
         //Note that the order of Tables is ver important
         //MainTable first....
-        DATE_TO = HelpA.addDay(DATE_TO);
+        DATE_TO = HelpA_.addDay(DATE_TO);
         for (String table : mills.table_names_bound) {
             RECORDED = 0;
             String q;
@@ -443,7 +443,7 @@ public class Exporter extends javax.swing.JFrame implements Runnable {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        HelpA.err_output_to_file();
+        HelpA_.err_output_to_file();
         Exporter exporter = new Exporter();
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //

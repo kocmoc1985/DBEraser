@@ -10,7 +10,7 @@ import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import icons.ICON;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,6 +74,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
     public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
+    public static String TABLE_INVOICE_ARTIKLES__OMVANT_SKATT = "OMVÄNT SKATTSKYLDIGHET";
     
     public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
     
@@ -88,7 +89,7 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
     }
     
-    public InvoiceB(BUH_INVOICE_MAIN_ buh_invoice_main) {
+    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
     }
     
@@ -99,7 +100,7 @@ public class InvoiceB extends Basic_Buh {
         hideColumnsFakturaTable(bim.jTable_invoiceB_alla_fakturor);
         refresh(null); // this is used instead of fillFakturaTable
 //        fillFakturaTable(null);
-//        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+//        HelpA_.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
 //        String fakturaId = bim.getFakturaId();
 //        all_invoices_table_clicked(fakturaId);
         java.awt.EventQueue.invokeLater(() -> {
@@ -117,10 +118,10 @@ public class InvoiceB extends Basic_Buh {
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
-        HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
+        HelpA_.ComboBoxObject[] boxObjects = HelpA_.extract_comma_separated_objects(fixedComboValues_a, 2);
         //
         if (boxObjects != null) {
-            HelpA.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
+            HelpA_.fillComboBox(bim.jComboBox_faktura_kunder_filter, boxObjects, null);
         }
         //
         if (bim.jComboBox_faktura_kunder_filter.getItemCount() == 0) {
@@ -160,7 +161,7 @@ public class InvoiceB extends Basic_Buh {
         //#THREAD#
         fillFakturaTable(secondWhereValue);
         checkIfForfallnaFakturorExist();
-        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+        HelpA_.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
         //
@@ -171,7 +172,7 @@ public class InvoiceB extends Basic_Buh {
         Thread x = new Thread(() -> {
             fillFakturaTable(secondWhereValue);
             checkIfForfallnaFakturorExist();
-            HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
+            HelpA_.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
         });
@@ -197,7 +198,7 @@ public class InvoiceB extends Basic_Buh {
             fillFakturaTable(null);
             checkIfForfallnaFakturorExist();
             //
-            HelpA.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+            HelpA_.markRowByValue(bim.jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
             String fakturaId = bim.getFakturaId();
             all_invoices_table_clicked(fakturaId);
             
@@ -216,7 +217,7 @@ public class InvoiceB extends Basic_Buh {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         int row = table.getSelectedRow();
         fillFakturaTable(null);
-        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
+        HelpA_.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
         String fakturaId = bim.getFakturaId();
         all_invoices_table_clicked(fakturaId);
     }
@@ -293,7 +294,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_INVOICE_ARTIKLES__PRIS,
             TABLE_INVOICE_ARTIKLES__RABATT,
             TABLE_INVOICE_ARTIKLES__RABATT_KR,
-            TABLE_INVOICE_ARTIKLES__MOMS_SATS
+            TABLE_INVOICE_ARTIKLES__MOMS_SATS,
+            TABLE_INVOICE_ARTIKLES__OMVANT_SKATT
         };
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));
@@ -380,7 +382,7 @@ public class InvoiceB extends Basic_Buh {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        String komment = HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
+        String komment = HelpA_.getValueSelectedRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
         //
         bim.jTextArea_faktura_komment.setText(komment);
         //
@@ -393,7 +395,7 @@ public class InvoiceB extends Basic_Buh {
         JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_faktura_komment;
         //
         if (jtxt.getValidated() == false) {
-            HelpA.showNotification(LANG.MSG_8);
+            HelpA_.showNotification(LANG.MSG_8);
             return;
         }
         //
@@ -420,7 +422,7 @@ public class InvoiceB extends Basic_Buh {
         HelpBuh.update(json);
         //
         // OBS! This is done to skip refreshing the entire faktura list
-        HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
+        HelpA_.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
         //
         //
         if (clear) {
@@ -439,9 +441,9 @@ public class InvoiceB extends Basic_Buh {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        HelpA.clearAllRowsJTable(table);
+        HelpA_.clearAllRowsJTable(table);
         //
-        HelpA.rowsorter_jtable_add_reset(table);
+        HelpA_.rowsorter_jtable_add_reset(table);
         //
         table.setDefaultRenderer(Object.class, GP_BUH.getRendererForfalloDatum());
         //
@@ -487,29 +489,29 @@ public class InvoiceB extends Basic_Buh {
     
     private void hideColumnsFakturaTable(JTable table) {
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURANR_ALT);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL_KR);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_NR);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURANR_ALT);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__ERT_ORDER);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__FRAKT);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__EXP_AVG);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__DROJSMALSRANTA);
+//            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__MAKULERAD);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__VALUTA);
+//            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__RABATT_TOTAL_KR);
             //
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KOMMENT_$);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CHANGED_BY);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
-            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__VAR_REF);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__ER_REF);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__BET_VILKOR);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_VILKOR);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__KOMMENT_$);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__CHANGED_BY);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
+            HelpA_.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET);
         }
         //
     }
@@ -534,7 +536,7 @@ public class InvoiceB extends Basic_Buh {
             //
             map.get(DB.BUH_FAKTURA__FAKTURANR__),
             map.get(DB.BUH_FAKTURA__FAKTURANR_ALT),
-            getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
+            JSon.getLongName(DB.STATIC__FAKTURA_TYPES, map.get(DB.BUH_FAKTURA__FAKTURATYP)),
             map.get(DB.BUH_FAKTURA_KUND___NAMN),
             map.get(DB.BUH_FAKTURA__FAKTURA_DATUM),
             map.get(DB.BUH_FAKTURA__FORFALLO_DATUM),
@@ -543,9 +545,9 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__RABATT_TOTAL),
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
-            getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__MAKULERAD)),
-            getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
-            getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__SENT)),
+            JSon.getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__MAKULERAD)),
+            JSon.getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
+            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__SENT)),
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),
             map.get(DB.BUH_FAKTURA__KOMMENT),
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
@@ -561,7 +563,7 @@ public class InvoiceB extends Basic_Buh {
         //
         JTable table = bim.jTable_invoiceB_faktura_artiklar;
         //
-        HelpA.clearAllRowsJTable(table);
+        HelpA_.clearAllRowsJTable(table);
         //
         if (fakturaId == null || fakturaId.isEmpty()) {
             return;
@@ -599,14 +601,15 @@ public class InvoiceB extends Basic_Buh {
     protected void hideColumnsArticlesTable(JTable table) {
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
-            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
-            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
-            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
+            HelpA_.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
+            HelpA_.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
+            HelpA_.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
+            HelpA_.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
+//            HelpA_.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
             //
             try {
-                HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
-                HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
+                HelpA_.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
+                HelpA_.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, table, 0.15);
             } catch (Exception ex) {
                 
             }
@@ -624,11 +627,12 @@ public class InvoiceB extends Basic_Buh {
             getValueHashMap(map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN)),
             map.get(DB.BUH_F_ARTIKEL__KOMMENT),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
-            getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
+            JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT),
             map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
-            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS)
+            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS),
+            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT))
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -689,12 +693,12 @@ public class InvoiceB extends Basic_Buh {
     
     private String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
-        return HelpA.getValueSelectedRow(table, colNameJTable);
+        return HelpA_.getValueSelectedRow(table, colNameJTable);
     }
     
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
-        double val = Double.parseDouble(HelpA.getValueSelectedRow(table, colNameJTable));
+        double val = Double.parseDouble(HelpA_.getValueSelectedRow(table, colNameJTable));
         int rst = (int) (val * 100);
         return "" + rst;
     }
@@ -740,7 +744,7 @@ public class InvoiceB extends Basic_Buh {
             //
             if (isKreditFaktura == false && ok) { // COPY
                 //
-                HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
+                HelpA_.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
@@ -793,7 +797,7 @@ public class InvoiceB extends Basic_Buh {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             fakturaId = "-1";
         }
         //
@@ -846,7 +850,7 @@ public class InvoiceB extends Basic_Buh {
     
     private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
         String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
-        String forfallodatum = HelpA.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
+        String forfallodatum = HelpA_.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
         faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
         return faktura_data_map;
     }
@@ -938,7 +942,7 @@ public class InvoiceB extends Basic_Buh {
             //
             String betalMetod_shortName = addresses.get(0).get(DB.BUH_FAKTURA_INBET__BETAL_METHOD);
             //
-            return getLongName(DB.STATIC__BETAL_METHODS, betalMetod_shortName);
+            return JSon.getLongName(DB.STATIC__BETAL_METHODS, betalMetod_shortName);
             //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
@@ -961,7 +965,7 @@ public class InvoiceB extends Basic_Buh {
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            int col = HelpA.getColByName(table, TABLE_INVOICE_ARTIKLES__MOMS_SATS);
+            int col = HelpA_.getColByName(table, TABLE_INVOICE_ARTIKLES__MOMS_SATS);
             //
             String val = (String) table.getValueAt(x, col);
             //
@@ -1005,7 +1009,7 @@ public class InvoiceB extends Basic_Buh {
     
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
         //
-//        BUH_INVOICE_MAIN_ bim = invoice.bim;
+//        BUH_INVOICE_MAIN bim = invoice.bim;
         //
         HashMap<String, String> map_a_0 = new HashMap<>();
         HashMap<String, String> map_a = new HashMap<>();
@@ -1118,7 +1122,7 @@ public class InvoiceB extends Basic_Buh {
     
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
-//        BUH_INVOICE_MAIN_ bim = invoice.bim;
+//        BUH_INVOICE_MAIN bim = invoice.bim;
         //
         TableInvert ti = bim.getTableInvert();
         TableInvert ti_3 = bim.getTableInvert_3();

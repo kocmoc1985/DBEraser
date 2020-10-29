@@ -6,7 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
-import forall.HelpA;
+import forall.HelpA_;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +43,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     @Override
     public void addArticleForJTable(JTable table) {
         //
-        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA_.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //        
         this.articlesListJTable.add(map);
@@ -59,10 +59,11 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             map.get(DB.BUH_F_ARTIKEL__PRIS),
             map.get(DB.BUH_F_ARTIKEL__RABATT),
             map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
-            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", "")
+            map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""),
+            map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)
         };
         //
-        HelpA.addRowToJTable(jtableRow, table);
+        HelpA_.addRowToJTable(jtableRow, table);
         //
     }
 
@@ -78,7 +79,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         String fakturaId = invoice.bim.getFakturaId();
         //
-        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
+        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA_.ComboBoxObject"
         //
         // Yes it's obligatory to use "tableInvertToHashMap_exclude_null()" 
         // If not used the empty checkbox returns "NULL" as value and when sending it to PHP/PDO
@@ -100,7 +101,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
 //            System.out.println("QUERY: " + query + "    *******************************************"); 
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -115,7 +116,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN);
         //
-        String buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+        String buh_f_artikel_id = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
         //
         // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
@@ -129,14 +130,14 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         HelpBuh.update(json);
         //
-//        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, invoic.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, map.get(DB.BUH_F_ARTIKEL__RABATT_KR));
-        HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS));
+//        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, map.get(DB.BUH_F_ARTIKEL__RABATT_KR));
+        HelpA_.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS));
         //
         //
 //        invoic.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
@@ -177,7 +178,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         if (mainMap != null && secMap != null) { // [2020-08-12]
             //
-            map_temp = HelpA.joinHashMaps(mainMap, secMap);
+            map_temp = HelpA_.joinHashMaps(mainMap, secMap);
             //
             this.fakturaMap = JSon.joinHashMaps(map_temp, update_map);
             //

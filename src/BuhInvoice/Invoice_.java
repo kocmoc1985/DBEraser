@@ -14,7 +14,7 @@ import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -61,14 +61,14 @@ public abstract class Invoice_ extends Basic_Buh {
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
 
-    public Invoice_(BUH_INVOICE_MAIN_ bim) {
+    public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }
 
     private void buttonLogic() {
         //
-        boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
+        boolean rowSelected = HelpA_.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
@@ -126,7 +126,7 @@ public abstract class Invoice_ extends Basic_Buh {
             } else {
                 //
 //                if (bim.isMakulerad()) {
-//                    HelpA.showNotification_separate_thread(LANG.MSG_9);
+//                    HelpA_.showNotification_separate_thread(LANG.MSG_9);
 //                }
                 //
                 if (bim.isKreditFaktura()) {
@@ -164,8 +164,8 @@ public abstract class Invoice_ extends Basic_Buh {
         String[] arr = new String[]{InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT};
         //
         for (String columnName : arr) {
-            if (HelpA.allRowsEmptyColumn(getArticlesTable(), columnName)) {
-                HelpA.hideColumnByName(table, columnName);
+            if (HelpA_.allRowsEmptyColumn(getArticlesTable(), columnName)) {
+                HelpA_.hideColumnByName(table, columnName);
             }
         }
         //
@@ -217,12 +217,12 @@ public abstract class Invoice_ extends Basic_Buh {
     protected void addArticle() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_2);
+            HelpA_.showNotification(LANG.MSG_2);
             return;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA_.showNotification(LANG.MSG_1);
             return;
         }
         //
@@ -244,19 +244,19 @@ public abstract class Invoice_ extends Basic_Buh {
     protected boolean fieldsValidated(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_2);
+            HelpA_.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA_.showNotification(LANG.MSG_1);
             return false;
         }
         //
         // Yes it's 100% correct that TABLE_INVERT_2 is not validated [2020-10-01]
         //
         if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA_.showNotification(LANG.MSG_1);
             return false;
         }
         //
@@ -267,7 +267,7 @@ public abstract class Invoice_ extends Basic_Buh {
     protected boolean fieldsValidatedArticle() {
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA_.showNotification(LANG.MSG_1);
             return false;
         }
         //
@@ -298,7 +298,7 @@ public abstract class Invoice_ extends Basic_Buh {
             String fakturaNr = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_GET_LATEST_FAKTURA_NR, json);
             //
-            if (HelpA.checkIfNumber_b(fakturaNr)) {
+            if (HelpA_.checkIfNumber_b(fakturaNr)) {
                 int nr = Integer.parseInt(fakturaNr);
                 nr++; // OBS! Iam getting the last so i have to add to get the nr for the act. faktura
                 return "" + nr;
@@ -307,7 +307,7 @@ public abstract class Invoice_ extends Basic_Buh {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -337,9 +337,9 @@ public abstract class Invoice_ extends Basic_Buh {
      */
     private double getDoubleJTable(JTable table, int row, String parameter) {
         //
-        String value = HelpA.getValueGivenRow(table, row, parameter);
+        String value = HelpA_.getValueGivenRow(table, row, parameter);
         //
-        if (HelpA.isNumber(value)) {
+        if (HelpA_.isNumber(value)) {
             return Double.parseDouble(value);
         } else {
             return 0;
@@ -349,7 +349,7 @@ public abstract class Invoice_ extends Basic_Buh {
 
 //    public double getRabattPercent_JTable(JTable table, int row) {
 //        //
-//        String rabatt = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+//        String rabatt = HelpA_.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
 //        //
 //        try {
 //            double rabatt_ = Double.parseDouble(rabatt);
@@ -364,7 +364,7 @@ public abstract class Invoice_ extends Basic_Buh {
 //    }
     public double getPercent_JTable(JTable table, int row, String parameter) {
         //
-        String value = HelpA.getValueGivenRow(table, row, parameter);
+        String value = HelpA_.getValueGivenRow(table, row, parameter);
         //
         try {
             double value_ = Double.parseDouble(value);
@@ -410,23 +410,23 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     private void displayTotals() {
-        BUH_INVOICE_MAIN_.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
-        BUH_INVOICE_MAIN_.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
-        BUH_INVOICE_MAIN_.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
-        BUH_INVOICE_MAIN_.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
-        BUH_INVOICE_MAIN_.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
-        BUH_INVOICE_MAIN_.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
+        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
+        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
+        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
+        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
-        BUH_INVOICE_MAIN_.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
+        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
         //
-        BUH_INVOICE_MAIN_.jTextField_frakt.setText("" + getTotal(FRAKT));
-        BUH_INVOICE_MAIN_.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
+        BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
+        BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
     }
 
     protected void countFakturaTotal(JTable table) {
         //
         if (table.equals(bim.jTable_InvoiceA_Insert_articles) == false) {
-            HelpA.showNotification("WRONG Articles Table!!");
+            HelpA_.showNotification("WRONG Articles Table!!");
         }
         //
         // Some methods are called from here because this method (countFakturaTotal)
@@ -462,8 +462,8 @@ public abstract class Invoice_ extends Basic_Buh {
             double rabatt_kr = getDoubleJTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
             double moms_sats = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
             //
-            pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
-            antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
+            pris_exkl_moms = Double.parseDouble(HelpA_.getValueGivenRow(table, i, prisColumn));
+            antal = Integer.parseInt(HelpA_.getValueGivenRow(table, i, antalColumn));
             //
             //
             if (rabatt_percent == 0 && rabatt_kr == 0) {
@@ -471,7 +471,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 FAKTURA_TOTAL += actPris;
                 double actMoms = (pris_exkl_moms * antal) * moms_sats;
                 //
-                HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
+                HelpA_.increase_map_value_with_x(moms_sats, actPris, moms_map);
                 //
                 MOMS_TOTAL += actMoms;
                 //
@@ -481,7 +481,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 RABATT_TOTAL += (rabatt_kr * antal);
                 double actMoms = ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
                 //
-                HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
+                HelpA_.increase_map_value_with_x(moms_sats, actPris, moms_map);
                 //
                 MOMS_TOTAL += actMoms;
             }
@@ -602,9 +602,8 @@ public abstract class Invoice_ extends Basic_Buh {
     protected String defineMomsSats(JTable table) {
         //
 //        if (momsSaveEntry.getMomsSats() == null) {
-        return JSon._get_special_(
-                DB.STATIC__MOMS_SATS,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
+        return JSon._get_special_(DB.STATIC__MOMS_SATS,
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
 //            );
 //        } else {
 //            return JSon._get_special_(
@@ -674,6 +673,13 @@ public abstract class Invoice_ extends Basic_Buh {
         moms.enableFixedValuesAdvanced();
         moms.setUneditable();
         //
+        //
+        String fixedComboValues_d = DB.STATIC__JA_NEJ; // This will aquired from SQL
+        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
+        omvant_skatt.enableFixedValuesAdvanced();
+        omvant_skatt.setUneditable();
+        //
+        //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
         RowDataInvert antal = new RowDataInvertB("1", DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", true, true, false);
@@ -693,6 +699,7 @@ public abstract class Invoice_ extends Basic_Buh {
         RowDataInvert[] rows = {
             articles,
             moms,
+            omvant_skatt,
             komment,
             antal,
             enhet,
@@ -713,9 +720,8 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         JTable table = getArticlesTable();
         //
-        String fixedComboValues_a = JSon._get__with_merge(
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
+        String fixedComboValues_a = JSon._get__with_merge(HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
                 requestJComboValuesHttp(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES, new String[]{DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.BUH_FAKTURA_ARTIKEL___ID, DB.BUH_FAKTURA_ARTIKEL___PRIS, DB.BUH_FAKTURA_ARTIKEL___ARTNR}));
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
@@ -730,19 +736,27 @@ public abstract class Invoice_ extends Basic_Buh {
         moms.setUneditable();
 //        disableMomsJComboIf(moms); // *****
         //
-        String komm = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
+        //
+        String valSelectedRow = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
+        String valSelectedRow_translated = GP_BUH.getShortName(DB.STATIC__JA_NEJ, valSelectedRow);
+        String fixedComboValues_d = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
+        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
+        omvant_skatt.enableFixedValuesAdvanced();
+        omvant_skatt.setUneditable();
+        //
+        //
+        String komm = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komm, DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
-        String ant = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        String ant = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         RowDataInvert antal = new RowDataInvertB(ant, DB.BUH_F_ARTIKEL__ANTAL, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "", false, true, false);
         //
 //        String fixedComboValues_b = JSon._get_special_(
 //                DB.STATIC__ENHET,
-//                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET)
+//                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET)
 //        );
         //
-        String fixedComboValues_b = JSon._get(
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET),
+        String fixedComboValues_b = JSon._get(HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET),
                 "",
                 DB.STATIC__ENHET
         );
@@ -752,18 +766,19 @@ public abstract class Invoice_ extends Basic_Buh {
         enhet.setUneditable();
         //
         //
-        String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
+        String pris_ = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
         //
-        String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
+        String rabatt_ = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", false, true, false);
         //
-        String rabatt_kr_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+        String rabatt_kr_ = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         RowDataInvert rabatt_kr = new RowDataInvertB(rabatt_kr_, DB.BUH_F_ARTIKEL__RABATT_KR, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, "", false, true, false);
         //
         RowDataInvert[] rows = {
             articles,
             moms,
+            omvant_skatt,
             komment,
             antal,
             enhet,
@@ -806,7 +821,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         if (jli.getValue().isEmpty()) {
             //
-            jtfi.setText(HelpA.get_proper_date_yyyy_MM_dd());
+            jtfi.setText(HelpA_.get_proper_date_yyyy_MM_dd());
             //
             if (Validator.validateDate(jli)) {
                 forfalloDatumAutoChange(ti);
@@ -853,9 +868,9 @@ public abstract class Invoice_ extends Basic_Buh {
             String date_new;
             //
             if (value > 0) {
-                date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+                date_new = HelpA_.get_date_time_plus_some_time_in_days(date, value);
             } else {
-                date_new = HelpA.get_date_time_minus_some_time_in_days(date, value);
+                date_new = HelpA_.get_date_time_minus_some_time_in_days(date, value);
             }
             //
             setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
@@ -1026,7 +1041,7 @@ public abstract class Invoice_ extends Basic_Buh {
         long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
         //
-        String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+        String date_new = HelpA_.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }
 
@@ -1094,8 +1109,8 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Object selectedObj = box.getSelectedItem();
             //
-            if (selectedObj instanceof HelpA.ComboBoxObject) {
-                HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
+            if (selectedObj instanceof HelpA_.ComboBoxObject) {
+                HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
                 if (pris.isEmpty()) {
                     setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");

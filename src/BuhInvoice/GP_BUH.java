@@ -7,7 +7,7 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Frame;
@@ -114,9 +114,13 @@ public class GP_BUH {
         }
     }
 
-    public static String translateJaNejEmptyLineChar(String staticJaNej, String value) {
+    public static String getShortName(String staticJaNej, String value) {
         HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);
         return getValNoNull(map.get(value));
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("" + getShortName(DB.STATIC__JA_NEJ, "Ja"));
     }
 
     public static String getValNoNull(String value) {
@@ -185,11 +189,11 @@ public class GP_BUH {
     }
 
     public static String getDate_yyyy_MM_dd() {
-        return HelpA.get_proper_date_yyyy_MM_dd();
+        return HelpA_.get_proper_date_yyyy_MM_dd();
     }
 
     public static String getDateTime_yyyy_MM_dd() {
-        return HelpA.get_proper_date_time_same_format_on_all_computers();
+        return HelpA_.get_proper_date_time_same_format_on_all_computers();
     }
 
     public static String getDateCreated() {
@@ -213,7 +217,7 @@ public class GP_BUH {
     }
 
     public static void centerAndBringToFront(JFrame frame) {
-        Point p = HelpA.position_window_in_center_of_the_screen(frame);
+        Point p = HelpA_.position_window_in_center_of_the_screen(frame);
         frame.setLocation(p);
         frame.setVisible(true);
         //
@@ -264,7 +268,7 @@ public class GP_BUH {
         int h_orig = img.getHeight();
         //
         if (w_orig < MIN_WIDTH) {
-            HelpA.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
+            HelpA_.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
             return;
         }
         //
@@ -332,7 +336,7 @@ public class GP_BUH {
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            int col = HelpA.getColByName(table, colName);
+            int col = HelpA_.getColByName(table, colName);
             //
             String val = (String) table.getValueAt(x, col);
             //
@@ -341,10 +345,10 @@ public class GP_BUH {
             }
             //
             String dateNow = getDate_yyyy_MM_dd();
-            boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, val, DATE_FORMAT_BASIC);
-            boolean isBetald = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
-            boolean isMakulerad = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
-            boolean isFakturaTypeNormal = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
+            boolean forfallen = HelpA_.compareDates(dateNow, DATE_FORMAT_BASIC, val, DATE_FORMAT_BASIC);
+            boolean isBetald = HelpA_.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
+            boolean isMakulerad = HelpA_.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
+            boolean isFakturaTypeNormal = HelpA_.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
             //
             if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false){
                 forfallna++;
@@ -365,11 +369,11 @@ public class GP_BUH {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
                 //
                 boolean isSelctedRow = table.getSelectedRow() == row;
-                boolean isBetald = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
-                boolean isMakulerad = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
-                boolean isFakturaTypeNormal = HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
+                boolean isBetald = HelpA_.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__BETALD).contains(DB.STATIC__YES);
+                boolean isMakulerad = HelpA_.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
+                boolean isFakturaTypeNormal = HelpA_.getValueGivenRow(table, row, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
                 //
-                if (HelpA.getColumnName(table, col).equals(InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM) == false) {
+                if (HelpA_.getColumnName(table, col).equals(InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM) == false) {
                     //
                     if (isSelctedRow) {
                         this.setForeground(Color.white);
@@ -384,7 +388,7 @@ public class GP_BUH {
                 //
                 String dateNow = getDate_yyyy_MM_dd();
                 //
-                boolean forfallen = HelpA.compareDates(dateNow, DATE_FORMAT_BASIC, cellValue, DATE_FORMAT_BASIC);
+                boolean forfallen = HelpA_.compareDates(dateNow, DATE_FORMAT_BASIC, cellValue, DATE_FORMAT_BASIC);
                 //
                 if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false && isSelctedRow == false) {
                     this.setForeground(Color.red);
@@ -409,7 +413,7 @@ public class GP_BUH {
 //        JTable table = bim.jTable_invoiceB_alla_fakturor;
 //        int row = table.getSelectedRow();
 //        fillFakturaTable();
-//        HelpA.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
+//        HelpA_.markGivenRow(bim.jTable_invoiceB_alla_fakturor, row);
 //        String fakturaId = bim.getFakturaId();
 //        all_invoices_table_clicked(fakturaId);
 //    }

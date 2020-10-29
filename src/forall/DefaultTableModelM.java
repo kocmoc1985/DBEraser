@@ -38,7 +38,7 @@ public class DefaultTableModelM extends DefaultTableModel {
 //        }
         //
         for (String colName : sortAsFloatColNames) {
-            if (HelpA.getColByName(table, colName) == i) {
+            if (HelpA_.getColByName(table, colName) == i) {
                 return Integer.class;
             }
         }

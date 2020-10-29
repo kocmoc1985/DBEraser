@@ -6,7 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.HashMapKeyCaseInsensitive;
-import static forall.HelpA.getColumnName;
+import static forall.HelpA_.getColumnName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,6 +21,23 @@ import javax.swing.JTable;
  */
 public class JSon {
 
+    
+//     public static String getLongName(String statics, String valToTranslate) {
+//        return JSon.getLongName(statics, valToTranslate);
+//    }
+     
+     /**
+     * This one translates the "short name" -> "long name", like: "P" -> "POST"
+     *
+     * @param statics
+     * @param valToTranslate
+     * @return
+     */
+    public static String getLongName(String statics, String valToTranslate) {
+        HashMap<String, String> map = JSONToHashMap(statics, true);
+        return map.get(valToTranslate);
+    }
+    
     /**
      * [2020-10-01] OBS! Only visible column taken into account
      *
@@ -469,6 +486,11 @@ public class JSon {
         String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
         return _get(toShowValue, returnValue, jsonStr);
     }
+    
+    public static String _get_special__b(String jsonStr, String returnValue) {
+        String toShowValue = getValueFromJSonString(jsonStr, returnValue, false);
+        return _get(toShowValue, returnValue, jsonStr);
+    }
 
     /**
      * IMPORTANT:[2020-08-14] This one is used when i have/get the "long name"
@@ -546,17 +568,7 @@ public class JSon {
         return str;
     }
 
-    /**
-     * This one translates the "short name" -> "long name", like: "P" -> "POST"
-     *
-     * @param statics
-     * @param valToTranslate
-     * @return
-     */
-    public static String getLongName(String statics, String valToTranslate) {
-        HashMap<String, String> map = JSONToHashMap(statics, true);
-        return map.get(valToTranslate);
-    }
+    
 
     /**
      * USE "_get()" This one uses string operations which is less clear and

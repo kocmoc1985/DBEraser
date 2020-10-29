@@ -8,8 +8,8 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
-import forall.HelpA;
-import static forall.HelpA.getColByName;
+import forall.HelpA_;
+import static forall.HelpA_.getColByName;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,7 +80,7 @@ public class Validator {
      * @param tableName
      * @return
      */
-    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN_ bim, JLinkInvert jli, String colName, String tableName) {
+    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN bim, JLinkInvert jli, String colName, String tableName) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
@@ -246,7 +246,7 @@ public class Validator {
             return setValidated(jli);
         }
         //
-        if (HelpA.isNumber(val)) {
+        if (HelpA_.isNumber(val)) {
             return setValidated(jli);
         } else {
             return setNotValidated(jli);
@@ -288,7 +288,7 @@ public class Validator {
         //
         boolean validated = validate_(DATE_YYYY_MM_DD, val);
         //
-        if (validated && HelpA.isDateValid(val)) {
+        if (validated && HelpA_.isDateValid(val)) {
             return setValidated(jli);
         } else {
             return setNotValidated(jli);

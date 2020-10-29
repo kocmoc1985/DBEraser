@@ -12,7 +12,7 @@ import MyObjectTable.RowData;
 import MyObjectTable.SelectRowButton;
 import MyObjectTable.Table;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_B;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -82,7 +82,7 @@ public class TableBuilderBasic {
 
     private void defineHeadVariables() {
         this.PROPERTIES_PATH = MC_RECIPE_.PROPERTIES_PATH;
-        this.PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
+        this.PROPS = HelpA_.properties_load_properties(PROPERTIES_PATH, false);
         GP.MSSQL_CREATE_STATEMENT_SIMPLE = "false";
         GP.SQL_LIBRARY_JTDS = true;
     }

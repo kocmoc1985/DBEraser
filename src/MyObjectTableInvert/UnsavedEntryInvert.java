@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -60,7 +60,7 @@ public class UnsavedEntryInvert {
             this.value = jtf.getText();
         } else if (dataField instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) dataField;
-            this.value = HelpA.getComboBoxSelectedValue(comboBox);
+            this.value = HelpA_.getComboBoxSelectedValue(comboBox);
             comboBox.setBorder(BorderFactory.createLineBorder(Color.red,2));
         }
     }

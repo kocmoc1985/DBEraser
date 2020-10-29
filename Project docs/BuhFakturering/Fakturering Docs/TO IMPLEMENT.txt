@@ -13,6 +13,15 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Omvand skatt:
+1. Moms automatically set to 0
+2. Make changes to calculations
+3. Make changes to HTML Faktura
+
+Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"
+
+For the "buh_faktura_artikel" -> implement so you can save moms and omvänd momssats so when you create an article those values are automatically set
+
 For the later stage, maybe have faktura rabatt implemented -> so you can set the rabatt once for all articles in the Invoice.
 
 Implement icons to the right from "all_invoices_table" which shows info about the faktura

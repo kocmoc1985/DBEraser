@@ -22,7 +22,7 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
 import com.qoppa.pdfWriter.PDFPrinterJob;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Desktop;
@@ -50,7 +50,7 @@ import org.apache.commons.lang.SystemUtils;
  */
 public abstract class HTMLPrint extends JFrame {
 
-    protected final BUH_INVOICE_MAIN_ bim;
+    protected final BUH_INVOICE_MAIN bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
     protected final HashMap<String, String> map_a_0;
     protected final HashMap<String, String> map_a;
@@ -129,7 +129,7 @@ public abstract class HTMLPrint extends JFrame {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint(
-            BUH_INVOICE_MAIN_ bim,
+            BUH_INVOICE_MAIN bim,
             String fakturatype,
             boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,
@@ -209,7 +209,7 @@ public abstract class HTMLPrint extends JFrame {
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            ArrayList rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
+            ArrayList rowValues = HelpA_.getLineValuesVisibleColsOnly(table, x);
             //
         }
         //
@@ -473,13 +473,13 @@ public abstract class HTMLPrint extends JFrame {
     protected void setSentByCommonPost() {
         loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
-        HelpA.showNotification(LANG.MSG_10_4);
+        HelpA_.showNotification(LANG.MSG_10_4);
     }
 
     protected void sendMailTargeted() {
         //
         TextFieldCheck tfc = new TextFieldCheck(getForetagsEmail(), Validator.EMAIL, 25);
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
         String toEmail = tfc.getText_();
         //
         if (yesNo && toEmail != null && tfc.getValidated()) {
@@ -492,7 +492,7 @@ public abstract class HTMLPrint extends JFrame {
         String ftg_name = getForetagsNamn();
         //
         if (toEmail == null || toEmail.isEmpty()) {
-            HelpA.showNotification(LANG.MSG_7);
+            HelpA_.showNotification(LANG.MSG_7);
             return;
         }
         //
@@ -575,11 +575,11 @@ public abstract class HTMLPrint extends JFrame {
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
 //        System.out.println("Upload to PHP: " + upload_success);
@@ -646,7 +646,7 @@ public abstract class HTMLPrint extends JFrame {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder));
+        HelpA_.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
@@ -693,7 +693,7 @@ public abstract class HTMLPrint extends JFrame {
         System.out.println("jeditorPane height: " + jep.getHeight());
         //
         if (actHeight > A4_PAPER.getHeight()) {
-            HelpA.showNotification("A4 Heigh exceeded");
+            HelpA_.showNotification("A4 Heigh exceeded");
         }
         //
         Paper paper = new Paper();
@@ -753,7 +753,7 @@ public abstract class HTMLPrint extends JFrame {
         System.out.println("jeditorPane height: " + jep.getHeight());
         //
 //        if (actHeight >= A4_PAPER.getHeight()) {
-//            HelpA.showNotification("A4 Height exceeded");
+//            HelpA_.showNotification("A4 Height exceeded");
 //        }
         //
         Paper paper = new Paper();

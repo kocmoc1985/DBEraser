@@ -13,7 +13,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
     //
 
     //
-    public CustomersA_(BUH_INVOICE_MAIN_ bim) {
+    public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -101,7 +101,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             }
         }
         //
-        String fakturaKundId = HelpA.getValueSelectedRow(getTableMain(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+        String fakturaKundId = HelpA_.getValueSelectedRow(getTableMain(), TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         //
         String json = bim.getSELECT(DB.BUH_FAKTURA__FAKTURAKUND_ID, fakturaKundId);
         //
@@ -167,12 +167,12 @@ public class CustomersA_ extends CustomerAForetagA_ {
     public void insert() {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_2);
+            HelpA_.showNotification(LANG.MSG_2);
             return;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA.showNotification(LANG.MSG_1);
+            HelpA_.showNotification(LANG.MSG_1);
             return;
         }
         //
@@ -203,7 +203,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaKundId)) {
@@ -211,7 +211,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             insertAddressData(fakturaKundId);
             //
         } else {
-            HelpA.showNotification(LANG.MSG_ERROR_1);
+            HelpA_.showNotification(LANG.MSG_ERROR_1);
         }
         //
     }
@@ -262,11 +262,11 @@ public class CustomersA_ extends CustomerAForetagA_ {
         JTable table = getTableMain();
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
-            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
-//            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
-            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__EPOST);
-            HelpA.hideColumnByName(table, TABLE_FAKTURA_KUNDER__VATNR);
+            HelpA_.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUND_ID);
+            HelpA_.hideColumnByName(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+//            HelpA_.hideColumnByName(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+            HelpA_.hideColumnByName(table, TABLE_FAKTURA_KUNDER__EPOST);
+            HelpA_.hideColumnByName(table, TABLE_FAKTURA_KUNDER__VATNR);
         }
     }
 
@@ -387,23 +387,23 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         JTable table = getTableMain();
         //
-        String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
+        String kundnr_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
         //
-        String kundnamn_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+        String kundnamn_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUND_NAMN);
         RowDataInvert kundnamn = new RowDataInvertB(kundnamn_, DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
-        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__ORGNR);
+        String orgnr_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__ORGNR);
         RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
         //
-        String vatnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__VATNR);
+        String vatnr_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__VATNR);
         RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
         //
-        String epost_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__EPOST);
+        String epost_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__EPOST);
         RowDataInvert epost = new RowDataInvertB(epost_, DB.BUH_FAKTURA_KUND___EMAIL, TABLE_FAKTURA_KUNDER__EPOST, "", true, true, false);
         //
         //
-        String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KATEGORI),
+        String fixedComboValues_b = JSon._get_simple(HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KATEGORI),
                 DB.STATIC__KUND_AND_ARTICLE__KATEGORI
         );
         //
@@ -519,7 +519,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             //
 //            System.out.println("LATEST: " + latest + "   *************************");
             //
-            if (HelpA.checkIfNumber_b(latest)) {
+            if (HelpA_.checkIfNumber_b(latest)) {
                 int nr = Integer.parseInt(latest);
                 nr++; // OBS! Iam getting the last so i have to add to get the nr for the act. faktura
                 return "" + nr;

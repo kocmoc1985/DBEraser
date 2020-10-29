@@ -8,7 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import forall.HelpA;
+import forall.HelpA_;
 import java.util.HashMap;
 import javax.swing.JTable;
 
@@ -20,7 +20,7 @@ public class InvoiceA_Update extends Invoice_ {
 
     private Faktura_Entry_Update faktura_entry_update;
 
-    public InvoiceA_Update(BUH_INVOICE_MAIN_ buh_invoice_main) {
+    public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
         initOther();
     }
@@ -84,7 +84,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        HelpA.removeRowJTable(table, selectedRow);
+        HelpA_.removeRowJTable(table, selectedRow);
         //
         executeDelete(json);
         //
@@ -97,9 +97,8 @@ public class InvoiceA_Update extends Invoice_ {
         //
         JTable table = getAllInvoicesTable();
         //
-        String fixedComboValues_a = JSon._get(
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__KUND),
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__KUND_ID),
+        String fixedComboValues_a = JSon._get(HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__KUND),
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__KUND_ID),
                 requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID}));
         //
         RowDataInvert kund = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_FAKTURA__FAKTURAKUND_ID, "KUND", "", false, true, true);
@@ -107,20 +106,19 @@ public class InvoiceA_Update extends Invoice_ {
 //        kund.setUneditable();
         //
         //
-        String faktura_datum_val = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DATUM);
-        String faktura_datum_forfallo = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
+        String faktura_datum_val = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DATUM);
+        String faktura_datum_forfallo = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
         RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
         //
         //
-        String erref = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ER_REF);
-        String varref = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__VAR_REF);
+        String erref = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ER_REF);
+        String varref = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__VAR_REF);
         RowDataInvert er_ref = new RowDataInvertB(erref, DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         RowDataInvert var_referens = new RowDataInvertB(varref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
-        String fixedComboValues_b = JSon._get_simple(
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR),
+        String fixedComboValues_b = JSon._get_simple(HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR),
                 DB.STATIC__BETAL_VILKOR
         );
         //
@@ -129,18 +127,16 @@ public class InvoiceA_Update extends Invoice_ {
         betal_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_c = JSon._get_special_(
-                DB.STATIC__LEV_VILKOR,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_VILKOR)
+        String fixedComboValues_c = JSon._get_special_(DB.STATIC__LEV_VILKOR,
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_VILKOR)
         );
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         lev_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_d = JSon._get_special_(
-                DB.STATIC__LEV_SATT,
-                HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_SATT)
+        String fixedComboValues_d = JSon._get_special_(DB.STATIC__LEV_SATT,
+                HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_SATT)
         );
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
@@ -195,26 +191,25 @@ public class InvoiceA_Update extends Invoice_ {
 //        moms.setUneditable();
 //        disableMomsJComboIf(moms); // *****
         //
-        String fakturanr_alt_ = HelpA.getValueSelectedRow_replace_zero(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
+        String fakturanr_alt_ = HelpA_.getValueSelectedRow_replace_zero(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
         RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
         fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3);
         //
-        String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
+        String order_ = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);
         //
-        String exp = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG);
+        String exp = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG);
         RowDataInvert expavgift = new RowDataInvertB(exp, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", false, true, false);
         //
-        String frkt = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
+        String frkt = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__FRAKT);
         RowDataInvert frakt = new RowDataInvertB(frkt, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", false, true, false);
         //
-        String drojranta_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA);
+        String drojranta_ = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA);
         RowDataInvert drojranta = new RowDataInvertB(drojranta_, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", false, true, false);
         //
         //
-        String valSelectedRow = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
-        String valSelectedRow_translated = GP_BUH.translateJaNejEmptyLineChar(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
-        //
+        String valSelectedRow = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
+        String valSelectedRow_translated = GP_BUH.getShortName(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow);
         String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
         //
         RowDataInvert makulerad = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__MAKULERAD, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD, "", false, true, false);

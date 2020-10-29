@@ -11,7 +11,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -35,7 +35,7 @@ public class ForetagA extends CustomerAForetagA_ {
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
 
-    public ForetagA(BUH_INVOICE_MAIN_ bim) {
+    public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
 
@@ -96,7 +96,7 @@ public class ForetagA extends CustomerAForetagA_ {
         JTable table = getTableMain();
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE__ID);
+            HelpA_.hideColumnByName(table, TABLE__ID);
         }
     }
 
@@ -141,36 +141,36 @@ public class ForetagA extends CustomerAForetagA_ {
         //
         JTable table = getTableMain();
         //
-        String namn_ = HelpA.getValueSelectedRow(table, TABLE__NAMN);
+        String namn_ = HelpA_.getValueSelectedRow(table, TABLE__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_KUND__NAMN, TABLE__NAMN, "", true, true, true);
         //
-        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__ORGNR);
+        String orgnr_ = HelpA_.getValueSelectedRow(table, TABLE__ORGNR);
         RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_KUND__ORGNR, TABLE__ORGNR, "", true, true, false);
         //
-        String vatnr_ = HelpA.getValueSelectedRow(table, TABLE__VATNR);
+        String vatnr_ = HelpA_.getValueSelectedRow(table, TABLE__VATNR);
         RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_KUND__VATNR, TABLE__VATNR, "", true, true, false);
         //
-        String email_ = HelpA.getValueSelectedRow(table, TABLE__EPOST);
+        String email_ = HelpA_.getValueSelectedRow(table, TABLE__EPOST);
         RowDataInvert email = new RowDataInvertB(email_, DB.BUH_KUND__EPOST, TABLE__EPOST, "", true, true, false);
         //
-        String bg_ = HelpA.getValueSelectedRow(table, TABLE__BANK_GIRO);
+        String bg_ = HelpA_.getValueSelectedRow(table, TABLE__BANK_GIRO);
         RowDataInvert bg = new RowDataInvertB(bg_, DB.BUH_KUND__BANK_GIRO, TABLE__BANK_GIRO, "", true, true, false);
         //
-        String pg_ = HelpA.getValueSelectedRow(table, TABLE__POST_GIRO);
+        String pg_ = HelpA_.getValueSelectedRow(table, TABLE__POST_GIRO);
         RowDataInvert pg = new RowDataInvertB(pg_, DB.BUH_KUND__POST_GIRO, TABLE__POST_GIRO, "", true, true, false);
         //
-        String konto_ = HelpA.getValueSelectedRow(table, TABLE__KONTO);
+        String konto_ = HelpA_.getValueSelectedRow(table, TABLE__KONTO);
         RowDataInvert konto = new RowDataInvertB(konto_, DB.BUH_KUND__KONTO, TABLE__KONTO, "", true, true, false);
         //
-        String iban_ = HelpA.getValueSelectedRow(table, TABLE__IBAN);
+        String iban_ = HelpA_.getValueSelectedRow(table, TABLE__IBAN);
         RowDataInvert iban = new RowDataInvertB(iban_, DB.BUH_KUND__IBAN, TABLE__IBAN, "", true, true, false);
         //
-        String swish_ = HelpA.getValueSelectedRow(table, TABLE__SWISH);
+        String swish_ = HelpA_.getValueSelectedRow(table, TABLE__SWISH);
         RowDataInvert swish = new RowDataInvertB(swish_, DB.BUH_KUND__SWISH, TABLE__SWISH, "", true, true, false);
         //
         //
         String fixedComboValues_b = JSon._get_special_(DB.STATIC__JA_NEJ,
-                HelpA.getValueSelectedRow(table, TABLE__F_SKATT));
+                HelpA_.getValueSelectedRow(table, TABLE__F_SKATT));
         //
         RowDataInvert f_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_KUND__F_SKATT, TABLE__F_SKATT, "", true, true, false);
         f_skatt.enableFixedValuesAdvanced();

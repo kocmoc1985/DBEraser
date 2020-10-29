@@ -27,7 +27,7 @@ import forall.GradientJPanel;
 import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.JComboBoxA;
 import forall.JComboBoxM;
 import forall.JComboBoxValueChangedListener;
@@ -81,7 +81,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public static final String TABLE_4_RECIPE_ADMIN_PROPS_PATH = "properties/table4formats.properties";
     public static final String PROPERTIES_PATH = "properties/mccompound.properties";
     private final String IO_PROPERTIES_PATH = "io.properties";
-    private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
+    private final Properties PROPS = HelpA_.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitialIF recipeInitial;
     public RecipeDetailed recipeDetailed;
     private Ingredients ingredients;
@@ -138,7 +138,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         sql_additional = sqlConnect(); //  ***
         //
 
-//         HelpA.addMouseListenerToAllComponentsOfComponent(this.getContentPane());
+//         HelpA_.addMouseListenerToAllComponentsOfComponent(this.getContentPane());
         //
         this.setTitle(buildTitle(null));
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
@@ -155,13 +155,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (verifyUser() == false) {
             userNotValidActions();
         } else {
-            HelpA.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
+            HelpA_.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
             System.out.println("Username set");
         }
         //
-        HelpA.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
+        HelpA_.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         //
-        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
+        errorOutputListener = new ErrorOutputListener(HelpA_.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
     }
 
@@ -200,7 +200,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             LNG.LANG_ENG = false;
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
-//            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+//            HelpA_.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
         } else {
             LNG.LANG_ENG = true;
             this.customPanelRecipeInitial = new CustomPanelQew();
@@ -224,7 +224,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }
 
     private void loadUserName() {
-        Properties p = HelpA.properties_load_properties(IO_PROPERTIES_PATH, false);
+        Properties p = HelpA_.properties_load_properties(IO_PROPERTIES_PATH, false);
         String userName = p.getProperty("username", "NA");
         String pass = p.getProperty("pass", "");
         jTextFieldHomeUserName.setText(userName);
@@ -248,8 +248,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         p.put("username", userName);
         p.put("pass", pass);
         //
-        HelpA.properties_save_properties(p, IO_PROPERTIES_PATH, "");
-//        HelpA.showNotification("User name and password saved");
+        HelpA_.properties_save_properties(p, IO_PROPERTIES_PATH, "");
+//        HelpA_.showNotification("User name and password saved");
 //        jTextFieldHomeUserName.setBorder(BorderFactory.createLineBorder(Color.green));
     }
 
@@ -260,7 +260,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         boolean freeEntranceEnabled = freeEntranceEnabled();
         //
-//        USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
+//        USER_ROLE = HelpA_.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
 //        System.out.println("USER ROLE: " + USER_ROLE);
         //
         if (freeEntranceEnabled) {
@@ -270,17 +270,17 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         }
         //
         String where = "username ='" + userName + "' and pass ='" + getPass() + "'";
-        int userConfirmed = HelpA.getRowCount(sql, sqlTableName, where);
+        int userConfirmed = HelpA_.getRowCount(sql, sqlTableName, where);
         boolean userConfirmed_ = userConfirmed >= 1;
         //
         if (userConfirmed_ == false && freeEntranceEnabled == false) {//&& freeEntranceEnabled() == false
             USER_ROLE = ROLE_UNDEFINED;
             setTitle(buildTitle(null));
-            HelpA.showNotification("User not valid");
+            HelpA_.showNotification("User not valid");
             jTabbedPane1.setEnabled(false);
             return false;
         } else {
-            USER_ROLE = HelpA.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
+            USER_ROLE = HelpA_.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
             setTitle(buildTitle(USER_ROLE));
             jTabbedPane1.setEnabled(true);
             return true;
@@ -290,7 +290,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private boolean freeEntranceEnabled() {
         String where = "username =" + ADMIN_RULE_ENTRANCE_ENABLED + " and role ='enabled'";
-        int freeEntrance = HelpA.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
+        int freeEntrance = HelpA_.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
         boolean freeEntrance_ = freeEntrance >= 1;
         return freeEntrance_;
     }
@@ -308,7 +308,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     @Override
     public void showMessage(String str) {
         System.out.println("" + str);
-        jTextArea1_Logg.append(HelpA.get_proper_date_time_same_format_on_all_computers() + "  " + str + "\n");
+        jTextArea1_Logg.append(HelpA_.get_proper_date_time_same_format_on_all_computers() + "  " + str + "\n");
     }
 
     private void initOther() {
@@ -344,7 +344,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         this.jTable2.setAutoCreateRowSorter(true);
         this.jTable3.setAutoCreateRowSorter(true);
         this.jTable4RecipeDetailed.setAutoCreateRowSorter(true);
-        HelpA.disableColumnDragging(jTable4RecipeDetailed);
+        HelpA_.disableColumnDragging(jTable4RecipeDetailed);
         //
         this.textAreaIngredComments.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
         this.textAreaRecipeInitialNotes.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
@@ -423,7 +423,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void addJComboListenersTestParameters() {
         //
         for (JComboBox box : testParametersGroupA) {
-            HelpA.addMouseListenerJComboBox(box, this);
+            HelpA_.addMouseListenerJComboBox(box, this);
         }
         //
     }
@@ -431,16 +431,16 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void addJComboListenersRecipeInitial() {
         //
         for (JComboBox box : recipeInitialGroupA) {
-            HelpA.addMouseListenerJComboBox(box, this);
+            HelpA_.addMouseListenerJComboBox(box, this);
         }
         //
         for (JComboBox box : recipeInitialGroupC) {
-            HelpA.addMouseListenerJComboBox(box, this);
+            HelpA_.addMouseListenerJComboBox(box, this);
         }
         //
         //
-        HelpA.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
-        HelpA.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
+        HelpA_.addMouseListenerJComboBox(jComboBox_Ingred_1, this);
+        HelpA_.addMouseListenerJComboBox(jComboBox_Ingred_2, this);
         //
         JComboBoxM box_ingred_1 = (JComboBoxM) jComboBox_Ingred_1;
         box_ingred_1.addValueChangedListener(this);
@@ -467,19 +467,19 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void addJComboListenersIngredients() {
         //
         for (JComboBox box : ingredientsGroupList) {
-            HelpA.addMouseListenerJComboBox(box, this);
+            HelpA_.addMouseListenerJComboBox(box, this);
         }
         //
     }
 
     public void addJComboListenersSequence() {
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceRecipe, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceRelease, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceMixerCode, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceRecipe, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceRelease, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceMixerCode, this);
         //
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceReleaseCopy, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceRecipeCopy, this);
-        HelpA.addMouseListenerJComboBox(jComboBoxSequenceMixerCodeCopy, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceReleaseCopy, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceRecipeCopy, this);
+        HelpA_.addMouseListenerJComboBox(jComboBoxSequenceMixerCodeCopy, this);
     }
 
     public void addListenersVendor() {
@@ -3572,12 +3572,12 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int col = HelpA.getColByName(jTable2, "Recipe_Prop_Free_Info_ID");
+        int col = HelpA_.getColByName(jTable2, "Recipe_Prop_Free_Info_ID");
         recipeInitial.delete_record_table_2_or_3(jTable2, col, "Recipe_Prop_Free_Info", "Recipe_Prop_Free_Info_ID");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int col = HelpA.getColByName(jTable3, "Recipe_Prop_Free_Text_ID");
+        int col = HelpA_.getColByName(jTable3, "Recipe_Prop_Free_Text_ID");
         recipeInitial.delete_record_table_2_or_3(jTable3, col, "Recipe_Prop_Free_Text", "Recipe_Prop_Free_Text_ID");
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -3662,7 +3662,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         sequence.fill_table_1(jComboBoxSequenceRecipe, jComboBoxSequenceRelease, jComboBoxSequenceMixerCode);
         sequence.fill_table_2(jComboBoxSequenceRecipe, jComboBoxSequenceRelease, jComboBoxSequenceMixerCode, true);
         //
-        HelpA.markFirstRowJtable(jTableSequnece1);
+        HelpA_.markFirstRowJtable(jTableSequnece1);
         clickedTable1Sequence();
     }//GEN-LAST:event_jButtonSequenceSearchActionPerformed
 
@@ -3687,7 +3687,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        if (HelpA.confirm("Mixing sequence will be deleted including all mixing steps!")) {
+        if (HelpA_.confirm("Mixing sequence will be deleted including all mixing steps!")) {
             sequence.deleteAllSequenceSteps();
         }
     }//GEN-LAST:event_jButton17ActionPerformed
@@ -3698,7 +3698,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButtonRecipeInitialGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialGoActionPerformed
         recipeInitial.fill_table_1(null, null, null, evt);
-        HelpA.markGivenRow(jTable1, 0);
+        HelpA_.markGivenRow(jTable1, 0);
         clickedOnTable1RecipeInitial();
     }//GEN-LAST:event_jButtonRecipeInitialGoActionPerformed
 
@@ -3719,7 +3719,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         sequence.fill_table_1(jComboBoxSequenceRecipeCopy, jComboBoxSequenceReleaseCopy, jComboBoxSequenceMixerCodeCopy);
         sequence.fill_table_2(jComboBoxSequenceRecipeCopy, jComboBoxSequenceReleaseCopy, jComboBoxSequenceMixerCodeCopy, false);
         //
-        HelpA.markFirstRowJtable(jTableSequnece1);
+        HelpA_.markFirstRowJtable(jTableSequnece1);
         clickedTable1Sequence();
     }//GEN-LAST:event_jButtonSequenceViewBeforeCopyActionPerformed
 
@@ -3814,7 +3814,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 //        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
 //            
 //        }else {
-//            HelpA.showAccessDeniedUserRole(USER_ROLE);
+//            HelpA_.showAccessDeniedUserRole(USER_ROLE);
 //        }
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
@@ -3827,7 +3827,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 prod_plan.redrawTablesInvert_forward();
             }
         } else {
-            HelpA.showAccessDeniedUserRole(USER_ROLE);
+            HelpA_.showAccessDeniedUserRole(USER_ROLE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -3835,7 +3835,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void jButtonRecipeInitialResetComboBoxes3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialResetComboBoxes3ActionPerformed
         recipeInitial.clearBoxesB();
         recipeInitial.fill_table_1(null, null, null, null);
-        HelpA.markGivenRow(jTable1, 0);
+        HelpA_.markGivenRow(jTable1, 0);
         clickedOnTable1RecipeInitial();
     }//GEN-LAST:event_jButtonRecipeInitialResetComboBoxes3ActionPerformed
 
@@ -3861,7 +3861,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButtonRecipeInitialGo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeInitialGo2ActionPerformed
         recipeInitial.fill_table_1(null, null, null, evt);
-        HelpA.markGivenRow(jTable1, 0);
+        HelpA_.markGivenRow(jTable1, 0);
         clickedOnTable1RecipeInitial();
     }//GEN-LAST:event_jButtonRecipeInitialGo2ActionPerformed
 
@@ -3913,7 +3913,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_vendors_prev_ingredActionPerformed
 
     private void jButtonSequenceAddLastStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSequenceAddLastStepActionPerformed
-        HelpA.markLastRowJtable(jTableSequnece1);
+        HelpA_.markLastRowJtable(jTableSequnece1);
         clickedTable1Sequence();
         sequence.insert_new_step(false, true);
     }//GEN-LAST:event_jButtonSequenceAddLastStepActionPerformed
@@ -3940,7 +3940,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         //
         if (verifyPasswordUserAdmin() == false) {
-            HelpA.showNotification("Invalid password");
+            HelpA_.showNotification("Invalid password");
             return;
         }
         //
@@ -3955,7 +3955,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private boolean verifyPasswordUserAdmin() {
         //
-        JPasswordField jpf = HelpA.chooseFromPasswordField("Enter password", true);
+        JPasswordField jpf = HelpA_.chooseFromPasswordField("Enter password", true);
         String pwd = new String(jpf.getPassword());
         //
         if (pwd == null || pwd.isEmpty()) {
@@ -3977,7 +3977,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButton_Home_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_LoginActionPerformed
         if (verifyUser()) {
-            HelpA.showNotification("Login valid");
+            HelpA_.showNotification("Login valid");
             updateUserName();
         } else {
             userNotValidActions();
@@ -4071,7 +4071,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         adminTools = new AdminTools(mc_recipe);
                         adminTools.setVisible(true);
                     } else {
-                        HelpA.showAccessDeniedUserRole(USER_ROLE);
+                        HelpA_.showAccessDeniedUserRole(USER_ROLE);
                     }
 
                 }
@@ -4092,7 +4092,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //The settings are set via the "PropertiesReader.jar" - file: "table4formats.properties"
             //Pay also attention to the "pr_skip.list" which contains the main property file "mccompound.properties",
             //this is done to only show the "table4formats.properties" file
-            HelpA.run_application_exe_or_jar("PropertiesReader.jar", "properties");
+            HelpA_.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
             Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4154,14 +4154,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         }
         //</editor-fold>
         //
-        boolean runInNetbeans = HelpA.runningInNetBeans(); 
+        boolean runInNetbeans = HelpA_.runningInNetBeans(); 
         //
         if (runInNetbeans == false) {
-            HelpA.err_output_to_file();
+            HelpA_.err_output_to_file();
         }
         //
 //        if (runInNetbeans == false) {
-//            HelpA.err_output_to_file();
+//            HelpA_.err_output_to_file();
 //        }
         //
         /* Create and display the form */
@@ -4172,7 +4172,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 new MC_RECIPE_().setVisible(true);
                 //
                 if (runInNetbeans == false) {
-                    HelpA.console_output_to_jtextpane(jTextPane1); // must be placed here!
+                    HelpA_.console_output_to_jtextpane(jTextPane1); // must be placed here!
                 }
                 //
             }
@@ -4585,7 +4585,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         jScrollPaneRecipeInitialNotes.setSize(jPanel7.getSize());
         //
-        HelpA.resetTableHeaderPainting(jTable2, HelpA.getColByName(jTable2, "Note_Value"));
+        HelpA_.resetTableHeaderPainting(jTable2, HelpA_.getColByName(jTable2, "Note_Value"));
     }
     public static String ACTUAL_TAB_NAME = "";
 
@@ -4691,7 +4691,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         mousePressedOnTab(me);
         //
-        boolean cond_1 = HelpA.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
+        boolean cond_1 = HelpA_.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
         //
         //
         if (me.getSource() == jTable3 && (me.getClickCount() == 1)) {
@@ -4759,14 +4759,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (Ingredients.INGRED_NAME != null) {
             ingredients.fill_table_1(Ingredients.INGRED_NAME);
             Ingredients.INGRED_NAME = null;
-            HelpA.markGivenRow(jTable_Ingred_Table1, 0);
+            HelpA_.markGivenRow(jTable_Ingred_Table1, 0);
         }
         //
         ingredients.showTableInvert();
         //
         ingredients.fill_tables_2_and_3();
         //
-        HelpA.markGivenRow(jTable_Ingred_Table3, 0);
+        HelpA_.markGivenRow(jTable_Ingred_Table3, 0);
         ingredients.fillNotes();
         //
         vendors.setSelectedItem(ingredients.getIngredCode());
@@ -4776,7 +4776,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         recipeInitial.fill_table_2_and_3();
         //
-        HelpA.markGivenRow(jTable3, 0);
+        HelpA_.markGivenRow(jTable3, 0);
         recipeInitial.fillNotes();
         //
         //
@@ -4868,7 +4868,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 //                //
 //                JComboBox parent = (JComboBox) button.getParent();
 //                //
-//                parent.setBorder(HelpA.initialComboBoxBorder);
+//                parent.setBorder(HelpA_.initialComboBoxBorder);
 //            }
 //        }
     }
@@ -4957,16 +4957,16 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 //        //
 //        if (parentTable == jTable4RecipeDetailed) {
 //            //
-//            HelpA.synchColumnWidths(jTable4RecipeDetailed, jTableRecipeDetailedTable4HelpTable);
+//            HelpA_.synchColumnWidths(jTable4RecipeDetailed, jTableRecipeDetailedTable4HelpTable);
 //            //
 //            if (recipeDetailed != null) {// asking for null very important for proper saving of widths
-//                HelpA.R_DETAILED_TABLE_4_LIST = HelpA.saveColumnWidths(HelpA.R_DETAILED_TABLE_4_LIST, 75, jTable4RecipeDetailed, HelpA.R_DETAILED_TABLE_4_OBJ);
+//                HelpA_.R_DETAILED_TABLE_4_LIST = HelpA_.saveColumnWidths(HelpA_.R_DETAILED_TABLE_4_LIST, 75, jTable4RecipeDetailed, HelpA_.R_DETAILED_TABLE_4_OBJ);
 //            }
 //            //
 //        } else if (parentTable == jTable_Ingred_Table1) {
 //            //
 //            if (ingredients != null) {// asking for null very important for proper saving of widths
-//                HelpA.INGRED_TABLE_1_LIST = HelpA.saveColumnWidths(HelpA.INGRED_TABLE_1_LIST, 75, jTable_Ingred_Table1, HelpA.INGRED_TABLE_1_OBJ);
+//                HelpA_.INGRED_TABLE_1_LIST = HelpA_.saveColumnWidths(HelpA_.INGRED_TABLE_1_LIST, 75, jTable_Ingred_Table1, HelpA_.INGRED_TABLE_1_OBJ);
 //            }
 //            //
 //        }

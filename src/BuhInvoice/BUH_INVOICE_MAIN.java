@@ -10,7 +10,7 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListener, KeyListener {
+public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
 
     private InvoiceA_Insert_ invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -61,7 +61,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
-    public BUH_INVOICE_MAIN_() {
+    public BUH_INVOICE_MAIN() {
         initComponents();
         initOhter();
     }
@@ -137,18 +137,18 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }
 
     protected void openTabByName(String tabName) {
-        HelpA.openTabByName(jTabbedPane1, tabName);
+        HelpA_.openTabByName(jTabbedPane1, tabName);
     }
 
     private void setUneditableAllJTables() {
-        HelpA.setUneditableJTable(jTable_invoiceB_alla_fakturor);
-        HelpA.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
-        HelpA.setUneditableJTable(jTable_InvoiceA_Insert_articles);
-        HelpA.setUneditableJTable(jTable_ArticlesA_articles);
-        HelpA.setUneditableJTable(jTable_ftg);
-        HelpA.setUneditableJTable(jTable_ftg_addr);
-        HelpA.setUneditableJTable(jTable_kund_adresses);
-        HelpA.setUneditableJTable(jTable_kunder);
+        HelpA_.setUneditableJTable(jTable_invoiceB_alla_fakturor);
+        HelpA_.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
+        HelpA_.setUneditableJTable(jTable_InvoiceA_Insert_articles);
+        HelpA_.setUneditableJTable(jTable_ArticlesA_articles);
+        HelpA_.setUneditableJTable(jTable_ftg);
+        HelpA_.setUneditableJTable(jTable_ftg_addr);
+        HelpA_.setUneditableJTable(jTable_kund_adresses);
+        HelpA_.setUneditableJTable(jTable_kunder);
     }
 
     protected void hideShowButtonsDependingOnConditions() {
@@ -261,7 +261,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }
 
     protected String getFakturaId() {
-        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
+        return HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
 
     protected void deleteFaktura(String fakturaId) {
@@ -269,27 +269,27 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }
 
     protected String getFakturaNr() {
-        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
+        return HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
 
     protected String getFakturaKund() {
-        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
+        return HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
     }
 
     protected String getFakturaKundId() {
-        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_ID);
+        return HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_ID);
     }
 
     protected double getFakturaTotal() {
-        return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
+        return Double.parseDouble(HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
 
     protected String getFakturaArtikelId() {
-        return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+        return HelpA_.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
 
     protected String getFakturaType() {
-        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        return HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
 
     protected String getFakturaType_actual_operation() {
@@ -304,7 +304,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             return false;
         }
         //
-        String betald = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BETALD);
+        String betald = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BETALD);
         //
         return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
         //
@@ -318,7 +318,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             return false;
         }
         //
-        String sent = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__SKICKAD);
+        String sent = HelpA_.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__SKICKAD);
         //
         return sent.equals(DB.STATIC__YES);
         //
@@ -327,14 +327,14 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected boolean isForfallen() {
         //
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
-        String forfallodatum = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
+        String dateNow = HelpA_.get_proper_date_yyyy_MM_dd();
+        String forfallodatum = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
         //
         if(forfallodatum == null || forfallodatum.isEmpty()){
             return false;
         }
         //
-        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+        int daysForfallen = HelpA_.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
         if (daysForfallen < 0) {
             return false;
@@ -346,7 +346,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     protected boolean isMakulerad() {
         //
-        String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
+        String makulerad = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
         //
         if (makulerad.equals(DB.STATIC__YES)) {
             return true;
@@ -357,7 +357,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     protected boolean isKreditFaktura() {
         //
-        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        String fakturaTyp = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
         //
         if (fakturaTyp == null) {
             return false;
@@ -372,7 +372,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     protected boolean isKontantFaktura() {
         //
-        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        String fakturaTyp = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
         //
         if (fakturaTyp == null) {
             return false;
@@ -393,7 +393,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
      * @return
      */
     protected String getKomment_$() {
-        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
+        String val = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KOMMENT_$);
         return GP_BUH.getValNoNull(val);
     }
 
@@ -495,7 +495,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
         String returnStr = "";
         //
-        String id = HelpA.getValueSelectedRow(table, idColName);
+        String id = HelpA_.getValueSelectedRow(table, idColName);
         //
         String json = getSELECT(whereParam, id);
         //
@@ -526,7 +526,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     }
 
     public void setValueAllInvoicesJTable(String colName, String value) {
-        HelpA.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
+        HelpA_.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
     }
 
     /**
@@ -1855,7 +1855,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_delete_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_fakturaActionPerformed
         //
-        if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
+        if (HelpA_.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
             return;
         }
         //
@@ -1891,7 +1891,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_delete_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_customerActionPerformed
         //
-        if (HelpA.rowSelected(jTable_kunder) == false) {
+        if (HelpA_.rowSelected(jTable_kunder) == false) {
             return;
         }
         //
@@ -1941,7 +1941,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
         if (isMakulerad()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_9);
+            HelpA_.showNotification_separate_thread(LANG.MSG_9);
         }
         //
         String fakturatype = getFakturaType();
@@ -1951,7 +1951,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
         //
-        if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
+        if (HelpA_.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             return;
         }
         //
@@ -1978,7 +1978,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_update_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_articles_rowActionPerformed
         //
-        if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
+        if (HelpA_.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             GP_BUH.confirmWarning(LANG.MSG_5);
             return;
         }
@@ -1995,7 +1995,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             //
 //            invoiceB.refresh_c();
             //
-            HelpA.markGivenRow(jTable_InvoiceA_Insert_articles, selected_row);
+            HelpA_.markGivenRow(jTable_InvoiceA_Insert_articles, selected_row);
             jTable_InvoiceA_Insert_articles_clicked();
             //
         }
@@ -2009,7 +2009,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             public void run() {
                 //
                 if (articlesLimitReached()) {
-                    HelpA.showNotification(LANG.MSG_5_2);
+                    HelpA_.showNotification(LANG.MSG_5_2);
                     return;
                 }
                 //
@@ -2033,7 +2033,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         //
-        if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
+        if (HelpA_.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             return;
         }
         //
@@ -2042,7 +2042,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         //
-        if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
+        if (HelpA_.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             return;
         }
         //
@@ -2065,7 +2065,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                     invoiceB = new InvoiceB(this);
                 }
                 //
-                openTabByName(BUH_INVOICE_MAIN_.TAB_INVOICES_OVERVIEW);
+                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
             //
 //            boolean isKontantFaktura = isKontantFaktura();
@@ -2079,7 +2079,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             if (invoiceA_update.fieldsValidated(true)) {
                 invoiceA_update.insertOrUpdate();
                 invoiceB.refresh_c();
-                openTabByName(BUH_INVOICE_MAIN_.TAB_INVOICES_OVERVIEW);
+                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
             }
         }
         //
@@ -2095,7 +2095,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         //
         if (invoiceB != null) {
             if (noCustomersPresent()) {
-                HelpA.showNotification_separate_thread(LANG.MSG_11);
+                HelpA_.showNotification_separate_thread(LANG.MSG_11);
             }
         }
         //
@@ -2161,7 +2161,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void copyFaktura_createKreditFaktura(boolean isKreditFaktura) {
         //
-        if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
+        if (HelpA_.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
             return;
         }
         //
@@ -2204,11 +2204,11 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
         if (isBetald()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12);
+            HelpA_.showNotification_separate_thread(LANG.MSG_12);
         }
         //
         if (isForfallen() == false) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12_2);
+            HelpA_.showNotification_separate_thread(LANG.MSG_12_2);
         }
         //
         invoiceB.htmlFakturaOrReminder(null, true);
@@ -2233,7 +2233,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
 
     private void jButton_search_by_kundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_search_by_kundActionPerformed
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND;
-        String fakturaKundId = HelpA.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2);
+        String fakturaKundId = HelpA_.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2);
         untoggleAll();
         invoiceB.refresh(fakturaKundId);
     }//GEN-LAST:event_jButton_search_by_kundActionPerformed
@@ -2347,25 +2347,25 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
-        if (HelpA.runningInNetBeans() == false) {
-            HelpA.err_output_to_file();
+        if (HelpA_.runningInNetBeans() == false) {
+            HelpA_.err_output_to_file();
         }
         //
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BUH_INVOICE_MAIN_().setVisible(true);
+                new BUH_INVOICE_MAIN().setVisible(true);
             }
         });
     }
@@ -2586,7 +2586,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
     protected void allInvoicesTabClicked() {
         if (invoiceB == null) {
             invoiceB = new InvoiceB(this);
-            HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
+            HelpA_.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
             jtable_InvoiceB_all_invoices_clicked();
         } else {
             invoiceB.refresh_c();
@@ -2614,14 +2614,14 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
                 }
                 //
                 if (isMakulerad()) {
-                    HelpA.showNotification_separate_thread(LANG.MSG_9);
+                    HelpA_.showNotification_separate_thread(LANG.MSG_9);
                 }
                 //
                 invoiceA_update.showTableInvert();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT);
                 //
                 if (getInvoiceArticleCount() > 0) {
-                    HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
+                    HelpA_.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                     jTable_InvoiceA_Insert_articles_clicked();
                 } else {
                     invoiceA_update.showTableInvert_2();
@@ -2709,7 +2709,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
             customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
             //
             customersA.fillAddressTable();
-            HelpA.markFirstRowJtable(jTable_kund_adresses);
+            HelpA_.markFirstRowJtable(jTable_kund_adresses);
             jTableCustomersA_adress_clicked();
         }
         //
@@ -2721,7 +2721,7 @@ public class BUH_INVOICE_MAIN_ extends javax.swing.JFrame implements MouseListen
         foretagA.refreshTableInvert(foretagA.TABLE_INVERT_2);
         foretagA.fillAddressTable();
         //
-        HelpA.markFirstRowJtable(jTable_ftg_addr);
+        HelpA_.markFirstRowJtable(jTable_ftg_addr);
         jTableForetagA_adress_clicked();
         //
     }

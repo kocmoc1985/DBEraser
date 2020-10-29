@@ -201,7 +201,7 @@ public class DB {
     public static final String BUH_F_ARTIKEL__RABATT = "rabatt";
     public static final String BUH_F_ARTIKEL__RABATT_KR = "rabatt_kr";
     public static final String BUH_F_ARTIKEL__MOMS_SATS = "moms_sats";
-    public static final String BUH_F_ARTIKEL__OMVANT_SKATTSKYLDIGHET = "omvant_skatt"; // [2020-10-29]OMVANT_SKATTSKYLDIGHET
+    public static final String BUH_F_ARTIKEL__OMVANT_SKATT = "omvant_skatt"; // [2020-10-29]OMVANT_SKATTSKYLDIGHET
     //
     public static final String BUH_ADDR__ID = "id";
     public static final String BUH_ADDR__KUND_ID = "kundId";

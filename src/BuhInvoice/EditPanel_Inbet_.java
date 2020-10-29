@@ -12,7 +12,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -32,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
 public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListener {
 
     protected Basic_Buh basic;
-    protected final BUH_INVOICE_MAIN_ bim;
+    protected final BUH_INVOICE_MAIN bim;
     private final String fakturaId;
     private final String fakturaNr;
     private final String fakturaKund;
@@ -56,7 +56,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet_(BUH_INVOICE_MAIN_ bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet_(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
         this.IS_KONTANT_FAKTURA = isKontantFaktura;
@@ -70,7 +70,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
         //
         getJTable().addMouseListener(this);
         //
-        HelpA.setUneditableJTable(jTable_1);
+        HelpA_.setUneditableJTable(jTable_1);
         //
         init();
     }
@@ -115,12 +115,12 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
         fillJTable();
         basic.clearAllRowsTableInvert_jcombobox_special(basic.TABLE_INVERT, 1);
 
-//        HelpA.markFirstRowJtable(getJTable());
+//        HelpA_.markFirstRowJtable(getJTable());
 //        bim.jTableArticles_clicked();
     }
 
     private double coundInbetald() {
-        return HelpA.countSumJTable(jTable_1, TABLE_INBET__INBETALD);
+        return HelpA_.countSumJTable(jTable_1, TABLE_INBET__INBETALD);
     }
 
     private int defineBetaldStatus() {
@@ -157,7 +157,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
 
     private void delete() {
         //
-        String inbetId = HelpA.getValueSelectedRow(getJTable(), TABLE_INBET__ID);
+        String inbetId = HelpA_.getValueSelectedRow(getJTable(), TABLE_INBET__ID);
         //
         HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA_INBET__INBET_ID, inbetId, DB.TABLE__BUH_FAKTURA_INBET);
         //
@@ -221,7 +221,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
         //
         JTable table = getJTable();
         //
-        HelpA.clearAllRowsJTable(table);
+        HelpA_.clearAllRowsJTable(table);
         //
         String json = bim.getSELECT_fakturaId();
         //
@@ -243,8 +243,8 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE_INBET__ID);
-            HelpA.hideColumnByName(table, TABLE_INBET__FAKTURA_ID);
+            HelpA_.hideColumnByName(table, TABLE_INBET__ID);
+            HelpA_.hideColumnByName(table, TABLE_INBET__FAKTURA_ID);
         }
         //
     }
@@ -255,7 +255,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
             map.get(DB.BUH_FAKTURA_INBET__INBET_ID), // hidden
             map.get(DB.BUH_FAKTURA_INBET__FAKTURA_ID), // hidden
             map.get(DB.BUH_FAKTURA_INBET__INBETALD),
-            basic.getLongName(DB.STATIC__BETAL_METHODS, map.get(DB.BUH_FAKTURA_INBET__BETAL_METHOD)),
+            JSon.getLongName(DB.STATIC__BETAL_METHODS, map.get(DB.BUH_FAKTURA_INBET__BETAL_METHOD)),
             map.get(DB.BUH_FAKTURA_INBET__ANNAT),
             map.get(DB.BUH_FAKTURA_INBET__BETAL_DATUM),
             map.get(DB.BUH_FAKTURA_INBET__DONE_BY)
@@ -298,12 +298,12 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
             protected boolean fieldsValidated(boolean insert) {
                 //
                 if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                    HelpA.showNotification(LANG.MSG_2);
+                    HelpA_.showNotification(LANG.MSG_2);
                     return false;
                 }
                 //
                 if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                    HelpA.showNotification(LANG.MSG_1);
+                    HelpA_.showNotification(LANG.MSG_1);
                     return false;
                 }
                 //
@@ -489,8 +489,8 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
 
     protected void jButton2ActionPerformed_delete(){
         //
-        if (HelpA.rowSelected(getJTable()) == false) {
-            HelpA.showNotification(LANG.MSG_3_2_2);
+        if (HelpA_.rowSelected(getJTable()) == false) {
+            HelpA_.showNotification(LANG.MSG_3_2_2);
             return;
         }
         //

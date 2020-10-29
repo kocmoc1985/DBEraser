@@ -9,7 +9,7 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -110,7 +110,7 @@ public class TableBuilderInvert_ {
         table.setShowUnits(SHOW_UNITS);
 //        table.setSql(sql);
         table.setTableEmpty(true);
-//        HelpA.setTrackingToolTip(table, query);
+//        HelpA_.setTrackingToolTip(table, query);
         //
         return table;
         //
@@ -205,7 +205,7 @@ public class TableBuilderInvert_ {
         table.setShowUnits(SHOW_UNITS);
         table.setSql(sql);
         table.setTableEmpty(not_empty);
-        HelpA.setTrackingToolTip(table, query);
+        HelpA_.setTrackingToolTip(table, query);
         //
         return table;
         //

@@ -7,7 +7,7 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
-import forall.HelpA;
+import forall.HelpA_;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -42,7 +42,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaId)) {
@@ -55,7 +55,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
         } else {
             //
-            HelpA.showNotification(LANG.MSG_ERROR_1);
+            HelpA_.showNotification(LANG.MSG_ERROR_1);
             //
         }
         //
@@ -129,7 +129,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                 HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_ARTICLES_TO_DB, json);
                 //
             } catch (Exception ex) {
-                Logger.getLogger(BUH_INVOICE_MAIN_.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
             }
             //
@@ -145,7 +145,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         int currRow = table.getSelectedRow();
         //
-        HelpA.removeRowJTable(table, currRow);
+        HelpA_.removeRowJTable(table, currRow);
         //
         articlesList.remove(currRow);
         //
@@ -158,17 +158,17 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         int currRow = table.getSelectedRow();
         //
         //Below making changes to the edited article in the JTable
-        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA_.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
-//        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map,DB.BUH_F_ARTIKEL__KOMMENT,true));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
+//        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map,DB.BUH_F_ARTIKEL__KOMMENT,true));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+        HelpA_.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""));
         //
         //
         articlesList.remove(currRow);
@@ -180,7 +180,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     @Override
     public void addArticleForDB() {
         //
-        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
+        int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA_.ComboBoxObject"
         //
         // Yes it's obligatory to use "tableInvertToHashMap_exclude_null()" 
         // If not used the empty checkbox returns "NULL" as value and when sending it to PHP/PDO
