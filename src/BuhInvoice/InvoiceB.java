@@ -323,11 +323,15 @@ public class InvoiceB extends Basic_Buh {
         bim.jLabel_info__forfallen.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
         bim.jLabel_info__betald.setVisible(false);
+        bim.jLabel_info__makulerad.setVisible(false);
+        bim.jLabel_info__kredit_faktura.setVisible(false);
+        bim.jLabel_info__kontant_faktura.setVisible(false);;
         //
-        boolean faktura_betald = bim.isBetald();
         boolean forfallen = bim.isForfallen();
         boolean makulerad = bim.isMakulerad();
         boolean skickad = bim.isSent();
+        boolean isKreditFaktura = bim.isKreditFaktura();
+        boolean isKontantFaktura = bim.isKontantFaktura();
         boolean betald = bim.isBetald();
         //
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
@@ -339,11 +343,20 @@ public class InvoiceB extends Basic_Buh {
         if (betald) {
             bim.jLabel_info__betald.setVisible(true);
         }
+        if(makulerad){
+            bim.jLabel_info__makulerad.setVisible(true);
+        }
+        if(isKreditFaktura){
+            bim.jLabel_info__kredit_faktura.setVisible(true);
+        }
+        if(isKontantFaktura){
+            bim.jLabel_info__kontant_faktura.setVisible(true);
+        }
         //
-        System.out.println("BETALD: " + faktura_betald);
-        System.out.println("FORFALLEN: " + forfallen);
-        System.out.println("MAKULERAD: " + makulerad);
-        System.out.println("SKICKAD: " + skickad);
+//        System.out.println("BETALD: " + faktura_betald);
+//        System.out.println("FORFALLEN: " + forfallen);
+//        System.out.println("MAKULERAD: " + makulerad);
+//        System.out.println("SKICKAD: " + skickad);
         //
     }
 

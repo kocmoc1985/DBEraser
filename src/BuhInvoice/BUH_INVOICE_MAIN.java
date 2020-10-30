@@ -596,6 +596,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info__forfallen = new javax.swing.JLabel();
         jLabel_info__sent = new javax.swing.JLabel();
         jLabel_info__betald = new javax.swing.JLabel();
+        jLabel_info__kredit_faktura = new javax.swing.JLabel();
+        jLabel_info__kontant_faktura = new javax.swing.JLabel();
+        jLabel_info__makulerad = new javax.swing.JLabel();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -1107,6 +1110,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info__betald.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
         jLabel_info__betald.setToolTipText("Betald");
 
+        jLabel_info__kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
+        jLabel_info__kredit_faktura.setToolTipText("Kreditfaktura");
+
+        jLabel_info__kontant_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/kontantfaktura.png"))); // NOI18N
+        jLabel_info__kontant_faktura.setToolTipText("Kontantfaktura");
+
+        jLabel_info__makulerad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jLabel_info__makulerad.setToolTipText("Makulerad");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1142,7 +1154,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_info__forfallen, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_info__sent, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_info__betald, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_info__betald, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_info__kredit_faktura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_info__kontant_faktura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_info__makulerad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1169,7 +1184,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_info__sent, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel_info__betald, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel_info__betald, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_info__kredit_faktura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_info__kontant_faktura, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_info__makulerad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2449,6 +2470,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_faktura_changed_by__user;
     protected javax.swing.JLabel jLabel_info__betald;
     protected javax.swing.JLabel jLabel_info__forfallen;
+    protected javax.swing.JLabel jLabel_info__kontant_faktura;
+    protected javax.swing.JLabel jLabel_info__kredit_faktura;
+    protected javax.swing.JLabel jLabel_info__makulerad;
     protected javax.swing.JLabel jLabel_info__sent;
     protected javax.swing.JLabel jLabel_inloggning;
     private javax.swing.JPanel jPanel1;
