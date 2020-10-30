@@ -208,7 +208,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Saknar du konto? Registrera en"/>
+                    <Property name="text" type="java.lang.String" value="Saknar du konto? Registrera ett"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton_register_new_user">
@@ -844,6 +844,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/bell.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="F&#xf6;rfallen"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -854,6 +855,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/send_b.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Skickad"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -864,6 +866,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/payed.png"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Betald"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>

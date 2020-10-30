@@ -11,6 +11,14 @@ ammount of parameters is the same as values. Pay attention especially at those c
 different locations - as it's easy to forget to make changes in all corresponding places. As the example see -> "insert_to_buh_licens_q__local()" which 
 exist per [2020-10-28] and is called from 3 diff. locations.
 
+___
+
+2. On [2020-10-29] i added col "omvant_skatt" to table "buh_f_artikel". The previous version which didn't have this implemented 
+was able to work without problems -> at least faktura creation was tested and also updating of faktura article. 
+So the main idea is that adding/expanding the DB, does not influence the version which was not updated to the newest one. As i see it now, it's because
+of automatic query population in the insert and update methods. The select query does not have the automatic query population, but when
+the column is added it's not a problem as the new implemented field is just not included to the result. NOTE, that removing
+a column will casue failure because if the column is in query but does not exist in DB it WILL CAUSE FAILURE!!  
 
 
 

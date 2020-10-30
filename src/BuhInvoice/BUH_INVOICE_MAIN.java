@@ -720,7 +720,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("Saknar du konto? Registrera en");
+        jLabel10.setText("Saknar du konto? Registrera ett");
 
         jButton_register_new_user.setText("Registrera");
         jButton_register_new_user.addActionListener(new java.awt.event.ActionListener() {
@@ -1099,10 +1099,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_faktura_changed_by__user.setForeground(new java.awt.Color(153, 153, 153));
 
         jLabel_info__forfallen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
+        jLabel_info__forfallen.setToolTipText("Förfallen");
 
         jLabel_info__sent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/send_b.png"))); // NOI18N
+        jLabel_info__sent.setToolTipText("Skickad");
 
         jLabel_info__betald.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
+        jLabel_info__betald.setToolTipText("Betald");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
