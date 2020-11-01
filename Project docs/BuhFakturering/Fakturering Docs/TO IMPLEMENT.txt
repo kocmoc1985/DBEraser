@@ -13,11 +13,6 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
-Omvand skatt:
-1. Moms automatically set to 0
-2. Make changes to calculations
-3. Make changes to HTML Faktura
-
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind
 
 Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"
@@ -26,11 +21,6 @@ For the "buh_faktura_artikel" -> implement so you can save moms and omvänd momss
 
 For the later stage, maybe have faktura rabatt implemented -> so you can set the rabatt once for all articles in the Invoice.
 
-Implement icons to the right from "all_invoices_table" which shows info about the faktura
-1. Betald
-2. Forfallen
-3. Sent
-
 Obfuscation
 
 All libraries to one jar -> https://www.oracle.com/technical-resources/articles/javase/single-jar.html
@@ -38,6 +28,12 @@ All libraries to one jar -> https://www.oracle.com/technical-resources/articles/
 Version check - it should checked wether a new version is available
 The steps are following generate -> there shall be some method of comparing of the versions..
 So as idea is to store a file at PHP side where the last version is written.
+See: ajax.php -> log_download_info() -> save to file -> in fact is not needed as i will write the version manually
+See: _work_ip.php -> extract_ip_from_file($path) -> read from file to json
+So, when a new version is available: the program read from file on php side, if the version of actually running program 
+is newer then the one written in the file, the program notifies the user that a new version is available.
+The version check shall be done uppon the login procedure, before the user oppens the list of invoices.
+
 
 Backup of all data
 

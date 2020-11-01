@@ -24,4 +24,7 @@ F. Dröjsmåls avg är kalkulerat enligt följande:
 För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms, multiplicerar med den avtalade dröjsmålsräntan
 och dividerar sedan med årets antal dagar, det vill säga 365.
 
+G. Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
+If it's beeing used the faktura shall contain note like: Omvänd skattskyldighet, Ert vatnr: 556251-6806
+
 G. Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;

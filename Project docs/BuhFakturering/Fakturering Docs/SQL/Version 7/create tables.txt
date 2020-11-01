@@ -2,8 +2,6 @@ DROP DATABASE if EXISTS buh;
 CREATE DATABASE buh;
 USE buh;
 
-OBS! OBS! OBS! Since Version 7, "MOMS" was moved to from "buh_faktura" -> "buh_f_artikel" ---> This allows to have different moms for different articles in the same faktura
-
 CREATE TABLE buh_kund (
 kundId integer primary key not null AUTO_INCREMENT,
 namn varchar(150) DEFAULT '',
