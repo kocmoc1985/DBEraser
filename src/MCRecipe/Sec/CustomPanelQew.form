@@ -266,77 +266,77 @@
     <Component class="javax.swing.JLabel" name="jLabel56">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.RECIPE_OVERVIEW__COLOR()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__COLOR()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel57">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.RECIPE_OVERVIEW__INDUSTRY()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INDUSTRY()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel58">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.RECIPE_TYPE()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_TYPE()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel59">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CURING_SYSTEM()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CURING_SYSTEM()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel60">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CURING_PROCESS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CURING_PROCESS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel61">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.FILTER_TYPE()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.FILTER_TYPE()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel62">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CERTIFICATE()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CERTIFICATE()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel63">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.SHELF_LIFE_MIN()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.SHELF_LIFE_MIN()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel64">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.SHELF_LIFE_MAX()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.SHELF_LIFE_MAX()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel65">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.HARDNESS_SHA_MIN()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.HARDNESS_SHA_MIN()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel66">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.HARDNESS_SHA_MAX()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.HARDNESS_SHA_MAX()" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -354,7 +354,7 @@
     <Component class="javax.swing.JLabel" name="jLabel85">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CUSTOMER()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CUSTOMER()" type="code"/>
         </Property>
       </Properties>
     </Component>

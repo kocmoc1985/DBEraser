@@ -6,7 +6,7 @@
 package MCRecipe.Sec;
 import MCRecipe.Sec.JComboBox_RI_C;
 import MCRecipe.Sec.BOX_PARAMS;
-import MCRecipe.Lang.RECIPE_OVERVIEW;
+import MCRecipe.Lang.RECIPE_OVERVIEW_;
 /**
  *
  * @author KOCMOC
@@ -76,31 +76,31 @@ public class CustomPanelQew extends javax.swing.JPanel implements CustomPanelIF{
 
         jComboBoxRecipeInitial_Hardnes_sha2.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel56.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__COLOR());
+        jLabel56.setText(RECIPE_OVERVIEW_.RECIPE_OVERVIEW__COLOR());
 
-        jLabel57.setText(RECIPE_OVERVIEW.RECIPE_OVERVIEW__INDUSTRY());
+        jLabel57.setText(RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INDUSTRY());
 
-        jLabel58.setText(RECIPE_OVERVIEW.RECIPE_TYPE());
+        jLabel58.setText(RECIPE_OVERVIEW_.RECIPE_TYPE());
 
-        jLabel59.setText(RECIPE_OVERVIEW.CURING_SYSTEM());
+        jLabel59.setText(RECIPE_OVERVIEW_.CURING_SYSTEM());
 
-        jLabel60.setText(RECIPE_OVERVIEW.CURING_PROCESS());
+        jLabel60.setText(RECIPE_OVERVIEW_.CURING_PROCESS());
 
-        jLabel61.setText(RECIPE_OVERVIEW.FILTER_TYPE());
+        jLabel61.setText(RECIPE_OVERVIEW_.FILTER_TYPE());
 
-        jLabel62.setText(RECIPE_OVERVIEW.CERTIFICATE());
+        jLabel62.setText(RECIPE_OVERVIEW_.CERTIFICATE());
 
-        jLabel63.setText(RECIPE_OVERVIEW.SHELF_LIFE_MIN());
+        jLabel63.setText(RECIPE_OVERVIEW_.SHELF_LIFE_MIN());
 
-        jLabel64.setText(RECIPE_OVERVIEW.SHELF_LIFE_MAX());
+        jLabel64.setText(RECIPE_OVERVIEW_.SHELF_LIFE_MAX());
 
-        jLabel65.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MIN());
+        jLabel65.setText(RECIPE_OVERVIEW_.HARDNESS_SHA_MIN());
 
-        jLabel66.setText(RECIPE_OVERVIEW.HARDNESS_SHA_MAX());
+        jLabel66.setText(RECIPE_OVERVIEW_.HARDNESS_SHA_MAX());
 
         jComboBoxRecipeInitial_Customer.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel85.setText(RECIPE_OVERVIEW.CUSTOMER());
+        jLabel85.setText(RECIPE_OVERVIEW_.CUSTOMER());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

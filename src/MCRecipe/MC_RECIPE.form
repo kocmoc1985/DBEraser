@@ -546,7 +546,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ORIGIN()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ORIGIN()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -558,7 +558,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_STAGE()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_STAGE()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -570,7 +570,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel14">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_VERSION()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_VERSION()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -582,7 +582,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel15">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ADDITIONAL()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ADDITIONAL()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -594,7 +594,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__POLYMER_GROUP()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__POLYMER_GROUP()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -606,7 +606,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__MIXER()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__MIXER()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -618,7 +618,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel18">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__STATUS()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__STATUS()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -630,7 +630,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel19">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_2()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_2()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -658,7 +658,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel55">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__CLASS()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__CLASS()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -686,7 +686,7 @@
                     <Component class="javax.swing.JCheckBox" name="jCheckBoxRecipeInitialSearchByIngredients">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX()" type="code"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -766,7 +766,7 @@
                     <Component class="javax.swing.JCheckBox" name="jCheckBoxRecipeInitialOR">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__OR_CHKBOX()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__OR_CHKBOX()" type="code"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -781,7 +781,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel86">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_DESCRIPTION()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_DESCRIPTION()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -793,7 +793,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel87">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_1()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_1()" type="code"/>
                         </Property>
                       </Properties>
                       <Constraints>
@@ -953,7 +953,7 @@
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_SET()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_SET()" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1159,7 +1159,7 @@
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_INFO()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_INFO()" type="code"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -1195,7 +1195,7 @@
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE()" type="code"/>
+                          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE()" type="code"/>
                         </Property>
                       </Properties>
                     </Component>

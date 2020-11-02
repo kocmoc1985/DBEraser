@@ -12,7 +12,7 @@ import javax.swing.JTabbedPane;
  *
  * @author KOCMOC
  */
-public class RECIPE_OVERVIEW {
+public class RECIPE_OVERVIEW_ {
 
     //=======================RECIPE_OVEVIEW=====================================
     public static void RECIPE_OVERVIEW_TABS(JTabbedPane jtp) {

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package MCRecipe.Sec;
-import MCRecipe.Lang.RECIPE_OVERVIEW;
+import MCRecipe.Lang.RECIPE_OVERVIEW_;
 /**
  *
  * @author KOCMOC
@@ -72,31 +72,31 @@ public class CustomPanelCp extends javax.swing.JPanel implements CustomPanelIF{
 
         jComboBox_haltbarkeit_bis.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel56.setText(RECIPE_OVERVIEW.KOST_VON());
+        jLabel56.setText(RECIPE_OVERVIEW_.KOST_VON());
 
-        jLabel57.setText(RECIPE_OVERVIEW.VK_PREIS_VON());
+        jLabel57.setText(RECIPE_OVERVIEW_.VK_PREIS_VON());
 
-        jLabel58.setText(RECIPE_OVERVIEW.DICHTE_VON());
+        jLabel58.setText(RECIPE_OVERVIEW_.DICHTE_VON());
 
-        jLabel59.setText(RECIPE_OVERVIEW.CHARGE_KG_VON());
+        jLabel59.setText(RECIPE_OVERVIEW_.CHARGE_KG_VON());
 
-        jLabel60.setText(RECIPE_OVERVIEW.KOST_BIS());
+        jLabel60.setText(RECIPE_OVERVIEW_.KOST_BIS());
 
-        jLabel61.setText(RECIPE_OVERVIEW.VK_PREIS_BIS());
+        jLabel61.setText(RECIPE_OVERVIEW_.VK_PREIS_BIS());
 
-        jLabel62.setText(RECIPE_OVERVIEW.DICHTE_BIS());
+        jLabel62.setText(RECIPE_OVERVIEW_.DICHTE_BIS());
 
-        jLabel63.setText(RECIPE_OVERVIEW.CHARGE_KG_BIS());
+        jLabel63.setText(RECIPE_OVERVIEW_.CHARGE_KG_BIS());
 
-        jLabel64.setText(RECIPE_OVERVIEW.HALTBARKEIT_VON());
+        jLabel64.setText(RECIPE_OVERVIEW_.HALTBARKEIT_VON());
 
-        jLabel65.setText(RECIPE_OVERVIEW.HALTBARKEIT_BIS());
+        jLabel65.setText(RECIPE_OVERVIEW_.HALTBARKEIT_BIS());
 
-        jLabel66.setText(RECIPE_OVERVIEW.HÄRTE_VON());
+        jLabel66.setText(RECIPE_OVERVIEW_.HÄRTE_VON());
 
         jComboBox_hardness_from.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel67.setText(RECIPE_OVERVIEW.HÄRTE_BIS());
+        jLabel67.setText(RECIPE_OVERVIEW_.HÄRTE_BIS());
 
         jComboBox_hardness_to.setModel(new javax.swing.DefaultComboBoxModel());
 

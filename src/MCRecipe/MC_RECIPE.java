@@ -11,7 +11,7 @@ import MCRecipe.Sec.CustomPanelQew;
 import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.RECIPE_OVERVIEW;
+import MCRecipe.Lang.RECIPE_OVERVIEW_;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.SEQUENCE;
 import MCRecipe.Lang.TOOLTIP;
@@ -74,7 +74,7 @@ import supplementary.HelpM2;
  *
  * @author KOCMOC
  */
-public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
+public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
 
     public SqlBasicLocal sql;
     public SqlBasicLocal sql_additional;
@@ -128,7 +128,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     /**
      * Creates new form MC_RECIPE
      */
-    public MC_RECIPE_() {
+    public MC_RECIPE() {
         //
         initComponents();
         //
@@ -155,7 +155,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (verifyUser() == false) {
             userNotValidActions();
         } else {
-            HelpA_.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
+            HelpA_.setUser(MC_RECIPE.jTextFieldHomeUserName.getText());
             System.out.println("Username set");
         }
         //
@@ -218,7 +218,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void lang() {
         if (LNG.LANG_ENG == false) {
             LNG.GO(jTabbedPane1);
-            RECIPE_OVERVIEW.RECIPE_OVERVIEW_TABS(jTabbedPane2);
+            RECIPE_OVERVIEW_.RECIPE_OVERVIEW_TABS(jTabbedPane2);
         }
 
     }
@@ -530,7 +530,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //
         } catch (Exception ex) {
             showMessage("Connection to " + host + " / " + db_name + " failed: " + ex);
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Connection to SQL failed!");
             System.exit(0);
         }
@@ -1086,40 +1086,40 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jComboBox8_Class.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox8_Class, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 157, -1));
 
-        jLabel12.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ORIGIN());
+        jLabel12.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ORIGIN());
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, -1));
 
-        jLabel13.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_STAGE());
+        jLabel13.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_STAGE());
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 150, -1));
 
-        jLabel14.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_VERSION());
+        jLabel14.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_VERSION());
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        jLabel15.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_ADDITIONAL());
+        jLabel15.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ADDITIONAL());
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
 
-        jLabel16.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__POLYMER_GROUP());
+        jLabel16.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__POLYMER_GROUP());
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel17.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__MIXER());
+        jLabel17.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__MIXER());
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        jLabel18.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__STATUS());
+        jLabel18.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__STATUS());
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
 
-        jLabel19.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_2());
+        jLabel19.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_2());
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 70, -1, -1));
 
         jComboBox_Ingred_1.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Ingred_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 40, 140, -1));
 
-        jLabel55.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__CLASS());
+        jLabel55.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__CLASS());
         jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
 
         jComboBox_Ingred_2.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 140, -1));
 
-        jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
+        jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
         jCheckBoxRecipeInitialSearchByIngredients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxRecipeInitialSearchByIngredientsActionPerformed(evt);
@@ -1152,13 +1152,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jPanel2.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 120, 50));
 
-        jCheckBoxRecipeInitialOR.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__OR_CHKBOX());
+        jCheckBoxRecipeInitialOR.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__OR_CHKBOX());
         jPanel2.add(jCheckBoxRecipeInitialOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 130, -1));
 
-        jLabel86.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_DESCRIPTION());
+        jLabel86.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_DESCRIPTION());
         jPanel2.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
-        jLabel87.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__INGREDIENT_1());
+        jLabel87.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_1());
         jPanel2.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
 
         jPanel46.setLayout(new java.awt.BorderLayout());
@@ -1193,7 +1193,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel44.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_SET());
+        jLabel44.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_SET());
 
         jPanel41.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel41.setLayout(new java.awt.GridLayout(1, 0));
@@ -1295,7 +1295,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel45.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__RECIPE_INFO());
+        jLabel45.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_INFO());
 
         jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel17.setName(""); // NOI18N
@@ -1313,7 +1313,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel67.setText(MCRecipe.Lang.RECIPE_OVERVIEW.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE());
+        jLabel67.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE());
 
         jPanel44.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel44.setLayout(new java.awt.GridLayout(1, 0));
@@ -3608,7 +3608,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     jTable3, textAreaRecipeInitialNotes, "Recipe_Prop_Free_Text_ID");
             //
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -3647,7 +3647,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         try {
             ingredients.save_changes_notes(jScrollPane_Ingred_Comments, jEditorPane_Ingred, jTable_Ingred_Table3, textAreaIngredComments, "IngredientCode_ID");
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_Ingredients_Save_CommentsActionPerformed
 
@@ -4063,7 +4063,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (adminTools == null) {
-            final MC_RECIPE_ mc_recipe = this;
+            final MC_RECIPE mc_recipe = this;
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -4094,7 +4094,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //this is done to only show the "table4formats.properties" file
             HelpA_.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
@@ -4144,13 +4144,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
@@ -4169,7 +4169,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             @Override
             public void run() {
                 //
-                new MC_RECIPE_().setVisible(true);
+                new MC_RECIPE().setVisible(true);
                 //
                 if (runInNetbeans == false) {
                     HelpA_.console_output_to_jtextpane(jTextPane1); // must be placed here!

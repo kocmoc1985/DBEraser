@@ -267,77 +267,77 @@
     <Component class="javax.swing.JLabel" name="jLabel56">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.KOST_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.KOST_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel57">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.VK_PREIS_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.VK_PREIS_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel58">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.DICHTE_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.DICHTE_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel59">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CHARGE_KG_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CHARGE_KG_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel60">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.KOST_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.KOST_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel61">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.VK_PREIS_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.VK_PREIS_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel62">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.DICHTE_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.DICHTE_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel63">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.CHARGE_KG_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.CHARGE_KG_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel64">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.HALTBARKEIT_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.HALTBARKEIT_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel65">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.HALTBARKEIT_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.HALTBARKEIT_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel66">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.H&#xc4;RTE_VON()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.H&#xc4;RTE_VON()" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -355,7 +355,7 @@
     <Component class="javax.swing.JLabel" name="jLabel67">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="RECIPE_OVERVIEW.H&#xc4;RTE_BIS()" type="code"/>
+          <Connection code="MCRecipe.Lang.RECIPE_OVERVIEW_.H&#xc4;RTE_BIS()" type="code"/>
         </Property>
       </Properties>
     </Component>

@@ -41,14 +41,14 @@ import mySwing.JTableM;
  */
 public class Ingredients extends BasicTab {
 
-    private final MC_RECIPE_ mCRecipe;
+    private final MC_RECIPE mCRecipe;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     protected LinkedList<Integer> unsavedRows_table_3 = new LinkedList<Integer>();
     protected LinkedList<Integer> addedRows_table_3 = new LinkedList<Integer>();
     public boolean table1Build = false;
     public static String INGRED_NAME;
 
-    public Ingredients(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mCRecipe) {
+    public Ingredients(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mCRecipe) {
         super(sql, sql_additional, mCRecipe);
         this.mCRecipe = mCRecipe;
         //
@@ -222,7 +222,7 @@ public class Ingredients extends BasicTab {
             return;
         }
         //
-        MC_RECIPE_.jCheckBoxRecipeInitialSearchByIngredients.setSelected(true);
+        MC_RECIPE.jCheckBoxRecipeInitialSearchByIngredients.setSelected(true);
         box.addItem(ingred);
         box.setSelectedItem(ingred);
         HelpA_.openTabByName(mCRecipe.jTabbedPane1, LNG.RECIPE_INITIAL_TAB);
