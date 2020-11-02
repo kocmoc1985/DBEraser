@@ -395,6 +395,7 @@ public class RecipeDetailed extends BasicTab {
     }
 
     public void saveTableInvert() {
+        //
         if (getDetailedGroup().equals("NULL") || getMixerCode().equals("NULL")) {
             HelpA_.showNotification("Cannot proceed, Polymer group and Mixer must be chosen");
             return;

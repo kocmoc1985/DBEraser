@@ -8,6 +8,7 @@ package MCRecipe;
 import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
+import MyObjectTable.Table;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
@@ -23,6 +24,10 @@ import java.util.logging.Logger;
 public class LabDevelopment extends BasicTab {
 
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
+    private Table TABLE_INVERT_2;
+    private Table TABLE_INVERT_3;
     private final MC_RECIPE mCRecipe;
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
@@ -40,6 +45,14 @@ public class LabDevelopment extends BasicTab {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void saveTableInvert(){
+//        if () {
+//            HelpA_.showNotification("");
+//            return;
+//        }
+        saveChangesTableInvert();
+    }
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -63,9 +76,17 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert ziel2_aimline2 = new RowDataInvert("MC_Cpworder", "ID", false, "AIMLINE2", T_INV.LANG("TARGET 2"), "", true, true, false);
         //
+         RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "LASTUPDATE", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        updated_on.setUneditable();
+        updated_by.setUneditable();
+        //
+        // OBS! Automatic "Updated On/By" handled by Basic.class -> automaticFieldUpdate(..)
+        //
         RowDataInvert[] rows = {antragstel__requester, abteilung_department,
             tel_reqphone, kunde_customer, projektnr_projectno,
-            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2};
+            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2,updated_on};
         //
         return rows;
     }
@@ -94,6 +115,16 @@ public class LabDevelopment extends BasicTab {
         //
 //        showTableInvert(mCRecipe.jPanel_lab_development, TABLE_INVERT);
         //
+    }
+    
+    
+    public RowDataInvert[] getConfigTableInvert_2() {
+        //
+        RowDataInvert technikum_copydept1 = new RowDataInvert("MC_Cpworder", "ID", false, "COPYDEPT1", T_INV.LANG("REQUESTER"), "", true, true, false);
+        //
+        RowDataInvert[] rows = {};
+        //
+        return rows;
     }
 
     @Override

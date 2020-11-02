@@ -2180,18 +2180,18 @@
                               <Component id="jButton_lab_dev_save_btn_1" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jPanel_lab_development" min="-2" pref="593" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="498" max="32767" attributes="0"/>
+                          <EmptySpace pref="667" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jButton_lab_dev_save_btn_1" min="-2" pref="50" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel_lab_development" min="-2" pref="472" max="-2" attributes="0"/>
-                          <EmptySpace pref="461" max="32767" attributes="0"/>
+                          <EmptySpace pref="476" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2220,6 +2220,9 @@
                       <Image iconType="3" name="/images/save.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev_save_btn_1ActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
