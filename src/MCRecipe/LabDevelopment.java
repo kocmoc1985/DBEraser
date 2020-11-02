@@ -9,6 +9,7 @@ import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
+import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
@@ -28,15 +29,17 @@ public class LabDevelopment extends BasicTab {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
     private Table TABLE_INVERT_2;
     private Table TABLE_INVERT_3;
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
+
+    private String ORDER_FOR_TESTING = "ENTW002106";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
         super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE) OUT;
+        this.mCRecipe = (MC_RECIPE_) OUT;
         init();
     }
-    
-    private void init(){
+
+    private void init() {
         initializeSaveIndicators();
     }
 
@@ -45,14 +48,14 @@ public class LabDevelopment extends BasicTab {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void saveTableInvert(){
+    public void saveTableInvert() {
 //        if () {
 //            HelpA_.showNotification("");
 //            return;
 //        }
         saveChangesTableInvert();
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -76,7 +79,7 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert ziel2_aimline2 = new RowDataInvert("MC_Cpworder", "ID", false, "AIMLINE2", T_INV.LANG("TARGET 2"), "", true, true, false);
         //
-         RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "LASTUPDATE", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
         //
         updated_on.setUneditable();
@@ -86,7 +89,7 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert[] rows = {antragstel__requester, abteilung_department,
             tel_reqphone, kunde_customer, projektnr_projectno,
-            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2,updated_on};
+            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2, updated_on};
         //
         return rows;
     }
@@ -98,7 +101,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT = null;
         //
-        String order = "ENTW002106";
+        String order = ORDER_FOR_TESTING;
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -109,27 +112,109 @@ public class LabDevelopment extends BasicTab {
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
         //
-        setMargin(TABLE_INVERT, 10, 0, 0, 0);
+//        setMargin(TABLE_INVERT, 10, 0, 0, 0);
         //
         showTableInvert(mCRecipe.jPanel_lab_development);
         //
 //        showTableInvert(mCRecipe.jPanel_lab_development, TABLE_INVERT);
         //
     }
-    
-    
+
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        RowDataInvert technikum_copydept1 = new RowDataInvert("MC_Cpworder", "ID", false, "COPYDEPT1", T_INV.LANG("REQUESTER"), "", true, true, false);
+        RowDataInvert fertigwunsch_acqdeliver = new RowDataInvert("MC_Cpworder", "ID", false, "ACQDELIVER", T_INV.LANG("TO BE DELIEVERD"), "", true, true, false);
         //
-        RowDataInvert[] rows = {};
+        RowDataInvert gewunscht_requested = new RowDataInvert("MC_Cpworder", "ID", false, "REQUESTED", T_INV.LANG("REQUESTED"), "", true, true, false);
+        //
+        RowDataInvert genehmigt_approved = new RowDataInvert("MC_Cpworder", "ID", false, "APPROVED", T_INV.LANG("APPROVED"), "", true, true, false);
+        //
+        RowDataInvert ausfuhrung_execute = new RowDataInvert("MC_Cpworder", "ID", false, "EXECUTE", T_INV.LANG("EXECUTE"), "", true, true, false);
+        //
+        RowDataInvert fertig_erwarted_expready = new RowDataInvert("MC_Cpworder", "ID", false, "EXPREADY", T_INV.LANG("EXPECTED"), "", true, true, false);
+        //
+        RowDataInvert fertig_ready = new RowDataInvert("MC_Cpworder", "ID", false, "READY", T_INV.LANG("READY"), "", true, true, false);
+        //
+        RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        updated_on.setUneditable();
+        updated_by.setUneditable();
+        //
+        RowDataInvert[] rows = {fertigwunsch_acqdeliver, gewunscht_requested, genehmigt_approved, ausfuhrung_execute,
+            fertig_erwarted_expready, fertig_ready, updated_on};
         //
         return rows;
+    }
+
+    public void showTableInvert_2() {
+        //
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_2(), false, "lab_development_2");
+        //
+        TABLE_INVERT_2 = null;
+        //
+        String order = ORDER_FOR_TESTING;
+        //
+        try {
+            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            OUT.showMessage(q);
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
+        }
+        //
+//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
+        //
+        showTableInvert(mCRecipe.jPanel_lab_development_2, TABLE_INVERT_2);
+        //
+    }
+
+    public RowDataInvert[] getConfigTableInvert_3() {
+        //
+        RowDataInvert datum_geplant_servplan = new RowDataInvert("MC_Cpworder", "ID", false, "SERVPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
+        //
+        RowDataInvert datum_augefu_servexec = new RowDataInvert("MC_Cpworder", "ID", false, "SERVEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
+        //
+        RowDataInvert dat_vervollst_servexec = new RowDataInvert("MC_Cpworder", "ID", false, "SERVCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
+        //
+        RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        updated_on.setUneditable();
+        updated_by.setUneditable();
+        //
+        RowDataInvert[] rows = {datum_geplant_servplan, datum_augefu_servexec, dat_vervollst_servexec, updated_on};
+        //
+        return rows;
+    }
+    
+    public void showTableInvert_3() {
+        //
+        TABLE_BUILDER_INVERT_3 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_3(), false, "lab_development_3");
+        //
+        TABLE_INVERT_3 = null;
+        //
+        String order = ORDER_FOR_TESTING;
+        //
+        try {
+            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            OUT.showMessage(q);
+            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_3.showMessage(ex.toString());
+        }
+        //
+//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
+        //
+        showTableInvert(mCRecipe.jPanel_lab_development_3, TABLE_INVERT_3);
+        //
     }
 
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_1, this, 1);
+        SaveIndicator saveIndicator2 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_2, this, 2);
     }
 
     @Override
@@ -141,6 +226,12 @@ public class LabDevelopment extends BasicTab {
             } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
                 return true;
             }
+        }else if(nr == 2){
+             if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null) {
+                 return false;
+             }else if(unsavedEntriesExist(TABLE_INVERT_2) ||unsavedEntriesExist(TABLE_INVERT_3)){
+                 return true;
+             }
         }
         return false;
     }

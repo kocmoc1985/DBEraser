@@ -5,7 +5,7 @@
  */
 package MCRecipe.Lang;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import forall.HelpA_;
 import javax.swing.JTabbedPane;
 

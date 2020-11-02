@@ -99,6 +99,16 @@ public class T_INV {
         DICT.put("TARGET 2", "ZIEL 2");
         DICT.put("TARGET 3", "ZIEL 3");
         //
+        DICT.put("TO BE DELIEVERD", "FERTIGWUNSCH");
+        DICT.put("REQUESTED", "GEWUNSCHT");
+        DICT.put("APPROVED", "GENEHMIGT");
+        DICT.put("EXECUTE", "AUSFÜHRUNG");
+        DICT.put("EXPECTED", "FERTIG ERWARTED");
+        DICT.put("READY", "FERTIG");
+        //
+        DICT.put("PLANNED DATE", "DATUM GEPLANT");
+        DICT.put("DATE EXECUTED", "DATUM AUSGEFÜHRT");
+        DICT.put("DATE COMPLETED", "DATUM FERTIG");
     }
 
     public static String LANG(String word) {

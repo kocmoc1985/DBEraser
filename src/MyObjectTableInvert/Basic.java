@@ -8,8 +8,8 @@ import BuhInvoice.GP_BUH;
 import BuhInvoice.JSon;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
-import static MCRecipe.MC_RECIPE.USER_ROLE;
-import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
+import static MCRecipe.MC_RECIPE_.USER_ROLE;
+import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import Reporting.TableInvertBasicRepport;
@@ -871,7 +871,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+ if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
  toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
  return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
  }

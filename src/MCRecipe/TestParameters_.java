@@ -30,11 +30,11 @@ import mySwing.JTableM;
  */
 public class TestParameters_ extends BasicTab {
 
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private final JTableM jTable_1;
 
-    public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mCRecipe) {
+    public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mCRecipe) {
         super(sql, sql_additional, mCRecipe);
         this.mCRecipe = mCRecipe;
         //

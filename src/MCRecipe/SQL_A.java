@@ -637,11 +637,11 @@ public class SQL_A {
         //
     }
 
-    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE mc_recipe) {
+    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE_ mc_recipe) {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
         boolean cond_2 = mc_recipe.jComboBox_Ingred_1.getSelectedItem() == null
                 && mc_recipe.jComboBox_Ingred_2.getSelectedItem() == null;
         //
@@ -676,7 +676,7 @@ public class SQL_A {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
         //
         if (params.length == 21) { //Ingred check box is of
             procedure = PROC_1;
