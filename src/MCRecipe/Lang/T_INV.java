@@ -95,6 +95,9 @@ public class T_INV {
         DICT.put("CUSTOMER", "KUNDE");
         DICT.put("PROJECTNO", "PROJEKTNR");
         DICT.put("EXPREADY", "FERTIGWUNSCH");
+        DICT.put("TARGET 1", "ZIEL 1");
+        DICT.put("TARGET 2", "ZIEL 2");
+        DICT.put("TARGET 3", "ZIEL 3");
         //
     }
 

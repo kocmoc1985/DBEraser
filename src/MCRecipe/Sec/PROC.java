@@ -93,6 +93,8 @@ public class PROC {
     public static final String PROC_66 = "fn_ITF_Test_Related "; //#TEST PARAMETERS
     public static final String PROC_67 = "fn_ITF_Test_Related_ID_4 "; //#TEST PARAMETERS
     //
+    // LAB_DEVELOPMENT 
+    //
     //PROD_PLAN
     public static final String PROC_P_01 = "fn_Sequence_Get ";
     public static final String PROC_P_02 = "DELETE_CREATE_ALL_RECIPENew ";

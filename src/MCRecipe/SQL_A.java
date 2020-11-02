@@ -1334,28 +1334,37 @@ public class SQL_A {
      * @param param6 - Ingredient_Aeging_Code_ID
      * @return
      */
-    public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3,String param4,String param5,String param6) {
+    public static String fn_ITF_Test_Related_ID(String PROC, String param1, String param2, String param3, String param4, String param5, String param6) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
                 + quotes(param4, false) + ","
                 + quotes(param5, false) + ","
-                + quotes(param6, false)  + ")";
+                + quotes(param6, false) + ")";
     }
-    
+
     /**
-     * 
+     *
      * @param PROC
      * @param param1 - parameter to choose - order or recipe
      * @param param2 - order
      * @param param3 - recipe
-     * @return 
+     * @return
      */
-    public static String fill_comboboxes_test_parameters_a(String PROC, String param1, String param2,String param3) {
+    public static String fill_comboboxes_test_parameters_a(String PROC, String param1, String param2, String param3) {
         return "SELECT distinct (" + param1 + ") FROM [" + PROC + "]" + " ("
                 + quotes(param2, false) + ","
                 + quotes(param3, false)
                 + ")";
+    }
+
+    /**
+     *
+     * @param order
+     * @return
+     */
+    public static String select_all_from_MC_Cpworder(String order) {
+        return "SELECT * from MC_Cpworder WHERE WORDERNO='" + order + "'";
     }
 }
