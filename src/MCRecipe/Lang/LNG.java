@@ -27,6 +27,7 @@ public class LNG {
     public static final String SEQUENCE_TAB = "SEQUENCE";
     public static final String RECIPE_ADD_TAB = "RECIPE ADD.";
     public static final String TEST_PARAMETERS_TAB = "TEST PARAMETERS";
+    public static final String TEST_LABDEVELOPMENT_TAB = "LAB DEVELOPMENT";
     public static final String LOG_TAB = "LOG";
     //
     public static String HOME_TAB_DE = "*START";
@@ -39,6 +40,7 @@ public class LNG {
     public static String SEQUENCE_TAB_DE = "SEQUENZ";
     public static String RECIPE_ADD_TAB_DE = "REZEPT ZUSATZ";
     public static final String TEST_PARAMETERS_TAB_DE = "PRÜFUNGEN";
+    public static final String TEST_LABDEVELOPMENT_TAB_DE = "LAB ENTWICKLUNG";
     //
 
     public static void GO(JTabbedPane jtp) {
@@ -80,6 +82,10 @@ public class LNG {
     public static String TEST_PARAMS_TAB() {
         return LANG_ENG ? TEST_PARAMETERS_TAB : TEST_PARAMETERS_TAB_DE;
     }
+    
+    public static String LAB_DEVELOPMENT_TAB() {
+        return LANG_ENG ? TEST_LABDEVELOPMENT_TAB : TEST_LABDEVELOPMENT_TAB_DE;
+    }
 
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
         if (LANG_ENG == false) {
@@ -93,6 +99,7 @@ public class LNG {
             HelpA_.changeTabName(jtp, SEQUENCE_TAB, SEQUENCE_TAB_DE);
             HelpA_.changeTabName(jtp, RECIPE_ADD_TAB, RECIPE_ADD_TAB_DE);
             HelpA_.changeTabName(jtp, TEST_PARAMETERS_TAB, TEST_PARAMETERS_TAB_DE);
+            HelpA_.changeTabName(jtp, TEST_LABDEVELOPMENT_TAB, TEST_LABDEVELOPMENT_TAB_DE);
         }
 
     }

@@ -88,6 +88,14 @@ public class T_INV {
         DICT.put("ORDER", "AUFTRAG");
         DICT.put("RECIPE", "CODE");
         DICT.put("TEST CODE", "PRÜFCODE");
+        //
+        DICT.put("REQUESTER", "ANTRAGSTEL");
+        DICT.put("DEPARTMENT", "ABTEILUNG");
+        DICT.put("REQPHONE", "TEL");
+        DICT.put("CUSTOMER", "KUNDE");
+        DICT.put("PROJECTNO", "PROJEKTNR");
+        DICT.put("EXPREADY", "FERTIGWUNSCH");
+        //
     }
 
     public static String LANG(String word) {

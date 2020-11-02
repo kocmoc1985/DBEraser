@@ -90,6 +90,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private Sequence sequence;
     private RecipeAdditional recipeAdditional;
     private TestParameters_ testParameters;
+    private LabDevelopment labDevelopment;
     private final JavaSysMon monitor = new JavaSysMon();
     protected JTextArea textAreaIngredComments = new JTextArea();
     protected JTextArea textAreaRecipeInitialNotes = new JTextArea();
@@ -676,6 +677,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButtonTable4Repport = new javax.swing.JButton();
         jButtonRecipeDetailedSaveTable4 = new javax.swing.JButton();
         jLabelLockedUnlocked = new javax.swing.JLabel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel_lab_development = new javax.swing.JPanel();
         jScrollPaneTestParameters = new javax.swing.JScrollPane();
         jPanel_Test_Parameters = new javax.swing.JPanel();
         jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
@@ -1849,6 +1853,38 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPaneRecipeDetailed.setViewportView(jPanel_RecipeDetailed);
 
         jTabbedPane1.addTab("RECIPE DETAILED", jScrollPaneRecipeDetailed);
+
+        javax.swing.GroupLayout jPanel_lab_developmentLayout = new javax.swing.GroupLayout(jPanel_lab_development);
+        jPanel_lab_development.setLayout(jPanel_lab_developmentLayout);
+        jPanel_lab_developmentLayout.setHorizontalGroup(
+            jPanel_lab_developmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+        );
+        jPanel_lab_developmentLayout.setVerticalGroup(
+            jPanel_lab_developmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 455, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_lab_development, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(603, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jPanel_lab_development, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(384, Short.MAX_VALUE))
+        );
+
+        jScrollPane18.setViewportView(jPanel1);
+
+        jTabbedPane1.addTab("LAB DEVELOPMENT", jScrollPane18);
 
         jPanel_Test_Parameters.setPreferredSize(new java.awt.Dimension(1250, 929));
 
@@ -4391,6 +4427,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JLabel jLabelHomeVersion;
     public javax.swing.JLabel jLabelLockedUnlocked;
     public javax.swing.JLabel jLabelRecordsTable1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel10Sequence;
     private javax.swing.JPanel jPanel11;
@@ -4470,6 +4507,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JPanel jPanel_RecipeInitial;
     private javax.swing.JPanel jPanel_Test_Parameters;
     public javax.swing.JPanel jPanel_Test_Params_Inv_Table_1;
+    public javax.swing.JPanel jPanel_lab_development;
     public static javax.swing.JTextField jPasswordFieldHomePass;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -4480,6 +4518,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JScrollPane jScrollPane3;
@@ -4672,8 +4711,20 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 //
                 test_parameters_tab_clicked();
                 //
+            }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB())) {
+                //
+                if(labDevelopment == null){
+                    labDevelopment = new LabDevelopment(sql, sql_additional, this);
+                }
+                //
+                lab_development_tab_clicked();
+                //
             }
         }
+    }
+    
+    public void lab_development_tab_clicked(){
+        
     }
 
     public void test_parameters_tab_clicked() {
