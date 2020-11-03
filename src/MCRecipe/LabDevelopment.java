@@ -374,8 +374,22 @@ public class LabDevelopment extends BasicTab {
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
         //
     }
-    
-    public void addNote(JTable table){
+
+    public void deleteNote(JTable table, String dbTableName) {
+        //
+        String id = HelpA_.getValueSelectedRow(table, "ID");
+        //
+        String q = SQL_A.delete_lab_dev_jtable(dbTableName, id);
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
+    public void addNote(JTable table) {
         //
         String order = HelpA_.getValueSelectedRow(table, "WORDERNO");
         //
@@ -387,7 +401,7 @@ public class LabDevelopment extends BasicTab {
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        String q = SQL_A.insert_into_lab_dev_table_1("", "", "", "", "");
+        String q = SQL_A.insert_into_lab_dev_table_1(order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe);

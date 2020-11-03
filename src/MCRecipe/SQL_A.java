@@ -1391,4 +1391,8 @@ public class SQL_A {
         return q;
         //
     }
+    
+    public static String delete_lab_dev_jtable(String tableName,String id){
+        return "DELETE FROM " + tableName + " WHERE ID="+ id;
+    }
 }
