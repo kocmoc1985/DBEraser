@@ -4,8 +4,8 @@
  */
 package MCRecipe.Sec;
 
-import MCRecipe.MC_RECIPE_;
-import MCRecipe.RecipeDetailed;
+import MCRecipe.MC_RECIPE;
+import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
 import Reporting.JTableBasicRepport;
 import forall.GP;
@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class CompareRecipes extends javax.swing.JFrame {
     
-    private final MC_RECIPE_ mc_recipe;
+    private final MC_RECIPE mc_recipe;
     private final SqlBasicLocal sql;
     private final SqlBasicLocal sql_additional;
     private boolean oneTimeFlag = true;
@@ -39,7 +39,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     /**
      * Creates new form CompareRecipes
      */
-    public CompareRecipes(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) {
+    public CompareRecipes(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) {
         initComponents();
         this.mc_recipe = mc_recipe;
         this.sql = sql;
@@ -145,12 +145,12 @@ public class CompareRecipes extends javax.swing.JFrame {
             ResultSet rs = sql.execute(q1,mc_recipe);
             //
             HelpA_.build_table_common_with_rounding(rs,q1, table, "%2.2f",
-                    new String[]{RecipeDetailed.t4_id, RecipeDetailed.t4_loadingSeq,RecipeDetailed.t4_material,RecipeDetailed.t4_release},
-                    new String[]{RecipeDetailed.t4_density},
+                    new String[]{RecipeDetailed_.t4_id, RecipeDetailed_.t4_loadingSeq,RecipeDetailed_.t4_material,RecipeDetailed_.t4_release},
+                    new String[]{RecipeDetailed_.t4_density},
                     new String[]{});
             //
         } catch (SQLException ex) {
-            Logger.getLogger(RecipeDetailed.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         hideColumns(table);

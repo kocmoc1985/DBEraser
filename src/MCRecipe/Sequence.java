@@ -24,13 +24,13 @@ import javax.swing.JTable;
  */
 public class Sequence extends BasicTab {
 
-    private final MC_RECIPE_ mCRecipe;
+    private final MC_RECIPE mCRecipe;
     private String RECIPE;
     private String RELEASE;
     private String MIXER_CODE;
     private boolean SEQUENCE_PRESENT = true;
 
-    public Sequence(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mCRecipe) {
+    public Sequence(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mCRecipe) {
         super(sql, sql_additional, mCRecipe);
         this.mCRecipe = mCRecipe;
         //
@@ -51,7 +51,7 @@ public class Sequence extends BasicTab {
 
     public void setSelectedItems() {
         //
-        RecipeDetailed rd = mCRecipe.recipeDetailed;
+        RecipeDetailed_ rd = mCRecipe.recipeDetailed;
         //
         String recipeCode = rd.getRecipeCode();
         String release = rd.getRelease();

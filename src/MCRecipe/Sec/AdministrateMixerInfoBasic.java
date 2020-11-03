@@ -5,7 +5,7 @@
 package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
 
-    public AdministrateMixerInfoBasic(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateMixerInfoBasic(String title,MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title,mc_recipe, sql, sql_additional);
     }
 

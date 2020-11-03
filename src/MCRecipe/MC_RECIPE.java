@@ -74,7 +74,7 @@ import supplementary.HelpM2;
  *
  * @author KOCMOC
  */
-public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
+public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
 
     public SqlBasicLocal sql;
     public SqlBasicLocal sql_additional;
@@ -83,7 +83,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private final String IO_PROPERTIES_PATH = "io.properties";
     private final Properties PROPS = HelpA_.properties_load_properties(PROPERTIES_PATH, false);
     public RecipeInitialIF recipeInitial;
-    public RecipeDetailed recipeDetailed;
+    public RecipeDetailed_ recipeDetailed;
     private Ingredients ingredients;
     private Vendors vendors;
     private VendorsB vendorsB;
@@ -129,7 +129,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     /**
      * Creates new form MC_RECIPE
      */
-    public MC_RECIPE_() {
+    public MC_RECIPE() {
         //
         initComponents();
         //
@@ -156,7 +156,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (verifyUser() == false) {
             userNotValidActions();
         } else {
-            HelpA_.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
+            HelpA_.setUser(MC_RECIPE.jTextFieldHomeUserName.getText());
             System.out.println("Username set");
         }
         //
@@ -531,7 +531,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //
         } catch (Exception ex) {
             showMessage("Connection to " + host + " / " + db_name + " failed: " + ex);
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Connection to SQL failed!");
             System.exit(0);
         }
@@ -677,13 +677,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jButtonTable4Repport = new javax.swing.JButton();
         jButtonRecipeDetailedSaveTable4 = new javax.swing.JButton();
         jLabelLockedUnlocked = new javax.swing.JLabel();
-        jScrollPane_LabDevelopment = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel_lab_development = new javax.swing.JPanel();
-        jButton_lab_dev_save_btn_1 = new javax.swing.JButton();
-        jPanel_lab_development_2 = new javax.swing.JPanel();
-        jPanel_lab_development_3 = new javax.swing.JPanel();
-        jButton_lab_dev_save_btn_2 = new javax.swing.JButton();
         jScrollPaneTestParameters = new javax.swing.JScrollPane();
         jPanel_Test_Parameters = new javax.swing.JPanel();
         jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
@@ -902,6 +895,17 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jButton18 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
         jPanel52 = new javax.swing.JPanel();
+        jScrollPane_LabDevelopment = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel_lab_development_2 = new javax.swing.JPanel();
+        jPanel_lab_development_3 = new javax.swing.JPanel();
+        jButton_lab_dev_save_btn_2 = new javax.swing.JButton();
+        jPanel_lab_development_4 = new javax.swing.JPanel();
+        jPanel_lab_development_5 = new javax.swing.JPanel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel53 = new javax.swing.JPanel();
+        jPanel_lab_development = new javax.swing.JPanel();
+        jButton_lab_dev_save_btn_1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1056,7 +1060,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 876, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE)
                 .addComponent(jLabelHomeVersion)
                 .addGap(34, 34, 34))
         );
@@ -1444,6 +1448,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jScrollPaneRecipeInitial.setViewportView(jPanel_RecipeInitial);
 
         jTabbedPane1.addTab("RECIPE OVERVIEW", jScrollPaneRecipeInitial);
+
+        jScrollPaneRecipeDetailed.setPreferredSize(new java.awt.Dimension(1563, 931));
 
         jPanel_RecipeDetailed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_RecipeDetailed.setMaximumSize(new java.awt.Dimension(1574, 32767));
@@ -1848,7 +1854,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1_recipe_detailed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
         );
 
         jPanel1_recipe_detailed.getAccessibleContext().setAccessibleName("");
@@ -1857,64 +1863,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jScrollPaneRecipeDetailed.setViewportView(jPanel_RecipeDetailed);
 
         jTabbedPane1.addTab("RECIPE DETAILED", jScrollPaneRecipeDetailed);
-
-        jPanel_lab_development.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel_lab_development.setLayout(new java.awt.GridLayout(1, 0));
-
-        jButton_lab_dev_save_btn_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        jButton_lab_dev_save_btn_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev_save_btn_1ActionPerformed(evt);
-            }
-        });
-
-        jPanel_lab_development_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel_lab_development_2.setLayout(new java.awt.GridLayout());
-
-        jPanel_lab_development_3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel_lab_development_3.setLayout(new java.awt.GridLayout());
-
-        jButton_lab_dev_save_btn_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        jButton_lab_dev_save_btn_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev_save_btn_2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel_lab_development_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_lab_development, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
-                    .addComponent(jButton_lab_dev_save_btn_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel_lab_development_3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jPanel_lab_development, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jButton_lab_dev_save_btn_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel_lab_development_2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_lab_development_3, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
-        );
-
-        jScrollPane_LabDevelopment.setViewportView(jPanel1);
-
-        jTabbedPane1.addTab("LAB DEVELOPMENT", jScrollPane_LabDevelopment);
 
         jPanel_Test_Parameters.setPreferredSize(new java.awt.Dimension(1250, 929));
 
@@ -2051,7 +1999,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_Test_Params_Inv_Table_1, javax.swing.GroupLayout.DEFAULT_SIZE, 753, Short.MAX_VALUE)
                     .addComponent(jScrollPane19))
-                .addContainerGap(614, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         jScrollPaneTestParameters.setViewportView(jPanel_Test_Parameters);
@@ -3607,15 +3555,113 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                             .addComponent(jLabel77)))
                     .addComponent(jPanel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel78)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("LOG", jPanel_Log);
+
+        jPanel_lab_development_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_lab_development_2.setLayout(new java.awt.GridLayout(1, 0));
+
+        jPanel_lab_development_3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_lab_development_3.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButton_lab_dev_save_btn_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        jButton_lab_dev_save_btn_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev_save_btn_2ActionPerformed(evt);
+            }
+        });
+
+        jPanel_lab_development_4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_lab_development_4.setLayout(new java.awt.GridLayout());
+
+        jPanel_lab_development_5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_lab_development_5.setLayout(new java.awt.GridLayout());
+
+        jTabbedPane3.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+
+        jPanel_lab_development.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel_lab_development.setLayout(new java.awt.GridLayout(1, 0));
+
+        jButton_lab_dev_save_btn_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        jButton_lab_dev_save_btn_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev_save_btn_1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
+        jPanel53.setLayout(jPanel53Layout);
+        jPanel53Layout.setHorizontalGroup(
+            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel53Layout.createSequentialGroup()
+                .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel53Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel53Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel_lab_development, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)))
+                .addGap(451, 451, 451))
+        );
+        jPanel53Layout.setVerticalGroup(
+            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel53Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_lab_development, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("tab1", jPanel53);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1081, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel_lab_development_4, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+                            .addComponent(jPanel_lab_development_2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_lab_dev_save_btn_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel_lab_development_3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                            .addComponent(jPanel_lab_development_5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(492, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(642, 642, 642)
+                .addComponent(jButton_lab_dev_save_btn_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel_lab_development_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel_lab_development_2, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel_lab_development_5, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                    .addComponent(jPanel_lab_development_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane_LabDevelopment.setViewportView(jPanel1);
+
+        jTabbedPane1.addTab("LAB DEVELOPMENT", jScrollPane_LabDevelopment);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -3623,15 +3669,15 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1098, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 911, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         pack();
@@ -3674,7 +3720,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     jTable3, textAreaRecipeInitialNotes, "Recipe_Prop_Free_Text_ID");
             //
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -3713,7 +3759,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         try {
             ingredients.save_changes_notes(jScrollPane_Ingred_Comments, jEditorPane_Ingred, jTable_Ingred_Table3, textAreaIngredComments, "IngredientCode_ID");
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_Ingredients_Save_CommentsActionPerformed
 
@@ -4129,7 +4175,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (adminTools == null) {
-            final MC_RECIPE_ mc_recipe = this;
+            final MC_RECIPE mc_recipe = this;
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -4160,7 +4206,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //this is done to only show the "table4formats.properties" file
             HelpA_.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
@@ -4218,13 +4264,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
@@ -4243,7 +4289,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             @Override
             public void run() {
                 //
-                new MC_RECIPE_().setVisible(true);
+                new MC_RECIPE().setVisible(true);
                 //
                 if (runInNetbeans == false) {
                     HelpA_.console_output_to_jtextpane(jTextPane1); // must be placed here!
@@ -4517,6 +4563,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
+    private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -4550,6 +4597,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JPanel jPanel_lab_development;
     public javax.swing.JPanel jPanel_lab_development_2;
     public javax.swing.JPanel jPanel_lab_development_3;
+    public javax.swing.JPanel jPanel_lab_development_4;
+    public javax.swing.JPanel jPanel_lab_development_5;
     public static javax.swing.JTextField jPasswordFieldHomePass;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -4584,6 +4633,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JScrollPane jScrollPane_LabDevelopment;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     protected javax.swing.JTable jTable1;
     protected javax.swing.JTable jTable2;
     protected javax.swing.JTable jTable3;
@@ -4619,7 +4669,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public void recipeDetailedTabbClicked() {
         //
         if (recipeDetailed == null && recipeInitial != null) {
-            recipeDetailed = new RecipeDetailed(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
+            recipeDetailed = new RecipeDetailed_(this, sql, sql_additional, new ChangeSaver(sql, this), recipeInitial);
         }
         //
         if (recipeDetailed != null) {
@@ -4769,6 +4819,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         labDevelopment.showTableInvert();
         labDevelopment.showTableInvert_2();
         labDevelopment.showTableInvert_3();
+        labDevelopment.showTableInvert_4();
+        labDevelopment.showTableInvert_5();
     }
 
     public void test_parameters_tab_clicked() {

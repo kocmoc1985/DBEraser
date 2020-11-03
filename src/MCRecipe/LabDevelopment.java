@@ -27,15 +27,19 @@ public class LabDevelopment extends BasicTab {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
+     private TableBuilderInvert_ TABLE_BUILDER_INVERT_5;
     private Table TABLE_INVERT_2;
     private Table TABLE_INVERT_3;
-    private final MC_RECIPE_ mCRecipe;
+    private Table TABLE_INVERT_4;
+    private Table TABLE_INVERT_5;
+    private final MC_RECIPE mCRecipe;
 
     private String ORDER_FOR_TESTING = "ENTW002106";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
         super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE_) OUT;
+        this.mCRecipe = (MC_RECIPE) OUT;
         init();
     }
 
@@ -141,7 +145,7 @@ public class LabDevelopment extends BasicTab {
         updated_by.setUneditable();
         //
         RowDataInvert[] rows = {fertigwunsch_acqdeliver, gewunscht_requested, genehmigt_approved, ausfuhrung_execute,
-            fertig_erwarted_expready, fertig_ready, updated_on};
+            fertig_erwarted_expready, fertig_ready, updated_on, updated_by};
         //
         return rows;
     }
@@ -169,6 +173,11 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
+    /**
+     * [DIENSTE]
+     *
+     * @return
+     */
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         RowDataInvert datum_geplant_servplan = new RowDataInvert("MC_Cpworder", "ID", false, "SERVPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
@@ -183,11 +192,14 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_servplan, datum_augefu_servexec, dat_vervollst_servexec, updated_on};
+        RowDataInvert[] rows = {datum_geplant_servplan, datum_augefu_servexec, dat_vervollst_servexec, updated_on, updated_by};
         //
         return rows;
     }
-    
+
+    /**
+     * [DIENSTE]
+     */
     public void showTableInvert_3() {
         //
         TABLE_BUILDER_INVERT_3 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_3(), false, "lab_development_3");
@@ -211,6 +223,106 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
+    /**
+     * [VERARBEITUNG]
+     *
+     * @return
+     */
+    public RowDataInvert[] getConfigTableInvert_4() {
+        //
+        RowDataInvert datum_geplant_procplan = new RowDataInvert("MC_Cpworder", "ID", false, "PROCPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
+        //
+        RowDataInvert datum_augefu_procexec = new RowDataInvert("MC_Cpworder", "ID", false, "PROCEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
+        //
+        RowDataInvert dat_vervollst_proccompl = new RowDataInvert("MC_Cpworder", "ID", false, "PROCCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
+        //
+        RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        updated_on.setUneditable();
+        updated_by.setUneditable();
+        //
+        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, updated_on, updated_by};
+        //
+        return rows;
+    }
+
+    /**
+     * [VERARBEITUNG]
+     */
+    public void showTableInvert_4() {
+        //
+        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_4(), false, "lab_development_4");
+        //
+        TABLE_INVERT_4 = null;
+        //
+        String order = ORDER_FOR_TESTING;
+        //
+        try {
+            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            OUT.showMessage(q);
+            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_4.showMessage(ex.toString());
+        }
+        //
+//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
+        //
+        showTableInvert(mCRecipe.jPanel_lab_development_4, TABLE_INVERT_4);
+        //
+    }
+
+    /**
+     * [PRUFT]
+     *
+     * @return
+     */
+    public RowDataInvert[] getConfigTableInvert_5() {
+        //
+        RowDataInvert datum_geplant_testplan = new RowDataInvert("MC_Cpworder", "ID", false, "TESTPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
+        //
+        RowDataInvert datum_augefu_testexec = new RowDataInvert("MC_Cpworder", "ID", false, "TESTEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
+        //
+        RowDataInvert dat_vervollst_testcompl = new RowDataInvert("MC_Cpworder", "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
+        //
+        RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        updated_on.setUneditable();
+        updated_by.setUneditable();
+        //
+        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, updated_on,updated_by};
+        //
+        return rows;
+    }
+
+    /**
+     * [PRUFT]
+     */
+    public void showTableInvert_5() {
+        //
+        TABLE_BUILDER_INVERT_5 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_5(), false, "lab_development_5");
+        //
+        TABLE_INVERT_5 = null;
+        //
+        String order = ORDER_FOR_TESTING;
+        //
+        try {
+            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            OUT.showMessage(q);
+            TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_5.showMessage(ex.toString());
+        }
+        //
+//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
+        //
+        showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
+        //
+    }
+
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_1, this, 1);
@@ -226,12 +338,12 @@ public class LabDevelopment extends BasicTab {
             } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
                 return true;
             }
-        }else if(nr == 2){
-             if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null) {
-                 return false;
-             }else if(unsavedEntriesExist(TABLE_INVERT_2) ||unsavedEntriesExist(TABLE_INVERT_3)){
-                 return true;
-             }
+        } else if (nr == 2) {
+            if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT_2) || unsavedEntriesExist(TABLE_INVERT_3)) {
+                return true;
+            }
         }
         return false;
     }
