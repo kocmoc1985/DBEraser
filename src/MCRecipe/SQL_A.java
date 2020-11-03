@@ -1367,4 +1367,12 @@ public class SQL_A {
     public static String select_all_from_MC_Cpworder(String order) {
         return "SELECT * from MC_Cpworder WHERE WORDERNO='" + order + "'";
     }
+    
+    public static String get_lab_dev_table_1(String order){
+        return "SELECT * from MC_Cpworder_SendTo WHERE WORDERNO='" + order + "'";
+    }
+    
+    public static String get_lab_dev_table_2(String order){
+        return "SELECT * from MC_Cpworder_SendTo WHERE WORDERNO='" + order + "'";
+    }
 }

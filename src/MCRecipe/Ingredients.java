@@ -498,6 +498,7 @@ public class Ingredients extends BasicTab {
             if (table2 != null) {
                 HelpA_.setTrackingToolTip(table2, q);
             }
+            //
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }

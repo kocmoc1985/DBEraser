@@ -9,14 +9,18 @@ import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.Dimension;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,17 +38,54 @@ public class LabDevelopment extends BasicTab {
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
     private final MC_RECIPE_ mCRecipe;
+    private final ChangeSaver changeSaver;
 
     private String ORDER_FOR_TESTING = "ENTW002106";
 
-    public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
+    public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
         this.mCRecipe = (MC_RECIPE_) OUT;
+        this.changeSaver = saver;
         init();
     }
 
     private void init() {
         initializeSaveIndicators();
+        fill_jtable_1_2();
+    }
+
+    private void fill_jtable_1_2() {
+        //
+        String q1 = SQL_A.get_lab_dev_table_1(ORDER_FOR_TESTING);
+        fill_jtable(mCRecipe.jTable_lab_dev_1, q1, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
+        //
+        String q2 = SQL_A.get_lab_dev_table_2(ORDER_FOR_TESTING);
+        fill_jtable(mCRecipe.jTable_lab_dev_2, q2, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
+        //
+    }
+
+    private void fill_jtable(JTable table, String q, String[] colsToHide) {
+        //
+        HelpA_.setUneditableJTable(table);
+        //
+        try {
+            //
+            ResultSet rs = sql.execute(q, mCRecipe);
+            //
+            HelpA_.build_table_common(rs, table, q);
+            //
+            if (table != null) {
+                HelpA_.setTrackingToolTip(table, q);
+            }
+            //
+            for (String colName : colsToHide) {
+                HelpA_.hideColumnByName(table, colName);
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
 
     @Override
@@ -331,6 +372,51 @@ public class LabDevelopment extends BasicTab {
 //        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
         //
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
+        //
+    }
+
+    public void changeNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
+        //
+        if (HelpA_.getIfAnyRowChosen(table) == false) {
+            HelpA_.showNotification("Please choose a row in the table to perform this action");
+            return;
+        }
+        //
+        String id = HelpA_.getValueSelectedRow(table, idColName);
+        //
+        String noteValue = HelpA_.getValueSelectedRow(table, noteValColName);
+        //
+        JTextField jtf = new JTextField(noteValue.equals("null") ? "" : noteValue);
+        //
+        jtf.setPreferredSize(new Dimension(300, 50));
+        //
+        boolean yes = HelpA_.chooseFromJTextField(jtf, "Please specify the new note value");
+        //
+        String value = jtf.getText();
+        //
+        if (value == null || yes != true) {
+            return;
+        }
+        //
+        if (id == null || id.isEmpty() || id.equals("null")) {
+//            table2_change_notevalue_if_id_missing(table, table.getSelectedRow(), value);
+//            recipeInitial.fill_table_2_and_3();
+            return;
+        }
+        //
+        UpdateEntry updateEntry = new UpdateEntry(
+                tableName,
+                noteValColName,
+                value,
+                idColName,
+                id,
+                true,
+                false);
+        //
+        //
+        changeSaver.saveChange(updateEntry);
+        //
+        fill_jtable_1_2();
         //
     }
 
