@@ -40,12 +40,15 @@ public class SaveIndicator implements Runnable {
         while (true) {
             //
             if (unsavedList.getUnsaved(NR)) {
+                //
                 if (flag) {
+                    //
                     initialIcon = (ImageIcon) saveBtn.getIcon();
                     //
                     ImageIcon icon = new ImageIcon(IconUrls.UNSAVED_ICON_URL);
                     //
                     saveBtn.setIcon(icon);
+                    //
                 }
                 //
                 flag = false;

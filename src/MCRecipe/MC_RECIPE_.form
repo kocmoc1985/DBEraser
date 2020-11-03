@@ -732,7 +732,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialGo">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/ok.png"/>
+                              <Image iconType="3" name="/icons/correct.png"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -745,7 +745,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialResetComboBoxes">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/clear2.png"/>
+                              <Image iconType="3" name="/icons/cancel-1.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="TOOLTIP.RESET_BOXES_BTN_TOOLTIP()" type="code"/>
@@ -1214,7 +1214,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialGo2">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/ok.png"/>
+                              <Image iconType="3" name="/icons/correct.png"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -1227,7 +1227,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialResetComboBoxes3">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/clear2.png"/>
+                              <Image iconType="3" name="/icons/cancel-1.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="TOOLTIP.RESET_BOXES_BTN_TOOLTIP()" type="code"/>
@@ -1779,7 +1779,7 @@
                     <Component class="javax.swing.JButton" name="jButton_recipe_detailed_delete_recipe">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/clear.png"/>
+                          <Image iconType="3" name="/icons/cancel-1.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="TOOLTIP.DELETE_RECIPE_BTN_TOOLTIP()" type="code"/>
@@ -1792,7 +1792,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeInitialUnblock1">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/unlocked.png"/>
+                          <Image iconType="3" name="/icons/unlocked.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Unblock recipe"/>
                       </Properties>
@@ -1817,7 +1817,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedAddNewRecipe">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/add.png"/>
+                          <Image iconType="3" name="/icons/add.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Cretates a new recipe from the actual one"/>
                       </Properties>
@@ -1831,7 +1831,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeInitialUnblock2">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/show.png"/>
+                          <Image iconType="3" name="/icons/visible.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Hide/Unhide some fields"/>
                       </Properties>
@@ -1842,7 +1842,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedPrint">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/print.png"/>
+                          <Image iconType="3" name="/icons/printer.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                       </Properties>
@@ -1880,7 +1880,7 @@
                     <Component class="javax.swing.JButton" name="jButton6">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/add.png"/>
+                          <Image iconType="3" name="/icons/add.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Add info"/>
                       </Properties>
@@ -1894,7 +1894,7 @@
                     <Component class="javax.swing.JButton" name="jButton3">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/edit.png"/>
+                          <Image iconType="3" name="/icons/edit.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Change Note Value"/>
                       </Properties>
@@ -1908,7 +1908,7 @@
                     <Component class="javax.swing.JButton" name="jButton4">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/clear.png"/>
+                          <Image iconType="3" name="/icons/cancel-1.png"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1935,7 +1935,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedAddNote">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/add.png"/>
+                          <Image iconType="3" name="/icons/add.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Add note"/>
                       </Properties>
@@ -1949,7 +1949,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRDetailedChangeNoteName">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/edit.png"/>
+                          <Image iconType="3" name="/icons/edit.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Change Note Name"/>
                       </Properties>
@@ -1963,7 +1963,7 @@
                     <Component class="javax.swing.JButton" name="jButton5">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/clear.png"/>
+                          <Image iconType="3" name="/icons/cancel-1.png"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1991,7 +1991,7 @@
                     <Component class="javax.swing.JButton" name="jButton_r_detailed_prev">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/prev.png"/>
+                          <Image iconType="3" name="/icons/prev.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="previous recipe"/>
                       </Properties>
@@ -2002,7 +2002,7 @@
                     <Component class="javax.swing.JButton" name="jButton_r_detailed_next">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/next.png"/>
+                          <Image iconType="3" name="/icons/next.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="next recipe"/>
                       </Properties>
@@ -2057,7 +2057,7 @@
                     <Component class="javax.swing.JButton" name="jButton2">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/clear.png"/>
+                          <Image iconType="3" name="/icons/cancel-1.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Mark to delete, delete is done after save"/>
                       </Properties>
@@ -2071,7 +2071,7 @@
                     <Component class="javax.swing.JButton" name="jButton10">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/add.png"/>
+                          <Image iconType="3" name="/icons/add.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Add Ingredient"/>
                       </Properties>
@@ -2348,7 +2348,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_add_1">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/images/add.png"/>
+                                  <Image iconType="3" name="/icons/add.png"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -2358,7 +2358,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_delete_1">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/images/clear.png"/>
+                                  <Image iconType="3" name="/icons/cancel-1.png"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -2377,7 +2377,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_add_2">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/images/add.png"/>
+                                  <Image iconType="3" name="/icons/add.png"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -2387,7 +2387,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_delete_2">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/images/clear.png"/>
+                                  <Image iconType="3" name="/icons/cancel-1.png"/>
                                 </Property>
                               </Properties>
                               <Events>
