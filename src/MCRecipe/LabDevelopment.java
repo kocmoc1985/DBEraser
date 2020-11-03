@@ -28,7 +28,7 @@ public class LabDevelopment extends BasicTab {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
-     private TableBuilderInvert_ TABLE_BUILDER_INVERT_5;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_5;
     private Table TABLE_INVERT_2;
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
@@ -58,6 +58,13 @@ public class LabDevelopment extends BasicTab {
 //            return;
 //        }
         saveChangesTableInvert();
+    }
+
+    public void saveTableInvert_2_3_4_5() {
+        saveChangesTableInvert(TABLE_INVERT_2);
+        saveChangesTableInvert(TABLE_INVERT_3);
+        saveChangesTableInvert(TABLE_INVERT_4);
+        saveChangesTableInvert(TABLE_INVERT_5);
     }
 
     @Override
@@ -93,7 +100,7 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert[] rows = {antragstel__requester, abteilung_department,
             tel_reqphone, kunde_customer, projektnr_projectno,
-            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2, updated_on,updated_by};
+            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2, updated_on, updated_by};
         //
         return rows;
     }
@@ -150,6 +157,7 @@ public class LabDevelopment extends BasicTab {
         //
         return rows;
     }
+
     /**
      * [NO NAME]
      */
@@ -293,7 +301,7 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, updated_on,updated_by};
+        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, updated_on, updated_by};
         //
         return rows;
     }
@@ -340,9 +348,12 @@ public class LabDevelopment extends BasicTab {
                 return true;
             }
         } else if (nr == 2) {
-            if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null) {
+            if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null || TABLE_BUILDER_INVERT_4 == null || TABLE_BUILDER_INVERT_5 == null) {
                 return false;
-            } else if (unsavedEntriesExist(TABLE_INVERT_2) || unsavedEntriesExist(TABLE_INVERT_3)) {
+            } else if (unsavedEntriesExist(TABLE_INVERT_2)
+                    || unsavedEntriesExist(TABLE_INVERT_3)
+                    || unsavedEntriesExist(TABLE_INVERT_4)
+                    || unsavedEntriesExist(TABLE_INVERT_5)) {
                 return true;
             }
         }

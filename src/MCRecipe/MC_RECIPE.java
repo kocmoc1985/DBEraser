@@ -4248,7 +4248,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton_lab_dev_save_btn_1ActionPerformed
 
     private void jButton_lab_dev_save_btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_save_btn_2ActionPerformed
-        // TODO add your handling code here:
+        labDevelopment.saveTableInvert_2_3_4_5();
     }//GEN-LAST:event_jButton_lab_dev_save_btn_2ActionPerformed
 
     /**
