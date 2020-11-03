@@ -13,6 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Send mail to all users of LAFakturering -> get all user emails from DB and send
+
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind
 
 Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"

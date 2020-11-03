@@ -206,7 +206,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
                         mapToReturn.put(dataInvert.getFieldOriginalName(), "");
                     }
                     //
-                    if(dataInvert.saveEmptyNumber()){
+                    if (dataInvert.saveEmptyNumber()) {
                         mapToReturn.put(dataInvert.getFieldOriginalName(), "0");
                     }
                     //
@@ -322,11 +322,17 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     public boolean unsavedEntriesExist(Table table_invert) {
+        //
+        if (table_invert == null) {
+            return false;
+        }
+        //
         if (table_invert.unsaved_entries_map.isEmpty() == false) {
             return true;
         } else {
             return false;
         }
+        //
     }
 
     public void addToUnsaved(Table table_invert, String rowName, int column) {
@@ -464,12 +470,13 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     /**
-     * [2020-10-21]
-     * This one is for getting other values which are not shown from JCombo
+     * [2020-10-21] This one is for getting other values which are not shown
+     * from JCombo
+     *
      * @param rowName
      * @param tableInvert
      * @param paramToReturn
-     * @return 
+     * @return
      */
     public String getValueTableInvertJComboBox(String rowName, Table tableInvert, int paramToReturn) {
         TableInvert ti = (TableInvert) tableInvert;
@@ -871,10 +878,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
- toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
- return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
- }
+     * if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
      *
      * @param arr
      * @param columnsToRemove

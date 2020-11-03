@@ -87,8 +87,10 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert fertigwunsch_expready = new RowDataInvert("MC_Cpworder", "ID", false, "EXPREADY", T_INV.LANG("EXPREADY"), "", true, true, false);
         //
         RowDataInvert ziel1_aimline1 = new RowDataInvert("MC_Cpworder", "ID", false, "AIMLINE1", T_INV.LANG("TARGET 1"), "", true, true, false);
+        ziel1_aimline1.enableToolTipTextJTextField();
         //
         RowDataInvert ziel2_aimline2 = new RowDataInvert("MC_Cpworder", "ID", false, "AIMLINE2", T_INV.LANG("TARGET 2"), "", true, true, false);
+        ziel2_aimline2.enableToolTipTextJTextField();
         //
         RowDataInvert updated_on = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert("MC_Cpworder", "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
@@ -348,7 +350,7 @@ public class LabDevelopment extends BasicTab {
                 return true;
             }
         } else if (nr == 2) {
-            if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null || TABLE_BUILDER_INVERT_4 == null || TABLE_BUILDER_INVERT_5 == null) {
+            if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null || TABLE_INVERT_4 == null || TABLE_INVERT_5 == null) {
                 return false;
             } else if (unsavedEntriesExist(TABLE_INVERT_2)
                     || unsavedEntriesExist(TABLE_INVERT_3)
