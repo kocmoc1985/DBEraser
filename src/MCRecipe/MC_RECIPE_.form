@@ -2043,7 +2043,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedUndoDelete">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/undo2.png"/>
+                          <Image iconType="3" name="/icons/undo_b.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Undo delete"/>
                       </Properties>
@@ -2096,7 +2096,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedResetChanges">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/undo.png"/>
+                          <Image iconType="3" name="/icons/undo_a.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Reset changes"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">

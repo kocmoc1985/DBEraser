@@ -1719,7 +1719,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         });
         jPanel39.add(jButton20);
 
-        jButtonRecipeDetailedUndoDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/undo2.png"))); // NOI18N
+        jButtonRecipeDetailedUndoDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/undo_b.png"))); // NOI18N
         jButtonRecipeDetailedUndoDelete.setToolTipText("Undo delete");
         jButtonRecipeDetailedUndoDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1755,7 +1755,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         });
         jPanel39.add(jButtonRecipeDetailedSwap);
 
-        jButtonRecipeDetailedResetChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/undo.png"))); // NOI18N
+        jButtonRecipeDetailedResetChanges.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/undo_a.png"))); // NOI18N
         jButtonRecipeDetailedResetChanges.setToolTipText("Reset changes");
         jButtonRecipeDetailedResetChanges.setPreferredSize(new java.awt.Dimension(60, 50));
         jButtonRecipeDetailedResetChanges.addActionListener(new java.awt.event.ActionListener() {
