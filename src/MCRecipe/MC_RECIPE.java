@@ -218,10 +218,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void lang() {
         if (LNG.LANG_ENG == false) {
-            LNG.GO(jTabbedPane1);
+            LNG.GO(jTabbedPane1, jTabbedPane3);
             RECIPE_OVERVIEW_.RECIPE_OVERVIEW_TABS(jTabbedPane2);
         }
-
     }
 
     private void loadUserName() {
@@ -315,6 +314,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void initOther() {
         //
         this.jTabbedPane1.addMouseListener(this);
+        this.jTabbedPane3.addMouseListener(this);
         //
         this.jTable1.setName("table_1_recipe");
         this.jTable2.setName("table_2_recipe");
@@ -1898,7 +1898,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(297, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("tab1", jPanel53);
+        jTabbedPane3.addTab("MAIN DATA", jPanel53);
 
         jPanel_lab_development_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_lab_development_2.setLayout(new java.awt.GridLayout(1, 0));
@@ -1952,7 +1952,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(61, 61, 61))
         );
 
-        jTabbedPane3.addTab("tab2", jPanel54);
+        jTabbedPane3.addTab("STATUS", jPanel54);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -4287,7 +4287,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         }
         //</editor-fold>
         //
-        boolean runInNetbeans = HelpA_.runningInNetBeans(); 
+        boolean runInNetbeans = HelpA_.runningInNetBeans();
         //
         if (runInNetbeans == false) {
             HelpA_.err_output_to_file();
@@ -4732,9 +4732,36 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         HelpA_.resetTableHeaderPainting(jTable2, HelpA_.getColByName(jTable2, "Note_Value"));
     }
+
+    private void mousePressedOnTab_lab_development(MouseEvent me) {
+        //
+        if (me.getSource() == jTabbedPane3) {
+            //
+            String title = jTabbedPane3.getTitleAt(jTabbedPane3.getSelectedIndex());
+            //
+            if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
+                lab_dev_tab__tab_main_data_clicked();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
+                lab_dev_tab__tab_status_clicked();
+            }
+        }
+    }
+
+    private void lab_dev_tab__tab_main_data_clicked() {
+        labDevelopment.showTableInvert();
+    }
+
+    private void lab_dev_tab__tab_status_clicked() {
+        labDevelopment.showTableInvert_2();
+        labDevelopment.showTableInvert_3();
+        labDevelopment.showTableInvert_4();
+        labDevelopment.showTableInvert_5();
+    }
+
     public static String ACTUAL_TAB_NAME = "";
 
     private void mousePressedOnTab(MouseEvent me) {
+        //
         if (me.getSource() == jTabbedPane1) {
             //
             String title = jTabbedPane1.getTitleAt(jTabbedPane1.getSelectedIndex());
@@ -4817,9 +4844,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 //
                 test_parameters_tab_clicked();
                 //
-            }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB())) {
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB())) {
                 //
-                if(labDevelopment == null){
+                if (labDevelopment == null) {
                     labDevelopment = new LabDevelopment(sql, sql_additional, this);
                 }
                 //
@@ -4828,13 +4855,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             }
         }
     }
-    
-    public void lab_development_tab_clicked(){
-        labDevelopment.showTableInvert();
-        labDevelopment.showTableInvert_2();
-        labDevelopment.showTableInvert_3();
-        labDevelopment.showTableInvert_4();
-        labDevelopment.showTableInvert_5();
+
+    public void lab_development_tab_clicked() {
+        lab_dev_tab__tab_main_data_clicked();
     }
 
     public void test_parameters_tab_clicked() {
@@ -4851,6 +4874,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public void mousePressed(MouseEvent me) {
         //
         mousePressedOnTab(me);
+        mousePressedOnTab_lab_development(me);
         //
         boolean cond_1 = HelpA_.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
         //

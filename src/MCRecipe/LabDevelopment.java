@@ -93,7 +93,7 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert[] rows = {antragstel__requester, abteilung_department,
             tel_reqphone, kunde_customer, projektnr_projectno,
-            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2, updated_on};
+            fertigwunsch_expready, ziel1_aimline1, ziel2_aimline2, updated_on,updated_by};
         //
         return rows;
     }
@@ -120,10 +120,11 @@ public class LabDevelopment extends BasicTab {
         //
         showTableInvert(mCRecipe.jPanel_lab_development);
         //
-//        showTableInvert(mCRecipe.jPanel_lab_development, TABLE_INVERT);
-        //
     }
 
+    /**
+     * [NO NAME]
+     */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         RowDataInvert fertigwunsch_acqdeliver = new RowDataInvert("MC_Cpworder", "ID", false, "ACQDELIVER", T_INV.LANG("TO BE DELIEVERD"), "", true, true, false);
@@ -149,7 +150,9 @@ public class LabDevelopment extends BasicTab {
         //
         return rows;
     }
-
+    /**
+     * [NO NAME]
+     */
     public void showTableInvert_2() {
         //
         TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_2(), false, "lab_development_2");
@@ -166,8 +169,6 @@ public class LabDevelopment extends BasicTab {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
         }
-        //
-//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
         //
         showTableInvert(mCRecipe.jPanel_lab_development_2, TABLE_INVERT_2);
         //
