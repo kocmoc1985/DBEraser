@@ -374,6 +374,30 @@ public class LabDevelopment extends BasicTab {
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
         //
     }
+    
+    public void addNote(JTable table){
+        //
+        String order = HelpA_.getValueSelectedRow(table, "WORDERNO");
+        //
+        JTextField jtf1 = new JTextField();
+        JTextField jtf2 = new JTextField();
+        //
+        HelpA_.chooseFrom2Textfields(jtf1, jtf2, "Note Name", "Note Value", "Create new note");
+        //
+        String noteName = jtf1.getText();
+        String noteValue = jtf2.getText();
+        //
+        String q = SQL_A.insert_into_lab_dev_table_1("", "", "", "", "");
+        //
+        try {
+            sql.execute(q, mCRecipe);
+        } catch (SQLException ex) {
+            Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        fill_jtable_1_2();
+        //
+    }
 
     public void changeNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
