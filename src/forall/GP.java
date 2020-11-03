@@ -15,6 +15,9 @@ import java.util.Properties;
 public class GP {
 
     public static String COMPANY_NAME;
+    public static boolean IS_DATE_FORMAT_DE = false;
+    public static String DATE_FORMAT_COMMON = "yyyy-MM-dd";
+    public static String DATE_FORMAT_DE  = "dd.MM.yyyy";
     //
     public static final String COMPANY_NAME_UNDEFINED = "undef";
     public static final String COMPANY_NAME_QEW = "qew";

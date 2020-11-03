@@ -5,7 +5,6 @@
  */
 package MCRecipe;
 
-import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
@@ -20,7 +19,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JTable;
 import mySwing.JTableM;
 
@@ -30,11 +28,11 @@ import mySwing.JTableM;
  */
 public class TestParameters_ extends BasicTab {
 
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private final JTableM jTable_1;
 
-    public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mCRecipe) {
+    public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mCRecipe) {
         super(sql, sql_additional, mCRecipe);
         this.mCRecipe = mCRecipe;
         //

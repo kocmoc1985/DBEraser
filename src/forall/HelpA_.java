@@ -11,7 +11,7 @@ import BuhInvoice.InvoiceB;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
@@ -299,7 +299,7 @@ public class HelpA_ {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) { // 
             //
@@ -524,12 +524,17 @@ public class HelpA_ {
         return formatter.format(calendar.getTime());
     }
 
-    public static String updatedOnLocal() {
+    private static String updatedOnLocal() {
         return get_proper_date_adjusted_format(3);
     }
 
     public static String updatedOn() {
-        return get_proper_date_adjusted_format(3);
+        if(GP.IS_DATE_FORMAT_DE){
+            return get_proper_date_dd_MM_yyyy();
+        }else{
+            return get_proper_date_yyyy_MM_dd();
+        }
+//        return get_proper_date_adjusted_format(3);
     }
 
 //    public static String updatedOn() {
@@ -2864,6 +2869,12 @@ public class HelpA_ {
 
     public static String get_proper_date_yyyy_MM_dd() {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+    
+    public static String get_proper_date_dd_MM_yyyy() {
+        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }

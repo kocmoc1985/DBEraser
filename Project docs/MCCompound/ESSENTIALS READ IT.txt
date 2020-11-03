@@ -1,0 +1,14 @@
+______________________________________________________________________________________________
+
+[DATE FORMAT TABLE-INVERT - HOW IS DATE FORMAT DEFINED - SUPER IMPORTANT][2020-11-03]
+See usages of variable: GP.IS_DATE_FORMAT_DE 
+
+______________________________________________________________________________________________
+
+[WHAT IS NEEDED TO DO WITH DATABASE-TABLE IN ORDER TO USE IT WITH TABLE-INVERT][2020-11-03]
+
+- "ID" field required -> We used to populate it by our self
+- "UpdatedOn" field required
+- "UpdatedBy" field required
+
+______________________________________________________________________________________________

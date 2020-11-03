@@ -9,6 +9,7 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
+import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
@@ -49,6 +50,7 @@ public class TableBuilderInvert_ {
 
     /**
      * New [2020-07-10] Not using SQL
+     *
      * @param tableInvertConsumer
      * @return
      */
@@ -106,7 +108,7 @@ public class TableBuilderInvert_ {
         }
         //
         //
-        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME,tableInvertConsumer);
+        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME, tableInvertConsumer);
         table.setShowUnits(SHOW_UNITS);
 //        table.setSql(sql);
         table.setTableEmpty(true);
@@ -212,6 +214,22 @@ public class TableBuilderInvert_ {
     }
 
     private String millisToDefaultDate(long millis) {
+        //
+        Locale locale = Locale.getDefault();
+        //
+        if (GP.IS_DATE_FORMAT_DE || locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")) {
+            return HelpA_.millisToDateConverter("" + millis, GP.DATE_FORMAT_DE);
+        } else {
+            return HelpA_.millisToDateConverter("" + millis, GP.DATE_FORMAT_COMMON);
+        }
+        //
+    }
+
+    /**
+     * @deprecated @param millis
+     * @return
+     */
+    private String millisToDefaultDate_(long millis) {
         TimeZone tz = TimeZone.getDefault();
         Calendar cal = Calendar.getInstance(tz);
         //

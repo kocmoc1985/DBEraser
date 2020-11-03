@@ -33,13 +33,13 @@ public class LabDevelopment extends BasicTab {
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
 
     private String ORDER_FOR_TESTING = "ENTW002106";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
         super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE) OUT;
+        this.mCRecipe = (MC_RECIPE_) OUT;
         init();
     }
 
