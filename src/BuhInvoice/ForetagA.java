@@ -218,6 +218,10 @@ public class ForetagA extends CustomerAForetagA_ {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
+        }else if (col_name.equals(DB.BUH_KUND__SWISH)) {
+            //
+            Validator.validateMaxInputLength(jli, 30);
+            //
         }
         
     }

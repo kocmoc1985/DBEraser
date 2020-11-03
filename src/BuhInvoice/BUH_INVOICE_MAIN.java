@@ -1935,9 +1935,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_delete_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articleActionPerformed
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_4_2) == false) {
-            return;
-        }
+//        if (GP_BUH.confirmWarning(LANG.MSG_4) == false) {
+//            return;
+//        }
         //
         articlesA.delete();
     }//GEN-LAST:event_jButton_delete_articleActionPerformed
@@ -2341,7 +2341,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_share_accountActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_4_2) == false) {
+            return;
+        }
+        //
         home.processDeleteGuest();
     }//GEN-LAST:event_jButton2ActionPerformed
 
