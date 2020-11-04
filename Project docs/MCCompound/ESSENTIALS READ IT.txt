@@ -1,4 +1,9 @@
 ______________________________________________________________________________________________
+[UPDATED ON - UPDATED BY - TABLE INVERT]
+
+- The tableInvert MUST contain those to be able to automatically save.
+
+______________________________________________________________________________________________
 
 [DATE FORMAT TABLE-INVERT - HOW IS DATE FORMAT DEFINED - SUPER IMPORTANT][2020-11-03]
 See usages of variable: GP.IS_DATE_FORMAT_DE 

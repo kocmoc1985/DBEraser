@@ -2462,8 +2462,8 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel_lab_development_5" max="32767" attributes="0"/>
-                                      <Component id="jPanel_lab_development_4" min="-2" pref="291" max="-2" attributes="0"/>
+                                      <Component id="jPanel_lab_development_4" max="32767" attributes="0"/>
+                                      <Component id="jPanel_lab_development_5" min="-2" pref="314" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               </Group>

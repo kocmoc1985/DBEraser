@@ -10,6 +10,7 @@ import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -38,11 +39,11 @@ public class LabDevHeaderComponent {
         return (JPanel) header.getComponent(1);
     }
 
-    private void updateGraphics(){
+    private void updateGraphics() {
         header.repaint();
         header.updateUI();
     }
-    
+
     private void clear() {
         getUpper().removeAll();
         getLower().removeAll();
@@ -87,7 +88,8 @@ public class LabDevHeaderComponent {
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
         //
-        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_2(), "Ausführen");
+//        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_2(), "Ausführen");
+        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), new String[]{"Ausführen","Fertig"});
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn());
         //
@@ -100,14 +102,36 @@ public class LabDevHeaderComponent {
     }
 
     private void buildJLabelJTextFieldComonent(JPanel upperOrLower, String jLabelVal, String jTextFieldVal) {
-        JLabel label = new JLabel(jLabelVal);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        HelpA_.increase_font(label, 14);
+        //
+        JLabel label = buildStandardLabel(jLabelVal);
+        //
         JTextField val = new JTextField(jTextFieldVal);
         JPanel container = new JPanel(new GridLayout(1, 2));
         container.add(label);
         container.add(val);
         upperOrLower.add(container);
+    }
+
+    private void buildJLabelJComboComponent(JPanel upperOrLower, String jLabelVal, String[] values) {
+        //
+        JLabel label = buildStandardLabel(jLabelVal);
+        //
+        JComboBox box = new JComboBox();
+        box = HelpA_.fillComboBox_simple(box, values, null);
+        box.setEditable(true);
+        //
+        JPanel container = new JPanel(new GridLayout(1, 2));
+        container.add(label);
+        container.add(box);
+        upperOrLower.add(container);
+    }
+    
+
+    private JLabel buildStandardLabel(String jLabelVal) {
+        JLabel label = new JLabel(jLabelVal);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        HelpA_.increase_font(label, 14);
+        return label;
     }
 
 }

@@ -2569,6 +2569,40 @@ public class HelpA_ {
             return param_2;
         }
     }
+    
+    public static JComboBox fillComboBox_simple(JComboBox jbox, Object[] values, Object initialValue) {
+        //
+        ArrayList<Object> list = new ArrayList<Object>();
+        //
+        if (initialValue != null) {
+            list.add(initialValue);
+        }
+        //
+        if (values != null) {
+            list.addAll(Arrays.asList(values));
+        }
+        //
+        Object[] arr = list.toArray();
+        //
+        for (Object item : arr) {
+            jbox.addItem(item);
+        }
+        //
+        //#AutoComplete, Auto complete# glazedlists_java15-1.9.1.jar is needed
+//        AutoCompleteSupport support = AutoCompleteSupport.install(
+//                jbox, GlazedLists.eventListOf(arr));
+        //
+        if (arr.length == 1) {
+            jbox.setSelectedIndex(0);
+        } else {
+            jbox.setSelectedIndex(1);
+        }
+        //
+//        jbox.setSelectedIndex(0);
+//        jbox.setSelectedIndex(1);
+        //
+        return jbox;
+    }
 
     public static JComboBox fillComboBox(JComboBox jbox, Object[] values, Object initialValue) {
         //
