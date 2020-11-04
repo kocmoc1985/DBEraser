@@ -40,6 +40,7 @@ public class LabDevelopment extends BasicTab {
     private Table TABLE_INVERT_5;
     private final MC_RECIPE_ mCRecipe;
     private final ChangeSaver changeSaver;
+    private LabDevHeaderComponent labDevHeaderComponent;
 
     private String ORDER_FOR_TESTING = "ENTW002106";
 
@@ -51,6 +52,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     private void init() {
+        labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql);
         initializeSaveIndicators();
         fill_jtable_1_2();
     }
