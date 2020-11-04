@@ -4,7 +4,8 @@
  */
 package MyObjectTable;
 
-import images.IconUrls;
+import icons.IconUrls;
+import images.ImgUrls;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
