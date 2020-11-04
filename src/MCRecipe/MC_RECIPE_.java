@@ -4399,7 +4399,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_lab_dev_save_btn_2ActionPerformed
 
     private void jButton_lab_dev_delete_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_1ActionPerformed
-        labDevelopment.deleteNote(jTable_lab_dev_1, "MC_Cpworder_SendTo");
+        labDevelopment.deleteNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_delete_1ActionPerformed
 
     private void jButton_lab_dev_delete_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_2ActionPerformed
@@ -5103,9 +5103,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             clickedTable1TestParameters();
             //
         }else if (me.getSource() == jTable_lab_dev_1 && (me.getClickCount() == 2)) {
-            labDevelopment.changeNoteValue(jTable_lab_dev_1,"MC_Cpworder_SendTo","Name","ID");
+            labDevelopment.changeNoteValue(jTable_lab_dev_1,LabDevelopment.TABLE_NOTES_1,"Name","ID");
         }else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
-            labDevelopment.changeNoteValue(jTable_lab_dev_2,"MC_Cpworder_SendTo","Name","ID");
+            labDevelopment.changeNoteValue(jTable_lab_dev_2,LabDevelopment.TABLE_NOTES_2,"Name","ID");
         }
     }
 

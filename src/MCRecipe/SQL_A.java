@@ -1368,12 +1368,12 @@ public class SQL_A {
         return "SELECT * from MC_Cpworder WHERE WORDERNO='" + order + "'";
     }
 
-    public static String get_lab_dev_table_1(String order) {
-        return "SELECT * from MC_Cpworder_SendTo WHERE WORDERNO='" + order + "'";
+    public static String get_lab_dev_table_1(String order, String tableName) {
+        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'";
     }
 
-    public static String get_lab_dev_table_2(String order) {
-        return "SELECT * from MC_Cpworder_SendTo WHERE WORDERNO='" + order + "'";
+    public static String get_lab_dev_table_2(String order, String tableName) {
+        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'";
     }
 
 //    public static String insert_into_lab_dev_table_1(String order){
@@ -1384,8 +1384,6 @@ public class SQL_A {
         String q = String.format("INSERT INTO MC_Cpworder_SendTo "
                 + "(WORDERNO, Abteilung, Name, UpdatedOn, UpdatedBy)"
                 + "VALUES ('%s','%s','%s','%s','%s')", param1, param2, param3, param4, param5);
-        //
-        System.out.println("" + q);
         //
         return q;
         //

@@ -525,6 +525,15 @@ public class HelpA_ {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
+    
+    public static String dateToDateConverter(String date, String date_format_1, String date_format_2) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat(date_format_1);
+        long x = formatter.parse(date).getTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(x);
+        formatter = new SimpleDateFormat(date_format_2);
+        return formatter.format(calendar.getTime());
+    }
 
     private static String updatedOnLocal() {
         return get_proper_date_adjusted_format(3);

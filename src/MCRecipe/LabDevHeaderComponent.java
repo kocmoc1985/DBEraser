@@ -10,7 +10,6 @@ import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,26 +38,27 @@ public class LabDevHeaderComponent {
         return (JPanel) header.getComponent(1);
     }
 
+    private void updateGraphics(){
+        header.repaint();
+        header.updateUI();
+    }
+    
     private void clear() {
         getUpper().removeAll();
         getLower().removeAll();
-        header.repaint();
+        updateGraphics();
     }
 
     public void tab_main_data() {
-        //
         clear();
-        //
         showStandard();
-        //
+        updateGraphics();
     }
 
     public void tab_status() {
-        //
         clear();
-        //
         showStatusTab();
-        //
+        updateGraphics();
     }
 
     private void showStatusTab() {
@@ -87,11 +87,13 @@ public class LabDevHeaderComponent {
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
         //
-        buildJLabelJTextFieldComonent(upper, "Status", "Ausführen");
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_2(), "Ausführen");
         //
-        buildJLabelJTextFieldComonent(upper, "Aktualisiert", "11.03.2020");
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn());
         //
-        for (int i = 0; i < 2; i++) {
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_6(), labDev.getUpdatedBy());
+        //
+        for (int i = 0; i < 1; i++) {
             upper.add(new JPanel()); // Adding empty for compacting 
         }
         //
