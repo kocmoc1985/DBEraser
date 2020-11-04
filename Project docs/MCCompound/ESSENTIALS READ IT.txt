@@ -1,8 +1,8 @@
 ______________________________________________________________________________________________
 [UPDATED ON - UPDATED BY - TABLE INVERT]
 
-- The tableInvert MUST contain those to be able to automatically save.
-
+- The tableInvert MUST contain both "UpdatedOn" and "UpdatedBy" to be able to automatically save.
+- You may have both of them not visible, but the update function will work
 ______________________________________________________________________________________________
 
 [DATE FORMAT TABLE-INVERT - HOW IS DATE FORMAT DEFINED - SUPER IMPORTANT][2020-11-03]

@@ -149,7 +149,7 @@ public class SQL_B {
         return "SELECT distinct [Name] from Ingredient_Code\n"
                 + "UNION\n"
                 + "SELECT distinct Code FROM Recipe_Prop_Main\n"
-                + "order by [Name]asc";
+                + "order by [Name] asc";
     }
     
     public static String get_recipe_sequence_main_id(String code, String release, String mixer_code) {
@@ -170,9 +170,8 @@ public class SQL_B {
     }
     
     public static String basic_combobox_query(String parameter, String tableName) {
-        return "SELECT DISTINCT " + parameter
-                + " FROM " + tableName
-                + " ORDER BY " + parameter + " ASC";
+        return "SELECT DISTINCT [" + parameter  + "] FROM " + tableName
+                + " ORDER BY [" + parameter + "] ASC";
     }
     
     public static String basic_combobox_query_double_param(String parameter1, String parameter2, String tableName) {
