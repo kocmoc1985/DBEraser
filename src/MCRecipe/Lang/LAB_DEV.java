@@ -24,4 +24,20 @@ public class LAB_DEV {
     public static String TABLE_INVERT_NAME_5() {
         return LANG_ENG ? "TEST" : "PRÜFT";
     }
+    
+    public static String LBL_1(){
+         return LANG_ENG ? "Order" : "Auftrag";
+    }
+    
+    public static String LBL_2(){
+         return LANG_ENG ? "Status" : "Status";
+    }
+    
+     public static String LBL_3(){
+         return LANG_ENG ? "Delay Code" : "Verzögerung Code";
+    }
+     
+     public static String LBL_4(){
+         return LANG_ENG ? "Requester" : "Antragsteller";
+    }
 }

@@ -1379,19 +1379,19 @@ public class SQL_A {
 //    public static String insert_into_lab_dev_table_1(String order){
 //        return "INSERT INTO MC_Cpworder_SendTo VALUES ()";
 //    }
-    
-    
     public static String insert_into_lab_dev_table_1(String param1, String param2, String param3, String param4, String param5) {
         //
         String q = String.format("INSERT INTO MC_Cpworder_SendTo "
                 + "(WORDERNO, Abteilung, Name, UpdatedOn, UpdatedBy)"
                 + "VALUES ('%s','%s','%s','%s','%s')", param1, param2, param3, param4, param5);
         //
+        System.out.println("" + q);
+        //
         return q;
         //
     }
-    
-    public static String delete_lab_dev_jtable(String tableName,String id){
-        return "DELETE FROM " + tableName + " WHERE ID="+ id;
+
+    public static String delete_lab_dev_jtable(String tableName, String id) {
+        return "DELETE FROM " + tableName + " WHERE ID=" + id;
     }
 }

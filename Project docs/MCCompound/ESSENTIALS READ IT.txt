@@ -7,7 +7,7 @@ ________________________________________________________________________________
 
 [WHAT IS NEEDED TO DO WITH DATABASE-TABLE IN ORDER TO USE IT WITH TABLE-INVERT][2020-11-03]
 
-- "ID" field required -> We used to populate it by our self
+- "ID" field required -> The ID field MUST also be "AUTO_INCREMENT"
 - "UpdatedOn" field required
 - "UpdatedBy" field required
 

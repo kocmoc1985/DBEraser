@@ -5,6 +5,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
@@ -42,8 +43,11 @@ public class LabDevelopment extends BasicTab {
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
 
-    private String ORDER_FOR_TESTING = "ENTW002106";
+    private String ACTUAL_TAB_NAME;
 
+    private String ORDER_FOR_TESTING = "ENTW002106";
+    private String REQUESTER_ANTRAGSTELLER;
+    
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
         this.mCRecipe = (MC_RECIPE_) OUT;
@@ -52,13 +56,34 @@ public class LabDevelopment extends BasicTab {
     }
 
     private void init() {
-        labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql);
+        labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
         initializeSaveIndicators();
         fill_jtable_1_2();
     }
 
-    private String getOrderNo() {
+    public String getOrderNo() {
         return ORDER_FOR_TESTING;
+    }
+    
+    public String getRequester(){
+        return REQUESTER_ANTRAGSTELLER;
+    }
+
+    public void lab_dev_tab__tab_main_data_clicked() {
+        labDevHeaderComponent.tab_main_data();
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA();
+        showTableInvert();
+        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
+    }
+
+    public void lab_dev_tab__tab_status_clicked() {
+        labDevHeaderComponent.tab_status();
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS();
+        showTableInvert_2();
+        showTableInvert_3();
+        showTableInvert_4();
+        showTableInvert_5();
+
     }
 
     private void fill_jtable_1_2() {
@@ -398,6 +423,8 @@ public class LabDevelopment extends BasicTab {
         } catch (SQLException ex) {
             Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        fill_jtable_1_2();
         //
     }
 

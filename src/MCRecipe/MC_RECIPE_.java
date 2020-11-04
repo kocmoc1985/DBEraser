@@ -719,6 +719,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel58 = new javax.swing.JLabel();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
+        jPanel57 = new javax.swing.JPanel();
         jScrollPaneTestParameters = new javax.swing.JScrollPane();
         jPanel_Test_Parameters = new javax.swing.JPanel();
         jPanel_Test_Params_Inv_Table_1 = new javax.swing.JPanel();
@@ -2043,7 +2044,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel54Layout.setHorizontalGroup(
             jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel54Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel57)
                     .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2093,25 +2094,28 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel58.setLayout(new java.awt.GridLayout(1, 5, 10, 0));
         jPanel_lab_dev_header.add(jPanel58);
 
+        jPanel57.setLayout(new java.awt.GridLayout(1, 5, 10, 0));
+        jPanel_lab_dev_header.add(jPanel57);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTabbedPane3)
                     .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(424, Short.MAX_VALUE))
+                .addContainerGap(430, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(10, 10, 10)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         jScrollPane_LabDevelopment.setViewportView(jPanel1);
@@ -4746,6 +4750,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel54;
     private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
+    private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel58;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -4922,14 +4927,11 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }
 
     private void lab_dev_tab__tab_main_data_clicked() {
-        labDevelopment.showTableInvert();
+        labDevelopment.lab_dev_tab__tab_main_data_clicked();
     }
 
     private void lab_dev_tab__tab_status_clicked() {
-        labDevelopment.showTableInvert_2();
-        labDevelopment.showTableInvert_3();
-        labDevelopment.showTableInvert_4();
-        labDevelopment.showTableInvert_5();
+        labDevelopment.lab_dev_tab__tab_status_clicked();
     }
 
     public static String ACTUAL_TAB_NAME = "";

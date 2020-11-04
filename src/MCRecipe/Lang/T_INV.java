@@ -89,7 +89,7 @@ public class T_INV {
         DICT.put("RECIPE", "CODE");
         DICT.put("TEST CODE", "PRÜFCODE");
         //
-        DICT.put("REQUESTER", "ANTRAGSTEL");
+        DICT.put("REQUESTER", "ANTRAGSTELLER");
         DICT.put("DEPARTMENT", "ABTEILUNG");
         DICT.put("REQPHONE", "TEL");
         DICT.put("CUSTOMER", "KUNDE");
