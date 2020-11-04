@@ -1385,8 +1385,7 @@ public class SQL_A {
         //
         String q = String.format("INSERT INTO MC_Cpworder_SendTo "
                 + "(WORDERNO, Abteilung, Name, UpdatedOn, UpdatedBy)"
-                + "VALUES (%s,'%s','%s','%s','%s')",
-                param1, param2, param3, param4, param5);
+                + "VALUES ('%s','%s','%s','%s','%s')", param1, param2, param3, param4, param5);
         //
         return q;
         //

@@ -6,6 +6,7 @@ package MCRecipe;
 
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;
@@ -1362,7 +1363,7 @@ public class RecipeDetailed_ extends BasicTab {
         }
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification("Please choose a row in the table to perform this action");
+            HelpA_.showNotification(NOTIFICATIONS.NOTE_1());
             return;
         }
         //
@@ -1374,7 +1375,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         jtf.setPreferredSize(new Dimension(300, 50));
         //
-        boolean yes = HelpA_.chooseFromJTextField(jtf, "Please specify the new note value");
+        boolean yes = HelpA_.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
         //
         String value = jtf.getText();
         //

@@ -5,6 +5,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -54,12 +55,16 @@ public class LabDevelopment extends BasicTab {
         fill_jtable_1_2();
     }
 
+    private String getOrderNo() {
+        return ORDER_FOR_TESTING;
+    }
+
     private void fill_jtable_1_2() {
         //
-        String q1 = SQL_A.get_lab_dev_table_1(ORDER_FOR_TESTING);
+        String q1 = SQL_A.get_lab_dev_table_1(getOrderNo());
         fill_jtable(mCRecipe.jTable_lab_dev_1, q1, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
         //
-        String q2 = SQL_A.get_lab_dev_table_2(ORDER_FOR_TESTING);
+        String q2 = SQL_A.get_lab_dev_table_2(getOrderNo());
         fill_jtable(mCRecipe.jTable_lab_dev_2, q2, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
         //
     }
@@ -155,7 +160,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT = null;
         //
-        String order = ORDER_FOR_TESTING;
+        String order = getOrderNo();
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -210,7 +215,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT_2 = null;
         //
-        String order = ORDER_FOR_TESTING;
+        String order = getOrderNo();
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -258,7 +263,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT_3 = null;
         //
-        String order = ORDER_FOR_TESTING;
+        String order = getOrderNo();
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -308,7 +313,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT_4 = null;
         //
-        String order = ORDER_FOR_TESTING;
+        String order = getOrderNo();
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -358,7 +363,7 @@ public class LabDevelopment extends BasicTab {
         //
         TABLE_INVERT_5 = null;
         //
-        String order = ORDER_FOR_TESTING;
+        String order = getOrderNo();
         //
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
@@ -379,6 +384,11 @@ public class LabDevelopment extends BasicTab {
         //
         String id = HelpA_.getValueSelectedRow(table, "ID");
         //
+        if (id == null || id.isEmpty()) {
+            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            return;
+        }
+        //
         String q = SQL_A.delete_lab_dev_jtable(dbTableName, id);
         //
         try {
@@ -391,7 +401,7 @@ public class LabDevelopment extends BasicTab {
 
     public void addNote(JTable table) {
         //
-        String order = HelpA_.getValueSelectedRow(table, "WORDERNO");
+        String order = getOrderNo();
         //
         JTextField jtf1 = new JTextField();
         JTextField jtf2 = new JTextField();
@@ -416,11 +426,16 @@ public class LabDevelopment extends BasicTab {
     public void changeNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification("Please choose a row in the table to perform this action");
+            HelpA_.showNotification(NOTIFICATIONS.NOTE_1());
             return;
         }
         //
         String id = HelpA_.getValueSelectedRow(table, idColName);
+        //
+        if (id == null || id.isEmpty()) {
+            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            return;
+        }
         //
         String noteValue = HelpA_.getValueSelectedRow(table, noteValColName);
         //
@@ -428,7 +443,7 @@ public class LabDevelopment extends BasicTab {
         //
         jtf.setPreferredSize(new Dimension(300, 50));
         //
-        boolean yes = HelpA_.chooseFromJTextField(jtf, "Please specify the new note value");
+        boolean yes = HelpA_.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
         //
         String value = jtf.getText();
         //
@@ -436,11 +451,6 @@ public class LabDevelopment extends BasicTab {
             return;
         }
         //
-        if (id == null || id.isEmpty() || id.equals("null")) {
-//            table2_change_notevalue_if_id_missing(table, table.getSelectedRow(), value);
-//            recipeInitial.fill_table_2_and_3();
-            return;
-        }
         //
         UpdateEntry updateEntry = new UpdateEntry(
                 tableName,
