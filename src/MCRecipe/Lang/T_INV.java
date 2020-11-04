@@ -109,6 +109,9 @@ public class T_INV {
         DICT.put("PLANNED DATE", "DATUM GEPLANT");
         DICT.put("DATE EXECUTED", "DATUM AUSGEFÜHRT");
         DICT.put("DATE COMPLETED", "DATUM FERTIG");
+        DICT.put("NOTES", "NOTIZEN");
+        //
+        
     }
 
     public static String LANG(String word) {
