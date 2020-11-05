@@ -5,6 +5,7 @@
  */
 package MyObjectTableInvert;
 
+import MCRecipe.LabDevelopment;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
@@ -23,6 +24,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -174,7 +177,13 @@ public class TableBuilderInvert_ {
                     Timestamp t = rs.getTimestamp(orig_field_name);
                     value = "" + millisToDefaultDate(t.getTime());
                 } catch (Exception ex) {
-                    value = rs.getString(orig_field_name);
+                    try {
+                        value = rs.getString(orig_field_name);
+                    } catch (Exception ex2) {
+                        //OBS! Shall attention shall be payed to this [2020-10-05]
+                        Logger.getLogger(TableBuilderInvert_.class.getName()).log(Level.SEVERE, null, ex);
+                        value = null;
+                    }
                 }
                 //
                 //
