@@ -26,6 +26,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -134,9 +135,13 @@ public class LabDevelopment extends BasicTab {
         showTableInvert_5();
     }
 
+    private JTextArea getNotesJTextArea(){
+        return mCRecipe.jTextArea_notes__lab_dev_tab;
+    }
+    
     private void fill_jtextarea_notes(){
         String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
-        mCRecipe.jTextArea_notes__lab_dev_tab.setText(notes);
+        getNotesJTextArea().setText(notes);
     }
     
     private void fill_jtable_1_2() {
@@ -460,7 +465,19 @@ public class LabDevelopment extends BasicTab {
     
     
     public void saveNotesJTexArea(){
+        //
         notesUnsaved = false;
+        //
+        String changedNotes = getNotesJTextArea().getText();
+        //
+        String q = SQL_A.save_notes_jtextarea_lab_dev(TABLE__MC_CPWORDER, changedNotes, getOrderNo());
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
 
     public void deleteJTableNote(JTable table, String dbTableName) {

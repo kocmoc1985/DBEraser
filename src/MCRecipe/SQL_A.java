@@ -1379,7 +1379,7 @@ public class SQL_A {
 //    public static String insert_into_lab_dev_table_1_and_2(String order){
 //        return "INSERT INTO MC_Cpworder_SendTo VALUES ()";
 //    }
-    public static String insert_into_lab_dev_table_1_and_2(String table,String param1, String param2, String param3, String param4, String param5) {
+    public static String insert_into_lab_dev_table_1_and_2(String table, String param1, String param2, String param3, String param4, String param5) {
         //
         String q = String.format("INSERT INTO " + table
                 + "(WORDERNO, Abteilung, Name, UpdatedOn, UpdatedBy)"
@@ -1392,4 +1392,11 @@ public class SQL_A {
     public static String delete_lab_dev_jtable(String tableName, String id) {
         return "DELETE FROM " + tableName + " WHERE ID=" + id;
     }
+
+    public static String save_notes_jtextarea_lab_dev(String tableName, String note, String order) {
+        String q = "UPDATE " + tableName + " SET NOTE=" + quotes(note, false) + " WHERE WORDERNO=" + quotes(order, false) + "";
+//        System.out.println(q);
+        return q;
+    }
+
 }

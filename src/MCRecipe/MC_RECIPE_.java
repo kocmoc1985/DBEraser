@@ -2098,6 +2098,11 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jScrollPane21.setViewportView(jTextArea_notes__lab_dev_tab);
 
         jButton_lab_dev_tab__save_notes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
+        jButton_lab_dev_tab__save_notes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev_tab__save_notesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel59Layout = new javax.swing.GroupLayout(jPanel59);
         jPanel59.setLayout(jPanel59Layout);
@@ -4447,6 +4452,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void jButton_lab_dev_add_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_2ActionPerformed
         labDevelopment.addJTableNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_add_2ActionPerformed
+
+    private void jButton_lab_dev_tab__save_notesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_tab__save_notesActionPerformed
+        labDevelopment.saveNotesJTexArea();
+    }//GEN-LAST:event_jButton_lab_dev_tab__save_notesActionPerformed
 
     /**
      * @param args the command line arguments
