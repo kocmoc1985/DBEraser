@@ -355,6 +355,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         this.textAreaIngredComments.addKeyListener(this);
         this.textAreaRecipeInitialNotes.addKeyListener(this);
         this.jTable_1_test_parameters.addKeyListener(this);
+        this.jTextArea_notes__lab_dev_tab.addKeyListener(this);
         //
         this.jTable1.setAutoCreateRowSorter(true);
         this.jTable2.setAutoCreateRowSorter(true);
@@ -720,6 +721,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel59 = new javax.swing.JPanel();
         jScrollPane21 = new javax.swing.JScrollPane();
         jTextArea_notes__lab_dev_tab = new javax.swing.JTextArea();
+        jButton_lab_dev_tab__save_notes = new javax.swing.JButton();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
@@ -1993,7 +1995,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel53Layout.setVerticalGroup(
             jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel53Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel55, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2006,7 +2008,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                         .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("MAIN DATA", jPanel53);
@@ -2070,7 +2072,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel54Layout.setVerticalGroup(
             jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel54Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton_lab_dev_save_btn_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel56))
@@ -2095,21 +2097,27 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jTextArea_notes__lab_dev_tab.setRows(5);
         jScrollPane21.setViewportView(jTextArea_notes__lab_dev_tab);
 
+        jButton_lab_dev_tab__save_notes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel59Layout = new javax.swing.GroupLayout(jPanel59);
         jPanel59.setLayout(jPanel59Layout);
         jPanel59Layout.setHorizontalGroup(
             jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel59Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_lab_dev_tab__save_notes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(375, Short.MAX_VALUE))
         );
         jPanel59Layout.setVerticalGroup(
             jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel59Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jButton_lab_dev_tab__save_notes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("NOTES", jPanel59);
@@ -4595,6 +4603,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JButton jButton_lab_dev_delete_2;
     public javax.swing.JButton jButton_lab_dev_save_btn_1;
     public javax.swing.JButton jButton_lab_dev_save_btn_2;
+    public javax.swing.JButton jButton_lab_dev_tab__save_notes;
     private javax.swing.JButton jButton_r_detailed_next;
     private javax.swing.JButton jButton_r_detailed_prev;
     private javax.swing.JButton jButton_recipe_detailed_delete_recipe;
@@ -5322,6 +5331,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             recipeDetailed.notesUnsaved = true;
         } else if (ke.getSource() == jEditorPane_Ingred || ke.getSource() == textAreaIngredComments) {
             ingredients.notesUnsaved = true;
+        }else if (ke.getSource() == jTextArea_notes__lab_dev_tab) {
+            labDevelopment.notesUnsaved = true;
         }
     }
 

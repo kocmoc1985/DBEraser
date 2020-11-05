@@ -56,6 +56,8 @@ public class LabDevelopment extends BasicTab {
 
     private String ORDER_FOR_TESTING = "ENTW002106";
     private String REQUESTER_ANTRAGSTELLER;
+    
+    public boolean notesUnsaved = false;
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
@@ -456,6 +458,10 @@ public class LabDevelopment extends BasicTab {
         //
     }
     
+    
+    public void saveNotesJTexArea(){
+        notesUnsaved = false;
+    }
 
     public void deleteJTableNote(JTable table, String dbTableName) {
         //
@@ -555,6 +561,7 @@ public class LabDevelopment extends BasicTab {
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_1, this, 1);
         SaveIndicator saveIndicator2 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_2, this, 2);
+        SaveIndicator saveIndicator3 = new SaveIndicator(mCRecipe.jButton_lab_dev_tab__save_notes, this, 3);
     }
 
     @Override
@@ -575,6 +582,8 @@ public class LabDevelopment extends BasicTab {
                     || unsavedEntriesExist(TABLE_INVERT_5)) {
                 return true;
             }
+        }else if (nr == 3) {
+            return notesUnsaved;
         }
         return false;
     }
