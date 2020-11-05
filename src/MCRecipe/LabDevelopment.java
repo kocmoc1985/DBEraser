@@ -5,7 +5,9 @@
  */
 package MCRecipe;
 
+import BuhInvoice.DB;
 import BuhInvoice.Validator;
+import BuhInvoice.sec.LANG;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
@@ -62,8 +64,7 @@ public class LabDevelopment extends BasicTab {
     private String ACTUAL_TAB_NAME;
 
     private String ORDER_FOR_TESTING = "ENTW002106";
-    private String REQUESTER_ANTRAGSTELLER;
-    
+
     public boolean notesUnsaved = false;
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
@@ -110,16 +111,18 @@ public class LabDevelopment extends BasicTab {
     }
 
     private void refreshHeader() {
+        //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
             labDevHeaderComponent.tab_main_data();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
             labDevHeaderComponent.tab_status();
-        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
             labDevHeaderComponent.tab_notes();
         }
+        //
     }
-    
-    public void lab_dev_tab__tab_notes_clicked(){
+
+    public void lab_dev_tab__tab_notes_clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES();
         fill_jtextarea_notes();
         refreshHeader();
@@ -141,15 +144,15 @@ public class LabDevelopment extends BasicTab {
         showTableInvert_5();
     }
 
-    private JTextArea getNotesJTextArea(){
+    private JTextArea getNotesJTextArea() {
         return mCRecipe.jTextArea_notes__lab_dev_tab;
     }
-    
-    private void fill_jtextarea_notes(){
+
+    private void fill_jtextarea_notes() {
         String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
         getNotesJTextArea().setText(notes);
     }
-    
+
     private void fill_jtable_1_2() {
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
@@ -195,14 +198,23 @@ public class LabDevelopment extends BasicTab {
     }
 
     public void saveTableInvert_2_3_4_5() {
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())
+                || containsInvalidatedFields(TABLE_INVERT_3, 1, getConfigTableInvert_3())
+                || containsInvalidatedFields(TABLE_INVERT_4, 1, getConfigTableInvert_4())
+                || containsInvalidatedFields(TABLE_INVERT_5, 1, getConfigTableInvert_5())) {
+            HelpA_.showNotification(MSG.MSG_3());
+            return;
+        }
+        //
         saveChangesTableInvert(TABLE_INVERT_2);
         saveChangesTableInvert(TABLE_INVERT_3);
         saveChangesTableInvert(TABLE_INVERT_4);
         saveChangesTableInvert(TABLE_INVERT_5);
         refreshHeader();
     }
-    
-    public void saveNotesJTexArea(){
+
+    public void saveNotesJTexArea() {
         //
         notesUnsaved = false;
         //
@@ -272,7 +284,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
@@ -327,7 +339,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q,this);
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
@@ -375,7 +387,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q,this);
+            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_3.showMessage(ex.toString());
@@ -428,7 +440,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q,this);
+            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_4.showMessage(ex.toString());
@@ -476,7 +488,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q,this);
+            TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_5.showMessage(ex.toString());
@@ -491,9 +503,6 @@ public class LabDevelopment extends BasicTab {
         //
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
     }
-    
-    
-    
 
     public void deleteJTableNote(JTable table, String dbTableName) {
         //
@@ -598,13 +607,11 @@ public class LabDevelopment extends BasicTab {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        if(jli instanceof JTextFieldInvert && jli.getValidateDate()){
+        if (jli instanceof JTextFieldInvert && jli.getValidateDate()) {
             Validator_MCR.validateDate(jli);
         }
         //
     }
-    
-    
 
     @Override
     public void initializeSaveIndicators() {
@@ -631,7 +638,7 @@ public class LabDevelopment extends BasicTab {
                     || unsavedEntriesExist(TABLE_INVERT_5)) {
                 return true;
             }
-        }else if (nr == 3) {
+        } else if (nr == 3) {
             return notesUnsaved;
         }
         return false;

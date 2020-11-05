@@ -5,6 +5,11 @@
  */
 package MyObjectTableInvert;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author mcab
@@ -15,23 +20,45 @@ public class HeaderInvert {
     private boolean unitHeader = false;
     private String realColName;
     private String tableName;
+    private JLabel displayLabel;
+    private boolean isImportant = false;
+    private Color initialFontColor;
 
-    public HeaderInvert(String header,String realColName,String tableName) {
+    public HeaderInvert(String header, String realColName, String tableName) {
         this.header = header;
         this.realColName = realColName;
         this.tableName = tableName;
     }
-    
-    public HeaderInvert(Object header,boolean unitHeader) {
+
+    public HeaderInvert(Object header, boolean unitHeader) {
         this.header = header;
         this.unitHeader = unitHeader;
+    }
+
+    public void setHeaderLabelComponent(JLabel label, boolean isImportant) {
+        this.displayLabel = label;
+        this.isImportant = isImportant;
+        this.initialFontColor = label.getForeground();
+    }
+
+    public void setNotValidated() {
+        displayLabel.setForeground(Color.red);
+    }
+    
+    public void setValidated(){
+        displayLabel.setForeground(Color.black);
+    }
+
+
+    public JLabel getHeaderPanelComponent() {
+        return this.displayLabel;
     }
 
     public Object getHeader() {
         return header;
     }
-    
-    public boolean isUnitHeader(){
+
+    public boolean isUnitHeader() {
         return unitHeader;
     }
 
@@ -42,5 +69,5 @@ public class HeaderInvert {
     public String getTableName() {
         return tableName;
     }
-    
+
 }

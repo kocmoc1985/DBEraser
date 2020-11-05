@@ -24,12 +24,18 @@ public class MSG {
         return LANG_ENG ? "Create new note" : "Neue Notiz erstellen";
     }
     
+     public static String MSG_2() {
+        return LANG_ENG ? "Confirm" : "Bestätigen";
+    }
+    
      public static String MSG_2_2() {
         return LANG_ENG ? "Confirm action?" : "Handlung bestätigen?";
     }
     
-    public static String MSG_2() {
-        return LANG_ENG ? "Confirm" : "Bestätigen";
+   
+    
+     public static String MSG_3() {
+        return LANG_ENG ? "Input contains errors" : "Die Eingabe enthält Fehler";
     }
    
 }

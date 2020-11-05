@@ -4958,11 +4958,20 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         HelpA_.resetTableHeaderPainting(jTable2, HelpA_.getColByName(jTable2, "Note_Value"));
     }
 
+    public static String ACTUAL_TAB_NAME__LAB_DEV = "";
+    public static String PREV_TAB_NAME__LAB_DEV = "";
+    
     private void mousePressedOnTab_lab_development(MouseEvent me) {
         //
         if (me.getSource() == jTabbedPane3) {
             //
             String title = jTabbedPane3.getTitleAt(jTabbedPane3.getSelectedIndex());
+            //
+            ACTUAL_TAB_NAME__LAB_DEV = title;
+            //
+            if(ACTUAL_TAB_NAME__LAB_DEV.equals(PREV_TAB_NAME__LAB_DEV)){
+                return;
+            }
             //
             if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
                 lab_dev_tab__tab_main_data_clicked();
@@ -4971,6 +4980,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
                 lab_dev_tab__tab_notes_clicked();
             }
+            //
+            PREV_TAB_NAME__LAB_DEV = ACTUAL_TAB_NAME__LAB_DEV;
+            //
         }
     }
 

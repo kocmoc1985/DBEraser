@@ -7,9 +7,11 @@ package MCRecipe.Sec;
 
 import BuhInvoice.*;
 import BuhInvoice.sec.LANG;
+import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableRowInvert;
+import forall.GP;
 import forall.HelpA_;
 import static forall.HelpA_.getColByName;
 import java.awt.Color;
@@ -33,6 +35,7 @@ public class Validator_MCR {
     // SWE VAT: SE + XXXXXXXXXX + 01
     private static final Pattern ORGNR = Pattern.compile("\\d{6}-\\d{4}");
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+    private static final Pattern DATE_DD_MM_YYYY = Pattern.compile("\\d{2}.\\d{2}.\\d{4}");
     public static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     /**
@@ -150,29 +153,20 @@ public class Validator_MCR {
 
     private static boolean setValidated(JLinkInvert jli) {
         //
-        if (jli instanceof JTextFieldInvert) {
-            //
-            JTextFieldInvert jtf = (JTextFieldInvert) jli;
-            //
-            jtf.setSaveEmptyStringValue();
-            //
-            jtf.setSaveEmptyNumber();
-            //
-        }
-        //
         unsetToolTip(jli);
         //
-        JComponent c = (JComponent) jli;
+        TableRowInvert tri = jli.getParentObj();
+        HeaderInvert hi = tri.getHeaderInvert();
+        hi.setValidated();
         //
-        c.setBackground(Color.WHITE);
         jli.setValidated(true);
         return true;
     }
 
     private static boolean setNotValidated(JLinkInvert jli) {
         TableRowInvert tri = jli.getParentObj();
-        JLabel headerComp = tri.getHeaderComponent();
-        headerComp.setText("**");
+        HeaderInvert hi = tri.getHeaderInvert();
+        hi.setNotValidated();
 //        JComponent c = (JComponent) jli;
 //        c.setBackground(Color.RED);
         jli.setValidated(false);
@@ -249,11 +243,18 @@ public class Validator_MCR {
         //
         String val = jli.getValue();
         //
-        boolean validated = validate_(DATE_YYYY_MM_DD, val);
+        boolean validated;
         //
-        if (validated && HelpA_.isDateValid(val)) {
+        if(GP.IS_DATE_FORMAT_DE){
+           validated = validate_(DATE_DD_MM_YYYY, val); 
+        }else{
+            validated = validate_(DATE_YYYY_MM_DD, val); 
+        }
+        //
+        if (validated) { // HelpA_.isDateValid(val)
             return setValidated(jli);
         } else {
+            setToolTip(jli, "Date format not correct");
             return setNotValidated(jli);
         }
         //

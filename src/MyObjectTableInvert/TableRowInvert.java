@@ -36,7 +36,7 @@ import javax.swing.JTextField;
 public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
 
     private ArrayList<TableRowInvertListener> tableRowListenerList = new ArrayList<TableRowInvertListener>();
-    private JLabel headerComponent;
+    private HeaderInvert headerInvert;
 
     public TableRowInvert(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
@@ -47,8 +47,8 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         tableRowListenerList.add(tril);
     }
 
-    public JLabel getHeaderComponent(){
-        return this.headerComponent;
+    public HeaderInvert getHeaderInvert(){
+        return this.headerInvert;
     }
     
     /**
@@ -88,7 +88,9 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             if (hi.isUnitHeader() == false) {
                 JLabel label;
                 //
-                if (getRowConfig().getImportant()) {
+                boolean important = getRowConfig().getImportant();
+                //
+                if (important) {
                     label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + " *" + "</p></html>");
                 } else {
                     label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + "</p></html>");
@@ -98,8 +100,10 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 setTrackingToolTip(hi, label);
                 //
                 add_component = label;
-                headerComponent = label;
+                hi.setHeaderLabelComponent(label, important);
+                this.headerInvert = hi;
                 addComponent(add_component);
+                //
             } else {
                 if (hi.getHeader() instanceof String) {
                     JLabel label = new JLabel("<html><p style='margin-left:5px;font-weight:bold;color:gray'>" + hi.getHeader() + "</p></html>");
