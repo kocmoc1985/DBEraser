@@ -50,6 +50,10 @@ public class LabDevHeaderComponent {
         updateGraphics();
     }
 
+    public void tab_notes(){
+        tab_main_data();
+    }
+    
     public void tab_main_data() {
         clear();
         showStandard();

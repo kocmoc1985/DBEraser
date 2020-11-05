@@ -1,1 +1,11 @@
-1. MC_Cpworder_SendTo -> ID field -> Make primary Key
+
+
+[FOR ME]
+1. Implement all statuses Ausführen....
+
+
+
+
+
+
+[FOR PAPS]

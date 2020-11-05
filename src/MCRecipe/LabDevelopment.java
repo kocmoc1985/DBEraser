@@ -105,14 +105,22 @@ public class LabDevelopment extends BasicTab {
             labDevHeaderComponent.tab_main_data();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
             labDevHeaderComponent.tab_status();
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+            labDevHeaderComponent.tab_notes();
         }
+    }
+    
+    public void lab_dev_tab__tab_notes_clicked(){
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES();
+        fill_jtextarea_notes();
+        refreshHeader();
     }
 
     public void lab_dev_tab__tab_main_data_clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA();
         refreshHeader();
         showTableInvert();
-        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
+//        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
     }
 
     public void lab_dev_tab__tab_status_clicked() {
@@ -124,6 +132,11 @@ public class LabDevelopment extends BasicTab {
         showTableInvert_5();
     }
 
+    private void fill_jtextarea_notes(){
+        String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
+        mCRecipe.jTextArea_notes__lab_dev_tab.setText(notes);
+    }
+    
     private void fill_jtable_1_2() {
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
@@ -442,8 +455,9 @@ public class LabDevelopment extends BasicTab {
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
         //
     }
+    
 
-    public void deleteNote(JTable table, String dbTableName) {
+    public void deleteJTableNote(JTable table, String dbTableName) {
         //
         if (HelpA_.confirm() == false) {
             return;
@@ -468,7 +482,7 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
-    public void addNote(JTable table, String dbTableName) {
+    public void addJTableNote(JTable table, String dbTableName) {
         //
         String order = getOrderNo();
         //
@@ -492,7 +506,7 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
-    public void changeNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
+    public void changeJTableNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
             HelpA_.showNotification(NOTIFICATIONS.NOTE_1());

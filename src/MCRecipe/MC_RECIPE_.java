@@ -717,6 +717,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
+        jPanel59 = new javax.swing.JPanel();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        jTextArea_notes__lab_dev_tab = new javax.swing.JTextArea();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
@@ -2087,6 +2090,29 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         );
 
         jTabbedPane3.addTab("STATUS", jPanel54);
+
+        jTextArea_notes__lab_dev_tab.setColumns(20);
+        jTextArea_notes__lab_dev_tab.setRows(5);
+        jScrollPane21.setViewportView(jTextArea_notes__lab_dev_tab);
+
+        javax.swing.GroupLayout jPanel59Layout = new javax.swing.GroupLayout(jPanel59);
+        jPanel59.setLayout(jPanel59Layout);
+        jPanel59Layout.setHorizontalGroup(
+            jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel59Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(375, Short.MAX_VALUE))
+        );
+        jPanel59Layout.setVerticalGroup(
+            jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel59Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(264, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("NOTES", jPanel59);
 
         jPanel_lab_dev_header.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_lab_dev_header.setLayout(new java.awt.GridLayout(2, 1));
@@ -4399,19 +4425,19 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_lab_dev_save_btn_2ActionPerformed
 
     private void jButton_lab_dev_delete_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_1ActionPerformed
-        labDevelopment.deleteNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
+        labDevelopment.deleteJTableNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_delete_1ActionPerformed
 
     private void jButton_lab_dev_delete_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_2ActionPerformed
-        labDevelopment.deleteNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
+        labDevelopment.deleteJTableNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_delete_2ActionPerformed
 
     private void jButton_lab_dev_add_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_1ActionPerformed
-        labDevelopment.addNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
+        labDevelopment.addJTableNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_add_1ActionPerformed
 
     private void jButton_lab_dev_add_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_2ActionPerformed
-        labDevelopment.addNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
+        labDevelopment.addJTableNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_add_2ActionPerformed
 
     /**
@@ -4752,6 +4778,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel58;
+    private javax.swing.JPanel jPanel59;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -4802,6 +4829,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
     protected javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4843,6 +4871,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JTable jTable_lab_dev_2;
     private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JTextArea jTextArea1_Logg;
+    public javax.swing.JTextArea jTextArea_notes__lab_dev_tab;
     public javax.swing.JTextField jTextFieldCommandParamSequence;
     public static javax.swing.JTextField jTextFieldHomeUserName;
     public javax.swing.JTextField jTextFieldInfoSequence;
@@ -4922,8 +4951,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 lab_dev_tab__tab_main_data_clicked();
             } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
                 lab_dev_tab__tab_status_clicked();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+                lab_dev_tab__tab_notes_clicked();
             }
         }
+    }
+
+    private void lab_dev_tab__tab_notes_clicked() {
+        labDevelopment.lab_dev_tab__tab_notes_clicked();
     }
 
     private void lab_dev_tab__tab_main_data_clicked() {
@@ -5023,7 +5058,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB())) {
                 //
                 if (labDevelopment == null) {
-                    labDevelopment = new LabDevelopment(sql, sql_additional, this,new ChangeSaver(sql, this));
+                    labDevelopment = new LabDevelopment(sql, sql_additional, this, new ChangeSaver(sql, this));
                 }
                 //
                 lab_development_tab_clicked();
@@ -5102,10 +5137,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //
             clickedTable1TestParameters();
             //
-        }else if (me.getSource() == jTable_lab_dev_1 && (me.getClickCount() == 2)) {
-            labDevelopment.changeNoteValue(jTable_lab_dev_1,LabDevelopment.TABLE_NOTES_1,"Name","ID");
-        }else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
-            labDevelopment.changeNoteValue(jTable_lab_dev_2,LabDevelopment.TABLE_NOTES_2,"Name","ID");
+        } else if (me.getSource() == jTable_lab_dev_1 && (me.getClickCount() == 2)) {
+            labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1, "Name", "ID");
+        } else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
+            labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2, "Name", "ID");
         }
     }
 
