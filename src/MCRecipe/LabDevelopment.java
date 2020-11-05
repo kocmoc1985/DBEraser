@@ -188,9 +188,9 @@ public class LabDevelopment extends BasicTab {
 
     public void saveTableInvert() {
         //
-        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())){
-           HelpA_.showNotification(MSG.MSG_3());
-           return;
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+            HelpA_.showNotification(MSG.MSG_3());
+            return;
         }
         //
         saveChangesTableInvert();
@@ -248,6 +248,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert kunde_customer = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "CUSTOMER", T_INV.LANG("CUSTOMER"), "", true, true, false);
         //
         RowDataInvert projektnr_projectno = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROJECTNO", T_INV.LANG("PROJECTNO"), "", true, true, false);
+        projektnr_projectno.setInputLenthValidation(10);
         //
         RowDataInvert fertigwunsch_expready = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "EXPREADY", T_INV.LANG("EXPREADY"), "", true, true, false);
         fertigwunsch_expready.setValidateDate();
@@ -629,7 +630,21 @@ public class LabDevelopment extends BasicTab {
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         if (jli instanceof JTextFieldInvert && jli.getValidateDate()) {
+            //
             Validator_MCR.validateDate(jli);
+            //
+        }
+        //
+        if (jli instanceof JTextFieldInvert) {
+            //
+            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            //
+            int inputLength = jtf.getInputLengthValidation();
+            //
+            if (inputLength > 0) {
+                Validator_MCR.validateMaxInputLength(jli, inputLength);
+            }
+            //
         }
         //
     }

@@ -43,6 +43,10 @@ public class HeaderInvert {
         displayLabel.setForeground(Color.red);
     }
     
+    public void setNotValidated(Color color) {
+        displayLabel.setForeground(color);
+    }
+    
     public void setValidated(){
         displayLabel.setForeground(Color.black);
     }

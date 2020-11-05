@@ -143,6 +143,10 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
+                if(getRowConfig().getInputLengthValidation()){
+                    jtf.setInputLengthValidation(getRowConfig().inputLengthValidation);
+                }
+                //
                 if (getRowConfig().getValidateDate()) {
                     jtf.setValidateDate(); //[2020-10-05] -> for MCRecipe, can also be used for LAFakturering
                 }

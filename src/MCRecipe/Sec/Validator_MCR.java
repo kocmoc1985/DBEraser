@@ -7,6 +7,7 @@ package MCRecipe.Sec;
 
 import BuhInvoice.*;
 import BuhInvoice.sec.LANG;
+import MCRecipe.Lang.MSG;
 import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -52,7 +53,7 @@ public class Validator_MCR {
         //
         String valToCheck = jtfi.getText();
         //
-        if (valToCheck == null ||valToCheck.isEmpty() || table.getRowCount() == 0) {
+        if (valToCheck == null || valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);
         }
         //
@@ -62,8 +63,8 @@ public class Validator_MCR {
             //
             String val = (String) table.getValueAt(x, col);
             //
-            if(val == null){
-                 return setValidated(jli);
+            if (val == null) {
+                return setValidated(jli);
             }
             //
             if (val.equals(valToCheck)) {
@@ -75,21 +76,20 @@ public class Validator_MCR {
         return setValidated(jli);
     }
 
-    
-
     /**
      * [2020-10-01]
-     * @param box 
+     *
+     * @param box
      */
     public static void validateJComboInput(JComboBox box) {
         if (box.getSelectedIndex() == -1) {
             // OBS! The border is set here and not from "setNotValidater()" because
             // setting border is the only method that works in this situation
             box.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-            setNotValidated((JLinkInvert)box);
+            setNotValidated((JLinkInvert) box);
         } else {
             box.setBorder(null);
-            setValidated((JLinkInvert)box);
+            setValidated((JLinkInvert) box);
         }
     }
 
@@ -112,14 +112,15 @@ public class Validator_MCR {
         String val = jli.getValue();
         //
         if (val.length() <= length) {
+            //
             setValidated(jli);
             //
             return true;
         } else {
             //
-            setNotValidated(jli, new Color(140, 218, 255)); // 223, 243, 248
+            setNotValidated(jli, Color.blue);
             //
-            setToolTip(jli, LANG.MSG_14 + " " + length);
+            setToolTip(jli, MSG.MSG_3_2() + " " + length);
             //
             return false;
         }
@@ -167,20 +168,17 @@ public class Validator_MCR {
         TableRowInvert tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
         hi.setNotValidated();
-//        JComponent c = (JComponent) jli;
-//        c.setBackground(Color.RED);
         jli.setValidated(false);
         return false;
     }
 
     private static boolean setNotValidated(JLinkInvert jli, Color color) {
-        JComponent c = (JComponent) jli;
-        c.setBackground(color);
+        TableRowInvert tri = jli.getParentObj();
+        HeaderInvert hi = tri.getHeaderInvert();
+        hi.setNotValidated(color);
         jli.setValidated(false);
         return false;
     }
-    
-    
 
     /**
      * Verify input of digits/numbers
@@ -199,7 +197,7 @@ public class Validator_MCR {
             jtf.setText(val);
         }
         //
-        if(val.isEmpty()){
+        if (val.isEmpty()) {
             return setValidated(jli);
         }
         //
@@ -210,8 +208,6 @@ public class Validator_MCR {
         }
         //
     }
-    
-    
 
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);
@@ -245,10 +241,10 @@ public class Validator_MCR {
         //
         boolean validated;
         //
-        if(GP.IS_DATE_FORMAT_DE){
-           validated = validate_(DATE_DD_MM_YYYY, val); 
-        }else{
-            validated = validate_(DATE_YYYY_MM_DD, val); 
+        if (GP.IS_DATE_FORMAT_DE) {
+            validated = validate_(DATE_DD_MM_YYYY, val);
+        } else {
+            validated = validate_(DATE_YYYY_MM_DD, val);
         }
         //
         if (validated) { // HelpA_.isDateValid(val)

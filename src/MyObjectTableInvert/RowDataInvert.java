@@ -41,7 +41,7 @@ public class RowDataInvert extends RowData {
     private boolean editable = true;
     private boolean enabled = true;
     private boolean jTextFieldToolTipText = false;
-    private String  toolTipTextFixed = null;
+    private String toolTipTextFixed = null;
     private boolean comboBoxMultipleValue = false;
     private boolean comboBoxFakeValue = false;
     private boolean comboBoxFixedValue = false;
@@ -54,6 +54,8 @@ public class RowDataInvert extends RowData {
     private boolean enableEmptyValue = false;
     //
     private boolean validateDate = false;
+    //
+    public int inputLengthValidation = 0;
 
     public RowDataInvert() {
     }
@@ -135,13 +137,22 @@ public class RowDataInvert extends RowData {
         this.visible = visible;
         this.important = important;
     }
-    
+
+    public void setInputLenthValidation(int length) {
+        inputLengthValidation = length;
+    }
+
+    public boolean getInputLengthValidation() {
+        return inputLengthValidation > 0;
+    }
+
     private boolean save_EmptyNumber = false;
-    public void setSaveEmptyNumber(){
+
+    public void setSaveEmptyNumber() {
         this.save_EmptyNumber = true;
     }
-    
-    public boolean saveEmptyNumber(){
+
+    public boolean saveEmptyNumber() {
         return save_EmptyNumber;
     }
 
@@ -168,12 +179,12 @@ public class RowDataInvert extends RowData {
     public void enableEmptyValue() {
         this.enableEmptyValue = true;
     }
-    
-    public void setValidateDate(){
+
+    public void setValidateDate() {
         this.validateDate = true;
     }
-    
-    public boolean getValidateDate(){
+
+    public boolean getValidateDate() {
         return this.validateDate;
     }
 
@@ -199,24 +210,21 @@ public class RowDataInvert extends RowData {
     public void enableToolTipTextJTextField() {
         jTextFieldToolTipText = true;
     }
-    
+
     //===============================<TOOL TIP FIXED>[2020-10-21]===========================
-    
-    public void setToolTipFixed(String text){
+    public void setToolTipFixed(String text) {
         this.toolTipTextFixed = text;
     }
-    
-    public boolean toolTipFixedTextPresent(){
+
+    public boolean toolTipFixedTextPresent() {
         return toolTipTextFixed != null && toolTipTextFixed.isEmpty() == false;
     }
-    
-    
-    public String getToolTipFixedText(){
+
+    public String getToolTipFixedText() {
         return this.toolTipTextFixed;
     }
-    
-    //========================</TOOL TIP FIXED>=================================
 
+    //========================</TOOL TIP FIXED>=================================
     public boolean toolTipTextEnabled() {
         return jTextFieldToolTipText;
     }
@@ -261,7 +269,7 @@ public class RowDataInvert extends RowData {
                 HelpA_.ComboBoxObject[] boxObjects = HelpA_.extract_comma_separated_objects(additionalInfo, 2);
                 //
                 if (enableEmptyValue) {
-                    jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, boxObjects, new HelpA_.ComboBoxObject("-", "", "",""));
+                    jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, boxObjects, new HelpA_.ComboBoxObject("-", "", "", ""));
                 } else {
                     jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, boxObjects, value);
                 }
@@ -278,7 +286,7 @@ public class RowDataInvert extends RowData {
         } else if (type == TYPE_JLABEL) {
             JLabelInvert jli = new JLabelInvert();
             return jli;
-        }else if(type == TYPE_JPASSWORD_FIELD){
+        } else if (type == TYPE_JPASSWORD_FIELD) {
             JPassWordFieldInvert jpf = new JPassWordFieldInvert();
             jpf.setText(additionalInfo);
             return jpf;
