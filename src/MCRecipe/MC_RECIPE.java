@@ -4960,7 +4960,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     public static String ACTUAL_TAB_NAME__LAB_DEV = "";
     public static String PREV_TAB_NAME__LAB_DEV = "";
-    
+
     private void mousePressedOnTab_lab_development(MouseEvent me) {
         //
         if (me.getSource() == jTabbedPane3) {
@@ -4969,7 +4969,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
             ACTUAL_TAB_NAME__LAB_DEV = title;
             //
-            if(ACTUAL_TAB_NAME__LAB_DEV.equals(PREV_TAB_NAME__LAB_DEV)){
+            if (ACTUAL_TAB_NAME__LAB_DEV.equals(PREV_TAB_NAME__LAB_DEV)) {
                 return;
             }
             //
@@ -5097,7 +5097,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     public void lab_development_tab_clicked() {
-        lab_dev_tab__tab_main_data_clicked();
+        //
+        String title = PREV_TAB_NAME__LAB_DEV;
+        //
+        if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
+            lab_dev_tab__tab_main_data_clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
+            lab_dev_tab__tab_status_clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+            lab_dev_tab__tab_notes_clicked();
+        } else {
+            lab_dev_tab__tab_main_data_clicked();
+        }
+        
     }
 
     public void test_parameters_tab_clicked() {
@@ -5351,7 +5363,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             recipeDetailed.notesUnsaved = true;
         } else if (ke.getSource() == jEditorPane_Ingred || ke.getSource() == textAreaIngredComments) {
             ingredients.notesUnsaved = true;
-        }else if (ke.getSource() == jTextArea_notes__lab_dev_tab) {
+        } else if (ke.getSource() == jTextArea_notes__lab_dev_tab) {
             labDevelopment.notesUnsaved = true;
         }
     }

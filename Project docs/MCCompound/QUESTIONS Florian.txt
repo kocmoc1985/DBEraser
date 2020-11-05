@@ -1,0 +1,9 @@
+
+Explain logic of field [Status] -> [HeaderComponent]:
+1. When can it be changed and when it cannot
+
+Explain field [Verzö. code] -> Where does it come frome -> [HeaderComponent]
+
+Tab "Status" -> "VERARBEITUNG", "PRÜFT" -> Explaing fields "Notizen" (ComboBoxes)
+
+Tab "Status" -> "DIENSTE","VERARBEITUNG", "PRÜFT" -> Eplain fields "Code" (Not delayed)

@@ -50,10 +50,10 @@ public class LabDevHeaderComponent {
         updateGraphics();
     }
 
-    public void tab_notes(){
+    public void tab_notes() {
         tab_main_data();
     }
-    
+
     public void tab_main_data() {
         clear();
         showStandard();
@@ -93,7 +93,11 @@ public class LabDevHeaderComponent {
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
         //
 //        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_2(), "Ausführen");
-        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), new String[]{"Ausführen","Fertig"});
+        String[] statuses = new String[]{LAB_DEV.LANG("Input"), LAB_DEV.LANG("Requested"),
+            LAB_DEV.LANG("Approved"), LAB_DEV.LANG("Execute"), LAB_DEV.LANG("Ready"),
+            LAB_DEV.LANG("Archive"), LAB_DEV.LANG("Abort")};
+        //
+        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), statuses);
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn());
         //
@@ -130,7 +134,6 @@ public class LabDevHeaderComponent {
         container.add(box);
         upperOrLower.add(container);
     }
-    
 
     private JLabel buildStandardLabel(String jLabelVal) {
         JLabel label = new JLabel(jLabelVal);

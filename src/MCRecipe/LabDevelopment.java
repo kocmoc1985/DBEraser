@@ -65,8 +65,6 @@ public class LabDevelopment extends BasicTab {
 
     private String ORDER_FOR_TESTING = "ENTW002106";
 
-    public boolean notesUnsaved = false;
-
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
         this.mCRecipe = (MC_RECIPE) OUT;
@@ -124,7 +122,7 @@ public class LabDevelopment extends BasicTab {
 
     public void lab_dev_tab__tab_notes_clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES();
-        fill_jtextarea_notes();
+        fillNotes();
         refreshHeader();
     }
 
@@ -146,11 +144,6 @@ public class LabDevelopment extends BasicTab {
 
     private JTextArea getNotesJTextArea() {
         return mCRecipe.jTextArea_notes__lab_dev_tab;
-    }
-
-    private void fill_jtextarea_notes() {
-        String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
-        getNotesJTextArea().setText(notes);
     }
 
     private void fill_jtable_1_2() {
@@ -189,10 +182,17 @@ public class LabDevelopment extends BasicTab {
 
     @Override
     public void fillNotes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
+        getNotesJTextArea().setText(notes);
     }
 
     public void saveTableInvert() {
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())){
+           HelpA_.showNotification(MSG.MSG_3());
+           return;
+        }
+        //
         saveChangesTableInvert();
         refreshHeader();
     }
