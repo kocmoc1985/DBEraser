@@ -241,7 +241,7 @@ public class TestParameters_ extends BasicTab {
         try {
             String q = SQL_A.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id_1, id_2, id_3, id_4);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());

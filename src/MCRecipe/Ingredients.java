@@ -784,7 +784,7 @@ public class Ingredients extends BasicTab {
         try {
             String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }

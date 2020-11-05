@@ -63,7 +63,7 @@ public class Run_Invert_Example_A implements MouseListener {
                 try {
                     //
                     //
-                    table = tableBuilder.buildTable("select * from main_table where batch_id = 155");
+                    table = tableBuilder.buildTable("select * from main_table where batch_id = 155", null);
                     CommonControllsPanel ccp = new CommonControllsPanel((TableInvert) table);
                     container.add(ccp, BorderLayout.BEFORE_FIRST_LINE);//BEFORE_FIRST_LINE
                     container.add(table.getTable());

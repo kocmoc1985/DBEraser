@@ -88,7 +88,7 @@ public class AdministrateUsers extends AdministrateRecipeGroups_ {
                             + " where " + TABLE_ID + "= " + id;
                     //
                     OUT.showMessage(q);
-                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
                 } catch (SQLException ex) {
                     Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
                     TABLE_BUILDER_INVERT.showMessage(ex.toString());

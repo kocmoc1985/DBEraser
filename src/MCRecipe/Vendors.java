@@ -376,7 +376,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.vendor_build_table_invert_4_2(vendor_id);
             OUT.showMessage(q);
-            TABLE_INVERT_4_2 = TABLE_BUILDER_INVERT_4_2.buildTable(q);
+            TABLE_INVERT_4_2 = TABLE_BUILDER_INVERT_4_2.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_4_2.showMessage(ex.toString());
@@ -405,7 +405,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.vendor_build_table_invert_4(PROC.PROC_18, vendorId);
             OUT.showMessage(q);
-            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q);
+            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_4.showMessage(ex.toString());
@@ -776,7 +776,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.vendor_build_table_invert_3_2(tradename_main_id);
             OUT.showMessage(q);
-            TABLE_INVERT_3_2 = TABLE_BUILDER_INVERT_3_2.buildTable(q);
+            TABLE_INVERT_3_2 = TABLE_BUILDER_INVERT_3_2.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_3_2.showMessage(ex.toString());
@@ -798,7 +798,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.vendor_build_table_invert_3(PROC.PROC_19, name);
             OUT.showMessage(q);
-            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q);
+            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_3.showMessage(ex.toString());
@@ -823,7 +823,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.vendor_build_table_invert_warehouse(PROC.PROC_20, name);
             OUT.showMessage(q);
-            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q);
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
@@ -845,7 +845,7 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
         try {
             String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());

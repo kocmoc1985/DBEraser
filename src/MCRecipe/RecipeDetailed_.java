@@ -1258,7 +1258,7 @@ public class RecipeDetailed_ extends BasicTab {
         try {
             String q = SQL_A.RecipeInvertFunction(PROC.PROC_62, code, release, mixer_code);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }

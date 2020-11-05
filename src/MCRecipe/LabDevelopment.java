@@ -271,7 +271,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
@@ -326,7 +326,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q);
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
@@ -374,7 +374,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q);
+            TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_3.showMessage(ex.toString());
@@ -427,7 +427,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q);
+            TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_4.showMessage(ex.toString());
@@ -475,7 +475,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
-            TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q);
+            TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q,this);
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_5.showMessage(ex.toString());

@@ -498,7 +498,7 @@ public class ProdPlan extends BasicTab {
         }
         //
         try {
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(SQL_B.getOneOrderByPlanId(SELECTED_ORDER));
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(SQL_B.getOneOrderByPlanId(SELECTED_ORDER),this);
         } catch (SQLException ex) {
             Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
@@ -523,7 +523,7 @@ public class ProdPlan extends BasicTab {
         }
         //
         try {
-            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(SQL_B.getOneOrderByPlanIdTemp(id));
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(SQL_B.getOneOrderByPlanIdTemp(id),this);
         } catch (SQLException ex) {
             Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());

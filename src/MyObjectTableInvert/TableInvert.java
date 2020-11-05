@@ -44,6 +44,15 @@ public class TableInvert extends Table implements ControlsActionsIF {
     private boolean IS_EMPTY = false;
     private Basic TABLE_INVERT_CONSUMER;
 
+    /**
+     * @deprecated since [2020-01-05]
+     * Not used any longer
+     * @param data
+     * @param row_layout
+     * @param row_height
+     * @param column_width_percent
+     * @param tableName 
+     */
     public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName) {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
