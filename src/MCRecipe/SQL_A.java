@@ -4,6 +4,8 @@
  */
 package MCRecipe;
 
+import forall.HelpA_;
+
 /**
  * vendor_insert_new_table_3_2
  *
@@ -1394,7 +1396,11 @@ public class SQL_A {
     }
 
     public static String save_notes_jtextarea_lab_dev(String tableName, String note, String order) {
-        String q = "UPDATE " + tableName + " SET NOTE=" + quotes(note, false) + " WHERE WORDERNO=" + quotes(order, false) + "";
+        String q = "UPDATE " + tableName
+                + " SET NOTE=" + quotes(note, false) + ","
+                + "UpdatedOn=" + quotes(HelpA_.updatedOn(), false) + ","
+                + "UpdatedBy=" + quotes(HelpA_.updatedBy(), false)
+                + " WHERE WORDERNO=" + quotes(order, false) + "";
 //        System.out.println(q);
         return q;
     }

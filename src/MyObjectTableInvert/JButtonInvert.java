@@ -59,6 +59,11 @@ public class JButtonInvert extends JButton implements JLinkInvert {
     public void setValidated(boolean validated) {
         child.setValidated(validated);
     }
+
+    @Override
+    public boolean getValidateDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
 
 }

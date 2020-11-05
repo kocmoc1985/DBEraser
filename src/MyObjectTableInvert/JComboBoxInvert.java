@@ -66,4 +66,9 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
         child.setValidated(validated);
     }
 
+    @Override
+    public boolean getValidateDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

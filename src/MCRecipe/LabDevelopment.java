@@ -5,6 +5,7 @@
  */
 package MCRecipe;
 
+import BuhInvoice.Validator;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
@@ -14,12 +15,16 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.BasicTab;
+import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableInvert;
 import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -194,6 +199,24 @@ public class LabDevelopment extends BasicTab {
         saveChangesTableInvert(TABLE_INVERT_4);
         saveChangesTableInvert(TABLE_INVERT_5);
         refreshHeader();
+    }
+    
+    public void saveNotesJTexArea(){
+        //
+        notesUnsaved = false;
+        //
+        String changedNotes = getNotesJTextArea().getText();
+        //
+        String q = SQL_A.save_notes_jtextarea_lab_dev(TABLE__MC_CPWORDER, changedNotes, getOrderNo());
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        refreshHeader();
+        //
     }
 
     @Override
@@ -426,6 +449,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert datum_geplant_testplan = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
         //
         RowDataInvert datum_augefu_testexec = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
+        datum_augefu_testexec.setValidateDate();
         //
         RowDataInvert dat_vervollst_testcompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
@@ -464,21 +488,7 @@ public class LabDevelopment extends BasicTab {
     }
     
     
-    public void saveNotesJTexArea(){
-        //
-        notesUnsaved = false;
-        //
-        String changedNotes = getNotesJTextArea().getText();
-        //
-        String q = SQL_A.save_notes_jtextarea_lab_dev(TABLE__MC_CPWORDER, changedNotes, getOrderNo());
-        //
-        try {
-            sql.execute(q, OUT);
-        } catch (SQLException ex) {
-            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
+    
 
     public void deleteJTableNote(JTable table, String dbTableName) {
         //
@@ -573,6 +583,23 @@ public class LabDevelopment extends BasicTab {
         fill_jtable_1_2();
         //
     }
+
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
+        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(ke.getSource());
+        //
+        if(jli instanceof JTextFieldInvert && jli.getValidateDate()){
+            Validator.validateDate(jli);
+        }
+        //
+    }
+    
+    
 
     @Override
     public void initializeSaveIndicators() {

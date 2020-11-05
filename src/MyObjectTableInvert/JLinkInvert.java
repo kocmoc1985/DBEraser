@@ -30,5 +30,6 @@ public interface JLinkInvert {
     
     public void setValidated(boolean validated);
     
+    public boolean getValidateDate();
 
 }

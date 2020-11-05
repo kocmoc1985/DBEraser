@@ -132,6 +132,10 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
+                if (getRowConfig().getValidateDate()) {
+                    jtf.setValidateDate(); //[2020-10-05] -> for MCRecipe, can also be used for LAFakturering
+                }
+                //
                 if (getRowConfig().getImportant()) {
                     jtf.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
                 }
@@ -340,10 +344,18 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
 
     @Override
     public void keyReleased(KeyEvent ke) {
+        //
         Object source = ke.getSource();
         //
         add_to_unsaved(source);
         //
+        //
+        TableInvert ti = (TableInvert) getTable();
+        Basic consumer = ti.getTableInvertConsumer();
+        //
+        if (consumer != null) {
+            consumer.keyReleasedForward(ti, ke);
+        }
     }
 
     public void add_to_unsaved(Object source) {

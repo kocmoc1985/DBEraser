@@ -2127,7 +2127,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jTabbedPane3.addTab("NOTES", jPanel59);
 
-        jPanel_lab_dev_header.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_lab_dev_header.setLayout(new java.awt.GridLayout(2, 1));
 
         jPanel58.setLayout(new java.awt.GridLayout(1, 5, 10, 0));

@@ -73,5 +73,10 @@ public class JPassWordFieldInvert extends JPasswordField implements JLinkInvert{
        }
        //
    }
+
+    @Override
+    public boolean getValidateDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

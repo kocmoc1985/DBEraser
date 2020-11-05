@@ -15,6 +15,7 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
+    private boolean validateDate;
     
     public JTextFieldInvert(String text) {
         super(text);
@@ -87,5 +88,14 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
        }
        //
    }
+   
+   public void setValidateDate(){
+       this.validateDate = true;
+   }
+
+    @Override
+    public boolean getValidateDate() {
+        return validateDate;
+    }
     
 }

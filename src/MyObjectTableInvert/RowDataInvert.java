@@ -52,6 +52,8 @@ public class RowDataInvert extends RowData {
     private boolean save_EmptyStringValue = false;
     //
     private boolean enableEmptyValue = false;
+    //
+    private boolean validateDate = false;
 
     public RowDataInvert() {
     }
@@ -165,6 +167,14 @@ public class RowDataInvert extends RowData {
 
     public void enableEmptyValue() {
         this.enableEmptyValue = true;
+    }
+    
+    public void setValidateDate(){
+        this.validateDate = true;
+    }
+    
+    public boolean getValidateDate(){
+        return this.validateDate;
     }
 
     /**
