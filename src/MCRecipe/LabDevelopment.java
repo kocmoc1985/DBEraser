@@ -57,7 +57,7 @@ public class LabDevelopment extends BasicTab {
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
-    private final MC_RECIPE_ mCRecipe;
+    private final MC_RECIPE mCRecipe;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
 
@@ -69,7 +69,7 @@ public class LabDevelopment extends BasicTab {
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE_) OUT;
+        this.mCRecipe = (MC_RECIPE) OUT;
         this.changeSaver = saver;
         init();
     }
@@ -250,6 +250,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert projektnr_projectno = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROJECTNO", T_INV.LANG("PROJECTNO"), "", true, true, false);
         //
         RowDataInvert fertigwunsch_expready = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "EXPREADY", T_INV.LANG("EXPREADY"), "", true, true, false);
+        fertigwunsch_expready.setValidateDate();
         //
         RowDataInvert ziel1_aimline1 = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "AIMLINE1", T_INV.LANG("TARGET 1"), "", true, true, false);
         ziel1_aimline1.enableToolTipTextJTextField();
@@ -316,6 +317,13 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
+        fertigwunsch_acqdeliver.setValidateDate();
+        gewunscht_requested.setValidateDate();
+        genehmigt_approved.setValidateDate();
+        ausfuhrung_execute.setValidateDate();
+        fertig_erwarted_expready.setValidateDate();
+        fertig_ready.setValidateDate();
+        //
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
@@ -345,6 +353,8 @@ public class LabDevelopment extends BasicTab {
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
         }
         //
+        setVerticalScrollBarDisabled(TABLE_INVERT_2);
+        //
         showTableInvert(mCRecipe.jPanel_lab_development_2, TABLE_INVERT_2);
         //
     }
@@ -361,6 +371,10 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert datum_augefu_servexec = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "SERVEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
         //
         RowDataInvert dat_vervollst_servexec = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "SERVCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
+        //
+        datum_geplant_servplan.setValidateDate();
+        datum_augefu_servexec.setValidateDate();
+        dat_vervollst_servexec.setValidateDate();
         //
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
@@ -412,8 +426,12 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert dat_vervollst_proccompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROCCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
-        String q_1 = SQL_B.basic_combobox_query("Name", TABLE_NOTES_1);
-        RowDataInvert notes = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", TABLE_NOTES_1, "ID", false, "Name", T_INV.LANG("NOTES"), "", true, true, false);
+//        String q_1 = SQL_B.basic_combobox_query("Name", TABLE_NOTES_1);
+//        RowDataInvert notes = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", TABLE_NOTES_1, "ID", false, "Name", T_INV.LANG("NOTES"), "", true, true, false);
+        //
+        datum_geplant_procplan.setValidateDate();
+        datum_augefu_procexec.setValidateDate();
+        dat_vervollst_proccompl.setValidateDate();
         //
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
@@ -421,7 +439,7 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, notes, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, updated_on, updated_by};
         //
         return rows;
     }
@@ -462,9 +480,12 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert datum_geplant_testplan = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTPLAN", T_INV.LANG("PLANNED DATE"), "", true, true, false);
         //
         RowDataInvert datum_augefu_testexec = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTEXEC", T_INV.LANG("DATE EXECUTED"), "", true, true, false);
-        datum_augefu_testexec.setValidateDate();
         //
         RowDataInvert dat_vervollst_testcompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
+        //
+        datum_geplant_testplan.setValidateDate();
+        datum_augefu_testexec.setValidateDate();
+        dat_vervollst_testcompl.setValidateDate();
         //
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);

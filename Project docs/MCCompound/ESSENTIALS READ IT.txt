@@ -1,4 +1,12 @@
 ______________________________________________________________________________________________
+[MARKING SAVED / INSAVED]
+
+Marking "UNSAVED" done from: UnsavedEntryInvert.class -> getValueFromDataField()
+
+Marking "SAVED" done from: TableInvert.class -> applyChanges()
+
+______________________________________________________________________________________________
+
 [UPDATED ON - UPDATED BY - TABLE INVERT]
 
 - The tableInvert MUST contain both "UpdatedOn" and "UpdatedBy" to be able to automatically save.

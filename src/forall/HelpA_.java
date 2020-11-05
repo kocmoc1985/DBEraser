@@ -12,7 +12,7 @@ import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
@@ -302,7 +302,7 @@ public class HelpA_ {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) { // 
             //
@@ -526,7 +526,7 @@ public class HelpA_ {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
-    
+
     public static String dateToDateConverter(String date, String date_format_1, String date_format_2) throws ParseException {
         DateFormat formatter = new SimpleDateFormat(date_format_1);
         long x = formatter.parse(date).getTime();
@@ -541,9 +541,9 @@ public class HelpA_ {
     }
 
     public static String updatedOn() {
-        if(GP.IS_DATE_FORMAT_DE){
+        if (GP.IS_DATE_FORMAT_DE) {
             return get_proper_date_dd_MM_yyyy();
-        }else{
+        } else {
             return get_proper_date_yyyy_MM_dd();
         }
 //        return get_proper_date_adjusted_format(3);
@@ -2516,7 +2516,6 @@ public class HelpA_ {
             return param_3;
         }
 
-
         @Override
         public boolean equals(Object obj) {
             if (this == obj) {
@@ -2541,10 +2540,7 @@ public class HelpA_ {
             hash = 13 * hash + Objects.hashCode(this.param_1);
             return hash;
         }
-       
-       
-        
-        
+
     }
 
     public static class ComboBoxObjectB extends ComboBoxObject {
@@ -2570,7 +2566,7 @@ public class HelpA_ {
             return param_2;
         }
     }
-    
+
     public static JComboBox fillComboBox_simple(JComboBox jbox, Object[] values, Object initialValue) {
         //
         ArrayList<Object> list = new ArrayList<Object>();
@@ -2918,7 +2914,7 @@ public class HelpA_ {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
-    
+
     public static String get_proper_date_dd_MM_yyyy() {
         DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         Calendar calendar = Calendar.getInstance();
@@ -3265,10 +3261,16 @@ public class HelpA_ {
             return "";
         }
     }
-    
-    public static void increase_font(JComponent comp,int size){
+
+    public static void increase_font(JComponent comp, float size) {
         Font actFont = comp.getFont();
         Font newFont = actFont.deriveFont(size);
+        comp.setFont(newFont);
+    }
+
+    public static void font_change_type(JComponent comp, int type) {
+        Font actFont = comp.getFont();
+        Font newFont = actFont.deriveFont(type);
         comp.setFont(newFont);
     }
 

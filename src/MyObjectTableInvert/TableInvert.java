@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.sql.DataTruncation;
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
@@ -537,7 +539,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 }
                 //
                 Component c = (Component) unsavedEntryInvert.getDataField();
-                c.setForeground(Color.green);
+//                c.setForeground(Color.green);
+                HelpA_.font_change_type((JComponent)c, Font.PLAIN);
                 //
                 if (c instanceof JComboBox) {
                     JComboBox box = (JComboBox) c;

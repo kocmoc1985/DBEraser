@@ -7,6 +7,7 @@ package MyObjectTableInvert;
 
 import forall.HelpA_;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -56,7 +57,8 @@ public class UnsavedEntryInvert {
             this.value = jLabel.getText();
         } else if (dataField instanceof JTextField) {
             JTextField jtf = (JTextField) dataField;
-            jtf.setForeground(Color.red);
+//            jtf.setForeground(Color.red);
+            HelpA_.font_change_type(jtf, Font.ITALIC);
             this.value = jtf.getText();
         } else if (dataField instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) dataField;

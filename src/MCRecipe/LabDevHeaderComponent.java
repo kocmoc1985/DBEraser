@@ -110,6 +110,7 @@ public class LabDevHeaderComponent {
         JLabel label = buildStandardLabel(jLabelVal);
         //
         JTextField val = new JTextField(jTextFieldVal);
+        val.setEditable(false);
         JPanel container = new JPanel(new GridLayout(1, 2));
         container.add(label);
         container.add(val);
