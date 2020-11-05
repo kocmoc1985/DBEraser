@@ -11,6 +11,7 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
+import MCRecipe.Sec.Validator_MCR;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
@@ -481,10 +482,14 @@ public class LabDevelopment extends BasicTab {
             TABLE_BUILDER_INVERT_5.showMessage(ex.toString());
         }
         //
-//        setMargin(TABLE_INVERT_2, 10, 0, 0, 0);
+        //
+//        showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
+        //
+        addTableInvertRowListener(TABLE_INVERT_5, this);
+        //
+        setVerticalScrollBarDisabled(TABLE_INVERT_5);
         //
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
-        //
     }
     
     
@@ -594,7 +599,7 @@ public class LabDevelopment extends BasicTab {
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         if(jli instanceof JTextFieldInvert && jli.getValidateDate()){
-            Validator.validateDate(jli);
+            Validator_MCR.validateDate(jli);
         }
         //
     }

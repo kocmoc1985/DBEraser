@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
 
     private ArrayList<TableRowInvertListener> tableRowListenerList = new ArrayList<TableRowInvertListener>();
+    private JLabel headerComponent;
 
     public TableRowInvert(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
@@ -46,6 +47,10 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         tableRowListenerList.add(tril);
     }
 
+    public JLabel getHeaderComponent(){
+        return this.headerComponent;
+    }
+    
     /**
      * OBS! This one fixes the empty space on the both sides of a row
      */
@@ -69,6 +74,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         }
 
     }
+    
 
     @Override
     protected void addColumn(Object obj) {
@@ -92,6 +98,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 setTrackingToolTip(hi, label);
                 //
                 add_component = label;
+                headerComponent = label;
                 addComponent(add_component);
             } else {
                 if (hi.getHeader() instanceof String) {
