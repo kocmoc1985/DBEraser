@@ -6,12 +6,16 @@
 package MCRecipe.Lang;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
+import java.util.Properties;
 
 /**
  *
  * @author KOCMOC
  */
 public class LAB_DEV {
+    
+    private static final Properties DICT = new Properties();
+   
 
     public static String TABLE_INVERT_NAME_3() {
         return LANG_ENG ? "SERVICES" : "DIENSTE";
@@ -48,4 +52,6 @@ public class LAB_DEV {
     public static String LBL_6() {
         return LANG_ENG ? "Updated by" : "Aktualisiert von";
     }
+    
+    
 }

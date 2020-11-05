@@ -10,6 +10,7 @@ import static BuhInvoice.GP_BUH.getDate_yyyy_MM_dd;
 import BuhInvoice.InvoiceB;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
@@ -1945,11 +1946,11 @@ public class HelpA_ {
     }
 
     public static boolean confirm() {
-        return JOptionPane.showConfirmDialog(null, "Confirm action?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, MSG.MSG_2(), MSG.MSG_2_2(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
     public static boolean confirm(String message) {
-        return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, message, MSG.MSG_2_2(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
     public static boolean confirmWarning(String message) {

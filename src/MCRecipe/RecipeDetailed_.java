@@ -6,6 +6,7 @@ package MCRecipe;
 
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.R_DETAILED;
@@ -1339,7 +1340,7 @@ public class RecipeDetailed_ extends BasicTab {
         JTextField jtf1 = new JTextField();
         JTextField jtf2 = new JTextField();
         //
-        HelpA_.chooseFrom2Textfields(jtf1, jtf2, "Note Name", "Note Value", "Create new note");
+        HelpA_.chooseFrom2Textfields(jtf1, jtf2, MSG.MSG_1(), MSG.MSG_1_2(), MSG.MSG_1_3());
         //
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();

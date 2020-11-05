@@ -4403,15 +4403,15 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_lab_dev_delete_1ActionPerformed
 
     private void jButton_lab_dev_delete_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_2ActionPerformed
-        labDevelopment.deleteNote(jTable_lab_dev_2, "");
+        labDevelopment.deleteNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_delete_2ActionPerformed
 
     private void jButton_lab_dev_add_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_1ActionPerformed
-        labDevelopment.addNote(jTable_lab_dev_1);
+        labDevelopment.addNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_add_1ActionPerformed
 
     private void jButton_lab_dev_add_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_2ActionPerformed
-        labDevelopment.addNote(jTable_lab_dev_2);
+        labDevelopment.addNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_add_2ActionPerformed
 
     /**

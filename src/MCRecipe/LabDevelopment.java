@@ -5,7 +5,9 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
 import MyObjectTable.SaveIndicator;
@@ -35,7 +37,7 @@ public class LabDevelopment extends BasicTab {
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
 
     public static String TABLE_NOTES_1 = "MC_Cpworder_SendTo";
-    public static String TABLE_NOTES_2 = "";
+    public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";
 
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
@@ -73,7 +75,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     public String getRequester() {
-        return  HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
+        return HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
     }
 
     public String getUpdatedOn() {
@@ -97,11 +99,11 @@ public class LabDevelopment extends BasicTab {
         return HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedBy", false);
         // 
     }
-    
-    private void refreshHeader(){
-        if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())){
+
+    private void refreshHeader() {
+        if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
             labDevHeaderComponent.tab_main_data();
-        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())){
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
             labDevHeaderComponent.tab_status();
         }
     }
@@ -125,10 +127,10 @@ public class LabDevelopment extends BasicTab {
     private void fill_jtable_1_2() {
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
-        fill_jtable(mCRecipe.jTable_lab_dev_1, q1, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
+        fill_jtable(mCRecipe.jTable_lab_dev_1, q1, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy"});
         //
-        String q2 = SQL_A.get_lab_dev_table_2(getOrderNo(), TABLE_NOTES_1);
-        fill_jtable(mCRecipe.jTable_lab_dev_2, q2, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy", "UpdatedBY"});
+        String q2 = SQL_A.get_lab_dev_table_2(getOrderNo(), TABLE_NOTES_2);
+        fill_jtable(mCRecipe.jTable_lab_dev_2, q2, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy"});
         //
     }
 
@@ -363,7 +365,7 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl,notes, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, notes, updated_on, updated_by};
         //
         return rows;
     }
@@ -410,7 +412,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
-        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl,updated_on,updated_by};
+        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, updated_on, updated_by};
         //
         return rows;
     }
@@ -443,6 +445,10 @@ public class LabDevelopment extends BasicTab {
 
     public void deleteNote(JTable table, String dbTableName) {
         //
+        if (HelpA_.confirm() == false) {
+            return;
+        }
+        //
         String id = HelpA_.getValueSelectedRow(table, "ID");
         //
         if (id == null || id.isEmpty()) {
@@ -462,19 +468,19 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
-    public void addNote(JTable table) {
+    public void addNote(JTable table, String dbTableName) {
         //
         String order = getOrderNo();
         //
         JTextField jtf1 = new JTextField();
         JTextField jtf2 = new JTextField();
         //
-        HelpA_.chooseFrom2Textfields(jtf1, jtf2, "Note Name", "Note Value", "Create new note");
+        HelpA_.chooseFrom2Textfields(jtf1, jtf2, MSG.MSG_1(), MSG.MSG_1_2(), MSG.MSG_1_3());
         //
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        String q = SQL_A.insert_into_lab_dev_table_1(order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
+        String q = SQL_A.insert_into_lab_dev_table_1_and_2(dbTableName, order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe);

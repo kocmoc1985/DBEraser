@@ -1376,12 +1376,12 @@ public class SQL_A {
         return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'";
     }
 
-//    public static String insert_into_lab_dev_table_1(String order){
+//    public static String insert_into_lab_dev_table_1_and_2(String order){
 //        return "INSERT INTO MC_Cpworder_SendTo VALUES ()";
 //    }
-    public static String insert_into_lab_dev_table_1(String param1, String param2, String param3, String param4, String param5) {
+    public static String insert_into_lab_dev_table_1_and_2(String table,String param1, String param2, String param3, String param4, String param5) {
         //
-        String q = String.format("INSERT INTO MC_Cpworder_SendTo "
+        String q = String.format("INSERT INTO " + table
                 + "(WORDERNO, Abteilung, Name, UpdatedOn, UpdatedBy)"
                 + "VALUES ('%s','%s','%s','%s','%s')", param1, param2, param3, param4, param5);
         //
