@@ -26,6 +26,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,14 @@ import org.apache.commons.lang.StringEscapeUtils;
  * @author MCREMOTE
  */
 public class HelpBuh {
+
+    /**
+     * @deprecated @throws Exception
+     */
+    public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
+        String url = buildUrl(phpScriptName, phpFunctionName, json);
+        return http_get_content_post(url);
+    }
 
     /**
      * [2020-09-07]
@@ -49,7 +58,7 @@ public class HelpBuh {
     public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
         //
         // OBS! Prev-Last "false" means don't replace special chars - very important [2020-10-11]
-        HashMap<String, String> map = JSONToHashMap(json, false, 1, false,false);
+        HashMap<String, String> map = JSONToHashMap(json, false, 1, false, false);
         //
         map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
         map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]
@@ -58,7 +67,7 @@ public class HelpBuh {
         //
         return http_get_content_post(url);
     }
-    
+
     public static void update(String json) {
         //
         try {
@@ -70,14 +79,55 @@ public class HelpBuh {
         }
         //
     }
-    
+
     /**
-     * @deprecated 
-     * @throws Exception 
+     * JSON: {"version":"versionVersion"}
+     * @return 
      */
-    public static String executePHP__prev(String phpScriptName, String phpFunctionName, String json) throws Exception {
-        String url = buildUrl(phpScriptName, phpFunctionName, json);
-        return http_get_content_post(url);
+    public static String checkUpdates() {
+        //
+        HashMap<String, String> map = new HashMap();
+        //
+        String version = "";
+        //
+        try {
+            //
+            String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_NEWEST_AVAILABLE_VERSION, JSon.hashMapToJSON(map));
+            //
+            ArrayList<HashMap<String, String>> version__ = JSon.phpJsonResponseToHashMap(responce);
+            //
+            version = version__.get(0).get("version");
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        System.out.println("" + version);
+        //
+        return version;
+        //
+    }
+    
+    public static void main(String[] args) {
+        //
+        checkUpdates();
+        //
+//        GP_BUH.USER = "mixcont";
+//        GP_BUH.PASS = "mixcont4765";
+
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("24", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
     }
 
     public static HttpResponce shareAccount(String userEmailToShareWith) {
@@ -220,23 +270,7 @@ public class HelpBuh {
         //
     }
 
-    public static void main(String[] args) {
-        //
-//        GP_BUH.USER = "mixcont";
-//        GP_BUH.PASS = "mixcont4765";
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-        deleteCustomer_a("24", "Vxuw6lpMzF");
-        //
-        //
-//        restorePwd("andrej.brassas@gmail.com");
-        //
-    }
+    
 
     /**
      * This one is used for creating of an account for an existing "buh_kund" So
@@ -267,10 +301,6 @@ public class HelpBuh {
         }
         return true;
     }
-
-    
-
-    
 
     /**
      * [2020-08-28] OBS! This one does not go via "index.php" This reduces

@@ -78,6 +78,8 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
     public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
     //
+    public static final String PHP_FUNC_GET_NEWEST_AVAILABLE_VERSION = "get_newest_version";
+    //
     public static final String PHP_FUNC_DEFINE_KUNDID = "define_kundid"; // using php-function: "defineKundId()"
     public static final String PHP_FUNC_CREATE_ACCOUNT_MAIN = "create_account_main"; // using php-function: "createAccount()"
     public static final String PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER = "create_account_existing_customer"; 
