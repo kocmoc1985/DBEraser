@@ -13,6 +13,10 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  */
 public class TOOLTIP {
 
+     public static String SAVE() {
+        return LANG_ENG ? "Save" : "Speichern";
+    }
+    
     public static String REMOVE_ALL_COMPARE_TOOLTIP() {
         return LANG_ENG ? "Remove all from compare" : "Alles vom Vergleich wegnehmen";
     }

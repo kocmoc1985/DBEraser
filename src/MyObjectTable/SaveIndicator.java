@@ -4,8 +4,8 @@
  */
 package MyObjectTable;
 
+import MCRecipe.Lang.TOOLTIP;
 import icons.IconUrls;
-import images.ImgUrls;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -27,6 +27,7 @@ public class SaveIndicator implements Runnable {
         this.saveBtn = saveBtn;
         this.unsavedList = ul;
         this.NR = nr;
+        saveBtn.setToolTipText(TOOLTIP.SAVE());
         startThisThread();
     }
 

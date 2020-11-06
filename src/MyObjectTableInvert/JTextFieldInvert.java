@@ -99,6 +99,7 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
         this.validateInputLength = length;
     }
     
+    @Override
     public int getInputLengthValidation(){
         return validateInputLength;
     }

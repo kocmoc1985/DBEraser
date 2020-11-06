@@ -4,21 +4,17 @@
  */
 package forall;
 
-import BuhInvoice.DB;
-import static BuhInvoice.GP_BUH.DATE_FORMAT_BASIC;
-import static BuhInvoice.GP_BUH.getDate_yyyy_MM_dd;
-import BuhInvoice.InvoiceB;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
+import MyObjectTable.ShowMessage;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
 import com.michaelbaranov.microba.calendar.DatePicker;
 import icons.IconUrls;
-import images.ImgUrls;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
@@ -848,33 +844,39 @@ public class HelpA_ {
         //
         //
         //
+    }
+
+    public static synchronized void build_table_common(SqlBasicLocal sql, ShowMessage sm, JTable jTable, String q, String[] colsToHide) {
         //
+        ResultSet rs = null;
         //
+        try {
+            rs = sql.execute(q, sm);
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
+        if (rs == null) {
+            return;
+        }
         //
+        HelpA_.setTrackingToolTip(jTable, q);
+        setUneditableJTable(jTable);
         //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
+        try {
+            String[] headers = getHeaders(rs);
+            Object[][] content = getContent(rs);
+            jTable.setModel(new DefaultTableModel(content, headers));
+            //
+            if (colsToHide != null) {
+                for (String colName : colsToHide) {
+                    hideColumnByName(jTable, colName);
+                }
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 

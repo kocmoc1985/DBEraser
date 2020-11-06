@@ -53,6 +53,10 @@ public class LabDevHeaderComponent {
     public void tab_notes() {
         tab_main_data();
     }
+    
+    public void tab_material_info(){
+        tab_main_data();
+    }
 
     public void tab_main_data() {
         clear();

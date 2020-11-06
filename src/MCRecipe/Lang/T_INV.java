@@ -111,7 +111,14 @@ public class T_INV {
         DICT.put("DATE COMPLETED", "DATUM FERTIG");
         DICT.put("NOTES", "NOTIZEN");
         //
-        
+        DICT.put("MATERIAL", "MATERIAL");
+        DICT.put("DESCRIPTION", "BESCHREIBUNG");
+        DICT.put("MIXER", "MISCHER");
+        DICT.put("FIRST BATCH", "ERSTE CHARGE");
+        DICT.put("MIX", "MISCH");
+        DICT.put("BATCH AMMOUNT", "BATCHMENGE");
+        //
+        // Material, Beshreibung, Mischer, 1er Batch, Misch, Batchmenge
     }
 
     public static String LANG(String word) {

@@ -1404,5 +1404,9 @@ public class SQL_A {
 //        System.out.println(q);
         return q;
     }
+    
+    public static String get_lab_dev_jtable_material_info(String id){
+        return "SELECT * from TABLE_NAME WHERE ID=" + id;
+    }
 
 }

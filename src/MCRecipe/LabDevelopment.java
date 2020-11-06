@@ -5,10 +5,6 @@
  */
 package MCRecipe;
 
-import BuhInvoice.DB;
-import BuhInvoice.Validator;
-import BuhInvoice.sec.LANG;
-import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
@@ -53,17 +49,19 @@ public class LabDevelopment extends BasicTab {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_5;
+    private TableBuilderInvert_ TABLE_BUILDER_INVERT_6;
     private Table TABLE_INVERT_2;
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
+    private Table TABLE_INVERT_6;
     private final MC_RECIPE mCRecipe;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
 
     private String ACTUAL_TAB_NAME;
 
-    private String ORDER_FOR_TESTING = "ENTW002106";
+    private final String ORDER_FOR_TESTING = "ENTW002106";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
@@ -116,8 +114,16 @@ public class LabDevelopment extends BasicTab {
             labDevHeaderComponent.tab_status();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
             labDevHeaderComponent.tab_notes();
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
+            labDevHeaderComponent.tab_material_info();
         }
         //
+    }
+
+    public void lab_dev_tab_tab_material_info() {
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
+        refreshHeader();
+        showTableInvert_6();
     }
 
     public void lab_dev_tab__tab_notes_clicked() {
@@ -148,35 +154,13 @@ public class LabDevelopment extends BasicTab {
 
     private void fill_jtable_1_2() {
         //
+        String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "ID"};
+        //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
-        fill_jtable(mCRecipe.jTable_lab_dev_1, q1, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy"});
+        HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev_1, q1, colsToHide);
         //
         String q2 = SQL_A.get_lab_dev_table_2(getOrderNo(), TABLE_NOTES_2);
-        fill_jtable(mCRecipe.jTable_lab_dev_2, q2, new String[]{"ID", "WORDERNO", "UpdatedOn", "UpdatedBy"});
-        //
-    }
-
-    private void fill_jtable(JTable table, String q, String[] colsToHide) {
-        //
-        HelpA_.setUneditableJTable(table);
-        //
-        try {
-            //
-            ResultSet rs = sql.execute(q, mCRecipe);
-            //
-            HelpA_.build_table_common(rs, table, q);
-            //
-            if (table != null) {
-                HelpA_.setTrackingToolTip(table, q);
-            }
-            //
-            for (String colName : colsToHide) {
-                HelpA_.hideColumnByName(table, colName);
-            }
-            //
-        } catch (SQLException ex) {
-            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
 
@@ -186,7 +170,7 @@ public class LabDevelopment extends BasicTab {
         getNotesJTextArea().setText(notes);
     }
 
-    public void saveTableInvert() {
+    public void saveTableInvert__tab_main_data() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
             HelpA_.showNotification(MSG.MSG_3());
@@ -197,7 +181,7 @@ public class LabDevelopment extends BasicTab {
         refreshHeader();
     }
 
-    public void saveTableInvert_2_3_4_5() {
+    public void saveTableInvert_2_3_4_5__tab_status() {
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())
                 || containsInvalidatedFields(TABLE_INVERT_3, 1, getConfigTableInvert_3())
@@ -232,6 +216,11 @@ public class LabDevelopment extends BasicTab {
         //
     }
 
+    /**
+     * [TAB: KOPFDATEN - MAIN DATA]
+     *
+     * @return
+     */
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -299,7 +288,9 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [NO NAME]
+     * [TAB: STATUS] [NO NAME]
+     *
+     * @return
      */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -335,7 +326,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [NO NAME]
+     * [TAB: STATUS] [NO NAME]
      */
     public void showTableInvert_2() {
         //
@@ -361,7 +352,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [DIENSTE]
+     * [TAB: STATUS] [DIENSTE]
      *
      * @return
      */
@@ -389,7 +380,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [DIENSTE]
+     * [TAB: STATUS] [DIENSTE]
      */
     public void showTableInvert_3() {
         //
@@ -415,7 +406,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [VERARBEITUNG]
+     * [TAB: STATUS] [VERARBEITUNG]
      *
      * @return
      */
@@ -446,7 +437,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [VERARBEITUNG]
+     * [TAB: STATUS] [VERARBEITUNG]
      */
     public void showTableInvert_4() {
         //
@@ -472,7 +463,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [PRUFT]
+     * [TAB: STATUS] [PRUFT]
      *
      * @return
      */
@@ -497,7 +488,7 @@ public class LabDevelopment extends BasicTab {
     }
 
     /**
-     * [PRUFT]
+     * [TAB: STATUS] [PRUFT]
      */
     public void showTableInvert_5() {
         //
@@ -524,6 +515,71 @@ public class LabDevelopment extends BasicTab {
         setVerticalScrollBarDisabled(TABLE_INVERT_5);
         //
         showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
+    }
+
+    /**
+     * [TAB: MATERIA-INFO]
+     *
+     * @return
+     */
+    public RowDataInvert[] getConfigTableInvert_6() {
+        //
+        // Material, Beshreibung, Mischer, 1er Batch, Misch, Batchmenge
+        //
+        RowDataInvert material = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTPLAN", T_INV.LANG("MATERIAL"), "", true, true, false);
+        //
+        RowDataInvert description = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTEXEC", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        //
+        RowDataInvert mixer = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("MIXER"), "", true, true, false);
+        //
+        RowDataInvert first_batch = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("FIRST BATCH"), "", true, true, false);
+        //
+        RowDataInvert mix = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("MIX"), "", true, true, false);
+        //
+        RowDataInvert batch_ammount = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
+        //
+        RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
+        //
+        RowDataInvert[] rows = {material, description, mixer, first_batch, mix, batch_ammount, updated_on, updated_by};
+        //
+        return rows;
+    }
+
+    /**
+     * [TAB: MATERIA-INFO]
+     */
+    public void showTableInvert_6() {
+        //
+        TABLE_BUILDER_INVERT_6 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_6(), false, "lab_development_6");
+        //
+        TABLE_INVERT_6 = null;
+        //
+        String id = HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
+        //
+        try {
+            String q = SQL_A.get_lab_dev_jtable_material_info(id);
+            OUT.showMessage(q);
+            TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_6.showMessage(ex.toString());
+        }
+        //
+        //
+        addTableInvertRowListener(TABLE_INVERT_6, this);
+        //
+        setVerticalScrollBarDisabled(TABLE_INVERT_6);
+        //
+        showTableInvert(mCRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);
+    }
+
+    public void materialInfoJTableClicked() {
+        showTableInvert_6();
+    }
+
+    private void fillJTableMaterialInfoTab() {
+        HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev__material_info, "QUERY", new String[]{});
     }
 
     public void deleteJTableNote(JTable table, String dbTableName) {
@@ -633,7 +689,7 @@ public class LabDevelopment extends BasicTab {
             //
             Validator_MCR.validateDate(jli);
             //
-        }else if (jli.getInputLengthValidation() > 0) {
+        } else if (jli.getInputLengthValidation() > 0) {
             //
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             //
@@ -644,8 +700,7 @@ public class LabDevelopment extends BasicTab {
             }
             //
         }
-        
-        
+
         //
     }
 
@@ -654,6 +709,7 @@ public class LabDevelopment extends BasicTab {
         SaveIndicator saveIndicator1 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_1, this, 1);
         SaveIndicator saveIndicator2 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_2, this, 2);
         SaveIndicator saveIndicator3 = new SaveIndicator(mCRecipe.jButton_lab_dev_tab__save_notes, this, 3);
+        SaveIndicator saveIndicator4 = new SaveIndicator(mCRecipe.jButton_lab_dev__material_info_save, this, 4);
     }
 
     @Override
@@ -665,6 +721,7 @@ public class LabDevelopment extends BasicTab {
             } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
                 return true;
             }
+            //
         } else if (nr == 2) {
             if (TABLE_INVERT_2 == null || TABLE_INVERT_3 == null || TABLE_INVERT_4 == null || TABLE_INVERT_5 == null) {
                 return false;
@@ -676,6 +733,14 @@ public class LabDevelopment extends BasicTab {
             }
         } else if (nr == 3) {
             return notesUnsaved;
+        } else if (nr == 4) {
+            //
+            if (TABLE_INVERT_6 == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT_6)) {
+                return true;
+            }
+            //
         }
         return false;
     }

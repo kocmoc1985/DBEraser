@@ -33,6 +33,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA = "MAIN DATA";
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS = "STATUS";
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES = "NOTES";
+    public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO = "MATERIAL INFO";
     //
     public static String HOME_TAB_DE = "*START";
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
@@ -49,6 +50,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE = "KOPFDATEN";
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS_DE = "STATUS";
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES_DE = "NOTIZEN";
+    public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE = "MATERIALINFORMATION";
 
     public static void GO(JTabbedPane jtp, JTabbedPane jtp_lab_dev) {
         TAB_NAMES_GENERAL(jtp);
@@ -103,8 +105,12 @@ public class LNG {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_STATUS : LABDEVELOPMENT_TAB__TAB_STATUS_DE;
     }
     
-     public static String LAB_DEVELOPMENT_TAB__TAB_NOTES() {
+    public static String LAB_DEVELOPMENT_TAB__TAB_NOTES() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_NOTES : LABDEVELOPMENT_TAB__TAB_NOTES_DE;
+    }
+    
+    public static String LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO() {
+        return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_MATERIALINFO : LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE;
     }
 
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
@@ -131,6 +137,7 @@ public class LNG {
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MATERIALINFO, LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE);
             //
         }
 
