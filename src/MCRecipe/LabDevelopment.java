@@ -248,7 +248,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert kunde_customer = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "CUSTOMER", T_INV.LANG("CUSTOMER"), "", true, true, false);
         //
         RowDataInvert projektnr_projectno = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROJECTNO", T_INV.LANG("PROJECTNO"), "", true, true, false);
-        projektnr_projectno.setInputLenthValidation(10);
+//        projektnr_projectno.setInputLenthValidation(10);
         //
         RowDataInvert fertigwunsch_expready = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "EXPREADY", T_INV.LANG("EXPREADY"), "", true, true, false);
         fertigwunsch_expready.setValidateDate();
@@ -629,13 +629,11 @@ public class LabDevelopment extends BasicTab {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        if (jli instanceof JTextFieldInvert && jli.getValidateDate()) {
+        if (jli.getValidateDate()) {
             //
             Validator_MCR.validateDate(jli);
             //
-        }
-        //
-        if (jli instanceof JTextFieldInvert) {
+        }else if (jli.getInputLengthValidation() > 0) {
             //
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             //
@@ -646,6 +644,8 @@ public class LabDevelopment extends BasicTab {
             }
             //
         }
+        
+        
         //
     }
 

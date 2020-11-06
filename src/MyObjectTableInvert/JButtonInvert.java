@@ -62,7 +62,12 @@ public class JButtonInvert extends JButton implements JLinkInvert {
 
     @Override
     public boolean getValidateDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
+    }
+
+    @Override
+    public int getInputLengthValidation() {
+        return 0;
     }
    
 

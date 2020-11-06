@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BuhInvoice.sec;
+package MyObjectTableInvert;
 
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.JLinkInvert;
@@ -63,7 +63,12 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert {
 
     @Override
     public boolean getValidateDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
+    }
+
+    @Override
+    public int getInputLengthValidation() {
+        return 0;
     }
 
   

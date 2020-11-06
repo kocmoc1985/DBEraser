@@ -13,6 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 -------------- 
 
+Pressing on the same Tab or some areas of the tab leads to that the Content in Tab is reloaded.
+
 Send mail to all users of LAFakturering -> get all user emails from DB and send
 
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind

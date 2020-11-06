@@ -7,7 +7,7 @@ package BuhInvoice;
 
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.IO;
-import BuhInvoice.sec.JTextAreaJLink;
+import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
