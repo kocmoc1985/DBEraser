@@ -53,6 +53,7 @@ public class Home extends Basic_Buh {
         loadCheckBoxSaveLoginState();
         fillJTableHeader();
         refresh();
+        HelpBuh.checkUpdates(BUH_INVOICE_MAIN.jLabel17_new__version);
     }
 
     private void fillJTableHeader() {

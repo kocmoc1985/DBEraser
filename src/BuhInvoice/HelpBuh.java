@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import org.apache.commons.lang.StringEscapeUtils;
 
 /**
@@ -84,7 +85,7 @@ public class HelpBuh {
      * JSON: {"version":"versionVersion"}
      * @return 
      */
-    public static String checkUpdates() {
+    public static void checkUpdates(JLabel label) {
         //
         HashMap<String, String> map = new HashMap();
         //
@@ -105,13 +106,17 @@ public class HelpBuh {
         //
         System.out.println("" + version);
         //
-        return version;
+        boolean newVerAvailable = Integer.parseInt(version)> GP_BUH.VERSION_INTEGER;
+        //
+        if(label != null && newVerAvailable){
+            label.setText("Ny version finns tillgänglig på www.lafakturering.se");
+        }
         //
     }
     
     public static void main(String[] args) {
         //
-        checkUpdates();
+        checkUpdates(null);
         //
 //        GP_BUH.USER = "mixcont";
 //        GP_BUH.PASS = "mixcont4765";
