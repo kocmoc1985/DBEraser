@@ -1494,11 +1494,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTabbedPane1.addTab("RECIPE OVERVIEW", jScrollPaneRecipeInitial);
 
-        jScrollPaneRecipeDetailed.setPreferredSize(new java.awt.Dimension(1563, 931));
+        jScrollPaneRecipeDetailed.setPreferredSize(new java.awt.Dimension(1450, 931));
 
         jPanel_RecipeDetailed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_RecipeDetailed.setAutoscrolls(true);
-        jPanel_RecipeDetailed.setMaximumSize(new java.awt.Dimension(1574, 32767));
+        jPanel_RecipeDetailed.setMaximumSize(new java.awt.Dimension(1450, 32767));
 
         jPanel1_recipe_detailed.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1_recipe_detailed.setLayout(new java.awt.GridLayout(1, 0));
@@ -1842,7 +1842,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel_RecipeDetailedLayout.createSequentialGroup()
                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1853,7 +1853,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addGap(18, 18, 18)
                         .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(109, 109, 109))
+                .addContainerGap())
         );
         jPanel_RecipeDetailedLayout.setVerticalGroup(
             jPanel_RecipeDetailedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2632,7 +2632,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addComponent(jPanel_Ingred_boxes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel_IngredientsLayout.createSequentialGroup()
                                 .addComponent(jLabel40)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1125, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
                                 .addComponent(jButtonIngredExpressInfoPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
