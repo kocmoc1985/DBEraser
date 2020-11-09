@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.event.AncestorEvent;
@@ -20,7 +21,7 @@ import javax.swing.event.AncestorListener;
  *
  * @author KOCMOC
  */
-public class TestConfigurationWindow extends javax.swing.JFrame implements AncestorListener{
+public class TestConfigurationWindow extends javax.swing.JFrame implements AncestorListener {
 
     /**
      * Creates new form TestConfigurationWindow
@@ -30,35 +31,56 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         initOther();
     }
 
-    private void initOther(){
+    private void initOther() {
         System.out.println("size: " + jPanel1.getWidth());
         jPanel1.setSize(438, jPanel1.getHeight());
         this.jPanel1.addAncestorListener(this);
-        
+
     }
-    
-    public void addRowTableOne(){
+
+    public void addRowsTableOne(String[] preparationMethods) {
+        //
+        for (int i = 0; i < preparationMethods.length; i++) {
+            if (i == 0) {
+                addRowTableOne("    ", preparationMethods[i]);
+            } else if(i < 10) {
+                addRowTableOne(" " + i + ":", preparationMethods[i]);
+            }else if(i > 10){
+                addRowTableOne("" + i + ":", preparationMethods[i]);
+            }
+        }
+        //
+    }
+
+    private void addRowTableOne(String sequence, String prepmethod) {
         JPanelCont container = new JPanelCont(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
-        container.setBackground(Color.yellow);
+//        container.setBackground(Color.yellow);
         container.setPreferredSize(getRowSize());
+        //
+        JLabel lbl = new JLabel(sequence);
+        //
         JCheckBox chk = new JCheckBox();
-        JTextArea txtarea = new JTextArea();
+        //
+        JTextArea txtarea = new JTextArea(prepmethod);
         txtarea.setPreferredSize(getTxtAreaSize());
+        //
+        container.add(lbl);
         container.add(chk);
         container.add(txtarea);
+        //
         jPanel1.add(container);
     }
 
-    private Dimension getRowSize(){
-        return new Dimension(jPanel1.getWidth()-10, 37);
+    private Dimension getRowSize() {
+        return new Dimension(jPanel1.getWidth() - 10, 31);
     }
-    
-    private Dimension getTxtAreaSize(){
+
+    private Dimension getTxtAreaSize() {
         int width_total = jPanel1.getWidth();
-        int width = (int) (width_total * 0.90);
-        return new Dimension(width, 28);
+        int width = (int) (width_total * 0.85);
+        return new Dimension(width, 27);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,7 +96,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0);
         flowLayout1.setAlignOnBaseline(true);
         jPanel1.setLayout(flowLayout1);
 
@@ -146,11 +168,23 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-              TestConfigurationWindow tcw =  new TestConfigurationWindow();
-              tcw.setVisible(true);
-              tcw.addRowTableOne();
-              tcw.addRowTableOne();
-              tcw.addRowTableOne();
+                TestConfigurationWindow tcw = new TestConfigurationWindow();
+                tcw.setVisible(true);
+                tcw.addRowsTableOne(new String[]{
+                    "Presse / DVR A Zapf / 25 min / 170c ",
+                    "Presse / Klappe 6mm / 10 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c ",
+                    "Presse / Ammi platte / 15 min / 170c "
+                });
             }
         });
     }
@@ -160,16 +194,16 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-    private void resizeAddedEntryTableOne(){
-        
+    private void resizeAddedEntryTableOne() {
+
     }
-    
+
     @Override
     public void ancestorAdded(AncestorEvent ae) {
         // NOT USED SO FAR (2020-10-09)
         if (ae.getSource() instanceof JPanel) { // the jpanel1 is "caught" here 
             //
-        }else if(ae.getSource() instanceof JPanelCont){
+        } else if (ae.getSource() instanceof JPanelCont) {
             //
         }
     }
