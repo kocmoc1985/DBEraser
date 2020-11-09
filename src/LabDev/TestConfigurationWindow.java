@@ -5,6 +5,7 @@
  */
 package LabDev;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -13,6 +14,7 @@ import java.awt.GridLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -35,8 +37,10 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         System.out.println("width: " + jPanel1.getWidth());
         System.out.println("heigth: " + jPanel1.getHeight());
 //        jPanel1.setSize(438, jPanel1.getHeight());
-        this.jPanel1.addAncestorListener(this);
-
+//        this.jPanel1.addAncestorListener(this);
+        this.jPanel1.setBackground(Color.yellow);
+        this.jPanel1.setPreferredSize(new Dimension(430, 35));
+        this.jPanel1.validate();
     }
 
     public void addRowsTableOne(String[] preparationMethods) {
@@ -44,9 +48,9 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         for (int i = 0; i < preparationMethods.length; i++) {
             if (i == 0) {
                 addRowTableOne("    ", preparationMethods[i]);
-            } else if(i < 10) {
+            } else if (i < 10) {
                 addRowTableOne(" " + i + ":", preparationMethods[i]);
-            }else if(i > 10){
+            } else if (i > 10) {
                 addRowTableOne("" + i + ":", preparationMethods[i]);
             }
         }
@@ -71,12 +75,10 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         //
         jPanel1.add(container);
         //
-        jPanel1.setSize(new Dimension(jPanel1.getWidth(), jPanel1.getHeight() + 35));
+        jPanel1.setPreferredSize(new Dimension(jPanel1.getWidth(), jPanel1.getPreferredSize().height + 35));
         //
-        jPanel3.repaint();
-        jPanel3.updateUI();
+        jPanel1.validate();
         //
-        System.out.println("heigth: " + jPanel1.getHeight());
     }
 
     private Dimension getRowSize() {
@@ -99,14 +101,12 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout());
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -114,12 +114,21 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 325, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addGap(0, 250, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setAutoscrolls(true);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setPreferredSize(new java.awt.Dimension(430, 500));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel1.setLayout(flowLayout1);
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -128,20 +137,18 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 432, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
@@ -203,9 +210,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                        
-                });
+                    "Presse / Ammi platte / 15 min / 170c ",});
             }
         });
     }
@@ -214,6 +219,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void resizeAddedEntryTableOne() {
