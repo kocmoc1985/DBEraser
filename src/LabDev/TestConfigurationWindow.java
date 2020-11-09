@@ -6,6 +6,7 @@
 package LabDev;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -30,19 +31,32 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     }
 
     private void initOther(){
-        this.jPanel1.setLayout(new GridLayout(10, 2));
+        System.out.println("size: " + jPanel1.getWidth());
+        jPanel1.setSize(438, jPanel1.getHeight());
         this.jPanel1.addAncestorListener(this);
-//        this.jPanel2.addAncestorListener(this);
+        
     }
     
-    public void addComponentTableOne(){
-        JPanel container = new JPanel(new GridLayout(1, 1)); //new FlowLayout(FlowLayout.LEFT)
+    public void addRowTableOne(){
+        JPanelCont container = new JPanelCont(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
         container.setBackground(Color.yellow);
+        container.setPreferredSize(getRowSize());
         JCheckBox chk = new JCheckBox();
         JTextArea txtarea = new JTextArea();
+        txtarea.setPreferredSize(getTxtAreaSize());
         container.add(chk);
         container.add(txtarea);
         jPanel1.add(container);
+    }
+
+    private Dimension getRowSize(){
+        return new Dimension(jPanel1.getWidth()-10, 37);
+    }
+    
+    private Dimension getTxtAreaSize(){
+        int width_total = jPanel1.getWidth();
+        int width = (int) (width_total * 0.90);
+        return new Dimension(width, 28);
     }
     
     /**
@@ -60,7 +74,9 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new java.awt.GridLayout(10, 2));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel1.setLayout(flowLayout1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -68,7 +84,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +99,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
                 .addContainerGap(446, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,7 +148,9 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
             public void run() {
               TestConfigurationWindow tcw =  new TestConfigurationWindow();
               tcw.setVisible(true);
-              tcw.addComponentTableOne();
+              tcw.addRowTableOne();
+              tcw.addRowTableOne();
+              tcw.addRowTableOne();
             }
         });
     }
@@ -148,9 +166,11 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     
     @Override
     public void ancestorAdded(AncestorEvent ae) {
-        if (ae.getSource() instanceof JPanel) {
-            System.out.println("" + ae.getSource());
-            System.out.println("comp added table one");
+        // NOT USED SO FAR (2020-10-09)
+        if (ae.getSource() instanceof JPanel) { // the jpanel1 is "caught" here 
+            //
+        }else if(ae.getSource() instanceof JPanelCont){
+            //
         }
     }
 
