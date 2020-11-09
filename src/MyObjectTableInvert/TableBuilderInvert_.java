@@ -121,7 +121,13 @@ public class TableBuilderInvert_ {
         //
     }
 
-    public Table buildTable(String query,Basic tableInvertConsumer) throws SQLException {
+    public Table buildTable(String query, Basic tableInvertConsumer) throws SQLException {
+        //
+        return buildTable(query, tableInvertConsumer, TableRow.GRID_LAYOUT);
+        //
+    }
+    
+    public Table buildTable(String query, Basic tableInvertConsumer, int layout) throws SQLException {
         //
         if (CONFIG == null) {
             return null;
@@ -212,7 +218,7 @@ public class TableBuilderInvert_ {
         }
         //
         //
-        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME,tableInvertConsumer);
+        TableInvert table = new TableInvert(tableData, layout, 45, null, TABLE_NAME, tableInvertConsumer);
         table.setShowUnits(SHOW_UNITS);
         table.setSql(sql);
         table.setTableEmpty(not_empty);

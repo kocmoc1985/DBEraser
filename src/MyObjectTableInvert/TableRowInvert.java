@@ -10,6 +10,7 @@ import MyObjectTable.Table;
 import MyObjectTable.TableRow;
 import forall.HelpA_;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
@@ -34,23 +35,23 @@ import javax.swing.JTextField;
  * @author mcab
  */
 public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
-
+    
     private ArrayList<TableRowInvertListener> tableRowListenerList = new ArrayList<TableRowInvertListener>();
     private HeaderInvert headerInvert;
-
+    
     public TableRowInvert(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
         gridLayoutFix();
     }
-
+    
     public void addTableRowInvertListener(TableRowInvertListener tril) {
         tableRowListenerList.add(tril);
     }
-
-    public HeaderInvert getHeaderInvert(){
+    
+    public HeaderInvert getHeaderInvert() {
         return this.headerInvert;
     }
-    
+
     /**
      * OBS! This one fixes the empty space on the both sides of a row
      */
@@ -60,22 +61,21 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             gridLayout.setHgap(5);
         }
     }
-
+    
     @Override
     public RowDataInvert getRowConfig() {
         return (RowDataInvert) ROW_COLUMN_DATA;
     }
-
+    
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
         if (hi.getTableName() != null) {
             HelpA_.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
         } else {
             HelpA_.setTrackingToolTip(label, hi.getRealColName());
         }
-
+        
     }
     
-
     @Override
     protected void addColumn(Object obj) {
         Component add_component = null;
@@ -122,7 +122,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             //
 
         }
-
+        
         if (obj instanceof ColumnDataEntryInvert) {
             //
             ColumnDataEntryInvert cde = (ColumnDataEntryInvert) obj;
@@ -143,7 +143,12 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
-                if(getRowConfig().getInputLengthValidation()){
+                if (getRowConfig().getFlowLayoutPrefferdSize() > 0) {
+                    jtf.setPreferredSize(new Dimension((int) (table_invert.getWidth() * getRowConfig().getFlowLayoutPrefferdSize()),
+                            table_invert.getHeight()));
+                }
+                //
+                if (getRowConfig().getInputLengthValidation()) {
                     jtf.setInputLengthValidation(getRowConfig().inputLengthValidation);
                 }
                 //
@@ -167,7 +172,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                     jtf.setToolTipText((String) cde.getObject());
                 }
                 //
-                if(getRowConfig().toolTipFixedTextPresent()){
+                if (getRowConfig().toolTipFixedTextPresent()) {
                     jtf.setToolTipText(getRowConfig().getToolTipFixedText());
                 }
                 //
@@ -199,7 +204,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
 //                    box.setFont(new Font("SansSerif", Font.BOLD, 20));
                 }
                 //
-            }else if (cde.getObject() instanceof JPassWordFieldInvert) {
+            } else if (cde.getObject() instanceof JPassWordFieldInvert) {
                 add_component = (Component) cde.getObject();
                 addComponent(add_component);
                 cde.setParent(add_component);
@@ -214,7 +219,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             table_invert.row___col_object__map.put(add_component, this);
             table_invert.col_name__row_nr__map.put(cde.getOriginalColumn_name(), ROW_NR);
         }
-
+        
         if (add_component != null) {
             add_component.addMouseListener(this);
             //
@@ -229,18 +234,18 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         COLUMN_COUNT++;
 //        System.out.println("COLUMN_COUNT:" + COLUMN_COUNT);
     }
-
+    
     public String getTableNameDataBase() {
         return getRowConfig().getTableName();
     }
-
+    
     protected void set_current_row__and__database_id(Object source) {
         Table t = getTable();
         t.setCurrentRow(ROW_NR);
         t.setCurrentDatabaseId("" + t.row_col_object__db_id__map.get((Component) source));
 //        System.out.println("selected_row: " + t.getCurrentRow() + " / database_id: " + t.getCurrentDatabaseId());
     }
-
+    
     protected boolean isHeaderComponent(Object source) {
         if (getTable().row_col_object__db_id__map.containsKey((Component) source)) {
             return false;
@@ -248,12 +253,12 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             return true;
         }
     }
-
+    
     @Override
     public Object getComponentAt(int column_index) {
         return this.getComponent(column_index);
     }
-
+    
     @Override
     public String getValueAt(int column_index) {
         Component c = this.getComponent(column_index);
@@ -275,17 +280,17 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         }
     }
     
-    public String getValueAtJComboBox(int column_index,int paramToReturn) {
+    public String getValueAtJComboBox(int column_index, int paramToReturn) {
         Component c = this.getComponent(column_index);
         //
-         if (c instanceof JComboBox) {
+        if (c instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) c;
-            return HelpA_.getComboBoxSelectedValue(comboBox,paramToReturn);
+            return HelpA_.getComboBoxSelectedValue(comboBox, paramToReturn);
         } else {
             return null;
         }
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent me) {
         //
@@ -336,7 +341,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             //
         }
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent me) {
         TableInvert t = (TableInvert) getTable();
@@ -344,19 +349,19 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             tril.mouseClicked(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
         }
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent me) {
     }
-
+    
     @Override
     public void keyTyped(KeyEvent ke) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent ke) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent ke) {
         //
@@ -372,7 +377,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             consumer.keyReleasedForward(ti, ke);
         }
     }
-
+    
     public void add_to_unsaved(Object source) {
         TableInvert table = (TableInvert) getTable();
 //        String db_id = table.getCurrentDatabaseId();
@@ -400,14 +405,14 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             unsaved_entries_map.put(source, new UnsavedEntryInvert(source, tableName, primaryOrForeignKeyName, db_id, col_name, colNr, isString, keyIsString, updateOtherTablesBefore));
         }
     }
-
+    
     @Override
     public void itemStateChanged(ItemEvent ie) {
         Object source = ie.getSource();
         //
         add_to_unsaved(source);
     }
-
+    
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
     }

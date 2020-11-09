@@ -56,6 +56,8 @@ public class RowDataInvert extends RowData {
     private boolean validateDate = false;
     //
     public int inputLengthValidation = 0;
+    //
+    private double flowLayoutPrefferedSize = 0;
 
     public RowDataInvert() {
     }
@@ -138,6 +140,14 @@ public class RowDataInvert extends RowData {
         this.important = important;
     }
 
+    public void setFlowLayoutPrefferedSize(double percent){
+        this.flowLayoutPrefferedSize = percent;
+    }
+    
+    public double getFlowLayoutPrefferdSize(){
+        return this.flowLayoutPrefferedSize;
+    }
+    
     public void setInputLenthValidation(int length) {
         inputLengthValidation = length;
     }
