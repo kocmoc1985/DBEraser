@@ -2236,7 +2236,7 @@
                                       <Component id="jButton_lab_dev_save_btn_1" min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="jPanel55" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel_lab_development" min="-2" pref="540" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
@@ -2445,7 +2445,7 @@
                             </Property>
                           </Properties>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -2472,7 +2472,7 @@
                                 </Property>
                               </Properties>
                               <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                               </AuxValues>
                             </Component>
                           </SubComponents>
@@ -3093,7 +3093,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jPanel_Ingred_table2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel8" alignment="0" pref="1450" max="32767" attributes="0"/>
+                                      <Component id="jPanel8" alignment="0" pref="1454" max="32767" attributes="0"/>
                                       <Component id="jPanel_Ingred_boxes" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
@@ -3729,7 +3729,7 @@
                               </Group>
                               <Component id="jPanel_Ingred_table4" min="-2" pref="628" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

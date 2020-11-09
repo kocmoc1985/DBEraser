@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import MCRecipe.LabDevelopment;
+import LabDev.LabDevelopment;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;

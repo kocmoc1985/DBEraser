@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
 import forall.HelpA_;

@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe;
+package LabDev;
 
+import LabDev.LabDevHeaderComponent;
+import MCRecipe.ChangeSaver;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.Sec.Validator_MCR;
+import MCRecipe.MC_RECIPE;
+import MCRecipe.RecipeDetailed_;
+import MCRecipe.SQL_A;
+import MCRecipe.TestParameters_;
+import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
