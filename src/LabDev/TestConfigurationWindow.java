@@ -5,25 +5,21 @@
  */
 package LabDev;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import MCRecipe.Lang.LAB_DEV;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
+import javax.swing.JTextField;
 
 /**
  *
  * @author KOCMOC
  */
-public class TestConfigurationWindow extends javax.swing.JFrame implements AncestorListener {
+public class TestConfigurationWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form TestConfigurationWindow
@@ -34,61 +30,97 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     }
 
     private void initOther() {
-        System.out.println("width: " + jPanel1.getWidth());
-        System.out.println("heigth: " + jPanel1.getHeight());
-//        jPanel1.setSize(438, jPanel1.getHeight());
-//        this.jPanel1.addAncestorListener(this);
-        this.jPanel1.setBackground(Color.yellow);
-        this.jPanel1.setPreferredSize(new Dimension(430, 35));
-        this.jPanel1.validate();
+
     }
 
     public void addRowsTableOne(String[] preparationMethods) {
+        this.jPanel1.setPreferredSize(new Dimension(430, 35));
+        addRowsTable(preparationMethods, jPanel1);
+    }
+
+    public void addRowsTableTwo(String[] preparationMethods) {
+        this.jPanel2.setPreferredSize(new Dimension(430, 35));
+        addRowsTable(preparationMethods, jPanel2);
+    }
+
+    private void addRowsTable(String[] preparationMethods, JPanel panel) {
         //
         for (int i = 0; i < preparationMethods.length; i++) {
             if (i == 0) {
-                addRowTableOne("    ", preparationMethods[i]);
+                addRowTableOne("     ", preparationMethods[i], panel);
             } else if (i < 10) {
-                addRowTableOne(" " + i + ":", preparationMethods[i]);
+                addRowTableOne("  " + i + ":", preparationMethods[i], panel);
             } else if (i > 10) {
-                addRowTableOne("" + i + ":", preparationMethods[i]);
+                addRowTableOne("" + i + ":", preparationMethods[i], panel);
             }
         }
         //
     }
 
-    private void addRowTableOne(String sequence, String prepmethod) {
-        JPanelCont container = new JPanelCont(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
+    private void addRowTableOne(String sequence, String prepmethod, JPanel panel) {
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
 //        container.setBackground(Color.yellow);
-        container.setPreferredSize(getRowSize());
+        container.setPreferredSize(getRowSize(panel));
         //
         JLabel lbl = new JLabel(sequence);
         //
         JCheckBox chk = new JCheckBox();
         //
-        JTextArea txtarea = new JTextArea(prepmethod);
-        txtarea.setPreferredSize(getTxtAreaSize());
+        JTextField txtfield = new JTextField(prepmethod);
+        txtfield.setPreferredSize(getTxtAreaSize(panel));
         //
         container.add(lbl);
         container.add(chk);
-        container.add(txtarea);
+        container.add(txtfield);
         //
-        jPanel1.add(container);
+        panel.add(container);
         //
-        jPanel1.setPreferredSize(new Dimension(jPanel1.getWidth(), jPanel1.getPreferredSize().height + 35));
+        panel.setPreferredSize(new Dimension(panel.getWidth(), panel.getPreferredSize().height + 31));
         //
-        jPanel1.validate();
+        panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
         //
     }
 
-    private Dimension getRowSize() {
-        return new Dimension(jPanel1.getWidth() - 10, 31);
+    private Dimension getRowSize(JPanel panel) {
+        return new Dimension(panel.getWidth() - 10, 31);
     }
 
-    private Dimension getTxtAreaSize() {
-        int width_total = jPanel1.getWidth();
+    private Dimension getTxtAreaSize(JPanel panel) {
+        int width_total = panel.getWidth();
         int width = (int) (width_total * 0.85);
         return new Dimension(width, 27);
+    }
+
+    public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
+        //
+        ArrayList<JPanelPrepM> list = new ArrayList<>();
+        //
+        Component[] arr = tablePanel.getComponents();
+        //
+        for (Component component : arr) {
+            //
+            if (component instanceof JPanelPrepM) {
+                //
+                JPanelPrepM jp = (JPanelPrepM) component;
+                //
+                if (jp.isSelected()) {
+                    list.add(jp);
+                }
+                //
+            }
+        }
+        //
+        return list;
+    }
+    
+    public void testGetTableOne(){
+        //
+        ArrayList<JPanelPrepM>list = getSelectedFromTable(jPanel1);
+        //
+        for (JPanelPrepM jp : list) {
+            System.out.println("" + jp);
+        }
+        
     }
 
     /**
@@ -101,60 +133,87 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout());
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
-        );
 
         jScrollPane1.setAutoscrolls(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(430, 500));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0);
         flowLayout1.setAlignOnBaseline(true);
         jPanel1.setLayout(flowLayout1);
         jScrollPane1.setViewportView(jPanel1);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+        jScrollPane2.setViewportView(jPanel2);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText(LAB_DEV.TEST_CONFIG_LBL_1());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText(LAB_DEV.TEST_CONFIG_LBL_2());
+
+        jButton1.setText("test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jLabel1.setText(LAB_DEV.TEST_CONFIG_LBL_1());
 
         getContentPane().add(jPanel3);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        testGetTableOne();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,7 +249,7 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
                 TestConfigurationWindow tcw = new TestConfigurationWindow();
                 tcw.setVisible(true);
                 tcw.addRowsTableOne(new String[]{
-                    "Presse / DVR A Zapf / 25 min / 170c ",
+                    "- Keine - ",
                     "Presse / Klappe 6mm / 10 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
@@ -205,42 +264,29 @@ public class TestConfigurationWindow extends javax.swing.JFrame implements Ances
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c ",});
+                    "Presse / Ammi platte / 15 min / 170c "});
+                //
+                tcw.addRowsTableTwo(new String[]{
+                    "- Keine -",
+                    "DVR in luft / 1.0 d / 70c ",
+                    "DVR in luft / 1.0 d / 70c ",
+                    "DVR in luft / 1.0 d / 70c ",
+                    "DVR in luft / 1.0 d / 70c "
+                });
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
-    private void resizeAddedEntryTableOne() {
-
-    }
-
-    @Override
-    public void ancestorAdded(AncestorEvent ae) {
-        // NOT USED SO FAR (2020-10-09)
-        if (ae.getSource() instanceof JPanel) { // the jpanel1 is "caught" here 
-            //
-        } else if (ae.getSource() instanceof JPanelCont) {
-            //
-        }
-    }
-
-    @Override
-    public void ancestorRemoved(AncestorEvent event) {
-    }
-
-    @Override
-    public void ancestorMoved(AncestorEvent event) {
-    }
 }

@@ -38,6 +38,14 @@ public class LAB_DEV {
     public static String TABLE_INVERT_NAME_4() {
         return LANG_ENG ? "PROCESSING" : "VERARBEITUNG";
     }
+    
+    public static String TEST_CONFIG_LBL_1() {
+        return LANG_ENG ? "PREPARATION METODS" : "PRÄPARATIONSMETHODEN";
+    }
+    
+    public static String TEST_CONFIG_LBL_2() {
+        return LANG_ENG ? "AGING METHODS" : "ALTERUNGSMETHODEN";
+    }
 
     public static String TABLE_INVERT_NAME_5() {
         return LANG_ENG ? "TEST" : "PRÜFT";
