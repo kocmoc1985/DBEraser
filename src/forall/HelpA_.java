@@ -588,7 +588,7 @@ public class HelpA_ {
         "yyyy-MM-dd", "yyyy:MM:dd",
         //        "yyyyMMdd", dont use this because 352980126 is considered as this time format
         "dd/MM/yy", "dd/MM/yyyy", "dd-MM-yy", "dd-MM-yyyy",
-        "dd:MM:yy", "dd:MM:yyyy"};
+        "dd:MM:yy", "dd:MM:yyyy","dd.MM.yyyy"};
 
     public static synchronized long dateToMillisConverter3(String date, String date_format) {
         DateFormat formatter = new SimpleDateFormat(date_format);
