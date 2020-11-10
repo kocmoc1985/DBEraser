@@ -18,7 +18,6 @@ import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import MyObjectTable.TableRow;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -29,8 +28,6 @@ import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -432,6 +429,8 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert dat_vervollst_proccompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROCCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
+        RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        //
 //        String q_1 = SQL_B.basic_combobox_query("Name", TABLE_NOTES_1);
 //        RowDataInvert notes = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", TABLE_NOTES_1, "ID", false, "Name", T_INV.LANG("NOTES"), "", true, true, false);
         //
@@ -445,7 +444,7 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl,notice, updated_on, updated_by};
         //
         return rows;
     }
@@ -489,6 +488,8 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert dat_vervollst_testcompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
+        RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        //
         datum_geplant_testplan.setValidateDate();
         datum_augefu_testexec.setValidateDate();
         dat_vervollst_testcompl.setValidateDate();
@@ -496,7 +497,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
-        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl,notice, updated_on, updated_by};
         //
         return rows;
     }

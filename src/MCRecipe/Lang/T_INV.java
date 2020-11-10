@@ -110,6 +110,7 @@ public class T_INV {
         DICT.put("DATE EXECUTED", "DATUM AUSGEFÜHRT");
         DICT.put("DATE COMPLETED", "DATUM FERTIG");
         DICT.put("NOTES", "NOTIZEN");
+        DICT.put("NOTE", "NOTIZ");
         //
         DICT.put("MATERIAL", "MATERIAL");
         DICT.put("DESCRIPTION", "BESCHREIBUNG");

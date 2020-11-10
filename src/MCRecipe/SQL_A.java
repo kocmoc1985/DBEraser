@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import LabDev.LabDevelopment;
 import forall.HelpA_;
 
 /**
@@ -1414,7 +1415,7 @@ public class SQL_A {
     }
 
     public static String save_status_lab_dev(String status) {
-        return "UPDATE MC_Cpworder SET WOSTATUS=" + quotes(status, false);
+        return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS=" + quotes(status, false);
     }
 
 }

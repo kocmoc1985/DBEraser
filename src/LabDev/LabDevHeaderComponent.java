@@ -86,9 +86,7 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_4(), labDev.getRequester());
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_3(), "");
-        //
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
         }
         //
@@ -157,7 +155,7 @@ public class LabDevHeaderComponent implements ItemListener {
     }
     
     private String getStatusCurrOrder(){
-        return HelpA_.getSingleParamSql(sql, "MC_Cpworder", "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+        return HelpA_.getSingleParamSql(sql, LabDevelopment.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
     }
 
     private void saveStatus(Object item) {

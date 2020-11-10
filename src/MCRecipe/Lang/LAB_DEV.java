@@ -67,9 +67,6 @@ public class LAB_DEV {
         return LANG_ENG ? "Status" : "Status";
     }
 
-    public static String LBL_3() {
-        return LANG_ENG ? "Delay Code" : "Verzögerung Code";
-    }
 
     public static String LBL_4() {
         return LANG_ENG ? "Requester" : "Antragsteller";
