@@ -7,3 +7,5 @@ Explain field [Verzö. code] -> Where does it come frome -> [HeaderComponent]
 Tab "Status" -> "VERARBEITUNG", "PRÜFT" -> Explaing fields "Notizen" (ComboBoxes)
 
 Tab "Status" -> "DIENSTE","VERARBEITUNG", "PRÜFT" -> Eplain fields "Code" (Not delayed)
+
+Tab "Materialinformation" -> "Beshreibung" -> where does it come from, "Mischer" -> where from?
