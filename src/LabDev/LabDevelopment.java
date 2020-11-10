@@ -540,25 +540,24 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert material = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Material", T_INV.LANG("MATERIAL"), "", true, true, false);
         //
-//        RowDataInvert description = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Descr", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        RowDataInvert description = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Beschreibung", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         //
-//        RowDataInvert mixer = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Mixer", T_INV.LANG("MIXER"), "", true, true, false);
+        RowDataInvert mixer = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Mischer", T_INV.LANG("MIXER"), "", true, true, false);
         //
         RowDataInvert first_batch = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "FIRSTBNO", T_INV.LANG("FIRST BATCH"), "", true, true, false);
         //
-        //??
         RowDataInvert mix = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Misch", T_INV.LANG("MIX"), "", true, true, false);
         //
-        //??
         RowDataInvert batch_ammount = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "BatchMenge", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
         //
         RowDataInvert updated_on = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
         //
-        RowDataInvert[] rows = {material, first_batch, mix, batch_ammount, updated_on, updated_by};
+        RowDataInvert[] rows = {material, description, mixer, first_batch, mix, batch_ammount, updated_on, updated_by};
         //
         return rows;
+        //
     }
 
     /**
@@ -598,7 +597,7 @@ public class LabDevelopment extends BasicTab {
         JTable table = mCRecipe.jTable_lab_dev__material_info;
         //
         String q = SQL_A.get_lab_dev_jtable_material_info(getOrderNo());
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
         //
         HelpA_.markFirstRowJtable(table);
         materialInfoJTableClicked();

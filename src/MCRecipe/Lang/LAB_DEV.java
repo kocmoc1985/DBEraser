@@ -50,6 +50,14 @@ public class LAB_DEV {
     public static String TABLE_INVERT_NAME_5() {
         return LANG_ENG ? "TEST" : "PRÜFT";
     }
+    
+    public static String STATUS_TAB_JTABLE_1() {
+        return LANG_ENG ? "SEND COPY TO" : "KOPIE SENDEN AN";
+    }
+    
+    public static String STATUS_TAB_JTABLE_2() {
+        return LANG_ENG ? "EXECUTED BY" : "AUSGEFÜHRT VON";
+    }
 
     public static String LBL_1() {
         return LANG_ENG ? "Order" : "Auftrag";

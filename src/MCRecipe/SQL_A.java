@@ -1371,11 +1371,11 @@ public class SQL_A {
     }
 
     public static String get_lab_dev_table_1(String order, String tableName) {
-        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'";
+        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'" + " ORDER BY ID ASC";
     }
 
     public static String get_lab_dev_table_2(String order, String tableName) {
-        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'";
+        return "SELECT * from " + tableName + " WHERE WORDERNO='" + order + "'" + " ORDER BY ID ASC";
     }
 
 //    public static String insert_into_lab_dev_table_1_and_2(String order){
