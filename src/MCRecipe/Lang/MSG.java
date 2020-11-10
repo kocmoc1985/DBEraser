@@ -40,4 +40,9 @@ public class MSG {
     public static String MSG_3_2() {
         return LANG_ENG ? "Input is to long" : "Die Eingabe ist zu lang";
     }
+    
+    
+    public static String MSG_4(String status) {
+        return LANG_ENG ? "The status will be changed to: " : "Diese Handlung wird den Status ändern. Soll Status: " + "\"" +  status + "\""+ " akzeptiert werden?";
+    }
 }

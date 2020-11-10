@@ -1413,4 +1413,8 @@ public class SQL_A {
         return "SELECT * from MC_Cpworder_OrderMaterials WHERE WORDERNO=" + quotes(orderno, false);
     }
 
+    public static String save_status_lab_dev(String status) {
+        return "UPDATE MC_Cpworder SET WOSTATUS=" + quotes(status, false);
+    }
+
 }

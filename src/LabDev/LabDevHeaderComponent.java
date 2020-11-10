@@ -6,9 +6,16 @@
 package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
+import MCRecipe.Lang.MSG;
+import MCRecipe.SQL_A;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,7 +26,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class LabDevHeaderComponent {
+public class LabDevHeaderComponent implements ItemListener {
 
     private final JPanel header;
     private final SqlBasicLocal sql;
@@ -53,8 +60,8 @@ public class LabDevHeaderComponent {
     public void tab_notes() {
         tab_main_data();
     }
-    
-    public void tab_material_info(){
+
+    public void tab_material_info() {
         tab_main_data();
     }
 
@@ -96,7 +103,6 @@ public class LabDevHeaderComponent {
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
         //
-//        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_2(), "Ausführen");
         String[] statuses = new String[]{LAB_DEV.LANG("Input"), LAB_DEV.LANG("Requested"),
             LAB_DEV.LANG("Approved"), LAB_DEV.LANG("Execute"), LAB_DEV.LANG("Ready"),
             LAB_DEV.LANG("Archive"), LAB_DEV.LANG("Abort")};
@@ -133,8 +139,12 @@ public class LabDevHeaderComponent {
         box = HelpA_.fillComboBox_simple(box, values, null);
         box.setEditable(true);
         //
+        String actual_status = getStatusCurrOrder();
+        box.setSelectedItem(actual_status);
+        //
         JPanel container = new JPanel(new GridLayout(1, 2));
         container.add(label);
+        box.addItemListener(this);
         container.add(box);
         upperOrLower.add(container);
     }
@@ -144,6 +154,39 @@ public class LabDevHeaderComponent {
         label.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         HelpA_.increase_font(label, 14);
         return label;
+    }
+    
+    private String getStatusCurrOrder(){
+        return HelpA_.getSingleParamSql(sql, "MC_Cpworder", "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+    }
+
+    private void saveStatus(Object item) {
+        //
+        String status = item.toString();
+        //
+        if (HelpA_.confirm(MSG.MSG_4(status)) == false) {
+            return;
+        }
+        //
+        String q = SQL_A.save_status_lab_dev(status);
+        //
+        try {
+            sql.execute(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevHeaderComponent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        //
+        System.out.println("BOX ITEM STATE CHANGED: " + e.getItem() + " / " + e.getStateChange());
+        //
+        if (e.getStateChange() == 1) {
+            saveStatus(e.getItem());
+        }
+        //
     }
 
 }
