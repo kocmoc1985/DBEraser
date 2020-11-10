@@ -1404,9 +1404,13 @@ public class SQL_A {
 //        System.out.println(q);
         return q;
     }
-    
-    public static String get_lab_dev_jtable_material_info(String id){
-        return "SELECT * from TABLE_NAME WHERE ID=" + id;
+
+    public static String get_lab_dev_tinvert_material_info(String id) {
+        return "SELECT * from MC_Cpworder_OrderMaterials WHERE ID=" + id;
+    }
+
+    public static String get_lab_dev_jtable_material_info(String orderno) {
+        return "SELECT * from MC_Cpworder_OrderMaterials WHERE WORDERNO=" + quotes(orderno, false);
     }
 
 }
