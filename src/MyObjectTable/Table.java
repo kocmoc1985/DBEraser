@@ -53,7 +53,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     public HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = new HashMap<Object, UnsavedEntryInvert>();
     //
     //
-    public int[] COLUMN_WIDTHS_PERCENT = {25, 25, 25, 12, 10};
+    public int[] COLUMN_WIDTHS_PERCENT = {30,69};
     public int ROW_HEIGHT = 45;
     public int ROW_WIDTH_INITIAL;
     public int ROW_WIDTH_MINUS = 20;

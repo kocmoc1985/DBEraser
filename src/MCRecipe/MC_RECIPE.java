@@ -2040,6 +2040,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPane22.setViewportView(jTable_lab_dev__material_info);
 
         jButton_lab_dev__material_info_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
+        jButton_lab_dev__material_info_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev__material_info_saveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel60Layout = new javax.swing.GroupLayout(jPanel60);
         jPanel60.setLayout(jPanel60Layout);
@@ -2198,13 +2203,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
-                .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.PREFERRED_SIZE, 1215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(464, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.PREFERRED_SIZE, 1399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4237,7 +4240,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         if (recipeAdditional != null) {
             recipeAdditional.table1Repport();
         }
-
     }//GEN-LAST:event_jButtonRecipeAdditionalPrint1ActionPerformed
 
     private void jButtonRecipeAdditionalPrint2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeAdditionalPrint2ActionPerformed
@@ -4501,6 +4503,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void jButton_lab_dev_tab__save_notesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_tab__save_notesActionPerformed
         labDevelopment.saveNotesJTexArea();
     }//GEN-LAST:event_jButton_lab_dev_tab__save_notesActionPerformed
+
+    private void jButton_lab_dev__material_info_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__material_info_saveActionPerformed
+        labDevelopment.saveTableInvert_6();
+    }//GEN-LAST:event_jButton_lab_dev__material_info_saveActionPerformed
 
     /**
      * @param args the command line arguments

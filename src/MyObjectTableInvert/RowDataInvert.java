@@ -8,7 +8,6 @@ package MyObjectTableInvert;
 import MyObjectTable.RowData;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
-import javax.swing.JPasswordField;
 
 /**
  *
@@ -57,7 +56,6 @@ public class RowDataInvert extends RowData {
     //
     public int inputLengthValidation = 0;
     //
-    private double flowLayoutPrefferedSize = 0;
 
     public RowDataInvert() {
     }
@@ -138,14 +136,6 @@ public class RowDataInvert extends RowData {
         this.isString = string;
         this.visible = visible;
         this.important = important;
-    }
-
-    public void setFlowLayoutPrefferedSize(double percent){
-        this.flowLayoutPrefferedSize = percent;
-    }
-    
-    public double getFlowLayoutPrefferdSize(){
-        return this.flowLayoutPrefferedSize;
     }
     
     public void setInputLenthValidation(int length) {

@@ -18,6 +18,7 @@ import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
+import MyObjectTable.TableRow;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -44,6 +45,7 @@ import javax.swing.JTextField;
 public class LabDevelopment extends BasicTab {
 
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
+    public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
 
     public static String TABLE_NOTES_1 = "MC_Cpworder_SendTo";
     public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";
@@ -158,7 +160,7 @@ public class LabDevelopment extends BasicTab {
 
     private void fill_jtable_1_2() {
         //
-        String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "ID"};
+        String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "UpdatedOn", "ID"};
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
         HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev_1, q1, colsToHide);
@@ -201,10 +203,11 @@ public class LabDevelopment extends BasicTab {
         saveChangesTableInvert(TABLE_INVERT_5);
         refreshHeader();
     }
-    
-    public void saveTableInvert_6(){
+
+    public void saveTableInvert_6() {
         saveChangesTableInvert(TABLE_INVERT_6);
         refreshHeader();
+        fillJTableMaterialInfoTab();
     }
 
     public void saveNotesJTexArea() {
@@ -535,24 +538,25 @@ public class LabDevelopment extends BasicTab {
         //
         // Material, Beshreibung, Mischer, 1er Batch, Misch, Batchmenge
         //
-        RowDataInvert material = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Material", T_INV.LANG("MATERIAL"), "", true, true, false);
+        RowDataInvert material = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Material", T_INV.LANG("MATERIAL"), "", true, true, false);
         //
 //        RowDataInvert description = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Descr", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         //
-        RowDataInvert mixer = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Mixer", T_INV.LANG("MIXER"), "", true, true, false);
+//        RowDataInvert mixer = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Mixer", T_INV.LANG("MIXER"), "", true, true, false);
         //
-        RowDataInvert first_batch = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "FIRSTBNO", T_INV.LANG("FIRST BATCH"), "", true, true, false);
-        //
-        //??
-        RowDataInvert mix = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "??????", T_INV.LANG("MIX"), "", true, true, false);
+        RowDataInvert first_batch = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "FIRSTBNO", T_INV.LANG("FIRST BATCH"), "", true, true, false);
         //
         //??
-        RowDataInvert batch_ammount = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Descr", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
+        RowDataInvert mix = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Misch", T_INV.LANG("MIX"), "", true, true, false);
         //
-        RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
-        RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
+        //??
+        RowDataInvert batch_ammount = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "BatchMenge", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
         //
-        RowDataInvert[] rows = {material, mixer, first_batch, mix, batch_ammount, updated_on, updated_by};
+        RowDataInvert updated_on = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
+        //
+        //
+        RowDataInvert[] rows = {material, first_batch, mix, batch_ammount, updated_on, updated_by};
         //
         return rows;
     }
@@ -571,7 +575,7 @@ public class LabDevelopment extends BasicTab {
         try {
             String q = SQL_A.get_lab_dev_tinvert_material_info(id);
             OUT.showMessage(q);
-            TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this);
+            TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_6.showMessage(ex.toString());
@@ -594,7 +598,7 @@ public class LabDevelopment extends BasicTab {
         JTable table = mCRecipe.jTable_lab_dev__material_info;
         //
         String q = SQL_A.get_lab_dev_jtable_material_info(getOrderNo());
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID","MCcode","UpdatedOn","UpdatedBy"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy"});
         //
         HelpA_.markFirstRowJtable(table);
         materialInfoJTableClicked();

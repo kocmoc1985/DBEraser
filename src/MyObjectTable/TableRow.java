@@ -382,7 +382,8 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
             column_obj.setPreferredSize(new Dimension(w, TABLE.ROW_HEIGHT - 10));
         }
         //
-        updateUI();
+        validate(); // OBS! Only validate() is working in conjuction with setPrefferedSize()
+        //
     }
 
     @Override

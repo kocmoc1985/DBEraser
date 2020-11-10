@@ -143,11 +143,6 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                 //
                 jtf.setMargin(new Insets(5, 5, 5, 5));
                 //
-                if (getRowConfig().getFlowLayoutPrefferdSize() > 0) {
-                    jtf.setPreferredSize(new Dimension((int) (table_invert.getWidth() * getRowConfig().getFlowLayoutPrefferdSize()),
-                            table_invert.getHeight()));
-                }
-                //
                 if (getRowConfig().getInputLengthValidation()) {
                     jtf.setInputLengthValidation(getRowConfig().inputLengthValidation);
                 }
