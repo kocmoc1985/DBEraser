@@ -161,8 +161,15 @@ public class LabDevelopment extends BasicTab {
             labDevHeaderComponent.tab_notes();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             labDevHeaderComponent.tab_material_info();
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+            labDevHeaderComponent.tab_find_order();
         }
         //
+    }
+    
+    public void lab_dev_tab_tab_find_order(){
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
+        refreshHeader();
     }
 
     public void lab_dev_tab_tab_material_info() {

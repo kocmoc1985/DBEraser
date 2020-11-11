@@ -30,6 +30,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB = "LAB DEVELOPMENT";
     public static final String LOG_TAB = "LOG";
     //
+    public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER = "FIND ORDER";
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA = "MAIN DATA";
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS = "STATUS";
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES = "NOTES";
@@ -47,6 +48,7 @@ public class LNG {
     public static final String TEST_PARAMETERS_TAB_DE = "PRÜFUNGEN";
     public static final String LABDEVELOPMENT_TAB_DE = "LAB ENTWICKLUNG";
     //
+    public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE = "AUFTRAG FINDEN";
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE = "KOPFDATEN";
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS_DE = "STATUS";
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES_DE = "NOTIZEN";
@@ -100,17 +102,21 @@ public class LNG {
     public static String LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_MAIN_DATA : LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_STATUS() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_STATUS : LABDEVELOPMENT_TAB__TAB_STATUS_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_NOTES() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_NOTES : LABDEVELOPMENT_TAB__TAB_NOTES_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_MATERIALINFO : LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE;
+    }
+
+    public static String LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER() {
+        return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_FIND_ORDER : LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE;
     }
 
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
@@ -130,10 +136,11 @@ public class LNG {
         }
 
     }
-    
+
     private static void TAB_NAMES_LABDEV(JTabbedPane jtp) {
         if (LANG_ENG == false) {
             //
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_FIND_ORDER, LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);

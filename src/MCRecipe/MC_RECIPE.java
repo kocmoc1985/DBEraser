@@ -5076,11 +5076,17 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 lab_dev_tab__tab_notes_clicked();
             } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
                 lab_dev_tab__tab_material_info_clicked();
+            }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+                lab_dev_tab__tab_find_order_clicked();
             }
             //
             PREV_TAB_NAME__LAB_DEV = ACTUAL_TAB_NAME__LAB_DEV;
             //
         }
+    }
+    
+    private void lab_dev_tab__tab_find_order_clicked(){
+        labDevelopment.lab_dev_tab_tab_find_order();
     }
 
     private void lab_dev_tab__tab_material_info_clicked() {
@@ -5209,8 +5215,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             lab_dev_tab__tab_notes_clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             lab_dev_tab__tab_material_info_clicked();
-        } else {
-            lab_dev_tab__tab_main_data_clicked();
+        }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+            lab_dev_tab__tab_find_order_clicked();
+        }else {
+//            lab_dev_tab__tab_main_data_clicked();
+             lab_dev_tab__tab_find_order_clicked();
         }
 
     }

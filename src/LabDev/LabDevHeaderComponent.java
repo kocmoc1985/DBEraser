@@ -50,7 +50,7 @@ public class LabDevHeaderComponent implements ItemListener {
 
     private void updateGraphics() {
         header.repaint();
-        header.updateUI();
+//        header.updateUI();
     }
 
     private void clear() {
@@ -77,6 +77,11 @@ public class LabDevHeaderComponent implements ItemListener {
         clear();
         showStandard();
         showStatusTab();
+        updateGraphics();
+    }
+    
+    public void tab_find_order(){
+        clear();
         updateGraphics();
     }
 
