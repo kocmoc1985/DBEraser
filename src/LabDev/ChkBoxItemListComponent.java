@@ -5,10 +5,12 @@
  */
 package LabDev;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,6 +23,8 @@ import javax.swing.JTextField;
  */
 public abstract class ChkBoxItemListComponent extends JFrame {
 
+    public static final int HEIGHT = 35;
+    
     public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
         //
         ArrayList<JPanelPrepM> list = new ArrayList<>();
@@ -47,9 +51,13 @@ public abstract class ChkBoxItemListComponent extends JFrame {
     public Dimension defaultDimension() {
         //OBS! Very important to set width, otherwise the FlowLayout
         // will add components to the "left" but not "down" one after another
-        return new Dimension(430, 35);
+        return new Dimension(430, HEIGHT);
     }
-
+    
+    /**
+     * Increase width "physically" in drawing tool IF NOT SHOWING
+     * As i understand the width shall be (dim.width + 70)
+     */
     public void addRows(String[] items, JPanel panel, Dimension dim) {
         //
         if (dim == null) {
@@ -62,6 +70,10 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         //
     }
     
+    /**
+     * Increase width "physically" in drawing tool IF NOT SHOWING
+     * As i understand the width shall be (dim.width + 70)
+     */
     public void addRows_B(String[] items, JPanel panel, Dimension dim){
         //
         if (dim == null) {
@@ -126,6 +138,7 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         JCheckBox chk = new JCheckBox();
         //
         JLabel jlbl = new JLabel(item);
+//        jlbl.setBorder(BorderFactory.createLineBorder(Color.yellow));
         jlbl.setPreferredSize(getTxtAreaSize(panel));
         //
         container.add(chk);

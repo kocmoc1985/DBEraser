@@ -8,6 +8,7 @@ package LabDev;
 import MCRecipe.Lang.LNG;
 import MCRecipe.MC_RECIPE;
 import forall.SqlBasicLocal;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -37,7 +38,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent {
     
     private void showCheckBoxComponent(){
         String[]status_list = LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG);
-        addRows_B(status_list, getPanel(), null);
+        addRows_B(status_list, getPanel(), new Dimension(200, LabDevFindOrderTab.HEIGHT));
     }
     
     
