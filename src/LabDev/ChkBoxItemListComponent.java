@@ -61,6 +61,24 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         addRowsTable(items, panel);
         //
     }
+    
+    public void addRows_B(String[] items, JPanel panel, Dimension dim){
+        //
+        if (dim == null) {
+            panel.setPreferredSize(defaultDimension());
+        } else {
+            panel.setPreferredSize(dim);
+        }
+        //
+        addRowsTable_B(items, panel);
+        //
+    }
+    
+   private void addRowsTable_B(String[] items, JPanel panel){
+       for (String item : items) {
+           addRowTable_B(item, panel);
+       }
+   }
 
     private void addRowsTable(String[] items, JPanel panel) {
         //
@@ -76,21 +94,42 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         //
     }
 
-    private void addRowTable(String sequence, String prepmethod, JPanel panel) {
-        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
-//        container.setBackground(Color.yellow);
+    private void addRowTable(String sequence, String item, JPanel panel) {
+        //
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT),true); //new FlowLayout(FlowLayout.LEFT)
         container.setPreferredSize(getRowSize(panel));
         //
         JLabel lbl = new JLabel(sequence);
         //
         JCheckBox chk = new JCheckBox();
         //
-        JTextField txtfield = new JTextField(prepmethod);
+        JTextField txtfield = new JTextField(item);
         txtfield.setPreferredSize(getTxtAreaSize(panel));
         //
         container.add(lbl);
         container.add(chk);
         container.add(txtfield);
+        //
+        panel.add(container);
+        //
+        panel.setPreferredSize(new Dimension(panel.getWidth(), panel.getPreferredSize().height + 31));
+        //
+        panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
+        //
+    }
+    
+     private void addRowTable_B(String item, JPanel panel) {
+        //
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT),false); //new FlowLayout(FlowLayout.LEFT)
+        container.setPreferredSize(getRowSize(panel));
+        //
+        JCheckBox chk = new JCheckBox();
+        //
+        JLabel jlbl = new JLabel(item);
+        jlbl.setPreferredSize(getTxtAreaSize(panel));
+        //
+        container.add(chk);
+        container.add(jlbl);
         //
         panel.add(container);
         //

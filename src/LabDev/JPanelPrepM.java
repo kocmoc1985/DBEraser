@@ -22,9 +22,11 @@ public class JPanelPrepM extends JPanel{
     private JCheckBox chkBox;
     private JLabel lbl;
     private int sequenceNr;
+    private final boolean extractSequenceNr;
     
-    public JPanelPrepM(LayoutManager lm) {
+    public JPanelPrepM(LayoutManager lm,boolean extractSequenceNr) {
         super(lm);
+        this.extractSequenceNr = extractSequenceNr;
     }
 
     @Override
@@ -58,15 +60,23 @@ public class JPanelPrepM extends JPanel{
     }
     
     private void extractSequenceNr(JLabel lbl){
+        //
+        if(extractSequenceNr == false){
+            this.sequenceNr = -1;
+            return;
+        }
+        //
         String txt = lbl.getText();
         String rst = txt.replaceAll(":", "").trim();
+        //
         if(rst.isEmpty() == false){
             this.sequenceNr = Integer.parseInt(rst);
         }else{
             this.sequenceNr = 0;
         }
-        
-        System.out.println("seq nr: " + this.sequenceNr);
+        //
+//        System.out.println("seq nr: " + this.sequenceNr);
+        //
     }
     
     
