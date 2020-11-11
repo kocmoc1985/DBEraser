@@ -1410,12 +1410,21 @@ public class SQL_A {
         return "SELECT * from MC_Cpworder_OrderMaterials WHERE ID=" + id;
     }
 
-    public static String get_lab_dev_jtable_material_info(String orderno) {
-        return "SELECT * from MC_Cpworder_OrderMaterials WHERE WORDERNO=" + quotes(orderno, false);
+    /**
+     * 
+     * @param PROC
+     * @param param1 - orderno
+     * @param param2 - ID
+     * @return 
+     */
+    public static String get_lab_dev_jtable_material_info(String PROC, String param1,String param2) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ")";
     }
 
-    public static String save_status_lab_dev(String status,String order) {
-        return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS=" 
+    public static String save_status_lab_dev(String status, String order) {
+        return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS="
                 + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
     }
 

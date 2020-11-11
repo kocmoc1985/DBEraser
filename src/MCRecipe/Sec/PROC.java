@@ -92,6 +92,7 @@ public class PROC {
     public static final String PROC_65 = "prc_ITF_Igredients_main_Delete "; //#INGREDIENTS
     public static final String PROC_66 = "fn_ITF_Test_Related "; //#TEST PARAMETERS
     public static final String PROC_67 = "fn_ITF_Test_Related_ID_4 "; //#TEST PARAMETERS
+    public static final String PROC_68 = "fn_ITF_REcipesInTestOrder "; //#LAB DEVELOPMENT -> MATERIALINFORMATION
     //
     // LAB_DEVELOPMENT 
     //
@@ -169,6 +170,7 @@ public class PROC {
         procList.add(PROC_65);
         procList.add(PROC_66);
         procList.add(PROC_67);
+        procList.add(PROC_68);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

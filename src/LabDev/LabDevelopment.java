@@ -13,6 +13,7 @@ import MCRecipe.Lang.T_INV;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
+import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
@@ -444,7 +445,7 @@ public class LabDevelopment extends BasicTab {
         updated_on.setUneditable();
         updated_by.setUneditable();
         //
-        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl,notice, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_procplan, datum_augefu_procexec, dat_vervollst_proccompl, notice, updated_on, updated_by};
         //
         return rows;
     }
@@ -497,7 +498,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert updated_on = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
         RowDataInvert updated_by = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
-        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl,notice, updated_on, updated_by};
+        RowDataInvert[] rows = {datum_geplant_testplan, datum_augefu_testexec, dat_vervollst_testcompl, notice, updated_on, updated_by};
         //
         return rows;
     }
@@ -543,9 +544,11 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert material = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Material", T_INV.LANG("MATERIAL"), "", true, true, false);
         //
-        RowDataInvert description = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "Beschreibung", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        RowDataInvert description = new RowDataInvert("NOT_NEEDED", "ID", false, "Beschreibung", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        description.setDisabled();
         //
-        RowDataInvert mixer = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Mischer", T_INV.LANG("MIXER"), "", true, true, false);
+        RowDataInvert mixer = new RowDataInvert("NOT_NEEDED", "ID", false, "Mischer", T_INV.LANG("MIXER"), "", true, true, false);
+        mixer.setDisabled();
         //
         RowDataInvert first_batch = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "FIRSTBNO", T_INV.LANG("FIRST BATCH"), "", true, true, false);
         //
@@ -575,7 +578,8 @@ public class LabDevelopment extends BasicTab {
         String id = HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
         //
         try {
-            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
+//            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
+            String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, null,id);
             OUT.showMessage(q);
             TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {
@@ -599,7 +603,7 @@ public class LabDevelopment extends BasicTab {
         //
         JTable table = mCRecipe.jTable_lab_dev__material_info;
         //
-        String q = SQL_A.get_lab_dev_jtable_material_info(getOrderNo());
+        String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(),null);
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
         //
         HelpA_.markFirstRowJtable(table);
@@ -699,8 +703,6 @@ public class LabDevelopment extends BasicTab {
         fill_jtable_1_2();
         //
     }
-    
-    
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
@@ -770,7 +772,5 @@ public class LabDevelopment extends BasicTab {
         }
         return false;
     }
-
-    
 
 }
