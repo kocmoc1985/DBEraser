@@ -79,7 +79,7 @@ public class LabDevelopment extends BasicTab {
     private void init() {
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
         initializeSaveIndicators();
-        fill_jtable_1_2();
+        fill_jtable_1_2__tab__main_data();
     }
 
     public String getOrderNo() {
@@ -92,7 +92,26 @@ public class LabDevelopment extends BasicTab {
 
     public String getUpdatedOn() {
         //
-        String date = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedOn", false);
+        String date = "";
+        //
+        if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())
+                || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())
+                || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+            //
+            date = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedOn", false);
+            //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
+            //
+            String id = getIdMaterialInfoTable();
+            //
+            date = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO,
+                    "WORDERNO", getOrderNo(), "ID", id, "UpdatedOn", false);
+            //
+        }
+        //
+        if (date == null || date.isEmpty()) {
+            return "";
+        }
         //
         if (GP.IS_DATE_FORMAT_DE) {
             try {
@@ -105,11 +124,31 @@ public class LabDevelopment extends BasicTab {
             return date;
         }
     }
+    
+    
 
     public String getUpdatedBy() {
         //
-        return HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedBy", false);
+        String updatedBy = "";
+        //
+        if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())
+                || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())
+                || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+            //
+            updatedBy = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedBy", false);
+            //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
+              //
+            String id = getIdMaterialInfoTable();
+            //
+            updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(),"ID",id, "UpdatedBy", false);
+        }
+        //
+        return updatedBy;
         // 
+    }
+    private String getIdMaterialInfoTable(){
+        return HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
     }
 
     private void refreshHeader() {
@@ -128,8 +167,8 @@ public class LabDevelopment extends BasicTab {
 
     public void lab_dev_tab_tab_material_info() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
-        refreshHeader();
         fillJTableMaterialInfoTab();
+//        refreshHeader(); // is done from: fillJTableMaterialInfoTab() -> materialInfoJTableClicked()
     }
 
     public void lab_dev_tab__tab_notes_clicked() {
@@ -158,7 +197,7 @@ public class LabDevelopment extends BasicTab {
         return mCRecipe.jTextArea_notes__lab_dev_tab;
     }
 
-    private void fill_jtable_1_2() {
+    private void fill_jtable_1_2__tab__main_data() {
         //
         String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "UpdatedOn", "ID"};
         //
@@ -556,8 +595,8 @@ public class LabDevelopment extends BasicTab {
         //
         RowDataInvert batch_ammount = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "BatchMenge", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
         //
-        RowDataInvert updated_on = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false); // UpdatedOn
-        RowDataInvert updated_by = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        RowDataInvert updated_on = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
+        RowDataInvert updated_by = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
         //
         RowDataInvert[] rows = {material, description, mixer, first_batch, mix, batch_ammount, updated_on, updated_by};
@@ -579,7 +618,7 @@ public class LabDevelopment extends BasicTab {
         //
         try {
 //            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
-            String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, null,id);
+            String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, null, id);
             OUT.showMessage(q);
             TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {
@@ -597,17 +636,19 @@ public class LabDevelopment extends BasicTab {
 
     public void materialInfoJTableClicked() {
         showTableInvert_6();
+        refreshHeader(); // Yes shall be here
     }
 
     private void fillJTableMaterialInfoTab() {
         //
         JTable table = mCRecipe.jTable_lab_dev__material_info;
         //
-        String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(),null);
+        String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(), null);
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
         //
         HelpA_.markFirstRowJtable(table);
         materialInfoJTableClicked();
+        //
     }
 
     public void deleteJTableNote(JTable table, String dbTableName) {
@@ -631,7 +672,7 @@ public class LabDevelopment extends BasicTab {
             Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        fill_jtable_1_2();
+        fill_jtable_1_2__tab__main_data();
         //
     }
 
@@ -655,7 +696,7 @@ public class LabDevelopment extends BasicTab {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        fill_jtable_1_2();
+        fill_jtable_1_2__tab__main_data();
         //
     }
 
@@ -700,7 +741,7 @@ public class LabDevelopment extends BasicTab {
         //
         changeSaver.saveChange(updateEntry);
         //
-        fill_jtable_1_2();
+        fill_jtable_1_2__tab__main_data();
         //
     }
 

@@ -461,6 +461,26 @@ public class HelpA_ {
         return null;
     }
 
+    public static String getSingleParamSql_with_and(SqlBasicLocal sql, String tableName,
+            String columnWhere, String valueWhere, String columnAnd, String valueAnd, String columnGet, boolean number) {
+        //
+        String q = "SELECT * from " + tableName
+                + " where " + columnWhere + "=" + SQL_A.quotes(valueWhere, number) + " AND " + columnAnd
+                + "=" + SQL_A.quotes(valueAnd, true);
+        //
+//        System.out.println("q: " + q);
+        //
+        try {
+            ResultSet rs = sql.execute(q);
+            if (rs.next()) {
+                return rs.getString(columnGet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public static String getLastIncrementedId(SqlBasicLocal sql, String tableName) {
         //
         String q = "SELECT IDENT_CURRENT('" + tableName + "')";
@@ -588,7 +608,7 @@ public class HelpA_ {
         "yyyy-MM-dd", "yyyy:MM:dd",
         //        "yyyyMMdd", dont use this because 352980126 is considered as this time format
         "dd/MM/yy", "dd/MM/yyyy", "dd-MM-yy", "dd-MM-yyyy",
-        "dd:MM:yy", "dd:MM:yyyy","dd.MM.yyyy"};
+        "dd:MM:yy", "dd:MM:yyyy", "dd.MM.yyyy"};
 
     public static synchronized long dateToMillisConverter3(String date, String date_format) {
         DateFormat formatter = new SimpleDateFormat(date_format);
@@ -3275,7 +3295,7 @@ public class HelpA_ {
         Font newFont = actFont.deriveFont(type);
         comp.setFont(newFont);
     }
-    
+
     public static HashMap swap_keys_and_values(HashMap ht) {
         HashMap h = new HashMap();
         Set set = ht.keySet();
@@ -3287,7 +3307,7 @@ public class HelpA_ {
         }
         return h;
     }
-    
+
     public static Properties swap_keys_and_values__properties(Properties p) {
         Properties hm = new Properties();
         Set set = p.keySet();
