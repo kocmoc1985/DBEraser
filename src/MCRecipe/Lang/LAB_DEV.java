@@ -6,30 +6,11 @@
 package MCRecipe.Lang;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
-import java.util.Properties;
-
 /**
  *
  * @author KOCMOC
  */
 public class LAB_DEV {
-    
-    
-    private static final Properties DICT = new Properties();
-
-    static {
-        DICT.put("Input","Eingabe");
-        DICT.put("Requested","Gewünscht");
-        DICT.put("Approved","Genehmigt");
-        DICT.put("Execute","Ausführung");
-        DICT.put("Ready","Fertig");
-        DICT.put("Archive","Archiv");
-        DICT.put("Abort","Abbrechen");
-    }
-    
-    public static String LANG(String word) {
-        return LANG_ENG ? word : DICT.getProperty(word, "*" + word);
-    }
 
     public static String TABLE_INVERT_NAME_3() {
         return LANG_ENG ? "SERVICES" : "DIENSTE";

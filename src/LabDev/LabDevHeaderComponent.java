@@ -6,8 +6,10 @@
 package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
+import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.SQL_A;
+import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
@@ -101,11 +103,8 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
         //
-        String[] statuses = new String[]{LAB_DEV.LANG("Input"), LAB_DEV.LANG("Requested"),
-            LAB_DEV.LANG("Approved"), LAB_DEV.LANG("Execute"), LAB_DEV.LANG("Ready"),
-            LAB_DEV.LANG("Archive"), LAB_DEV.LANG("Abort")};
         //
-        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), statuses);
+        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG));
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn());
         //
@@ -137,7 +136,7 @@ public class LabDevHeaderComponent implements ItemListener {
         box = HelpA_.fillComboBox_simple(box, values, null);
         box.setEditable(true);
         //
-        String actual_status = getStatusCurrOrder();
+        String actual_status = getStatusInActLang();
         box.setSelectedItem(actual_status);
         //
         JPanel container = new JPanel(new GridLayout(1, 2));
@@ -154,19 +153,26 @@ public class LabDevHeaderComponent implements ItemListener {
         return label;
     }
     
-    private String getStatusCurrOrder(){
-        return HelpA_.getSingleParamSql(sql, LabDevelopment.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+    private String getStatusInActLang(){
+        String status_eng = HelpA_.getSingleParamSql(sql, LabDevelopment.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+        String status_act_lang = LAB_DEV__STATUS.getStatusActLang(LNG.LANG_ENG, status_eng);
+        return status_act_lang;
     }
 
     private void saveStatus(Object item) {
         //
         String status = item.toString();
         //
+        //OBS! VERY IMPORATN -> WHEN SAVING STATUS IT SHOULD BE ALWAYS "ENG"
+        String status_eng = LAB_DEV__STATUS.getStatusEng(LNG.LANG_ENG, status);
+        //
         if (HelpA_.confirm(MSG.MSG_4(status)) == false) {
             return;
         }
         //
-        String q = SQL_A.save_status_lab_dev(status);
+        String q = SQL_A.save_status_lab_dev(status_eng,labDev.getOrderNo());
+        //
+        System.out.println("q: " + q);
         //
         try {
             sql.execute(q);

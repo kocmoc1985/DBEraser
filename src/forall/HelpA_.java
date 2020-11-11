@@ -3275,5 +3275,29 @@ public class HelpA_ {
         Font newFont = actFont.deriveFont(type);
         comp.setFont(newFont);
     }
+    
+    public static HashMap swap_keys_and_values(HashMap ht) {
+        HashMap h = new HashMap();
+        Set set = ht.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            String value = (String) ht.get(key);
+            h.put(value, key);
+        }
+        return h;
+    }
+    
+    public static Properties swap_keys_and_values__properties(Properties p) {
+        Properties hm = new Properties();
+        Set set = p.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            String value = (String) p.get(key);
+            hm.put(value, key);
+        }
+        return hm;
+    }
 
 }
