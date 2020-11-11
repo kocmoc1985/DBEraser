@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class TestConfigurationWindow extends javax.swing.JFrame {
+public class TestConfigurationWindow extends ChkBoxItemListComponent {
 
     /**
      * Creates new form TestConfigurationWindow
@@ -41,76 +41,6 @@ public class TestConfigurationWindow extends javax.swing.JFrame {
     public void addRowsTableTwo(String[] preparationMethods) {
         this.jPanel2.setPreferredSize(new Dimension(430, 35));
         addRowsTable(preparationMethods, jPanel2);
-    }
-
-    private void addRowsTable(String[] preparationMethods, JPanel panel) {
-        //
-        for (int i = 0; i < preparationMethods.length; i++) {
-            if (i == 0) {
-                addRowTableOne("     ", preparationMethods[i], panel);
-            } else if (i < 10) {
-                addRowTableOne("  " + i + ":", preparationMethods[i], panel);
-            } else if (i > 10) {
-                addRowTableOne("" + i + ":", preparationMethods[i], panel);
-            }
-        }
-        //
-    }
-
-    private void addRowTableOne(String sequence, String prepmethod, JPanel panel) {
-        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT)); //new FlowLayout(FlowLayout.LEFT)
-//        container.setBackground(Color.yellow);
-        container.setPreferredSize(getRowSize(panel));
-        //
-        JLabel lbl = new JLabel(sequence);
-        //
-        JCheckBox chk = new JCheckBox();
-        //
-        JTextField txtfield = new JTextField(prepmethod);
-        txtfield.setPreferredSize(getTxtAreaSize(panel));
-        //
-        container.add(lbl);
-        container.add(chk);
-        container.add(txtfield);
-        //
-        panel.add(container);
-        //
-        panel.setPreferredSize(new Dimension(panel.getWidth(), panel.getPreferredSize().height + 31));
-        //
-        panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
-        //
-    }
-
-    private Dimension getRowSize(JPanel panel) {
-        return new Dimension(panel.getWidth() - 10, 31);
-    }
-
-    private Dimension getTxtAreaSize(JPanel panel) {
-        int width_total = panel.getWidth();
-        int width = (int) (width_total * 0.85);
-        return new Dimension(width, 27);
-    }
-
-    public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
-        //
-        ArrayList<JPanelPrepM> list = new ArrayList<>();
-        //
-        Component[] arr = tablePanel.getComponents();
-        //
-        for (Component component : arr) {
-            //
-            if (component instanceof JPanelPrepM) {
-                //
-                JPanelPrepM jp = (JPanelPrepM) component;
-                //
-                if (jp.isSelected()) {
-                    list.add(jp);
-                }
-                //
-            }
-        }
-        //
-        return list;
     }
     
     public void testGetTableOne(){
