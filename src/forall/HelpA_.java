@@ -1759,6 +1759,25 @@ public class HelpA_ {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(new Object[]{});
     }
+    
+    public static int getRowByValue_contains(JTable table, String col_name, String row_value) {
+        for (int i = 0; i < table.getColumnCount(); ++i) {
+            if (table.getColumnName(i).equals(col_name)) {
+                for (int y = 0; y < table.getRowCount(); ++y) {
+                    String curr_row_value = "" + table.getValueAt(y, i);
+                    //
+                    if (curr_row_value == null) {
+                        continue;
+                    }
+                    //
+                    if (curr_row_value.contains(row_value)) {
+                        return y;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
 
     public static int getRowByValue(JTable table, String col_name, String row_value) {
         for (int i = 0; i < table.getColumnCount(); ++i) {
@@ -1877,6 +1896,11 @@ public class HelpA_ {
 
     public static void markRowByValue(JTable table, String colName, String colValue) {
         int row = getRowByValue(table, colName, colValue);
+        setSelectedRow(table, row);
+    }
+    
+    public static void markRowByValue_contains(JTable table, String colName, String colValue) {
+        int row = getRowByValue_contains(table, colName, colValue);
         setSelectedRow(table, row);
     }
 

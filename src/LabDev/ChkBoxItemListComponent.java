@@ -47,6 +47,29 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         return list;
         //
     }
+    
+    public Object[] getSelectedValuesFromTable(JPanel tablePanel) {
+        //
+        ArrayList<String> list = new ArrayList<>();
+        //
+        Component[] arr = tablePanel.getComponents();
+        //
+        for (Component component : arr) {
+            //
+            if (component instanceof JPanelPrepM) {
+                //
+                JPanelPrepM jp = (JPanelPrepM) component;
+                //
+                if (jp.isSelected()) {
+                    list.add(jp.getStatusEng());
+                }
+                //
+            }
+        }
+        //
+        return list.toArray();
+        //
+    }
 
     public Dimension defaultDimension() {
         //OBS! Very important to set width, otherwise the FlowLayout

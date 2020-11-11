@@ -9,7 +9,6 @@ import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.SQL_A;
-import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;

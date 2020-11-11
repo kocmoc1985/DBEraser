@@ -5,6 +5,7 @@
  */
 package LabDev;
 
+import MCRecipe.Lang.LNG;
 import java.awt.Component;
 import java.awt.LayoutManager;
 import javax.swing.JCheckBox;
@@ -63,6 +64,14 @@ public class JPanelPrepM extends JPanel {
             return this.lbl.getText();
         } else {
             return this.jtf.getText();
+        }
+    }
+
+    public String getStatusEng() {
+        if (extractSequenceNr == false) {
+            return LAB_DEV__STATUS.getStatusEng(LNG.LANG_ENG, this.lbl.getText());
+        } else {
+            return LAB_DEV__STATUS.getStatusEng(LNG.LANG_ENG, this.jtf.getText());
         }
     }
 

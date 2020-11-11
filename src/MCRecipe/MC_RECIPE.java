@@ -702,6 +702,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPane23 = new javax.swing.JScrollPane();
         jPanel_lab_dev__find_order = new javax.swing.JPanel();
         jButton__lab_dev_test_test = new javax.swing.JButton();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        jTable_lab_dev__find_order = new javax.swing.JTable();
+        jTextField__lab_dev__find_order = new javax.swing.JTextField();
         jPanel53 = new javax.swing.JPanel();
         jPanel_lab_development = new javax.swing.JPanel();
         jButton_lab_dev_save_btn_1 = new javax.swing.JButton();
@@ -1926,6 +1929,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             }
         });
 
+        jTable_lab_dev__find_order.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane24.setViewportView(jTable_lab_dev__find_order);
+
         javax.swing.GroupLayout jPanel61Layout = new javax.swing.GroupLayout(jPanel61);
         jPanel61.setLayout(jPanel61Layout);
         jPanel61Layout.setHorizontalGroup(
@@ -1933,18 +1949,26 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel61Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton__lab_dev_test_test)
-                    .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(926, Short.MAX_VALUE))
+                    .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton__lab_dev_test_test))
+                .addGap(79, 79, 79)
+                .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         jPanel61Layout.setVerticalGroup(
             jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel61Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(jButton__lab_dev_test_test)
+                .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton__lab_dev_test_test)
+                    .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("FIND ORDER", jPanel61);
@@ -4971,6 +4995,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
     protected javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5010,6 +5035,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     protected javax.swing.JTable jTable_Ingred_table2;
     public javax.swing.JTable jTable_lab_dev_1;
     public javax.swing.JTable jTable_lab_dev_2;
+    public javax.swing.JTable jTable_lab_dev__find_order;
     public javax.swing.JTable jTable_lab_dev__material_info;
     private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JTextArea jTextArea1_Logg;
@@ -5020,6 +5046,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JTextField jTextFieldStepNrSequence;
     public javax.swing.JTextField jTextFieldUpdateOnSequence;
     public javax.swing.JTextField jTextFieldUpdatedBy;
+    public javax.swing.JTextField jTextField__lab_dev__find_order;
     public static javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 

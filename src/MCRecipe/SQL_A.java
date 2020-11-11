@@ -1411,13 +1411,13 @@ public class SQL_A {
     }
 
     /**
-     * 
+     *
      * @param PROC
      * @param param1 - orderno
      * @param param2 - ID
-     * @return 
+     * @return
      */
-    public static String get_lab_dev_jtable_material_info(String PROC, String param1,String param2) {
+    public static String get_lab_dev_jtable_material_info(String PROC, String param1, String param2) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ")";
@@ -1426,6 +1426,42 @@ public class SQL_A {
     public static String save_status_lab_dev(String status, String order) {
         return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS="
                 + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
+    }
+
+    /**
+     * SELECT * from MC_Cpworder where WOSTATUS='Execute' OR WOSTATUS='Ready'
+     *
+     * @param filter
+     * @return
+     */
+    public static String find_order_lab_dev(Object[] filter) {
+        //
+        String q = "SELECT WORDERNO,WOSTATUS,REQUESTER,UpdatedBy,UpdatedOn from MC_Cpworder";
+        //
+        for (int i = 0; i < filter.length; i++) {
+            if (i == 0) {
+                q += find_order_lab_dev__h1((String) filter[i]);
+            } else {
+                q += find_order_lab_dev__h2((String) filter[i]);
+            }
+        }
+        //
+        return q;
+    }
+
+    public static void main(String[] args) {
+        //
+        String[] arr = new String[]{"Archiv","Ready"};
+        //
+        System.out.println("" + find_order_lab_dev(arr));
+    }
+
+    public static String find_order_lab_dev__h1(String item) {
+        return " WHERE WOSTATUS=" + quotes(item, false);
+    }
+
+    public static String find_order_lab_dev__h2(String item) {
+        return " OR WOSTATUS=" + quotes(item, false);
     }
 
 }
