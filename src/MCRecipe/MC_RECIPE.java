@@ -143,7 +143,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         sql = sqlConnect(); //  ***
         sql_additional = sqlConnect(); //  ***
         //
-
 //         HelpA_.addMouseListenerToAllComponentsOfComponent(this.getContentPane());
         //
         this.setTitle(buildTitle(null));

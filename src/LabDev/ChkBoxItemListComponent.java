@@ -99,6 +99,8 @@ public abstract class ChkBoxItemListComponent extends JFrame {
      */
     public void addRows_B(String[] items, JPanel panel, Dimension dim){
         //
+        panel.removeAll();
+        //
         if (dim == null) {
             panel.setPreferredSize(defaultDimension());
         } else {
@@ -106,6 +108,8 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         }
         //
         addRowsTable_B(items, panel);
+        //
+        panel.repaint();
         //
     }
     

@@ -49,6 +49,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         HelpA_.build_table_common(sql, mcRecipe, getTable(), q, new String[]{});
         //
+        HelpA_.changeTableHeaderTitleOfOneColumn(getTable(), "WORDERNO", "AUFTRAG");
     }
 
     private void addFakeValuesToTable() {

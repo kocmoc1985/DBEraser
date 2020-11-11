@@ -1439,29 +1439,25 @@ public class SQL_A {
         String q = "SELECT WORDERNO,WOSTATUS,REQUESTER,UpdatedBy,UpdatedOn from MC_Cpworder";
         //
         for (int i = 0; i < filter.length; i++) {
+            //
+            String status = (String) filter[i];
+            //
             if (i == 0) {
-                q += find_order_lab_dev__h1((String) filter[i]);
+                q += " WHERE WOSTATUS=" + quotes(status, false);
             } else {
-                q += find_order_lab_dev__h2((String) filter[i]);
+                q += " OR WOSTATUS=" + quotes(status, false);
             }
         }
+        //
+        q += " ORDER BY WORDERNO ASC";
         //
         return q;
     }
 
-    public static void main(String[] args) {
-        //
-        String[] arr = new String[]{"Archiv","Ready"};
-        //
-        System.out.println("" + find_order_lab_dev(arr));
-    }
-
-    public static String find_order_lab_dev__h1(String item) {
-        return " WHERE WOSTATUS=" + quotes(item, false);
-    }
-
-    public static String find_order_lab_dev__h2(String item) {
-        return " OR WOSTATUS=" + quotes(item, false);
-    }
-
+//    public static void main(String[] args) {
+//        //
+//        String[] arr = new String[]{"Archiv", "Ready"};
+//        //
+//        System.out.println("" + find_order_lab_dev(arr));
+//    }
 }
