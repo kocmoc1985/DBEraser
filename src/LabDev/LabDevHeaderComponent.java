@@ -75,13 +75,12 @@ public class LabDevHeaderComponent implements ItemListener {
 
     public void tab_status() {
         clear();
+        showStandard();
         showStatusTab();
         updateGraphics();
     }
 
     private void showStatusTab() {
-        //
-        showStandard();
         //
         //
         JPanel lower = getLower();
