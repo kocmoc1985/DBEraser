@@ -5,6 +5,7 @@
  */
 package LabDev;
 
+import MCRecipe.Lang.LNG;
 import MCRecipe.MC_RECIPE;
 import forall.SqlBasicLocal;
 
@@ -24,7 +25,14 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent {
         this.mcRecipe = mcRecipe;
     }
     
+    public void go(){
+        showCheckBoxComponent();
+    }
     
+    private void showCheckBoxComponent(){
+        String[]status_list = LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG);
+        addRows(status_list, mcRecipe.jPanel_lab_dev__find_order, null);
+    }
      
     
     

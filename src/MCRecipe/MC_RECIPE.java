@@ -699,6 +699,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel61 = new javax.swing.JPanel();
+        jScrollPane23 = new javax.swing.JScrollPane();
+        jPanel_lab_dev__find_order = new javax.swing.JPanel();
         jPanel53 = new javax.swing.JPanel();
         jPanel_lab_development = new javax.swing.JPanel();
         jButton_lab_dev_save_btn_1 = new javax.swing.JButton();
@@ -1913,15 +1915,24 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTabbedPane1.addTab("RECIPE DETAILED", jScrollPaneRecipeDetailed);
 
+        jPanel_lab_dev__find_order.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane23.setViewportView(jPanel_lab_dev__find_order);
+
         javax.swing.GroupLayout jPanel61Layout = new javax.swing.GroupLayout(jPanel61);
         jPanel61.setLayout(jPanel61Layout);
         jPanel61Layout.setHorizontalGroup(
             jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1212, Short.MAX_VALUE)
+            .addGroup(jPanel61Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(773, Short.MAX_VALUE))
         );
         jPanel61Layout.setVerticalGroup(
             jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
+            .addGroup(jPanel61Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("FIND ORDER", jPanel61);
@@ -2017,7 +2028,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addComponent(jButton_lab_dev_save_btn_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                     .addComponent(jScrollPane20)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel53Layout.createSequentialGroup()
                         .addComponent(jLabel59, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2094,7 +2105,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addGroup(jPanel60Layout.createSequentialGroup()
                         .addComponent(jPanel_lab_dev_material_info, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel60Layout.setVerticalGroup(
@@ -2165,7 +2176,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addGroup(jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel_lab_development_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel_lab_development_5, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel54Layout.setVerticalGroup(
             jPanel54Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2211,7 +2222,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_lab_dev_tab__save_notes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
         jPanel59Layout.setVerticalGroup(
             jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4918,6 +4929,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JPanel jPanel_RecipeInitial;
     private javax.swing.JPanel jPanel_Test_Parameters;
     public javax.swing.JPanel jPanel_Test_Params_Inv_Table_1;
+    public javax.swing.JPanel jPanel_lab_dev__find_order;
     public javax.swing.JPanel jPanel_lab_dev_header;
     public javax.swing.JPanel jPanel_lab_dev_material_info;
     public javax.swing.JPanel jPanel_lab_development;
@@ -4941,6 +4953,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
+    private javax.swing.JScrollPane jScrollPane23;
     protected javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;

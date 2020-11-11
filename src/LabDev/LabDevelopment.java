@@ -64,9 +64,8 @@ public class LabDevelopment extends BasicTab {
     private final MC_RECIPE mCRecipe;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
-
+    private LabDevFindOrderTab labDevFindOrderTab;
     private String ACTUAL_TAB_NAME;
-
     private final String ORDER_FOR_TESTING = "ENTW002106";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
@@ -78,6 +77,7 @@ public class LabDevelopment extends BasicTab {
 
     private void init() {
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
+        labDevFindOrderTab = new LabDevFindOrderTab(this, sql, mCRecipe);
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();
     }
@@ -170,6 +170,9 @@ public class LabDevelopment extends BasicTab {
     public void lab_dev_tab_tab_find_order(){
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
+        //
+        labDevFindOrderTab.go();
+        //
     }
 
     public void lab_dev_tab_tab_material_info() {

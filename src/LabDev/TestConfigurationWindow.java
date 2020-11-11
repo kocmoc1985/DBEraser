@@ -6,14 +6,7 @@
 package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -33,24 +26,23 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
 
     }
 
-    public void addRowsTableOne(String[] preparationMethods) {
-        this.jPanel1.setPreferredSize(new Dimension(430, 35));
-        addRowsTable(preparationMethods, jPanel1);
-    }
-
-    public void addRowsTableTwo(String[] preparationMethods) {
-        this.jPanel2.setPreferredSize(new Dimension(430, 35));
-        addRowsTable(preparationMethods, jPanel2);
-    }
-    
-    public void testGetTableOne(){
+//    public void addRowsTableOne(String[] preparationMethods) {
+//        this.jPanel1.setPreferredSize(new Dimension(430, 35));
+//        addRowsTable(preparationMethods, jPanel1);
+//    }
+//
+//    public void addRowsTableTwo(String[] preparationMethods) {
+//        this.jPanel2.setPreferredSize(new Dimension(430, 35));
+//        addRowsTable(preparationMethods, jPanel2);
+//    }
+    public void testGetTableOne() {
         //
-        ArrayList<JPanelPrepM>list = getSelectedFromTable(jPanel1);
+        ArrayList<JPanelPrepM> list = getSelectedFromTable(jPanel1);
         //
         for (JPanelPrepM jp : list) {
             System.out.println("" + jp);
         }
-        
+
     }
 
     /**
@@ -178,7 +170,7 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
             public void run() {
                 TestConfigurationWindow tcw = new TestConfigurationWindow();
                 tcw.setVisible(true);
-                tcw.addRowsTableOne(new String[]{
+                tcw.addRows(new String[]{
                     "- Keine - ",
                     "Presse / Klappe 6mm / 10 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
@@ -194,16 +186,16 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
                     "Presse / Ammi platte / 15 min / 170c ",
-                    "Presse / Ammi platte / 15 min / 170c "});
+                    "Presse / Ammi platte / 15 min / 170c "}, tcw.jPanel1, null);
                 //
-                tcw.addRowsTableTwo(new String[]{
+                tcw.addRows(new String[]{
                     "- Keine -",
                     "DVR in luft / 1.0 d / 70c ",
                     "DVR in luft / 1.0 d / 70c ",
                     "DVR in luft / 1.0 d / 70c ",
                     "DVR in luft / 1.0 d / 70c "
-                });
-
+                }, tcw.jPanel2, null);
+                //
             }
         });
     }

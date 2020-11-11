@@ -21,7 +21,6 @@ import javax.swing.JTextField;
  */
 public abstract class ChkBoxItemListComponent extends JFrame {
 
-    
     public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
         //
         ArrayList<JPanelPrepM> list = new ArrayList<>();
@@ -45,7 +44,25 @@ public abstract class ChkBoxItemListComponent extends JFrame {
         //
     }
 
-    public void addRowsTable(String[] items, JPanel panel) {
+    public Dimension defaultDimension() {
+        //OBS! Very important to set width, otherwise the FlowLayout
+        // will add components to the "left" but not "down" one after another
+        return new Dimension(430, 35);
+    }
+
+    public void addRows(String[] items, JPanel panel, Dimension dim) {
+        //
+        if (dim == null) {
+            panel.setPreferredSize(defaultDimension());
+        } else {
+            panel.setPreferredSize(dim);
+        }
+        //
+        addRowsTable(items, panel);
+        //
+    }
+
+    private void addRowsTable(String[] items, JPanel panel) {
         //
         for (int i = 0; i < items.length; i++) {
             if (i == 0) {
