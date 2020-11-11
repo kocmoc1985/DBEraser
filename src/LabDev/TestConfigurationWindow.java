@@ -42,7 +42,7 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
         for (JPanelPrepM jp : list) {
             System.out.println("" + jp);
         }
-
+        //
     }
 
     /**

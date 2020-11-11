@@ -8,6 +8,8 @@ package LabDev;
 import MCRecipe.Lang.LNG;
 import MCRecipe.MC_RECIPE;
 import forall.SqlBasicLocal;
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,9 +31,24 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent {
         showCheckBoxComponent();
     }
     
+    private JPanel getPanel(){
+        return mcRecipe.jPanel_lab_dev__find_order;
+    }
+    
     private void showCheckBoxComponent(){
         String[]status_list = LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG);
-        addRows_B(status_list, mcRecipe.jPanel_lab_dev__find_order, null);
+        addRows_B(status_list, getPanel(), null);
+    }
+    
+    
+    public void testBtnClicked(){
+        //
+        ArrayList<JPanelPrepM> list = getSelectedFromTable(getPanel());
+        //
+        for (JPanelPrepM jp : list) {
+            System.out.println("" + jp);
+        }
+        //
     }
      
     

@@ -16,52 +16,59 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class JPanelPrepM extends JPanel{
+public class JPanelPrepM extends JPanel {
 
     private JTextField jtf;
     private JCheckBox chkBox;
     private JLabel lbl;
     private int sequenceNr;
     private final boolean extractSequenceNr;
-    
-    public JPanelPrepM(LayoutManager lm,boolean extractSequenceNr) {
+
+    public JPanelPrepM(LayoutManager lm, boolean extractSequenceNr) {
         super(lm);
         this.extractSequenceNr = extractSequenceNr;
     }
 
     @Override
     public String toString() {
-        return "" + sequenceNr + " / " + isSelected() + " / " + jtf.getText();
+        if (extractSequenceNr == false) {
+            return isSelected() + " / " + lbl.getText();
+        } else {
+            return "" + sequenceNr + " / " + isSelected() + " / " + jtf.getText();
+        }
+
     }
-    
 
     @Override
     public Component add(Component comp) {
         //
-        if(comp instanceof JTextField){
-            this.jtf = (JTextField)comp;
-        }else if(comp instanceof JCheckBox){
-            this.chkBox = (JCheckBox)comp;
-        }else if(comp instanceof JLabel){
-            this.lbl = (JLabel)comp;
+        if (comp instanceof JTextField) {
+            this.jtf = (JTextField) comp;
+        } else if (comp instanceof JCheckBox) {
+            this.chkBox = (JCheckBox) comp;
+        } else if (comp instanceof JLabel) {
+            this.lbl = (JLabel) comp;
             extractSequenceNr(lbl);
         }
         //
         return super.add(comp); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    public boolean isSelected(){
+
+    public boolean isSelected() {
         return this.chkBox.isSelected();
     }
-    
-    public String JTextField(){
-        return this.jtf.getText();
+
+    public String getValue() {
+        if (extractSequenceNr == false) {
+            return this.lbl.getText();
+        } else {
+            return this.jtf.getText();
+        }
     }
-    
-    private void extractSequenceNr(JLabel lbl){
+
+    private void extractSequenceNr(JLabel lbl) {
         //
-        if(extractSequenceNr == false){
+        if (extractSequenceNr == false) {
             this.sequenceNr = -1;
             return;
         }
@@ -69,16 +76,14 @@ public class JPanelPrepM extends JPanel{
         String txt = lbl.getText();
         String rst = txt.replaceAll(":", "").trim();
         //
-        if(rst.isEmpty() == false){
+        if (rst.isEmpty() == false) {
             this.sequenceNr = Integer.parseInt(rst);
-        }else{
+        } else {
             this.sequenceNr = 0;
         }
         //
 //        System.out.println("seq nr: " + this.sequenceNr);
         //
     }
-    
-    
-    
+
 }

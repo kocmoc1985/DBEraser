@@ -167,6 +167,10 @@ public class LabDevelopment extends BasicTab {
         //
     }
     
+    public void lab_dev_tab_tab_find_order__test_btn_clicked(){
+        labDevFindOrderTab.testBtnClicked();
+    }
+    
     public void lab_dev_tab_tab_find_order(){
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
