@@ -31,10 +31,12 @@ import forall.SqlBasicLocal;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -43,7 +45,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class LabDevelopment extends BasicTab {
+public class LabDevelopment extends BasicTab implements MouseListener {
 
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
@@ -79,8 +81,13 @@ public class LabDevelopment extends BasicTab {
     private void init() {
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(this, sql, mCRecipe);
+        getTabbedPane().addMouseListener(this);
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();
+    }
+
+    private JTabbedPane getTabbedPane() {
+        return mCRecipe.jTabbedPane3_Lab_Dev;
     }
 
     public String getOrderNo() {
@@ -857,6 +864,80 @@ public class LabDevelopment extends BasicTab {
             //
         }
         return false;
+    }
+
+    //=========================================================================
+    
+    public static String ACTUAL_TAB_NAME__LAB_DEV = "";
+    public static String PREV_TAB_NAME__LAB_DEV = "";
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+        //
+        JTabbedPane jtb = getTabbedPane();
+        //
+        if (me.getSource() == jtb) {
+            //
+            String title = jtb.getTitleAt(jtb.getSelectedIndex());
+            //
+            ACTUAL_TAB_NAME__LAB_DEV = title;
+            //
+            if (ACTUAL_TAB_NAME__LAB_DEV.equals(PREV_TAB_NAME__LAB_DEV)) {
+                return;
+            }
+            //
+            if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
+                lab_dev_tab__tab_main_data_clicked();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
+                lab_dev_tab__tab_status_clicked();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+                lab_dev_tab__tab_notes_clicked();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
+                lab_dev_tab_tab_material_info();
+            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+                lab_dev_tab_tab_find_order();
+            }
+            //
+            PREV_TAB_NAME__LAB_DEV = ACTUAL_TAB_NAME__LAB_DEV;
+            //
+        }
+    }
+
+    public void lab_development_tab_clicked() {
+        //
+        String title = PREV_TAB_NAME__LAB_DEV;
+        //
+        if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
+            lab_dev_tab__tab_main_data_clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
+            lab_dev_tab__tab_status_clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
+            lab_dev_tab__tab_notes_clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
+            lab_dev_tab_tab_material_info();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+            lab_dev_tab_tab_find_order();
+        } else {
+//            lab_dev_tab__tab_main_data_clicked();
+            lab_dev_tab_tab_find_order();
+        }
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

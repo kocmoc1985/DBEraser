@@ -2168,7 +2168,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTabbedPane3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTabbedPane3_Lab_Dev" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel_lab_dev_header" min="-2" pref="1399" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="342" max="32767" attributes="0"/>
@@ -2181,14 +2181,17 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jPanel_lab_dev_header" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTabbedPane3" min="-2" pref="789" max="-2" attributes="0"/>
+                          <Component id="jTabbedPane3_Lab_Dev" min="-2" pref="789" max="-2" attributes="0"/>
                           <EmptySpace pref="602" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JTabbedPane" name="jTabbedPane3">
+                <Container class="javax.swing.JTabbedPane" name="jTabbedPane3_Lab_Dev">
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
                   <SubComponents>

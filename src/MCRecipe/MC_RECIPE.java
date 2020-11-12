@@ -221,7 +221,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void lang_other() {
         if (LNG.LANG_ENG == false) {
-            LNG.GO(jTabbedPane1, jTabbedPane3);
+            LNG.GO(jTabbedPane1, jTabbedPane3_Lab_Dev);
             RECIPE_OVERVIEW_.RECIPE_OVERVIEW_TABS(jTabbedPane2);
         }
     }
@@ -327,7 +327,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void initOther() {
         //
         this.jTabbedPane1.addMouseListener(this);
-        this.jTabbedPane3.addMouseListener(this);
         //
         this.jTable1.setName("table_1_recipe");
         this.jTable2.setName("table_2_recipe");
@@ -696,7 +695,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabelLockedUnlocked = new javax.swing.JLabel();
         jScrollPane_LabDevelopment = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jTabbedPane3_Lab_Dev = new javax.swing.JTabbedPane();
         jPanel61 = new javax.swing.JPanel();
         jScrollPane23 = new javax.swing.JScrollPane();
         jPanel_lab_dev__find_order = new javax.swing.JPanel();
@@ -1977,7 +1976,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(292, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("FIND ORDER", jPanel61);
+        jTabbedPane3_Lab_Dev.addTab("FIND ORDER", jPanel61);
 
         jPanel_lab_development.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_lab_development.setLayout(new java.awt.GridLayout(1, 0));
@@ -2109,7 +2108,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("MAIN DATA", jPanel53);
+        jTabbedPane3_Lab_Dev.addTab("MAIN DATA", jPanel53);
 
         jPanel_lab_dev_material_info.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_lab_dev_material_info.setLayout(new java.awt.GridLayout(1, 0));
@@ -2162,7 +2161,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(221, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("MATERIAL INFO", jPanel60);
+        jTabbedPane3_Lab_Dev.addTab("MATERIAL INFO", jPanel60);
 
         javax.swing.GroupLayout jPanel62Layout = new javax.swing.GroupLayout(jPanel62);
         jPanel62.setLayout(jPanel62Layout);
@@ -2175,7 +2174,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGap(0, 759, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("TEST DEFINITIONS", jPanel62);
+        jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
 
         jPanel_lab_development_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_lab_development_2.setLayout(new java.awt.GridLayout(1, 0));
@@ -2255,7 +2254,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(61, 61, 61))
         );
 
-        jTabbedPane3.addTab("STATUS", jPanel54);
+        jTabbedPane3_Lab_Dev.addTab("STATUS", jPanel54);
 
         jTextArea_notes__lab_dev_tab.setColumns(20);
         jTextArea_notes__lab_dev_tab.setRows(5);
@@ -2289,7 +2288,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(212, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("NOTES", jPanel59);
+        jTabbedPane3_Lab_Dev.addTab("NOTES", jPanel59);
 
         jPanel_lab_dev_header.setLayout(new java.awt.GridLayout(2, 1));
 
@@ -2306,7 +2305,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane3_Lab_Dev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.PREFERRED_SIZE, 1399, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(342, Short.MAX_VALUE))
         );
@@ -2316,7 +2315,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(10, 10, 10)
                 .addComponent(jPanel_lab_dev_header, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane3_Lab_Dev, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(602, Short.MAX_VALUE))
         );
 
@@ -5043,7 +5042,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JScrollPane jScrollPane_LabDevelopment;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
+    public javax.swing.JTabbedPane jTabbedPane3_Lab_Dev;
     protected javax.swing.JTable jTable1;
     protected javax.swing.JTable jTable2;
     protected javax.swing.JTable jTable3;
@@ -5135,57 +5134,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA_.resetTableHeaderPainting(jTable2, HelpA_.getColByName(jTable2, "Note_Value"));
     }
 
-    public static String ACTUAL_TAB_NAME__LAB_DEV = "";
-    public static String PREV_TAB_NAME__LAB_DEV = "";
-
-    private void mousePressedOnTab_lab_development(MouseEvent me) {
-        //
-        if (me.getSource() == jTabbedPane3) {
-            //
-            String title = jTabbedPane3.getTitleAt(jTabbedPane3.getSelectedIndex());
-            //
-            ACTUAL_TAB_NAME__LAB_DEV = title;
-            //
-            if (ACTUAL_TAB_NAME__LAB_DEV.equals(PREV_TAB_NAME__LAB_DEV)) {
-                return;
-            }
-            //
-            if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
-                lab_dev_tab__tab_main_data_clicked();
-            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
-                lab_dev_tab__tab_status_clicked();
-            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
-                lab_dev_tab__tab_notes_clicked();
-            } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
-                lab_dev_tab__tab_material_info_clicked();
-            }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
-                lab_dev_tab__tab_find_order_clicked();
-            }
-            //
-            PREV_TAB_NAME__LAB_DEV = ACTUAL_TAB_NAME__LAB_DEV;
-            //
-        }
-    }
     
-    private void lab_dev_tab__tab_find_order_clicked(){
-        labDevelopment.lab_dev_tab_tab_find_order();
-    }
-
-    private void lab_dev_tab__tab_material_info_clicked() {
-        labDevelopment.lab_dev_tab_tab_material_info();
-    }
-
-    private void lab_dev_tab__tab_notes_clicked() {
-        labDevelopment.lab_dev_tab__tab_notes_clicked();
-    }
-
-    private void lab_dev_tab__tab_main_data_clicked() {
-        labDevelopment.lab_dev_tab__tab_main_data_clicked();
-    }
-
-    private void lab_dev_tab__tab_status_clicked() {
-        labDevelopment.lab_dev_tab__tab_status_clicked();
-    }
 
     public static String ACTUAL_TAB_NAME = "";
 
@@ -5279,32 +5228,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     labDevelopment = new LabDevelopment(sql, sql_additional, this, new ChangeSaver(sql, this));
                 }
                 //
-                lab_development_tab_clicked();
+                labDevelopment.lab_development_tab_clicked();
                 //
             }
         }
     }
 
-    public void lab_development_tab_clicked() {
-        //
-        String title = PREV_TAB_NAME__LAB_DEV;
-        //
-        if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
-            lab_dev_tab__tab_main_data_clicked();
-        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
-            lab_dev_tab__tab_status_clicked();
-        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
-            lab_dev_tab__tab_notes_clicked();
-        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
-            lab_dev_tab__tab_material_info_clicked();
-        }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
-            lab_dev_tab__tab_find_order_clicked();
-        }else {
-//            lab_dev_tab__tab_main_data_clicked();
-             lab_dev_tab__tab_find_order_clicked();
-        }
-
-    }
+    
 
     public void test_parameters_tab_clicked() {
         testParameters.fillTable1();
@@ -5320,7 +5250,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public void mousePressed(MouseEvent me) {
         //
         mousePressedOnTab(me);
-        mousePressedOnTab_lab_development(me);
         //
         boolean cond_1 = HelpA_.getCurrentTabName(jTabbedPane1).equals(LNG.RECIPE_DETAILED_TAB);
         //
