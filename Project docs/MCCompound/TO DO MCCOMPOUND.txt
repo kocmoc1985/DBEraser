@@ -4,3 +4,8 @@
 [FOR PAPS]
 
 
+[FOR BOTH]
+
+Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
+
+

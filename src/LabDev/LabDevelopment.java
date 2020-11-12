@@ -164,6 +164,10 @@ public class LabDevelopment extends BasicTab {
 
     private void refreshHeader() {
         //
+        if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()){
+            HelpA_.showNotification_separate_thread("Kein Auftrag ausgewählt!");
+        }
+        //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
             labDevHeaderComponent.tab_main_data();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
@@ -375,7 +379,7 @@ public class LabDevelopment extends BasicTab {
      */
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        RowDataInvert fertigwunsch_acqdeliver = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "ACQDELIVER", T_INV.LANG("TO BE DELIEVERD"), "", true, true, false);
+        RowDataInvert fertigwunsch_acqdeliver = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "ACQDELIVER", T_INV.LANG("TO BE DELIEVERED"), "", true, true, false);
         //
         RowDataInvert gewunscht_requested = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "REQUESTED", T_INV.LANG("REQUESTED"), "", true, true, false);
         //
@@ -500,6 +504,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert dat_vervollst_proccompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "PROCCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
         RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        notice.enableToolTipTextJTextField();
         //
 //        String q_1 = SQL_B.basic_combobox_query("Name", TABLE_NOTES_1);
 //        RowDataInvert notes = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", TABLE_NOTES_1, "ID", false, "Name", T_INV.LANG("NOTES"), "", true, true, false);
@@ -559,6 +564,7 @@ public class LabDevelopment extends BasicTab {
         RowDataInvert dat_vervollst_testcompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
         RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        notice.enableToolTipTextJTextField();
         //
         datum_geplant_testplan.setValidateDate();
         datum_augefu_testexec.setValidateDate();
