@@ -1,3 +1,16 @@
+[ADDING NEW TAB PROCEDURE]
+
+Start from: "MCRecipe.lang -> LNG.class"
+
+Hint: find USAGES for example for -> "public static String LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION()"
+
+______________________________________________________________________________________________
+[ORDER DEVELOPMENT - STATUSES]
+
+See class: "LabDev.package -> LAB_DEV__STATUS.class".
+
+Remember that the "status" is always stored in "ENG" in the DataBase. (Table: "MC_Cpworder", Column: "WOSTATUS")
+
 ______________________________________________________________________________________________
 [MARKING SAVED / INSAVED]
 

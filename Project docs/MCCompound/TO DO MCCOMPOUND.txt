@@ -1,11 +1,13 @@
 
 [FOR ME]
+1. Tab "Main Data" -> "ZIEL 1, 2" -> decide how to handle this fields
+
 
 [FOR PAPS]
 
 
 [FOR BOTH]
 
-Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
+1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
 
 

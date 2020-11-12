@@ -26,15 +26,6 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
 
     }
 
-//    public void addRowsTableOne(String[] preparationMethods) {
-//        this.jPanel1.setPreferredSize(new Dimension(430, 35));
-//        addRowsTable(preparationMethods, jPanel1);
-//    }
-//
-//    public void addRowsTableTwo(String[] preparationMethods) {
-//        this.jPanel2.setPreferredSize(new Dimension(430, 35));
-//        addRowsTable(preparationMethods, jPanel2);
-//    }
     public void testGetTableOne() {
         //
         ArrayList<JPanelPrepM> list = getSelectedFromTable(jPanel1);

@@ -30,6 +30,7 @@ import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -108,7 +109,7 @@ public class LabDevelopment extends BasicTab {
             //
             String id = getIdMaterialInfoTable();
             //
-            if(id == null || id.isEmpty()){
+            if (id == null || id.isEmpty()) {
                 return "";
             }
             //
@@ -147,7 +148,7 @@ public class LabDevelopment extends BasicTab {
             //
             String id = getIdMaterialInfoTable();
             //
-            if(id == null || id.isEmpty()){
+            if (id == null || id.isEmpty()) {
                 return "";
             }
             //
@@ -164,7 +165,7 @@ public class LabDevelopment extends BasicTab {
 
     private void refreshHeader() {
         //
-        if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()){
+        if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
             HelpA_.showNotification_separate_thread("Kein Auftrag ausgewählt!");
         }
         //
@@ -778,6 +779,14 @@ public class LabDevelopment extends BasicTab {
         changeSaver.saveChange(updateEntry);
         //
         fill_jtable_1_2__tab__main_data();
+        //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        String col_name = ti.getCurrentColumnName(me.getSource());
         //
     }
 
