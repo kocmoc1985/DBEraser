@@ -49,7 +49,7 @@ public class LabDevHeaderComponent implements ItemListener {
 
     private void updateGraphics() {
         header.repaint();
-//        header.updateUI();
+        header.updateUI(); // OBS! Needed
     }
 
     private void clear() {
@@ -78,9 +78,10 @@ public class LabDevHeaderComponent implements ItemListener {
         showStatusTab();
         updateGraphics();
     }
-    
-    public void tab_find_order(){
+
+    public void tab_find_order() {
         clear();
+        showOrderNo_only();
         updateGraphics();
     }
 
@@ -93,6 +94,18 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         for (int i = 0; i < 4; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
+        }
+        //
+    }
+
+    private void showOrderNo_only() {
+        //
+        JPanel upper = getUpper();
+        //
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
+        //
+        for (int i = 0; i < 4; i++) {
+            upper.add(new JPanel()); // Adding empty for compacting 
         }
         //
     }
@@ -155,8 +168,8 @@ public class LabDevHeaderComponent implements ItemListener {
         HelpA_.increase_font(label, 14);
         return label;
     }
-    
-    private String getStatusInActLang(){
+
+    private String getStatusInActLang() {
         String status_eng = HelpA_.getSingleParamSql(sql, LabDevelopment.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
         String status_act_lang = LAB_DEV__STATUS.getStatusActLang(LNG.LANG_ENG, status_eng);
         return status_act_lang;
@@ -173,7 +186,7 @@ public class LabDevHeaderComponent implements ItemListener {
             return;
         }
         //
-        String q = SQL_A.save_status_lab_dev(status_eng,labDev.getOrderNo());
+        String q = SQL_A.save_status_lab_dev(status_eng, labDev.getOrderNo());
         //
         System.out.println("q: " + q);
         //

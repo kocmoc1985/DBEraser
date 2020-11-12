@@ -43,6 +43,10 @@ public class MSG {
     
     
     public static String MSG_4(String status) {
-        return LANG_ENG ? "The status will be changed to: " : "Diese Handlung wird den Status ändern. Soll Status: " + "\"" +  status + "\""+ " akzeptiert werden?";
+        return LANG_ENG ? "The status will be changed to: " + "\"" +  status + "\"" : "Diese Handlung wird den Status ändern. Soll Status: " + "\"" +  status + "\""+ " akzeptiert werden?";
+    }
+    
+    public static String MSG_5() {
+        return LANG_ENG ? "Please choose a row from table" : "Bitte eine Reihe von Tabelle auswählen";
     }
 }

@@ -7,6 +7,7 @@ package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.MSG;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
 import forall.HelpA_;
@@ -73,6 +74,19 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             addRows_B(status_list, getPanel(), new Dimension(200, LabDevFindOrderTab.HEIGHT));
         }
 
+    }
+    
+    public void setOrderBtnClicked(){
+        //
+        JTable table = getTable();
+        //
+        if(HelpA_.rowSelected(table) == false){
+            MSG.MSG_5();
+        }
+        //
+        String selectedOrder = HelpA_.getValueSelectedRow(table, "WORDERNO");
+        labDev.setOrderNo(selectedOrder);
+        //
     }
 
     public void filterButtonClicked() {

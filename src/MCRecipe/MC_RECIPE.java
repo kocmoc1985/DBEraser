@@ -700,10 +700,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel61 = new javax.swing.JPanel();
         jScrollPane23 = new javax.swing.JScrollPane();
         jPanel_lab_dev__find_order = new javax.swing.JPanel();
-        jButton__lab_dev_test_test = new javax.swing.JButton();
+        jButton__lab_dev_find_order_tab__filter = new javax.swing.JButton();
         jScrollPane24 = new javax.swing.JScrollPane();
         jTable_lab_dev__find_order = new javax.swing.JTable();
         jTextField__lab_dev__find_order = new javax.swing.JTextField();
+        jButton__lab_dev_find_order_tab__set_order = new javax.swing.JButton();
         jPanel53 = new javax.swing.JPanel();
         jPanel_lab_development = new javax.swing.JPanel();
         jButton_lab_dev_save_btn_1 = new javax.swing.JButton();
@@ -1920,10 +1921,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jScrollPane23.setViewportView(jPanel_lab_dev__find_order);
 
-        jButton__lab_dev_test_test.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
-        jButton__lab_dev_test_test.addActionListener(new java.awt.event.ActionListener() {
+        jButton__lab_dev_find_order_tab__filter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
+        jButton__lab_dev_find_order_tab__filter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton__lab_dev_test_testActionPerformed(evt);
+                jButton__lab_dev_find_order_tab__filterActionPerformed(evt);
             }
         });
 
@@ -1934,6 +1935,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTextField__lab_dev__find_order.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        jButton__lab_dev_find_order_tab__set_order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton__lab_dev_find_order_tab__set_order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton__lab_dev_find_order_tab__set_orderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel61Layout = new javax.swing.GroupLayout(jPanel61);
         jPanel61.setLayout(jPanel61Layout);
         jPanel61Layout.setHorizontalGroup(
@@ -1942,25 +1950,29 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap()
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton__lab_dev_test_test, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton__lab_dev_find_order_tab__filter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel61Layout.createSequentialGroup()
+                        .addComponent(jButton__lab_dev_find_order_tab__set_order, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         jPanel61Layout.setVerticalGroup(
             jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel61Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton__lab_dev_test_test, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton__lab_dev_find_order_tab__filter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField__lab_dev__find_order, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton__lab_dev_find_order_tab__set_order, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane24)
                     .addComponent(jScrollPane23))
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("FIND ORDER", jPanel61);
@@ -4582,9 +4594,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         labDevelopment.saveTableInvert_6();
     }//GEN-LAST:event_jButton_lab_dev__material_info_saveActionPerformed
 
-    private void jButton__lab_dev_test_testActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__lab_dev_test_testActionPerformed
+    private void jButton__lab_dev_find_order_tab__filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__lab_dev_find_order_tab__filterActionPerformed
         labDevelopment.lab_dev_tab_tab_find_order__test_btn_clicked();
-    }//GEN-LAST:event_jButton__lab_dev_test_testActionPerformed
+    }//GEN-LAST:event_jButton__lab_dev_find_order_tab__filterActionPerformed
+
+    private void jButton__lab_dev_find_order_tab__set_orderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__lab_dev_find_order_tab__set_orderActionPerformed
+        labDevelopment.lab_dev_tab_tab_find_order__set_order_clicked();
+    }//GEN-LAST:event_jButton__lab_dev_find_order_tab__set_orderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4735,7 +4751,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     protected javax.swing.JButton jButton_Ingredients_Save_Invert;
     protected javax.swing.JButton jButton_Ingredients_Save_Table3;
     protected javax.swing.JButton jButton_Recipe_Detailed_Save_Invert;
-    private javax.swing.JButton jButton__lab_dev_test_test;
+    private javax.swing.JButton jButton__lab_dev_find_order_tab__filter;
+    private javax.swing.JButton jButton__lab_dev_find_order_tab__set_order;
     public javax.swing.JButton jButton_lab_dev__material_info_save;
     private javax.swing.JButton jButton_lab_dev_add_1;
     private javax.swing.JButton jButton_lab_dev_add_2;

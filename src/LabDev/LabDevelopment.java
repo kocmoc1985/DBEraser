@@ -66,7 +66,7 @@ public class LabDevelopment extends BasicTab {
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
     private String ACTUAL_TAB_NAME;
-    private final String ORDER_FOR_TESTING = "ENTW002106";
+    private String ORDER_FOR_TESTING = ""; // ENTW002106
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
@@ -84,6 +84,10 @@ public class LabDevelopment extends BasicTab {
 
     public String getOrderNo() {
         return ORDER_FOR_TESTING;
+    }
+
+    public void setOrderNo(String order) {
+        this.ORDER_FOR_TESTING = order;
     }
 
     public String getRequester() {
@@ -124,8 +128,6 @@ public class LabDevelopment extends BasicTab {
             return date;
         }
     }
-    
-    
 
     public String getUpdatedBy() {
         //
@@ -138,16 +140,17 @@ public class LabDevelopment extends BasicTab {
             updatedBy = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "UpdatedBy", false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
-              //
+            //
             String id = getIdMaterialInfoTable();
             //
-            updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(),"ID",id, "UpdatedBy", false);
+            updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(), "ID", id, "UpdatedBy", false);
         }
         //
         return updatedBy;
         // 
     }
-    private String getIdMaterialInfoTable(){
+
+    private String getIdMaterialInfoTable() {
         return HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
     }
 
@@ -161,17 +164,22 @@ public class LabDevelopment extends BasicTab {
             labDevHeaderComponent.tab_notes();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             labDevHeaderComponent.tab_material_info();
-        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
             labDevHeaderComponent.tab_find_order();
         }
         //
     }
-    
-    public void lab_dev_tab_tab_find_order__test_btn_clicked(){
+
+    public void lab_dev_tab_tab_find_order__set_order_clicked() {
+        labDevFindOrderTab.setOrderBtnClicked();
+        refreshHeader();
+    }
+
+    public void lab_dev_tab_tab_find_order__test_btn_clicked() {
         labDevFindOrderTab.filterButtonClicked();
     }
-    
-    public void lab_dev_tab_tab_find_order(){
+
+    public void lab_dev_tab_tab_find_order() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
         //
