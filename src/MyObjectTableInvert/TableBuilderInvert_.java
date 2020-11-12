@@ -126,7 +126,7 @@ public class TableBuilderInvert_ {
         return buildTable(query, tableInvertConsumer, TableRow.GRID_LAYOUT);
         //
     }
-    
+
     public Table buildTable(String query, Basic tableInvertConsumer, int layout) throws SQLException {
         //
         if (CONFIG == null) {
@@ -196,7 +196,10 @@ public class TableBuilderInvert_ {
                 ColumnDataEntryInvert cde;
                 //
                 if (type == RowDataInvert.TYPE_COMMON) {
-                    cde = new ColumnDataEntryInvert(value, rs.getString(key_name), orig_field_name, CURR_ROW.getFieldNickName());
+                    //
+                    String val = value == null ? "" : value;
+                    //
+                    cde = new ColumnDataEntryInvert(val, rs.getString(key_name), orig_field_name, CURR_ROW.getFieldNickName());
                 } else {
                     cde = new ColumnDataEntryInvert(CURR_ROW.getSpecialComponent(value), rs.getString(key_name), orig_field_name, CURR_ROW.getFieldNickName());
                 }
