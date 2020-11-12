@@ -5,6 +5,7 @@
  */
 package MCRecipe.Lang;
 
+import LabDev.LAB_DEV__STATUS;
 import static MCRecipe.Lang.LNG.LANG_ENG;
 import forall.HelpA_;
 import javax.swing.JTable;
@@ -15,6 +16,15 @@ import javax.swing.JTable;
  */
 public class LAB_DEV {
 
+    public static void find_order_tab_translate_status(JTable table,String colName) {
+        //
+        for(String status: LAB_DEV__STATUS.getLabDevStatusesAuto(true)){
+           String replace = LAB_DEV__STATUS.getStatusActLang(LANG_ENG, status);
+           HelpA_.setValueAllRows(table, colName, status, replace); 
+        }
+        //
+    }
+    
     public static void find_order_tab_change_jtable__header(JTable table) {
         if (LNG.LANG_ENG) {
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "ORDER");

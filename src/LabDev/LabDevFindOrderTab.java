@@ -51,7 +51,9 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         HelpA_.build_table_common(sql, mcRecipe, getTable(), q, new String[]{"ID"});
         //
-//        HelpA_.changeTableHeaderTitleOfOneColumn(getTable(), "WORDERNO", "AUFTRAG");
+        // Translating status - as status is always saved in ENG in the database
+        LAB_DEV.find_order_tab_translate_status(getTable(), "WOSTATUS");
+        //
         LAB_DEV.find_order_tab_change_jtable__header(getTable());
     }
 

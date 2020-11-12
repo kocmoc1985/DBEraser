@@ -886,6 +886,7 @@ public class HelpA_ {
         setUneditableJTable(jTable);
         //
         try {
+            //
             String[] headers = getHeaders(rs);
             Object[][] content = getContent(rs);
             jTable.setModel(new DefaultTableModel(content, headers));
@@ -1761,7 +1762,7 @@ public class HelpA_ {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.addRow(new Object[]{});
     }
-    
+
     public static int getRowByValue_contains(JTable table, String col_name, String row_value) {
         for (int i = 0; i < table.getColumnCount(); ++i) {
             if (table.getColumnName(i).equals(col_name)) {
@@ -1798,6 +1799,20 @@ public class HelpA_ {
             }
         }
         return -1;
+    }
+
+    public static void setValueAllRows(JTable table, String colName, String toMatch, String replace) {
+        //
+        int col = getColByName(table, colName);
+        //
+        for (int i = 0; i < table.getRowCount(); i++) {
+            //
+            if(table.getValueAt(i, col).equals(toMatch)){
+                table.setValueAt(replace, i, col);
+            }
+            //
+        }
+        //
     }
 
     public static void setValueCurrentRow(JTable table, String colName, Object value) {
@@ -1900,20 +1915,20 @@ public class HelpA_ {
         int row = getRowByValue(table, colName, colValue);
         setSelectedRow(table, row);
     }
-    
+
     public static void markRowByValue_contains(JTable table, String colName, String colValue) {
         int row = getRowByValue_contains(table, colName, colValue);
         setSelectedRow(table, row);
-        scrollToVisible(table, row,1);
+        scrollToVisible(table, row, 1);
     }
-    
+
     public static void scrollToVisible(JTable table, int rowIndex, int vColIndex) {
         //
         if (!(table.getParent() instanceof JViewport)) {
             return;
         }
         //
-        JViewport viewport = (JViewport)table.getParent();
+        JViewport viewport = (JViewport) table.getParent();
 
         // This rectangle is relative to the table where the
         // northwest corner of cell (0,0) is always (0,0).
@@ -1925,10 +1940,9 @@ public class HelpA_ {
         // Translate the cell location so that it is relative
         // to the view, assuming the northwest corner of the
         // view is (0,0)
-        rect.setLocation(rect.x-pt.x, rect.y-pt.y);
+        rect.setLocation(rect.x - pt.x, rect.y - pt.y);
 
 //        table.scrollRectToVisible(rect);
-
         // Scroll the area into view
         viewport.scrollRectToVisible(rect);
     }
@@ -1949,7 +1963,7 @@ public class HelpA_ {
 
     public static void setSelectedRow(JTable table, int rowNr) {
         //
-        if(rowNr < 0){
+        if (rowNr < 0) {
             return;
         }
         //
