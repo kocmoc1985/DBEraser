@@ -15,7 +15,7 @@ import forall.SqlBasicLocal;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,23 +26,23 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener {
-
+    
     private final LabDevelopment labDev;
     private final SqlBasicLocal sql;
     private final MC_RECIPE mcRecipe;
     private boolean oneTimeFlag = false;
-
+    
     public LabDevFindOrderTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE mcRecipe) {
         this.labDev = labDev;
         this.sql = sql;
         this.mcRecipe = mcRecipe;
         mcRecipe.jTextField__lab_dev__find_order.addKeyListener(this);
     }
-
+    
     public void go() {
         showCheckBoxComponent();
     }
-
+    
     private void fillTable() {
         //
         Object[] selectedValues = getSelectedValuesFromTable(getPanel());
@@ -55,67 +55,76 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         LAB_DEV.find_order_tab_translate_status(getTable(), "WOSTATUS");
         //
         LAB_DEV.find_order_tab_change_jtable__header(getTable());
+        //
+        HelpA_.setEnabled(getSetOrderBtn(), true);
+        //
     }
-
+    
     private JPanel getPanel() {
         return mcRecipe.jPanel_lab_dev__find_order;
     }
-
+    
     private JTable getTable() {
         return mcRecipe.jTable_lab_dev__find_order;
     }
-
+    
     private JTextField getTexField() {
         return mcRecipe.jTextField__lab_dev__find_order;
     }
-
+    
+    private JButton getSetOrderBtn(){
+        return mcRecipe.jButton__lab_dev_find_order_tab__set_order;
+    }
+    
     private void showCheckBoxComponent() {
+        //
         if (oneTimeFlag == false) {
             oneTimeFlag = true;
             String[] status_list = LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG);
             addRows_B(status_list, getPanel(), new Dimension(200, LabDevFindOrderTab.HEIGHT));
         }
-
+        //
     }
     
-    public void setOrderBtnClicked(){
+    public void setOrderBtnClicked() {
         //
         JTable table = getTable();
         //
-        if(HelpA_.rowSelected(table) == false){
-            MSG.MSG_5();
+        if (HelpA_.rowSelected(table) == false) {
+            HelpA_.showNotification(MSG.MSG_5());
+            return;
         }
         //
         String selectedOrder = HelpA_.getValueSelectedRow(table, "WORDERNO");
         labDev.setOrderNo(selectedOrder);
         //
     }
-
+    
     public void filterButtonClicked() {
         //
         fillTable();
         //
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
 //        HelpA_.markRowByValue_contains(getTable(), "Title 1", mcRecipe.jTextField__lab_dev__find_order.getText());
         HelpA_.markRowByValue_contains(getTable(), "WORDERNO", getTexField().getText());
     }
-
+    
     private static String random() {
         int x = (int) ((Math.random() * 5000) + 100);//((Math.random() * 100) + 1)
         return "" + x;
     }
-
+    
     private void addFakeValuesToTable() {
         //
         DefaultTableModel model = (DefaultTableModel) getTable().getModel();
@@ -126,5 +135,5 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
 }

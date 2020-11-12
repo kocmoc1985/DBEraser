@@ -108,6 +108,10 @@ public class LabDevelopment extends BasicTab {
             //
             String id = getIdMaterialInfoTable();
             //
+            if(id == null || id.isEmpty()){
+                return "";
+            }
+            //
             date = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO,
                     "WORDERNO", getOrderNo(), "ID", id, "UpdatedOn", false);
             //
@@ -142,6 +146,10 @@ public class LabDevelopment extends BasicTab {
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             //
             String id = getIdMaterialInfoTable();
+            //
+            if(id == null || id.isEmpty()){
+                return "";
+            }
             //
             updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(), "ID", id, "UpdatedBy", false);
         }

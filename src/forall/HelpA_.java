@@ -3391,5 +3391,11 @@ public class HelpA_ {
         }
         return hm;
     }
+    
+     public static void setEnabled(JComponent c, boolean enabled) {
+        java.awt.EventQueue.invokeLater(() -> {
+            c.setEnabled(enabled);
+        });
+    }
 
 }

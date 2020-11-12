@@ -44,6 +44,11 @@ public class LAB_DEV__STATUS {
     }
     //
      public static String getStatusActLang(boolean langEng,String status_eng){
+        //
+        if(status_eng == null){
+            return "";
+        }
+        //
         if(langEng == false){
             return DICT_ENG_DE.getProperty(status_eng, "*" + status_eng);
         }else{

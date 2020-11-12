@@ -1936,6 +1936,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTextField__lab_dev__find_order.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jButton__lab_dev_find_order_tab__set_order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton__lab_dev_find_order_tab__set_order.setEnabled(false);
         jButton__lab_dev_find_order_tab__set_order.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton__lab_dev_find_order_tab__set_orderActionPerformed(evt);
@@ -4752,7 +4753,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     protected javax.swing.JButton jButton_Ingredients_Save_Table3;
     protected javax.swing.JButton jButton_Recipe_Detailed_Save_Invert;
     private javax.swing.JButton jButton__lab_dev_find_order_tab__filter;
-    private javax.swing.JButton jButton__lab_dev_find_order_tab__set_order;
+    public javax.swing.JButton jButton__lab_dev_find_order_tab__set_order;
     public javax.swing.JButton jButton_lab_dev__material_info_save;
     private javax.swing.JButton jButton_lab_dev_add_1;
     private javax.swing.JButton jButton_lab_dev_add_2;
