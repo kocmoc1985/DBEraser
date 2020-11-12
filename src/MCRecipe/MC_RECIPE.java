@@ -5228,7 +5228,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     labDevelopment = new LabDevelopment(sql, sql_additional, this, new ChangeSaver(sql, this));
                 }
                 //
-                labDevelopment.lab_development_tab_clicked();
+                labDevelopment.lab_dev_tab__clicked(null,true);
                 //
             }
         }

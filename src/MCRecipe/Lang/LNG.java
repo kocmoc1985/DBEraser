@@ -35,7 +35,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS = "STATUS";
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES = "NOTES";
     public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO = "MATERIAL INFO";
-    public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS = "TEST DEFINITION";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS = "TEST DEFINITIONS";
     //
     public static String HOME_TAB_DE = "*START";
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";

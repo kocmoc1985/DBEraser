@@ -16,32 +16,50 @@ import javax.swing.JTable;
  */
 public class LAB_DEV {
 
-    public static void find_order_tab_translate_status(JTable table,String colName) {
+    public static void find_order_tab_translate_status(JTable table, String colName) {
         //
-        for(String status: LAB_DEV__STATUS.getLabDevStatusesAuto(true)){
-           String replace = LAB_DEV__STATUS.getStatusActLang(LANG_ENG, status);
-           HelpA_.setValueAllRows(table, colName, status, replace); 
+        for (String status : LAB_DEV__STATUS.getLabDevStatusesAuto(true)) {
+            String replace = LAB_DEV__STATUS.getStatusActLang(LANG_ENG, status);
+            HelpA_.setValueAllRows(table, colName, status, replace);
         }
         //
     }
-    
+
+    public static void material_information_tab_change_jtable__header(JTable table) {
+        if (LNG.LANG_ENG) {
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Material", "Material");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "BatchMenge", "Batch Ammount");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Misch", "Mix");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "FIRSTBNO", "First batchno");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Beschreibung", "Descr");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Mischer", "Mixer");
+        } else {
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Material", "Material");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "BatchMenge", "Chargenmenge");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Misch", "Misch");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "FIRSTBNO", "Erste chargenr");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Beschreibung", "Beschreibung");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "Mischer", "Mischer");
+        }
+    }
+
     public static void find_order_tab_change_jtable__header(JTable table) {
         if (LNG.LANG_ENG) {
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "ORDER");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WOSTATUS", "STATUS");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "REQUESTER", "REQUESTER");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "CUSTOMER", "CUSTOMER");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "EXPREADY", "TO BE DELIEVERED");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "UPDATED ON");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "UPDATED BY");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "Order");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WOSTATUS", "Status");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "REQUESTER", "Requester");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "CUSTOMER", "Customer");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "EXPREADY", "To be delievered");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "Updated");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "Updated by");
         } else {
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "AUFTRAG");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WOSTATUS", "STATUS");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "REQUESTER", "ANTRAGSTELLER");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "CUSTOMER", "KUNDE");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "EXPREADY", "FERTIGWUNSCH");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "AKTUALISIERT");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "AKTUALISIERT VON");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "Auftrag");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "WOSTATUS", "Status");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "REQUESTER", "Antragsteller");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "CUSTOMER", "Kunde");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "EXPREADY", "Fertigwunsch");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "Aktualisiert");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "Aktualisiert von");
         }
     }
 
@@ -91,6 +109,18 @@ public class LAB_DEV {
 
     public static String LBL_6() {
         return LANG_ENG ? "Updated by" : "Aktualisiert von";
+    }
+
+    public static String LBL_7() {
+        return LANG_ENG ? "Recipe" : "Rezeptur";
+    }
+
+    public static String LBL_8() {
+        return LANG_ENG ? "Description" : "Beschreibung";
+    }
+    
+     public static String LBL_9() {
+        return LANG_ENG ? "Ammount of batches" : "Chargenmenge";
     }
 
 }
