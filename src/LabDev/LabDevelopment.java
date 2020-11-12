@@ -168,7 +168,7 @@ public class LabDevelopment extends BasicTab {
     }
     
     public void lab_dev_tab_tab_find_order__test_btn_clicked(){
-        labDevFindOrderTab.testBtnClicked();
+        labDevFindOrderTab.filterButtonClicked();
     }
     
     public void lab_dev_tab_tab_find_order(){

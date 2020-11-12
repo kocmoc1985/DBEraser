@@ -1948,6 +1948,11 @@ public class HelpA_ {
     }
 
     public static void setSelectedRow(JTable table, int rowNr) {
+        //
+        if(rowNr < 0){
+            return;
+        }
+        //
         table.setRowSelectionInterval(rowNr, rowNr);
     }
 

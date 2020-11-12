@@ -1434,9 +1434,9 @@ public class SQL_A {
      * @param filter
      * @return
      */
-    public static String find_order_lab_dev(Object[] filter) {
+    public static String find_order_lab_dev__dynamic(Object[] filter) {
         //
-        String q = "SELECT WORDERNO,WOSTATUS,REQUESTER,UpdatedBy,UpdatedOn from MC_Cpworder";
+        String q = "SELECT ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn from MC_Cpworder";
         //
         for (int i = 0; i < filter.length; i++) {
             //
@@ -1458,6 +1458,6 @@ public class SQL_A {
 //        //
 //        String[] arr = new String[]{"Archiv", "Ready"};
 //        //
-//        System.out.println("" + find_order_lab_dev(arr));
+//        System.out.println("" + find_order_lab_dev__dynamic(arr));
 //    }
 }
