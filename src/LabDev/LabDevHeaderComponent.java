@@ -84,23 +84,23 @@ public class LabDevHeaderComponent implements ItemListener {
         showOrderNo_only();
         updateGraphics();
     }
-    
+
     public void tab_test_defenition() {
         clear();
         showStandard();
         showTestDefTab();
         updateGraphics();
     }
-    
-    private void showTestDefTab(){
-         //
+
+    private void showTestDefTab() {
+        //
         JPanel lower = getLower();
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7(), labDev.getRezeptur());
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7(), labDev.getRezeptur(), false);
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_8(), "");
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_8(), "", true);
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_9(), "");
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_9(), "", false);
         //
         for (int i = 0; i < 2; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
@@ -112,7 +112,7 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         JPanel lower = getLower();
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_4(), labDev.getRequester());
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_4(), labDev.getRequester(), false);
         //
         for (int i = 0; i < 4; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
@@ -124,7 +124,7 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         JPanel upper = getUpper();
         //
-        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo(), false);
         //
         for (int i = 0; i < 4; i++) {
             upper.add(new JPanel()); // Adding empty for compacting 
@@ -139,14 +139,14 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         JPanel upper = getUpper();
         //
-        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo());
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo(), false);
         //
         //
         buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG));
         //
-        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn());
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn(), false);
         //
-        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_6(), labDev.getUpdatedBy());
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_6(), labDev.getUpdatedBy(), false);
         //
         for (int i = 0; i < 1; i++) {
             upper.add(new JPanel()); // Adding empty for compacting 
@@ -154,12 +154,17 @@ public class LabDevHeaderComponent implements ItemListener {
         //
     }
 
-    private void buildJLabelJTextFieldComonent(JPanel upperOrLower, String jLabelVal, String jTextFieldVal) {
+    private void buildJLabelJTextFieldComonent(JPanel upperOrLower, String jLabelVal, String jTextFieldVal, boolean toolTip) {
         //
         JLabel label = buildStandardLabel(jLabelVal);
         //
         JTextField val = new JTextField(jTextFieldVal);
         val.setEditable(false);
+        //
+        if(toolTip == true){
+            val.setToolTipText(jTextFieldVal);
+        }
+        //
         JPanel container = new JPanel(new GridLayout(1, 2));
         container.add(label);
         container.add(val);

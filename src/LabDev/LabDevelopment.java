@@ -69,7 +69,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
-    private String ORDER_FOR_TESTING = ""; // ENTW002106
+    private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
 
