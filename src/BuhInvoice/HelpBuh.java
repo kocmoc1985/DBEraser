@@ -14,6 +14,7 @@ import BuhInvoice.sec.SMTP;
 import forall.HelpA_;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,11 +26,13 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JLabel;
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -83,7 +86,8 @@ public class HelpBuh {
 
     /**
      * JSON: {"version":"versionVersion"}
-     * @return 
+     *
+     * @return
      */
     public static void checkUpdates(JLabel label) {
         //
@@ -106,14 +110,14 @@ public class HelpBuh {
         //
         System.out.println("" + version);
         //
-        boolean newVerAvailable = Integer.parseInt(version)> GP_BUH.VERSION_INTEGER;
+        boolean newVerAvailable = Integer.parseInt(version) > GP_BUH.VERSION_INTEGER;
         //
-        if(label != null && newVerAvailable){
+        if (label != null && newVerAvailable) {
             label.setText("Ny version finns tillgänglig på www.lafakturering.se");
         }
         //
     }
-    
+
     public static void main(String[] args) {
         //
         checkUpdates(null);
@@ -274,8 +278,6 @@ public class HelpBuh {
         }
         //
     }
-
-    
 
     /**
      * This one is used for creating of an account for an existing "buh_kund" So
@@ -556,6 +558,53 @@ public class HelpBuh {
 //        String temp = arr[1];
 //        System.out.println("HTTP REQ VAL: " + temp);
 //        return temp;
+    }
+
+    /**
+     * https://stackoverflow.com/questions/6927427/how-to-send-https-post-request-in-java
+     * OBS! HTTPS!
+     * Not Used so far and also not tested yet [2020-10-13]
+     * @param url_
+     * @return
+     * @throws Exception 
+     */
+    private static synchronized String https____get_content_post(String url_) throws Exception {
+        //
+        String httpsURL = "https://www.abcd.com/auth/login/";
+        //
+        String query = "email=" + URLEncoder.encode("abc@xyz.com", "UTF-8");
+        query += "&";
+        query += "password=" + URLEncoder.encode("abcd", "UTF-8");
+        //
+        URL myurl = new URL(httpsURL);
+        HttpsURLConnection con = (HttpsURLConnection) myurl.openConnection();
+        con.setRequestMethod("POST");
+        //
+        con.setRequestProperty("Content-length", String.valueOf(query.length()));
+        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        con.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0;Windows98;DigExt)");
+        con.setDoOutput(true);
+        con.setDoInput(true);
+        //
+        DataOutputStream output = new DataOutputStream(con.getOutputStream());
+        //
+        output.writeBytes(query);
+        //
+        output.close();
+        //
+        DataInputStream input = new DataInputStream(con.getInputStream());
+        //
+        for (int c = input.read(); c != -1; c = input.read()) {
+            System.out.print((char) c);
+        }
+        //
+        input.close();
+        //
+        System.out.println("Resp Code:" + con.getResponseCode());
+        System.out.println("Resp Message:" + con.getResponseMessage());
+        //
+//        return StringEscapeUtils.unescapeJava(value);//[#ESCAPE#]
+        return "";
     }
 
     /**

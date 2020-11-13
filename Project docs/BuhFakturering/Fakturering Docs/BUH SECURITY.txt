@@ -1,3 +1,35 @@
+________________________________________________________________________________________________________
+
+[OBS!!!! ONE.COM IMPLEMENTS ALREADY HTTPS CERTIFICATING FROM "https://letsencrypt.org/" ] -> try "https://mixcont.com"
+
+[IMPLEMNT HTTP 'POST' WHEN SENDING ENCRYPTED CLIENT ID][2020-05-09] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT]
+
+[NOT IMPLEMENTED YET ------ NOT IMPLEMENTED YET ------------- NOT IMPLEMENTED YET]
+
+In fact i should switch to HTTPS to make the traffic encrypted, otherwise using "GET" & "POST" with HTTP is insequre in any case.
+
+Switch from HTTP to HTTPS, steps:
+
+1.Purchase an SSL certificate,
+2.Install your SSL certificate on your website's hosting account,
+3.Make sure that any website links are changed from http to https so they are not broken after you flip the https switch, and.
+
+From Stackoverflow regarding free HTTPS alternative, OBS! One.com supports this--------------------->IMPORTANT
+Don't bother yourself anymore with invalid ssl certificate. You can now generate free browser valid certificate for
+your server as easily as you would generate a snakeoil (self-signed, browser invalid) certificate. 
+Go see https://letsencrypt.org/ it's free and open to contributions.
+____
+
+[Regarding Java:]
+
+It seems it's not a problem, to implement "https" in java.
+
+1. See: HelpBuh.class -> https____get_content_post(String url_) throws Exception -> This is not tested yet by [2020-10-13]
+
+A comment which i find important from ->https://alvinalexander.com/blog/post/java/simple-https-example/: 
+I’ve found through experience that this Java program should work if you are hitting an HTTPS URL that has a valid SSL certificate
+ from someone like Verisign or Thawte, but will not work with other SSL certificates unless you go down the Java keystore road.
+________________________________________________________________________________________________________
 [KUNDID SHALL BE ONLY DEFINED AT THE PHP SIDE][2020-10-26]
 
 Tags:
