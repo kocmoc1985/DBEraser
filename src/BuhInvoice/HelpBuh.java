@@ -42,6 +42,8 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
+    private static final boolean HTTPS = true;
+
     /**
      * @deprecated @throws Exception
      */
@@ -69,7 +71,12 @@ public class HelpBuh {
         //
         String url = buildUrl(phpScriptName, phpFunctionName, JSon.hashMapToJSON(map));
         //
-        return http_get_content_post(url);
+        if (HTTPS) {
+            return https_get_content_post(url);
+        } else {
+            return http_get_content_post(url);
+        }
+        //
     }
 
     public static void update(String json) {
@@ -320,7 +327,12 @@ public class HelpBuh {
      * @return
      */
     private static String buildUrl(String phpScriptName, String phpFunctionName, String json) {
-        return String.format("http://www.mixcont.com/php/%s?%s=true&json=%s", phpScriptName + ".php", phpFunctionName, json);
+        if (HTTPS) {
+            return String.format("https://www.mixcont.com/php/%s?%s=true&json=%s", phpScriptName + ".php", phpFunctionName, json);
+        } else {
+            return String.format("http://www.mixcont.com/php/%s?%s=true&json=%s", phpScriptName + ".php", phpFunctionName, json);
+        }
+
     }
 
     /**
@@ -490,6 +502,7 @@ public class HelpBuh {
     /**
      * Implemented [2020-06-02] Yes this one is working
      *
+     * @deprecated - https shall be used always when possible
      * @param url_
      * @return
      * @throws MalformedURLException
@@ -561,14 +574,75 @@ public class HelpBuh {
     }
 
     /**
-     * https://stackoverflow.com/questions/6927427/how-to-send-https-post-request-in-java
-     * OBS! HTTPS!
-     * Not Used so far and also not tested yet [2020-10-13]
+     * SUPER IMPORTANT [2020-10-13] WORKING
+     *
      * @param url_
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
-    private static synchronized String https____get_content_post(String url_) throws Exception {
+    public static synchronized String https_get_content_post(String url_) throws Exception {
+        //
+        String urlParameters = url_.split("\\?")[1];
+        byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        String request = url_.split("\\?")[0];
+        //
+        URL url = new URL(request);
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        //
+        conn.setDoOutput(true);
+        //
+        ((HttpsURLConnection) conn).setInstanceFollowRedirects(false);
+        ((HttpsURLConnection) conn).setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); // 
+        conn.setRequestProperty("charset", "utf-8");
+        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+        conn.setUseCaches(false);
+        //
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+            wr.write(postData);
+        }
+        //
+        InputStream ins = conn.getInputStream();
+        InputStreamReader isr = new InputStreamReader(ins, "UTF-8");
+        BufferedReader in = new BufferedReader(isr);
+        String inputLine;
+        String result = "";
+        while ((inputLine = in.readLine()) != null) {
+            result += inputLine;
+        }
+        //
+        System.out.println("BYTES TOTAl: " + result.getBytes().length + "   URL: " + url_.toString());
+        //
+        String[] arr = result.split("###");
+        //
+        if (arr.length == 0) {
+            System.out.println("HTTP REQ FAILED");
+            return "";
+        }
+        //
+        String temp = arr[1];
+        String value = temp.split(":")[1];
+        //
+        System.out.println("HTTP REQ VAL: " + value);
+        //
+        //
+        //OBS! OBS! [2020-08-03] Without "StringEscapeUtils.unescapeJava(value)" i am getting
+        // "\u00e5" instead of "å", so what unescaping dose is that it removes one the "\"
+        // because an unescaped string which i recieve looks like "\\u00e5" indeed 
+        return StringEscapeUtils.unescapeJava(value);//[#ESCAPE#]
+        //
+    }
+
+    /**
+     * https://stackoverflow.com/questions/6927427/how-to-send-https-post-request-in-java
+     * OBS! HTTPS! Not Used so far and also not tested yet [2020-10-13]
+     *
+     * @param url_
+     * @return
+     * @throws Exception
+     */
+    private static synchronized String https____get_content_post___leave__as_exmaple(String url_) throws Exception {
         //
         String httpsURL = "https://www.abcd.com/auth/login/";
         //
