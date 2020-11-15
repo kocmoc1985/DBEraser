@@ -356,12 +356,12 @@
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="48" style="2"/>
+                      <Font name="Tahoma" size="48" style="3"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fa" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="#LAFakturering"/>
+                    <Property name="text" type="java.lang.String" value="LAFakturering"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17_new__version">
