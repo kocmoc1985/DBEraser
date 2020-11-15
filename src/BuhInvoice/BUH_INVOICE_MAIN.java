@@ -717,6 +717,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jCheckBox_spara_inloggning.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox_spara_inloggning.setText("Spara Inloggning");
         jCheckBox_spara_inloggning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -725,14 +726,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
 
         jLabel_inloggning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_inloggning.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_inloggning.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_inloggning.setText("Inloggning");
 
         jPanel_register_new.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_register_new.setLayout(new java.awt.BorderLayout());
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Saknar du konto? Registrera ett");
 
         jButton_register_new_user.setText("Registrera");
@@ -746,7 +747,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel_restore_password.setLayout(new java.awt.BorderLayout());
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Glömt lösenord?");
 
         jButton_forgot_password.setText("Återställ");
@@ -760,7 +761,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel_share_account.setLayout(new java.awt.BorderLayout());
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Dela konto med en annan");
 
         jButton_share_account.setText("Dela");
@@ -784,7 +785,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane17.setViewportView(jTable_shared_users);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Du delar konto med följande användare");
 
         jButton2.setText("Radera");
