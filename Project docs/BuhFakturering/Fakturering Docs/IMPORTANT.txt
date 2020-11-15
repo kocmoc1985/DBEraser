@@ -1,3 +1,15 @@
+[JPANEL BACKGROUND - BACKGROUNDPANEL] [2020-11-15]
+
+See: forall.package -> BackgroundPanel.class
+
+How to use: From graphical editor -> Click on a JPanel -> Choose "Customize code" -> enter following: 
+try{
+jPanel19 = new BackgroundPanel(ImageIO.read(new File("io/logo_21.png")));
+}catch(Exception ex){
+
+}
+
+________________________________________________________________________________________________________
 [DESKTOP PATH - FOLLOW THIS SUBJECT] [2020-10-28]
 
 I discovered that on Linas PC the faktura was not printed to desktop when choosing option, send with Outlook.
@@ -5,7 +17,7 @@ I discovered that on Linas PC the faktura was not printed to desktop when choosi
 I found following method for getting desktop path: javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory()
 
 I dont now if it fixes the problem with Linas PC yet
-_______________________________________________________________________________________________________
+________________________________________________________________________________________________________
 [MOMS SATS REPLACING THE "%" IN JTABLE][2020-10-21]
 
 Search for: replaceAll("%", "")
