@@ -36,6 +36,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <Properties>
+            <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="HEM">
@@ -119,7 +122,7 @@
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel_register_new" min="-2" pref="191" max="-2" attributes="0"/>
+                          <Component id="jPanel_register_new" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jButton_register_new_user" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -140,7 +143,7 @@
                           <Component id="jScrollPane17" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="276" max="32767" attributes="0"/>
+                          <EmptySpace pref="293" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -358,7 +361,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="fa" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="LAFakturering"/>
+                    <Property name="text" type="java.lang.String" value="#LAFakturering"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17_new__version">

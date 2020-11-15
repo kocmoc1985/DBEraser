@@ -703,6 +703,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
             jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+            jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         }catch(Exception ex){
 
         }
@@ -797,7 +799,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 250));
-        jLabel16.setText("LAFakturering");
+        jLabel16.setText("#LAFakturering");
 
         jLabel17_new__version.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel17_new__version.setForeground(new java.awt.Color(153, 153, 153));
@@ -857,7 +859,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(25, 25, 25)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel_register_new, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel_register_new, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton_register_new_user)
                 .addGap(25, 25, 25)
@@ -878,7 +880,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton2)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
