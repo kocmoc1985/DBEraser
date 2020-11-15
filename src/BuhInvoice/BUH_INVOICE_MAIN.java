@@ -12,6 +12,7 @@ import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -2510,7 +2511,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel16;
     protected javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
+    public static javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
@@ -2528,7 +2529,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
-    protected javax.swing.JPanel jPanel_inloggning;
+    public static javax.swing.JPanel jPanel_inloggning;
     protected javax.swing.JPanel jPanel_register_new;
     protected javax.swing.JPanel jPanel_restore_password;
     protected javax.swing.JPanel jPanel_share_account;

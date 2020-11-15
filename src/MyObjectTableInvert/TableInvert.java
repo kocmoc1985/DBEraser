@@ -5,6 +5,7 @@
  */
 package MyObjectTableInvert;
 
+import BuhInvoice.BUH_INVOICE_MAIN;
 import MyObjectTable.ControlsActionsIF;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
@@ -34,6 +35,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -47,13 +49,12 @@ public class TableInvert extends Table implements ControlsActionsIF {
     private Basic TABLE_INVERT_CONSUMER;
 
     /**
-     * @deprecated since [2020-01-05]
-     * Not used any longer
+     * @deprecated since [2020-01-05] Not used any longer
      * @param data
      * @param row_layout
      * @param row_height
      * @param column_width_percent
-     * @param tableName 
+     * @param tableName
      */
     public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName) {
         super(data, row_layout, row_height, column_width_percent);
@@ -64,6 +65,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
         this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
+        
     }
 
     public Basic getTableInvertConsumer() {
@@ -88,6 +90,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     @Override
     public void componentResized(ComponentEvent ce) {
+      
         resizeRows();
     }
 
@@ -146,8 +149,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     }
 
     /**
-     * [2020-07-21]
-     * This method is about adding graphical components
+     * [2020-07-21] This method is about adding graphical components
      */
     private void addExistingRowsToTable() {
         //
@@ -214,6 +216,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             this.ROW_COUNTER++;
         }
+        //
+       
         //
 //        resizeRows();
         //
@@ -304,8 +308,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
             }
         }
     }
-    
-     public void clearAllRowsJComboBoxSpecial(int jcomboSelecetedIndex) {
+
+    public void clearAllRowsJComboBoxSpecial(int jcomboSelecetedIndex) {
         //
         for (Object rowInvert : rows_list) {
             //
@@ -385,8 +389,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         tableRow.setValueAt(1, value);
     }
-    
-     public void setColorAt(String rowName, Color color) {
+
+    public void setColorAt(String rowName, Color color) {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         tableRow.setColorAt(1, color);
     }
@@ -395,32 +399,33 @@ public class TableInvert extends Table implements ControlsActionsIF {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         return tableRow.getComponentAt(column);
     }
-    
-    public ColumnDataEntryInvert getColumnDataEntryInvertAt(String rowName){
+
+    public ColumnDataEntryInvert getColumnDataEntryInvertAt(String rowName) {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         JLinkInvert jli = tableRow.getLinkInvertAt(1);
         return jli.getChildObject();
     }
-    
-    public ColumnDataEntryInvert getColumnDataEntryInvertAt(String rowName, int column){
+
+    public ColumnDataEntryInvert getColumnDataEntryInvertAt(String rowName, int column) {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         JLinkInvert jli = tableRow.getLinkInvertAt(column);
         return jli.getChildObject();
     }
-    
-    public Object getObjectAt(String rowName){
+
+    public Object getObjectAt(String rowName) {
         TableRow tableRow = getRow(getRowNrByName(rowName));
         return tableRow.getObjectAt(1);
     }
-    
+
     /**
-     * [2020-10-21]
-     * This one is for getting other values which are not shown from JCombo
+     * [2020-10-21] This one is for getting other values which are not shown
+     * from JCombo
+     *
      * @param rowName
      * @param paramToReturn
-     * @return 
+     * @return
      */
-    public String getValueAtJComboBox(String rowName,int paramToReturn) {
+    public String getValueAtJComboBox(String rowName, int paramToReturn) {
         TableRowInvert tableRow = getRow(getRowNrByName(rowName));
         String value = tableRow.getValueAtJComboBox(1, paramToReturn);
         return value;
@@ -540,7 +545,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 //
                 Component c = (Component) unsavedEntryInvert.getDataField();
 //                c.setForeground(Color.green);
-                HelpA_.font_change_type((JComponent)c, Font.PLAIN);
+                HelpA_.font_change_type((JComponent) c, Font.PLAIN);
                 //
                 if (c instanceof JComboBox) {
                     JComboBox box = (JComboBox) c;

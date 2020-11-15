@@ -9,6 +9,7 @@ import forall.GradientJPanel_B;
 import forall.GradientJPanel_C;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;

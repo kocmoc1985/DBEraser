@@ -25,6 +25,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -68,14 +69,14 @@ public class Home extends Basic_Buh {
         table.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-    
-    private void fillSharedUsersTable(){
+
+    private void fillSharedUsersTable() {
         //
         JTable table = bim.jTable_shared_users;
         //
         String req = bim.getSELECT(DB.BUH_LICENS__KUND_ID, GP_BUH.KUND_ID);
         //
-         try {
+        try {
             //
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__SHARED_USERS, req);
@@ -90,8 +91,8 @@ public class Home extends Basic_Buh {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void addRowJTableSharedUsers(HashMap<String, String> map,JTable table){
+
+    private void addRowJTableSharedUsers(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_LICENS__USER),
@@ -103,7 +104,7 @@ public class Home extends Basic_Buh {
         //
     }
 
-    protected void processDeleteGuest(){
+    protected void processDeleteGuest() {
         //
         String guestUser = HelpA_.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
         //
@@ -113,7 +114,7 @@ public class Home extends Basic_Buh {
         //
         res.defineStatus();
     }
-    
+
     protected void processShareAccount() {
         //
         if (fieldsValidated_tableInvert_4(false)) {
@@ -183,8 +184,8 @@ public class Home extends Basic_Buh {
     private boolean saveInloggning() {
         return bim.jCheckBox_spara_inloggning.isSelected();
     }
-    
-    private JTable getJTable(){
+
+    private JTable getJTable() {
         return bim.jTable_shared_users;
     }
 
@@ -195,7 +196,7 @@ public class Home extends Basic_Buh {
         showTableInvert_3();
         showTableInvert_4();
         //
-        if(GP_BUH.loggedIn()){
+        if (GP_BUH.loggedIn()) {
             HelpA_.clearAllRowsJTable(getJTable());
             fillSharedUsersTable();
         }
@@ -312,6 +313,25 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //
+//                BUH_INVOICE_MAIN.jPanel19.revalidate();
+//                BUH_INVOICE_MAIN.jPanel19.repaint();
+//                //
+//                TABLE_INVERT.setBackground(new Color(0, 0, 0, 0));
+//                TABLE_INVERT.revalidate();
+//                TABLE_INVERT.repaint();
+//                //
+//                BUH_INVOICE_MAIN.jPanel_inloggning.setBackground(new Color(0, 0, 0, 0));
+//                BUH_INVOICE_MAIN.jPanel_inloggning.revalidate();
+//                BUH_INVOICE_MAIN.jPanel_inloggning.repaint();
+            }
+        });
+        //
+
+        //
     }
 
     /**
@@ -355,6 +375,7 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT_4, this);
         //
+
     }
 
     @Override
