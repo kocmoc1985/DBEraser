@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
-import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
@@ -24,10 +23,8 @@ import MyObjectTableInvert.TableInvert;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -25,7 +25,28 @@ Implementation PHP side:
 Absolutely NOTHING [100% verified]
 
 ________________________________________________________________________________________________________
-[KUNDID SHALL BE ONLY DEFINED AT THE PHP SIDE][2020-10-26]
+[BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
+
+________________________________________________________________________________________________________
+[DELETE ALL DATA RELATED TO CUSTOMER][2020-11-16]
+
+At the moment [2020-11-16] the account/kund can be only removed manually by the HttpBuh.class -> "deleteCustomer_a()" --> This method is infact only for development and should be removed 
+This method is using "admin password" which is stored hard coded on the website ("Vxuw6lpMzF").
+
+OBS! Note this method "deleteCustomer_a()" -> is called BEFORE the most IMPORTANT "validate()" method.
+
+"deleteCustomer_a()" -> sends "kundId" -> which is in fact "deprecated" -> the "kundId" shall be only defined at PHP side
+
+________________________________________________________________________________________________________
+[OBFUSCATION][2020-11-16]
+
+Obfuscation is implemented at least on HPWORK, and working properly.
+
+Think how to obfuscate the static methods in the: HelpBuh.class
+
+
+________________________________________________________________________________________________________
+[**KUNDID** SHALL BE ONLY DEFINED AT THE PHP SIDE][2020-10-26]
 
 Tags:
 PHP: [#$KUND_ID$#]
@@ -50,9 +71,20 @@ OBS! [#KUND-ID-INSERT#] tag is valid not only for insert -> You may also search 
 To check later:
 exist() funtction still using "mysqli". "kundId" is now set on PHP side
 ________________________________________________________________________________________________________
-[BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
+[SEQURITY FUNCTIONS - VALIDATE FUNCTION][2020-10-07]
 
+Search for TAG: [#SEQURITY#] in both "DBEraser" and "MCWebNew" projects
+
+PHP side, see: "_http_buh.php" -------------------------------------------------------------------------------> "validate()"
+Java side, see: "HelpBuh.class -> executePHP(String phpScriptName, String phpFunctionName, String json)"
+
+1. PHP -> "_http_buh.php" -> "validate()" function is called first of all functions and if not "passed" the whole script will not execute further ***********IMPORTANT
+1.2 In fact there are some functions called before "validate()" -> all except the getVersion(), restorePwd() and createAccountMain() shall be removed in future
+2. Java -> "BUH_INVOICE_MAIN.class" -> "DEFINE_KUNDID()"
+
+A. Even if a hacker nows some "kundId" it's not possible to use it somehow as the validation is done uppon ALL of the requests.
 ________________________________________________________________________________________________________
+
 [SHARING OF USER ACCOUNT][2020-10-22]
 
 PHP see: "_http_buh.php" -> "shareAccount()"
@@ -93,18 +125,7 @@ HASHING IS DONE IN: "_http_buh.php" -> "createAccount()" ----------> Using PHP's
 PASS VALIDATION IS DONE: _http_buh.php" -> "check_login($user, $pass)" ---------> Using PHP's embeded "password_verify($pass, $passHashed)"
 
 ________________________________________________________________________________________________________
-[SEQURITY FUNCTIONS][2020-10-07]
 
-Search for TAG: [#SEQURITY#] in both "DBEraser" and "MCWebNew" projects
-
-PHP side, see: "_http_buh.php" -> "validate()"
-Java side, see: "HelpBuh.class -> executePHP(String phpScriptName, String phpFunctionName, String json)"
-
-1. PHP -> "_http_buh.php" -> "validate()" function is called first of all functions and if not "passed" the whole script will not execute further.
-2. Java -> "BUH_INVOICE_MAIN.class" -> "DEFINE_KUNDID()"
-
-A. Even if a hacker nows some "kundId" it's not possible to use it somehow as the validation is done uppon ALL of the requests.
-________________________________________________________________________________________________________
 [SQL INJECTION - PREPARED STATEMENTS] [2020-08-07]
 
 See in "lib.php": "function connectPDO()" && "function executePreparedQueryPdo($q, $valuesArray)"
