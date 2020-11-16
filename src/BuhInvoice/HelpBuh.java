@@ -127,7 +127,7 @@ public class HelpBuh {
 
     public static void main(String[] args) {
         //
-        checkUpdates(null);
+//        checkUpdates(null);
         //
 //        GP_BUH.USER = "mixcont";
 //        GP_BUH.PASS = "mixcont4765";
@@ -139,7 +139,7 @@ public class HelpBuh {
 //        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
         //
         //
-//        deleteCustomer_a("24", "Vxuw6lpMzF");
+        deleteCustomer_a("25", "Vxuw6lpMzF");
         //
         //
 //        restorePwd("andrej.brassas@gmail.com");
@@ -237,6 +237,24 @@ public class HelpBuh {
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0);
         }
         //
+    }
+
+    public static void deleteCustomer_b(String userPassConfirm) {
+        //
+        HashMap<String, String> map = new HashMap();
+        map.put("pass_confirm", userPassConfirm);
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE_CUSTOMER__B, JSon.hashMapToJSON(map));
+            //
+            System.out.println("response: " + response);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //        
     }
 
     /**
