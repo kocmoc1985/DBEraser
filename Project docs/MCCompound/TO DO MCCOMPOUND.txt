@@ -9,5 +9,5 @@
 [FOR BOTH]
 
 1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
-
+2. Reports -> there are some reports which are essential for them.
 

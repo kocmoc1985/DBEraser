@@ -1,13 +1,16 @@
+________________________________________________________________________________________________________
 [JPANEL BACKGROUND - BACKGROUNDPANEL] [2020-11-15]
+
+Setting a background image for a JPanel.
 
 See: forall.package -> BackgroundPanel.class
 
-How to use: From graphical editor -> Click on a JPanel -> Choose "Customize code" -> enter following: 
-try{
-jPanel19 = new BackgroundPanel(ImageIO.read(new File("io/logo_21.png")));
-}catch(Exception ex){
+How to use: From graphical editor -> Click on a JPanel -> Choose "Customize code" -> have following: 
+jPanel = new BackgroundPanel();
 
-}
+Then see BuInvoice.class -> "private void setHomePageBackground()"
+
+OBS! If the "bg.jpg" is not found, the standard background is used/active
 
 ________________________________________________________________________________________________________
 [DESKTOP PATH - FOLLOW THIS SUBJECT] [2020-10-28]
