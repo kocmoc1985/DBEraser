@@ -29,6 +29,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
@@ -77,27 +78,27 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         setMarginLeftLabelsHomeTab();
         //
     }
-    
-    private void setHomePageBackground(){
+
+    private void setHomePageBackground() {
         //
-        BackgroundPanel bg = (BackgroundPanel)jPanel19;
+        BackgroundPanel bg = (BackgroundPanel) jPanel19;
         //
-        try{
+        try {
             Image image = ImageIO.read(new File("io/bg.jpg"));
             bg.go(image);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             // Will set the initial background
         }
     }
-    
-    private void setMarginLeftLabelsHomeTab(){
-        this.jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        this.jLabel_register_new.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        this.jLabel_restore_password.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        this.jLabel_share_account.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+
+    private void setMarginLeftLabelsHomeTab() {
+        this.jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        this.jLabel_register_new.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        this.jLabel_restore_password.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+        this.jLabel_share_account.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
-    
-    private void setMarginJLabelsHomeTab(){
+
+    private void setMarginJLabelsHomeTab() {
         jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
 
@@ -216,7 +217,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else if (isKontantFaktura()) {
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
-        }else if(isMakulerad()){
+        } else if (isMakulerad()) {
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_copy_faktura, false);
             GP_BUH.setEnabled(jButton_inbetalning, false);
@@ -344,7 +345,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
         //
     }
-    
+
     protected boolean isSent() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
@@ -365,7 +366,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         String dateNow = HelpA_.get_proper_date_yyyy_MM_dd();
         String forfallodatum = HelpA_.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
         //
-        if(forfallodatum == null || forfallodatum.isEmpty()){
+        if (forfallodatum == null || forfallodatum.isEmpty()) {
             return false;
         }
         //
@@ -2406,13 +2407,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_erase_account_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_erase_account_btnActionPerformed
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_4_3) == false) {
-            return;
-        }
-        //
-//        HelpA_.chooseFromJTextField(jTextField_frakt, TAB_HOME);
-        //
-//        HelpBuh.deleteCustomer_b("pasword");
+        optionsTab.deleteCustomerDataPermanent();
         //
     }//GEN-LAST:event_jButton_erase_account_btnActionPerformed
 

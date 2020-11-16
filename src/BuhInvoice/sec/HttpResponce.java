@@ -17,7 +17,7 @@ public class HttpResponce {
     protected final String responce;
     protected final String successfulMesage;
     protected HashMap<String, String> map = new HashMap<>();
-    
+
     public static String GENERAL_ERR_0 = "ERR_0"; // This one is when it happens on java side
 
     public HttpResponce(String responce, String successfulMesage) {
@@ -45,7 +45,10 @@ public class HttpResponce {
         map.put("CAS_ERR_01", LANG.MSG_16_1);
         map.put("CAS_ERR_02", LANG.MSG_16_2);
         //
-        map.put("DG_ERR_01",LANG.MSG_21_1);
+        map.put("DG_ERR_01", LANG.MSG_21_1);
+        //
+        map.put("DCB_ERR_01", LANG.MSG_23_1);
+        map.put("DCB_ERR_02", LANG.MSG_23_2);
     }
 
     private void showNotification(String errMsg) {
@@ -60,7 +63,7 @@ public class HttpResponce {
 
     public void defineStatus() {
         // The error = null if the responce does not match any error from the "map" [2020-10-23]
-        String errMsg = map.get(responce); 
+        String errMsg = map.get(responce);
         showNotification(errMsg);
     }
 

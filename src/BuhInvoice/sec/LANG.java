@@ -44,6 +44,7 @@ public class LANG {
     public final static String MSG_4 = "Radera rad?";
     public final static String MSG_4_2 = "Radera konto delning?";
     public final static String MSG_4_3 = "OBS! Kontot och all relaterat information kommer att raderas permanent, vill du forsätta ändå?";
+    public final static String MSG_4_4 = "Ange lösenordet som du loggar in med! OBS! Du kommer inte kunna ångra efter du har klickat Ja!";
     public final static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
     public final static String MSG_5_2 = "Du kan inte lägga till fler artiklar!";
@@ -96,6 +97,10 @@ public class LANG {
 
     public static String MSG_22 = "OBS! Du använder \"Omvänd skattskyldighet\" men motpartens VAT nr saknas.\n"
             + "Gå till flik KUNDER och ange VAT nr för den aktuella kunden.";
+    
+    public static String MSG_23 = "Ditt konto och all konto relaterad data är raderat!";
+    public static String MSG_23_1 = "Gästanvändare kan inte radera konto";
+    public static String MSG_23_2 = "Fel lösenord, kontot har inte raderats";
     
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

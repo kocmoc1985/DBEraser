@@ -239,7 +239,7 @@ public class HelpBuh {
         //
     }
 
-    public static void deleteCustomer_b(String userPassConfirm) {
+    public static HttpResponce deleteCustomer_b(String userPassConfirm) {
         //
         HashMap<String, String> map = new HashMap();
         map.put("pass_confirm", userPassConfirm);
@@ -251,8 +251,11 @@ public class HelpBuh {
             //
             System.out.println("response: " + response);
             //
+            return new HttpResponce(response, LANG.MSG_23);
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_23);
         }
         //        
     }
@@ -299,7 +302,7 @@ public class HelpBuh {
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-            return new HttpResponce(null, LANG.MSG_21_0);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_21_0);
         }
         //
     }
