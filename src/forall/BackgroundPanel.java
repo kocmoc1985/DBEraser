@@ -28,8 +28,18 @@ public class BackgroundPanel extends JPanel {
     /*
 	 *  Set image as the background with the SCALED style
      */
+
+    public BackgroundPanel() {
+    }
+    
     public BackgroundPanel(Image image) {
         this(image, SCALED);
+    }
+
+    public void go(Image image){
+        setImage(image);
+        setStyle(SCALED);
+        setLayout(new BorderLayout());
     }
 
     /*

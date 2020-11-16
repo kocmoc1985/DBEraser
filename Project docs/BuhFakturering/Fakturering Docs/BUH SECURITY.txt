@@ -7,12 +7,16 @@ So i can already use: https://www.mixcont.com
 
 Important to mention that Java must also have support for certificates from -> "https://letsencrypt.org/"
 
+As i have found on internet the first version supporting certificates from "https://letsencrypt.org/" is 1.8u60 or 1.8u66
+
 My test did show that following Java version do have support:
+1.8.0_152_32_Oracle Corporation (JRE!) -> This version is installed on my work pc HPWORK [2020-11-16]
 1.8.0_212_64_Eclipse OpenJ9 -> This is the one installed at at my Win10 pro laptop [2020-11-16]
 1.8.0_252_64_Azul Systems -> This the one installed on my Mac book OS X [2020-11-16]
 
 Versions not having support[100% verified]:
-1.8.0_65_32_Oracle Corporation -> This version was installed on my work pc HPWORK [2020-11-16]
+1.8.0_65_32_Oracle Corporation (JDK!) -> This version is installed on my work pc HPWORK [2020-11-16] -> Note that on HPWORK different versions are installed
+for JDK and JRE so running from NetBeans will fail but compiling and runing a .jar will work
 
 Implementation Java side:
 DBEraser.proj -> BuhInvoice.package -> HelpBuh.class -> see: "private static final boolean HTTPS"
