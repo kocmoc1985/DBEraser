@@ -24,6 +24,8 @@ import MyObjectTableInvert.TableInvert;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -299,6 +301,29 @@ public class Home extends Basic_Buh {
         return false;
     }
 
+    private void makeTransparent(Table tableInvert, JPanel parentContainer) {
+        //
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //
+                tableInvert.setBackground(new Color(0, 0, 0, 10));
+                tableInvert.revalidate();
+                tableInvert.repaint();
+                //
+                parentContainer.setBackground(new Color(0, 0, 0, 10));
+                parentContainer.revalidate();
+                parentContainer.repaint();
+                //
+                // Not working - border still visible:
+//                tableInvert.setBorder(BorderFactory.createEmptyBorder());
+//                parentContainer.setBorder(BorderFactory.createEmptyBorder());
+                //
+            }
+        });
+        //
+    }
+
     /**
      * LOG IN
      */
@@ -313,24 +338,7 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT, this);
         //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //
-//                BUH_INVOICE_MAIN.jPanel19.revalidate();
-//                BUH_INVOICE_MAIN.jPanel19.repaint();
-//                //
-//                TABLE_INVERT.setBackground(new Color(0, 0, 0, 0));
-//                TABLE_INVERT.revalidate();
-//                TABLE_INVERT.repaint();
-//                //
-//                BUH_INVOICE_MAIN.jPanel_inloggning.setBackground(new Color(0, 0, 0, 0));
-//                BUH_INVOICE_MAIN.jPanel_inloggning.revalidate();
-//                BUH_INVOICE_MAIN.jPanel_inloggning.repaint();
-            }
-        });
-        //
-
+        makeTransparent(TABLE_INVERT, bim.jPanel_inloggning);
         //
     }
 
@@ -347,6 +355,8 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT_2, this);
         //
+        makeTransparent(TABLE_INVERT_2, bim.jPanel_register_new);
+        //
     }
 
     /**
@@ -362,6 +372,8 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT_3, this);
         //
+        makeTransparent(TABLE_INVERT_3, bim.jPanel_restore_password);
+        //
     }
 
     public void showTableInvert_4() {
@@ -375,7 +387,8 @@ public class Home extends Basic_Buh {
         //
         addTableInvertRowListener(TABLE_INVERT_4, this);
         //
-
+        makeTransparent(TABLE_INVERT_4, bim.jPanel_share_account);
+        //
     }
 
     @Override

@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -73,6 +74,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         setHomePageBackground();
         //
+        setMarginLeftLabelsHomeTab();
+        //
     }
     
     private void setHomePageBackground(){
@@ -85,6 +88,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }catch(Exception ex){
             // Will set the initial background
         }
+    }
+    
+    private void setMarginLeftLabelsHomeTab(){
+        this.jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        this.jLabel_register_new.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        this.jLabel_restore_password.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        this.jLabel_share_account.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+    }
+    
+    private void setMarginJLabelsHomeTab(){
+        jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
 
     protected void RESET_SEARCH_FILTER() {
@@ -567,13 +581,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jCheckBox_spara_inloggning = new javax.swing.JCheckBox();
         jLabel_inloggning = new javax.swing.JLabel();
         jPanel_register_new = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel_register_new = new javax.swing.JLabel();
         jButton_register_new_user = new javax.swing.JButton();
         jPanel_restore_password = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel_restore_password = new javax.swing.JLabel();
         jButton_forgot_password = new javax.swing.JButton();
         jPanel_share_account = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel_share_account = new javax.swing.JLabel();
         jButton_share_account = new javax.swing.JButton();
         jScrollPane17 = new javax.swing.JScrollPane();
         jTable_shared_users = new javax.swing.JTable();
@@ -721,7 +735,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel_inloggning.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_inloggning.setLayout(new java.awt.BorderLayout());
 
         jButton_logg_in.setText("Logga in");
@@ -743,12 +756,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_inloggning.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_inloggning.setText("Inloggning");
 
-        jPanel_register_new.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_register_new.setLayout(new java.awt.BorderLayout());
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Saknar du konto? Registrera ett");
+        jLabel_register_new.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_register_new.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_register_new.setText("Saknar du konto? Registrera ett");
 
         jButton_register_new_user.setText("Registrera");
         jButton_register_new_user.addActionListener(new java.awt.event.ActionListener() {
@@ -757,12 +769,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jPanel_restore_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_restore_password.setLayout(new java.awt.BorderLayout());
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Glömt lösenord?");
+        jLabel_restore_password.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_restore_password.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_restore_password.setText("Glömt lösenord?");
 
         jButton_forgot_password.setText("Återställ");
         jButton_forgot_password.addActionListener(new java.awt.event.ActionListener() {
@@ -771,12 +782,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
-        jPanel_share_account.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_share_account.setLayout(new java.awt.BorderLayout());
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Dela konto med en annan");
+        jLabel_share_account.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_share_account.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_share_account.setText("Dela konto med en annan");
 
         jButton_share_account.setText("Dela");
         jButton_share_account.addActionListener(new java.awt.event.ActionListener() {
@@ -833,24 +843,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addComponent(jLabel15)
                             .addComponent(jButton2)
                             .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel14)
                                 .addComponent(jPanel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                                 .addComponent(jPanel_restore_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                                        .addGroup(jPanel19Layout.createSequentialGroup()
-                                            .addComponent(jButton_logg_in)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jCheckBox_spara_inloggning))
-                                        .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                                        .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton_register_new_user))
-                                .addComponent(jLabel11)
+                                .addComponent(jPanel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                .addGroup(jPanel19Layout.createSequentialGroup()
+                                    .addComponent(jButton_logg_in)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jCheckBox_spara_inloggning))
+                                .addComponent(jPanel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                                .addComponent(jLabel_inloggning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton_register_new_user)
+                                .addComponent(jLabel_register_new, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton_forgot_password)
                                 .addComponent(jButton_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane17)))
+                                .addComponent(jScrollPane17)
+                                .addComponent(jLabel_restore_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap(896, Short.MAX_VALUE))))
         );
         jPanel19Layout.setVerticalGroup(
@@ -869,19 +877,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jButton_logg_in)
                     .addComponent(jCheckBox_spara_inloggning))
                 .addGap(25, 25, 25)
-                .addComponent(jLabel10)
+                .addComponent(jLabel_register_new)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_register_new, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton_register_new_user)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel11)
+                .addComponent(jLabel_restore_password)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_restore_password, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton_forgot_password)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel14)
+                .addComponent(jLabel_share_account)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_share_account, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -2480,11 +2488,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JCheckBox jCheckBox_spara_inloggning;
     protected javax.swing.JComboBox<String> jComboBox_faktura_kunder_filter;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     public static javax.swing.JLabel jLabel17_new__version;
@@ -2512,6 +2517,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_info__makulerad;
     protected javax.swing.JLabel jLabel_info__sent;
     protected javax.swing.JLabel jLabel_inloggning;
+    private javax.swing.JLabel jLabel_register_new;
+    private javax.swing.JLabel jLabel_restore_password;
+    private javax.swing.JLabel jLabel_share_account;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     protected javax.swing.JPanel jPanel11;
@@ -2522,7 +2530,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel16;
     protected javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    public static javax.swing.JPanel jPanel19;
+    public javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
@@ -2540,7 +2548,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel9;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
-    public static javax.swing.JPanel jPanel_inloggning;
+    public javax.swing.JPanel jPanel_inloggning;
     protected javax.swing.JPanel jPanel_register_new;
     protected javax.swing.JPanel jPanel_restore_password;
     protected javax.swing.JPanel jPanel_share_account;
