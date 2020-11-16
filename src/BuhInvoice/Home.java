@@ -195,9 +195,13 @@ public class Home extends Basic_Buh {
         showTableInvert_3();
         showTableInvert_4();
         //
-        if (GP_BUH.loggedIn()) {
+        if (GP_BUH.loggedIn() && GP_BUH.isGuestUser() == false) {
             HelpA_.clearAllRowsJTable(getJTable());
             fillSharedUsersTable();
+        }
+        //
+        if(GP_BUH.isGuestUser()){
+            bim.jButton_delete_account_sharing.setEnabled(false);
         }
         //
     }

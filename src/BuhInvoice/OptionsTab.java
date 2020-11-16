@@ -53,7 +53,13 @@ public class OptionsTab extends Basic_Buh {
     }
 
     private void initOther() {
+        //
+        if(GP_BUH.isGuestUser()){
+           bim.jButton_erase_account_btn.setEnabled(false);
+        }
+        //
         showReminderOption();
+        //
     }
 
     protected void deleteCustomerDataPermanent() {

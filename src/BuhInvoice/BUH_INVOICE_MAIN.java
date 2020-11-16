@@ -593,7 +593,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jScrollPane17 = new javax.swing.JScrollPane();
         jTable_shared_users = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButton_delete_account_sharing = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17_new__version = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -814,10 +814,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Du delar konto med följande användare");
 
-        jButton2.setText("Radera");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton_delete_account_sharing.setText("Radera");
+        jButton_delete_account_sharing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton_delete_account_sharingActionPerformed(evt);
             }
         });
 
@@ -843,7 +843,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(jButton2)
+                            .addComponent(jButton_delete_account_sharing)
                             .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                                 .addComponent(jPanel_restore_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
@@ -901,7 +901,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jButton2)
+                .addComponent(jButton_delete_account_sharing)
                 .addContainerGap(293, Short.MAX_VALUE))
         );
 
@@ -1870,6 +1870,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea2.setWrapStyleWord(true);
         jScrollPane16.setViewportView(jTextArea2);
 
+        jButton_erase_account_btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_erase_account_btn.setText("RADERA KONTO");
         jButton_erase_account_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1889,7 +1890,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                             .addComponent(jScrollPane14)
                             .addGroup(jPanel20Layout.createSequentialGroup()
                                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 361, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
                                 .addComponent(jLabel8))
                             .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
                             .addGroup(jPanel20Layout.createSequentialGroup()
@@ -1900,7 +1901,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
                             .addComponent(jScrollPane16))
-                        .addContainerGap(152, Short.MAX_VALUE))
+                        .addContainerGap(153, Short.MAX_VALUE))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -1924,9 +1925,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane15)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
-                .addGap(177, 177, 177)
-                .addComponent(jButton_erase_account_btn)
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addGap(82, 82, 82)
+                .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel20);
@@ -2396,14 +2397,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         home.processShareAccount();
     }//GEN-LAST:event_jButton_share_accountActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton_delete_account_sharingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_account_sharingActionPerformed
         //
         if (GP_BUH.confirmWarning(LANG.MSG_4_2) == false) {
             return;
         }
         //
         home.processDeleteGuest();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton_delete_account_sharingActionPerformed
 
     private void jButton_erase_account_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_erase_account_btnActionPerformed
         //
@@ -2473,7 +2474,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
@@ -2482,6 +2482,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_confirm_insert_update;
     private javax.swing.JButton jButton_copy_faktura;
     private javax.swing.JButton jButton_create_new_faktura;
+    protected javax.swing.JButton jButton_delete_account_sharing;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;
@@ -2489,7 +2490,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_delete_reminder_msg;
     protected javax.swing.JButton jButton_delete_smtp_settings;
     private javax.swing.JButton jButton_edit_faktura;
-    private javax.swing.JButton jButton_erase_account_btn;
+    protected javax.swing.JButton jButton_erase_account_btn;
     protected javax.swing.JButton jButton_forgot_password;
     private javax.swing.JButton jButton_inbetalning;
     private javax.swing.JButton jButton_kontant_faktura;
