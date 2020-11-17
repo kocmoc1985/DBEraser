@@ -8,7 +8,7 @@ package LabDev;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
@@ -29,10 +29,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     
     private final LabDevelopment labDev;
     private final SqlBasicLocal sql;
-    private final MC_RECIPE mcRecipe;
+    private final MC_RECIPE_ mcRecipe;
     private boolean oneTimeFlag = false;
     
-    public LabDevFindOrderTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE mcRecipe) {
+    public LabDevFindOrderTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE_ mcRecipe) {
         this.labDev = labDev;
         this.sql = sql;
         this.mcRecipe = mcRecipe;

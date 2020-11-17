@@ -11,7 +11,7 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
@@ -65,7 +65,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
     private Table TABLE_INVERT_6;
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
@@ -76,7 +76,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE) OUT;
+        this.mCRecipe = (MC_RECIPE_) OUT;
         this.changeSaver = saver;
         init();
     }

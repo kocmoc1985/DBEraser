@@ -5,7 +5,7 @@
  */
 package LabDev;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import forall.SqlBasicLocal;
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     private final LabDevelopment labDev;
     private final SqlBasicLocal sql;
-    private final MC_RECIPE mcRecipe;
+    private final MC_RECIPE_ mcRecipe;
 
-    public LabDevTestConfigTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE mcRecipe) {
+    public LabDevTestConfigTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE_ mcRecipe) {
         this.labDev = labDev;
         this.sql = sql;
         this.mcRecipe = mcRecipe;
