@@ -726,6 +726,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButton_lab_dev__material_info_save = new javax.swing.JButton();
         jPanel62 = new javax.swing.JPanel();
         jPanel63 = new javax.swing.JPanel();
+        jPanel64 = new javax.swing.JPanel();
+        jPanel65 = new javax.swing.JPanel();
+        jPanel66 = new javax.swing.JPanel();
         jPanel54 = new javax.swing.JPanel();
         jPanel_lab_development_2 = new javax.swing.JPanel();
         jPanel_lab_development_3 = new javax.swing.JPanel();
@@ -2177,15 +2180,43 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
 
+        jPanel64.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel64.setLayout(new java.awt.BorderLayout());
+
+        jPanel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel65.setLayout(flowLayout1);
+
+        jPanel66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        flowLayout2.setAlignOnBaseline(true);
+        jPanel66.setLayout(flowLayout2);
+
         javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
         jPanel63.setLayout(jPanel63Layout);
         jPanel63Layout.setHorizontalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1216, Short.MAX_VALUE)
+            .addGroup(jPanel63Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel65, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    .addComponent(jPanel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel63Layout.setVerticalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
+            .addGroup(jPanel63Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel63Layout.createSequentialGroup()
+                        .addComponent(jPanel65, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST CONFIG", jPanel63);
@@ -4980,6 +5011,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
     private javax.swing.JPanel jPanel63;
+    private javax.swing.JPanel jPanel64;
+    private javax.swing.JPanel jPanel65;
+    private javax.swing.JPanel jPanel66;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
