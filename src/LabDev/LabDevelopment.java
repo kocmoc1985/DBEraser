@@ -84,7 +84,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private void init() {
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(this, sql, mCRecipe);
-        labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
+
         getTabbedPane().addMouseListener(this);
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();
@@ -177,8 +177,8 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private String getIdMaterialInfoTable() {
         return HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
     }
-    
-     public void lab_dev_tab_tab_find_order__set_order_clicked() {
+
+    public void lab_dev_tab_tab_find_order__set_order_clicked() {
         labDevFindOrderTab.setOrderBtnClicked();
         refreshHeader();
     }
@@ -205,16 +205,28 @@ public class LabDevelopment extends BasicTab implements MouseListener {
             labDevHeaderComponent.tab_find_order();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
             labDevHeaderComponent.tab_test_defenition();
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
+            labDevHeaderComponent.tab_test_config();
         }
         //
     }
 
-    public void lab_dev_tab_test_definition() {
+    public void lab_dev_tab_test_config__clicked() {
+        //
+        if (labDevTestConfigTab == null) {
+            labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
+        }
+        //
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG();
+        refreshHeader();
+    }
+
+    public void lab_dev_tab_test_definition__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION();
         refreshHeader();
     }
 
-    public void lab_dev_tab_tab_find_order() {
+    public void lab_dev_tab_tab_find_order__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
         //
@@ -222,26 +234,26 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         //
     }
 
-    public void lab_dev_tab_tab_material_info() {
+    public void lab_dev_tab_tab_material_info__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
         fillJTableMaterialInfoTab();
 //        refreshHeader(); // is done from: fillJTableMaterialInfoTab() -> materialInfoJTableClicked()
     }
 
-    public void lab_dev_tab__tab_notes_clicked() {
+    public void lab_dev_tab__tab_notes__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES();
         fillNotes();
         refreshHeader();
     }
 
-    public void lab_dev_tab__tab_main_data_clicked() {
+    public void lab_dev_tab__tab_main_data__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA();
         refreshHeader();
         showTableInvert();
 //        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
     }
 
-    public void lab_dev_tab__tab_status_clicked() {
+    public void lab_dev_tab__tab_status__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS();
         refreshHeader();
         showTableInvert_2();
@@ -909,7 +921,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     public void lab_dev_tab__clicked(String title, boolean parentCall) {
         //
         if (parentCall == true && PREV_TAB_NAME.isEmpty()) {
-            lab_dev_tab_tab_find_order();
+            lab_dev_tab_tab_find_order__clicked();
             PREV_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
             return;
         } else if (parentCall == true && PREV_TAB_NAME.isEmpty() == false) {
@@ -917,19 +929,19 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         }
         //
         if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
-            lab_dev_tab__tab_main_data_clicked();
+            lab_dev_tab__tab_main_data__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())) {
-            lab_dev_tab__tab_status_clicked();
+            lab_dev_tab__tab_status__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
-            lab_dev_tab__tab_notes_clicked();
+            lab_dev_tab__tab_notes__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
-            lab_dev_tab_tab_material_info();
+            lab_dev_tab_tab_material_info__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER())) {
-            lab_dev_tab_tab_find_order();
+            lab_dev_tab_tab_find_order__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
-            lab_dev_tab_test_definition();
-        }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
-            
+            lab_dev_tab_test_definition__clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
+            lab_dev_tab_test_config__clicked();
         }
         //
     }

@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public abstract class ChkBoxItemListComponent extends JFrame {
+public abstract class ChkBoxItemListComponent  {
 
     public static final int HEIGHT = 35;
     

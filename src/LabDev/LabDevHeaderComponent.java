@@ -91,6 +91,12 @@ public class LabDevHeaderComponent implements ItemListener {
         showTestDefTab();
         updateGraphics();
     }
+    
+    public void tab_test_config() {
+        clear();
+        showStandard();
+        updateGraphics();
+    }
 
     private void showTestDefTab() {
         //
