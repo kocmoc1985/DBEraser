@@ -5,12 +5,14 @@
  */
 package LabDev;
 
+import MyObjectTable.ShowMessage;
+import MyObjectTableInvert.BasicTab;
+import forall.SqlBasicLocal;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -19,9 +21,17 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public abstract class ChkBoxItemListComponent  {
+public abstract class ChkBoxItemListComponent extends BasicTab  {
 
     public static final int HEIGHT = 35;
+
+    
+    public ChkBoxItemListComponent() {
+    }
+    
+    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT){
+        super(sql, sql_additional, OUT);
+    }
     
     public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
         //

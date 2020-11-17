@@ -10,6 +10,7 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
+import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
@@ -134,6 +135,28 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             model.addRow(jtableRow);
         }
         //
+    }
+
+    @Override
+    public void fillNotes() {
+    }
+
+    @Override
+    public RowDataInvert[] getConfigTableInvert() {
+        return null;
+    }
+
+    @Override
+    public void showTableInvert() {
+    }
+
+    @Override
+    public void initializeSaveIndicators() {
+    }
+
+    @Override
+    public boolean getUnsaved(int nr) {
+        return false;
     }
     
 }

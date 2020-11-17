@@ -27,6 +27,12 @@ public abstract class BasicTab extends Basic  {
     public final SqlBasicLocal sql;
     public final SqlBasicLocal sql_additional;
     public boolean notesUnsaved = false;
+
+    public BasicTab() {
+        this.OUT = null;
+        this.sql = null;
+        this.sql_additional = null;
+    }
     
     public BasicTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT) {
         this.OUT = OUT;
