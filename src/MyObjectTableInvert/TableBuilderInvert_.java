@@ -231,22 +231,14 @@ public class TableBuilderInvert_ {
         //
     }
 
-    public Table buildTable_C(String query, Basic tableInvertConsumer) throws SQLException {
-        //
-        return buildTable_C(query, tableInvertConsumer, TableRow.GRID_LAYOUT);
-        //
-    }
 
-    private boolean defineIfLast(ResultSet rs) {
-        try {
-            rs.getString(1);
-            return false;
-        } catch (Exception ex) {
-            return true;
-        }
-    }
-
-    public Table buildTable_C(String query, Basic tableInvertConsumer, int layout) throws SQLException {
+    /**
+     * [2020-11-16]
+     * OBS! Uses 2 ResultSet's
+     * In contrast to "buldTable_B" this one builds the table from
+     * multiple rows. See the visio file "InvertedTable.vsd" for more info
+     */
+    public Table buildTable_C_C(String query, String query_2, Basic tableInvertConsumer, int layout) throws SQLException {
         //
         if (CONFIG == null) {
             return null;
@@ -260,7 +252,12 @@ public class TableBuilderInvert_ {
         //
         for (int i = 0; i < ROWS.length; i++) {
             //
-            rs.next();
+            boolean hasNext = rs.next();
+            //
+            if (hasNext == false) {
+                rs = sql.execute_2(query_2);
+                rs.next();
+            }
             //
             RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
             //
@@ -268,13 +265,6 @@ public class TableBuilderInvert_ {
             //
             if (SHOW_UNITS) {
                 CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getUnit(), true));
-            }
-            //
-            //Inserting empty fields in case if no entries
-            if (defineIfLast(rs)) {//is empty!
-                CURR_ROW.addRowColumnData(new ColumnDataEntryInvert("", "-1", CURR_ROW.getFieldOriginalName(), CURR_ROW.getFieldNickName()));
-                tableData.addRowData(CURR_ROW);
-                continue;
             }
             //
             String orig_field_name = CURR_ROW.getFieldOriginalName();
@@ -332,9 +322,8 @@ public class TableBuilderInvert_ {
         return table;
         //
     }
-
-
-    public Table buildTable_C_C(String query, String query_2, Basic tableInvertConsumer, int layout) throws SQLException {
+    
+    public Table buildTable_C(String query, Basic tableInvertConsumer, int layout) throws SQLException {
         //
         if (CONFIG == null) {
             return null;
@@ -348,12 +337,7 @@ public class TableBuilderInvert_ {
         //
         for (int i = 0; i < ROWS.length; i++) {
             //
-            boolean hasNext = rs.next();
-            //
-            if (hasNext == false) {
-                rs = sql.execute_2(query_2);
-                rs.next();
-            }
+            rs.next();
             //
             RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
             //

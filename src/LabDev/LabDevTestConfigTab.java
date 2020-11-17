@@ -40,7 +40,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     private void init() {
-//        temp();
+        temp();
         initializeSaveIndicators();
         refresh();
     }
@@ -52,15 +52,15 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     private String getMaterial() {
-        return "WE8487";
+        return labDev.getMaterial();
     }
 
     private String getOrder() {
-        return "ENTW002106";
+        return labDev.getOrderNo();
     }
 
     private String getTestCode() {
-        return "MOV01";
+        return labDev.getTestCode();
     }
 
     private ArrayList<TestConfigEntry> getValuesPruff_ValuesTest(String procedure) {
@@ -106,10 +106,10 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
+        ArrayList<RowDataInvert> list = new ArrayList<>();
+        //
         ArrayList<TestConfigEntry> list_pruff = getValuesPruff_ValuesTest(PROC.PROC_69);
         ArrayList<TestConfigEntry> list_test = getValuesPruff_ValuesTest(PROC.PROC_70);
-        //
-        ArrayList<RowDataInvert> list = new ArrayList<>();
         //
         for (int i = 0; i < list_pruff.size(); i++) {
             TestConfigEntry tce = list_pruff.get(i);
@@ -126,11 +126,8 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
         RowDataInvert[] arr = new RowDataInvert[list.size()];
         //
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
+        return list.toArray(arr);
         //
-        return arr;
     }
 
     @Override
@@ -145,9 +142,6 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             String q = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
             String q_2 = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
             //
-//            OUT.showMessage(q);
-//            OUT.showMessage(q_2);
-            //
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable_C_C(q, q_2, this, TableRow.GRID_LAYOUT);
             //
         } catch (SQLException ex) {
@@ -155,14 +149,8 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
         //
-        System.out.println("SHOW TABLE INVERT - TEST CONFIG");
-        //
         showTableInvert(mcRecipe.jPanel64);
         //
-//        refreshTableInvert(TABLE_INVERT);
-//        TABLE_INVERT.invalidate();
-//        TABLE_INVERT.validate();
-//        TABLE_INVERT.repaint();
     }
 
     private void temp() {

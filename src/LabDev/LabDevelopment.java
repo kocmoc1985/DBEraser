@@ -98,6 +98,14 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         return ORDER_FOR_TESTING;
     }
 
+    public String getMaterial() {
+        return "WE8487";
+    }
+
+    public String getTestCode() {
+        return "MOV01";
+    }
+
     public void setOrderNo(String order) {
         this.ORDER_FOR_TESTING = order;
     }
@@ -131,6 +139,8 @@ public class LabDevelopment extends BasicTab implements MouseListener {
             date = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO,
                     "WORDERNO", getOrderNo(), "ID", id, "UpdatedOn", false);
             //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
+            // Not needed
         }
         //
         if (date == null || date.isEmpty()) {
@@ -218,11 +228,11 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         //
         if (labDevTestConfigTab == null) {
             labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
-        }else{
-           labDevTestConfigTab.refresh();  
+        } else {
+            labDevTestConfigTab.refresh();
         }
         //
-        
+
     }
 
     public void lab_dev_tab_test_definition__clicked() {
