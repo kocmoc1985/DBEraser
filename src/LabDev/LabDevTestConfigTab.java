@@ -6,8 +6,14 @@
 package LabDev;
 
 import MCRecipe.MC_RECIPE_;
+import MCRecipe.SQL_A;
+import MCRecipe.Sec.PROC;
 import forall.SqlBasicLocal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,8 +34,48 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     private void init() {
         temp();
+        getConditions();
     }
-    
+
+    private String getMaterial() {
+        return "WE8487";
+    }
+
+    private String getOrder() {
+        return "ENTW002106";
+    }
+
+    private String getTestCode() {
+        return "MOV01";
+    }
+
+    private ArrayList<TestConfigEntry> getConditions() {
+        //
+        ArrayList<TestConfigEntry> list = new ArrayList<>();
+        //
+        String colCondition = "Condition";
+        String colUnit = "Unit";
+        //
+        String q = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
+        //
+        ResultSet rs;
+        //
+        try {
+            rs = sql.execute(q, mcRecipe);
+            //
+            while (rs.next()) {
+                String condition = rs.getString(colCondition).trim();
+                String unit = rs.getString(colUnit).trim();
+                list.add(new TestConfigEntry(condition, unit));
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestConfigTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return list;
+    }
+
     /**
      * Example of getting values from a "CheckBox"
      */

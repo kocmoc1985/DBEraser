@@ -24,7 +24,6 @@ public class PROC {
         return false;
     }
 
-
     public static final String PROC_01 = "Create_Recipe_Tempory_USER_Compare ";//#RECIPE INITIAL
     public static final String PROC_02 = "fn_Lab_REsults "; //#RECIPE ADDITIONAL
     public static final String PROC_03 = "fn_Lab_SelectOrders "; //#RECIPE ADDITIONAL
@@ -93,6 +92,8 @@ public class PROC {
     public static final String PROC_66 = "fn_ITF_Test_Related "; //#TEST PARAMETERS
     public static final String PROC_67 = "fn_ITF_Test_Related_ID_4 "; //#TEST PARAMETERS
     public static final String PROC_68 = "fn_ITF_REcipesInTestOrder "; //#LAB DEVELOPMENT -> MATERIALINFORMATION
+    public static final String PROC_69 = "fn_Proc_Tags_Values_Pruff "; //#LAB DEVELOPMENT -> TEST CONFIG
+    public static final String PROC_70 = "fn_Proc_Tags_Values_Test "; //#LAB DEVELOPMENT -> Not used yet
     //
     // LAB_DEVELOPMENT 
     //
@@ -171,6 +172,8 @@ public class PROC {
         procList.add(PROC_66);
         procList.add(PROC_67);
         procList.add(PROC_68);
+        procList.add(PROC_69);
+        procList.add(PROC_70);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

@@ -1453,6 +1453,14 @@ public class SQL_A {
         //
         return q;
     }
+    
+    public static String lab_dev_test_config_tab__getTestConditions(String PROC, String param1, String param2, String param3) {
+        return "SELECT Condition, Unit FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ")";
+    }
 
 //    public static void main(String[] args) {
 //        //
