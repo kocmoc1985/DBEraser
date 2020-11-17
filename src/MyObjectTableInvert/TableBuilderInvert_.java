@@ -52,8 +52,8 @@ public class TableBuilderInvert_ {
     }
 
     /**
-     * New [2020-07-10] Not using SQL
-     * Used by BuhInvoice
+     * New [2020-07-10] Not using SQL Used by BuhInvoice
+     *
      * @param tableInvertConsumer
      * @return
      */
@@ -231,18 +231,18 @@ public class TableBuilderInvert_ {
         //
     }
 
-     public Table buildTable_C(String query, Basic tableInvertConsumer) throws SQLException {
+    public Table buildTable_C(String query, Basic tableInvertConsumer) throws SQLException {
         //
         return buildTable_C(query, tableInvertConsumer, TableRow.GRID_LAYOUT);
         //
     }
-    
-    private boolean defineIfEmpty(ResultSet rs) {
+
+    private boolean defineIfLast(ResultSet rs) {
         try {
-            rs.getString(0);
-            return true;
-        } catch (Exception ex) {
+            rs.getString(1);
             return false;
+        } catch (Exception ex) {
+            return true;
         }
     }
 
@@ -271,10 +271,96 @@ public class TableBuilderInvert_ {
             }
             //
             //Inserting empty fields in case if no entries
-            if (defineIfEmpty(rs)) {//is empty!
+            if (defineIfLast(rs)) {//is empty!
                 CURR_ROW.addRowColumnData(new ColumnDataEntryInvert("", "-1", CURR_ROW.getFieldOriginalName(), CURR_ROW.getFieldNickName()));
                 tableData.addRowData(CURR_ROW);
                 continue;
+            }
+            //
+            String orig_field_name = CURR_ROW.getFieldOriginalName();
+            String key_name = CURR_ROW.getPrimaryOrForeignKeyName();
+            //
+            int type = CURR_ROW.getType();
+            //
+            //
+            String value;
+            //
+            try {
+                Timestamp t = rs.getTimestamp(orig_field_name);
+                value = "" + millisToDefaultDate(t.getTime());
+            } catch (Exception ex) {
+                try {
+                    value = rs.getString(orig_field_name);
+                } catch (Exception ex2) {
+                    //OBS! Shall attention shall be payed to this [2020-10-05]
+                    Logger.getLogger(TableBuilderInvert_.class.getName()).log(Level.SEVERE, null, ex);
+                    value = null;
+                }
+            }
+            //
+            //
+            ColumnDataEntryInvert cde;
+            //
+            if (type == RowDataInvert.TYPE_COMMON) {
+                //
+                String val = value == null ? "" : value;
+                //
+                cde = new ColumnDataEntryInvert(val, rs.getString(key_name), orig_field_name, CURR_ROW.getFieldNickName());
+            } else {
+                cde = new ColumnDataEntryInvert(CURR_ROW.getSpecialComponent(value), rs.getString(key_name), orig_field_name, CURR_ROW.getFieldNickName());
+            }
+            //
+            //
+            if (cde.getObject() == null) {
+                cde.setObject("NULL");
+            }
+            //
+            CURR_ROW.addRowColumnData(cde);
+            //
+            addAdditionalComponent(CURR_ROW, getDefaultRowComponents());
+            //
+            tableData.addRowData(CURR_ROW);
+        }
+        //
+        //
+        TableInvert table = new TableInvert(tableData, layout, 45, null, TABLE_NAME, tableInvertConsumer);
+        table.setShowUnits(SHOW_UNITS);
+        table.setSql(sql);
+        table.setTableEmpty(false);
+        HelpA_.setTrackingToolTip(table, query);
+        //
+        return table;
+        //
+    }
+
+
+    public Table buildTable_C_C(String query, String query_2, Basic tableInvertConsumer, int layout) throws SQLException {
+        //
+        if (CONFIG == null) {
+            return null;
+        }
+        //
+        ResultSet rs = sql.execute(query);
+        //
+        TableData tableData = new TableData();
+        //
+        RowDataInvert[] ROWS = CONFIG;
+        //
+        for (int i = 0; i < ROWS.length; i++) {
+            //
+            boolean hasNext = rs.next();
+            //
+            if (hasNext == false) {
+                rs = sql.execute_2(query_2);
+                rs.next();
+            }
+            //
+            RowDataInvert CURR_ROW = (RowDataInvert) ROWS[i];
+            //
+            CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getFieldNickName(), CURR_ROW.getFieldOriginalName(), CURR_ROW.getTableName()));
+            //
+            if (SHOW_UNITS) {
+                CURR_ROW.addRowColumnData(new HeaderInvert(CURR_ROW.getUnit(), true));
             }
             //
             String orig_field_name = CURR_ROW.getFieldOriginalName();

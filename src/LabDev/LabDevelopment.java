@@ -213,14 +213,16 @@ public class LabDevelopment extends BasicTab implements MouseListener {
 
     public void lab_dev_tab_test_config__clicked() {
         //
-        if (labDevTestConfigTab == null) {
-            labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
-        }
-        //
-        labDevTestConfigTab.refresh();
-        //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG();
         refreshHeader();
+        //
+        if (labDevTestConfigTab == null) {
+            labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
+        }else{
+           labDevTestConfigTab.refresh();  
+        }
+        //
+        
     }
 
     public void lab_dev_tab_test_definition__clicked() {

@@ -9,6 +9,7 @@ import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
+import MyObjectTable.TableRow;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.SqlBasicLocal;
@@ -39,14 +40,15 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     private void init() {
-        temp();
-        refresh();
+//        temp();
         initializeSaveIndicators();
-//        getConditions();
+        refresh();
     }
-    
-    public void refresh(){
-        showTableInvert();
+
+    public void refresh() {
+        java.awt.EventQueue.invokeLater(() -> {
+            showTableInvert();
+        });
     }
 
     private String getMaterial() {
@@ -61,14 +63,14 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         return "MOV01";
     }
 
-    private ArrayList<TestConfigEntry> getConditions() {
+    private ArrayList<TestConfigEntry> getValuesPruff_ValuesTest(String procedure) {
         //
         ArrayList<TestConfigEntry> list = new ArrayList<>();
         //
         String colCondition = "Condition";
         String colUnit = "Unit";
         //
-        String q = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
+        String q = SQL_A.lab_dev_test_config_tab__getTestConditions(procedure, getMaterial(), getOrder(), getTestCode());
         //
         ResultSet rs;
         //
@@ -104,17 +106,31 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        ArrayList<TestConfigEntry> list = getConditions();
+        ArrayList<TestConfigEntry> list_pruff = getValuesPruff_ValuesTest(PROC.PROC_69);
+        ArrayList<TestConfigEntry> list_test = getValuesPruff_ValuesTest(PROC.PROC_70);
         //
-        RowDataInvert[] rows = new RowDataInvert[list.size()];
+        ArrayList<RowDataInvert> list = new ArrayList<>();
         //
-        for (int i = 0; i < list.size(); i++) {
-            TestConfigEntry tce = list.get(i);
+        for (int i = 0; i < list_pruff.size(); i++) {
+            TestConfigEntry tce = list_pruff.get(i);
             RowDataInvert rdi = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "TESTCOND", tce.getCondition(), tce.getUnit(), true, true, false);
-            rows[i] = rdi;
+            list.add(rdi);
         }
         //
-        return rows;
+        for (int i = 0; i < list_test.size(); i++) {
+            TestConfigEntry tce = list_test.get(i);
+            RowDataInvert rdi = new RowDataInvert("MCCPTproc", "ID_Proc", false, "TESTCOND", tce.getCondition(), tce.getUnit(), true, true, true);
+            rdi.setDisabled();
+            list.add(rdi);
+        }
+        //
+        RowDataInvert[] arr = new RowDataInvert[list.size()];
+        //
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        //
+        return arr;
     }
 
     @Override
@@ -124,20 +140,29 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
         TABLE_INVERT = null;
         //
-        //
         try {
+            //
             String q = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
-            OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable_C(q, this);
+            String q_2 = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
+            //
+//            OUT.showMessage(q);
+//            OUT.showMessage(q_2);
+            //
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable_C_C(q, q_2, this, TableRow.GRID_LAYOUT);
+            //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevTestConfigTab.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
         //
-//        setMargin(TABLE_INVERT, 10, 0, 0, 0);
+        System.out.println("SHOW TABLE INVERT - TEST CONFIG");
         //
         showTableInvert(mcRecipe.jPanel64);
         //
+//        refreshTableInvert(TABLE_INVERT);
+//        TABLE_INVERT.invalidate();
+//        TABLE_INVERT.validate();
+//        TABLE_INVERT.repaint();
     }
 
     private void temp() {
@@ -173,11 +198,11 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     public void fillNotes() {
     }
 
-    public void saveTableInvert(){
+    public void saveTableInvert() {
         saveChangesTableInvert();
         labDev.refreshHeader();
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_config_btn, this, 1);
@@ -194,7 +219,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             }
             //
         }
-         return false;
+        return false;
     }
 
 }
