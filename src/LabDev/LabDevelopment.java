@@ -69,6 +69,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
+    private LabDevTestConfigTab labDevTestConfigTab;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
@@ -83,6 +84,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private void init() {
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(this, sql, mCRecipe);
+        labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
         getTabbedPane().addMouseListener(this);
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();

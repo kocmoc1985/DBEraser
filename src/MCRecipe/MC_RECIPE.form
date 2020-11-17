@@ -2725,6 +2725,9 @@
                               </Border>
                             </Property>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                         </Container>
@@ -2736,6 +2739,9 @@
                               </Border>
                             </Property>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
                           <LayoutCode>
                             <CodeStatement>
                               <CodeExpression id="1_flowLayout1">
@@ -2775,7 +2781,7 @@
                             </CodeStatement>
                             <CodeStatement>
                               <CodeExpression id="4_jPanel65">
-                                <CodeVariable name="jPanel65" type="8194" declaredType="javax.swing.JPanel"/>
+                                <CodeVariable name="jPanel65" type="8193" declaredType="javax.swing.JPanel"/>
                                 <ExpressionOrigin>
                                   <ExpressionProvider type="ComponentRef">
                                     <ComponentRef name="jPanel65"/>
@@ -2799,6 +2805,9 @@
                               </Border>
                             </Property>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
                           <LayoutCode>
                             <CodeStatement>
                               <CodeExpression id="5_flowLayout2">
@@ -2838,7 +2847,7 @@
                             </CodeStatement>
                             <CodeStatement>
                               <CodeExpression id="8_jPanel66">
-                                <CodeVariable name="jPanel66" type="8194" declaredType="javax.swing.JPanel"/>
+                                <CodeVariable name="jPanel66" type="8193" declaredType="javax.swing.JPanel"/>
                                 <ExpressionOrigin>
                                   <ExpressionProvider type="ComponentRef">
                                     <ComponentRef name="jPanel66"/>
