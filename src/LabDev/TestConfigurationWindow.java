@@ -55,7 +55,7 @@ public class TestConfigurationWindow extends ChkBoxItemListComponent {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jScrollPane1.setAutoscrolls(true);
 

@@ -13,9 +13,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 )as `MAKULERADE`
 
 -------------- 
-Obfuscation
 
-Make it possible for a user to delete entire data for his account
+Backup of all data
 
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind
 
@@ -29,13 +28,7 @@ Send mail to all users of LAFakturering -> get all user emails from DB and send
 
 All libraries to one jar -> https://www.oracle.com/technical-resources/articles/javase/single-jar.html
 
-Backup of all data
-
-Implement security check for failing login in row
-
-Implement öres avrundning, and rounding of total --- OR??
-
-Version check - it should checked wether a new version is available [DONE]
+Implement security check for failling login in row
 
 Making installers for MAC OS:
 https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-software
@@ -43,6 +36,11 @@ https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-sof
 To each email send add the name of Company with webb address
 
 Print Address of Customer for sending with common post
+
+Obfuscation[DOONE BUT REQUIRES MORE ATTENTION]
+Version check - it should checked wether a new version is available [DONE]
+Make it possible for a user to delete entire data for his account [DONE]
+
 ____________________________________________________________________________________________________________________________________________________
 [AAMOUNT OF ARTICLES FAKTURA PDF PRINT]
 

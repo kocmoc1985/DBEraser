@@ -725,6 +725,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTable_lab_dev__material_info = new javax.swing.JTable();
         jButton_lab_dev__material_info_save = new javax.swing.JButton();
         jPanel62 = new javax.swing.JPanel();
+        jPanel63 = new javax.swing.JPanel();
         jPanel54 = new javax.swing.JPanel();
         jPanel_lab_development_2 = new javax.swing.JPanel();
         jPanel_lab_development_3 = new javax.swing.JPanel();
@@ -2175,6 +2176,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
+
+        javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
+        jPanel63.setLayout(jPanel63Layout);
+        jPanel63Layout.setHorizontalGroup(
+            jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1216, Short.MAX_VALUE)
+        );
+        jPanel63Layout.setVerticalGroup(
+            jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 759, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3_Lab_Dev.addTab("TEST CONFIG", jPanel63);
 
         jPanel_lab_development_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_lab_development_2.setLayout(new java.awt.GridLayout(1, 0));
@@ -4965,6 +4979,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JPanel jPanel60;
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
+    private javax.swing.JPanel jPanel63;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

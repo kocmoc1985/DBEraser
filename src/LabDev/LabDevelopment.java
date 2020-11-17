@@ -926,6 +926,8 @@ public class LabDevelopment extends BasicTab implements MouseListener {
             lab_dev_tab_tab_find_order();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
             lab_dev_tab_test_definition();
+        }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
+            
         }
         //
     }
