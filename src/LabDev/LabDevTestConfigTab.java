@@ -5,13 +5,11 @@
  */
 package LabDev;
 
-import static LabDev.LabDevelopment.TABLE__MC_CPWORDER;
-import MCRecipe.Lang.T_INV;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
+import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
@@ -43,6 +41,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     private void init() {
         temp();
         showTableInvert();
+        initializeSaveIndicators();
 //        getConditions();
     }
 
@@ -117,7 +116,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     @Override
     public void showTableInvert() {
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "lab_dev_test_config");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), true, "lab_dev_test_config");
         //
         TABLE_INVERT = null;
         //
@@ -170,13 +169,28 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     public void fillNotes() {
     }
 
+    public void saveTableInvert(){
+        saveChangesTableInvert();
+        labDev.refreshHeader();
+    }
+    
     @Override
     public void initializeSaveIndicators() {
+        SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_config_btn, this, 1);
     }
 
     @Override
     public boolean getUnsaved(int nr) {
-        return false;
+        if (nr == 1) {
+            //
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                return true;
+            }
+            //
+        }
+         return false;
     }
 
 }

@@ -53,7 +53,7 @@ public class TableBuilderInvert_ {
 
     /**
      * New [2020-07-10] Not using SQL
-     *
+     * Used by BuhInvoice
      * @param tableInvertConsumer
      * @return
      */

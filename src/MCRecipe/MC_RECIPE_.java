@@ -731,6 +731,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel66 = new javax.swing.JPanel();
         jScrollPane26 = new javax.swing.JScrollPane();
         jPanel65 = new javax.swing.JPanel();
+        jButton_lab_dev_tab__save_config_btn = new javax.swing.JButton();
         jPanel54 = new javax.swing.JPanel();
         jPanel_lab_development_2 = new javax.swing.JPanel();
         jPanel_lab_development_3 = new javax.swing.JPanel();
@@ -2199,30 +2200,42 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel65.setLayout(flowLayout1);
         jScrollPane26.setViewportView(jPanel65);
 
+        jButton_lab_dev_tab__save_config_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
+        jButton_lab_dev_tab__save_config_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev_tab__save_config_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel63Layout = new javax.swing.GroupLayout(jPanel63);
         jPanel63.setLayout(jPanel63Layout);
         jPanel63Layout.setHorizontalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel63Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_lab_dev_tab__save_config_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel63Layout.createSequentialGroup()
+                        .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel63Layout.setVerticalGroup(
             jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel63Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(10, 10, 10)
+                .addComponent(jButton_lab_dev_tab__save_config_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel63Layout.createSequentialGroup()
                         .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST CONFIG", jPanel63);
@@ -4667,6 +4680,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         labDevelopment.lab_dev_tab_tab_find_order__set_order_clicked();
     }//GEN-LAST:event_jButton__lab_dev_find_order_tab__set_orderActionPerformed
 
+    private void jButton_lab_dev_tab__save_config_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_tab__save_config_btnActionPerformed
+        labDevelopment.labDevTestConfigTab.saveTableInvert();
+    }//GEN-LAST:event_jButton_lab_dev_tab__save_config_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4825,6 +4842,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JButton jButton_lab_dev_delete_2;
     public javax.swing.JButton jButton_lab_dev_save_btn_1;
     public javax.swing.JButton jButton_lab_dev_save_btn_2;
+    public javax.swing.JButton jButton_lab_dev_tab__save_config_btn;
     public javax.swing.JButton jButton_lab_dev_tab__save_notes;
     private javax.swing.JButton jButton_r_detailed_next;
     private javax.swing.JButton jButton_r_detailed_prev;

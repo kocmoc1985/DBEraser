@@ -69,7 +69,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
-    private LabDevTestConfigTab labDevTestConfigTab;
+    public LabDevTestConfigTab labDevTestConfigTab;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
@@ -187,7 +187,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         labDevFindOrderTab.filterButtonClicked();
     }
 
-    private void refreshHeader() {
+    protected void refreshHeader() {
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
             HelpA_.showNotification_separate_thread("Kein Auftrag ausgewählt!");
