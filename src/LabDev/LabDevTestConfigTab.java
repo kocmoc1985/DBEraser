@@ -40,9 +40,13 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     private void init() {
         temp();
-        showTableInvert();
+        refresh();
         initializeSaveIndicators();
 //        getConditions();
+    }
+    
+    public void refresh(){
+        showTableInvert();
     }
 
     private String getMaterial() {

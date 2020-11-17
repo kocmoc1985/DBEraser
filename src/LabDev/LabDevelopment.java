@@ -217,6 +217,8 @@ public class LabDevelopment extends BasicTab implements MouseListener {
             labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
         }
         //
+        labDevTestConfigTab.refresh();
+        //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG();
         refreshHeader();
     }

@@ -2183,17 +2183,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
 
-        jPanel64.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel64.setLayout(new java.awt.BorderLayout());
 
-        jPanel66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel66.setPreferredSize(new java.awt.Dimension(430, 500));
         java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0);
         flowLayout2.setAlignOnBaseline(true);
         jPanel66.setLayout(flowLayout2);
         jScrollPane25.setViewportView(jPanel66);
 
-        jPanel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel65.setPreferredSize(new java.awt.Dimension(430, 500));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0);
         flowLayout1.setAlignOnBaseline(true);
