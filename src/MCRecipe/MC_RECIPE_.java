@@ -2186,15 +2186,15 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel64.setLayout(new java.awt.BorderLayout());
 
         jPanel66.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel66.setPreferredSize(new java.awt.Dimension(450, 50));
-        java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        jPanel66.setPreferredSize(new java.awt.Dimension(430, 500));
+        java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0);
         flowLayout2.setAlignOnBaseline(true);
         jPanel66.setLayout(flowLayout2);
         jScrollPane25.setViewportView(jPanel66);
 
         jPanel65.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel65.setPreferredSize(new java.awt.Dimension(450, 50));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT);
+        jPanel65.setPreferredSize(new java.awt.Dimension(430, 500));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0);
         flowLayout1.setAlignOnBaseline(true);
         jPanel65.setLayout(flowLayout1);
         jScrollPane26.setViewportView(jPanel65);
@@ -2208,7 +2208,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane26)
+                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
@@ -2219,9 +2219,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addGroup(jPanel63Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel64, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel63Layout.createSequentialGroup()
-                        .addComponent(jScrollPane26)
+                        .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
