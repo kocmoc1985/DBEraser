@@ -4642,7 +4642,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_lab_dev_save_btn_1ActionPerformed
 
     private void jButton_lab_dev_save_btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_save_btn_2ActionPerformed
-        labDevelopment.saveTableInvert_2_3_4_5__tab_status();
+        labDevelopment.labDevStatusTab.saveTableInvert_2_3_4_5__tab_status();
     }//GEN-LAST:event_jButton_lab_dev_save_btn_2ActionPerformed
 
     private void jButton_lab_dev_delete_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_1ActionPerformed
