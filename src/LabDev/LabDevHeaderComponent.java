@@ -68,13 +68,13 @@ public class LabDevHeaderComponent implements ItemListener {
 
     public void tab_main_data() {
         clear();
-        showStandard();
+        showStandard(false);
         updateGraphics();
     }
 
     public void tab_status() {
         clear();
-        showStandard();
+        showStandard(true);
         showStatusTab();
         updateGraphics();
     }
@@ -87,7 +87,7 @@ public class LabDevHeaderComponent implements ItemListener {
 
     public void tab_test_defenition() {
         clear();
-        showStandard();
+        showStandard(false);
         showTestDefTab();
         updateGraphics();
     }
@@ -141,14 +141,14 @@ public class LabDevHeaderComponent implements ItemListener {
     /**
      * For "Kopfdaten / Main Data" also probably suits for other
      */
-    private void showStandard() {
+    private void showStandard(boolean statusJComboEnabled) {
         //
         JPanel upper = getUpper();
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo(), false);
         //
         //
-        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG));
+        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG),statusJComboEnabled);
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn(), false);
         //
@@ -177,13 +177,14 @@ public class LabDevHeaderComponent implements ItemListener {
         upperOrLower.add(container);
     }
 
-    private void buildJLabelJComboComponent(JPanel upperOrLower, String jLabelVal, String[] values) {
+    private void buildJLabelJComboComponent(JPanel upperOrLower, String jLabelVal, String[] values, boolean statusJComboEnabled) {
         //
         JLabel label = buildStandardLabel(jLabelVal);
         //
         JComboBox box = new JComboBox();
         box = HelpA_.fillComboBox_simple(box, values, null);
         box.setEditable(true);
+        box.setEnabled(statusJComboEnabled);
         //
         String actual_status = getStatusInActLang();
         box.setSelectedItem(actual_status);
