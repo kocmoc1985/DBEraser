@@ -11,7 +11,7 @@ import MCRecipe.Lang.MSG;
 import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
-import MyObjectTableInvert.TableRowInvert;
+import MyObjectTableInvert.TableRowInvert_;
 import forall.GP;
 import forall.HelpA_;
 import static forall.HelpA_.getColByName;
@@ -156,7 +156,7 @@ public class Validator_MCR {
         //
         unsetToolTip(jli);
         //
-        TableRowInvert tri = jli.getParentObj();
+        TableRowInvert_ tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
         hi.setValidated();
         //
@@ -165,7 +165,7 @@ public class Validator_MCR {
     }
 
     private static boolean setNotValidated(JLinkInvert jli) {
-        TableRowInvert tri = jli.getParentObj();
+        TableRowInvert_ tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
         hi.setNotValidated();
         jli.setValidated(false);
@@ -173,7 +173,7 @@ public class Validator_MCR {
     }
 
     private static boolean setNotValidated(JLinkInvert jli, Color color) {
-        TableRowInvert tri = jli.getParentObj();
+        TableRowInvert_ tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
         hi.setNotValidated(color);
         jli.setValidated(false);

@@ -133,7 +133,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
         for (TableRow row : rows_list) {
             //
-            TableRowInvert tri = (TableRowInvert) row;
+            TableRowInvert_ tri = (TableRowInvert_) row;
             //
             System.out.println("w:" + row.getWidth() + " / h:" + row.getHeight() + " / visible: " + tri.getRowConfig().getVisible());
             //
@@ -193,14 +193,14 @@ public class TableInvert extends Table implements ControlsActionsIF {
         for (Object row_column_data_entry : TABLE_DATA) {
             //
             RowDataInvert rcd;
-            TableRowInvert row;
+            TableRowInvert_ row;
             //
             if (row_column_data_entry instanceof RowDataInvertB) {
                 rcd = (RowDataInvertB) row_column_data_entry;
                 row = new TableRowInvertB(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
             } else if (row_column_data_entry instanceof RowDataInvert) {
                 rcd = (RowDataInvert) row_column_data_entry;
-                row = new TableRowInvert(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
+                row = new TableRowInvert_(rcd, "-1", ROW_COUNTER, TABLE_ROW_LAYOUT, this);
             } else {
                 rcd = null;
                 row = null;
@@ -225,7 +225,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     public void addTableRowInvertListener(TableRowInvertListener tril) {
         for (TableRow row : rows_list) {
-            TableRowInvert tri = (TableRowInvert) row;
+            TableRowInvert_ tri = (TableRowInvert_) row;
             tri.addTableRowInvertListener(tril);
         }
     }
@@ -281,7 +281,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     public void addToUnsaved(String rowName, int column) {
         Object obj = getComponentAt(rowName, column);
         TableRow tableRow = getRow(0);
-        TableRowInvert tri = (TableRowInvert) tableRow;
+        TableRowInvert_ tri = (TableRowInvert_) tableRow;
         tri.add_to_unsaved(obj);
     }
 
@@ -289,7 +289,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
         for (Object rowInvert : rows_list) {
             //
-            TableRowInvert tri = (TableRowInvert) rowInvert;
+            TableRowInvert_ tri = (TableRowInvert_) rowInvert;
             //
             Object obj;
             //
@@ -313,7 +313,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
         for (Object rowInvert : rows_list) {
             //
-            TableRowInvert tri = (TableRowInvert) rowInvert;
+            TableRowInvert_ tri = (TableRowInvert_) rowInvert;
             //
             Object obj;
             //
@@ -336,7 +336,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     public void clearRows(int start, int notToClearFromEnd) {
         for (int i = start; i < rows_list.size() - notToClearFromEnd; i++) {
             Object rowInvert = rows_list.get(i);
-            TableRowInvert tri = (TableRowInvert) rowInvert;
+            TableRowInvert_ tri = (TableRowInvert_) rowInvert;
             //
             Object obj;
             //
@@ -361,7 +361,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     }
 
     public RowDataInvert getRowConfig(int row) {
-        TableRowInvert rowInvert = getRow(row);
+        TableRowInvert_ rowInvert = getRow(row);
         return rowInvert.getRowConfig();
     }
 
@@ -371,13 +371,13 @@ public class TableInvert extends Table implements ControlsActionsIF {
      * @param columnNameNotNickName
      * @return
      */
-    public TableRowInvert getRowByColName(String columnNameNotNickName) {
-        return (TableRowInvert) row__col_name__tablerowinvert_map.get(columnNameNotNickName);
+    public TableRowInvert_ getRowByColName(String columnNameNotNickName) {
+        return (TableRowInvert_) row__col_name__tablerowinvert_map.get(columnNameNotNickName);
     }
 
     @Override
-    public TableRowInvert getRow(int i) {
-        return (TableRowInvert) this.getComponent(i);
+    public TableRowInvert_ getRow(int i) {
+        return (TableRowInvert_) this.getComponent(i);
     }
 
     public void setValueAt(String rowName, Object value, int column) {
@@ -426,7 +426,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
      * @return
      */
     public String getValueAtJComboBox(String rowName, int paramToReturn) {
-        TableRowInvert tableRow = getRow(getRowNrByName(rowName));
+        TableRowInvert_ tableRow = getRow(getRowNrByName(rowName));
         String value = tableRow.getValueAtJComboBox(1, paramToReturn);
         return value;
     }
@@ -444,7 +444,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     }
 
     public int getColumnCount() {
-        TableRowInvert tableRowInvert = (TableRowInvert) rows_list.get(0);
+        TableRowInvert_ tableRowInvert = (TableRowInvert_) rows_list.get(0);
         return tableRowInvert.getColumnCount();
     }
 
@@ -460,8 +460,8 @@ public class TableInvert extends Table implements ControlsActionsIF {
         return row_col_object__column_nick_name__map.get((Component) source);
     }
 
-    public TableRowInvert getTableRowInvertByComponent(Object field) {
-        return (TableRowInvert) row___col_object__map.get((Component) field);
+    public TableRowInvert_ getTableRowInvertByComponent(Object field) {
+        return (TableRowInvert_) row___col_object__map.get((Component) field);
     }
 
     class Entry {

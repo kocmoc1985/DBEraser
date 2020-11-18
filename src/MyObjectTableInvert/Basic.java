@@ -522,6 +522,24 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         ti.applyChanges();
         //
     }
+    
+    /**
+     * OBS! Works in "connection" with TableBuilderInvert -> buildTable_C_C(...)
+     */
+    public void saveChangesTableInvert_C_C() {
+        //
+        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
+            return;
+        }
+        //
+        TableInvert ti = (TableInvert) TABLE_INVERT;
+        //
+        automaticFieldUpdate(TABLE_INVERT);
+        //
+        ti.applyChanges();
+        //
+    }
 
     public void automaticFieldUpdate(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;

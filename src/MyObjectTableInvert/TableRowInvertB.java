@@ -20,7 +20,7 @@ import javax.swing.JLabel;
  *
  * @author MCREMOTE
  */
-public class TableRowInvertB extends TableRowInvert {
+public class TableRowInvertB extends TableRowInvert_ {
 
     public TableRowInvertB(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);

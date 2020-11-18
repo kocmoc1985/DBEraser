@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 public class JTextFieldInvert extends JTextField implements JLinkInvert {
 
     private ColumnDataEntryInvert child;
-    private TableRowInvert parent;
+    private TableRowInvert_ parent;
     private boolean validateDate;
 
     public JTextFieldInvert(String text) {
@@ -32,12 +32,12 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     }
 
     @Override
-    public void setParentObj(TableRowInvert rdi) {
+    public void setParentObj(TableRowInvert_ rdi) {
         this.parent = rdi;
     }
 
     @Override
-    public TableRowInvert getParentObj() {
+    public TableRowInvert_ getParentObj() {
         return this.parent;
     }
 

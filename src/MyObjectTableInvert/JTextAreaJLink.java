@@ -7,7 +7,7 @@ package MyObjectTableInvert;
 
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.TableRowInvert;
+import MyObjectTableInvert.TableRowInvert_;
 import javax.swing.JTextArea;
 
 /**
@@ -29,11 +29,11 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert {
     }
 
     @Override
-    public void setParentObj(TableRowInvert rdi) {
+    public void setParentObj(TableRowInvert_ rdi) {
     }
 
     @Override
-    public TableRowInvert getParentObj() {
+    public TableRowInvert_ getParentObj() {
         return null;
     }
 

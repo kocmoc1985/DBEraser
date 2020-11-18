@@ -12,7 +12,7 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
-import MyObjectTableInvert.TableRowInvert;
+import MyObjectTableInvert.TableRowInvert_;
 import java.awt.AWTEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
@@ -176,7 +176,7 @@ public abstract class Basic_Buh extends Basic {
             //
             JLinkInvert jli = (JLinkInvert) evt.getSource();
             //
-            TableRowInvert tri = jli.getParentObj();
+            TableRowInvert_ tri = jli.getParentObj();
             //
             TableInvert ti_ = (TableInvert) tri.getTable();
             //

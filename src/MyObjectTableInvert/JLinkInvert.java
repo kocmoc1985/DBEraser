@@ -8,7 +8,7 @@ package MyObjectTableInvert;
 /**
  * It's named JLinkInvert -> "Link" because it's a link between a Graphical
  * component and it's child and parent: [Child:
- * ColumnDataEntryInvert]<--[JTextFieldInvert]-->[Parent: TableRowInvert]
+ * ColumnDataEntryInvert]<--[JTextFieldInvert]-->[Parent: TableRowInvert_]
  *
  * @author KOCMOC
  */
@@ -18,9 +18,9 @@ public interface JLinkInvert {
 
     public ColumnDataEntryInvert getChildObject();
 
-    public void setParentObj(TableRowInvert rdi);
+    public void setParentObj(TableRowInvert_ rdi);
 
-    public TableRowInvert getParentObj();
+    public TableRowInvert_ getParentObj();
 
     public String getValue();
 
