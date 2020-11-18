@@ -30,16 +30,18 @@ public class LabDevTestDefinitionTab extends LabDevTab {
     }
 
     private void init() {
+        fillJTableHeader();
         build();
     }
 
     private JTable getTable() {
         return mcRecipe.jTable_test_definitions;
     }
-    
-    private void build(){
+
+    private void build() {
         ArrayList<String> codes_list = getCodesList();
         ArrayList<TestDefinitionEntry> table_data = buildJTableData(codes_list);
+        fillJTable(table_data);
         System.out.println("");
     }
 
@@ -119,20 +121,33 @@ public class LabDevTestDefinitionTab extends LabDevTab {
         //
         JTable table = getTable();
         //
-        String[] headers = {};
+        String[] headers = {
+            "Code",
+            "Description",
+            "Conditions"
+        };
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
 
-    private void fillJTable() {
+    private void fillJTable(ArrayList<TestDefinitionEntry> tableData) {
         //
         JTable table = getTable();
-        //
-        Object[] jtableRow = new Object[]{};
-        //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(jtableRow);
+        //
+        for (TestDefinitionEntry tde : tableData) {
+            //
+            Object[] jtableRow = new Object[]{
+            tde.getCode(),
+            tde.getDescr(),
+            tde.getConditionString()
+            };
+            //
+            model.addRow(jtableRow);
+            //
+        }
+        //
     }
 
     public void refresh() {

@@ -21,4 +21,17 @@ public class TestDefinitionEntry {
         this.conditionString = conditionString;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescr() {
+        return descr;
+    }
+
+    public String getConditionString() {
+        return conditionString;
+    }
+
+    
 }
