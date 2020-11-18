@@ -16,6 +16,8 @@ import Reporting.TableInvertBasicRepport;
 import Reporting.JTableBasicRepport;
 import forall.HelpA_;
 import static forall.HelpA_.run_application_with_associated_application;
+import forall.SqlBasicLocal;
+import forall.Sql_B;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
@@ -24,11 +26,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -417,7 +421,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * Basic method for getting value from a TableInvert Obs! The rowName is the
- column name from DB not the nickName
+     * column name from DB not the nickName
      *
      * @param rowName
      * @return
@@ -522,11 +526,17 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         ti.applyChanges();
         //
     }
-    
+
+    public void automaticFieldUpdate(Table tableInvert) {
+        TableInvert ti = (TableInvert) tableInvert;
+        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA_.updatedOn());
+        ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA_.updatedBy());
+    }
+
     /**
      * OBS! Works in "connection" with TableBuilderInvert -> buildTable_C_C(...)
      */
-    public void saveChangesTableInvert_C_C() {
+    public void saveChangesTableInvert_C_C(SqlBasicLocal sql) {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
             HelpA_.showActionDeniedUserRole(USER_ROLE);
@@ -535,16 +545,49 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
         TableInvert ti = (TableInvert) TABLE_INVERT;
         //
-        automaticFieldUpdate(TABLE_INVERT);
+        autoSaveUpdadetOnBy_C_C(sql);
         //
         ti.applyChanges();
         //
     }
 
-    public void automaticFieldUpdate(Table tableInvert) {
-        TableInvert ti = (TableInvert) tableInvert;
-        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA_.updatedOn());
-        ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA_.updatedBy());
+    private void autoSaveUpdadetOnBy_C_C(SqlBasicLocal sql) {
+        //
+        HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = TABLE_INVERT.unsaved_entries_map;
+        ///
+        Set set = unsaved_entries_map.keySet();
+        Iterator it = set.iterator();
+        //
+        Sql_B sql_b = (Sql_B) sql;
+        //
+        while (it.hasNext()) {
+            //
+            Object key = it.next();
+            UnsavedEntryInvert unsavedEntryInvert = unsaved_entries_map.get(key);
+            //
+            String tableName = unsavedEntryInvert.getTableName();
+            String idColName = unsavedEntryInvert.getPrimareyOrForeignKeyName();
+            String id = unsavedEntryInvert.getDbID();
+            //
+//            String q = "UPDATE " + tableName + " SET UpdatedOn='" + HelpA_.updatedOn() + "' WHERE " + idColName + "=" + id;
+//            System.out.println("---------------> "+q);
+            String q_2 = "UPDATE " + tableName + " SET UpdatedBy='" + HelpA_.updatedBy() + "' WHERE " + idColName + "=" + id;
+            //
+            try {
+//                sql_b.getStatement().addBatch(q);
+                sql_b.getStatement().addBatch(q_2);
+            } catch (SQLException ex) {
+                Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //
+        try {
+            sql_b.getStatement().executeBatch();
+        } catch (SQLException ex) {
+            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
 
     public boolean columnNameExists(String colName, Table tableInvert) {
@@ -896,10 +939,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
- toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
- return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
- }
+     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
      *
      * @param arr
      * @param columnsToRemove

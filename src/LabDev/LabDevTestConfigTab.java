@@ -197,13 +197,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
 //        saveChangesTableInvert();
         //
-        HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = TABLE_INVERT.unsaved_entries_map;
-        Set set = unsaved_entries_map.keySet();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            Object key = it.next();
-            UnsavedEntryInvert unsavedEntryInvert = unsaved_entries_map.get(key);
-        }
+        saveChangesTableInvert_C_C(sql);
         //
         labDev.refreshHeader();
     }
