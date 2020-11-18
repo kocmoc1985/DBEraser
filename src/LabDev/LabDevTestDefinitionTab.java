@@ -5,10 +5,12 @@
  */
 package LabDev;
 
+import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +26,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class LabDevTestDefinitionTab extends LabDevTab {
 
+    private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
+    private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
+    private final String COL_3_NAME = LAB_DEV.test_definition_tab__get_col_3();
+
     public LabDevTestDefinitionTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
@@ -31,7 +37,19 @@ public class LabDevTestDefinitionTab extends LabDevTab {
 
     private void init() {
         fillJTableHeader();
+        refresh();
+    }
+
+    public void refresh() {
+        //
+        JTable table = getTable();
+        //
         build();
+        //
+        HelpA_.setColumnWidthByName(COL_1_NAME, table, 0.1);
+        HelpA_.setColumnWidthByName(COL_2_NAME, table, 0.25);
+        HelpA_.setColumnWidthByName(COL_3_NAME, table, 0.65);
+        //
     }
 
     private JTable getTable() {
@@ -122,9 +140,9 @@ public class LabDevTestDefinitionTab extends LabDevTab {
         JTable table = getTable();
         //
         String[] headers = {
-            "Code",
-            "Description",
-            "Conditions"
+            COL_1_NAME, // Code
+            COL_2_NAME, // Desc
+            COL_3_NAME // Conditions
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -136,22 +154,20 @@ public class LabDevTestDefinitionTab extends LabDevTab {
         JTable table = getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         //
+        HelpA_.clearAllRowsJTable(table);
+        //
         for (TestDefinitionEntry tde : tableData) {
             //
             Object[] jtableRow = new Object[]{
-            tde.getCode(),
-            tde.getDescr(),
-            tde.getConditionString()
+                tde.getCode(),
+                tde.getDescr(),
+                tde.getConditionString()
             };
             //
             model.addRow(jtableRow);
             //
         }
         //
-    }
-
-    public void refresh() {
-
     }
 
     @Override

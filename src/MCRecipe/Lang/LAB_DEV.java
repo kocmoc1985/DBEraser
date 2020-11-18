@@ -8,6 +8,7 @@ package MCRecipe.Lang;
 import LabDev.LAB_DEV__STATUS;
 import static MCRecipe.Lang.LNG.LANG_ENG;
 import forall.HelpA_;
+import java.util.HashMap;
 import javax.swing.JTable;
 
 /**
@@ -61,6 +62,19 @@ public class LAB_DEV {
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "Aktualisiert");
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "Aktualisiert von");
         }
+    }
+
+    
+    public static String test_definition_tab__get_col_1(){
+        return LANG_ENG ? "Code" : "Code";
+    }
+    
+    public static String test_definition_tab__get_col_2(){
+        return LANG_ENG ? "Description" : "Beschreibung";
+    }
+    
+    public static String test_definition_tab__get_col_3(){
+        return LANG_ENG ? "Conditions" : "Bedingungen";
     }
 
     public static String TABLE_INVERT_NAME_3() {
@@ -118,8 +132,8 @@ public class LAB_DEV {
     public static String LBL_8() {
         return LANG_ENG ? "Description" : "Beschreibung";
     }
-    
-     public static String LBL_9() {
+
+    public static String LBL_9() {
         return LANG_ENG ? "Ammount of batches" : "Chargenmenge";
     }
 
