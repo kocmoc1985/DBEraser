@@ -5,7 +5,8 @@
  */
 package LabDev;
 
-import MCRecipe.MC_RECIPE_;
+import static LabDev.LabDevelopment.TABLE__MC_CPWORDER;
+import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
@@ -118,6 +119,13 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             rdi.setDisabled();
             list.add(rdi);
         }
+        //
+        //
+//        RowDataInvert updated_on = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, true); // UpdatedOn
+//        RowDataInvert updated_by = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, true);
+//        //
+//        list.add(updated_on);
+//        list.add(updated_by);
         //
         RowDataInvert[] arr = new RowDataInvert[list.size()];
         //

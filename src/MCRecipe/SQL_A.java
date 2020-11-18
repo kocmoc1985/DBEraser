@@ -1477,6 +1477,14 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ")";
     }
+    
+    public static String lab_dev_test_definition__get_lastupdate(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ") ORDER BY UpdatedOn DESC";
+    }
 
     public static String lab_dev_test_definitions_tab__getCodes(String PROC, String param1, String param2, String param3) {
         return "SELECT DISTINCT CODE FROM [" + PROC + "]" + " ("

@@ -93,13 +93,13 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     public String getTestCode() {
         return "MOV01";
     }
-    
+
     public String getMaterial_description() {
         String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
         String descr = HelpA_.getSingleParamSql_query(sql, q, "Beschreibung");
         return descr;
     }
-    
+
     public String getMaterial_batchammount() {
         String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
         String batch_ammount = HelpA_.getSingleParamSql_query(sql, q, "BatchMenge");
@@ -136,7 +136,19 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
                     "WORDERNO", getOrderNo(), "ID", id, "UpdatedOn", false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
-            // Not needed
+            //
+            String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
+                    getOrderNo(), getTestCode());
+            //
+            date = HelpA_.getSingleParamSql_query(sql, q, "UpdatedOn");
+            //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
+            //
+            String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
+                    getOrderNo(), null);
+            //
+            date = HelpA_.getSingleParamSql_query(sql, q, "UpdatedOn");
+            //
         }
         //
         if (date == null || date.isEmpty()) {
@@ -174,6 +186,21 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
             }
             //
             updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(), "ID", id, "UpdatedBy", false);
+            //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
+            //
+            String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
+                    getOrderNo(), getTestCode());
+            //
+            updatedBy = HelpA_.getSingleParamSql_query(sql, q, "UpdatedBy");
+            //
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
+            //
+            String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
+                    getOrderNo(), null);
+            //
+            updatedBy = HelpA_.getSingleParamSql_query(sql, q, "UpdatedBy");
+            //
         }
         //
         return updatedBy;

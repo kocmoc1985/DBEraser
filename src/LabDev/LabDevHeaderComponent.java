@@ -94,8 +94,24 @@ public class LabDevHeaderComponent implements ItemListener {
     
     public void tab_test_config() {
         clear();
-        showOrderNo_only();
+//        showOrderNo_only();
+        showStandard(false);
+        showTestConfigTab();
         updateGraphics();
+    }
+    
+    private void showTestConfigTab() {
+        //
+        JPanel lower = getLower();
+        //
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7(), labDev.getMaterial(), false);
+        //
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7_2(), labDev.getTestCode(), false);
+        //
+        for (int i = 0; i < 3; i++) {
+            lower.add(new JPanel()); // Adding empty for compacting 
+        }
+        //
     }
 
     private void showTestDefTab() {

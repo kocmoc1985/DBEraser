@@ -128,6 +128,10 @@ public class LAB_DEV {
     public static String LBL_7() {
         return LANG_ENG ? "Recipe" : "Rezeptur";
     }
+    
+    public static String LBL_7_2() {
+        return LANG_ENG ? "Code" : "Code";
+    }
 
     public static String LBL_8() {
         return LANG_ENG ? "Description" : "Beschreibung";
