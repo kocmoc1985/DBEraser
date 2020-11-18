@@ -23,6 +23,7 @@ public abstract class LabDevTab extends BasicTab {
 
     protected final MC_RECIPE_ mcRecipe;
     protected final LabDevelopment labDev;
+    
 
     public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
         super(sql, sql_additional, OUT);

@@ -56,6 +56,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     private LabDevFindOrderTab labDevFindOrderTab;
     public LabDevTestConfigTab labDevTestConfigTab;
     public LabDevStatusTab labDevStatusTab;
+    public LabDevTestDefinitionTab labDevTestDefinitionTab;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
@@ -231,12 +232,18 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
             labDevTestConfigTab.refresh();
         }
         //
-
     }
 
     public void lab_dev_tab_test_definition__clicked() {
+        //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION();
         refreshHeader();
+        //
+        if(labDevTestDefinitionTab == null){
+            labDevTestDefinitionTab = new LabDevTestDefinitionTab(sql, sql_additional, OUT, labDev);
+        }else{
+            labDevTestDefinitionTab.refresh();
+        }
     }
 
     public void lab_dev_tab_tab_find_order__clicked() {
@@ -428,7 +435,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     }
 
     /**
-     * [TAB: MATERIA-INFO]
+     * [TAB: MATERIAL-INFO]
      */
     public void showTableInvert_6() {
         //

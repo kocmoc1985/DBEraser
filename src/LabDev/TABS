@@ -1,0 +1,12 @@
+
+TABS:
+LabDevelopment.class -> MAIN DATA, MATERIAL INFO, NOTES
+
+LabDevFindOrderTab -> FIND ORDER
+
+LabDevStatusTab -> STATUS
+
+LabDevTestDefinitionTab -> TEST DEFINITION (PRUFDEFINITIONEN)
+
+LabDevTestConfigTab -> TEST CONFIG (PRÜFKONFIG)
+
