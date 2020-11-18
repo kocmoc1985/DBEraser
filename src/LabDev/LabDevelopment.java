@@ -11,7 +11,6 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.MC_RECIPE_;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
@@ -20,7 +19,6 @@ import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.GP;
@@ -42,7 +40,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class LabDevelopment extends BasicTab implements MouseListener {
+public class LabDevelopment extends LabDevTab implements MouseListener {
 
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
@@ -53,7 +51,6 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_6;
     private Table TABLE_INVERT_6;
-    private final MC_RECIPE_ mCRecipe;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
@@ -64,16 +61,15 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     private String PREV_TAB_NAME = "";
 
     public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
-        super(sql, sql_additional, OUT);
-        this.mCRecipe = (MC_RECIPE_) OUT;
+        super(sql, sql_additional, OUT, null);
         this.changeSaver = saver;
         init();
     }
 
     private void init() {
         //
-        labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
-        labDevFindOrderTab = new LabDevFindOrderTab(sql,sql_additional, mCRecipe,this);
+        labDevHeaderComponent = new LabDevHeaderComponent(mcRecipe.jPanel_lab_dev_header, sql, this);
+        labDevFindOrderTab = new LabDevFindOrderTab(sql, sql_additional, mcRecipe, this);
         //
         getTabbedPane().addMouseListener(this);
         initializeSaveIndicators();
@@ -81,7 +77,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     }
 
     private JTabbedPane getTabbedPane() {
-        return mCRecipe.jTabbedPane3_Lab_Dev;
+        return mcRecipe.jTabbedPane3_Lab_Dev;
     }
 
     public String getOrderNo() {
@@ -175,7 +171,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     }
 
     private String getIdMaterialInfoTable() {
-        return HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
+        return HelpA_.getValueSelectedRow(mcRecipe.jTable_lab_dev__material_info, "ID");
     }
 
     public void lab_dev_tab_tab_find_order__set_order_clicked() {
@@ -271,7 +267,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     }
 
     private JTextArea getNotesJTextArea() {
-        return mCRecipe.jTextArea_notes__lab_dev_tab;
+        return mcRecipe.jTextArea_notes__lab_dev_tab;
     }
 
     private void fill_jtable_1_2__tab__main_data() {
@@ -279,10 +275,10 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "UpdatedOn", "ID"};
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
-        HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev_1, q1, colsToHide);
+        HelpA_.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_1, q1, colsToHide);
         //
         String q2 = SQL_A.get_lab_dev_table_2(getOrderNo(), TABLE_NOTES_2);
-        HelpA_.build_table_common(sql, OUT, mCRecipe.jTable_lab_dev_2, q2, colsToHide);
+        HelpA_.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
 
@@ -394,7 +390,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         //
 //        setMargin(TABLE_INVERT, 10, 0, 0, 0);
         //
-        showTableInvert(mCRecipe.jPanel_lab_development);
+        showTableInvert(mcRecipe.jPanel_lab_development);
         //
     }
 
@@ -440,7 +436,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         //
         TABLE_INVERT_6 = null;
         //
-        String id = HelpA_.getValueSelectedRow(mCRecipe.jTable_lab_dev__material_info, "ID");
+        String id = HelpA_.getValueSelectedRow(mcRecipe.jTable_lab_dev__material_info, "ID");
         //
         try {
 //            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
@@ -457,7 +453,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         //
         setVerticalScrollBarDisabled(TABLE_INVERT_6);
         //
-        showTableInvert(mCRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);
+        showTableInvert(mcRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);
     }
 
     public void materialInfoJTableClicked() {
@@ -467,7 +463,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
 
     private void fillJTableMaterialInfoTab() {
         //
-        JTable table = mCRecipe.jTable_lab_dev__material_info;
+        JTable table = mcRecipe.jTable_lab_dev__material_info;
         //
         String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(), null);
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
@@ -519,7 +515,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         String q = SQL_A.insert_into_lab_dev_table_1_and_2(dbTableName, order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
         //
         try {
-            sql.execute(q, mCRecipe);
+            sql.execute(q, mcRecipe);
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -575,9 +571,9 @@ public class LabDevelopment extends BasicTab implements MouseListener {
 
     @Override
     public void initializeSaveIndicators() {
-        SaveIndicator saveIndicator1 = new SaveIndicator(mCRecipe.jButton_lab_dev_save_btn_1, this, 1);
-        SaveIndicator saveIndicator3 = new SaveIndicator(mCRecipe.jButton_lab_dev_tab__save_notes, this, 3);
-        SaveIndicator saveIndicator4 = new SaveIndicator(mCRecipe.jButton_lab_dev__material_info_save, this, 4);
+        SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_save_btn_1, this, 1);
+        SaveIndicator saveIndicator3 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_notes, this, 3);
+        SaveIndicator saveIndicator4 = new SaveIndicator(mcRecipe.jButton_lab_dev__material_info_save, this, 4);
     }
 
     @Override
