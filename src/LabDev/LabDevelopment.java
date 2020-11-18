@@ -85,12 +85,25 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         return ORDER_FOR_TESTING;
     }
 
+    //Is also called Rezeptur
     public String getMaterial() {
-        return "WE8487";
+        return "WE8486";
     }
 
     public String getTestCode() {
         return "MOV01";
+    }
+    
+    public String getMaterial_description() {
+        String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
+        String descr = HelpA_.getSingleParamSql_query(sql, q, "Beschreibung");
+        return descr;
+    }
+    
+    public String getMaterial_batchammount() {
+        String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
+        String batch_ammount = HelpA_.getSingleParamSql_query(sql, q, "BatchMenge");
+        return batch_ammount;
     }
 
     public void setOrderNo(String order) {
@@ -99,10 +112,6 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
 
     public String getRequester() {
         return HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
-    }
-
-    public String getRezeptur() {
-        return "";
     }
 
     public String getUpdatedOn() {
@@ -239,9 +248,9 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION();
         refreshHeader();
         //
-        if(labDevTestDefinitionTab == null){
+        if (labDevTestDefinitionTab == null) {
             labDevTestDefinitionTab = new LabDevTestDefinitionTab(sql, sql_additional, OUT, this);
-        }else{
+        } else {
             labDevTestDefinitionTab.refresh();
         }
     }

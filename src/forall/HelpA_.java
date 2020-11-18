@@ -445,6 +445,19 @@ public class HelpA_ {
         //
         return false;
     }
+    
+     public static String getSingleParamSql_query(SqlBasicLocal sql,String q, String columnGet) {
+        //
+        try {
+            ResultSet rs = sql.execute(q);
+            if (rs.next()) {
+                return rs.getString(columnGet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public static String getSingleParamSql(SqlBasicLocal sql, String tableName,
             String columnWhere, String valueWhere, String columnGet, boolean number) {

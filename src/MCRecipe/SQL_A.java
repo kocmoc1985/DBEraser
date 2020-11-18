@@ -1423,6 +1423,13 @@ public class SQL_A {
                 + quotes(param2, false) + ")";
     }
 
+    public static String get_lab_dev__test_definition_material_add_info(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ")"
+                + " WHERE Material=" + quotes(param3, false);
+    }
+
     public static String save_status_lab_dev(String status, String order) {
         return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS="
                 + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
@@ -1453,13 +1460,15 @@ public class SQL_A {
         //
         return q;
     }
+
     /**
      * Used by: TEST DEFINITION & TEST CONFIG tabs
+     *
      * @param PROC
      * @param param1 - material
      * @param param2 - order
      * @param param3 - code
-     * @return 
+     * @return
      */
     public static String lab_dev_proc69_proc70(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
@@ -1468,7 +1477,7 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ")";
     }
-    
+
     public static String lab_dev_test_definitions_tab__getCodes(String PROC, String param1, String param2, String param3) {
         return "SELECT DISTINCT CODE FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","

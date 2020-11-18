@@ -102,11 +102,11 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         JPanel lower = getLower();
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7(), labDev.getRezeptur(), false);
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7(), labDev.getMaterial(), false);
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_8(), "", true);
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_8(), labDev.getMaterial_description(), true);
         //
-        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_9(), "", false);
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_9(), labDev.getMaterial_batchammount(), false);
         //
         for (int i = 0; i < 2; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
