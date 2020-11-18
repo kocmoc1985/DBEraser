@@ -9,6 +9,7 @@ import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
+import MyObjectTable.ShowMessage;
 import MyObjectTable.TableRow;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
@@ -25,17 +26,11 @@ import java.util.logging.Logger;
  */
 public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
-    private final LabDevelopment labDev;
-    private final SqlBasicLocal sql;
-    private final MC_RECIPE_ mcRecipe;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
 
-    public LabDevTestConfigTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE_ mcRecipe) {
-        super(sql, sql, mcRecipe);
+    public LabDevTestConfigTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+        super(sql, sql_additional, OUT, labDev);
         //
-        this.labDev = labDev;
-        this.sql = sql;
-        this.mcRecipe = mcRecipe;
         init();
     }
 

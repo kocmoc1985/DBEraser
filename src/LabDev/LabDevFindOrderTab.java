@@ -8,8 +8,8 @@ package LabDev;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
+import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
@@ -28,15 +28,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener {
     
-    private final LabDevelopment labDev;
-    private final SqlBasicLocal sql;
-    private final MC_RECIPE_ mcRecipe;
     private boolean oneTimeFlag = false;
     
-    public LabDevFindOrderTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE_ mcRecipe) {
-        this.labDev = labDev;
-        this.sql = sql;
-        this.mcRecipe = mcRecipe;
+    public LabDevFindOrderTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+        super(sql, sql_additional, OUT, labDev);
+        init();
+    }
+    
+    private void init(){
         mcRecipe.jTextField__lab_dev__find_order.addKeyListener(this);
     }
     

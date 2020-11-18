@@ -71,9 +71,10 @@ public class LabDevelopment extends BasicTab implements MouseListener {
     }
 
     private void init() {
+        //
         labDevHeaderComponent = new LabDevHeaderComponent(mCRecipe.jPanel_lab_dev_header, sql, this);
-        labDevFindOrderTab = new LabDevFindOrderTab(this, sql, mCRecipe);
-
+        labDevFindOrderTab = new LabDevFindOrderTab(sql,sql_additional, mCRecipe,this);
+        //
         getTabbedPane().addMouseListener(this);
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();
@@ -229,7 +230,7 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         refreshHeader();
         //
         if (labDevTestConfigTab == null) {
-            labDevTestConfigTab = new LabDevTestConfigTab(this, sql, mCRecipe);
+            labDevTestConfigTab = new LabDevTestConfigTab(sql, sql_additional, OUT, this);
         } else {
             labDevTestConfigTab.refresh();
         }

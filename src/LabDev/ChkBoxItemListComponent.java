@@ -21,16 +21,16 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public abstract class ChkBoxItemListComponent extends BasicTab  {
+public abstract class ChkBoxItemListComponent extends LabDevTab  {
 
     public static final int HEIGHT = 35;
 
     
-    public ChkBoxItemListComponent() {
-    }
+//    public ChkBoxItemListComponent() {
+//    }
     
-    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT){
-        super(sql, sql_additional, OUT);
+    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT,LabDevelopment labDev){
+        super(sql, sql_additional, OUT,labDev);
     }
     
     public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
