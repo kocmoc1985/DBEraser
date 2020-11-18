@@ -240,7 +240,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         refreshHeader();
         //
         if(labDevTestDefinitionTab == null){
-            labDevTestDefinitionTab = new LabDevTestDefinitionTab(sql, sql_additional, OUT, labDev);
+            labDevTestDefinitionTab = new LabDevTestDefinitionTab(sql, sql_additional, OUT, this);
         }else{
             labDevTestDefinitionTab.refresh();
         }

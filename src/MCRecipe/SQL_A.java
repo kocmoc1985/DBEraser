@@ -1453,9 +1453,24 @@ public class SQL_A {
         //
         return q;
     }
-    
-    public static String lab_dev_test_config_tab__getTestConditions(String PROC, String param1, String param2, String param3) {
+    /**
+     * Used by: TEST DEFINITION & TEST CONFIG tabs
+     * @param PROC
+     * @param param1 - material
+     * @param param2 - order
+     * @param param3 - code
+     * @return 
+     */
+    public static String lab_dev_proc69_proc70(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ")";
+    }
+    
+    public static String lab_dev_test_definitions_tab__getCodes(String PROC, String param1, String param2, String param3) {
+        return "SELECT DISTINCT CODE FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false)

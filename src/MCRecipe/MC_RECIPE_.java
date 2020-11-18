@@ -725,6 +725,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jTable_lab_dev__material_info = new javax.swing.JTable();
         jButton_lab_dev__material_info_save = new javax.swing.JButton();
         jPanel62 = new javax.swing.JPanel();
+        jScrollPane27 = new javax.swing.JScrollPane();
+        jTable_test_definitions = new javax.swing.JTable();
         jPanel63 = new javax.swing.JPanel();
         jPanel64 = new javax.swing.JPanel();
         jScrollPane25 = new javax.swing.JScrollPane();
@@ -2170,15 +2172,34 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jTabbedPane3_Lab_Dev.addTab("MATERIAL INFO", jPanel60);
 
+        jTable_test_definitions.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane27.setViewportView(jTable_test_definitions);
+
         javax.swing.GroupLayout jPanel62Layout = new javax.swing.GroupLayout(jPanel62);
         jPanel62.setLayout(jPanel62Layout);
         jPanel62Layout.setHorizontalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1216, Short.MAX_VALUE)
+            .addGroup(jPanel62Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel62Layout.setVerticalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 759, Short.MAX_VALUE)
+            .addGroup(jPanel62Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
@@ -5092,6 +5113,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane27;
     protected javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5133,6 +5155,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JTable jTable_lab_dev_2;
     public javax.swing.JTable jTable_lab_dev__find_order;
     public javax.swing.JTable jTable_lab_dev__material_info;
+    public javax.swing.JTable jTable_test_definitions;
     private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JTextArea jTextArea1_Logg;
     public javax.swing.JTextArea jTextArea_notes__lab_dev_tab;

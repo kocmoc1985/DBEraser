@@ -65,7 +65,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         String colCondition = "Condition";
         String colUnit = "Unit";
         //
-        String q = SQL_A.lab_dev_test_config_tab__getTestConditions(procedure, getMaterial(), getOrder(), getTestCode());
+        String q = SQL_A.lab_dev_proc69_proc70(procedure, getMaterial(), getOrder(), getTestCode());
         //
         ResultSet rs;
         //
@@ -134,8 +134,8 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
         try {
             //
-            String q = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
-            String q_2 = SQL_A.lab_dev_test_config_tab__getTestConditions(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
+            String q = SQL_A.lab_dev_proc69_proc70(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
+            String q_2 = SQL_A.lab_dev_proc69_proc70(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
             //
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable_C_C(q, q_2, this, TableRow.GRID_LAYOUT);
             //
