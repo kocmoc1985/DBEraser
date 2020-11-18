@@ -21,16 +21,12 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.BasicTab;
-import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
-import MyObjectTableInvert.TableInvert;
 import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -213,15 +209,15 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         }
         //
     }
-    
-    public void lab_dev_tab__tab_status__clicked(){
+
+    public void lab_dev_tab__tab_status__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS();
         refreshHeader();
         //
-        if(labDevStatusTab == null){
-            labDevStatusTab = new LabDevStatusTab(this, sql, mCRecipe);
-        }else{
+        if (labDevStatusTab == null) {
+            labDevStatusTab = new LabDevStatusTab(sql, sql_additional, OUT, this);
+        } else {
             labDevStatusTab.refresh();
         }
         //
@@ -273,8 +269,6 @@ public class LabDevelopment extends BasicTab implements MouseListener {
 //        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
     }
 
-    
-
     private JTextArea getNotesJTextArea() {
         return mCRecipe.jTextArea_notes__lab_dev_tab;
     }
@@ -307,8 +301,6 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         saveChangesTableInvert();
         refreshHeader();
     }
-
-    
 
     public void saveTableInvert_6() {
         saveChangesTableInvert(TABLE_INVERT_6);
@@ -404,8 +396,6 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         showTableInvert(mCRecipe.jPanel_lab_development);
         //
     }
-
-    
 
     /**
      * [TAB: MATERIA-INFO]
@@ -579,42 +569,6 @@ public class LabDevelopment extends BasicTab implements MouseListener {
         changeSaver.saveChange(updateEntry);
         //
         fill_jtable_1_2__tab__main_data();
-        //
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //
-    }
-
-    @Override
-    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
-        //
-        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
-        //
-        JLinkInvert jli = (JLinkInvert) ke.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(ke.getSource());
-        //
-        if (jli.getValidateDate()) {
-            //
-            Validator_MCR.validateDate(jli);
-            //
-        } else if (jli.getInputLengthValidation() > 0) {
-            //
-            JTextFieldInvert jtf = (JTextFieldInvert) jli;
-            //
-            int inputLength = jtf.getInputLengthValidation();
-            //
-            if (inputLength > 0) {
-                Validator_MCR.validateMaxInputLength(jli, inputLength);
-            }
-            //
-        }
-
         //
     }
 

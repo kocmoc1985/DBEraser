@@ -13,6 +13,7 @@ import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
+import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -27,7 +28,7 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class LabDevStatusTab extends BasicTab {
+public class LabDevStatusTab extends LabDevTab {
 
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
@@ -37,13 +38,9 @@ public class LabDevStatusTab extends BasicTab {
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
-    private final LabDevelopment labDev;
-    private final MC_RECIPE_ mcRecipe;
 
-    public LabDevStatusTab(LabDevelopment labDev, SqlBasicLocal sql, MC_RECIPE_ mcRecipe) {
-        super(sql, sql, mcRecipe);
-        this.labDev = labDev;
-        this.mcRecipe = mcRecipe;
+    public LabDevStatusTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+        super(sql, sql, OUT, labDev);
         init();
     }
 
