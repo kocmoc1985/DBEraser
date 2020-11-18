@@ -14,10 +14,14 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.TableRow;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.UnsavedEntryInvert;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -190,7 +194,17 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     public void saveTableInvert() {
-        saveChangesTableInvert();
+        //
+//        saveChangesTableInvert();
+        //
+        HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = TABLE_INVERT.unsaved_entries_map;
+        Set set = unsaved_entries_map.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            Object key = it.next();
+            UnsavedEntryInvert unsavedEntryInvert = unsaved_entries_map.get(key);
+        }
+        //
         labDev.refreshHeader();
     }
 

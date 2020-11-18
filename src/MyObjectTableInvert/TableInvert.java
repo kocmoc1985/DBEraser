@@ -506,6 +506,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         if (columnNameExists(rowName, colNr)) {
             changeValueNoSave(rowName, colNr, value);
         }
+        //
     }
 
     private void changeValueNoSave(String rowName, int colNr, String value) {
