@@ -6,7 +6,6 @@
 package LabDev;
 
 import MyObjectTable.ShowMessage;
-import MyObjectTableInvert.BasicTab;
 import forall.SqlBasicLocal;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -102,21 +101,6 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         //
     }
     
-    
-//    public void addRows(String[] items, JPanel panel, Dimension dim) {
-//        //
-//        if (dim == null) {
-//            panel.setPreferredSize(defaultDimension());
-//        } else {
-//            panel.setPreferredSize(dim);
-//        }
-//        //
-//        addRowsTable(items, panel);
-//        //
-//    }
-
-    
-
     private void addRowsTable(Object[] items, JPanel panel) {
         //
         if (items[0] instanceof String) {
@@ -135,18 +119,49 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
                 //
                 PrepOrAgingEntry poae = (PrepOrAgingEntry) items[i];
                 //
-                if (i == 0) {
-                    addRowTable("     ", poae.getDescription(), panel);
-                } else if (i < 10) {
-                    addRowTable("  " + i + ":", poae.getDescription(), panel);
+                if (i < 10) {
+                    addRowTable_C("  " + (i+1) + ":", poae, panel);
                 } else if (i > 10) {
-                    addRowTable("" + i + ":", poae.getDescription(), panel);
+                    addRowTable_C("" + (i+1) + ":", poae, panel);
                 }
             }
             //
         }
+    }
+    
+    /**
+     * Used by "LabDevTestConfig.class"
+     * @param sequence
+     * @param item
+     * @param panel 
+     */
+     private void addRowTable_C(String sequence, PrepOrAgingEntry item, JPanel panel) {
         //
-
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT,0,5), true); //new FlowLayout(FlowLayout.LEFT)
+        container.setPreferredSize(getRowSize(panel));
+        //
+        JLabel lbl = new JLabel(sequence);
+        //
+        JCheckBox chk = new JCheckBox();
+        //
+        JTextField txtfield = new JTextField(item.getDescription());
+        txtfield.setEditable(false);
+        txtfield.setPreferredSize(getTxtAreaSize(panel,0.73));
+        //
+        JTextField txtfield_b = new JTextField(item.getCode());
+        txtfield_b.setEditable(false);
+        txtfield_b.setPreferredSize(getTxtAreaSize(panel,0.15));
+        //
+        container.add(lbl);
+        container.add(chk);
+        container.add(txtfield);
+        container.add(txtfield_b);
+        //
+        panel.add(container);
+        //
+        panel.setPreferredSize(new Dimension(panel.getWidth(), panel.getPreferredSize().height + 31));
+        //
+        panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
         //
     }
 
@@ -160,7 +175,8 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         JCheckBox chk = new JCheckBox();
         //
         JTextField txtfield = new JTextField(item);
-        txtfield.setPreferredSize(getTxtAreaSize(panel));
+        txtfield.setEditable(false);
+        txtfield.setPreferredSize(getTxtAreaSize(panel,0.85));
         //
         container.add(lbl);
         container.add(chk);
@@ -211,7 +227,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         //
         JLabel jlbl = new JLabel(item);
 //        jlbl.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        jlbl.setPreferredSize(getTxtAreaSize(panel));
+        jlbl.setPreferredSize(getTxtAreaSize(panel,0.85));
         //
         container.add(chk);
         container.add(jlbl);
@@ -228,9 +244,9 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         return new Dimension(panel.getWidth() - 10, 31);
     }
 
-    private Dimension getTxtAreaSize(JPanel panel) {
+    private Dimension getTxtAreaSize(JPanel panel, double widthPercent) {
         int width_total = panel.getWidth();
-        int width = (int) (width_total * 0.85);
+        int width = (int) (width_total * widthPercent);
         return new Dimension(width, 27);
     }
 

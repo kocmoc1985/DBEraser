@@ -64,16 +64,15 @@ public class LAB_DEV {
         }
     }
 
-    
-    public static String test_definition_tab__get_col_1(){
+    public static String test_definition_tab__get_col_1() {
         return LANG_ENG ? "Code" : "Code";
     }
-    
-    public static String test_definition_tab__get_col_2(){
+
+    public static String test_definition_tab__get_col_2() {
         return LANG_ENG ? "Description" : "Beschreibung";
     }
-    
-    public static String test_definition_tab__get_col_3(){
+
+    public static String test_definition_tab__get_col_3() {
         return LANG_ENG ? "Conditions" : "Bedingungen";
     }
 
@@ -105,6 +104,14 @@ public class LAB_DEV {
         return LANG_ENG ? "EXECUTED BY" : "AUSGEFÜHRT VON";
     }
 
+    public static String TEST_CONFIG_TAB__PREP_METHOD() {
+        return LANG_ENG ? "PREPARATION METHODS" : "PREPARATIONSMETHODEN";
+    }
+
+    public static String TEST_CONFIG_TAB__AGING_METHOD() {
+        return LANG_ENG ? "AGING METHODS" : "ALTHERUNGSMETHODEN";
+    }
+
     public static String LBL_1() {
         return LANG_ENG ? "Order" : "Auftrag";
     }
@@ -128,7 +135,7 @@ public class LAB_DEV {
     public static String LBL_7() {
         return LANG_ENG ? "Recipe" : "Rezeptur";
     }
-    
+
     public static String LBL_7_2() {
         return LANG_ENG ? "Code" : "Code";
     }

@@ -44,7 +44,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         buildPrepAndAgingMethodsTables();
         //
         java.awt.EventQueue.invokeLater(() -> {
-            buildCheckBoxTables_test_only();
+//            buildCheckBoxTables_test_only();
             showTableInvert();
         });
     }
