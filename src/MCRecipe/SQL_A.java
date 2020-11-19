@@ -4,7 +4,7 @@
  */
 package MCRecipe;
 
-import LabDev.LabDevelopment;
+import LabDev.LabDevelopment_;
 import forall.HelpA_;
 
 /**
@@ -1431,7 +1431,7 @@ public class SQL_A {
     }
 
     public static String save_status_lab_dev(String status, String order) {
-        return "UPDATE " + LabDevelopment.TABLE__MC_CPWORDER + " SET WOSTATUS="
+        return "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER + " SET WOSTATUS="
                 + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
     }
 
@@ -1509,6 +1509,8 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ") ORDER BY DESCR";
     }
+     
+     
 
 //    public static void main(String[] args) {
 //        //

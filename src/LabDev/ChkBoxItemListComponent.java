@@ -26,11 +26,11 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
 
 //    public ChkBoxItemListComponent() {
 //    }
-    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
     }
 
-    public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
+    public ArrayList<JPanelPrepM> getAllEntriesFromTable(JPanel tablePanel, boolean selectedOnly) {
         //
         ArrayList<JPanelPrepM> list = new ArrayList<>();
         //
@@ -42,7 +42,11 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
                 //
                 JPanelPrepM jp = (JPanelPrepM) component;
                 //
-                if (jp.isSelected()) {
+                if (selectedOnly) {
+                    if (jp.isSelected()) {
+                        list.add(jp);
+                    }
+                } else {
                     list.add(jp);
                 }
                 //
@@ -52,6 +56,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         return list;
         //
     }
+
 
     public Object[] getSelectedValuesFromTable(JPanel tablePanel) {
         //
@@ -82,7 +87,6 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         return new Dimension(430, HEIGHT);
     }
 
-    
     /**
      * Increase width "physically" in drawing tool IF NOT SHOWING As i
      * understand the width shall be (dim.width + 70)
@@ -100,7 +104,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         addRowsTable(items, panel);
         //
     }
-    
+
     private void addRowsTable(Object[] items, JPanel panel) {
         //
         if (items[0] instanceof String) {
@@ -108,9 +112,9 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
                 if (i == 0) {
                     addRowTable("     ", (String) items[i], panel);
                 } else if (i < 10) {
-                    addRowTable("  " + i + ":", (String) items[i], panel);
-                } else if (i > 10) {
-                    addRowTable("" + i + ":", (String) items[i], panel);
+                    addRowTable("   " + i + ":", (String) items[i], panel);
+                } else if (i >= 10) {
+                    addRowTable(" " + i + ":", (String) items[i], panel);
                 }
             }
         } else if (items[0] instanceof PrepOrAgingEntry) {
@@ -119,38 +123,40 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
                 //
                 PrepOrAgingEntry poae = (PrepOrAgingEntry) items[i];
                 //
-                if (i < 10) {
-                    addRowTable_C("  " + (i+1) + ":", poae, panel);
-                } else if (i > 10) {
-                    addRowTable_C("" + (i+1) + ":", poae, panel);
+                if ((i + 1) < 10) {
+                    addRowTable_C("   " + (i + 1) + ":", poae, panel);
+                } else if ((i + 1) >= 10) {
+                    addRowTable_C(" " + (i + 1) + ":", poae, panel);
                 }
             }
             //
         }
     }
-    
+
     /**
      * Used by "LabDevTestConfig.class"
+     *
      * @param sequence
      * @param item
-     * @param panel 
+     * @param panel
      */
-     private void addRowTable_C(String sequence, PrepOrAgingEntry item, JPanel panel) {
+    private void addRowTable_C(String sequence, PrepOrAgingEntry item, JPanel panel) {
         //
-        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT,0,5), true); //new FlowLayout(FlowLayout.LEFT)
+        JPanelPrepM_C container = new JPanelPrepM_C(new FlowLayout(FlowLayout.LEFT, 0, 5), true); //new FlowLayout(FlowLayout.LEFT)
         container.setPreferredSize(getRowSize(panel));
         //
         JLabel lbl = new JLabel(sequence);
         //
         JCheckBox chk = new JCheckBox();
+        chk.setEnabled(false);
         //
-        JTextField txtfield = new JTextField(item.getDescription());
+        JTextField txtfield = new JTextField(item.getDescription()); // Descr
         txtfield.setEditable(false);
-        txtfield.setPreferredSize(getTxtAreaSize(panel,0.73));
+        txtfield.setPreferredSize(getTxtAreaSize(panel, 0.73));
         //
-        JTextField txtfield_b = new JTextField(item.getCode());
+        JTextField txtfield_b = new JTextField(item.getCode()); // TestCode
         txtfield_b.setEditable(false);
-        txtfield_b.setPreferredSize(getTxtAreaSize(panel,0.15));
+        txtfield_b.setPreferredSize(getTxtAreaSize(panel, 0.15));
         //
         container.add(lbl);
         container.add(chk);
@@ -176,7 +182,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         //
         JTextField txtfield = new JTextField(item);
         txtfield.setEditable(false);
-        txtfield.setPreferredSize(getTxtAreaSize(panel,0.85));
+        txtfield.setPreferredSize(getTxtAreaSize(panel, 0.85));
         //
         container.add(lbl);
         container.add(chk);
@@ -189,12 +195,11 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
         //
     }
-    
-    
+
     /**
-     * OBS! Used by "LabDevFindOrder.class" -> "FIND ORDER" TAB
-     * Increase width "physically" in drawing tool IF NOT SHOWING As i
-     * understand the width shall be (dim.width + 70)
+     * OBS! Used by "LabDevFindOrder.class" -> "FIND ORDER" TAB Increase width
+     * "physically" in drawing tool IF NOT SHOWING As i understand the width
+     * shall be (dim.width + 70)
      */
     public void addRows_B(String[] items, JPanel panel, Dimension dim) {
         //
@@ -227,7 +232,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         //
         JLabel jlbl = new JLabel(item);
 //        jlbl.setBorder(BorderFactory.createLineBorder(Color.yellow));
-        jlbl.setPreferredSize(getTxtAreaSize(panel,0.85));
+        jlbl.setPreferredSize(getTxtAreaSize(panel, 0.85));
         //
         container.add(chk);
         container.add(jlbl);

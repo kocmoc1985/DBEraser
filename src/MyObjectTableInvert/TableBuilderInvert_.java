@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import LabDev.LabDevelopment;
+import LabDev.LabDevelopment_;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;

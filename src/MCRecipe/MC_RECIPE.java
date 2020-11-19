@@ -4,7 +4,7 @@
  */
 package MCRecipe;
 
-import LabDev.LabDevelopment;
+import LabDev.LabDevelopment_;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Sec.CustomPanelCp;
 import MCRecipe.Sec.CustomPanelIF;
@@ -92,7 +92,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private Sequence sequence;
     private RecipeAdditional recipeAdditional;
     private TestParameters_ testParameters;
-    private LabDevelopment labDevelopment;
+    private LabDevelopment_ labDevelopment;
     private final JavaSysMon monitor = new JavaSysMon();
     protected JTextArea textAreaIngredComments = new JTextArea();
     protected JTextArea textAreaRecipeInitialNotes = new JTextArea();
@@ -4688,19 +4688,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton_lab_dev_save_btn_2ActionPerformed
 
     private void jButton_lab_dev_delete_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_1ActionPerformed
-        labDevelopment.deleteJTableNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
+        labDevelopment.deleteJTableNote(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_delete_1ActionPerformed
 
     private void jButton_lab_dev_delete_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_delete_2ActionPerformed
-        labDevelopment.deleteJTableNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
+        labDevelopment.deleteJTableNote(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_delete_2ActionPerformed
 
     private void jButton_lab_dev_add_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_1ActionPerformed
-        labDevelopment.addJTableNote(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1);
+        labDevelopment.addJTableNote(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1);
     }//GEN-LAST:event_jButton_lab_dev_add_1ActionPerformed
 
     private void jButton_lab_dev_add_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_add_2ActionPerformed
-        labDevelopment.addJTableNote(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2);
+        labDevelopment.addJTableNote(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2);
     }//GEN-LAST:event_jButton_lab_dev_add_2ActionPerformed
 
     private void jButton_lab_dev_tab__save_notesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_tab__save_notesActionPerformed
@@ -5348,7 +5348,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB())) {
                 //
                 if (labDevelopment == null) {
-                    labDevelopment = new LabDevelopment(sql, sql_additional, this, new ChangeSaver(sql, this));
+                    labDevelopment = new LabDevelopment_(sql, sql_additional, this, new ChangeSaver(sql, this));
                 }
                 //
                 labDevelopment.lab_dev_tab__clicked(null,true);
@@ -5427,9 +5427,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
             //
         } else if (me.getSource() == jTable_lab_dev_1 && (me.getClickCount() == 2)) {
-            labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1, "Name", "ID");
+            labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
-            labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2, "Name", "ID");
+            labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
         } else if(me.getSource() == jTable_lab_dev__material_info && (me.getClickCount() == 1)){
             labDevelopment.materialInfoJTableClicked();
         }

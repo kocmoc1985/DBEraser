@@ -25,20 +25,20 @@ import javax.swing.JPanel;
  * @author KOCMOC
  */
 public class LabDevTestConfigTab extends ChkBoxItemListComponent {
-
+    
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
-
-    public LabDevTestConfigTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    
+    public LabDevTestConfigTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         //
         init();
     }
-
+    
     private void init() {
         initializeSaveIndicators();
         refresh();
     }
-
+    
     public void refresh() {
         //
         buildPrepAndAgingMethodsTables();
@@ -48,38 +48,78 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             showTableInvert();
         });
     }
-
+    
     private String getMaterial() {
         return labDev.getMaterial();
     }
-
+    
     private String getOrder() {
         return labDev.getOrderNo();
     }
-
+    
     private String getTestCode() {
         return labDev.getTestCode();
     }
     
-    private JPanel getPreparationPanel(){
+    private JPanel getPreparationPanel() {
         return mcRecipe.jPanel65;
     }
     
-    private JPanel getAgingPanel(){
+    private JPanel getAgingPanel() {
         return mcRecipe.jPanel66;
     }
     
-    private void buildPrepAndAgingMethodsTables(){
+    private void buildPrepAndAgingMethodsTables() {
         //
-        Object[]prep_methods = getPreparationOrAgingMethods(true);
-        Object[]aging_methods = getPreparationOrAgingMethods(false);
+        Object[] prep_methods = getPreparationOrAgingMethods(true, false);
+        Object[] aging_methods = getPreparationOrAgingMethods(false, false);
+        //
+        //
+        Object[] prep_methods__marked_chkboxes = getPreparationOrAgingMethods(true, true);
+        Object[] aging_methods__marked_chkboxes = getPreparationOrAgingMethods(false, true);
         //
         //
         addRows(prep_methods, getPreparationPanel(), null);
         addRows(aging_methods, getAgingPanel(), null);
         //
+        //
+        setMarkedBoxes(prep_methods__marked_chkboxes, true);
+        setMarkedBoxes(aging_methods__marked_chkboxes, false);
+        //
     }
-
+    
+    private void setMarkedBoxes(Object[] prepOrAgingMethods, boolean preparationMethod) {
+        //
+        JPanel container = null;
+        //
+        if (preparationMethod) {
+            container = getPreparationPanel();
+        } else {
+            container = getAgingPanel();
+        }
+        //
+        for (Object obj : prepOrAgingMethods) {
+            //
+            ArrayList<JPanelPrepM> list = getAllEntriesFromTable(container,false);
+            //
+            PrepOrAgingEntry poae = (PrepOrAgingEntry) obj;
+            //
+            for (JPanelPrepM jp : list) { // Iterating through all components of "CheckBoxTable"
+                //
+                JPanelPrepM_C prepM_C = (JPanelPrepM_C) jp;
+                //
+                if (prepM_C.getTestCode().trim().equals(poae.getCode())) {
+                    //
+                    prepM_C.setHighLighted();
+                    //
+                }
+                //
+            }
+            //
+        }
+        //
+    }
+    
     private ArrayList<TestConfigEntry> getValuesPruff_ValuesTest(String procedure) {
         //
         ArrayList<TestConfigEntry> list = new ArrayList<>();
@@ -112,14 +152,14 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
      */
     public void testGetValuesCheckBoxTableOne() {
         //
-        ArrayList<JPanelPrepM> list = getSelectedFromTable(mcRecipe.jPanel65);
+        ArrayList<JPanelPrepM> list = getAllEntriesFromTable(mcRecipe.jPanel65,true);
         //
         for (JPanelPrepM jp : list) {
             System.out.println("" + jp);
         }
         //
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -150,7 +190,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         return list.toArray(arr);
         //
     }
-
+    
     @Override
     public void showTableInvert() {
         //
@@ -173,33 +213,43 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         showTableInvert(mcRecipe.jPanel64);
         //
     }
-
     
-    private Object[] getPreparationOrAgingMethods(boolean preparation) {
+    private Object[] getPreparationOrAgingMethods(boolean preparation, boolean getChkBoxMarked) {
         //
-        String code_column_name;
-        String procedure;
+        String code_column_name = null;
+        String procedure = null;
+        String test_code = null;
         //
-        if(preparation){
+        if (getChkBoxMarked) {
+            test_code = getTestCode();
+        }
+        //
+        if (preparation && getChkBoxMarked == false) { // "preparation method" -> get table entries
             procedure = PROC.PROC_71;
             code_column_name = "CODE";
-        }else{
+        } else if (preparation == false && getChkBoxMarked == false) { // "aging method" -> get table entries
             procedure = PROC.PROC_72;
+            code_column_name = "TESTCODE";
+        } else if (preparation && getChkBoxMarked) { // get marked check boxes "preparation methods"
+            procedure = PROC.PROC_73;
+            code_column_name = "CODE";
+        } else if (preparation == false && getChkBoxMarked) { // get marked check boxes "aging methods"
+            procedure = PROC.PROC_74;
             code_column_name = "TESTCODE";
         }
         //
-        ArrayList<PrepOrAgingEntry>list = new ArrayList<>();
+        ArrayList<PrepOrAgingEntry> list = new ArrayList<>();
         //
         String order = labDev.getOrderNo();
         String material = labDev.getMaterial();
         //
-        String q = SQL_A.lab_dev_test_config__get_preparation_aging_methods(procedure, material, order, null);
+        String q = SQL_A.lab_dev_test_config__get_preparation_aging_methods(procedure, material, order, test_code);
         //
         try {
             //
             ResultSet rs = sql.execute(q, OUT);
             //
-            while(rs.next()){
+            while (rs.next()) {
                 //
                 String descr = rs.getString("DESCR");
                 String code = rs.getString(code_column_name);
@@ -214,13 +264,41 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             Logger.getLogger(LabDevTestConfigTab.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        PrepOrAgingEntry[]pme_arr = new PrepOrAgingEntry[list.size()];
+        PrepOrAgingEntry[] pme_arr = new PrepOrAgingEntry[list.size()];
         //
         return list.toArray(pme_arr);
     }
-
-   
-
+    
+    @Override
+    public void fillNotes() {
+    }
+    
+    public void saveTableInvert() {
+        //
+        saveChangesTableInvert_C_C(sql);
+        //
+        labDev.refreshHeader();
+    }
+    
+    @Override
+    public void initializeSaveIndicators() {
+        SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_config_btn, this, 1);
+    }
+    
+    @Override
+    public boolean getUnsaved(int nr) {
+        if (nr == 1) {
+            //
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                return true;
+            }
+            //
+        }
+        return false;
+    }
+    
     private void buildCheckBoxTables_test_only() {
         //
         addRows(new String[]{
@@ -249,35 +327,5 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             "DVR in luft / 1.0 d / 70c "
         }, getAgingPanel(), null);
     }
-
-    @Override
-    public void fillNotes() {
-    }
-
-    public void saveTableInvert() {
-        //
-        saveChangesTableInvert_C_C(sql);
-        //
-        labDev.refreshHeader();
-    }
-
-    @Override
-    public void initializeSaveIndicators() {
-        SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_config_btn, this, 1);
-    }
-
-    @Override
-    public boolean getUnsaved(int nr) {
-        if (nr == 1) {
-            //
-            if (TABLE_INVERT == null) {
-                return false;
-            } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
-                return true;
-            }
-            //
-        }
-        return false;
-    }
-
+    
 }

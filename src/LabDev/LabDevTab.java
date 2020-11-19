@@ -22,10 +22,10 @@ import java.awt.event.MouseEvent;
 public abstract class LabDevTab extends BasicTab {
 
     protected final MC_RECIPE mcRecipe;
-    protected final LabDevelopment labDev;
+    protected final LabDevelopment_ labDev;
     
 
-    public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT);
         this.mcRecipe = (MC_RECIPE) OUT;
         this.labDev = labDev;

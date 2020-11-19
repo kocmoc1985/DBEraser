@@ -31,9 +31,9 @@ public class LabDevHeaderComponent implements ItemListener {
 
     private final JPanel header;
     private final SqlBasicLocal sql;
-    private final LabDevelopment labDev;
+    private final LabDevelopment_ labDev;
 
-    public LabDevHeaderComponent(JPanel header, SqlBasicLocal sql, LabDevelopment labDev) {
+    public LabDevHeaderComponent(JPanel header, SqlBasicLocal sql, LabDevelopment_ labDev) {
         this.header = header;
         this.sql = sql;
         this.labDev = labDev;
@@ -220,7 +220,7 @@ public class LabDevHeaderComponent implements ItemListener {
     }
 
     private String getStatusInActLang() {
-        String status_eng = HelpA_.getSingleParamSql(sql, LabDevelopment.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+        String status_eng = HelpA_.getSingleParamSql(sql, LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
         String status_act_lang = LAB_DEV__STATUS.getStatusActLang(LNG.LANG_ENG, status_eng);
         return status_act_lang;
     }

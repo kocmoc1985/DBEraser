@@ -30,7 +30,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     
     private boolean oneTimeFlag = false;
     
-    public LabDevFindOrderTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    public LabDevFindOrderTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }

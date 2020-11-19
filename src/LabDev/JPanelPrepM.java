@@ -19,10 +19,10 @@ import javax.swing.JTextField;
  */
 public class JPanelPrepM extends JPanel {
 
-    private JTextField jtf;
-    private JCheckBox chkBox;
-    private JLabel lbl;
-    private int sequenceNr;
+    protected JTextField jtf;
+    protected JCheckBox chkBox;
+    protected JLabel lbl;
+    protected int sequenceNr;
     private final boolean extractSequenceNr;
 
     public JPanelPrepM(LayoutManager lm, boolean extractSequenceNr) {
@@ -58,6 +58,10 @@ public class JPanelPrepM extends JPanel {
     public boolean isSelected() {
         return this.chkBox.isSelected();
     }
+    
+    public void setSetSelectedCheckBox(){
+        this.chkBox.setSelected(true);
+    }
 
     public String getValue() {
         if (extractSequenceNr == false) {
@@ -75,7 +79,7 @@ public class JPanelPrepM extends JPanel {
         }
     }
 
-    private void extractSequenceNr(JLabel lbl) {
+    protected void extractSequenceNr(JLabel lbl) {
         //
         if (extractSequenceNr == false) {
             this.sequenceNr = -1;

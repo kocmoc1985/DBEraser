@@ -40,7 +40,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class LabDevelopment extends LabDevTab implements MouseListener {
+public class LabDevelopment_ extends LabDevTab implements MouseListener {
     
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
@@ -63,7 +63,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
     
-    public LabDevelopment(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
+    public LabDevelopment_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT, null);
         this.changeSaver = saver;
         init();
@@ -174,7 +174,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
             try {
                 return HelpA_.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE);
             } catch (ParseException ex) {
-                Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
         } else {
@@ -374,7 +374,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         try {
             sql.execute(q, OUT);
         } catch (SQLException ex) {
-            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         refreshHeader();
@@ -555,7 +555,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         try {
             sql.execute(q, OUT);
         } catch (SQLException ex) {
-            Logger.getLogger(LabDevelopment.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         fill_jtable_1_2__tab__main_data();
@@ -685,9 +685,9 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         } else if (me.getSource() == mcRecipe.jTable_lab_dev__find_order && (me.getClickCount() == 2)) {
             lab_dev_find_order__table_clicked();
         } else if (me.getSource() == mcRecipe.jTable_lab_dev_1 && (me.getClickCount() == 2)) {
-            changeJTableNoteValue(mcRecipe.jTable_lab_dev_1, LabDevelopment.TABLE_NOTES_1, "Name", "ID");
+            changeJTableNoteValue(mcRecipe.jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == mcRecipe.jTable_lab_dev_2 && (me.getClickCount() == 2)) {
-            changeJTableNoteValue(mcRecipe.jTable_lab_dev_2, LabDevelopment.TABLE_NOTES_2, "Name", "ID");
+            changeJTableNoteValue(mcRecipe.jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
         } else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 1)) {
             materialInfoJTableClicked();
         }

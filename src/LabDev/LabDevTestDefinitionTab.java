@@ -33,7 +33,7 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener 
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
     private final String COL_3_NAME = LAB_DEV.test_definition_tab__get_col_3();
     
-    public LabDevTestDefinitionTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    public LabDevTestDefinitionTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }

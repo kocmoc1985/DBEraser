@@ -5,7 +5,7 @@
  */
 package LabDev;
 
-import static LabDev.LabDevelopment.TABLE__MC_CPWORDER;
+import static LabDev.LabDevelopment_.TABLE__MC_CPWORDER;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
@@ -39,7 +39,7 @@ public class LabDevStatusTab extends LabDevTab {
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
 
-    public LabDevStatusTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+    public LabDevStatusTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql, OUT, labDev);
         init();
     }
