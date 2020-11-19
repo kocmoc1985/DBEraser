@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabDev;
+package LabDev.sec;
 
 /**
  * Build the test condition string like: "100C 4min 1*Rohkl. *MW 1*Techn

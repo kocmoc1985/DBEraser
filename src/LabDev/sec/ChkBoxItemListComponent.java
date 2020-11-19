@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabDev;
+package LabDev.sec;
 
+import LabDev.LabDevTab;
+import LabDev.LabDevelopment_;
+import LabDev.sec.JPanelPrepM_C;
+import LabDev.sec.JPanelPrepM;
+import LabDev.sec.PrepOrAgingEntry;
 import MyObjectTable.ShowMessage;
 import forall.SqlBasicLocal;
 import java.awt.Component;

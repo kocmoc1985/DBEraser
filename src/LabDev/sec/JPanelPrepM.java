@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabDev;
+package LabDev.sec;
 
+import LabDev.LAB_DEV__STATUS;
 import MCRecipe.Lang.LNG;
 import java.awt.Component;
 import java.awt.LayoutManager;

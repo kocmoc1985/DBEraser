@@ -5,6 +5,8 @@
  */
 package LabDev;
 
+import LabDev.sec.TestDefinitionEntry;
+import LabDev.sec.TestDefinitionEntryB;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.SQL_A;

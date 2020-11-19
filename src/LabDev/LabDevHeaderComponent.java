@@ -100,6 +100,12 @@ public class LabDevHeaderComponent implements ItemListener {
         updateGraphics();
     }
     
+    public void tab_age_vulc(){
+        clear();
+        showStandard(false);
+        updateGraphics();
+    }
+    
     private void showTestConfigTab() {
         //
         JPanel lower = getLower();

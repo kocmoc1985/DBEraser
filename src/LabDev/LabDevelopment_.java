@@ -57,6 +57,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
     public LabDevTestConfigTab labDevTestConfigTab;
     public LabDevStatusTab labDevStatusTab;
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
+    public LabDevAgeVulcTab labDevAgeVulcTab;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
@@ -255,8 +256,22 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
             labDevHeaderComponent.tab_test_defenition();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
             labDevHeaderComponent.tab_test_config();
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_AGE_VULC())) {
+            labDevHeaderComponent.tab_age_vulc();
         }
         //
+    }
+    
+    public void lab_dev_tab_age_vulc__clicked() {
+        //
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_AGE_VULC();
+        refreshHeader();
+        //
+        if(labDevAgeVulcTab == null){
+            labDevAgeVulcTab = new LabDevAgeVulcTab(sql, sql_additional, OUT, labDev);
+        }else{
+            labDevAgeVulcTab.refresh();
+        }
     }
     
     public void lab_dev_tab__tab_status__clicked() {
@@ -731,6 +746,8 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
             lab_dev_tab_test_definition__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
             lab_dev_tab_test_config__clicked();
+        }else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_AGE_VULC())) {
+            lab_dev_tab_age_vulc__clicked();
         }
         //
     }
