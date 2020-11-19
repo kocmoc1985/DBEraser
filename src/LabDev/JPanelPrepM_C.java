@@ -33,8 +33,13 @@ public class JPanelPrepM_C extends JPanelPrepM {
     }
     
     public void setHighLighted(){
-        jtf_description.setEnabled(false);
-        jtf2_test_code.setEnabled(false);
+        //
+//        jtf_description.setEnabled(false);
+//        jtf2_test_code.setEnabled(false);
+        //
+        jtf_description.setBackground(new Color(224, 226, 231));
+        jtf2_test_code.setBackground(new Color(224, 226, 231));
+        //
         setSetSelectedCheckBox();
     }
 
