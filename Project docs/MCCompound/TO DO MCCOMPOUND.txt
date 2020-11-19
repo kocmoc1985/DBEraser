@@ -1,9 +1,10 @@
 
 [FOR ME]
 1. Tab "Main Data" -> "ZIEL 1, 2" -> decide how to handle this fields
-
+2. Decide where to set "Material"
 
 [FOR PAPS]
+MCcpwotest -> UpdatedOn(datetime,null) --> Change to "date" ---> not working with date like "18.11.2020" --> but works with 2020-11-18
 
 
 [FOR BOTH]

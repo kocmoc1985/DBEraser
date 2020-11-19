@@ -6,12 +6,15 @@
 package LabDev;
 
 import MCRecipe.Lang.LAB_DEV;
+import MCRecipe.Lang.LNG;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab extends LabDevTab {
+public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
 
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
@@ -36,7 +39,10 @@ public class LabDevTestDefinitionTab extends LabDevTab {
     }
 
     private void init() {
+        JTable table = getTable();
         fillJTableHeader();
+        table.addMouseListener(this);
+        HelpA_.setUneditableJTable(table);
         refresh();
     }
 
@@ -190,6 +196,45 @@ public class LabDevTestDefinitionTab extends LabDevTab {
     @Override
     public boolean getUnsaved(int nr) {
         return false;
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent me) {
+        //
+        JTable table = getTable();
+        //
+        if (me.getSource() == table && (me.getClickCount() == 2)) {
+            //
+            goToTestConfig(table);
+            //
+        }
+    }
+    
+    private void goToTestConfig(JTable table){
+         //
+            String testCode = HelpA_.getValueSelectedRow(table, "Code");
+            labDev.setTestCode(testCode);
+            //
+            HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
+            //
+            labDev.lab_dev_tab_test_config__clicked();
+            //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

@@ -58,6 +58,8 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     public LabDevStatusTab labDevStatusTab;
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
+    private String TEST_CODE = "MOV01"; //MOV01
+    private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
     private String ACTUAL_TAB_NAME = "";
     private String PREV_TAB_NAME = "";
 
@@ -77,7 +79,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         fill_jtable_1_2__tab__main_data();
     }
 
-    private JTabbedPane getTabbedPane() {
+    protected JTabbedPane getTabbedPane() {
         return mcRecipe.jTabbedPane3_Lab_Dev;
     }
 
@@ -87,11 +89,19 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
 
     //Is also called Rezeptur
     public String getMaterial() {
-        return "WE8486";
+        return MATERIAL;
+    }
+    
+    public void setMaterial(String material){
+        this.MATERIAL = material;
     }
 
     public String getTestCode() {
-        return "MOV01";
+        return TEST_CODE;
+    }
+    
+    public void setTestCode(String code){
+        this.TEST_CODE = code;
     }
 
     public String getMaterial_description() {

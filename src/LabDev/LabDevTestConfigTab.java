@@ -40,13 +40,13 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     private void init() {
-        temp();
         initializeSaveIndicators();
         refresh();
     }
 
     public void refresh() {
         java.awt.EventQueue.invokeLater(() -> {
+            buildCheckBoxTables();
             showTableInvert();
         });
     }
@@ -157,7 +157,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
     }
 
-    private void temp() {
+    private void buildCheckBoxTables() {
         //
         addRows(new String[]{
             "- Keine - ",
