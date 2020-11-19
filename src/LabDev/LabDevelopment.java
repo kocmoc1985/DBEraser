@@ -218,7 +218,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
     }
 
     private String getIdMaterialInfoTable() {
-        return HelpA_.getValueSelectedRow(mcRecipe.jTable_lab_dev__material_info, "ID");
+        return HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
     }
 
     public void lab_dev_tab_tab_find_order__set_order_clicked() {
@@ -489,7 +489,7 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         //
         TABLE_INVERT_6 = null;
         //
-        String id = HelpA_.getValueSelectedRow(mcRecipe.jTable_lab_dev__material_info, "ID");
+        String id = HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
         //
         try {
 //            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
@@ -513,10 +513,14 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
         showTableInvert_6();
         refreshHeader(); // Yes shall be here
     }
+    
+    private JTable getMaterialInfoTable(){
+        return mcRecipe.jTable_lab_dev__material_info;
+    }
 
     private void fillJTableMaterialInfoTab() {
         //
-        JTable table = mcRecipe.jTable_lab_dev__material_info;
+        JTable table = getMaterialInfoTable();
         //
         String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(), null);
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
@@ -674,6 +678,8 @@ public class LabDevelopment extends LabDevTab implements MouseListener {
             PREV_TAB_NAME = ACTUAL_TAB_NAME;
             //
         }
+        
+        
     }
 
     public void lab_dev_tab__clicked(String title, boolean parentCall) {
