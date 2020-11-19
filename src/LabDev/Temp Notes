@@ -6,6 +6,8 @@ addTableInvertRowListener(TABLE_INVERT_6, this);-------------> needed ??
 See LabDevTab.class ->  public void mouseClicked(...)
 Also see LabDevStatus tab -> addTableInvertRowListener(TABLE_INVERT_6, this)
 
+See: TableRowInvertB & TableRowInvertB ---> "public void itemStateChanged(ItemEvent ie)"
+See: Basic.class -> "mouseClickedForward(TableInvert ti, KeyEvent ke)"
 
 MC_CPAGEMENT -> find by agingcode  -> select DISTINCT AGEINGCODE from MC_CPAGEMET
 MC_CPVUL -> ...  -> select DISTINCT VULCCODE from MC_CPVULMET

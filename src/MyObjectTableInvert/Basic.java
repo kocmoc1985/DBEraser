@@ -92,6 +92,10 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         }
         //
     }
+    
+    public void mouseClickedForward(TableInvert ti, KeyEvent ke){
+        
+    }
 
     /**
      * Call from: TableRowInvertB
