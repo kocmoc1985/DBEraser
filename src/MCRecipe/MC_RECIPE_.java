@@ -727,6 +727,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel62 = new javax.swing.JPanel();
         jScrollPane27 = new javax.swing.JScrollPane();
         jTable_test_definitions = new javax.swing.JTable();
+        jButton_lab_dev_test_definition_goto = new javax.swing.JButton();
         jPanel63 = new javax.swing.JPanel();
         jPanel64 = new javax.swing.JPanel();
         jScrollPane25 = new javax.swing.JScrollPane();
@@ -2163,11 +2164,11 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             .addGroup(jPanel60Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jButton_lab_dev__material_info_save, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_lab_dev_material_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("MATERIAL INFO", jPanel60);
@@ -2175,19 +2176,30 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jTable_test_definitions.setModel(new javax.swing.table.DefaultTableModel());
         jScrollPane27.setViewportView(jTable_test_definitions);
 
+        jButton_lab_dev_test_definition_goto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jButton_lab_dev_test_definition_goto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev_test_definition_gotoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel62Layout = new javax.swing.GroupLayout(jPanel62);
         jPanel62.setLayout(jPanel62Layout);
         jPanel62Layout.setHorizontalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel62Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_lab_dev_test_definition_goto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel62Layout.setVerticalGroup(
             jPanel62Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel62Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(10, 10, 10)
+                .addComponent(jButton_lab_dev_test_definition_goto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
@@ -4692,6 +4704,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         labDevelopment.labDevTestConfigTab.saveTableInvert();
     }//GEN-LAST:event_jButton_lab_dev_tab__save_config_btnActionPerformed
 
+    private void jButton_lab_dev_test_definition_gotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_test_definition_gotoActionPerformed
+        labDevelopment.labDevTestDefinitionTab.goToTestConfig();
+    }//GEN-LAST:event_jButton_lab_dev_test_definition_gotoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4852,6 +4868,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev_save_btn_2;
     public javax.swing.JButton jButton_lab_dev_tab__save_config_btn;
     public javax.swing.JButton jButton_lab_dev_tab__save_notes;
+    public javax.swing.JButton jButton_lab_dev_test_definition_goto;
     private javax.swing.JButton jButton_r_detailed_next;
     private javax.swing.JButton jButton_r_detailed_prev;
     private javax.swing.JButton jButton_recipe_detailed_delete_recipe;

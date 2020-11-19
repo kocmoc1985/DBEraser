@@ -27,17 +27,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
-
+public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener {
+    
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
     private final String COL_3_NAME = LAB_DEV.test_definition_tab__get_col_3();
-
+    
     public LabDevTestDefinitionTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
-
+    
     private void init() {
         JTable table = getTable();
         fillJTableHeader();
@@ -45,7 +45,7 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         HelpA_.setUneditableJTable(table);
         refresh();
     }
-
+    
     public void refresh() {
         //
         JTable table = getTable();
@@ -57,18 +57,18 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         HelpA_.setColumnWidthByName(COL_3_NAME, table, 0.65);
         //
     }
-
+    
     private JTable getTable() {
         return mcRecipe.jTable_test_definitions;
     }
-
+    
     private void build() {
         ArrayList<String> codes_list = getCodesList();
         ArrayList<TestDefinitionEntry> table_data = buildJTableData(codes_list);
         fillJTable(table_data);
         System.out.println("");
     }
-
+    
     private ArrayList<TestDefinitionEntry> buildJTableData(ArrayList<String> codes_list) {
         //
         ArrayList<TestDefinitionEntry> listToReturn = new ArrayList<>();
@@ -112,7 +112,7 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         //
         return listToReturn;
     }
-
+    
     private ArrayList<String> getCodesList() {
         //
         ArrayList<String> list = new ArrayList<>();
@@ -140,7 +140,7 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         //
         return list;
     }
-
+    
     private void fillJTableHeader() {
         //
         JTable table = getTable();
@@ -154,7 +154,7 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
-
+    
     private void fillJTable(ArrayList<TestDefinitionEntry> tableData) {
         //
         JTable table = getTable();
@@ -175,24 +175,24 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         }
         //
     }
-
+    
     @Override
     public void fillNotes() {
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         return null;
     }
-
+    
     @Override
     public void showTableInvert() {
     }
-
+    
     @Override
     public void initializeSaveIndicators() {
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         return false;
@@ -205,36 +205,39 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener{
         //
         if (me.getSource() == table && (me.getClickCount() == 2)) {
             //
-            goToTestConfig(table);
+            goToTestConfig();
             //
         }
+        //
     }
     
-    private void goToTestConfig(JTable table){
-         //
-            String testCode = HelpA_.getValueSelectedRow(table, "Code");
-            labDev.setTestCode(testCode);
-            //
-            HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
-            //
-            labDev.lab_dev_tab_test_config__clicked();
-            //
+    public void goToTestConfig() {
+        //
+        JTable table = getTable();
+        //
+        String testCode = HelpA_.getValueSelectedRow(table, "Code");
+        labDev.setTestCode(testCode);
+        //
+        HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
+        //
+        labDev.lab_dev_tab_test_config__clicked();
+        //
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
 }

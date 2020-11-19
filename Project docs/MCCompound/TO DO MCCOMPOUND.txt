@@ -12,3 +12,9 @@ MCcpwotest -> UpdatedOn(datetime,null) --> Change to "date" ---> not working wit
 1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
 2. Reports -> there are some reports which are essential for them.
 
+
+
+[FOR DEMO]
+1. Disable Development ToolTips
+2. Decide which Tabs to show
+3. 
