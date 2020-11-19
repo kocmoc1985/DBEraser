@@ -205,13 +205,13 @@ public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener 
         //
         if (me.getSource() == table && (me.getClickCount() == 2)) {
             //
-            goToTestConfig();
+            lab_dev_test_definitions_table_clicked();
             //
         }
         //
     }
     
-    public void goToTestConfig() {
+    public void lab_dev_test_definitions_table_clicked() {
         //
         JTable table = getTable();
         //

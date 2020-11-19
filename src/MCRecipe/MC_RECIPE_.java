@@ -339,14 +339,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         this.jTable1.addMouseListener(this);
         this.jTable2.addMouseListener(this);
         this.jTable3.addMouseListener(this);
-        this.jTable_lab_dev_1.addMouseListener(this);
-        this.jTable_lab_dev_2.addMouseListener(this);
+//        this.jTable_lab_dev_1.addMouseListener(this);
+//        this.jTable_lab_dev_2.addMouseListener(this);
         this.jTable4RecipeDetailed.addMouseListener(this);
         this.jTable_Ingred_Table1.addMouseListener(this);
         this.jTable_Ingred_Table3.addMouseListener(this);
         this.jTableSequnece1.addMouseListener(this);
         this.jTable_1_test_parameters.addMouseListener(this);
-        this.jTable_lab_dev__material_info.addMouseListener(this);
+//        this.jTable_lab_dev__material_info.addMouseListener(this);
         //
         this.jTable1.addKeyListener(this);
         this.jTable_Ingred_Table1.addKeyListener(this);
@@ -4705,7 +4705,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     }//GEN-LAST:event_jButton_lab_dev_tab__save_config_btnActionPerformed
 
     private void jButton_lab_dev_test_definition_gotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev_test_definition_gotoActionPerformed
-        labDevelopment.labDevTestDefinitionTab.goToTestConfig();
+        labDevelopment.labDevTestDefinitionTab.lab_dev_test_definitions_table_clicked();
     }//GEN-LAST:event_jButton_lab_dev_test_definition_gotoActionPerformed
 
     /**
