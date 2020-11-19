@@ -93,7 +93,11 @@ public class PROC {
     public static final String PROC_67 = "fn_ITF_Test_Related_ID_4 "; //#TEST PARAMETERS
     public static final String PROC_68 = "fn_ITF_REcipesInTestOrder "; //#LAB DEVELOPMENT -> MATERIALINFORMATION
     public static final String PROC_69 = "fn_Proc_Tags_Values_Pruff "; //#LAB DEVELOPMENT -> TEST CONFIG
-    public static final String PROC_70 = "fn_Proc_Tags_Values_Test "; //#LAB DEVELOPMENT -> Not used yet
+    public static final String PROC_70 = "fn_Proc_Tags_Values_Test "; //#LAB DEVELOPMENT -> TEST CONFIG
+    public static final String PROC_71 = "fn_TestOrder_VULMET "; //#LAB DEVELOPMENT -> TEST CONFIG -> Preparationmethods
+    public static final String PROC_72 = "fn_TestOrder_Aegement "; //#LAB DEVELOPMENT -> TEST CONFIG -> Agingmethods
+    public static final String PROC_73 = "fn_TestOrder_VULMET "; //#LAB DEVELOPMENT -> TEST CONFIG -> Preparationmethods -> get chosen
+    public static final String PROC_74 = "fn_TestOrder_Aegement "; //#LAB DEVELOPMENT -> TEST CONFIG -> Agingmethods -> get chosen
     //
     // LAB_DEVELOPMENT 
     //
@@ -174,6 +178,10 @@ public class PROC {
         procList.add(PROC_68);
         procList.add(PROC_69);
         procList.add(PROC_70);
+        procList.add(PROC_71);
+        procList.add(PROC_72);
+        procList.add(PROC_73);
+        procList.add(PROC_74);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

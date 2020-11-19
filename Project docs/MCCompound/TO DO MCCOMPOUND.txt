@@ -12,6 +12,7 @@ MCcpwotest -> UpdatedOn(datetime,null) --> Change to "date" ---> not working wit
 1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
 2. Reports -> there are some reports which are essential for them.
 3. MaterialInformation data only available for OrderNo: "ENTW002106"
+4. Prufdefinition Tab -> how to sort table?
 
 
 [FOR DEMO]

@@ -1493,6 +1493,22 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ")";
     }
+    
+    /**
+     * 
+     * @param PROC
+     * @param param1 - material
+     * @param param2 - order
+     * @param param3 - NULL
+     * @return 
+     */
+     public static String lab_dev_test_config__get_preparationmethods(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ") ORDER BY DESCR";
+    }
 
 //    public static void main(String[] args) {
 //        //

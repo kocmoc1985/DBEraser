@@ -39,6 +39,9 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     public void refresh() {
+        //
+        getPreparationMethods();
+        //
         java.awt.EventQueue.invokeLater(() -> {
             buildCheckBoxTables();
             showTableInvert();
@@ -151,6 +154,45 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
     }
 
+    private Object[] getPreparationMethods() {
+        // Aquired by material & order
+        //
+        ArrayList<PreparationMethodEntry>list = new ArrayList<>();
+        //
+        String order = labDev.getOrderNo();
+        String material = labDev.getMaterial();
+        //
+        String q = SQL_A.lab_dev_test_config__get_preparationmethods(PROC.PROC_71, material, order, null);
+        //
+        try {
+            //
+            ResultSet rs = sql.execute(q, OUT);
+            //
+            while(rs.next()){
+                //
+                String descr = rs.getString("DESCR");
+                String code = rs.getString("CODE");
+                //
+                PreparationMethodEntry pme = new PreparationMethodEntry(descr, code);
+                //
+                list.add(pme);
+                //
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestConfigTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        PreparationMethodEntry[]pme_arr = new PreparationMethodEntry[list.size()];
+        //
+        return list.toArray(pme_arr);
+    }
+
+    private String[] getAgingMethods() {
+        // Aquired by material & order
+        return null;
+    }
+
     private void buildCheckBoxTables() {
         //
         addRows(new String[]{
@@ -185,8 +227,6 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     public void saveTableInvert() {
-        //
-//        saveChangesTableInvert();
         //
         saveChangesTableInvert_C_C(sql);
         //
