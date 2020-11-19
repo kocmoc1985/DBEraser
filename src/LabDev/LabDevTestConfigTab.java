@@ -124,12 +124,9 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             list.add(rdi);
         }
         //
-        //
+        // OBS! Don't have this ones, but you will need to have "UpdateOn & UpdatedBy" fields in the "source" DBTable
 //        RowDataInvert updated_on = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, true); // UpdatedOn
 //        RowDataInvert updated_by = new RowDataInvert("MCcpwotest", "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, true);
-//        //
-//        list.add(updated_on);
-//        list.add(updated_by);
         //
         RowDataInvert[] arr = new RowDataInvert[list.size()];
         //
