@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /**
  *
@@ -40,10 +41,10 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     public void refresh() {
         //
-        getPreparationOrAgingMethods(true);
+        buildPrepAndAgingMethodsTables();
         //
         java.awt.EventQueue.invokeLater(() -> {
-            buildCheckBoxTables();
+            buildCheckBoxTables_test_only();
             showTableInvert();
         });
     }
@@ -60,11 +61,22 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         return labDev.getTestCode();
     }
     
+    private JPanel getPreparationPanel(){
+        return mcRecipe.jPanel65;
+    }
+    
+    private JPanel getAgingPanel(){
+        return mcRecipe.jPanel66;
+    }
+    
     private void buildPrepAndAgingMethodsTables(){
         //
         Object[]prep_methods = getPreparationOrAgingMethods(true);
-        //
         Object[]aging_methods = getPreparationOrAgingMethods(false);
+        //
+        //
+        addRows(prep_methods, getPreparationPanel(), null);
+        addRows(aging_methods, getAgingPanel(), null);
         //
     }
 
@@ -173,7 +185,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             code_column_name = "CODE";
         }else{
             procedure = PROC.PROC_72;
-            code_column_name = "TEST_CODE";
+            code_column_name = "TESTCODE";
         }
         //
         ArrayList<PrepOrAgingEntry>list = new ArrayList<>();
@@ -181,7 +193,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         String order = labDev.getOrderNo();
         String material = labDev.getMaterial();
         //
-        String q = SQL_A.lab_dev_test_config__get_preparationmethods(procedure, material, order, null);
+        String q = SQL_A.lab_dev_test_config__get_preparation_aging_methods(procedure, material, order, null);
         //
         try {
             //
@@ -209,7 +221,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
    
 
-    private void buildCheckBoxTables() {
+    private void buildCheckBoxTables_test_only() {
         //
         addRows(new String[]{
             "- Keine - ",
@@ -227,7 +239,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             "Presse / Ammi platte / 15 min / 170c ",
             "Presse / Ammi platte / 15 min / 170c ",
             "Presse / Ammi platte / 15 min / 170c ",
-            "Presse / Ammi platte / 15 min / 170c "}, mcRecipe.jPanel65, null);
+            "Presse / Ammi platte / 15 min / 170c "}, getPreparationPanel(), null);
         //
         addRows(new String[]{
             "- Keine -",
@@ -235,7 +247,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             "DVR in luft / 1.0 d / 70c ",
             "DVR in luft / 1.0 d / 70c ",
             "DVR in luft / 1.0 d / 70c "
-        }, mcRecipe.jPanel66, null);
+        }, getAgingPanel(), null);
     }
 
     @Override

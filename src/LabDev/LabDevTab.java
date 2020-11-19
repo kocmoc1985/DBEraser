@@ -5,7 +5,7 @@
  */
 package LabDev;
 
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
@@ -21,13 +21,13 @@ import java.awt.event.MouseEvent;
  */
 public abstract class LabDevTab extends BasicTab {
 
-    protected final MC_RECIPE_ mcRecipe;
+    protected final MC_RECIPE mcRecipe;
     protected final LabDevelopment labDev;
     
 
     public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
         super(sql, sql_additional, OUT);
-        this.mcRecipe = (MC_RECIPE_) OUT;
+        this.mcRecipe = (MC_RECIPE) OUT;
         this.labDev = labDev;
     }
 

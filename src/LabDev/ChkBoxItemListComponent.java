@@ -83,39 +83,12 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         return new Dimension(430, HEIGHT);
     }
 
+    
+    /**
+     * Increase width "physically" in drawing tool IF NOT SHOWING As i
+     * understand the width shall be (dim.width + 70)
+     */
     public void addRows(Object[] items, JPanel panel, Dimension dim) {
-        //
-        if (dim == null) {
-            panel.setPreferredSize(defaultDimension());
-        } else {
-            panel.setPreferredSize(dim);
-        }
-        //
-        addRowsTable(items, panel);
-        //
-    }
-
-    /**
-     * Increase width "physically" in drawing tool IF NOT SHOWING As i
-     * understand the width shall be (dim.width + 70)
-     */
-    public void addRows(String[] items, JPanel panel, Dimension dim) {
-        //
-        if (dim == null) {
-            panel.setPreferredSize(defaultDimension());
-        } else {
-            panel.setPreferredSize(dim);
-        }
-        //
-        addRowsTable(items, panel);
-        //
-    }
-
-    /**
-     * Increase width "physically" in drawing tool IF NOT SHOWING As i
-     * understand the width shall be (dim.width + 70)
-     */
-    public void addRows_B(String[] items, JPanel panel, Dimension dim) {
         //
         panel.removeAll();
         //
@@ -125,17 +98,24 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
             panel.setPreferredSize(dim);
         }
         //
-        addRowsTable_B(items, panel);
-        //
-        panel.repaint();
+        addRowsTable(items, panel);
         //
     }
+    
+    
+//    public void addRows(String[] items, JPanel panel, Dimension dim) {
+//        //
+//        if (dim == null) {
+//            panel.setPreferredSize(defaultDimension());
+//        } else {
+//            panel.setPreferredSize(dim);
+//        }
+//        //
+//        addRowsTable(items, panel);
+//        //
+//    }
 
-    private void addRowsTable_B(String[] items, JPanel panel) {
-        for (String item : items) {
-            addRowTable_B(item, panel);
-        }
-    }
+    
 
     private void addRowsTable(Object[] items, JPanel panel) {
         //
@@ -192,6 +172,34 @@ public abstract class ChkBoxItemListComponent extends LabDevTab {
         //
         panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
         //
+    }
+    
+    
+    /**
+     * OBS! Used by "LabDevFindOrder.class" -> "FIND ORDER" TAB
+     * Increase width "physically" in drawing tool IF NOT SHOWING As i
+     * understand the width shall be (dim.width + 70)
+     */
+    public void addRows_B(String[] items, JPanel panel, Dimension dim) {
+        //
+        panel.removeAll();
+        //
+        if (dim == null) {
+            panel.setPreferredSize(defaultDimension());
+        } else {
+            panel.setPreferredSize(dim);
+        }
+        //
+        addRowsTable_B(items, panel);
+        //
+        panel.repaint();
+        //
+    }
+
+    private void addRowsTable_B(String[] items, JPanel panel) {
+        for (String item : items) {
+            addRowTable_B(item, panel);
+        }
     }
 
     private void addRowTable_B(String item, JPanel panel) {

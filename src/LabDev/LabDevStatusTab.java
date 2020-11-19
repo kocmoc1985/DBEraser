@@ -9,7 +9,7 @@ import static LabDev.LabDevelopment.TABLE__MC_CPWORDER;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;

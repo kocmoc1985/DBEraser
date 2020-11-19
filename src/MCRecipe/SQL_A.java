@@ -640,11 +640,11 @@ public class SQL_A {
         //
     }
 
-    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE_ mc_recipe) {
+    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE mc_recipe) {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         boolean cond_2 = mc_recipe.jComboBox_Ingred_1.getSelectedItem() == null
                 && mc_recipe.jComboBox_Ingred_2.getSelectedItem() == null;
         //
@@ -679,7 +679,7 @@ public class SQL_A {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
         if (params.length == 21) { //Ingred check box is of
             procedure = PROC_1;
@@ -1496,13 +1496,13 @@ public class SQL_A {
     
     /**
      * 
-     * @param PROC
+     * @param PROC - 71, 72
      * @param param1 - material
      * @param param2 - order
      * @param param3 - NULL
      * @return 
      */
-     public static String lab_dev_test_config__get_preparationmethods(String PROC, String param1, String param2, String param3) {
+     public static String lab_dev_test_config__get_preparation_aging_methods(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","

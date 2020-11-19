@@ -5,7 +5,7 @@
 package MCRecipe.Sec;
 
 import MCRecipe.Ingredients;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -32,7 +32,7 @@ import javax.swing.JTable;
 public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements MouseListener {
 
     protected final String TITLE;
-    public final MC_RECIPE_ mc_recipe;
+    public final MC_RECIPE mc_recipe;
     public final SqlBasicLocal sql;
     public final SqlBasicLocal sql_additional;
 //    private Table TABLE_INVERT;
@@ -44,7 +44,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
     /**
      * Creates new form AdministrateUsers
      */
-    public AdministrateRecipeGroups_(String title,MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateRecipeGroups_(String title,MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         initComponents();
         this.TITLE = title;
         this.mc_recipe = mc_recipe;
