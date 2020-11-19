@@ -9,12 +9,12 @@ package LabDev;
  *
  * @author KOCMOC
  */
-public class PreparationMethodEntry {
+public class PrepOrAgingEntry {
 
     private final String description;
     private final String code;
 
-    public PreparationMethodEntry(String description, String code) {
+    public PrepOrAgingEntry(String description, String code) {
         this.description = description;
         this.code = code;
     }

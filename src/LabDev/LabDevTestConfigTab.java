@@ -40,7 +40,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     public void refresh() {
         //
-        getPreparationMethods();
+        getPreparationOrAgingMethods(true);
         //
         java.awt.EventQueue.invokeLater(() -> {
             buildCheckBoxTables();
@@ -58,6 +58,14 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
 
     private String getTestCode() {
         return labDev.getTestCode();
+    }
+    
+    private void buildPrepAndAgingMethodsTables(){
+        //
+        Object[]prep_methods = getPreparationOrAgingMethods(true);
+        //
+        Object[]aging_methods = getPreparationOrAgingMethods(false);
+        //
     }
 
     private ArrayList<TestConfigEntry> getValuesPruff_ValuesTest(String procedure) {
@@ -154,15 +162,26 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
         //
     }
 
-    private Object[] getPreparationMethods() {
-        // Aquired by material & order
+    
+    private Object[] getPreparationOrAgingMethods(boolean preparation) {
         //
-        ArrayList<PreparationMethodEntry>list = new ArrayList<>();
+        String code_column_name;
+        String procedure;
+        //
+        if(preparation){
+            procedure = PROC.PROC_71;
+            code_column_name = "CODE";
+        }else{
+            procedure = PROC.PROC_72;
+            code_column_name = "TEST_CODE";
+        }
+        //
+        ArrayList<PrepOrAgingEntry>list = new ArrayList<>();
         //
         String order = labDev.getOrderNo();
         String material = labDev.getMaterial();
         //
-        String q = SQL_A.lab_dev_test_config__get_preparationmethods(PROC.PROC_71, material, order, null);
+        String q = SQL_A.lab_dev_test_config__get_preparationmethods(procedure, material, order, null);
         //
         try {
             //
@@ -171,9 +190,9 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             while(rs.next()){
                 //
                 String descr = rs.getString("DESCR");
-                String code = rs.getString("CODE");
+                String code = rs.getString(code_column_name);
                 //
-                PreparationMethodEntry pme = new PreparationMethodEntry(descr, code);
+                PrepOrAgingEntry pme = new PrepOrAgingEntry(descr, code);
                 //
                 list.add(pme);
                 //
@@ -183,15 +202,12 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             Logger.getLogger(LabDevTestConfigTab.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        PreparationMethodEntry[]pme_arr = new PreparationMethodEntry[list.size()];
+        PrepOrAgingEntry[]pme_arr = new PrepOrAgingEntry[list.size()];
         //
         return list.toArray(pme_arr);
     }
 
-    private String[] getAgingMethods() {
-        // Aquired by material & order
-        return null;
-    }
+   
 
     private void buildCheckBoxTables() {
         //

@@ -21,18 +21,16 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public abstract class ChkBoxItemListComponent extends LabDevTab  {
+public abstract class ChkBoxItemListComponent extends LabDevTab {
 
     public static final int HEIGHT = 35;
 
-    
 //    public ChkBoxItemListComponent() {
 //    }
-    
-    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT,LabDevelopment labDev){
-        super(sql, sql_additional, OUT,labDev);
+    public ChkBoxItemListComponent(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment labDev) {
+        super(sql, sql_additional, OUT, labDev);
     }
-    
+
     public ArrayList<JPanelPrepM> getSelectedFromTable(JPanel tablePanel) {
         //
         ArrayList<JPanelPrepM> list = new ArrayList<>();
@@ -55,7 +53,7 @@ public abstract class ChkBoxItemListComponent extends LabDevTab  {
         return list;
         //
     }
-    
+
     public Object[] getSelectedValuesFromTable(JPanel tablePanel) {
         //
         ArrayList<String> list = new ArrayList<>();
@@ -84,10 +82,22 @@ public abstract class ChkBoxItemListComponent extends LabDevTab  {
         // will add components to the "left" but not "down" one after another
         return new Dimension(430, HEIGHT);
     }
-    
+
+    public void addRows(Object[] items, JPanel panel, Dimension dim) {
+        //
+        if (dim == null) {
+            panel.setPreferredSize(defaultDimension());
+        } else {
+            panel.setPreferredSize(dim);
+        }
+        //
+        addRowsTable(items, panel);
+        //
+    }
+
     /**
-     * Increase width "physically" in drawing tool IF NOT SHOWING
-     * As i understand the width shall be (dim.width + 70)
+     * Increase width "physically" in drawing tool IF NOT SHOWING As i
+     * understand the width shall be (dim.width + 70)
      */
     public void addRows(String[] items, JPanel panel, Dimension dim) {
         //
@@ -100,12 +110,12 @@ public abstract class ChkBoxItemListComponent extends LabDevTab  {
         addRowsTable(items, panel);
         //
     }
-    
+
     /**
-     * Increase width "physically" in drawing tool IF NOT SHOWING
-     * As i understand the width shall be (dim.width + 70)
+     * Increase width "physically" in drawing tool IF NOT SHOWING As i
+     * understand the width shall be (dim.width + 70)
      */
-    public void addRows_B(String[] items, JPanel panel, Dimension dim){
+    public void addRows_B(String[] items, JPanel panel, Dimension dim) {
         //
         panel.removeAll();
         //
@@ -120,30 +130,49 @@ public abstract class ChkBoxItemListComponent extends LabDevTab  {
         panel.repaint();
         //
     }
-    
-   private void addRowsTable_B(String[] items, JPanel panel){
-       for (String item : items) {
-           addRowTable_B(item, panel);
-       }
-   }
 
-    private void addRowsTable(String[] items, JPanel panel) {
-        //
-        for (int i = 0; i < items.length; i++) {
-            if (i == 0) {
-                addRowTable("     ", items[i], panel);
-            } else if (i < 10) {
-                addRowTable("  " + i + ":", items[i], panel);
-            } else if (i > 10) {
-                addRowTable("" + i + ":", items[i], panel);
-            }
+    private void addRowsTable_B(String[] items, JPanel panel) {
+        for (String item : items) {
+            addRowTable_B(item, panel);
         }
+    }
+
+    private void addRowsTable(Object[] items, JPanel panel) {
+        //
+        if (items[0] instanceof String) {
+            for (int i = 0; i < items.length; i++) {
+                if (i == 0) {
+                    addRowTable("     ", (String) items[i], panel);
+                } else if (i < 10) {
+                    addRowTable("  " + i + ":", (String) items[i], panel);
+                } else if (i > 10) {
+                    addRowTable("" + i + ":", (String) items[i], panel);
+                }
+            }
+        } else if (items[0] instanceof PrepOrAgingEntry) {
+            //
+            for (int i = 0; i < items.length; i++) {
+                //
+                PrepOrAgingEntry poae = (PrepOrAgingEntry) items[i];
+                //
+                if (i == 0) {
+                    addRowTable("     ", poae.getDescription(), panel);
+                } else if (i < 10) {
+                    addRowTable("  " + i + ":", poae.getDescription(), panel);
+                } else if (i > 10) {
+                    addRowTable("" + i + ":", poae.getDescription(), panel);
+                }
+            }
+            //
+        }
+        //
+
         //
     }
 
     private void addRowTable(String sequence, String item, JPanel panel) {
         //
-        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT),true); //new FlowLayout(FlowLayout.LEFT)
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT), true); //new FlowLayout(FlowLayout.LEFT)
         container.setPreferredSize(getRowSize(panel));
         //
         JLabel lbl = new JLabel(sequence);
@@ -164,10 +193,10 @@ public abstract class ChkBoxItemListComponent extends LabDevTab  {
         panel.validate(); // MUST BE CALLED adfter setting the prefferedSize
         //
     }
-    
-     private void addRowTable_B(String item, JPanel panel) {
+
+    private void addRowTable_B(String item, JPanel panel) {
         //
-        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT),false); //new FlowLayout(FlowLayout.LEFT)
+        JPanelPrepM container = new JPanelPrepM(new FlowLayout(FlowLayout.LEFT), false); //new FlowLayout(FlowLayout.LEFT)
         container.setPreferredSize(getRowSize(panel));
         //
         JCheckBox chk = new JCheckBox();
