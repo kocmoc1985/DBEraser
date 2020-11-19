@@ -119,7 +119,9 @@ public class T_INV {
         DICT.put("MIX", "MISCH");
         DICT.put("BATCH AMMOUNT", "BATCHMENGE");
         //
-        // Material, Beshreibung, Mischer, 1er Batch, Misch, Batchmenge
+        DICT.put("AGEING CODE", "ALTERUNGSCODE");
+        //
+        DICT.put("VULCANISATION CODE", "VULKANISIERUNGS CODE");
     }
 
     public static String LANG(String word) {

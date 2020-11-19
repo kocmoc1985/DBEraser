@@ -44,6 +44,8 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
     
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
+    public static String TABLE__AGEMENT = "MC_CPAGEMET";
+    public static String TABLE__VULC = "MC_CPVULMET";
     
     public static String TABLE_NOTES_1 = "MC_Cpworder_SendTo";
     public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";

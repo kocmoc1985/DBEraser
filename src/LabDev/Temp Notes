@@ -2,5 +2,38 @@ Mc_cpworder -> UpdatedOn(date,null)
 MCcpwotest -> UpdatedOn(datetime,null) ---> not working with date like "18.11.2020" --> but works with 2020-11-18
 
 
+addTableInvertRowListener(TABLE_INVERT_6, this);-------------> needed ??
+See LabDevTab.class ->  public void mouseClicked(...)
+Also see LabDevStatus tab -> addTableInvertRowListener(TABLE_INVERT_6, this)
+
+
 MC_CPAGEMENT -> find by agingcode  -> select DISTINCT AGEINGCODE from MC_CPAGEMET
 MC_CPVUL -> ...  -> select DISTINCT VULCCODE from MC_CPVULMET
+
+MC_CPAGEMENT:
+AGEINGCODE
+TYPE
+DESCR
+METHOD
+TEMP
+TIME
+TIMEUNIT
+STATUS
+NOTE
+LASTUPDATE
+UPDATEDBy
+ID
+
+MC_CPVUL:
+VULCCODE
+TYPE
+DESCR
+METHOD
+TEMP
+TIME
+ARTICLE
+STATUS
+NOTE
+LASTUPDATE
+UPDATEDBy
+ID

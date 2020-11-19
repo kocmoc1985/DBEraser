@@ -37,6 +37,7 @@ public abstract class LabDevTab extends BasicTab {
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
+        System.out.println("COLNAME:------------------->"+col_name);
     }
 
     @Override
