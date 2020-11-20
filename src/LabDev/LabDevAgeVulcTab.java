@@ -6,7 +6,6 @@
 package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
-import static LabDev.LabDevelopment_.TABLE__MAT_INFO;
 import static LabDev.LabDevelopment_.TABLE__VULC;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
@@ -31,20 +30,25 @@ public class LabDevAgeVulcTab extends LabDevTab {
     private Table TABLE_INVERT_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
-    
+
     public LabDevAgeVulcTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
-    
-    private void init(){
+
+    private void init() {
         refresh();
     }
-    
-    public void refresh(){
-        fillAgeComboBox();
+
+    public void refresh() {
+        java.awt.EventQueue.invokeLater(() -> {
+            fillAgeComboBox();
+            showTableInvert();
+            showTableInvert_2();
+        });
+
     }
-    
+
     private String getAgeCode() {
         return "00011";
     }
@@ -52,12 +56,12 @@ public class LabDevAgeVulcTab extends LabDevTab {
     private String getVulcCode() {
         return "00014";
     }
-    
-    private JComboBox getAgeComboBox(){
+
+    private JComboBox getAgeComboBox() {
         return mcRecipe.jComboBox_lab_dev__age;
     }
-    
-    private void fillAgeComboBox(){
+
+    private void fillAgeComboBox() {
         //
         String q = "select DISTINCT AGEINGCODE from MC_CPAGEMET";
         //
@@ -69,18 +73,18 @@ public class LabDevAgeVulcTab extends LabDevTab {
     public void fillNotes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     @Override
+
+    @Override
     public void showTableInvert() {
         //
         TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "lab_dev_aging");
         //
         TABLE_INVERT = null;
         //
-        String agecode = "";
+        String agecode = getAgeCode();
         //
         try {
-            String q = "";
+            String q = "SELECT * FROM MC_CPAGEMET WHERE AGEINGCODE=" + SQL_A.quotes(agecode, false);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -90,28 +94,74 @@ public class LabDevAgeVulcTab extends LabDevTab {
         //
 //        setMargin(TABLE_INVERT, 10, 0, 0, 0);
         //
-//        addTableInvertRowListener(TABLE_INVERT, this);
-        //
-        showTableInvert(null);
+        showTableInvert(mcRecipe.jPanel68);
         //
     }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert material = new RowDataInvert(TABLE__AGEMENT, "ID", false, "AGEINGCODE", T_INV.LANG("AGEING CODE"), "", true, true, false);
+        RowDataInvert ageingcode = new RowDataInvert(TABLE__AGEMENT, "ID", false, "AGEINGCODE", T_INV.LANG("AGEING CODE"), "", true, true, false);
+        RowDataInvert type = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TYPE", T_INV.LANG("AGEING CODE"), "", true, true, false);
+        RowDataInvert descr = new RowDataInvert(TABLE__AGEMENT, "ID", false, "DESCR", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        descr.enableToolTipTextJTextField();
+        RowDataInvert method = new RowDataInvert(TABLE__AGEMENT, "ID", false, "METHOD", T_INV.LANG("METHOD"), "", true, true, false);
+        RowDataInvert temp = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TEMP", T_INV.LANG("TEMP"), "", true, true, false);
+        RowDataInvert time = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TIME", T_INV.LANG("TIME"), "", true, true, false);
+        RowDataInvert timeunit = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TIMEUNIT", T_INV.LANG("TIME UNIT"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert(TABLE__AGEMENT, "ID", false, "STATUS", T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert note = new RowDataInvert(TABLE__AGEMENT, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
         //
-        return null;
+        RowDataInvert updatedOn = new RowDataInvert(TABLE__AGEMENT, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert(TABLE__AGEMENT, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        RowDataInvert[] rows = {ageingcode, type, descr, method, temp, time, timeunit, status, note, updatedOn, updatedBy};
+        //
+        return rows;
+    }
+
+    public void showTableInvert_2() {
+        //
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_2(), false, "lab_dev_vulc");
+        //
+        TABLE_INVERT_2 = null;
+        //
+        String vulccode = getVulcCode();
+        //
+        try {
+            String q = "SELECT * FROM MC_CPVULMET WHERE VULCCODE=" + SQL_A.quotes(vulccode, false);
+            OUT.showMessage(q);
+            TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q, this); // TableRow.FLOW_LAYOUT
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
+        }
+        //
+        setVerticalScrollBarDisabled(TABLE_INVERT_2);
+        //
+        showTableInvert(mcRecipe.jPanel69, TABLE_INVERT_2);
     }
 
     public RowDataInvert[] getConfigTableInvert_2() {
         //
-        RowDataInvert material = new RowDataInvert(TABLE__VULC, "ID", false, "VULCCODE", T_INV.LANG("VULCANISATION CODE"), "", true, true, false);
+        RowDataInvert vulccode = new RowDataInvert(TABLE__VULC, "ID", false, "VULCCODE", T_INV.LANG("VULCANISATION CODE"), "", true, true, false);
+        RowDataInvert type = new RowDataInvert(TABLE__VULC, "ID", false, "TYPE", T_INV.LANG("TYPE"), "", true, true, false);
+        RowDataInvert descr = new RowDataInvert(TABLE__VULC, "ID", false, "DESCR", T_INV.LANG("DESCR CODE"), "", true, true, false);
+        descr.enableToolTipTextJTextField();
+        RowDataInvert method = new RowDataInvert(TABLE__VULC, "ID", false, "METHOD", T_INV.LANG("METHOD"), "", true, true, false);
+        RowDataInvert temp = new RowDataInvert(TABLE__VULC, "ID", false, "TEMP", T_INV.LANG("TEMP"), "", true, true, false);
+        RowDataInvert time = new RowDataInvert(TABLE__VULC, "ID", false, "TIME", T_INV.LANG("TIME"), "", true, true, false);
+        RowDataInvert article = new RowDataInvert(TABLE__VULC, "ID", false, "ARTICLE", T_INV.LANG("ARTICLE"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert(TABLE__VULC, "ID", false, "STATUS", T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert note = new RowDataInvert(TABLE__VULC, "ID", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
         //
-        return null;
+        RowDataInvert updatedOn = new RowDataInvert(TABLE__VULC, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, true, false);
+        RowDataInvert updatedBy = new RowDataInvert(TABLE__VULC, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, true, false);
+        //
+        RowDataInvert[] rows = {vulccode, type, descr, method, temp, time, article, status, note, updatedOn, updatedBy};
+        //
+        return rows;
     }
-    
-    
 
     @Override
     public void initializeSaveIndicators() {
