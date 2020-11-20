@@ -120,8 +120,13 @@ public class T_INV {
         DICT.put("BATCH AMMOUNT", "BATCHMENGE");
         //
         DICT.put("AGEING CODE", "ALTERUNGSCODE");
-        //
         DICT.put("VULCANISATION CODE", "VULKANISIERUNGS CODE");
+        DICT.put("TEMP", "TEMP");
+        DICT.put("TIME", "ZEIT");
+        DICT.put("TIME UNIT", "ZEITEINHEIT");
+        DICT.put("TYPE", "TYP");
+        DICT.put("METHOD", "METHODE");
+        DICT.put("ARTICLE", "ARTIKEL");
     }
 
     public static String LANG(String word) {

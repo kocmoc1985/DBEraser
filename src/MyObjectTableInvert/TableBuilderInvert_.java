@@ -5,7 +5,6 @@
  */
 package MyObjectTableInvert;
 
-import LabDev.LabDevelopment_;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTable.TableData;
@@ -323,7 +322,15 @@ public class TableBuilderInvert_ {
         //
     }
     
-    public Table buildTable_C(String query, Basic tableInvertConsumer, int layout) throws SQLException {
+    /**
+     * Same as _C_C but using singe query
+     * @param query
+     * @param tableInvertConsumer
+     * @param layout
+     * @return
+     * @throws SQLException 
+     */
+    private Table buildTable_C(String query, Basic tableInvertConsumer, int layout) throws SQLException {
         //
         if (CONFIG == null) {
             return null;
