@@ -347,7 +347,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
         }
         //
         Basic consumer = t.getTableInvertConsumer();
-        consumer.mouseClicked(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
+        consumer.mouseClickedForward(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
         //
     }
     

@@ -93,7 +93,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
         //
     }
 
-    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         
     }
 

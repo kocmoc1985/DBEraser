@@ -798,9 +798,9 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        super.mouseClickedForward(me, column, row, tableName, ti); 
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
@@ -820,6 +820,32 @@ public abstract class Invoice_ extends Basic_Buh {
         }
         //
     }
+    
+    
+
+//    @Override
+//    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+//        //
+//        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+//        //
+//        String col_name = ti.getCurrentColumnName(me.getSource());
+//        //
+//        if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
+//            //
+//            JLinkInvert jli = (JLinkInvert) me.getSource();
+//            //
+//            if (jli.getValue().isEmpty()) {
+//                String er_referens_last = IO.loadLastEntered(IO.getErReferens(getFakturaKundId()), "");
+//                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+//            }
+//            //
+//        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+//            //
+//            restoreFakturaDatumIfEmty(me, ti);
+//            //
+//        }
+//        //
+//    }
 
     private void restoreFakturaDatumIfEmty(MouseEvent me, TableInvert ti) {
         //

@@ -37,7 +37,15 @@ public class TableRowInvertB extends TableRowInvert_ {
         }
     }
     
-    
+     @Override
+    public void mouseClicked(MouseEvent me) {
+        //
+        TableInvert t = (TableInvert) getTable();
+        //
+        Basic consumer = t.getTableInvertConsumer();
+        consumer.mouseClickedForward(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
+        //
+    }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
