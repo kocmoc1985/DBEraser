@@ -7,29 +7,38 @@ package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__VULC;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
+import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 /**
  *
  * @author KOCMOC
  */
-public class LabDevAgeVulcTab extends LabDevTab {
+public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionListener {
 
     private Table TABLE_INVERT_2;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
+    private String AGE_CODE;
+    private String VULC_CODE;
 
     public LabDevAgeVulcTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -37,24 +46,42 @@ public class LabDevAgeVulcTab extends LabDevTab {
     }
 
     private void init() {
-        refresh();
+        //
+        initializeSaveIndicators();
+        //
+        getSaveButtonAge().addActionListener(this);
+        getSaveButtonVulc().addActionListener(this);
+        //
+        getAgeComboBox().addItemListener(this);
+        getVulcComboBox().addItemListener(this);
+        //
+        fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
+        //
     }
 
     public void refresh() {
+        //
         java.awt.EventQueue.invokeLater(() -> {
-            fillComboBoxes();
             showTableInvert();
             showTableInvert_2();
         });
-
+        //
     }
 
     private String getAgeCode() {
-        return "00011";
+        return AGE_CODE;
     }
 
     private String getVulcCode() {
-        return "00014";
+        return VULC_CODE;
+    }
+    
+    private JButton getSaveButtonAge(){
+        return mcRecipe.jButton_lab_dev__save_aging;
+    }
+    
+    private JButton getSaveButtonVulc(){
+        return mcRecipe.jButton_lab_dev__save_vulc;
     }
 
     private JComboBox getAgeComboBox() {
@@ -71,7 +98,10 @@ public class LabDevAgeVulcTab extends LabDevTab {
         HelpA_.fillComboBox(sql, getAgeComboBox(), q, null, false, false);
         //
         String q_2 = "select DISTINCT VULCCODE from " + TABLE__VULC;
-        HelpA_.fillComboBox(sql, getVulcComboBox(), q, null, false, false);
+        HelpA_.fillComboBox(sql, getVulcComboBox(), q_2, null, false, false);
+        //
+        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
         //
     }
 
@@ -108,6 +138,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
     public RowDataInvert[] getConfigTableInvert() {
         //
         RowDataInvert ageingcode = new RowDataInvert(TABLE__AGEMENT, "ID", false, "AGEINGCODE", T_INV.LANG("AGEING CODE"), "", true, true, false);
+        ageingcode.setUneditable();
         RowDataInvert type = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TYPE", T_INV.LANG("AGEING CODE"), "", true, true, false);
         RowDataInvert descr = new RowDataInvert(TABLE__AGEMENT, "ID", false, "DESCR", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         descr.enableToolTipTextJTextField();
@@ -151,6 +182,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         RowDataInvert vulccode = new RowDataInvert(TABLE__VULC, "ID", false, "VULCCODE", T_INV.LANG("VULCANISATION CODE"), "", true, true, false);
+        vulccode.setUneditable();
         RowDataInvert type = new RowDataInvert(TABLE__VULC, "ID", false, "TYPE", T_INV.LANG("TYPE"), "", true, true, false);
         RowDataInvert descr = new RowDataInvert(TABLE__VULC, "ID", false, "DESCR", T_INV.LANG("DESCR CODE"), "", true, true, false);
         descr.enableToolTipTextJTextField();
@@ -168,15 +200,95 @@ public class LabDevAgeVulcTab extends LabDevTab {
         //
         return rows;
     }
+    
 
     @Override
     public void initializeSaveIndicators() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SaveIndicator saveIndicator1 = new SaveIndicator(getSaveButtonAge(), this, 1);
+        SaveIndicator saveIndicator2 = new SaveIndicator(getSaveButtonVulc(), this, 2);
     }
 
     @Override
     public boolean getUnsaved(int nr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (nr == 1) {
+            //
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                return true;
+            }
+            //
+        } else if (nr == 2) {
+            //
+            if (TABLE_INVERT_2 == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT_2)) { //TABLE_INVERT.unsaved_entries_map.isEmpty() == false
+                return true;
+            }
+            //
+        }
+        //
+        return false;
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        //
+        if (e.getStateChange() != 1) {
+            return;
+        }
+        //
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
+        String value = cbo.getParamAuto();
+        //        
+        if (e.getSource().equals(getAgeComboBox())) {
+            //
+            this.AGE_CODE = value;
+            //
+            showTableInvert();
+            //
+        } else if (e.getSource().equals(getVulcComboBox())) {
+            //
+            this.VULC_CODE = value;
+            //
+            showTableInvert_2();
+            //
+        }
+        //
+    }
+    
+    private void saveTableInvert_aging(){
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+            HelpA_.showNotification(MSG.MSG_3());
+            return;
+        }
+        //
+        saveChangesTableInvert();
+        //
+    }
+    
+    private void saveTableInvert_2_vulc(){
+        //
+        if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())) {
+            HelpA_.showNotification(MSG.MSG_3());
+            return;
+        }
+        //
+        saveChangesTableInvert(TABLE_INVERT_2);
+        //
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if(e.getSource().equals(getSaveButtonAge())){
+            saveTableInvert_aging();
+        }else if(e.getSource().equals(getSaveButtonVulc())){
+            saveTableInvert_2_vulc();
+        }
+        //
     }
 
 }

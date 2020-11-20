@@ -2271,7 +2271,6 @@ public class HelpA_ {
             } catch (Exception ex) {
             }
             //
-
         }
         //
         //
@@ -2284,8 +2283,6 @@ public class HelpA_ {
         setTrackingToolTip(jbox, query);
         //
         setCursorWait(false);
-        //
-        
         //
         return jbox;
     }

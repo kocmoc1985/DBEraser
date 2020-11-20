@@ -371,6 +371,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
         }
         //
         saveChangesTableInvert();
+        //
         refreshHeader();
     }
     

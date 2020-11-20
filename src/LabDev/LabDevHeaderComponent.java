@@ -102,7 +102,7 @@ public class LabDevHeaderComponent implements ItemListener {
     
     public void tab_age_vulc(){
         clear();
-        showStandard(false);
+//        showStandard(false);
         updateGraphics();
     }
     
