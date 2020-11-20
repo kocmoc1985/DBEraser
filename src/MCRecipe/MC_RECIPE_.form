@@ -2222,7 +2222,7 @@
                                       </Group>
                                       <Component id="jScrollPane24" min="-2" pref="807" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="259" max="32767" attributes="0"/>
+                                  <EmptySpace pref="283" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2334,7 +2334,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane18" alignment="0" pref="612" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane18" alignment="0" pref="636" max="32767" attributes="0"/>
                                       <Component id="jScrollPane20" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel59" min="-2" pref="171" max="-2" attributes="0"/>
@@ -2574,7 +2574,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jPanel_lab_dev_material_info" min="-2" pref="529" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane22" pref="778" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane22" pref="802" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2671,7 +2671,7 @@
                                       <Component id="jScrollPane27" alignment="0" min="-2" pref="1119" max="-2" attributes="0"/>
                                       <Component id="jButton_lab_dev_test_definition_goto" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="230" max="32767" attributes="0"/>
+                                  <EmptySpace pref="254" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2760,7 +2760,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="209" max="32767" attributes="0"/>
+                                  <EmptySpace pref="233" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2933,7 +2933,7 @@
                                       <Component id="jScrollPane21" alignment="0" min="-2" pref="823" max="-2" attributes="0"/>
                                       <Component id="jButton_lab_dev_tab__save_notes" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="526" max="32767" attributes="0"/>
+                                  <EmptySpace pref="550" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3015,7 +3015,7 @@
                                           <Component id="jLabel62" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="366" max="32767" attributes="0"/>
+                                  <EmptySpace pref="390" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3271,16 +3271,14 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jPanel68" alignment="0" min="-2" pref="550" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jButton_lab_dev__save_aging" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton_lab_dev_aging__create_new" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="jPanel68" min="-2" pref="550" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jPanel70" min="-2" pref="150" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jComboBox_lab_dev__age" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jButton_lab_dev__save_vulc" min="-2" pref="50" max="-2" attributes="0"/>
@@ -3289,7 +3287,7 @@
                                       </Group>
                                       <Component id="jPanel69" min="-2" pref="550" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="219" max="32767" attributes="0"/>
+                                  <EmptySpace pref="220" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3299,25 +3297,27 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jButton_lab_dev__save_aging" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jButton_lab_dev_aging__create_new" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jPanel70" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jComboBox_lab_dev__age" min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel68" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="jComboBox_lab_dev_vulc" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox_lab_dev__age" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jComboBox_lab_dev_vulc" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jButton_lab_dev__save_vulc" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                           <Component id="jPanel69" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -3371,16 +3371,6 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                         </Container>
-                        <Component class="javax.swing.JButton" name="jButton_lab_dev__save_aging">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/save.png"/>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                        </Component>
                         <Component class="javax.swing.JButton" name="jButton_lab_dev__save_vulc">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -3391,16 +3381,45 @@
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton_lab_dev_aging__create_new">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/new.png"/>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                        </Component>
+                        <Container class="javax.swing.JPanel" name="jPanel70">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                            <Property name="columns" type="int" value="0"/>
+                            <Property name="rows" type="int" value="1"/>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__save_aging">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/save.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev_aging__create_new">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/new.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev_aging__delete">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/cancel-1.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                   </SubComponents>

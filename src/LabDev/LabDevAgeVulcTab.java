@@ -54,12 +54,19 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         getSaveButtonAge().addActionListener(this);
         getSaveButtonVulc().addActionListener(this);
         getCreateNewButtonAge().addActionListener(this);
+        getDeleteButtonAge().addActionListener(this);
         //
         getAgeComboBox().addItemListener(this);
         getVulcComboBox().addItemListener(this);
         //
         fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
         //
+    }
+    
+    private void refresh_b(){
+        java.awt.EventQueue.invokeLater(() -> {
+            fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
+        });
     }
 
     public void refresh() {
@@ -73,6 +80,10 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private String getAgeCode() {
         return AGE_CODE;
+    }
+    
+    private String getAgeCodeTableInvert(){
+        return getValueTableInvert("AGEINGCODE");
     }
 
     private String getVulcCode() {
@@ -89,6 +100,10 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private JButton getCreateNewButtonAge() {
         return mcRecipe.jButton_lab_dev_aging__create_new;
+    }
+    
+    private JButton getDeleteButtonAge(){
+        return mcRecipe.jButton_lab_dev_aging__delete;
     }
 
     private JComboBox getAgeComboBox() {
@@ -114,7 +129,6 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     @Override
     public void fillNotes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -295,6 +309,27 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             saveTableInvert_2_vulc();
         } else if (e.getSource().equals(getCreateNewButtonAge())) {
             createNewEntryAging();
+        }else if (e.getSource().equals(getDeleteButtonAge())) {
+            deleteAgeingEntry();
+        }
+        //
+    }
+    
+    private void deleteAgeingEntry(){
+        //
+        if (HelpA_.confirm() == false) {
+            return;
+        }
+        //
+        String ageincode = getAgeCodeTableInvert();
+        //
+        String q = "DELETE FROM "+ TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(ageincode, false);
+        //
+        try {
+            sql.execute(q, OUT);
+            refresh_b();
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -303,7 +338,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         String q = "SELECT AGEINGCODE from " + TABLE__AGEMENT + " WHERE AGEINGCODE = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.INGRED_REGEX, 20);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
         //
         boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "Create new ageing code");
         String agecode = tfc.getText();
