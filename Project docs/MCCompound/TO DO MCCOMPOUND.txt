@@ -5,8 +5,7 @@
 
 [FOR PAPS]
 1. MCcpwotest -> UpdatedOn(datetime,null) --> Change to "date" ---> not working with date like "18.11.2020" --> but works with 2020-11-18
-2. MC_CPAGEMET -> UpdatedOn, UpdatedBy fields
-3. MC_CPVUL -> UpdatedOn, UpdatedBy fields
+2. [IMPORTANT] - Fields length -> like: "varchar(10)" or something is taken from the longest value present in DB when copied from ECLIPSE ----> !!!!!!!!!!!!!!!!!
 
 [FOR BOTH]
 

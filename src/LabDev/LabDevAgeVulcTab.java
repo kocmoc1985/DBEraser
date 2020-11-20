@@ -294,8 +294,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         } else if (e.getSource().equals(getSaveButtonVulc())) {
             saveTableInvert_2_vulc();
         } else if (e.getSource().equals(getCreateNewButtonAge())) {
-           createNewEntryAging();
-        }   
+            createNewEntryAging();
+        }
         //
     }
 
@@ -309,12 +309,23 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         String agecode = tfc.getText();
         //
         if (agecode == null || yesNo == false) {
-            //
             return false;
-            //
         }
         //
-        
+        this.AGE_CODE = agecode;
+        //
+        String q_insert = "INSERT INTO " + TABLE__AGEMENT + " VALUES("
+                + SQL_A.quotes(this.AGE_CODE, false) + ","
+                + "NULL,"
+                + "'- Keine -',"
+                + "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
+        //
+        try {
+            sql.execute(q_insert, OUT);
+            showTableInvert();
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
         return false;
     }
