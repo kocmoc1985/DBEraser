@@ -302,7 +302,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel5);
         //
-        addTableInvertRowListener(TABLE_INVERT, this);
     }
 
     /**
@@ -318,7 +317,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel5, TABLE_INVERT_2);
         //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
 
     }
 
@@ -332,7 +330,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel7, TABLE_INVERT_3);
         //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
     /**
@@ -345,7 +342,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
         showTableInvert(bim.jPanel7, TABLE_INVERT_4);
         //
-        addTableInvertRowListener(TABLE_INVERT_4, this);
     }
 
     @Override
@@ -490,10 +486,28 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
     }
 
+//    @Override
+//    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+//        //
+//        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+//        //
+//        JLinkInvert jli = (JLinkInvert) me.getSource();
+//        //
+//        String col_name = ti.getCurrentColumnName(me.getSource());
+//        //
+//        if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+//            //
+//            supposeNextKundNr(jli);
+//            //
+//            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
+//            //
+//        }
+//    }
+
     @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
@@ -507,6 +521,8 @@ public class CustomersA_ extends CustomerAForetagA_ {
             //
         }
     }
+    
+    
 
     public String getNextKundnr() {
         //

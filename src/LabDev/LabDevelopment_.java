@@ -523,9 +523,6 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
             TABLE_BUILDER_INVERT_6.showMessage(ex.toString());
         }
         //
-        //
-        addTableInvertRowListener(TABLE_INVERT_6, this);
-        //
         setVerticalScrollBarDisabled(TABLE_INVERT_6);
         //
         showTableInvert(mcRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);

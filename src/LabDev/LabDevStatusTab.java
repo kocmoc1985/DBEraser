@@ -6,22 +6,17 @@
 package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__MC_CPWORDER;
-import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -302,11 +297,6 @@ public class LabDevStatusTab extends LabDevTab {
             Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_5.showMessage(ex.toString());
         }
-        //
-        //
-//        showTableInvert(mCRecipe.jPanel_lab_development_5, TABLE_INVERT_5);
-        //
-        addTableInvertRowListener(TABLE_INVERT_5, this);
         //
         setVerticalScrollBarDisabled(TABLE_INVERT_5);
         //

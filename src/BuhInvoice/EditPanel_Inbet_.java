@@ -348,7 +348,6 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
                 setMargin(TABLE_INVERT, 5, 0, 5, 0);
                 showTableInvert(jPanel1);
                 //
-                addTableInvertRowListener(TABLE_INVERT, this);
             }
 
             @Override

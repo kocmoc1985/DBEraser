@@ -133,22 +133,7 @@ public abstract class Basic_Buh extends Basic {
         //
     }
 
-    @Override
-    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
-        //
-        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
-        //
-//        fieldUpdateWatcher(ie);
-        //       
-    }
 
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
-        //
-        super.mouseClicked(me, column, row, tableName, tableInvert); //To change body of generated methods, choose Tools | Templates.
-        //
-//        fieldUpdateWatcher(me);
-    }
 
     /**
      * [2020-07-30] Marking the field is considered to be updated.

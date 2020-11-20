@@ -118,7 +118,6 @@ public class ForetagA extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel16, TABLE_INVERT_2);
         //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
     }
 
     public void showTableInvert_3() {
@@ -128,7 +127,6 @@ public class ForetagA extends CustomerAForetagA_ {
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel17, TABLE_INVERT_3);
         //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
     }
 
     @Override

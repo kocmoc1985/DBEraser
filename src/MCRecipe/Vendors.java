@@ -9,7 +9,6 @@ import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
-import MyObjectTableInvert.TableRowInvertListener;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import MyObjectTableInvert.TableInvert;
@@ -28,7 +27,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class Vendors extends BasicTab implements TableRowInvertListener {
+public class Vendors extends BasicTab {
 
     private TableBuilderInvert_ TABLE_BUILDER_INVERT;
     public Table TABLE_INVERT_2;
@@ -171,11 +170,12 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
     }
 
     public void vendorsColumnClickedSimulation() {
-        mouseClicked(null,1,TABLE_INVERT_3.getCurrentRow(), "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
+        mouseClickedForward(null,1,TABLE_INVERT_3.getCurrentRow(), "vendors_3", (TableInvert) TABLE_INVERT_3);// simulating click on TableInvert
     }
 
+
     @Override
-    public void mouseClicked(MouseEvent me,int column,int row, String tableName, TableInvert ti) {
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
         if (tableEmpty(ti)) {
             return;
@@ -195,6 +195,8 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             currentVendorContactName = getValueTableInvert("ContactName", column, TABLE_INVERT_4_2);
         }
     }
+    
+    
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
@@ -381,8 +383,6 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_4_2.showMessage(ex.toString());
         }
-        //
-        addTableInvertRowListener(TABLE_INVERT_4_2, this);
         //
         setVerticalScrollBarDisabled(TABLE_INVERT_4_2);
         //
@@ -803,8 +803,6 @@ public class Vendors extends BasicTab implements TableRowInvertListener {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT_3.showMessage(ex.toString());
         }
-        //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
         //
         setVerticalScrollBarDisabled(TABLE_INVERT_3);
         //

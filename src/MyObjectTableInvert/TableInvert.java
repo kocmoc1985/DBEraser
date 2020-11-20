@@ -223,12 +223,6 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
     }
 
-    public void addTableRowInvertListener(TableRowInvertListener tril) {
-        for (TableRow row : rows_list) {
-            TableRowInvert_ tri = (TableRowInvert_) row;
-            tri.addTableRowInvertListener(tril);
-        }
-    }
 
     public HashMap<String, ColumnValue> getColumnData(int colNr) {
         //

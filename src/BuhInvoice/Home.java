@@ -337,8 +337,6 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_inloggning);
         //
-        addTableInvertRowListener(TABLE_INVERT, this);
-        //
         makeTransparent(TABLE_INVERT, bim.jPanel_inloggning);
         //
     }
@@ -353,8 +351,6 @@ public class Home extends Basic_Buh {
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_register_new, TABLE_INVERT_2);
-        //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
         //
         makeTransparent(TABLE_INVERT_2, bim.jPanel_register_new);
         //
@@ -371,8 +367,6 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_restore_password, TABLE_INVERT_3);
         //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
-        //
         makeTransparent(TABLE_INVERT_3, bim.jPanel_restore_password);
         //
     }
@@ -385,8 +379,6 @@ public class Home extends Basic_Buh {
         TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_share_account, TABLE_INVERT_4);
-        //
-        addTableInvertRowListener(TABLE_INVERT_4, this);
         //
         makeTransparent(TABLE_INVERT_4, bim.jPanel_share_account);
         //

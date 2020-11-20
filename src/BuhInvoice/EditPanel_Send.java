@@ -360,7 +360,6 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
                 setMargin(TABLE_INVERT, 5, 0, 5, 0);
                 showTableInvert(jPanel1);
                 //
-                addTableInvertRowListener(TABLE_INVERT, this);
             }
             
             

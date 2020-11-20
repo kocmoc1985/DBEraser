@@ -31,14 +31,6 @@ public abstract class LabDevTab extends BasicTab {
         this.labDev = labDev;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //
-        System.out.println("COLNAME:-------------------> "+col_name);
-    }
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {

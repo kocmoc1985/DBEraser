@@ -12,7 +12,6 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
 import MyObjectTable.OutPut;
-import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
@@ -155,8 +154,6 @@ public class OptionsTab extends Basic_Buh {
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_email_client_options);
-        //
-        addTableInvertRowListener(TABLE_INVERT, this);
         //
     }
 

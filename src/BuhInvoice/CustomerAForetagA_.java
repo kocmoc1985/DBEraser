@@ -430,10 +430,26 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
 
     public abstract RowDataInvert[] getConfigTableInvert_4();
 
+//    @Override
+//    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+//        //
+//        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+//        //
+//        JLinkInvert jli = (JLinkInvert) me.getSource();
+//        //
+//        String col_name = ti.getCurrentColumnName(me.getSource());
+//        //
+//        if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
+//            //
+//            vatnrAuto(jli, ti, DB.BUH_FAKTURA_KUND___ORGNR);
+//            //
+//        }
+//    }
+
     @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
-        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        super.mouseClickedForward(me, column, row, tableName, ti); 
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
@@ -445,6 +461,8 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             //
         }
     }
+    
+    
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {

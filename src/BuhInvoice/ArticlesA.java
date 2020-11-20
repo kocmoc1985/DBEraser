@@ -344,8 +344,6 @@ public class ArticlesA extends Basic_Buh {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel6);
         //
-        addTableInvertRowListener(TABLE_INVERT, this);
-        //
     }
 
     /**
@@ -361,7 +359,6 @@ public class ArticlesA extends Basic_Buh {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel6, TABLE_INVERT_2);
         //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
     }
 
     @Override

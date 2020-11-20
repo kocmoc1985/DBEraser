@@ -46,42 +46,13 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author KOCMOC
  */
-public abstract class Basic implements TableRowInvertListener, SaveIndicator.SaveIndicatorIF {
+public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public Table TABLE_INVERT;
 
     public Basic() {
     }
 
-    @Override
-    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert tableInvert) {
-        //
-        Object source = me.getSource();
-        //
-        Object child = null;
-        Object parent = null;
-        //
-        if (source instanceof JLinkInvert) {
-            JLinkInvert jpi = (JLinkInvert) source;
-            child = jpi.getChildObject();
-            parent = jpi.getParentObj();
-        }
-        //
-        System.out.println("Clicked on: column: " + column + " row: " + row + " tableName: " + tableName
-                + " class: " + me.getSource().getClass()
-                + " child: " + _get(child)
-                + " parent: " + _get(parent)
-        );
-        //
-    }
-
-    private String _get(Object obj) {
-        if (obj == null) {
-            return "";
-        } else {
-            return obj.getClass().getName();
-        }
-    }
 
     public String getValueHashMap(String value) {
         //
@@ -94,7 +65,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     }
 
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        
+        System.out.println(this.getClass() + ": mouseClickedForward() from TableRowInvert." + ti.getCurrentColumnName(me.getSource()));
     }
 
     /**
@@ -104,7 +75,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * @param ke
      */
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
-        System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
+        System.out.println(this.getClass() + ":  keyReleasedForward() from TableRowInvert. curr_col_check: " + ti.getCurrentColumnName(ke.getSource()));
     }
 
     /**
@@ -115,7 +86,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * @param ke
      */
     public void mouseWheelForward(TableInvert ti, MouseWheelEvent e) {
-        System.out.println(this.getClass() + "mouseWheelForward() from TableRowInvertB. curr col: " + ti.getCurrentColumnName(e.getSource()));
+        System.out.println(this.getClass() + "mouseWheelForward() from TableRowInvert. curr col: " + ti.getCurrentColumnName(e.getSource()));
     }
 
     /**
@@ -125,7 +96,7 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
      * @param ie
      */
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
-        System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvertB. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
+        System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvert. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
     }
 
     /**
@@ -295,11 +266,6 @@ public abstract class Basic implements TableRowInvertListener, SaveIndicator.Sav
     public void tableInvertRepport(Table table_invert, int startColumn, RowDataInvert[] cfg) {
         String csv = tableInvertToCSV(table_invert, startColumn, cfg, false);
         makeRepportTableInvert(csv);
-    }
-
-    public void addTableInvertRowListener(Table table_invert, TableRowInvertListener tril) {
-        TableInvert tableInvert = (TableInvert) table_invert;
-        tableInvert.addTableRowInvertListener(tril);
     }
 
     public void setVerticalScrollBarDisabled(Table table_invert) {

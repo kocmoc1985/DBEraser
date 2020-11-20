@@ -625,8 +625,6 @@ public abstract class Invoice_ extends Basic_Buh {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel2_faktura_main);
         //
-        addTableInvertRowListener(TABLE_INVERT, this);
-        //
     }
 
     public void showTableInvert_2() {
@@ -636,8 +634,6 @@ public abstract class Invoice_ extends Basic_Buh {
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
-        //
-        addTableInvertRowListener(TABLE_INVERT_2, this);
         //
         setArticlePrise__and_other(false); // [2020-08-19]
         //
@@ -649,8 +645,6 @@ public abstract class Invoice_ extends Basic_Buh {
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
-        //
-        addTableInvertRowListener(TABLE_INVERT_3, this);
         //
     }
 
