@@ -24,15 +24,18 @@ import javax.swing.JTextField;
 public class TextFieldCheck extends JTextField implements KeyListener {
 
     public SqlBasicLocal sql;
-    private  String entryExistQuery;
-    private  String regex;
-    private  Pattern pattern;
-    private final Font FONT_1 = new Font("Arial", Font.BOLD, 12);
+    private String entryExistQuery;
+    private String regex;
+    private Pattern pattern;
+    private final Font FONT_1 = new Font("Arial", Font.BOLD, 22);
     public static int OK_RESULT = 0;
     public static int WRONG_FORMAT_RESULT = 1;
     public static int ALREADY_EXIST_RESULT = 2;
     public int RESULT;
     private boolean validated = false;
+    //
+    private String ERR_MSG_1 = "Exist already";
+    private String ERR_MSG_2 = "Wrong format";
 
     public TextFieldCheck(SqlBasicLocal sql, String q, String regex, int columns) {
         this.sql = sql;
@@ -41,12 +44,12 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         setColumns(columns);
         initOther();
     }
-    
-    public TextFieldCheck(String initialValue,Pattern regexPattern, int columns) {
-        this.pattern  = regexPattern;
+
+    public TextFieldCheck(String initialValue, Pattern regexPattern, int columns) {
+        this.pattern = regexPattern;
         setColumns(columns);
         initOther();
-        if(initialValue!= null && initialValue.isEmpty() == false){
+        if (initialValue != null && initialValue.isEmpty() == false) {
             validated = true;
         }
         this.setText(initialValue);
@@ -66,10 +69,10 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         if (RESULT == OK_RESULT) {
             return super.getText();
         } else if (RESULT == ALREADY_EXIST_RESULT) {
-            JOptionPane.showMessageDialog(null, "Exist already");
+            JOptionPane.showMessageDialog(null, ERR_MSG_1);
             return null;
         } else if (RESULT == WRONG_FORMAT_RESULT) {
-            JOptionPane.showMessageDialog(null, "Wrong format");
+            JOptionPane.showMessageDialog(null, ERR_MSG_2);
             return null;
         }
         //
@@ -90,39 +93,43 @@ public class TextFieldCheck extends JTextField implements KeyListener {
             //
             prepareQuery(entryExistQuery, str, null);
             //
+            setToolTipText(null);
+            //
             if (isPresent()) {
-//                setForeground(Color.ORANGE);
+                setToolTipText(ERR_MSG_1);
+                setForeground(Color.BLACK);
                 setBackground(Color.ORANGE);
                 RESULT = ALREADY_EXIST_RESULT;
             } else {
+                setToolTipText(null);
                 validated = true;
-//                setForeground(Color.BLACK);
+                setForeground(Color.BLACK);
                 setBackground(Color.WHITE);
                 RESULT = OK_RESULT;
             }
             //
         } else {
+            setToolTipText(ERR_MSG_2);
             validated = false;
-//            setForeground(Color.RED);
-            setBackground(Color.RED);
+            setForeground(Color.RED);
             RESULT = WRONG_FORMAT_RESULT;
         }
     }
-    
-    public boolean getValidated(){
+
+    public boolean getValidated() {
         return validated;
     }
-    
-    private boolean validate_(String strToValidate){
-        if(pattern != null){
+
+    private boolean validate_(String strToValidate) {
+        if (pattern != null) {
             Matcher matcher = pattern.matcher(strToValidate);
             return matcher.matches();
-        }else{
+        } else {
             return strToValidate.matches(regex);
         }
     }
 
-    public void prepareQuery(String q, String val_1, String val_2) {
+    private void prepareQuery(String q, String val_1, String val_2) {
         //
         if (sql == null) {
             return;
@@ -143,7 +150,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
             return entryExistsSql(sql);
         }
     }
-    
+
     public boolean entryExistsSql(SqlBasicLocal sql) {
         try {
             //
@@ -169,5 +176,4 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     public void keyPressed(KeyEvent ke) {
     }
 
-    
 }

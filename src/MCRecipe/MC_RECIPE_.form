@@ -3274,6 +3274,8 @@
                                       <Component id="jPanel68" alignment="0" min="-2" pref="550" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jButton_lab_dev__save_aging" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButton_lab_dev_aging__create_new" min="-2" pref="50" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jComboBox_lab_dev__age" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
@@ -3297,7 +3299,10 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton_lab_dev__save_aging" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jButton_lab_dev__save_aging" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="jButton_lab_dev_aging__create_new" min="-2" pref="50" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel68" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
@@ -3380,6 +3385,16 @@
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/save.png"/>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton_lab_dev_aging__create_new">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/icons/new.png"/>
                             </Property>
                           </Properties>
                           <AuxValues>

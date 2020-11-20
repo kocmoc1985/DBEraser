@@ -8,6 +8,7 @@ package LabDev;
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__VULC;
 import MCRecipe.Lang.MSG;
+import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
@@ -18,6 +19,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import forall.TextFieldCheck;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -51,6 +53,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         getSaveButtonAge().addActionListener(this);
         getSaveButtonVulc().addActionListener(this);
+        getCreateNewButtonAge().addActionListener(this);
         //
         getAgeComboBox().addItemListener(this);
         getVulcComboBox().addItemListener(this);
@@ -75,13 +78,17 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     private String getVulcCode() {
         return VULC_CODE;
     }
-    
-    private JButton getSaveButtonAge(){
+
+    private JButton getSaveButtonAge() {
         return mcRecipe.jButton_lab_dev__save_aging;
     }
-    
-    private JButton getSaveButtonVulc(){
+
+    private JButton getSaveButtonVulc() {
         return mcRecipe.jButton_lab_dev__save_vulc;
+    }
+
+    private JButton getCreateNewButtonAge() {
+        return mcRecipe.jButton_lab_dev_aging__create_new;
     }
 
     private JComboBox getAgeComboBox() {
@@ -200,7 +207,6 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         return rows;
     }
-    
 
     @Override
     public void initializeSaveIndicators() {
@@ -257,8 +263,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         }
         //
     }
-    
-    private void saveTableInvert_aging(){
+
+    private void saveTableInvert_aging() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
             HelpA_.showNotification(MSG.MSG_3());
@@ -268,8 +274,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         saveChangesTableInvert();
         //
     }
-    
-    private void saveTableInvert_2_vulc(){
+
+    private void saveTableInvert_2_vulc() {
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())) {
             HelpA_.showNotification(MSG.MSG_3());
@@ -283,12 +289,34 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     @Override
     public void actionPerformed(ActionEvent e) {
         //
-        if(e.getSource().equals(getSaveButtonAge())){
+        if (e.getSource().equals(getSaveButtonAge())) {
             saveTableInvert_aging();
-        }else if(e.getSource().equals(getSaveButtonVulc())){
+        } else if (e.getSource().equals(getSaveButtonVulc())) {
             saveTableInvert_2_vulc();
+        } else if (e.getSource().equals(getCreateNewButtonAge())) {
+           createNewEntryAging();
+        }   
+        //
+    }
+
+    private boolean createNewEntryAging() {
+        //
+        String q = "SELECT AGEINGCODE from " + TABLE__AGEMENT + " WHERE AGEINGCODE = ?";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.INGRED_REGEX, 20);
+        //
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "Create new ageing code");
+        String agecode = tfc.getText();
+        //
+        if (agecode == null || yesNo == false) {
+            //
+            return false;
+            //
         }
         //
+        
+        //
+        return false;
     }
 
 }
