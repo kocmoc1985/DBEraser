@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -55,6 +56,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         getSaveButtonVulc().addActionListener(this);
         getCreateNewButtonAge().addActionListener(this);
         getDeleteButtonAge().addActionListener(this);
+        getCopyButtonAge().addActionListener(this);
         //
         getAgeComboBox().addItemListener(this);
         getVulcComboBox().addItemListener(this);
@@ -62,11 +64,21 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
         //
     }
-    
-    private void refresh_b(){
+
+    private void refresh_age__create(Object itemToSet) {
         java.awt.EventQueue.invokeLater(() -> {
-            fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
+            // OBS! refresh is called on "ItemStateChanged" evt -> OBS! Only if itemState changed
+            fillComboBoxes();
+            getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
         });
+    }
+
+    private void refresh_b() {
+        //
+        java.awt.EventQueue.invokeLater(() -> {
+            fillComboBoxes();
+        });
+        // 
     }
 
     public void refresh() {
@@ -81,8 +93,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     private String getAgeCode() {
         return AGE_CODE;
     }
-    
-    private String getAgeCodeTableInvert(){
+
+    private String getAgeCodeTableInvert() {
         return getValueTableInvert("AGEINGCODE");
     }
 
@@ -101,9 +113,13 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     private JButton getCreateNewButtonAge() {
         return mcRecipe.jButton_lab_dev_aging__create_new;
     }
-    
-    private JButton getDeleteButtonAge(){
+
+    private JButton getDeleteButtonAge() {
         return mcRecipe.jButton_lab_dev_aging__delete;
+    }
+
+    private JButton getCopyButtonAge() {
+        return mcRecipe.jButton_lab_dev_aging__copy;
     }
 
     private JComboBox getAgeComboBox() {
@@ -160,7 +176,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         RowDataInvert ageingcode = new RowDataInvert(TABLE__AGEMENT, "ID", false, "AGEINGCODE", T_INV.LANG("AGEING CODE"), "", true, true, false);
         ageingcode.setUneditable();
-        RowDataInvert type = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TYPE", T_INV.LANG("AGEING CODE"), "", true, true, false);
+        RowDataInvert type = new RowDataInvert(TABLE__AGEMENT, "ID", false, "TYPE", T_INV.LANG("TYPE"), "", true, true, false);
         RowDataInvert descr = new RowDataInvert(TABLE__AGEMENT, "ID", false, "DESCR", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         descr.enableToolTipTextJTextField();
         RowDataInvert method = new RowDataInvert(TABLE__AGEMENT, "ID", false, "METHOD", T_INV.LANG("METHOD"), "", true, true, false);
@@ -309,13 +325,61 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             saveTableInvert_2_vulc();
         } else if (e.getSource().equals(getCreateNewButtonAge())) {
             createNewEntryAging();
-        }else if (e.getSource().equals(getDeleteButtonAge())) {
+        } else if (e.getSource().equals(getDeleteButtonAge())) {
             deleteAgeingEntry();
+        } else if (e.getSource().equals(getCopyButtonAge())) {
+            copyAgeingEntry();
         }
         //
     }
-    
-    private void deleteAgeingEntry(){
+
+    private boolean copyAgeingEntry() {
+        //
+        if (HelpA_.confirm() == false) {
+            return false;
+        }
+        //
+        String q = "SELECT AGEINGCODE from " + TABLE__AGEMENT + " WHERE AGEINGCODE = ?";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
+        //
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "Create new ageing code");
+        String agecode_new = tfc.getText();
+        //
+        if (agecode_new == null || yesNo == false) {
+            return false;
+        }
+        //
+        HashMap<String, String> ti_map = tableInvertToHashMap(TABLE_INVERT, 1);
+        //
+        this.AGE_CODE = agecode_new;
+        //
+        String q_insert = SQL_A.lab_dev__insert_into_MC_CPAGEMET(
+                agecode_new,
+                ti_map.get("TYPE"),
+                ti_map.get("DESCR"),
+                ti_map.get("METHOD"),
+                ti_map.get("TEMP"),
+                ti_map.get("TIME"),
+                ti_map.get("TIME"),
+                ti_map.get("STATUS"),
+                ti_map.get("NOTE"),
+                null,
+                null
+        );
+        //
+        try {
+            sql.execute(q_insert, OUT);
+            refresh_age__create(AGE_CODE);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return false;
+        //
+    }
+
+    private void deleteAgeingEntry() {
         //
         if (HelpA_.confirm() == false) {
             return;
@@ -323,7 +387,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         String ageincode = getAgeCodeTableInvert();
         //
-        String q = "DELETE FROM "+ TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(ageincode, false);
+        String q = "DELETE FROM " + TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(ageincode, false);
         //
         try {
             sql.execute(q, OUT);
@@ -349,15 +413,24 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         this.AGE_CODE = agecode;
         //
-        String q_insert = "INSERT INTO " + TABLE__AGEMENT + " VALUES("
-                + SQL_A.quotes(this.AGE_CODE, false) + ","
-                + "NULL,"
-                + "'- Keine -',"
-                + "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
+        String q_insert = SQL_A.lab_dev__insert_into_MC_CPAGEMET(
+                this.AGE_CODE,
+                null,
+                "- Keine -",
+                null,
+                null,
+                "0.0",
+                "0.0",
+                null,
+                null,
+                null,
+                null
+        );
         //
         try {
             sql.execute(q_insert, OUT);
-            showTableInvert();
+            refresh_age__create(AGE_CODE);
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }

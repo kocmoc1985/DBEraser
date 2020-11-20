@@ -94,6 +94,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
             prepareQuery(entryExistQuery, str, null);
             //
             setToolTipText(null);
+            setBackground(Color.white);
             //
             if (isPresent()) {
                 setToolTipText(ERR_MSG_1);
@@ -104,13 +105,14 @@ public class TextFieldCheck extends JTextField implements KeyListener {
                 setToolTipText(null);
                 validated = true;
                 setForeground(Color.BLACK);
-                setBackground(Color.WHITE);
+                setBackground(Color.green);
                 RESULT = OK_RESULT;
             }
             //
         } else {
             setToolTipText(ERR_MSG_2);
             validated = false;
+            setBackground(Color.white);
             setForeground(Color.RED);
             RESULT = WRONG_FORMAT_RESULT;
         }

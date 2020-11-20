@@ -759,6 +759,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel70 = new javax.swing.JPanel();
         jButton_lab_dev__save_aging = new javax.swing.JButton();
         jButton_lab_dev_aging__create_new = new javax.swing.JButton();
+        jButton_lab_dev_aging__copy = new javax.swing.JButton();
         jButton_lab_dev_aging__delete = new javax.swing.JButton();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
@@ -2423,6 +2424,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jButton_lab_dev_aging__create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         jPanel70.add(jButton_lab_dev_aging__create_new);
 
+        jButton_lab_dev_aging__copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jPanel70.add(jButton_lab_dev_aging__copy);
+
         jButton_lab_dev_aging__delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
         jPanel70.add(jButton_lab_dev_aging__delete);
 
@@ -2434,8 +2438,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addContainerGap()
                 .addGroup(jPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel67Layout.createSequentialGroup()
-                        .addComponent(jPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel67Layout.createSequentialGroup()
+                        .addComponent(jPanel70, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBox_lab_dev__age, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(53, 53, 53)
@@ -4964,6 +4968,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev__save_vulc;
     private javax.swing.JButton jButton_lab_dev_add_1;
     private javax.swing.JButton jButton_lab_dev_add_2;
+    public javax.swing.JButton jButton_lab_dev_aging__copy;
     public javax.swing.JButton jButton_lab_dev_aging__create_new;
     public javax.swing.JButton jButton_lab_dev_aging__delete;
     private javax.swing.JButton jButton_lab_dev_delete_1;

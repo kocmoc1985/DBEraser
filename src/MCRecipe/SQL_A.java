@@ -5,6 +5,7 @@
 package MCRecipe;
 
 import LabDev.LabDevelopment_;
+import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import forall.HelpA_;
 
 /**
@@ -1477,7 +1478,7 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ")";
     }
-    
+
     public static String lab_dev_test_definition__get_lastupdate(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
@@ -1493,24 +1494,32 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ")";
     }
-    
+
     /**
-     * 
+     *
      * @param PROC - 71, 72
      * @param param1 - material
      * @param param2 - order
      * @param param3 - NULL
-     * @return 
+     * @return
      */
-     public static String lab_dev_test_config__get_preparation_aging_methods(String PROC, String param1, String param2, String param3) {
+    public static String lab_dev_test_config__get_preparation_aging_methods(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false)
                 + ") ORDER BY DESCR";
     }
-     
-     
+
+    public static String lab_dev__insert_into_MC_CPAGEMET(String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10, String param11) {
+        String q = String.format("INSERT INTO " + TABLE__AGEMENT + " "
+                + "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                quotes(param1, false), quotes(param2, false), quotes(param3, false),
+                quotes(param4, false), quotes(param5, false), quotes(param6, false),
+                quotes(param7, false), quotes(param8, false), quotes(param9, false),
+                quotes(param10, false), quotes(param11, false));
+        return q;
+    }
 
 //    public static void main(String[] args) {
 //        //
