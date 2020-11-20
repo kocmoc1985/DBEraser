@@ -642,6 +642,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         }
     }
 
+    @Override
     public synchronized void fillComboBox(final JComboBox box, final String colName) {
         //
         if (checkIfToFill(box) == false) {

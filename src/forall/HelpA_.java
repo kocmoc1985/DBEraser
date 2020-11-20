@@ -2188,13 +2188,25 @@ public class HelpA_ {
         fakeValuesMap.put("R", "DEVELOPMENT");
     }
 
+    /**
+     * OBS! Requires "JComboBoxA"
+     * @param sql
+     * @param jbox
+     * @param query
+     * @param initialValue
+     * @param showMultipleValues
+     * @param fakeValue
+     * @return 
+     */
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
         setCursorWait(true);
         //
         if (jbox instanceof JComboBoxA == false) {
-            return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
+            HelpA_.showNotification("HelpA.fillComboBox(), jcombobox shall be instance of JComboBoxA");
+            return null;
+//            return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
         }
         //
         //
@@ -2272,6 +2284,8 @@ public class HelpA_ {
         setTrackingToolTip(jbox, query);
         //
         setCursorWait(false);
+        //
+        
         //
         return jbox;
     }
@@ -2378,6 +2392,8 @@ public class HelpA_ {
         }
         //
         tryMatch(jbox, (String) initialValue, showMultipleValues, fakeValue);
+        //
+        jbox.setEditable(true);
         //
         setTrackingToolTip(jbox, query);
         //

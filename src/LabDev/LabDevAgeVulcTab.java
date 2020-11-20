@@ -42,7 +42,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
 
     public void refresh() {
         java.awt.EventQueue.invokeLater(() -> {
-            fillAgeComboBox();
+            fillComboBoxes();
             showTableInvert();
             showTableInvert_2();
         });
@@ -61,11 +61,17 @@ public class LabDevAgeVulcTab extends LabDevTab {
         return mcRecipe.jComboBox_lab_dev__age;
     }
 
-    private void fillAgeComboBox() {
+    private JComboBox getVulcComboBox() {
+        return mcRecipe.jComboBox_lab_dev_vulc;
+    }
+
+    private void fillComboBoxes() {
         //
-        String q = "select DISTINCT AGEINGCODE from MC_CPAGEMET";
-        //
+        String q = "select DISTINCT AGEINGCODE from " + TABLE__AGEMENT;
         HelpA_.fillComboBox(sql, getAgeComboBox(), q, null, false, false);
+        //
+        String q_2 = "select DISTINCT VULCCODE from " + TABLE__VULC;
+        HelpA_.fillComboBox(sql, getVulcComboBox(), q, null, false, false);
         //
     }
 
@@ -84,7 +90,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
         String agecode = getAgeCode();
         //
         try {
-            String q = "SELECT * FROM MC_CPAGEMET WHERE AGEINGCODE=" + SQL_A.quotes(agecode, false);
+            String q = "SELECT * FROM " + TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(agecode, false);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -129,7 +135,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
         String vulccode = getVulcCode();
         //
         try {
-            String q = "SELECT * FROM MC_CPVULMET WHERE VULCCODE=" + SQL_A.quotes(vulccode, false);
+            String q = "SELECT * FROM " + TABLE__VULC + " WHERE VULCCODE=" + SQL_A.quotes(vulccode, false);
             OUT.showMessage(q);
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {
@@ -137,7 +143,7 @@ public class LabDevAgeVulcTab extends LabDevTab {
             TABLE_BUILDER_INVERT_2.showMessage(ex.toString());
         }
         //
-        setVerticalScrollBarDisabled(TABLE_INVERT_2);
+//        setVerticalScrollBarDisabled(TABLE_INVERT_2);
         //
         showTableInvert(mcRecipe.jPanel69, TABLE_INVERT_2);
     }

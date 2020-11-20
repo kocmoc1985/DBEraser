@@ -751,8 +751,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jPanel67 = new javax.swing.JPanel();
-        jComboBox_lab_dev__age = new javax.swing.JComboBox<>();
-        jComboBox_lab_dev_vulc = new javax.swing.JComboBox<>();
+        jComboBox_lab_dev__age = new JComboBoxA();
+        jComboBox_lab_dev_vulc = new JComboBoxA();
         jPanel68 = new javax.swing.JPanel();
         jPanel69 = new javax.swing.JPanel();
         jPanel_lab_dev_header = new javax.swing.JPanel();
@@ -2398,9 +2398,11 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jTabbedPane3_Lab_Dev.addTab("TEST CONFIG", jPanel63);
 
-        jComboBox_lab_dev__age.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_lab_dev__age.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox_lab_dev__age.setModel(new javax.swing.DefaultComboBoxModel<>());
 
-        jComboBox_lab_dev_vulc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_lab_dev_vulc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox_lab_dev_vulc.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         jPanel68.setLayout(new java.awt.BorderLayout());
 
@@ -2424,17 +2426,14 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel67Layout.setVerticalGroup(
             jPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel67Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(jPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel67Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jComboBox_lab_dev__age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel67Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jComboBox_lab_dev_vulc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBox_lab_dev_vulc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_lab_dev__age, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel67Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel68, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .addComponent(jPanel69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(177, Short.MAX_VALUE))
         );
 
@@ -4968,7 +4967,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JComboBox jComboBox_Ingred_1;
     public javax.swing.JComboBox jComboBox_Ingred_2;
     public javax.swing.JComboBox<String> jComboBox_lab_dev__age;
-    protected javax.swing.JComboBox<String> jComboBox_lab_dev_vulc;
+    public javax.swing.JComboBox<String> jComboBox_lab_dev_vulc;
     public javax.swing.JComboBox jCombo_Ingred_Cas_Number;
     public javax.swing.JComboBox jCombo_Ingred_Class;
     public javax.swing.JComboBox jCombo_Ingred_Descr;

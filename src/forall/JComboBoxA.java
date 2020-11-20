@@ -45,14 +45,6 @@ public class JComboBoxA extends JComboBox {
         }
     }
 
-    /**
-     * @deprecated 
-     */
-    public JComboBoxA(String PARAMETER, String PARAMETER_2, boolean isNumber) {
-        this.PARAMETER = PARAMETER;
-        this.NUMBER = isNumber;
-        this.PARAMETER_2 = PARAMETER_2;
-    }
 
     public JComboBoxA(String PARAMETER, boolean isNumber) {
         this.PARAMETER = PARAMETER;
