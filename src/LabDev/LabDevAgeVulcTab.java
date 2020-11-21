@@ -42,6 +42,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
     private String AGE_CODE;
     private String VULC_CODE;
+    private boolean SKIP__ITEM__STATE__CHANGED_EVT = false;
 
     public LabDevAgeVulcTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -65,15 +66,20 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
     }
 
-    private void refresh_age__create(Object itemToSet) {
-        java.awt.EventQueue.invokeLater(() -> {
-            // OBS! refresh is called on "ItemStateChanged" evt -> OBS! Only if itemState changed
-            fillComboBoxes();
-            getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
-        });
+    private void refresh_b(Object itemToSet) {
+        //
+        SKIP__ITEM__STATE__CHANGED_EVT = true;
+        //
+        fillComboBoxes();
+        getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+        //
+        showTableInvert();
+        //
+        SKIP__ITEM__STATE__CHANGED_EVT = false;
+        //
     }
 
-    private void refresh_b() {
+    private void refresh_c() {
         //
         java.awt.EventQueue.invokeLater(() -> {
             fillComboBoxes();
@@ -138,8 +144,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         String q_2 = "select DISTINCT VULCCODE from " + TABLE__VULC;
         HelpA_.fillComboBox(sql, getVulcComboBox(), q_2, null, false, false);
         //
-        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
-        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+//        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+//        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
         //
     }
 
@@ -271,6 +277,10 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     @Override
     public void itemStateChanged(ItemEvent e) {
         //
+        if (SKIP__ITEM__STATE__CHANGED_EVT) {
+            return;
+        }
+        //
         if (e.getStateChange() != 1) {
             return;
         }
@@ -370,7 +380,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         try {
             sql.execute(q_insert, OUT);
-            refresh_age__create(AGE_CODE);
+            refresh_b(AGE_CODE);
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -391,7 +401,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         try {
             sql.execute(q, OUT);
-            refresh_b();
+            refresh_c();
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -429,7 +439,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         try {
             sql.execute(q_insert, OUT);
-            refresh_age__create(AGE_CODE);
+            refresh_b(AGE_CODE);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
