@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,5,-36,0,0,6,-32"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,5,-39,0,0,6,-32"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -158,7 +158,7 @@
                               <Component id="jButton8" min="-2" pref="92" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="894" max="32767" attributes="0"/>
+                      <EmptySpace pref="898" max="32767" attributes="0"/>
                       <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
@@ -2486,7 +2486,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_delete_1">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/icons/cancel-1.png"/>
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -2515,7 +2515,7 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_delete_2">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/icons/cancel-1.png"/>
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
                               </Properties>
                               <Events>
@@ -3281,13 +3281,13 @@
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="jButton_lab_dev__save_vulc" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="jPanel71" min="-2" pref="200" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jComboBox_lab_dev_vulc" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel69" min="-2" pref="550" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="220" max="32767" attributes="0"/>
+                                  <EmptySpace pref="222" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3297,31 +3297,32 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jPanel70" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jPanel70" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jComboBox_lab_dev__age" min="-2" pref="30" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jComboBox_lab_dev__age" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jPanel71" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jPanel68" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox_lab_dev_vulc" min="-2" pref="30" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jButton_lab_dev__save_vulc" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                          </Group>
+                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Component id="jComboBox_lab_dev_vulc" min="-2" pref="30" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                           <Component id="jPanel69" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="122" max="32767" attributes="0"/>
+                                  <EmptySpace pref="125" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3371,16 +3372,6 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                         </Container>
-                        <Component class="javax.swing.JButton" name="jButton_lab_dev__save_vulc">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/save.png"/>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                        </Component>
                         <Container class="javax.swing.JPanel" name="jPanel70">
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -3421,7 +3412,56 @@
                             <Component class="javax.swing.JButton" name="jButton_lab_dev_aging__delete">
                               <Properties>
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                  <Image iconType="3" name="/icons/cancel-1.png"/>
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Container class="javax.swing.JPanel" name="jPanel71">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                            <Property name="columns" type="int" value="0"/>
+                            <Property name="rows" type="int" value="1"/>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__save_vulc">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/save.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev_vulc__create_new">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/new.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev_vulc__copy">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/copy.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev_vulc__delete">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
                               </Properties>
                               <AuxValues>
@@ -3525,7 +3565,7 @@
                               <Component id="jPanel_Test_Params_Inv_Table_1" pref="753" max="32767" attributes="0"/>
                               <Component id="jScrollPane19" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="632" max="32767" attributes="0"/>
+                          <EmptySpace pref="636" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -4434,9 +4474,9 @@
                                       <Component id="jPanel_Ingred_table4" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jPanel_Ingred_table3" alignment="0" pref="437" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="948" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="952" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jPanel_Ingred_Invert_Table" pref="1385" max="32767" attributes="0"/>
+                              <Component id="jPanel_Ingred_Invert_Table" pref="1389" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -6788,11 +6828,11 @@
                           <Component id="jPanel52" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane16" pref="580" max="32767" attributes="0"/>
+                      <Component id="jScrollPane16" pref="583" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane15" pref="472" max="32767" attributes="0"/>
+                      <Component id="jScrollPane15" pref="476" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>

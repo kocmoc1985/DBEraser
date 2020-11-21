@@ -55,9 +55,14 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         getSaveButtonAge().addActionListener(this);
         getSaveButtonVulc().addActionListener(this);
+        //
         getCreateNewButtonAge().addActionListener(this);
         getDeleteButtonAge().addActionListener(this);
         getCopyButtonAge().addActionListener(this);
+        //
+        getCreateNewButtonVulc().addActionListener(this);
+        getDeleteButtonVulc().addActionListener(this);
+        getCopyButtonVulc().addActionListener(this);
         //
         getAgeComboBox().addItemListener(this);
         getVulcComboBox().addItemListener(this);
@@ -100,10 +105,6 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         return AGE_CODE;
     }
 
-    private String getAgeCodeTableInvert() {
-        return getValueTableInvert("AGEINGCODE");
-    }
-
     private String getVulcCode() {
         return VULC_CODE;
     }
@@ -114,6 +115,18 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private JButton getSaveButtonVulc() {
         return mcRecipe.jButton_lab_dev__save_vulc;
+    }
+    
+    private JButton getCopyButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__copy;
+    }
+    
+    private JButton getDeleteButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__delete;
+    }
+    
+     private JButton getCreateNewButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__create_new;
     }
 
     private JButton getCreateNewButtonAge() {
@@ -339,6 +352,14 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             delete(TABLE__AGEMENT, "AGEINGCODE");
         } else if (e.getSource().equals(getCopyButtonAge())) {
             copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
+        }
+        //
+        else if (e.getSource().equals(getCreateNewButtonVulc())) {
+            create(TABLE__VULC, "VULCCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
+        }else if (e.getSource().equals(getDeleteButtonVulc())) {
+            delete(TABLE__VULC, "VULCCODE");
+        }else if (e.getSource().equals(getCopyButtonVulc())) {
+            copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
         }
         //
     }
