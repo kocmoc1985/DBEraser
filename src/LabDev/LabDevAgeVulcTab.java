@@ -71,12 +71,17 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
     }
 
-    private void refresh_b(Object itemToSet) {
+    private void refresh_b(Object itemToSet, String tableName) {
         //
         SKIP__ITEM__STATE__CHANGED_EVT = true;
         //
         fillComboBoxes();
-        getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+        //
+        if (tableName.equals(TABLE__AGEMENT)) {
+            getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+        } else if (tableName.equals(TABLE__VULC)) {
+            getVulcComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+        }
         //
         showTableInvert();
         //
@@ -116,16 +121,16 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     private JButton getSaveButtonVulc() {
         return mcRecipe.jButton_lab_dev__save_vulc;
     }
-    
+
     private JButton getCopyButtonVulc() {
         return mcRecipe.jButton_lab_dev_vulc__copy;
     }
-    
+
     private JButton getDeleteButtonVulc() {
         return mcRecipe.jButton_lab_dev_vulc__delete;
     }
-    
-     private JButton getCreateNewButtonVulc() {
+
+    private JButton getCreateNewButtonVulc() {
         return mcRecipe.jButton_lab_dev_vulc__create_new;
     }
 
@@ -352,13 +357,12 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             delete(TABLE__AGEMENT, "AGEINGCODE");
         } else if (e.getSource().equals(getCopyButtonAge())) {
             copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
-        }
-        //
+        } //
         else if (e.getSource().equals(getCreateNewButtonVulc())) {
             create(TABLE__VULC, "VULCCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
-        }else if (e.getSource().equals(getDeleteButtonVulc())) {
+        } else if (e.getSource().equals(getDeleteButtonVulc())) {
             delete(TABLE__VULC, "VULCCODE");
-        }else if (e.getSource().equals(getCopyButtonVulc())) {
+        } else if (e.getSource().equals(getCopyButtonVulc())) {
             copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
         }
         //
@@ -404,9 +408,9 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             sql.execute(q_insert, OUT);
             //
             if (tableName.equals(TABLE__AGEMENT)) {
-                refresh_b(AGE_CODE);
+                refresh_b(AGE_CODE, TABLE__AGEMENT);
             } else if (tableName.equals(TABLE__VULC)) {
-                refresh_b(VULC_CODE);
+                refresh_b(VULC_CODE, TABLE__VULC);
             }
             //
             return true;
@@ -421,25 +425,39 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private String getCopyQuery(String tableName, String code, HashMap<String, String> ti_map) {
         if (tableName.equals(TABLE__AGEMENT)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET(code,
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+                    TABLE__AGEMENT,
+                    code,
                     ti_map.get("TYPE"),
                     ti_map.get("DESCR"),
                     ti_map.get("METHOD"),
                     ti_map.get("TEMP"),
                     ti_map.get("TIME"),
-                    ti_map.get("TIME"),
+                    ti_map.get("TIMEUNIT"),
                     ti_map.get("STATUS"),
                     ti_map.get("NOTE"),
                     null,
                     null
             );
         } else if (tableName.equals(TABLE__VULC)) {
-            return "";
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+                    TABLE__VULC,
+                    code,
+                    ti_map.get("TYPE"),
+                    ti_map.get("DESCR"),
+                    ti_map.get("METHOD"),
+                    ti_map.get("TEMP"),
+                    ti_map.get("TIME"),
+                    ti_map.get("ARTICLE"),
+                    ti_map.get("STATUS"),
+                    ti_map.get("NOTE"),
+                    null,
+                    null
+            );
         } else {
             return "";
         }
     }
-
 
     private void delete(String tableName, String colName) {
         //
@@ -492,9 +510,9 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
             sql.execute(q_insert, OUT);
             //
             if (tableName.equals(TABLE__AGEMENT)) {
-                refresh_b(AGE_CODE);
+                refresh_b(AGE_CODE, TABLE__AGEMENT);
             } else if (tableName.equals(TABLE__VULC)) {
-                refresh_b(VULC_CODE);
+                refresh_b(VULC_CODE, TABLE__VULC);
             }
             //
             return true;
@@ -509,7 +527,8 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private String getCreateQuery(String tableName, String code) {
         if (tableName.equals(TABLE__AGEMENT)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET(
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+                    TABLE__AGEMENT,
                     code,
                     null,
                     "- Keine -",
@@ -523,7 +542,20 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
                     null
             );
         } else if (tableName.equals(TABLE__VULC)) {
-            return "";
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+                    TABLE__VULC,
+                    code,
+                    null,
+                    "- Keine -",
+                    null,
+                    null,
+                    "0.0",
+                    "0.0",
+                    null,
+                    null,
+                    null,
+                    null
+            );
         } else {
             return null;
         }

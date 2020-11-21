@@ -1511,8 +1511,8 @@ public class SQL_A {
                 + ") ORDER BY DESCR";
     }
 
-    public static String lab_dev__insert_into_MC_CPAGEMET(String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10, String param11) {
-        String q = String.format("INSERT INTO " + TABLE__AGEMENT + " "
+    public static String lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(String tableName,String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10, String param11) {
+        String q = String.format("INSERT INTO " + tableName + " "
                 + "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 quotes(param1, false), quotes(param2, false), quotes(param3, false),
                 quotes(param4, false), quotes(param5, false), quotes(param6, false),
