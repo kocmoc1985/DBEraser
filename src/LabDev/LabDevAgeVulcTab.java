@@ -353,7 +353,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "Create new ageing code");
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_3(AGE_CODE));
         String agecode_new = tfc.getText();
         //
         if (agecode_new == null || yesNo == false) {
@@ -391,7 +391,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     private void deleteAgeingEntry() {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA_.confirm(MSG.MSG_6(AGE_CODE)) == false) {
             return;
         }
         //
@@ -414,7 +414,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "Create new ageing code");
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_2());
         String agecode = tfc.getText();
         //
         if (agecode == null || yesNo == false) {
