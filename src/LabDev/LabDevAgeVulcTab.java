@@ -334,53 +334,62 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         } else if (e.getSource().equals(getSaveButtonVulc())) {
             saveTableInvert_2_vulc();
         } else if (e.getSource().equals(getCreateNewButtonAge())) {
-            createNewEntryAging();
+            create(TABLE__AGEMENT, "AGEINGCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
         } else if (e.getSource().equals(getDeleteButtonAge())) {
-            deleteAgeingEntry();
+            delete(TABLE__AGEMENT, "AGEINGCODE");
         } else if (e.getSource().equals(getCopyButtonAge())) {
-            copyAgeingEntry();
+            copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
         }
         //
     }
 
-    private boolean copyAgeingEntry() {
+    private boolean copy(String tableName, String colName, Table tableInvert, String regex) {
         //
         if (HelpA_.confirm() == false) {
             return false;
         }
         //
-        String q = "SELECT AGEINGCODE from " + TABLE__AGEMENT + " WHERE AGEINGCODE = ?";
+        String q = "SELECT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15);
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_3(AGE_CODE));
-        String agecode_new = tfc.getText();
+        String codeMsg = null;
         //
-        if (agecode_new == null || yesNo == false) {
+        if (tableName.equals(TABLE__AGEMENT)) {
+            codeMsg = this.AGE_CODE;
+        } else if (tableName.equals(TABLE__VULC)) {
+            codeMsg = this.VULC_CODE;
+        }
+        //
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_3(codeMsg));
+        String code = tfc.getText();
+        //
+        if (code == null || yesNo == false) {
             return false;
         }
         //
-        HashMap<String, String> ti_map = tableInvertToHashMap(TABLE_INVERT, 1);
+        HashMap<String, String> ti_map = tableInvertToHashMap(tableInvert, 1);
         //
-        this.AGE_CODE = agecode_new;
+        if (tableName.equals(TABLE__AGEMENT)) {
+            this.AGE_CODE = code;
+        } else if (tableName.equals(TABLE__VULC)) {
+            this.VULC_CODE = code;
+        }
         //
-        String q_insert = SQL_A.lab_dev__insert_into_MC_CPAGEMET(
-                agecode_new,
-                ti_map.get("TYPE"),
-                ti_map.get("DESCR"),
-                ti_map.get("METHOD"),
-                ti_map.get("TEMP"),
-                ti_map.get("TIME"),
-                ti_map.get("TIME"),
-                ti_map.get("STATUS"),
-                ti_map.get("NOTE"),
-                null,
-                null
-        );
+        String q_insert = getCopyQuery(tableName, code, ti_map);
         //
         try {
+            //
             sql.execute(q_insert, OUT);
-            refresh_b(AGE_CODE);
+            //
+            if (tableName.equals(TABLE__AGEMENT)) {
+                refresh_b(AGE_CODE);
+            } else if (tableName.equals(TABLE__VULC)) {
+                refresh_b(VULC_CODE);
+            }
+            //
+            return true;
+            //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -389,15 +398,43 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
     }
 
-    private void deleteAgeingEntry() {
+    private String getCopyQuery(String tableName, String code, HashMap<String, String> ti_map) {
+        if (tableName.equals(TABLE__AGEMENT)) {
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET(code,
+                    ti_map.get("TYPE"),
+                    ti_map.get("DESCR"),
+                    ti_map.get("METHOD"),
+                    ti_map.get("TEMP"),
+                    ti_map.get("TIME"),
+                    ti_map.get("TIME"),
+                    ti_map.get("STATUS"),
+                    ti_map.get("NOTE"),
+                    null,
+                    null
+            );
+        } else if (tableName.equals(TABLE__VULC)) {
+            return "";
+        } else {
+            return "";
+        }
+    }
+
+
+    private void delete(String tableName, String colName) {
         //
-        if (HelpA_.confirm(MSG.MSG_6(AGE_CODE)) == false) {
+        String code = null;
+        //
+        if (tableName.equals(TABLE__AGEMENT)) {
+            code = this.AGE_CODE;
+        } else if (tableName.equals(TABLE__VULC)) {
+            code = this.VULC_CODE;
+        }
+        //
+        if (HelpA_.confirm(MSG.MSG_6(code)) == false) {
             return;
         }
         //
-        String ageincode = getAgeCodeTableInvert();
-        //
-        String q = "DELETE FROM " + TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(ageincode, false);
+        String q = "DELETE FROM " + tableName + " WHERE " + colName + "=" + SQL_A.quotes(code, false);
         //
         try {
             sql.execute(q, OUT);
@@ -408,44 +445,67 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
     }
 
-    private boolean createNewEntryAging() {
+    private boolean create(String tableName, String colName, String regex) {
         //
-        String q = "SELECT AGEINGCODE from " + TABLE__AGEMENT + " WHERE AGEINGCODE = ?";
+        String q = "SELECT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.AGING_CODE__VULC_CODE_REGEX, 15);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15);
         //
         boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_2());
-        String agecode = tfc.getText();
+        String code = tfc.getText();
         //
-        if (agecode == null || yesNo == false) {
+        if (code == null || yesNo == false) {
             return false;
         }
         //
-        this.AGE_CODE = agecode;
+        if (tableName.equals(TABLE__AGEMENT)) {
+            this.AGE_CODE = code;
+        } else if (tableName.equals(TABLE__VULC)) {
+            this.VULC_CODE = code;
+        }
         //
-        String q_insert = SQL_A.lab_dev__insert_into_MC_CPAGEMET(
-                this.AGE_CODE,
-                null,
-                "- Keine -",
-                null,
-                null,
-                "0.0",
-                "0.0",
-                null,
-                null,
-                null,
-                null
-        );
+        String q_insert = getCreateQuery(tableName, code);
         //
         try {
+            //
             sql.execute(q_insert, OUT);
-            refresh_b(AGE_CODE);
+            //
+            if (tableName.equals(TABLE__AGEMENT)) {
+                refresh_b(AGE_CODE);
+            } else if (tableName.equals(TABLE__VULC)) {
+                refresh_b(VULC_CODE);
+            }
+            //
             return true;
+            //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevAgeVulcTab.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return false;
+        //
+    }
+
+    private String getCreateQuery(String tableName, String code) {
+        if (tableName.equals(TABLE__AGEMENT)) {
+            return SQL_A.lab_dev__insert_into_MC_CPAGEMET(
+                    code,
+                    null,
+                    "- Keine -",
+                    null,
+                    null,
+                    "0.0",
+                    "0.0",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+        } else if (tableName.equals(TABLE__VULC)) {
+            return "";
+        } else {
+            return null;
+        }
     }
 
 }
