@@ -76,6 +76,16 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
         return 0;
     }
     
+     @Override
+    public void setFieldVarcharLength(int length) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getFieldVarcharLength() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 
 }

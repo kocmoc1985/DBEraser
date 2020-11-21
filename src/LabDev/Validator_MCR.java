@@ -11,11 +11,15 @@ import MCRecipe.Lang.MSG;
 import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
+import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableRowInvert_;
 import forall.GP;
 import forall.HelpA_;
 import static forall.HelpA_.getColByName;
+import forall.SqlBasicLocal;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -104,6 +108,63 @@ public class Validator_MCR {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
             jc.setToolTipText(message);
+        }
+    }
+
+    public static boolean validateMaxInputLengthAutomatic(SqlBasicLocal sql, JLinkInvert jli) {
+        //
+        String val = jli.getValue();
+        TableRowInvert_ tri = jli.getParentObj();
+        RowDataInvert rdi = tri.getRowConfig();
+        //
+        String tableName = rdi.getTableName();
+        String colName = rdi.getFieldOriginalName();
+        //
+        if (jli instanceof JTextFieldInvert == false) {
+            return true;
+        }
+        //
+        int length = -1;
+        //
+        if (jli.getFieldVarcharLength() == -1) {
+            //
+            String q = "select column_name, data_type, character_maximum_length \n"
+                    + " from information_schema.columns \n"
+                    + " where table_name ='" + tableName + "' AND column_name ='" + colName + "'";
+            //
+            try {
+                //
+                ResultSet rs = sql.execute(q);
+                //
+                if (rs.next()) {
+                    length = rs.getInt("character_maximum_length");
+                    jli.setFieldVarcharLength(length);
+                }
+                //
+            } catch (SQLException ex) {
+                Logger.getLogger(Validator_MCR.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            length = jli.getFieldVarcharLength();
+//            System.out.println("Get input length: " + jli.getFieldVarcharLength());
+        }
+        //
+        if (length == -1) {
+            return true;
+        }
+        //
+        if (val.length() <= length) {
+            //
+            setValidated(jli);
+            //
+            return true;
+        } else {
+            //
+            setNotValidated(jli, Color.blue);
+            //
+            setToolTip(jli, MSG.MSG_3_2() + " " + length);
+            //
+            return false;
         }
     }
 

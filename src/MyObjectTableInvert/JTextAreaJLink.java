@@ -5,9 +5,6 @@
  */
 package MyObjectTableInvert;
 
-import MyObjectTableInvert.ColumnDataEntryInvert;
-import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.TableRowInvert_;
 import javax.swing.JTextArea;
 
 /**
@@ -71,6 +68,17 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert {
         return 0;
     }
 
+    @Override
+    public void setFieldVarcharLength(int length) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getFieldVarcharLength() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
   
 
 }

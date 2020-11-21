@@ -43,6 +43,8 @@ public abstract class LabDevTab extends BasicTab {
         //
         JLinkInvert jli = (JLinkInvert) ke.getSource();
         //
+        Validator_MCR.validateMaxInputLengthAutomatic(sql, jli);
+        //
         if (jli.getValidateDate()) {
             //
             Validator_MCR.validateDate(jli);

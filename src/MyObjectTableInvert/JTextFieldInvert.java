@@ -16,6 +16,7 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     private ColumnDataEntryInvert child;
     private TableRowInvert_ parent;
     private boolean validateDate;
+    private int fieldVarcharLength = -1;
 
     public JTextFieldInvert(String text) {
         super(text);
@@ -108,5 +109,18 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     public boolean getValidateDate() {
         return validateDate;
     }
+
+    @Override
+    public void setFieldVarcharLength(int length) {
+        this.fieldVarcharLength = length;
+    }
+
+    @Override
+    public int getFieldVarcharLength() {
+        return this.fieldVarcharLength;
+    }
+    
+    
+    
 
 }
