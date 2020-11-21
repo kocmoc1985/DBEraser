@@ -15,8 +15,12 @@ import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
+import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableInvert;
+import MyObjectTableInvert.TableRowInvert_;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
@@ -24,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -114,46 +119,6 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         return VULC_CODE;
     }
 
-    private JButton getSaveButtonAge() {
-        return mcRecipe.jButton_lab_dev__save_aging;
-    }
-
-    private JButton getSaveButtonVulc() {
-        return mcRecipe.jButton_lab_dev__save_vulc;
-    }
-
-    private JButton getCopyButtonVulc() {
-        return mcRecipe.jButton_lab_dev_vulc__copy;
-    }
-
-    private JButton getDeleteButtonVulc() {
-        return mcRecipe.jButton_lab_dev_vulc__delete;
-    }
-
-    private JButton getCreateNewButtonVulc() {
-        return mcRecipe.jButton_lab_dev_vulc__create_new;
-    }
-
-    private JButton getCreateNewButtonAge() {
-        return mcRecipe.jButton_lab_dev_aging__create_new;
-    }
-
-    private JButton getDeleteButtonAge() {
-        return mcRecipe.jButton_lab_dev_aging__delete;
-    }
-
-    private JButton getCopyButtonAge() {
-        return mcRecipe.jButton_lab_dev_aging__copy;
-    }
-
-    private JComboBox getAgeComboBox() {
-        return mcRecipe.jComboBox_lab_dev__age;
-    }
-
-    private JComboBox getVulcComboBox() {
-        return mcRecipe.jComboBox_lab_dev_vulc;
-    }
-
     private void fillComboBoxes() {
         //
         String q = "select DISTINCT AGEINGCODE from " + TABLE__AGEMENT;
@@ -164,6 +129,37 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
 //        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
 //        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+        //
+    }
+
+    @Override
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        String colName = ti.getCurrentColumnName(me.getSource());
+        //
+        if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
+            //
+            JLinkInvert jli = (JLinkInvert) me.getSource();
+            TableRowInvert_ tri = jli.getParentObj();
+            RowDataInvert rdi = tri.getRowConfig();
+            //
+            if (rdi.isEditable() == false) {
+                return;
+            }
+            //
+            String initialVal = getValueTableInvert(colName, ti);
+            //
+            TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 50, 14);
+            //
+            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
+            String value = tfc.getText();
+            //
+            ti.setValueAt(colName, value);
+            //
+//            tri.keyReleased(ke); OBS!! MUST Simulate this
+            //
+        }
         //
     }
 
@@ -376,7 +372,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         String q = "SELECT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
         String codeMsg = null;
         //
@@ -488,7 +484,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         //
         String q = "SELECT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
         boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_2());
         String code = tfc.getText();
@@ -559,6 +555,46 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
         } else {
             return null;
         }
+    }
+
+    private JButton getSaveButtonAge() {
+        return mcRecipe.jButton_lab_dev__save_aging;
+    }
+
+    private JButton getSaveButtonVulc() {
+        return mcRecipe.jButton_lab_dev__save_vulc;
+    }
+
+    private JButton getCopyButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__copy;
+    }
+
+    private JButton getDeleteButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__delete;
+    }
+
+    private JButton getCreateNewButtonVulc() {
+        return mcRecipe.jButton_lab_dev_vulc__create_new;
+    }
+
+    private JButton getCreateNewButtonAge() {
+        return mcRecipe.jButton_lab_dev_aging__create_new;
+    }
+
+    private JButton getDeleteButtonAge() {
+        return mcRecipe.jButton_lab_dev_aging__delete;
+    }
+
+    private JButton getCopyButtonAge() {
+        return mcRecipe.jButton_lab_dev_aging__copy;
+    }
+
+    private JComboBox getAgeComboBox() {
+        return mcRecipe.jComboBox_lab_dev__age;
+    }
+
+    private JComboBox getVulcComboBox() {
+        return mcRecipe.jComboBox_lab_dev_vulc;
     }
 
 }

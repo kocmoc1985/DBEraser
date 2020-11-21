@@ -27,12 +27,13 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     private String entryExistQuery;
     private String regex;
     private Pattern pattern;
-    private final Font FONT_1 = new Font("Arial", Font.BOLD, 22);
+    private Font FONT_1 = new Font("Arial", Font.BOLD, 22);
     public static int OK_RESULT = 0;
     public static int WRONG_FORMAT_RESULT = 1;
     public static int ALREADY_EXIST_RESULT = 2;
     public int RESULT;
     private boolean validated = false;
+    int fontSize = -1;
     //
     private String ERR_MSG_1 = "Exist already";
     private String ERR_MSG_2 = "Wrong format";
@@ -45,14 +46,29 @@ public class TextFieldCheck extends JTextField implements KeyListener {
         initOther();
     }
 
+    public TextFieldCheck(SqlBasicLocal sql, String q, String regex, int columns, int fontSize) {
+        this(sql, q, regex, columns);
+        this.fontSize = fontSize;
+        initOther();
+    }
+
     public TextFieldCheck(String initialValue, Pattern regexPattern, int columns) {
         this.pattern = regexPattern;
         setColumns(columns);
         initOther();
+        //
         if (initialValue != null && initialValue.isEmpty() == false) {
             validated = true;
         }
+        //
         this.setText(initialValue);
+        //
+    }
+
+    public TextFieldCheck(String initialValue, Pattern regexPattern, int columns, int fontSize) {
+        this(initialValue, regexPattern, columns);
+        this.fontSize = fontSize;
+        initOther();
     }
 
     public int getRESULT() {
@@ -60,8 +76,17 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     }
 
     private void initOther() {
+        //
         this.addKeyListener(this);
-        this.setFont(FONT_1);
+        //
+        if (fontSize == -1) {
+            FONT_1 = new Font("Arial", Font.BOLD, 14);
+            this.setFont(FONT_1);
+        } else {
+            FONT_1 = new Font("Arial", Font.BOLD, fontSize);
+            this.setFont(FONT_1);
+        }
+
     }
 
     @Override
@@ -88,6 +113,10 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     public void keyReleased(KeyEvent ke) {
         //
         String str = getText_();
+        //
+        if(sql == null && regex == null && pattern == null){
+            return;
+        }
         //
         if (validate_(str)) {
             //
@@ -123,6 +152,11 @@ public class TextFieldCheck extends JTextField implements KeyListener {
     }
 
     private boolean validate_(String strToValidate) {
+        //
+        if(pattern == null && regex == null){
+            return true;
+        }
+        //
         if (pattern != null) {
             Matcher matcher = pattern.matcher(strToValidate);
             return matcher.matches();

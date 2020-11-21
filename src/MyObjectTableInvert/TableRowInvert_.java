@@ -155,6 +155,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
                 }
                 //
                 if(getRowConfig().fieldOrigName.equals("UpdatedOn") || getRowConfig().fieldOrigName.equals("UpdatedBy")){
+                    getRowConfig().setUneditable(); // Yes needed!!
                     jtf.setEditable(false);
                 }
                 //

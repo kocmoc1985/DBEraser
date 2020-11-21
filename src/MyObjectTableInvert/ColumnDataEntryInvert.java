@@ -31,12 +31,17 @@ public class ColumnDataEntryInvert {
     }
 
     /**
-     * [2020-08-03][2020-10-09]
-     * This is only in case of "JTextFieldInvert" & "JPassWordFieldInvert"
+     * [2020-08-03][2020-10-09] This is only in case of "JTextFieldInvert" &
+     * "JPassWordFieldInvert"
+     *
      * @param parent
      */
     public void setParent(Object parent) {
         this.parent = parent;
+    }
+
+    public Object getParent() {
+        return this.parent;
     }
 
     public void setValidated(boolean validated) {
@@ -59,20 +64,20 @@ public class ColumnDataEntryInvert {
         this.object = object;
     }
 
-    public void markInvalidated(){
+    public void markInvalidated() {
         //
         if (parent != null && parent instanceof JComponent) {
-            JComponent jc = (JComponent)parent;
+            JComponent jc = (JComponent) parent;
             jc.setBackground(Color.red);
         }
         //
-        if(object instanceof JComboBoxInvert){
-          JComboBoxInvert jcbi = (JComboBoxInvert)object;
-          jcbi.setBackground(Color.red);
+        if (object instanceof JComboBoxInvert) {
+            JComboBoxInvert jcbi = (JComboBoxInvert) object;
+            jcbi.setBackground(Color.red);
         }
         //
     }
-    
+
     /**
      * [2020-08-03]
      *
@@ -86,7 +91,7 @@ public class ColumnDataEntryInvert {
         } else if (object instanceof JLinkInvert) {
             JLinkInvert jpi = (JLinkInvert) object;
             return jpi.getValue();
-        }else{
+        } else {
             return null;
         }
         //
