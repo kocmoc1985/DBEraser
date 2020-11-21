@@ -5,7 +5,6 @@
 package MyObjectTableInvert;
 
 import BuhInvoice.GP_BUH;
-import BuhInvoice.JSon;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
 import static MCRecipe.MC_RECIPE_.USER_ROLE;
@@ -18,6 +17,8 @@ import forall.HelpA_;
 import static forall.HelpA_.run_application_with_associated_application;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
+import forall.TextFieldCheck;
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
@@ -53,13 +54,52 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public Basic() {
     }
 
-
     public String getValueHashMap(String value) {
         //
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
             return "";
         } else {
             return value;
+        }
+        //
+    }
+
+    
+    /**
+     * [2020-11-21]
+     * This value brings an JOptionPane when double clicking on a JTextFieldInvert
+     * Shall be called from: "mouseClickedForward(...)"
+     * @param me
+     * @param ti 
+     */
+    public void enableEditingLongValues(MouseEvent me, TableInvert ti) {
+        //
+        if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
+            //
+            JLinkInvert jli = (JLinkInvert) me.getSource();
+            TableRowInvert_ tri = jli.getParentObj();
+            RowDataInvert rdi = tri.getRowConfig();
+            //
+            if (rdi.isEditable() == false) {
+                return;
+            }
+            //
+            String initialVal = jli.getValue();
+            //
+            TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 70, 12);
+            //
+            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
+            //
+            if (yesNo == false) {
+                return;
+            }
+            //
+            String value = tfc.getText();
+            //
+            ti.setValueAt(rdi.getFieldOriginalName(), value);
+            //
+            tri.keyReleased_(me); //OBS!! MUST Simulate this
+            //
         }
         //
     }
@@ -909,10 +949,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
- toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
- return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
- }
+     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
      *
      * @param arr
      * @param columnsToRemove

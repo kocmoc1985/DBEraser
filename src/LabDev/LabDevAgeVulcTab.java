@@ -136,31 +136,36 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
-        String colName = ti.getCurrentColumnName(me.getSource());
+//        enableEditingLongValues(me, ti);
         //
-        if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
-            //
-            JLinkInvert jli = (JLinkInvert) me.getSource();
-            TableRowInvert_ tri = jli.getParentObj();
-            RowDataInvert rdi = tri.getRowConfig();
-            //
-            if (rdi.isEditable() == false) {
-                return;
-            }
-            //
-            String initialVal = getValueTableInvert(colName, ti);
-            //
-            TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 50, 14);
-            //
-            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
-            String value = tfc.getText();
-            //
-            ti.setValueAt(colName, value);
-            //
-//            tri.keyReleased(ke); OBS!! MUST Simulate this
-            //
-        }
-        //
+//        if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
+//            //
+//            JLinkInvert jli = (JLinkInvert) me.getSource();
+//            TableRowInvert_ tri = jli.getParentObj();
+//            RowDataInvert rdi = tri.getRowConfig();
+//            //
+//            if (rdi.isEditable() == false) {
+//                return;
+//            }
+//            //
+//            String initialVal = jli.getValue();
+//            //
+//            TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 50, 14);
+//            //
+//            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
+//            //
+//            if (yesNo == false) {
+//                return;
+//            }
+//            //
+//            String value = tfc.getText();
+//            //
+//            ti.setValueAt(rdi.getFieldOriginalName(), value);
+//            //
+//            tri.keyReleased_(me); //OBS!! MUST Simulate this
+//            //
+//        }
+//        //
     }
 
     @Override

@@ -9,6 +9,7 @@ import MyObjectTable.RowData;
 import MyObjectTable.Table;
 import MyObjectTable.TableRow;
 import forall.HelpA_;
+import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -35,14 +36,14 @@ import javax.swing.JTextField;
  * @author mcab
  */
 public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
-    
+
     private HeaderInvert headerInvert;
-    
+
     public TableRowInvert_(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
         gridLayoutFix();
     }
-    
+
     public HeaderInvert getHeaderInvert() {
         return this.headerInvert;
     }
@@ -56,21 +57,21 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             gridLayout.setHgap(5);
         }
     }
-    
+
     @Override
     public RowDataInvert getRowConfig() {
         return (RowDataInvert) ROW_COLUMN_DATA;
     }
-    
+
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
         if (hi.getTableName() != null) {
             HelpA_.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
         } else {
             HelpA_.setTrackingToolTip(label, hi.getRealColName());
         }
-        
+
     }
-    
+
     @Override
     protected void addColumn(Object obj) {
         Component add_component = null;
@@ -117,7 +118,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             //
 
         }
-        
+
         if (obj instanceof ColumnDataEntryInvert) {
             //
             ColumnDataEntryInvert cde = (ColumnDataEntryInvert) obj;
@@ -154,7 +155,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
                     jtf.setEditable(false);
                 }
                 //
-                if(getRowConfig().fieldOrigName.equals("UpdatedOn") || getRowConfig().fieldOrigName.equals("UpdatedBy")){
+                if (getRowConfig().fieldOrigName.equals("UpdatedOn") || getRowConfig().fieldOrigName.equals("UpdatedBy")) {
                     getRowConfig().setUneditable(); // Yes needed!!
                     jtf.setEditable(false);
                 }
@@ -214,7 +215,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             table_invert.row___col_object__map.put(add_component, this);
             table_invert.col_name__row_nr__map.put(cde.getOriginalColumn_name(), ROW_NR);
         }
-        
+
         if (add_component != null) {
             add_component.addMouseListener(this);
             //
@@ -229,18 +230,18 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
         COLUMN_COUNT++;
 //        System.out.println("COLUMN_COUNT:" + COLUMN_COUNT);
     }
-    
+
     public String getTableNameDataBase() {
         return getRowConfig().getTableName();
     }
-    
+
     protected void set_current_row__and__database_id(Object source) {
         Table t = getTable();
         t.setCurrentRow(ROW_NR);
         t.setCurrentDatabaseId("" + t.row_col_object__db_id__map.get((Component) source));
 //        System.out.println("selected_row: " + t.getCurrentRow() + " / database_id: " + t.getCurrentDatabaseId());
     }
-    
+
     protected boolean isHeaderComponent(Object source) {
         if (getTable().row_col_object__db_id__map.containsKey((Component) source)) {
             return false;
@@ -248,12 +249,12 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             return true;
         }
     }
-    
+
     @Override
     public Object getComponentAt(int column_index) {
         return this.getComponent(column_index);
     }
-    
+
     @Override
     public String getValueAt(int column_index) {
         Component c = this.getComponent(column_index);
@@ -274,7 +275,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             return null;
         }
     }
-    
+
     public String getValueAtJComboBox(int column_index, int paramToReturn) {
         Component c = this.getComponent(column_index);
         //
@@ -285,7 +286,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             return null;
         }
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent me) {
         //
@@ -336,7 +337,7 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             //
         }
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent me) {
         //
@@ -346,35 +347,41 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
         consumer.mouseClickedForward(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
         //
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent me) {
     }
-    
+
     @Override
     public void keyTyped(KeyEvent ke) {
     }
-    
+
     @Override
     public void keyPressed(KeyEvent ke) {
     }
-    
+
     @Override
     public void keyReleased(KeyEvent ke) {
         //
-        Object source = ke.getSource();
+        keyReleased_(ke);
+        //
+    }
+
+    public void keyReleased_(AWTEvent ae) {
+        //
+        Object source = ae.getSource();
         //
         add_to_unsaved(source);
-        //
         //
         TableInvert ti = (TableInvert) getTable();
         Basic consumer = ti.getTableInvertConsumer();
         //
-        if (consumer != null) {
-            consumer.keyReleasedForward(ti, ke);
+        if (consumer != null && ae instanceof KeyEvent) {
+            consumer.keyReleasedForward(ti, (KeyEvent) ae);
         }
+        //
     }
-    
+
     public void add_to_unsaved(Object source) {
         TableInvert table = (TableInvert) getTable();
 //        String db_id = table.getCurrentDatabaseId();
@@ -402,14 +409,14 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
             unsaved_entries_map.put(source, new UnsavedEntryInvert(source, tableName, primaryOrForeignKeyName, db_id, col_name, colNr, isString, keyIsString, updateOtherTablesBefore));
         }
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent ie) {
         Object source = ie.getSource();
         //
         add_to_unsaved(source);
     }
-    
+
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
     }

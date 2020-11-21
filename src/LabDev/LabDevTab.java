@@ -23,7 +23,6 @@ public abstract class LabDevTab extends BasicTab {
 
     protected final MC_RECIPE_ mcRecipe;
     protected final LabDevelopment_ labDev;
-    
 
     public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT);
@@ -31,6 +30,11 @@ public abstract class LabDevTab extends BasicTab {
         this.labDev = labDev;
     }
 
+    @Override
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        enableEditingLongValues(me, ti);
+    }
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
@@ -38,8 +42,6 @@ public abstract class LabDevTab extends BasicTab {
         super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
         //
         JLinkInvert jli = (JLinkInvert) ke.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         if (jli.getValidateDate()) {
             //
@@ -56,7 +58,6 @@ public abstract class LabDevTab extends BasicTab {
             }
             //
         }
-
         //
     }
 }
