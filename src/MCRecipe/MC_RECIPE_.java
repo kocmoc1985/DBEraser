@@ -565,18 +565,18 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelHome = new GradientJPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanelHome = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel69 = new javax.swing.JLabel();
-        jTextFieldHomeUserName = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
-        jLabel72 = new javax.swing.JLabel();
-        jPasswordFieldHomePass = new javax.swing.JPasswordField();
         jLabelHomeVersion = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jButton19 = new javax.swing.JButton();
         jButton_Home_Login = new javax.swing.JButton();
+        jPanel73 = new javax.swing.JPanel();
+        jLabel72 = new javax.swing.JLabel();
+        jTextFieldHomeUserName = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        jPasswordFieldHomePass = new javax.swing.JPasswordField();
         jScrollPaneRecipeInitial = new javax.swing.JScrollPane();
         jPanel_RecipeInitial = new JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -989,13 +989,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
-        jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelHome.setLayout(null);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mixcont_logo.png"))); // NOI18N
-        jPanelHome.add(jLabel2);
-        jLabel2.setBounds(970, 40, 250, 108);
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/industry-icon.png"))); // NOI18N
         jButton1.setToolTipText("Admin rights required");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -1003,18 +996,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelHome.add(jButton1);
-        jButton1.setBounds(10, 20, 250, 150);
-
-        jLabel69.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel69.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel69.setText(LNG.USER_NAME());
-        jPanelHome.add(jLabel69);
-        jLabel69.setBounds(705, 377, 162, 17);
-
-        jTextFieldHomeUserName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanelHome.add(jTextFieldHomeUserName);
-        jTextFieldHomeUserName.setBounds(705, 407, 221, 26);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users-icon.png"))); // NOI18N
         jButton8.setToolTipText("Predefined password required");
@@ -1023,28 +1004,12 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanelHome.add(jButton8);
-        jButton8.setBounds(270, 20, 250, 150);
-
-        jLabel72.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel72.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel72.setText(LNG.PASSWORD());
-        jPanelHome.add(jLabel72);
-        jLabel72.setBounds(705, 438, 146, 17);
-
-        jPasswordFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanelHome.add(jPasswordFieldHomePass);
-        jPasswordFieldHomePass.setBounds(705, 468, 221, 26);
 
         jLabelHomeVersion.setText("Version");
-        jPanelHome.add(jLabelHomeVersion);
-        jLabelHomeVersion.setBounds(1558, 1516, 207, 14);
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(204, 204, 204));
         jLabel46.setText("MCRecipe");
-        jPanelHome.add(jLabel46);
-        jLabel46.setBounds(970, 150, 240, 58);
 
         jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/settings.png"))); // NOI18N
         jButton19.setToolTipText("Admin rights required");
@@ -1053,8 +1018,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanelHome.add(jButton19);
-        jButton19.setBounds(530, 20, 250, 150);
 
         jButton_Home_Login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButton_Home_Login.setToolTipText("Login");
@@ -1063,8 +1026,66 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 jButton_Home_LoginActionPerformed(evt);
             }
         });
-        jPanelHome.add(jButton_Home_Login);
-        jButton_Home_Login.setBounds(876, 505, 50, 50);
+
+        jPanel73.setLayout(new java.awt.GridLayout(4, 0));
+
+        jLabel72.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel72.setText(LNG.PASSWORD());
+        jPanel73.add(jLabel72);
+
+        jTextFieldHomeUserName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel73.add(jTextFieldHomeUserName);
+
+        jLabel69.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel69.setText(LNG.USER_NAME());
+        jPanel73.add(jLabel69);
+
+        jPasswordFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel73.add(jPasswordFieldHomePass);
+
+        javax.swing.GroupLayout jPanelHomeLayout = new javax.swing.GroupLayout(jPanelHome);
+        jPanelHome.setLayout(jPanelHomeLayout);
+        jPanelHomeLayout.setHorizontalGroup(
+            jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelHomeLayout.createSequentialGroup()
+                        .addGap(1558, 1558, 1558)
+                        .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel73, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Home_Login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelHomeLayout.setVerticalGroup(
+            jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHomeLayout.createSequentialGroup()
+                .addComponent(jLabel46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel73, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Home_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1175, 1175, 1175)
+                .addComponent(jLabelHomeVersion))
+        );
 
         jTabbedPane1.addTab("*HOME", jPanelHome);
 
@@ -4999,7 +5020,6 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -5145,6 +5165,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel70;
     private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel72;
+    private javax.swing.JPanel jPanel73;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelHome;
