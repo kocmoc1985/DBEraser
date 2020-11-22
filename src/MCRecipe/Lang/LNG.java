@@ -38,6 +38,8 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS = "TEST DEFINITIONS";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG = "TEST CONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC = "AGE / VULC";
+    public static final String LABDEVELOPMENT_TAB__TAB_NEW = "NEW NEW";
+
     //
     public static String HOME_TAB_DE = "*START";
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
@@ -57,8 +59,9 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_NOTES_DE = "NOTIZEN";
     public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE = "MATERIALINFORMATION";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE = "PRÜFDEFINITIONEN";
-     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE = "PRÜFKONFIG";
-     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE = "ALTERUNG / VULC";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE = "PRÜFKONFIG";
+    public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE = "ALTERUNG / VULC";
+    public static final String LABDEVELOPMENT_TAB__TAB_NEW_DE = "NEW NEW";
 
     public static void GO(JTabbedPane jtp, JTabbedPane jtp_lab_dev) {
         TAB_NAMES_GENERAL(jtp);
@@ -124,19 +127,23 @@ public class LNG {
     public static String LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_FIND_ORDER : LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS : LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_TEST_CONFIG : LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE;
     }
-    
+
     public static String LAB_DEVELOPMENT_TAB__TAB_AGE_VULC() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_AGE_VULC : LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE;
     }
 
+    public static String LAB_DEVELOPMENT_TAB__TAB_NEW() {
+        return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_NEW : LABDEVELOPMENT_TAB__TAB_NEW_DE;
+    }
+    
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
         if (LANG_ENG == false) {
             HelpA_.changeTabName(jtp, HOME_TAB, HOME_TAB_DE);
@@ -167,6 +174,7 @@ public class LNG {
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE);
             HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_AGE_VULC, LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NEW, LABDEVELOPMENT_TAB__TAB_NEW_DE);
             //
         }
         //

@@ -15,10 +15,8 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert_;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
-import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +37,7 @@ public class LabDevStatusTab extends LabDevTab {
     private Table TABLE_INVERT_5;
 
     public LabDevStatusTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
-        super(sql, sql, OUT, labDev);
+        super(sql, sql_additional, OUT, labDev);
         init();
     }
 
