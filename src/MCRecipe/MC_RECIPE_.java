@@ -36,6 +36,7 @@ import forall.JComboBoxValueChangedListener;
 import MCRecipe.Sec.JComboBox_RI_A;
 import MCRecipe.Sec.JComboBox_RI_C;
 import MCRecipe.Sec.JComboBox_TP_A;
+import forall.BackgroundPanel;
 import forall.ErrorOutputListener;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
@@ -44,18 +45,21 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -168,6 +172,20 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         //
         errorOutputListener = new ErrorOutputListener(HelpA_.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
+//        setHomePageBackground();
+        //
+    }
+    
+    private void setHomePageBackground() {
+        //
+        BackgroundPanel bg = (BackgroundPanel) jPanelHome;
+        //
+        try {
+            Image image = ImageIO.read(new File("io/bg.jpg"));
+            bg.go(image);
+        } catch (Exception ex) {
+            // Will set the initial background
+        }
     }
 
     private void initCompany() {
@@ -565,7 +583,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanelHome = new javax.swing.JPanel();
+        jPanelHome = new BackgroundPanel();
         jLabelHomeVersion = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jPanel73 = new javax.swing.JPanel();
@@ -990,13 +1008,15 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
+        jPanelHome.setBackground(null);
+
         jLabelHomeVersion.setText("Version");
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(153, 153, 153));
         jLabel46.setText("MCRecipe");
 
-        jPanel73.setLayout(new java.awt.GridLayout(5, 0, 5, 5));
+        jPanel73.setLayout(new java.awt.GridLayout(5, 0));
 
         jLabel69.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(102, 102, 102));
@@ -1027,6 +1047,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/industry-icon.png"))); // NOI18N
         jButton1.setToolTipText("Admin rights required");
+        jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
