@@ -18,7 +18,6 @@ import static forall.HelpA_.run_application_with_associated_application;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
 import forall.TextFieldCheck;
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ItemEvent;

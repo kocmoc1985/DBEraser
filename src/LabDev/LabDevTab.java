@@ -9,7 +9,6 @@ import MCRecipe.MC_RECIPE_;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.SqlBasicLocal;
 import java.awt.event.KeyEvent;
@@ -33,7 +32,11 @@ public abstract class LabDevTab extends BasicTab {
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        //OBS! IS ENABLED ON DOUBLE CLICK
         enableEditingLongValues(me, ti);
+        //
+        //
     }
 
     @Override
@@ -43,23 +46,29 @@ public abstract class LabDevTab extends BasicTab {
         //
         JLinkInvert jli = (JLinkInvert) ke.getSource();
         //
+        //
+        //AUTOMATIC **SQL** INPUT LENGTH VALIDATION [2020-11-22]
         Validator_MCR.validateMaxInputLengthAutomatic(sql, jli);
+        //
+        //
         //
         if (jli.getValidateDate()) {
             //
             Validator_MCR.validateDate(jli);
             //
-        } else if (jli.getInputLengthValidation() > 0) {
-            //
-            JTextFieldInvert jtf = (JTextFieldInvert) jli;
-            //
-            int inputLength = jtf.getInputLengthValidation();
-            //
-            if (inputLength > 0) {
-                Validator_MCR.validateMaxInputLength(jli, inputLength);
-            }
-            //
-        }
+        } 
+        //Manual input length validation below:
+//        else if (jli.getInputLengthValidation() > 0) {
+//            //
+//            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+//            //
+//            int inputLength = jtf.getInputLengthValidation();
+//            //
+//            if (inputLength > 0) {
+//                Validator_MCR.validateMaxInputLength(jli, inputLength);
+//            }
+//            //
+//        }
         //
     }
 }
