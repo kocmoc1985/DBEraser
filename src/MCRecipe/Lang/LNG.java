@@ -39,7 +39,6 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG = "TEST CONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC = "AGE / VULC";
     public static final String LABDEVELOPMENT_TAB__TAB_NEW = "NEW NEW";
-
     //
     public static String HOME_TAB_DE = "*START";
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
@@ -61,7 +60,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE = "PRÜFDEFINITIONEN";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE = "PRÜFKONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE = "ALTERUNG / VULC";
-    public static final String LABDEVELOPMENT_TAB__TAB_NEW_DE = "NEW NEW";
+    public static final String LABDEVELOPMENT_TAB__TAB_NEW_DE = "NEUE NEUE";
 
     public static void GO(JTabbedPane jtp, JTabbedPane jtp_lab_dev) {
         TAB_NAMES_GENERAL(jtp);
