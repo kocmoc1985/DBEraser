@@ -2516,7 +2516,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addContainerGap(700, Short.MAX_VALUE))
         );
 
-        jTabbedPane3_Lab_Dev.addTab("NEW", jPanel72);
+        jTabbedPane3_Lab_Dev.addTab("NEW NEW", jPanel72);
 
         jPanel_lab_dev_header.setLayout(new java.awt.GridLayout(2, 1));
 

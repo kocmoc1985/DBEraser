@@ -80,6 +80,8 @@ public class LabDevNew extends LabDevTab implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //
+        System.out.println("");
+        //
         if (e.getSource().equals(getSaveBtnTableInvert1())) {
             saveTableInvert_1();
         }
