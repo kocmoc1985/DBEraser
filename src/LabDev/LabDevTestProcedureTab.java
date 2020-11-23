@@ -64,9 +64,13 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     
     private void fillJTable(){
         //
-        String q = "SELECT * FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
+        JTable table = getTable();
         //
-        HelpA_.build_table_common(sql, OUT, getTable(), q, new String[]{});
+        String q = "SELECT CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
+        //
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{});
+        //
+        HelpA_.setColumnWidthByName("TESTVAR",table , 0.25);
     }
     
     private void fillComboBox() {
