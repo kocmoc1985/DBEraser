@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -25,9 +27,10 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener {
+public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener,MouseListener {
 
     private String CODE;
+    private String ID_PROC;
     
     public LabDevTestProcedureTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -40,6 +43,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         getSaveBtnTableInvert1().addActionListener(this);
         getComboBox().addItemListener(this);
+        getTable().addMouseListener(this);
         //
         fillComboBox();
         //
@@ -48,6 +52,10 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     public void refresh() {
         showTableInvert();
+    }
+    
+    public String getCurrentId(){
+        return ID_PROC;
     }
 
     private JButton getSaveBtnTableInvert1() {
@@ -66,9 +74,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         //
-        String q = "SELECT CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
+        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc"});
         //
         HelpA_.setColumnWidthByName("TESTVAR",table , 0.25);
     }
@@ -153,6 +161,35 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             //
         }
         //
+    }
+    
+      @Override
+    public void mousePressed(MouseEvent e) {
+        //
+        JTable table = getTable();
+        //
+        if(e.getSource() == table && e.getClickCount() == 1){
+            ID_PROC = HelpA_.getValueSelectedRow(table, "ID_Proc");
+            System.out.println("CURRENT ID = " + ID_PROC);
+            labDev.refreshHeader();
+        }
+        //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

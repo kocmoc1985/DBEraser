@@ -91,7 +91,7 @@ public class LabDevHeaderComponent implements ItemListener {
         showTestDefTab();
         updateGraphics();
     }
-    
+
     public void tab_test_config() {
         clear();
 //        showOrderNo_only();
@@ -99,18 +99,19 @@ public class LabDevHeaderComponent implements ItemListener {
         showTestConfigTab();
         updateGraphics();
     }
-    
-    public void tab_age_vulc(){
+
+    public void tab_age_vulc() {
         clear();
 //        showStandard(false);
         updateGraphics();
     }
-    
-     public void tab_new(){
+
+    public void tab_new() {
         clear();
+        showStandard(false);
         updateGraphics();
     }
-    
+
     private void showTestConfigTab() {
         //
         JPanel lower = getLower();
@@ -175,7 +176,7 @@ public class LabDevHeaderComponent implements ItemListener {
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo(), false);
         //
         //
-        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG),statusJComboEnabled);
+        buildJLabelJComboComponent(upper, LAB_DEV.LBL_2(), LAB_DEV__STATUS.getLabDevStatusesAuto(LNG.LANG_ENG), statusJComboEnabled);
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_5(), labDev.getUpdatedOn(), false);
         //
@@ -194,7 +195,7 @@ public class LabDevHeaderComponent implements ItemListener {
         JTextField val = new JTextField(jTextFieldVal);
         val.setEditable(false);
         //
-        if(toolTip == true){
+        if (toolTip == true) {
             val.setToolTipText(jTextFieldVal);
         }
         //

@@ -1520,6 +1520,11 @@ public class SQL_A {
                 quotes(param10, false), quotes(param11, false));
         return q;
     }
+    
+    
+    public static String lab_dev__test_proc(String UpdatedOnORBy,String tableName,String id){
+        return "SELECT " + UpdatedOnORBy + " FROM " + tableName + " WHERE ID_Proc=" + id;
+    }
 
 //    public static void main(String[] args) {
 //        //
