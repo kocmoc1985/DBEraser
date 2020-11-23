@@ -5,12 +5,16 @@
  */
 package LabDev;
 
+import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import MCRecipe.Lang.MSG;
+import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
+import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
+import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
@@ -19,6 +23,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -27,11 +34,12 @@ import javax.swing.JTable;
  *
  * @author MCREMOTE
  */
-public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener,MouseListener {
+public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
 
     private String CODE;
     private String ID_PROC;
-    
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
+
     public LabDevTestProcedureTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
@@ -39,38 +47,45 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     private void init() {
         //
+        JTable table = getTable();
+        //
         initializeSaveIndicators();
         //
         getSaveBtnTableInvert1().addActionListener(this);
         getComboBox().addItemListener(this);
-        getTable().addMouseListener(this);
+        table.addMouseListener(this);
         //
         fillComboBox();
         //
-        refresh();
+//        HelpA_.markFirstRowJtable(table);
+//        mouseClickedOnTable(table);
+        //
     }
 
     public void refresh() {
-        showTableInvert();
+        java.awt.EventQueue.invokeLater(() -> {
+            showTableInvert();
+            labDev.refreshHeader();
+        });
     }
-    
-    public String getCurrentId(){
+
+    public String getCurrentId() {
         return ID_PROC;
     }
 
     private JButton getSaveBtnTableInvert1() {
         return mcRecipe.jButton__lab__dev__new;
     }
-    
-    private JComboBox getComboBox(){
+
+    private JComboBox getComboBox() {
         return mcRecipe.jComboBox_lab_dev_test_proc;
     }
-    
-    private JTable getTable(){
+
+    private JTable getTable() {
         return mcRecipe.jTable_lab_dev__test_proc;
     }
-    
-    private void fillJTable(){
+
+    private void fillJTable() {
         //
         JTable table = getTable();
         //
@@ -78,9 +93,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc"});
         //
-        HelpA_.setColumnWidthByName("TESTVAR",table , 0.25);
+        HelpA_.setColumnWidthByName("TESTVAR", table, 0.25);
     }
-    
+
     private void fillComboBox() {
         //
         String q = "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
@@ -95,13 +110,72 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-        
-        return null;
+//       [CODE]
+//      ,[DESCRIPT]
+//      ,[NUM]
+//      ,[NORM]
+//      ,[STATUS]
+//      ,[CLASS]
+//      ,[GROUP]
+//      ,[TESTVAR]
+//      ,[REPORT]
+//      ,[VERSION]
+//      ,[NOTE]
+//      ,[UpdatedOn]
+//      ,[UpdatedBy]
+//      ,[TName]
+//      ,[TMin]
+//      ,[TMax]
+//      ,[TUnit]
+//      ,[TDigit]
+//      ,[ID_Proc]
+        //
+        RowDataInvert code = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "CODE", T_INV.LANG("CODE"), "", true, true, false);
+        code.setUneditable();
+        RowDataInvert descr = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "DESCRIPT", T_INV.LANG("DESCRIPTION"), "", true, true, false);
+        RowDataInvert num = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NUM", T_INV.LANG("NUM"), "", true, true, false);
+        RowDataInvert norm = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NORM", T_INV.LANG("NORM"), "", true, true, false);
+        RowDataInvert status = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "STATUS", T_INV.LANG("STATUS"), "", true, true, false);
+        RowDataInvert class_ = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "CLASS", T_INV.LANG("CLASS"), "", true, true, false);
+        RowDataInvert group = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "GROUP", T_INV.LANG("GROUP"), "", true, true, false);
+        RowDataInvert report = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "REPORT", T_INV.LANG("REPORT"), "", true, true, false);
+        RowDataInvert version = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);
+        RowDataInvert note = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
+        //
+        RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        testvar.setUneditable();
+        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("T NAME"), "", true, true, false);
+        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("T MIN"), "", true, true, false);
+        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("T MAX"), "", true, true, false);
+        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("T UNIT"), "", true, true, false);
+        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("T TDigit"), "", true, true, false);
+        //
+        RowDataInvert[] rows = {code, descr, num, norm, status, class_, group,
+             report, version, note, testvar,tname, tmin, tmax, tunit, tdigit};
+        //
+        return rows;
     }
 
     @Override
     public void showTableInvert() {
-        
+        //
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "lab_dev__test_proc");
+        //
+        TABLE_INVERT = null;
+        //
+        String id = getCurrentId();
+        //
+        try {
+            String q = "SELECT * FROM MCCPTProc where ID_Proc=" + id;
+            OUT.showMessage(q);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            TABLE_BUILDER_INVERT.showMessage(ex.toString());
+        }
+        //
+        showTableInvert(mcRecipe.jPanel75);
+        //
     }
 
     @Override
@@ -146,6 +220,8 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     @Override
     public void itemStateChanged(ItemEvent e) {
         //
+        JTable table = getTable();
+        //
         if (e.getStateChange() != 1) {
             return;
         }
@@ -158,21 +234,31 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             this.CODE = value;
             //
             fillJTable();
+            HelpA_.markFirstRowJtable(table);
+            mouseClickedOnTable(table);
             //
         }
         //
     }
-    
-      @Override
+
+    @Override
     public void mousePressed(MouseEvent e) {
         //
         JTable table = getTable();
         //
-        if(e.getSource() == table && e.getClickCount() == 1){
-            ID_PROC = HelpA_.getValueSelectedRow(table, "ID_Proc");
-            System.out.println("CURRENT ID = " + ID_PROC);
-            labDev.refreshHeader();
+        if (e.getSource() == table && e.getClickCount() == 1) {
+            //
+            mouseClickedOnTable(table);
+            //
         }
+        //
+    }
+
+    private void mouseClickedOnTable(JTable table) {
+        //
+        ID_PROC = HelpA_.getValueSelectedRow(table, "ID_Proc");
+        //
+        refresh();
         //
     }
 

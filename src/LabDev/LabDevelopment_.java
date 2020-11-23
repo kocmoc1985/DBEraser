@@ -304,8 +304,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             labDevNew.refresh();
         }
         //
-        refreshHeader();
-        //
     }
 
     public void lab_dev_tab_age_vulc__clicked() {
