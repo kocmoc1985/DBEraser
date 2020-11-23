@@ -783,7 +783,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jButton_lab_dev_vulc__delete = new javax.swing.JButton();
         jPanel72 = new javax.swing.JPanel();
         jButton__lab__dev__new = new javax.swing.JButton();
-        jComboBox_lab_dev_test_proc = new javax.swing.JComboBox<>();
+        jComboBox_lab_dev_test_proc = new JComboBoxA();
         jScrollPane28 = new javax.swing.JScrollPane();
         jTable_lab_dev__test_proc = new javax.swing.JTable();
         jPanel75 = new javax.swing.JPanel();

@@ -5,7 +5,9 @@
  */
 package LabDev;
 
+import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import MCRecipe.Lang.MSG;
+import MCRecipe.SQL_A;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
@@ -17,6 +19,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
 
 /**
  *
@@ -44,7 +47,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     }
 
     public void refresh() {
-
+        showTableInvert();
     }
 
     private JButton getSaveBtnTableInvert1() {
@@ -55,9 +58,20 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return mcRecipe.jComboBox_lab_dev_test_proc;
     }
     
+    private JTable getTable(){
+        return mcRecipe.jTable_lab_dev__test_proc;
+    }
+    
+    private void fillJTable(){
+        //
+        String q = "SELECT * FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
+        //
+        HelpA_.build_table_common(sql, OUT, getTable(), q, new String[]{});
+    }
+    
     private void fillComboBox() {
         //
-        String q = "select DISTINCT CODE from " + LabDevelopment_.TABLE__TEST_PROCEDURE;
+        String q = "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
         HelpA_.fillComboBox(sql, getComboBox(), q, null, false, false);
         //
     }
@@ -131,7 +145,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             //
             this.CODE = value;
             //
-            showTableInvert();
+            fillJTable();
             //
         }
         //
