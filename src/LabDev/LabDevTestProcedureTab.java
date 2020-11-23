@@ -13,15 +13,20 @@ import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author MCREMOTE
  */
-public class LabDevNew extends LabDevTab implements ActionListener {
+public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener {
 
-    public LabDevNew(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    private String CODE;
+    
+    public LabDevTestProcedureTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
@@ -31,6 +36,9 @@ public class LabDevNew extends LabDevTab implements ActionListener {
         initializeSaveIndicators();
         //
         getSaveBtnTableInvert1().addActionListener(this);
+        getComboBox().addItemListener(this);
+        //
+        fillComboBox();
         //
         refresh();
     }
@@ -42,6 +50,17 @@ public class LabDevNew extends LabDevTab implements ActionListener {
     private JButton getSaveBtnTableInvert1() {
         return mcRecipe.jButton__lab__dev__new;
     }
+    
+    private JComboBox getComboBox(){
+        return mcRecipe.jComboBox_lab_dev_test_proc;
+    }
+    
+    private void fillComboBox() {
+        //
+        String q = "select DISTINCT CODE from " + LabDevelopment_.TABLE__TEST_PROCEDURE;
+        HelpA_.fillComboBox(sql, getComboBox(), q, null, false, false);
+        //
+    }
 
     @Override
     public void fillNotes() {
@@ -50,12 +69,13 @@ public class LabDevNew extends LabDevTab implements ActionListener {
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        return null;
     }
 
     @Override
     public void showTableInvert() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -80,15 +100,13 @@ public class LabDevNew extends LabDevTab implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //
-        System.out.println("");
-        //
         if (e.getSource().equals(getSaveBtnTableInvert1())) {
-            saveTableInvert_1();
+            saveTableInvert();
         }
         //
     }
 
-    private void saveTableInvert_1() {
+    private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
             HelpA_.showNotification(MSG.MSG_3());
@@ -96,6 +114,26 @@ public class LabDevNew extends LabDevTab implements ActionListener {
         }
         //
         saveChangesTableInvert(TABLE_INVERT);
+        //
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        //
+        if (e.getStateChange() != 1) {
+            return;
+        }
+        //
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
+        String value = cbo.getParamAuto();
+        //  
+        if (e.getSource().equals(getComboBox())) {
+            //
+            this.CODE = value;
+            //
+            showTableInvert();
+            //
+        }
         //
     }
 

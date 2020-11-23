@@ -30,7 +30,7 @@ import java.util.logging.Logger;
  *
  * @author mcab
  */
-public class TableBuilderInvert_ {
+public class TableBuilderInvert {
 
     private final SqlBasicLocal sql;
     private final RowDataInvert[] CONFIG;
@@ -38,7 +38,7 @@ public class TableBuilderInvert_ {
     private final ShowMessage SM;
     private final String TABLE_NAME;
 
-    public TableBuilderInvert_(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
+    public TableBuilderInvert(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
         this.sql = sql;
         this.SM = sm;
         this.CONFIG = config;
@@ -186,7 +186,7 @@ public class TableBuilderInvert_ {
                         value = rs.getString(orig_field_name);
                     } catch (Exception ex2) {
                         //OBS! Shall attention shall be payed to this [2020-10-05]
-                        Logger.getLogger(TableBuilderInvert_.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(TableBuilderInvert.class.getName()).log(Level.SEVERE, null, ex);
                         value = null;
                     }
                 }
@@ -282,7 +282,7 @@ public class TableBuilderInvert_ {
                     value = rs.getString(orig_field_name);
                 } catch (Exception ex2) {
                     //OBS! Shall attention shall be payed to this [2020-10-05]
-                    Logger.getLogger(TableBuilderInvert_.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TableBuilderInvert.class.getName()).log(Level.SEVERE, null, ex);
                     value = null;
                 }
             }
@@ -370,7 +370,7 @@ public class TableBuilderInvert_ {
                     value = rs.getString(orig_field_name);
                 } catch (Exception ex2) {
                     //OBS! Shall attention shall be payed to this [2020-10-05]
-                    Logger.getLogger(TableBuilderInvert_.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TableBuilderInvert.class.getName()).log(Level.SEVERE, null, ex);
                     value = null;
                 }
             }

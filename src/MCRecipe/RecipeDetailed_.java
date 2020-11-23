@@ -18,7 +18,7 @@ import static MCRecipe.RecipeInitial.T1_STATUS;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTable.SaveIndicator;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HTMLPrint;
 import forall.HelpA_;
@@ -55,7 +55,7 @@ public class RecipeDetailed_ extends BasicTab {
     protected LinkedList<Integer> unsavedChanges_table4 = new LinkedList<Integer>();//This should contain the "Id" of the row
     protected LinkedList<Integer> insertedMaterials_table4 = new LinkedList<Integer>();//This should contain the "Id" of the row
     protected LinkedList<Integer> addedRows_table_2 = new LinkedList<Integer>();
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
     private LinkedList<IngredientToDelete> ingredientsToDelete_table_4 = new LinkedList<IngredientToDelete>();
     //
     public static final String t4_id = "Id";
@@ -1251,7 +1251,7 @@ public class RecipeDetailed_ extends BasicTab {
 //        }
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "recipe_detailed_1");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "recipe_detailed_1");
         //
         TABLE_INVERT = null;
         //

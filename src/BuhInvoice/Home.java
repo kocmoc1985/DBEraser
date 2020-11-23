@@ -9,7 +9,7 @@ import BuhInvoice.sec.LANG;
 import MyObjectTable.OutPut;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA_;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -331,7 +331,7 @@ public class Home extends Basic_Buh {
     @Override
     public void showTableInvert() {
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "login");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "login");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -346,7 +346,7 @@ public class Home extends Basic_Buh {
      */
     public void showTableInvert_2() {
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -361,7 +361,7 @@ public class Home extends Basic_Buh {
      */
     public void showTableInvert_3() {
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "restore");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "restore");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
@@ -374,7 +374,7 @@ public class Home extends Basic_Buh {
     public void showTableInvert_4() {
         //
         // Yes, it's correct that "getConfigTableInvert_3()" is used
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
         TABLE_INVERT_4 = null;
         TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);

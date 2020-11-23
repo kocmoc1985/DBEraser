@@ -63,20 +63,19 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
     }
 
-    
     /**
-     * [2020-11-21]
-     * This value brings an JOptionPane when double clicking on a JTextFieldInvert
-     * Shall be called from: "mouseClickedForward(...)"
+     * [2020-11-21] This value brings an JOptionPane when double clicking on a
+     * JTextFieldInvert Shall be called from: "mouseClickedForward(...)"
+     *
      * @param me
-     * @param ti 
+     * @param ti
      */
     public void enableEditingLongValues(MouseEvent me, TableInvert ti) {
         //
         if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
             //
             JLinkInvert jli = (JLinkInvert) me.getSource();
-            TableRowInvert_ tri = jli.getParentObj();
+            TableRowInvert tri = jli.getParentObj();
             RowDataInvert rdi = tri.getRowConfig();
             //
             if (rdi.isEditable() == false) {
@@ -545,29 +544,27 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     /**
      * OBS! Works in "connection" with TableBuilderInvert -> buildTable_C_C(...)
      */
-    public void saveChangesTableInvert_C_C(SqlBasicLocal sql) {
+    public void saveChangesTableInvert_C_C(TableInvert ti) {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
             HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
-        TableInvert ti = (TableInvert) TABLE_INVERT;
+        TableInvert ti_ = (TableInvert) ti;
         //
-        autoSaveUpdadetOnBy_C_C(sql);
+        autoSaveUpdadetOnBy_C_C(ti_);
         //
-        ti.applyChanges();
+        ti_.applyChanges();
         //
     }
 
-    private void autoSaveUpdadetOnBy_C_C(SqlBasicLocal sql) {
+    private void autoSaveUpdadetOnBy_C_C(TableInvert ti) {
         //
         HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = TABLE_INVERT.unsaved_entries_map;
         ///
         Set set = unsaved_entries_map.keySet();
         Iterator it = set.iterator();
-        //
-        Sql_B sql_b = (Sql_B) sql;
         //
         while (it.hasNext()) {
             //
@@ -578,23 +575,24 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             String idColName = unsavedEntryInvert.getPrimareyOrForeignKeyName();
             String id = unsavedEntryInvert.getDbID();
             //
-//            String q = "UPDATE " + tableName + " SET UpdatedOn='" + HelpA_.updatedOn() + "' WHERE " + idColName + "=" + id;
-//            System.out.println("---------------> "+q);
-            String q_2 = "UPDATE " + tableName + " SET UpdatedBy='" + HelpA_.updatedBy() + "' WHERE " + idColName + "=" + id;
+            ti.updateFieldString(
+                    tableName,
+                    "UpdatedOn",
+                    HelpA_.updatedOn(),
+                    idColName,
+                    id,
+                    true,
+                    true);
             //
-            try {
-//                sql_b.getStatement().addBatch(q);
-                sql_b.getStatement().addBatch(q_2);
-            } catch (SQLException ex) {
-                Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ti.updateFieldString(
+                    tableName,
+                    "UpdatedBy",
+                    HelpA_.updatedBy(),
+                    idColName,
+                    id,
+                    true,
+                    true);
             //
-        }
-        //
-        try {
-            sql_b.getStatement().executeBatch();
-        } catch (SQLException ex) {
-            Logger.getLogger(Basic.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -948,10 +946,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
-     * if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
-     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
-     * }
+ if (MC_RECIPE_.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+ toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+ return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+ }
      *
      * @param arr
      * @param columnsToRemove

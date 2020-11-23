@@ -20,7 +20,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
@@ -40,18 +40,19 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public class LabDevelopment_ extends LabDevTab implements MouseListener {
+public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
     public static String TABLE__AGEMENT = "MC_CPAGEMET";
     public static String TABLE__VULC = "MC_CPVULMET";
+    public static String TABLE__TEST_PROCEDURE = "MCCPTproc";
     
     public static String TABLE_NOTES_1 = "MC_Cpworder_SendTo";
     public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";
     
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_6;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_6;
     private Table TABLE_INVERT_6;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
@@ -60,7 +61,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
     public LabDevStatusTab labDevStatusTab;
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
     public LabDevAgeVulcTab labDevAgeVulcTab;
-    public LabDevNew labDevNew; 
+    public LabDevTestProcedureTab labDevNew; 
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
@@ -273,7 +274,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
         refreshHeader();
         //
         if(labDevNew == null){
-            labDevNew = new LabDevNew(sql, sql_additional, OUT, labDev);
+            labDevNew = new LabDevTestProcedureTab(sql, sql_additional, OUT, labDev);
         }else{
             labDevNew.refresh();
         }
@@ -465,7 +466,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
     @Override
     public void showTableInvert() {
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "lab_development");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "lab_development");
         //
         TABLE_INVERT = null;
         //
@@ -524,7 +525,7 @@ public class LabDevelopment_ extends LabDevTab implements MouseListener {
      */
     public void showTableInvert_6() {
         //
-        TABLE_BUILDER_INVERT_6 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_6(), false, "lab_development_6");
+        TABLE_BUILDER_INVERT_6 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_6(), false, "lab_development_6");
         //
         TABLE_INVERT_6 = null;
         //

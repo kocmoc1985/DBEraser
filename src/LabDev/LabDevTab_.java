@@ -18,12 +18,12 @@ import java.awt.event.MouseEvent;
  *
  * @author KOCMOC
  */
-public abstract class LabDevTab extends BasicTab {
+public abstract class LabDevTab_ extends BasicTab {
 
     protected final MC_RECIPE_ mcRecipe;
     protected final LabDevelopment_ labDev;
 
-    public LabDevTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    public LabDevTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT);
         this.mcRecipe = (MC_RECIPE_) OUT;
         this.labDev = labDev;

@@ -10,7 +10,7 @@ import MyObjectTable.OutPut;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import java.awt.Color;
@@ -342,7 +342,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
 
             @Override
             public void showTableInvert() {
-                TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "");
+                TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
                 TABLE_INVERT = null;
                 TABLE_INVERT = tableBuilder.buildTable_B(this);
                 setMargin(TABLE_INVERT, 5, 0, 5, 0);

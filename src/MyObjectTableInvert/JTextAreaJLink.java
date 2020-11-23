@@ -26,11 +26,11 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert {
     }
 
     @Override
-    public void setParentObj(TableRowInvert_ rdi) {
+    public void setParentObj(TableRowInvert rdi) {
     }
 
     @Override
-    public TableRowInvert_ getParentObj() {
+    public TableRowInvert getParentObj() {
         return null;
     }
 

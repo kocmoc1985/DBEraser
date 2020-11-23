@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab extends LabDevTab implements MouseListener {
+public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener {
     
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();

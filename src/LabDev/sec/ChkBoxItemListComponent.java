@@ -5,7 +5,7 @@
  */
 package LabDev.sec;
 
-import LabDev.LabDevTab;
+import LabDev.LabDevTab_;
 import LabDev.LabDevelopment_;
 import LabDev.sec.JPanelPrepM_C;
 import LabDev.sec.JPanelPrepM;
@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  *
  * @author KOCMOC
  */
-public abstract class ChkBoxItemListComponent extends LabDevTab {
+public abstract class ChkBoxItemListComponent extends LabDevTab_ {
 
     public static final int HEIGHT = 35;
 

@@ -14,7 +14,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.SQLException;
@@ -25,12 +25,12 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class LabDevStatusTab extends LabDevTab {
+public class LabDevStatusTab extends LabDevTab_ {
 
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_5;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_2;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_3;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_4;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_5;
     private Table TABLE_INVERT_2;
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
@@ -115,7 +115,7 @@ public class LabDevStatusTab extends LabDevTab {
      */
     public void showTableInvert_2() {
         //
-        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_2(), false, "lab_development_2");
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_2(), false, "lab_development_2");
         //
         TABLE_INVERT_2 = null;
         //
@@ -169,7 +169,7 @@ public class LabDevStatusTab extends LabDevTab {
      */
     public void showTableInvert_3() {
         //
-        TABLE_BUILDER_INVERT_3 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_3(), false, "lab_development_3");
+        TABLE_BUILDER_INVERT_3 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_3(), false, "lab_development_3");
         //
         TABLE_INVERT_3 = null;
         //
@@ -229,7 +229,7 @@ public class LabDevStatusTab extends LabDevTab {
      */
     public void showTableInvert_4() {
         //
-        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_4(), false, "lab_development_4");
+        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_4(), false, "lab_development_4");
         //
         TABLE_INVERT_4 = null;
         //
@@ -283,7 +283,7 @@ public class LabDevStatusTab extends LabDevTab {
      */
     public void showTableInvert_5() {
         //
-        TABLE_BUILDER_INVERT_5 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_5(), false, "lab_development_5");
+        TABLE_BUILDER_INVERT_5 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_5(), false, "lab_development_5");
         //
         TABLE_INVERT_5 = null;
         //

@@ -35,11 +35,11 @@ import javax.swing.JTextField;
  *
  * @author mcab
  */
-public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
+public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
 
     private HeaderInvert headerInvert;
 
-    public TableRowInvert_(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
+    public TableRowInvert(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
         gridLayoutFix();
     }
@@ -330,8 +330,8 @@ public class TableRowInvert_ extends TableRow implements KeyListener, MouseWheel
 //            System.out.println("value:" + jtf.getText());
             //
             //
-//            TableRowInvert_ tri = (TableRowInvert_) ti.row___col_object__map.get(field);
-            TableRowInvert_ tri = ti.getTableRowInvertByComponent(field);
+//            TableRowInvert tri = (TableRowInvert) ti.row___col_object__map.get(field);
+            TableRowInvert tri = ti.getTableRowInvertByComponent(field);
             RowDataInvert rcdi = tri.getRowConfig();
 //            RowDataInvert rcdi_2 = ti.getRowConfig(1);
             //

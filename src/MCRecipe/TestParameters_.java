@@ -9,7 +9,7 @@ import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
 import forall.HelpA_;
 import forall.JComboBoxA;
@@ -29,7 +29,7 @@ import mySwing.JTableM;
 public class TestParameters_ extends BasicTab {
 
     private final MC_RECIPE_ mCRecipe;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
     private final JTableM jTable_1;
 
     public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mCRecipe) {
@@ -220,7 +220,7 @@ public class TestParameters_ extends BasicTab {
     public void showTableInvert() {
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "test_parameters_table");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "test_parameters_table");
         //
         TABLE_INVERT = null;
         //

@@ -11,7 +11,7 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import java.awt.event.KeyEvent;
@@ -296,7 +296,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         SET_CURRENT_OPERATION_INSERT(true);
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -311,7 +311,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         SET_CURRENT_OPERATION_INSERT(false);
         //
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_2(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -324,7 +324,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
      * UPDATE
      */
     public void showTableInvert_3() {
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_3(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
@@ -336,7 +336,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
      * INSERT
      */
     public void showTableInvert_4() {
-        TableBuilderInvert_ tableBuilder = new TableBuilderInvert_(new OutPut(), null, getConfigTableInvert_4(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "");
         TABLE_INVERT_4 = null;
         TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);

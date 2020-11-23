@@ -16,7 +16,8 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.TableRow;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ import javax.swing.JPanel;
  */
 public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
     
     public LabDevTestConfigTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -199,7 +200,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     @Override
     public void showTableInvert() {
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), true, "lab_dev_test_config");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), true, "lab_dev_test_config");
         //
         TABLE_INVERT = null;
         //
@@ -280,7 +281,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     
     public void saveTableInvert() {
         //
-        saveChangesTableInvert_C_C(sql);
+        saveChangesTableInvert_C_C((TableInvert)TABLE_INVERT);
         //
         labDev.refreshHeader();
     }

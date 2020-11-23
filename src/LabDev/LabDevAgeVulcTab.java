@@ -15,12 +15,9 @@ import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
-import MyObjectTableInvert.TableRowInvert_;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
@@ -40,11 +37,11 @@ import javax.swing.JComboBox;
  *
  * @author KOCMOC
  */
-public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionListener {
+public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, ActionListener {
 
     private Table TABLE_INVERT_2;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_2;
     private String AGE_CODE;
     private String VULC_CODE;
     private boolean SKIP__ITEM__STATE__CHANGED_EVT = false;
@@ -175,7 +172,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
     @Override
     public void showTableInvert() {
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), false, "lab_dev_aging");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), false, "lab_dev_aging");
         //
         TABLE_INVERT = null;
         //
@@ -221,7 +218,7 @@ public class LabDevAgeVulcTab extends LabDevTab implements ItemListener, ActionL
 
     public void showTableInvert_2() {
         //
-        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert_2(), false, "lab_dev_vulc");
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_2(), false, "lab_dev_vulc");
         //
         TABLE_INVERT_2 = null;
         //

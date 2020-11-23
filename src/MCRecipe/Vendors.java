@@ -8,7 +8,7 @@ import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import MyObjectTableInvert.TableBuilderInvert_;
+import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import MyObjectTableInvert.TableInvert;
@@ -29,17 +29,17 @@ import javax.swing.JTextField;
  */
 public class Vendors extends BasicTab {
 
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT;
+    private TableBuilderInvert TABLE_BUILDER_INVERT;
     public Table TABLE_INVERT_2;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_2;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_2;
     public Table TABLE_INVERT_3;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_3;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_3;
     public Table TABLE_INVERT_3_2;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_3_2;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_3_2;
     public Table TABLE_INVERT_4;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_4;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_4;
     public Table TABLE_INVERT_4_2;
-    private TableBuilderInvert_ TABLE_BUILDER_INVERT_4_2;
+    private TableBuilderInvert TABLE_BUILDER_INVERT_4_2;
     private final MC_RECIPE_ mCRecipe;
     public int currentVendorId = -1;
     private String currentTradeNameId = "";
@@ -371,7 +371,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        TABLE_BUILDER_INVERT_4_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert4_2(), false, "vendors_4_2");
+        TABLE_BUILDER_INVERT_4_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert4_2(), false, "vendors_4_2");
         //
         TABLE_INVERT_4_2 = null;
         //
@@ -398,7 +398,7 @@ public class Vendors extends BasicTab {
         }
         //
         //
-        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert4(), false, "vendors_4");
+        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert(OUT, sql, getConfigTableInvert4(), false, "vendors_4");
         //
         TABLE_INVERT_4 = null;
         //
@@ -769,7 +769,7 @@ public class Vendors extends BasicTab {
 
     public void showTableInvert3_2(String tradename_main_id) {
         //
-        TABLE_BUILDER_INVERT_3_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert3_2(), false, "vendors_3_2");
+        TABLE_BUILDER_INVERT_3_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert3_2(), false, "vendors_3_2");
         //
         TABLE_INVERT_3_2 = null;
         //
@@ -789,7 +789,7 @@ public class Vendors extends BasicTab {
 
     public void showTableInvert3() {
         //
-        TABLE_BUILDER_INVERT_3 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert3(), false, "vendors_3");
+        TABLE_BUILDER_INVERT_3 = new TableBuilderInvert(OUT, sql, getConfigTableInvert3(), false, "vendors_3");
         //
         TABLE_INVERT_3 = null;
         //
@@ -812,7 +812,7 @@ public class Vendors extends BasicTab {
     public void showTableInvert2() {
         //
         //
-        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert_(OUT, sql, getConfigTableInvert2(), false, "vendors_2");
+        TABLE_BUILDER_INVERT_2 = new TableBuilderInvert(OUT, sql, getConfigTableInvert2(), false, "vendors_2");
         //
         TABLE_INVERT_2 = null;
         //
@@ -834,7 +834,7 @@ public class Vendors extends BasicTab {
     public void showTableInvert() {
         //
         //
-        TABLE_BUILDER_INVERT = new TableBuilderInvert_(OUT, sql, getConfigTableInvert(), true, "vendors_1");
+        TABLE_BUILDER_INVERT = new TableBuilderInvert(OUT, sql, getConfigTableInvert(), true, "vendors_1");
         //
         TABLE_INVERT = null;
         //
