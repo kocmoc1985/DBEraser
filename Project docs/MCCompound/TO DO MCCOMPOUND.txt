@@ -4,7 +4,8 @@
 2. Decide where to set "Material"
 
 [FOR PAPS]
-1. SELECT * FROM MCCPTProc where ID_Proc=130 -> See "TMax" column -> it contains 1-char from "TUnit"
+1. SELECT * FROM MCCPTProc where ID_Proc=130 -> See "TMax" column -> it contains 1-char from "TUnit" ->
+This problem exist almost everywhere.
 
 [FOR BOTH]
 

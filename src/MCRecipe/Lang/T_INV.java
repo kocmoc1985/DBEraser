@@ -132,6 +132,7 @@ public class T_INV {
         DICT.put("REPORT", "BERICHT");
         DICT.put("NORM", "NORM");
         DICT.put("TESTVAR", "TEST VARIABEL");
+        DICT.put("NUM", "NUM");
     }
 
     public static String LANG(String word) {

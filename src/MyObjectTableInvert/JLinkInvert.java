@@ -32,7 +32,7 @@ public interface JLinkInvert {
     
     public boolean getValidateDate();
     
-    public int getInputLengthValidation();
+    public int getInputLengthValidationManual();
     
     public void setFieldVarcharLength(int length);
 

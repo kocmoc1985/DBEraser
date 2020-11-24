@@ -137,7 +137,7 @@ public class RowDataInvert extends RowData {
         this.visible = visible;
         this.important = important;
     }
-    
+
     public void setInputLenthValidation(int length) {
         inputLengthValidation = length;
     }

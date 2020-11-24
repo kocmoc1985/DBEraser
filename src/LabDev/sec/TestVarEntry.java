@@ -25,30 +25,15 @@ public class TestVarEntry {
         this.part_5 = part_5.trim();
     }
 
-    /**
-     * @deprecated
-     * @return 
-     */
-    public String buildString___() {
-        return getPart(part_1, true) + getPart(part_2, false) + getPart(part_3, false)
-                + getPart(part_4, false) + getPart(part_5, false);
-    }
-    
     public String buildString() {
-        String format = "%1$-25s %2$-7s %3$-7s %4$-7s \n";
-        String arr[] = {part_1, part_2, part_3,part_4, part_5};
-        System.out.println("");
-        return String.format(format, (Object[]) arr);
+        String format = "%1$-20.20s  %2$-5.5s  %3$-5.5s  %4$-9.9s  %5$-5.5s";
+        String arr[] = {part_1, part_2, part_3, part_4, part_5};
+        String formated = String.format(format, (Object[]) arr);
+        System.out.println("" + formated);
+        System.out.println("LENGTH: " + formated.length() + " ************************************************************************");
+        return formated;
     }
 
-    private String getPart(String part, boolean partOne) {
-        if (part.isEmpty() == false && partOne == false) {
-            return "     " + part; // 5 spaces
-        } else if (part.isEmpty() == false && partOne == true) {
-            return part;
-        } else {
-            return "";
-        }
-    }
+    
 
 }

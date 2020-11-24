@@ -101,7 +101,7 @@ public class JTextFieldInvert extends JTextField implements JLinkInvert {
     }
     
     @Override
-    public int getInputLengthValidation(){
+    public int getInputLengthValidationManual(){
         return validateInputLength;
     }
 

@@ -9,6 +9,7 @@ import MCRecipe.MC_RECIPE;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
+import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.SqlBasicLocal;
 import java.awt.event.KeyEvent;
@@ -57,18 +58,18 @@ public abstract class LabDevTab_ extends BasicTab {
             Validator_MCR.validateDate(jli);
             //
         } 
-        //Manual input length validation below:
-//        else if (jli.getInputLengthValidation() > 0) {
-//            //
-//            JTextFieldInvert jtf = (JTextFieldInvert) jli;
-//            //
-//            int inputLength = jtf.getInputLengthValidation();
-//            //
-//            if (inputLength > 0) {
-//                Validator_MCR.validateMaxInputLength(jli, inputLength);
-//            }
-//            //
-//        }
+        //Manual input length validation below. YES IS USED [2020-11-24]
+        else if (jli.getInputLengthValidationManual() > 0) {
+            //
+            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            //
+            int inputLength = jtf.getInputLengthValidationManual();
+            //
+            if (inputLength > 0) {
+                Validator_MCR.validateMaxInputLength(jli, inputLength);
+            }
+            //
+        }
         //
     }
 }

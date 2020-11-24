@@ -64,7 +64,7 @@ public class JTextAreaJLink extends JTextArea implements JLinkInvert {
     }
 
     @Override
-    public int getInputLengthValidation() {
+    public int getInputLengthValidationManual() {
         return 0;
     }
 

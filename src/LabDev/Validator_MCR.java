@@ -97,21 +97,21 @@ public class Validator_MCR {
             setValidated((JLinkInvert) box);
         }
     }
-    
+
     private static void unsetToolTip(JLinkInvert jli) {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
             jc.setToolTipText(null);
         }
     }
-    
+
     private static void setToolTip(JLinkInvert jli, String message) {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
             jc.setToolTipText(message);
         }
     }
-    
+
     public static boolean validateMaxInputLengthAutomatic(SqlBasicLocal sql, JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -141,13 +141,22 @@ public class Validator_MCR {
                     //
                     length = rs.getInt("character_maximum_length");
                     //
-                    if(length != 0){
-                      jli.setFieldVarcharLength(length);  
+                    if (length != 0) {
+                        jli.setFieldVarcharLength(length);
                     }
                     //
                     if (MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER)) {
-                       String initialText = tri.getHeaderInvert().getHeaderPanelComponent().getToolTipText();
-                       tri.getHeaderInvert().getHeaderPanelComponent().setToolTipText(initialText + " / varchar("+ length + ")");
+                        //
+                        String initialText = tri.getHeaderInvert().getHeaderPanelComponent().getToolTipText();
+                        //
+                        int manualInputLengthValidation = jli.getInputLengthValidationManual();
+                        //
+                        if (manualInputLengthValidation > 0) {
+                            tri.getHeaderInvert().getHeaderPanelComponent().setToolTipText(initialText + " / MANUAL, varchar(" + manualInputLengthValidation + ")");
+                        } else {
+                            tri.getHeaderInvert().getHeaderPanelComponent().setToolTipText(initialText + " / varchar(" + length + ")");
+                        }
+                        //
                     }
                     //
                 }
@@ -178,7 +187,7 @@ public class Validator_MCR {
             return false;
         }
     }
-    
+
     public static boolean validateMaxInputLength(JLinkInvert jli, int length) {
         //
         String val = jli.getValue();
@@ -197,7 +206,7 @@ public class Validator_MCR {
             return false;
         }
     }
-    
+
     public static boolean validatePercentInput(JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -216,14 +225,14 @@ public class Validator_MCR {
         //
         return setNotValidated(jli);
     }
-    
+
     public static void resetValidation(JComponent jc) {
         if (jc instanceof JLinkInvert) {
             JLinkInvert jli = (JLinkInvert) jc;
             setValidated(jli);
         }
     }
-    
+
     private static boolean setValidated(JLinkInvert jli) {
         //
         unsetToolTip(jli);
@@ -235,7 +244,7 @@ public class Validator_MCR {
         jli.setValidated(true);
         return true;
     }
-    
+
     private static boolean setNotValidated(JLinkInvert jli) {
         TableRowInvert tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
@@ -243,7 +252,7 @@ public class Validator_MCR {
         jli.setValidated(false);
         return false;
     }
-    
+
     private static boolean setNotValidated(JLinkInvert jli, Color color) {
         TableRowInvert tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
@@ -280,15 +289,15 @@ public class Validator_MCR {
         }
         //
     }
-    
+
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);
     }
-    
+
     public static boolean validateEmail(JLinkInvert jli) {
         return validate(jli, EMAIL);
     }
-    
+
     public static boolean validate(JLinkInvert jli, Pattern pattern) {
         //
         String val = jli.getValue();
@@ -306,7 +315,7 @@ public class Validator_MCR {
         }
         //
     }
-    
+
     public static boolean validateDate(JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -327,12 +336,12 @@ public class Validator_MCR {
         }
         //
     }
-    
+
     private static boolean validate_(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
         return matcher.matches();
     }
-    
+
     private static Color getJTextFieldInitialColor() {
         JTextField field = new JTextField();
         return field.getForeground();

@@ -13,14 +13,17 @@ import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -93,7 +96,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc"});
         //
-        HelpA_.setColumnWidthByName("TESTVAR", table, 0.25);
+        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
 
     private void fillComboBox() {
@@ -115,12 +118,18 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         code.setUneditable();
         //
         RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
-        testvar.setUneditable();
-        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("PART") + " 1", "", true, true, false);
-        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("PART") + " 2", "", true, true, false);
-        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("PART") + " 3", "", true, true, false);
-        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("PART") + " 4", "", true, true, false);
-        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("PART") + " 5", "", true, true, false);
+        testvar.setDisabled();
+        testvar.enableToolTipTextJTextField();
+        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("PART") + " 1", "", true, true, true);
+        tname.setInputLenthValidation(20);
+        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("PART") + " 2", "", true, true, true);
+        tmin.setInputLenthValidation(5);
+        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("PART") + " 3", "", true, true, true);
+        tmax.setInputLenthValidation(5);
+        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("PART") + " 4", "", true, true, true);
+        tunit.setInputLenthValidation(9);
+        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("PART") + " 5", "", true, true, true);
+        tdigit.setInputLenthValidation(5);
         //
         RowDataInvert descr = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "DESCRIPT", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         RowDataInvert num = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NUM", T_INV.LANG("NUM"), "", true, true, false);
@@ -199,9 +208,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             return;
         }
         //
-        saveTestVar();
-        //
         saveChangesTableInvert(TABLE_INVERT);
+        //
+        saveTestVar();
         //
         JTable table = getTable();
         fillJTable();
@@ -220,9 +229,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         TestVarEntry tve = new TestVarEntry(part1, part2, part3, part4, part5);
         //
         String q = "UPDATE " + TABLE__TEST_PROCEDURE 
-                + " SET TESTVAR=" 
-                + SQL_A.quotes(tve.buildString(), false)
-                + " WHERE ID_Proc=" + getCurrentId();
+                + " SET TESTVAR='" 
+                + tve.buildString()
+                + "' WHERE ID_Proc=" + getCurrentId();
         //
         try {
             sql.execute(q, OUT);
@@ -255,6 +264,28 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         }
         //
     }
+
+    
+
+    @Override
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        // 
+        JLinkInvert jli = (JLinkInvert) me.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(me.getSource());
+        //
+        if(col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax") 
+                || col_name.equals("TUnit") || col_name.equals("TDigit")){
+            System.out.println("Contains*****************************************>>>>>>>>>>>>>>>>>>>>>> " + col_name);
+            trimValueTableInvert(col_name, TABLE_INVERT);
+        }
+        //
+    }
+    
+    
+    
+    
 
     @Override
     public void mousePressed(MouseEvent e) {

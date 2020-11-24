@@ -72,7 +72,7 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
     }
 
     @Override
-    public int getInputLengthValidation() {
+    public int getInputLengthValidationManual() {
         return 0;
     }
     

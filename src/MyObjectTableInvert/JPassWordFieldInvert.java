@@ -80,7 +80,7 @@ public class JPassWordFieldInvert extends JPasswordField implements JLinkInvert{
     }
 
     @Override
-    public int getInputLengthValidation() {
+    public int getInputLengthValidationManual() {
         return 0;
     }
     

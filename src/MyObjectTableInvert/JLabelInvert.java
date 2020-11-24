@@ -67,7 +67,7 @@ public class JLabelInvert extends JLabel implements JLinkInvert {
     }
 
     @Override
-    public int getInputLengthValidation() {
+    public int getInputLengthValidationManual() {
         return 0;
     }
     

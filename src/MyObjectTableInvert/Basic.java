@@ -495,6 +495,11 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         return ti.getValueAtJComboBox(rowName, paramToReturn);
     }
 
+    public void trimValueTableInvert(String rowName, Table tableInvert){
+        String val = getValueTableInvert(rowName, tableInvert).trim();
+        setValueTableInvert(rowName, tableInvert, val);
+    }
+    
     public String getValueTableInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAt(rowName);
