@@ -30,16 +30,6 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB = "LAB DEVELOPMENT";
     public static final String LOG_TAB = "LOG";
     //
-    public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER = "FIND ORDER";
-    public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA = "MAIN DATA";
-    public static final String LABDEVELOPMENT_TAB__TAB_STATUS = "STATUS";
-    public static final String LABDEVELOPMENT_TAB__TAB_NOTES = "NOTES";
-    public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO = "MATERIAL INFO";
-    public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS = "TEST DEFINITIONS";
-    public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG = "TEST CONFIG";
-    public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC = "AGE / VULC";
-    public static final String LABDEVELOPMENT_TAB__TAB_NEW = "NEW NEW";
-    //
     public static String HOME_TAB_DE = "*START";
     public static String RECIPE_INITIAL_TAB_DE = "REZEPT ÜBERSICHT";
     public static String RECIPE_DETAILED_TAB_DE = "REZEPT ERWEITERT";
@@ -52,6 +42,17 @@ public class LNG {
     public static final String TEST_PARAMETERS_TAB_DE = "PRÜFUNGEN";
     public static final String LABDEVELOPMENT_TAB_DE = "LAB ENTWICKLUNG";
     //
+    public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER = "FIND ORDER";
+    public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA = "MAIN DATA";
+    public static final String LABDEVELOPMENT_TAB__TAB_STATUS = "STATUS";
+    public static final String LABDEVELOPMENT_TAB__TAB_NOTES = "NOTES";
+    public static final String LABDEVELOPMENT_TAB__TAB_MATERIALINFO = "MATERIAL INFO";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS = "TEST DEFINITIONS";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG = "TEST CONFIG";
+    public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC = "AGE / VULC";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE = "TEST PROCEDURE";
+    public static final String LABDEVELOPMENT_TAB__TAB_NEW = "NEW";
+    //
     public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE = "AUFTRAG FINDEN";
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE = "KOPFDATEN";
     public static final String LABDEVELOPMENT_TAB__TAB_STATUS_DE = "STATUS";
@@ -60,7 +61,8 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE = "PRÜFDEFINITIONEN";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE = "PRÜFKONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE = "ALTERUNG / VULC";
-    public static final String LABDEVELOPMENT_TAB__TAB_NEW_DE = "NEUE NEUE";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE = "TEST PROZEDUR";
+    public static final String LABDEVELOPMENT_TAB__TAB_NEW_DE = "NEU";
 
     public static void GO(JTabbedPane jtp, JTabbedPane jtp_lab_dev) {
         TAB_NAMES_GENERAL(jtp);
@@ -139,10 +141,33 @@ public class LNG {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_AGE_VULC : LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE;
     }
 
+    public static String LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE() {
+        return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE : LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE;
+    }
+
     public static String LAB_DEVELOPMENT_TAB__TAB_NEW() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_NEW : LABDEVELOPMENT_TAB__TAB_NEW_DE;
     }
-    
+
+    private static void TAB_NAMES_LABDEV(JTabbedPane jtp) {
+        //
+        if (LANG_ENG == false) {
+            //
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_FIND_ORDER, LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MATERIALINFO, LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_AGE_VULC, LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE);
+            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NEW, LABDEVELOPMENT_TAB__TAB_NEW_DE);
+            //
+        }
+        //
+    }
+
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
         if (LANG_ENG == false) {
             HelpA_.changeTabName(jtp, HOME_TAB, HOME_TAB_DE);
@@ -159,24 +184,6 @@ public class LNG {
             //
         }
 
-    }
-
-    private static void TAB_NAMES_LABDEV(JTabbedPane jtp) {
-        //
-        if (LANG_ENG == false) {
-            //
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_FIND_ORDER, LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MATERIALINFO, LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_AGE_VULC, LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NEW, LABDEVELOPMENT_TAB__TAB_NEW_DE);
-            //
-        }
-        //
     }
 
     //=========

@@ -5,8 +5,8 @@
  */
 package LabDev;
 
-import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
+import LabDev.sec.TestVarEntry;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
@@ -110,28 +110,18 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {
-//       [CODE]
-//      ,[DESCRIPT]
-//      ,[NUM]
-//      ,[NORM]
-//      ,[STATUS]
-//      ,[CLASS]
-//      ,[GROUP]
-//      ,[TESTVAR]
-//      ,[REPORT]
-//      ,[VERSION]
-//      ,[NOTE]
-//      ,[UpdatedOn]
-//      ,[UpdatedBy]
-//      ,[TName]
-//      ,[TMin]
-//      ,[TMax]
-//      ,[TUnit]
-//      ,[TDigit]
-//      ,[ID_Proc]
         //
         RowDataInvert code = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "CODE", T_INV.LANG("CODE"), "", true, true, false);
         code.setUneditable();
+        //
+        RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        testvar.setUneditable();
+        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("PART") + " 1", "", true, true, false);
+        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("PART") + " 2", "", true, true, false);
+        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("PART") + " 3", "", true, true, false);
+        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("PART") + " 4", "", true, true, false);
+        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("PART") + " 5", "", true, true, false);
+        //
         RowDataInvert descr = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "DESCRIPT", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         RowDataInvert num = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NUM", T_INV.LANG("NUM"), "", true, true, false);
         RowDataInvert norm = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NORM", T_INV.LANG("NORM"), "", true, true, false);
@@ -142,16 +132,10 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         RowDataInvert version = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);
         RowDataInvert note = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
         //
-        RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
-        testvar.setUneditable();
-        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("T NAME"), "", true, true, false);
-        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("T MIN"), "", true, true, false);
-        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("T MAX"), "", true, true, false);
-        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("T UNIT"), "", true, true, false);
-        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("T TDigit"), "", true, true, false);
         //
-        RowDataInvert[] rows = {code, descr, num, norm, status, class_, group,
-             report, version, note, testvar,tname, tmin, tmax, tunit, tdigit};
+        RowDataInvert[] rows = {code, testvar, tname, tmin, tmax, tunit, tdigit, descr, num, norm, status, class_, group,
+            report, version, note
+        };
         //
         return rows;
     }
@@ -169,8 +153,10 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             String q = "SELECT * FROM MCCPTProc where ID_Proc=" + id;
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
+
         } catch (SQLException ex) {
-            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestParameters_.class
+                    .getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
         //
@@ -213,7 +199,36 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             return;
         }
         //
+        saveTestVar();
+        //
         saveChangesTableInvert(TABLE_INVERT);
+        //
+        JTable table = getTable();
+        fillJTable();
+        HelpA_.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
+    }
+
+    private void saveTestVar() {
+        //
+        String part1 = getValueTableInvert("TName");
+        String part2 = getValueTableInvert("TMin");
+        String part3 = getValueTableInvert("TMax");
+        String part4 = getValueTableInvert("TUnit");
+        String part5 = getValueTableInvert("TDigit");
+        //
+        TestVarEntry tve = new TestVarEntry(part1, part2, part3, part4, part5);
+        //
+        String q = "UPDATE " + TABLE__TEST_PROCEDURE 
+                + " SET TESTVAR=" 
+                + SQL_A.quotes(tve.buildString(), false)
+                + " WHERE ID_Proc=" + getCurrentId();
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestProcedureTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 

@@ -8,7 +8,7 @@ package LabDev;
 import BuhInvoice.*;
 import BuhInvoice.sec.LANG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
@@ -145,7 +145,7 @@ public class Validator_MCR {
                       jli.setFieldVarcharLength(length);  
                     }
                     //
-                    if (MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER)) {
+                    if (MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER)) {
                        String initialText = tri.getHeaderInvert().getHeaderPanelComponent().getToolTipText();
                        tri.getHeaderInvert().getHeaderPanelComponent().setToolTipText(initialText + " / varchar("+ length + ")");
                     }
