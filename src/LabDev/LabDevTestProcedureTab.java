@@ -53,7 +53,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         initializeSaveIndicators();
         //
-        getSaveBtnTableInvert1().addActionListener(this);
+        getSaveBtn().addActionListener(this);
         getComboBox().addItemListener(this);
         table.addMouseListener(this);
         //
@@ -75,8 +75,8 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return ID_PROC;
     }
 
-    private JButton getSaveBtnTableInvert1() {
-        return mcRecipe.jButton__lab__dev__new;
+    private JButton getSaveBtn() {
+        return mcRecipe.jButton__lab__dev__test_proc;
     }
 
     private JComboBox getComboBox() {
@@ -174,7 +174,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     @Override
     public void initializeSaveIndicators() {
-        SaveIndicator saveIndicator1 = new SaveIndicator(getSaveBtnTableInvert1(), this, 1);
+        SaveIndicator saveIndicator1 = new SaveIndicator(getSaveBtn(), this, 1);
     }
 
     @Override
@@ -194,7 +194,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         //
-        if (e.getSource().equals(getSaveBtnTableInvert1())) {
+        if (e.getSource().equals(getSaveBtn())) {
             saveTableInvert();
         }
         //

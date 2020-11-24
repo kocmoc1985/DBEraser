@@ -133,6 +133,8 @@ public class T_INV {
         DICT.put("NORM", "NORM");
         DICT.put("TESTVAR", "TEST VARIABEL");
         DICT.put("NUM", "NUM");
+        //
+        DICT.put("SCOPE", "UMFANG");
     }
 
     public static String LANG(String word) {
