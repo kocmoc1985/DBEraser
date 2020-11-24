@@ -80,7 +80,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         getMaterialInfoTable().addMouseListener(this);
         mcRecipe.jTable_lab_dev_1.addMouseListener(this);
         mcRecipe.jTable_lab_dev_2.addMouseListener(this);
-        mcRecipe.jTable_lab_dev__find_order.addMouseListener(this);
+        
         //
         labDevHeaderComponent = new LabDevHeaderComponent(mcRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(sql, sql_additional, mcRecipe, this);
@@ -258,14 +258,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         return HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
     }
 
-    public void lab_dev_tab_tab_find_order__set_order_clicked() {
-        labDevFindOrderTab.setOrderBtnClicked();
-        refreshHeader();
-    }
-
-    public void lab_dev_tab_tab_find_order__test_btn_clicked() {
-        labDevFindOrderTab.filterButtonClicked();
-    }
 
     protected void refreshHeader() {
         //
@@ -762,8 +754,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
             PREV_TAB_NAME = ACTUAL_TAB_NAME;
             //jTable_lab_dev__find_order
-        } else if (me.getSource() == mcRecipe.jTable_lab_dev__find_order && (me.getClickCount() == 2)) {
-            lab_dev_find_order__table_clicked();
         } else if (me.getSource() == mcRecipe.jTable_lab_dev_1 && (me.getClickCount() == 2)) {
             changeJTableNoteValue(mcRecipe.jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == mcRecipe.jTable_lab_dev_2 && (me.getClickCount() == 2)) {
@@ -774,18 +764,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     }
 
-    private void lab_dev_find_order__table_clicked() {
-        //
-        JTable table = mcRecipe.jTable_lab_dev__find_order;
-        //
-        String order = HelpA_.getValueSelectedRow(table, "WORDERNO"); // Auftrag
-        setOrderNo(order);
-        //
-        HelpA_.openTabByName(getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
-        //
-        lab_dev_tab__tab_main_data__clicked();
-        //
-    }
+    
 
     public void lab_dev_tab__clicked(String title, boolean parentCall) {
         //

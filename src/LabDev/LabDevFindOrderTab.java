@@ -15,10 +15,15 @@ import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener {
+public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener, MouseListener, ActionListener {
     
     private boolean oneTimeFlag = false;
     
@@ -37,7 +42,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     }
     
     private void init(){
+        mcRecipe.jTable_lab_dev__find_order.addMouseListener(this);
         mcRecipe.jTextField__lab_dev__find_order.addKeyListener(this);
+        getFilterBtn().addActionListener(this);
+        getSetOrderBtn().addActionListener(this);
     }
     
     public void go() {
@@ -77,6 +85,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         return mcRecipe.jButton__lab_dev_find_order_tab__set_order;
     }
     
+    private JButton getFilterBtn(){
+        return mcRecipe.jButton__lab_dev_find_order_tab__filter;
+    }
+    
     private void showCheckBoxComponent() {
         //
         if (oneTimeFlag == false) {
@@ -87,7 +99,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
     }
     
-    public void setOrderBtnClicked() {
+    private void setOrderBtnClicked() {
         //
         JTable table = getTable();
         //
@@ -101,7 +113,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
     }
     
-    public void filterButtonClicked() {
+    private void filterButtonClicked() {
         //
         fillTable();
         //
@@ -158,5 +170,58 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     public boolean getUnsaved(int nr) {
         return false;
     }
+    
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if(e.getSource() == getSetOrderBtn()){
+            table_clicked();
+        }else if(e.getSource() == getFilterBtn()){
+            filterButtonClicked();
+        }
+        //
+    }
+    
+    private void table_clicked() {
+        //
+        JTable table = mcRecipe.jTable_lab_dev__find_order;
+        //
+        String order = HelpA_.getValueSelectedRow(table, "WORDERNO"); // Auftrag
+        labDev.setOrderNo(order);
+        //
+        HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
+        //
+        labDev.lab_dev_tab__tab_main_data__clicked();
+        //
+    }
+    
+     @Override
+    public void mousePressed(MouseEvent e) {
+        //
+        JTabbedPane jtb = labDev.getTabbedPane();
+        //
+        if (e.getSource() == mcRecipe.jTable_lab_dev__find_order && (e.getClickCount() == 2)) {
+            table_clicked();
+        }
+        //
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+   
     
 }

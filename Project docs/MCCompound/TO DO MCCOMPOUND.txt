@@ -1,7 +1,6 @@
 
 [FOR ME]
-1. Tab "Main Data" -> "ZIEL 1, 2" -> decide how to handle this fields
-2. Decide where to set "Material"
+1. Decide where to set "Material" --------------> IMPORTANT
 
 [FOR PAPS]
 1. SELECT * FROM MCCPTProc where ID_Proc=130 -> See "TMax" column -> it contains 1-char from "TUnit" ->
@@ -10,9 +9,11 @@ This problem exist almost everywhere.
 [FOR BOTH]
 
 1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ" [2020-10-12]
-2. Reports -> there are some reports which are essential for them.
-3. MaterialInformation data only available for OrderNo: "ENTW002106"
-4. Prufdefinition Tab -> how to sort table?
+2. MaterialInformation data only available for OrderNo: "ENTW002106" -> In database exist, shall be checked wether the error on my side, or no error -> [DONE][THERE WAS NO ERROR]
+Look for order "ENTW000503" for example
+--
+3. Prufdefinition Tab -> how to sort table?
+4. Reports -> there are some reports which are essential for them
 
 
 [FOR DEMO]
