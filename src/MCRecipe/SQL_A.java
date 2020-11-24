@@ -6,6 +6,7 @@ package MCRecipe;
 
 import LabDev.LabDevelopment_;
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
+import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import forall.HelpA_;
 
 /**
@@ -1524,6 +1525,10 @@ public class SQL_A {
     
     public static String lab_dev__test_proc(String UpdatedOnORBy,String tableName,String id){
         return "SELECT " + UpdatedOnORBy + " FROM " + tableName + " WHERE ID_Proc=" + id;
+    }
+    
+    public static String lab_dev__test__proc__build__testcode_combo(){
+        return "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
     }
 
 //    public static void main(String[] args) {

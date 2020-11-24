@@ -38,7 +38,7 @@ import javax.swing.JTable;
  */
 public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
 
-    private String CODE;
+    private String TEST_CODE;
     private String ID_PROC;
     private TableBuilderInvert TABLE_BUILDER_INVERT;
 
@@ -91,7 +91,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         //
-        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(CODE, false) + " ORDER BY NUM ASC";
+        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc"});
         //
@@ -100,7 +100,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     private void fillComboBox() {
         //
-        String q = "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
+        String q = SQL_A.lab_dev__test__proc__build__testcode_combo();
         HelpA_.fillComboBox(sql, getComboBox(), q, null, false, false);
         //
     }
@@ -227,8 +227,8 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         TestVarEntry tve = new TestVarEntry(part1, part2, part3, part4, part5);
         //
-        String q = "UPDATE " + TABLE__TEST_PROCEDURE 
-                + " SET TESTVAR='" 
+        String q = "UPDATE " + TABLE__TEST_PROCEDURE
+                + " SET TESTVAR='"
                 + tve.buildString()
                 + "' WHERE ID_Proc=" + getCurrentId();
         //
@@ -254,7 +254,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //  
         if (e.getSource().equals(getComboBox())) {
             //
-            this.CODE = value;
+            this.TEST_CODE = value;
             //
             fillJTable();
             HelpA_.markFirstRowJtable(table);
@@ -264,8 +264,6 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
     }
 
-    
-
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
@@ -274,18 +272,14 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //[$TEST-VAR-SAVE$]
-        if(col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax") 
-                || col_name.equals("TUnit") || col_name.equals("TDigit")){
+        if (col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax")
+                || col_name.equals("TUnit") || col_name.equals("TDigit")) {
             //
             trimValueTableInvert(col_name, TABLE_INVERT); // Trims String automatically on click
             //
         }
         //
     }
-    
-    
-    
-    
 
     @Override
     public void mousePressed(MouseEvent e) {
