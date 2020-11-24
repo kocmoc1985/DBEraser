@@ -643,7 +643,6 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public abstract void showTableInvert();
 
-    public abstract void initializeSaveIndicators();
 
     public String jTableToCSV(JTable table, boolean writeToFile) {
         return HelpA_.jTableToCSV(table, writeToFile);

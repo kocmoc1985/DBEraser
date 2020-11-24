@@ -34,7 +34,7 @@ import javax.swing.border.Border;
  *
  * @author mcab
  */
-public class Run_Invert_Example_C extends Basic implements MouseListener {
+public class Run_Invert_Example_C extends BasicTab implements MouseListener {
 
     private Border PREV_BORDER;
     private final Sql_B sql = new Sql_B(false, false);
@@ -226,5 +226,10 @@ public class Run_Invert_Example_C extends Basic implements MouseListener {
         }
         //
         return false;
+    }
+
+    @Override
+    public void fillNotes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

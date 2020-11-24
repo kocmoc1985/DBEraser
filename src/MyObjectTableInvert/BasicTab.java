@@ -40,6 +40,8 @@ public abstract class BasicTab extends Basic  {
         this.sql_additional = sql_additional;
     }
     
+    public abstract void initializeSaveIndicators();
+    
     public void save_changes_notes(
             JScrollPane jScrollPane,
             JEditorPane editorPane,
