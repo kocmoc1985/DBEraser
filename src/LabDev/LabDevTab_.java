@@ -60,7 +60,7 @@ public abstract class LabDevTab_ extends BasicTab {
         } 
         //Manual input length validation below. YES IS USED [2020-11-24]
         else if (jli.getInputLengthValidationManual() > 0) {
-            //
+            //[$TEST-VAR-SAVE$] -> this TAG here, does not mean that the functionality below only belongs to this TAG
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             //
             int inputLength = jtf.getInputLengthValidationManual();

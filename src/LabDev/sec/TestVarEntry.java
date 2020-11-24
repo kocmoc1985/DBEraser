@@ -25,7 +25,12 @@ public class TestVarEntry {
         this.part_5 = part_5.trim();
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String buildString() {
+        //[$TEST-VAR-SAVE$]
         String format = "%1$-20.20s  %2$-5.5s  %3$-5.5s  %4$-9.9s  %5$-5.5s";
         String arr[] = {part_1, part_2, part_3, part_4, part_5};
         String formated = String.format(format, (Object[]) arr);

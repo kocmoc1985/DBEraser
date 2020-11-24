@@ -121,15 +121,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         testvar.setDisabled();
         testvar.enableToolTipTextJTextField();
         RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("PART") + " 1", "", true, true, true);
-        tname.setInputLenthValidation(20);
+        tname.setInputLenthValidation(20);//[$TEST-VAR-SAVE$]
         RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("PART") + " 2", "", true, true, true);
-        tmin.setInputLenthValidation(5);
+        tmin.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
         RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("PART") + " 3", "", true, true, true);
-        tmax.setInputLenthValidation(5);
+        tmax.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
         RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("PART") + " 4", "", true, true, true);
-        tunit.setInputLenthValidation(9);
+        tunit.setInputLenthValidation(9);//[$TEST-VAR-SAVE$]
         RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("PART") + " 5", "", true, true, true);
-        tdigit.setInputLenthValidation(5);
+        tdigit.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
         //
         RowDataInvert descr = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "DESCRIPT", T_INV.LANG("DESCRIPTION"), "", true, true, false);
         RowDataInvert num = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NUM", T_INV.LANG("NUM"), "", true, true, false);
@@ -219,7 +219,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     }
 
     private void saveTestVar() {
-        //
+        //[$TEST-VAR-SAVE$]
         String part1 = getValueTableInvert("TName");
         String part2 = getValueTableInvert("TMin");
         String part3 = getValueTableInvert("TMax");
@@ -274,11 +274,12 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
-        //
+        //[$TEST-VAR-SAVE$]
         if(col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax") 
                 || col_name.equals("TUnit") || col_name.equals("TDigit")){
-            System.out.println("Contains*****************************************>>>>>>>>>>>>>>>>>>>>>> " + col_name);
-            trimValueTableInvert(col_name, TABLE_INVERT);
+            //
+            trimValueTableInvert(col_name, TABLE_INVERT); // Trims String automatically on click
+            //
         }
         //
     }
