@@ -6,7 +6,7 @@
 package MyObjectTable;
 
 import MyObjectTable.ShowMessage;
-import FreeQuery.FQ;
+import DatabaseBrowser.FQ;
 import MCRecipe.MC_RECIPE;
 import MyObjectTable.RowData;
 import MyObjectTable.SelectRowButton;

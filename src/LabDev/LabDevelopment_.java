@@ -292,7 +292,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             labDevHeaderComponent.tab_test_procedure();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
-
+            
         }
         //
     }

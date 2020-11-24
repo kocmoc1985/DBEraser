@@ -8,7 +8,7 @@
  *
  * Created on 2013-mar-11, 11:57:31
  */
-package FreeQuery;
+package DatabaseBrowser;
 
 import ClientSqlRemote.ClientProtocolSR;
 import ClientSqlRemote.ClientSqlRemote;

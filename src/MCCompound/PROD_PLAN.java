@@ -5,7 +5,7 @@
 package MCCompound;
 
 import MyObjectTable.ShowMessage;
-import FreeQuery.FQ;
+import DatabaseBrowser.FQ;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;

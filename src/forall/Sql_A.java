@@ -7,7 +7,6 @@ package forall;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 import MyObjectTable.ShowMessage;
 import eraser.Eraser;
-import exporterMills.Exporter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -134,7 +133,7 @@ public class Sql_A implements SqlBasicLocal {
             //
             logg_connection_string(connectionUrl);
             //
-            //For Trelleborgs connection it seems to be important!!
+            //For Trl connection it seems to be important!!
             DriverManager.setLoginTimeout(GP.MSSQL_LOGIN_TIME_OUT);
 
             connection = DriverManager.getConnection(connectionUrl);
@@ -184,7 +183,7 @@ public class Sql_A implements SqlBasicLocal {
                 connection = DriverManager.getConnection(connectionUrl, user, pass);
                 statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             } catch (SQLException e) {
-                Logger.getLogger(Exporter.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(Sql_A.class.getName()).log(Level.SEVERE, null, e);
             }
         } catch (ClassNotFoundException e1) {
             System.out.println("Databas-driver hittades ej: " + e1);

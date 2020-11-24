@@ -10,7 +10,7 @@
  */
 package FixedQueryTool;
 
-import FreeQuery.*;
+import DatabaseBrowser.FQ;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;

@@ -10,7 +10,7 @@
  */
 package FixedQueryTool;
 
-import FreeQuery.*;
+import DatabaseBrowser.FQ;
 import MCRecipe.MC_RECIPE;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable {
+public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
 
     private REPORT REPort = new REPORT();
     private JavaSysMon monitor = new JavaSysMon();
@@ -70,7 +70,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
     /**
      * Creates new form FQ
      */
-    public FixedQueryTool_TRELL() {
+    public FixedQueryTool_TRL() {
         initComponents();
 //        init_other();
         connect();
@@ -559,7 +559,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
             sql.execute(q_1);
             sql.execute_2(q_2);
         } catch (SQLException ex) {
-            Logger.getLogger(FixedQueryTool_TRELL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FixedQueryTool_TRL.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //
@@ -629,7 +629,7 @@ public class FixedQueryTool_TRELL extends javax.swing.JFrame implements Runnable
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new FixedQueryTool_TRELL().setVisible(true);
+                new FixedQueryTool_TRL().setVisible(true);
             }
         });
     }

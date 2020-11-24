@@ -189,7 +189,7 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         //
         logg_connection_string(connectionUrl);
         //
-        //For Trelleborgs connection it seems to be important!!
+        //For Trl connection it seems to be important!!
         DriverManager.setLoginTimeout(SQL_LOGIN_TIME_OUT);
         //
         connection = DriverManager.getConnection(connectionUrl);
