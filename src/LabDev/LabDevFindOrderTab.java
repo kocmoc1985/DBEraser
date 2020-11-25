@@ -227,6 +227,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+     @Override
+    public String getQuery(String procedure, String colName, String[] comboParameters) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     
 }

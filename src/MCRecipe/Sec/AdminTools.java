@@ -4,7 +4,7 @@
  */
 package MCRecipe.Sec;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import forall.HelpA_;
 
 /**
@@ -13,12 +13,12 @@ import forall.HelpA_;
  */
 public class AdminTools extends javax.swing.JFrame {
 
-    private MC_RECIPE mcRecipe;
+    private MC_RECIPE_ mcRecipe;
 
     /**
      * Creates new form AdminTools
      */
-    public AdminTools(MC_RECIPE mcRecipe) {
+    public AdminTools(MC_RECIPE_ mcRecipe) {
         initComponents();
         this.mcRecipe = mcRecipe;
         this.setTitle("Administration");

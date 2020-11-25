@@ -843,5 +843,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public String[] getComboParams() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+     @Override
+    public String getQuery(String procedure, String colName, String[] comboParameters) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

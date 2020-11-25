@@ -5,7 +5,7 @@
  */
 package LabDev;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
@@ -14,9 +14,12 @@ import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 
 /**
  *
@@ -24,12 +27,12 @@ import javax.swing.JComboBox;
  */
 public abstract class LabDevTab_ extends BasicTab {
 
-    protected final MC_RECIPE mcRecipe;
+    protected final MC_RECIPE_ mcRecipe;
     protected final LabDevelopment_ labDev;
 
     public LabDevTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT);
-        this.mcRecipe = (MC_RECIPE) OUT;
+        this.mcRecipe = (MC_RECIPE_) OUT;
         this.labDev = labDev;
     }
 
@@ -81,6 +84,9 @@ public abstract class LabDevTab_ extends BasicTab {
     }
 
     //=========================================================================
+    //=========================================================================
+    //=========================================================================
+    //BELOW IS FOR MULTIPLE COMBOBOX SEARCH/FILTER
     private static long prevCall;
 
     public boolean delay() {
@@ -93,7 +99,7 @@ public abstract class LabDevTab_ extends BasicTab {
         }
     }
 
-    public void fillComboBox(final JComboBox box, final String colName, SqlBasicLocal sql, final String procedure) {
+    public void fillComboBox(final JComboBox box, final String colName, SqlBasicLocal sql, String query) {
         // 
         if (delay() == false) {
             return;
@@ -102,14 +108,12 @@ public abstract class LabDevTab_ extends BasicTab {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Object selection = box.getSelectedItem();
                 //
-                String q = SQL_A.fill_comboboxes_ingred(procedure, colName, getComboParams());
-//                OUT.showMessage(q);
+                Object selection = box.getSelectedItem();
                 //
 //                JComboBoxA boxA = (JComboBoxA) box;
                 //
-                HelpA_.fillComboBox(sql, box, q, null, false, false);
+                HelpA_.fillComboBox(sql, box, query, null, false, false);
                 //
                 box.setSelectedItem(selection);
                 //
@@ -118,6 +122,18 @@ public abstract class LabDevTab_ extends BasicTab {
 
     }
 
+    public abstract String getQuery(String procedure, String colName, String[] comboParameters);
+
     public abstract String[] getComboParams();
+
+    public void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
+        Component[] c_arr = c.getComponents();
+        for (Component component : c_arr) {
+            try {
+                component.addMouseListener(ml);
+            } catch (Exception ex) {
+            }
+        }
+    }
     //=========================================================================
 }

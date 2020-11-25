@@ -20,6 +20,7 @@ import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA_;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +58,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         getComboBoxMaterial().addItemListener(this);
         getTable().addMouseListener(this);
         //
-        fillComboBox();
+        addMouseListenerJComboBox(getComboBoxMaterial(), this);
+        addMouseListenerJComboBox(getComboBoxTestCode(), this);
+        //
+//        fillComboBox();
 //        fillJTable();
         //
     }
@@ -298,25 +302,40 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        //
         if (e.getSource() instanceof JButton) {
+            //
             JButton button = (JButton) e.getSource();
+            //
             if (button.getParent() instanceof JComboBox) {
-                
+                //
+                JComboBoxA box = (JComboBoxA)button.getParent();
+                String param = box.getPARAMETER();
+                //
+                String query = getQuery(PROC.PROC_75, param, getComboParams());
+                fillComboBox(box, param, sql,query);
+                //
             }
         }
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public String getQuery(String procedure, String colName, String[] comboParameters) {
+        return SQL_A.lab_dev__test_order__fill__combos(procedure, colName, comboParameters);
     }
 
     @Override
     public String[] getComboParams() {
+        //
         String ordernr = labDev.getOrderNo();
         String material = HelpA_.getComboBoxSelectedValue(getComboBoxMaterial());
         String testcode = HelpA_.getComboBoxSelectedValue(getComboBoxTestCode());
         //
         return new String[]{ordernr,material,testcode};
         //
+    }
+    
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 }

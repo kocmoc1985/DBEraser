@@ -8,7 +8,7 @@ import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTable.ShowMessage;
 import ca.odell.glazedlists.GlazedLists;
@@ -120,7 +120,18 @@ public class HelpA_ {
     public static String LAST_ERR_OUT_PUT_FILE_PATH;
     private static Border PREV_BORDER;
 
-    public static void addMouseListenerToAllComponentsOfComponent(Container c) {
+    public static void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
+        Component[] c_arr = c.getComponents();
+        for (Component component : c_arr) {
+            try {
+//                addMouseListenerJComboBox((JComponent) component, ml);
+                component.addMouseListener(ml);
+            } catch (Exception ex) {
+            }
+        }
+    }
+    
+    private static void addMouseListenerToAllComponentsOfComponent(Container c) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {
             component.addMouseListener(new MouseAdapter() {
@@ -300,7 +311,7 @@ public class HelpA_ {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
         //
         if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) { // 
             //
@@ -2164,16 +2175,7 @@ public class HelpA_ {
         return JOptionPane.showConfirmDialog(null, container, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
-    public static void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
-        Component[] c_arr = c.getComponents();
-        for (Component component : c_arr) {
-            try {
-//                addMouseListenerJComboBox((JComponent) component, ml);
-                component.addMouseListener(ml);
-            } catch (Exception ex) {
-            }
-        }
-    }
+    
     public static Border initialComboBoxBorder;
     private static final HashMap<String, String> fakeValuesMap = new HashMap<String, String>();
 

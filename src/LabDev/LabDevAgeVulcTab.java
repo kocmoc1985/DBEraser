@@ -604,4 +604,9 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String getQuery(String procedure, String colName, String[] comboParameters) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
