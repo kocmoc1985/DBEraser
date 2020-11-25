@@ -335,12 +335,12 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
 
     @Override
-    public String[] getComboParams() {
+    public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
      @Override
-    public String getQuery(String procedure, String colName, String[] comboParameters) {
+    public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

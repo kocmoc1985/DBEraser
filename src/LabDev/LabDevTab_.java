@@ -13,6 +13,7 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -87,21 +88,30 @@ public abstract class LabDevTab_ extends BasicTab {
     //=========================================================================
     //=========================================================================
     //BELOW IS FOR MULTIPLE COMBOBOX SEARCH/FILTER
-    private static long prevCall;
+    private static long prevCall__mcs;
 
-    public boolean delay() {
-        if (Math.abs(System.currentTimeMillis() - prevCall) < 1000) {
-            prevCall = System.currentTimeMillis();
+    /**
+     * _msc = MULTIPLE COMBOBOX SEARCH
+     * @return 
+     */
+    public boolean delay__mcs() {
+        if (Math.abs(System.currentTimeMillis() - prevCall__mcs) < 1000) {
+            prevCall__mcs = System.currentTimeMillis();
             return false;
         } else {
-            prevCall = System.currentTimeMillis();
+            prevCall__mcs = System.currentTimeMillis();
             return true;
         }
     }
+    
+    public void removeFilter__mcs(JComboBox box){
+        box.setSelectedItem(null);
+        box.setEditable(false);
+    }
 
-    public void fillComboBox(final JComboBox box, final String colName, SqlBasicLocal sql, String query) {
+    public void fillComboBox__mcs(final JComboBox box, final String colName, SqlBasicLocal sql, String query) {
         // 
-        if (delay() == false) {
+        if (delay__mcs() == false) {
             return;
         }
         //
@@ -111,7 +121,7 @@ public abstract class LabDevTab_ extends BasicTab {
                 //
                 Object selection = box.getSelectedItem();
                 //
-//                JComboBoxA boxA = (JComboBoxA) box;
+                JComboBoxA boxA = (JComboBoxA) box;
                 //
                 HelpA_.fillComboBox(sql, box, query, null, false, false);
                 //
@@ -122,11 +132,11 @@ public abstract class LabDevTab_ extends BasicTab {
 
     }
 
-    public abstract String getQuery(String procedure, String colName, String[] comboParameters);
+    public abstract String getQuery__mcs(String procedure, String colName, String[] comboParameters);
 
-    public abstract String[] getComboParams();
+    public abstract String[] getComboParams__mcs();
 
-    public void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
+    public void addMouseListenerJComboBox__mcs(JComponent c, MouseListener ml) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {
             try {
