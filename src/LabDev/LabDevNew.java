@@ -80,7 +80,8 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         //
         String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO","ID_Wotest", "TESTREM1","TESTREM2","UpdatedOn","UpdatedBy"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "TESTREM1",
+            "TESTREM2", "UpdatedOn", "UpdatedBy","TagId","SCOPE"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
@@ -125,21 +126,18 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         String q_2 = SQL_B.basic_combobox_query("AGEINGCODE", TABLE__AGEMENT);
         RowDataInvert prefage = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
         //
-//        RowDataInvert prefvulc__ = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
-//        RowDataInvert prefage__ = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
-        //
         RowDataInvert testcode = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCODE", T_INV.LANG("TESTCODE"), "", true, true, false);
-        RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, false);
+        RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, true);
         RowDataInvert testrem1 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM1", T_INV.LANG("TESTREM1"), "", true, true, false);
         RowDataInvert testrem2 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM2", T_INV.LANG("TESTREM2"), "", true, true, false);
-        RowDataInvert test_cond_num = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "Test_Condition_NUM", T_INV.LANG("TEST CONDITION NUM"), "", true, true, false);
-        RowDataInvert tagId = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TagId", T_INV.LANG("TAG ID"), "", true, true, false);
+//        RowDataInvert test_cond_num = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "Test_Condition_NUM", T_INV.LANG("TEST CONDITION NUM"), "", true, true, false);
+//        RowDataInvert tagId = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TagId", T_INV.LANG("TAG ID"), "", true, true, false);
         //
         RowDataInvert updatedOn = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false);
         RowDataInvert updatedBy = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
-        RowDataInvert[] rows = {code,testcode,prefvulc, prefage,scope,
-            testcond, testrem1, testrem2, test_cond_num, tagId,updatedOn,updatedBy};
+        RowDataInvert[] rows = {code, testcode, prefvulc, prefage, scope,
+            testcond, testrem1, testrem2, updatedOn, updatedBy};
         //
         return rows;
     }
@@ -162,6 +160,8 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
                     .getName()).log(Level.SEVERE, null, ex);
             TABLE_BUILDER_INVERT.showMessage(ex.toString());
         }
+        //
+        setVerticalScrollBarDisabled(TABLE_INVERT);
         //
         showTableInvert(mcRecipe.jPanel77);
         //
@@ -202,7 +202,7 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         HelpA_.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         //

@@ -63,7 +63,8 @@ public class UnsavedEntryInvert {
         } else if (dataField instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) dataField;
             this.value = HelpA_.getComboBoxSelectedValue(comboBox);
-            comboBox.setBorder(BorderFactory.createLineBorder(Color.red,2));
+//            comboBox.setBorder(BorderFactory.createLineBorder(Color.red,2));
+            HelpA_.font_change_type(comboBox, Font.ITALIC);
         }
     }
 

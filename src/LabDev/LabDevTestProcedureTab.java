@@ -91,9 +91,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         //
-        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
+        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM, UpdatedOn,UpdatedBy FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc", "UpdatedOn", "UpdatedBy"});
         //
         HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
@@ -140,9 +140,11 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         RowDataInvert version = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "VERSION", T_INV.LANG("VERSION"), "", true, true, false);
         RowDataInvert note = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "NOTE", T_INV.LANG("NOTE"), "", true, true, false);
         //
+        RowDataInvert updatedOn = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false);
+        RowDataInvert updatedBy = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
         RowDataInvert[] rows = {code, testvar, tname, tmin, tmax, tunit, tdigit, descr, num, norm, status, class_, group,
-            report, version, note
+            report, version, note, updatedOn, updatedBy
         };
         //
         return rows;
@@ -280,7 +282,6 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 //        }
 //        //
 //    }
-
     @Override
     public void mousePressed(MouseEvent e) {
         //
