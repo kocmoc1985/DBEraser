@@ -1512,7 +1512,7 @@ public class SQL_A {
                 + ") ORDER BY DESCR";
     }
 
-    public static String lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(String tableName,String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10, String param11) {
+    public static String lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(String tableName, String param1, String param2, String param3, String param4, String param5, String param6, String param7, String param8, String param9, String param10, String param11) {
         String q = String.format("INSERT INTO " + tableName + " "
                 + "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 quotes(param1, false), quotes(param2, false), quotes(param3, false),
@@ -1521,30 +1521,41 @@ public class SQL_A {
                 quotes(param10, false), quotes(param11, false));
         return q;
     }
-    
-    
-    public static String lab_dev__test_proc(String UpdatedOnORBy,String tableName,String id){
+
+    public static String lab_dev__test_proc(String UpdatedOnORBy, String tableName, String id) {
         return "SELECT " + UpdatedOnORBy + " FROM " + tableName + " WHERE ID_Proc=" + id;
     }
-    
-    public static String lab_dev__test__proc__build__testcode_combo(){
+
+    public static String lab_dev__test__proc__build__testcode_combo() {
         return "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
     }
-    
+
     /**
-     * 
+     *
      * @param PROC - 75
      * @param param1 Order
-     * @param param2 Material 
+     * @param param2 Material
      * @param param3 TestCode - VUG01
-     * @return 
+     * @param param4 ID_Wotest
+     * @return
      */
-    public static String lab_dev__test_order(String PROC, String param1, String param2, String param3) {
-        return "SELECT * FROM [" + PROC + "]" + " ("
+    public static String lab_dev__test_order(String PROC, String param1, String param2, String param3, String param4) {
+        //
+        String where = " WHERE ID_Wotest=";
+        String orderBy = " ORDER BY ORDERNO, CODE, TestCode, TESTVAR";
+        //
+        String prefix = "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false)
-                + ") ORDER BY ORDERNO, CODE, TestCode, TESTVAR";
+                + ")";
+        //
+        if (param4 == null || param4.isEmpty()) { // ID_Wotest not present
+            return prefix + orderBy;
+        } else {
+            return prefix + where + param4 + orderBy;
+        }
+        //
     }
 
 //    public static void main(String[] args) {

@@ -188,7 +188,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
             date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
-        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
             //
             JTable table = labDevNew.getTable();
             //
@@ -265,7 +265,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
             //
             //
-        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())){
+        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())){
             //
             JTable table = labDevNew.getTable();
             //
@@ -306,15 +306,15 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             labDevHeaderComponent.tab_age_vulc();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             labDevHeaderComponent.tab_test_procedure();
-        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
             labDevHeaderComponent.tab_new();
         }
         //
     }
 
-    public void lab_dev_tab_new__clicked() {
+    public void lab_dev_tab_test_order__clicked() {
         //
-        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NEW();
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER();
         //
         if (labDevNew == null) {
             labDevNew = new LabDevTestOrder(sql, sql_additional, OUT, this);
@@ -817,8 +817,8 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             lab_dev_tab_age_vulc__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             lab_dev_tab_test_procedure__clicked();
-        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
-            lab_dev_tab_new__clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
+            lab_dev_tab_test_order__clicked();
         }
         //
     }

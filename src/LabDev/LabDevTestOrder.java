@@ -7,6 +7,7 @@ package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__MCCPWOTEST;
+import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import static LabDev.LabDevelopment_.TABLE__VULC;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
@@ -73,10 +74,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     }
 
     private JComboBox getComboBoxTestCode() {
-        return mcRecipe.jComboBox_lab_dev__new;
+        return mcRecipe.jComboBox_lab_dev__test_order__testcode;
     }
-    
-    private JComboBox getComboBoxMaterial(){
+
+    private JComboBox getComboBoxMaterial() {
         return null;
     }
 
@@ -85,10 +86,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         JTable table = getTable();
         //
 //        String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
-        String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), CODE__MATERIAL, TEST_CODE);
+        String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), CODE__MATERIAL, TEST_CODE, null);
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO","ID_Wotest","UpdatedOn",
-            "UpdatedBy","TESTREM1","TESTREM2","SCOPE"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
+            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
         //
@@ -136,6 +137,9 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         RowDataInvert testcode = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCODE", T_INV.LANG("TESTCODE"), "", true, true, false);
         testcode.setUneditable();
+//        RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        RowDataInvert testvar = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
+        testvar.setDisabled();
         RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, true);
         RowDataInvert testrem1 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM1", T_INV.LANG("TESTREM1"), "", true, true, false);
         RowDataInvert testrem2 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM2", T_INV.LANG("TESTREM2"), "", true, true, false);
@@ -146,7 +150,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         RowDataInvert updatedBy = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
         RowDataInvert[] rows = {code, testcode, prefvulc, prefage, scope,
-            testcond, testrem1, testrem2, updatedOn, updatedBy};
+            testvar,testcond, testrem1, testrem2, updatedOn, updatedBy};
         //
         return rows;
     }
@@ -161,7 +165,8 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String id = HelpA_.getValueSelectedRow(getTable(), "ID_Wotest");
         //
         try {
-            String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ID_Wotest='" + id + "'";
+//            String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ID_Wotest='" + id + "'";
+            String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), CODE__MATERIAL, TEST_CODE, id);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -239,7 +244,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             //
             itemStateChangedAction(table);
             //
-        }else if(e.getSource().equals(getComboBoxMaterial())){
+        } else if (e.getSource().equals(getComboBoxMaterial())) {
             //
             this.CODE__MATERIAL = value;
             //
@@ -247,11 +252,11 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             //
         }
     }
-    
-    private void itemStateChangedAction(JTable table){
-            fillJTable();
-            HelpA_.markFirstRowJtable(table);
-            mouseClickedOnTable(table); 
+
+    private void itemStateChangedAction(JTable table) {
+        fillJTable();
+        HelpA_.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
     }
 
     @Override
