@@ -1531,6 +1531,14 @@ public class SQL_A {
         return "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
     }
     
+    /**
+     * 
+     * @param PROC - 75
+     * @param param1 Order
+     * @param param2 Material 
+     * @param param3 TestCode - VUG01
+     * @return 
+     */
     public static String lab_dev__test_order(String PROC, String param1, String param2, String param3) {
         return "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","

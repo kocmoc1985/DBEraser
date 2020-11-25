@@ -12,6 +12,7 @@ import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
 import MCRecipe.SQL_B;
+import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -39,7 +40,8 @@ import javax.swing.JTable;
 public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT;
-    private String TEST_CODE;
+    private String TEST_CODE; // EX: VUG01
+    private String CODE__MATERIAL; // EX: WE8486
 
     public LabDevTestOrder(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -50,7 +52,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         initializeSaveIndicators();
         getSaveButton().addActionListener(this);
-        getComboBox().addItemListener(this);
+        getComboBoxTestCode().addItemListener(this);
         getTable().addMouseListener(this);
         //
         fillComboBox();
@@ -70,26 +72,32 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         return mcRecipe.jTable_lab_dev__new;
     }
 
-    private JComboBox getComboBox() {
+    private JComboBox getComboBoxTestCode() {
         return mcRecipe.jComboBox_lab_dev__new;
+    }
+    
+    private JComboBox getComboBoxMaterial(){
+        return null;
     }
 
     private void fillJTable() {
         //
         JTable table = getTable();
         //
-        String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
+//        String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
+        String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), CODE__MATERIAL, TEST_CODE);
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "TESTREM1",
-            "TESTREM2", "UpdatedOn", "UpdatedBy", "TagId", "SCOPE"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO","ID_Wotest","UpdatedOn",
+            "UpdatedBy","TESTREM1","TESTREM2","SCOPE"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
+        //
     }
 
     private void fillComboBox() {
         //
         String q = SQL_A.lab_dev__test__proc__build__testcode_combo();
-        HelpA_.fillComboBox(sql, getComboBox(), q, null, false, false);
+        HelpA_.fillComboBox(sql, getComboBoxTestCode(), q, null, false, false);
         //
     }
 
@@ -225,15 +233,25 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
         String value = cbo.getParamAuto();
         //  
-        if (e.getSource().equals(getComboBox())) {
+        if (e.getSource().equals(getComboBoxTestCode())) {
             //
             this.TEST_CODE = value;
             //
-            fillJTable();
-            HelpA_.markFirstRowJtable(table);
-            mouseClickedOnTable(table);
+            itemStateChangedAction(table);
+            //
+        }else if(e.getSource().equals(getComboBoxMaterial())){
+            //
+            this.CODE__MATERIAL = value;
+            //
+            itemStateChangedAction(table);
             //
         }
+    }
+    
+    private void itemStateChangedAction(JTable table){
+            fillJTable();
+            HelpA_.markFirstRowJtable(table);
+            mouseClickedOnTable(table); 
     }
 
     @Override
