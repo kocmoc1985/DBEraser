@@ -1530,6 +1530,14 @@ public class SQL_A {
     public static String lab_dev__test__proc__build__testcode_combo(){
         return "select DISTINCT CODE from " + TABLE__TEST_PROCEDURE + " ORDER BY CODE ASC";
     }
+    
+    public static String lab_dev__test_order(String PROC, String param1, String param2, String param3) {
+        return "SELECT * FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ") ORDER BY ORDERNO, CODE, TestCode, TESTVAR";
+    }
 
 //    public static void main(String[] args) {
 //        //

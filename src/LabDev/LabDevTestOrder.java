@@ -36,12 +36,12 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
+public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     private String TEST_CODE;
 
-    public LabDevNew(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    public LabDevTestOrder(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
@@ -81,7 +81,7 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "TESTREM1",
-            "TESTREM2", "UpdatedOn", "UpdatedBy","TagId","SCOPE"});
+            "TESTREM2", "UpdatedOn", "UpdatedBy", "TagId", "SCOPE"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
@@ -127,6 +127,7 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         RowDataInvert prefage = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
         //
         RowDataInvert testcode = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCODE", T_INV.LANG("TESTCODE"), "", true, true, false);
+        testcode.setUneditable();
         RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, true);
         RowDataInvert testrem1 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM1", T_INV.LANG("TESTREM1"), "", true, true, false);
         RowDataInvert testrem2 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM2", T_INV.LANG("TESTREM2"), "", true, true, false);

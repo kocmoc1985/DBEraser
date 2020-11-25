@@ -63,7 +63,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
     public LabDevAgeVulcTab labDevAgeVulcTab;
     public LabDevTestProcedureTab labDevTestProcedure;
-    public LabDevNew labDevNew;
+    public LabDevTestOrder labDevNew;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
@@ -317,7 +317,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NEW();
         //
         if (labDevNew == null) {
-            labDevNew = new LabDevNew(sql, sql_additional, OUT, this);
+            labDevNew = new LabDevTestOrder(sql, sql_additional, OUT, this);
         } else {
             labDevNew.refresh();
         }
