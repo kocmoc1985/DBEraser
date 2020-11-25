@@ -5,10 +5,13 @@
  */
 package LabDev;
 
+import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__MCCPWOTEST;
-import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
+import static LabDev.LabDevelopment_.TABLE__VULC;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
+import MCRecipe.SQL_B;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -48,26 +51,27 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         initializeSaveIndicators();
         getSaveButton().addActionListener(this);
         getComboBox().addItemListener(this);
+        getTable().addMouseListener(this);
         //
         fillComboBox();
-        fillJTable();
+//        fillJTable();
         //
     }
 
     public void refresh() {
-
+        showTableInvert();
     }
 
     private JButton getSaveButton() {
         return mcRecipe.jButton__lab_dev__new;
     }
 
-    private JTable getTable() {
-        return null;
+    public JTable getTable() {
+        return mcRecipe.jTable_lab_dev__new;
     }
 
     private JComboBox getComboBox() {
-        return null;
+        return mcRecipe.jComboBox_lab_dev__new;
     }
 
     private void fillJTable() {
@@ -76,7 +80,7 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         //
         String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Wotest"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO","ID_Wotest", "TESTREM1","TESTREM2","UpdatedOn","UpdatedBy"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
@@ -113,8 +117,17 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         //
         RowDataInvert scope = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "SCOPE", T_INV.LANG("SCOPE"), "", true, true, false);
         RowDataInvert code = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "CODE", T_INV.LANG("CODE"), "", true, true, false);
-        RowDataInvert prefvulc = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
-        RowDataInvert prefage = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
+        code.setUneditable();
+        //
+        String q_1 = SQL_B.basic_combobox_query("VULCCODE", TABLE__VULC);
+        RowDataInvert prefvulc = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_1, sql_additional, "", TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
+        //
+        String q_2 = SQL_B.basic_combobox_query("AGEINGCODE", TABLE__AGEMENT);
+        RowDataInvert prefage = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, q_2, sql_additional, "", TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
+        //
+//        RowDataInvert prefvulc__ = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFVULC", T_INV.LANG("PREFVULC"), "", true, true, false);
+//        RowDataInvert prefage__ = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "PREFAGE", T_INV.LANG("PREFAGE"), "", true, true, false);
+        //
         RowDataInvert testcode = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCODE", T_INV.LANG("TESTCODE"), "", true, true, false);
         RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, false);
         RowDataInvert testrem1 = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTREM1", T_INV.LANG("TESTREM1"), "", true, true, false);
@@ -122,7 +135,11 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         RowDataInvert test_cond_num = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "Test_Condition_NUM", T_INV.LANG("TEST CONDITION NUM"), "", true, true, false);
         RowDataInvert tagId = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TagId", T_INV.LANG("TAG ID"), "", true, true, false);
         //
-        RowDataInvert[] rows = {scope, code, prefvulc, prefage, testcode, testcond, testrem1, testrem2, test_cond_num, tagId};
+        RowDataInvert updatedOn = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false);
+        RowDataInvert updatedBy = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
+        //
+        RowDataInvert[] rows = {code,testcode,prefvulc, prefage,scope,
+            testcond, testrem1, testrem2, test_cond_num, tagId,updatedOn,updatedBy};
         //
         return rows;
     }
@@ -140,7 +157,6 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
             String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ID_Wotest='" + id + "'";
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
-
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -172,17 +188,34 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         return false;
     }
 
+    private void saveTableInvert() {
+        //
+        if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
+            HelpA_.showNotification(MSG.MSG_3());
+            return;
+        }
+        //
+        saveChangesTableInvert(TABLE_INVERT);
+        //
+        JTable table = getTable();
+        fillJTable();
+        HelpA_.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         //
         if (e.getSource().equals(getSaveButton())) {
-
+            saveTableInvert();
         }
         //
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        //
+        JTable table = getTable();
         //
         if (e.getStateChange() != 1) {
             return;
@@ -194,6 +227,10 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
         if (e.getSource().equals(getComboBox())) {
             //
             this.TEST_CODE = value;
+            //
+            fillJTable();
+            HelpA_.markFirstRowJtable(table);
+            mouseClickedOnTable(table);
             //
         }
     }
@@ -212,26 +249,24 @@ public class LabDevNew extends LabDevTab_ implements ActionListener, ItemListene
     }
 
     private void mouseClickedOnTable(JTable table) {
-
+        System.out.println("MOUSE CLICKED ON TABLE --- LAB DEV NEW");
+        showTableInvert();
+        labDev.refreshHeader();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

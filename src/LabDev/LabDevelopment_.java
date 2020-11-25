@@ -174,15 +174,25 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             //
-            String id = labDevTestProcedure.getCurrentId();
+//            String id = labDevTestProcedure.getCurrentId();
+//            //
+//            if (id == null || id.isEmpty()) {
+//                return "";
+//            }
+//            //
+//            String q = SQL_A.lab_dev__test_proc(updatedOnCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
+//            //
+//            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
             //
-            if (id == null || id.isEmpty()) {
-                return "";
-            }
+            JTable table = labDevTestProcedure.getTable();
             //
-            String q = SQL_A.lab_dev__test_proc(updatedOnCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
+            date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
-            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
+            //
+            JTable table = labDevNew.getTable();
+            //
+            date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
         }
         //
@@ -239,15 +249,27 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             //
-            String id = labDevTestProcedure.getCurrentId();
+//            String id = labDevTestProcedure.getCurrentId();
+//            //
+//            if (id == null || id.isEmpty()) {
+//                return "";
+//            }
+//            //
+//            String q = SQL_A.lab_dev__test_proc(updatedByCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
+//            //
+//            updatedBy = HelpA_.getSingleParamSql_query(sql, q, updatedByCol);
             //
-            if (id == null || id.isEmpty()) {
-                return "";
-            }
             //
-            String q = SQL_A.lab_dev__test_proc(updatedByCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
+            JTable table = labDevTestProcedure.getTable();
             //
-            updatedBy = HelpA_.getSingleParamSql_query(sql, q, updatedByCol);
+            updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
+            //
+            //
+        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())){
+            //
+            JTable table = labDevNew.getTable();
+            //
+            updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
             //
         }
         //
@@ -285,7 +307,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             labDevHeaderComponent.tab_test_procedure();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NEW())) {
-            
+            labDevHeaderComponent.tab_new();
         }
         //
     }

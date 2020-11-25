@@ -34,9 +34,14 @@ public abstract class LabDevTab_ extends BasicTab {
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
+        JLinkInvert jli = (JLinkInvert) me.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(me.getSource());
+        //
         //OBS! IS ENABLED ON DOUBLE CLICK
         enableEditingLongValues(me, ti);
         //
+        trimValueTableInvert(col_name, ti);
         //
     }
 

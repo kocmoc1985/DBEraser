@@ -83,7 +83,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return mcRecipe.jComboBox_lab_dev_test_proc;
     }
 
-    private JTable getTable() {
+    public JTable getTable() {
         return mcRecipe.jTable_lab_dev__test_proc;
     }
 
@@ -264,22 +264,22 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
     }
 
-    @Override
-    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        // 
-        JLinkInvert jli = (JLinkInvert) me.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //[$TEST-VAR-SAVE$]
-        if (col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax")
-                || col_name.equals("TUnit") || col_name.equals("TDigit")) {
-            //
-            trimValueTableInvert(col_name, TABLE_INVERT); // Trims String automatically on click
-            //
-        }
-        //
-    }
+//    @Override
+//    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+//        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+//        // 
+//        JLinkInvert jli = (JLinkInvert) me.getSource();
+//        //
+//        String col_name = ti.getCurrentColumnName(me.getSource());
+//        //[$TEST-VAR-SAVE$]
+//        if (col_name.equals("TName") || col_name.equals("TMin") || col_name.equals("TMax")
+//                || col_name.equals("TUnit") || col_name.equals("TDigit")) {
+//            //
+//            trimValueTableInvert(col_name, ti); // Trims String automatically on click
+//            //
+//        }
+//        //
+//    }
 
     @Override
     public void mousePressed(MouseEvent e) {
