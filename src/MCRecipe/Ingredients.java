@@ -646,7 +646,6 @@ public class Ingredients extends BasicTab {
             public void run() {
                 Object selection = box.getSelectedItem();
                 //
-                //
                 String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
                 OUT.showMessage(q);
                 //
@@ -655,6 +654,7 @@ public class Ingredients extends BasicTab {
                 HelpA_.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
+                //
             }
         });
 

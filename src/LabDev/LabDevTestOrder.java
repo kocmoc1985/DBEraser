@@ -54,6 +54,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         initializeSaveIndicators();
         getSaveButton().addActionListener(this);
         getComboBoxTestCode().addItemListener(this);
+        getComboBoxMaterial().addItemListener(this);
         getTable().addMouseListener(this);
         //
         fillComboBox();
@@ -78,14 +79,13 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     }
 
     private JComboBox getComboBoxMaterial() {
-        return null;
+        return mcRecipe.jComboBox_lab_dev__test_order__material;
     }
 
     private void fillJTable() {
         //
         JTable table = getTable();
         //
-//        String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ORDERNO='" + labDev.getOrderNo() + "' AND TESTCODE='" + TEST_CODE + "'" + " ORDER BY Test_Condition_NUM ASC";
         String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), CODE__MATERIAL, TEST_CODE, null);
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
@@ -96,6 +96,9 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     }
 
     private void fillComboBox() {
+        //
+//        String q2 = SQL_A.lab_dev__test_order__getMaterials();
+//        HelpA_.fillComboBox(sql, getComboBoxMaterial(), q2, null, false, false);
         //
         String q = SQL_A.lab_dev__test__proc__build__testcode_combo();
         HelpA_.fillComboBox(sql, getComboBoxTestCode(), q, null, false, false);
@@ -137,7 +140,6 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         RowDataInvert testcode = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCODE", T_INV.LANG("TESTCODE"), "", true, true, false);
         testcode.setUneditable();
-//        RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
         RowDataInvert testvar = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
         testvar.setDisabled();
         RowDataInvert testcond = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "TESTCOND", T_INV.LANG("TESTCOND"), "", true, true, true);
@@ -150,7 +152,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         RowDataInvert updatedBy = new RowDataInvert(TABLE__MCCPWOTEST, "ID_Wotest", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
         //
         RowDataInvert[] rows = {code, testcode, prefvulc, prefage, scope,
-            testvar,testcond, testrem1, testrem2, updatedOn, updatedBy};
+            testvar, testcond, testrem1, testrem2, updatedOn, updatedBy};
         //
         return rows;
     }
@@ -240,16 +242,24 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //  
         if (e.getSource().equals(getComboBoxTestCode())) {
             //
-            this.TEST_CODE = value;
+            this.TEST_CODE = _getVal(value);
             //
             itemStateChangedAction(table);
             //
         } else if (e.getSource().equals(getComboBoxMaterial())) {
             //
-            this.CODE__MATERIAL = value;
+            this.CODE__MATERIAL = _getVal(value);
             //
             itemStateChangedAction(table);
             //
+        }
+    }
+    
+    private String _getVal(String val){
+        if(val.isEmpty()){
+            return null;
+        }else{
+            return val;
         }
     }
 
@@ -288,9 +298,25 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        if (e.getSource() instanceof JButton) {
+            JButton button = (JButton) e.getSource();
+            if (button.getParent() instanceof JComboBox) {
+                
+            }
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public String[] getComboParams() {
+        String ordernr = labDev.getOrderNo();
+        String material = HelpA_.getComboBoxSelectedValue(getComboBoxMaterial());
+        String testcode = HelpA_.getComboBoxSelectedValue(getComboBoxTestCode());
+        //
+        return new String[]{ordernr,material,testcode};
+        //
     }
 }

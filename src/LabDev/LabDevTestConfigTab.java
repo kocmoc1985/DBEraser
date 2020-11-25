@@ -333,5 +333,10 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
             "DVR in luft / 1.0 d / 70c "
         }, getAgingPanel(), null);
     }
+
+    @Override
+    public String[] getComboParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

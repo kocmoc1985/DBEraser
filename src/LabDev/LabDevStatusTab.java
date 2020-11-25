@@ -339,6 +339,11 @@ public class LabDevStatusTab extends LabDevTab_ {
         return false;
     }
 
+    @Override
+    public String[] getComboParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     

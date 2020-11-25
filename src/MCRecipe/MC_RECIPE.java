@@ -2529,6 +2529,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox_lab_dev__test_order__testcode.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_lab_dev__test_order__testcode.setModel(new javax.swing.DefaultComboBoxModel<>());
 
+        jComboBox_lab_dev__test_order__material.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_lab_dev__test_order__material.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         javax.swing.GroupLayout jPanel76Layout = new javax.swing.GroupLayout(jPanel76);

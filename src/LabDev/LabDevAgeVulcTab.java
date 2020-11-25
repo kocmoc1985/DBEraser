@@ -599,4 +599,9 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         return mcRecipe.jComboBox_lab_dev_vulc;
     }
 
+    @Override
+    public String[] getComboParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

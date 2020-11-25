@@ -241,5 +241,10 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
+    @Override
+    public String[] getComboParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

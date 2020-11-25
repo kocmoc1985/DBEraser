@@ -13,10 +13,8 @@ import MCRecipe.SQL_A;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
-import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
@@ -317,6 +315,11 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public String[] getComboParams() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -64,5 +64,9 @@ public class BOX_PARAMS {
     //TEST PARAMETERS
     public static final CBoxParam TP_ORDER = new CBoxParam("ORDERNO", false);
     public static final CBoxParam TP_RECIPE = new CBoxParam("CODE", false);
-    
+    //
+    //
+    //LAB DEV -> TAB "TEST ORDER 
+    public static final CBoxParam TEST_ORDER__TEST_CODE = new CBoxParam("TestCode", false);
+    public static final CBoxParam TEST_ORDER__MATERIAL = new CBoxParam("CODE", false);
 }

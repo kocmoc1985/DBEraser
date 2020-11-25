@@ -1557,6 +1557,14 @@ public class SQL_A {
         }
         //
     }
+    
+   public static String lab_dev__test_order__fill__combos(String PROC, String param, String[] params) {
+        return "SELECT DISTINCT " + param + " FROM [" + PROC + "]" + " ("
+                + "" + checkIfNull(params[0]) + ","
+                + "" + checkIfNull(params[1]) + ","
+                + "" + checkIfNull(params[2]) + ")"
+                + " order by " + param + " asc";
+    }
 
 //    public static void main(String[] args) {
 //        //
