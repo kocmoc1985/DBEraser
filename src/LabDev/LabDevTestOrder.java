@@ -55,7 +55,8 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         getSaveButton().addActionListener(this);
         getFilterBtn().addActionListener(this);
         getRemoveFilterBtn().addActionListener(this);
-        getCreateNewButton().addActionListener(this);
+        getAddNewButton().addActionListener(this);
+        getAddNewButton_B().addActionListener(this);
         getComboBoxTestCode().addItemListener(this);
         getComboBoxMaterial().addItemListener(this);
         getTable().addMouseListener(this);
@@ -98,9 +99,13 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     private JButton getSaveButton() {
         return mcRecipe.jButton__lab_dev__new;
     }
+    
+    private JButton getAddNewButton_B() {
+        return mcRecipe.jButton_lab_dev_test_order__add_new_b;
+    }
 
-    private JButton getCreateNewButton() {
-        return mcRecipe.jButton_lab_dev__test_order_create_new;
+    private JButton getAddNewButton() {
+        return mcRecipe.jButton_lab_dev__test_order_add_new;
     }
 
     private JButton getRemoveFilterBtn() {
@@ -130,7 +135,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), getMaterial(), getTestCode(), null);
         //
         HelpA.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
-            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE", "TagId"});
+            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE"}); // "TagId"
         //
 //        HelpA.setColumnWidthByName("TESTVAR", table, 0.28);
         //
@@ -261,13 +266,15 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             refresh_b(getTable());
         } else if (e.getSource().equals(getRemoveFilterBtn())) {
             removeFilterButtonClicked(table);
-        } else if (e.getSource().equals(getCreateNewButton())) {
-            createNewButtonClicked();
+        } else if (e.getSource().equals(getAddNewButton())) {
+            createNewButtonClicked(false);
+        }else if (e.getSource().equals(getAddNewButton_B())) {
+            createNewButtonClicked(true);
         }
         //
     }
 
-    private void createNewButtonClicked() {
+    private void createNewButtonClicked(boolean addNewB) {
         //
         String testCode = getTestCode();
         //
@@ -276,9 +283,16 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             return;
         }
         //
-        String q = SQL_A.lab_dev_test_order__get_list_for_creating_new(PROC.PROC_76, getTestCode());
+        if(addNewB){
+            testCode = null;
+        }
         //
-        CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q, new String[]{"ID_Proc"}, OUT,MSG.MSG_7_3());
+        //
+        String q = SQL_A.lab_dev_test_order__get_list_for_creating_new(PROC.PROC_76, testCode);
+        //
+        CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q,
+                new String[]{}, OUT,MSG.MSG_7_3()); // "ID_Proc"
+        //
         cnft.setVisible(true);
         //
     }
@@ -293,10 +307,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         cnft.dispose();
         //
-        String order = paramters[0];
-        String material = paramters[1];
-        String testcode = paramters[2];
-        String id = paramters[3];
+        String order = labDev.getOrderNo();
+        String material = getMaterial();
+        String testcode = paramters[0];
+        String id = paramters[1];
         //
         System.out.println("CATCH, ID: " + id);
         //

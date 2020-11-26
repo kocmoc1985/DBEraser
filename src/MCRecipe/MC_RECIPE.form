@@ -3492,9 +3492,11 @@
                                       <Component id="jPanel77" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jButton__lab_dev__new" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton_lab_dev__test_order_create_new" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="503" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                          <Component id="jButton_lab_dev__test_order_add_new" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                          <Component id="jButton_lab_dev_test_order__add_new_b" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="453" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -3502,7 +3504,7 @@
                                       <Component id="jScrollPane29" min="-2" pref="787" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Component id="jButton_lab_dev__test_order__filter_btn" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                           <Component id="jButton_lab_dev__test_order__clear_filter" min="-2" pref="50" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jComboBox_lab_dev__test_order__material" min="-2" pref="130" max="-2" attributes="0"/>
@@ -3538,7 +3540,8 @@
                                                   <Component id="jComboBox_lab_dev__test_order__material" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                                   <Component id="jComboBox_lab_dev__test_order__testcode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jButton_lab_dev__test_order_create_new" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="jButton_lab_dev__test_order_add_new" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                              <Component id="jButton_lab_dev_test_order__add_new_b" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -3646,10 +3649,20 @@
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton_lab_dev__test_order_create_new">
+                        <Component class="javax.swing.JButton" name="jButton_lab_dev__test_order_add_new">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/add.png"/>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton_lab_dev_test_order__add_new_b">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/icons/add_b.png"/>
                             </Property>
                           </Properties>
                           <AuxValues>

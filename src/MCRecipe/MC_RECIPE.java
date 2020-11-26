@@ -80,7 +80,7 @@ import supplementary.HelpM2;
  *
  * @author KOCMOC
  */
-public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
+public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
 
     public SqlBasicLocal sql;
     public SqlBasicLocal sql_additional;
@@ -135,7 +135,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     /**
      * Creates new form MC_RECIPE
      */
-    public MC_RECIPE_() {
+    public MC_RECIPE() {
         //
         initCompany();
         //
@@ -164,7 +164,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         if (verifyUser() == false) {
             userNotValidActions();
         } else {
-            HelpA.setUser(MC_RECIPE_.jTextFieldHomeUserName.getText());
+            HelpA.setUser(MC_RECIPE.jTextFieldHomeUserName.getText());
             System.out.println("Username set");
         }
         //
@@ -565,7 +565,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //
         } catch (Exception ex) {
             showMessage("Connection to " + host + " / " + db_name + " failed: " + ex);
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Connection to SQL failed!");
             System.exit(0);
         }
@@ -796,7 +796,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jComboBox_lab_dev__test_order__material = new JComboBoxA(BOX_PARAMS.TEST_ORDER__MATERIAL);
         jButton_lab_dev__test_order__filter_btn = new javax.swing.JButton();
         jButton_lab_dev__test_order__clear_filter = new javax.swing.JButton();
-        jButton_lab_dev__test_order_create_new = new javax.swing.JButton();
+        jButton_lab_dev__test_order_add_new = new javax.swing.JButton();
+        jButton_lab_dev_test_order__add_new_b = new javax.swing.JButton();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
@@ -2531,7 +2532,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jButton_lab_dev__test_order__clear_filter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_remove.png"))); // NOI18N
 
-        jButton_lab_dev__test_order_create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev__test_order_add_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+
+        jButton_lab_dev_test_order__add_new_b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_b.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel76Layout = new javax.swing.GroupLayout(jPanel76);
         jPanel76.setLayout(jPanel76Layout);
@@ -2543,15 +2546,17 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     .addComponent(jPanel77, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel76Layout.createSequentialGroup()
                         .addComponent(jButton__lab_dev__new, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_lab_dev__test_order_create_new, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 503, Short.MAX_VALUE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton_lab_dev__test_order_add_new, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jButton_lab_dev_test_order__add_new_b, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 453, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane29, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel76Layout.createSequentialGroup()
                         .addComponent(jButton_lab_dev__test_order__filter_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
+                        .addGap(2, 2, 2)
                         .addComponent(jButton_lab_dev__test_order__clear_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox_lab_dev__test_order__material, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2578,7 +2583,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jComboBox_lab_dev__test_order__material, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jComboBox_lab_dev__test_order__testcode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton_lab_dev__test_order_create_new, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButton_lab_dev__test_order_add_new, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_lab_dev_test_order__add_new_b, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel77, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
@@ -4365,7 +4371,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                     jTable3, textAreaRecipeInitialNotes, "Recipe_Prop_Free_Text_ID");
             //
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -4404,7 +4410,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         try {
             ingredients.save_changes_notes(jScrollPane_Ingred_Comments, jEditorPane_Ingred, jTable_Ingred_Table3, textAreaIngredComments, "IngredientCode_ID");
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_Ingredients_Save_CommentsActionPerformed
 
@@ -4819,7 +4825,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (adminTools == null) {
-            final MC_RECIPE_ mc_recipe = this;
+            final MC_RECIPE mc_recipe = this;
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -4850,7 +4856,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             //this is done to only show the "table4formats.properties" file
             HelpA.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
-            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
@@ -4940,13 +4946,13 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
@@ -4965,7 +4971,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             @Override
             public void run() {
                 //
-                new MC_RECIPE_().setVisible(true);
+                new MC_RECIPE().setVisible(true);
                 //
                 if (runInNetbeans == false) {
                     HelpA.console_output_to_jtextpane(jTextPane1); // must be placed here!
@@ -5072,7 +5078,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev__save_vulc;
     public javax.swing.JButton jButton_lab_dev__test_order__clear_filter;
     public javax.swing.JButton jButton_lab_dev__test_order__filter_btn;
-    public javax.swing.JButton jButton_lab_dev__test_order_create_new;
+    public javax.swing.JButton jButton_lab_dev__test_order_add_new;
     private javax.swing.JButton jButton_lab_dev_add_1;
     private javax.swing.JButton jButton_lab_dev_add_2;
     public javax.swing.JButton jButton_lab_dev_aging__copy;
@@ -5085,6 +5091,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev_tab__save_config_btn;
     public javax.swing.JButton jButton_lab_dev_tab__save_notes;
     public javax.swing.JButton jButton_lab_dev_test_definition_goto;
+    public javax.swing.JButton jButton_lab_dev_test_order__add_new_b;
     public javax.swing.JButton jButton_lab_dev_vulc__copy;
     public javax.swing.JButton jButton_lab_dev_vulc__create_new;
     public javax.swing.JButton jButton_lab_dev_vulc__delete;

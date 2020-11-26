@@ -39,6 +39,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
             String query, String[] colsToHide, ShowMessage sm,String title) {
         initComponents();
         //
+        this.title = title;
         initOther();
         //
         this.consumerClass = consumerClass;
@@ -46,7 +47,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
         this.colsToHide = colsToHide;
         this.query = query;
         this.sm = sm;
-        this.title = title;
+        
         //
         buildTable();
         //
@@ -139,11 +140,9 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
         }
         //
         if (consumerClass instanceof LabDevTestOrder) {
-            String order = HelpA.getValueSelectedRow(jTable1, "ORDERNO");
-            String material = HelpA.getValueSelectedRow(jTable1, "CODE");
-            String testCode = HelpA.getValueSelectedRow(jTable1, "TestCode");
+            String testCode = HelpA.getValueSelectedRow(jTable1, "CODE");
             String id = HelpA.getValueSelectedRow(jTable1, "ID_Proc");
-            toReturn = new String[]{order, material, testCode, id};
+            toReturn = new String[]{testCode, id};
             //
             LabDevTestOrder ldst = (LabDevTestOrder) consumerClass;
             ldst.selectButtonClicked_a(toReturn,this);
