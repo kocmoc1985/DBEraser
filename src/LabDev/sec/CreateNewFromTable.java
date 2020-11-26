@@ -13,6 +13,7 @@ import forall.SqlBasicLocal;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -36,7 +37,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
      * @param query
      */
     public CreateNewFromTable(Object consumerClass, SqlBasicLocal sql,
-            String query, String[] colsToHide, ShowMessage sm,String title) {
+            String query, String[] colsToHide, ShowMessage sm, String title) {
         initComponents();
         //
         this.title = title;
@@ -47,13 +48,14 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
         this.colsToHide = colsToHide;
         this.query = query;
         this.sm = sm;
-        
+
         //
         buildTable();
         //
     }
 
     private void initOther() {
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.jTable1.addMouseListener(this);
         this.setTitle(title);
         HelpA_.centerAndBringToFront(this);
@@ -135,7 +137,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
 
     private void select() {
         //
-        if(HelpA_.confirm() == false){
+        if (HelpA_.confirm() == false) {
             return;
         }
         //
@@ -145,7 +147,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
             toReturn = new String[]{testCode, id};
             //
             LabDevTestOrder ldst = (LabDevTestOrder) consumerClass;
-            ldst.selectButtonClicked_a(toReturn,this);
+            ldst.selectButtonClicked_a(toReturn, this);
             //
         }
         //

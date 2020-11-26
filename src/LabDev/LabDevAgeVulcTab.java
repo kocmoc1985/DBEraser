@@ -72,6 +72,30 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
         //
     }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if (e.getSource().equals(getSaveButtonAge())) {
+            saveTableInvert_aging();
+        } else if (e.getSource().equals(getSaveButtonVulc())) {
+            saveTableInvert_2_vulc();
+        } else if (e.getSource().equals(getCreateNewButtonAge())) {
+            create(TABLE__AGEMENT, "AGEINGCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
+        } else if (e.getSource().equals(getDeleteButtonAge())) {
+            delete(TABLE__AGEMENT, "AGEINGCODE");
+        } else if (e.getSource().equals(getCopyButtonAge())) {
+            copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
+        } //
+        else if (e.getSource().equals(getCreateNewButtonVulc())) {
+            create(TABLE__VULC, "VULCCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
+        } else if (e.getSource().equals(getDeleteButtonVulc())) {
+            delete(TABLE__VULC, "VULCCODE");
+        } else if (e.getSource().equals(getCopyButtonVulc())) {
+            copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
+        }
+        //
+    }
 
     private void refresh_b(Object itemToSet, String tableName) {
         //
@@ -342,29 +366,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         //
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //
-        if (e.getSource().equals(getSaveButtonAge())) {
-            saveTableInvert_aging();
-        } else if (e.getSource().equals(getSaveButtonVulc())) {
-            saveTableInvert_2_vulc();
-        } else if (e.getSource().equals(getCreateNewButtonAge())) {
-            create(TABLE__AGEMENT, "AGEINGCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
-        } else if (e.getSource().equals(getDeleteButtonAge())) {
-            delete(TABLE__AGEMENT, "AGEINGCODE");
-        } else if (e.getSource().equals(getCopyButtonAge())) {
-            copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
-        } //
-        else if (e.getSource().equals(getCreateNewButtonVulc())) {
-            create(TABLE__VULC, "VULCCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
-        } else if (e.getSource().equals(getDeleteButtonVulc())) {
-            delete(TABLE__VULC, "VULCCODE");
-        } else if (e.getSource().equals(getCopyButtonVulc())) {
-            copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
-        }
-        //
-    }
+    
 
     private boolean copy(String tableName, String colName, Table tableInvert, String regex) {
         //

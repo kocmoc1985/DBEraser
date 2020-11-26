@@ -81,7 +81,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         getMaterialInfoTable().addMouseListener(this);
         mcRecipe.jTable_lab_dev_1.addMouseListener(this);
         mcRecipe.jTable_lab_dev_2.addMouseListener(this);
-        
+
         //
         labDevHeaderComponent = new LabDevHeaderComponent(mcRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(sql, sql_additional, mcRecipe, this);
@@ -114,12 +114,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     public void setTestCode(String code) {
         this.TEST_CODE = code;
-    }
-    
-    public void setMaterialBtnClicked(){
-        String material = HelpA_.getValueSelectedRow(getMaterialInfoTable(), "Material").trim();
-        setMaterial(material);
-        refreshHeader();
     }
 
     public String getMaterial_description() {
@@ -194,7 +188,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
             date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
-        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
             //
             JTable table = labDevTestVariables.getTable();
             //
@@ -271,7 +265,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
             //
             //
-        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())){
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
             //
             JTable table = labDevTestVariables.getTable();
             //
@@ -286,7 +280,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private String getIdMaterialInfoTable() {
         return HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
     }
-
 
     protected void refreshHeader() {
         //
@@ -613,11 +606,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         showTableInvert(mcRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);
     }
 
-    public void materialInfoJTableClicked() {
-        showTableInvert_6();
-        refreshHeader(); // Yes shall be here
-    }
-
     private JTable getMaterialInfoTable() {
         return mcRecipe.jTable_lab_dev__material_info;
     }
@@ -787,11 +775,23 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             changeJTableNoteValue(mcRecipe.jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
         } else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 1)) {
             materialInfoJTableClicked();
-        }
-
+        } 
+//        else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 2)) {
+//            setMaterialBtnClicked();
+//        }
     }
 
-    
+    public void materialInfoJTableClicked() {
+        showTableInvert_6();
+        String material = HelpA_.getValueSelectedRow(getMaterialInfoTable(), "Material").trim();
+        setMaterial(material);
+        refreshHeader();
+    }
+
+//    public void materialInfoJTableClicked() {
+//        showTableInvert_6();
+//        refreshHeader(); // Yes shall be here
+//    }
 
     public void lab_dev_tab__clicked(String title, boolean parentCall) {
         //
@@ -847,8 +847,8 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     @Override
+
+    @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -1556,44 +1556,44 @@ public class SQL_A {
         }
         //
     }
-    
-   public static String lab_dev__test_order__fill__combos(String PROC, String param, String[] params) {
+
+    public static String lab_dev__test_order__fill__combos(String PROC, String param, String[] params) {
         return "SELECT DISTINCT " + param + " FROM [" + PROC + "]" + " ("
                 + "" + checkIfNull(params[0]) + ","
                 + "" + checkIfNull(params[1]) + ","
                 + "" + checkIfNull(params[2]) + ")"
                 + " order by " + param + " asc";
     }
-   
-   /**
-    * 
-    * @param PROC 76
-    * @param param1 - TestCode (VUG01)
-    * @return 
-    */
+
+    /**
+     *
+     * @param PROC 76
+     * @param param1 - TestCode (VUG01)
+     * @return
+     */
     public static String lab_dev_test_order__get_list_for_creating_new(String PROC, String param1) {
         return "SELECT CODE, TESTVAR, DESCRIPT, NORM, Condition, ID_Proc FROM [" + PROC + "]" + " ("
                 + quotes(param1, false)
                 + ") ORDER BY ID_Proc";
     }
-    
+
     /**
-     * 
+     *
      * @param PROC - 77
      * @param param1 - order
      * @param param2 - material
      * @param param3 - testCode
      * @param param4 - id
-     * @return 
+     * @return
      */
-    public static String lab_dev_test_order__insert_new(String PROC, String param1, String param2, String param3,String param4) {
+    public static String lab_dev_test_order__insert_new(String PROC, String param1, String param2, String param3, String param4) {
         return PROC + " "
-                + quotes(param1, false) + "," 
-                + quotes(param2, false) + "," 
-                + quotes(param3, false) + "," 
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ","
                 + quotes(param4, true) + "";
     }
-    
+
     public static String lab_dev_test__test_order_check_exist(String PROC, String param1, String param2, String param3, String param4) {
         return "SELECT TagId FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
@@ -1601,11 +1601,15 @@ public class SQL_A {
                 + quotes(param3, false)
                 + ") WHERE TagId=" + quotes(param4, true);
     }
-    
+
+    public static String lab_dev__test_order__delete_button(String id, String order, String material) {
+        return "DELETE FROM MCcpwotest "
+                + "WHERE TagId=" + quotes(id, true) + " AND ORDERNO=" + quotes(order, false) + "AND CODE=" + quotes(material, false);
+    }
+
 //    SELECT     TagId
 //FROM         dbo.fn_ITF_CPWORDER_Info('ENTW001921', 'WE8422', 'ZUG02') AS fn_ITF_CPWORDER_Info_1
 //WHERE     (TagId = 17)
-
 //    public static void main(String[] args) {
 //        //
 //        String[] arr = new String[]{"Archiv", "Ready"};

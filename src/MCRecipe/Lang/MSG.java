@@ -80,4 +80,8 @@ public class MSG {
     public static String MSG_7_5() {
         return LANG_ENG ? "Already exist! The entry will not be added" : "Gibt schon! Der Eintrag wurde nicht ergänzt";
     }
+    
+     public static String MSG_7_6() {
+        return LANG_ENG ? "Confirm deletion?" : "Löschung bestätigen?";
+    }
 }
