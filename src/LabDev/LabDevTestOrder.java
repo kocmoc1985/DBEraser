@@ -9,6 +9,7 @@ import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__MCCPWOTEST;
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import static LabDev.LabDevelopment_.TABLE__VULC;
+import LabDev.sec.CreateNewFromTable;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
@@ -54,6 +55,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         getSaveButton().addActionListener(this);
         getFilterBtn().addActionListener(this);
         getRemoveFilterBtn().addActionListener(this);
+        getCreateNewButton().addActionListener(this);
         getComboBoxTestCode().addItemListener(this);
         getComboBoxMaterial().addItemListener(this);
         getTable().addMouseListener(this);
@@ -89,6 +91,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private JButton getSaveButton() {
         return mcRecipe.jButton__lab_dev__new;
+    }
+
+    private JButton getCreateNewButton() {
+        return mcRecipe.jButton_lab_dev__test_order_create_new;
     }
 
     private JButton getRemoveFilterBtn() {
@@ -250,7 +256,37 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             filterButtonClicked(getTable());
         } else if (e.getSource().equals(getRemoveFilterBtn())) {
             removeFilterButtonClicked(table);
+        } else if (e.getSource().equals(getCreateNewButton())) {
+            createNewButtonClicked();
         }
+        //
+    }
+
+    private void createNewButtonClicked() {
+        //
+        String q = SQL_A.lab_dev_test_order__get_list_for_creating_new(PROC.PROC_76, getTestCode());
+        //
+        CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q, new String[]{}, OUT);
+        cnft.setVisible(true);
+        //
+    }
+
+    /**
+     * forwarded from "CreateNewFromTable.class"
+     *
+     * @param paramters
+     * @param cnft
+     */
+    public void selectButtonClicked_a(String[] paramters,CreateNewFromTable cnft) {
+        //
+        cnft.dispose();
+        //
+        String order = paramters[0];
+        String material = paramters[1];
+        String testcode = paramters[2];
+        String id = paramters[3];
+        //
+        System.out.println("CATCH, ID: " + id);
         //
     }
 

@@ -3227,6 +3227,17 @@ public class HelpA_ {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
+    
+    public static void centerAndBringToFront(JFrame frame) {
+        Point p = HelpA_.position_window_in_center_of_the_screen(frame);
+        frame.setLocation(p);
+        frame.setVisible(true);
+        //
+        java.awt.EventQueue.invokeLater(() -> {
+            frame.toFront();
+            frame.repaint();
+        });
+    }
 
     public static void goToEndPosition(JTextArea txtArea) {
         txtArea.setCaretPosition(txtArea.getDocument().getLength());

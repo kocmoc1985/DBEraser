@@ -135,6 +135,11 @@ public class T_INV {
         DICT.put("NUM", "NUM");
         //
         DICT.put("SCOPE", "UMFANG");
+        //
+        DICT.put("TESTCODE", "TESTCODE");
+        DICT.put("PREFVULC", "PREFVULC");
+        DICT.put("PREFAGE", "PREFAGE");
+        DICT.put("TESTCOND", "TESCOND");
     }
 
     public static String LANG(String word) {

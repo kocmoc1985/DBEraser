@@ -99,6 +99,7 @@ public class PROC {
     public static final String PROC_73 = "fn_TestOrder_VULMET "; //#LAB DEVELOPMENT -> TEST CONFIG -> Preparationmethods -> get chosen
     public static final String PROC_74 = "fn_TestOrder_Aegement "; //#LAB DEVELOPMENT -> TEST CONFIG -> Agingmethods -> get chosen
     public static final String PROC_75 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST ORDER 
+    public static final String PROC_76 = "fn_Proc_Tags_Values "; //#LAB DEVELOPMENT -> TEST ORDER 
     //
     // LAB_DEVELOPMENT 
     //
@@ -184,6 +185,7 @@ public class PROC {
         procList.add(PROC_73);
         procList.add(PROC_74);
         procList.add(PROC_75);
+        procList.add(PROC_76);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

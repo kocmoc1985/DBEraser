@@ -5,7 +5,6 @@
 package MCRecipe;
 
 import LabDev.LabDevelopment_;
-import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import forall.HelpA_;
 
@@ -1564,6 +1563,18 @@ public class SQL_A {
                 + "" + checkIfNull(params[1]) + ","
                 + "" + checkIfNull(params[2]) + ")"
                 + " order by " + param + " asc";
+    }
+   
+   /**
+    * 
+    * @param PROC 76
+    * @param param1 - TestCode (VUG01)
+    * @return 
+    */
+    public static String lab_dev_test_order__get_list_for_creating_new(String PROC, String param1) {
+        return "SELECT CODE, TESTVAR, DESCRIPT, NORM, Condition, ID_Proc FROM [" + PROC + "]" + " ("
+                + quotes(param1, false)
+                + ") ORDER BY ID_Proc";
     }
 
 //    public static void main(String[] args) {
