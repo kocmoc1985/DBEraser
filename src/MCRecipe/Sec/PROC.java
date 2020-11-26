@@ -98,10 +98,10 @@ public class PROC {
     public static final String PROC_72 = "fn_TestOrder_Aegement "; //#LAB DEVELOPMENT -> TEST CONFIG -> Agingmethods
     public static final String PROC_73 = "fn_TestOrder_VULMET "; //#LAB DEVELOPMENT -> TEST CONFIG -> Preparationmethods -> get chosen
     public static final String PROC_74 = "fn_TestOrder_Aegement "; //#LAB DEVELOPMENT -> TEST CONFIG -> Agingmethods -> get chosen
-    public static final String PROC_75 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST ORDER 
-    public static final String PROC_76 = "fn_Proc_Tags_Values "; //#LAB DEVELOPMENT -> TEST ORDER  -> Show all testCodes
-    public static final String PROC_77 = "prc_ITF_CPWORDER_INSERT "; //#LAB DEVELOPMENT -> TEST ORDER -> create new
-    public static final String PROC_78 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST ORDER -> check exist
+    public static final String PROC_75 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST VARIABLES 
+    public static final String PROC_76 = "fn_Proc_Tags_Values "; //#LAB DEVELOPMENT -> TEST VARIABLES  -> Show all testCodes
+    public static final String PROC_77 = "prc_ITF_CPWORDER_INSERT "; //#LAB DEVELOPMENT -> TEST VARIABLES -> create new
+    public static final String PROC_78 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST VARIABLES -> check exist
     //
     // LAB_DEVELOPMENT  
     //

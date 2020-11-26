@@ -51,7 +51,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG = "TEST CONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC = "AGE / VULC";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE = "TEST PROCEDURE";
-    public static final String LABDEVELOPMENT_TAB__TAB_TEST_ORDER = "TEST ORDER";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_ORDER = "TEST VARIABLES";
     //
     public static final String LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE = "AUFTRAG FINDEN";
     public static final String LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE = "KOPFDATEN";
@@ -62,7 +62,7 @@ public class LNG {
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE = "PRÜFKONFIG";
     public static final String LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE = "ALTERUNG / VULC";
     public static final String LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE = "TEST PROZEDUR";
-    public static final String LABDEVELOPMENT_TAB__TAB_TEST_ORDER_DE = "TEST AUFTRAG";
+    public static final String LABDEVELOPMENT_TAB__TAB_TEST_ORDER_DE = "TEST VARIABELN";
 
     public static void GO(JTabbedPane jtp, JTabbedPane jtp_lab_dev) {
         TAB_NAMES_GENERAL(jtp);
@@ -145,7 +145,7 @@ public class LNG {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE : LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE;
     }
 
-    public static String LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER() {
+    public static String LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES() {
         return LANG_ENG ? LABDEVELOPMENT_TAB__TAB_TEST_ORDER : LABDEVELOPMENT_TAB__TAB_TEST_ORDER_DE;
     }
 

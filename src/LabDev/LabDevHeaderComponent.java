@@ -112,7 +112,7 @@ public class LabDevHeaderComponent implements ItemListener {
         updateGraphics();
     }
     
-    public void tab_new() {
+    public void tab_test_variables() {
         clear();
         showStandard(false);
         updateGraphics();

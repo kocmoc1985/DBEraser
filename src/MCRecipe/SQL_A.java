@@ -1541,7 +1541,7 @@ public class SQL_A {
     public static String lab_dev__test_order(String PROC, String param1, String param2, String param3, String param4) {
         //
         String where = " WHERE ID_Wotest=";
-        String orderBy = " ORDER BY ORDERNO, CODE, TestCode, TESTVAR";
+        String orderBy = " ORDER BY CODE, TestCode";
         //
         String prefix = "SELECT * FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","

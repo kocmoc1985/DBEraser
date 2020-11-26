@@ -25,7 +25,6 @@ import MCRecipe.Sec.AdministrateRecipeGroups_;
 import MCRecipe.Sec.AdministrateUsers;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Sec.JComboBox_ING_A;
-import forall.GradientJPanel;
 import MyObjectTable.ShowMessage;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
@@ -2592,7 +2591,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addContainerGap(169, Short.MAX_VALUE))
         );
 
-        jTabbedPane3_Lab_Dev.addTab("TEST ORDER", jPanel76);
+        jTabbedPane3_Lab_Dev.addTab("TEST VARIABLES", jPanel76);
 
         jPanel_lab_dev_header.setLayout(new java.awt.GridLayout(2, 1));
 

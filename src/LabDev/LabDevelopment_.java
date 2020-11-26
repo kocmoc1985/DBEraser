@@ -63,7 +63,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
     public LabDevAgeVulcTab labDevAgeVulcTab;
     public LabDevTestProcedureTab labDevTestProcedure;
-    public LabDevTestOrder labDevNew;
+    public LabDevTestOrder labDevTestVariables;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
@@ -188,9 +188,9 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
             date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
-        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
+        }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
             //
-            JTable table = labDevNew.getTable();
+            JTable table = labDevTestVariables.getTable();
             //
             date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
             //
@@ -265,9 +265,9 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
             //
             //
-        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())){
+        }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())){
             //
-            JTable table = labDevNew.getTable();
+            JTable table = labDevTestVariables.getTable();
             //
             updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
             //
@@ -306,23 +306,21 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             labDevHeaderComponent.tab_age_vulc();
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             labDevHeaderComponent.tab_test_procedure();
-        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
-            labDevHeaderComponent.tab_new();
+        } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
+            labDevHeaderComponent.tab_test_variables();
         }
         //
     }
 
-    public void lab_dev_tab_test_order__clicked() {
+    public void lab_dev_tab_test_variables__clicked() {
         //
-        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER();
+        ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES();
         //
-        if (labDevNew == null) {
-            labDevNew = new LabDevTestOrder(sql, sql_additional, OUT, this);
+        if (labDevTestVariables == null) {
+            labDevTestVariables = new LabDevTestOrder(sql, sql_additional, OUT, this);
         } else {
-            labDevNew.refresh();
+            labDevTestVariables.refresh();
         }
-        //
-        refreshHeader();
         //
     }
 
@@ -817,8 +815,8 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             lab_dev_tab_age_vulc__clicked();
         } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             lab_dev_tab_test_procedure__clicked();
-        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
-            lab_dev_tab_test_order__clicked();
+        } else if (title.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES())) {
+            lab_dev_tab_test_variables__clicked();
         }
         //
     }
