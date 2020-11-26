@@ -10,7 +10,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
@@ -35,7 +35,7 @@ public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
     @Override
     public String addEntryQuery(){
         return "insert into " + TABLE_NAME
-                + " values('NEW','','','','','','','','','','" + HelpA_.updatedOn() + "','" + HelpA_.updatedBy()+ "')";
+                + " values('NEW','','','','','','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
     }
     
 
@@ -91,7 +91,7 @@ public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
                 //
                 TABLE_INVERT = null;
                 //
-                String id = HelpA_.getValueSelectedRow(jTable1, TABLE_ID);
+                String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
                 //
                 try {
                     String q = "select * from " + TABLE_NAME

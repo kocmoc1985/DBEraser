@@ -5,7 +5,7 @@
 package MCCompound;
 
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +31,7 @@ public class ShowProgress extends javax.swing.JFrame implements Runnable {
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);
-        setLocation(HelpA_.position_window_in_center_of_the_screen(this));
+        setLocation(HelpA.position_window_in_center_of_the_screen(this));
     }
 
     public void setIconImage(URL url) {

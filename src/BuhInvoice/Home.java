@@ -10,7 +10,7 @@ import MyObjectTable.OutPut;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -105,7 +105,7 @@ public class Home extends Basic_Buh {
 
     protected void processDeleteGuest() {
         //
-        String guestUser = HelpA_.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
+        String guestUser = HelpA.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
         //
         HttpResponce res = HelpBuh.deleteGuestAccount(guestUser);
         //
@@ -196,7 +196,7 @@ public class Home extends Basic_Buh {
         showTableInvert_4();
         //
         if (GP_BUH.loggedIn() && GP_BUH.isGuestUser() == false) {
-            HelpA_.clearAllRowsJTable(getJTable());
+            HelpA.clearAllRowsJTable(getJTable());
             fillSharedUsersTable();
         }
         //
@@ -228,7 +228,7 @@ public class Home extends Basic_Buh {
             bim.allInvoicesTabClicked();
             //
         } else {
-            HelpA_.showNotification(LANG.VALIDATION_MSG_1);
+            HelpA.showNotification(LANG.VALIDATION_MSG_1);
 //            System.exit(0);
         }
         //
@@ -259,11 +259,11 @@ public class Home extends Basic_Buh {
         HashMap<String, String> map = new HashMap();
         //
         // The below parameters are for "buh_visitors" [2020-10-19]
-        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA_.getMacAddress());
-        map.put(DB.BUH_LICENS__OS, HelpA_.getOperatingSystem());
-        map.put(DB.BUH_LICENS__LANG, HelpA_.getUserLanguge());
-        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA_.getUserName());
-        map.put(DB.BUH_LICENS__JAVA, HelpA_.getJavaVersionAndBitAndVendor_b());
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         String responce;
         //
@@ -282,7 +282,7 @@ public class Home extends Basic_Buh {
 
     private boolean validateResponce(String responce) {
         //[#SEQURITY#]
-        boolean isNumber = HelpA_.isNumber(responce);
+        boolean isNumber = HelpA.isNumber(responce);
         //
         if (isNumber) {
             //
@@ -473,12 +473,12 @@ public class Home extends Basic_Buh {
     protected boolean fieldsValidated(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA_.showNotification(LANG.MSG_2);
+            HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA_.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_1);
             return false;
         }
         //
@@ -489,12 +489,12 @@ public class Home extends Basic_Buh {
     private boolean fieldsValidated_tableInvert_2(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA_.showNotification(LANG.MSG_2);
+            HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-            HelpA_.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_1);
             return false;
         }
         //
@@ -505,12 +505,12 @@ public class Home extends Basic_Buh {
     private boolean fieldsValidated_tableInvert_3(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
-            HelpA_.showNotification(LANG.MSG_2);
+            HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
-            HelpA_.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_1);
             return false;
         }
         //
@@ -521,12 +521,12 @@ public class Home extends Basic_Buh {
     private boolean fieldsValidated_tableInvert_4(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
-            HelpA_.showNotification(LANG.MSG_2);
+            HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
-            HelpA_.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_1);
             return false;
         }
         //

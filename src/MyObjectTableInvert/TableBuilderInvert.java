@@ -10,7 +10,7 @@ import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -114,7 +114,7 @@ public class TableBuilderInvert {
         table.setShowUnits(SHOW_UNITS);
 //        table.setSql(sql);
         table.setTableEmpty(true);
-//        HelpA_.setTrackingToolTip(table, query);
+//        HelpA.setTrackingToolTip(table, query);
         //
         return table;
         //
@@ -224,7 +224,7 @@ public class TableBuilderInvert {
         table.setShowUnits(SHOW_UNITS);
         table.setSql(sql);
         table.setTableEmpty(not_empty);
-        HelpA_.setTrackingToolTip(table, query);
+        HelpA.setTrackingToolTip(table, query);
         //
         return table;
         //
@@ -316,7 +316,7 @@ public class TableBuilderInvert {
         table.setShowUnits(SHOW_UNITS);
         table.setSql(sql);
         table.setTableEmpty(false);
-        HelpA_.setTrackingToolTip(table, query);
+        HelpA.setTrackingToolTip(table, query);
         //
         return table;
         //
@@ -404,7 +404,7 @@ public class TableBuilderInvert {
         table.setShowUnits(SHOW_UNITS);
         table.setSql(sql);
         table.setTableEmpty(false);
-        HelpA_.setTrackingToolTip(table, query);
+        HelpA.setTrackingToolTip(table, query);
         //
         return table;
         //
@@ -415,9 +415,9 @@ public class TableBuilderInvert {
         Locale locale = Locale.getDefault();
         //
         if (GP.IS_DATE_FORMAT_DE || locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")) {
-            return HelpA_.millisToDateConverter("" + millis, GP.DATE_FORMAT_DE);
+            return HelpA.millisToDateConverter("" + millis, GP.DATE_FORMAT_DE);
         } else {
-            return HelpA_.millisToDateConverter("" + millis, GP.DATE_FORMAT_COMMON);
+            return HelpA.millisToDateConverter("" + millis, GP.DATE_FORMAT_COMMON);
         }
         //
     }

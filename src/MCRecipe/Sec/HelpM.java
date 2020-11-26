@@ -4,8 +4,8 @@
  */
 package MCRecipe.Sec;
 
-import forall.HelpA_;
-import static forall.HelpA_.getValueGivenRow;
+import forall.HelpA;
+import static forall.HelpA.getValueGivenRow;
 import javax.swing.JTable;
 
 /**
@@ -45,7 +45,7 @@ public class HelpM {
     }
 
     private static int searchForRecipeIdTable4_h(JTable table, int row) {
-        String recipeId = (String) table.getValueAt(row, HelpA_.getColByName(table, "RecipeID"));
+        String recipeId = (String) table.getValueAt(row, HelpA.getColByName(table, "RecipeID"));
         if (recipeId == null) {
             return -1;
         } else {

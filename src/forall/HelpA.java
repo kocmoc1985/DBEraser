@@ -113,7 +113,7 @@ import supplementary.HelpM;
  *
  * @author Administrator
  */
-public class HelpA_ {
+public class HelpA {
 
     private static HashMap<String, String> properties_to_use_map = new HashMap();
     private static int nr_properties;
@@ -222,7 +222,7 @@ public class HelpA_ {
             }
             //
         } catch (IOException e) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
         }
         //
         return list;
@@ -234,7 +234,7 @@ public class HelpA_ {
 //            System.setErr(out);
             System.setOut(out);
         } catch (IOException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -248,7 +248,7 @@ public class HelpA_ {
         File currentJar = null;
         //
         try {
-            currentJar = new File(HelpA_.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+            currentJar = new File(HelpA.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         } catch (URISyntaxException ex) {
             Logger.getLogger(HelpM.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -293,7 +293,7 @@ public class HelpA_ {
             PrintStream out = new PrintStream(new FileOutputStream(output_path));
             System.setErr(out);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -313,7 +313,7 @@ public class HelpA_ {
         //
         boolean role_developer = MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
         //
-        if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) { // 
+        if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB") || role_developer) { // 
             //
             if (jc instanceof JComboBoxA) {
                 jc.setToolTipText(text);
@@ -437,7 +437,7 @@ public class HelpA_ {
             sql.execute(q);
             return true;
         } catch (SQLException ex) {
-//            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         //
@@ -450,7 +450,7 @@ public class HelpA_ {
                 return true;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         //
@@ -465,7 +465,7 @@ public class HelpA_ {
                 return rs.getString(columnGet);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -482,7 +482,7 @@ public class HelpA_ {
                 return rs.getString(columnGet);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -502,7 +502,7 @@ public class HelpA_ {
                 return rs.getString(columnGet);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -517,7 +517,7 @@ public class HelpA_ {
                 return rs.getString(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -534,7 +534,7 @@ public class HelpA_ {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
         //
@@ -556,7 +556,7 @@ public class HelpA_ {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
         //
@@ -641,7 +641,7 @@ public class HelpA_ {
         try {
             return formatter.parse(date).getTime();
         } catch (ParseException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
     }
@@ -689,7 +689,7 @@ public class HelpA_ {
         int val = 0;
         if (nr_properties == 1) {
             property_path = (String) properties_to_use_map.get("" + 1);
-            properties = HelpA_.properties_load_properties(path + "/" + property_path, false);
+            properties = HelpA.properties_load_properties(path + "/" + property_path, false);
         } else {
             try {
                 val = Integer.parseInt(JOptionPane.showInputDialog(dialog));
@@ -698,7 +698,7 @@ public class HelpA_ {
             }
 
             property_path = (String) properties_to_use_map.get("" + val);
-            properties = HelpA_.properties_load_properties(path + "/" + property_path, false);
+            properties = HelpA.properties_load_properties(path + "/" + property_path, false);
         }
         if (properties == null) {
             JOptionPane.showMessageDialog(null, "properties not found or error occured: " + property_path + " / program will close");
@@ -735,7 +735,7 @@ public class HelpA_ {
         try {
             ret = proc.getInt(1);
         } catch (Throwable ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             ret = -1;
         }
         //
@@ -750,7 +750,7 @@ public class HelpA_ {
             proc.registerOutParameter(1, Types.INTEGER);
             proc.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
         }
         //
@@ -759,7 +759,7 @@ public class HelpA_ {
         try {
             ret = proc.getInt(1);
         } catch (Exception ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             ret = -1;
         }
         //
@@ -798,7 +798,7 @@ public class HelpA_ {
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(obj);
         } catch (IOException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -837,7 +837,7 @@ public class HelpA_ {
             return;
         }
         //
-        HelpA_.setTrackingToolTip(jTable, q);
+        HelpA.setTrackingToolTip(jTable, q);
         //
         try {
             //
@@ -849,7 +849,7 @@ public class HelpA_ {
             jTable.setAutoCreateRowSorter(true);
             //
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -859,7 +859,7 @@ public class HelpA_ {
             return;
         }
         //
-        HelpA_.setTrackingToolTip(jTable, q);
+        HelpA.setTrackingToolTip(jTable, q);
         //
         try {
             String[] headers = getHeaders(rs);
@@ -867,7 +867,7 @@ public class HelpA_ {
             jTable.setModel(new DefaultTableModelM(content, headers, sortAsInt, jTable));
             jTable.setAutoCreateRowSorter(true);
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -877,15 +877,19 @@ public class HelpA_ {
             return;
         }
         //
-        HelpA_.setTrackingToolTip(jTable, q);
+        HelpA.setTrackingToolTip(jTable, q);
         //
         try {
             String[] headers = getHeaders(rs);
             Object[][] content = getContent(rs, indexFirst, indexLast);
             jTable.setModel(new DefaultTableModel(content, headers));
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        //
+        //
+        //
         //
         //
         //
@@ -899,14 +903,14 @@ public class HelpA_ {
         try {
             rs = sql.execute(q, sm);
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (rs == null) {
             return;
         }
         //
-        HelpA_.setTrackingToolTip(jTable, q);
+        HelpA.setTrackingToolTip(jTable, q);
         setUneditableJTable(jTable);
         //
         try {
@@ -922,8 +926,9 @@ public class HelpA_ {
             }
             //
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
         //
     }
 
@@ -933,14 +938,14 @@ public class HelpA_ {
             return;
         }
         //
-        HelpA_.setTrackingToolTip(jTable, q);
+        HelpA.setTrackingToolTip(jTable, q);
         //
         try {
             String[] headers = getHeaders(rs);
             Object[][] content = getContent(rs);
             jTable.setModel(new DefaultTableModel(content, headers));
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -956,7 +961,7 @@ public class HelpA_ {
             jTable.setModel(new DefaultTableModel(content, headers));
             return jTable;
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -1264,7 +1269,7 @@ public class HelpA_ {
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            int col = HelpA_.getColByName(table, colName);
+            int col = HelpA.getColByName(table, colName);
             //
             String val = (String) table.getValueAt(x, col);
             //
@@ -1293,7 +1298,7 @@ public class HelpA_ {
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
-            int col = HelpA_.getColByName(table, colName);
+            int col = HelpA.getColByName(table, colName);
             //
             String val = (String) table.getValueAt(x, col);
             //
@@ -1387,12 +1392,12 @@ public class HelpA_ {
             csv += "\n";
         }
         //
-        String path = HelpA_.get_desktop_path() + "\\"
-                + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
+        String path = HelpA.get_desktop_path() + "\\"
+                + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
         //
         if (writeToFile) {
             try {
-                HelpA_.writeToFile(path, csv);
+                HelpA.writeToFile(path, csv);
 //                JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
                 run_application_with_associated_application(new File(path));
             } catch (IOException ex) {
@@ -1421,12 +1426,12 @@ public class HelpA_ {
             csv += "\n";
         }
         //
-        String path = HelpA_.get_desktop_path() + "\\"
-                + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
+        String path = HelpA.get_desktop_path() + "\\"
+                + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
         //
         if (writeToFile) {
             try {
-                HelpA_.writeToFile(path, csv);
+                HelpA.writeToFile(path, csv);
 //                JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
                 run_application_with_associated_application(new File(path));
             } catch (IOException ex) {
@@ -2080,7 +2085,7 @@ public class HelpA_ {
             Double.parseDouble(value);
             return true;
         } catch (NumberFormatException ex) {
-//            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             showNotification("Not a number, please try again");
             return false;
         }
@@ -2110,7 +2115,7 @@ public class HelpA_ {
                     try {
                         wait(100);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
                 //
@@ -2206,7 +2211,7 @@ public class HelpA_ {
         setCursorWait(true);
         //
         if (jbox instanceof JComboBoxA == false) {
-            HelpA_.showNotification("HelpA.fillComboBox(), jcombobox shall be instance of JComboBoxA");
+            HelpA.showNotification("HelpA.fillComboBox(), jcombobox shall be instance of JComboBoxA");
             return null;
 //            return fillComboBox_old(sql, jbox, query, initialValue, showMultipleValues, fakeValue);
         }
@@ -2261,7 +2266,91 @@ public class HelpA_ {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("q: " + query);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        if (jbox instanceof JComboBoxA) {
+            JComboBoxA boxA = (JComboBoxA) jbox;
+            boxA.AUTOFILL_ADD(list);
+            //
+            try {
+                jbox.setSelectedIndex(0);
+            } catch (Exception ex) {
+            }
+            //
+        }
+        //
+        //
+        if (initialComboBoxBorder == null) {
+            initialComboBoxBorder = jbox.getBorder();
+        }
+        //
+        tryMatch(jbox, (String) initialValue, showMultipleValues, fakeValue);
+        //
+        setTrackingToolTip(jbox, query);
+        //
+        setCursorWait(false);
+        //
+        return jbox;
+    }
+    
+    public static JComboBox fillComboBox__not_instance_of_A(SqlBasicLocal sql, JComboBox jbox, String query,
+            Object initialValue, boolean showMultipleValues, boolean fakeValue) {
+        //
+        setCursorWait(true);
+        //
+        //
+        ArrayList<Object> list = new ArrayList<Object>();
+        //
+        boolean cond_1 = initialValue != null && (initialValue instanceof Boolean == false)
+                && showMultipleValues == false && fakeValue == false;
+        //
+        if (cond_1) {
+            list.add(initialValue);
+        }
+        //
+        if (fakeValue) {
+            list.add(" ");
+        }
+        //
+        try {
+            //
+            ResultSet rs = sql.execute(query);
+            //
+            while (rs.next()) {
+                //
+                String val;
+                //
+                try {
+                    val = rs.getString(1);
+                } catch (Exception ex) {
+                    break;
+                }
+                //
+                if (val != null && val.isEmpty() == false) {
+                    if (showMultipleValues) {
+                        //
+                        list.add(new ComboBoxObjectB(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3)));
+                        //
+                    } else if (fakeValue) {
+                        //
+                        String value = getValueResultSet(rs, 1);
+                        String fakeVal = fakeValuesMap.get(value);
+                        if (fakeVal != null) {
+                            list.add(new ComboBoxObjectC(value, fakeVal, ""));
+                        }
+                        //
+                    } else {
+                        //
+                        list.add(new ComboBoxObject(getValueResultSet(rs, 1), getValueResultSet(rs, 2), getValueResultSet(rs, 3), ""));
+                        //
+                    }
+                }
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (jbox instanceof JComboBoxA) {
@@ -2349,7 +2438,7 @@ public class HelpA_ {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         Object[] arr = list.toArray();
@@ -2451,7 +2540,7 @@ public class HelpA_ {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         Object[] arr = list.toArray();
@@ -2491,8 +2580,8 @@ public class HelpA_ {
             return "NULL";
         }
         //
-        if (val instanceof HelpA_.ComboBoxObject) {
-            HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) val;
+        if (val instanceof HelpA.ComboBoxObject) {
+            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
 //            return cbo.getParam_1();
             return cbo.getParamAuto(); // Introduced [2020-07-13]
         }
@@ -2527,8 +2616,8 @@ public class HelpA_ {
             return "NULL";
         }
         //
-        if (val instanceof HelpA_.ComboBoxObject) {
-            HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) val;
+        if (val instanceof HelpA.ComboBoxObject) {
+            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
             cbo.setParamToReturn(paramToReturn);
 //            return cbo.getParam_1();
             return cbo.getParamAuto(); // Introduced [2020-07-13]
@@ -2563,8 +2652,8 @@ public class HelpA_ {
             return null;
         }
         //
-        if (val instanceof HelpA_.ComboBoxObject) {
-            HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) val;
+        if (val instanceof HelpA.ComboBoxObject) {
+            HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
             return cbo.getParam_1(); // The "'" shall be remowed in feature!!!!!
         }
         //
@@ -2825,7 +2914,7 @@ public class HelpA_ {
         try {
             run_program_with_catching_output_overall(textarea, commands2);
         } catch (IOException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -2878,7 +2967,7 @@ public class HelpA_ {
         try {
             builder.start();
         } catch (IOException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -2938,7 +3027,7 @@ public class HelpA_ {
         try {
             robot = new Robot();
         } catch (AWTException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (robot == null) {
             return;
@@ -2963,7 +3052,7 @@ public class HelpA_ {
         try {
             Thread.sleep(i);
         } catch (InterruptedException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -3165,7 +3254,7 @@ public class HelpA_ {
             br.close(); // Important to "release file" [2020-10-09]
             //
         } catch (IOException e) {
-//            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, e);
+//            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
         }
         //
         //
@@ -3176,7 +3265,7 @@ public class HelpA_ {
         try {
             Desktop.getDesktop().open(new File(path));
         } catch (IOException ex) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -3229,7 +3318,7 @@ public class HelpA_ {
     }
     
     public static void centerAndBringToFront(JFrame frame) {
-        Point p = HelpA_.position_window_in_center_of_the_screen(frame);
+        Point p = HelpA.position_window_in_center_of_the_screen(frame);
         frame.setLocation(p);
         frame.setVisible(true);
         //
@@ -3264,13 +3353,13 @@ public class HelpA_ {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HelpA_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HelpA_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HelpA_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HelpA_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HelpA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 

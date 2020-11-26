@@ -5,7 +5,7 @@
 package MCRecipe.Sec;
 
 import MCRecipe.MC_RECIPE_;
-import forall.HelpA_;
+import forall.HelpA;
 
 /**
  *
@@ -23,7 +23,7 @@ public class AdminTools extends javax.swing.JFrame {
         this.mcRecipe = mcRecipe;
         this.setTitle("Administration");
         this.setSize(400, 300);
-        this.setLocation(HelpA_.position_window_in_center_of_the_screen(this));
+        this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
     }
 
     /**

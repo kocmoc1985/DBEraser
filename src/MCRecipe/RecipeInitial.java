@@ -11,7 +11,7 @@ import MCRecipe.Lang.JTB;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.JComboBoxA;
 import forall.JComboBoxM;
 import forall.SqlBasicLocal;
@@ -79,7 +79,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 mCRecipe2.recipeInitial_GroupC_Boxes_to_list();
                 mCRecipe2.addJComboListenersRecipeInitial();
                 fill_table_1(null, null, null, null);
-                HelpA_.markGivenRow(mCRecipe2.jTable1, 0);
+                HelpA.markGivenRow(mCRecipe2.jTable1, 0);
                 mCRecipe2.clickedOnTable1RecipeInitial();
 
             }
@@ -99,14 +99,14 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
         try {
             ResultSet rs = sql.execute(q);// no need to have output here, to avoid flooding
-            HelpA_.build_table_common(rs, mCRecipe2.jTableIngredientInfoTable, q);
+            HelpA.build_table_common(rs, mCRecipe2.jTableIngredientInfoTable, q);
         } catch (SQLException ex) {
             Logger.getLogger(RecipeInitial.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        HelpA_.setColumnWidthByIndex(0, table, 0.35);
-        HelpA_.setColumnWidthByIndex(1, table, 0.5);
-        HelpA_.setColumnWidthByIndex(2, table, 0.15);
+        HelpA.setColumnWidthByIndex(0, table, 0.35);
+        HelpA.setColumnWidthByIndex(1, table, 0.5);
+        HelpA.setColumnWidthByIndex(2, table, 0.15);
         //
     }
 
@@ -118,7 +118,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     @Override
     public void remoweAllFromCompare() {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
@@ -131,20 +131,20 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public void addToCompare() {
         //
         if (ADDED_TO_COMPARE_LIST.size() >= 6) {
-            HelpA_.showNotification("Maximum of 6 recipes reached");
+            HelpA.showNotification("Maximum of 6 recipes reached");
             return;
         }
         //
         JTable table1 = mCRecipe2.jTable1;
         //
-        String recipeVersion = HelpA_.getValueSelectedRow(table1, T1_RECIPE_VERSION);
-        String recipeAdditional = HelpA_.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
+        String recipeVersion = HelpA.getValueSelectedRow(table1, T1_RECIPE_VERSION);
+        String recipeAdditional = HelpA.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
         //
-        boolean x = compareRecipes.addToCompare(recipeVersion, recipeAdditional, HelpA_.updatedBy());
+        boolean x = compareRecipes.addToCompare(recipeVersion, recipeAdditional, HelpA.updatedBy());
 //        System.out.println("ADD TO COMPARE: " + x);
         //
         if (x == false) {
-            HelpA_.showNotification("No records found for recipe: " + recipeVersion);
+            HelpA.showNotification("No records found for recipe: " + recipeVersion);
             return;
         }
         //
@@ -164,13 +164,13 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     @Override
     public void dropCompareTable() {
-        compareRecipes.dropCompareTable(HelpA_.updatedBy());
+        compareRecipes.dropCompareTable(HelpA.updatedBy());
     }
 
     @Override
     public boolean checkIfRecipeDisabled() {
         //
-        String status = HelpA_.getValueSelectedRow(mCRecipe2.jTable1, T1_STATUS);
+        String status = HelpA.getValueSelectedRow(mCRecipe2.jTable1, T1_STATUS);
         //
         boolean cond_1 = status.equals("S") || status.equals("O") || status.equals("Inactive");
         //
@@ -186,19 +186,19 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public void delete_record_table_1(JTable table) {
         //
         if (checkIfRecipeDisabled()) {
-            HelpA_.showNotification("Cannot delete Recipe with status S, O, Inactive");
+            HelpA.showNotification("Cannot delete Recipe with status S, O, Inactive");
             return;
         }
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
-        String recipeID = HelpA_.getValueSelectedRow(table, T1_RECIPE_ID);
+        String recipeID = HelpA.getValueSelectedRow(table, T1_RECIPE_ID);
         //
-        String code = HelpA_.getValueSelectedRow(table, T1_RECIPE_VERSION);
-        String release = HelpA_.getValueSelectedRow(table, T1_RECIPE_ADDITIONAL);
-        String mixer_code = HelpA_.getValueSelectedRow(table, T1_MIXER_CODE);
+        String code = HelpA.getValueSelectedRow(table, T1_RECIPE_VERSION);
+        String release = HelpA.getValueSelectedRow(table, T1_RECIPE_ADDITIONAL);
+        String mixer_code = HelpA.getValueSelectedRow(table, T1_MIXER_CODE);
         //
         try {
             //
@@ -207,16 +207,16 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 int recipe_seq_main_id = rs.getInt("Recipe_Sequence_Main_ID");
                 sql.execute(SQL_B.delete_record_table_1(recipeID, recipe_seq_main_id), OUT);
             } else {
-                sql.execute(SQL_B.delete_record_table_1(recipeID, HelpA_.getColByName(table, JTB.LANG(T1_RECIPE_VERSION))), OUT);
+                sql.execute(SQL_B.delete_record_table_1(recipeID, HelpA.getColByName(table, JTB.LANG(T1_RECIPE_VERSION))), OUT);
             }
             //
 //            fill_table_1(null, null, null, null);
-//            HelpA_.markGivenRow(mCRecipe2.jTable1, 0);
+//            HelpA.markGivenRow(mCRecipe2.jTable1, 0);
 //            mCRecipe2.clickedOnTable1RecipeInitial();
             //
             int row = table.getSelectedRow();
-            HelpA_.removeRowJTable(table, row);
-            HelpA_.markGivenRow(table, row);
+            HelpA.removeRowJTable(table, row);
+            HelpA.markGivenRow(table, row);
             //
             mCRecipe2.clickedOnTable1RecipeInitial();
             mCRecipe2.recipeDetailedTabbClicked();
@@ -229,7 +229,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     @Override
     public void delete_record_table_2_or_3(JTable table, int row_index, String tableName, String idColumnName) {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
@@ -258,9 +258,9 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         JTable table2 = mCRecipe2.jTable2;
         JTable table3 = mCRecipe2.jTable3;
         //
-        String recipeVersion = HelpA_.getValueSelectedRow(table1, T1_RECIPE_VERSION);
-        String recipeAdditional = HelpA_.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
-        String mixerCode = HelpA_.getValueSelectedRow(table1, T1_MIXER_CODE);
+        String recipeVersion = HelpA.getValueSelectedRow(table1, T1_RECIPE_VERSION);
+        String recipeAdditional = HelpA.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
+        String mixerCode = HelpA.getValueSelectedRow(table1, T1_MIXER_CODE);
         //
         String q = SQL_A.fillTable2RecipeInitial(PROC.PROC_63, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table2);
@@ -269,49 +269,49 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         fill_table_2_3__(q, table3);
         //
         //
-        HelpA_.hideColumnByName(table2, "Recipe_Version");
-        HelpA_.hideColumnByName(table2, "Recipe_Addditional");
-        HelpA_.hideColumnByName(table2, "Mixer_Code");
-        HelpA_.hideColumnByName(table2, "UpdatedOn");
-        HelpA_.hideColumnByName(table2, "UpdatedBy");
-        HelpA_.hideColumnByName(table2, "Recipe_Prop_Free_Info_ID");
+        HelpA.hideColumnByName(table2, "Recipe_Version");
+        HelpA.hideColumnByName(table2, "Recipe_Addditional");
+        HelpA.hideColumnByName(table2, "Mixer_Code");
+        HelpA.hideColumnByName(table2, "UpdatedOn");
+        HelpA.hideColumnByName(table2, "UpdatedBy");
+        HelpA.hideColumnByName(table2, "Recipe_Prop_Free_Info_ID");
         //
         try {
-            HelpA_.moveRowTo(table2, "NoteName", "Color:", 0);
-            HelpA_.moveRowTo(table2, "NoteName", "Hardnes Sha:", 1);
-            HelpA_.moveRowTo(table2, "NoteName", "recept type:", 2);
-            //        HelpA_.moveRowTo(table2, "NoteName:", "Polymer Blend:", 1); // the comented ones are to be added later when the exist
-            //        HelpA_.moveRowTo(table2, "NoteName:", "IP:", 1);
-            HelpA_.moveRowTo(table2, "NoteName", "curing system:", 3);
-            HelpA_.moveRowTo(table2, "NoteName", "filler:", 4);
-            //        HelpA_.moveRowTo(table2, "NoteName:", "Approval:", 1);
-            //        HelpA_.moveRowTo(table2, "NoteName:", "Food Grade:", 1);
-            HelpA_.moveRowTo(table2, "NoteName", "certificate:", 5);
-            HelpA_.moveRowTo(table2, "NoteName", "schelflife(weeks):", 6);
-            //        HelpA_.moveRowTo(table2, "NoteName:", "Delivery Form:", 1);
-            //        HelpA_.moveRowTo(table2, "NoteName:", "Packaging:", 1);
-            HelpA_.moveRowTo(table2, "NoteName", "curing system:", 7);
-            HelpA_.moveRowTo(table2, "NoteName", "industry:", 8);
+            HelpA.moveRowTo(table2, "NoteName", "Color:", 0);
+            HelpA.moveRowTo(table2, "NoteName", "Hardnes Sha:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "recept type:", 2);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Polymer Blend:", 1); // the comented ones are to be added later when the exist
+            //        HelpA.moveRowTo(table2, "NoteName:", "IP:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "curing system:", 3);
+            HelpA.moveRowTo(table2, "NoteName", "filler:", 4);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Approval:", 1);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Food Grade:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "certificate:", 5);
+            HelpA.moveRowTo(table2, "NoteName", "schelflife(weeks):", 6);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Delivery Form:", 1);
+            //        HelpA.moveRowTo(table2, "NoteName:", "Packaging:", 1);
+            HelpA.moveRowTo(table2, "NoteName", "curing system:", 7);
+            HelpA.moveRowTo(table2, "NoteName", "industry:", 8);
         } catch (Exception ex) {
         }
         //
-        HelpA_.changeTableHeaderTitleOfOneColumn(table2, "NoteName", "Name");
-        HelpA_.changeTableHeaderTitleOfOneColumn(table2, "Note_Value", "Value");
+        HelpA.changeTableHeaderTitleOfOneColumn(table2, "NoteName", "Name");
+        HelpA.changeTableHeaderTitleOfOneColumn(table2, "Note_Value", "Value");
         //
         //
-        HelpA_.hideColumnByName(table3, "Recipe_Version");
-        HelpA_.hideColumnByName(table3, "Recipe_Addditional");
-        HelpA_.hideColumnByName(table3, "Mixer_Code");
-        HelpA_.hideColumnByName(table3, "UpdatedOn");
-        HelpA_.hideColumnByName(table3, "UpdatedBy");
-        HelpA_.hideColumnByName(table3, "Recipe_Prop_Free_Text_ID");
+        HelpA.hideColumnByName(table3, "Recipe_Version");
+        HelpA.hideColumnByName(table3, "Recipe_Addditional");
+        HelpA.hideColumnByName(table3, "Mixer_Code");
+        HelpA.hideColumnByName(table3, "UpdatedOn");
+        HelpA.hideColumnByName(table3, "UpdatedBy");
+        HelpA.hideColumnByName(table3, "Recipe_Prop_Free_Text_ID");
         //
-        HelpA_.changeTableHeaderTitleOfOneColumn(table3, "NoteName", "Name");
-        HelpA_.changeTableHeaderTitleOfOneColumn(table3, "NoteValue", "Value");
+        HelpA.changeTableHeaderTitleOfOneColumn(table3, "NoteName", "Name");
+        HelpA.changeTableHeaderTitleOfOneColumn(table3, "NoteValue", "Value");
         //
         //Just to look better visually
         for (int i = 0; i < 13; i++) {
-            HelpA_.addRowJTable(table3);
+            HelpA.addRowJTable(table3);
         }
         //
     }
@@ -321,7 +321,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
             //
             ResultSet rs = sql.execute(q, OUT);
             //
-            HelpA_.build_table_common(rs, table, q);
+            HelpA.build_table_common(rs, table, q);
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeInitial.class.getName()).log(Level.SEVERE, null, ex);
@@ -339,7 +339,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
         JTable table3 = mCRecipe2.jTable3;
         //
-        String noteValue = HelpA_.getValueSelectedRow(table3, "NoteValue");
+        String noteValue = HelpA.getValueSelectedRow(table3, "NoteValue");
         //
         if (noteValue == null || noteValue.equals("null")) {
             noteValue = "";
@@ -389,12 +389,12 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
             //
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
                 q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
-                HelpA_.runProcedureIntegerReturn_A(sql.getConnection(), q);
+                HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
             } else {
                 q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
-                HelpA_.runProcedureIntegerReturn_A(sql.getConnection(), q);
+                HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
             }
@@ -404,7 +404,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         }
         //
         if (event != null && event.getSource() != null) {
-            HelpA_.setTrackingToolTip((JComponent) event.getSource(), q);
+            HelpA.setTrackingToolTip((JComponent) event.getSource(), q);
         }
         //
         mCRecipe2.jLabelRecordsTable1.setText("<html><h5>" + mCRecipe2.jTable1.getRowCount() + "</h5></html>");
@@ -418,42 +418,42 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         JTable table = mCRecipe2.jTable1;
         try {
             ResultSet rs = sql.execute(q, OUT);
-            HelpA_.build_table_common(rs, table, q);
+            HelpA.build_table_common(rs, table, q);
         } catch (SQLException ex) {
             Logger.getLogger(RecipeInitial.class.getName()).log(Level.SEVERE, null, ex);
         }
         //OBS! Remember that Titles are not the same as "Real" Sql column names 
         // so even when i change the titles they will still have the "Real" column names
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_VERSION, JTB.LANG("Recipe Version"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_ADDITIONAL, JTB.LANG("Add."));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_DESCRIPTION, JTB.LANG("Description"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_DETAILED_GROUP, JTB.LANG("Group"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_STATUS, JTB.LANG("Status"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_CLASS, JTB.LANG("Class"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_MIXER_CODE, JTB.LANG("Mixer"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_ON, JTB.LANG("Updated On"));
-        HelpA_.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_BY, JTB.LANG("Updated By"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_VERSION, JTB.LANG("Recipe Version"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_RECIPE_ADDITIONAL, JTB.LANG("Add."));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DESCRIPTION, JTB.LANG("Description"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_DETAILED_GROUP, JTB.LANG("Group"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_STATUS, JTB.LANG("Status"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_CLASS, JTB.LANG("Class"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_MIXER_CODE, JTB.LANG("Mixer"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_ON, JTB.LANG("Updated On"));
+        HelpA.changeTableHeaderTitleOfOneColumn(table, T1_UPDATED_BY, JTB.LANG("Updated By"));
         //
-        HelpA_.hideColumnByName(table, T1_RECIPE_ID);
-        HelpA_.hideColumnByName(table, T1_RECIPE_ORIGIN);
-        HelpA_.hideColumnByName(table, T1_RECIPE_STAGE);
-        HelpA_.hideColumnByName(table, T1_LOAD_FACTOR);
-        HelpA_.hideColumnByName(table, T1_MIX_TIME);
+        HelpA.hideColumnByName(table, T1_RECIPE_ID);
+        HelpA.hideColumnByName(table, T1_RECIPE_ORIGIN);
+        HelpA.hideColumnByName(table, T1_RECIPE_STAGE);
+        HelpA.hideColumnByName(table, T1_LOAD_FACTOR);
+        HelpA.hideColumnByName(table, T1_MIX_TIME);
     }
 
     private ArrayList<String> getComboParamsA_h_one() {
         //
         ArrayList<String> list = new ArrayList<String>();
         //
-        String recipeOrigin = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin);
-        String detailedGroup = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox2_Detailed_Group);
-        String recipeStage = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox3_Recipe_Stage);
-        String mixerCode = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox4_Mixer_Code);
-        String recipeVersion = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox5_Recipe_Version);
-        String status = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox6_Status);
-        String recipeAdditional = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox7_RecipeAdditional);
-        String class_ = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox8_Class);
-        String description = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox_Description1);
+        String recipeOrigin = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin);
+        String detailedGroup = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox2_Detailed_Group);
+        String recipeStage = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox3_Recipe_Stage);
+        String mixerCode = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox4_Mixer_Code);
+        String recipeVersion = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox5_Recipe_Version);
+        String status = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox6_Status);
+        String recipeAdditional = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox7_RecipeAdditional);
+        String class_ = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox8_Class);
+        String description = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox_Description1);
         //
         String[] arr = new String[]{recipeOrigin, recipeAdditional, recipeVersion,
             recipeStage, detailedGroup, status, class_, mixerCode, description};
@@ -475,7 +475,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         Collections.sort(mCRecipe2.recipeInitialGroupC);
         //
         for (JComboBox box : mCRecipe2.recipeInitialGroupC) {
-            list.add(HelpA_.getComboBoxSelectedValue(box));
+            list.add(HelpA.getComboBoxSelectedValue(box));
         }
         //
         return list;
@@ -497,8 +497,8 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
         String[] comboParamsB = new String[comboParams.length + 2];
         //
-        String ingred_1 = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox_Ingred_1);
-        String ingred_2 = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox_Ingred_2);
+        String ingred_1 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox_Ingred_1);
+        String ingred_2 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox_Ingred_2);
         //
         System.arraycopy(comboParams, 0, comboParamsB, 0, comboParams.length);
         //
@@ -544,13 +544,13 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
      * @param box
      */
     public void allowIngredSearch(JCheckBox box) {
-        boolean condition_2_3 = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox5_Recipe_Version).equals("NULL");
-        boolean condition_2_4 = HelpA_.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin).equals("NULL");
+        boolean condition_2_3 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox5_Recipe_Version).equals("NULL");
+        boolean condition_2_4 = HelpA.getComboBoxSelectedValue(mCRecipe2.jComboBox1_Recipe_Origin).equals("NULL");
         //
         if (box.isSelected()) {
             if (condition_2_3 && condition_2_4) {
                 System.out.println("NOT Allowed");
-                HelpA_.showNotification("RECIPE ORIGIN or RECIPE VERSION must be chosen before using this option!");
+                HelpA.showNotification("RECIPE ORIGIN or RECIPE VERSION must be chosen before using this option!");
                 box.setSelected(false);
             }
         }
@@ -620,7 +620,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         OUT.showMessage(q);
         //
         //
-        HelpA_.fillComboBox_old(sql, box, q, null, false, false);
+        HelpA.fillComboBox_old(sql, box, q, null, false, false);
         //
         box.showPopup();
         //
@@ -665,7 +665,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                HelpA_.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 //
                 box.setSelectedItem(selection);
@@ -696,7 +696,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
                 //
-                HelpA_.fillComboBox(sql, box, q, null, true, false);
+                HelpA.fillComboBox(sql, box, q, null, true, false);
                 // box.setBorder(BorderFactory.createLineBorder(Color.green));
                 //
                 box.setSelectedItem(selection);
@@ -722,7 +722,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                HelpA_.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
@@ -740,7 +740,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 //
                 String q = SQL_A.fill_combobox_recipe_initial_customer(colName);
                 OUT.showMessage(q);
-                HelpA_.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
@@ -765,7 +765,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         MC_RECIPE_.jCheckBoxRecipeInitialOR.setSelected(false);
         //
         //
-        HelpA_.clearAllRowsJTable(mCRecipe2.jTableIngredientInfoTable);
+        HelpA.clearAllRowsJTable(mCRecipe2.jTableIngredientInfoTable);
         //
         mCRecipe2.revalidate();
         mCRecipe2.repaint();

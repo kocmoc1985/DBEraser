@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import forall.HelpA_;
+import forall.HelpA;
 import java.util.HashMap;
 
 /**
@@ -54,9 +54,9 @@ public class HttpResponce {
     private void showNotification(String errMsg) {
         //
         if (errMsg == null && successfulMesage != null) {
-            HelpA_.showNotification(successfulMesage);
+            HelpA.showNotification(successfulMesage);
         } else {
-            HelpA_.showNotification(errMsg);
+            HelpA.showNotification(errMsg);
         }
         //
     }

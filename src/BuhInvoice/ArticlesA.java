@@ -13,7 +13,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
@@ -88,14 +88,14 @@ public class ArticlesA extends Basic_Buh {
     private void refresh() {
         //
         fillArtiklesJTable();
-        HelpA_.markFirstRowJtable(getTableArticles());
+        HelpA.markFirstRowJtable(getTableArticles());
         bim.jTableArticles_clicked();
         //
         //#THREAD# Causes trouble due to asynchron execution [2020-10-15]
 //        Thread x = new Thread(() -> {
 //            //
 //            fillArtiklesJTable();
-//            HelpA_.markFirstRowJtable(getTableArticles());
+//            HelpA.markFirstRowJtable(getTableArticles());
 //            //
 //            java.awt.EventQueue.invokeLater(() -> {
 //                bim.jTableArticles_clicked();
@@ -146,24 +146,24 @@ public class ArticlesA extends Basic_Buh {
         if (insert) {
             //
             if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                HelpA_.showNotification(LANG.MSG_2);
+                HelpA.showNotification(LANG.MSG_2);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             //
         } else {
             //
             if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-                HelpA_.showNotification(LANG.MSG_2);
+                HelpA.showNotification(LANG.MSG_2);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             //
@@ -175,7 +175,7 @@ public class ArticlesA extends Basic_Buh {
 
     public void update() {
         //
-        String artikelId = HelpA_.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
+        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
         updateArticleData(artikelId);
         //
@@ -200,9 +200,9 @@ public class ArticlesA extends Basic_Buh {
         //
         JTable table = getTableArticles();
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
-        HelpA_.rowsorter_jtable_add_reset(table);
+        HelpA.rowsorter_jtable_add_reset(table);
         //
         String json = bim.getSELECT_kundId();
         //
@@ -224,9 +224,9 @@ public class ArticlesA extends Basic_Buh {
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA_.hideColumnByName(table, TABLE_ARTICLES__ID);
-            HelpA_.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
-//            HelpA_.hideColumnByName(table, TABLE_ARTICLES__LAGER);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
+//            HelpA.hideColumnByName(table, TABLE_ARTICLES__LAGER);
         }
         //
     }
@@ -270,7 +270,7 @@ public class ArticlesA extends Basic_Buh {
             }
         }
         //
-        String artikelId = HelpA_.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
+        String artikelId = HelpA.getValueSelectedRow(getTableArticles(), TABLE_ARTICLES__ID);
         //
         String json = bim.getSELECT(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId);
         //
@@ -403,29 +403,29 @@ public class ArticlesA extends Basic_Buh {
         //
         JTable table = getTableArticles();
         //
-        String namn_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__NAMN);
+        String namn_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_FAKTURA_ARTIKEL___NAMN, TABLE_ARTICLES__NAMN, "", true, true, true);
         //
-        String artnr_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__ARTNR);
+        String artnr_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__ARTNR);
         RowDataInvert artnr = new RowDataInvertB(artnr_, DB.BUH_FAKTURA_ARTIKEL___ARTNR, TABLE_ARTICLES__ARTNR, "", true, true, false);
         //
-        String pris_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__PRIS);
+        String pris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_ARTICLES__PRIS, "", true, true, false);
         //
-//        String inkopspris_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__INKOPS_PRIS);
+//        String inkopspris_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__INKOPS_PRIS);
 //        RowDataInvert inkopspris = new RowDataInvertB(inkopspris_, DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, TABLE_ARTICLES__INKOPS_PRIS, "", true, true, false);
         //
-//        String lager_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__LAGER);
+//        String lager_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__LAGER);
 //        RowDataInvert lager = new RowDataInvertB(lager_, DB.BUH_FAKTURA_ARTIKEL___LAGER, TABLE_ARTICLES__LAGER, "", true, true, false);
         //
-        String komment_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT);
+        String komment_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT);
         RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT, "", true, true, false);
         //
-//        String kategori_ = HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI);
+//        String kategori_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI);
 //        RowDataInvert kategori = new RowDataInvertB(kategori_, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
         //
         //
-        String fixedComboValues_b = JSon._get_simple(HelpA_.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI),
+        String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI),
                 DB.STATIC__KUND_AND_ARTICLE__KATEGORI
         );
         //

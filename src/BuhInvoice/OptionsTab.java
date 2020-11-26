@@ -17,7 +17,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.TextFieldCheck;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -67,7 +67,7 @@ public class OptionsTab extends Basic_Buh {
             return;
         }
         //
-        JPasswordField jpf = HelpA_.chooseFromPasswordField(LANG.MSG_4_4, true);
+        JPasswordField jpf = HelpA.chooseFromPasswordField(LANG.MSG_4_4, true);
         String pwd = new String(jpf.getPassword());
         //
         if (pwd.isEmpty()) {
@@ -92,7 +92,7 @@ public class OptionsTab extends Basic_Buh {
         if (smtp != null && smtp.allFilled()) {
             //    
             TextFieldCheck tfc = new TextFieldCheck("", Validator.EMAIL, 25);
-            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
+            boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, LANG.MSG_7_2);
             String toEmail = tfc.getText_();
             //
             if (yesNo && toEmail != null && tfc.getValidated()) {
@@ -100,14 +100,14 @@ public class OptionsTab extends Basic_Buh {
                 EmailSendingStatus ess = HelpBuh.sendEmailWithAttachment_SMTP(smtp, toEmail, "SMTP Test", "This is a test email", "");
                 //
                 if (ess.emailSendingSuccessful()) {
-                    HelpA_.showNotification(LANG.MSG_15_4);
+                    HelpA.showNotification(LANG.MSG_15_4);
                 } else {
-                    HelpA_.showNotification(LANG.MSG_15_5);
+                    HelpA.showNotification(LANG.MSG_15_5);
                 }
             }
             //
         } else {
-            HelpA_.showNotification(LANG.MSG_15_3);
+            HelpA.showNotification(LANG.MSG_15_3);
         }
         //
     }
@@ -123,9 +123,9 @@ public class OptionsTab extends Basic_Buh {
         SMTP smtp = new SMTP(map.get(SMTP_HOST), map.get(SMTP_YOUR_EMAIL), map.get(SMTP_PASS), map.get(SMTP_PORT), map.get(SMTP_FROM_NAME));
         //
         if (IO.saveSMTP(smtp)) {
-            HelpA_.showNotification(LANG.MSG_15);
+            HelpA.showNotification(LANG.MSG_15);
         } else {
-            HelpA_.showNotification(LANG.MSG_15_2);
+            HelpA.showNotification(LANG.MSG_15_2);
         }
     }
 
@@ -133,12 +133,12 @@ public class OptionsTab extends Basic_Buh {
     protected boolean fieldsValidated(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA_.showNotification(LANG.MSG_2);
+            HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
         if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-            HelpA_.showNotification(LANG.MSG_1);
+            HelpA.showNotification(LANG.MSG_1);
             return false;
         }
         //

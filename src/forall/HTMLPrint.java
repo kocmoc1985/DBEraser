@@ -60,7 +60,7 @@ public class HTMLPrint extends javax.swing.JFrame {
         //
         html += "<h2'>" + recipe + "</h2>";
         //
-        html += "<div style='color:grey;font-size:6pt'>MixCont MCRecipe Report: " + HelpA_.get_proper_date_adjusted_format(3) + "</div>";
+        html += "<div style='color:grey;font-size:6pt'>MixCont MCRecipe Report: " + HelpA.get_proper_date_adjusted_format(3) + "</div>";
         //
         html += "<br>";
         //
@@ -90,9 +90,9 @@ public class HTMLPrint extends javax.swing.JFrame {
         ArrayList<String> colNames;
         //
         if (jtableColsToInclude != null) {
-            colNames = HelpA_.getVisibleColumnsNames_B(table, jtableColsToInclude);
+            colNames = HelpA.getVisibleColumnsNames_B(table, jtableColsToInclude);
         } else {
-            colNames = HelpA_.getVisibleColumnsNames(table);
+            colNames = HelpA.getVisibleColumnsNames(table);
         }
         //
         //
@@ -117,9 +117,9 @@ public class HTMLPrint extends javax.swing.JFrame {
             ArrayList rowValues;
             //
             if (jtableColsToInclude != null) {
-                rowValues = HelpA_.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
+                rowValues = HelpA.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
             } else {
-                rowValues = HelpA_.getLineValuesVisibleColsOnly(table, x);
+                rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
             }
             //
             //
@@ -141,9 +141,9 @@ public class HTMLPrint extends javax.swing.JFrame {
             String colName = colNames.get(i);
             //
             //
-            int col = HelpA_.getColByName_hashmap(table, colName); // I need to make a map for real and nicknames
+            int col = HelpA.getColByName_hashmap(table, colName); // I need to make a map for real and nicknames
             //
-            if (HelpA_.columnIsVisible(table, col)) {
+            if (HelpA.columnIsVisible(table, col)) {
                 //
                 String value = (String) tableSum.getValueAt(0, col);
                 //
@@ -186,9 +186,9 @@ public class HTMLPrint extends javax.swing.JFrame {
         ArrayList<String> colNames;
         //
         if (jtableColsToInclude != null) {
-            colNames = HelpA_.getVisibleColumnsNames_B(table, jtableColsToInclude);
+            colNames = HelpA.getVisibleColumnsNames_B(table, jtableColsToInclude);
         } else {
-            colNames = HelpA_.getVisibleColumnsNames(table);
+            colNames = HelpA.getVisibleColumnsNames(table);
         }
         //
         //
@@ -213,9 +213,9 @@ public class HTMLPrint extends javax.swing.JFrame {
             ArrayList rowValues;
             //
             if (jtableColsToInclude != null) {
-                rowValues = HelpA_.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
+                rowValues = HelpA.getLineValuesVisibleColsOnly_B(table, x, jtableColsToInclude);
             } else {
-                rowValues = HelpA_.getLineValuesVisibleColsOnly(table, x);
+                rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
             }
             //
             //

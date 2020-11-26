@@ -7,7 +7,7 @@ package importerXML;
 import com.jezhumble.javasysmon.JavaSysMon;
 import exporterXML.ExporterXML;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.Sql_A;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,7 +31,7 @@ public class ImporterXML extends javax.swing.JFrame implements Runnable {
     private Document DOCUMENT;
     private Element ROOT;
     private Sql_A sql = new Sql_A();
-    public static Properties properties = HelpA_.choose_properties(".");
+    public static Properties properties = HelpA.choose_properties(".");
     private String[] TABLES_TO_IMPORT;
 
     /**
@@ -72,7 +72,7 @@ public class ImporterXML extends javax.swing.JFrame implements Runnable {
     }
 
     public static void show_info(String msg) {
-        textArea1.append(HelpA_.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
+        textArea1.append(HelpA.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
     }
 
     private void DEFINE_DOCUMENT_AND_ROOT_READ(String path) {
@@ -265,7 +265,7 @@ public class ImporterXML extends javax.swing.JFrame implements Runnable {
             java.util.logging.Logger.getLogger(ImporterXML.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        HelpA_.err_output_to_file();
+        HelpA.err_output_to_file();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

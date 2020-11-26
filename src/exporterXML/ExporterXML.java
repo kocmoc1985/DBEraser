@@ -7,7 +7,7 @@ package exporterXML;
 import com.jezhumble.javasysmon.JavaSysMon;
 import static exporterXML.ExporterXML.write_xml_doc_to_file;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.Sql_A;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,7 +34,7 @@ public class ExporterXML extends javax.swing.JFrame implements Runnable {
 
     private JavaSysMon monitor = new JavaSysMon();
     private Sql_A sql = new Sql_A();
-    private final static Properties properties = HelpA_.choose_properties(".");
+    private final static Properties properties = HelpA.choose_properties(".");
     public final static String XML_EXPORTER_MILLS__TABLES_TO_EXPORT = properties.getProperty("tables_to_export", "");
     private ArrayList<Table> TABLES_LIST = new ArrayList<Table>();
     private Document DOCUMENT;
@@ -82,7 +82,7 @@ public class ExporterXML extends javax.swing.JFrame implements Runnable {
     }
 
     private void show_info(String msg) {
-        textArea1.append(HelpA_.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
+        textArea1.append(HelpA.get_proper_date_time_same_format_on_all_computers() + "    " + msg + "\n");
     }
 
     /**
@@ -262,7 +262,7 @@ public class ExporterXML extends javax.swing.JFrame implements Runnable {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        HelpA_.err_output_to_file();
+        HelpA.err_output_to_file();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

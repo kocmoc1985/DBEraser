@@ -12,7 +12,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.HeadlessException;
 import java.awt.event.MouseEvent;
@@ -62,7 +62,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
         jTable1.addMouseListener(this);
         jTable1.setAutoCreateRowSorter(true);
-        this.setLocation(HelpA_.position_window_in_center_of_the_screen(this));
+        this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
         setTableTitle();
     }
     
@@ -75,7 +75,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         basicTab.initializeSaveIndicators();
         showTable();
         //
-        HelpA_.markFirstRowJtable(jTable1);
+        HelpA.markFirstRowJtable(jTable1);
         clikedJtable1();
     }
 
@@ -85,7 +85,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         //
         try {
             ResultSet rs = sql.execute(q, mc_recipe);
-            HelpA_.build_table_common(rs, jTable1, q);
+            HelpA.build_table_common(rs, jTable1, q);
         } catch (SQLException ex) {
             Logger.getLogger(AdministrateRecipeGroups_.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,8 +94,8 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
     }
     
     public void actionsAfterShowTable(){
-        HelpA_.hideColumnByName(jTable1, "dateCreated");
-        HelpA_.hideColumnByName(jTable1, "dateChanged");
+        HelpA.hideColumnByName(jTable1, "dateCreated");
+        HelpA.hideColumnByName(jTable1, "dateChanged");
     }
 
     public void initBasicTab() {
@@ -134,7 +134,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
                 //
                 TABLE_INVERT = null;
                 //
-                String id = HelpA_.getValueSelectedRow(jTable1, TABLE_ID);
+                String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
                 //
                 try {
                     String q = "select * from " + TABLE_NAME
@@ -285,7 +285,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
 
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
         TableInvert ti = (TableInvert) basicTab.TABLE_INVERT;
-        ti.handleAutomaticFieldUpdate("dateChanged", HelpA_.updatedOn());
+        ti.handleAutomaticFieldUpdate("dateChanged", HelpA.updatedOn());
         basicTab.saveChangesTableInvert();
         showTable();
     }//GEN-LAST:event_jButton_SaveActionPerformed
@@ -300,11 +300,11 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
 
     private void deleteUser() {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
-        String id = HelpA_.getValueSelectedRow(jTable1, TABLE_ID);
+        String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
         //
         String q = "delete from " + TABLE_NAME
                 + " where " + TABLE_ID + " = " + id;
@@ -316,13 +316,13 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         }
         //
         showTable();
-        HelpA_.markFirstRowJtable(jTable1);
+        HelpA.markFirstRowJtable(jTable1);
         clikedJtable1();
     }
     
     public String addEntryQuery(){
         return "insert into " + TABLE_NAME
-                + " values('NEW','','','','','" + HelpA_.updatedOn() + "','" + HelpA_.updatedBy()+ "')";
+                + " values('NEW','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
     }
 
     private void addEntry() {
@@ -336,7 +336,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         }
         //
         showTable();
-        HelpA_.markLastRowJtable(jTable1);
+        HelpA.markLastRowJtable(jTable1);
         clikedJtable1();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

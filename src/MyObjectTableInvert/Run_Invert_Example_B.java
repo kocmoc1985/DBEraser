@@ -10,8 +10,8 @@ import MyObjectTable.CommonControllsPanel;
 import MyObjectTable.OutPut;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import forall.HelpA_;
-import static forall.HelpA_.run_application_with_associated_application;
+import forall.HelpA;
+import static forall.HelpA.run_application_with_associated_application;
 import forall.Sql_B;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -173,12 +173,12 @@ public class Run_Invert_Example_B implements MouseListener {
 //        System.out.println("CSV: \n" + csv);
         //
         //
-        String path = HelpA_.get_desktop_path() + "\\"
-                + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
+        String path = HelpA.get_desktop_path() + "\\"
+                + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
         //
         if (writeToFile) {
             try {
-                HelpA_.writeToFile(path, csv);
+                HelpA.writeToFile(path, csv);
 //                JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
                 run_application_with_associated_application(new File(path));
             } catch (IOException ex) {

@@ -22,7 +22,7 @@ import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
@@ -118,13 +118,13 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     public String getMaterial_description() {
         String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
-        String descr = HelpA_.getSingleParamSql_query(sql, q, "Beschreibung");
+        String descr = HelpA.getSingleParamSql_query(sql, q, "Beschreibung");
         return descr;
     }
 
     public String getMaterial_batchammount() {
         String q = SQL_A.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
-        String batch_ammount = HelpA_.getSingleParamSql_query(sql, q, "BatchMenge");
+        String batch_ammount = HelpA.getSingleParamSql_query(sql, q, "BatchMenge");
         return batch_ammount;
     }
 
@@ -133,7 +133,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     }
 
     public String getRequester() {
-        return HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
+        return HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
     }
 
     public String getUpdatedOn() {
@@ -145,7 +145,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
                 || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())
                 || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
             //
-            date = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), updatedOnCol, false);
+            date = HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), updatedOnCol, false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             //
@@ -155,7 +155,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
                 return "";
             }
             //
-            date = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO,
+            date = HelpA.getSingleParamSql_with_and(sql, TABLE__MAT_INFO,
                     "WORDERNO", getOrderNo(), "ID", id, updatedOnCol, false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
@@ -163,14 +163,14 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
                     getOrderNo(), getTestCode());
             //
-            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
+            date = HelpA.getSingleParamSql_query(sql, q, updatedOnCol);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
             //
             String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
                     getOrderNo(), null);
             //
-            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
+            date = HelpA.getSingleParamSql_query(sql, q, updatedOnCol);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             //
@@ -182,17 +182,17 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 //            //
 //            String q = SQL_A.lab_dev__test_proc(updatedOnCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
 //            //
-//            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
+//            date = HelpA.getSingleParamSql_query(sql, q, updatedOnCol);
             //
             JTable table = labDevTestProcedure.getTable();
             //
-            date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
+            date = HelpA.getValueSelectedRow(table, "UpdatedOn");
             //
         }else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())) {
             //
             JTable table = labDevNew.getTable();
             //
-            date = HelpA_.getValueSelectedRow(table, "UpdatedOn");
+            date = HelpA.getValueSelectedRow(table, "UpdatedOn");
             //
         }
         //
@@ -202,7 +202,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         if (GP.IS_DATE_FORMAT_DE) {
             try {
-                return HelpA_.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE);
+                return HelpA.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE);
             } catch (ParseException ex) {
                 Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
@@ -221,7 +221,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
                 || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS())
                 || ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES())) {
             //
-            updatedBy = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), updatedByCol, false);
+            updatedBy = HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), updatedByCol, false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             //
@@ -231,21 +231,21 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
                 return "";
             }
             //
-            updatedBy = HelpA_.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(), "ID", id, updatedByCol, false);
+            updatedBy = HelpA.getSingleParamSql_with_and(sql, TABLE__MAT_INFO, "WORDERNO", getOrderNo(), "ID", id, updatedByCol, false);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG())) {
             //
             String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
                     getOrderNo(), getTestCode());
             //
-            updatedBy = HelpA_.getSingleParamSql_query(sql, q, updatedByCol);
+            updatedBy = HelpA.getSingleParamSql_query(sql, q, updatedByCol);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION())) {
             //
             String q = SQL_A.lab_dev_test_definition__get_lastupdate(PROC.PROC_69, getMaterial(),
                     getOrderNo(), null);
             //
-            updatedBy = HelpA_.getSingleParamSql_query(sql, q, updatedByCol);
+            updatedBy = HelpA.getSingleParamSql_query(sql, q, updatedByCol);
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             //
@@ -257,19 +257,19 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 //            //
 //            String q = SQL_A.lab_dev__test_proc(updatedByCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
 //            //
-//            updatedBy = HelpA_.getSingleParamSql_query(sql, q, updatedByCol);
+//            updatedBy = HelpA.getSingleParamSql_query(sql, q, updatedByCol);
             //
             //
             JTable table = labDevTestProcedure.getTable();
             //
-            updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
+            updatedBy = HelpA.getValueSelectedRow(table, "UpdatedBy");
             //
             //
         }else if(ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_ORDER())){
             //
             JTable table = labDevNew.getTable();
             //
-            updatedBy = HelpA_.getValueSelectedRow(table, "UpdatedBy");
+            updatedBy = HelpA.getValueSelectedRow(table, "UpdatedBy");
             //
         }
         //
@@ -278,14 +278,14 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     }
 
     private String getIdMaterialInfoTable() {
-        return HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
+        return HelpA.getValueSelectedRow(getMaterialInfoTable(), "ID");
     }
 
 
     protected void refreshHeader() {
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
-            HelpA_.showNotification_separate_thread("Kein Auftrag ausgewählt!");
+            HelpA.showNotification_separate_thread("Kein Auftrag ausgewählt!");
         }
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA())) {
@@ -430,23 +430,23 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "UpdatedOn", "ID"};
         //
         String q1 = SQL_A.get_lab_dev_table_1(getOrderNo(), TABLE_NOTES_1);
-        HelpA_.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_1, q1, colsToHide);
+        HelpA.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_1, q1, colsToHide);
         //
         String q2 = SQL_A.get_lab_dev_table_2(getOrderNo(), TABLE_NOTES_2);
-        HelpA_.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
+        HelpA.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
 
     @Override
     public void fillNotes() {
-        String notes = HelpA_.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
+        String notes = HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
         getNotesJTextArea().setText(notes);
     }
 
     public void saveTableInvert__tab_main_data() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA.showNotification(MSG.MSG_3());
             return;
         }
         //
@@ -592,7 +592,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         TABLE_INVERT_6 = null;
         //
-        String id = HelpA_.getValueSelectedRow(getMaterialInfoTable(), "ID");
+        String id = HelpA.getValueSelectedRow(getMaterialInfoTable(), "ID");
         //
         try {
 //            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
@@ -623,25 +623,25 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         JTable table = getMaterialInfoTable();
         //
         String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(), null);
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
+        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
         //
         LAB_DEV.material_information_tab_change_jtable__header(table);
         //
-        HelpA_.markFirstRowJtable(table);
+        HelpA.markFirstRowJtable(table);
         materialInfoJTableClicked();
         //
     }
 
     public void deleteJTableNote(JTable table, String dbTableName) {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
-        String id = HelpA_.getValueSelectedRow(table, "ID");
+        String id = HelpA.getValueSelectedRow(table, "ID");
         //
         if (id == null || id.isEmpty()) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            HelpA.showNotification(NOTIFICATIONS.NOTE_3());
             return;
         }
         //
@@ -664,12 +664,12 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         JTextField jtf1 = new JTextField();
         JTextField jtf2 = new JTextField();
         //
-        HelpA_.chooseFrom2Textfields(jtf1, jtf2, MSG.MSG_1(), MSG.MSG_1_2(), MSG.MSG_1_3());
+        HelpA.chooseFrom2Textfields(jtf1, jtf2, MSG.MSG_1(), MSG.MSG_1_2(), MSG.MSG_1_3());
         //
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        String q = SQL_A.insert_into_lab_dev_table_1_and_2(dbTableName, order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
+        String q = SQL_A.insert_into_lab_dev_table_1_and_2(dbTableName, order, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mcRecipe);
@@ -683,25 +683,25 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     public void changeJTableNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
-        if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_1());
+        if (HelpA.getIfAnyRowChosen(table) == false) {
+            HelpA.showNotification(NOTIFICATIONS.NOTE_1());
             return;
         }
         //
-        String id = HelpA_.getValueSelectedRow(table, idColName);
+        String id = HelpA.getValueSelectedRow(table, idColName);
         //
         if (id == null || id.isEmpty()) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            HelpA.showNotification(NOTIFICATIONS.NOTE_3());
             return;
         }
         //
-        String noteValue = HelpA_.getValueSelectedRow(table, noteValColName);
+        String noteValue = HelpA.getValueSelectedRow(table, noteValColName);
         //
         JTextField jtf = new JTextField(noteValue.equals("null") ? "" : noteValue);
         //
         jtf.setPreferredSize(new Dimension(300, 50));
         //
-        boolean yes = HelpA_.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
+        boolean yes = HelpA.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
         //
         String value = jtf.getText();
         //

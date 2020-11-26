@@ -38,7 +38,7 @@ public class GP {
     public static final URL COMPLETE_IMAGE_ICON_URL = GP.class.getResource("ok.png");
     //
     //=================================================
-    public final static Properties FREE_QUERY_AND_NOT_ONLY_PROPS = HelpA_.properties_load_properties("freeq.properties", false);
+    public final static Properties FREE_QUERY_AND_NOT_ONLY_PROPS = HelpA.properties_load_properties("freeq.properties", false);
     //=================================================
     public static String SQL_NPMS_HOST = "";
     public static int SQL_NPMS_PORT;

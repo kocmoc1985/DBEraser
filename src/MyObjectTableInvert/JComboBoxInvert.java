@@ -4,7 +4,7 @@
  */
 package MyObjectTableInvert;
 
-import forall.HelpA_;
+import forall.HelpA;
 import forall.JComboBoxA;
 
 /**
@@ -39,12 +39,12 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
     }
 
     public String getValue(int paramToReturn){
-        return HelpA_.getComboBoxSelectedValue(this,paramToReturn);
+        return HelpA.getComboBoxSelectedValue(this,paramToReturn);
     }
     
     @Override
     public String getValue() {
-        return HelpA_.getComboBoxSelectedValue(this);
+        return HelpA.getComboBoxSelectedValue(this);
     }
 
     @Override

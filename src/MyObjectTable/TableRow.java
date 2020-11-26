@@ -5,7 +5,7 @@
 package MyObjectTable;
 
 import MyObjectTableInvert.JLinkInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -178,7 +178,7 @@ public class TableRow extends JPanel implements MouseListener, AncestorListener,
             return label.getText();
         } else if (c instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) c;
-            return HelpA_.getComboBoxSelectedValue(comboBox);
+            return HelpA.getComboBoxSelectedValue(comboBox);
         } else if (c instanceof JTextField) {
             JTextField jtf = (JTextField) c;
             return (String) jtf.getText();

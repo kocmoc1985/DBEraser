@@ -9,7 +9,7 @@ import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
 import Reporting.JTableBasicRepport;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
@@ -76,7 +76,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         mc_recipe.showMessage(q);
         //
-        if (HelpA_.runProcedureIntegerReturn_A_2(sql, q) == 0) {
+        if (HelpA.runProcedureIntegerReturn_A_2(sql, q) == 0) {
             return true;
         } else {
             return false;
@@ -85,12 +85,12 @@ public class CompareRecipes extends javax.swing.JFrame {
     
     public void fillComboBoxes() {
         //
-        ArrayList<String> colNames = HelpA_.getVisibleColumnsNames(jTable1);
+        ArrayList<String> colNames = HelpA.getVisibleColumnsNames(jTable1);
         //
         Object[] colNamesArr = colNames.toArray();
         //
-        HelpA_.fillComboBox(jComboBoxCompareRecipesOrderBy1, colNamesArr, "");
-        HelpA_.fillComboBox(jComboBoxCompareRecipesOrderby2, colNamesArr, "");
+        HelpA.fillComboBox(jComboBoxCompareRecipesOrderBy1, colNamesArr, "");
+        HelpA.fillComboBox(jComboBoxCompareRecipesOrderby2, colNamesArr, "");
         //
     }
     
@@ -138,13 +138,13 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         JTable table = jTable1;
         //
-        String q1 = SQL_A.compareRecipesShow(HelpA_.updatedBy(), orderByCriteria);
+        String q1 = SQL_A.compareRecipesShow(HelpA.updatedBy(), orderByCriteria);
         //
         try {
             //
             ResultSet rs = sql.execute(q1,mc_recipe);
             //
-            HelpA_.build_table_common_with_rounding(rs,q1, table, "%2.2f",
+            HelpA.build_table_common_with_rounding(rs,q1, table, "%2.2f",
                     new String[]{RecipeDetailed_.t4_id, RecipeDetailed_.t4_loadingSeq,RecipeDetailed_.t4_material,RecipeDetailed_.t4_release},
                     new String[]{RecipeDetailed_.t4_density},
                     new String[]{});
@@ -158,14 +158,14 @@ public class CompareRecipes extends javax.swing.JFrame {
     }
     
     private void hideColumns(JTable table) {
-        HelpA_.hideColumnByName(table, "Recipe_Recipe_ID");
-        HelpA_.hideColumnByName(table, "RecipeID");
-//        HelpA_.hideColumnByName(table, "RecipeName");
-//        HelpA_.hideColumnByName(table, "Release");
-        HelpA_.hideColumnByName(table, "weighingID");
-        HelpA_.hideColumnByName(table, "SiloId");
-        HelpA_.hideColumnByName(table, "BalanceID");
-        HelpA_.hideColumnByName(table, "PriceData");
+        HelpA.hideColumnByName(table, "Recipe_Recipe_ID");
+        HelpA.hideColumnByName(table, "RecipeID");
+//        HelpA.hideColumnByName(table, "RecipeName");
+//        HelpA.hideColumnByName(table, "Release");
+        HelpA.hideColumnByName(table, "weighingID");
+        HelpA.hideColumnByName(table, "SiloId");
+        HelpA.hideColumnByName(table, "BalanceID");
+        HelpA.hideColumnByName(table, "PriceData");
     }
     
     private void undoAllMarkUps(JTable table){
@@ -191,7 +191,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         LinkedList listToReturn = new LinkedList();
         //
         for (int i = 0; i < table.getRowCount(); i++) {
-            String rName = HelpA_.getValueGivenRow(table, i, "RecipeName");
+            String rName = HelpA.getValueGivenRow(table, i, "RecipeName");
             //
             if (colMap.containsKey(rName) == false) {
                 Color color = colorList.pollFirst();
@@ -217,7 +217,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         LinkedList<Integer> list = new LinkedList<Integer>();
         //
         for (int i = 0; i < table.getRowCount(); i++) {
-            String rName = HelpA_.getValueGivenRow(table, i, "RecipeName");
+            String rName = HelpA.getValueGivenRow(table, i, "RecipeName");
             //
             if (actRecipeName.equals(rName) == false) {
                 list.add(i);

@@ -6,7 +6,7 @@
 package LabDev;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
-import forall.HelpA_;
+import forall.HelpA;
 import java.util.Properties;
 
 /**
@@ -86,7 +86,7 @@ public class LAB_DEV__STATUS {
         DICT_DE_ENG.put("Archiv", "Archive");
         DICT_DE_ENG.put("Abbrechen", "Abort");
         //
-        DICT_ENG_DE = HelpA_.swap_keys_and_values__properties(DICT_DE_ENG);
+        DICT_ENG_DE = HelpA.swap_keys_and_values__properties(DICT_DE_ENG);
         //
     }
 

@@ -79,7 +79,7 @@ public class Invert_Tables_Config {
         String q_3 = SQL_B.basic_combobox_query("Status", "Ingredient_Code");
         RowDataInvert status = new RowDataInvert(1, q_3, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Status", "STATUS", "", true, true, false);
         //
-        String q_4 = SQL_B.basic_combobox_query("[Group]", "Ingredient_Code");
+        String q_4 = SQL_B.basic_combobox_query("Group", "Ingredient_Code");
         RowDataInvert group = new RowDataInvert(1, q_4, sql_additional, "", "Ingredient_Code", "IngredientCode_ID", false, "Group", "GROUP", "", true, true, false);
         //
         RowDataInvert group_name = new RowDataInvert("Ingred_Group", "Id", false, "Descr", "GROUP NAME", "", true, true, false);

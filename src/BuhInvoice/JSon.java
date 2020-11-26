@@ -6,7 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.HashMapKeyCaseInsensitive;
-import static forall.HelpA_.getColumnName;
+import static forall.HelpA.getColumnName;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

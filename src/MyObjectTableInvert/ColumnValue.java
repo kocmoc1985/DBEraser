@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import forall.HelpA_;
+import forall.HelpA;
 
 /**
  *
@@ -47,7 +47,7 @@ public class ColumnValue {
             return label.getText();
         } else if (value instanceof JComboBoxInvert) {
             JComboBoxInvert comboBox = (JComboBoxInvert) value;
-            return HelpA_.getComboBoxSelectedValue(comboBox);
+            return HelpA.getComboBoxSelectedValue(comboBox);
         } else if (value instanceof JTextFieldInvert || value instanceof JPassWordFieldInvert) {
             JLinkInvert jli = (JLinkInvert)value;
             return jli.getValue();
@@ -65,8 +65,8 @@ public class ColumnValue {
             return label.getText();
         } else if (value instanceof JComboBoxInvert) {
             JComboBoxInvert comboBox = (JComboBoxInvert) value;
-//            return HelpA_.getComboBoxSelectedValue(comboBox);
-            return HelpA_.getComboBoxSelectedValue(comboBox, paramToReturn);
+//            return HelpA.getComboBoxSelectedValue(comboBox);
+            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
         } else if (value instanceof JTextFieldInvert) {
             JTextFieldInvert jtf = (JTextFieldInvert) value;
             return (String) jtf.getText();
