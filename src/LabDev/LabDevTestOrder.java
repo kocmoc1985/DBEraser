@@ -89,6 +89,12 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         showTableInvert();
     }
 
+    private void refresh_b(JTable table) {
+        fillJTable();
+        HelpA_.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
+    }
+
     private JButton getSaveButton() {
         return mcRecipe.jButton__lab_dev__new;
     }
@@ -124,7 +130,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), getMaterial(), getTestCode(), null);
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
-            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE"});
+            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE", "TagId"});
         //
 //        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
         //
@@ -239,9 +245,8 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         saveChangesTableInvert(TABLE_INVERT);
         //
         JTable table = getTable();
-        fillJTable();
-        HelpA_.markFirstRowJtable(table);
-        mouseClickedOnTable(table);
+        //
+        refresh_b(table);
         //
     }
 
@@ -253,7 +258,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         if (e.getSource().equals(getSaveButton())) {
             saveTableInvert();
         } else if (e.getSource().equals(getFilterBtn())) {
-            filterButtonClicked(getTable());
+            refresh_b(getTable());
         } else if (e.getSource().equals(getRemoveFilterBtn())) {
             removeFilterButtonClicked(table);
         } else if (e.getSource().equals(getCreateNewButton())) {
@@ -264,9 +269,16 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private void createNewButtonClicked() {
         //
+        String testCode = getTestCode();
+        //
+        if(testCode == null || testCode.isEmpty() || testCode.equals("NULL")){
+            HelpA_.showNotification(MSG.MSG_7_4());
+            return;
+        }
+        //
         String q = SQL_A.lab_dev_test_order__get_list_for_creating_new(PROC.PROC_76, getTestCode());
         //
-        CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q, new String[]{}, OUT);
+        CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q, new String[]{"ID_Proc"}, OUT,MSG.MSG_7_3());
         cnft.setVisible(true);
         //
     }
@@ -277,7 +289,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
      * @param paramters
      * @param cnft
      */
-    public void selectButtonClicked_a(String[] paramters,CreateNewFromTable cnft) {
+    public void selectButtonClicked_a(String[] paramters, CreateNewFromTable cnft) {
         //
         cnft.dispose();
         //
@@ -288,6 +300,18 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         System.out.println("CATCH, ID: " + id);
         //
+        String insert_q = SQL_A.lab_dev_test_order__insert_new(PROC.PROC_77, order, material, testcode, id);
+        //
+        try {
+            sql.execute(insert_q, OUT);
+            HelpA_.showNotification(MSG.MSG_7());
+        } catch (SQLException ex) {
+            HelpA_.showNotification(MSG.MSG_7_2());
+            Logger.getLogger(LabDevTestOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        refresh_b(getTable());
+        //
     }
 
     private void removeFilterButtonClicked(JTable table) {
@@ -297,12 +321,6 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         HelpA_.clearAllRowsJTable(table);
         //
-    }
-
-    private void filterButtonClicked(JTable table) {
-        fillJTable();
-        HelpA_.markFirstRowJtable(table);
-        mouseClickedOnTable(table);
     }
 
     @Override

@@ -1576,6 +1576,23 @@ public class SQL_A {
                 + quotes(param1, false)
                 + ") ORDER BY ID_Proc";
     }
+    
+    /**
+     * 
+     * @param PROC - 77
+     * @param param1 - order
+     * @param param2 - material
+     * @param param3 - testCode
+     * @param param4 - id
+     * @return 
+     */
+    public static String lab_dev_test_order__insert_new(String PROC, String param1, String param2, String param3,String param4) {
+        return PROC + " "
+                + quotes(param1, false) + "," 
+                + quotes(param2, false) + "," 
+                + quotes(param3, false) + "," 
+                + quotes(param4, true) + "";
+    }
 
 //    public static void main(String[] args) {
 //        //

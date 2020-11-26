@@ -2531,7 +2531,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
 
         jButton_lab_dev__test_order__clear_filter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_remove.png"))); // NOI18N
 
-        jButton_lab_dev__test_order_create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton_lab_dev__test_order_create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel76Layout = new javax.swing.GroupLayout(jPanel76);
         jPanel76.setLayout(jPanel76Layout);

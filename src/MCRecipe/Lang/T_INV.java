@@ -136,7 +136,7 @@ public class T_INV {
         //
         DICT.put("SCOPE", "UMFANG");
         //
-        DICT.put("TESTCODE", "TESTCODE");
+        DICT.put("TESTCODE", "PRÜFFCODE");
         DICT.put("PREFVULC", "PREFVULC");
         DICT.put("PREFAGE", "PREFAGE");
         DICT.put("TESTCOND", "TESCOND");

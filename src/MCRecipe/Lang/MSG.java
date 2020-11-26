@@ -60,4 +60,20 @@ public class MSG {
     public static String MSG_6_3(String code) {
         return LANG_ENG ? "Copy code: " + code + "?" : "Code: " + code + " kopieren?";
     }
+    
+    public static String MSG_7() {
+        return LANG_ENG ? "Operation successful" : "Erfolgreich";
+    }
+    
+    public static String MSG_7_2() {
+        return LANG_ENG ? "Operation failed" : "Fehlgeschlagen";
+    }
+    
+    public static String MSG_7_3() {
+        return LANG_ENG ? "Add new" : "Neu ergänzen";
+    }
+    
+    public static String MSG_7_4() {
+        return LANG_ENG ? "Test code not chosen" : "Prüffcode nicht ausgewählt";
+    }
 }

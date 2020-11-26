@@ -3649,7 +3649,7 @@
                         <Component class="javax.swing.JButton" name="jButton_lab_dev__test_order_create_new">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/new.png"/>
+                              <Image iconType="3" name="/icons/add.png"/>
                             </Property>
                           </Properties>
                           <AuxValues>

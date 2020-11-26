@@ -25,6 +25,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
     private final String[] colsToHide;
     private final ShowMessage sm;
     private final Object consumerClass;
+    private final String title;
     private String[] toReturn;
 
     /**
@@ -35,7 +36,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
      * @param query
      */
     public CreateNewFromTable(Object consumerClass, SqlBasicLocal sql,
-            String query, String[] colsToHide, ShowMessage sm) {
+            String query, String[] colsToHide, ShowMessage sm,String title) {
         initComponents();
         //
         initOther();
@@ -44,8 +45,8 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
         this.sql = sql;
         this.colsToHide = colsToHide;
         this.query = query;
-
         this.sm = sm;
+        this.title = title;
         //
         buildTable();
         //
@@ -53,6 +54,7 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
 
     private void initOther() {
         this.jTable1.addMouseListener(this);
+        this.setTitle(title);
         HelpA_.centerAndBringToFront(this);
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
     }
