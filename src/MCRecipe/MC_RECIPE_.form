@@ -3516,30 +3516,25 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                                  <Component id="jButton__lab_dev__new" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jButton_lab_dev__test_order__clear_filter" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                                      <Component id="jButton_lab_dev__test_order__filter_btn" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                              <Component id="jButton__lab_dev__new" min="-2" pref="50" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jButton_lab_dev__test_order__clear_filter" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Component id="jButton_lab_dev__test_order__filter_btn" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jComboBox_lab_dev__test_order__material" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                              <Component id="jComboBox_lab_dev__test_order__testcode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBox_lab_dev__test_order__material" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jComboBox_lab_dev__test_order__testcode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel77" pref="519" max="32767" attributes="0"/>
                                       <Component id="jScrollPane29" max="32767" attributes="0"/>
@@ -3636,7 +3631,7 @@
                         <Component class="javax.swing.JButton" name="jButton_lab_dev__test_order__clear_filter">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/filter_del.png"/>
+                              <Image iconType="3" name="/icons/filter_remove.png"/>
                             </Property>
                           </Properties>
                           <AuxValues>

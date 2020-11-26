@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class LabDevStatusTab extends LabDevTab_ {
+public class LabDevStatusTab_ extends LabDevTab_ {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT_2;
     private TableBuilderInvert TABLE_BUILDER_INVERT_3;
@@ -36,7 +36,7 @@ public class LabDevStatusTab extends LabDevTab_ {
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
 
-    public LabDevStatusTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    public LabDevStatusTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
@@ -339,13 +339,14 @@ public class LabDevStatusTab extends LabDevTab_ {
         return false;
     }
 
+
     @Override
-    public String[] getComboParams() {
+    public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-     @Override
-    public String getQuery(String procedure, String colName, String[] comboParameters) {
+    @Override
+    public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -62,17 +62,25 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         addMouseListenerJComboBox__mcs(getComboBoxTestCode(), this);
         //
     }
-    
-    private String getTestCode(){
+
+    private String getTestCode() {
         // EX: VUG01
-       HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject)HelpA_.getSelectedComboBoxObject(getComboBoxTestCode());
-       return cbo.getParamAuto();
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxTestCode());
+        if (cbo == null) {
+            return "NULL";
+        } else {
+            return cbo.getParamAuto();
+        }
     }
-    
-    private String getMaterial(){
+
+    private String getMaterial() {
         // EX: WE8486
-       HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject)HelpA_.getSelectedComboBoxObject(getComboBoxMaterial());
-       return cbo.getParamAuto();
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxMaterial());
+        if (cbo == null) {
+            return "NULL";
+        } else {
+            return cbo.getParamAuto();
+        }
     }
 
     public void refresh() {
@@ -260,7 +268,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         HelpA_.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
-   
+
     @Override
     public void mousePressed(MouseEvent e) {
         //
@@ -314,7 +322,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         return new String[]{ordernr, material, testcode};
         //
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         //
@@ -337,14 +345,14 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
-     @Override
+
+    @Override
     public void mouseClicked(MouseEvent e) {
-       
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 }

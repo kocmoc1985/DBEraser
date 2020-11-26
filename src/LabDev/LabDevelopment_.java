@@ -59,7 +59,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
     public LabDevTestConfigTab labDevTestConfigTab;
-    public LabDevStatusTab labDevStatusTab;
+    public LabDevStatusTab_ labDevStatusTab;
     public LabDevTestDefinitionTab labDevTestDefinitionTab;
     public LabDevAgeVulcTab labDevAgeVulcTab;
     public LabDevTestProcedureTab labDevTestProcedure;
@@ -357,7 +357,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS();
         //
         if (labDevStatusTab == null) {
-            labDevStatusTab = new LabDevStatusTab(sql, sql_additional, OUT, this);
+            labDevStatusTab = new LabDevStatusTab_(sql, sql_additional, OUT, this);
         } else {
             labDevStatusTab.refresh();
         }
