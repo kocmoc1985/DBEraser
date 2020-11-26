@@ -63,7 +63,8 @@ public class LabDevHeaderComponent implements ItemListener {
     }
 
     public void tab_material_info() {
-        tab_main_data();
+//        tab_main_data();
+        tab_test_defenition();
     }
 
     public void tab_main_data() {
@@ -111,7 +112,7 @@ public class LabDevHeaderComponent implements ItemListener {
         showStandard(false);
         updateGraphics();
     }
-    
+
     public void tab_test_variables() {
         clear();
         showStandard(false);

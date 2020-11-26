@@ -65,7 +65,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         addMouseListenerJComboBox__mcs(getComboBoxTestCode(), this);
         //
         java.awt.EventQueue.invokeLater(() -> { // OBS! Important to run here with invoke later
-              refresh_b();
+              refresh_a();
          });
         //
     }
@@ -92,6 +92,13 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     public void refresh() {
         showTableInvert();
+    }
+    
+     private void refresh_a() {
+        JTable table = getTable();
+        //
+        HelpA_.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
     }
 
     private void refresh_b() {
