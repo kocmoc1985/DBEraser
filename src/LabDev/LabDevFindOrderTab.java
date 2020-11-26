@@ -12,7 +12,7 @@ import MCRecipe.Lang.MSG;
 import MCRecipe.SQL_A;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -58,14 +58,14 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         String q = SQL_A.find_order_lab_dev__dynamic(selectedValues);
         //
-        HelpA.build_table_common(sql, mcRecipe, getTable(), q, new String[]{"ID"});
+        HelpA_.build_table_common(sql, mcRecipe, getTable(), q, new String[]{"ID"});
         //
         // Translating status - as status is always saved in ENG in the database
         LAB_DEV.find_order_tab_translate_status(getTable(), "WOSTATUS");
         //
         LAB_DEV.find_order_tab_change_jtable__header(getTable());
         //
-        HelpA.setEnabled(getSetOrderBtn(), true);
+        HelpA_.setEnabled(getSetOrderBtn(), true);
         //
     }
     
@@ -103,12 +103,12 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         JTable table = getTable();
         //
-        if (HelpA.rowSelected(table) == false) {
-            HelpA.showNotification(MSG.MSG_5());
+        if (HelpA_.rowSelected(table) == false) {
+            HelpA_.showNotification(MSG.MSG_5());
             return;
         }
         //
-        String selectedOrder = HelpA.getValueSelectedRow(table, "WORDERNO");
+        String selectedOrder = HelpA_.getValueSelectedRow(table, "WORDERNO");
         labDev.setOrderNo(selectedOrder);
         //
     }
@@ -129,8 +129,8 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     
     @Override
     public void keyReleased(KeyEvent e) {
-//        HelpA.markRowByValue_contains(getTable(), "Title 1", mcRecipe.jTextField__lab_dev__find_order.getText());
-        HelpA.markRowByValue_contains(getTable(), "WORDERNO", getTexField().getText());
+//        HelpA_.markRowByValue_contains(getTable(), "Title 1", mcRecipe.jTextField__lab_dev__find_order.getText());
+        HelpA_.markRowByValue_contains(getTable(), "WORDERNO", getTexField().getText());
     }
     
     private static String random() {
@@ -186,10 +186,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         JTable table = mcRecipe.jTable_lab_dev__find_order;
         //
-        String order = HelpA.getValueSelectedRow(table, "WORDERNO"); // Auftrag
+        String order = HelpA_.getValueSelectedRow(table, "WORDERNO"); // Auftrag
         labDev.setOrderNo(order);
         //
-        HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
+        HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
         //
         labDev.lab_dev_tab__tab_main_data__clicked();
         //

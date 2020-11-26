@@ -9,7 +9,7 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import forall.HelpA;
+import forall.HelpA_;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,7 +57,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
                 refreshTableInvert(TABLE_INVERT_3);
                 //
                 fillJTableheader();
-                HelpA.clearAllRowsJTable(getArticlesTable());
+                HelpA_.clearAllRowsJTable(getArticlesTable());
                 //
                 resetFakturaTotal();
                 //
@@ -84,7 +84,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
         //
-        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET);
+        HelpA_.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET);
         //
     }
     
@@ -135,14 +135,14 @@ public class InvoiceA_Insert_ extends Invoice_ {
         kund.enableFixedValuesAdvanced();
 //        kund.setUneditable();
         //
-        String faktura_datum_val = HelpA.get_proper_date_yyyy_MM_dd();
-        String faktura_datum_forfallo = HelpA.get_today_plus_x_days(30);
+        String faktura_datum_val = HelpA_.get_proper_date_yyyy_MM_dd();
+        String faktura_datum_forfallo = HelpA_.get_today_plus_x_days(30);
         RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
         
         //
-//        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
+//        String er_referens_last = HelpA_.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         //
         String var_ref = IO.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");

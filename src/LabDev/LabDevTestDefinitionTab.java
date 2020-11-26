@@ -13,7 +13,7 @@ import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -44,7 +44,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         JTable table = getTable();
         fillJTableHeader();
         table.addMouseListener(this);
-        HelpA.setUneditableJTable(table);
+        HelpA_.setUneditableJTable(table);
         refresh();
     }
     
@@ -54,9 +54,9 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         //
         build();
         //
-        HelpA.setColumnWidthByName(COL_1_NAME, table, 0.1);
-        HelpA.setColumnWidthByName(COL_2_NAME, table, 0.25);
-        HelpA.setColumnWidthByName(COL_3_NAME, table, 0.65);
+        HelpA_.setColumnWidthByName(COL_1_NAME, table, 0.1);
+        HelpA_.setColumnWidthByName(COL_2_NAME, table, 0.25);
+        HelpA_.setColumnWidthByName(COL_3_NAME, table, 0.65);
         //
     }
     
@@ -162,7 +162,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         JTable table = getTable();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         //
-        HelpA.clearAllRowsJTable(table);
+        HelpA_.clearAllRowsJTable(table);
         //
         for (TestDefinitionEntry tde : tableData) {
             //
@@ -217,10 +217,10 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         //
         JTable table = getTable();
         //
-        String testCode = HelpA.getValueSelectedRow(table, "Code");
+        String testCode = HelpA_.getValueSelectedRow(table, "Code");
         labDev.setTestCode(testCode);
         //
-        HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
+        HelpA_.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
         //
         labDev.lab_dev_tab_test_config__clicked();
         //

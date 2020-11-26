@@ -15,8 +15,8 @@ import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.GP;
-import forall.HelpA;
-import static forall.HelpA.getColByName;
+import forall.HelpA_;
+import static forall.HelpA_.getColByName;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -282,7 +282,7 @@ public class Validator_MCR {
             return setValidated(jli);
         }
         //
-        if (HelpA.isNumber(val)) {
+        if (HelpA_.isNumber(val)) {
             return setValidated(jli);
         } else {
             return setNotValidated(jli);
@@ -328,7 +328,7 @@ public class Validator_MCR {
             validated = validate_(DATE_YYYY_MM_DD, val);
         }
         //
-        if (validated) { // HelpA.isDateValid(val)
+        if (validated) { // HelpA_.isDateValid(val)
             return setValidated(jli);
         } else {
             setToolTip(jli, "Date format not correct");

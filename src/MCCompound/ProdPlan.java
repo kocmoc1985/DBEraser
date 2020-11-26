@@ -11,7 +11,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.ProgressBarB;
 import forall.SqlBasicLocal;
 import java.awt.Color;
@@ -63,10 +63,10 @@ public class ProdPlan extends BasicTab {
                 buildProdPlanTableTemp();
                 initializeSaveIndicators();
                 //
-                HelpA.markGivenRow(P_P.jTable1, 0);
+                HelpA_.markGivenRow(P_P.jTable1, 0);
                 showTableInvert();
                 //
-                HelpA.markGivenRow(P_P.jTable1_2, 0);
+                HelpA_.markGivenRow(P_P.jTable1_2, 0);
                 showTableInvert2();
             }
         });
@@ -127,13 +127,13 @@ public class ProdPlan extends BasicTab {
             ProgressBarB progressBarB = new ProgressBarB("Importing to CSV Table", table.getRowCount(), GP.IMAGE_ICON_URL_PROD_PLAN);
             //
             for (int i = 0; i < table.getRowCount(); i++) {
-                String prodOrder = HelpA.getValueGivenRow(table, i, PROD_ORDER);
+                String prodOrder = HelpA_.getValueGivenRow(table, i, PROD_ORDER);
                 addToRecipeCsvTable((i + 5), prodOrder);
                 progressBarB.go(i + 1);
             }
             //
 //            P_P.jTabbedPane1.setSelectedIndex(1);//show a specifig tab
-            HelpA.openTabByName(P_P.jTabbedPane1, "CSV Table");
+            HelpA_.openTabByName(P_P.jTabbedPane1, "CSV Table");
             //
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,7 +143,7 @@ public class ProdPlan extends BasicTab {
     }
 
     private void highLightRows(JTable table, String idColumnName) {
-        String rowID = "" + table.getValueAt(table.getSelectedRow(), HelpA.getColByName(table, idColumnName));
+        String rowID = "" + table.getValueAt(table.getSelectedRow(), HelpA_.getColByName(table, idColumnName));
         int rowid = Integer.parseInt(rowID);
         //
         rowsToHighlight.add(rowid);
@@ -196,7 +196,7 @@ public class ProdPlan extends BasicTab {
     private void additionalOps(ResultSet rs, String recipeName, String release, int column, String order, int ammount) {
         //
         JTable table = new JTable();
-        table = HelpA.build_table_common_return(rs, table);
+        table = HelpA_.build_table_common_return(rs, table);
         //
         JScrollPane container = new JScrollPane(table);
         //
@@ -204,10 +204,10 @@ public class ProdPlan extends BasicTab {
         //
         //
         //
-//        String recipeName2 = (String) table.getValueAt(table.getSelectedRow(), HelpA.getColByName(table, "Code"));
-//        String release2 = (String) table.getValueAt(table.getSelectedRow(), HelpA.getColByName(table, "Release"));
-        String recipeName2 = HelpA.getValueSelectedRow(table, "Code");
-        String release2 = HelpA.getValueSelectedRow(table, "Release");
+//        String recipeName2 = (String) table.getValueAt(table.getSelectedRow(), HelpA_.getColByName(table, "Code"));
+//        String release2 = (String) table.getValueAt(table.getSelectedRow(), HelpA_.getColByName(table, "Release"));
+        String recipeName2 = HelpA_.getValueSelectedRow(table, "Code");
+        String release2 = HelpA_.getValueSelectedRow(table, "Release");
         //
         //
         String procedure = SQL_A.generate_CSVColumn(PROC.PROC_P_03,recipeName, release, column, order, ammount, recipeName2, release2);
@@ -225,7 +225,7 @@ public class ProdPlan extends BasicTab {
         try {
             String q = SQL_B.getProductionPlan();
             ResultSet rs = sql.execute(q, OUT);
-            HelpA.build_table_common(rs, P_P.jTable1, q);
+            HelpA_.build_table_common(rs, P_P.jTable1, q);
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -236,17 +236,17 @@ public class ProdPlan extends BasicTab {
         try {
             String q = SQL_B.getProductionPlanTemp();
             ResultSet rs = sql.execute(q, OUT);
-            HelpA.build_table_common(rs, P_P.jTable1_2,q);
+            HelpA_.build_table_common(rs, P_P.jTable1_2,q);
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        HelpA.hideColumnByName(P_P.jTable1_2, ID);
+        HelpA_.hideColumnByName(P_P.jTable1_2, ID);
     }
 
     private JComboBox buildChoseSeqNrComboBox(JComboBox box) {
         //
-        int chosenSeqNr = Integer.parseInt(HelpA.getValueSelectedRow(P_P.jTable1_2, SEQUENCE));
+        int chosenSeqNr = Integer.parseInt(HelpA_.getValueSelectedRow(P_P.jTable1_2, SEQUENCE));
         //
 //        int highestSeqNr = getHighestSeqNumber();
         //
@@ -256,9 +256,9 @@ public class ProdPlan extends BasicTab {
             items[i] = "" + (i + 1);
         }
         //
-        HelpA.fillComboBox(box, items, null);
+        HelpA_.fillComboBox(box, items, null);
         //
-        if (HelpA.chooseFromComboBoxDialog(box, "Move to sequence position:")) {
+        if (HelpA_.chooseFromComboBoxDialog(box, "Move to sequence position:")) {
             return box;
         } else {
             return null;
@@ -273,9 +273,9 @@ public class ProdPlan extends BasicTab {
             return;
         }
         //
-        String moveToPosition = HelpA.getComboBoxSelectedValue(box);
+        String moveToPosition = HelpA_.getComboBoxSelectedValue(box);
         //
-        String actSeqPos = HelpA.getValueSelectedRow(P_P.jTable1_2, SEQUENCE);
+        String actSeqPos = HelpA_.getValueSelectedRow(P_P.jTable1_2, SEQUENCE);
         //
         String q = SQL_B.updatePositions(moveToPosition, actSeqPos);
         //
@@ -285,7 +285,7 @@ public class ProdPlan extends BasicTab {
             Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        String id = HelpA.getValueSelectedRow(P_P.jTable1_2, ID);
+        String id = HelpA_.getValueSelectedRow(P_P.jTable1_2, ID);
         //
         String q2 = SQL_B.updatePositionsB(moveToPosition, id);
         //
@@ -319,14 +319,14 @@ public class ProdPlan extends BasicTab {
 
     public void insertIntoTempTable() {
         //
-        if (HelpA.getRowCount(sql, "Production_Plan_Csv_Temp") >= 16) {
-            HelpA.showNotification("Maximum ammount reached (16)");
+        if (HelpA_.getRowCount(sql, "Production_Plan_Csv_Temp") >= 16) {
+            HelpA_.showNotification("Maximum ammount reached (16)");
             return;
         }
         //
         int seqNr = getHighestSeqNumber();
         //
-        String prodOrder = HelpA.getValueSelectedRow(P_P.jTable1, PROD_ORDER);
+        String prodOrder = HelpA_.getValueSelectedRow(P_P.jTable1, PROD_ORDER);
         //
         String q = SQL_B.prodPlanAddToTempTable(prodOrder);
         //
@@ -336,7 +336,7 @@ public class ProdPlan extends BasicTab {
             Logger.getLogger(ProdPlan.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        String id = HelpA.getLastIncrementedId(sql, "Production_Plan_Csv_Temp");
+        String id = HelpA_.getLastIncrementedId(sql, "Production_Plan_Csv_Temp");
         String q2 = SQL_B.updateSequenceProdPlanTemp(id, seqNr + 1);
         //
         try {
@@ -352,8 +352,8 @@ public class ProdPlan extends BasicTab {
     }
 
     public void deleteEntryTempTable() {
-        String prodOrder = HelpA.getValueSelectedRow(P_P.jTable1_2, PROD_ORDER);
-        String id = HelpA.getValueSelectedRow(P_P.jTable1_2, ID);
+        String prodOrder = HelpA_.getValueSelectedRow(P_P.jTable1_2, PROD_ORDER);
+        String id = HelpA_.getValueSelectedRow(P_P.jTable1_2, ID);
         //
         String q = SQL_B.deleteEntryTempTable(id);
         //
@@ -364,7 +364,7 @@ public class ProdPlan extends BasicTab {
         }
         //
         //
-        String seqPos = HelpA.getValueSelectedRow(P_P.jTable1_2, SEQUENCE);
+        String seqPos = HelpA_.getValueSelectedRow(P_P.jTable1_2, SEQUENCE);
         String q2 = SQL_B.updatePositionsErase(seqPos);
         //
         try {
@@ -380,7 +380,7 @@ public class ProdPlan extends BasicTab {
     }
 
     public void deleteAllRecordsTempTable() {
-        if (HelpA.confirm("Delete all rows?") == false) {
+        if (HelpA_.confirm("Delete all rows?") == false) {
             return;
         }
         //
@@ -404,25 +404,25 @@ public class ProdPlan extends BasicTab {
         //
         JTable table = P_P.jTable1;
         //
-//        String recipeCode = (String) table.getValueAt(table.getSelectedRow(), HelpA.getColByName(table, "RCODE"));
-        String recipeCode = HelpA.getValueSelectedRow(table, ARTIKEL);
+//        String recipeCode = (String) table.getValueAt(table.getSelectedRow(), HelpA_.getColByName(table, "RCODE"));
+        String recipeCode = HelpA_.getValueSelectedRow(table, ARTIKEL);
         String release = "0";
         //
         ResultSet rs_sequence = sql.execute(SQL_A.fnSequenceGet(PROC.PROC_P_01,recipeCode, release), OUT);
         ResultSet rs_recipe_basic = sql.execute_2(SQL_A.recipeBasicRZPT(recipeCode, release));
         //
         JTable table_sequence = new JTable();
-        table_sequence = HelpA.build_table_common_return(rs_sequence, table_sequence);
+        table_sequence = HelpA_.build_table_common_return(rs_sequence, table_sequence);
         JScrollPane jsp_1 = new JScrollPane(table_sequence);
         jsp_1.setPreferredSize(new Dimension(920, 300));
         //
-        HelpA.hideColumnByName(table_sequence, "Code");
-        HelpA.hideColumnByName(table_sequence, "Release");
+        HelpA_.hideColumnByName(table_sequence, "Code");
+        HelpA_.hideColumnByName(table_sequence, "Release");
         jsp_1.setBorder(BorderFactory.createTitledBorder("Sequence"));
         //
         //
         JTable table_recipe_basic = new JTable();
-        table_recipe_basic = HelpA.build_table_common_return(rs_recipe_basic, table_recipe_basic);
+        table_recipe_basic = HelpA_.build_table_common_return(rs_recipe_basic, table_recipe_basic);
         JScrollPane jsp_2 = new JScrollPane(table_recipe_basic);
         jsp_2.setPreferredSize(new Dimension(920, 300));
         //
@@ -484,7 +484,7 @@ public class ProdPlan extends BasicTab {
 //            return;
 //        }
         //
-        String SELECTED_ORDER = HelpA.getValueSelectedRow(P_P.jTable1, PROD_ORDER);//P_P.getSelectedId(P_P.jTable1)
+        String SELECTED_ORDER = HelpA_.getValueSelectedRow(P_P.jTable1, PROD_ORDER);//P_P.getSelectedId(P_P.jTable1)
         //
         OUT.showMessage("Selected id: " + SELECTED_ORDER);
         //
@@ -509,7 +509,7 @@ public class ProdPlan extends BasicTab {
 
     public void showTableInvert2() {
         //
-        String id = HelpA.getValueSelectedRow(P_P.jTable1_2, ID);//P_P.getSelectedId(P_P.jTable1_2)
+        String id = HelpA_.getValueSelectedRow(P_P.jTable1_2, ID);//P_P.getSelectedId(P_P.jTable1_2)
         //
         OUT.showMessage("Selected id: " + id);
         //

@@ -8,7 +8,7 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -415,7 +415,7 @@ public class HTMLPrint_A extends HTMLPrint {
             OMVANT_SKATT__EXIST = true;
             //
             if(ertVatNrExist() == false){
-                HelpA.showNotification_separate_thread(LANG.MSG_22);
+                HelpA_.showNotification_separate_thread(LANG.MSG_22);
             }
             //
         }

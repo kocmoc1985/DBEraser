@@ -6,7 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
-import forall.HelpA;
+import forall.HelpA_;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -47,7 +47,7 @@ public abstract class Faktura_Entry {
 
     public void addArticleForJTable(JTable table) {
         //
-        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA_.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
         this.articlesListJTable.add(map);
@@ -64,7 +64,7 @@ public abstract class Faktura_Entry {
             map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)
         };
         //
-        HelpA.addRowToJTable(jtableRow, table);
+        HelpA_.addRowToJTable(jtableRow, table);
         //
     }
 

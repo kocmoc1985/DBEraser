@@ -101,8 +101,9 @@ public class PROC {
     public static final String PROC_75 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST ORDER 
     public static final String PROC_76 = "fn_Proc_Tags_Values "; //#LAB DEVELOPMENT -> TEST ORDER  -> Show all testCodes
     public static final String PROC_77 = "prc_ITF_CPWORDER_INSERT "; //#LAB DEVELOPMENT -> TEST ORDER -> create new
+    public static final String PROC_78 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST ORDER -> check exist
     //
-    // LAB_DEVELOPMENT 
+    // LAB_DEVELOPMENT  
     //
     //PROD_PLAN
     public static final String PROC_P_01 = "fn_Sequence_Get ";
@@ -188,6 +189,7 @@ public class PROC {
         procList.add(PROC_75);
         procList.add(PROC_76);
         procList.add(PROC_77);
+        procList.add(PROC_78);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

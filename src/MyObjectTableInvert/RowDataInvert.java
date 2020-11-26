@@ -6,7 +6,7 @@
 package MyObjectTableInvert;
 
 import MyObjectTable.RowData;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 
 /**
@@ -258,24 +258,24 @@ public class RowDataInvert extends RowData {
         if (type == TYPE_JCOMBOBOX) {
             JComboBoxInvert jcb = new JComboBoxInvert();
             if (comboBoxMultipleValue) {
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, true, false);
+                jcb = (JComboBoxInvert) HelpA_.fillComboBox(sql, jcb, additionalInfo, value, true, false);
             } else if (comboBoxFakeValue) {
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, true);
+                jcb = (JComboBoxInvert) HelpA_.fillComboBox(sql, jcb, additionalInfo, value, false, true);
             } else if (comboBoxFixedValue) {
-                String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, comboboxValues, value);
+                String comboboxValues[] = HelpA_.extract_comma_separated_values(additionalInfo);
+                jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, comboboxValues, value);
             } else if (comboBoxFixedValueAdvanced) {
                 //
-                HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);
+                HelpA_.ComboBoxObject[] boxObjects = HelpA_.extract_comma_separated_objects(additionalInfo, 2);
                 //
                 if (enableEmptyValue) {
-                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", "", ""));
+                    jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, boxObjects, new HelpA_.ComboBoxObject("-", "", "", ""));
                 } else {
-                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
+                    jcb = (JComboBoxInvert) HelpA_.fillComboBox(jcb, boxObjects, value);
                 }
                 //
             } else {
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, false);
+                jcb = (JComboBoxInvert) HelpA_.fillComboBox(sql, jcb, additionalInfo, value, false, false);
             }
             //
             return jcb;

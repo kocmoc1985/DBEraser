@@ -13,8 +13,8 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import Reporting.TableInvertBasicRepport;
 import Reporting.JTableBasicRepport;
-import forall.HelpA;
-import static forall.HelpA.run_application_with_associated_application;
+import forall.HelpA_;
+import static forall.HelpA_.run_application_with_associated_application;
 import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Component;
@@ -83,7 +83,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             //
             TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 70, 12);
             //
-            boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "");
+            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
             //
             if (yesNo == false) {
                 return;
@@ -169,7 +169,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     }
 
     public HashMap<String, String> tableInvertToHashMap(Table table_invert, int startColumn) {
-        return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA->ComboBoxObject->getParamAuto()"
+        return tableInvertToHashMap(table_invert, startColumn, -1); // -1 means: "HelpA_->ComboBoxObject->getParamAuto()"
     }
 
     /**
@@ -262,11 +262,11 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         JComboBox box = new JComboBox(new String[]{"REPORT", "CSV"});
         //
-        boolean cond_0 = HelpA.chooseFromComboBoxDialog(box, "Report or CSV");
+        boolean cond_0 = HelpA_.chooseFromComboBoxDialog(box, "Report or CSV");
         //
-        boolean cond_1 = HelpA.getComboBoxSelectedValue(box).equals("REPORT");
+        boolean cond_1 = HelpA_.getComboBoxSelectedValue(box).equals("REPORT");
         //
-        boolean cond_2 = HelpA.getComboBoxSelectedValue(box).equals("CSV");
+        boolean cond_2 = HelpA_.getComboBoxSelectedValue(box).equals("CSV");
         //
         if (cond_0 && cond_1) {
             tableCommonRepport(table, landscape);
@@ -280,11 +280,11 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         //
         JComboBox box = new JComboBox(new String[]{"REPORT", "CSV"});
         //
-        boolean cond_0 = HelpA.chooseFromComboBoxDialog(box, "Report or CSV");
+        boolean cond_0 = HelpA_.chooseFromComboBoxDialog(box, "Report or CSV");
         //
-        boolean cond_1 = HelpA.getComboBoxSelectedValue(box).equals("REPORT");
+        boolean cond_1 = HelpA_.getComboBoxSelectedValue(box).equals("REPORT");
         //
-        boolean cond_2 = HelpA.getComboBoxSelectedValue(box).equals("CSV");
+        boolean cond_2 = HelpA_.getComboBoxSelectedValue(box).equals("CSV");
         //
         if (cond_0 && cond_1) {
             tableInvertRepport(table_invert, startColumn, cfg);
@@ -510,7 +510,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public void saveChangesTableInvert(Table tableInvert) {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-            HelpA.showActionDeniedUserRole(USER_ROLE);
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
@@ -525,7 +525,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public void saveChangesTableInvert() {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-            HelpA.showActionDeniedUserRole(USER_ROLE);
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
@@ -539,8 +539,8 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public void automaticFieldUpdate(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
-        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA.updatedOn());
-        ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA.updatedBy());
+        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA_.updatedOn());
+        ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA_.updatedBy());
     }
 
     /**
@@ -549,7 +549,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public void saveChangesTableInvert_C_C(TableInvert ti) {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-            HelpA.showActionDeniedUserRole(USER_ROLE);
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
@@ -579,7 +579,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             //
             ti.updateFieldString(tableName,
                     "UpdatedOn",
-                    HelpA.updatedOn(),
+                    HelpA_.updatedOn(),
                     idColName,
                     id,
                     true,
@@ -587,7 +587,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             //
             ti.updateFieldString(tableName,
                     "UpdatedBy",
-                    HelpA.updatedBy(),
+                    HelpA_.updatedBy(),
                     idColName,
                     id,
                     true,
@@ -643,11 +643,11 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
 
     public String jTableToCSV(JTable table, boolean writeToFile) {
-        return HelpA.jTableToCSV(table, writeToFile);
+        return HelpA_.jTableToCSV(table, writeToFile);
     }
 
     public String jTableToCSV(JTable table, boolean writeToFile, String[] columns) {
-        return HelpA.jTableToCSV(table, writeToFile, columns);
+        return HelpA_.jTableToCSV(table, writeToFile, columns);
     }
 
     /**
@@ -777,12 +777,12 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 //        System.out.println("CSV: \n" + csv);
         //
         //
-        String path = HelpA.get_desktop_path() + "\\"
-                + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
+        String path = HelpA_.get_desktop_path() + "\\"
+                + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".csv";
         //
         if (writeToFile) {
             try {
-                HelpA.writeToFile(path, csv);
+                HelpA_.writeToFile(path, csv);
 //                JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
                 run_application_with_associated_application(new File(path));
             } catch (IOException ex) {
@@ -825,7 +825,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
      * @param list
      */
     public void addRow(JTable table, LinkedList<Integer> list) {
-        HelpA.addRowJTable(table);
+        HelpA_.addRowJTable(table);
         //
         int added_row_nr = table.getRowCount();
         //
@@ -1024,7 +1024,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 //
                 for (Integer planid : rowsToHighlight) {
-                    if (row == HelpA.getRowByValue(table, idColumnName, "" + planid)) {
+                    if (row == HelpA_.getRowByValue(table, idColumnName, "" + planid)) {
                         c.setBackground(color);
                         return c;
                     }

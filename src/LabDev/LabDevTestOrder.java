@@ -20,7 +20,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
@@ -68,7 +68,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private String getTestCode() {
         // EX: VUG01
-        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject(getComboBoxTestCode());
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxTestCode());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -78,7 +78,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private String getMaterial() {
         // EX: WE8486
-        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject(getComboBoxMaterial());
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxMaterial());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -92,7 +92,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private void refresh_b(JTable table) {
         fillJTable();
-        HelpA.markFirstRowJtable(table);
+        HelpA_.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
 
@@ -134,10 +134,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), getMaterial(), getTestCode(), null);
         //
-        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
             "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE"}); // "TagId"
         //
-//        HelpA.setColumnWidthByName("TESTVAR", table, 0.28);
+//        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
         //
     }
 
@@ -200,7 +200,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         TABLE_INVERT = null;
         //
-        String id = HelpA.getValueSelectedRow(getTable(), "ID_Wotest");
+        String id = HelpA_.getValueSelectedRow(getTable(), "ID_Wotest");
         //
         try {
 //            String q = "SELECT * FROM " + TABLE__MCCPWOTEST + " WHERE ID_Wotest='" + id + "'";
@@ -243,7 +243,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.MSG_3());
             return;
         }
         //
@@ -279,7 +279,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String testCode = getTestCode();
         //
         if(testCode == null || testCode.isEmpty() || testCode.equals("NULL")){
-            HelpA.showNotification(MSG.MSG_7_4());
+            HelpA_.showNotification(MSG.MSG_7_4());
             return;
         }
         //
@@ -314,13 +314,22 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         System.out.println("CATCH, ID: " + id);
         //
+        String q_exist = SQL_A.lab_dev_test__test_order_check_exist(PROC.PROC_78, order, material, testcode, id);
+        //
+        boolean entry_exist = HelpA_.entryExistsSql(sql, q_exist);
+        //
+        if(entry_exist){
+            HelpA_.showNotification(MSG.MSG_7_5());
+            return;
+        }
+        //
         String insert_q = SQL_A.lab_dev_test_order__insert_new(PROC.PROC_77, order, material, testcode, id);
         //
         try {
             sql.execute(insert_q, OUT);
-            HelpA.showNotification(MSG.MSG_7());
+            HelpA_.showNotification(MSG.MSG_7());
         } catch (SQLException ex) {
-            HelpA.showNotification(MSG.MSG_7_2());
+            HelpA_.showNotification(MSG.MSG_7_2());
             Logger.getLogger(LabDevTestOrder.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -333,7 +342,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         removeFilter__mcs(getComboBoxMaterial());
         removeFilter__mcs(getComboBoxTestCode());
         //
-        HelpA.clearAllRowsJTable(table);
+        HelpA_.clearAllRowsJTable(table);
         //
     }
 
@@ -384,8 +393,8 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
     public String[] getComboParams__mcs() {
         //
         String ordernr = labDev.getOrderNo();
-        String material = HelpA.getComboBoxSelectedValue(getComboBoxMaterial());
-        String testcode = HelpA.getComboBoxSelectedValue(getComboBoxTestCode());
+        String material = HelpA_.getComboBoxSelectedValue(getComboBoxMaterial());
+        String testcode = HelpA_.getComboBoxSelectedValue(getComboBoxTestCode());
         //
         return new String[]{ordernr, material, testcode};
         //
@@ -398,7 +407,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             return;
         }
         //
-        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) e.getItem();
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
         String value = cbo.getParamAuto();
         //  
         if (e.getSource().equals(getComboBoxTestCode())) {

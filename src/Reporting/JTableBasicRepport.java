@@ -4,8 +4,8 @@
  */
 package Reporting;
 
-import static forall.HelpA.getLineValuesVisibleColsOnly;
-import static forall.HelpA.getVisibleColumnsNames;
+import static forall.HelpA_.getLineValuesVisibleColsOnly;
+import static forall.HelpA_.getVisibleColumnsNames;
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
 import java.util.ArrayList;
 import javax.swing.JTable;

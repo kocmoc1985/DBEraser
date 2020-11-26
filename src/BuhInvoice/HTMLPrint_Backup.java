@@ -7,7 +7,7 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import com.qoppa.pdfWriter.PDFPrinterJob;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -690,7 +690,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         String ftg_name = _get(map_f, DB.BUH_KUND__NAMN);
         //
         if (faktura_kund_email == null || faktura_kund_email.isEmpty()) {
-            HelpA.showNotification(LANG.MSG_7);
+            HelpA_.showNotification(LANG.MSG_7);
             return;
         }
         //
@@ -828,7 +828,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
         if (actHeight >= A4_PAPER.getHeight()) {
-            HelpA.showNotification("A4 Heigh exceeded");
+            HelpA_.showNotification("A4 Heigh exceeded");
         }
         //
         Paper paper = new Paper();
@@ -879,7 +879,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         System.out.println("jeditorPane height: " + jEditorPane1.getHeight());
         //
 //        if (actHeight >= A4_PAPER.getHeight()) {
-//            HelpA.showNotification("A4 Height exceeded");
+//            HelpA_.showNotification("A4 Height exceeded");
 //        }
         //
         Paper paper = new Paper();

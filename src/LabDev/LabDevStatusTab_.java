@@ -15,7 +15,7 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -59,7 +59,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
                 || containsInvalidatedFields(TABLE_INVERT_3, 1, getConfigTableInvert_3())
                 || containsInvalidatedFields(TABLE_INVERT_4, 1, getConfigTableInvert_4())
                 || containsInvalidatedFields(TABLE_INVERT_5, 1, getConfigTableInvert_5())) {
-            HelpA.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.MSG_3());
             return;
         }
         //

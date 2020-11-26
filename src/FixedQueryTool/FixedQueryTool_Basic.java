@@ -14,7 +14,7 @@ import DatabaseBrowser.FQ;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_A;
 import java.awt.Color;
 import java.awt.Component;
@@ -89,7 +89,7 @@ public class FixedQueryTool_Basic extends javax.swing.JFrame implements Runnable
         this.TITLE = "FixedQueryTool";
         this.USE_EXTERNAL_LIBRARIES = true;
         this.PROPERTIES_PATH = "freeq.properties";
-        this.PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
+        this.PROPS = HelpA_.properties_load_properties(PROPERTIES_PATH, false);
         GP.MSSQL_CREATE_STATEMENT_SIMPLE = "false";
         GP.SQL_LIBRARY_JTDS = true;
         //
@@ -145,7 +145,7 @@ public class FixedQueryTool_Basic extends javax.swing.JFrame implements Runnable
     }
 
     private void showMessage(String str) {
-        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea2.append("\n " + HelpA_.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {
@@ -511,9 +511,9 @@ public class FixedQueryTool_Basic extends javax.swing.JFrame implements Runnable
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        HelpA.create_dir_if_missing("err_output");
+        HelpA_.create_dir_if_missing("err_output");
         try {
-            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
             String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
 
             PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));

@@ -12,7 +12,7 @@ package eraser;
 
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_A;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,7 @@ public class Eraser extends javax.swing.JFrame {
     }
 
     private void connect() {
-        Properties properties = HelpA.choose_properties(".");
+        Properties properties = HelpA_.choose_properties(".");
         String dbtype = properties.getProperty("db_type");
         String host = properties.getProperty("host");
         String port = properties.getProperty("port");
@@ -214,7 +214,7 @@ public class Eraser extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        HelpA.err_output_to_file();
+        HelpA_.err_output_to_file();
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

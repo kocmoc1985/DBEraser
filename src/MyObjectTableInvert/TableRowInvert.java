@@ -8,7 +8,7 @@ package MyObjectTableInvert;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
 import MyObjectTable.TableRow;
-import forall.HelpA;
+import forall.HelpA_;
 import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -65,9 +65,9 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
 
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
         if (hi.getTableName() != null) {
-            HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
+            HelpA_.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
         } else {
-            HelpA.setTrackingToolTip(label, hi.getRealColName());
+            HelpA_.setTrackingToolTip(label, hi.getRealColName());
         }
 
     }
@@ -92,7 +92,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
                     label = new JLabel("<html><p style='margin-left:5px;font-weight:bold'>" + hi.getHeader() + "</p></html>");
                 }
                 //
-//                HelpA.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
+//                HelpA_.setTrackingToolTip(label, hi.getRealColName() + " / " + hi.getTableName());
                 setTrackingToolTip(hi, label);
                 //
                 add_component = label;
@@ -264,7 +264,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             return label.getText();
         } else if (c instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) c;
-            return HelpA.getComboBoxSelectedValue(comboBox);
+            return HelpA_.getComboBoxSelectedValue(comboBox);
         } else if (c instanceof JTextField) {
             JTextField jtf = (JTextField) c;
             return (String) jtf.getText();
@@ -281,7 +281,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         //
         if (c instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) c;
-            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
+            return HelpA_.getComboBoxSelectedValue(comboBox, paramToReturn);
         } else {
             return null;
         }

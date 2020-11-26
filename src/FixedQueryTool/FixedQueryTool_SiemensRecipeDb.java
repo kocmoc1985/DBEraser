@@ -14,7 +14,7 @@ import DatabaseBrowser.FQ;
 import forall.SimpleLoggerLight;
 //import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_A;
 import java.awt.Color;
 import java.awt.Component;
@@ -83,7 +83,7 @@ public class FixedQueryTool_SiemensRecipeDb extends javax.swing.JFrame implement
     }
 
     private void connect() {
-        Properties properties = HelpA.properties_load_properties("properties/xdbbrowser.properties", false);
+        Properties properties = HelpA_.properties_load_properties("properties/xdbbrowser.properties", false);
         String odbc = properties.getProperty("odbc", "");
         String odbc_user = properties.getProperty("odbc_user", "");
         String odbc_name = properties.getProperty("odbc_name", "");
@@ -118,7 +118,7 @@ public class FixedQueryTool_SiemensRecipeDb extends javax.swing.JFrame implement
     }
 
     private void addToOutPutWindow(String str) {
-        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea2.append("\n " + HelpA_.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {
@@ -360,9 +360,9 @@ public class FixedQueryTool_SiemensRecipeDb extends javax.swing.JFrame implement
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        HelpA.create_dir_if_missing("err_output");
+        HelpA_.create_dir_if_missing("err_output");
         try {
-            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
             String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
 
             PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));

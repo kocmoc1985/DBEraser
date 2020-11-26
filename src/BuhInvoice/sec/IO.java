@@ -6,7 +6,7 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.DB;
-import forall.HelpA;
+import forall.HelpA_;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +27,7 @@ public class IO {
 
     //
     static {
-        HelpA.create_dir_if_missing(LAST_INPUT_DIR);
+        HelpA_.create_dir_if_missing(LAST_INPUT_DIR);
     }
 
     //
@@ -41,14 +41,14 @@ public class IO {
 
     public static final void writeToFile(String fileName, String value) {
         try {
-            HelpA.writeToFile(LAST_INPUT_DIR + fileName, value, false);
+            HelpA_.writeToFile(LAST_INPUT_DIR + fileName, value, false);
         } catch (IOException ex) {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static String loadLastEntered(String fileName, String defaultValue) {
-        return HelpA.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
+        return HelpA_.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
     }
 
     public static boolean delete(String fileName) {

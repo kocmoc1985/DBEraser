@@ -10,7 +10,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
@@ -71,7 +71,7 @@ public class AdministrateIngredGroups extends AdministrateRecipeGroups_ {
                 //
                 TABLE_INVERT = null;
                 //
-                String id = HelpA.getValueSelectedRow(jTable1, TABLE_ID);
+                String id = HelpA_.getValueSelectedRow(jTable1, TABLE_ID);
                 //
                 try {
                     String q = "select * from " + TABLE_NAME

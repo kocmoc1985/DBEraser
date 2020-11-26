@@ -12,7 +12,7 @@ import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
@@ -123,7 +123,7 @@ public abstract class LabDevTab_ extends BasicTab {
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
                 //
-                HelpA.fillComboBox(sql, box, query, null, false, false);
+                HelpA_.fillComboBox(sql, box, query, null, false, false);
                 //
                 box.setSelectedItem(selection);
                 //

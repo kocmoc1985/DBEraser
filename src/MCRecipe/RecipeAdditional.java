@@ -7,7 +7,7 @@ package MCRecipe;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,13 +69,13 @@ public class RecipeAdditional extends BasicTab {
         //
         OUT.showMessage(q);
         //
-        HelpA.fillComboBox(sql, mCRecipe.jComboBoxRecipeAdditionalOrders, q, null, true,false);
+        HelpA_.fillComboBox(sql, mCRecipe.jComboBoxRecipeAdditionalOrders, q, null, true,false);
     }
 
     public void fillTable2() {
         //
         String code = getRecipeCode();
-        String order = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxRecipeAdditionalOrders);
+        String order = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxRecipeAdditionalOrders);
         //
         if (code == null || order == null) {
             return;
@@ -86,9 +86,9 @@ public class RecipeAdditional extends BasicTab {
         try {
             ResultSet rs = sql.execute(q,mCRecipe);
             //
-            HelpA.build_table_common(rs, mCRecipe.jTable_2_RecipeAdd,q);
+            HelpA_.build_table_common(rs, mCRecipe.jTable_2_RecipeAdd,q);
             //
-            HelpA.setTrackingToolTip(mCRecipe.jTable_2_RecipeAdd, q);
+            HelpA_.setTrackingToolTip(mCRecipe.jTable_2_RecipeAdd, q);
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeAdditional.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,9 +108,9 @@ public class RecipeAdditional extends BasicTab {
         try {
             ResultSet rs = sql.execute(q,mCRecipe);
             //
-            HelpA.build_table_common(rs, mCRecipe.jTable_1_RecipeAdd,q);
+            HelpA_.build_table_common(rs, mCRecipe.jTable_1_RecipeAdd,q);
             //
-            HelpA.setTrackingToolTip(mCRecipe.jTable_1_RecipeAdd, q);
+            HelpA_.setTrackingToolTip(mCRecipe.jTable_1_RecipeAdd, q);
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeAdditional.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,7 +127,7 @@ public class RecipeAdditional extends BasicTab {
             return null;
         }
         //
-        return HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
+        return HelpA_.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
     }
 
     @Override

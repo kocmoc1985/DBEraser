@@ -7,7 +7,7 @@ package MyObjectTable;
 import MyObjectTableInvert.UnsavedEntryInvert;
 import forall.GradientJPanel_B;
 import forall.GradientJPanel_C;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
@@ -217,7 +217,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
                 if (value == null) {
                     continue;
                 }
-                value = HelpA.extractValueFromHtmlString(value);
+                value = HelpA_.extractValueFromHtmlString(value);
                 //
                 csv_string += value + ";";
                 if ((i + 1) == row.getColumnCount()) {

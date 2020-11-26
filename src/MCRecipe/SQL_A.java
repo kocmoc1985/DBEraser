@@ -6,7 +6,7 @@ package MCRecipe;
 
 import LabDev.LabDevelopment_;
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
-import forall.HelpA;
+import forall.HelpA_;
 
 /**
  * vendor_insert_new_table_3_2
@@ -1400,8 +1400,8 @@ public class SQL_A {
     public static String save_notes_jtextarea_lab_dev(String tableName, String note, String order) {
         String q = "UPDATE " + tableName
                 + " SET NOTE=" + quotes(note, false) + ","
-                + "UpdatedOn=" + quotes(HelpA.updatedOn(), false) + ","
-                + "UpdatedBy=" + quotes(HelpA.updatedBy(), false)
+                + "UpdatedOn=" + quotes(HelpA_.updatedOn(), false) + ","
+                + "UpdatedBy=" + quotes(HelpA_.updatedBy(), false)
                 + " WHERE WORDERNO=" + quotes(order, false) + "";
 //        System.out.println(q);
         return q;
@@ -1593,6 +1593,18 @@ public class SQL_A {
                 + quotes(param3, false) + "," 
                 + quotes(param4, true) + "";
     }
+    
+    public static String lab_dev_test__test_order_check_exist(String PROC, String param1, String param2, String param3, String param4) {
+        return "SELECT TagId FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false)
+                + ") WHERE TagId=" + quotes(param4, true);
+    }
+    
+//    SELECT     TagId
+//FROM         dbo.fn_ITF_CPWORDER_Info('ENTW001921', 'WE8422', 'ZUG02') AS fn_ITF_CPWORDER_Info_1
+//WHERE     (TagId = 17)
 
 //    public static void main(String[] args) {
 //        //

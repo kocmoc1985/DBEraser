@@ -15,7 +15,7 @@ import MCRecipe.MC_RECIPE;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.GP;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.Sql_A;
 import java.awt.Color;
 import java.awt.Component;
@@ -143,7 +143,7 @@ public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
     }
 
     private void addToOutPutWindow(String str) {
-        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea2.append("\n " + HelpA_.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {
@@ -376,11 +376,11 @@ public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
 
     private void jButtonFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFindActionPerformed
 //        if (jTextField1.getText().length() != 10 || jTextField2.getText().length() != 10) {
-//            HelpA.showNotification("Date format not correct, should be like (2010-01-01)");
+//            HelpA_.showNotification("Date format not correct, should be like (2010-01-01)");
 //            return;
 //        }
         //
-        CURRENT_QUERY = selectDateRangeQuery(HelpA.datePickerGetDate(datePicker1, DATE_FORMAT), HelpA.datePickerGetDate(datePicker2, DATE_FORMAT), jTextField4.getText(), jTextField3.getText());
+        CURRENT_QUERY = selectDateRangeQuery(HelpA_.datePickerGetDate(datePicker1, DATE_FORMAT), HelpA_.datePickerGetDate(datePicker2, DATE_FORMAT), jTextField4.getText(), jTextField3.getText());
         run_query_by_thread();
     }//GEN-LAST:event_jButtonFindActionPerformed
 
@@ -396,7 +396,7 @@ public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
         //
         String q = "select * from " + TABLE_NAME;
         //
-        if (HelpA.checkIfDate(dateFrom) && HelpA.checkIfDate(dateTo)) {
+        if (HelpA_.checkIfDate(dateFrom) && HelpA_.checkIfDate(dateTo)) {
             //
             if (dateFrom.equals(dateTo)) {
                 q += " where " + TEST_DATE + " >='" + dateFrom + "'";
@@ -435,7 +435,7 @@ public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
     public static String selectDateRangeQuery_BACKUP(String dateFrom, String dateTo, String recipe, String order) {
         String q = "select * from " + TABLE_NAME;
 
-        if (HelpA.checkIfDate(dateFrom) && HelpA.checkIfDate(dateTo)) {
+        if (HelpA_.checkIfDate(dateFrom) && HelpA_.checkIfDate(dateTo)) {
             q += " where CAST(" + TEST_DATE + " as Datetime) >='" + dateFrom + "'";
             q += " and CAST(" + TEST_DATE + " as Datetime) <='" + dateTo + "'";
             //
@@ -624,7 +624,7 @@ public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
         }
         //</editor-fold>
         //
-//        HelpA.err_output_to_file();
+//        HelpA_.err_output_to_file();
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

@@ -12,7 +12,7 @@ import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTable.TableRow;
 import MyObjectTable.TableRowHeaders;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
@@ -540,7 +540,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 //
                 Component c = (Component) unsavedEntryInvert.getDataField();
 //                c.setForeground(Color.green);
-                HelpA.font_change_type((JComponent) c, Font.PLAIN);
+                HelpA_.font_change_type((JComponent) c, Font.PLAIN);
                 //
                 if (c instanceof JComboBox) {
                     JComboBox box = (JComboBox) c;
@@ -578,10 +578,10 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             sql.prepareStatement(q);
             //
-            String dateFormat = HelpA.define_date_format(value);
+            String dateFormat = HelpA_.define_date_format(value);
             //
             if (dateFormat != null) {
-                long millis = HelpA.dateToMillisConverter3(value, dateFormat);
+                long millis = HelpA_.dateToMillisConverter3(value, dateFormat);
                 Timestamp timestamp = new Timestamp(millis);
                 sql.getPreparedStatement().setTimestamp(1, timestamp);
             } else {
@@ -601,11 +601,11 @@ public class TableInvert extends Table implements ControlsActionsIF {
             sql.getPreparedStatement().executeUpdate();
             //
         } catch (DataTruncation ex) {
-            HelpA.showNotification_Data_Truncation_Error();
+            HelpA_.showNotification_Data_Truncation_Error();
             Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         } catch (SQLException ex) {
-            HelpA.showNotification_SQL_Error();
+            HelpA_.showNotification_SQL_Error();
             Logger.getLogger(TableInvert.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

@@ -197,7 +197,7 @@ public class TextFieldCheck extends JTextField implements KeyListener {
             }
             //
         } catch (SQLException ex) {
-            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         //

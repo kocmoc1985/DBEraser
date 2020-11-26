@@ -15,7 +15,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,7 +57,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         fillComboBox();
         //
-//        HelpA.markFirstRowJtable(table);
+//        HelpA_.markFirstRowJtable(table);
 //        mouseClickedOnTable(table);
         //
     }
@@ -91,15 +91,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM, UpdatedOn,UpdatedBy FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
         //
-        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc", "UpdatedOn", "UpdatedBy"});
+        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc", "UpdatedOn", "UpdatedBy"});
         //
-        HelpA.setColumnWidthByName("TESTVAR", table, 0.28);
+        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
     }
 
     private void fillComboBox() {
         //
         String q = SQL_A.lab_dev__test__proc__build__testcode_combo();
-        HelpA.fillComboBox(sql, getComboBox(), q, null, false, false);
+        HelpA_.fillComboBox(sql, getComboBox(), q, null, false, false);
         //
     }
 
@@ -203,7 +203,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.MSG_3());
             return;
         }
         //
@@ -213,7 +213,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         fillJTable();
-        HelpA.markFirstRowJtable(table);
+        HelpA_.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
 
@@ -249,7 +249,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             return;
         }
         //
-        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) e.getItem();
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
         String value = cbo.getParamAuto();
         //  
         if (e.getSource().equals(getComboBox())) {
@@ -257,7 +257,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             this.TEST_CODE = value;
             //
             fillJTable();
-            HelpA.markFirstRowJtable(table);
+            HelpA_.markFirstRowJtable(table);
             mouseClickedOnTable(table);
             //
         }
@@ -295,7 +295,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     private void mouseClickedOnTable(JTable table) {
         //
-        ID_PROC = HelpA.getValueSelectedRow(table, "ID_Proc");
+        ID_PROC = HelpA_.getValueSelectedRow(table, "ID_Proc");
         //
         refresh();
         //

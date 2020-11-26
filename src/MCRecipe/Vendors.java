@@ -12,7 +12,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA;
+import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -142,18 +142,18 @@ public class Vendors extends BasicTab {
     private void fillComboTradeName() {
         String q = SQL_A.vendor_fill_combo_tradenames();
         //
-        HelpA.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsTradnames, q, null, false, false);
+        HelpA_.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsTradnames, q, null, false, false);
     }
 
     public void fillComboVendors() {
         String q = SQL_A.vendor_fill_combo_vendors();
         //
-        HelpA.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsVendors, q, null, false, false);
+        HelpA_.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsVendors, q, null, false, false);
     }
 
     public void comboTradeNamesItemStateChanged() {
-//        HelpA.ComboBoxObject boxObject = (HelpA.ComboBoxObject) mCRecipe.jComboBoxVenorsTradnames.getSelectedItem();
-        HelpA.ComboBoxObject boxObject = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
+//        HelpA_.ComboBoxObject boxObject = (HelpA_.ComboBoxObject) mCRecipe.jComboBoxVenorsTradnames.getSelectedItem();
+        HelpA_.ComboBoxObject boxObject = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
         currentTradeName = boxObject.getParam_1();
         currentTradeNameId = boxObject.getParam_2();
         //
@@ -161,8 +161,8 @@ public class Vendors extends BasicTab {
     }
 
     public void comboVendorsItemStateChanged() {
-//        HelpA.ComboBoxObject boxObject = (HelpA.ComboBoxObject) mCRecipe.jComboBoxVenorsVendors.getSelectedItem();
-        HelpA.ComboBoxObject boxObject = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
+//        HelpA_.ComboBoxObject boxObject = (HelpA_.ComboBoxObject) mCRecipe.jComboBoxVenorsVendors.getSelectedItem();
+        HelpA_.ComboBoxObject boxObject = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
         currentVendorId = Integer.parseInt(boxObject.getParam_2());
         //
         showTableInvert4("" + currentVendorId);
@@ -419,11 +419,11 @@ public class Vendors extends BasicTab {
     public void deleteTradeNameFromTable3B() {
         //
         if (currentId.isEmpty()) {
-            HelpA.showNotification("Nothing chosen, click on a row in the table below");
+            HelpA_.showNotification("Nothing chosen, click on a row in the table below");
             return;
         }
         //
-        if (HelpA.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
+        if (HelpA_.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
             return;
         }
         //
@@ -442,11 +442,11 @@ public class Vendors extends BasicTab {
     public void deleteFromTable3_2() {
         //
         if (currentTradeName.isEmpty()) {
-            HelpA.showNotification("Nothing chosen plese click on any of corresponding rows");
+            HelpA_.showNotification("Nothing chosen plese click on any of corresponding rows");
             return;
         }
         //
-        if (HelpA.confirm("Delete tradename: " + currentTradeName + "?") == false) {
+        if (HelpA_.confirm("Delete tradename: " + currentTradeName + "?") == false) {
             return;
         }
         //
@@ -455,7 +455,7 @@ public class Vendors extends BasicTab {
         try {
             sql.execute(q, mCRecipe);
         } catch (SQLException ex) {
-            HelpA.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification("Operation failed, because of sql error");
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -472,7 +472,7 @@ public class Vendors extends BasicTab {
 
     public void addToTable3_2() {
         //
-//        if (HelpA.confirm() == false) {
+//        if (HelpA_.confirm() == false) {
 //            return;
 //        }
         //
@@ -481,11 +481,11 @@ public class Vendors extends BasicTab {
         String msds = "";
         //
         if (trade_name == null) {
-            HelpA.showNotification("Error, please try aggain");
+            HelpA_.showNotification("Error, please try aggain");
             return;
         }
         //
-        String q = SQL_A.vendor_insert_new_table_3_2(cas_nr, trade_name, msds, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A.vendor_insert_new_table_3_2(cas_nr, trade_name, msds, HelpA_.updatedOn(), HelpA_.updatedBy());
         //
         try {
             //
@@ -493,10 +493,10 @@ public class Vendors extends BasicTab {
             //
         } catch (SQLException ex) {
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
-            HelpA.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification("Operation failed, because of sql error");
         }
         //
-        currentTradeNameId = HelpA.getLastIncrementedId(sql, "tradename_main");
+        currentTradeNameId = HelpA_.getLastIncrementedId(sql, "tradename_main");
         currentTradeName = trade_name;
         //
         showTableInvert3_2(currentTradeNameId);
@@ -509,22 +509,22 @@ public class Vendors extends BasicTab {
         fillComboTradeName();
         fillComboVendors();
         //
-        if (HelpA.chooseFrom2ComboBoxDialogs(mCRecipe.jComboBoxVenorsTradnames, mCRecipe.jComboBoxVenorsVendors, "Choose trade name & vendor") == false) {
+        if (HelpA_.chooseFrom2ComboBoxDialogs(mCRecipe.jComboBoxVenorsTradnames, mCRecipe.jComboBoxVenorsVendors, "Choose trade name & vendor") == false) {
             return;
         }
         //
-        HelpA.ComboBoxObject boxObject = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
+        HelpA_.ComboBoxObject boxObject = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
         //
-        String ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String ingred_name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         String ingred_code_id = getIngredCodeId(ingred_name);
         String tradname_id = boxObject.getParam_2();
         //
-        HelpA.ComboBoxObject boxObject2 = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
+        HelpA_.ComboBoxObject boxObject2 = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
         String vendor_id = boxObject2.getParam_2();
         //
         //
-        String q = SQL_A.vendor_insert_table_3B(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn(), vendor_id);
+        String q = SQL_A.vendor_insert_table_3B(PROC.PROC_17, ingred_code_id, tradname_id, HelpA_.updatedBy(), HelpA_.updatedOn(), vendor_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -549,7 +549,7 @@ public class Vendors extends BasicTab {
      */
     private boolean addToTable4_() {
         //
-        if (HelpA.confirm() == false) {
+        if (HelpA_.confirm() == false) {
             return false;
         }
         //
@@ -565,8 +565,8 @@ public class Vendors extends BasicTab {
         String website = getValueTableInvert("Website", 1, TABLE_INVERT_4);
         String free_info = getValueTableInvert("FreeInfo", 1, TABLE_INVERT_4);
         String status = getValueTableInvert("Status", 1, TABLE_INVERT_4);
-        String updatedOn = HelpA.updatedOn();
-        String updatedBy = HelpA.updatedBy();
+        String updatedOn = HelpA_.updatedOn();
+        String updatedBy = HelpA_.updatedBy();
         //
         String q = SQL_A.vendor_insert_new_table_4(vendor_no, vendor_name, adress, zip, city,
                 country, phone, fax, email, website, free_info, status, updatedOn, updatedBy);
@@ -578,7 +578,7 @@ public class Vendors extends BasicTab {
             return false;
         }
         //
-        currentVendorId = Integer.parseInt(HelpA.getLastIncrementedId(sql, "VENDOR"));
+        currentVendorId = Integer.parseInt(HelpA_.getLastIncrementedId(sql, "VENDOR"));
         //
         showTableInvert4("" + currentVendorId);
         showTableInvert4_2("" + currentVendorId);
@@ -590,13 +590,13 @@ public class Vendors extends BasicTab {
 
     public boolean addToTable4() {
         //
-//        if (HelpA.confirm() == false) {
+//        if (HelpA_.confirm() == false) {
 //            return false;
 //        }
         //
         String vendor_name = JOptionPane.showInputDialog("Specify Vendor Name");
-        String updatedOn = HelpA.updatedOn();
-        String updatedBy = HelpA.updatedBy();
+        String updatedOn = HelpA_.updatedOn();
+        String updatedBy = HelpA_.updatedBy();
         //
         String q = SQL_A.vendor_insert_new_table_4("", vendor_name, "", "", "",
                 "", "", "", "", "", "", "", updatedOn, updatedBy);
@@ -608,7 +608,7 @@ public class Vendors extends BasicTab {
             return false;
         }
         //
-        currentVendorId = Integer.parseInt(HelpA.getLastIncrementedId(sql, "VENDOR"));
+        currentVendorId = Integer.parseInt(HelpA_.getLastIncrementedId(sql, "VENDOR"));
         //
         showTableInvert4("" + currentVendorId);
         showTableInvert4_2("" + currentVendorId);
@@ -620,7 +620,7 @@ public class Vendors extends BasicTab {
 
     public void deleteFromTable4() {
         //
-        if (HelpA.confirm("Delete Vendor: " + currentVendorId + " ?") == false) {
+        if (HelpA_.confirm("Delete Vendor: " + currentVendorId + " ?") == false) {
             return;
         }
         //
@@ -656,11 +656,11 @@ public class Vendors extends BasicTab {
         String date_export = "";
         String date_processed = "";
         String status = "";
-        String updatedOn = HelpA.updatedOn();
-        String updatedBy = HelpA.updatedBy();
+        String updatedOn = HelpA_.updatedOn();
+        String updatedBy = HelpA_.updatedBy();
         //
         if (contactName.isEmpty() && contactName.isEmpty() && position.isEmpty() && phone.isEmpty() && email.isEmpty()) {
-            HelpA.showNotification("Please fill in the fields before adding");
+            HelpA_.showNotification("Please fill in the fields before adding");
             return;
         }
         //
@@ -670,7 +670,7 @@ public class Vendors extends BasicTab {
             //
             mCRecipe.jButtonVendorsSaveTable4_2.setEnabled(false);
             //
-            HelpA.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable4_2);
+            HelpA_.setButtonIconCompleteAdd(mCRecipe.jButtonVendorsAddToTable4_2);
             //
             return;
         }
@@ -679,7 +679,7 @@ public class Vendors extends BasicTab {
                 date_processed, status, updatedOn, updatedBy);
         //
         //
-        if (HelpA.confirm() == false) {
+        if (HelpA_.confirm() == false) {
             return;
         }
         //
@@ -693,12 +693,12 @@ public class Vendors extends BasicTab {
         showTableInvert4_2(vendor_id);
         //
         mCRecipe.jButtonVendorsSaveTable4_2.setEnabled(true);
-        HelpA.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable4_2);
+        HelpA_.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable4_2);
     }
 
     public void reset() {
         mCRecipe.jButtonVendorsSaveTable4_2.setEnabled(true);
-        HelpA.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable4_2);
+        HelpA_.setButtonIconPreAdd(mCRecipe.jButtonVendorsAddToTable4_2);
     }
 
     private boolean checkIfContactIsPresent(String vendorId, String cName, String pos, String phone, String email) {
@@ -729,11 +729,11 @@ public class Vendors extends BasicTab {
     public void deleteFromTable4_2() {
         //
         if (currentVendorContactId.isEmpty()) {
-            HelpA.showNotification("Contact not chosen, click on any field corresponding to the contact");
+            HelpA_.showNotification("Contact not chosen, click on any field corresponding to the contact");
             return;
         }
         //
-        if (HelpA.confirm("Delete contact: " + currentVendorContactName) == false) {
+        if (HelpA_.confirm("Delete contact: " + currentVendorContactName) == false) {
             return;
         }
         //
@@ -742,7 +742,7 @@ public class Vendors extends BasicTab {
         try {
             sql.execute(q, mCRecipe);
         } catch (SQLException ex) {
-            HelpA.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification("Operation failed, because of sql error");
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -793,7 +793,7 @@ public class Vendors extends BasicTab {
         //
         TABLE_INVERT_3 = null;
         //
-        String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
             String q = SQL_A.vendor_build_table_invert_3(PROC.PROC_19, name);
@@ -816,7 +816,7 @@ public class Vendors extends BasicTab {
         //
         TABLE_INVERT_2 = null;
         //
-        String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
             String q = SQL_A.vendor_build_table_invert_warehouse(PROC.PROC_20, name);
@@ -838,7 +838,7 @@ public class Vendors extends BasicTab {
         //
         TABLE_INVERT = null;
         //
-        String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
             String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
@@ -853,7 +853,7 @@ public class Vendors extends BasicTab {
     }
 
     private String[] getComboParams() {
-        String ingredName = HelpA.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_Name);
+        String ingredName = HelpA_.getComboBoxSelectedValue(mCRecipe.jCombo_Ingred_Name);
         return new String[]{ingredName, null, null, null, null, null, null, null, null, null};
     }
 
@@ -863,7 +863,7 @@ public class Vendors extends BasicTab {
         //
         String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
         OUT.showMessage(q);
-        HelpA.fillComboBox(sql, box, q, null, false, false);
+        HelpA_.fillComboBox(sql, box, q, null, false, false);
         //
         box.setSelectedItem(selection);
     }
@@ -933,15 +933,15 @@ public class Vendors extends BasicTab {
     public void deleteTradeNameFromTable3() {
         //
         if (currentTradeNameId.isEmpty()) {
-            HelpA.showNotification("Nothing chosen, click on a row in the table below");
+            HelpA_.showNotification("Nothing chosen, click on a row in the table below");
             return;
         }
         //
-        if (HelpA.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
+        if (HelpA_.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
             return;
         }
         //
-        String ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String ingred_name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         String ingred_code_id = getIngredCodeId(ingred_name);
         //
         String q = SQL_A.vendor_delete_from_table_3(PROC.PROC_15, "" + currentTradeNameId, "" + ingred_code_id);
@@ -964,7 +964,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        if (HelpA.confirm() == false) {
+        if (HelpA_.confirm() == false) {
             return;
         }
         //
@@ -987,23 +987,23 @@ public class Vendors extends BasicTab {
      */
     public void addToTable3() {
         //
-        if (HelpA.chooseFromComboBoxDialog(mCRecipe.jComboBoxVenorsTradnames, "Choose trade name") == false) {
+        if (HelpA_.chooseFromComboBoxDialog(mCRecipe.jComboBoxVenorsTradnames, "Choose trade name") == false) {
             return;
         }
         //
-//        HelpA.ComboBoxObject boxObject = (HelpA.ComboBoxObject) mCRecipe.jComboBoxVenorsTradnames.getSelectedItem();
-        HelpA.ComboBoxObject boxObject = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
+//        HelpA_.ComboBoxObject boxObject = (HelpA_.ComboBoxObject) mCRecipe.jComboBoxVenorsTradnames.getSelectedItem();
+        HelpA_.ComboBoxObject boxObject = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsTradnames);
         //
-        String ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+        String ingred_name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         String tradname_id = boxObject.getParam_2();
         String ingred_code_id = getIngredCodeId(ingred_name);
         //
         if (ingred_code_id == null) {
-            HelpA.showNotification("Cannot proceed,Please choose ingredient");
+            HelpA_.showNotification("Cannot proceed,Please choose ingredient");
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_3(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A.vendor_insert_table_3(PROC.PROC_17, ingred_code_id, tradname_id, HelpA_.updatedBy(), HelpA_.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1024,7 +1024,7 @@ public class Vendors extends BasicTab {
         //
         JTextField textField = new JTextField();
         //
-        if (HelpA.chooseFromComboBoxDialogBoxAndTextfield(mCRecipe.jComboBoxVenorsVendors, textField, "Choose or type vendor") == false) {
+        if (HelpA_.chooseFromComboBoxDialogBoxAndTextfield(mCRecipe.jComboBoxVenorsVendors, textField, "Choose or type vendor") == false) {
             return;
         }
         //
@@ -1034,13 +1034,13 @@ public class Vendors extends BasicTab {
         //
         //
         if (textField.getText().isEmpty()) { // This means chosen from checkBox
-//            HelpA.ComboBoxObject boxObject = (HelpA.ComboBoxObject) mCRecipe.jComboBoxVenorsVendors.getSelectedItem();
-            HelpA.ComboBoxObject boxObject = HelpA.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
-            ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+//            HelpA_.ComboBoxObject boxObject = (HelpA_.ComboBoxObject) mCRecipe.jComboBoxVenorsVendors.getSelectedItem();
+            HelpA_.ComboBoxObject boxObject = HelpA_.getSelectedComboBoxObject(mCRecipe.jComboBoxVenorsVendors);
+            ingred_name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
             vendor_id = boxObject.getParam_2();
             ingred_code_id = getIngredCodeId(ingred_name);
         } else {
-            ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
+            ingred_name = HelpA_.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
             String vendorName = textField.getText();
             vendor_id = insertNewVendor(vendorName);
             //
@@ -1052,11 +1052,11 @@ public class Vendors extends BasicTab {
         }
         //
         if (ingred_code_id == null) {
-            HelpA.showNotification("Cannot proceed,Please choose ingredient");
+            HelpA_.showNotification("Cannot proceed,Please choose ingredient");
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_4(PROC.PROC_16, ingred_code_id, vendor_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A.vendor_insert_table_4(PROC.PROC_16, ingred_code_id, vendor_id, HelpA_.updatedBy(), HelpA_.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1074,7 +1074,7 @@ public class Vendors extends BasicTab {
         String idOfInsertedVendor = null;
         try {
             sql.execute(q);
-            return HelpA.getLastIncrementedId(sql, "VENDOR");
+            return HelpA_.getLastIncrementedId(sql, "VENDOR");
         } catch (SQLException ex) {
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
         }

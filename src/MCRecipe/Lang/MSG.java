@@ -76,4 +76,8 @@ public class MSG {
     public static String MSG_7_4() {
         return LANG_ENG ? "Test code not chosen" : "Prüffcode nicht ausgewählt";
     }
+    
+    public static String MSG_7_5() {
+        return LANG_ENG ? "Already exist! The entry will not be added" : "Gibt schon! Der Eintrag wurde nicht ergänzt";
+    }
 }
