@@ -40,11 +40,11 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
+public class LabDevTestVariables extends LabDevTab_ implements ActionListener, ItemListener, MouseListener {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT;
 
-    public LabDevTestOrder(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    public LabDevTestVariables(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
@@ -187,10 +187,10 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
         HelpA_.clearAllRowsJTable(table);
         //
-        String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), material, testCode, null);
+        String q = SQL_A.lab_dev__test_variable(PROC.PROC_75, labDev.getOrderNo(), material, testCode, null);
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
-            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE","TagId"}); // "TagId"
+            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE", "TagId"}); // "TagId"
         //
         HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
         //
@@ -269,7 +269,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             String material = HelpA_.getValueSelectedRow(table, "CODE");
             String testCode = HelpA_.getValueSelectedRow(table, "TestCode");
             //
-            String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), material, testCode, id);
+            String q = SQL_A.lab_dev__test_variable(PROC.PROC_75, labDev.getOrderNo(), material, testCode, id);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -332,13 +332,13 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String order = HelpA_.getValueSelectedRow(table, "ORDERNO");
         String material = HelpA_.getValueSelectedRow(table, "CODE");
         //
-        String q = SQL_A.lab_dev__test_order__delete_button(id, order, material);
+        String q = SQL_A.lab_dev__test_variable__delete_button(id, order, material);
         //
         try {
             sql.execute(q, OUT);
             System.out.println("DELETE SUCCESS: ************************");
         } catch (SQLException ex) {
-            Logger.getLogger(LabDevTestOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevTestVariables.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("DELETE FAILED: ************************");
         }
         //
@@ -363,7 +363,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         }
         //
         //
-        String q = SQL_A.lab_dev_test_order__get_list_for_creating_new(PROC.PROC_76, testCode);
+        String q = SQL_A.lab_dev_test_variable__get_list_for_creating_new(PROC.PROC_76, testCode);
         //
         CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q,
                 new String[]{}, OUT, MSG.MSG_7_3()); // "ID_Proc"
@@ -389,7 +389,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         //
 //        System.out.println("CATCH, ID: " + id);
         //
-        String q_exist = SQL_A.lab_dev_test__test_order_check_exist(PROC.PROC_78, order, material, testcode, id);
+        String q_exist = SQL_A.lab_dev_test__test_variable_check_exist(PROC.PROC_78, order, material, testcode, id);
         //
         boolean entry_exist = HelpA_.entryExistsSql(sql, q_exist);
         //
@@ -398,14 +398,14 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
             return;
         }
         //
-        String insert_q = SQL_A.lab_dev_test_order__insert_new(PROC.PROC_77, order, material, testcode, id);
+        String insert_q = SQL_A.lab_dev_test_variable__insert_new(PROC.PROC_77, order, material, testcode, id);
         //
         try {
             sql.execute(insert_q, OUT);
             HelpA_.showNotification(MSG.MSG_7());
         } catch (SQLException ex) {
             HelpA_.showNotification(MSG.MSG_7_2());
-            Logger.getLogger(LabDevTestOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevTestVariables.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (this.addNewB_) {
@@ -414,6 +414,9 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         } else {
             refresh_b();
         }
+        //
+        addToUnsaved(TABLE_INVERT, "PREFVULC", 1);
+        addToUnsaved(TABLE_INVERT, "PREFAGE", 1);
         //
     }
 
@@ -466,7 +469,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
-        return SQL_A.lab_dev__test_order__fill__combos(procedure, colName, comboParameters);
+        return SQL_A.lab_dev__test_variable__fill__combos(procedure, colName, comboParameters);
     }
 
     @Override

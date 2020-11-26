@@ -1538,7 +1538,7 @@ public class SQL_A {
      * @param param4 ID_Wotest
      * @return
      */
-    public static String lab_dev__test_order(String PROC, String param1, String param2, String param3, String param4) {
+    public static String lab_dev__test_variable(String PROC, String param1, String param2, String param3, String param4) {
         //
         String where = " WHERE ID_Wotest=";
         String orderBy = " ORDER BY CODE, TestCode";
@@ -1557,7 +1557,7 @@ public class SQL_A {
         //
     }
 
-    public static String lab_dev__test_order__fill__combos(String PROC, String param, String[] params) {
+    public static String lab_dev__test_variable__fill__combos(String PROC, String param, String[] params) {
         return "SELECT DISTINCT " + param + " FROM [" + PROC + "]" + " ("
                 + "" + checkIfNull(params[0]) + ","
                 + "" + checkIfNull(params[1]) + ","
@@ -1571,7 +1571,7 @@ public class SQL_A {
      * @param param1 - TestCode (VUG01)
      * @return
      */
-    public static String lab_dev_test_order__get_list_for_creating_new(String PROC, String param1) {
+    public static String lab_dev_test_variable__get_list_for_creating_new(String PROC, String param1) {
         return "SELECT CODE, TESTVAR, DESCRIPT, NORM, Condition, ID_Proc FROM [" + PROC + "]" + " ("
                 + quotes(param1, false)
                 + ") ORDER BY ID_Proc";
@@ -1586,7 +1586,7 @@ public class SQL_A {
      * @param param4 - id
      * @return
      */
-    public static String lab_dev_test_order__insert_new(String PROC, String param1, String param2, String param3, String param4) {
+    public static String lab_dev_test_variable__insert_new(String PROC, String param1, String param2, String param3, String param4) {
         return PROC + " "
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
@@ -1594,7 +1594,7 @@ public class SQL_A {
                 + quotes(param4, true) + "";
     }
 
-    public static String lab_dev_test__test_order_check_exist(String PROC, String param1, String param2, String param3, String param4) {
+    public static String lab_dev_test__test_variable_check_exist(String PROC, String param1, String param2, String param3, String param4) {
         return "SELECT TagId FROM [" + PROC + "]" + " ("
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
@@ -1602,7 +1602,7 @@ public class SQL_A {
                 + ") WHERE TagId=" + quotes(param4, true);
     }
 
-    public static String lab_dev__test_order__delete_button(String id, String order, String material) {
+    public static String lab_dev__test_variable__delete_button(String id, String order, String material) {
         return "DELETE FROM MCcpwotest "
                 + "WHERE TagId=" + quotes(id, true) + " AND ORDERNO=" + quotes(order, false) + "AND CODE=" + quotes(material, false);
     }

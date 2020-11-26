@@ -131,15 +131,17 @@ public class T_INV {
         DICT.put("PART", "TEIL");
         DICT.put("REPORT", "BERICHT");
         DICT.put("NORM", "NORM");
-        DICT.put("TESTVAR", "TEST VARIABEL");
+        DICT.put("TESTVAR", "PRÜFVARIABEL");
         DICT.put("NUM", "NUM");
         //
         DICT.put("SCOPE", "UMFANG");
         //
-        DICT.put("TESTCODE", "PRÜFFCODE");
+        DICT.put("TESTCODE", "PRÜFCODE");
         DICT.put("PREFVULC", "PREFVULC");
         DICT.put("PREFAGE", "PREFAGE");
-        DICT.put("TESTCOND", "TESCOND");
+        DICT.put("TESTCOND", "PRÜFBEDINGUNG");
+        DICT.put("TESTREM1", "PRÜFBEMERKUNG1");
+        DICT.put("TESTREM2", "PRÜFBEMERKUNG2");
     }
 
     public static String LANG(String word) {

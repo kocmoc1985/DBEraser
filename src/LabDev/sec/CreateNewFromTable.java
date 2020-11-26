@@ -5,7 +5,7 @@
  */
 package LabDev.sec;
 
-import LabDev.LabDevTestOrder;
+import LabDev.LabDevTestVariables;
 import MyObjectTable.ShowMessage;
 import forall.GP;
 import forall.HelpA_;
@@ -141,12 +141,12 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
             return;
         }
         //
-        if (consumerClass instanceof LabDevTestOrder) {
+        if (consumerClass instanceof LabDevTestVariables) {
             String testCode = HelpA_.getValueSelectedRow(jTable1, "CODE");
             String id = HelpA_.getValueSelectedRow(jTable1, "ID_Proc");
             toReturn = new String[]{testCode, id};
             //
-            LabDevTestOrder ldst = (LabDevTestOrder) consumerClass;
+            LabDevTestVariables ldst = (LabDevTestVariables) consumerClass;
             ldst.selectButtonClicked_a(toReturn, this);
             //
         }

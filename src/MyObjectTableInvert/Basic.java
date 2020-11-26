@@ -343,6 +343,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         }
         //
     }
+    
+    public void setUnsaved(Table table_invert, String rowName, int column){
+        addToUnsaved(table_invert, rowName, column);
+    }
 
     public void addToUnsaved(Table table_invert, String rowName, int column) {
         TableInvert tableInvert = (TableInvert) table_invert;
