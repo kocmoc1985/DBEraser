@@ -130,7 +130,7 @@ public class HelpA_ {
             }
         }
     }
-    
+
     private static void addMouseListenerToAllComponentsOfComponent(Container c) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {
@@ -456,8 +456,8 @@ public class HelpA_ {
         //
         return false;
     }
-    
-     public static String getSingleParamSql_query(SqlBasicLocal sql,String q, String columnGet) {
+
+    public static String getSingleParamSql_query(SqlBasicLocal sql, String q, String columnGet) {
         //
         try {
             ResultSet rs = sql.execute(q);
@@ -1846,7 +1846,7 @@ public class HelpA_ {
         //
         for (int i = 0; i < table.getRowCount(); i++) {
             //
-            if(table.getValueAt(i, col).equals(toMatch)){
+            if (table.getValueAt(i, col).equals(toMatch)) {
                 table.setValueAt(replace, i, col);
             }
             //
@@ -2190,7 +2190,6 @@ public class HelpA_ {
         return JOptionPane.showConfirmDialog(null, container, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
-    
     public static Border initialComboBoxBorder;
     private static final HashMap<String, String> fakeValuesMap = new HashMap<String, String>();
 
@@ -2207,13 +2206,14 @@ public class HelpA_ {
 
     /**
      * OBS! Requires "JComboBoxA"
+     *
      * @param sql
      * @param jbox
      * @param query
      * @param initialValue
      * @param showMultipleValues
      * @param fakeValue
-     * @return 
+     * @return
      */
     public static JComboBox fillComboBox(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
@@ -2304,7 +2304,7 @@ public class HelpA_ {
         //
         return jbox;
     }
-    
+
     public static JComboBox fillComboBox__not_instance_of_A(SqlBasicLocal sql, JComboBox jbox, String query,
             Object initialValue, boolean showMultipleValues, boolean fakeValue) {
         //
@@ -2668,6 +2668,15 @@ public class HelpA_ {
         }
         //
         return null;
+    }
+
+    public static ComboBoxObject getSelectedComboBoxObject_b(JComboBox box) {
+        //
+        ComboBoxObject cbo;
+        //
+        cbo = (ComboBoxObject) box.getSelectedItem();
+        //
+        return cbo;
     }
 
     public static ComboBoxObject getSelectedComboBoxObject(JComboBox box) {
@@ -3326,7 +3335,7 @@ public class HelpA_ {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
-    
+
     public static void centerAndBringToFront(JFrame frame) {
         Point p = HelpA_.position_window_in_center_of_the_screen(frame);
         frame.setLocation(p);
@@ -3529,8 +3538,8 @@ public class HelpA_ {
         }
         return hm;
     }
-    
-     public static void setEnabled(JComponent c, boolean enabled) {
+
+    public static void setEnabled(JComponent c, boolean enabled) {
         java.awt.EventQueue.invokeLater(() -> {
             c.setEnabled(enabled);
         });

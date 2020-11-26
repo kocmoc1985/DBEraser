@@ -94,7 +94,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private String getTestCode() {
         // EX: VUG01
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxTestCode());
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject_b(getComboBoxTestCode());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -104,7 +104,7 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
 
     private String getMaterial() {
         // EX: WE8486
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject(getComboBoxMaterial());
+        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject_b(getComboBoxMaterial());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -190,9 +190,9 @@ public class LabDevTestOrder extends LabDevTab_ implements ActionListener, ItemL
         String q = SQL_A.lab_dev__test_order(PROC.PROC_75, labDev.getOrderNo(), material, testCode, null);
         //
         HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
-            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE"}); // "TagId"
+            "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE","TagId"}); // "TagId"
         //
-//        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
+        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
         //
     }
 
