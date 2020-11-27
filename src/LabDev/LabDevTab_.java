@@ -34,7 +34,6 @@ public abstract class LabDevTab_ extends BasicTab {
 
     //=========================================================================
     //=========================================================================
-    //=========================================================================
     //BELOW IS FOR MULTIPLE COMBOBOX SEARCH/FILTER
     private static long prevCall__mcs;
 
@@ -46,7 +45,7 @@ public abstract class LabDevTab_ extends BasicTab {
      * "_msc" = MULTIPLE COMBOBOX SEARCH
      * @return 
      */
-    public boolean delay__mcs() {
+    private boolean delay__mcs() {
         if (Math.abs(System.currentTimeMillis() - prevCall__mcs) < 1000) {
             prevCall__mcs = System.currentTimeMillis();
             return false;
@@ -55,6 +54,7 @@ public abstract class LabDevTab_ extends BasicTab {
             return true;
         }
     }
+    
     
     public void removeFilter__mcs(JComboBox box){
         box.setSelectedItem(null);
