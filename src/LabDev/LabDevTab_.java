@@ -6,18 +6,12 @@
 package LabDev;
 
 import MCRecipe.MC_RECIPE;
-import MCRecipe.SQL_A;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
-import MyObjectTableInvert.JLinkInvert;
-import MyObjectTableInvert.JTextFieldInvert;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -37,52 +31,6 @@ public abstract class LabDevTab_ extends BasicTab {
         this.labDev = labDev;
     }
 
-    @Override
-    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-        JLinkInvert jli = (JLinkInvert) me.getSource();
-        //
-        String col_name = ti.getCurrentColumnName(me.getSource());
-        //
-        //OBS! IS ENABLED ON DOUBLE CLICK
-        enableEditingLongValues(me, ti);
-        //
-        trimValueTableInvert(col_name, ti);
-        //
-    }
-
-    @Override
-    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
-        //
-        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
-        //
-        JLinkInvert jli = (JLinkInvert) ke.getSource();
-        //
-        //
-        //AUTOMATIC **SQL** INPUT LENGTH VALIDATION [2020-11-22]
-        Validator_MCR.validateMaxInputLengthAutomatic(sql, jli);
-        //
-        //
-        //
-        if (jli.getValidateDate()) {
-            //
-            Validator_MCR.validateDate(jli);
-            //
-        } //Manual input length validation below. YES IS USED [2020-11-24]
-        else if (jli.getInputLengthValidationManual() > 0) {
-            //[$TEST-VAR-SAVE$] -> this TAG here, does not mean that the functionality below only belongs to this TAG
-            JTextFieldInvert jtf = (JTextFieldInvert) jli;
-            //
-            int inputLength = jtf.getInputLengthValidationManual();
-            //
-            if (inputLength > 0) {
-                Validator_MCR.validateMaxInputLength(jli, inputLength);
-            }
-            //
-        }
-        //
-    }
 
     //=========================================================================
     //=========================================================================
@@ -90,8 +38,12 @@ public abstract class LabDevTab_ extends BasicTab {
     //BELOW IS FOR MULTIPLE COMBOBOX SEARCH/FILTER
     private static long prevCall__mcs;
 
+    public abstract String getQuery__mcs(String procedure, String colName, String[] comboParameters);
+
+    public abstract String[] getComboParams__mcs();
+    
     /**
-     * _msc = MULTIPLE COMBOBOX SEARCH
+     * "_msc" = MULTIPLE COMBOBOX SEARCH
      * @return 
      */
     public boolean delay__mcs() {
@@ -131,10 +83,6 @@ public abstract class LabDevTab_ extends BasicTab {
         });
 
     }
-
-    public abstract String getQuery__mcs(String procedure, String colName, String[] comboParameters);
-
-    public abstract String[] getComboParams__mcs();
 
     public void addMouseListenerJComboBox__mcs(JComponent c, MouseListener ml) {
         Component[] c_arr = c.getComponents();

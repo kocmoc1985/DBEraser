@@ -4,6 +4,7 @@
  */
 package MyObjectTableInvert;
 
+import LabDev.Validator_MCR;
 import MCRecipe.MC_RECIPE;
 import static MCRecipe.MC_RECIPE.USER_ROLE;
 import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
@@ -12,6 +13,8 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -59,6 +62,54 @@ public abstract class BasicTab extends Basic  {
         automaticFieldUpdate(TABLE_INVERT);
         //
         ti.applyChanges();
+        //
+    }
+    
+    @Override
+    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) me.getSource();
+        //
+        String col_name = ti.getCurrentColumnName(me.getSource());
+        //
+        //OBS! IS ENABLED ON DOUBLE CLICK
+        enableEditingLongValues(me, ti);
+        //
+        trimValueTableInvert(col_name, ti);
+        //
+    }
+
+    
+    @Override
+    public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+        //
+        super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+        //
+        JLinkInvert jli = (JLinkInvert) ke.getSource();
+        //
+        //
+        //AUTOMATIC **SQL** INPUT LENGTH VALIDATION [2020-11-22]
+        Validator_MCR.validateMaxInputLengthAutomatic(sql, jli);
+        //
+        //
+        //
+        if (jli.getValidateDate()) {
+            //
+            Validator_MCR.validateDate(jli);
+            //
+        } //Manual input length validation below. YES IS USED [2020-11-24]
+        else if (jli.getInputLengthValidationManual() > 0) {
+            //[$TEST-VAR-SAVE$] -> this TAG here, does not mean that the functionality below only belongs to this TAG
+            JTextFieldInvert jtf = (JTextFieldInvert) jli;
+            //
+            int inputLength = jtf.getInputLengthValidationManual();
+            //
+            if (inputLength > 0) {
+                Validator_MCR.validateMaxInputLength(jli, inputLength);
+            }
+            //
+        }
         //
     }
     
