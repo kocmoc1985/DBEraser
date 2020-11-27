@@ -463,7 +463,7 @@ public class RecipeDetailed_ extends BasicTab {
 
     public void apply_changes_table4_real(boolean confirm) {
         //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
              HelpA_.showActionDeniedUserRole(USER_ROLE);
              return;
         }

@@ -91,11 +91,13 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         }
         //
         actionsAfterShowTable();
+        //
     }
     
     public void actionsAfterShowTable(){
         HelpA_.hideColumnByName(jTable1, "dateCreated");
         HelpA_.hideColumnByName(jTable1, "dateChanged");
+        HelpA_.markLastRowJtable(jTable1);
     }
 
     public void initBasicTab() {
@@ -286,7 +288,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
         TableInvert ti = (TableInvert) basicTab.TABLE_INVERT;
         ti.handleAutomaticFieldUpdate("dateChanged", HelpA_.updatedOn());
-        basicTab.saveChangesTableInvert();
+        basicTab.saveChangesTableInvert__no_check(ti);
         showTable();
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
@@ -336,7 +338,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         }
         //
         showTable();
-        HelpA_.markLastRowJtable(jTable1);
+
         clikedJtable1();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

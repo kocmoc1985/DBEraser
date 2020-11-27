@@ -4,10 +4,12 @@
  */
 package MyObjectTableInvert;
 
+import MCRecipe.MC_RECIPE;
 import static MCRecipe.MC_RECIPE.USER_ROLE;
 import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
 import MyObjectTable.ShowMessage;
+import MyObjectTable.Table;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import java.util.LinkedList;
@@ -40,6 +42,42 @@ public abstract class BasicTab extends Basic  {
         this.sql_additional = sql_additional;
     }
     
+    public void saveChangesTableInvert__no_check(Table tableInvert){
+        super.saveChangesTableInvert(tableInvert);
+    }
+    
+    @Override
+    public void saveChangesTableInvert() {
+        //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
+            return;
+        }
+        //
+        TableInvert ti = (TableInvert) TABLE_INVERT;
+        //
+        automaticFieldUpdate(TABLE_INVERT);
+        //
+        ti.applyChanges();
+        //
+    }
+    
+    @Override
+    public void saveChangesTableInvert(Table tableInvert) {
+        //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
+            return;
+        }
+        //
+        TableInvert ti = (TableInvert) tableInvert;
+        //
+        automaticFieldUpdate(tableInvert);
+        //
+        ti.applyChanges();
+        //
+    }
+    
     public abstract void initializeSaveIndicators();
     
     public void save_changes_notes(
@@ -49,7 +87,7 @@ public abstract class BasicTab extends Basic  {
             JTextArea jTextArea,
             String idColumnName) throws BadLocationException {
         //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
              HelpA_.showActionDeniedUserRole(USER_ROLE);
              return;
         }
@@ -94,6 +132,7 @@ public abstract class BasicTab extends Basic  {
         fillNotes();
         //
     }
+    
     
     private void h01_ingred_comments(String idColumnName, String id, String comments) {
         String whereCondtion = idColumnName + " = " + id;

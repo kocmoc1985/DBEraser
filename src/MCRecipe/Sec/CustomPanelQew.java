@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package MCRecipe.Sec;
-import MCRecipe.Sec.JComboBox_RI_C;
-import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Lang.RECIPE_OVERVIEW_;
 /**
  *

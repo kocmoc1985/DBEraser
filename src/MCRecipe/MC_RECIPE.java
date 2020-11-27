@@ -13,6 +13,7 @@ import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.RECIPE_OVERVIEW_;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.SEQUENCE;
@@ -22,7 +23,7 @@ import MCRecipe.Sec.AdminTools;
 import MCRecipe.Sec.AdministrateIngredGroups;
 import MCRecipe.Sec.AdministrateMixerInfoBasic;
 import MCRecipe.Sec.AdministrateRecipeGroups_;
-import MCRecipe.Sec.AdministrateUsers;
+import MCRecipe.Sec.AdministrateUsers_;
 import MCRecipe.Sec.BOX_PARAMS;
 import MCRecipe.Sec.JComboBox_ING_A;
 import MyObjectTable.ShowMessage;
@@ -102,7 +103,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public JComboBox jComboBoxVenorsVendors = new JComboBox();
     public JComboBox jComboBoxVenorsTradnames = new JComboBox();
     private CompareRecipes compareRecipes;
-    private AdministrateUsers administrateUsers;
+    private AdministrateUsers_ administrateUsers;
     public AdministrateRecipeGroups_ administrateRecipeGroups;
     public AdministrateIngredGroups administrateIngredGroups;
     public AdministrateMixerInfoBasic administrateMixerInfoBasic;
@@ -160,21 +161,26 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         loadUserName(); //  ***
         //
-        if (verifyUser() == false) {
-            userNotValidActions();
-        } else {
-            HelpA_.setUser(MC_RECIPE.jTextFieldHomeUserName.getText());
-            System.out.println("Username set");
-        }
         //
-        HelpA_.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
+        validationFailed(false); // This one is called here to simulate logout state
+        //
+        //
+//        HelpA_.getVersion("MCRecipe.jar", "MCRecipe: V.", jLabelHomeVersion);
         //
         errorOutputListener = new ErrorOutputListener(HelpA_.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
 //        setHomePageBackground();
         //
     }
+
+    public static boolean isAdminOrDeveloper() {
+        return USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE);
+    }
     
+    public static boolean isDeveloper(){
+        return MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+    }
+
     private void setHomePageBackground() {
         //
         BackgroundPanel bg = (BackgroundPanel) jPanelHome;
@@ -185,6 +191,71 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         } catch (Exception ex) {
             // Will set the initial background
         }
+    }
+
+    private void login() {
+        if (verifyUser() == true) {
+            HelpA_.showNotification(MSG.MSG_0_1());
+            HelpA_.setUser(getUserName());
+            saveUserNameAndPassToFile();
+        } else {
+            userNotValidActions();
+        }
+    }
+
+    private boolean verifyUser() {
+        //
+        String sqlTableName = AdministrateUsers_.USER_ADM_TBL_NAME;
+        String userName = getUserName();
+        //
+        boolean freeEntranceEnabled = freeEntranceEnabled();
+        //
+        if (freeEntranceEnabled) {
+            jTabbedPane1.setEnabled(true);
+            USER_ROLE = ROLE_UNDEFINED;
+            return true;
+        }
+        //
+        String where = "username ='" + userName + "' and pass ='" + getPass() + "'";
+        //
+        int userConfirmed = HelpA_.getRowCount(sql, sqlTableName, where);
+        boolean userConfirmed_ = userConfirmed >= 1;
+        //
+        if (userConfirmed_ == false && freeEntranceEnabled == false) {//&& freeEntranceEnabled() == false
+            validationFailed(true);
+            return false;
+        } else {
+            USER_ROLE = HelpA_.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
+            setTitle(buildTitle(USER_ROLE));
+            jTabbedPane1.setEnabled(true);
+            return true;
+        }
+        //
+    }
+
+    private void validationFailed(boolean showMsg) {
+        //
+        USER_ROLE = ROLE_UNDEFINED;
+        setTitle(buildTitle(null));
+        //
+        if (showMsg) {
+            HelpA_.showNotification(MSG.MSG_0());
+        }
+        //
+        jTabbedPane1.setEnabled(false);
+    }
+
+    private void saveUserNameAndPassToFile() {
+        //
+        String userName = jTextFieldHomeUserName.getText();
+        String pass = jPasswordFieldHomePass.getText();
+        Properties p = new Properties();
+        //
+        p.put("username", userName);
+        p.put("pass", pass);
+        //
+        HelpA_.properties_save_properties(p, IO_PROPERTIES_PATH, "");
+        //
     }
 
     private void initCompany() {
@@ -210,9 +281,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         int pid = monitor.currentPid();
         //
         if (userRole == null || userRole.isEmpty()) {
-            return "MCRecipe (" + pid + ")";
+            return "MCRecipe"; // (" + pid + ")"
         } else {
-            return "MCRecipe (" + pid + ")" + " *" + USER_ROLE;
+            return "MCRecipe " + "*" + USER_ROLE; //(" + pid + ")"
         }
     }
 
@@ -231,6 +302,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
             GP.IS_DATE_FORMAT_DE = true;
             LNG.LANG_ENG = false;
+        } else if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
+            GP.IS_DATE_FORMAT_DE = true;
+            LNG.LANG_ENG = true;
         } else {
             LNG.LANG_ENG = true;
         }
@@ -266,58 +340,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         return jPasswordFieldHomePass.getText();
     }
 
-    private void updateUserName() {
-        //
-        String userName = jTextFieldHomeUserName.getText();
-        String pass = jPasswordFieldHomePass.getText();
-        Properties p = new Properties();
-        //
-        p.put("username", userName);
-        p.put("pass", pass);
-        //
-        HelpA_.properties_save_properties(p, IO_PROPERTIES_PATH, "");
-//        HelpA_.showNotification("User name and password saved");
-//        jTextFieldHomeUserName.setBorder(BorderFactory.createLineBorder(Color.green));
-    }
-
-    private boolean verifyUser() {
-        //
-        String sqlTableName = AdministrateUsers.USER_ADM_TBL_NAME;
-        String userName = getUserName();
-        //
-        boolean freeEntranceEnabled = freeEntranceEnabled();
-        //
-//        USER_ROLE = HelpA_.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
-//        System.out.println("USER ROLE: " + USER_ROLE);
-        //
-        if (freeEntranceEnabled) {
-            jTabbedPane1.setEnabled(true);
-            USER_ROLE = ROLE_UNDEFINED;
-            return true;
-        }
-        //
-        String where = "username ='" + userName + "' and pass ='" + getPass() + "'";
-        int userConfirmed = HelpA_.getRowCount(sql, sqlTableName, where);
-        boolean userConfirmed_ = userConfirmed >= 1;
-        //
-        if (userConfirmed_ == false && freeEntranceEnabled == false) {//&& freeEntranceEnabled() == false
-            USER_ROLE = ROLE_UNDEFINED;
-            setTitle(buildTitle(null));
-            HelpA_.showNotification("User not valid");
-            jTabbedPane1.setEnabled(false);
-            return false;
-        } else {
-            USER_ROLE = HelpA_.getSingleParamSql(sql, sqlTableName, "userName", userName, "role", false);
-            setTitle(buildTitle(USER_ROLE));
-            jTabbedPane1.setEnabled(true);
-            return true;
-        }
-        //
-    }
-
     private boolean freeEntranceEnabled() {
         String where = "username =" + ADMIN_RULE_ENTRANCE_ENABLED + " and role ='enabled'";
-        int freeEntrance = HelpA_.getRowCount(sql, AdministrateUsers.USER_ADM_TBL_NAME, where);
+        int freeEntrance = HelpA_.getRowCount(sql, AdministrateUsers_.USER_ADM_TBL_NAME, where);
         boolean freeEntrance_ = freeEntrance >= 1;
         return freeEntrance_;
     }
@@ -4580,7 +4605,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 //            HelpA_.showAccessDeniedUserRole(USER_ROLE);
 //        }
         //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
+        if (MC_RECIPE.isAdminOrDeveloper()) {
             if (prod_plan == null) {
                 prod_plan = new PROD_PLAN();
                 prod_plan.setVisible(true);
@@ -4708,7 +4733,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         if (administrateUsers == null) {
             String title = "Administrate users";
-            administrateUsers = new AdministrateUsers(title, this, sql, sql_additional);
+            administrateUsers = new AdministrateUsers_(title, this, sql, sql_additional);
             administrateUsers.setVisible(true);
         } else {
             administrateUsers.setVisible(true);
@@ -4734,16 +4759,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void userNotValidActions() {
         jTextFieldHomeUserName.setText("");
         jPasswordFieldHomePass.setText("");
-        updateUserName();
+        saveUserNameAndPassToFile();
     }
 
+
     private void jButton_Home_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_LoginActionPerformed
-        if (verifyUser()) {
-            HelpA_.showNotification("Login valid");
-            updateUserName();
-        } else {
-            userNotValidActions();
-        }
+        login();
     }//GEN-LAST:event_jButton_Home_LoginActionPerformed
 
 
@@ -4829,7 +4850,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE)) {
+                    if (MC_RECIPE.isAdminOrDeveloper()) {
                         adminTools = new AdminTools(mc_recipe);
                         adminTools.setVisible(true);
                     } else {
@@ -5481,8 +5502,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA_.resetTableHeaderPainting(jTable2, HelpA_.getColByName(jTable2, "Note_Value"));
     }
 
-    
-
     public static String ACTUAL_TAB_NAME = "";
 
     private void mousePressedOnTab(MouseEvent me) {
@@ -5575,13 +5594,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     labDevelopment = new LabDevelopment_(sql, sql_additional, this, new ChangeSaver(sql, this));
                 }
                 //
-                labDevelopment.lab_dev_tab__clicked(null,true);
+                labDevelopment.lab_dev_tab__clicked(null, true);
                 //
             }
         }
     }
-
-    
 
     public void test_parameters_tab_clicked() {
         testParameters.fillTable1();
@@ -5654,7 +5671,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
-        } else if(me.getSource() == jTable_lab_dev__material_info && (me.getClickCount() == 1)){
+        } else if (me.getSource() == jTable_lab_dev__material_info && (me.getClickCount() == 1)) {
             labDevelopment.materialInfoJTableClicked();
         }
     }

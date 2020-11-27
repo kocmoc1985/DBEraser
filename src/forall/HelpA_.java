@@ -311,9 +311,10 @@ public class HelpA_ {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        boolean role_developer = MC_RECIPE.isDeveloper();
         //
-        if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) { // 
+//        if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) {
+        if (role_developer) { // 
             //
             if (jc instanceof JComboBoxA) {
                 jc.setToolTipText(text);
@@ -583,27 +584,28 @@ public class HelpA_ {
     }
 
     public static String updatedOn() {
-        if (GP.IS_DATE_FORMAT_DE) {
-            return get_proper_date_dd_MM_yyyy();
-        } else {
-            return get_proper_date_yyyy_MM_dd();
-        }
-//        return get_proper_date_adjusted_format(3);
+        // 
+        // OBS! NEVER USE OTHER DATE FORMATS THEN "yyyy_MM_dd" 
+        //-> CAUSES PROBLEM ON THE LEVEL OF DATABASE [2020-10-27]
+        //
+//        if (GP.IS_DATE_FORMAT_DE) {
+//            return get_proper_date_dd_MM_yyyy();
+//        } else {
+//            return get_proper_date_yyyy_MM_dd();
+//        }
+        //
+        //
+        return get_proper_date_yyyy_MM_dd(); // ONLY HAVE IT LIKE THIS!!
     }
 
-//    public static String updatedOn() {
-//        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        Calendar calendar = Calendar.getInstance();
-//        return formatter.format(calendar.getTime());
-//    }
-    private static String ACTUAL_USER = "UNDEF";
+    private static String ACTUAL_USER__MCRECIPE = "UNDEF";
 
     public static void setUser(String user) {
-        ACTUAL_USER = user;
+        ACTUAL_USER__MCRECIPE = user;
     }
 
     public static String updatedBy() {
-        return ACTUAL_USER;
+        return ACTUAL_USER__MCRECIPE;
     }
 
     public static String define_date_format(String date) {
@@ -2849,10 +2851,17 @@ public class HelpA_ {
         AutoCompleteSupport support = AutoCompleteSupport.install(
                 jbox, GlazedLists.eventListOf(arr));
         //
+        //
         if (arr.length == 1) {
             jbox.setSelectedIndex(0);
         } else {
-            jbox.setSelectedIndex(1);
+            //
+            if (initialValue != null) {
+                jbox.setSelectedItem(initialValue);
+            } else {
+                jbox.setSelectedIndex(1);
+            }
+            //
         }
         //
 //        jbox.setSelectedIndex(0);

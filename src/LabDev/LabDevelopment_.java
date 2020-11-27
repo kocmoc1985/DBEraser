@@ -174,16 +174,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE())) {
             //
-//            String id = labDevTestProcedure.getCurrentId();
-//            //
-//            if (id == null || id.isEmpty()) {
-//                return "";
-//            }
-//            //
-//            String q = SQL_A.lab_dev__test_proc(updatedOnCol, TABLE__TEST_PROCEDURE, labDevTestProcedure.getCurrentId());
-//            //
-//            date = HelpA_.getSingleParamSql_query(sql, q, updatedOnCol);
-            //
             JTable table = labDevTestProcedure.getTable();
             //
             date = HelpA_.getValueSelectedRow(table, "UpdatedOn");

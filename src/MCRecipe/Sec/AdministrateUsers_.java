@@ -23,13 +23,15 @@ import java.util.logging.Logger;
  *
  * @author KOCMOC
  */
-public class AdministrateUsers extends AdministrateRecipeGroups_ {
+public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
 
-    public AdministrateUsers(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateUsers_(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title, mc_recipe, sql, sql_additional);
     }
+
+    
 
     @Override
     public void setTableTitle() {

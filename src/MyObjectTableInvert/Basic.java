@@ -7,6 +7,7 @@ package MyObjectTableInvert;
 import BuhInvoice.GP_BUH;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
+import MCRecipe.MC_RECIPE;
 import static MCRecipe.MC_RECIPE.USER_ROLE;
 import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MyObjectTable.SaveIndicator;
@@ -512,12 +513,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     }
 
     public void saveChangesTableInvert(Table tableInvert) {
-        //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-            HelpA_.showActionDeniedUserRole(USER_ROLE);
-            return;
-        }
-        //
+        //       
         TableInvert ti = (TableInvert) tableInvert;
         //
         automaticFieldUpdate(tableInvert);
@@ -527,11 +523,6 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     }
 
     public void saveChangesTableInvert() {
-        //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
-            HelpA_.showActionDeniedUserRole(USER_ROLE);
-            return;
-        }
         //
         TableInvert ti = (TableInvert) TABLE_INVERT;
         //
@@ -552,7 +543,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
      */
     public void saveChangesTableInvert_C_C(TableInvert ti) {
         //
-        if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
             HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }

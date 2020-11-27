@@ -23,12 +23,14 @@ public class GP {
     public static final String COMPANY_NAME_UNDEFINED = "undef";
     public static final String COMPANY_NAME_QEW = "qew";
     public static final String COMPANY_NAME_COMPOUNDS = "compounds";
+    public static final String COMPANY_NAME_DATWILLER = "dw";
     //
     public static final HashSet<String>COMPANIES = new HashSet<String>();
     //
     static{
         COMPANIES.add(COMPANY_NAME_QEW);
         COMPANIES.add(COMPANY_NAME_COMPOUNDS);
+        COMPANIES.add(COMPANY_NAME_DATWILLER);
     }
     //
     public static final URL IMAGE_ICON_URL = GP.class.getResource("icon.png");

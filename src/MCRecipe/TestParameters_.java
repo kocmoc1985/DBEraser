@@ -206,7 +206,7 @@ public class TestParameters_ extends BasicTab {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
+        if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS) || GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
             return TableInvertConfigsCompany.testParameters_compounds();
         }else if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)){
             return TableInvertConfigsCompany.testParameters_qew();

@@ -13,6 +13,14 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  */
 public class MSG {
 
+    public static String MSG_0() {
+        return LANG_ENG ? "Login failed" : "Anmeldung fehlgeschlagen";
+    }
+    
+    public static String MSG_0_1() {
+        return LANG_ENG ? "Login successful" : "Anmeldung erfolgreich";
+    }
+    
     public static String MSG_1() {
         return LANG_ENG ? "Note Name" : "Notiz Name";
     }
