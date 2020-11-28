@@ -13,7 +13,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class REPORT {
+public class REPORT_TRL {
     
     
     /**

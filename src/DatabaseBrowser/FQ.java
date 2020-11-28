@@ -380,15 +380,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         jScrollPane2.setViewportView(jTextArea2);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+
         ));
         jScrollPane3.setViewportView(jTable1);
 
@@ -530,8 +522,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                     .addComponent(jButton10)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -541,9 +532,10 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2Rows)
@@ -609,7 +601,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        CURRENT_QUERY = "select name,xtype,refdate from sysobjects where xtype = 'U'";
+        CURRENT_QUERY = "select name,xtype,id,refdate from sysobjects where xtype = 'U' ORDER BY NAME ASC";
         showSqlResult(CURRENT_QUERY);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -787,5 +779,6 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     @Override
     public void run() {
         connect();
+        jButton5ActionPerformed(null);
     }
 }

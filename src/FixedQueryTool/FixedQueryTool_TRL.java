@@ -42,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FixedQueryTool_TRL extends javax.swing.JFrame implements Runnable {
 
-    private REPORT REPort = new REPORT();
+    private REPORT_TRL REPort = new REPORT_TRL();
     private JavaSysMon monitor = new JavaSysMon();
     private Sql_A sql = new Sql_A();
     //==========================

@@ -10,6 +10,7 @@
  */
 package FixedQueryTool;
 
+import MCCompound.BuildWorkInstrTable;
 import DatabaseBrowser.FQ;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;

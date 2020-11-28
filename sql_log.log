@@ -1,2 +1,4 @@
 [2018-04-13 15:02:18]   net.ucanaccess.jdbc.UcanaccessSQLException: UCAExc:::4.0.4 user lacks privilege or object not found: SYSOBJECTS
 [2018-04-13 15:19:44]   net.ucanaccess.jdbc.UcanaccessSQLException: UCAExc:::4.0.4 user lacks privilege or object not found: SYSOBJECTS
+[2020-11-28 21:31:46]   com.microsoft.sqlserver.jdbc.SQLServerException: Invalid object name 'MCRecipeUser'.
+[2020-11-28 21:47:41]   com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'fcatid'.
