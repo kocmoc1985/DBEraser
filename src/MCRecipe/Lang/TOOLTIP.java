@@ -6,7 +6,6 @@
 package MCRecipe.Lang;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
-import java.util.Properties;
 
 /**
  *
@@ -15,7 +14,6 @@ import java.util.Properties;
 public class TOOLTIP {
     
     
-
      public static String SAVE() {
         return LANG_ENG ? "Save" : "Speichern";
     }

@@ -9,7 +9,6 @@ import MCRecipe.ChangeSaver;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
@@ -635,7 +634,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         String id = HelpA_.getValueSelectedRow(table, "ID");
         //
         if (id == null || id.isEmpty()) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            HelpA_.showNotification(MSG.LANG("Id is missing, cannot continue"));
             return;
         }
         //
@@ -678,14 +677,14 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public void changeJTableNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_1());
+            HelpA_.showNotification(MSG.LANG("Table row not chosen"));
             return;
         }
         //
         String id = HelpA_.getValueSelectedRow(table, idColName);
         //
         if (id == null || id.isEmpty()) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_3());
+            HelpA_.showNotification(MSG.LANG("Id is missing, cannot continue"));
             return;
         }
         //
@@ -695,7 +694,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         jtf.setPreferredSize(new Dimension(300, 50));
         //
-        boolean yes = HelpA_.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
+        boolean yes = HelpA_.chooseFromJTextField(jtf, MSG.LANG("Specify new note value"));
         //
         String value = jtf.getText();
         //

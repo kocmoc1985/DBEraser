@@ -4,7 +4,7 @@
  */
 package forall;
 
-import MCRecipe.Lang.ERRORS;
+import MCRecipe.Lang.MSG;
 import MCRecipe.RecipeDetailed_;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnValue;
@@ -12,7 +12,6 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import Reporting.InvertTableRow;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -20,7 +19,6 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.WindowConstants;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -250,7 +248,7 @@ public class HTMLPrint extends javax.swing.JFrame {
             try{
                html += "<td>" + invertTableRow.getValue(0) + "</td>"; 
             }catch(Exception ex){
-                html += "<td>" + ERRORS.VAL_MISSING_REPORT + "</td>";
+                html += "<td>" + MSG.VAL_MISSING_REPORT + "</td>";
             }
             //
             html += "</tr>";

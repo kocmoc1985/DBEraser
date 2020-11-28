@@ -5,7 +5,6 @@
 package forall;
 
 import MCCompound.PROD_PLAN;
-import MCRecipe.Lang.ERRORS;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE_;
@@ -2069,11 +2068,11 @@ public class HelpA_ {
     }
 
     public static void showNotification_Data_Truncation_Error() {
-        JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR_DATA_TRUNCATION());
+        JOptionPane.showMessageDialog(null, MSG.LANG("The length of input exceeded the limit"));
     }
 
     public static void showNotification_SQL_Error() {
-        JOptionPane.showMessageDialog(null, ERRORS.SQL_ERROR());
+        JOptionPane.showMessageDialog(null, MSG.LANG("SQL ERROR, could not update"));
     }
 
     public static boolean confirm() {

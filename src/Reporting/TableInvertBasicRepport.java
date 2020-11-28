@@ -4,7 +4,7 @@
  */
 package Reporting;
 
-import MCRecipe.Lang.ERRORS;
+import MCRecipe.Lang.MSG;
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
 
 import java.math.BigDecimal;
@@ -141,7 +141,7 @@ public class TableInvertBasicRepport {
                     }
                     //
                 } catch (Exception ex) {
-                    values[i] = ERRORS.VAL_MISSING_REPORT;
+                    values[i] = MSG.VAL_MISSING_REPORT;
 //                    return dataSource;
                 }
             }

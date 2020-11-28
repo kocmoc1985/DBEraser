@@ -7,12 +7,10 @@ package MCRecipe;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.NOTIFICATIONS;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.R_DETAILED;
 import MCRecipe.Lang.T_INV;
 import static MCRecipe.MC_RECIPE_.USER_ROLE;
-import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
 import static MCRecipe.RecipeInitial.T1_STATUS;
 import MCRecipe.Sec.PROC;
@@ -1369,7 +1367,7 @@ public class RecipeDetailed_ extends BasicTab {
         }
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification(NOTIFICATIONS.NOTE_1());
+            HelpA_.showNotification(MSG.LANG("Table row not chosen"));
             return;
         }
         //
@@ -1381,7 +1379,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         jtf.setPreferredSize(new Dimension(300, 50));
         //
-        boolean yes = HelpA_.chooseFromJTextField(jtf, NOTIFICATIONS.NOTE_2());
+        boolean yes = HelpA_.chooseFromJTextField(jtf, MSG.LANG("Specify new note value"));
         //
         String value = jtf.getText();
         //

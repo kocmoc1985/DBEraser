@@ -14,6 +14,7 @@ import java.util.Properties;
  */
 public class MSG {
 
+    public static final String VAL_MISSING_REPORT = "*";
     private static final Properties DICT = new Properties();
 
     static {
@@ -81,7 +82,14 @@ public class MSG {
         DICT.put("Confirm deletion?" , "Löschung bestätigen?");
         DICT.put("Access not allowed with user role: " , "Zugang nicht eraubt für: ");
         DICT.put("Not allowed", "Nicht erlaubt");
+        DICT.put("Table row not chosen" , "Tabellenzeile nicht ausgewählt");
+        DICT.put("Specify new note value" , "Bitte, einen neuen Notenwert eingeben");
+        DICT.put("Id is missing, cannot continue" , "Id fehlt, kann nicht weitergehen");
         DICT.put("" , "");
+        //
+        DICT.put("The length of input exceeded the limit" , "Die Länge der Dateneigabe ist zu lang");
+        DICT.put("SQL ERROR, could not update" , "SQL FEHLER, Speicherung nicht möglich");
+        //
     }
 
     public static String LANG(String word) {
