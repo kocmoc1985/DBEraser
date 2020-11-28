@@ -2048,11 +2048,7 @@ public class HelpA_ {
     }
 
     public static void showActionDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, "Action not allowed with user role: *" + userRole + "*", "Not allowed", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public static void showAccessDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, "Acces not allowed with user role: *" + userRole + "'", "Not allowed", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, MSG.MSG_8_0(userRole), MSG.MSG_8_1(), JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {

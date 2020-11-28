@@ -16,11 +16,11 @@ public class MSG {
     public static String MSG_0() {
         return LANG_ENG ? "Login failed" : "Anmeldung fehlgeschlagen";
     }
-    
+
     public static String MSG_0_1() {
         return LANG_ENG ? "Login successful" : "Anmeldung erfolgreich";
     }
-    
+
     public static String MSG_1() {
         return LANG_ENG ? "Note Name" : "Notiz Name";
     }
@@ -60,36 +60,44 @@ public class MSG {
     public static String MSG_6(String code) {
         return LANG_ENG ? "Confirm deletion of: " + code : "Löschung bestätigen, Code: " + code;
     }
-    
+
     public static String MSG_6_2() {
         return LANG_ENG ? "Create new ageing code" : "Neuen Alterungscode erstellen";
     }
-    
+
     public static String MSG_6_3(String code) {
         return LANG_ENG ? "Copy code: " + code + "?" : "Code: " + code + " kopieren?";
     }
-    
+
     public static String MSG_7() {
         return LANG_ENG ? "Operation successful" : "Erfolgreich";
     }
-    
+
     public static String MSG_7_2() {
         return LANG_ENG ? "Operation failed" : "Fehlgeschlagen";
     }
-    
+
     public static String MSG_7_3() {
         return LANG_ENG ? "Add new" : "Neu ergänzen";
     }
-    
+
     public static String MSG_7_4() {
         return LANG_ENG ? "Test code not chosen" : "Prüffcode nicht ausgewählt";
     }
-    
+
     public static String MSG_7_5() {
         return LANG_ENG ? "Already exist! The entry will not be added" : "Gibt schon! Der Eintrag wurde nicht ergänzt";
     }
-    
-     public static String MSG_7_6() {
+
+    public static String MSG_7_6() {
         return LANG_ENG ? "Confirm deletion?" : "Löschung bestätigen?";
+    }
+
+    public static String MSG_8_0(String userRole) {
+        return LANG_ENG ? "Access not allowed with user role: *" +  userRole : "Zugang nicht eraubt für: " + userRole;
+    }
+    
+     public static String MSG_8_1() {
+        return LANG_ENG ? "Not allowed" : "Nicht erlaubt";
     }
 }

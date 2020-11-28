@@ -429,6 +429,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         if (table.equals(bim.jTable_InvoiceA_Insert_articles) == false) {
             HelpA_.showNotification("WRONG Articles Table!!");
+            return;
         }
         //
         // Some methods are called from here because this method (countFakturaTotal)

@@ -4,9 +4,7 @@
 Look in "LOGIN, USER ROLES....txt" file
 
 [COMMON JTables]
-For common jtables you add it manually like:
-"HelpA.setTrackingToolTip(table, q);"
-
+Added automatically when build with HelpA.build_table_common(...)
 
 
 [INVERT TABLES]

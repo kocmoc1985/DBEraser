@@ -183,6 +183,11 @@ public class RecipeDetailed_ extends BasicTab {
 
     public void unblockRecipe(JTable table) {
         //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
+            return;
+        }
+        //
         String status = HelpA_.getValueSelectedRow(table, T1_STATUS);
         //
         boolean cond_1 = status.equals("S") == false && status.equals("O") == false
@@ -258,18 +263,17 @@ public class RecipeDetailed_ extends BasicTab {
 
     private String recipePrev = "undef";
     private int prevSelectedRow = 0;
-    
-    
-    private void setPrevSelectedRowTable4(int row){
+
+    private void setPrevSelectedRowTable4(int row) {
         this.prevSelectedRow = row;
     }
-    
+
     public void autoSelectRowTable4() {
         //
         boolean cond_1 = HelpA_.isEmtyJTable(mCRecipe2.jTable4RecipeDetailed);
         //
         // Auto selection of first row is done in case of recipe change only
-        if(getRecipeCode().equals(recipePrev)){
+        if (getRecipeCode().equals(recipePrev)) {
             HelpA_.markGivenRow(mCRecipe2.jTable4RecipeDetailed, prevSelectedRow);
             return;
         }
@@ -292,7 +296,7 @@ public class RecipeDetailed_ extends BasicTab {
                 //
             }
             //
-            
+
             //
         }
     }
@@ -464,8 +468,8 @@ public class RecipeDetailed_ extends BasicTab {
     public void apply_changes_table4_real(boolean confirm) {
         //
         if (MC_RECIPE.isAdminOrDeveloper() == false) {
-             HelpA_.showActionDeniedUserRole(USER_ROLE);
-             return;
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
+            return;
         }
         //
         if (confirm) {
@@ -573,7 +577,7 @@ public class RecipeDetailed_ extends BasicTab {
             //
             JComboBoxA box = new JComboBoxA();
             //
-            box = (JComboBoxA)HelpA_.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
+            box = (JComboBoxA) HelpA_.fillComboBox(sql, box, SQL_B.fill_ingredients_combo_box_for_table_4(), null, false, false);
             //
             if (HelpA_.chooseFromComboBoxDialog(box, "Choose material") == false) {
                 return;
@@ -1258,7 +1262,7 @@ public class RecipeDetailed_ extends BasicTab {
         try {
             String q = SQL_A.RecipeInvertFunction(PROC.PROC_62, code, release, mixer_code);
             OUT.showMessage(q);
-            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
+            TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }

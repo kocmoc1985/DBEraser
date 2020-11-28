@@ -2212,11 +2212,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel79.add(jButton_lab_dev__material_info_save);
 
         jButton_lab_dev__mat_info__print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
-        jButton_lab_dev__mat_info__print_jtable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev__mat_info__print_jtableActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel60Layout = new javax.swing.GroupLayout(jPanel60);
         jPanel60.setLayout(jPanel60Layout);
@@ -2232,8 +2227,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addGroup(jPanel60Layout.createSequentialGroup()
                         .addComponent(jPanel_lab_dev_material_info, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel60Layout.setVerticalGroup(
             jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2939,7 +2934,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel29.setText(INGR.PERC_RUBBER());
 
-        jPanel33.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel33.setLayout(new java.awt.GridLayout());
 
         jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButtonIngredGo.addActionListener(new java.awt.event.ActionListener() {
@@ -2965,16 +2960,25 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jCombo_Ingred_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel20)
+                        .addComponent(jCombo_Ingred_Name, 0, 142, Short.MAX_VALUE)
+                        .addComponent(jCombo_Ingred_TradeName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel28))
+                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCombo_Ingred_Descr, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21)))
+                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29))))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCombo_Ingred_Descr, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))
-                        .addGap(20, 20, 20)
                         .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addComponent(jCombo_Ingred_Status, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2998,15 +3002,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jCombo_Ingred_Form, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel27)))
-                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
-                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCombo_Ingred_TradeName, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29)
-                            .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
         jPanel_Ingred_boxesLayout.setVerticalGroup(
             jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3039,17 +3036,19 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel27)
                         .addGap(8, 8, 8)
                         .addComponent(jCombo_Ingred_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
                             .addComponent(jLabel29))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel_Ingred_boxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCombo_Ingred_TradeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jCombo_Ingred_Perc_Rubber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel_Ingred_boxesLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -4716,7 +4715,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 prod_plan.redrawTablesInvert_forward();
             }
         } else {
-            HelpA_.showAccessDeniedUserRole(USER_ROLE);
+            HelpA_.showActionDeniedUserRole(USER_ROLE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -4955,7 +4954,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         adminTools = new AdminTools(mc_recipe);
                         adminTools.setVisible(true);
                     } else {
-                        HelpA_.showAccessDeniedUserRole(USER_ROLE);
+                        HelpA_.showActionDeniedUserRole(USER_ROLE);
                     }
 
                 }
@@ -5041,10 +5040,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void jButton_lab_dev__mat_info_print_invertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__mat_info_print_invertActionPerformed
         labDevelopment.printMaterialInfoTableInvert();
     }//GEN-LAST:event_jButton_lab_dev__mat_info_print_invertActionPerformed
-
-    private void jButton_lab_dev__mat_info__print_jtableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__mat_info__print_jtableActionPerformed
-        labDevelopment.printMaterialInfoJtable();
-    }//GEN-LAST:event_jButton_lab_dev__mat_info__print_jtableActionPerformed
 
     /**
      * @param args the command line arguments
