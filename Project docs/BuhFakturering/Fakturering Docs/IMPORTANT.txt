@@ -12,6 +12,8 @@ Then see BuInvoice.class -> "private void setHomePageBackground()"
 
 OBS! If the "bg.jpg" is not found, the standard background is used/active
 
+VERY IMPORTANT: JLabels are transparent
+
 ________________________________________________________________________________________________________
 [DESKTOP PATH - FOLLOW THIS SUBJECT] [2020-10-28]
 

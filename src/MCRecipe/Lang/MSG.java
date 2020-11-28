@@ -94,10 +94,10 @@ public class MSG {
     }
 
     public static String MSG_8_0(String userRole) {
-        return LANG_ENG ? "Access not allowed with user role: *" +  userRole : "Zugang nicht eraubt für: " + userRole;
+        return LANG_ENG ? "Access not allowed with user role: *" + userRole : "Zugang nicht eraubt für: " + userRole;
     }
-    
-     public static String MSG_8_1() {
+
+    public static String MSG_8_1() {
         return LANG_ENG ? "Not allowed" : "Nicht erlaubt";
     }
 }
