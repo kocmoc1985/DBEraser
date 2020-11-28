@@ -195,11 +195,11 @@ public class RecipeDetailed_ extends BasicTab {
         //
         //
         if (cond_1) {
-            HelpA_.showNotification("The recipe status is not S or O or Inactive");
+            HelpA_.showNotification(MSG.LANG("The recipe status is not S or O or Inactive"));
             return;
         }
         //
-        if (HelpA_.confirm("Unblock recipe?") == false) {
+        if (HelpA_.confirm(MSG.LANG("Unblock recipe?")) == false) {
             return;
         }
         //
@@ -404,7 +404,7 @@ public class RecipeDetailed_ extends BasicTab {
     public void saveTableInvert() {
         //
         if (getDetailedGroup().equals("NULL") || getMixerCode().equals("NULL")) {
-            HelpA_.showNotification("Cannot proceed, Polymer group and Mixer must be chosen");
+            HelpA_.showNotification(MSG.LANG("Cannot proceed, Polymer group and Mixer must be chosen"));
             return;
         }
         //
@@ -424,7 +424,7 @@ public class RecipeDetailed_ extends BasicTab {
         HelpA_.chooseFrom2Textfields(noteName, noteValue, "NoteName", "NoteValue", "Add note");
         //
         if (noteName.getText().isEmpty() || noteValue.getText().isEmpty()) {
-            HelpA_.showNotification("Both values must be specified");
+            HelpA_.showNotification(MSG.LANG("Both values must be specified"));
             return;
         }
         //
@@ -591,7 +591,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         //
         if (checkDensity(ingredient) == false) {
-            HelpA_.showNotification("Cannot add material, density = 0. Go to Ingredients and change density");
+            HelpA_.showNotification(MSG.LANG("Cannot add material, density = 0. Go to Ingredients and change density"));
             return;
         }
         //
@@ -1296,14 +1296,14 @@ public class RecipeDetailed_ extends BasicTab {
         }
         //
         if (HelpA_.getIfAnyRowChosen(table) == false) {
-            HelpA_.showNotification("Please choose a row in the table to perform this action");
+            HelpA_.showNotification(MSG.LANG("Please choose a row in the table to perform this action"));
             return;
         }
         //
         String recipe_prop_free_text_id = HelpA_.getValueSelectedRow(table, "Recipe_Prop_Free_Text_ID");
         //
         if (recipe_prop_free_text_id.equals("null")) {
-            HelpA_.showNotification("No id for this record, cannot proceed");
+            HelpA_.showNotification(MSG.LANG("No id for this record, cannot proceed"));
             return;
         }
         //

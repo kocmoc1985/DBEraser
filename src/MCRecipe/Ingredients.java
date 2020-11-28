@@ -8,6 +8,7 @@ import MCRecipe.Sec.HelpM;
 import MCRecipe.Lang.INGR;
 import MCRecipe.Lang.JTB;
 import MCRecipe.Lang.LNG;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
@@ -93,7 +94,7 @@ public class Ingredients extends BasicTab {
     public void saveTableInvert() {
         //
         if (getGroup().equals("NULL")) {
-            HelpA_.showNotification("Cannot proceed, GROUP must be chosen");
+            HelpA_.showNotification(MSG.LANG("Cannot proceed, GROUP must be chosen"));
             return;
         }
         //
@@ -192,7 +193,7 @@ public class Ingredients extends BasicTab {
         }
         //
         if (mCRecipe.recipeInitial.checkIfRecipeDisabled()) {
-            HelpA_.showNotification("Cannot do this action for Recipe with status S, O, Inactive");
+            HelpA_.showNotification(MSG.LANG("Cannot do this action for Recipe with status S, O, Inactive"));
         }
         //
         RecipeDetailed_ rd = mCRecipe.recipeDetailed;
@@ -339,7 +340,7 @@ public class Ingredients extends BasicTab {
         //
         //
         if (jtf1_note_name.getText().isEmpty() || jtf2_note_value.getText().isEmpty()) {
-            HelpA_.showNotification("Both values must be specified!");
+            HelpA_.showNotification(MSG.LANG("Both values must be specified!"));
             return;
         }
         //

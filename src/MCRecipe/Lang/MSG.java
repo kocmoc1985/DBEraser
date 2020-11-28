@@ -6,6 +6,7 @@
 package MCRecipe.Lang;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
+import java.util.Properties;
 
 /**
  *
@@ -13,6 +14,60 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
  */
 public class MSG {
 
+    private static final Properties DICT = new Properties();
+    
+    static {
+        //Don't change ONLY here, you must change both here and where it's called
+        DICT.put("Maximum of 6 recipes reached", "");
+        DICT.put("No records found for recipe: ", "");
+        DICT.put("Cannot delete Recipe with status S, O, Inactive", "");
+        DICT.put("RECIPE ORIGIN or RECIPE VERSION must be chosen before using this option!", "");
+        DICT.put("Invalid password", "");
+        DICT.put("The recipe status is not S or O or Inactive", "");
+        DICT.put("Cannot proceed, Polymer group and Mixer must be chosen", "");
+        DICT.put("Both values must be specified", "");
+        DICT.put("Cannot add material, density = 0. Go to Ingredients and change density", "");
+        DICT.put("Please choose a row in the table to perform this action", "");
+        DICT.put("No id for this record, cannot proceed", "");
+        DICT.put("Cannot proceed, GROUP must be chosen", "");
+        DICT.put("Cannot do this action for Recipe with status S, O, Inactive", "");
+        DICT.put("Both values must be specified!", "");
+        DICT.put("No entry is chosen in the table!", "");
+        DICT.put("Step number not chosen!", "");
+        DICT.put("Cannot proceed, GROUP must be chosen", "");
+        DICT.put("Nothing chosen, click on a row in the table below", "");
+        DICT.put("Nothing chosen plese click on any of corresponding rows", "");
+        DICT.put("Operation failed, because of sql error", "");
+        DICT.put("Error, please try aggain", "");
+        DICT.put("Operation failed, because of sql error", "");
+        DICT.put("Please fill in the fields before adding", "");
+        DICT.put("Contact not chosen, click on any field corresponding to the contact", "");
+        DICT.put("Operation failed, because of sql error", "");
+        DICT.put("Nothing chosen, click on a row in the table below", "");
+        DICT.put("Cannot proceed,Please choose ingredient", "");
+        DICT.put("TADE NAME must be filled in", "");
+        DICT.put("Vendor must be filled in", "");
+        DICT.put("Maximum ammount reached (16)", "");
+        DICT.put("Replicating of production plan from .csv file failed", "");
+        DICT.put("Dou you really want to delete tradename: ", "");
+        DICT.put("Delete tradename: ", "");
+        DICT.put("Delete Vendor: ", "");
+        DICT.put("Delete contact: ", "");
+        DICT.put("Dou you really want to delete tradename: ", "");
+        DICT.put("This action will erase all actual sequence steps", "");
+        DICT.put("Unblock recipe?", "");
+        DICT.put("Mixing sequence will be deleted including all mixing steps!", "");
+        DICT.put("Delete all rows?", "");
+        DICT.put("Importing to CSV Table", "");
+        DICT.put("Additional info is needed for recipe: ", "");
+        DICT.put("Enter password", "");
+        DICT.put("", "");
+    }
+    
+     public static String LANG(String word) {
+        return LANG_ENG ? word : DICT.getProperty(word, "*" + word);
+    }
+    
     public static String MSG_0() {
         return LANG_ENG ? "Login failed" : "Anmeldung fehlgeschlagen";
     }

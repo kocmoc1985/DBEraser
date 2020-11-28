@@ -4589,7 +4589,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        if (HelpA_.confirm("Mixing sequence will be deleted including all mixing steps!")) {
+        if (HelpA_.confirm(MSG.LANG("Mixing sequence will be deleted including all mixing steps!"))) {
             sequence.deleteAllSequenceSteps();
         }
     }//GEN-LAST:event_jButton17ActionPerformed
@@ -4841,7 +4841,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         //
         if (verifyPasswordUserAdmin() == false) {
-            HelpA_.showNotification("Invalid password");
+            HelpA_.showNotification(MSG.LANG("Invalid password"));
             return;
         }
         //
@@ -4856,7 +4856,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private boolean verifyPasswordUserAdmin() {
         //
-        JPasswordField jpf = HelpA_.chooseFromPasswordField("Enter password", true);
+        JPasswordField jpf = HelpA_.chooseFromPasswordField(MSG.LANG("Enter password"), true);
         String pwd = new String(jpf.getPassword());
         //
         if (pwd == null || pwd.isEmpty()) {

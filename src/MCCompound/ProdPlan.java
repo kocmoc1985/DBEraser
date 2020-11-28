@@ -4,6 +4,7 @@
  */
 package MCCompound;
 
+import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -124,7 +125,7 @@ public class ProdPlan extends BasicTab {
         //
         try {
             //
-            ProgressBarB progressBarB = new ProgressBarB("Importing to CSV Table", table.getRowCount(), GP.IMAGE_ICON_URL_PROD_PLAN);
+            ProgressBarB progressBarB = new ProgressBarB(MSG.LANG("Importing to CSV Table"), table.getRowCount(), GP.IMAGE_ICON_URL_PROD_PLAN);
             //
             for (int i = 0; i < table.getRowCount(); i++) {
                 String prodOrder = HelpA_.getValueGivenRow(table, i, PROD_ORDER);
@@ -200,7 +201,7 @@ public class ProdPlan extends BasicTab {
         //
         JScrollPane container = new JScrollPane(table);
         //
-        JOptionPane.showMessageDialog(null, container, "Additional info is needed for recipe: " + recipeName, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, container, MSG.LANG("Additional info is needed for recipe: ") + recipeName, JOptionPane.PLAIN_MESSAGE);
         //
         //
         //
@@ -320,7 +321,7 @@ public class ProdPlan extends BasicTab {
     public void insertIntoTempTable() {
         //
         if (HelpA_.getRowCount(sql, "Production_Plan_Csv_Temp") >= 16) {
-            HelpA_.showNotification("Maximum ammount reached (16)");
+            HelpA_.showNotification(MSG.LANG("Maximum ammount reached (16)"));
             return;
         }
         //
@@ -380,7 +381,7 @@ public class ProdPlan extends BasicTab {
     }
 
     public void deleteAllRecordsTempTable() {
-        if (HelpA_.confirm("Delete all rows?") == false) {
+        if (HelpA_.confirm(MSG.LANG("Delete all rows?")) == false) {
             return;
         }
         //

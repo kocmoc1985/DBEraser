@@ -6,6 +6,7 @@ package MCCompound;
 
 import MyObjectTable.ShowMessage;
 import DatabaseBrowser.FQ;
+import MCRecipe.Lang.MSG;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -968,7 +969,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         }
         //
         if (retur != 0) {
-            HelpA_.showNotification("Replicating of production plan from .csv file failed");
+            HelpA_.showNotification(MSG.LANG("Replicating of production plan from .csv file failed"));
         }
         //
         clearAllColumns(false);

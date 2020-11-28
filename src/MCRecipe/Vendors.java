@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
@@ -419,11 +420,11 @@ public class Vendors extends BasicTab {
     public void deleteTradeNameFromTable3B() {
         //
         if (currentId.isEmpty()) {
-            HelpA_.showNotification("Nothing chosen, click on a row in the table below");
+            HelpA_.showNotification(MSG.LANG("Nothing chosen, click on a row in the table below"));
             return;
         }
         //
-        if (HelpA_.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
+        if (HelpA_.confirm(MSG.LANG("Dou you really want to delete tradename: ") + currentTradeName) == false) {
             return;
         }
         //
@@ -442,11 +443,11 @@ public class Vendors extends BasicTab {
     public void deleteFromTable3_2() {
         //
         if (currentTradeName.isEmpty()) {
-            HelpA_.showNotification("Nothing chosen plese click on any of corresponding rows");
+            HelpA_.showNotification(MSG.LANG("Nothing chosen plese click on any of corresponding rows"));
             return;
         }
         //
-        if (HelpA_.confirm("Delete tradename: " + currentTradeName + "?") == false) {
+        if (HelpA_.confirm(MSG.LANG("Delete tradename: ") + currentTradeName + "?") == false) {
             return;
         }
         //
@@ -455,7 +456,7 @@ public class Vendors extends BasicTab {
         try {
             sql.execute(q, mCRecipe);
         } catch (SQLException ex) {
-            HelpA_.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification(MSG.LANG("Operation failed, because of sql error"));
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -481,7 +482,7 @@ public class Vendors extends BasicTab {
         String msds = "";
         //
         if (trade_name == null) {
-            HelpA_.showNotification("Error, please try aggain");
+            HelpA_.showNotification(MSG.LANG("Error, please try aggain"));
             return;
         }
         //
@@ -493,7 +494,7 @@ public class Vendors extends BasicTab {
             //
         } catch (SQLException ex) {
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
-            HelpA_.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification(MSG.LANG("Operation failed, because of sql error"));
         }
         //
         currentTradeNameId = HelpA_.getLastIncrementedId(sql, "tradename_main");
@@ -620,7 +621,7 @@ public class Vendors extends BasicTab {
 
     public void deleteFromTable4() {
         //
-        if (HelpA_.confirm("Delete Vendor: " + currentVendorId + " ?") == false) {
+        if (HelpA_.confirm(MSG.LANG("Delete Vendor: ") + currentVendorId + " ?") == false) {
             return;
         }
         //
@@ -660,7 +661,7 @@ public class Vendors extends BasicTab {
         String updatedBy = HelpA_.updatedBy();
         //
         if (contactName.isEmpty() && contactName.isEmpty() && position.isEmpty() && phone.isEmpty() && email.isEmpty()) {
-            HelpA_.showNotification("Please fill in the fields before adding");
+            HelpA_.showNotification(MSG.LANG("Please fill in the fields before adding"));
             return;
         }
         //
@@ -729,11 +730,11 @@ public class Vendors extends BasicTab {
     public void deleteFromTable4_2() {
         //
         if (currentVendorContactId.isEmpty()) {
-            HelpA_.showNotification("Contact not chosen, click on any field corresponding to the contact");
+            HelpA_.showNotification(MSG.LANG("Contact not chosen, click on any field corresponding to the contact"));
             return;
         }
         //
-        if (HelpA_.confirm("Delete contact: " + currentVendorContactName) == false) {
+        if (HelpA_.confirm(MSG.LANG("Delete contact: ") + currentVendorContactName) == false) {
             return;
         }
         //
@@ -742,7 +743,7 @@ public class Vendors extends BasicTab {
         try {
             sql.execute(q, mCRecipe);
         } catch (SQLException ex) {
-            HelpA_.showNotification("Operation failed, because of sql error");
+            HelpA_.showNotification(MSG.LANG("Operation failed, because of sql error"));
             Logger.getLogger(Vendors.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -933,11 +934,11 @@ public class Vendors extends BasicTab {
     public void deleteTradeNameFromTable3() {
         //
         if (currentTradeNameId.isEmpty()) {
-            HelpA_.showNotification("Nothing chosen, click on a row in the table below");
+            HelpA_.showNotification(MSG.LANG("Nothing chosen, click on a row in the table below"));
             return;
         }
         //
-        if (HelpA_.confirm("Dou you really want to delete tradename: " + currentTradeName) == false) {
+        if (HelpA_.confirm(MSG.LANG("Dou you really want to delete tradename: ") + currentTradeName) == false) {
             return;
         }
         //
@@ -999,7 +1000,7 @@ public class Vendors extends BasicTab {
         String ingred_code_id = getIngredCodeId(ingred_name);
         //
         if (ingred_code_id == null) {
-            HelpA_.showNotification("Cannot proceed,Please choose ingredient");
+            HelpA_.showNotification(MSG.LANG("Cannot proceed,Please choose ingredient"));
             return;
         }
         //
@@ -1052,7 +1053,7 @@ public class Vendors extends BasicTab {
         }
         //
         if (ingred_code_id == null) {
-            HelpA_.showNotification("Cannot proceed,Please choose ingredient");
+            HelpA_.showNotification(MSG.LANG("Cannot proceed,Please choose ingredient"));
             return;
         }
         //

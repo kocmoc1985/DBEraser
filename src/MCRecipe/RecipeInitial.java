@@ -8,6 +8,7 @@ import MCRecipe.Sec.CustomPanelQew;
 import MCRecipe.Sec.HelpM;
 import MCRecipe.Sec.CompareRecipes;
 import MCRecipe.Lang.JTB;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -131,7 +132,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public void addToCompare() {
         //
         if (ADDED_TO_COMPARE_LIST.size() >= 6) {
-            HelpA_.showNotification("Maximum of 6 recipes reached");
+            HelpA_.showNotification(MSG.LANG("Maximum of 6 recipes reached"));
             return;
         }
         //
@@ -144,7 +145,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 //        System.out.println("ADD TO COMPARE: " + x);
         //
         if (x == false) {
-            HelpA_.showNotification("No records found for recipe: " + recipeVersion);
+            HelpA_.showNotification(MSG.LANG("No records found for recipe: ") + recipeVersion);
             return;
         }
         //
@@ -186,7 +187,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public void delete_record_table_1(JTable table) {
         //
         if (checkIfRecipeDisabled()) {
-            HelpA_.showNotification("Cannot delete Recipe with status S, O, Inactive");
+            HelpA_.showNotification(MSG.LANG("Cannot delete Recipe with status S, O, Inactive"));
             return;
         }
         //
@@ -549,8 +550,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
         if (box.isSelected()) {
             if (condition_2_3 && condition_2_4) {
-                System.out.println("NOT Allowed");
-                HelpA_.showNotification("RECIPE ORIGIN or RECIPE VERSION must be chosen before using this option!");
+                HelpA_.showNotification(MSG.LANG("RECIPE ORIGIN or RECIPE VERSION must be chosen before using this option!"));
                 box.setSelected(false);
             }
         }

@@ -4,6 +4,7 @@
  */
 package MCRecipe;
 
+import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
@@ -232,7 +233,7 @@ public class Sequence extends BasicTab {
         stepNr = processStepNumber(stepNr, false);
         //
         if (step_id == null) {
-            HelpA_.showNotification("No entry is chosen in the table!");
+            HelpA_.showNotification(MSG.LANG("No entry is chosen in the table!"));
             return;
         }
         //
@@ -251,7 +252,7 @@ public class Sequence extends BasicTab {
 
     public void createNewSequence() {
         //
-        if (HelpA_.confirm("This action will erase all actual sequence steps") == false) {
+        if (HelpA_.confirm(MSG.LANG("This action will erase all actual sequence steps")) == false) {
             return;
         }
         //
@@ -281,7 +282,7 @@ public class Sequence extends BasicTab {
         }
         //
         if (stepNr == null || stepNr.isEmpty() || stepNr.equals("null")) {
-            HelpA_.showNotification("Step number not chosen!");
+            HelpA_.showNotification(MSG.LANG("Step number not chosen!"));
             return;
         }
         //
