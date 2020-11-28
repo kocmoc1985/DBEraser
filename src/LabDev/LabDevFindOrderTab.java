@@ -126,7 +126,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         JTable table = getTable();
         //
         if (HelpA_.rowSelected(table) == false) {
-            HelpA_.showNotification(MSG.MSG_5());
+            HelpA_.showNotification(MSG.LANG("Please choose a row from table"));
             return;
         }
         //

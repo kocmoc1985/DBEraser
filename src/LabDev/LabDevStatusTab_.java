@@ -59,7 +59,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
                 || containsInvalidatedFields(TABLE_INVERT_3, 1, getConfigTableInvert_3())
                 || containsInvalidatedFields(TABLE_INVERT_4, 1, getConfigTableInvert_4())
                 || containsInvalidatedFields(TABLE_INVERT_5, 1, getConfigTableInvert_5())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //

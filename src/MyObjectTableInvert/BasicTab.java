@@ -5,9 +5,9 @@
 package MyObjectTableInvert;
 
 import LabDev.Validator_MCR;
-import MCRecipe.MC_RECIPE;
-import static MCRecipe.MC_RECIPE.USER_ROLE;
-import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
+import MCRecipe.MC_RECIPE_;
+import static MCRecipe.MC_RECIPE_.USER_ROLE;
+import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
@@ -52,7 +52,7 @@ public abstract class BasicTab extends Basic  {
     @Override
     public void saveChangesTableInvert() {
         //
-        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
             HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
@@ -116,7 +116,7 @@ public abstract class BasicTab extends Basic  {
     @Override
     public void saveChangesTableInvert(Table tableInvert) {
         //
-        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
             HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
@@ -138,7 +138,7 @@ public abstract class BasicTab extends Basic  {
             JTextArea jTextArea,
             String idColumnName) throws BadLocationException {
         //
-        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
              HelpA_.showActionDeniedUserRole(USER_ROLE);
              return;
         }

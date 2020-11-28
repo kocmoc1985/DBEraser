@@ -316,7 +316,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
     private void saveTableInvert_aging() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -327,7 +327,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
     private void saveTableInvert_2_vulc() {
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -436,7 +436,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             code = this.VULC_CODE;
         }
         //
-        if (HelpA_.confirm(MSG.MSG_6(code)) == false) {
+        if (HelpA_.confirm(MSG.LANG("Confirm deletion of: ") + code) == false) {
             return;
         }
         //
@@ -457,7 +457,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_2());
+        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Create new ageing code"));
         String code = tfc.getText();
         //
         if (code == null || yesNo == false) {

@@ -4,7 +4,7 @@
  */
 package MCRecipe.Sec;
 
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
 import Reporting.JTableBasicRepport;
@@ -31,7 +31,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class CompareRecipes extends javax.swing.JFrame {
     
-    private final MC_RECIPE mc_recipe;
+    private final MC_RECIPE_ mc_recipe;
     private final SqlBasicLocal sql;
     private final SqlBasicLocal sql_additional;
     private boolean oneTimeFlag = true;
@@ -39,7 +39,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     /**
      * Creates new form CompareRecipes
      */
-    public CompareRecipes(MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) {
+    public CompareRecipes(MC_RECIPE_ mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) {
         initComponents();
         this.mc_recipe = mc_recipe;
         this.sql = sql;

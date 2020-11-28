@@ -34,8 +34,8 @@ public class GP {
     }
     //
     public static final URL IMAGE_ICON_URL = GP.class.getResource("icon.png");
-    public static final URL IMAGE_ICON_URL_RECIPE = GP.class.getResource("icon2.png");
-    public static final URL IMAGE_ICON_URL_PROD_PLAN = GP.class.getResource("icon3.png");
+    public static final URL IMAGE_ICON_URL_RECIPE = GP.class.getResource("la.png");
+    public static final URL IMAGE_ICON_URL_PROD_PLAN = GP.class.getResource("la.png");
     public static final URL IMAGE_ICON_URL_LAFAKTURERING = GP.class.getResource("la.png");
     public static final URL COMPLETE_IMAGE_ICON_URL = GP.class.getResource("ok.png");
     //

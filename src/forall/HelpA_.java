@@ -8,7 +8,7 @@ import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.ERRORS;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
 import MyObjectTable.ShowMessage;
 import ca.odell.glazedlists.GlazedLists;
@@ -311,7 +311,7 @@ public class HelpA_ {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE.isDeveloper();
+        boolean role_developer = MC_RECIPE_.isDeveloper();
         //
 //        if (runningInNetBeans("MCRecipe.jar") || HelpA_.updatedBy().equals("SB") || role_developer) {
         if (role_developer) { // 
@@ -2048,7 +2048,7 @@ public class HelpA_ {
     }
 
     public static void showActionDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, MSG.MSG_8_0(userRole), MSG.MSG_8_1(), JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, MSG.LANG("Access not allowed with user role: ")+userRole, MSG.LANG("Not allowed"), JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {
@@ -2077,11 +2077,11 @@ public class HelpA_ {
     }
 
     public static boolean confirm() {
-        return JOptionPane.showConfirmDialog(null, MSG.MSG_2(), MSG.MSG_2_2(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, MSG.LANG("Confirm"), MSG.LANG("Confirm action?"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
     public static boolean confirm(String message) {
-        return JOptionPane.showConfirmDialog(null, message, MSG.MSG_2_2(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, message, MSG.LANG("Confirm action?"), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
     public static boolean confirmWarning(String message) {

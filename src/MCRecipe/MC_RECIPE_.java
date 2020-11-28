@@ -80,7 +80,7 @@ import supplementary.HelpM2;
  *
  * @author KOCMOC
  */
-public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
+public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, ItemListener, KeyListener, ShowMessage, JComboBoxValueChangedListener {
 
     public SqlBasicLocal sql;
     public SqlBasicLocal sql_additional;
@@ -135,7 +135,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     /**
      * Creates new form MC_RECIPE
      */
-    public MC_RECIPE() {
+    public MC_RECIPE_() {
         //
         initCompany();
         //
@@ -178,7 +178,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     public static boolean isDeveloper() {
-        return MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
+        return MC_RECIPE_.USER_ROLE.equals(MC_RECIPE_.ROLE_DEVELOPER);
     }
 
     private void setHomePageBackground() {
@@ -196,7 +196,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void login() {
         if (verifyUser() == true) {
             //
-            HelpA_.showNotification(MSG.MSG_0_1());
+            HelpA_.showNotification(MSG.LANG("Login successful"));
             HelpA_.setUser(getUserName());
             saveUserNameAndPassToFile();
             //
@@ -245,7 +245,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         setTitle(buildTitle(null));
         //
         if (showMsg) {
-            HelpA_.showNotification(MSG.MSG_0());
+            HelpA_.showNotification(MSG.LANG("Login failed"));
         }
         //
         jTabbedPane1.setEnabled(false);
@@ -606,7 +606,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //
         } catch (Exception ex) {
             showMessage("Connection to " + host + " / " + db_name + " failed: " + ex);
-            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Connection to SQL failed!");
             System.exit(0);
         }
@@ -4510,7 +4510,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     jTable3, textAreaRecipeInitialNotes, "Recipe_Prop_Free_Text_ID");
             //
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -4549,7 +4549,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         try {
             ingredients.save_changes_notes(jScrollPane_Ingred_Comments, jEditorPane_Ingred, jTable_Ingred_Table3, textAreaIngredComments, "IngredientCode_ID");
         } catch (BadLocationException ex) {
-            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_Ingredients_Save_CommentsActionPerformed
 
@@ -4719,7 +4719,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 //            HelpA_.showAccessDeniedUserRole(USER_ROLE);
 //        }
         //
-        if (MC_RECIPE.isAdminOrDeveloper()) {
+        if (MC_RECIPE_.isAdminOrDeveloper()) {
             if (prod_plan == null) {
                 prod_plan = new PROD_PLAN();
                 prod_plan.setVisible(true);
@@ -4960,11 +4960,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         if (adminTools == null) {
-            final MC_RECIPE mc_recipe = this;
+            final MC_RECIPE_ mc_recipe = this;
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (MC_RECIPE.isAdminOrDeveloper()) {
+                    if (MC_RECIPE_.isAdminOrDeveloper()) {
                         adminTools = new AdminTools(mc_recipe);
                         adminTools.setVisible(true);
                     } else {
@@ -4991,7 +4991,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             //this is done to only show the "table4formats.properties" file
             HelpA_.run_application_exe_or_jar("PropertiesReader.jar", "properties");
         } catch (IOException ex) {
-            Logger.getLogger(MC_RECIPE.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MC_RECIPE_.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton20ActionPerformed
 
@@ -5081,13 +5081,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MC_RECIPE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MC_RECIPE_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
@@ -5106,7 +5106,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             @Override
             public void run() {
                 //
-                new MC_RECIPE().setVisible(true);
+                new MC_RECIPE_().setVisible(true);
                 //
                 if (runInNetbeans == false) {
                     HelpA_.console_output_to_jtextpane(jTextPane1); // must be placed here!

@@ -15,7 +15,7 @@ import java.util.Properties;
 public class MSG {
 
     private static final Properties DICT = new Properties();
-    
+
     static {
         //Don't change ONLY here, you must change both here and where it's called
         DICT.put("Maximum of 6 recipes reached", "");
@@ -61,98 +61,39 @@ public class MSG {
         DICT.put("Importing to CSV Table", "");
         DICT.put("Additional info is needed for recipe: ", "");
         DICT.put("Enter password", "");
-        DICT.put("", "");
+        DICT.put("Login failed", "Anmeldung fehlgeschlagen");
+        DICT.put("Login successful", "Anmeldung erfolgreich");
+        DICT.put("Note Name", "Notiz Name");
+        DICT.put("Note Value", "Notiz Wert");
+        DICT.put("Create new note", "Neue Notiz erstellen");
+        DICT.put("Confirm", "Bestätigen");
+        DICT.put("Confirm action?", "Handlung bestätigen?");
+        DICT.put("Input contains errors", "Die Eingabe enthält Fehler");
+        DICT.put("Input is to long", "Die Eingabe ist zu lang");
+        DICT.put("Please choose a row from table", "Bitte eine Reihe von Tabelle auswählen");
+        DICT.put("Confirm deletion of: ", "Löschung bestätigen, Code: ");
+        DICT.put("Create new ageing code", "Neuen Alterungscode erstellen");
+        DICT.put("Operation successful" , "Erfolgreich");
+        DICT.put("Operation failed" , "Fehlgeschlagen");
+        DICT.put("Add new" , "Neu ergänzen");
+        DICT.put("Test code not chosen" , "Prüffcode nicht ausgewählt");
+        DICT.put("Already exist! The entry will not be added" , "Gibt schon! Der Eintrag wurde nicht ergänzt");
+        DICT.put("Confirm deletion?" , "Löschung bestätigen?");
+        DICT.put("Access not allowed with user role: " , "Zugang nicht eraubt für: ");
+        DICT.put("Not allowed", "Nicht erlaubt");
+        DICT.put("" , "");
     }
-    
-     public static String LANG(String word) {
+
+    public static String LANG(String word) {
         return LANG_ENG ? word : DICT.getProperty(word, "*" + word);
     }
-    
-    public static String MSG_0() {
-        return LANG_ENG ? "Login failed" : "Anmeldung fehlgeschlagen";
-    }
 
-    public static String MSG_0_1() {
-        return LANG_ENG ? "Login successful" : "Anmeldung erfolgreich";
-    }
-
-    public static String MSG_1() {
-        return LANG_ENG ? "Note Name" : "Notiz Name";
-    }
-
-    public static String MSG_1_2() {
-        return LANG_ENG ? "Note Value" : "Notiz Wert";
-    }
-
-    public static String MSG_1_3() {
-        return LANG_ENG ? "Create new note" : "Neue Notiz erstellen";
-    }
-
-    public static String MSG_2() {
-        return LANG_ENG ? "Confirm" : "Bestätigen";
-    }
-
-    public static String MSG_2_2() {
-        return LANG_ENG ? "Confirm action?" : "Handlung bestätigen?";
-    }
-
-    public static String MSG_3() {
-        return LANG_ENG ? "Input contains errors" : "Die Eingabe enthält Fehler";
-    }
-
-    public static String MSG_3_2() {
-        return LANG_ENG ? "Input is to long" : "Die Eingabe ist zu lang";
-    }
 
     public static String MSG_4(String status) {
         return LANG_ENG ? "The status will be changed to: " + "\"" + status + "\"" : "Diese Handlung wird den Status ändern. Soll Status: " + "\"" + status + "\"" + " akzeptiert werden?";
     }
-
-    public static String MSG_5() {
-        return LANG_ENG ? "Please choose a row from table" : "Bitte eine Reihe von Tabelle auswählen";
-    }
-
-    public static String MSG_6(String code) {
-        return LANG_ENG ? "Confirm deletion of: " + code : "Löschung bestätigen, Code: " + code;
-    }
-
-    public static String MSG_6_2() {
-        return LANG_ENG ? "Create new ageing code" : "Neuen Alterungscode erstellen";
-    }
-
+    
     public static String MSG_6_3(String code) {
         return LANG_ENG ? "Copy code: " + code + "?" : "Code: " + code + " kopieren?";
-    }
-
-    public static String MSG_7() {
-        return LANG_ENG ? "Operation successful" : "Erfolgreich";
-    }
-
-    public static String MSG_7_2() {
-        return LANG_ENG ? "Operation failed" : "Fehlgeschlagen";
-    }
-
-    public static String MSG_7_3() {
-        return LANG_ENG ? "Add new" : "Neu ergänzen";
-    }
-
-    public static String MSG_7_4() {
-        return LANG_ENG ? "Test code not chosen" : "Prüffcode nicht ausgewählt";
-    }
-
-    public static String MSG_7_5() {
-        return LANG_ENG ? "Already exist! The entry will not be added" : "Gibt schon! Der Eintrag wurde nicht ergänzt";
-    }
-
-    public static String MSG_7_6() {
-        return LANG_ENG ? "Confirm deletion?" : "Löschung bestätigen?";
-    }
-
-    public static String MSG_8_0(String userRole) {
-        return LANG_ENG ? "Access not allowed with user role: *" + userRole : "Zugang nicht eraubt für: " + userRole;
-    }
-
-    public static String MSG_8_1() {
-        return LANG_ENG ? "Not allowed" : "Nicht erlaubt";
     }
 }

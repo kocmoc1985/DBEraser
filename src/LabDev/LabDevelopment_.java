@@ -433,7 +433,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public void saveTableInvert__tab_main_data() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -658,7 +658,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         JTextField jtf1 = new JTextField();
         JTextField jtf2 = new JTextField();
         //
-        HelpA_.chooseFrom2Textfields(jtf1, jtf2, MSG.MSG_1(), MSG.MSG_1_2(), MSG.MSG_1_3());
+        HelpA_.chooseFrom2Textfields(jtf1, jtf2, MSG.LANG("Note Name"), MSG.LANG("Note Value"), MSG.LANG("Create new note"));
         //
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();

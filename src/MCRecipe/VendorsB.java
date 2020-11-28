@@ -17,9 +17,9 @@ import forall.SqlBasicLocal;
 public class VendorsB extends BasicTab {
 
     private Vendors vendors;
-    private final MC_RECIPE mCRecipe;
+    private final MC_RECIPE_ mCRecipe;
 
-    public VendorsB(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mc_recipe, Vendors vendors) {
+    public VendorsB(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE_ mc_recipe, Vendors vendors) {
         super(sql, sql_additional, mc_recipe);
         this.vendors = vendors;
         this.mCRecipe = mc_recipe;

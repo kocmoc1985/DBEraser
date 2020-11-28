@@ -322,7 +322,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -336,7 +336,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private void deleteButtonClicked() {
         //
-        if (HelpA_.confirm(MSG.MSG_7_6()) == false) {
+        if (HelpA_.confirm(MSG.LANG("Confirm deletion?")) == false) {
             return;
         }
         //
@@ -367,7 +367,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         String testCode = getTestCode();
         //
         if (testCode == null || testCode.isEmpty() || testCode.equals("NULL")) {
-            HelpA_.showNotification(MSG.MSG_7_4());
+            HelpA_.showNotification(MSG.LANG("Test code not chosen"));
             return;
         }
         //
@@ -380,7 +380,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         String q = SQL_A.lab_dev_test_variable__get_list_for_creating_new(PROC.PROC_76, testCode);
         //
         CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q,
-                new String[]{}, OUT, MSG.MSG_7_3()); // "ID_Proc"
+                new String[]{}, OUT, MSG.LANG("Add new")); // "ID_Proc"
         //
         cnft.setVisible(true);
         //
@@ -408,7 +408,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         boolean entry_exist = HelpA_.entryExistsSql(sql, q_exist);
         //
         if (entry_exist) {
-            HelpA_.showNotification(MSG.MSG_7_5());
+            HelpA_.showNotification(MSG.LANG("Already exist! The entry will not be added"));
             return;
         }
         //
@@ -416,9 +416,9 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         try {
             sql.execute(insert_q, OUT);
-            HelpA_.showNotification(MSG.MSG_7());
+            HelpA_.showNotification(MSG.LANG("Operation successful"));
         } catch (SQLException ex) {
-            HelpA_.showNotification(MSG.MSG_7_2());
+            HelpA_.showNotification(MSG.LANG("Operation failed"));
             Logger.getLogger(LabDevTestVariables.class.getName()).log(Level.SEVERE, null, ex);
         }
         //

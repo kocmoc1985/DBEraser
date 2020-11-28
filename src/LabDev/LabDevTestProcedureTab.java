@@ -220,7 +220,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.MSG_3());
+            HelpA_.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
