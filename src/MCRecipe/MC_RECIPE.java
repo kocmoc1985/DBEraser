@@ -176,8 +176,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public static boolean isAdminOrDeveloper() {
         return USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE);
     }
-    
-    public static boolean isDeveloper(){
+
+    public static boolean isDeveloper() {
         return MC_RECIPE.USER_ROLE.equals(MC_RECIPE.ROLE_DEVELOPER);
     }
 
@@ -195,9 +195,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void login() {
         if (verifyUser() == true) {
+            //
             HelpA_.showNotification(MSG.MSG_0_1());
             HelpA_.setUser(getUserName());
             saveUserNameAndPassToFile();
+            //
+            if (isDeveloper() == false) {
+                HelpA_.hideTabByName(jTabbedPane1, LNG.LOG_TAB);
+            }
+            //
         } else {
             userNotValidActions();
         }
@@ -288,10 +294,21 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     private void companyRelated() {
+        //
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
 //            HelpA_.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+        } else if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
+            //
+            this.customPanelRecipeInitial = new CustomPanelCp();
+            initCustomPanel((Component) customPanelRecipeInitial);
+            //
+            HelpA_.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+            HelpA_.hideTabByName(jTabbedPane1, LNG.SEQUENCE_TAB());
+            HelpA_.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB());
+            HelpA_.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB_B());
+            //
         } else {
             this.customPanelRecipeInitial = new CustomPanelQew();
             initCustomPanel((Component) customPanelRecipeInitial);
@@ -1344,7 +1361,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel41, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabelRecordsTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
