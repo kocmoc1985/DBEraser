@@ -761,7 +761,11 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 //
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
-                csv += columnValue.getValue() + ";";
+                if(columnValue == null){
+                    //
+                }else{
+                    csv += columnValue.getValue() + ";";
+                }
                 // 
             }
             //

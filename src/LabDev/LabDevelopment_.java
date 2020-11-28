@@ -465,6 +465,18 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
+    
+    public void printMainDataInvertTable(){
+        tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+    }
+    
+    public void printMaterialInfoTableInvert(){
+        tableInvertExportOrRepport(TABLE_INVERT_6, 1, getConfigTableInvert_6());
+    }
+    
+    public void printMaterialInfoJtable(){
+        tableCommonExportOrRepport(getMaterialInfoTable(), false);
+    }
 
     /**
      * [TAB: KOPFDATEN - MAIN DATA]

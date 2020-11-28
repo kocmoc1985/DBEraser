@@ -19,18 +19,21 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.SqlBasicLocal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
  *
  * @author KOCMOC
  */
-public class LabDevTestConfigTab extends ChkBoxItemListComponent {
+public class LabDevTestConfigTab extends ChkBoxItemListComponent implements ActionListener {
     
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     
@@ -41,8 +44,27 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     }
     
     private void init() {
+        getSaveBtn().addActionListener(this);
+        getPrintBtn().addActionListener(this);
         initializeSaveIndicators();
         refresh();
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(getSaveBtn())){
+            saveTableInvert();
+        }else if(e.getSource().equals(getPrintBtn())){
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        }
+    }
+    
+    private JButton getSaveBtn(){
+        return mcRecipe.jButton_lab_dev_tab__save_config_btn;
+    }
+    
+     private JButton getPrintBtn(){
+        return mcRecipe.jButton_lab_dev__test_conf__print_invert;
     }
     
     public void refresh() {
@@ -279,7 +301,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     public void fillNotes() {
     }
     
-    public void saveTableInvert() {
+    private void saveTableInvert() {
         //
         saveChangesTableInvert_C_C((TableInvert)TABLE_INVERT);
         //
@@ -343,5 +365,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent {
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }

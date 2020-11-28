@@ -15,6 +15,8 @@ import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.ResultSet;
@@ -22,6 +24,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener {
+public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener,ActionListener {
     
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
@@ -41,11 +44,32 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
     }
     
     private void init() {
+        getEditBtn().addActionListener(this);
+        getPrintBtn().addActionListener(this);
         JTable table = getTable();
         fillJTableHeader();
         table.addMouseListener(this);
         HelpA_.setUneditableJTable(table);
         refresh();
+    }
+    
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if(e.getSource().equals(getEditBtn())){
+            lab_dev_test_definitions_table_clicked();
+        }else if(e.getSource().equals(getPrintBtn())){
+            tableCommonRepport(getTable(), false);
+        }
+        //
+    }
+    
+    private JButton getEditBtn(){
+        return mcRecipe.jButton_lab_dev_test_definition_goto;
+    }
+    
+     private JButton getPrintBtn(){
+        return mcRecipe.jButton_lab_dev__test_def__print_jtable;
     }
     
     public void refresh() {
@@ -213,7 +237,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         //
     }
     
-    public void lab_dev_test_definitions_table_clicked() {
+    private void lab_dev_test_definitions_table_clicked() {
         //
         JTable table = getTable();
         //
@@ -251,5 +275,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
     
 }

@@ -17,7 +17,6 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
@@ -25,7 +24,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -66,13 +64,16 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         getDeleteButtonVulc().addActionListener(this);
         getCopyButtonVulc().addActionListener(this);
         //
+        getPrintButtonAge().addActionListener(this);
+        getPrintButtonVulc().addActionListener(this);
+        //
         getAgeComboBox().addItemListener(this);
         getVulcComboBox().addItemListener(this);
         //
         fillComboBoxes(); // OBS! refresh is called on "ItemStateChanged" evt
         //
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         //
@@ -93,6 +94,10 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             delete(TABLE__VULC, "VULCCODE");
         } else if (e.getSource().equals(getCopyButtonVulc())) {
             copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
+        } else if (e.getSource().equals(getPrintButtonAge())) {
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        } else if (e.getSource().equals(getPrintButtonVulc())) {
+            tableInvertExportOrRepport(TABLE_INVERT_2, 1, getConfigTableInvert_2());
         }
         //
     }
@@ -151,42 +156,6 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
 //        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
 //        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
         //
-    }
-
-    @Override
-    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-        //
-//        enableEditingLongValues(me, ti);
-        //
-//        if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
-//            //
-//            JLinkInvert jli = (JLinkInvert) me.getSource();
-//            TableRowInvert_ tri = jli.getParentObj();
-//            RowDataInvert rdi = tri.getRowConfig();
-//            //
-//            if (rdi.isEditable() == false) {
-//                return;
-//            }
-//            //
-//            String initialVal = jli.getValue();
-//            //
-//            TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 50, 14);
-//            //
-//            boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, "");
-//            //
-//            if (yesNo == false) {
-//                return;
-//            }
-//            //
-//            String value = tfc.getText();
-//            //
-//            ti.setValueAt(rdi.getFieldOriginalName(), value);
-//            //
-//            tri.keyReleased_(me); //OBS!! MUST Simulate this
-//            //
-//        }
-//        //
     }
 
     @Override
@@ -365,8 +334,6 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         saveChangesTableInvert(TABLE_INVERT_2);
         //
     }
-
-    
 
     private boolean copy(String tableName, String colName, Table tableInvert, String regex) {
         //
@@ -559,6 +526,14 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         } else {
             return null;
         }
+    }
+
+    private JButton getPrintButtonAge() {
+        return mcRecipe.jButton_lab_dev__agevulc__print_age;
+    }
+
+    private JButton getPrintButtonVulc() {
+        return mcRecipe.jButton_lab_dev__agevulc__print_vulc;
     }
 
     private JButton getSaveButtonAge() {

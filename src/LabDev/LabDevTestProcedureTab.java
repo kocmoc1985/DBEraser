@@ -52,6 +52,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         initializeSaveIndicators();
         //
         getSaveBtn().addActionListener(this);
+        getPrintJTableBtn().addActionListener(this);
+        getPrintTableInvertBtn().addActionListener(this);
+        //
         getComboBox().addItemListener(this);
         table.addMouseListener(this);
         //
@@ -59,6 +62,19 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
 //        HelpA_.markFirstRowJtable(table);
 //        mouseClickedOnTable(table);
+        //
+    }
+    
+     @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if (e.getSource().equals(getSaveBtn())) {
+            saveTableInvert();
+        }else if(e.getSource().equals(getPrintJTableBtn())){
+            tableCommonExportOrRepport(getTable(), false);
+        }else if(e.getSource().equals(getPrintTableInvertBtn())){
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        }
         //
     }
 
@@ -72,7 +88,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     public String getCurrentId() {
         return ID_PROC;
     }
-
+    
+    private JButton getPrintTableInvertBtn() {
+        return mcRecipe.jButton_lab_dev__testproc__print_invert;
+    }
+    
+    private JButton getPrintJTableBtn() {
+        return mcRecipe.jButton_lab_dev__testproc_print_jtable;
+    }
+    
     private JButton getSaveBtn() {
         return mcRecipe.jButton__lab__dev__test_proc;
     }
@@ -191,14 +215,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return false;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        //
-        if (e.getSource().equals(getSaveBtn())) {
-            saveTableInvert();
-        }
-        //
-    }
+   
 
     private void saveTableInvert() {
         //

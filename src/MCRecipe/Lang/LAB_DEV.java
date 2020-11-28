@@ -145,7 +145,7 @@ public class LAB_DEV {
     }
 
     public static String LBL_9() {
-        return LANG_ENG ? "Ammount of batches" : "Chargenmenge";
+        return LANG_ENG ? "Batches" : "Chargenmenge";
     }
 
 }

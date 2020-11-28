@@ -53,6 +53,8 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         initializeSaveIndicators();
         getSaveButton().addActionListener(this);
+        getPrintJTableBtn().addActionListener(this);
+        getPrintTableInvertBtn().addActionListener(this);
         getFilterBtn().addActionListener(this);
         getRemoveFilterBtn().addActionListener(this);
         getAddNewButton().addActionListener(this);
@@ -88,6 +90,10 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
             createNewButtonClicked(true);
         } else if (e.getSource().equals(getDeleteButton())) {
             deleteButtonClicked();
+        } else if (e.getSource().equals(getPrintTableInvertBtn())) {
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        } else if (e.getSource().equals(getPrintJTableBtn())) {
+            tableCommonExportOrRepport(table, false);
         }
         //
     }
@@ -147,6 +153,14 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private JButton getSaveButton() {
         return mcRecipe.jButton__lab_dev__new;
+    }
+
+    private JButton getPrintTableInvertBtn() {
+        return mcRecipe.jButton_lab_dev__test_vars_print_invert;
+    }
+
+    private JButton getPrintJTableBtn() {
+        return mcRecipe.jButton_lab_dev_test_vars__print_jtable;
     }
 
     private JButton getDeleteButton() {

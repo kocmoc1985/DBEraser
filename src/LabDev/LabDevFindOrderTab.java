@@ -46,6 +46,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         mcRecipe.jTextField__lab_dev__find_order.addKeyListener(this);
         getFilterBtn().addActionListener(this);
         getSetOrderBtn().addActionListener(this);
+        getPrintBtn().addActionListener(this);
         //
         filterButtonClicked(); // show all at startup
         //
@@ -58,6 +59,8 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             table_clicked();
         } else if (e.getSource() == getFilterBtn()) {
             filterButtonClicked();
+        }else if(e.getSource() == getPrintBtn()){
+            tableCommonExportOrRepport(getTable(), true);
         }
         //
     }
@@ -102,6 +105,10 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
 
     private JButton getFilterBtn() {
         return mcRecipe.jButton__lab_dev_find_order_tab__filter;
+    }
+    
+    private JButton getPrintBtn(){
+        return mcRecipe.jButton_lab_dev__findorder_tab__print;
     }
 
     private void showCheckBoxComponent() {
