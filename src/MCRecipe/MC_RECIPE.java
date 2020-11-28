@@ -169,7 +169,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         errorOutputListener = new ErrorOutputListener(HelpA_.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
-//        setHomePageBackground();
+        setHomePageBackground();
         //
     }
 
@@ -1087,8 +1087,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabelHomeVersion.setText("Version");
 
+        jLabel46.setBackground(new java.awt.Color(255, 255, 255));
         jLabel46.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("MCRecipe");
 
         jPanel73.setLayout(new java.awt.GridLayout(5, 0));
@@ -1155,13 +1156,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addGap(1558, 1558, 1558)
                 .addComponent(jLabelHomeVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
             .addGroup(jPanelHomeLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel74, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel74, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(jPanel73, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHomeLayout.setVerticalGroup(
@@ -2934,7 +2935,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel29.setText(INGR.PERC_RUBBER());
 
-        jPanel33.setLayout(new java.awt.GridLayout());
+        jPanel33.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButtonIngredGo.addActionListener(new java.awt.event.ActionListener() {
