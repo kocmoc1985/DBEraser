@@ -12,7 +12,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         fillJTable();
         //
         if(table.getRowCount() != 0){
-            HelpA_.markFirstRowJtable(table);
+            HelpA.markFirstRowJtable(table);
         }
         //
         basic.showTableInvert();
@@ -128,7 +128,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         //
         JTable table = getJTable();
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
         String json = bim.getSELECT_fakturaId();
         //
@@ -150,8 +150,8 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA_.hideColumnByName(table, TABLE_SEND__ID);
-            HelpA_.hideColumnByName(table, TABLE_SEND__FAKTURA_ID);
+            HelpA.hideColumnByName(table, TABLE_SEND__ID);
+            HelpA.hideColumnByName(table, TABLE_SEND__FAKTURA_ID);
         }
         //
     }
@@ -195,7 +195,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
     @Override
     protected void jButton2ActionPerformed_delete() {
          //
-        if (HelpA_.rowSelected(getJTable()) == false) {
+        if (HelpA.rowSelected(getJTable()) == false) {
             return;
         }
         //
@@ -214,7 +214,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
     
     private void updateKomment(boolean saveEmpty){
         //
-        if (HelpA_.rowSelected(getJTable()) == false) {
+        if (HelpA.rowSelected(getJTable()) == false) {
             return;
         }
         //
@@ -232,7 +232,7 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
         //
         JTable table = getJTable();
         //
-        String send_id = HelpA_.getValueSelectedRow(table, TABLE_SEND__ID);
+        String send_id = HelpA.getValueSelectedRow(table, TABLE_SEND__ID);
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA_SEND__ID, send_id, DB.TABLE__BUH_FAKTURA_SEND);
         //
@@ -264,12 +264,12 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
             protected boolean fieldsValidated(boolean insert) {
                 //
                 if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                    HelpA_.showNotification(LANG.MSG_2);
+                    HelpA.showNotification(LANG.MSG_2);
                     return false;
                 }
                 //
                 if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                    HelpA_.showNotification(LANG.MSG_1);
+                    HelpA.showNotification(LANG.MSG_1);
                     return false;
                 }
                 //
@@ -318,16 +318,16 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
                 //
                 JTable table = getJTable();
                 //
-                String send_type_ = HelpA_.getValueSelectedRow(table, TABLE_SEND__SEND_TYPE);
+                String send_type_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_TYPE);
                 RowDataInvert send_type = new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", true, true, false);
                 //
-                String send_ok_ = HelpA_.getValueSelectedRow(table, TABLE_SEND__SEND_OK);
+                String send_ok_ = HelpA.getValueSelectedRow(table, TABLE_SEND__SEND_OK);
                 RowDataInvert send_ok = new RowDataInvertB(send_ok_, DB.BUH_FAKTURA_SEND__SEND_OK, TABLE_SEND__SEND_OK, "", true, true, false);
                 //
-                String datum_ = HelpA_.getValueSelectedRow(table, TABLE_SEND__DATUM);
+                String datum_ = HelpA.getValueSelectedRow(table, TABLE_SEND__DATUM);
                 RowDataInvert datum = new RowDataInvertB(datum_, DB.BUH_FAKTURA_SEND__SEND_DATUM, TABLE_SEND__DATUM, "", true, true, false);
                 //
-                String komment_ = HelpA_.getValueSelectedRow(table, TABLE_SEND__ANNAT);
+                String komment_ = HelpA.getValueSelectedRow(table, TABLE_SEND__ANNAT);
                 RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_SEND__ANNAT, TABLE_SEND__ANNAT, "", true, true, false);
                 //
                 send_type.setDisabled();

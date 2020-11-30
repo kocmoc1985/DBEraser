@@ -7,7 +7,7 @@ package MCRecipe;
 import MCRecipe.Lang.MSG;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 
 /**
@@ -46,7 +46,7 @@ public class VendorsB extends BasicTab {
         //
         //
         if (tradeName.isEmpty()) {
-            HelpA_.showNotification(MSG.LANG("TADE NAME must be filled in"));
+            HelpA.showNotification(MSG.LANG("TADE NAME must be filled in"));
             return;
         }
         //
@@ -65,7 +65,7 @@ public class VendorsB extends BasicTab {
         String vendor = getValueTableInvert("VendorName", 1, vendors.TABLE_INVERT_4);
         //
         if (vendor.isEmpty()) {
-            HelpA_.showNotification(MSG.LANG("Vendor must be filled in"));
+            HelpA.showNotification(MSG.LANG("Vendor must be filled in"));
             return;
         }
         //

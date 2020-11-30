@@ -225,7 +225,7 @@ public class ErrorOutputListener implements Runnable, ActionListener {
             }
             //
         } catch (IOException e) {
-            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
         }
         //
         return list;
@@ -242,7 +242,7 @@ public class ErrorOutputListener implements Runnable, ActionListener {
             }
 
         } catch (IOException e) {
-//            Logger.getLogger(HelpA_.class.getName()).log(Level.SEVERE, null, e);
+//            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, e);
         }
         //
         return list;

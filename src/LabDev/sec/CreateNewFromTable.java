@@ -8,7 +8,7 @@ package LabDev.sec;
 import LabDev.LabDevTestVariables;
 import MyObjectTable.ShowMessage;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -58,12 +58,12 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.jTable1.addMouseListener(this);
         this.setTitle(title);
-        HelpA_.centerAndBringToFront(this);
+        HelpA.centerAndBringToFront(this);
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
     }
 
     private void buildTable() {
-        HelpA_.build_table_common(sql, sm, jTable1, query, colsToHide);
+        HelpA.build_table_common(sql, sm, jTable1, query, colsToHide);
     }
 
     public String[] get() {
@@ -137,13 +137,13 @@ public class CreateNewFromTable extends javax.swing.JFrame implements MouseListe
 
     private void select() {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return;
         }
         //
         if (consumerClass instanceof LabDevTestVariables) {
-            String testCode = HelpA_.getValueSelectedRow(jTable1, "CODE");
-            String id = HelpA_.getValueSelectedRow(jTable1, "ID_Proc");
+            String testCode = HelpA.getValueSelectedRow(jTable1, "CODE");
+            String id = HelpA.getValueSelectedRow(jTable1, "ID_Proc");
             toReturn = new String[]{testCode, id};
             //
             LabDevTestVariables ldst = (LabDevTestVariables) consumerClass;

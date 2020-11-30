@@ -12,7 +12,7 @@ import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -85,7 +85,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         Thread x = new Thread(() -> {
             //
             fillMainTable();
-            HelpA_.markFirstRowJtable(getTableMain());
+            HelpA.markFirstRowJtable(getTableMain());
             //
             java.awt.EventQueue.invokeLater(() -> {
                 if (this instanceof CustomersA_) {
@@ -159,7 +159,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
         JTable table = getTableAdress();
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
         String idColName = "";
         String phpFunc = "";
@@ -172,7 +172,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             phpFunc = DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS; // **********************************************
         }
         //
-        String id = HelpA_.getValueSelectedRow(getTableMain(), idColName);
+        String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
         //
         if (id == null || id.isEmpty()) {
             return;
@@ -225,9 +225,9 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
         JTable table = getTableMain();
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
-        HelpA_.rowsorter_jtable_add_reset(table);
+        HelpA.rowsorter_jtable_add_reset(table);
         //
         String json = bim.getSELECT_kundId();
         //
@@ -267,12 +267,12 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     protected void update() {
         //
         String id = "";
-        String address_id = HelpA_.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
+        String address_id = HelpA.getValueSelectedRow(getTableAdress(), TABLE_FAKTURA_KUND_ADDR__ID);
         //
         if (this instanceof CustomersA_) {
-            id = HelpA_.getValueSelectedRow(getTableMain(), CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+            id = HelpA.getValueSelectedRow(getTableMain(), CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
         } else if (this instanceof ForetagA) {
-            id = HelpA_.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
+            id = HelpA.getValueSelectedRow(getTableMain(), ForetagA.TABLE__ID);
         }
         //
         if (GP_BUH.verifyId(id)) {
@@ -334,34 +334,34 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         if (insert) {
             //
             if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                HelpA_.showNotification(LANG.MSG_2);
+                HelpA.showNotification(LANG.MSG_2);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             // 
         } else {
             //
             if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-                HelpA_.showNotification(LANG.MSG_2);
+                HelpA.showNotification(LANG.MSG_2);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             //
             if (containsInvalidatedFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
-                HelpA_.showNotification(LANG.MSG_1);
+                HelpA.showNotification(LANG.MSG_1);
                 return false;
             }
             // 
@@ -386,31 +386,31 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
         JTable table = getTableAdress();
         //
-        String addr_a_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
+        String addr_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A);
         RowDataInvert addr_a = new RowDataInvertB(addr_a_, DB.BUH_ADDR__ADDR_A, TABLE_FAKTURA_KUND_ADDR__POSTADDR_A, "", true, true, false);
         //
-        String addr_b_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B);
+        String addr_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B);
         RowDataInvert addr_b = new RowDataInvertB(addr_b_, DB.BUH_ADDR__ADDR_B, TABLE_FAKTURA_KUND_ADDR__POSTADDR_B, "", true, true, false);
         //
-//        String visit_addr_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR);
+//        String visit_addr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR);
 //        RowDataInvert visit_addr = new RowDataInvertB(visit_addr_, DB.BUH_ADDR__BESOKS_ADDR, TABLE_FAKTURA_KUND_ADDR__BESOKSADDR, "", true, true, false);
         //
-        String zip_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ZIP);
+        String zip_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ZIP);
         RowDataInvert zip = new RowDataInvertB(zip_, DB.BUH_ADDR__POSTNR_ZIP, TABLE_FAKTURA_KUND_ADDR__ZIP, "", true, true, false);
         //
-        String ort_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ORT);
+        String ort_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__ORT);
         RowDataInvert ort = new RowDataInvertB(ort_, DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
         //
-        String land_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__LAND);
+        String land_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__LAND);
         RowDataInvert land = new RowDataInvertB(land_, DB.BUH_ADDR__LAND, TABLE_FAKTURA_KUND_ADDR__LAND, "", true, true, false);
         //
-        String tel_a_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_A);
+        String tel_a_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_A);
         RowDataInvert tel_a = new RowDataInvertB(tel_a_, DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
         //
-        String tel_b_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_B);
+        String tel_b_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__TEL_B);
         RowDataInvert tel_b = new RowDataInvertB(tel_b_, DB.BUH_ADDR__TEL_B, TABLE_FAKTURA_KUND_ADDR__TEL_B, "", true, true, false);
         //
-        String other_ = HelpA_.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__OTHER);
+        String other_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUND_ADDR__OTHER);
         RowDataInvert other = new RowDataInvertB(other_, DB.BUH_ADDR__OTHER, TABLE_FAKTURA_KUND_ADDR__OTHER, "", true, true, false);
         //
         RowDataInvert[] rows = {

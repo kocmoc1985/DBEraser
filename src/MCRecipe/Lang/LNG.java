@@ -5,7 +5,7 @@
  */
 package MCRecipe.Lang;
 
-import forall.HelpA_;
+import forall.HelpA;
 import javax.swing.JTabbedPane;
 
 /**
@@ -153,16 +153,16 @@ public class LNG {
         //
         if (LANG_ENG == false) {
             //
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_FIND_ORDER, LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MATERIALINFO, LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_AGE_VULC, LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_ORDER, LABDEVELOPMENT_TAB__TAB_TEST_ORDER_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_FIND_ORDER, LABDEVELOPMENT_TAB__TAB_FIND_ORDER_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MAIN_DATA, LABDEVELOPMENT_TAB__TAB_MAIN_DATA_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_STATUS, LABDEVELOPMENT_TAB__TAB_STATUS_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_NOTES, LABDEVELOPMENT_TAB__TAB_NOTES_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_MATERIALINFO, LABDEVELOPMENT_TAB__TAB_MATERIALINFO_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS, LABDEVELOPMENT_TAB__TAB_TEST_DEFINITIONS_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG, LABDEVELOPMENT_TAB__TAB_TEST_CONFIG_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_AGE_VULC, LABDEVELOPMENT_TAB__TAB_AGE_VULC_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE, LABDEVELOPMENT_TAB__TAB_TEST_PROCEDURE_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB__TAB_TEST_ORDER, LABDEVELOPMENT_TAB__TAB_TEST_ORDER_DE);
             //
         }
         //
@@ -170,17 +170,17 @@ public class LNG {
 
     private static void TAB_NAMES_GENERAL(JTabbedPane jtp) {
         if (LANG_ENG == false) {
-            HelpA_.changeTabName(jtp, HOME_TAB, HOME_TAB_DE);
-            HelpA_.changeTabName(jtp, RECIPE_INITIAL_TAB, RECIPE_INITIAL_TAB_DE);
-            HelpA_.changeTabName(jtp, RECIPE_DETAILED_TAB, RECIPE_DETAILED_TAB_DE);
-            HelpA_.changeTabName(jtp, INGREDIENTS_TAB, INGREDIENTS_TAB_DE);
-            HelpA_.changeTabName(jtp, INGREDIENTS_TAB_B, INGREDIENTS_TAB_DE_B);
-            HelpA_.changeTabName(jtp, VENDORS_TAB, VENDORS_TAB_DE);
-            HelpA_.changeTabName(jtp, VENDORS_B_TAB, VENDORS_B_TAB_DE);
-            HelpA_.changeTabName(jtp, SEQUENCE_TAB, SEQUENCE_TAB_DE);
-            HelpA_.changeTabName(jtp, RECIPE_ADD_TAB, RECIPE_ADD_TAB_DE);
-            HelpA_.changeTabName(jtp, TEST_PARAMETERS_TAB, TEST_PARAMETERS_TAB_DE);
-            HelpA_.changeTabName(jtp, LABDEVELOPMENT_TAB, LABDEVELOPMENT_TAB_DE);
+            HelpA.changeTabName(jtp, HOME_TAB, HOME_TAB_DE);
+            HelpA.changeTabName(jtp, RECIPE_INITIAL_TAB, RECIPE_INITIAL_TAB_DE);
+            HelpA.changeTabName(jtp, RECIPE_DETAILED_TAB, RECIPE_DETAILED_TAB_DE);
+            HelpA.changeTabName(jtp, INGREDIENTS_TAB, INGREDIENTS_TAB_DE);
+            HelpA.changeTabName(jtp, INGREDIENTS_TAB_B, INGREDIENTS_TAB_DE_B);
+            HelpA.changeTabName(jtp, VENDORS_TAB, VENDORS_TAB_DE);
+            HelpA.changeTabName(jtp, VENDORS_B_TAB, VENDORS_B_TAB_DE);
+            HelpA.changeTabName(jtp, SEQUENCE_TAB, SEQUENCE_TAB_DE);
+            HelpA.changeTabName(jtp, RECIPE_ADD_TAB, RECIPE_ADD_TAB_DE);
+            HelpA.changeTabName(jtp, TEST_PARAMETERS_TAB, TEST_PARAMETERS_TAB_DE);
+            HelpA.changeTabName(jtp, LABDEVELOPMENT_TAB, LABDEVELOPMENT_TAB_DE);
             //
         }
 

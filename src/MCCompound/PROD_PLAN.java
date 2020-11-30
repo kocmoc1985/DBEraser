@@ -12,7 +12,7 @@ import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;
 import forall.ErrorOutputListener;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.Sql_B;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -40,7 +40,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     private final String MY_SQL = "mysql";
     private final String ODBC = "odbc";
     private final String PROPERTIES_PATH = MC_RECIPE_.PROPERTIES_PATH;
-    private final Properties PROPS = HelpA_.properties_load_properties(PROPERTIES_PATH, false);
+    private final Properties PROPS = HelpA.properties_load_properties(PROPERTIES_PATH, false);
     private final JavaSysMon monitor = new JavaSysMon();
     private ClientCompound clientCompound;
     private ShowProgress showProgress;
@@ -72,13 +72,13 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         jTable1.addKeyListener(this);
         jTable1_2.addKeyListener(this);
         //
-        errorOutputListener = new ErrorOutputListener(HelpA_.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextAreaErrOutPut, jPanel2);
+        errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextAreaErrOutPut, jPanel2);
         //
     }
 
     @Override
     public void showMessage(String str) {
-        String msg = "[" + HelpA_.get_proper_date_time_same_format_on_all_computers() + "] " + "  " + str + "\n";
+        String msg = "[" + HelpA.get_proper_date_time_same_format_on_all_computers() + "] " + "  " + str + "\n";
         System.out.print(msg);
         jTextArea1Console.append(msg);
     }
@@ -136,7 +136,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
             //
             sp.goToEnd();
             //
-            int RETUR = HelpA_.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe(PROC.PROC_P_02));
+            int RETUR = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), SQL_A.delete_create_all_recipe(PROC.PROC_P_02));
             //
 //            System.out.println("RETUR: " + RETUR);
             //
@@ -172,7 +172,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         try {
             String q = SQL_B.buildRecipeCsv();
             ResultSet rs = sql.execute(q, this);
-            HelpA_.build_table_common(rs, jTable2, q);
+            HelpA.build_table_common(rs, jTable2, q);
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -665,7 +665,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         String path = define_path();
         //
         try {
-            HelpA_.writeToFile(path, csv);
+            HelpA.writeToFile(path, csv);
             JOptionPane.showMessageDialog(null, "Export file ready, the file is in: " + path);
         } catch (IOException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
@@ -674,7 +674,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
     }
 
     private String define_path() {
-        String default_path = HelpA_.get_desktop_path() + "\\csv_table.csv";
+        String default_path = HelpA.get_desktop_path() + "\\csv_table.csv";
         String path = PROPS.getProperty("exported_csv_file_path", "");
         if (path.isEmpty()) {
             showMessage("csv output path: " + default_path);
@@ -687,7 +687,7 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
 
     private void jButton5AdjustOptionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5AdjustOptionsActionPerformed
         try {
-            HelpA_.run_application_exe_or_jar("propertiesreader.jar", ".");
+            HelpA.run_application_exe_or_jar("propertiesreader.jar", ".");
         } catch (IOException ex) {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -851,13 +851,13 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        final boolean runInNetbeans = HelpA_.runningInNetBeans("ProdPlan.jar");
+        final boolean runInNetbeans = HelpA.runningInNetBeans("ProdPlan.jar");
         //
 //        if (runInNetbeans == false) {
-//            HelpA_.err_output_to_file();
+//            HelpA.err_output_to_file();
 //        }
         //
-        HelpA_.err_output_to_file();
+        HelpA.err_output_to_file();
         //
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -962,14 +962,14 @@ public class PROD_PLAN extends javax.swing.JFrame implements MouseListener, Show
         int retur = -1;
         //
         try {
-            retur = HelpA_.runProcedureIntegerReturn_A(sql.getConnection(), "Insert_Production_plan_csv_22");
+            retur = HelpA.runProcedureIntegerReturn_A(sql.getConnection(), "Insert_Production_plan_csv_22");
             System.out.println("PROCEDURE RETURN: " + retur);
         } catch (SQLException ex) {
             Logger.getLogger(PROD_PLAN.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (retur != 0) {
-            HelpA_.showNotification(MSG.LANG("Replicating of production plan from .csv file failed"));
+            HelpA.showNotification(MSG.LANG("Replicating of production plan from .csv file failed"));
         }
         //
         clearAllColumns(false);

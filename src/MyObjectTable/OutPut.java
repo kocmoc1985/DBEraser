@@ -5,7 +5,7 @@
  */
 package MyObjectTable;
 
-import forall.HelpA_;
+import forall.HelpA;
 
 /**
  *
@@ -15,7 +15,7 @@ public class OutPut implements ShowMessage {
 
     @Override
     public void showMessage(String str) {
-        String msg = "[" + HelpA_.get_proper_date_time_same_format_on_all_computers() + "] " + "  " + str + "\n";
+        String msg = "[" + HelpA.get_proper_date_time_same_format_on_all_computers() + "] " + "  " + str + "\n";
         System.out.print(msg);
 //        PROD_PLAN.jTextArea1Console.append(msg);
     }

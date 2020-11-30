@@ -9,7 +9,7 @@ import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -319,13 +319,13 @@ public class HTMLPrint_B extends HTMLPrint {
     }
     
     private double countDrojsmalsAvgift(){
-       String dateNow = HelpA_.get_proper_date_yyyy_MM_dd();
+       String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
        String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
        String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
        double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
        //
-       int daysForfallen = HelpA_.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+       int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
        //
        if(daysForfallen <=0){
            return 0;

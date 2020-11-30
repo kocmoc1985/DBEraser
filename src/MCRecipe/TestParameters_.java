@@ -11,7 +11,7 @@ import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.sql.ResultSet;
@@ -101,7 +101,7 @@ public class TestParameters_ extends BasicTab {
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
-                HelpA_.fillComboBox(sql, box, q, null, false, false);
+                HelpA.fillComboBox(sql, box, q, null, false, false);
                 //
                 box.setSelectedItem(selection);
             }
@@ -141,7 +141,7 @@ public class TestParameters_ extends BasicTab {
             jTable_1.repaint();
             //
             if (jTable_1 != null) {
-                HelpA_.setTrackingToolTip(jTable_1, q);
+                HelpA.setTrackingToolTip(jTable_1, q);
             }
             //
             hideColsJTable();
@@ -167,7 +167,7 @@ public class TestParameters_ extends BasicTab {
 
     private String getOrder() {
         //
-        String val = HelpA_.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestParams_Order);
         //
         return val;
 //        return "ENTW000001";
@@ -176,7 +176,7 @@ public class TestParameters_ extends BasicTab {
     //mCRecipe.jComboBoxTestPararams_Recipe
     private String getRecipe() {
         //
-        String val = HelpA_.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
         //
         //
         if (val == null) {
@@ -185,7 +185,7 @@ public class TestParameters_ extends BasicTab {
             //
             if (mCRecipe.recipeInitial != null) {
                 //
-                String rst = HelpA_.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
+                String rst = HelpA.getValueSelectedRow(table, RecipeInitial.T1_RECIPE_VERSION);
                 //
                 mCRecipe.jComboBoxTestPararams_Recipe.setEnabled(true);
                 mCRecipe.jComboBoxTestPararams_Recipe.setEditable(true);
@@ -199,7 +199,7 @@ public class TestParameters_ extends BasicTab {
     }
 
     private String getRecipe_B() {
-        String val = HelpA_.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
+        String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
         return val;
     }
 

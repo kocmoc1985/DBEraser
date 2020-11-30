@@ -5,7 +5,7 @@
 package MCRecipe.Lang;
 
 import static MCRecipe.Lang.LNG.LANG_ENG;
-import forall.HelpA_;
+import forall.HelpA;
 import javax.swing.JTabbedPane;
 
 /**
@@ -17,8 +17,8 @@ public class RECIPE_OVERVIEW_ {
     //=======================RECIPE_OVEVIEW=====================================
     public static void RECIPE_OVERVIEW_TABS(JTabbedPane jtp) {
         if (LANG_ENG == false) {
-            HelpA_.changeTabName(jtp, "NOTES", "NOTIZEN");
-            HelpA_.changeTabName(jtp, "NOTES DETAILS", "NOTIZEN DETALLIERT");
+            HelpA.changeTabName(jtp, "NOTES", "NOTIZEN");
+            HelpA.changeTabName(jtp, "NOTES DETAILS", "NOTIZEN DETALLIERT");
 
         }
     }

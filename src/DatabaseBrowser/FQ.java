@@ -16,7 +16,7 @@ import Interfaces.ShowMessage;
 import Interfaces.SqlBasic;
 import forall.SimpleLoggerLight;
 import forall.GP;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.Sql_B;
 import java.awt.Font;
 import java.io.File;
@@ -103,7 +103,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }
 
     private void connect() {
-        Properties properties = HelpA_.choose_properties(".");
+        Properties properties = HelpA.choose_properties(".");
         //==========
         GP.SQL_NPMS_HOST = properties.getProperty("sql_npms_host", "localhost");
         GP.SQL_NPMS_PORT = Integer.parseInt(properties.getProperty("sql_npms_port", "1111"));
@@ -177,7 +177,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
         //
 //        showMessage(GP.CONNECTION_STRING);
         //
-        HelpA_.goToEndPosition(jTextArea2);
+        HelpA.goToEndPosition(jTextArea2);
         //
     }
 
@@ -193,7 +193,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
     @Override
     public void showMessage(String str) {
-        jTextArea2.append("\n " + HelpA_.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     public String[] getHeaders(ResultSet rs) throws SQLException {
@@ -594,7 +594,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-            HelpA_.run_application_with_associated_application(new File(QUERY_OK_LOG_FILE));
+            HelpA.run_application_with_associated_application(new File(QUERY_OK_LOG_FILE));
         } catch (IOException ex) {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -607,7 +607,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
-            HelpA_.run_application_exe_or_jar("propertiesreader.jar", ".");
+            HelpA.run_application_exe_or_jar("propertiesreader.jar", ".");
         } catch (IOException ex) {
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -623,7 +623,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        HelpA_.run_with_cmd("odbcad32", "");
+        HelpA.run_with_cmd("odbcad32", "");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -632,7 +632,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        HelpA_.open_dir(".");
+        HelpA.open_dir(".");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1RowsMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1RowsMaxActionPerformed
@@ -713,7 +713,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
         @Override
         public void run() {
-            HelpA_.run_program_with_catching_output(jTextArea2, "ping", JOptionPane.showInputDialog("Type ip"), "");
+            HelpA.run_program_with_catching_output(jTextArea2, "ping", JOptionPane.showInputDialog("Type ip"), "");
         }
     }
 
@@ -721,7 +721,7 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
 
         @Override
         public void run() {
-            HelpA_.run_program_with_catching_output(jTextArea2, "ipconfig", "", "");
+            HelpA.run_program_with_catching_output(jTextArea2, "ipconfig", "", "");
         }
     }
 
@@ -730,11 +730,11 @@ public class FQ extends javax.swing.JFrame implements Runnable, ShowMessage {
      */
     public static void main(String args[]) {//Write error stream to a file
         //
-        HelpA_.nimbusLookAndFeel();
+        HelpA.nimbusLookAndFeel();
         //
-//        HelpA_.create_dir_if_missing("err_output");
+//        HelpA.create_dir_if_missing("err_output");
 //        try {
-//            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA_.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
+//            String ERR_OUTPUT_FILE_NAME = "err_" + HelpA.get_proper_date_time_same_format_on_all_computers_err_output() + ".txt";
 //            String ERR_OUTPUT_PATH = "err_output/" + ERR_OUTPUT_FILE_NAME;
 //
 //            PrintStream out = new PrintStream(new FileOutputStream(ERR_OUTPUT_PATH));

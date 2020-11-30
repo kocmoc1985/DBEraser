@@ -5,7 +5,7 @@
 package FixedQueryTool;
 
 import Reporting.JTableBasicRepport;
-import forall.HelpA_;
+import forall.HelpA;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 
@@ -26,11 +26,11 @@ public class REPORT_TRL {
         //
         JComboBox box = new JComboBox(new String[]{"REPORT", "CSV"});
         //
-        boolean cond_0 = HelpA_.chooseFromComboBoxDialog(box, "Report or CSV");
+        boolean cond_0 = HelpA.chooseFromComboBoxDialog(box, "Report or CSV");
         //
-        boolean cond_1 = HelpA_.getComboBoxSelectedValue(box).equals("REPORT");
+        boolean cond_1 = HelpA.getComboBoxSelectedValue(box).equals("REPORT");
         //
-        boolean cond_2 = HelpA_.getComboBoxSelectedValue(box).equals("CSV");
+        boolean cond_2 = HelpA.getComboBoxSelectedValue(box).equals("CSV");
         //
         if (cond_0 && cond_1) {
             tableCommonRepport(table, landscape);
@@ -45,6 +45,6 @@ public class REPORT_TRL {
     }
      
      public String jTableToCSV(JTable table, boolean writeToFile) {
-        return HelpA_.jTableToCSV(table, writeToFile);
+        return HelpA.jTableToCSV(table, writeToFile);
     }
 }

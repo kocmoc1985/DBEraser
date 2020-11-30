@@ -9,7 +9,7 @@ import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.SQL_A;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
@@ -218,7 +218,7 @@ public class LabDevHeaderComponent implements ItemListener {
         JLabel label = buildStandardLabel(jLabelVal);
         //
         JComboBox box = new JComboBox();
-        box = HelpA_.fillComboBox_simple(box, values, null);
+        box = HelpA.fillComboBox_simple(box, values, null);
         box.setEditable(true);
         box.setEnabled(statusJComboEnabled);
         //
@@ -235,12 +235,12 @@ public class LabDevHeaderComponent implements ItemListener {
     private JLabel buildStandardLabel(String jLabelVal) {
         JLabel label = new JLabel(jLabelVal);
         label.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        HelpA_.increase_font(label, 14);
+        HelpA.increase_font(label, 14);
         return label;
     }
 
     private String getStatusInActLang() {
-        String status_eng = HelpA_.getSingleParamSql(sql, LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
+        String status_eng = HelpA.getSingleParamSql(sql, LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", labDev.getOrderNo(), "WOSTATUS", false);
         String status_act_lang = LAB_DEV__STATUS.getStatusActLang(LNG.LANG_ENG, status_eng);
         return status_act_lang;
     }
@@ -252,7 +252,7 @@ public class LabDevHeaderComponent implements ItemListener {
         //OBS! VERY IMPORATN -> WHEN SAVING STATUS IT SHOULD BE ALWAYS "ENG"
         String status_eng = LAB_DEV__STATUS.getStatusEng(LNG.LANG_ENG, status);
         //
-        if (HelpA_.confirm(MSG.MSG_4(status)) == false) {
+        if (HelpA.confirm(MSG.MSG_4(status)) == false) {
             return;
         }
         //

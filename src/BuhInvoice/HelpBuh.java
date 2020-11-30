@@ -11,7 +11,7 @@ import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
-import forall.HelpA_;
+import forall.HelpA;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -154,11 +154,11 @@ public class HelpBuh {
         map.put(DB.BUH_KUND__NAMN, GP_BUH.CUSTOMER_COMPANY_NAME);
         //
         // It does not make sence sending this parameters as they are the same as for master account
-//        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA_.getMacAddress());
-//        map.put(DB.BUH_LICENS__OS, HelpA_.getOperatingSystem());
-//        map.put(DB.BUH_LICENS__LANG, HelpA_.getUserLanguge());
-//        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA_.getUserName());
-//        map.put(DB.BUH_LICENS__JAVA, HelpA_.getJavaVersionAndBitAndVendor_b());
+//        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+//        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+//        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+//        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+//        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
             //
@@ -219,11 +219,11 @@ public class HelpBuh {
         //
         map.put(DB.BUH_KUND__DATE_CREATED, GP_BUH.getDateCreated());
         //
-        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA_.getMacAddress());
-        map.put(DB.BUH_LICENS__OS, HelpA_.getOperatingSystem());
-        map.put(DB.BUH_LICENS__LANG, HelpA_.getUserLanguge());
-        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA_.getUserName());
-        map.put(DB.BUH_LICENS__JAVA, HelpA_.getJavaVersionAndBitAndVendor_b());
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
             //
@@ -321,11 +321,11 @@ public class HelpBuh {
         //
         map.put(DB.BUH_KUND__ID, kundId);
         //User and pass are added when calling executePHP
-        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA_.getMacAddress());
-        map.put(DB.BUH_LICENS__OS, HelpA_.getOperatingSystem());
-        map.put(DB.BUH_LICENS__LANG, HelpA_.getUserLanguge());
-        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA_.getUserName());
-        map.put(DB.BUH_LICENS__JAVA, HelpA_.getJavaVersionAndBitAndVendor_b());
+        map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
+        map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());
+        map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
+        map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
+        map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
         try {
             GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
@@ -578,7 +578,7 @@ public class HelpBuh {
 //        if(value.equals(VALIDATION_ERROR_01_U_P_NOT_SET) 
 //                || value.equals(VALIDATION_ERROR_02_U_P_NOT_MATCH)){
 //            //
-//             HelpA_.showNotification(LANG.VALIDATION_MSG_2);
+//             HelpA.showNotification(LANG.VALIDATION_MSG_2);
 //            //
 //            System.exit(0);
 //            //

@@ -8,7 +8,7 @@ package MyObjectTableInvert;
 import BuhInvoice.GP_BUH;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
-import forall.HelpA_;
+import forall.HelpA;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -30,9 +30,9 @@ public class TableRowInvertB extends TableRowInvert {
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
         if(GP_BUH.TRACKING_TOOL_TIP_ENABLED){
             if (hi.getTableName() != null) {
-            HelpA_.setTrackingToolTip_b(label, hi.getRealColName() + " / " + hi.getTableName());
+            HelpA.setTrackingToolTip_b(label, hi.getRealColName() + " / " + hi.getTableName());
         } else {
-            HelpA_.setTrackingToolTip_b(label, hi.getRealColName());
+            HelpA.setTrackingToolTip_b(label, hi.getRealColName());
         }
         }
     }

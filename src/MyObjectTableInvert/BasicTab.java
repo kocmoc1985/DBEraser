@@ -11,7 +11,7 @@ import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MCRecipe.SQL_B;
 import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -53,7 +53,6 @@ public abstract class BasicTab extends Basic  {
     public void saveChangesTableInvert() {
         //
         if (MC_RECIPE_.isAdminOrDeveloper() == false) {
-            HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
@@ -117,7 +116,6 @@ public abstract class BasicTab extends Basic  {
     public void saveChangesTableInvert(Table tableInvert) {
         //
         if (MC_RECIPE_.isAdminOrDeveloper() == false) {
-            HelpA_.showActionDeniedUserRole(USER_ROLE);
             return;
         }
         //
@@ -139,7 +137,6 @@ public abstract class BasicTab extends Basic  {
             String idColumnName) throws BadLocationException {
         //
         if (MC_RECIPE_.isAdminOrDeveloper() == false) {
-             HelpA_.showActionDeniedUserRole(USER_ROLE);
              return;
         }
         //
@@ -151,7 +148,7 @@ public abstract class BasicTab extends Basic  {
         if (idColumnName.equals("IngredientCode_ID")) {
             id = getValueTableInvert(idColumnName, 2, TABLE_INVERT);
         } else if (idColumnName.equals("Recipe_Prop_Free_Text_ID")) {
-            id = HelpA_.getValueSelectedRow(table, idColumnName);
+            id = HelpA.getValueSelectedRow(table, idColumnName);
         }
         //
         //
@@ -175,7 +172,7 @@ public abstract class BasicTab extends Basic  {
             //
             String query = SQL_B.IngredientsNotesPreparedStatementStringUpdate(idColumnName, id);
             //
-            SQL_B.prepare_statement_save_changes_update(OUT, sql, query, comments, HelpA_.updatedOn(), HelpA_.updatedBy());
+            SQL_B.prepare_statement_save_changes_update(OUT, sql, query, comments, HelpA.updatedOn(), HelpA.updatedBy());
         }
         //
         notesUnsaved = false;
@@ -187,7 +184,7 @@ public abstract class BasicTab extends Basic  {
     
     private void h01_ingred_comments(String idColumnName, String id, String comments) {
         String whereCondtion = idColumnName + " = " + id;
-        int count = HelpA_.getRowCount(sql, "Ingred_Comments", whereCondtion);
+        int count = HelpA.getRowCount(sql, "Ingred_Comments", whereCondtion);
         boolean exists = count >= 1;
         //
         String query;
@@ -195,12 +192,12 @@ public abstract class BasicTab extends Basic  {
         if (exists == false) {
             query = SQL_B.IngredientsNotesPreparedStatementStringInsert(idColumnName, id);
             //
-            SQL_B.prepare_statement_save_changes_insert(OUT, sql, query, comments, id, HelpA_.updatedOn(), HelpA_.updatedBy());
+            SQL_B.prepare_statement_save_changes_insert(OUT, sql, query, comments, id, HelpA.updatedOn(), HelpA.updatedBy());
             //
         } else {
             query = SQL_B.IngredientsNotesPreparedStatementStringUpdate(idColumnName, id);
             //
-            SQL_B.prepare_statement_save_changes_update(OUT, sql, query, comments, HelpA_.updatedOn(), HelpA_.updatedBy());
+            SQL_B.prepare_statement_save_changes_update(OUT, sql, query, comments, HelpA.updatedOn(), HelpA.updatedBy());
         }
         
     }
@@ -213,7 +210,7 @@ public abstract class BasicTab extends Basic  {
      */
     @Override
     public void addRow(JTable table, LinkedList<Integer> list) {
-        HelpA_.addRowJTable(table);
+        HelpA.addRowJTable(table);
         //
         int added_row_nr = table.getRowCount();
         //

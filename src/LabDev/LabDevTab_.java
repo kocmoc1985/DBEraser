@@ -8,7 +8,7 @@ package LabDev;
 import MCRecipe.MC_RECIPE_;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
@@ -75,7 +75,7 @@ public abstract class LabDevTab_ extends BasicTab {
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
                 //
-                HelpA_.fillComboBox(sql, box, query, null, false, false);
+                HelpA.fillComboBox(sql, box, query, null, false, false);
                 //
                 box.setSelectedItem(selection);
                 //

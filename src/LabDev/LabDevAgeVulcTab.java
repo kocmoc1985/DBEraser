@@ -17,7 +17,7 @@ import MyObjectTable.ShowMessage;
 import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
 import java.awt.event.ActionEvent;
@@ -109,9 +109,9 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         fillComboBoxes();
         //
         if (tableName.equals(TABLE__AGEMENT)) {
-            getAgeComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+            getAgeComboBox().setSelectedItem(new HelpA.ComboBoxObject((String) itemToSet, null, null, null));
         } else if (tableName.equals(TABLE__VULC)) {
-            getVulcComboBox().setSelectedItem(new HelpA_.ComboBoxObject((String) itemToSet, null, null, null));
+            getVulcComboBox().setSelectedItem(new HelpA.ComboBoxObject((String) itemToSet, null, null, null));
         }
         //
         showTableInvert();
@@ -148,13 +148,13 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
     private void fillComboBoxes() {
         //
         String q = "select DISTINCT AGEINGCODE from " + TABLE__AGEMENT;
-        HelpA_.fillComboBox(sql, getAgeComboBox(), q, null, false, false);
+        HelpA.fillComboBox(sql, getAgeComboBox(), q, null, false, false);
         //
         String q_2 = "select DISTINCT VULCCODE from " + TABLE__VULC;
-        HelpA_.fillComboBox(sql, getVulcComboBox(), q_2, null, false, false);
+        HelpA.fillComboBox(sql, getVulcComboBox(), q_2, null, false, false);
         //
-//        this.AGE_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
-//        this.VULC_CODE = HelpA_.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+//        this.AGE_CODE = HelpA.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
+//        this.VULC_CODE = HelpA.getSelectedComboBoxObject(getAgeComboBox()).getParamAuto();
         //
     }
 
@@ -294,7 +294,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             return;
         }
         //
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
+        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) e.getItem();
         String value = cbo.getParamAuto();
         //        
         if (e.getSource().equals(getAgeComboBox())) {
@@ -316,7 +316,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
     private void saveTableInvert_aging() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.LANG("Input contains errors"));
+            HelpA.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -327,7 +327,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
     private void saveTableInvert_2_vulc() {
         //
         if (containsInvalidatedFields(TABLE_INVERT_2, 1, getConfigTableInvert_2())) {
-            HelpA_.showNotification(MSG.LANG("Input contains errors"));
+            HelpA.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -337,7 +337,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
 
     private boolean copy(String tableName, String colName, Table tableInvert, String regex) {
         //
-        if (HelpA_.confirm() == false) {
+        if (HelpA.confirm() == false) {
             return false;
         }
         //
@@ -353,7 +353,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             codeMsg = this.VULC_CODE;
         }
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_3(codeMsg));
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.MSG_6_3(codeMsg));
         String code = tfc.getText();
         //
         if (code == null || yesNo == false) {
@@ -436,7 +436,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             code = this.VULC_CODE;
         }
         //
-        if (HelpA_.confirm(MSG.LANG("Confirm deletion of: ") + code) == false) {
+        if (HelpA.confirm(MSG.LANG("Confirm deletion of: ") + code) == false) {
             return;
         }
         //
@@ -457,7 +457,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
-        boolean yesNo = HelpA_.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Create new ageing code"));
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Create new ageing code"));
         String code = tfc.getText();
         //
         if (code == null || yesNo == false) {

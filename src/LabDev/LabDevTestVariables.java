@@ -20,7 +20,7 @@ import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
-import forall.HelpA_;
+import forall.HelpA;
 import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
@@ -100,7 +100,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private String getTestCode() {
         // EX: VUG01
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject_b(getComboBoxTestCode());
+        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxTestCode());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -110,7 +110,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private String getMaterial() {
         // EX: WE8486
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) HelpA_.getSelectedComboBoxObject_b(getComboBoxMaterial());
+        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxMaterial());
         if (cbo == null) {
             return "NULL";
         } else {
@@ -129,21 +129,21 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         JTable table = getTable();
         fillJTable(getTestCode(), labDev.getMaterial());
-        HelpA_.markFirstRowJtable(table);
+        HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
 
     private void refresh_b() {
         JTable table = getTable();
         fillJTable(getTestCode(), getMaterial());
-        HelpA_.markFirstRowJtable(table);
+        HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
 
     private void refresh_c(String testCode) {
         JTable table = getTable();
         fillJTable(testCode, getMaterial());
-        HelpA_.markFirstRowJtable(table);
+        HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
         //
         removeFilter__mcs(getComboBoxMaterial());
@@ -199,14 +199,14 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         JTable table = getTable();
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
         String q = SQL_A.lab_dev__test_variable(PROC.PROC_75, labDev.getOrderNo(), material, testCode, null);
         //
-        HelpA_.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
+        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ORDERNO", "ID_Wotest", "UpdatedOn",
             "UpdatedBy", "TESTREM1", "TESTREM2", "SCOPE", "TagId"}); // "TagId"
         //
-        HelpA_.setColumnWidthByName("TESTVAR", table, 0.28);
+        HelpA.setColumnWidthByName("TESTVAR", table, 0.28);
         //
     }
 
@@ -270,7 +270,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         TABLE_INVERT = null;
         //
-        String id = HelpA_.getValueSelectedRow(getTable(), "ID_Wotest");
+        String id = HelpA.getValueSelectedRow(getTable(), "ID_Wotest");
         //
         if (id == null || id.isEmpty()) {
             return;
@@ -280,8 +280,8 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         try {
             //
-            String material = HelpA_.getValueSelectedRow(table, "CODE");
-            String testCode = HelpA_.getValueSelectedRow(table, "TestCode");
+            String material = HelpA.getValueSelectedRow(table, "CODE");
+            String testCode = HelpA.getValueSelectedRow(table, "TestCode");
             //
             String q = SQL_A.lab_dev__test_variable(PROC.PROC_75, labDev.getOrderNo(), material, testCode, id);
             OUT.showMessage(q);
@@ -322,7 +322,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
-            HelpA_.showNotification(MSG.LANG("Input contains errors"));
+            HelpA.showNotification(MSG.LANG("Input contains errors"));
             return;
         }
         //
@@ -336,15 +336,15 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private void deleteButtonClicked() {
         //
-        if (HelpA_.confirm(MSG.LANG("Confirm deletion?")) == false) {
+        if (HelpA.confirm(MSG.LANG("Confirm deletion?")) == false) {
             return;
         }
         //
         JTable table = getTable();
         //
-        String id = HelpA_.getValueSelectedRow(table, "TagId");
-        String order = HelpA_.getValueSelectedRow(table, "ORDERNO");
-        String material = HelpA_.getValueSelectedRow(table, "CODE");
+        String id = HelpA.getValueSelectedRow(table, "TagId");
+        String order = HelpA.getValueSelectedRow(table, "ORDERNO");
+        String material = HelpA.getValueSelectedRow(table, "CODE");
         //
         String q = SQL_A.lab_dev__test_variable__delete_button(id, order, material);
         //
@@ -367,7 +367,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         String testCode = getTestCode();
         //
         if (testCode == null || testCode.isEmpty() || testCode.equals("NULL")) {
-            HelpA_.showNotification(MSG.LANG("Test code not chosen"));
+            HelpA.showNotification(MSG.LANG("Test code not chosen"));
             return;
         }
         //
@@ -405,10 +405,10 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         String q_exist = SQL_A.lab_dev_test__test_variable_check_exist(PROC.PROC_78, order, material, testcode, id);
         //
-        boolean entry_exist = HelpA_.entryExistsSql(sql, q_exist);
+        boolean entry_exist = HelpA.entryExistsSql(sql, q_exist);
         //
         if (entry_exist) {
-            HelpA_.showNotification(MSG.LANG("Already exist! The entry will not be added"));
+            HelpA.showNotification(MSG.LANG("Already exist! The entry will not be added"));
             return;
         }
         //
@@ -416,9 +416,9 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         try {
             sql.execute(insert_q, OUT);
-            HelpA_.showNotification(MSG.LANG("Operation successful"));
+            HelpA.showNotification(MSG.LANG("Operation successful"));
         } catch (SQLException ex) {
-            HelpA_.showNotification(MSG.LANG("Operation failed"));
+            HelpA.showNotification(MSG.LANG("Operation failed"));
             Logger.getLogger(LabDevTestVariables.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
@@ -439,7 +439,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         removeFilter__mcs(getComboBoxMaterial());
         removeFilter__mcs(getComboBoxTestCode());
         //
-        HelpA_.clearAllRowsJTable(table);
+        HelpA.clearAllRowsJTable(table);
         //
     }
 
@@ -490,8 +490,8 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
     public String[] getComboParams__mcs() {
         //
         String ordernr = labDev.getOrderNo();
-        String material = HelpA_.getComboBoxSelectedValue(getComboBoxMaterial());
-        String testcode = HelpA_.getComboBoxSelectedValue(getComboBoxTestCode());
+        String material = HelpA.getComboBoxSelectedValue(getComboBoxMaterial());
+        String testcode = HelpA.getComboBoxSelectedValue(getComboBoxTestCode());
         //
         return new String[]{ordernr, material, testcode};
         //
@@ -504,7 +504,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
             return;
         }
         //
-        HelpA_.ComboBoxObject cbo = (HelpA_.ComboBoxObject) e.getItem();
+        HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) e.getItem();
         String value = cbo.getParamAuto();
         //  
         if (e.getSource().equals(getComboBoxTestCode())) {
