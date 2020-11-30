@@ -1410,9 +1410,28 @@ public class SQL_A {
     public static String get_lab_dev_tinvert_material_info(String id) {
         return "SELECT * from MC_Cpworder_OrderMaterials WHERE ID=" + id;
     }
-    
-    public static String lab_dev__material_info__add_material(){
+
+    public static String lab_dev__material_info__add_material_combo() {
         return "SELECT distinct Code,Descr, Detailed_Group, Mixer_Code, Release, Status, Class FROM  Recipe_Prop_Main";
+    }
+
+    /**
+     *
+     * @param PROC - 79
+     * @param param1 - order
+     * @param param2 - material
+     * @return
+     */
+    public static String lab_dev__material_info__add_material(String PROC, String param1, String param2) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + "1" + "," // batch menge
+                + "1" + "," // misch
+                + "1" + "," // first batchno
+                + "NULL" + "," // planId
+                + "NULL" + "," // updatedOn
+                + "NULL" + ""; // updatedby
     }
 
     /**

@@ -799,6 +799,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jButton_lab_dev__material_info_save = new javax.swing.JButton();
         jButton_lab_dev__mat_info__print_jtable = new javax.swing.JButton();
         jComboBox_lab_dev__mat_info__add_material = new JComboBoxA();
+        jPanel74 = new javax.swing.JPanel();
+        jButton_lab_dev__mat_info__add_material_btn = new javax.swing.JButton();
+        jButton_lab_dev__mat_info__delete_material_btn = new javax.swing.JButton();
         jPanel62 = new javax.swing.JPanel();
         jScrollPane27 = new javax.swing.JScrollPane();
         jTable_test_definitions = new javax.swing.JTable();
@@ -2256,6 +2259,19 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jComboBox_lab_dev__mat_info__add_material.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_lab_dev__mat_info__add_material.setModel(new javax.swing.DefaultComboBoxModel<>());
 
+        jPanel74.setLayout(new java.awt.GridLayout());
+
+        jButton_lab_dev__mat_info__add_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev__mat_info__add_material_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_lab_dev__mat_info__add_material_btnActionPerformed(evt);
+            }
+        });
+        jPanel74.add(jButton_lab_dev__mat_info__add_material_btn);
+
+        jButton_lab_dev__mat_info__delete_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jPanel74.add(jButton_lab_dev__mat_info__delete_material_btn);
+
         javax.swing.GroupLayout jPanel60Layout = new javax.swing.GroupLayout(jPanel60);
         jPanel60.setLayout(jPanel60Layout);
         jPanel60Layout.setHorizontalGroup(
@@ -2269,6 +2285,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addGroup(jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel60Layout.createSequentialGroup()
                         .addComponent(jComboBox_lab_dev__mat_info__add_material, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel74, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_lab_dev__mat_info__print_jtable, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2281,7 +2299,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
                 .addGroup(jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel79, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_lab_dev__mat_info__print_jtable, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_lab_dev__mat_info__add_material, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_lab_dev__mat_info__add_material, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel74, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_lab_dev_material_info, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
@@ -5085,6 +5104,10 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         labDevelopment.printMaterialInfoTableInvert();
     }//GEN-LAST:event_jButton_lab_dev__mat_info_print_invertActionPerformed
 
+    private void jButton_lab_dev__mat_info__add_material_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__mat_info__add_material_btnActionPerformed
+        labDevelopment.addMaterial();
+    }//GEN-LAST:event_jButton_lab_dev__mat_info__add_material_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5246,6 +5269,8 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev__delete_btn;
     public javax.swing.JButton jButton_lab_dev__delete_order_btn;
     public javax.swing.JButton jButton_lab_dev__findorder_tab__print;
+    private javax.swing.JButton jButton_lab_dev__mat_info__add_material_btn;
+    public javax.swing.JButton jButton_lab_dev__mat_info__delete_material_btn;
     public javax.swing.JButton jButton_lab_dev__mat_info__print_jtable;
     public javax.swing.JButton jButton_lab_dev__mat_info_print_invert;
     public javax.swing.JButton jButton_lab_dev__material_info_save;
@@ -5482,6 +5507,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel72;
     private javax.swing.JPanel jPanel73;
+    private javax.swing.JPanel jPanel74;
     public javax.swing.JPanel jPanel75;
     private javax.swing.JPanel jPanel76;
     public javax.swing.JPanel jPanel77;

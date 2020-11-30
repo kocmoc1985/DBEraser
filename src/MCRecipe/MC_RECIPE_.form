@@ -2556,6 +2556,8 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jComboBox_lab_dev__mat_info__add_material" min="-2" pref="270" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jPanel74" min="-2" pref="100" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jButton_lab_dev__mat_info__print_jtable" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
@@ -2572,7 +2574,8 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jPanel79" min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="jButton_lab_dev__mat_info__print_jtable" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="jComboBox_lab_dev__mat_info__add_material" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jComboBox_lab_dev__mat_info__add_material" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jPanel74" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2686,6 +2689,35 @@
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
+                        <Container class="javax.swing.JPanel" name="jPanel74">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                            <Property name="columns" type="int" value="0"/>
+                            <Property name="rows" type="int" value="1"/>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__mat_info__add_material_btn">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/add.png"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev__mat_info__add_material_btnActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__mat_info__delete_material_btn">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanel62">

@@ -427,8 +427,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         HelpA.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
-    
-    
 
     @Override
     public void fillNotes() {
@@ -471,16 +469,16 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
-    public void printMainDataInvertTable(){
+
+    public void printMainDataInvertTable() {
         tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
     }
-    
-    public void printMaterialInfoTableInvert(){
+
+    public void printMaterialInfoTableInvert() {
         tableInvertExportOrRepport(TABLE_INVERT_6, 1, getConfigTableInvert_6());
     }
-    
-    public void printMaterialInfoJtable(){
+
+    public void printMaterialInfoJtable() {
         tableCommonExportOrRepport(getMaterialInfoTable(), false);
     }
 
@@ -617,15 +615,32 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private JTable getMaterialInfoTable() {
         return mcRecipe.jTable_lab_dev__material_info;
     }
-    
-    private JComboBoxA getMaterialInfoComboBox(){
+
+    private JComboBoxA getMaterialInfoComboBox() {
         return (JComboBoxA) mcRecipe.jComboBox_lab_dev__mat_info__add_material;
     }
-    
-    private void fillComboBox_material_info__add_material(){
+
+    private void fillComboBox_material_info__add_material() {
         //
-        String q = SQL_A.lab_dev__material_info__add_material();
+        String q = SQL_A.lab_dev__material_info__add_material_combo();
         HelpA.fillComboBox(sql, getMaterialInfoComboBox(), q, null, true, false);
+        //
+    }
+
+    public void addMaterial() {
+        //
+        String order = getOrderNo();
+        String material = HelpA.getComboBoxSelectedValue(getMaterialInfoComboBox());
+        //
+        String q = SQL_A.lab_dev__material_info__add_material(PROC.PROC_79, order, material);
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        fillJTableMaterialInfoTab();
         //
     }
 
@@ -680,7 +695,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        if(noteName == null || noteName.isEmpty()){
+        if (noteName == null || noteName.isEmpty()) {
             return;
         }
         //
@@ -798,7 +813,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             changeJTableNoteValue(mcRecipe.jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
         } else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 1)) {
             materialInfoJTableClicked();
-        } 
+        }
 //        else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 2)) {
 //            setMaterialBtnClicked();
 //        }
@@ -815,7 +830,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 //        showTableInvert_6();
 //        refreshHeader(); // Yes shall be here
 //    }
-
     public void lab_dev_tab__clicked(String title, boolean parentCall) {
         //
         if (parentCall == true && PREV_TAB_NAME.isEmpty()) {
