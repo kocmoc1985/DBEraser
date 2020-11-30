@@ -11,6 +11,7 @@ import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
+import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -19,6 +20,8 @@ import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +32,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener {
+public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener, MouseListener {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT;
 
@@ -39,10 +42,20 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener 
     }
 
     private void init() {
-        refresh();
+        //
+        initializeSaveIndicators();
+        //
+        getSaveButton().addActionListener(this);
+        getPrintInvertButton().addActionListener(this);
+        getPrintJTableButton().addActionListener(this);
+        getAddMaterialBtn().addActionListener(this);
+        getRemoveMaterialButton().addActionListener(this);
+        //
+        getJTable().addMouseListener(this);
+        //
     }
-
-    private void refresh() {
+    
+    public void refresh() {
         fillJTable();
         fillComboBox(); //refreshHeader(); is done from: fillJTable() -> materialInfoJTableClicked()
     }
@@ -54,8 +67,30 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener 
             addMaterial();
         } else if (e.getSource().equals(getRemoveMaterialButton())) {
             removeMaterial();
+        } else if (e.getSource().equals(getSaveButton())) {
+            saveTableInvert();
+        } else if (e.getSource().equals(getPrintInvertButton())) {
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        } else if (e.getSource().equals(getPrintJTableButton())) {
+            tableCommonExportOrRepport(getJTable(), false);
         }
         //
+    }
+
+    public String getIdMaterialInfoTable() {
+        return HelpA.getValueSelectedRow(getJTable(), "ID");
+    }
+
+    private JButton getPrintJTableButton() {
+        return mcRecipe.jButton_lab_dev__mat_info__print_jtable;
+    }
+
+    private JButton getPrintInvertButton() {
+        return mcRecipe.jButton_lab_dev__mat_info_print_invert;
+    }
+
+    private JButton getSaveButton() {
+        return mcRecipe.jButton_lab_dev__material_info_save;
     }
 
     private JButton getRemoveMaterialButton() {
@@ -184,28 +219,65 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener 
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+        //
+        if (e.getSource() == getJTable() && (e.getClickCount() == 1)) {
+            materialInfoJTableClicked();
+        }
+        //
+    }
+    
+     @Override
+    public void initializeSaveIndicators() {
+        SaveIndicator saveIndicator = new SaveIndicator(mcRecipe.jButton_lab_dev__material_info_save, this, 1);
+    }
+
+    @Override
     public boolean getUnsaved(int nr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (nr == 1) {
+            //
+            if (TABLE_INVERT == null) {
+                return false;
+            } else if (unsavedEntriesExist(TABLE_INVERT)) {
+                return true;
+            }
+            //
+        }
+        return false;
+        //
     }
 
     @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public String[] getComboParams__mcs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
-    @Override
-    public void initializeSaveIndicators() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void fillNotes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

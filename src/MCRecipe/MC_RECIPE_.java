@@ -2239,19 +2239,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jPanel79.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev__mat_info_print_invert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
-        jButton_lab_dev__mat_info_print_invert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev__mat_info_print_invertActionPerformed(evt);
-            }
-        });
         jPanel79.add(jButton_lab_dev__mat_info_print_invert);
 
         jButton_lab_dev__material_info_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
-        jButton_lab_dev__material_info_save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev__material_info_saveActionPerformed(evt);
-            }
-        });
         jPanel79.add(jButton_lab_dev__material_info_save);
 
         jButton_lab_dev__mat_info__print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -2259,14 +2249,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         jComboBox_lab_dev__mat_info__add_material.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_lab_dev__mat_info__add_material.setModel(new javax.swing.DefaultComboBoxModel<>());
 
-        jPanel74.setLayout(new java.awt.GridLayout());
+        jPanel74.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev__mat_info__add_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        jButton_lab_dev__mat_info__add_material_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_lab_dev__mat_info__add_material_btnActionPerformed(evt);
-            }
-        });
         jPanel74.add(jButton_lab_dev__mat_info__add_material_btn);
 
         jButton_lab_dev__mat_info__delete_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
@@ -5092,21 +5077,9 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
         labDevelopment.saveNotesJTexArea();
     }//GEN-LAST:event_jButton_lab_dev_tab__save_notesActionPerformed
 
-    private void jButton_lab_dev__material_info_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__material_info_saveActionPerformed
-        labDevelopment.saveTableInvert_6();
-    }//GEN-LAST:event_jButton_lab_dev__material_info_saveActionPerformed
-
     private void jButton__lab_dev__main_data_print_invertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__lab_dev__main_data_print_invertActionPerformed
          labDevelopment.printMainDataInvertTable();
     }//GEN-LAST:event_jButton__lab_dev__main_data_print_invertActionPerformed
-
-    private void jButton_lab_dev__mat_info_print_invertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__mat_info_print_invertActionPerformed
-        labDevelopment.printMaterialInfoTableInvert();
-    }//GEN-LAST:event_jButton_lab_dev__mat_info_print_invertActionPerformed
-
-    private void jButton_lab_dev__mat_info__add_material_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_lab_dev__mat_info__add_material_btnActionPerformed
-        labDevelopment.addMaterial();
-    }//GEN-LAST:event_jButton_lab_dev__mat_info__add_material_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -5862,9 +5835,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
-        } else if (me.getSource() == jTable_lab_dev__material_info && (me.getClickCount() == 1)) {
-            labDevelopment.materialInfoJTableClicked();
-        }
+        } 
     }
 
     public void clickedTable1TestParameters() {

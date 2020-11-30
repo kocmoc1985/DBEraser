@@ -81,7 +81,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     private void init() {
         //
-        getMaterialInfoTable().addMouseListener(this);
         mcRecipe.jTable_lab_dev_1.addMouseListener(this);
         mcRecipe.jTable_lab_dev_2.addMouseListener(this);
         //
@@ -151,7 +150,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             //
-            String id = getIdMaterialInfoTable();
+            String id = labDevMaterialInfo.getIdMaterialInfoTable();
             //
             if (id == null || id.isEmpty()) {
                 return "";
@@ -217,7 +216,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO())) {
             //
-            String id = getIdMaterialInfoTable();
+            String id = labDevMaterialInfo.getIdMaterialInfoTable();
             //
             if (id == null || id.isEmpty()) {
                 return "";
@@ -267,10 +266,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         return updatedBy;
         // 
-    }
-
-    private String getIdMaterialInfoTable() {
-        return HelpA.getValueSelectedRow(getMaterialInfoTable(), "ID");
     }
 
     protected void refreshHeader() {
@@ -392,10 +387,16 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     }
 
     public void lab_dev_tab_tab_material_info__clicked() {
+        //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
-        fillJTableMaterialInfoTab();
-        fillComboBox_material_info__add_material();
-//        refreshHeader(); // is done from: fillJTableMaterialInfoTab() -> materialInfoJTableClicked()
+        //
+        if (labDevMaterialInfo == null) {
+            labDevMaterialInfo = new LabDevMaterialInfoTab(sql, sql_additional, OUT, this);
+            labDevMaterialInfo.refresh();
+        } else {
+            labDevMaterialInfo.refresh();
+        }
+        //
     }
 
     public void lab_dev_tab__tab_notes__clicked() {
@@ -446,12 +447,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
     }
 
-    public void saveTableInvert_6() {
-        saveChangesTableInvert(TABLE_INVERT_6);
-        refreshHeader();
-        fillJTableMaterialInfoTab();
-    }
-
     public void saveNotesJTexArea() {
         //
         notesUnsaved = false;
@@ -472,14 +467,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     public void printMainDataInvertTable() {
         tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
-    }
-
-    public void printMaterialInfoTableInvert() {
-        tableInvertExportOrRepport(TABLE_INVERT_6, 1, getConfigTableInvert_6());
-    }
-
-    public void printMaterialInfoJtable() {
-        tableCommonExportOrRepport(getMaterialInfoTable(), false);
     }
 
     /**
@@ -550,111 +537,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 //        setMargin(TABLE_INVERT, 10, 0, 0, 0);
         //
         showTableInvert(mcRecipe.jPanel_lab_development);
-        //
-    }
-
-    /**
-     * [TAB: MATERIA-INFO]
-     *
-     * @return
-     */
-    public RowDataInvert[] getConfigTableInvert_6() {
-        //
-        // Material, Beshreibung, Mischer, 1er Batch, Misch, Batchmenge
-        //
-        RowDataInvert material = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Material", T_INV.LANG("MATERIAL"), "", true, true, false);
-        //
-        RowDataInvert description = new RowDataInvert("NOT_NEEDED", "ID", false, "Beschreibung", T_INV.LANG("DESCRIPTION"), "", true, true, false);
-        description.setDisabled();
-        //
-        RowDataInvert mixer = new RowDataInvert("NOT_NEEDED", "ID", false, "Mischer", T_INV.LANG("MIXER"), "", true, true, false);
-        mixer.setDisabled();
-        //
-        RowDataInvert first_batch = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "FIRSTBNO", T_INV.LANG("FIRST BATCH"), "", true, true, false);
-        //
-        RowDataInvert mix = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "Misch", T_INV.LANG("MIX"), "", true, true, false);
-        //
-        RowDataInvert batch_ammount = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "BatchMenge", T_INV.LANG("BATCH AMMOUNT"), "", true, true, false);
-        //
-        RowDataInvert updated_on = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedOn", T_INV.LANG("UPDATED ON"), "", true, false, false); // UpdatedOn
-        RowDataInvert updated_by = new RowDataInvert(TABLE__MAT_INFO, "ID", false, "UpdatedBy", T_INV.LANG("UPDATED BY"), "", true, false, false);
-        //
-        //
-        RowDataInvert[] rows = {material, description, mixer, first_batch, mix, batch_ammount, updated_on, updated_by};
-        //
-        return rows;
-        //
-    }
-
-    /**
-     * [TAB: MATERIAL-INFO]
-     */
-    public void showTableInvert_6() {
-        //
-        TABLE_BUILDER_INVERT_6 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_6(), false, "lab_development_6");
-        //
-        TABLE_INVERT_6 = null;
-        //
-        String id = HelpA.getValueSelectedRow(getMaterialInfoTable(), "ID");
-        //
-        try {
-//            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
-            String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, null, id);
-            OUT.showMessage(q);
-            TABLE_INVERT_6 = TABLE_BUILDER_INVERT_6.buildTable(q, this); // TableRow.FLOW_LAYOUT
-        } catch (SQLException ex) {
-            Logger.getLogger(TestParameters_.class.getName()).log(Level.SEVERE, null, ex);
-            TABLE_BUILDER_INVERT_6.showMessage(ex.toString());
-        }
-        //
-        setVerticalScrollBarDisabled(TABLE_INVERT_6);
-        //
-        showTableInvert(mcRecipe.jPanel_lab_dev_material_info, TABLE_INVERT_6);
-    }
-
-    private JTable getMaterialInfoTable() {
-        return mcRecipe.jTable_lab_dev__material_info;
-    }
-
-    private JComboBoxA getMaterialInfoComboBox() {
-        return (JComboBoxA) mcRecipe.jComboBox_lab_dev__mat_info__add_material;
-    }
-
-    private void fillComboBox_material_info__add_material() {
-        //
-        String q = SQL_A.lab_dev__material_info__add_material_combo();
-        HelpA.fillComboBox(sql, getMaterialInfoComboBox(), q, null, true, false);
-        //
-    }
-
-    public void addMaterial() {
-        //
-        String order = getOrderNo();
-        String material = HelpA.getComboBoxSelectedValue(getMaterialInfoComboBox());
-        //
-        String q = SQL_A.lab_dev__material_info__add_material(PROC.PROC_79, order, material);
-        //
-        try {
-            sql.execute(q, OUT);
-        } catch (SQLException ex) {
-            Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-        fillJTableMaterialInfoTab();
-        //
-    }
-
-    private void fillJTableMaterialInfoTab() {
-        //
-        JTable table = getMaterialInfoTable();
-        //
-        String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, getOrderNo(), null);
-        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
-        //
-        LAB_DEV.material_information_tab_change_jtable__header(table);
-        //
-        HelpA.markFirstRowJtable(table);
-        materialInfoJTableClicked();
         //
     }
 
@@ -775,15 +657,8 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             //
         } else if (nr == 3) {
             return notesUnsaved;
-        } else if (nr == 4) {
-            //
-            if (TABLE_INVERT_6 == null) {
-                return false;
-            } else if (unsavedEntriesExist(TABLE_INVERT_6)) {
-                return true;
-            }
-            //
         }
+        //
         return false;
     }
 
@@ -811,19 +686,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             changeJTableNoteValue(mcRecipe.jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == mcRecipe.jTable_lab_dev_2 && (me.getClickCount() == 2)) {
             changeJTableNoteValue(mcRecipe.jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
-        } else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 1)) {
-            materialInfoJTableClicked();
         }
 //        else if (me.getSource() == getMaterialInfoTable() && (me.getClickCount() == 2)) {
 //            setMaterialBtnClicked();
 //        }
-    }
-
-    public void materialInfoJTableClicked() {
-        showTableInvert_6();
-        String material = HelpA.getValueSelectedRow(getMaterialInfoTable(), "Material").trim();
-        setMaterial(material);
-        refreshHeader();
     }
 
 //    public void materialInfoJTableClicked() {
