@@ -77,7 +77,9 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             tableCommonExportOrRepport(getTable(), true);
         } else if (e.getSource() == getNewBtn()) {
             addOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
-        } else if (e.getSource() == getDeleteBtn()) {
+        } else if (e.getSource() == getCopyBtn()) {
+            copyOrder();
+        }else if (e.getSource() == getDeleteBtn()) {
             deleteOrder();
         }
         //

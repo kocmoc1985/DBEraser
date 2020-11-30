@@ -1410,6 +1410,10 @@ public class SQL_A {
     public static String get_lab_dev_tinvert_material_info(String id) {
         return "SELECT * from MC_Cpworder_OrderMaterials WHERE ID=" + id;
     }
+    
+    public static String lab_dev__material_info__add_material(){
+        return "SELECT distinct Code,Descr, Detailed_Group, Mixer_Code, Release, Status, Class FROM  Recipe_Prop_Main";
+    }
 
     /**
      *

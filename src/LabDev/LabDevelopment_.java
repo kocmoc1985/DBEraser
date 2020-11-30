@@ -23,6 +23,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
 import forall.HelpA;
+import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
 import java.awt.Dimension;
@@ -393,6 +394,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public void lab_dev_tab_tab_material_info__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
         fillJTableMaterialInfoTab();
+        fillComboBox_material_info__add_material();
 //        refreshHeader(); // is done from: fillJTableMaterialInfoTab() -> materialInfoJTableClicked()
     }
 
@@ -614,6 +616,17 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 
     private JTable getMaterialInfoTable() {
         return mcRecipe.jTable_lab_dev__material_info;
+    }
+    
+    private JComboBoxA getMaterialInfoComboBox(){
+        return (JComboBoxA) mcRecipe.jComboBox_lab_dev__mat_info__add_material;
+    }
+    
+    private void fillComboBox_material_info__add_material(){
+        //
+        String q = SQL_A.lab_dev__material_info__add_material();
+        HelpA.fillComboBox(sql, getMaterialInfoComboBox(), q, null, true, false);
+        //
     }
 
     private void fillJTableMaterialInfoTab() {
