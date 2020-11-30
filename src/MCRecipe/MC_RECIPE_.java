@@ -5269,7 +5269,7 @@ public class MC_RECIPE_ extends javax.swing.JFrame implements MouseListener, Ite
     public javax.swing.JButton jButton_lab_dev__delete_btn;
     public javax.swing.JButton jButton_lab_dev__delete_order_btn;
     public javax.swing.JButton jButton_lab_dev__findorder_tab__print;
-    private javax.swing.JButton jButton_lab_dev__mat_info__add_material_btn;
+    public javax.swing.JButton jButton_lab_dev__mat_info__add_material_btn;
     public javax.swing.JButton jButton_lab_dev__mat_info__delete_material_btn;
     public javax.swing.JButton jButton_lab_dev__mat_info__print_jtable;
     public javax.swing.JButton jButton_lab_dev__mat_info_print_invert;

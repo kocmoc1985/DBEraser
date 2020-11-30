@@ -66,6 +66,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public LabDevAgeVulcTab labDevAgeVulcTab;
     public LabDevTestProcedureTab labDevTestProcedure;
     public LabDevTestVariables labDevTestVariables;
+    private LabDevMaterialInfoTab labDevMaterialInfo;
     private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
@@ -83,7 +84,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         getMaterialInfoTable().addMouseListener(this);
         mcRecipe.jTable_lab_dev_1.addMouseListener(this);
         mcRecipe.jTable_lab_dev_2.addMouseListener(this);
-
         //
         labDevHeaderComponent = new LabDevHeaderComponent(mcRecipe.jPanel_lab_dev_header, sql, this);
         labDevFindOrderTab = new LabDevFindOrderTab(sql, sql_additional, mcRecipe, this);
