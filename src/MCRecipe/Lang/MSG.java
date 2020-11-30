@@ -74,6 +74,7 @@ public class MSG {
         DICT.put("Please choose a row from table", "Bitte eine Reihe von Tabelle auswählen");
         DICT.put("Confirm deletion of: ", "Löschung bestätigen, Code: ");
         DICT.put("Create new ageing code", "Neuen Alterungscode erstellen");
+        DICT.put("Create new order", "Neuen Auftrag erstellen");
         DICT.put("Operation successful" , "Erfolgreich");
         DICT.put("Operation failed" , "Fehlgeschlagen");
         DICT.put("Add new" , "Neu ergänzen");

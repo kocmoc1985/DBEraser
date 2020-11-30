@@ -1461,6 +1461,13 @@ public class SQL_A {
         //
         return q;
     }
+    
+  
+    public static String find_order_lab_dev__by_order(String orderno) {
+        //
+        return "SELECT ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn from MC_Cpworder WHERE WORDERNO=" + quotes(orderno, false);
+        //
+    }
 
     /**
      * Used by: TEST DEFINITION & TEST CONFIG tabs
@@ -1605,6 +1612,17 @@ public class SQL_A {
     public static String lab_dev__test_variable__delete_button(String id, String order, String material) {
         return "DELETE FROM MCcpwotest "
                 + "WHERE TagId=" + quotes(id, true) + " AND ORDERNO=" + quotes(order, false) + "AND CODE=" + quotes(material, false);
+    }
+
+    public static String lab_dev__find_order_tab__create__new(String tableName, String param1) {
+        //
+        String q = String.format("INSERT INTO %s (WORDERNO,WOSTATUS) VALUES (%s,'Input')", tableName, quotes(param1, false));
+        //
+        return q;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("" + lab_dev__find_order_tab__create__new("MC_Cpworder", "AAAAA"));
     }
 
 //    SELECT     TagId

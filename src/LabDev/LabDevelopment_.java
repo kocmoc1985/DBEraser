@@ -12,6 +12,7 @@ import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
+import static MCRecipe.SQL_A.lab_dev__find_order_tab__create__new;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MCRecipe.UpdateEntry;
@@ -23,6 +24,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
 import forall.HelpA_;
 import forall.SqlBasicLocal;
+import forall.TextFieldCheck;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -404,6 +406,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA();
         refreshHeader();
         showTableInvert();
+        fill_jtable_1_2__tab__main_data();
 //        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
     }
 
@@ -422,6 +425,8 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         HelpA_.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
+    
+    
 
     @Override
     public void fillNotes() {
@@ -661,6 +666,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
+        //
+        if(noteName == null || noteName.isEmpty()){
+            return;
+        }
         //
         String q = SQL_A.insert_into_lab_dev_table_1_and_2(dbTableName, order, noteName, noteValue, HelpA_.updatedOn(), HelpA_.updatedBy());
         //

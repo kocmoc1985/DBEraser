@@ -51,7 +51,7 @@ public class LAB_DEV {
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "REQUESTER", "Requester");
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "CUSTOMER", "Customer");
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "EXPREADY", "To be delievered");
-            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "Updated");
+            HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedOn", "Updated on");
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "UpdatedBy", "Updated by");
         } else {
             HelpA_.changeTableHeaderTitleOfOneColumn(table, "WORDERNO", "Auftrag");

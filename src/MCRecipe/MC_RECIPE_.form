@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,6,-69,0,0,7,15"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,6,-59,0,0,7,34"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -59,7 +59,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="1538" max="-2" attributes="0"/>
                               <Component id="jLabelHomeVersion" min="-2" pref="207" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -110,10 +110,10 @@
                               <Component id="jPasswordFieldHomePass" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="jButton_Home_Login" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="1292" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1295" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -277,7 +277,7 @@
                               <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel2" pref="1340" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="448" max="32767" attributes="0"/>
+                          <EmptySpace pref="465" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -290,7 +290,7 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="767" max="32767" attributes="0"/>
+                          <EmptySpace pref="774" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2082,7 +2082,7 @@
                               <Component id="jTabbedPane3_Lab_Dev" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel_lab_dev_header" min="-2" pref="1399" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="356" max="32767" attributes="0"/>
+                          <EmptySpace pref="370" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2093,7 +2093,7 @@
                           <Component id="jPanel_lab_dev_header" min="-2" pref="60" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTabbedPane3_Lab_Dev" min="-2" pref="789" max="-2" attributes="0"/>
-                          <EmptySpace pref="828" max="32767" attributes="0"/>
+                          <EmptySpace pref="835" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2131,7 +2131,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jTextField__lab_dev__find_order" min="-2" pref="261" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jButton_lab_dev__findorder_tab__print" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="jPanel73" min="-2" pref="200" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane24" min="-2" pref="807" max="-2" attributes="0"/>
                                   </Group>
@@ -2142,19 +2142,19 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jButton__lab_dev_find_order_tab__filter" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="jButton_lab_dev__findorder_tab__print" min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="jButton__lab_dev_find_order_tab__set_order" min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="jTextField__lab_dev__find_order" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="jPanel73" min="-2" pref="50" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jScrollPane24" max="32767" attributes="0"/>
                                       <Component id="jScrollPane23" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="294" max="32767" attributes="0"/>
+                                  <EmptySpace pref="289" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2223,16 +2223,55 @@
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="jButton_lab_dev__findorder_tab__print">
-                          <Properties>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/printer.png"/>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                          </AuxValues>
-                        </Component>
+                        <Container class="javax.swing.JPanel" name="jPanel73">
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                            <Property name="columns" type="int" value="0"/>
+                            <Property name="rows" type="int" value="1"/>
+                          </Layout>
+                          <SubComponents>
+                            <Component class="javax.swing.JButton" name="jButton__lab_dev__new_order_btn">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/new.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__copy_order_btn">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/copy.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__delete_order_btn">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/makulerad.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="jButton_lab_dev__findorder_tab__print">
+                              <Properties>
+                                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                                  <Image iconType="3" name="/icons/printer.png"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                              </AuxValues>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanel53">
@@ -2255,7 +2294,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane18" alignment="0" pref="679" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane18" alignment="0" pref="682" max="32767" attributes="0"/>
                                       <Component id="jScrollPane20" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel59" min="-2" pref="171" max="-2" attributes="0"/>
@@ -2279,15 +2318,20 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                           <Component id="jPanel55" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <EmptySpace min="5" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jPanel78" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jPanel78" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2303,7 +2347,7 @@
                                           <Component id="jScrollPane20" min="-2" pref="239" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="153" max="32767" attributes="0"/>
+                                  <EmptySpace pref="150" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3950,10 +3994,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jPanel49" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="814" max="32767" attributes="0"/>
+                                  <EmptySpace pref="825" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="jScrollPane19" pref="1259" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane19" pref="1276" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -3974,7 +4018,7 @@
                               <Component id="jPanel_Test_Params_Inv_Table_1" pref="753" max="32767" attributes="0"/>
                               <Component id="jScrollPane19" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="862" max="32767" attributes="0"/>
+                          <EmptySpace pref="865" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -4336,7 +4380,7 @@
                                   </Group>
                                   <Component id="jPanel33" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="345" max="32767" attributes="0"/>
+                              <EmptySpace pref="360" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -4890,9 +4934,9 @@
                                       <Component id="jPanel_Ingred_table4" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jPanel_Ingred_table3" alignment="0" pref="437" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="0" pref="1178" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="1181" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jPanel_Ingred_Invert_Table" pref="1615" max="32767" attributes="0"/>
+                              <Component id="jPanel_Ingred_Invert_Table" pref="1618" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -5944,7 +5988,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="615" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="632" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -6144,7 +6188,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="415" max="32767" attributes="0"/>
+                          <EmptySpace pref="431" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -6996,7 +7040,7 @@
                                   <Component id="jButtonRecipeAdditionalPrint1" min="-2" pref="57" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel20" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel21" alignment="0" pref="1269" max="32767" attributes="0"/>
+                              <Component id="jPanel21" alignment="0" pref="1286" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel71" min="-2" pref="166" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -7195,7 +7239,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jScrollPane16" max="32767" attributes="0"/>
-                          <Component id="jScrollPane6" alignment="1" pref="1405" max="32767" attributes="0"/>
+                          <Component id="jScrollPane6" alignment="1" pref="1422" max="32767" attributes="0"/>
                           <Component id="jScrollPane15" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
