@@ -77,22 +77,66 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             tableCommonExportOrRepport(getTable(), true);
         } else if (e.getSource() == getNewBtn()) {
             addOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
-        }else if (e.getSource() == getDeleteBtn()) {
+        } else if (e.getSource() == getDeleteBtn()) {
             deleteOrder();
         }
         //
     }
-    
-    private void deleteOrder(){
+
+    private boolean copyOrder() {
         //
         JTable table = getTable();
         //
-        if(MC_RECIPE_.isAdminOrDeveloper() == false){
-            return;
+        if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Please choose a row in the table to perform this action"));
+            return false;
         }
         //
-        if(HelpA.rowSelected(table) == false){
-            return;
+        String id = HelpA.getValueSelectedRow(table, "ID");
+        String order = HelpA.getValueSelectedRow(table, "WORDERNO");
+        //
+        if (HelpA.confirm(MSG.LANG("Copy order ") + order + "?") == false) {
+            return false;
+        }
+        //
+        return false;
+    }
+
+    private boolean deleteOrder() {
+        //
+        JTable table = getTable();
+        //
+        if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Please choose a row in the table to perform this action"));
+            return false;
+        }
+        //
+        String id = HelpA.getValueSelectedRow(table, "ID");
+        String order = HelpA.getValueSelectedRow(table, "WORDERNO");
+        //
+        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
+            return false;
+        }
+        //
+        if (HelpA.confirm(MSG.LANG("Confirm deletion of: ") + order + "?") == false) {
+            return false;
+        }
+        //
+        if (id == null || id.isEmpty()) {
+            return false;
+        }
+        //
+        String q = SQL_A.find_order_lab_dev__delete_order(id);
+        //
+        try {
+            sql.execute(q, OUT);
+            fillTable_filter();
+            labDev.setOrderNo("");
+            labDev.refreshHeader();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevFindOrderTab.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         //
     }

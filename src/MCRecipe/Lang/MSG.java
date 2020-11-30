@@ -86,7 +86,7 @@ public class MSG {
         DICT.put("Table row not chosen" , "Tabellenzeile nicht ausgewählt");
         DICT.put("Specify new note value" , "Bitte, einen neuen Notenwert eingeben");
         DICT.put("Id is missing, cannot continue" , "Id fehlt, kann nicht weitergehen");
-        DICT.put("" , "");
+        DICT.put("Copy order " , "Auftrag kopieren ");
         //
         DICT.put("The length of input exceeded the limit" , "Die Länge der Dateneigabe ist zu lang");
         DICT.put("SQL ERROR, could not update" , "SQL FEHLER, Speicherung nicht möglich");

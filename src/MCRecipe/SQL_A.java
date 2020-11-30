@@ -1461,12 +1461,15 @@ public class SQL_A {
         //
         return q;
     }
-    
-  
+
     public static String find_order_lab_dev__by_order(String orderno) {
         //
         return "SELECT ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn from MC_Cpworder WHERE WORDERNO=" + quotes(orderno, false);
         //
+    }
+
+    public static String find_order_lab_dev__delete_order(String id) {
+        return "DELETE FROM MC_Cpworder WHERE ID=" + quotes(id, true);
     }
 
     /**
