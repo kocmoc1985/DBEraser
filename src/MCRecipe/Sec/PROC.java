@@ -103,6 +103,7 @@ public class PROC {
     public static final String PROC_77 = "prc_ITF_CPWORDER_INSERT "; //#LAB DEVELOPMENT -> TEST VARIABLES -> create new
     public static final String PROC_78 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST VARIABLES -> check exist
     public static final String PROC_79 = "prc_ITF_CPWORDER_INSERT_Table "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> ADD MATERIAL
+    public static final String PROC_80 = "prc_ITF_CPWORDER_Delete "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> DELETE ORDER
     //
     // LAB_DEVELOPMENT  
     //
@@ -192,6 +193,7 @@ public class PROC {
         procList.add(PROC_77);
         procList.add(PROC_78);
         procList.add(PROC_79);
+        procList.add(PROC_80);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

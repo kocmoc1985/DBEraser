@@ -1491,8 +1491,12 @@ public class SQL_A {
         //
     }
 
-    public static String find_order_lab_dev__delete_order(String id) {
+    public static String find_order_lab_dev__delete_order__deprecated(String id) {
         return "DELETE FROM MC_Cpworder WHERE ID=" + quotes(id, true);
+    }
+
+    public static String find_order_lab_dev__delete_order(String PROC, String param1) {
+        return PROC + " " + quotes(param1, false) + "";
     }
 
     /**

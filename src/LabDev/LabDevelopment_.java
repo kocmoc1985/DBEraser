@@ -6,13 +6,11 @@
 package LabDev;
 
 import MCRecipe.ChangeSaver;
-import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A;
-import static MCRecipe.SQL_A.lab_dev__find_order_tab__create__new;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MCRecipe.UpdateEntry;
@@ -23,9 +21,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
 import forall.HelpA;
-import forall.JComboBoxA;
 import forall.SqlBasicLocal;
-import forall.TextFieldCheck;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -71,7 +67,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private String TEST_CODE = "MOV01"; //MOV01
     private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
     private String ACTUAL_TAB_NAME = "";
-    private String PREV_TAB_NAME = "";
+    public String PREV_TAB_NAME = "";
 
     public LabDevelopment_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT, null);

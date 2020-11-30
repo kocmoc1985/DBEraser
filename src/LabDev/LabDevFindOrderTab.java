@@ -11,6 +11,7 @@ import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A;
+import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
 import forall.HelpA;
@@ -62,8 +63,15 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
     }
 
     public void go() {
+        //
         getTexField().setText("");
         showCheckBoxComponent();
+        //
+        // Refresh after adding new
+        if(getTable().getRowCount() == 1){
+            fillTable_order(labDev.getOrderNo());
+        }
+        //
     }
 
     @Override
@@ -79,7 +87,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             addOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
         } else if (e.getSource() == getCopyBtn()) {
             copyOrder();
-        }else if (e.getSource() == getDeleteBtn()) {
+        } else if (e.getSource() == getDeleteBtn()) {
             deleteOrder();
         }
         //
@@ -124,11 +132,12 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             return false;
         }
         //
-        if (id == null || id.isEmpty()) {
+        if (order == null || order.isEmpty()) {
             return false;
         }
         //
-        String q = SQL_A.find_order_lab_dev__delete_order(id);
+//        String q = SQL_A.find_order_lab_dev__delete_order(id);
+        String q = SQL_A.find_order_lab_dev__delete_order(PROC.PROC_80, order);
         //
         try {
             sql.execute(q, OUT);
