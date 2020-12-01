@@ -141,13 +141,13 @@ public class Vendors extends BasicTab {
     }
 
     private void fillComboTradeName() {
-        String q = SQL_A.vendor_fill_combo_tradenames();
+        String q = SQL_A_.vendor_fill_combo_tradenames();
         //
         HelpA.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsTradnames, q, null, false, false);
     }
 
     public void fillComboVendors() {
-        String q = SQL_A.vendor_fill_combo_vendors();
+        String q = SQL_A_.vendor_fill_combo_vendors();
         //
         HelpA.fillComboBox__not_instance_of_A(sql, mCRecipe.jComboBoxVenorsVendors, q, null, false, false);
     }
@@ -377,7 +377,7 @@ public class Vendors extends BasicTab {
         TABLE_INVERT_4_2 = null;
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_4_2(vendor_id);
+            String q = SQL_A_.vendor_build_table_invert_4_2(vendor_id);
             OUT.showMessage(q);
             TABLE_INVERT_4_2 = TABLE_BUILDER_INVERT_4_2.buildTable(q,this);
         } catch (SQLException ex) {
@@ -404,7 +404,7 @@ public class Vendors extends BasicTab {
         TABLE_INVERT_4 = null;
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_4(PROC.PROC_18, vendorId);
+            String q = SQL_A_.vendor_build_table_invert_4(PROC.PROC_18, vendorId);
             OUT.showMessage(q);
             TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q,this);
         } catch (SQLException ex) {
@@ -428,7 +428,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_3B(PROC.PROC_14, "" + currentId);
+        String q = SQL_A_.vendor_delete_from_table_3B(PROC.PROC_14, "" + currentId);
         //
         //
         try {
@@ -451,7 +451,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_3_2(currentTradeNameId);
+        String q = SQL_A_.vendor_delete_from_table_3_2(currentTradeNameId);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -486,7 +486,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_new_table_3_2(cas_nr, trade_name, msds, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A_.vendor_insert_new_table_3_2(cas_nr, trade_name, msds, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             //
@@ -525,7 +525,7 @@ public class Vendors extends BasicTab {
         String vendor_id = boxObject2.getParam_2();
         //
         //
-        String q = SQL_A.vendor_insert_table_3B(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn(), vendor_id);
+        String q = SQL_A_.vendor_insert_table_3B(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn(), vendor_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -569,7 +569,7 @@ public class Vendors extends BasicTab {
         String updatedOn = HelpA.updatedOn();
         String updatedBy = HelpA.updatedBy();
         //
-        String q = SQL_A.vendor_insert_new_table_4(vendor_no, vendor_name, adress, zip, city,
+        String q = SQL_A_.vendor_insert_new_table_4(vendor_no, vendor_name, adress, zip, city,
                 country, phone, fax, email, website, free_info, status, updatedOn, updatedBy);
         //
         try {
@@ -599,7 +599,7 @@ public class Vendors extends BasicTab {
         String updatedOn = HelpA.updatedOn();
         String updatedBy = HelpA.updatedBy();
         //
-        String q = SQL_A.vendor_insert_new_table_4("", vendor_name, "", "", "",
+        String q = SQL_A_.vendor_insert_new_table_4("", vendor_name, "", "", "",
                 "", "", "", "", "", "", "", updatedOn, updatedBy);
         //
         try {
@@ -676,7 +676,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_new_table_4_2(vendor_id, contactName, position, phone, email, date_export,
+        String q = SQL_A_.vendor_insert_new_table_4_2(vendor_id, contactName, position, phone, email, date_export,
                 date_processed, status, updatedOn, updatedBy);
         //
         //
@@ -704,7 +704,7 @@ public class Vendors extends BasicTab {
 
     private boolean checkIfContactIsPresent(String vendorId, String cName, String pos, String phone, String email) {
         //
-        String q = SQL_A.vendor_check_if_contact_is_present(vendorId, cName, pos, phone, email);
+        String q = SQL_A_.vendor_check_if_contact_is_present(vendorId, cName, pos, phone, email);
         //
         try {
             ResultSet rs = sql.execute(q, mCRecipe);
@@ -738,7 +738,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_4_2(currentVendorContactId);
+        String q = SQL_A_.vendor_delete_from_table_4_2(currentVendorContactId);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -754,7 +754,7 @@ public class Vendors extends BasicTab {
     }
 
     private String getIngredCodeId(String ingredName) {
-        String q = SQL_A.get_ingredient_code_id_by_name(ingredName);
+        String q = SQL_A_.get_ingredient_code_id_by_name(ingredName);
         try {
             ResultSet rs = sql.execute(q, mCRecipe);
 
@@ -775,7 +775,7 @@ public class Vendors extends BasicTab {
         TABLE_INVERT_3_2 = null;
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_3_2(tradename_main_id);
+            String q = SQL_A_.vendor_build_table_invert_3_2(tradename_main_id);
             OUT.showMessage(q);
             TABLE_INVERT_3_2 = TABLE_BUILDER_INVERT_3_2.buildTable(q,this);
         } catch (SQLException ex) {
@@ -797,7 +797,7 @@ public class Vendors extends BasicTab {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_3(PROC.PROC_19, name);
+            String q = SQL_A_.vendor_build_table_invert_3(PROC.PROC_19, name);
             OUT.showMessage(q);
             TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q,this);
         } catch (SQLException ex) {
@@ -820,7 +820,7 @@ public class Vendors extends BasicTab {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.vendor_build_table_invert_warehouse(PROC.PROC_20, name);
+            String q = SQL_A_.vendor_build_table_invert_warehouse(PROC.PROC_20, name);
             OUT.showMessage(q);
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q,this);
         } catch (SQLException ex) {
@@ -842,7 +842,7 @@ public class Vendors extends BasicTab {
         String name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         //
         try {
-            String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
+            String q = SQL_A_.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
@@ -862,7 +862,7 @@ public class Vendors extends BasicTab {
         Object selection = box.getSelectedItem();
         //
         //
-        String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
+        String q = SQL_A_.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
         OUT.showMessage(q);
         HelpA.fillComboBox(sql, box, q, null, false, false);
         //
@@ -945,7 +945,7 @@ public class Vendors extends BasicTab {
         String ingred_name = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxVendorChooseIngred);
         String ingred_code_id = getIngredCodeId(ingred_name);
         //
-        String q = SQL_A.vendor_delete_from_table_3(PROC.PROC_15, "" + currentTradeNameId, "" + ingred_code_id);
+        String q = SQL_A_.vendor_delete_from_table_3(PROC.PROC_15, "" + currentTradeNameId, "" + ingred_code_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -969,7 +969,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_delete_from_table_4(PROC.PROC_14, "" + currentVendorId);
+        String q = SQL_A_.vendor_delete_from_table_4(PROC.PROC_14, "" + currentVendorId);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1004,7 +1004,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_3(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A_.vendor_insert_table_3(PROC.PROC_17, ingred_code_id, tradname_id, HelpA.updatedBy(), HelpA.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1057,7 +1057,7 @@ public class Vendors extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.vendor_insert_table_4(PROC.PROC_16, ingred_code_id, vendor_id, HelpA.updatedBy(), HelpA.updatedOn());
+        String q = SQL_A_.vendor_insert_table_4(PROC.PROC_16, ingred_code_id, vendor_id, HelpA.updatedBy(), HelpA.updatedOn());
         //
         try {
             sql.execute(q, mCRecipe);
@@ -1070,7 +1070,7 @@ public class Vendors extends BasicTab {
     }
 
     private String insertNewVendor(String newVendorName) {
-        String q = SQL_A.vendors_add_new_vendor(PROC.PROC_05, newVendorName);
+        String q = SQL_A_.vendors_add_new_vendor(PROC.PROC_05, newVendorName);
         OUT.showMessage(q);
         String idOfInsertedVendor = null;
         try {

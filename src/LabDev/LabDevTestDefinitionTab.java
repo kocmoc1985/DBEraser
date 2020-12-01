@@ -9,7 +9,7 @@ import LabDev.sec.TestDefinitionEntry;
 import LabDev.sec.TestDefinitionEntryB;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
@@ -104,7 +104,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         //
         for (String code : codes_list) {
             //
-            String q = SQL_A.lab_dev_proc69_proc70(PROC.PROC_69, material, order, code);
+            String q = SQL_A_.lab_dev_proc69_proc70(PROC.PROC_69, material, order, code);
             //
             try {
                 //
@@ -146,7 +146,7 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         String material = labDev.getMaterial();
         String order = labDev.getOrderNo();
         //
-        String q = SQL_A.lab_dev_test_definitions_tab__getCodes(PROC.PROC_69, material, order, null);
+        String q = SQL_A_.lab_dev_test_definitions_tab__getCodes(PROC.PROC_69, material, order, null);
         //
         ResultSet rs;
         //

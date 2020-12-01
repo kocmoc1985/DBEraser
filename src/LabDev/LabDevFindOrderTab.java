@@ -10,7 +10,7 @@ import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.MC_RECIPE_;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.RowDataInvert;
@@ -136,8 +136,8 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             return false;
         }
         //
-//        String q = SQL_A.find_order_lab_dev__delete_order(id);
-        String q = SQL_A.find_order_lab_dev__delete_order(PROC.PROC_80, order);
+//        String q = SQL_A_.find_order_lab_dev__delete_order(id);
+        String q = SQL_A_.find_order_lab_dev__delete_order(PROC.PROC_80, order);
         //
         try {
             sql.execute(q, OUT);
@@ -165,7 +165,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             return false;
         }
         //
-        String q_insert = SQL_A.lab_dev__find_order_tab__create__new(tableName, order);
+        String q_insert = SQL_A_.lab_dev__find_order_tab__create__new(tableName, order);
         //
         try {
             //
@@ -176,6 +176,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             fillTable_order(order);
             HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
             labDev.lab_dev_tab__tab_main_data__clicked();
+            labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
             //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,14 +190,14 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         Object[] selectedValues = getSelectedValuesFromTable(getPanel());
         //
-        String q = SQL_A.find_order_lab_dev__dynamic(selectedValues);
+        String q = SQL_A_.find_order_lab_dev__dynamic(selectedValues);
         //
         fillTable(q);
     }
 
     private void fillTable_order(String orderno) {
         //
-        String q = SQL_A.find_order_lab_dev__by_order(orderno);
+        String q = SQL_A_.find_order_lab_dev__by_order(orderno);
         //
         fillTable(q);
     }

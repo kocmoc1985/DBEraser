@@ -9,7 +9,7 @@ import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import LabDev.sec.TestVarEntry;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -113,7 +113,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         //
-        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM, UpdatedOn,UpdatedBy FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
+        String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM, UpdatedOn,UpdatedBy FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A_.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
         //
         HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc", "UpdatedOn", "UpdatedBy"});
         //
@@ -122,7 +122,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     private void fillComboBox() {
         //
-        String q = SQL_A.lab_dev__test__proc__build__testcode_combo();
+        String q = SQL_A_.lab_dev__test__proc__build__testcode_combo();
         HelpA.fillComboBox(sql, getComboBox(), q, null, false, false);
         //
     }

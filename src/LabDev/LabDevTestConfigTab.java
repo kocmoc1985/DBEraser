@@ -10,7 +10,7 @@ import LabDev.sec.JPanelPrepM_C;
 import LabDev.sec.JPanelPrepM;
 import LabDev.sec.PrepOrAgingEntry;
 import LabDev.sec.TestConfigEntry;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -155,7 +155,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         String colCondition = "Condition";
         String colUnit = "Unit";
         //
-        String q = SQL_A.lab_dev_proc69_proc70(procedure, getMaterial(), getOrder(), getTestCode());
+        String q = SQL_A_.lab_dev_proc69_proc70(procedure, getMaterial(), getOrder(), getTestCode());
         //
         ResultSet rs;
         //
@@ -228,8 +228,8 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         //
         try {
             //
-            String q = SQL_A.lab_dev_proc69_proc70(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
-            String q_2 = SQL_A.lab_dev_proc69_proc70(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
+            String q = SQL_A_.lab_dev_proc69_proc70(PROC.PROC_69, getMaterial(), getOrder(), getTestCode());
+            String q_2 = SQL_A_.lab_dev_proc69_proc70(PROC.PROC_70, getMaterial(), getOrder(), getTestCode());
             //
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable_C_C(q, q_2, this, TableRow.GRID_LAYOUT);
             //
@@ -271,7 +271,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         String order = labDev.getOrderNo();
         String material = labDev.getMaterial();
         //
-        String q = SQL_A.lab_dev_test_config__get_preparation_aging_methods(procedure, material, order, test_code);
+        String q = SQL_A_.lab_dev_test_config__get_preparation_aging_methods(procedure, material, order, test_code);
         //
         try {
             //

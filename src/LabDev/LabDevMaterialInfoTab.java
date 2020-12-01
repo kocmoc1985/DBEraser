@@ -8,7 +8,7 @@ package LabDev;
 import static LabDev.LabDevelopment_.TABLE__MAT_INFO;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
@@ -124,7 +124,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         String order = labDev.getOrderNo();
         String material = HelpA.getComboBoxSelectedValue(getComboBox());
         //
-        String q = SQL_A.lab_dev__material_info__add_material(PROC.PROC_79, order, material);
+        String q = SQL_A_.lab_dev__material_info__add_material(PROC.PROC_79, order, material);
         //
         try {
             sql.execute(q, OUT);
@@ -140,7 +140,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         //
         JTable table = getJTable();
         //
-        String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, labDev.getOrderNo(), null);
+        String q = SQL_A_.get_lab_dev_jtable_material_info(PROC.PROC_68, labDev.getOrderNo(), null);
         HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID", "MCcode", "UpdatedOn", "UpdatedBy", "WORDERNO", "PlanID"});
         //
         LAB_DEV.material_information_tab_change_jtable__header(table);
@@ -159,7 +159,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
 
     private void fillComboBox() {
         //
-        String q = SQL_A.lab_dev__material_info__add_material_combo();
+        String q = SQL_A_.lab_dev__material_info__add_material_combo();
         HelpA.fillComboBox(sql, getComboBox(), q, null, true, false);
         //
     }
@@ -203,8 +203,8 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         String id = HelpA.getValueSelectedRow(getJTable(), "ID");
         //
         try {
-//            String q = SQL_A.get_lab_dev_tinvert_material_info(id);
-            String q = SQL_A.get_lab_dev_jtable_material_info(PROC.PROC_68, null, id);
+//            String q = SQL_A_.get_lab_dev_tinvert_material_info(id);
+            String q = SQL_A_.get_lab_dev_jtable_material_info(PROC.PROC_68, null, id);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {

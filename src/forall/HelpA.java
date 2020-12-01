@@ -8,7 +8,7 @@ import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
 import MCRecipe.MC_RECIPE_;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MyObjectTable.ShowMessage;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
@@ -474,7 +474,7 @@ public class HelpA {
             String columnWhere, String valueWhere, String columnGet, boolean number) {
         //
         String q = "SELECT * from " + tableName
-                + " where " + columnWhere + "=" + SQL_A.quotes(valueWhere, number);
+                + " where " + columnWhere + "=" + SQL_A_.quotes(valueWhere, number);
         //
         try {
             ResultSet rs = sql.execute(q);
@@ -491,8 +491,8 @@ public class HelpA {
             String columnWhere, String valueWhere, String columnAnd, String valueAnd, String columnGet, boolean number) {
         //
         String q = "SELECT * from " + tableName
-                + " where " + columnWhere + "=" + SQL_A.quotes(valueWhere, number) + " AND " + columnAnd
-                + "=" + SQL_A.quotes(valueAnd, true);
+                + " where " + columnWhere + "=" + SQL_A_.quotes(valueWhere, number) + " AND " + columnAnd
+                + "=" + SQL_A_.quotes(valueAnd, true);
         //
 //        System.out.println("q: " + q);
         //

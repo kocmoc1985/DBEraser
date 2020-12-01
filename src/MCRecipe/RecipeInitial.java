@@ -94,7 +94,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     @Override
     public void showIngredInfoOnValueChange(String ingredName) {
-        String q = SQL_A.recipe_initial_build_info_table(ingredName);
+        String q = SQL_A_.recipe_initial_build_info_table(ingredName);
         //
         JTable table = mCRecipe2.jTableIngredientInfoTable;
         //
@@ -263,10 +263,10 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         String recipeAdditional = HelpA.getValueSelectedRow(table1, T1_RECIPE_ADDITIONAL);
         String mixerCode = HelpA.getValueSelectedRow(table1, T1_MIXER_CODE);
         //
-        String q = SQL_A.fillTable2RecipeInitial(PROC.PROC_63, recipeVersion, recipeAdditional, mixerCode);
+        String q = SQL_A_.fillTable2RecipeInitial(PROC.PROC_63, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table2);
         //
-        q = SQL_A.fillTable3RecipeInitial(PROC.PROC_64, recipeVersion, recipeAdditional, mixerCode);
+        q = SQL_A_.fillTable3RecipeInitial(PROC.PROC_64, recipeVersion, recipeAdditional, mixerCode);
         fill_table_2_3__(q, table3);
         //
         //
@@ -389,12 +389,12 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         try {
             //
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
-                q = SQL_A.recipeInitialBuildTable1_B(PROC.PROC_33, params);
+                q = SQL_A_.recipeInitialBuildTable1_B(PROC.PROC_33, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
             } else {
-                q = SQL_A.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
+                q = SQL_A_.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
                 fillTable1HelpM();
                 OUT.showMessage(q);
@@ -414,7 +414,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     public void fillTable1HelpM() {
         //
-        String q = SQL_A.recipe_initial_main();
+        String q = SQL_A_.recipe_initial_main();
         //
         JTable table = mCRecipe2.jTable1;
         try {
@@ -616,7 +616,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         //
         Object selection = box.getSelectedItem();
         //
-        String q = SQL_A.fill_comboboxes_recipe_initial_b(PROC.PROC_27, PROC.PROC_28, colName, getComboParams(null));
+        String q = SQL_A_.fill_comboboxes_recipe_initial_b(PROC.PROC_27, PROC.PROC_28, colName, getComboParams(null));
         OUT.showMessage(q);
         //
         //
@@ -661,7 +661,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial(PROC.PROC_26, PROC.PROC_27, PROC.PROC_29, PROC.PROC_26, colName, getComboParams(null), mCRecipe2);
+                String q = SQL_A_.fill_comboboxes_recipe_initial(PROC.PROC_26, PROC.PROC_27, PROC.PROC_29, PROC.PROC_26, colName, getComboParams(null), mCRecipe2);
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
@@ -691,7 +691,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 //
                 Object selection = box.getSelectedItem();
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
+                String q = SQL_A_.fill_comboboxes_recipe_initial_multiple(PROC.PROC_26, PROC.PROC_27, colName, colName2, getComboParams(null));
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
@@ -718,7 +718,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_recipe_initial_B(PROC.PROC_25, colName);
+                String q = SQL_A_.fill_comboboxes_recipe_initial_B(PROC.PROC_25, colName);
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
@@ -738,7 +738,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_combobox_recipe_initial_customer(colName);
+                String q = SQL_A_.fill_combobox_recipe_initial_customer(colName);
                 OUT.showMessage(q);
                 HelpA.fillComboBox(sql, box, q, null, false, false);
                 //

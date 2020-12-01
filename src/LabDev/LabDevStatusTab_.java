@@ -8,7 +8,7 @@ package LabDev;
 import static LabDev.LabDevelopment_.TABLE__MC_CPWORDER;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -122,7 +122,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
         String order = labDev.getOrderNo();
         //
         try {
-            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            String q = SQL_A_.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q, this);
         } catch (SQLException ex) {
@@ -176,7 +176,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
         String order = labDev.getOrderNo();
         //
         try {
-            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            String q = SQL_A_.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
             TABLE_INVERT_3 = TABLE_BUILDER_INVERT_3.buildTable(q, this);
         } catch (SQLException ex) {
@@ -236,7 +236,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
         String order = labDev.getOrderNo();
         //
         try {
-            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            String q = SQL_A_.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
             TABLE_INVERT_4 = TABLE_BUILDER_INVERT_4.buildTable(q, this);
         } catch (SQLException ex) {
@@ -290,7 +290,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
         String order = labDev.getOrderNo();
         //
         try {
-            String q = SQL_A.select_all_from_MC_Cpworder(order);
+            String q = SQL_A_.select_all_from_MC_Cpworder(order);
             OUT.showMessage(q);
             TABLE_INVERT_5 = TABLE_BUILDER_INVERT_5.buildTable(q, this);
         } catch (SQLException ex) {

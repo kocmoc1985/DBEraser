@@ -6,7 +6,7 @@ package MCRecipe.Sec;
 
 import MCRecipe.MC_RECIPE_;
 import MCRecipe.RecipeDetailed_;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import Reporting.JTableBasicRepport;
 import forall.GP;
 import forall.HelpA;
@@ -59,7 +59,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     }
     
     public boolean dropCompareTable(String user) {
-        String q = SQL_A.compareRecipeDropTable(user);
+        String q = SQL_A_.compareRecipeDropTable(user);
         //
         try {
             sql.execute(q,mc_recipe);
@@ -72,7 +72,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     
     public boolean addToCompare(String recipeCode, String release, String user) {
         //
-        String q = SQL_A.compareRecipesAddToCompare(PROC.PROC_01,recipeCode, release, user);
+        String q = SQL_A_.compareRecipesAddToCompare(PROC.PROC_01,recipeCode, release, user);
         //
         mc_recipe.showMessage(q);
         //
@@ -138,7 +138,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         JTable table = jTable1;
         //
-        String q1 = SQL_A.compareRecipesShow(HelpA.updatedBy(), orderByCriteria);
+        String q1 = SQL_A_.compareRecipesShow(HelpA.updatedBy(), orderByCriteria);
         //
         try {
             //

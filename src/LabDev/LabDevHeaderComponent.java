@@ -8,7 +8,7 @@ package LabDev;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.GridLayout;
@@ -256,7 +256,7 @@ public class LabDevHeaderComponent implements ItemListener {
             return;
         }
         //
-        String q = SQL_A.save_status_lab_dev(status_eng, labDev.getOrderNo());
+        String q = SQL_A_.save_status_lab_dev(status_eng, labDev.getOrderNo());
         //
         System.out.println("q: " + q);
         //

@@ -202,7 +202,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         String recipeID = HelpA.getValueSelectedRow(table, T1_RECIPE_ID);
         //
-        String q = SQL_A.recipe_initial_unblock_recipe(recipeID);
+        String q = SQL_A_.recipe_initial_unblock_recipe(recipeID);
         //
         try {
             sql.execute(q, OUT);
@@ -425,7 +425,7 @@ public class RecipeDetailed_ extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.recipe_detailed_insert_note_table_3(PROC.PROC_08, recipe_id, noteName.getText(), noteValue.getText(), HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A_.recipe_detailed_insert_note_table_3(PROC.PROC_08, recipe_id, noteName.getText(), noteValue.getText(), HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
@@ -513,7 +513,7 @@ public class RecipeDetailed_ extends BasicTab {
     private void delete_from_table_4_tempory() {
         for (IngredientToDelete ingred : ingredientsToDelete_table_4) {
             //
-            String q = SQL_A.recipyTemporaryDelete(PROC.PROC_57, ingred.getRecipe_recipe_id(), HelpA.updatedBy());
+            String q = SQL_A_.recipyTemporaryDelete(PROC.PROC_57, ingred.getRecipe_recipe_id(), HelpA.updatedBy());
             //
             try {
                 sql.execute(q, mCRecipe2);
@@ -545,7 +545,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         String density = null;
         //
-        String q = SQL_A.recipe_detailed_find_density_ingred(PROC.PROC_06, ingredient);
+        String q = SQL_A_.recipe_detailed_find_density_ingred(PROC.PROC_06, ingredient);
         //
         try {
             ResultSet rs = sql.execute(q, mCRecipe2);
@@ -595,7 +595,7 @@ public class RecipeDetailed_ extends BasicTab {
         String release = getRelease();
         //
         //
-        String q = SQL_A.recipyTemporaryInsert(PROC.PROC_59, recipe_code, release, ingredient, HelpA.updatedBy());
+        String q = SQL_A_.recipyTemporaryInsert(PROC.PROC_59, recipe_code, release, ingredient, HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
@@ -672,11 +672,11 @@ public class RecipeDetailed_ extends BasicTab {
         String loadFactor = getLoadFactor();
         //
         //
-        String q0 = SQL_A.createRecipeTempTable(PROC.PROC_60, getRecipeCode(), getRelease(), HelpA.updatedBy());
+        String q0 = SQL_A_.createRecipeTempTable(PROC.PROC_60, getRecipeCode(), getRelease(), HelpA.updatedBy());
         //
-        String q_0_1 = SQL_A.RecipeTemporaryPrepareSelect(PROC.PROC_61, mixerCode, loadFactor, HelpA.updatedBy());
+        String q_0_1 = SQL_A_.RecipeTemporaryPrepareSelect(PROC.PROC_61, mixerCode, loadFactor, HelpA.updatedBy());
         //
-        String q1 = SQL_A.RecipeTemporarySelect(HelpA.updatedBy());
+        String q1 = SQL_A_.RecipeTemporarySelect(HelpA.updatedBy());
         //
         //
         try {
@@ -765,7 +765,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         JTable table = mCRecipe2.jTableRecipeDetailedTable4HelpTable;
         //
-        String q = SQL_A.RecipeTemporarySelectForTable4SummTable(HelpA.updatedBy());
+        String q = SQL_A_.RecipeTemporarySelectForTable4SummTable(HelpA.updatedBy());
         //
         try {
             //
@@ -822,7 +822,7 @@ public class RecipeDetailed_ extends BasicTab {
 
     private void checkIfEmpty() {
         if (mCRecipe2.jTable4RecipeDetailed.getRowCount() == 0) {
-            String q = SQL_A.recipeDetailedDeleteIfEmpty(HelpA.updatedBy());
+            String q = SQL_A_.recipeDetailedDeleteIfEmpty(HelpA.updatedBy());
             try {
                 ResultSet rs = sql.execute(q, mCRecipe2);
             } catch (SQLException ex) {
@@ -917,7 +917,7 @@ public class RecipeDetailed_ extends BasicTab {
             phase = HelpM.checkValuesTable4(phase);
             mat_index = HelpM.checkValuesTable4(mat_index);
             //
-            String q = SQL_A.recipyTemporaryUpdate(PROC.PROC_58, rowId, phr, weight, container_nb, phase, mat_index, HelpA.updatedBy());
+            String q = SQL_A_.recipyTemporaryUpdate(PROC.PROC_58, rowId, phr, weight, container_nb, phase, mat_index, HelpA.updatedBy());
             //
             //
             try {
@@ -939,11 +939,11 @@ public class RecipeDetailed_ extends BasicTab {
         //
         if (command.equals(C_INGRED_WEIGHT)) {
             //
-            q = SQL_A.changeIngredWeights(PROC.PROC_55, recipe_code, release, HelpA.updatedBy());
+            q = SQL_A_.changeIngredWeights(PROC.PROC_55, recipe_code, release, HelpA.updatedBy());
             //
         } else if (command.equals(C_INGRED_PHR)) {
             //
-            q = SQL_A.changeIngredPHR(PROC.PROC_54, recipe_code, release, HelpA.updatedBy());
+            q = SQL_A_.changeIngredPHR(PROC.PROC_54, recipe_code, release, HelpA.updatedBy());
             //
         } else if (command.equals(C_TOTAL_VOLUME)) {
             //
@@ -953,7 +953,7 @@ public class RecipeDetailed_ extends BasicTab {
                 return;
             }
             //
-            q = SQL_A.changeTotalVolume(PROC.PROC_53, recipe_code, release, totalVolume, HelpA.updatedBy());
+            q = SQL_A_.changeTotalVolume(PROC.PROC_53, recipe_code, release, totalVolume, HelpA.updatedBy());
             //
         } else if (command.equals(C_TOTAL_WEIGHT)) {
             //
@@ -963,7 +963,7 @@ public class RecipeDetailed_ extends BasicTab {
                 return;
             }
             //
-            q = SQL_A.changeTotalWeight(PROC.PROC_51, recipe_code, release, totalWeight, HelpA.updatedBy());
+            q = SQL_A_.changeTotalWeight(PROC.PROC_51, recipe_code, release, totalWeight, HelpA.updatedBy());
             //
         } else if (command.equals(C_LOAD_FACTOR)) {
             //
@@ -975,7 +975,7 @@ public class RecipeDetailed_ extends BasicTab {
             //
             String mixerCode = getMixerCode();
             //
-            q = SQL_A.changeLoadFactor(PROC.PROC_52, recipe_code, release, newFillFactor, mixerCode, HelpA.updatedBy());
+            q = SQL_A_.changeLoadFactor(PROC.PROC_52, recipe_code, release, newFillFactor, mixerCode, HelpA.updatedBy());
             //
         }
         //
@@ -1056,7 +1056,7 @@ public class RecipeDetailed_ extends BasicTab {
                 container_nb = "1";
             }
             //
-            String q = SQL_A.recipeRecipeInsertNewMaterial(PROC.PROC_56, recipeId, material, phr, weight, phase_, container_nb, mat_index, updatedBy);
+            String q = SQL_A_.recipeRecipeInsertNewMaterial(PROC.PROC_56, recipeId, material, phr, weight, phase_, container_nb, mat_index, updatedBy);
             //
             try {
                 sql.execute(q, mCRecipe2);
@@ -1144,9 +1144,9 @@ public class RecipeDetailed_ extends BasicTab {
         String q;
         //
         if (fromScratch) {
-            q = SQL_A.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A_.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
         } else {
-            q = SQL_A.recipe_detailed_add_new_recipe(PROC.PROC_13, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A_.recipe_detailed_add_new_recipe(PROC.PROC_13, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
         }
         //
         OUT.showMessage(q);
@@ -1189,7 +1189,7 @@ public class RecipeDetailed_ extends BasicTab {
         }
         //
         //
-        String q2 = SQL_A.recipe_detailed_update_recipe_name(recipe_code_update);
+        String q2 = SQL_A_.recipe_detailed_update_recipe_name(recipe_code_update);
         //
         try {
             sql.execute(q2, mCRecipe2);
@@ -1208,7 +1208,7 @@ public class RecipeDetailed_ extends BasicTab {
         //
         JTable table = mCRecipe2.jTable1;
         //
-        recipeInitial.fill_table_1(SQL_A.quotes(recipeCode, false), null, null, null);
+        recipeInitial.fill_table_1(SQL_A_.quotes(recipeCode, false), null, null, null);
         //
         String recipeId = HelpA.getLastIncrementedId(sql, "Recipe_Prop_Main");
         //
@@ -1256,7 +1256,7 @@ public class RecipeDetailed_ extends BasicTab {
         TABLE_INVERT = null;
         //
         try {
-            String q = SQL_A.RecipeInvertFunction(PROC.PROC_62, code, release, mixer_code);
+            String q = SQL_A_.RecipeInvertFunction(PROC.PROC_62, code, release, mixer_code);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -1345,7 +1345,7 @@ public class RecipeDetailed_ extends BasicTab {
         String noteName = jtf1.getText();
         String noteValue = jtf2.getText();
         //
-        String q = SQL_A.recipe_detailed_insert_note_table_2(PROC.PROC_07, recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A_.recipe_detailed_insert_note_table_2(PROC.PROC_07, recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);
@@ -1412,7 +1412,7 @@ public class RecipeDetailed_ extends BasicTab {
         String noteName = HelpA.getValueGivenRow(jTable, row, "NoteName");
 //        String noteValue = HelpA.getValueGivenRow(jTable, row, "Note_Value");
         //
-        String q = SQL_A.recipe_detailed_update_table_2(PROC.PROC_09, recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
+        String q = SQL_A_.recipe_detailed_update_table_2(PROC.PROC_09, recipe_id, noteName, noteValue, HelpA.updatedOn(), HelpA.updatedBy());
         //
         try {
             sql.execute(q, mCRecipe2);

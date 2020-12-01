@@ -10,7 +10,7 @@ import static LabDev.LabDevelopment_.TABLE__VULC;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.REGEX;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.SQL_A;
+import MCRecipe.SQL_A_;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -172,7 +172,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         String agecode = getAgeCode();
         //
         try {
-            String q = "SELECT * FROM " + TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A.quotes(agecode, false);
+            String q = "SELECT * FROM " + TABLE__AGEMENT + " WHERE AGEINGCODE=" + SQL_A_.quotes(agecode, false);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
         } catch (SQLException ex) {
@@ -218,7 +218,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         String vulccode = getVulcCode();
         //
         try {
-            String q = "SELECT * FROM " + TABLE__VULC + " WHERE VULCCODE=" + SQL_A.quotes(vulccode, false);
+            String q = "SELECT * FROM " + TABLE__VULC + " WHERE VULCCODE=" + SQL_A_.quotes(vulccode, false);
             OUT.showMessage(q);
             TABLE_INVERT_2 = TABLE_BUILDER_INVERT_2.buildTable(q, this); // TableRow.FLOW_LAYOUT
         } catch (SQLException ex) {
@@ -392,7 +392,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
 
     private String getCopyQuery(String tableName, String code, HashMap<String, String> ti_map) {
         if (tableName.equals(TABLE__AGEMENT)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+            return SQL_A_.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
                     TABLE__AGEMENT,
                     code,
                     ti_map.get("TYPE"),
@@ -407,7 +407,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
                     null
             );
         } else if (tableName.equals(TABLE__VULC)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+            return SQL_A_.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
                     TABLE__VULC,
                     code,
                     ti_map.get("TYPE"),
@@ -440,7 +440,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
             return;
         }
         //
-        String q = "DELETE FROM " + tableName + " WHERE " + colName + "=" + SQL_A.quotes(code, false);
+        String q = "DELETE FROM " + tableName + " WHERE " + colName + "=" + SQL_A_.quotes(code, false);
         //
         try {
             sql.execute(q, OUT);
@@ -494,7 +494,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
 
     private String getCreateQuery(String tableName, String code) {
         if (tableName.equals(TABLE__AGEMENT)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+            return SQL_A_.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
                     TABLE__AGEMENT,
                     code,
                     null,
@@ -509,7 +509,7 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
                     null
             );
         } else if (tableName.equals(TABLE__VULC)) {
-            return SQL_A.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
+            return SQL_A_.lab_dev__insert_into_MC_CPAGEMET__MC_CPVULMET(
                     TABLE__VULC,
                     code,
                     null,

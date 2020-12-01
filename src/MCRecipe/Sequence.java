@@ -110,7 +110,7 @@ public class Sequence extends BasicTab {
     }
 
     public void deleteAllSequenceSteps() {
-        String q = SQL_A.deleteOtherSequence(PROC.PROC_34, RECIPE, RELEASE);
+        String q = SQL_A_.deleteOtherSequence(PROC.PROC_34, RECIPE, RELEASE);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -128,7 +128,7 @@ public class Sequence extends BasicTab {
         String updated_on = HelpA.updatedOn();
         String updated_by = HelpA.updatedBy();
         //
-        String q = SQL_A.updateOtherSequence(PROC.PROC_35, sequence_id, mixer_code, info, updated_on, updated_by);
+        String q = SQL_A_.updateOtherSequence(PROC.PROC_35, sequence_id, mixer_code, info, updated_on, updated_by);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -144,7 +144,7 @@ public class Sequence extends BasicTab {
     }
 
     public void insertOther() {
-        String q = SQL_A.insertOtherSequence(PROC.PROC_36, RECIPE, RELEASE, MIXER_CODE);
+        String q = SQL_A_.insertOtherSequence(PROC.PROC_36, RECIPE, RELEASE, MIXER_CODE);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -165,7 +165,7 @@ public class Sequence extends BasicTab {
         //
         String step_id = HelpA.getValueSelectedRow(mCRecipe.jTableSequnece1, "Recipe_Sequence_Steps_ID");
         //
-        String q = SQL_A.deleteStepSequence(PROC.PROC_37, step_id);
+        String q = SQL_A_.deleteStepSequence(PROC.PROC_37, step_id);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -189,7 +189,7 @@ public class Sequence extends BasicTab {
         //
         String seqMainId = getRecipeSequenceMainId(RECIPE, RELEASE, MIXER_CODE);
         //
-        String q = SQL_A.sequenceGetStepsWithSeqId(seqMainId);
+        String q = SQL_A_.sequenceGetStepsWithSeqId(seqMainId);
         //
         try {
             ResultSet rs = sql.execute(q, mCRecipe);
@@ -209,7 +209,7 @@ public class Sequence extends BasicTab {
 
     private void recalcStepNumbersB(String recipeSeqStepId, int stepNumber) {
         //
-        String q = SQL_A.sequenceRecalcStepNumbers(recipeSeqStepId, "" + stepNumber);
+        String q = SQL_A_.sequenceRecalcStepNumbers(recipeSeqStepId, "" + stepNumber);
         //
         try {
             sql_additional.execute(q, mCRecipe);
@@ -237,7 +237,7 @@ public class Sequence extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.updateStepSequence(PROC.PROC_38, step_id, commandName, stepNr, commandParam);
+        String q = SQL_A_.updateStepSequence(PROC.PROC_38, step_id, commandName, stepNr, commandParam);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -288,7 +288,7 @@ public class Sequence extends BasicTab {
         //
         stepNr = processStepNumber(stepNr, addLast);
         //
-        String q = SQL_A.insertStepSequence(PROC.PROC_39, sequence_id, commandName, stepNr, commandParam);
+        String q = SQL_A_.insertStepSequence(PROC.PROC_39, sequence_id, commandName, stepNr, commandParam);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -321,7 +321,7 @@ public class Sequence extends BasicTab {
             String release = HelpA.getComboBoxSelectedValue(releaseBox);
             String mixerCode = HelpA.getComboBoxSelectedValue(mixerBox);
             //
-            String q = SQL_A.build_table1_sequence(PROC.PROC_40, recipe, release, mixerCode);
+            String q = SQL_A_.build_table1_sequence(PROC.PROC_40, recipe, release, mixerCode);
             //
             ResultSet rs = sql.execute(q, mCRecipe);
             //
@@ -362,12 +362,12 @@ public class Sequence extends BasicTab {
             String mixerCode = HelpA.getComboBoxSelectedValue(mixerBox);
             //
             if (orig) {
-                RECIPE = SQL_A.quotes(recipe, false);
-                RELEASE = SQL_A.quotes(release, false);
-                MIXER_CODE = SQL_A.quotes(mixerCode, false);
+                RECIPE = SQL_A_.quotes(recipe, false);
+                RELEASE = SQL_A_.quotes(release, false);
+                MIXER_CODE = SQL_A_.quotes(mixerCode, false);
             }
             //
-            String q = SQL_A.build_table2_sequence(recipe, release, mixerCode);
+            String q = SQL_A_.build_table2_sequence(recipe, release, mixerCode);
             //
             ResultSet rs = sql_additional.execute(q, mCRecipe);
             //
@@ -414,7 +414,7 @@ public class Sequence extends BasicTab {
         String recipe2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceRecipeCopy);
         String release2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceReleaseCopy);
         String mixerCode2 = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceMixerCodeCopy);
-        String q = SQL_A.copy_sequence(PROC.PROC_23, RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, date, updatedBy,"");
+        String q = SQL_A_.copy_sequence(PROC.PROC_23, RECIPE, RELEASE, MIXER_CODE, recipe2, release2, mixerCode2, date, updatedBy,"");
         //
         try {
             sql.execute(q, mCRecipe);
@@ -425,7 +425,7 @@ public class Sequence extends BasicTab {
         //
         String recipeSequenceMainId = getRecipeSequenceMainId(RECIPE, RELEASE, MIXER_CODE);
         //
-        String q2 = SQL_A.sequenceInsertFromOther(PROC.PROC_22, recipeSequenceMainId, recipe2, release2, mixerCode2, date, updatedBy);
+        String q2 = SQL_A_.sequenceInsertFromOther(PROC.PROC_22, recipeSequenceMainId, recipe2, release2, mixerCode2, date, updatedBy);
         //
         try {
             sql_additional.execute(q2, mCRecipe);
@@ -440,7 +440,7 @@ public class Sequence extends BasicTab {
 
     private String getRecipeSequenceMainId(String code, String release, String mixerCode) {
         //
-        String q = SQL_A.getRecipeSequenceMainId(code, release, mixerCode);
+        String q = SQL_A_.getRecipeSequenceMainId(code, release, mixerCode);
         //
         try {
             ResultSet rs = sql.execute(q, mCRecipe);
@@ -476,7 +476,7 @@ public class Sequence extends BasicTab {
     }
 
     private void fillComboCommandName() {
-        String q = SQL_A.fillCommandNameComboBoxSequence();
+        String q = SQL_A_.fillCommandNameComboBoxSequence();
         HelpA.fillComboBox(sql, mCRecipe.jComboBoxCommandNameSequence, q, null, false, false);
     }
 
@@ -511,7 +511,7 @@ public class Sequence extends BasicTab {
                 Object selection = boxToFill.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_combobox_sequence_2(colName, procedureName, params);
+                String q = SQL_A_.fill_combobox_sequence_2(colName, procedureName, params);
                 OUT.showMessage(q);
                 HelpA.fillComboBox(sql, boxToFill, q, null, false, false);
                 //
@@ -527,7 +527,7 @@ public class Sequence extends BasicTab {
                 Object selection = boxToFill.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_combobox_sequence_2_multiple(colName, colName2, procedureName, params);
+                String q = SQL_A_.fill_combobox_sequence_2_multiple(colName, colName2, procedureName, params);
                 OUT.showMessage(q);
                 HelpA.fillComboBox(sql, boxToFill, q, null, true, false);
                 //
@@ -558,7 +558,7 @@ public class Sequence extends BasicTab {
             String release = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceRelease);
             String mixerCode = HelpA.getComboBoxSelectedValue(mCRecipe.jComboBoxSequenceMixerCode);
             //
-            String q = SQL_A.sequence_get_sequence_main(PROC.PROC_21, recipe, release, mixerCode);
+            String q = SQL_A_.sequence_get_sequence_main(PROC.PROC_21, recipe, release, mixerCode);
             //
             JTable table_temp = new JTable();
             //

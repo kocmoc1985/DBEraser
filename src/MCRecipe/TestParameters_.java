@@ -97,7 +97,7 @@ public class TestParameters_ extends BasicTab {
                 Object selection = box.getSelectedItem();
                 //
                 //
-                String q = SQL_A.fill_comboboxes_test_parameters_a(PROC.PROC_66, colName, getOrder(), getRecipe_B());
+                String q = SQL_A_.fill_comboboxes_test_parameters_a(PROC.PROC_66, colName, getOrder(), getRecipe_B());
                 OUT.showMessage(q);
                 //
                 JComboBoxA boxA = (JComboBoxA) box;
@@ -119,7 +119,7 @@ public class TestParameters_ extends BasicTab {
         //
         try {
             //
-            String q = SQL_A.fn_ITF_Test_Related(PROC.PROC_66, order, recipe);
+            String q = SQL_A_.fn_ITF_Test_Related(PROC.PROC_66, order, recipe);
             OUT.showMessage(q);
             //
             ResultSet rs = sql.execute(q, OUT);
@@ -239,7 +239,7 @@ public class TestParameters_ extends BasicTab {
         String id_4 = jTable_1.getValueSelectedRow(ID_4);
         //
         try {
-            String q = SQL_A.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id_1, id_2, id_3, id_4);
+            String q = SQL_A_.fn_ITF_Test_Related_ID(PROC.PROC_67, order, recipe, id_1, id_2, id_3, id_4);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {

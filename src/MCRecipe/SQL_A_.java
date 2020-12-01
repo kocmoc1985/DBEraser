@@ -13,7 +13,7 @@ import forall.HelpA;
  *
  * @author KOCMOC
  */
-public class SQL_A {
+public class SQL_A_ {
 
     /**
      *

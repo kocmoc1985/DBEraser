@@ -65,7 +65,7 @@ public class RecipeAdditional extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.recipe_additional_fill_combo_orders(PROC.PROC_03,code);
+        String q = SQL_A_.recipe_additional_fill_combo_orders(PROC.PROC_03,code);
         //
         OUT.showMessage(q);
         //
@@ -81,7 +81,7 @@ public class RecipeAdditional extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.recipe_additional_build_table_2(PROC.PROC_02,code, order);
+        String q = SQL_A_.recipe_additional_build_table_2(PROC.PROC_02,code, order);
         //
         try {
             ResultSet rs = sql.execute(q,mCRecipe);
@@ -103,7 +103,7 @@ public class RecipeAdditional extends BasicTab {
             return;
         }
         //
-        String q = SQL_A.recipe_additional_build_table_1(PROC.PROC_04,code);
+        String q = SQL_A_.recipe_additional_build_table_1(PROC.PROC_04,code);
         //
         try {
             ResultSet rs = sql.execute(q,mCRecipe);

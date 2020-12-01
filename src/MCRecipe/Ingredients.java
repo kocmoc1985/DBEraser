@@ -172,7 +172,7 @@ public class Ingredients extends BasicTab {
             return false;
         }
         //
-        String q = SQL_A.ingredients_delete_ingred(PROC.PROC_65, ingredCode);
+        String q = SQL_A_.ingredients_delete_ingred(PROC.PROC_65, ingredCode);
         //
         try {
             sql.execute(q, mCRecipe);
@@ -247,7 +247,7 @@ public class Ingredients extends BasicTab {
             //
         }
         //
-        String q2 = SQL_A.ingredient_update_ingred_name(ingredient_code_update);
+        String q2 = SQL_A_.ingredient_update_ingred_name(ingredient_code_update);
         //
         try {
             sql.execute(q2, mCRecipe);
@@ -270,9 +270,9 @@ public class Ingredients extends BasicTab {
         String q;
         //
         if (fromScratch) {
-            q = SQL_A.ingredients_add_new_ingredient_scratch(PROC.PROC_10, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A_.ingredients_add_new_ingredient_scratch(PROC.PROC_10, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
         } else {
-            q = SQL_A.ingredients_add_new_ingredient(PROC.PROC_11, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
+            q = SQL_A_.ingredients_add_new_ingredient(PROC.PROC_11, getIngredCodeIdByName(), HelpA.updatedOn(), HelpA.updatedBy());
         }
         //
         try {
@@ -293,7 +293,7 @@ public class Ingredients extends BasicTab {
 
     private void updateTables(String ingredCode) {
         //
-        fill_table_1(SQL_A.quotes(ingredCode, false));
+        fill_table_1(SQL_A_.quotes(ingredCode, false));
         //
         JTable table = mCRecipe.jTable_Ingred_Table1;
         //
@@ -314,7 +314,7 @@ public class Ingredients extends BasicTab {
         String ingred_free_info_id = HelpA.getValueGivenRow(mCRecipe.jTable_Ingred_Table3, selected_row, "Ingred_Free_Info_ID");
         //
         try {
-            sql.execute(SQL_A.delete_from_ingred_table_3(PROC.PROC_44, ingred_free_info_id), mCRecipe);
+            sql.execute(SQL_A_.delete_from_ingred_table_3(PROC.PROC_44, ingred_free_info_id), mCRecipe);
         } catch (SQLException ex) {
             Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -375,7 +375,7 @@ public class Ingredients extends BasicTab {
             //
             try {
                 //
-                sql.execute(SQL_A.update_ingred_table_3(PROC.PROC_45, ingred_free_info_id, ingred_code, note_name, note_value, updatedOn, HelpA.updatedBy()), mCRecipe);
+                sql.execute(SQL_A_.update_ingred_table_3(PROC.PROC_45, ingred_free_info_id, ingred_code, note_name, note_value, updatedOn, HelpA.updatedBy()), mCRecipe);
             } catch (SQLException ex) {
                 Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -402,7 +402,7 @@ public class Ingredients extends BasicTab {
             }
             //
             try {
-                String q = SQL_A.add_to_ingred_table_3(PROC.PROC_43, ingred_code, note_name, note_value, updatedOn, HelpA.updatedBy());
+                String q = SQL_A_.add_to_ingred_table_3(PROC.PROC_43, ingred_code, note_name, note_value, updatedOn, HelpA.updatedBy());
                 sql.execute(q, mCRecipe);
             } catch (SQLException ex) {
                 Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
@@ -435,7 +435,7 @@ public class Ingredients extends BasicTab {
         //
         try {
             //
-            String q = SQL_A.build_ingred_textarea(PROC.PROC_46, id);
+            String q = SQL_A_.build_ingred_textarea(PROC.PROC_46, id);
             //
             ResultSet rs = sql.execute(q, mCRecipe);
             //
@@ -489,7 +489,7 @@ public class Ingredients extends BasicTab {
         //
         try {
             //
-            String q = SQL_A.build_ingred_table_2(PROC.PROC_48, getIngredCode());
+            String q = SQL_A_.build_ingred_table_2(PROC.PROC_48, getIngredCode());
             //
             ResultSet rs = sql.execute(q, mCRecipe);
             //
@@ -511,7 +511,7 @@ public class Ingredients extends BasicTab {
         JTable table3 = mCRecipe.jTable_Ingred_Table3;
         //
         try {
-            String q = SQL_A.build_ingred_table_3(PROC.PROC_47, getIngredCode());
+            String q = SQL_A_.build_ingred_table_3(PROC.PROC_47, getIngredCode());
             //
             ResultSet rs = sql_additional.execute(q, mCRecipe);
             //
@@ -557,7 +557,7 @@ public class Ingredients extends BasicTab {
         //
         try {
             //
-            String q = SQL_A.ingredientListFunction(
+            String q = SQL_A_.ingredientListFunction(
                     PROC.PROC_50,
                     name,
                     clasS,
@@ -647,7 +647,7 @@ public class Ingredients extends BasicTab {
             public void run() {
                 Object selection = box.getSelectedItem();
                 //
-                String q = SQL_A.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
+                String q = SQL_A_.fill_comboboxes_ingred(PROC.PROC_24, colName, getComboParams());
                 OUT.showMessage(q);
                 //
 //                JComboBoxA boxA = (JComboBoxA) box;
@@ -781,7 +781,7 @@ public class Ingredients extends BasicTab {
         TABLE_INVERT = null;
         //
         try {
-            String q = SQL_A.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
+            String q = SQL_A_.prc_ITF_Igredients_main_Select(PROC.PROC_49, name);
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
         } catch (SQLException ex) {
