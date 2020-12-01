@@ -263,15 +263,15 @@ public class RowDataInvert extends RowData {
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, true);
             } else if (comboBoxFixedValue) {
                 String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
-                jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, comboboxValues, value);
+                jcb = (JComboBoxInvert) HelpA.fillComboBox_fixed_values(jcb, comboboxValues, value);
             } else if (comboBoxFixedValueAdvanced) {
                 //
                 HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);
                 //
                 if (enableEmptyValue) {
-                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", "", ""));
+                    jcb = (JComboBoxInvert) HelpA.fillComboBox_fixed_values(jcb, boxObjects, new HelpA.ComboBoxObject("-", "", "", ""));
                 } else {
-                    jcb = (JComboBoxInvert) HelpA.fillComboBox(jcb, boxObjects, value);
+                    jcb = (JComboBoxInvert) HelpA.fillComboBox_fixed_values(jcb, boxObjects, value);
                 }
                 //
             } else {

@@ -2067,7 +2067,7 @@ public class HelpA {
     }
 
     public static void showActionDeniedUserRole(String userRole) {
-        JOptionPane.showMessageDialog(null, MSG.LANG("Access not allowed with user role: ")+userRole, MSG.LANG("Not allowed"), JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, MSG.LANG("Access not allowed with user role: ") + userRole, MSG.LANG("Not allowed"), JOptionPane.ERROR_MESSAGE);
     }
 
     public static void showNotification(String msg) {
@@ -2172,12 +2172,12 @@ public class HelpA {
         return JOptionPane.showConfirmDialog(null, jtf, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
-    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg,String initialValue) {
+    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg, String initialValue) {
         requestFocus(tfc);
-        tfc.setText(initialValue.substring(0, initialValue.length()-1));
+        tfc.setText(initialValue.substring(0, initialValue.length() - 1));
         return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
-    
+
     public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg) {
         requestFocus(tfc);
         return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
@@ -2850,6 +2850,42 @@ public class HelpA {
         //
 //        jbox.setSelectedIndex(0);
 //        jbox.setSelectedIndex(1);
+        //
+        return jbox;
+    }
+
+    /**
+     * Important for BuhInvoice
+     *
+     * @param jbox
+     * @param values
+     * @param initialValue
+     * @return
+     */
+    public static JComboBox fillComboBox_fixed_values(JComboBox jbox, Object[] values, Object initialValue) {
+        //
+        ArrayList<Object> list = new ArrayList<Object>();
+        //
+        if (initialValue != null) {
+            list.add(initialValue);
+        }
+        //
+        if (values != null) {
+            list.addAll(Arrays.asList(values));
+        }
+        //
+        Object[] arr = list.toArray();
+        //
+        //#AutoComplete, Auto complete# glazedlists_java15-1.9.1.jar is needed
+        AutoCompleteSupport support = AutoCompleteSupport.install(
+                jbox, GlazedLists.eventListOf(arr));
+        //
+        //
+        if (arr.length == 1) {
+            jbox.setSelectedIndex(0);
+        } else {
+            jbox.setSelectedIndex(1);
+        }
         //
         return jbox;
     }
