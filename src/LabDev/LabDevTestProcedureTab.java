@@ -42,6 +42,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     private String TEST_CODE;
     private String ID_PROC;
     private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private boolean skip = false;
 
     public LabDevTestProcedureTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -73,14 +74,34 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     }
 
     public void refresh() {
-        java.awt.EventQueue.invokeLater(() -> {
+//        java.awt.EventQueue.invokeLater(() -> {
             showTableInvert();
             labDev.refreshHeader();
-        });
+//        });
     }
 
     public void refresh_b(String code, JTable table) {
         java.awt.EventQueue.invokeLater(() -> {
+            //
+            this.TEST_CODE = code;
+            //
+            fillJTable();
+            HelpA.markFirstRowJtable(table);
+            mouseClickedOnTable(table);
+            //
+        });
+    }
+    
+    public void refresh_c(String code, JTable table) {
+        java.awt.EventQueue.invokeLater(() -> {
+            //
+            skip = true;
+            fillComboBox();
+            //
+            HelpA.ComboBoxObject cbo = new HelpA.ComboBoxObject(code, "", "", "");
+            getComboBox().setSelectedItem(cbo);
+            //
+            skip = false;
             //
             this.TEST_CODE = code;
             //
@@ -140,7 +161,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         try {
             sql.execute(q, OUT);
-            refresh_b(code, table);
+            refresh_c(code, table);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevMaterialInfoTab.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,8 +195,8 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         String q_copy = SQL_A_.lab_dev_test_proc__copy(PROC.PROC_83, code_new, code_old);
         //
         try {
-            sql.execute(q_copy);
-            refresh_b(code_new, table);
+            sql.execute(q_copy,OUT);
+            refresh_c(code_new, table);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevTestProcedureTab.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,7 +222,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         try {
             sql.execute(q_insert, OUT);
-            refresh_b(code, getTable());
+            refresh_c(code, getTable());
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevTestProcedureTab.class.getName()).log(Level.SEVERE, null, ex);
@@ -402,7 +423,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         JTable table = getTable();
         //
-        if (e.getStateChange() != 1) {
+        if (e.getStateChange() != 1 || skip == true) {
             return;
         }
         //
