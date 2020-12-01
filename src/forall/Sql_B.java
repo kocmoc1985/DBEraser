@@ -7,12 +7,14 @@ package forall;
 //import com.microsoft.sqlserver.jdbc.SQLServerException;
 import Interfaces.SqlBasic;
 import MyObjectTable.ShowMessage;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -367,6 +369,33 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
             return statement_2.getResultSet();
         }
         return null;
+    }
+
+    public int executeProcedure(String q,ShowMessage sm) {
+        //
+        sm.showMessage(q);
+        //
+        CallableStatement proc;
+        //
+        try {
+            proc = getConnection().prepareCall("{ ? = call " + q + " }");
+            proc.registerOutParameter(1, Types.INTEGER);
+            proc.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+        //
+        int ret;
+        //
+        try {
+            ret = proc.getInt(1);
+        } catch (Exception ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+            ret = -1;
+        }
+        //
+        return ret;
     }
 
     @Override
