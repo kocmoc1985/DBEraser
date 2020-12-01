@@ -2172,6 +2172,12 @@ public class HelpA {
         return JOptionPane.showConfirmDialog(null, jtf, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
+    public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg,String initialValue) {
+        requestFocus(tfc);
+        tfc.setText(initialValue.substring(0, initialValue.length()-1));
+        return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+    
     public static boolean chooseFromJTextFieldWithCheck(TextFieldCheck tfc, String msg) {
         requestFocus(tfc);
         return JOptionPane.showConfirmDialog(null, tfc, msg, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;

@@ -140,8 +140,6 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         String id = HelpA.getValueSelectedRow(table, "ID_Proc");
         String code = HelpA.getValueSelectedRow(table, "CODE");
         //
-
-        //
         if (HelpA.rowSelected(table) == false) {
             HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
@@ -160,8 +158,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         String q = SQL_A_.lab_dev_test_proc__delete(PROC.PROC_84, deleteAll ? code : null, id);
         //
         try {
+            //
             sql.execute(q, OUT);
-            refresh_c(code, table);
+            //
+            if(deleteAll){
+                refresh_c(null, table);
+            }else{
+                refresh_c(code, table);
+            }
+            //
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevMaterialInfoTab.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,11 +186,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             return false;
         }
         //
+        if (HelpA.confirm(MSG.LANG("Copy ") + code_old + "?") == false) {
+            return false;
+        }
+        //
         String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Copy test procedure, type new code"));
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Copy test procedure, type new code"),code_old);
         String code_new = tfc.getText();
         //
         if (code_new == null || yesNo == false) {
@@ -344,11 +353,17 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         String id = getCurrentId();
         //
+        if(id == null || id.isEmpty()){
+            mcRecipe.jPanel75.removeAll();
+            mcRecipe.jPanel75.revalidate();
+            mcRecipe.jPanel75.repaint();
+            return;
+        }
+        //
         try {
             String q = "SELECT * FROM MCCPTProc where ID_Proc=" + id;
             OUT.showMessage(q);
             TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
-
         } catch (SQLException ex) {
             Logger.getLogger(TestParameters_.class
                     .getName()).log(Level.SEVERE, null, ex);

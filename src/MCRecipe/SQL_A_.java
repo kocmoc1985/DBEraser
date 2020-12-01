@@ -1685,33 +1685,49 @@ public class SQL_A_ {
                 + "NULL" + ","
                 + "NULL" + "";
     }
-    
+
     /**
-     * 
-     * @param PROC  - 83
+     *
+     * @param PROC - 83
      * @param param1
      * @param param2
-     * @return 
+     * @return
      */
-    public static String lab_dev_test_proc__copy(String PROC, String param1,String param2) {
+    public static String lab_dev_test_proc__copy(String PROC, String param1, String param2) {
         return PROC + " "
                 + quotes(param1, false) + ","
                 + quotes(param2, false);
     }
-    
+
     /**
-     * 
+     *
      * @param PROC - 84
      * @param param1 - code
      * @param param2 - ID_Proc
-     * @return 
+     * @return
      */
-    public static String lab_dev_test_proc__delete(String PROC, String param1,String param2) {
+    public static String lab_dev_test_proc__delete(String PROC, String param1, String param2) {
         return PROC + " "
                 + quotes(param1, false) + ","
                 + quotes(param2, true);
     }
-                
+
+    /**
+     * 
+     * @param PROC - 85
+     * @param param1 - order new
+     * @param param2 - order old
+     * @param param3
+     * @param param4
+     * @return 
+     */
+    public static String lab_dev_find_order__copy(String PROC, String param1, String param2, String param3, String param4) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ","
+                + quotes(param4, false);
+    }
 
     public static void main(String[] args) {
         System.out.println("" + lab_dev__find_order_tab__create__new("MC_Cpworder", "AAAAA"));
