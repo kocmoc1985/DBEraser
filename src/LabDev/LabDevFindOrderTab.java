@@ -116,8 +116,8 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         JTable table = getTable();
         //
-        if (HelpA.rowSelected(table) == false) {
-            HelpA.showNotification(MSG.LANG("Please choose a row in the table to perform this action"));
+       if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
         }
         //
@@ -176,7 +176,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             fillTable_order(order);
             HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
             labDev.lab_dev_tab__tab_main_data__clicked();
-            labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
+            labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
             //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,7 +7,9 @@ package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__MAT_INFO;
 import MCRecipe.Lang.LAB_DEV;
+import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
+import MCRecipe.MC_RECIPE_;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
@@ -54,7 +56,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         getJTable().addMouseListener(this);
         //
     }
-    
+
     public void refresh() {
         fillJTable();
         fillComboBox(); //refreshHeader(); is done from: fillJTable() -> materialInfoJTableClicked()
@@ -115,8 +117,37 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         fillJTable();
     }
 
-    private void removeMaterial() {
-
+    private boolean removeMaterial() {
+        //
+        JTable table = getJTable();
+        //
+        String order = labDev.getOrderNo();
+        String material = HelpA.getValueSelectedRow(table, "Material");
+        //
+        if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Table row not chosen"));
+            return false;
+        }
+         //
+        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
+            return false;
+        }
+        //
+        if (HelpA.confirm(MSG.LANG("Confirm deletion of: ") + material + "?") == false) {
+            return false;
+        }
+        //
+        String q = SQL_A_.lab_dev_material_info__delete(PROC.PROC_81, order, material);
+        //
+        try {
+            sql.execute(q, OUT);
+            fillJTable();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevMaterialInfoTab.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        //
     }
 
     private void addMaterial() {
@@ -226,8 +257,8 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         }
         //
     }
-    
-     @Override
+
+    @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator = new SaveIndicator(mcRecipe.jButton_lab_dev__material_info_save, this, 1);
     }
@@ -257,8 +288,6 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
     public String[] getComboParams__mcs() {
         return null;
     }
-
-   
 
     @Override
     public void fillNotes() {

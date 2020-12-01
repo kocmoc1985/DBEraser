@@ -1650,6 +1650,19 @@ public class SQL_A_ {
         //
         return q;
     }
+    
+    /**
+     * 
+     * @param PROC - 81
+     * @param param1 - order
+     * @param param2 - material
+     * @return 
+     */
+    public static String lab_dev_material_info__delete(String PROC, String param1, String param2) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + "";
+    }
 
     public static void main(String[] args) {
         System.out.println("" + lab_dev__find_order_tab__create__new("MC_Cpworder", "AAAAA"));
