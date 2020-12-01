@@ -68,10 +68,18 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         showCheckBoxComponent();
         //
         // Refresh after adding new
-        if(getTable().getRowCount() == 1){
+        if (getTable().getRowCount() == 1) {
             fillTable_order(labDev.getOrderNo());
         }
         //
+    }
+
+    private void refresh__insert_and_copy(String order) {
+        labDev.setOrderNo(order);
+        fillTable_order(order);
+        HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
+        labDev.lab_dev_tab__tab_main_data__clicked();
+        labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
     }
 
     @Override
@@ -84,41 +92,59 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         } else if (e.getSource() == getPrintBtn()) {
             tableCommonExportOrRepport(getTable(), true);
         } else if (e.getSource() == getNewBtn()) {
-            addOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
+            createOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
         } else if (e.getSource() == getCopyBtn()) {
-            copyOrder();
+            copyOrder(LabDevelopment_.TABLE__MC_CPWORDER, "WORDERNO", null);
         } else if (e.getSource() == getDeleteBtn()) {
             deleteOrder();
         }
         //
     }
 
-    private boolean copyOrder() {
+    private boolean copyOrder(String tableName, String colName, String regex) {
         //
         JTable table = getTable();
+        String order = HelpA.getValueSelectedRow(table, "WORDERNO");
         //
         if (HelpA.rowSelected(table) == false) {
             HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
         }
         //
-        String id = HelpA.getValueSelectedRow(table, "ID");
-        String order = HelpA.getValueSelectedRow(table, "WORDERNO");
-        //
         if (HelpA.confirm(MSG.LANG("Copy order ") + order + "?") == false) {
             return false;
         }
         //
-        
+        String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
-        return false;
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Create new order"), order);
+        String order_new = tfc.getText();
+        //
+        if (order == null || yesNo == false) {
+            return false;
+        }
+        //
+        //
+        String q_copy = SQL_A_.lab_dev_find_order__copy(PROC.PROC_85, order_new, order, null, null);
+        //
+        try {
+            sql.execute(q_copy, OUT);
+            refresh__insert_and_copy(order_new);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevFindOrderTab.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        //
     }
 
     private boolean deleteOrder() {
         //
         JTable table = getTable();
         //
-       if (HelpA.rowSelected(table) == false) {
+        if (HelpA.rowSelected(table) == false) {
             HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
         }
@@ -154,7 +180,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
     }
 
-    private boolean addOrder(String tableName, String colName, String regex) {
+    private boolean createOrder(String tableName, String colName, String regex) {
         //
         String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
         //
@@ -173,12 +199,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             //
             sql.execute(q_insert, OUT);
             //
-            labDev.setOrderNo(order);
-//            labDev.refreshHeader();
-            fillTable_order(order);
-            HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
-            labDev.lab_dev_tab__tab_main_data__clicked();
-            labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
+            refresh__insert_and_copy(order);
             //
         } catch (SQLException ex) {
             Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
