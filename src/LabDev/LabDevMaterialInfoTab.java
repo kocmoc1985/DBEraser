@@ -68,7 +68,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         if (e.getSource().equals(getAddMaterialBtn())) {
             addMaterial();
         } else if (e.getSource().equals(getRemoveMaterialButton())) {
-            removeMaterial();
+            deleteMaterial();
         } else if (e.getSource().equals(getSaveButton())) {
             saveTableInvert();
         } else if (e.getSource().equals(getPrintInvertButton())) {
@@ -117,7 +117,7 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         fillJTable();
     }
 
-    private boolean removeMaterial() {
+    private boolean deleteMaterial() {
         //
         JTable table = getJTable();
         //

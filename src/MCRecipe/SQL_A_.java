@@ -1686,10 +1686,30 @@ public class SQL_A_ {
                 + "NULL" + "";
     }
     
+    /**
+     * 
+     * @param PROC  - 83
+     * @param param1
+     * @param param2
+     * @return 
+     */
     public static String lab_dev_test_proc__copy(String PROC, String param1,String param2) {
         return PROC + " "
                 + quotes(param1, false) + ","
                 + quotes(param2, false);
+    }
+    
+    /**
+     * 
+     * @param PROC - 84
+     * @param param1 - code
+     * @param param2 - ID_Proc
+     * @return 
+     */
+    public static String lab_dev_test_proc__delete(String PROC, String param1,String param2) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + quotes(param2, true);
     }
                 
 

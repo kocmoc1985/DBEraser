@@ -92,6 +92,8 @@ public class MSG {
         DICT.put("The length of input exceeded the limit" , "Die Länge der Dateneigabe ist zu lang");
         DICT.put("SQL ERROR, could not update" , "SQL FEHLER, Speicherung nicht möglich");
         //
+        DICT.put("Confirm deletion of marked row" , "Löschung der ausgewählten Reihe bestätigen");
+        //
     }
 
     public static String LANG(String word) {

@@ -9,6 +9,7 @@ import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import LabDev.sec.TestVarEntry;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
@@ -59,6 +60,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         getNewBtn().addActionListener(this);
         getCopyBtn().addActionListener(this);
         getDeleteBtn().addActionListener(this);
+        getDeleteBtn_b().addActionListener(this);
         //
         getComboBox().addItemListener(this);
         table.addMouseListener(this);
@@ -103,7 +105,46 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         } else if (e.getSource().equals(getCopyBtn())) {
             copy(LabDevelopment_.TABLE__TEST_PROCEDURE, "CODE", null);
         } else if (e.getSource().equals(getDeleteBtn())) {
+            delete(true);
+        } else if (e.getSource().equals(getDeleteBtn_b())) {
+            delete(false);
+        }
+        //
+    }
 
+    private boolean delete(boolean deleteAll) {
+        //
+        JTable table = getTable();
+        //
+        String id = HelpA.getValueSelectedRow(table, "ID_Proc");
+        String code = HelpA.getValueSelectedRow(table, "CODE");
+        //
+
+        //
+        if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Table row not chosen"));
+            return false;
+        }
+        //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            return false;
+        }
+        //
+        String msg = deleteAll ? MSG.LANG("Confirm deletion of: ") + code + "?" : MSG.LANG("Confirm deletion of marked row");
+        //
+        if (HelpA.confirm(msg) == false) {
+            return false;
+        }
+        //
+        String q = SQL_A_.lab_dev_test_proc__delete(PROC.PROC_84, deleteAll ? code : null, id);
+        //
+        try {
+            sql.execute(q, OUT);
+            refresh_b(code, table);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevMaterialInfoTab.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         //
     }
@@ -123,7 +164,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Copy test procedure"));
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Copy test procedure, type new code"));
         String code_new = tfc.getText();
         //
         if (code_new == null || yesNo == false) {
@@ -158,6 +199,13 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         String q_insert = SQL_A_.lab_dev_test_proc__new(PROC.PROC_82, code);
         //
+        try {
+            sql.execute(q_insert, OUT);
+            refresh_b(code, getTable());
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestProcedureTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
         return false;
         //
@@ -184,7 +232,11 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     }
 
     private JButton getDeleteBtn() {
-        return mcRecipe.jButton_lab_dev__material_info_delete;
+        return mcRecipe.jButton_lab_dev__material_info_delete_proc;
+    }
+
+    private JButton getDeleteBtn_b() {
+        return mcRecipe.jButton_lab_dev__material_info_delete_entry;
     }
 
     private JButton getCopyBtn() {
@@ -205,7 +257,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //
         String q = "SELECT ID_Proc,CODE,TESTVAR,DESCRIPT,NORM, UpdatedOn,UpdatedBy FROM " + TABLE__TEST_PROCEDURE + " WHERE CODE=" + SQL_A_.quotes(TEST_CODE, false) + " ORDER BY NUM ASC";
         //
-        HelpA.build_table_common(sql, OUT, table, q, new String[]{"ID_Proc", "UpdatedOn", "UpdatedBy"});
+        HelpA.build_table_common(sql, OUT, table, q, new String[]{"UpdatedOn", "UpdatedBy"}); // "ID_Proc",
         //
         HelpA.setColumnWidthByName("TESTVAR", table, 0.28);
     }
