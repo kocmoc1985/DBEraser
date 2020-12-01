@@ -7,7 +7,7 @@ package forall;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MyObjectTable.ShowMessage;
 import ca.odell.glazedlists.GlazedLists;
@@ -310,7 +310,7 @@ public class HelpA {
             return;
         }
         //
-        boolean role_developer = MC_RECIPE_.isDeveloper();
+        boolean role_developer = MC_RECIPE.isDeveloper();
         //
 //        if (runningInNetBeans("MCRecipe.jar") || HelpA.updatedBy().equals("SB") || role_developer) {
         if (role_developer) { // 

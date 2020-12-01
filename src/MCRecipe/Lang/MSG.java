@@ -75,6 +75,7 @@ public class MSG {
         DICT.put("Confirm deletion of: ", "Löschung bestätigen, Code: ");
         DICT.put("Create new ageing code", "Neuen Alterungscode erstellen");
         DICT.put("Create new order", "Neuen Auftrag erstellen");
+        DICT.put("Create new test procedure", "Neue Prüfmethode erstellen");
         DICT.put("Operation successful" , "Erfolgreich");
         DICT.put("Operation failed" , "Fehlgeschlagen");
         DICT.put("Add new" , "Neu ergänzen");
@@ -86,7 +87,7 @@ public class MSG {
         DICT.put("Table row not chosen" , "Tabellenzeile nicht ausgewählt");
         DICT.put("Specify new note value" , "Bitte, einen neuen Notenwert eingeben");
         DICT.put("Id is missing, cannot continue" , "Id fehlt, kann nicht weitergehen");
-        DICT.put("Copy order " , "Auftrag kopieren ");
+        DICT.put("Copy order " , "Auftrag kopieren "); // Create new test procedure
         //
         DICT.put("The length of input exceeded the limit" , "Die Länge der Dateneigabe ist zu lang");
         DICT.put("SQL ERROR, could not update" , "SQL FEHLER, Speicherung nicht möglich");

@@ -641,11 +641,11 @@ public class SQL_A_ {
         //
     }
 
-    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE_ mc_recipe) {
+    public static String fill_comboboxes_recipe_initial(String PROC_1, String PROC_2, String PROC_3, String PROC_4, String param, String[] params, MC_RECIPE mc_recipe) {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         boolean cond_2 = mc_recipe.jComboBox_Ingred_1.getSelectedItem() == null
                 && mc_recipe.jComboBox_Ingred_2.getSelectedItem() == null;
         //
@@ -680,7 +680,7 @@ public class SQL_A_ {
         //
         String procedure;
         //
-        boolean cond_1 = MC_RECIPE_.jCheckBoxRecipeInitialOR.isSelected();
+        boolean cond_1 = MC_RECIPE.jCheckBoxRecipeInitialOR.isSelected();
         //
         if (params.length == 21) { //Ingred check box is of
             procedure = PROC_1;
@@ -1650,19 +1650,48 @@ public class SQL_A_ {
         //
         return q;
     }
-    
+
     /**
-     * 
+     *
      * @param PROC - 81
      * @param param1 - order
      * @param param2 - material
-     * @return 
+     * @return
      */
     public static String lab_dev_material_info__delete(String PROC, String param1, String param2) {
         return PROC + " "
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + "";
     }
+
+    public static String lab_dev_test_proc__new(String PROC, String param1) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + ","
+                + "NULL" + "";
+    }
+    
+    public static String lab_dev_test_proc__copy(String PROC, String param1,String param2) {
+        return PROC + " "
+                + quotes(param1, false) + ","
+                + quotes(param2, false);
+    }
+                
 
     public static void main(String[] args) {
         System.out.println("" + lab_dev__find_order_tab__create__new("MC_Cpworder", "AAAAA"));

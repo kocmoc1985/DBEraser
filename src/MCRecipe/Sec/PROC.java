@@ -105,6 +105,8 @@ public class PROC {
     public static final String PROC_79 = "prc_ITF_CPWORDER_INSERT_Table "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> ADD MATERIAL
     public static final String PROC_80 = "prc_ITF_CPWORDER_Delete "; //#LAB DEVELOPMENT -> FIND ORDER -> DELETE ORDER
     public static final String PROC_81 = "prc_ITF_CPWORDER_Materials_Delete "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> DELETE MATERIAL
+    public static final String PROC_82 = "prc_ITF_MCCPTproc_INSERT_Procedure "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> CREATE NEW
+    public static final String PROC_83 = "prc_ITF_MCCPTproc_Copy_From "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> COPY
     //
     // LAB_DEVELOPMENT  
     //

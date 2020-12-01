@@ -10,6 +10,7 @@ import LabDev.sec.TestVarEntry;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.SQL_A_;
+import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
@@ -17,6 +18,7 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import forall.TextFieldCheck;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -54,6 +56,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         getSaveBtn().addActionListener(this);
         getPrintJTableBtn().addActionListener(this);
         getPrintTableInvertBtn().addActionListener(this);
+        getNewBtn().addActionListener(this);
+        getCopyBtn().addActionListener(this);
+        getDeleteBtn().addActionListener(this);
         //
         getComboBox().addItemListener(this);
         table.addMouseListener(this);
@@ -64,19 +69,6 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 //        mouseClickedOnTable(table);
         //
     }
-    
-     @Override
-    public void actionPerformed(ActionEvent e) {
-        //
-        if (e.getSource().equals(getSaveBtn())) {
-            saveTableInvert();
-        }else if(e.getSource().equals(getPrintJTableBtn())){
-            tableCommonExportOrRepport(getTable(), false);
-        }else if(e.getSource().equals(getPrintTableInvertBtn())){
-            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
-        }
-        //
-    }
 
     public void refresh() {
         java.awt.EventQueue.invokeLater(() -> {
@@ -85,20 +77,118 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         });
     }
 
+    public void refresh_b(String code, JTable table) {
+        java.awt.EventQueue.invokeLater(() -> {
+            //
+            this.TEST_CODE = code;
+            //
+            fillJTable();
+            HelpA.markFirstRowJtable(table);
+            mouseClickedOnTable(table);
+            //
+        });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //
+        if (e.getSource().equals(getSaveBtn())) {
+            saveTableInvert();
+        } else if (e.getSource().equals(getPrintJTableBtn())) {
+            tableCommonExportOrRepport(getTable(), false);
+        } else if (e.getSource().equals(getPrintTableInvertBtn())) {
+            tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
+        } else if (e.getSource().equals(getNewBtn())) {
+            createNew(LabDevelopment_.TABLE__TEST_PROCEDURE, "CODE", null);
+        } else if (e.getSource().equals(getCopyBtn())) {
+            copy(LabDevelopment_.TABLE__TEST_PROCEDURE, "CODE", null);
+        } else if (e.getSource().equals(getDeleteBtn())) {
+
+        }
+        //
+    }
+
+    private boolean copy(String tableName, String colName, String regex) {
+        //
+        JTable table = getTable();
+        //
+        String code_old = HelpA.getValueSelectedRow(table, "CODE");
+        //
+        if (HelpA.rowSelected(table) == false) {
+            HelpA.showNotification(MSG.LANG("Table row not chosen"));
+            return false;
+        }
+        //
+        String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Copy test procedure"));
+        String code_new = tfc.getText();
+        //
+        if (code_new == null || yesNo == false) {
+            return false;
+        }
+        //
+        String q_copy = SQL_A_.lab_dev_test_proc__copy(PROC.PROC_83, code_new, code_old);
+        //
+        try {
+            sql.execute(q_copy);
+            refresh_b(code_new, table);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestProcedureTab.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        //
+    }
+
+    private boolean createNew(String tableName, String colName, String regex) {
+        //
+        String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Create new test procedure"));
+        String code = tfc.getText();
+        //
+        if (code == null || yesNo == false) {
+            return false;
+        }
+        //
+        String q_insert = SQL_A_.lab_dev_test_proc__new(PROC.PROC_82, code);
+        //
+        //
+        return false;
+        //
+    }
+
     public String getCurrentId() {
         return ID_PROC;
     }
-    
+
     private JButton getPrintTableInvertBtn() {
         return mcRecipe.jButton_lab_dev__testproc__print_invert;
     }
-    
+
     private JButton getPrintJTableBtn() {
         return mcRecipe.jButton_lab_dev__testproc_print_jtable;
     }
-    
+
     private JButton getSaveBtn() {
-        return mcRecipe.jButton__lab__dev__test_proc;
+        return mcRecipe.jButton__lab__dev__test_proc__save;
+    }
+
+    private JButton getNewBtn() {
+        return mcRecipe.jButton_lab_dev__test_procedure__new;
+    }
+
+    private JButton getDeleteBtn() {
+        return mcRecipe.jButton_lab_dev__material_info_delete;
+    }
+
+    private JButton getCopyBtn() {
+        return mcRecipe.jButton_lab_dev__test_proc__copy;
     }
 
     private JComboBox getComboBox() {
@@ -141,15 +231,15 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         RowDataInvert testvar = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TESTVAR", T_INV.LANG("TESTVAR"), "", true, true, false);
         testvar.setDisabled();
         testvar.enableToolTipTextJTextField();
-        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("PART") + " 1", "", true, true, true);
+        RowDataInvert tname = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TName", T_INV.LANG("NAME"), "", true, true, true);
         tname.setInputLenthValidation(20);//[$TEST-VAR-SAVE$]
-        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("PART") + " 2", "", true, true, true);
+        RowDataInvert tmin = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMin", T_INV.LANG("MIN"), "", true, true, true);
         tmin.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
-        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("PART") + " 3", "", true, true, true);
+        RowDataInvert tmax = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TMax", T_INV.LANG("MAX"), "", true, true, true);
         tmax.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
-        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("PART") + " 4", "", true, true, true);
+        RowDataInvert tunit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TUnit", T_INV.LANG("UNIT"), "", true, true, true);
         tunit.setInputLenthValidation(9);//[$TEST-VAR-SAVE$]
-        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("PART") + " 5", "", true, true, true);
+        RowDataInvert tdigit = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "TDigit", T_INV.LANG("DIGIT"), "", true, true, true);
         tdigit.setInputLenthValidation(5);//[$TEST-VAR-SAVE$]
         //
         RowDataInvert descr = new RowDataInvert(TABLE__TEST_PROCEDURE, "ID_Proc", false, "DESCRIPT", T_INV.LANG("DESCRIPTION"), "", true, true, false);
@@ -215,8 +305,6 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return false;
     }
 
-   
-
     private void saveTableInvert() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
@@ -271,11 +359,13 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         //  
         if (e.getSource().equals(getComboBox())) {
             //
-            this.TEST_CODE = value;
+            refresh_b(value, table);
             //
-            fillJTable();
-            HelpA.markFirstRowJtable(table);
-            mouseClickedOnTable(table);
+//            this.TEST_CODE = value;
+//            //
+//            fillJTable();
+//            HelpA.markFirstRowJtable(table);
+//            mouseClickedOnTable(table);
             //
         }
         //
@@ -338,8 +428,8 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     @Override
+
+    @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

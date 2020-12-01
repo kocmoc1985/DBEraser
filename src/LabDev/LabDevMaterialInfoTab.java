@@ -9,7 +9,7 @@ import static LabDev.LabDevelopment_.TABLE__MAT_INFO;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MCRecipe.TestParameters_;
@@ -128,8 +128,8 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
             HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
         }
-         //
-        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
+        //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
             return false;
         }
         //

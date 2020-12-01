@@ -7,9 +7,9 @@ package MyObjectTableInvert;
 import BuhInvoice.GP_BUH;
 import Reporting.InvertTableRow;
 import MCCompound.PROD_PLAN;
-import MCRecipe.MC_RECIPE_;
-import static MCRecipe.MC_RECIPE_.USER_ROLE;
-import static MCRecipe.MC_RECIPE_.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
+import MCRecipe.MC_RECIPE;
+import static MCRecipe.MC_RECIPE.USER_ROLE;
+import static MCRecipe.MC_RECIPE.USER_ROLES_ADMIN_DEVELOPER_ACCESS;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.Table;
 import Reporting.TableInvertBasicRepport;
@@ -543,7 +543,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
      */
     public void saveChangesTableInvert_C_C(TableInvert ti) {
         //
-        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
             return;
         }
         //

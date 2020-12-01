@@ -9,7 +9,7 @@ import LabDev.sec.ChkBoxItemListComponent;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
-import MCRecipe.MC_RECIPE_;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
@@ -98,7 +98,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         JTable table = getTable();
         //
         if (HelpA.rowSelected(table) == false) {
-            HelpA.showNotification(MSG.LANG("Please choose a row in the table to perform this action"));
+            HelpA.showNotification(MSG.LANG("Table row not chosen"));
             return false;
         }
         //
@@ -124,7 +124,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         String id = HelpA.getValueSelectedRow(table, "ID");
         String order = HelpA.getValueSelectedRow(table, "WORDERNO");
         //
-        if (MC_RECIPE_.isAdminOrDeveloper() == false) {
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
             return false;
         }
         //
