@@ -371,9 +371,8 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         return null;
     }
 
-    public int executeProcedure(String q,ShowMessage sm) {
-        //
-        sm.showMessage(q);
+    @Override
+    public int executeProcedure(String q, ShowMessage sm) {
         //
         CallableStatement proc;
         //
@@ -394,6 +393,8 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
             ret = -1;
         }
+        //
+        sm.showMessage(q + "    *RETURNED: " + ret);
         //
         return ret;
     }

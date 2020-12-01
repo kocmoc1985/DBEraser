@@ -250,4 +250,9 @@ public class Sql_A implements SqlBasicLocal {
     public PreparedStatement prepareStatementB(String q) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int executeProcedure(String q, ShowMessage sm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

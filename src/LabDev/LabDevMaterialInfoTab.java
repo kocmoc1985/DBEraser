@@ -140,10 +140,11 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         String q = SQL_A_.lab_dev_material_info__delete(PROC.PROC_81, order, material);
         //
         try {
-            sql.execute(q, OUT);
+//            sql.execute(q, OUT);
+            sql.executeProcedure(q, OUT);
             fillJTable();
             return true;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(LabDevMaterialInfoTab.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

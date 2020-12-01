@@ -28,6 +28,8 @@ public interface SqlBasicLocal {
     public ResultSet execute(String sql, ShowMessage sm) throws SQLException;
 
     public ResultSet execute_2(String sql) throws SQLException;
+    
+    public int executeProcedure(String q, ShowMessage sm);
 
     public int update(String string) throws SQLException;
 
