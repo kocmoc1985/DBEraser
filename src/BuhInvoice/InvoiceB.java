@@ -339,6 +339,9 @@ public class InvoiceB extends Basic_Buh {
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
         }
+        if (printed) {
+            bim.jLabel_info__printed.setVisible(true);
+        }
         if (skickad) {
             bim.jLabel_info__sent.setVisible(true);
         }
@@ -354,9 +357,7 @@ public class InvoiceB extends Basic_Buh {
         if (isKontantFaktura) {
             bim.jLabel_info__kontant_faktura.setVisible(true);
         }
-        if (printed) {
-            bim.jLabel_info__printed.setVisible(true);
-        }
+       
         //
 //        System.out.println("BETALD: " + faktura_betald);
 //        System.out.println("FORFALLEN: " + forfallen);
