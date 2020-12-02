@@ -313,10 +313,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
             //
-            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
-            HelpA.hideTabByName(jTabbedPane1, LNG.SEQUENCE_TAB());
-            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB());
-            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB_B());
+//            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+//            HelpA.hideTabByName(jTabbedPane1, LNG.SEQUENCE_TAB());
+//            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB());
+//            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB_B());
             //
         } else {
             this.customPanelRecipeInitial = new CustomPanelQew();
