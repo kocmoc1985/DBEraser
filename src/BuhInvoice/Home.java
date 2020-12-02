@@ -304,24 +304,24 @@ public class Home extends Basic_Buh {
 
     private void makeTransparent(Table tableInvert, JPanel parentContainer) {
         //
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //
-                tableInvert.setBackground(new Color(0, 0, 0, 10));
-                tableInvert.revalidate();
-                tableInvert.repaint();
-                //
-                parentContainer.setBackground(new Color(0, 0, 0, 10));
-                parentContainer.revalidate();
-                parentContainer.repaint();
-                //
-                // Not working - border still visible:
-//                tableInvert.setBorder(BorderFactory.createEmptyBorder());
-//                parentContainer.setBorder(BorderFactory.createEmptyBorder());
-                //
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                //
+//                tableInvert.setBackground(new Color(0, 0, 0, 10));
+//                tableInvert.revalidate();
+//                tableInvert.repaint();
+//                //
+//                parentContainer.setBackground(new Color(0, 0, 0, 10));
+//                parentContainer.revalidate();
+//                parentContainer.repaint();
+//                //
+//                // Not working - border still visible:
+////                tableInvert.setBorder(BorderFactory.createEmptyBorder());
+////                parentContainer.setBorder(BorderFactory.createEmptyBorder());
+//                //
+//            }
+//        });
         //
     }
 

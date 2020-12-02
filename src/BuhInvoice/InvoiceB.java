@@ -321,11 +321,12 @@ public class InvoiceB extends Basic_Buh {
     private void showInfoIcons() {
         //
         bim.jLabel_info__forfallen.setVisible(false);
+        bim.jLabel_info__printed.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
         bim.jLabel_info__betald.setVisible(false);
         bim.jLabel_info__makulerad.setVisible(false);
         bim.jLabel_info__kredit_faktura.setVisible(false);
-        bim.jLabel_info__kontant_faktura.setVisible(false);;
+        bim.jLabel_info__kontant_faktura.setVisible(false);
         //
         boolean forfallen = bim.isForfallen();
         boolean makulerad = bim.isMakulerad();
@@ -333,6 +334,7 @@ public class InvoiceB extends Basic_Buh {
         boolean isKreditFaktura = bim.isKreditFaktura();
         boolean isKontantFaktura = bim.isKontantFaktura();
         boolean betald = bim.isBetald();
+        boolean printed = isPrinted();
         //
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
@@ -343,14 +345,17 @@ public class InvoiceB extends Basic_Buh {
         if (betald) {
             bim.jLabel_info__betald.setVisible(true);
         }
-        if(makulerad){
+        if (makulerad) {
             bim.jLabel_info__makulerad.setVisible(true);
         }
-        if(isKreditFaktura){
+        if (isKreditFaktura) {
             bim.jLabel_info__kredit_faktura.setVisible(true);
         }
-        if(isKontantFaktura){
+        if (isKontantFaktura) {
             bim.jLabel_info__kontant_faktura.setVisible(true);
+        }
+        if (printed) {
+            bim.jLabel_info__printed.setVisible(true);
         }
         //
 //        System.out.println("BETALD: " + faktura_betald);
@@ -358,6 +363,36 @@ public class InvoiceB extends Basic_Buh {
 //        System.out.println("MAKULERAD: " + makulerad);
 //        System.out.println("SKICKAD: " + skickad);
         //
+    }
+
+    private boolean isPrinted() {
+        //
+        String json = bim.getSELECT_fakturaId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM__GET_FAKTURA_SEND, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            //
+            for (HashMap<String, String> map : entries) {
+                //
+                String send_status = map.get(DB.BUH_FAKTURA_SEND__SEND_OK);
+                //
+                if (send_status.equals(DB.STATIC__SENT_STATUS__UTSKRIVEN)) {
+                    return true;
+                }
+                //
+            }
+            //
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(EditPanel_Inbet_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return false;
     }
 
     private void showOtherFakturaInfo() {

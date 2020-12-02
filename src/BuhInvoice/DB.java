@@ -248,7 +248,7 @@ public class DB {
     public static final String BUH_FAKTURA_SEND__KUND_ID = "kundId";
     public static final String BUH_FAKTURA_SEND__FAKTURA_ID = "fakturaId";
     public static final String BUH_FAKTURA_SEND__SEND_TYPE = "send_type";
-    public static final String BUH_FAKTURA_SEND__SEND_OK = "send_ok";
+    public static final String BUH_FAKTURA_SEND__SEND_OK = "send_ok"; // --> It's STATUS like: "STATIC__SENT_STATUS__UTSKRIVEN"
     public static final String BUH_FAKTURA_SEND__SEND_DATUM = "send_datum";
     public static final String BUH_FAKTURA_SEND__ANNAT = "annat";
     public static final String BUH_FAKTURA_SEND__DONE_BY = "done_by";

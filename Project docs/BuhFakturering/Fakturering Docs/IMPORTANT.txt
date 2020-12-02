@@ -5,6 +5,8 @@ Setting a background image for a JPanel.
 
 See: forall.package -> BackgroundPanel.class
 
+TRANSPARENCY: See: Home.class -> makeTransparent(..) function
+
 How to use: From graphical editor -> Click on a JPanel -> Choose "Customize code" -> have following: 
 jPanel = new BackgroundPanel();
 

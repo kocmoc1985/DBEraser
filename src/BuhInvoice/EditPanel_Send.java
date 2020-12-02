@@ -137,11 +137,11 @@ public class EditPanel_Send extends EditPanel_Inbet_ {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__GET_FAKTURA_SEND, json);
             //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
             //
             //
-            for (HashMap<String, String> invoice_map : invoices) {
-                addRowJtable(invoice_map, table);
+            for (HashMap<String, String> map : entries) {
+                addRowJtable(map, table);
             }
             //
             //
