@@ -4,6 +4,7 @@
  */
 package MCRecipe.Sec;
 
+import BuhInvoice.JSon;
 import MCRecipe.Ingredients;
 import MCRecipe.Lang.T_INV;
 import MCRecipe.MC_RECIPE;
@@ -31,8 +32,6 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
         super(title, mc_recipe, sql, sql_additional);
     }
 
-    
-
     @Override
     public void setTableTitle() {
         jLabel1.setText("USERS");
@@ -59,8 +58,10 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 //
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
                 //
-                String fixedComboValues = "admin,user,useradvanced,developer";
-                RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
+                String fixedComboValues_b = JSon._get_simple(
+                        HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,useradvanced,developer"
+                );
+                RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 role.enableFixedValues();
 //              RowDataInvert role = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 //
@@ -90,7 +91,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                             + " where " + TABLE_ID + "= " + id;
                     //
                     OUT.showMessage(q);
-                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
+                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
                 } catch (SQLException ex) {
                     Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
                     TABLE_BUILDER_INVERT.showMessage(ex.toString());
