@@ -1340,17 +1340,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel9.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel());
         jScrollPane2.setViewportView(jTable1);
 
         jPanel9.add(jScrollPane2, java.awt.BorderLayout.CENTER);
@@ -5898,6 +5888,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.markGivenRow(jTable3, 0);
         recipeInitial.fillNotes();
         //
+//        labDevelopment.setMaterial(USER_ROLE);
         //
         if (testParameters != null) {
             testParameters.clearBoxes();

@@ -841,6 +841,7 @@ public class RecipeDetailed_ extends BasicTab {
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight, t4_weight_nick);
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight_recalc, t4_weight_recalc_nick);
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_volume_recalc, t4_volume_recalc_nick);
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, "percRubber", "%");
     }
 
     private void hideColumnsTable4AndTable4Help(JTable table) {
@@ -853,7 +854,8 @@ public class RecipeDetailed_ extends BasicTab {
         HelpA.hideColumnByName(table, "BalanceID");
         HelpA.hideColumnByName(table, "PriceData");
         HelpA.hideColumnByName(table, "GRP");
-        HelpA.hideColumnByName(table, "percRubber");
+//        HelpA.hideColumnByName(table, "percRubber");
+        HelpA.hideColumnByName(table, "PriceKG");
     }
 
     public void edit_ingredients_parameters_table_4(int row, int col) {
