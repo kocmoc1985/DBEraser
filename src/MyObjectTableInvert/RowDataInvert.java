@@ -263,7 +263,7 @@ public class RowDataInvert extends RowData {
                 jcb = (JComboBoxInvert) HelpA.fillComboBox(sql, jcb, additionalInfo, value, false, true);
             } else if (comboBoxFixedValue) {
                 String comboboxValues[] = HelpA.extract_comma_separated_values(additionalInfo);
-                jcb = (JComboBoxInvert) HelpA.fillComboBox_fixed_values(jcb, comboboxValues, value);
+                jcb = (JComboBoxInvert) HelpA.fillComboBox_fixed_values(jcb, comboboxValues, "");
             } else if (comboBoxFixedValueAdvanced) {
                 //
                 HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(additionalInfo, 2);

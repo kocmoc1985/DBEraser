@@ -55,6 +55,20 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         go();
     }
     
+    
+    public JTable getJTable(){
+        return this.jTable1;
+    }
+    
+    private void setUneditableJTable(){
+        //
+        JTable table = getJTable();
+        //
+        if(table != null){
+            HelpA.setUneditableJTable(table);
+        }
+        //
+    }
 
     private void initOther() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -64,6 +78,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         jTable1.setAutoCreateRowSorter(true);
         this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
         setTableTitle();
+        setUneditableJTable();
     }
     
     public void setTableTitle(){

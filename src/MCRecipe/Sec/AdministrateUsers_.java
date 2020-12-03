@@ -19,6 +19,7 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -30,7 +31,15 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
 
     public AdministrateUsers_(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title, mc_recipe, sql, sql_additional);
+//        HelpA.setUneditableJTable(jTable1);
     }
+
+    @Override
+    public JTable getJTable() {
+        return jTable1;
+    }
+    
+    
 
     @Override
     public void setTableTitle() {
@@ -59,7 +68,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
                 //
                 String fixedComboValues_b = JSon._get_simple(
-                        HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,useradvanced,developer"
+                        HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,poweruser,developer"
                 );
                 RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 role.enableFixedValues();

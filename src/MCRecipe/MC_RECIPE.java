@@ -114,7 +114,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public static String USER_ROLE = "";
     public final static String ROLE_UNDEFINED = "undef";
     public final static String ROLE_COMMON_USER = "user";
-    public final static String ROLE_ADVANCED_USER = "useradvanced";
+    public final static String ROLE_ADVANCED_USER = "poweruser";
     public final static String ROLE_ADMIN = "admin";
     public final static String ROLE_DEVELOPER = "developer";
     //

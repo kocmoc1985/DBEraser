@@ -16,6 +16,7 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -25,6 +26,11 @@ public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
 
     public AdministrateMixerInfoBasic(String title,MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title,mc_recipe, sql, sql_additional);
+    }
+    
+    @Override
+    public JTable getJTable() {
+        return jTable1;
     }
 
     @Override

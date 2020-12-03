@@ -2855,8 +2855,9 @@ public class HelpA {
     }
 
     /**
+     * CHANGE WITH CAUTION!
      * Important for BuhInvoice
-     *
+     * Now also for MCRecipe [2020-12-03]
      * @param jbox
      * @param values
      * @param initialValue
