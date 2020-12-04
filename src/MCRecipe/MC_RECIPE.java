@@ -172,15 +172,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         setHomePageBackground();
         //
     }
-    
-    
-    
+
     public static boolean isAdminOrDeveloper() {
         //
         if (USER_ROLES_ADMIN_DEVELOPER_ACCESS.contains(USER_ROLE) == false) {
             HelpA.showActionDeniedUserRole(USER_ROLE);
             return false;
-        }else{
+        } else {
             return true;
         }
         //
@@ -5088,7 +5086,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButton_lab_dev_tab__save_notesActionPerformed
 
     private void jButton__lab_dev__main_data_print_invertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton__lab_dev__main_data_print_invertActionPerformed
-         labDevelopment.printMainDataInvertTable();
+        labDevelopment.printMainDataInvertTable();
     }//GEN-LAST:event_jButton__lab_dev__main_data_print_invertActionPerformed
 
     /**
@@ -5850,7 +5848,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_1, LabDevelopment_.TABLE_NOTES_1, "Name", "ID");
         } else if (me.getSource() == jTable_lab_dev_2 && (me.getClickCount() == 2)) {
             labDevelopment.changeJTableNoteValue(jTable_lab_dev_2, LabDevelopment_.TABLE_NOTES_2, "Name", "ID");
-        } 
+        }
     }
 
     public void clickedTable1TestParameters() {
@@ -5888,7 +5886,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.markGivenRow(jTable3, 0);
         recipeInitial.fillNotes();
         //
-//        labDevelopment.setMaterial(USER_ROLE);
+        if (labDevelopment != null) {
+            String recipe__material = HelpA.getValueSelectedRow(jTable1, RecipeInitial.T1_RECIPE_VERSION);
+            labDevelopment.setMaterial(recipe__material);
+        }
         //
         if (testParameters != null) {
             testParameters.clearBoxes();
