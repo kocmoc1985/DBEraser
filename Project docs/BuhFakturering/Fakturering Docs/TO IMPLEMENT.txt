@@ -13,10 +13,19 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 )as `MAKULERADE`
 
 -------------- 
+------------------------<URGENT>------------------------
+
+Make a Component for showing a window with "GDPR"
+
+ROT & RUT
+
+To each email send add the name of Company with webb address
+
+------------------------</URGENT>------------------------
 
 Backup of all data
 
-IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind
+IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
 
 Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"
 
@@ -33,11 +42,9 @@ Implement security check for failling login in row
 Making installers for MAC OS:
 https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-software
 
-To each email send add the name of Company with webb address
-
 Print Address of Customer for sending with common post
 
-Obfuscation[DOONE BUT REQUIRES MORE ATTENTION]
+Obfuscation[DONE BUT REQUIRES MORE ATTENTION]
 Version check - it should checked wether a new version is available [DONE]
 Make it possible for a user to delete entire data for his account [DONE]
 

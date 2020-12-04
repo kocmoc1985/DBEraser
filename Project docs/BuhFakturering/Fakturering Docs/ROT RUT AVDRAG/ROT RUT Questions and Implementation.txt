@@ -1,0 +1,75 @@
+[SKILLNADEN MELLAN ROT OCH RUT]
+**Rot** är en förkortning för renovering, ombyggnad och tillbyggnad. 
+**Rut** står för Rengöring, Underhåll och Tvätt. Det är ett skatteavdrag på tjänster i hemmet.
+
+Så fungerar RUT (Källa 1)
+Det är enkelt. Om du uppfyller villkoren för RUT betalar du bara 50 procent av arbetskostnaden. 
+Du har ett personligt maxtak på ***50 000*** kronor att utnyttja per år, vilket motsvarar ett köpunderlag på ***100 000*** kronor.
+Om ni är flera **vuxna*** som bor på samma adress kan ni lägga ihop era RUT-avdrag för att få ett högre gemensamt tak.
+Vi ger kostnadsförslag på våra tjänster och priserna för hushållstjänster sätts alltid efter RUT,
+för att det ska bli enkelt för dig att se vad tjänsten kostar efter avdraget. När du får fakturan sköter vi administreringen till Skatteverket.
+
+Så fungerar RUT (Källa 2)
+Skattereduktionen för RUT-arbeten gäller ***enbart arbetskostnaden (ej material och resekostnader)**** och medges med halva (50 %) arbetskostnaden
+inklusive moms men högst med 50 000 SEK per person och år (år 2019). 
+Om två personer gemensamt äger en bostad kan de tillsammans få en maximal skattereduktion om 100 000 SEK per år avseende RUT-arbeten.
+
+SLUTSATS:
+Alla vuxna i hushållet kan lägga ihop RUT-Avdrag. Maxtaket är 50000:-/person.
+
+____________________________________________________________________________________________________________________________
+
+LINAS FAKTURA:
+
+Pris Netto, hela faktura inkl. material = 50588:-   -----> med 25% moms blir: 63235:-   ----> Moms är alltså: 12647:-
+Pris Netto, arbetskostnad = 43500:-
+
+I hushållet är det 2 vuxna som "delar" på avdraget -> 8156:-/person -> sammanlagt 16312:-
+
+VIKTIGT:
+1. Momsen tas från hela faktura beloppet och påverkas ej av "RUT" avdraget
+2. Det kunden betalar är alltså: 63235 - 16312 = 46923:- --------> [totala beloppet inkl. moms] - [den totala RUT avdraget för alla vuxna i hushållet]
+
+Frågor:
+1. Varför gjordes skatteavdraget bara för 16312:- i det konkreta fallet och inte mer? Är det det de hade kvar att använda?
+2. Alltså innan en företage ställer ut fakturan till privat kund måste han fråga den privata kunden om hur mycket kvar på RUT-Avdraget han har?
+____________________________________________________________________________________________________________________________
+
+MIN EGEN EXEMPEL:
+
+En firma gör städarbete i villan för 2000 00:- exkl. moms ------------> inkl moms blir det alltså: 250000:-
+
+Det bor 2 personer i hushållet med oanvänt RUT för båda -> 50000 * 2 = 100 000:-   -----> Så att de gör avdraget för hela summan.
+
+Det personerna betalar i sådana fall är 250000 - 100000 = 150000:-
+
+____________________________________________________________________________________________________________________________
+
+ATT IMPLEMENTERA I PROGRAMMET:
+
+1. Jag kommer behöva implementera en ny tabel något i still med:
+
+CREATE TABLE buh_faktura_rut (
+rutId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaId integer not null,
+skattereduktion float DEFAULT 0,
+namn varchar(50) DEFAULT '',
+efternamn varchar(50) DEFAULT '',
+pnr varchar(50) DEFAULT '',
+fastighets_beteckning varchar(100) DEFAULT '',
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (kundId) references buh_kund(kundId)
+);
+
+Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
+
+2. HTML-Faktura -> visa: pnr / namn / skatteavdrag summa -----> OBS! Är obligatoriskt
+
+3. HTML-Faktura -> visa "speciell information" -> den texten är tagen från SPCS Visma exempel faktura, som finns i mappen:
+"Obs! Denna faktura avser husarbete för fastighet Vitsippa 15.
+Enligt dig som köpare finns det möjlighet till preliminär skattereduktion på 2625,00 kr.
+För att vi ska kunna göra ansökan till Skatteverket, ska du betala 18340,00 kr.
+Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare."
+
+3. HTML-Faktura -> Ska visa avdraget/avdragsumman på följande sätt: "Avgår skattereduktion 2 625,00"
