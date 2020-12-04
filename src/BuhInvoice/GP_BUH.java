@@ -41,12 +41,12 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class GP_BUH {
 
-    public static final String VERSION = "1.01";
-    public static final int VERSION_INTEGER = 101;
+    public static final String VERSION = "1.02"; // prev: 1.01
+    public static final int VERSION_INTEGER = 102; // prev: 101
     public static final String PRODUCT_NAME = "LAFakturering";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;
-    public static boolean TRACKING_TOOL_TIP_ENABLED = true;
+    public static boolean TRACKING_TOOL_TIP_ENABLED = false;
     //
     public static String KUND_ID;
     //

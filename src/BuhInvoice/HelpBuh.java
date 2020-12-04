@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    private static final boolean HTTPS = false;
+    private static final boolean HTTPS = true;
 
     /**
      * @deprecated @throws Exception
@@ -120,7 +120,7 @@ public class HelpBuh {
         boolean newVerAvailable = Integer.parseInt(version) > GP_BUH.VERSION_INTEGER;
         //
         if (label != null && newVerAvailable) {
-            label.setText("Ny version finns tillgänglig på www.lafakturering.se");
+            label.setText("Ny version är tillgänglig på www.lafakturering.se");
         }
         //
     }

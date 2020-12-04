@@ -1,0 +1,22 @@
+CHECK FOLLOWING:
+
+[IN PROJECT]
+1. HelpBuh -> private static final boolean HTTPS -> is set to "true"
+2. GP_BUH -> public static final String VERSION
+3. GP_BUH -> public static final int VERSION_INTEGER
+4. GP_BUH -> public static boolean CUSTOMER_MODE
+5. GP_BUH -> public static boolean TRACKING_TOOL_TIP_ENABLED
+
+---
+[ON PHP SIDE]
+1. Change version if a new one is released - > Path server side: php -> "version"
+
+________________
+
+Download for Linas customers: Ivan Dontu & Dmitrij Buglinov
+
+1. http://www.mixcont.com/_files/_java/jre%20-%20OpenJDK11U-jre_x64_windows_openj9_11.0.3_7_openj9-0.14.0.msi
+2. http://www.mixcont.com/_files/LaFakturering/LAFakturering.exe
+
+Version "1.02/102" uploaded to "http://www.mixcont.com/_files/LaFakturering/" on [2020-12-04]
+
