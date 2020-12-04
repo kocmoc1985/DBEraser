@@ -1491,6 +1491,33 @@ public class SQL_A_ {
         //
     }
 
+    /**
+     * 
+     * @param PROC
+     * @param param1 - order
+     * @param param2 - material
+     * @param param3 - prefvulc
+     * @param param4 - prefage
+     * @param param5 -testcode
+     * @param param6 - requester
+     * @param param7 - department
+     * @param param8 - customer
+     * @return 
+     */
+    public static String find_order_lab_dev__by_material(String PROC, String param1, String param2,
+            String param3, String param4, String param5, String param6, String param7, String param8) {
+        return "SELECT ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn FROM [" + PROC + "]" + " ("
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ","
+                + quotes(param4, false) + ","
+                + quotes(param5, false) + ","
+                + quotes(param6, false) + ","
+                + quotes(param7, false) + ","
+                + quotes(param8, false)
+                + ") ORDER BY ORDERNO ASC";
+    }
+
     public static String find_order_lab_dev__delete_order__deprecated(String id) {
         return "DELETE FROM MC_Cpworder WHERE ID=" + quotes(id, true);
     }
@@ -1713,13 +1740,13 @@ public class SQL_A_ {
     }
 
     /**
-     * 
+     *
      * @param PROC - 85
      * @param param1 - order new
      * @param param2 - order old
      * @param param3
      * @param param4
-     * @return 
+     * @return
      */
     public static String lab_dev_find_order__copy(String PROC, String param1, String param2, String param3, String param4) {
         return PROC + " "

@@ -5886,10 +5886,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         HelpA.markGivenRow(jTable3, 0);
         recipeInitial.fillNotes();
         //
-        if (labDevelopment != null) {
-            String recipe__material = HelpA.getValueSelectedRow(jTable1, RecipeInitial.T1_RECIPE_VERSION);
-            labDevelopment.setMaterial(recipe__material);
-        }
+        //======================================================================
+        //[#SET MATERIAL - FROM OUTSIDE LABDEV#] -> Search for this tag
+//        if (labDevelopment != null) {
+//            String recipe__material = HelpA.getValueSelectedRow(jTable1, RecipeInitial.T1_RECIPE_VERSION);
+//            labDevelopment.setMaterial(recipe__material);
+//        }
+        //======================================================================
         //
         if (testParameters != null) {
             testParameters.clearBoxes();

@@ -382,7 +382,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
         //
-        labDevFindOrderTab.go();
+        labDevFindOrderTab.refresh();
         //
     }
     

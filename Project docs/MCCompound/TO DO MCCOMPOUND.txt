@@ -7,9 +7,19 @@
 
 [FOR BOTH]
 
-1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ"  -> col STUSERINFO [2020-10-12]
+1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ"  -> col STUSERINFO [2020-10-12] ***** STIL NOT FIXED
 2. 
+3. Setting material from outside "LabDevelopment" -> search for: [#SET MATERIAL - FROM OUTSIDE LABDEV#] 
+ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn -> table "MC_Cpworder"
 
+ID -> not present in "fn_ITF_OrdersWithMaterials" -> This "ID" shall correspong to the "ID" in the "MC_Cpworder"
+WORDERNO -> is called ORDERNO in "fn_ITF_OrdersWithMaterials"
+WOSTATUS -> does not exist in "fn_ITF_OrdersWithMaterials"
+REQUESTER -> ok
+CUSTOMER -> ok
+EXPREADY -> does not exist in "fn_ITF_OrdersWithMaterials"
+UpdatedOn -> ok
+UpdatedBy -> ok
 
 
 [FOR DEMO]

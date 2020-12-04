@@ -39,14 +39,15 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener, MouseListener, ActionListener {
-
+    
     private boolean oneTimeFlag = false;
-
+    private String materialPrev = "";
+    
     public LabDevFindOrderTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
-
+    
     private void init() {
         //
         mcRecipe.jTable_lab_dev__find_order.addMouseListener(this);
@@ -58,11 +59,11 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         getCopyBtn().addActionListener(this);
         getDeleteBtn().addActionListener(this);
         //
-        filterButtonClicked(); // show all at startup
+        fillTable_filter(); // show all at startup
         //
     }
-
-    public void go() {
+    
+    public void refresh() {
         //
         getTexField().setText("");
         showCheckBoxComponent();
@@ -70,10 +71,29 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         // Refresh after adding new
         if (getTable().getRowCount() == 1) {
             fillTable_order(labDev.getOrderNo());
+        } else {
+            //
+            fillTable_filter();
+            //
+            //=================================================================
+            //
+            //[#SET MATERIAL - FROM OUTSIDE LABDEV#]-> Search for this tag ****************
+            //
+//            String material = labDev.getMaterial();
+//            if (material != null && material.isEmpty() == false) {
+//                //
+//                if (material.equals(materialPrev) == false) {
+//                    fillTable_material(material);
+//                }else{
+//                    fillTable_filter();
+//                }
+//                //
+//            }
+            //==================================================================
         }
         //
     }
-
+    
     private void refresh__insert_and_copy(String order) {
         labDev.setOrderNo(order);
         fillTable_order(order);
@@ -81,14 +101,14 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         labDev.lab_dev_tab__tab_main_data__clicked();
         labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         //
         if (e.getSource() == getSetOrderBtn()) {
             table_clicked();
         } else if (e.getSource() == getFilterBtn()) {
-            filterButtonClicked();
+            fillTable_filter();
         } else if (e.getSource() == getPrintBtn()) {
             tableCommonExportOrRepport(getTable(), true);
         } else if (e.getSource() == getNewBtn()) {
@@ -100,7 +120,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     private boolean copyOrder(String tableName, String colName, String regex) {
         //
         JTable table = getTable();
@@ -139,7 +159,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     private boolean deleteOrder() {
         //
         JTable table = getTable();
@@ -179,7 +199,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     private boolean createOrder(String tableName, String colName, String regex) {
         //
         String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
@@ -208,7 +228,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         return false;
         //
     }
-
+    
     private void fillTable_filter() {
         //
         Object[] selectedValues = getSelectedValuesFromTable(getPanel());
@@ -217,14 +237,23 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
         fillTable(q);
     }
-
+    
+    private void fillTable_material(String material) {
+        //
+        String q = SQL_A_.find_order_lab_dev__by_material(PROC.PROC_86, null, material, null, null, null, null, null, null);
+        //
+        fillTable(q);
+        //
+    }
+    
     private void fillTable_order(String orderno) {
         //
         String q = SQL_A_.find_order_lab_dev__by_order(orderno);
         //
         fillTable(q);
+        //
     }
-
+    
     private void fillTable(String q) {
         //
         HelpA.build_table_common(sql, mcRecipe, getTable(), q, new String[]{"ID"});
@@ -237,43 +266,43 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         HelpA.setEnabled(getSetOrderBtn(), true);
         //
     }
-
+    
     private JPanel getPanel() {
         return mcRecipe.jPanel_lab_dev__find_order;
     }
-
+    
     private JTable getTable() {
         return mcRecipe.jTable_lab_dev__find_order;
     }
-
+    
     private JTextField getTexField() {
         return mcRecipe.jTextField__lab_dev__find_order;
     }
-
+    
     private JButton getDeleteBtn() {
         return mcRecipe.jButton_lab_dev__delete_order_btn;
     }
-
+    
     private JButton getNewBtn() {
         return mcRecipe.jButton__lab_dev__new_order_btn;
     }
-
+    
     private JButton getCopyBtn() {
         return mcRecipe.jButton_lab_dev__copy_order_btn;
     }
-
+    
     private JButton getSetOrderBtn() {
         return mcRecipe.jButton__lab_dev_find_order_tab__set_order;
     }
-
+    
     private JButton getFilterBtn() {
         return mcRecipe.jButton__lab_dev_find_order_tab__filter;
     }
-
+    
     private JButton getPrintBtn() {
         return mcRecipe.jButton_lab_dev__findorder_tab__print;
     }
-
+    
     private void showCheckBoxComponent() {
         //
         if (oneTimeFlag == false) {
@@ -283,7 +312,7 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     private void table_clicked() {
         //
         JTable table = getTable();
@@ -301,32 +330,32 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         labDev.lab_dev_tab__tab_main_data__clicked();
         //
     }
-
+    
     private void filterButtonClicked() {
         //
         fillTable_filter();
         //
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
 //        HelpA.markRowByValue_contains(getTable(), "Title 1", mcRecipe.jTextField__lab_dev__find_order.getText());
         HelpA.markRowByValue_contains(getTable(), "WORDERNO", getTexField().getText());
     }
-
+    
     private static String random() {
         int x = (int) ((Math.random() * 5000) + 100);//((Math.random() * 100) + 1)
         return "" + x;
     }
-
+    
     private void addFakeValuesToTable() {
         //
         DefaultTableModel model = (DefaultTableModel) getTable().getModel();
@@ -337,29 +366,29 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     @Override
     public void fillNotes() {
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         return null;
     }
-
+    
     @Override
     public void showTableInvert() {
     }
-
+    
     @Override
     public void initializeSaveIndicators() {
     }
-
+    
     @Override
     public boolean getUnsaved(int nr) {
         return false;
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         //
@@ -370,31 +399,31 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         }
         //
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
     @Override
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

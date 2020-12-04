@@ -109,6 +109,7 @@ public class PROC {
     public static final String PROC_83 = "prc_ITF_MCCPTproc_Copy_From "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> COPY
     public static final String PROC_84 = "prc_ITF_MCCPTproc_Delete_Procedure "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> DELETE ENTRY
     public static final String PROC_85 = "prc_ITF_CPWORDER_CopyFrom "; //#LAB DEVELOPMENT -> FIND ORDER -> COPY
+    public static final String PROC_86 = "fn_ITF_OrdersWithMaterials "; //#LAB DEVELOPMENT -> FIND ORDER -> FILL TABLE BY MATERIAL
     //
     // LAB_DEVELOPMENT  
     //
@@ -204,6 +205,7 @@ public class PROC {
         procList.add(PROC_83);
         procList.add(PROC_84);
         procList.add(PROC_85);
+        procList.add(PROC_86);
         //
         procList.add(PROC_P_01);
         procList.add(PROC_P_02);

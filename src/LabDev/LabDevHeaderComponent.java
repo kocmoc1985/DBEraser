@@ -82,7 +82,7 @@ public class LabDevHeaderComponent implements ItemListener {
 
     public void tab_find_order() {
         clear();
-        showOrderNo_only();
+        showOrderNo_and_material();
         updateGraphics();
     }
 
@@ -95,7 +95,7 @@ public class LabDevHeaderComponent implements ItemListener {
 
     public void tab_test_config() {
         clear();
-//        showOrderNo_only();
+//        showOrderNo_and_material();
         showStandard(false);
         showTestConfigTab();
         updateGraphics();
@@ -162,13 +162,14 @@ public class LabDevHeaderComponent implements ItemListener {
         //
     }
 
-    private void showOrderNo_only() {
+    private void showOrderNo_and_material() {
         //
         JPanel upper = getUpper();
         //
         buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_1(), labDev.getOrderNo(), false);
+        buildJLabelJTextFieldComonent(upper, LAB_DEV.LBL_7(), labDev.getMaterial(), false);
         //
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             upper.add(new JPanel()); // Adding empty for compacting 
         }
         //
