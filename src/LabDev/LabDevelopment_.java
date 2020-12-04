@@ -51,8 +51,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";
     
     private TableBuilderInvert TABLE_BUILDER_INVERT;
-    private TableBuilderInvert TABLE_BUILDER_INVERT_6;
-    private Table TABLE_INVERT_6;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
     private LabDevFindOrderTab labDevFindOrderTab;
@@ -63,9 +61,9 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public LabDevTestProcedureTab labDevTestProcedure;
     public LabDevTestVariables labDevTestVariables;
     private LabDevMaterialInfoTab labDevMaterialInfo;
-    private String ORDER_FOR_TESTING = "ENTW002106"; // ENTW002106
-    private String TEST_CODE = "MOV01"; //MOV01
-    private String MATERIAL = "WE8486"; // WE8486 -> Also called Rezeptur
+    private String ORDER_FOR_TESTING = ""; // ENTW002106
+    private String TEST_CODE = ""; //MOV01
+    private String MATERIAL = ""; // WE8486 -> Also called Rezeptur
     private String ACTUAL_TAB_NAME = "";
     public String PREV_TAB_NAME = "";
     

@@ -971,7 +971,7 @@ public class RecipeDetailed_ extends BasicTab {
             //
             String newFillFactor = JOptionPane.showInputDialog(null, "Specify new fill factor");
             //
-            if (HelpA.checkIfNumber(newFillFactor) == false) {
+            if (newFillFactor == null || newFillFactor.isEmpty() || HelpA.checkIfNumber(newFillFactor) == false) {
                 return;
             }
             //
