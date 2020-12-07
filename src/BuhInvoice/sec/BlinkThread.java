@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 /**
@@ -20,12 +21,20 @@ import javax.swing.border.Border;
 public class BlinkThread implements Runnable {
 
     private final JComponent component;
+    private JLabel label;
     private final boolean red;
     private static boolean ready = true;
     private boolean blinkText = false;
 
     public BlinkThread(JComponent component, boolean red) {
         this.component = component;
+        this.red = red;
+        startThread();
+    }
+
+    public BlinkThread(JComponent component, JLabel label, boolean red) {
+        this.component = component;
+        this.label = label;
         this.red = red;
         startThread();
     }
@@ -44,25 +53,33 @@ public class BlinkThread implements Runnable {
 
     @Override
     public void run() {
-        if (blinkText) {
-            if (red) {
-                blinkText(component, Color.red);
+        if (label == null) {
+            if (blinkText) {
+                if (red) {
+                    blinkText(component, Color.red);
+                } else {
+                    blinkText(component, Color.green);
+                }
             } else {
-                blinkText(component, Color.green);
+                if (red) {
+                    blink(component, Color.red);
+                } else {
+                    blink(component, Color.green);
+                }
             }
         } else {
             if (red) {
-                blink(component, Color.red);
+                blink_b(component, Color.red);
             } else {
-                blink(component, Color.green);
+                blink_b(component, Color.green);
             }
         }
-
     }
 
     private void blink(JComponent jc, Color color) {
         ready = false;
         if (jc != null) {
+            //
             Border prevBorder = jc.getBorder();
             jc.setBorder(BorderFactory.createLineBorder(color, 2));
             wait_(500);
@@ -71,6 +88,27 @@ public class BlinkThread implements Runnable {
             jc.setBorder(BorderFactory.createLineBorder(color, 2));
             wait_(500);
             jc.setBorder(prevBorder);
+            //
+            ready = true;
+        }
+    }
+
+    private void blink_b(JComponent jc, Color color) {
+        ready = false;
+        if (jc != null) {
+            //
+            Border prevBorder = jc.getBorder();
+            jc.setBorder(BorderFactory.createLineBorder(color, 2));
+            label.setVisible(true);
+            wait_(500);
+            jc.setBorder(prevBorder);
+            label.setVisible(false);
+            wait_(500);
+            jc.setBorder(BorderFactory.createLineBorder(color, 2));
+            label.setVisible(true);
+            wait_(500);
+            jc.setBorder(prevBorder);
+            label.setVisible(false);
             //
             ready = true;
         }

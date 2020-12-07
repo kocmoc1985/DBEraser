@@ -24,7 +24,20 @@ F. Dröjsmåls avg är kalkulerat enligt följande:
 För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms, multiplicerar med den avtalade dröjsmålsräntan
 och dividerar sedan med årets antal dagar, det vill säga 365.
 
-G. Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
+G. Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+
+H. Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
 If it's beeing used the faktura shall contain note like: Omvänd skattskyldighet, Ert vatnr: 556251-6806
 
-G. Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+Vad är omvänd skattskyldighet?
+Omvänd skattskydighet är ett undantag från huvudregeln att lägga moms på fakturor för varor och tjänster.
+När reglerna för omvänd skattskyldighet gäller, är det köparen och inte säljaren som rapporterar momsen till Skatteverket och fakturan skickas utan moms.
+Mottagaren av fakturan ska lägga till både utgående moms och ingående moms och rapportera det till Skatteverket.
+
+Inom Sverige gäller "omvänd skattskyldighet"  när:
+Tjänster som omsätts inom byggsektorn när både säljare och köpare är momsregistrerade, faktureras utan moms.
+Mottagarens organisationsnummer och texten "Omvänd skattskyldighet" ska anges på fakturan.
+Reglerna gäller även för företag som vanligtvis inte hör till byggsektorn men utför tjänster på uppdrag av annat företag som faller under reglerna för omvänd skattskyldighet.
+Regler för omvänd skattskyldighet gäller också för försäljning av avfall och skrot av vissa metaller.
+
+

@@ -691,6 +691,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_rabatt_total = new javax.swing.JTextField();
         jTextField_moms_total = new javax.swing.JTextField();
         jTextField_total_inkl_moms = new javax.swing.JTextField();
+        jLabel__dont_forget_to_save__info = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jPanel4_Customers = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -1483,6 +1484,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_total_inkl_moms.setToolTipText("Frakt + Exp.Avg + Moms frakt + Moms artiklar + Exkl. moms");
         jPanel15.add(jTextField_total_inkl_moms);
 
+        jLabel__dont_forget_to_save__info.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel__dont_forget_to_save__info.setText(" Glöm ej spara!");
+        jLabel__dont_forget_to_save__info.setVisible(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1497,6 +1502,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel__dont_forget_to_save__info, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
@@ -1520,7 +1527,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel__dont_forget_to_save__info))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -2129,7 +2137,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
-                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
+                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update,jLabel__dont_forget_to_save__info, false);
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {
@@ -2555,6 +2563,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
+    public javax.swing.JLabel jLabel__dont_forget_to_save__info;
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
@@ -2626,7 +2635,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     protected javax.swing.JTable jTable_ArticlesA_articles;
-    protected javax.swing.JTable jTable_InvoiceA_Insert_articles;
+    public javax.swing.JTable jTable_InvoiceA_Insert_articles;
     protected javax.swing.JTable jTable_ftg;
     protected javax.swing.JTable jTable_ftg_addr;
     protected javax.swing.JTable jTable_invoiceB_alla_fakturor;

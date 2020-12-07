@@ -4,6 +4,7 @@
  */
 package forall;
 
+import BuhInvoice.InvoiceB;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
@@ -1510,6 +1511,58 @@ public class HelpA {
 
     public static void disableColumnDragging(JTable table) {
         table.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    public static void copyTableHeadersFromOneTableToAnother(JTable tableCopyFrom, JTable copyTo) {
+        //
+        Object[] headers = getVisibleColumnsNames(tableCopyFrom).toArray();
+        //
+        copyTo.setModel(new DefaultTableModel(null, headers));
+        //
+    }
+    
+    public static void copyDataFromOneTableToAnother(JTable table, JTable copyToTable) {
+        //
+        ArrayList<Object> list;
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            list = new ArrayList<Object>();
+            //
+            for (int col = 0; col < table.getColumnCount(); col++) {
+                //
+                if (columnIsVisible(table, col)) {
+                    list.add(table.getValueAt(row, col));
+                }
+                //
+            }
+            //
+            Object[] arr = list.toArray();
+            HelpA.addRowToJTable(arr, copyToTable);
+            //
+        }
+        //
+    }
+    
+    public static void addRowFromOneTableToAnother(JTable fromTable, JTable toTable) {
+        //
+        ArrayList<Object> list = new ArrayList<>();
+        //
+        int row = fromTable.getSelectedRow();
+        //
+        for (int col = 0; col < fromTable.getColumnCount(); col++) {
+            //
+            if (columnIsVisible(fromTable, col)) {
+                list.add(fromTable.getValueAt(row, col));
+            }
+            //
+        }
+        //
+        Object[] arr = list.toArray();
+        addRowToJTable(arr, toTable);
+        //
+        markLastRowJtable(toTable);
+        //
     }
 
     public static ArrayList getLineValuesVisibleColsOnly_B(JTable table, int rowNr, String[] columnsToInclude) {

@@ -23,6 +23,8 @@ To each email send add the name of Company with webb address
 
 ------------------------</URGENT>------------------------
 
+Additional comment fields as suposed by Ivan..!?
+
 Backup of all data
 
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****

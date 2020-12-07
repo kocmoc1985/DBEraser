@@ -9,6 +9,7 @@ import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.MomsBuh_F_artikel;
 import BuhInvoice.sec.MomsComporator;
+import BuhInvoice.sec.RutRotFrame;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.Basic;
@@ -1124,6 +1125,21 @@ public abstract class Invoice_ extends Basic_Buh {
             } else if (omvant.equals("0")) {
                 setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("25%", "", "", ""));
                 box.setEnabled(true);
+            }
+            //
+        }else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+            //
+            String rutavdrag = jli.getValue();
+            //
+            System.out.println("RUTAvdrag: " + rutavdrag);
+            //
+            if(ie.getStateChange() != 1){
+                return;
+            }
+            //
+            if(rutavdrag.equals("1")){
+                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles);
+//                rrf.setVisible(true);
             }
             //
         }
