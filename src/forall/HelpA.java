@@ -1512,7 +1512,7 @@ public class HelpA {
     public static void disableColumnDragging(JTable table) {
         table.getTableHeader().setReorderingAllowed(false);
     }
-    
+
     public static void copyTableHeadersFromOneTableToAnother(JTable tableCopyFrom, JTable copyTo) {
         //
         Object[] headers = getVisibleColumnsNames(tableCopyFrom).toArray();
@@ -1520,7 +1520,7 @@ public class HelpA {
         copyTo.setModel(new DefaultTableModel(null, headers));
         //
     }
-    
+
     public static void copyDataFromOneTableToAnother(JTable table, JTable copyToTable) {
         //
         ArrayList<Object> list;
@@ -1543,7 +1543,7 @@ public class HelpA {
         }
         //
     }
-    
+
     public static void addRowFromOneTableToAnother(JTable fromTable, JTable toTable) {
         //
         ArrayList<Object> list = new ArrayList<>();
@@ -1552,9 +1552,7 @@ public class HelpA {
         //
         for (int col = 0; col < fromTable.getColumnCount(); col++) {
             //
-            if (columnIsVisible(fromTable, col)) {
-                list.add(fromTable.getValueAt(row, col));
-            }
+            list.add(fromTable.getValueAt(row, col));
             //
         }
         //
@@ -1564,8 +1562,8 @@ public class HelpA {
         markLastRowJtable(toTable);
         //
     }
-    
-     public static void addRowFromOneTableToAnother_withRemove(JTable fromTable, JTable toTable) {
+
+    public static void addRowFromOneTableToAnother_withRemove(JTable fromTable, JTable toTable) {
         //
         ArrayList<Object> list = new ArrayList<>();
         //
@@ -1573,19 +1571,19 @@ public class HelpA {
         //
         for (int col = 0; col < fromTable.getColumnCount(); col++) {
             //
-            if (columnIsVisible(fromTable, col)) {
-                list.add(fromTable.getValueAt(row, col));
-            }
+            list.add(fromTable.getValueAt(row, col));
             //
         }
         //
-        removeRowJTable(fromTable, row);
-        markFirstRowJtable(fromTable);
+
         //
         Object[] arr = list.toArray();
         addRowToJTable(arr, toTable);
         //
         markLastRowJtable(toTable);
+        //
+        removeRowJTable(fromTable, row);
+        markFirstRowJtable(fromTable);
         //
     }
 
@@ -2932,9 +2930,9 @@ public class HelpA {
     }
 
     /**
-     * CHANGE WITH CAUTION!
-     * Important for BuhInvoice
-     * Now also for MCRecipe [2020-12-03]
+     * CHANGE WITH CAUTION! Important for BuhInvoice Now also for MCRecipe
+     * [2020-12-03]
+     *
      * @param jbox
      * @param values
      * @param initialValue
