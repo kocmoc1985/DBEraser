@@ -1564,6 +1564,30 @@ public class HelpA {
         markLastRowJtable(toTable);
         //
     }
+    
+     public static void addRowFromOneTableToAnother_withRemove(JTable fromTable, JTable toTable) {
+        //
+        ArrayList<Object> list = new ArrayList<>();
+        //
+        int row = fromTable.getSelectedRow();
+        //
+        for (int col = 0; col < fromTable.getColumnCount(); col++) {
+            //
+            if (columnIsVisible(fromTable, col)) {
+                list.add(fromTable.getValueAt(row, col));
+            }
+            //
+        }
+        //
+        removeRowJTable(fromTable, row);
+        markFirstRowJtable(fromTable);
+        //
+        Object[] arr = list.toArray();
+        addRowToJTable(arr, toTable);
+        //
+        markLastRowJtable(toTable);
+        //
+    }
 
     public static ArrayList getLineValuesVisibleColsOnly_B(JTable table, int rowNr, String[] columnsToInclude) {
         ArrayList rowValues = new ArrayList();
