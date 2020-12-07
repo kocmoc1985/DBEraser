@@ -323,6 +323,7 @@ public class InvoiceB extends Basic_Buh {
     private void showInfoIcons() {
         //
         bim.jLabel_info__forfallen.setVisible(false);
+        bim.jLabel_info_rut.setVisible(false);
         bim.jLabel_info__printed.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
         bim.jLabel_info__betald.setVisible(false);
@@ -331,6 +332,7 @@ public class InvoiceB extends Basic_Buh {
         bim.jLabel_info__kontant_faktura.setVisible(false);
         //
         boolean forfallen = bim.isForfallen();
+        boolean rut = bim.isRUT();
         boolean makulerad = bim.isMakulerad();
         boolean skickad = bim.isSent();
         boolean isKreditFaktura = bim.isKreditFaktura();
@@ -340,6 +342,9 @@ public class InvoiceB extends Basic_Buh {
         //
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
+        }
+        if (rut) {
+            bim.jLabel_info_rut.setVisible(true);
         }
         if (printed) {
             bim.jLabel_info__printed.setVisible(true);
@@ -576,6 +581,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CHANGED_BY);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RUT);
         }
         //
     }

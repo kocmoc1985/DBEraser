@@ -216,7 +216,11 @@ public class InvoiceA_Update extends Invoice_ {
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
         //
-        RowDataInvert rut = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__RUT, InvoiceB.TABLE_ALL_INVOICES__RUT, "", false, true, false);
+        String valSelectedRow_b = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__RUT);
+        String valSelectedRow_translated_b = JSon.getShortName(DB.STATIC__JA_NEJ__EMPTY_NEJ, valSelectedRow_b);
+        String fixedComboValues_c = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated_b);
+        //
+        RowDataInvert rut = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__RUT, InvoiceB.TABLE_ALL_INVOICES__RUT, "", false, true, false);
         rut.enableFixedValuesAdvanced();
         rut.setUneditable();
         //
@@ -228,6 +232,7 @@ public class InvoiceA_Update extends Invoice_ {
             expavgift,
             frakt,
             drojranta,
+            rut,
             makulerad
         };
         //

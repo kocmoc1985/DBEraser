@@ -388,6 +388,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
+    
+    protected boolean isRUT() {
+        //
+        String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__RUT);
+        //
+        if (makulerad.equals(DB.STATIC__YES)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     protected boolean isKreditFaktura() {
         //
