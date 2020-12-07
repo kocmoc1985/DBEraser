@@ -630,6 +630,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_faktura_changed_by__user = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel_info__forfallen = new javax.swing.JLabel();
+        jLabel_info_rut = new javax.swing.JLabel();
         jLabel_info__betald = new javax.swing.JLabel();
         jLabel_info__printed = new javax.swing.JLabel();
         jLabel_info__sent = new javax.swing.JLabel();
@@ -1147,11 +1148,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel_faktura_changed_by__user.setForeground(new java.awt.Color(153, 153, 153));
 
-        jPanel23.setLayout(new java.awt.GridLayout(7, 1));
+        jPanel23.setLayout(new java.awt.GridLayout(8, 1));
 
         jLabel_info__forfallen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
         jLabel_info__forfallen.setToolTipText("Förfallen");
         jPanel23.add(jLabel_info__forfallen);
+
+        jLabel_info_rut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_info_rut.setText("RUT");
+        jLabel_info_rut.setToolTipText("RUT-Avdrag");
+        jPanel23.add(jLabel_info_rut);
 
         jLabel_info__betald.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
         jLabel_info__betald.setToolTipText("Betald");
@@ -2550,6 +2556,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_info__makulerad;
     protected javax.swing.JLabel jLabel_info__printed;
     protected javax.swing.JLabel jLabel_info__sent;
+    public javax.swing.JLabel jLabel_info_rut;
     protected javax.swing.JLabel jLabel_inloggning;
     private javax.swing.JLabel jLabel_register_new;
     private javax.swing.JLabel jLabel_restore_password;

@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    private static final boolean HTTPS = true;
+    private static final boolean HTTPS = false;
 
     /**
      * @deprecated @throws Exception

@@ -113,6 +113,7 @@ betald integer DEFAULT 0,
 sent_with_email integer DEFAULT 0,
 date_created varchar(30) DEFAULT 'no',
 changed_by varchar(300) DEFAULT '',
+rutavdrag boolean DEFAULT false,
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 ); 

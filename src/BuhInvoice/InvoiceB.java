@@ -54,6 +54,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP. AVGIFT";
     public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
+    public static String TABLE_ALL_INVOICES__RUT = "RUT AVDRAG";
     public static String TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET = "OMVÄNT SKATTSKYLDIGHET";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
@@ -265,6 +266,7 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__MOMS,
             TABLE_ALL_INVOICES__VALUTA,
             TABLE_ALL_INVOICES__MAKULERAD,
+            TABLE_ALL_INVOICES__RUT,
             TABLE_ALL_INVOICES__BETALD,
             TABLE_ALL_INVOICES__SKICKAD,
             TABLE_ALL_INVOICES__IMPORTANT_KOMMENT,
@@ -608,6 +610,7 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__MOMS_TOTAL__),
             map.get(DB.BUH_FAKTURA__VALUTA),
             JSon.getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__MAKULERAD)),
+            JSon.getLongName(DB.STATIC__JA_NEJ__EMPTY_NEJ, map.get(DB.BUH_FAKTURA__RUT)),
             JSon.getLongName(DB.STATIC__BETAL_STATUS, map.get(DB.BUH_FAKTURA__BETALD)),
             JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__SENT)),
             map.get(DB.BUH_FAKTURA__IMPORTANT_KOMMENT),
@@ -905,6 +908,7 @@ public class InvoiceB extends Basic_Buh {
         //
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
+        faktura_data_map.remove(DB.BUH_FAKTURA__RUT);
         faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
         //
     }

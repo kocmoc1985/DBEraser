@@ -29,6 +29,8 @@ Om två personer gemensamt äger en bostad kan de tillsammans få en maximal skatte
 SLUTSATS:
 Alla vuxna i hushållet kan lägga ihop RUT-Avdrag. Maxtaket är 50000:-/person.
 
+***DET HÄR ÄR DEN SLUTLIGA FORMELN****:
+[summa avdrag] = [arbetskostnad inkl. moms] * 0.3 ------> i det konkreta fallet [43500 * 0.25] * 0.3 = 16312.5 :- --> för båda ---> [16312.5 / 2] = 8156.25 --> per person
 ____________________________________________________________________________________________________________________________
 
 LINAS FAKTURA:

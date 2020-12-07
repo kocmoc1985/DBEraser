@@ -216,6 +216,10 @@ public class InvoiceA_Update extends Invoice_ {
         makulerad.enableFixedValuesAdvanced();
         makulerad.setUneditable();
         //
+        RowDataInvert rut = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__RUT, InvoiceB.TABLE_ALL_INVOICES__RUT, "", false, true, false);
+        rut.enableFixedValuesAdvanced();
+        rut.setUneditable();
+        //
         RowDataInvert[] rows = {
 //            inkl_exkl_moms,
 //            moms,

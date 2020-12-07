@@ -47,7 +47,7 @@ public class R_DETAILED {
     }
 
     public static String CHANGE_TOTAL_WEIGHT_COMBO() {
-        return LANG_ENG ? "Change total volume" : "Gesamtgewicht ändern";
+        return LANG_ENG ? "Change total weight" : "Gesamtgewicht ändern";
     }
 
     public static String CHANGE_LOAD_FACTOR_COMBO() {
