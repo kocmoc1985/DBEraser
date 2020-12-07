@@ -207,6 +207,25 @@ public abstract class Basic_Buh extends Basic {
         prevLengthOrgnr = txt.length();
         //
     }
+    
+     protected  void pnr_additional(JLinkInvert jli, TableInvert ti) {
+        //
+        JTextFieldInvert jtfi = (JTextFieldInvert) jli;
+        //
+        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_RUT__PNR, ti);
+        //
+        String txt = jtfi.getText();
+        //
+        if (txt.length() == 8 && prevLengthOrgnr == 7) {
+            jtfi.setText(orgnr + "-");
+        } else if (txt.contains("--")) {
+            txt = txt.replaceAll("--", "-");
+            jtfi.setText(txt);
+        }
+        //
+        prevLengthOrgnr = txt.length();
+        //
+    }
 
     @Override
     public RowDataInvert[] getConfigTableInvert() {

@@ -29,6 +29,7 @@ public class Validator {
 
     // SWE VAT: SE + XXXXXXXXXX + 01
     private static final Pattern ORGNR = Pattern.compile("\\d{6}-\\d{4}");
+    private static final Pattern PNR = Pattern.compile("\\d{8}-\\d{4}");
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
     public static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
@@ -254,7 +255,9 @@ public class Validator {
         //
     }
     
-    
+    public static boolean validatePnr(JLinkInvert jli) {
+        return validate(jli, PNR);
+    }
 
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);

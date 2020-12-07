@@ -265,4 +265,8 @@ public class DB {
     public static final String BUH_LICENS__PC_USER_NAME = "pc_user_name";
     public static final String BUH_LICENS__JAVA = "java";
     public static final String BUH_LICENS__DATE_CREATED = "date_created";
+    //
+    public static final String BUH_FAKTURA_RUT__FORNAMN = "fornamn";
+    public static final String BUH_FAKTURA_RUT__EFTERNAMN = "efternamn";
+    public static final String BUH_FAKTURA_RUT__PNR = "personnummer";
 }
