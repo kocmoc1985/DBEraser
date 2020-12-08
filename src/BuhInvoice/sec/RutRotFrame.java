@@ -10,6 +10,7 @@ import BuhInvoice.DB;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.InvoiceB;
 import forall.HelpA;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -61,6 +62,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         HelpA.markFirstRowJtable(jTable1);
         //
+        autodefineRutArticlesJTable(jTable1);
+        //
     }
 
     private void hideCols(JTable table) {
@@ -71,6 +74,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
     }
+    
+    
 
     private void fillJTableheader_person() {
         //
@@ -114,6 +119,106 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         //
         HelpA.markFirstRowJtable(table);
+        //
+    }
+
+    private double AVDRAGS_GILL_BELOPP = 0;
+    private double AVDRAG_TOTAL = 0;
+    private double AVDRAG_PER_PERSON = 0;
+    
+     private void countAvdrag() {
+        //
+        double belopp_att_gora_avdrag_pa = countJTable(jTable2); // ja det inkluderar moms
+        //
+        double avdrag = belopp_att_gora_avdrag_pa * 0.3;
+        //
+        System.out.println("RUT BELOPP INNAN AVDRAG: " + belopp_att_gora_avdrag_pa);
+        System.out.println("AVDRAG TOTAL: " + avdrag);
+        //
+        double antal_pers_som_delar_på_avdraget = jTable3.getRowCount();
+        //
+        if(antal_pers_som_delar_på_avdraget == 0){
+            return;
+        }
+        //
+        double avdrag_per_person = avdrag / antal_pers_som_delar_på_avdraget;
+        //
+        System.out.println("AVDRAG PER PERSON: " + avdrag_per_person);
+        //
+    }
+    
+   
+
+    private static Double countJTable(JTable table) {
+        //
+        double sum = 0;
+        //
+        if (table.getRowCount() == 0) {
+            return sum;
+        }
+        //
+        ArrayList<DoubleParamEntry> list = new ArrayList<>();
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col_pris = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
+            int col_percent = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
+            //
+            String val_pris = (String) table.getValueAt(x, col_pris);
+            String val_percent = (String) table.getValueAt(x, col_percent);
+            //
+            if (val_pris == null || val_pris.isEmpty() || val_pris.equals("null")
+                    || val_percent == null || val_percent.isEmpty() || val_percent.equals("null")) {
+                //
+                return null;
+                //
+            }
+            //
+            DoubleParamEntry dpe = new DoubleParamEntry(val_pris, val_percent);
+            list.add(dpe);
+            //
+        }
+        //
+        for (DoubleParamEntry entry : list) {
+            double pris = entry.getParam_a__double();
+            double moms = entry.getParam_b__percent();
+            double inkl_moms = pris + (pris * moms);
+            sum += inkl_moms;
+        }
+        //
+        return sum;
+        //
+    }
+
+    private void autodefineRutArticlesJTable(JTable table) {
+        //
+        String[] dict = new String[]{"arbete"};
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            int col_artikel = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN);
+            int col_beskrivning = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT);
+            //
+            String val_artikel = (String) table.getValueAt(row, col_artikel);
+            String val_beskrivning = (String) table.getValueAt(row, col_beskrivning);
+            //
+            if (val_artikel != null && val_beskrivning != null) {
+                //
+                for (String str : dict) {
+                    //
+                    if (val_artikel.toLowerCase().contains(str) || val_beskrivning.toLowerCase().contains(str)) {
+                        //
+                        HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, row);
+                        //
+                        countAvdrag();
+                        //
+                    }
+                    //
+                }
+                //
+            }
+            //
+        }
         //
     }
 
@@ -276,22 +381,26 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jTable1.getRowCount() > 0) {
-            HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2);
+            HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, -1);
+            countAvdrag();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (jTable2.getRowCount() > 0) {
-            HelpA.addRowFromOneTableToAnother_withRemove(jTable2, jTable1);
+            HelpA.addRowFromOneTableToAnother_withRemove(jTable2, jTable1, -1);
+            countAvdrag();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         addPerson();
+        countAvdrag();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         deletePerson();
+        countAvdrag();
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

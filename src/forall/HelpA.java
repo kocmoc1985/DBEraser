@@ -1563,11 +1563,17 @@ public class HelpA {
         //
     }
 
-    public static void addRowFromOneTableToAnother_withRemove(JTable fromTable, JTable toTable) {
+    public static void addRowFromOneTableToAnother_withRemove(JTable fromTable, JTable toTable, int row_) {
         //
         ArrayList<Object> list = new ArrayList<>();
         //
-        int row = fromTable.getSelectedRow();
+        int row;
+        //
+        if (row_ != -1) {
+            row = row_;
+        } else {
+            row = fromTable.getSelectedRow();
+        }
         //
         for (int col = 0; col < fromTable.getColumnCount(); col++) {
             //

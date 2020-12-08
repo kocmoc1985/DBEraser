@@ -1,32 +1,52 @@
 
-1. It shall not be possible to update a Faktura for which "betal status = 1,2,3" [IMPLEMENTED][2020-09-07]
+It shall not be possible to update a Faktura for which "betal status = 1,2,3" [IMPLEMENTED][2020-09-07]
 
-2. It shall not be possible to change "inkl/exkl moms" when an article was added to a new invoice [IMPLEMENTED]
-2.2 In fact it would probably make sence to bind "moms" to faktura article instead of "faktura" -> in this case it would be possible to have "faktura-articles" with different "moms-sats"
+___________________________________________________________________________________________________________________________________________________________________________
 
-3. MAKULERAD -> om fakturan är makulerad ska det 
+It shall not be possible to change "inkl/exkl moms" when an article was added to a new invoice [IMPLEMENTED]
+___________________________________________________________________________________________________________________________________________________________________________
 
-A. "BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO], 4 = kreditfaktura (shows "-" in table)
+MAKULERAD -> om fakturan är makulerad ska det 
+___________________________________________________________________________________________________________________________________________________________________________
 
-B. "SEND" TYPES: 0 = Faktura, 1 = Påminnelse -> db table "buh_faktura_send"
+"BETALD" STATUSES: 0 = inte betald, 1 = betald, 2 = delvis, 3 = överbetald [JUST INFO], 4 = kreditfaktura (shows "-" in table)
+___________________________________________________________________________________________________________________________________________________________________________
 
-C. "FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT" -> db table "buh_faktura"
+"SEND" TYPES: 0 = Faktura, 1 = Påminnelse -> db table "buh_faktura_send"
+___________________________________________________________________________________________________________________________________________________________________________
 
-D. FAKTURA SEND STATUS: 0 = "Nej", 1 = "Ja (Ja bara om sending successful)" -> db table "buh_faktura" -> column "sent_with_email"
+"FAKTURA" TYPES: 0 = "FAKTURA", 1 = "KREDIT", 2 = "KONTANT" -> db table "buh_faktura"
+___________________________________________________________________________________________________________________________________________________________________________
 
-E. "MOMS på FRAKT och EXP. AVG" -> jag beräknar moms på de genom att använda den momsats som används för artiklar i fakturan. Lagen lyder annars följande:
+FAKTURA SEND STATUS: 0 = "Nej", 1 = "Ja (Ja bara om sending successful)" -> db table "buh_faktura" -> column "sent_with_email"
+___________________________________________________________________________________________________________________________________________________________________________
+
+"MOMS på FRAKT och EXP. AVG" -> jag beräknar moms på de genom att använda den momsats som används för artiklar i fakturan. Lagen lyder annars följande:
 Momssatsen för frakt- och fakturaavgiften/expeditionsavgiften på fakturan/fakturorna blir den momssats som du har på den största summan/beloppet på din faktura.
 Ifall du inte vill att det ska bli på det viset så kan du lägga din moms för dessa avgifter som artiklar på fakturan istället. 
 Detta är viktigt för enligt mervärdesskattelagen ska beskattningsunderlaget för fraktkostnad och fakturaavgift fördelas på beskattningsunderlaget
 för respektive vara. Det innebär att du behöver fördela frakt och fakturaavgifter på olika momssatser.
+___________________________________________________________________________________________________________________________________________________________________________
 
-F. Dröjsmåls avg är kalkulerat enligt följande:
+Dröjsmåls avg är kalkulerat enligt följande:
 För att beräkna dröjsmålsränta tar man fakturabeloppet inklusive moms, multiplicerar med den avtalade dröjsmålsräntan
 och dividerar sedan med årets antal dagar, det vill säga 365.
+___________________________________________________________________________________________________________________________________________________________________________
 
-G. Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+Rabatt kalkyleras enligt följande: ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+___________________________________________________________________________________________________________________________________________________________________________
 
-H. Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
+RUT / ROT Avdrag
+
+See file:
+Project docs\BuhFakturering\Fakturering Docs\ROT RUT AVDRAG\ROT RUT Questions and Implementation.txt
+
+***DET HÄR ÄR DEN SLUTLIGA FORMELN****:
+[summa avdrag] = [arbetskostnad inkl. moms] * 0.3 ------> i det konkreta fallet (från Linas faktura) -> [43500 * 0.25] * 0.3 = 16312.5 :- --> för båda ---> [16312.5 / 2] = 8156.25 --> per person
+
+___________________________________________________________________________________________________________________________________________________________________________
+
+Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
 If it's beeing used the faktura shall contain note like: Omvänd skattskyldighet, Ert vatnr: 556251-6806
 
 Vad är omvänd skattskyldighet?
@@ -39,5 +59,7 @@ Tjänster som omsätts inom byggsektorn när både säljare och köpare är momsregistr
 Mottagarens organisationsnummer och texten "Omvänd skattskyldighet" ska anges på fakturan.
 Reglerna gäller även för företag som vanligtvis inte hör till byggsektorn men utför tjänster på uppdrag av annat företag som faller under reglerna för omvänd skattskyldighet.
 Regler för omvänd skattskyldighet gäller också för försäljning av avfall och skrot av vissa metaller.
+
+___________________________________________________________________________________________________________________________________________________________________________
 
 

@@ -54,7 +54,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__EXP_AVG = "EXP. AVGIFT";
     public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
-    public static String TABLE_ALL_INVOICES__RUT = "RUT AVDRAG";
+    public static String TABLE_ALL_INVOICES__RUT = "RUT ROT AVDRAG";
     public static String TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET = "OMVÄNT SKATTSKYLDIGHET";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
