@@ -64,18 +64,6 @@ ATT IMPLEMENTERA I PROGRAMMET:
 1. Jag kommer behöva implementera en ny tabel något i still med:
 1.2 Jag kommer också behöva införa ny column i "buh_faktura" -> för att kunna avgöra om RUT används
 
-CREATE TABLE buh_faktura_rut (
-rutId integer primary key not null AUTO_INCREMENT,
-kundId integer not null,
-fakturaId integer not null,
-skattereduktion float DEFAULT 0,
-namn varchar(50) DEFAULT '',
-efternamn varchar(50) DEFAULT '',
-pnr varchar(50) DEFAULT '',
-fastighets_beteckning varchar(100) DEFAULT '',
-Foreign key (fakturaId) references buh_faktura(fakturaId),
-Foreign key (kundId) references buh_kund(kundId)
-);
 
 Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
 
