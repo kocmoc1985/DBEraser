@@ -31,7 +31,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private double AVDRAGS_GILL_BELOPP = 0;
     private double AVDRAG_TOTAL = 0;
     private double AVDRAG_PER_PERSON = 0;
-    private double ROT_ELLER_RUT__PERCENT = 0; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
+    private double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
 
     /**
      * Creates new form RutRot
@@ -58,6 +58,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.rut = new RutRot(bim, this);
         this.rut.showTableInvert();
+        //
+        jCheckBox_ROT.setSelected(true);
         //
         fillJTableheader_person();
         //
