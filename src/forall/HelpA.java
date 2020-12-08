@@ -1956,6 +1956,18 @@ public class HelpA {
         //
     }
 
+    public static void setValueAllRows(JTable table, String colName, String replace) {
+        //
+        int col = getColByName(table, colName);
+        //
+        for (int i = 0; i < table.getRowCount(); i++) {
+            //
+            table.setValueAt(replace, i, col);
+            //
+        }
+        //
+    }
+
     public static void setValueCurrentRow(JTable table, String colName, Object value) {
         table.setValueAt(value, table.getSelectedRow(), getColByName(table, colName));
     }

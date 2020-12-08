@@ -25,6 +25,10 @@ public class RutRotFrame extends javax.swing.JFrame {
     private BUH_INVOICE_MAIN bim;
     private RutRot rut;
     private JTable articlesTable;
+    private double AVDRAGS_GILL_BELOPP = 0;
+    private double AVDRAG_TOTAL = 0;
+    private double AVDRAG_PER_PERSON = 0;
+    private double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
 
     /**
      * Creates new form RutRot
@@ -74,8 +78,6 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
     }
-    
-    
 
     private void fillJTableheader_person() {
         //
@@ -84,6 +86,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         String[] headers = {
             RutRot.COL__FORNAMN,
             RutRot.COL__EFTERNAMN,
+            RutRot.COL__AVDRAG,
             RutRot.COL__PNR,};
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -111,6 +114,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA_RUT__FORNAMN),
             map.get(DB.BUH_FAKTURA_RUT__EFTERNAMN),
+            "0",
             map.get(DB.BUH_FAKTURA_RUT__PNR)
         };
         //
@@ -118,36 +122,40 @@ public class RutRotFrame extends javax.swing.JFrame {
         model.addRow(jtableRow);
         //
         //
+        HelpA.setValueAllRows(table, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
+        //
+        //
         HelpA.markFirstRowJtable(table);
         //
+        rut.showTableInvert();
     }
 
-    private double AVDRAGS_GILL_BELOPP = 0;
-    private double AVDRAG_TOTAL = 0;
-    private double AVDRAG_PER_PERSON = 0;
     
-     private void countAvdrag() {
+
+    private void countAvdrag(int antalPers) {
         //
-        double belopp_att_gora_avdrag_pa = countJTable(jTable2); // ja det inkluderar moms
+        AVDRAGS_GILL_BELOPP = countJTable(jTable2); // ja det inkluderar moms
         //
-        double avdrag = belopp_att_gora_avdrag_pa * 0.3;
+        AVDRAG_TOTAL = AVDRAGS_GILL_BELOPP * 0.3;
         //
-        System.out.println("RUT BELOPP INNAN AVDRAG: " + belopp_att_gora_avdrag_pa);
-        System.out.println("AVDRAG TOTAL: " + avdrag);
+        System.out.println("RUT BELOPP INNAN AVDRAG: " + AVDRAGS_GILL_BELOPP);
+        System.out.println("AVDRAG TOTAL: " + AVDRAG_TOTAL);
         //
         double antal_pers_som_delar_på_avdraget = jTable3.getRowCount();
         //
-        if(antal_pers_som_delar_på_avdraget == 0){
+        if (antal_pers_som_delar_på_avdraget == 0 && antalPers == -1) {
             return;
         }
         //
-        double avdrag_per_person = avdrag / antal_pers_som_delar_på_avdraget;
+        if (antalPers != -1) {
+            antal_pers_som_delar_på_avdraget = antalPers;
+        }
         //
-        System.out.println("AVDRAG PER PERSON: " + avdrag_per_person);
+        AVDRAG_PER_PERSON = AVDRAG_TOTAL / antal_pers_som_delar_på_avdraget;
+        //
+        System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON);
         //
     }
-    
-   
 
     private static Double countJTable(JTable table) {
         //
@@ -210,7 +218,7 @@ public class RutRotFrame extends javax.swing.JFrame {
                         //
                         HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, row);
                         //
-                        countAvdrag();
+                        countAvdrag(-1);
                         //
                     }
                     //
@@ -382,25 +390,38 @@ public class RutRotFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (jTable1.getRowCount() > 0) {
             HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, -1);
-            countAvdrag();
+            countAvdrag(-1);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (jTable2.getRowCount() > 0) {
             HelpA.addRowFromOneTableToAnother_withRemove(jTable2, jTable1, -1);
-            countAvdrag();
+            countAvdrag(-1);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //
+        countAvdrag(jTable3.getRowCount() + 1);
+        //
         addPerson();
-        countAvdrag();
+        //
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //
         deletePerson();
-        countAvdrag();
+        //
+        int antal_pers = jTable3.getRowCount();
+        //
+        if (antal_pers == 0 || antal_pers == 1) {
+            countAvdrag(-1);
+        } else {
+            countAvdrag(antal_pers - 1);
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

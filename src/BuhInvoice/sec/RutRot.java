@@ -29,6 +29,7 @@ public class RutRot extends Basic_Buh {
     private final RutRotFrame rutRotFrame;
     public static final String COL__FORNAMN = "FÖRNAMN";
     public static final String COL__EFTERNAMN = "EFTERNAMN";
+    public static final String COL__AVDRAG = "AVDRAG";
     public static final String COL__PNR = "PERSONNUMMER";
 
     public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame) {

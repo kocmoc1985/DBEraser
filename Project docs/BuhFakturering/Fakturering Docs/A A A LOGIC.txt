@@ -38,6 +38,9 @@ ________________________________________________________________________________
 
 RUT / ROT Avdrag
 
+**Rot** är en förkortning för renovering, ombyggnad och tillbyggnad.  ---> OBS! ***30%**** i avdrag
+**Rut** står för Rengöring, Underhåll och Tvätt. Det är ett skatteavdrag på tjänster i hemmet.  ---> OBS! ***50%*** i avdrag
+
 See file:
 Project docs\BuhFakturering\Fakturering Docs\ROT RUT AVDRAG\ROT RUT Questions and Implementation.txt
 
