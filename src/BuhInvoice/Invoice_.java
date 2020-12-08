@@ -46,6 +46,8 @@ public abstract class Invoice_ extends Basic_Buh {
     protected Table TABLE_INVERT_3;
     protected Faktura_Entry faktura_entry;
     //
+    private static double RUT_AVDRAG_TOTAL = 0;
+    //
     private static double FAKTURA_TOTAL_EXKL_MOMS = 0;
     private static double FAKTURA_TOTAL = 0;
     private static double RABATT_TOTAL = 0;
@@ -408,6 +410,8 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
         //
+        RUT_AVDRAG_TOTAL = 0;
+        //
         displayTotals();
         //
     }
@@ -424,6 +428,11 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
         BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
+    }
+
+    public void setRutAvdragTotal(double avdragTotal) {
+        RUT_AVDRAG_TOTAL = avdragTotal;
+        countFakturaTotal(getArticlesTable());
     }
 
     protected void countFakturaTotal(JTable table) {
@@ -508,6 +517,8 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         FAKTURA_TOTAL += FRAKT;
         FAKTURA_TOTAL += EXP_AVG;
+        //
+        FAKTURA_TOTAL -= RUT_AVDRAG_TOTAL;
         //
         displayTotals();
         //
@@ -796,7 +807,7 @@ public abstract class Invoice_ extends Basic_Buh {
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
-        super.mouseClickedForward(me, column, row, tableName, ti); 
+        super.mouseClickedForward(me, column, row, tableName, ti);
         //
         String col_name = ti.getCurrentColumnName(me.getSource());
         //
@@ -816,8 +827,6 @@ public abstract class Invoice_ extends Basic_Buh {
         }
         //
     }
-    
-    
 
 //    @Override
 //    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
@@ -842,7 +851,6 @@ public abstract class Invoice_ extends Basic_Buh {
 //        }
 //        //
 //    }
-
     private void restoreFakturaDatumIfEmty(MouseEvent me, TableInvert ti) {
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
@@ -858,8 +866,6 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         }
     }
-
-  
 
     @Override
     public boolean getUnsaved(int nr) {
@@ -1127,18 +1133,18 @@ public abstract class Invoice_ extends Basic_Buh {
                 box.setEnabled(true);
             }
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
             //
             String rutavdrag = jli.getValue();
             //
             System.out.println("RUTAvdrag: " + rutavdrag);
             //
-            if(ie.getStateChange() != 1){
+            if (ie.getStateChange() != 1) {
                 return;
             }
             //
-            if(rutavdrag.equals("1")){
-                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles);
+            if (rutavdrag.equals("1")) {
+                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
 //                rrf.setVisible(true);
             }
             //
