@@ -263,7 +263,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
         //
         RowDataInvert dat_vervollst_testcompl = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "TESTCOMPL", T_INV.LANG("DATE COMPLETED"), "", true, true, false);
         //
-        RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "STUSERINFO", T_INV.LANG("NOTE"), "", true, true, false);
+        RowDataInvert notice = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "STUSERINFO2", T_INV.LANG("NOTE"), "", true, true, false);
         notice.enableToolTipTextJTextField();
         //
         datum_geplant_testplan.setValidateDate();

@@ -68,6 +68,10 @@ public abstract class BasicTab extends Basic  {
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
         //
+        if(me.getSource() instanceof JLinkInvert == false){
+            return;
+        }
+        //
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
         String col_name = ti.getCurrentColumnName(me.getSource());

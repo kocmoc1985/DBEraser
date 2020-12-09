@@ -7,7 +7,7 @@
 
 [FOR BOTH]
 
-1. Tab "Status" -> tables "Verarbeitung" & "Pruft" -> Fields "NOTIZ"  -> col STUSERINFO [2020-10-12] ***** STIL NOT FIXED
+1. 
 2. 
 3. Setting material from outside "LabDevelopment" -> search for: [#SET MATERIAL - FROM OUTSIDE LABDEV#] 
 ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn -> table "MC_Cpworder"
@@ -21,6 +21,14 @@ EXPREADY -> does not exist in "fn_ITF_OrdersWithMaterials"
 UpdatedOn -> ok
 UpdatedBy -> ok
 
+
+[SHOW FLORIAN - BEFORE DEMO]
+
+1. Login -> florian;0000
+2. Set Order
+3. Set Material
+4. Any Table is printable
+5. 
 
 [FOR DEMO]
 1.  Disable Development ToolTips

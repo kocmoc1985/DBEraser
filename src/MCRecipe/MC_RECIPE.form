@@ -2309,21 +2309,13 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Component id="jPanel55" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace min="5" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jPanel78" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jLabel60" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jPanel78" alignment="0" pref="50" max="32767" attributes="0"/>
+                                      <Component id="jLabel60" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jPanel55" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jPanel_lab_development" min="-2" pref="540" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
@@ -2337,7 +2329,7 @@
                                           <Component id="jScrollPane20" min="-2" pref="239" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="150" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

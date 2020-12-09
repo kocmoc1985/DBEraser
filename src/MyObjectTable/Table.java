@@ -54,7 +54,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     public HashMap<Object, UnsavedEntryInvert> unsaved_entries_map = new HashMap<Object, UnsavedEntryInvert>();
     //
     //
-    public int[] COLUMN_WIDTHS_PERCENT = {30,69};
+    public int[] COLUMN_WIDTHS_PERCENT = {30, 69};
     public int ROW_HEIGHT = 45;
     public int ROW_WIDTH_INITIAL;
     public int ROW_WIDTH_MINUS = 20;
@@ -130,10 +130,8 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         rows_list.add(row);
         this.addRow(row);
     }
-    
-    
-    
-    public ArrayList<TableRow> getRowList(){
+
+    public ArrayList<TableRow> getRowList() {
         return this.rows_list;
     }
 
@@ -167,7 +165,6 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         //
     }
 
-
     public void deleteRowGraphic(int row) {
         //
         if (row == 0) {
@@ -178,8 +175,8 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         //
         repaintTable();
     }
-    
-    public void deleteRowData(int row){
+
+    public void deleteRowData(int row) {
         //
         TableRow tr = getRow(row);
         //
@@ -272,7 +269,11 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     }
 
     public int getCurrentColumn(Object source) {
-        return row_col_object__column_count__map.get((Component) source);
+//        try {
+            return row_col_object__column_count__map.get((Component) source);
+//        } catch (Exception ex) {
+//            return -1;
+//        }
     }
 
     public String getSelectedDatabaseId() {
