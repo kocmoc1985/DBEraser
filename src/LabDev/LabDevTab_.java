@@ -6,6 +6,8 @@
 package LabDev;
 
 import MCRecipe.MC_RECIPE;
+import MCRecipe.SQL_A_;
+import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;
 import MyObjectTableInvert.BasicTab;
 import forall.HelpA;
@@ -13,6 +15,11 @@ import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import java.awt.Component;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
@@ -31,6 +38,31 @@ public abstract class LabDevTab_ extends BasicTab {
         this.labDev = labDev;
     }
 
+    public ArrayList<String> getTestCodesList_given_order_and_material(String order, String material) {
+        //
+        ArrayList<String> list = new ArrayList<>();
+        //
+        String q = SQL_A_.lab_dev_test_definitions_tab__getCodes(PROC.PROC_69, material, order, null);
+        //
+        ResultSet rs;
+        //
+        try {
+            //
+            rs = sql.execute(q, OUT);
+            //
+            while (rs.next()) {
+                //
+                list.add(rs.getString("CODE"));
+                //
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return list;
+    }
+    
 
     //=========================================================================
     //=========================================================================

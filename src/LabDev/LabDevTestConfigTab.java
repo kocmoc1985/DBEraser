@@ -34,69 +34,93 @@ import javax.swing.JPanel;
  * @author KOCMOC
  */
 public class LabDevTestConfigTab extends ChkBoxItemListComponent implements ActionListener {
-    
+
     private TableBuilderInvert TABLE_BUILDER_INVERT;
-    
+
     public LabDevTestConfigTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         //
         init();
     }
-    
+
     private void init() {
         getSaveBtn().addActionListener(this);
         getPrintBtn().addActionListener(this);
         initializeSaveIndicators();
         refresh();
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(getSaveBtn())){
+        if (e.getSource().equals(getSaveBtn())) {
             saveTableInvert();
-        }else if(e.getSource().equals(getPrintBtn())){
+        } else if (e.getSource().equals(getPrintBtn())) {
             tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
         }
     }
-    
-    private JButton getSaveBtn(){
+
+    private JButton getSaveBtn() {
         return mcRecipe.jButton_lab_dev_tab__save_config_btn;
     }
-    
-     private JButton getPrintBtn(){
+
+    private JButton getPrintBtn() {
         return mcRecipe.jButton_lab_dev__test_conf__print_invert;
     }
-    
+
     public void refresh() {
+        //
+        if (getTestCode() == null || getTestCode().isEmpty()) {
+            //
+            if(defineAndSetTestCode() == false){
+                return;
+            }
+            //
+        }
         //
         buildPrepAndAgingMethodsTables();
         //
         java.awt.EventQueue.invokeLater(() -> {
-//            buildCheckBoxTables_test_only();
             showTableInvert();
         });
+        //
     }
-    
+
+    private boolean defineAndSetTestCode() {
+        //
+        ArrayList<String> codes_list = labDev.getTestCodesList_given_order_and_material(getOrder(),getMaterial());
+        //
+        if (codes_list.get(0) != null && codes_list.get(0).isEmpty() == false) {
+            //
+            labDev.setTestCode(codes_list.get(0));
+            //
+            return true;
+            //
+        }
+        //
+        return false;
+        //
+    }
+
     private String getMaterial() {
         return labDev.getMaterial();
     }
-    
+
     private String getOrder() {
         return labDev.getOrderNo();
     }
-    
+
     private String getTestCode() {
         return labDev.getTestCode();
     }
-    
+
     private JPanel getPreparationPanel() {
         return mcRecipe.jPanel65;
     }
-    
+
     private JPanel getAgingPanel() {
         return mcRecipe.jPanel66;
     }
-    
+
     private void buildPrepAndAgingMethodsTables() {
         //
         Object[] prep_methods = getPreparationOrAgingMethods(true, false);
@@ -115,7 +139,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         setMarkedBoxes(aging_methods__marked_chkboxes, false);
         //
     }
-    
+
     private void setMarkedBoxes(Object[] prepOrAgingMethods, boolean preparationMethod) {
         //
         JPanel container = null;
@@ -128,7 +152,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         //
         for (Object obj : prepOrAgingMethods) {
             //
-            ArrayList<JPanelPrepM> list = getAllEntriesFromTable(container,false);
+            ArrayList<JPanelPrepM> list = getAllEntriesFromTable(container, false);
             //
             PrepOrAgingEntry poae = (PrepOrAgingEntry) obj;
             //
@@ -147,7 +171,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         }
         //
     }
-    
+
     private ArrayList<TestConfigEntry> getValuesPruff_ValuesTest(String procedure) {
         //
         ArrayList<TestConfigEntry> list = new ArrayList<>();
@@ -180,14 +204,14 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
      */
     public void testGetValuesCheckBoxTableOne() {
         //
-        ArrayList<JPanelPrepM> list = getAllEntriesFromTable(mcRecipe.jPanel65,true);
+        ArrayList<JPanelPrepM> list = getAllEntriesFromTable(mcRecipe.jPanel65, true);
         //
         for (JPanelPrepM jp : list) {
             System.out.println("" + jp);
         }
         //
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -218,7 +242,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         return list.toArray(arr);
         //
     }
-    
+
     @Override
     public void showTableInvert() {
         //
@@ -241,7 +265,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         showTableInvert(mcRecipe.jPanel64);
         //
     }
-    
+
     private Object[] getPreparationOrAgingMethods(boolean preparation, boolean getChkBoxMarked) {
         //
         String code_column_name = null;
@@ -296,23 +320,23 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         //
         return list.toArray(pme_arr);
     }
-    
+
     @Override
     public void fillNotes() {
     }
-    
+
     private void saveTableInvert() {
         //
-        saveChangesTableInvert_C_C((TableInvert)TABLE_INVERT);
+        saveChangesTableInvert_C_C((TableInvert) TABLE_INVERT);
         //
         labDev.refreshHeader();
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_config_btn, this, 1);
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         if (nr == 1) {
@@ -326,7 +350,7 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         }
         return false;
     }
-    
+
     private void buildCheckBoxTables_test_only() {
         //
         addRows(new String[]{
@@ -360,12 +384,10 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     @Override
+
+    @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
 }

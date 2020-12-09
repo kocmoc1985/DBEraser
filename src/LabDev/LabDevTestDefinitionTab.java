@@ -89,10 +89,10 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
     }
     
     private void build() {
-        ArrayList<String> codes_list = getCodesList();
+        ArrayList<String> codes_list = getTestCodesList_given_order_and_material(labDev.getOrderNo(), labDev.getMaterial());
         ArrayList<TestDefinitionEntry> table_data = buildJTableData(codes_list);
         fillJTable(table_data);
-        System.out.println("");
+//        System.out.println("");
     }
     
     private ArrayList<TestDefinitionEntry> buildJTableData(ArrayList<String> codes_list) {
@@ -139,33 +139,6 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
         return listToReturn;
     }
     
-    private ArrayList<String> getCodesList() {
-        //
-        ArrayList<String> list = new ArrayList<>();
-        //
-        String material = labDev.getMaterial();
-        String order = labDev.getOrderNo();
-        //
-        String q = SQL_A_.lab_dev_test_definitions_tab__getCodes(PROC.PROC_69, material, order, null);
-        //
-        ResultSet rs;
-        //
-        try {
-            //
-            rs = sql.execute(q, OUT);
-            //
-            while (rs.next()) {
-                //
-                list.add(rs.getString("CODE"));
-                //
-            }
-            //
-        } catch (SQLException ex) {
-            Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-        return list;
-    }
     
     private void fillJTableHeader() {
         //
