@@ -111,10 +111,6 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         this.TEST_CODE = code;
     }
 
-    public void setPrevTabName(String prevTabName) {
-        this.PREV_TAB_NAME = prevTabName;
-    }
-
     public String getMaterial_description() {
         String q = SQL_A_.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
         String descr = HelpA.getSingleParamSql_query(sql, q, "Beschreibung");
@@ -127,12 +123,17 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         return batch_ammount;
     }
 
+    public void setPrevTabName(String prevTabName) {
+        this.PREV_TAB_NAME = prevTabName;
+    }
+
     public void setOrderNo(String order) {
         //
         this.ORDER_FOR_TESTING = order;
         //
         if (order != null && order.isEmpty() == false) {
             defineAndSetMaterial(order);
+            setPrevTabName("");
         }
         //
     }
