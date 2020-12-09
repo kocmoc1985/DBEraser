@@ -16,7 +16,6 @@ import MCRecipe.TestParameters_;
 import MCRecipe.UpdateEntry;
 import MyObjectTable.SaveIndicator;
 import MyObjectTable.ShowMessage;
-import MyObjectTable.Table;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import forall.GP;
@@ -27,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTabbedPane;
@@ -39,17 +39,17 @@ import javax.swing.JTextField;
  * @author KOCMOC
  */
 public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
-    
+
     public static String TABLE__MC_CPWORDER = "MC_Cpworder";
     public static String TABLE__MAT_INFO = "MC_Cpworder_OrderMaterials";
     public static String TABLE__AGEMENT = "MC_CPAGEMET";
     public static String TABLE__VULC = "MC_CPVULMET";
     public static String TABLE__TEST_PROCEDURE = "MCCPTproc";
     public static String TABLE__MCCPWOTEST = "MCcpwotest";
-    
+
     public static String TABLE_NOTES_1 = "MC_Cpworder_SendTo";
     public static String TABLE_NOTES_2 = "MC_Cpworder_ActDept";
-    
+
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     private final ChangeSaver changeSaver;
     private LabDevHeaderComponent labDevHeaderComponent;
@@ -66,13 +66,13 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private String MATERIAL = ""; // WE8486 -> Also called Rezeptur
     private String ACTUAL_TAB_NAME = "";
     public String PREV_TAB_NAME = "";
-    
+
     public LabDevelopment_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, ChangeSaver saver) {
         super(sql, sql_additional, OUT, null);
         this.changeSaver = saver;
         init();
     }
-    
+
     private void init() {
         //
         mcRecipe.jTable_lab_dev_1.addMouseListener(this);
@@ -85,11 +85,11 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         initializeSaveIndicators();
         fill_jtable_1_2__tab__main_data();
     }
-    
+
     protected JTabbedPane getTabbedPane() {
         return mcRecipe.jTabbedPane3_Lab_Dev;
     }
-    
+
     public String getOrderNo() {
         return ORDER_FOR_TESTING;
     }
@@ -98,43 +98,65 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public String getMaterial() {
         return MATERIAL;
     }
-    
+
     public void setMaterial(String material) {
         this.MATERIAL = material;
     }
-    
+
     public String getTestCode() {
         return TEST_CODE;
     }
-    
+
     public void setTestCode(String code) {
         this.TEST_CODE = code;
     }
-    
+
     public void setPrevTabName(String prevTabName) {
         this.PREV_TAB_NAME = prevTabName;
     }
-    
+
     public String getMaterial_description() {
         String q = SQL_A_.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
         String descr = HelpA.getSingleParamSql_query(sql, q, "Beschreibung");
         return descr;
     }
-    
+
     public String getMaterial_batchammount() {
         String q = SQL_A_.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
         String batch_ammount = HelpA.getSingleParamSql_query(sql, q, "BatchMenge");
         return batch_ammount;
     }
-    
+
     public void setOrderNo(String order) {
+        //
         this.ORDER_FOR_TESTING = order;
+        //
+        if (order != null && order.isEmpty() == false) {
+            defineAndSetMaterial(order);
+        }
+        //
     }
-    
+
+    private boolean defineAndSetMaterial(String order) {
+        //
+        ArrayList<String> material_list = getMaterials_given_order(order);
+        //
+        if (material_list.get(0) != null && material_list.get(0).isEmpty() == false) {
+            //
+            setMaterial(material_list.get(0));
+            //
+            return true;
+            //
+        }
+        //
+        return false;
+        //
+    }
+
     public String getRequester() {
         return HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "REQUESTER", false);
     }
-    
+
     public String getUpdatedOn() {
         //
         String date = "";
@@ -200,7 +222,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             return date;
         }
     }
-    
+
     public String getUpdatedBy() {
         //
         String updatedBy = "";
@@ -265,7 +287,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         return updatedBy;
         // 
     }
-    
+
     protected void refreshHeader() {
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
@@ -295,7 +317,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
     }
-    
+
     public void lab_dev_tab_test_variables__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_VARIABLES();
@@ -307,7 +329,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
     }
-    
+
     public void lab_dev_tab_test_procedure__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_PROCEDURE();
@@ -319,7 +341,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
     }
-    
+
     public void lab_dev_tab_age_vulc__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_AGE_VULC();
@@ -333,7 +355,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
+
     public void lab_dev_tab__tab_status__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_STATUS();
@@ -347,7 +369,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
+
     public void lab_dev_tab_test_config__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG();
@@ -361,7 +383,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
+
     public void lab_dev_tab_test_definition__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION();
@@ -375,7 +397,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
+
     public void lab_dev_tab_tab_find_order__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER();
         refreshHeader();
@@ -383,7 +405,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         labDevFindOrderTab.refresh();
         //
     }
-    
+
     public void lab_dev_tab_tab_material_info__clicked() {
         //
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MATERIALINFO();
@@ -396,13 +418,13 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
     }
-    
+
     public void lab_dev_tab__tab_notes__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_NOTES();
         fillNotes();
         refreshHeader();
     }
-    
+
     public void lab_dev_tab__tab_main_data__clicked() {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA();
         refreshHeader();
@@ -410,11 +432,11 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         fill_jtable_1_2__tab__main_data();
 //        REQUESTER_ANTRAGSTELLER = getValueTableInvert("REQUESTER", TABLE_INVERT);
     }
-    
+
     private JTextArea getNotesJTextArea() {
         return mcRecipe.jTextArea_notes__lab_dev_tab;
     }
-    
+
     private void fill_jtable_1_2__tab__main_data() {
         //
         String[] colsToHide = new String[]{"WORDERNO", "UpdatedBy", "UpdatedOn", "ID"};
@@ -426,13 +448,13 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         HelpA.build_table_common(sql, OUT, mcRecipe.jTable_lab_dev_2, q2, colsToHide);
         //
     }
-    
+
     @Override
     public void fillNotes() {
         String notes = HelpA.getSingleParamSql(sql, TABLE__MC_CPWORDER, "WORDERNO", getOrderNo(), "NOTE", false);
         getNotesJTextArea().setText(notes);
     }
-    
+
     public void saveTableInvert__tab_main_data() {
         //
         if (containsInvalidatedFields(TABLE_INVERT, 1, getConfigTableInvert())) {
@@ -444,7 +466,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         refreshHeader();
     }
-    
+
     public void saveNotesJTexArea() {
         //
         notesUnsaved = false;
@@ -462,7 +484,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         refreshHeader();
         //
     }
-    
+
     public void printMainDataInvertTable() {
         tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
     }
@@ -513,7 +535,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         return rows;
     }
-    
+
     @Override
     public void showTableInvert() {
         //
@@ -537,7 +559,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         showTableInvert(mcRecipe.jPanel_lab_development);
         //
     }
-    
+
     public void deleteJTableNote(JTable table, String dbTableName) {
         //
         if (HelpA.confirm() == false) {
@@ -562,7 +584,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         fill_jtable_1_2__tab__main_data();
         //
     }
-    
+
     public void addJTableNote(JTable table, String dbTableName) {
         //
         String order = getOrderNo();
@@ -590,7 +612,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         fill_jtable_1_2__tab__main_data();
         //
     }
-    
+
     public void changeJTableNoteValue(JTable table, String tableName, String noteValColName, String idColName) {
         //
         if (HelpA.getIfAnyRowChosen(table) == false) {
@@ -635,14 +657,14 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         fill_jtable_1_2__tab__main_data();
         //
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
         SaveIndicator saveIndicator1 = new SaveIndicator(mcRecipe.jButton_lab_dev_save_btn_1, this, 1);
         SaveIndicator saveIndicator3 = new SaveIndicator(mcRecipe.jButton_lab_dev_tab__save_notes, this, 3);
         SaveIndicator saveIndicator4 = new SaveIndicator(mcRecipe.jButton_lab_dev__material_info_save, this, 4);
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         if (nr == 1) {
@@ -728,31 +750,31 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+
     @Override
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

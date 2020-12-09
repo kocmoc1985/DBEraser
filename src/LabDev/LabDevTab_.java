@@ -37,6 +37,31 @@ public abstract class LabDevTab_ extends BasicTab {
         this.mcRecipe = (MC_RECIPE) OUT;
         this.labDev = labDev;
     }
+    
+    public ArrayList<String> getMaterials_given_order(String order) {
+        //
+        ArrayList<String> list = new ArrayList<>();
+        //
+        String q = SQL_A_.get_lab_dev_jtable_material_info(PROC.PROC_68, order, null);
+        //
+        ResultSet rs;
+        //
+        try {
+            //
+            rs = sql.execute(q, OUT);
+            //
+            while (rs.next()) {
+                //
+                list.add(rs.getString("Material"));
+                //
+            }
+            //
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return list;
+    }
 
     public ArrayList<String> getTestCodesList_given_order_and_material(String order, String material) {
         //
