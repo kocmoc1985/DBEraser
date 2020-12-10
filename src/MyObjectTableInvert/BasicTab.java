@@ -74,12 +74,12 @@ public abstract class BasicTab extends Basic  {
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
-        String col_name = ti.getCurrentColumnName(me.getSource());
+//        String col_name = ti.getCurrentColumnName(me.getSource());
         //
         //OBS! IS ENABLED ON DOUBLE CLICK
-        enableEditingLongValues(me, ti);
+        enableEditingLongValues(me);
         //
-        trimValueTableInvert(col_name, ti);
+        trimValueTableInvert(jli);
         //
     }
 

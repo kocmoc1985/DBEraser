@@ -68,7 +68,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
      * @param me
      * @param ti
      */
-    public void enableEditingLongValues(MouseEvent me, TableInvert ti) {
+    public void enableEditingLongValues(MouseEvent me) {
         //
         if (me.getSource() instanceof JTextFieldInvert && me.getClickCount() == 2) {//colName.equals("DESCR")
             //
@@ -84,7 +84,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             //
             TextFieldCheck tfc = new TextFieldCheck(initialVal, null, 70, 12);
             //
-            boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "");
+            boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Edit");
             //
             if (yesNo == false) {
                 return;
@@ -92,7 +92,8 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             //
             String value = tfc.getText();
             //
-            ti.setValueAt(rdi.getFieldOriginalName(), value);
+            ColumnDataEntryInvert cdi = jli.getChildObject();
+            cdi.setValue(value);
             //
             tri.keyReleased_(me); //OBS!! MUST Simulate this
             //
@@ -496,10 +497,17 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAtJComboBox(rowName, paramToReturn);
     }
-
-    public void trimValueTableInvert(String rowName, Table tableInvert){
-        String val = getValueTableInvert(rowName, tableInvert).trim();
-        setValueTableInvert(rowName, tableInvert, val);
+    
+    public void trimValueTableInvert(JLinkInvert jli){
+        //
+        if(jli instanceof JTextFieldInvert == false){
+            return;
+        }
+        //
+        String val = jli.getValue().trim();
+        ColumnDataEntryInvert cdei = jli.getChildObject();
+        cdei.setValue(val);
+        //
     }
     
     public String getValueTableInvert(String rowName, Table tableInvert) {

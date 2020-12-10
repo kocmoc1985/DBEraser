@@ -96,6 +96,13 @@ public class ColumnDataEntryInvert {
         }
         //
     }
+    
+    public void setValue(String value){
+        if (parent != null && parent instanceof JTextFieldInvert) {
+            JTextFieldInvert jpi = (JTextFieldInvert) parent;
+            jpi.setValue(value);
+        }
+    }
 
     public Object getObject() {
         //

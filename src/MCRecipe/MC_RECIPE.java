@@ -1148,7 +1148,6 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPasswordFieldHomePass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jButton_Home_Login.setText("Login");
-        jButton_Home_Login.setToolTipText("");
         jButton_Home_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Home_LoginActionPerformed(evt);

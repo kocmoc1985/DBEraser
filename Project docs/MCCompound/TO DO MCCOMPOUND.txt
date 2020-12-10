@@ -28,7 +28,9 @@ UpdatedBy -> ok
 2. Set Order
 3. Set Material
 4. Any Table is printable
-5. 
+5. See or change longvalue by double clicking a field ->  best to show on
+tab "MAIN DATA" -> TARGET1/2
+6. Show how to change "Status" -> from the "STATUS" tab
 
 [FOR DEMO]
 1.  Disable Development ToolTips
