@@ -236,9 +236,9 @@ public class Ingredients extends BasicTab {
         //
         String q = "select Name from Ingredient_Code where Name = ?";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.INGRED_REGEX, 20);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.getIngredRegex(), 20);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Ingredient Code, format: " + REGEX.INGRED_REGEX_DESCR);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Ingredient Code, format: " + REGEX.getIngredRegexDescr());
         ingredient_code_update = tfc.getText();
         //
         if (ingredient_code_update == null || yesNo == false) {

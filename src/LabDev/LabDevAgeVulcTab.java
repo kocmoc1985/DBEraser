@@ -82,18 +82,18 @@ public class LabDevAgeVulcTab extends LabDevTab_ implements ItemListener, Action
         } else if (e.getSource().equals(getSaveButtonVulc())) {
             saveTableInvert_2_vulc();
         } else if (e.getSource().equals(getCreateNewButtonAge())) {
-            create(TABLE__AGEMENT, "AGEINGCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
+            create(TABLE__AGEMENT, "AGEINGCODE", REGEX.getAgeingVulcCodeRegex());
         } else if (e.getSource().equals(getDeleteButtonAge())) {
             delete(TABLE__AGEMENT, "AGEINGCODE");
         } else if (e.getSource().equals(getCopyButtonAge())) {
-            copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.AGING_CODE__VULC_CODE_REGEX);
+            copy(TABLE__AGEMENT, "AGEINGCODE", TABLE_INVERT, REGEX.getAgeingVulcCodeRegex());
         } //
         else if (e.getSource().equals(getCreateNewButtonVulc())) {
-            create(TABLE__VULC, "VULCCODE", REGEX.AGING_CODE__VULC_CODE_REGEX);
+            create(TABLE__VULC, "VULCCODE", REGEX.getAgeingVulcCodeRegex());
         } else if (e.getSource().equals(getDeleteButtonVulc())) {
             delete(TABLE__VULC, "VULCCODE");
         } else if (e.getSource().equals(getCopyButtonVulc())) {
-            copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.AGING_CODE__VULC_CODE_REGEX);
+            copy(TABLE__VULC, "VULCCODE", TABLE_INVERT_2, REGEX.getAgeingVulcCodeRegex());
         } else if (e.getSource().equals(getPrintButtonAge())) {
             tableInvertExportOrRepport(TABLE_INVERT, 1, getConfigTableInvert());
         } else if (e.getSource().equals(getPrintButtonVulc())) {

@@ -632,7 +632,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialGo">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/correct.png"/>
+                              <Image iconType="3" name="/icons/filter.png"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -645,7 +645,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialResetComboBoxes">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/cancel-1.png"/>
+                              <Image iconType="3" name="/icons/filter_del.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="TOOLTIP.RESET_BOXES_BTN_TOOLTIP()" type="code"/>
@@ -1697,7 +1697,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedAddRecipeFromScratch">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/add_b.png"/>
+                          <Image iconType="3" name="/icons/new.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Create new recipe from scratch"/>
                       </Properties>
@@ -1711,7 +1711,7 @@
                     <Component class="javax.swing.JButton" name="jButtonRecipeDetailedAddNewRecipe">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/add.png"/>
+                          <Image iconType="3" name="/icons/copy.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Cretates a new recipe from the actual one"/>
                       </Properties>

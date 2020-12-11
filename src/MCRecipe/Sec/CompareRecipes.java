@@ -271,7 +271,7 @@ public class CompareRecipes extends javax.swing.JFrame {
 
         jComboBoxCompareRecipesOrderby2.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jButtonCompareRecipesOrderByDynamic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ok.png"))); // NOI18N
+        jButtonCompareRecipesOrderByDynamic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButtonCompareRecipesOrderByDynamic.setToolTipText("Order by chosen parameters");
         jButtonCompareRecipesOrderByDynamic.setPreferredSize(new java.awt.Dimension(60, 50));
         jButtonCompareRecipesOrderByDynamic.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +283,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(240, 50));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonCompareRecipesUndoMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/undo2.png"))); // NOI18N
+        jButtonCompareRecipesUndoMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
         jButtonCompareRecipesUndoMarkUp.setToolTipText("Mark up recipes when mixed up");
         jButtonCompareRecipesUndoMarkUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +292,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonCompareRecipesUndoMarkUp);
 
-        jButtonCompareRecipesMarkUp2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_1.png"))); // NOI18N
+        jButtonCompareRecipesMarkUp2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
         jButtonCompareRecipesMarkUp2.setToolTipText("Mark up type 2");
         jButtonCompareRecipesMarkUp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +301,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonCompareRecipesMarkUp2);
 
-        jButtonCompareRecipesMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mark_2.png"))); // NOI18N
+        jButtonCompareRecipesMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
         jButtonCompareRecipesMarkUp.setToolTipText("Mark up type 1");
         jButtonCompareRecipesMarkUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +310,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonCompareRecipesMarkUp);
 
-        jButtonCompareRecipesPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        jButtonCompareRecipesPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButtonCompareRecipesPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCompareRecipesPrintActionPerformed(evt);
@@ -331,9 +331,9 @@ public class CompareRecipes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxCompareRecipesOrderby2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonCompareRecipesOrderByDynamic, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonCompareRecipesOrderByDynamic, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -345,7 +345,7 @@ public class CompareRecipes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxCompareRecipesOrderBy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBoxCompareRecipesOrderby2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))

@@ -1294,7 +1294,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel43.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonRecipeInitialGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButtonRecipeInitialGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
         jButtonRecipeInitialGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialGoActionPerformed(evt);
@@ -1302,7 +1302,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel43.add(jButtonRecipeInitialGo);
 
-        jButtonRecipeInitialResetComboBoxes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonRecipeInitialResetComboBoxes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_del.png"))); // NOI18N
         jButtonRecipeInitialResetComboBoxes.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonRecipeInitialResetComboBoxes.setPreferredSize(new java.awt.Dimension(65, 43));
         jButtonRecipeInitialResetComboBoxes.addActionListener(new java.awt.event.ActionListener() {
@@ -1693,7 +1693,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel35.add(jButtonRecipeInitialUnblock1);
 
-        jButtonRecipeDetailedAddRecipeFromScratch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_b.png"))); // NOI18N
+        jButtonRecipeDetailedAddRecipeFromScratch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         jButtonRecipeDetailedAddRecipeFromScratch.setToolTipText("Create new recipe from scratch");
         jButtonRecipeDetailedAddRecipeFromScratch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1702,7 +1702,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel35.add(jButtonRecipeDetailedAddRecipeFromScratch);
 
-        jButtonRecipeDetailedAddNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButtonRecipeDetailedAddNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
         jButtonRecipeDetailedAddNewRecipe.setToolTipText("Cretates a new recipe from the actual one");
         jButtonRecipeDetailedAddNewRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

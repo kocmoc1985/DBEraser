@@ -1178,9 +1178,9 @@ public class RecipeDetailed_ extends BasicTab {
                 + " where Code =?"
                 + " and Release = '" + getRelease() + "'";
         //
-        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.RECIPE_REGEX, 25);
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, REGEX.getRecipeRegex(), 25);
         //
-        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Recipe Code, format: " + REGEX.RECIPE_REGEX_DESCR);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Recipe Code, format: " + REGEX.getRecipeRegexDescr());
         //
         recipe_code_update = tfc.getText();
         //
