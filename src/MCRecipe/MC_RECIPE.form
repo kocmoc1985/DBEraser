@@ -865,7 +865,7 @@
                         <Component class="javax.swing.JButton" name="jButtonRecipeInitialRemoweAllFromCompare">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/cancel-1.png"/>
+                              <Image iconType="3" name="/icons/close_sm.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="TOOLTIP.REMOVE_ALL_COMPARE_TOOLTIP()" type="code"/>
@@ -4065,7 +4065,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jPanel49" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="825" max="32767" attributes="0"/>
+                                  <EmptySpace pref="826" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jScrollPane19" pref="1276" max="32767" attributes="0"/>
@@ -4150,9 +4150,9 @@
                                   <Component id="jComboBoxTestPararams_Recipe" pref="135" max="32767" attributes="0"/>
                                   <Component id="jLabel88" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="76" max="32767" attributes="0"/>
-                              <Component id="jPanel50" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel50" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace pref="80" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -4211,7 +4211,7 @@
                         <Component class="javax.swing.JButton" name="jButtonTestParametersGo">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/correct.png"/>
+                              <Image iconType="3" name="/icons/filter.png"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -4224,7 +4224,7 @@
                         <Component class="javax.swing.JButton" name="jButtonTestParametersClear">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icons/cancel-1.png"/>
+                              <Image iconType="3" name="/icons/filter_remove.png"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="TOOLTIP.RESET_BOXES_BTN_TOOLTIP()" type="code"/>

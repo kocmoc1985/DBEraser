@@ -1349,7 +1349,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel41.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel41.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonRecipeInitialRemoweAllFromCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonRecipeInitialRemoweAllFromCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
         jButtonRecipeInitialRemoweAllFromCompare.setToolTipText(TOOLTIP.REMOVE_ALL_COMPARE_TOOLTIP());
         jButtonRecipeInitialRemoweAllFromCompare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2822,7 +2822,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel50.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonTestParametersGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButtonTestParametersGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
         jButtonTestParametersGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTestParametersGoActionPerformed(evt);
@@ -2830,7 +2830,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel50.add(jButtonTestParametersGo);
 
-        jButtonTestParametersClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonTestParametersClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_remove.png"))); // NOI18N
         jButtonTestParametersClear.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonTestParametersClear.setPreferredSize(new java.awt.Dimension(65, 43));
         jButtonTestParametersClear.addActionListener(new java.awt.event.ActionListener() {
@@ -2857,9 +2857,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxTestPararams_Recipe, 0, 135, Short.MAX_VALUE)
                     .addComponent(jLabel88, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel50, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel49Layout.setVerticalGroup(
             jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2916,7 +2916,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel_Test_ParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
                         .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(825, Short.MAX_VALUE))
+                        .addContainerGap(826, Short.MAX_VALUE))
                     .addGroup(jPanel_Test_ParametersLayout.createSequentialGroup()
                         .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 1276, Short.MAX_VALUE)
                         .addGap(31, 31, 31))))
