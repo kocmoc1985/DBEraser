@@ -682,8 +682,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jLabel44 = new javax.swing.JLabel();
         jPanel41 = new javax.swing.JPanel();
         jButtonRecipeInitialRemoweAllFromCompare = new javax.swing.JButton();
-        jButtonRecipeInitialShowCompare = new javax.swing.JButton();
         jButtonRecipeInitialAddToCompare = new javax.swing.JButton();
+        jButtonRecipeInitialShowCompare = new javax.swing.JButton();
         jPanel42 = new javax.swing.JPanel();
         jButtonRecipeInitialPrintTable1 = new javax.swing.JButton();
         jLabelRecordsTable1 = new javax.swing.JLabel();
@@ -1358,16 +1358,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel41.add(jButtonRecipeInitialRemoweAllFromCompare);
 
-        jButtonRecipeInitialShowCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButtonRecipeInitialShowCompare.setToolTipText(TOOLTIP.SHOW_COMPARED_RECIPES());
-        jButtonRecipeInitialShowCompare.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRecipeInitialShowCompareActionPerformed(evt);
-            }
-        });
-        jPanel41.add(jButtonRecipeInitialShowCompare);
-
-        jButtonRecipeInitialAddToCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButtonRecipeInitialAddToCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_compare.png"))); // NOI18N
         jButtonRecipeInitialAddToCompare.setToolTipText(TOOLTIP.ADD_RECIPE_TO_COMPARE());
         jButtonRecipeInitialAddToCompare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1375,6 +1366,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             }
         });
         jPanel41.add(jButtonRecipeInitialAddToCompare);
+
+        jButtonRecipeInitialShowCompare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/compare.png"))); // NOI18N
+        jButtonRecipeInitialShowCompare.setToolTipText(TOOLTIP.SHOW_COMPARED_RECIPES());
+        jButtonRecipeInitialShowCompare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRecipeInitialShowCompareActionPerformed(evt);
+            }
+        });
+        jPanel41.add(jButtonRecipeInitialShowCompare);
 
         jPanel42.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel42.setLayout(new java.awt.GridLayout(1, 0));
@@ -1469,7 +1469,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel44.setPreferredSize(new java.awt.Dimension(100, 50));
         jPanel44.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonRecipeInitialGo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButtonRecipeInitialGo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
         jButtonRecipeInitialGo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeInitialGo2ActionPerformed(evt);
@@ -1477,7 +1477,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel44.add(jButtonRecipeInitialGo2);
 
-        jButtonRecipeInitialResetComboBoxes3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonRecipeInitialResetComboBoxes3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_del.png"))); // NOI18N
         jButtonRecipeInitialResetComboBoxes3.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonRecipeInitialResetComboBoxes3.setPreferredSize(new java.awt.Dimension(65, 43));
         jButtonRecipeInitialResetComboBoxes3.addActionListener(new java.awt.event.ActionListener() {
@@ -1675,7 +1675,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel35.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton_recipe_detailed_delete_recipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_recipe_detailed_delete_recipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButton_recipe_detailed_delete_recipe.setToolTipText(TOOLTIP.DELETE_RECIPE_BTN_TOOLTIP());
         jButton_recipe_detailed_delete_recipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1758,7 +1758,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel36.add(jButton3);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -1787,7 +1787,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel37.add(jButtonRDetailedChangeNoteName);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -2986,7 +2986,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel33.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButtonIngredGo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
         jButtonIngredGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonIngredGoActionPerformed(evt);
@@ -2994,7 +2994,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel33.add(jButtonIngredGo);
 
-        jButtonIngredClearBoxes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonIngredClearBoxes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_del.png"))); // NOI18N
         jButtonIngredClearBoxes.setToolTipText(TOOLTIP.RESET_BOXES_BTN_TOOLTIP());
         jButtonIngredClearBoxes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3258,7 +3258,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel32.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton_Ingred_delete_Ingred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_Ingred_delete_Ingred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButton_Ingred_delete_Ingred.setToolTipText(TOOLTIP.DELETE_INGRED());
         jButton_Ingred_delete_Ingred.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3267,7 +3267,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel32.add(jButton_Ingred_delete_Ingred);
 
-        jButton_Ingred_Add_Ingredient_From_Scratch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_b.png"))); // NOI18N
+        jButton_Ingred_Add_Ingredient_From_Scratch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         jButton_Ingred_Add_Ingredient_From_Scratch.setToolTipText(TOOLTIP.ADD_INGR_FROM_SCRATCH());
         jButton_Ingred_Add_Ingredient_From_Scratch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3276,7 +3276,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel32.add(jButton_Ingred_Add_Ingredient_From_Scratch);
 
-        jButton_Ingred_Add_Ingredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_Ingred_Add_Ingredient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
         jButton_Ingred_Add_Ingredient.setToolTipText(TOOLTIP.ADD_INGR());
         jButton_Ingred_Add_Ingredient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3326,7 +3326,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel34.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton_Ingred_Del_Table_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_Ingred_Del_Table_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButton_Ingred_Del_Table_3.setToolTipText(TOOLTIP.DELETE_NOTE());
         jButton_Ingred_Del_Table_3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3381,7 +3381,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addGroup(jPanelIngredientsBLayout.createSequentialGroup()
                         .addComponent(jLabel39)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelIngredientsBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelIngredientsBLayout.createSequentialGroup()
@@ -3394,9 +3394,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addGroup(jPanelIngredientsBLayout.createSequentialGroup()
                         .addComponent(jLabel43)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Ingredients_Save_Comments, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton_Ingredients_Save_Comments, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel_Ingred_table4, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanelIngredientsBLayout.setVerticalGroup(
             jPanelIngredientsBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3548,6 +3548,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanelVendors.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 70));
 
+        jPanel27.setLayout(new java.awt.GridLayout());
+
         jButtonVendorsAddTradeNameToTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
         jButtonVendorsAddTradeNameToTable3.setToolTipText("Add tradename");
         jButtonVendorsAddTradeNameToTable3.setPreferredSize(new java.awt.Dimension(63, 39));
@@ -3556,14 +3558,16 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 jButtonVendorsAddTradeNameToTable3ActionPerformed(evt);
             }
         });
+        jPanel27.add(jButtonVendorsAddTradeNameToTable3);
 
-        jButtonVendorsDeleteVendorFromTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonVendorsDeleteVendorFromTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButtonVendorsDeleteVendorFromTable3.setToolTipText("Delete vendor");
         jButtonVendorsDeleteVendorFromTable3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVendorsDeleteVendorFromTable3ActionPerformed(evt);
             }
         });
+        jPanel27.add(jButtonVendorsDeleteVendorFromTable3);
 
         jButtonVendorsPrintTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jButtonVendorsPrintTable3.setToolTipText("");
@@ -3572,6 +3576,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 jButtonVendorsPrintTable3ActionPerformed(evt);
             }
         });
+        jPanel27.add(jButtonVendorsPrintTable3);
 
         jButtonVendorsSaveTable3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
         jButtonVendorsSaveTable3.addActionListener(new java.awt.event.ActionListener() {
@@ -3579,29 +3584,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 jButtonVendorsSaveTable3ActionPerformed(evt);
             }
         });
+        jPanel27.add(jButtonVendorsSaveTable3);
 
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addComponent(jButtonVendorsAddTradeNameToTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButtonVendorsDeleteVendorFromTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButtonVendorsPrintTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jButtonVendorsSaveTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonVendorsAddTradeNameToTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButtonVendorsDeleteVendorFromTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButtonVendorsPrintTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButtonVendorsSaveTable3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanelVendors.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 315, 200, 45));
+        jPanelVendors.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 315, 200, 50));
 
         jPanel28.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -3663,7 +3648,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel29.add(jButtonVendorsSaveTable1);
 
-        jPanelVendors.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 57, 100, 45));
+        jPanelVendors.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 57, 100, 50));
 
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel79.setForeground(new java.awt.Color(102, 102, 102));
@@ -3717,7 +3702,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel30.setPreferredSize(new java.awt.Dimension(160, 39));
         jPanel30.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonVendorsAddToTable3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButtonVendorsAddToTable3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         jButtonVendorsAddToTable3_2.setToolTipText("Add new tradename");
         jButtonVendorsAddToTable3_2.setPreferredSize(new java.awt.Dimension(63, 39));
         jButtonVendorsAddToTable3_2.addActionListener(new java.awt.event.ActionListener() {
@@ -3727,7 +3712,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel30.add(jButtonVendorsAddToTable3_2);
 
-        jButtonVendorsDeleteFromTable3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonVendorsDeleteFromTable3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButtonVendorsDeleteFromTable3_2.setToolTipText("Delete tradename");
         jButtonVendorsDeleteFromTable3_2.setPreferredSize(new java.awt.Dimension(63, 39));
         jButtonVendorsDeleteFromTable3_2.addActionListener(new java.awt.event.ActionListener() {
@@ -3748,7 +3733,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel31.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonVendorsAddToTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButtonVendorsAddToTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         jButtonVendorsAddToTable4.setToolTipText("Add new vendor");
         jButtonVendorsAddToTable4.setPreferredSize(new java.awt.Dimension(63, 39));
         jButtonVendorsAddToTable4.addActionListener(new java.awt.event.ActionListener() {
@@ -3758,7 +3743,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel31.add(jButtonVendorsAddToTable4);
 
-        jButtonVendorsDeleteFromTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonVendorsDeleteFromTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jButtonVendorsDeleteFromTable4.setToolTipText("Delete contact");
         jButtonVendorsDeleteFromTable4.setPreferredSize(new java.awt.Dimension(63, 39));
         jButtonVendorsDeleteFromTable4.addActionListener(new java.awt.event.ActionListener() {
@@ -3817,8 +3802,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanelVendorsBLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelVendorsBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel30, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelVendorsBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel37)
                         .addComponent(jLabel84))
@@ -3860,7 +3845,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel24.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel24.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonSequenceSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButtonSequenceSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
         jButtonSequenceSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSequenceSearchActionPerformed(evt);
@@ -3868,7 +3853,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel24.add(jButtonSequenceSearch);
 
-        jButtonBoxesClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButtonBoxesClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_del.png"))); // NOI18N
         jButtonBoxesClear.setToolTipText("Clear fields");
         jButtonBoxesClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4034,7 +4019,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                             .addComponent(jTextFieldCommandParamSequence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSequence3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
         );
 
@@ -4102,7 +4087,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addComponent(jTextFieldUpdatedBy, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(116, 116, 116))
         );
         jPanel15Layout.setVerticalGroup(
@@ -4125,7 +4110,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                                 .addComponent(jTextFieldUpdateOnSequence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -4197,7 +4182,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel33))
                     .addComponent(jComboBoxSequenceMixerCodeCopy, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -4205,7 +4190,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel16Layout.createSequentialGroup()
                             .addComponent(jLabel31)

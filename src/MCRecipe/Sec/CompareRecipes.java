@@ -283,7 +283,8 @@ public class CompareRecipes extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(240, 50));
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButtonCompareRecipesUndoMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
+        jButtonCompareRecipesUndoMarkUp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonCompareRecipesUndoMarkUp.setText("A");
         jButtonCompareRecipesUndoMarkUp.setToolTipText("Mark up recipes when mixed up");
         jButtonCompareRecipesUndoMarkUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +293,8 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonCompareRecipesUndoMarkUp);
 
-        jButtonCompareRecipesMarkUp2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
+        jButtonCompareRecipesMarkUp2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonCompareRecipesMarkUp2.setText("B");
         jButtonCompareRecipesMarkUp2.setToolTipText("Mark up type 2");
         jButtonCompareRecipesMarkUp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +303,8 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         jPanel2.add(jButtonCompareRecipesMarkUp2);
 
-        jButtonCompareRecipesMarkUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
+        jButtonCompareRecipesMarkUp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonCompareRecipesMarkUp.setText("C");
         jButtonCompareRecipesMarkUp.setToolTipText("Mark up type 1");
         jButtonCompareRecipesMarkUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
