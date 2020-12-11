@@ -248,7 +248,7 @@ public class LabDevHeaderComponent implements ItemListener {
         return status_act_lang;
     }
 
-    private void saveStatus(Object item) {
+    private boolean saveStatus(Object item) {
         //
         String status = item.toString();
         //
@@ -256,7 +256,7 @@ public class LabDevHeaderComponent implements ItemListener {
         String status_eng = LAB_DEV__STATUS.getStatusEng(LNG.LANG_ENG, status);
         //
         if (HelpA.confirm(MSG.MSG_4(status)) == false) {
-            return;
+            return false;
         }
         //
         String q = SQL_A_.save_status_lab_dev(status_eng, labDev.getOrderNo());
@@ -265,19 +265,41 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         try {
             sql.execute(q);
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(LabDevHeaderComponent.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         //
     }
 
+    private Object prevItemComboBox = "";
+    private boolean skipOnce = false;
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         //
-        System.out.println("BOX ITEM STATE CHANGED: " + e.getItem() + " / " + e.getStateChange());
+//        System.out.println("BOX ITEM STATE CHANGED: " + e.getItem() + " / " + e.getStateChange());
+        //
+        if (e.getStateChange() == 2) {
+            prevItemComboBox = e.getItem();
+        }
         //
         if (e.getStateChange() == 1) {
-            saveStatus(e.getItem());
+            //
+            if (skipOnce) {
+                skipOnce = false;
+                return;
+            }
+            //
+            if (saveStatus(e.getItem()) == false) {
+                //
+                skipOnce = true;
+                //
+                JComboBox box = (JComboBox) e.getSource();
+                box.setSelectedItem(prevItemComboBox);
+                //
+            }
         }
         //
     }
