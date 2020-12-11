@@ -31,6 +31,9 @@ UpdatedBy -> ok
 5. See or change longvalue by double clicking a field ->  best to show on
 tab "MAIN DATA" -> TARGET1/2
 6. Show how to change "Status" -> from the "STATUS" tab
+6.2 Now login with logn:"user" & pass:"0000" -> show that the user
+without admin rights cannot change status
+6.3 Show how to administrate users
 
 [FOR DEMO]
 1.  Disable Development ToolTips

@@ -9,6 +9,7 @@ import MCRecipe.ChangeSaver;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Lang.T_INV;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
@@ -469,6 +470,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     }
 
     public void saveNotesJTexArea() {
+        //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            return;
+        }
         //
         notesUnsaved = false;
         //

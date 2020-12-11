@@ -8,6 +8,7 @@ package LabDev;
 import MCRecipe.Lang.LAB_DEV;
 import MCRecipe.Lang.LNG;
 import MCRecipe.Lang.MSG;
+import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import forall.HelpA;
 import forall.SqlBasicLocal;
@@ -250,6 +251,10 @@ public class LabDevHeaderComponent implements ItemListener {
 
     private boolean saveStatus(Object item) {
         //
+        if (MC_RECIPE.isAdminOrDeveloper() == false) {
+            return false;
+        }
+        //
         String status = item.toString();
         //
         //OBS! VERY IMPORATN -> WHEN SAVING STATUS IT SHOULD BE ALWAYS "ENG"
@@ -292,12 +297,16 @@ public class LabDevHeaderComponent implements ItemListener {
                 return;
             }
             //
-            if (saveStatus(e.getItem()) == false) {
+            if (saveStatus(e.getItem()) == false) { // if user choses "No"
                 //
                 skipOnce = true;
                 //
                 JComboBox box = (JComboBox) e.getSource();
                 box.setSelectedItem(prevItemComboBox);
+                //
+            } else { // if user choses "Yes"
+                //
+                labDev.refreshHeader();
                 //
             }
         }

@@ -1454,9 +1454,20 @@ public class SQL_A_ {
                 + " WHERE Material=" + quotes(param3, false);
     }
 
-    public static String save_status_lab_dev(String status, String order) {
-        return "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER + " SET WOSTATUS="
-                + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
+    
+//    public static String save_status_lab_dev__prev(String status, String order) {
+//        return "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER + " SET WOSTATUS="
+//                + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
+//    }
+    
+     public static String save_status_lab_dev(String status, String order) {
+        String q = "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER
+                + " SET WOSTATUS="+ quotes(status, false) + ","
+                + "UpdatedOn=" + quotes(HelpA.updatedOn(), false) + ","
+                + "UpdatedBy=" + quotes(HelpA.updatedBy(), false)
+                + " WHERE WORDERNO=" + quotes(order, false) + "";
+//        System.out.println(q);
+        return q;
     }
 
     /**
