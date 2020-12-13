@@ -19,7 +19,10 @@ Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS u
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
 
-Make a Component for showing a window with "GDPR"
+Make a Component for showing a window with "GDPR":
+Method for checking that the program runs only once: NetProcMonitor: "HelpM.public static boolean ipMapResetOnMCLauncherInstalOnly()"
+1. So check if it's first time run
+2. Show the GDPR message with user accept
 
 ROT & RUT
 
