@@ -3114,24 +3114,17 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jButton_lab_dev__test_order__clear_filter" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jButton_lab_dev__test_order__filter_btn" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton_lab_dev__test_order__clear_filter" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="jButton_lab_dev__test_order__filter_btn" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jButton_lab_dev_test_vars__print_jtable" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jPanel82" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                                  <Component id="jComboBox_lab_dev__test_order__material" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox_lab_dev__test_order__testcode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                      <Component id="jButton_lab_dev_test_vars__print_jtable" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="jPanel82" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBox_lab_dev__test_order__material" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jComboBox_lab_dev__test_order__testcode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
@@ -4895,6 +4888,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonIngredientsPasteIngred2">
                       <Properties>
@@ -4908,6 +4904,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIngredientsPasteIngred2ActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonIngredientsPasteIngred1">
                       <Properties>
@@ -4921,6 +4920,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIngredientsPasteIngred1ActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
