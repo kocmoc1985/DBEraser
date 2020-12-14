@@ -32,13 +32,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener,ActionListener {
+public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListener,ActionListener {
     
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
     private final String COL_3_NAME = LAB_DEV.test_definition_tab__get_col_3();
     
-    public LabDevTestDefinitionTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
+    public LabDevTestDefinitionTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
@@ -131,8 +131,9 @@ public class LabDevTestDefinitionTab extends LabDevTab_ implements MouseListener
                 listToReturn.add(tde);
                 //
             } catch (SQLException ex) {
-                Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LabDevTestDefinitionTab_.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //
             //
         }
         //
