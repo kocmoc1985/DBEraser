@@ -1430,8 +1430,8 @@ public class SQL_A_ {
                 + "1" + "," // misch
                 + "1" + "," // first batchno
                 + "NULL" + "," // planId
-                + "NULL" + "," // updatedOn
-                + "NULL" + ""; // updatedby
+                + quotes(HelpA.updatedOn(), false) + "," // updatedOn
+                + quotes(HelpA.updatedBy(), false) + ""; // updatedby
     }
 
     /**
