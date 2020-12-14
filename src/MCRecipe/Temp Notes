@@ -1,4 +1,4 @@
 Tab "TEST VARIABLES" -> Add buttons -> Test code chosen from JCombo -> correct ??
 It would be good to have tool tips for this 2 add buttons
 
-Make a separate "run" folder for demo for florian
+Fix double clicking and editing of a "long value" -> shall not be possible

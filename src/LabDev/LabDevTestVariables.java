@@ -100,6 +100,12 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private String getTestCode() {
         // EX: VUG01
+        JTable table = getTable();
+        //
+        if (HelpA.rowSelected(table)) {
+            return HelpA.getValueSelectedRow(table, "TestCode");
+        }
+        // 
         HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxTestCode());
         if (cbo == null) {
             return "NULL";
@@ -110,6 +116,12 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private String getMaterial() {
         // EX: WE8486
+        JTable table = getTable();
+        //
+        if (HelpA.rowSelected(table)) {
+            return HelpA.getValueSelectedRow(table, "CODE");
+        }
+        // 
         HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxMaterial());
         if (cbo == null) {
             return "NULL";
@@ -364,23 +376,36 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private void createNewButtonClicked(boolean addNewB) {
         //
-        String testCode = getTestCode();
+        // addNewB == true -> "Double plus icon" -> Add new test procedure
+        // addNewB == false -> "Single plus icon" -> Add test variable
         //
-        if (testCode == null || testCode.isEmpty() || testCode.equals("NULL")) {
+        String testCode = getTestCode();
+        String material = getMaterial();
+        //
+        if (addNewB && (material == null || material.isEmpty() || material.equals("NULL"))) {
+            HelpA.showNotification(MSG.LANG("Material not chosen"));
+            return;
+        }
+        //
+        if (addNewB == false && (testCode == null || testCode.isEmpty() || testCode.equals("NULL"))) {
             HelpA.showNotification(MSG.LANG("Test code not chosen"));
             return;
         }
         //
+        String title = "Add test variable";
+        String param1 = testCode;
+        //
         if (addNewB) {
             addNewB_ = true;
-            testCode = null;
+            title = "Add new test procedure";
+            param1 = null;
         }
         //
         //
-        String q = SQL_A_.lab_dev_test_variable__get_list_for_creating_new(PROC.PROC_76, testCode);
+        String q = SQL_A_.lab_dev_test_variable__get_list_for_creating_new(PROC.PROC_76, param1);
         //
         CreateNewFromTable cnft = new CreateNewFromTable(this, sql, q,
-                new String[]{}, OUT, MSG.LANG("Add new")); // "ID_Proc"
+                new String[]{"ID_Proc"}, OUT, MSG.LANG(title)); // "ID_Proc"
         //
         cnft.setVisible(true);
         //

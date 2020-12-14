@@ -28,6 +28,8 @@ UpdatedBy -> ok
 2. Set Order
 3. Set Material
 4. Any Table is printable
+4.2 Input validation -> format -> show on "STATUS TAB"
+4.3 Input validation -> to long -> show on "TEST VARIABLES TAB" -> field: "SCOPE"
 5. See or change longvalue by double clicking a field ->  best to show on
 tab "MAIN DATA" -> TARGET1/2
 6. Show how to change "Status" -> from the "STATUS" tab

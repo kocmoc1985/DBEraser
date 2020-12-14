@@ -1649,7 +1649,7 @@ public class SQL_A_ {
     public static String lab_dev_test_variable__get_list_for_creating_new(String PROC, String param1) {
         return "SELECT CODE, TESTVAR, DESCRIPT, NORM, Condition, ID_Proc FROM [" + PROC + "]" + " ("
                 + quotes(param1, false)
-                + ") ORDER BY ID_Proc";
+                + ") ORDER BY CODE ASC";
     }
 
     /**
