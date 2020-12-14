@@ -37,6 +37,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -75,10 +76,12 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
             JLinkInvert jli = (JLinkInvert) me.getSource();
             TableRowInvert tri = jli.getParentObj();
             RowDataInvert rdi = tri.getRowConfig();
+            JTextField jtf = (JTextField) jli;
             //
-            if (rdi.isEditable() == false) {
+            if (rdi.isEditable() == false || jtf.isEnabled() == false) {
                 return;
             }
+            //
             //
             String initialVal = jli.getValue();
             //
@@ -345,8 +348,8 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         }
         //
     }
-    
-    public void setUnsaved(Table table_invert, String rowName, int column){
+
+    public void setUnsaved(Table table_invert, String rowName, int column) {
         addToUnsaved(table_invert, rowName, column);
     }
 
@@ -497,10 +500,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAtJComboBox(rowName, paramToReturn);
     }
-    
-    public void trimValueTableInvert(JLinkInvert jli){
+
+    public void trimValueTableInvert(JLinkInvert jli) {
         //
-        if(jli instanceof JTextFieldInvert == false){
+        if (jli instanceof JTextFieldInvert == false) {
             return;
         }
         //
@@ -509,7 +512,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         cdei.setValue(val);
         //
     }
-    
+
     public String getValueTableInvert(String rowName, Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
         return ti.getValueAt(rowName);
@@ -643,7 +646,6 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public abstract void showTableInvert();
 
-
     public String jTableToCSV(JTable table, boolean writeToFile) {
         return HelpA.jTableToCSV(table, writeToFile);
     }
@@ -768,9 +770,9 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 //
                 ColumnValue columnValue = map.get(dataInvert.getFieldNickName());
                 //
-                if(columnValue == null){
+                if (columnValue == null) {
                     //
-                }else{
+                } else {
                     csv += columnValue.getValue() + ";";
                 }
                 // 
@@ -951,10 +953,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
- toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
- return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
- }
+     * if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
      *
      * @param arr
      * @param columnsToRemove
