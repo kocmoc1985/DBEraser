@@ -2006,6 +2006,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jScrollPane23.setViewportView(jPanel_lab_dev__find_order);
 
         jButton__lab_dev_find_order_tab__filter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
+        jButton__lab_dev_find_order_tab__filter.setToolTipText("Filter by status");
 
         jTable_lab_dev__find_order.setModel(new javax.swing.table.DefaultTableModel(
 
@@ -2015,17 +2016,21 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jTextField__lab_dev__find_order.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jButton__lab_dev_find_order_tab__set_order.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton__lab_dev_find_order_tab__set_order.setToolTipText("Set order");
         jButton__lab_dev_find_order_tab__set_order.setEnabled(false);
 
         jPanel73.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton__lab_dev__new_order_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton__lab_dev__new_order_btn.setToolTipText("Create new order");
         jPanel73.add(jButton__lab_dev__new_order_btn);
 
         jButton_lab_dev__copy_order_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_lab_dev__copy_order_btn.setToolTipText("Copy order");
         jPanel73.add(jButton_lab_dev__copy_order_btn);
 
         jButton_lab_dev__delete_order_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev__delete_order_btn.setToolTipText("Delete order");
         jPanel73.add(jButton_lab_dev__delete_order_btn);
 
         jButton_lab_dev__findorder_tab__print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -2101,6 +2106,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel55.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev_add_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev_add_1.setToolTipText("Add");
         jButton_lab_dev_add_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_lab_dev_add_1ActionPerformed(evt);
@@ -2109,6 +2115,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel55.add(jButton_lab_dev_add_1);
 
         jButton_lab_dev_delete_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev_delete_1.setToolTipText("Delete");
         jButton_lab_dev_delete_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_lab_dev_delete_1ActionPerformed(evt);
@@ -2119,6 +2126,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel56.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev_add_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev_add_2.setToolTipText("Add");
         jButton_lab_dev_add_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_lab_dev_add_2ActionPerformed(evt);
@@ -2127,6 +2135,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel56.add(jButton_lab_dev_add_2);
 
         jButton_lab_dev_delete_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev_delete_2.setToolTipText("Delete");
         jButton_lab_dev_delete_2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_lab_dev_delete_2ActionPerformed(evt);
@@ -2239,9 +2248,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel74.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev__mat_info__add_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev__mat_info__add_material_btn.setToolTipText("Add new material to order");
         jPanel74.add(jButton_lab_dev__mat_info__add_material_btn);
 
         jButton_lab_dev__mat_info__delete_material_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev__mat_info__delete_material_btn.setToolTipText("Delete material from order");
         jPanel74.add(jButton_lab_dev__mat_info__delete_material_btn);
 
         javax.swing.GroupLayout jPanel60Layout = new javax.swing.GroupLayout(jPanel60);

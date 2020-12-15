@@ -2172,6 +2172,7 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/filter.png"/>
                             </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Filter by status"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2211,6 +2212,7 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/correct.png"/>
                             </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Set order"/>
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <AuxValues>
@@ -2229,6 +2231,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/new.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Create new order"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2239,6 +2242,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/copy.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Copy order"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2249,6 +2253,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete order"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2411,6 +2416,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/add.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Add"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev_add_1ActionPerformed"/>
@@ -2421,6 +2427,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev_delete_1ActionPerformed"/>
@@ -2440,6 +2447,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/add.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Add"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev_add_2ActionPerformed"/>
@@ -2450,6 +2458,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_lab_dev_delete_2ActionPerformed"/>
@@ -2681,6 +2690,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/add.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Add new material to order"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2691,6 +2701,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete material from order"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

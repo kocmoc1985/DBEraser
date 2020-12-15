@@ -95,6 +95,10 @@ public class LabDevTestConfigTab extends ChkBoxItemListComponent implements Acti
         //
         ArrayList<String> codes_list = labDev.getTestCodesList_given_order_and_material(order,getMaterial());
         //
+        if(codes_list == null || codes_list.isEmpty()){
+            return false;
+        }
+        //
         if (codes_list.get(0) != null && codes_list.get(0).isEmpty() == false) {
             //
             labDev.setTestCode(codes_list.get(0));
