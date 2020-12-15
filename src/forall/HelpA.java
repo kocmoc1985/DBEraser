@@ -68,6 +68,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Properties;
@@ -108,6 +109,8 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import supplementary.HelpM;
+import static supplementary.HelpM.file_exists;
+import static supplementary.HelpM.objectToFile;
 
 /**
  *
@@ -120,6 +123,36 @@ public class HelpA {
     public static String LAST_ERR_OUT_PUT_FILE_PATH;
     private static Border PREV_BORDER;
 
+    public static boolean isFirstTimeRun(String filePathAndName) {
+        //
+        if (file_exists(new File(filePathAndName))) {
+            return false;
+        } else {
+            //Why do i have HashSet - it does not have any sence just for making a file
+            HashSet<String> set = new HashSet<String>();
+            set.add("DONE");
+            objectToFile(filePathAndName, set);
+            return true;
+        }
+        //
+    }
+    
+    public static boolean isFirstTimeRun(){
+        return true;
+    }
+    
+    public static boolean file_exists(File f) {
+        if (f == null) {
+            return false;
+        } else {
+            if (f.exists() == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+    
     public static void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {

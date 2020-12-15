@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import forall.BackgroundPanel;
 import BuhInvoice.sec.BlinkThread;
+import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -73,6 +74,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         setHomePageBackground();
         //
         setMarginLeftLabelsHomeTab();
+        //
+        if (HelpA.isFirstTimeRun()) {
+            GDPR gdpr = new GDPR();
+            GP_BUH.centerAndBringToFront(gdpr);
+        }
         //
     }
 
@@ -328,7 +334,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
-    
 
     protected boolean isBetald() {
         //
@@ -388,7 +393,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-    
+
     protected boolean isRUT() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__RUT);
@@ -2137,7 +2142,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
-                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update,jLabel__dont_forget_to_save__info, false);
+                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, jLabel__dont_forget_to_save__info, false);
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {
