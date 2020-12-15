@@ -56,6 +56,7 @@ public class RecipeDetailed_ extends BasicTab {
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     private LinkedList<IngredientToDelete> ingredientsToDelete_table_4 = new LinkedList<IngredientToDelete>();
     //
+    public static final String t4_percRubber = "percRubber";
     public static final String t4_id = "Id";
     public static final String t4_recipeId = "RecipeID";
     public static final String t4_material = "material";
@@ -841,7 +842,7 @@ public class RecipeDetailed_ extends BasicTab {
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight, t4_weight_nick);
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_weight_recalc, t4_weight_recalc_nick);
         HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_volume_recalc, t4_volume_recalc_nick);
-        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, "percRubber", "%");
+        HelpA.changeTableHeaderTitleOfOneColumn_to_hashmap(table, t4_percRubber, "%");
     }
 
     private void hideColumnsTable4AndTable4Help(JTable table) {
@@ -862,6 +863,10 @@ public class RecipeDetailed_ extends BasicTab {
         //
         JTable table4 = mCRecipe2.jTable4RecipeDetailed;
         //
+        if (HelpA.isEmtyJTable(table4)) {
+            return;
+        }
+        //
         String ROW_ID = "" + table4.getValueAt(row, HelpA.getColByName(table4, t4_id));
         //
         if (ROW_ID == null || ROW_ID.isEmpty()) {
@@ -869,10 +874,17 @@ public class RecipeDetailed_ extends BasicTab {
             return;
         }
         //
-//        if (col == HelpA.getColByName(table4, t4_phr)) {
-//            String phr_value = HelpA.getValueSelectedRow(table4, t4_phr);
-//            System.out.println("PHR VALUE: " + phr_value);
-//        }
+        if (col == HelpA.getColByName(table4, t4_weight) || col == HelpA.getColByName(table4, t4_phr)) {
+            String percRubber = HelpA.getValueSelectedRow(table4, t4_percRubber);
+            Double percRubber_ = Double.parseDouble(percRubber);
+            //
+            if (percRubber_ != 0) {
+                HelpA.showNotification("Cannot change PHR value because % rubber for ingredient is not 0");
+                HelpA.stopEditJTable(table4);
+                return;
+            }
+            //
+        }
         //
         addPotentiallyUnsavedEntries(Integer.parseInt(ROW_ID), unsavedChanges_table4, null, table4);
         //
@@ -1141,7 +1153,7 @@ public class RecipeDetailed_ extends BasicTab {
 
     public void addNewRecipeFromScratch() {
         //
-         if (true) {
+        if (true) {
             HelpA.showNotification("Under construction");
             return;
         }

@@ -7,12 +7,12 @@
 [FOR PAPS]
 1. Solve the problem with short "usernames" when tables are automatically created at the SQL side
 2. Recalc -> phr is 100, problem -> make notification message that it's not possible ->
-RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> 
+RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> Partially implemented (not activated so far)
 
 [FOR BOTH]
 
 1. RecipeDetailed_.java -> insert_materials_table_4_real(...) -> String recipeId = (String) table.getValueAt(row, HelpA.getColByName(table, t4_recipeId));
-As i understand the problem is that the "recipeId" we were trying to add, does not exist in maintable
+As i understand the problem is that the "recipeId" we were trying to add, does not exist in maintable:
 java.sql.SQLException: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Recipe_Prop_Main_Recipe_Group". The conflict occurred in database "NCPD", table "dbo.Recipe_Group", column 'Main_Group'.
 	at net.sourceforge.jtds.jdbc.SQLDiagnostic.addDiagnostic(SQLDiagnostic.java:372)
 	at net.sourceforge.jtds.jdbc.TdsCore.tdsErrorToken(TdsCore.java:2988)
