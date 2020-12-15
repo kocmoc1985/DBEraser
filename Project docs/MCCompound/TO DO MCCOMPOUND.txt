@@ -1,6 +1,6 @@
 
 [FOR ME]
-1. 
+1. Tool Tip Texts for LabDev part
 
 [FOR PAPS]
 1. Solve the problem with short "usernames" when tables are automatically created at the SQL side

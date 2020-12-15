@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -212,8 +213,19 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
 
     private void fillComboBox() {
         //
+        JTable table = getJTable();
+        JComboBox box = getComboBox();
+        //
         String q = SQL_A_.lab_dev__material_info__add_material_combo();
-        HelpA.fillComboBox(sql, getComboBox(), q, null, true, false);
+        HelpA.fillComboBox(sql, box, q, null, true, false);
+        //
+        if(HelpA.isEmtyJTable(table) == false){
+            String value_first_row = HelpA.getValueSelectedRow(table,"Material");
+            HelpA.ComboBoxObject cbo = new HelpA.ComboBoxObject(value_first_row.trim(), "", "", "");
+            box.setSelectedItem(cbo);
+//            box.setSelectedIndex(25);
+            
+        }
         //
     }
 

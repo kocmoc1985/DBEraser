@@ -1766,15 +1766,15 @@ public class SQL_A_ {
     }
 
     /**
-     * 
+     *
      * @param PROC - 87
      * @param param1 - orderNo
      * @param param2 - materialRef
      * @param param3 - materialNew
-     * @return 
+     * @return
      */
     public static String lab_dev_material_info__copy(String PROC, String param1, String param2, String param3) {
-        return "["+PROC + "] "
+        return "[" + PROC + "] "
                 + quotes(param1, false) + ","
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","

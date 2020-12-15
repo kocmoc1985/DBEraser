@@ -2903,9 +2903,17 @@ public class HelpA {
             if (obj == null) {
                 return false;
             }
-            if (getClass() != obj.getClass()) {
+            
+            // DISABLED ON 2020-10-15 because it did not compare ComboBoxObject & ComboBoxObjectB/C
+            // Using instance of instead
+//            if (getClass() != obj.getClass()) {
+//                return false;
+//            }
+            
+            if(obj instanceof ComboBoxObject == false){
                 return false;
             }
+
             final ComboBoxObject other = (ComboBoxObject) obj;
             if (!Objects.equals(this.param_1, other.param_1)) {
                 return false;
