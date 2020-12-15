@@ -869,6 +869,11 @@ public class RecipeDetailed_ extends BasicTab {
             return;
         }
         //
+//        if (col == HelpA.getColByName(table4, t4_phr)) {
+//            String phr_value = HelpA.getValueSelectedRow(table4, t4_phr);
+//            System.out.println("PHR VALUE: " + phr_value);
+//        }
+        //
         addPotentiallyUnsavedEntries(Integer.parseInt(ROW_ID), unsavedChanges_table4, null, table4);
         //
         JComboBox box = new JComboBox();
@@ -1134,22 +1139,62 @@ public class RecipeDetailed_ extends BasicTab {
     //
     //
 
-    public void addNewRecipe(boolean fromScratch) {
+    public void addNewRecipeFromScratch() {
+        //
+         if (true) {
+            HelpA.showNotification("Under construction");
+            return;
+        }
+        //
+        String q_ = "select * from Recipe_Prop_Main" + " where Code =?" + " and Release = '" + getRelease() + "'";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q_, REGEX.getRecipeRegex(), 25);
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, "Specify Recipe Code, format: " + REGEX.getRecipeRegexDescr());
+        //
+        if (yesNo == false) {
+            return;
+        }
+        //
+        String newRecipeCode = tfc.getText();
+        //
+        if (newRecipeCode == null || newRecipeCode.isEmpty()) {
+            HelpA.showNotification("Recipe code empty, cannot create");
+        }
+        //
+        //
+        String q = SQL_A_.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12, newRecipeCode, HelpA.updatedOn(), HelpA.updatedBy());
+        OUT.showMessage(q);
+        //
+        HelpA.runProcedureIntegerReturn_A_2(sql, q);
+        recipeInitial.clearBoxes();
+        //
+        //
+        clearRows(TABLE_INVERT, 1, 4);
+        changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
+        changeValueNoSave(TABLE_INVERT, newRecipeCode, "Code", 1);
+        //
+    }
+
+    public void copyRecipe() {
         //
         String recipe_id = getRecipeId();
         //
-        if (getRecipeCode().trim().equals("NEW") && fromScratch == false) {
+        if (recipe_id == null || recipe_id.isEmpty()) {
+            return;
+        }
+        //
+        if (getRecipeCode().trim().equals("NEW")) {
 //            HelpA.showNotification("Cannot create new from \"NEW\"");
             return;
         }
         //
         String q;
         //
-        if (fromScratch) {
-            q = SQL_A_.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
-        } else {
-            q = SQL_A_.recipe_detailed_add_new_recipe(PROC.PROC_13, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
-        }
+//        if (fromScratch) {
+//            q = SQL_A_.recipe_detailed_add_new_recipe_scratch(PROC.PROC_12, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+//        } else {
+        q = SQL_A_.recipe_detailed_add_new_recipe(PROC.PROC_13, recipe_id, HelpA.updatedOn(), HelpA.updatedBy());
+//        }
         //
         OUT.showMessage(q);
         //
@@ -1161,12 +1206,12 @@ public class RecipeDetailed_ extends BasicTab {
             return;
         }
         //
-        if (fromScratch) {
-            clearRows(TABLE_INVERT, 1, 4);
-            changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
-        } else {
-            changeValueAndSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
-        }
+//        if (fromScratch) {
+//            clearRows(TABLE_INVERT, 1, 4);
+//            changeValueNoSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
+//        } else {
+        changeValueAndSave(TABLE_INVERT, new HelpA.ComboBoxObjectC("I", "UNLOCKED", ""), "Status", 1);
+//        }
     }
     //
     //

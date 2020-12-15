@@ -3459,3 +3459,5 @@
 [2020-12-15 15:54:02]   jdbc:jtds:sqlserver://10.87.0.175:1433;databaseName=NCPD;user=sa;password=Kocmoc4765
 [2020-12-15 16:01:26]   jdbc:jtds:sqlserver://10.87.0.175:1433;databaseName=NCPD;user=sa;password=Kocmoc4765
 [2020-12-15 16:01:26]   jdbc:jtds:sqlserver://10.87.0.175:1433;databaseName=NCPD;user=sa;password=Kocmoc4765
+[2020-12-15 21:24:57]   jdbc:jtds:sqlserver://213.112.78.80:65528;databaseName=NCPD;user=sa;password=Kocmoc4765
+[2020-12-15 21:24:58]   jdbc:jtds:sqlserver://213.112.78.80:65528;databaseName=NCPD;user=sa;password=Kocmoc4765

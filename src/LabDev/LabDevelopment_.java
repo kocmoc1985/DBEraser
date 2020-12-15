@@ -143,6 +143,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         ArrayList<String> material_list = getMaterials_given_order(order);
         //
+        if(material_list == null || material_list.isEmpty() ){
+            return false;
+        }
+        //
         if (material_list.get(0) != null && material_list.get(0).isEmpty() == false) {
             //
             setMaterial(material_list.get(0));
@@ -291,6 +295,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     }
 
     protected void refreshHeader() {
+        //
+        if (ACTUAL_TAB_NAME == null || getOrderNo() == null) {
+            return;
+        }
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
             HelpA.showNotification_separate_thread("Order not chosen, please choose one");

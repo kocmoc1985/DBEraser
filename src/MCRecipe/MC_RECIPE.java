@@ -4709,7 +4709,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jButtonVendorsDeleteFromTable4ActionPerformed
 
     private void jButtonRecipeDetailedAddNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
-        recipeDetailed.addNewRecipe(false);
+        recipeDetailed.copyRecipe();
     }//GEN-LAST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
 
     private void jButton_Ingred_Add_IngredientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Ingred_Add_IngredientActionPerformed
@@ -4810,7 +4810,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }//GEN-LAST:event_jCheckBoxRecipeInitialSearchByIngredientsActionPerformed
 
     private void jButtonRecipeDetailedAddRecipeFromScratchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddRecipeFromScratchActionPerformed
-        recipeDetailed.addNewRecipe(true);
+        recipeDetailed.addNewRecipeFromScratch();
     }//GEN-LAST:event_jButtonRecipeDetailedAddRecipeFromScratchActionPerformed
 
     private void jButton_Ingred_Add_Ingredient_From_ScratchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Ingred_Add_Ingredient_From_ScratchActionPerformed

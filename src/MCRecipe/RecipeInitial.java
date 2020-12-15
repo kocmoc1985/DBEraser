@@ -126,6 +126,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
         dropCompareTable();
         unpaintAllRows_a(mCRecipe2.jTable1);
         ADDED_TO_COMPARE_LIST = new LinkedList<Integer>();
+        //
     }
 
     @Override
@@ -165,7 +166,9 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     @Override
     public void dropCompareTable() {
-        compareRecipes.dropCompareTable(HelpA.updatedBy());
+        if (compareRecipes != null) {
+            compareRecipes.dropCompareTable(HelpA.updatedBy());
+        }
     }
 
     @Override

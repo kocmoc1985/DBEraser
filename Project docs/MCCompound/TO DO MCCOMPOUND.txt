@@ -1,13 +1,31 @@
+[FOR FUTURE]
+1. Create new Ingredient from scratch and Copy ingred -> TAB: "INGREDIENTS_B"
 
 [FOR ME]
 1. Tool Tip Texts for LabDev part
 
 [FOR PAPS]
 1. Solve the problem with short "usernames" when tables are automatically created at the SQL side
+2. Recalc -> phr is 100, problem -> make notification message that it's not possible ->
+RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> 
 
 [FOR BOTH]
 
-1. 
+1. RecipeDetailed_.java -> insert_materials_table_4_real(...) -> String recipeId = (String) table.getValueAt(row, HelpA.getColByName(table, t4_recipeId));
+As i understand the problem is that the "recipeId" we were trying to add, does not exist in maintable
+java.sql.SQLException: The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Recipe_Prop_Main_Recipe_Group". The conflict occurred in database "NCPD", table "dbo.Recipe_Group", column 'Main_Group'.
+	at net.sourceforge.jtds.jdbc.SQLDiagnostic.addDiagnostic(SQLDiagnostic.java:372)
+	at net.sourceforge.jtds.jdbc.TdsCore.tdsErrorToken(TdsCore.java:2988)
+	at net.sourceforge.jtds.jdbc.TdsCore.nextToken(TdsCore.java:2421)
+	at net.sourceforge.jtds.jdbc.TdsCore.getMoreResults(TdsCore.java:671)
+	at net.sourceforge.jtds.jdbc.JtdsStatement.processResults(JtdsStatement.java:613)
+	at net.sourceforge.jtds.jdbc.JtdsStatement.executeSQL(JtdsStatement.java:572)
+	at net.sourceforge.jtds.jdbc.JtdsPreparedStatement.executeUpdate(JtdsPreparedStatement.java:727)
+	at MyObjectTableInvert.TableInvert.updateFieldString(TableInvert.java:601)
+	at MyObjectTableInvert.TableInvert.applyChanges(TableInvert.java:526)
+	at MyObjectTableInvert.BasicTab.saveChangesTableInvert(BasicTab.java:63)
+
+
 2. 
 3. Setting material from outside "LabDevelopment" -> search for: [#SET MATERIAL - FROM OUTSIDE LABDEV#] 
 ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn -> table "MC_Cpworder"

@@ -32,7 +32,7 @@ public class REGEX {
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)) {
             return INGRED_REGEX_DESCR__QEW;
         } else {
-           return "undefined";
+           return "";
         }
     }
 
@@ -56,7 +56,7 @@ public class REGEX {
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)) {
             return RECIPE_REGEX_DESCR__QEW;
         } else {
-            return "undefined";
+            return "";
         }
     }
 }
