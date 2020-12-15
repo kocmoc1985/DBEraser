@@ -154,9 +154,9 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
     private void addMaterial() {
         //
         String order = labDev.getOrderNo();
-        String material = HelpA.getComboBoxSelectedValue(getComboBox());
+        String material_new = HelpA.getComboBoxSelectedValue(getComboBox());
         //
-        String q = SQL_A_.lab_dev__material_info__add_material(PROC.PROC_79, order, material);
+        String q = SQL_A_.lab_dev__material_info__add_material(PROC.PROC_79, order, material_new);
         //
         try {
             sql.execute(q, OUT);
@@ -164,7 +164,28 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
             Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        addMaterial_copy();
+        //
         fillJTable();
+        //
+    }
+
+    private void addMaterial_copy() {
+        //
+        JTable table = getJTable();
+        //
+        String order = labDev.getOrderNo();
+        String material_new = HelpA.getComboBoxSelectedValue(getComboBox());
+        HelpA.markLastRowJtable(table);
+        String material_ref = HelpA.getValueSelectedRow(getJTable(), "Material");
+        //
+        String q = SQL_A_.lab_dev_material_info__copy(PROC.PROC_87, order, material_ref, material_new);
+        //
+        try {
+            sql.execute(q, OUT);
+        } catch (SQLException ex) {
+            Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //
     }
 

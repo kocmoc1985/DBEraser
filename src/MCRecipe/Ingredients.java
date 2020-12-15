@@ -54,6 +54,10 @@ public class Ingredients extends BasicTab {
         //
         go();
         initializeSaveIndicators();
+        //
+        mCRecipe.jButton12.setVisible(false);
+        mCRecipe.jButtonIngredientsPasteIngred1.setVisible(false);
+        mCRecipe.jButtonIngredientsPasteIngred2.setVisible(false);
     }
 
     public void table1Repport() {

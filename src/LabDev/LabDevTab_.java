@@ -57,7 +57,7 @@ public abstract class LabDevTab_ extends BasicTab {
             }
             //
         } catch (SQLException ex) {
-            Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevTestDefinitionTab_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return list;
@@ -82,7 +82,7 @@ public abstract class LabDevTab_ extends BasicTab {
             }
             //
         } catch (SQLException ex) {
-            Logger.getLogger(LabDevTestDefinitionTab.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabDevTestDefinitionTab_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return list;

@@ -1430,8 +1430,8 @@ public class SQL_A_ {
                 + "1" + "," // misch
                 + "1" + "," // first batchno
                 + "NULL" + "," // planId
-                + "NULL" + "," // updatedOn
-                + "NULL" + ""; // updatedby
+                + quotes(HelpA.updatedOn(), false) + "," // updatedOn
+                + quotes(HelpA.updatedBy(), false) + ""; // updatedby
     }
 
     /**
@@ -1454,15 +1454,13 @@ public class SQL_A_ {
                 + " WHERE Material=" + quotes(param3, false);
     }
 
-    
 //    public static String save_status_lab_dev__prev(String status, String order) {
 //        return "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER + " SET WOSTATUS="
 //                + quotes(status, false) + " WHERE WORDERNO=" + quotes(order, false);
 //    }
-    
-     public static String save_status_lab_dev(String status, String order) {
+    public static String save_status_lab_dev(String status, String order) {
         String q = "UPDATE " + LabDevelopment_.TABLE__MC_CPWORDER
-                + " SET WOSTATUS="+ quotes(status, false) + ","
+                + " SET WOSTATUS=" + quotes(status, false) + ","
                 + "UpdatedOn=" + quotes(HelpA.updatedOn(), false) + ","
                 + "UpdatedBy=" + quotes(HelpA.updatedBy(), false)
                 + " WHERE WORDERNO=" + quotes(order, false) + "";
@@ -1503,7 +1501,7 @@ public class SQL_A_ {
     }
 
     /**
-     * 
+     *
      * @param PROC
      * @param param1 - order
      * @param param2 - material
@@ -1513,7 +1511,7 @@ public class SQL_A_ {
      * @param param6 - requester
      * @param param7 - department
      * @param param8 - customer
-     * @return 
+     * @return
      */
     public static String find_order_lab_dev__by_material(String PROC, String param1, String param2,
             String param3, String param4, String param5, String param6, String param7, String param8) {
@@ -1765,6 +1763,23 @@ public class SQL_A_ {
                 + quotes(param2, false) + ","
                 + quotes(param3, false) + ","
                 + quotes(param4, false);
+    }
+
+    /**
+     * 
+     * @param PROC - 87
+     * @param param1 - orderNo
+     * @param param2 - materialRef
+     * @param param3 - materialNew
+     * @return 
+     */
+    public static String lab_dev_material_info__copy(String PROC, String param1, String param2, String param3) {
+        return "["+PROC + "] "
+                + quotes(param1, false) + ","
+                + quotes(param2, false) + ","
+                + quotes(param3, false) + ","
+                + quotes(HelpA.updatedOn(), false) + ","
+                + quotes(HelpA.updatedBy(), false) + "";
     }
 
     public static void main(String[] args) {

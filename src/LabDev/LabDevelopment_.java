@@ -57,7 +57,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     private LabDevFindOrderTab labDevFindOrderTab;
     public LabDevTestConfigTab labDevTestConfigTab;
     public LabDevStatusTab_ labDevStatusTab;
-    public LabDevTestDefinitionTab labDevTestDefinitionTab;
+    public LabDevTestDefinitionTab_ labDevTestDefinitionTab;
     public LabDevAgeVulcTab labDevAgeVulcTab;
     public LabDevTestProcedureTab labDevTestProcedure;
     public LabDevTestVariables labDevTestVariables;
@@ -393,7 +393,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         ACTUAL_TAB_NAME = LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_DEFINITION();
         //
         if (labDevTestDefinitionTab == null) {
-            labDevTestDefinitionTab = new LabDevTestDefinitionTab(sql, sql_additional, OUT, this);
+            labDevTestDefinitionTab = new LabDevTestDefinitionTab_(sql, sql_additional, OUT, this);
         } else {
             labDevTestDefinitionTab.refresh();
         }

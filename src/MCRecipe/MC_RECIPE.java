@@ -311,10 +311,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
             //
-//            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
+            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
 //            HelpA.hideTabByName(jTabbedPane1, LNG.SEQUENCE_TAB());
 //            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB());
-//            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB_B());
+            HelpA.hideTabByName(jTabbedPane1, LNG.VENDORS_TAB_B());
             //
         } else {
             this.customPanelRecipeInitial = new CustomPanelQew();
@@ -2452,20 +2452,16 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel76Layout.setVerticalGroup(
             jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel76Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel76Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_lab_dev__test_order__clear_filter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_lab_dev__test_order__filter_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel76Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_lab_dev_test_vars__print_jtable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel82, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jComboBox_lab_dev__test_order__material, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox_lab_dev__test_order__testcode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton_lab_dev__test_order__clear_filter, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_lab_dev__test_order__filter_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_lab_dev_test_vars__print_jtable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel82, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox_lab_dev__test_order__material, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox_lab_dev__test_order__testcode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel77, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
@@ -5129,7 +5125,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JButton jButton1;
     protected javax.swing.JButton jButton10;
     protected javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
+    public javax.swing.JButton jButton12;
     public javax.swing.JButton jButton13;
     public javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
@@ -5153,8 +5149,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private javax.swing.JButton jButtonIngredExpressInfoPrint;
     private javax.swing.JButton jButtonIngredGo;
     private javax.swing.JButton jButtonIngredPrint;
-    private javax.swing.JButton jButtonIngredientsPasteIngred1;
-    private javax.swing.JButton jButtonIngredientsPasteIngred2;
+    public javax.swing.JButton jButtonIngredientsPasteIngred1;
+    public javax.swing.JButton jButtonIngredientsPasteIngred2;
     public javax.swing.JButton jButtonRDetailedChangeNoteName;
     private javax.swing.JButton jButtonRecipeAdditionalPrint1;
     private javax.swing.JButton jButtonRecipeAdditionalPrint2;
