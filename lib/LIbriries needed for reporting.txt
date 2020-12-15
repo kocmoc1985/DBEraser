@@ -1,4 +1,9 @@
-dynamicreports-core-4.0.0.jar
+
+Note that versions are important!!
+
+OBS! For Java version 11 and later you need also: jaxb-api-2.3.0.jar
+
+dynamicreports-core-4.0.1.jar  
 dynamicreports-examples-4.0.1.jar
 jasperreports-6.1.0.jar
 spring-2.5.jar
@@ -8,4 +13,6 @@ commons-digester-2.1.jar
 commons-lang3-3.4.jar
 commons-logging-1.2.jar
 
-Note that versions are important!!
+
+
+

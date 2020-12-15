@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.GP_BUH;
+import java.io.File;
 import javax.swing.JFrame;
 
 /**
@@ -27,6 +28,8 @@ public class GDPR extends javax.swing.JFrame {
        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
