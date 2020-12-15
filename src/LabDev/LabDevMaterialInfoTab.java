@@ -38,6 +38,7 @@ import javax.swing.JTable;
 public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener, MouseListener {
 
     private TableBuilderInvert TABLE_BUILDER_INVERT;
+    private int LAST_SELECTED_ROW = -1;
 
     public LabDevMaterialInfoTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -199,14 +200,33 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         //
         LAB_DEV.material_information_tab_change_jtable__header(table);
         //
-        HelpA.markFirstRowJtable(table);
+        markRowLogic();
+        //
         materialInfoJTableClicked();
         //
     }
 
+    private void markRowLogic() {
+        //
+        JTable table = getJTable();
+        //
+        if (HelpA.isEmtyJTable(table)) {
+            return;
+        }
+        //
+        if (LAST_SELECTED_ROW == -1) {
+            HelpA.markFirstRowJtable(table);
+        }else{
+            HelpA.setSelectedRow(table, LAST_SELECTED_ROW);
+        }
+        //
+    }
+
     public void materialInfoJTableClicked() {
+        JTable table = getJTable();
+        LAST_SELECTED_ROW = table.getSelectedRow();
         showTableInvert();
-        String material = HelpA.getValueSelectedRow(getJTable(), "Material").trim();
+        String material = HelpA.getValueSelectedRow(table, "Material").trim();
         labDev.setMaterial(material);
         labDev.refreshHeader();
     }
@@ -219,12 +239,12 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         String q = SQL_A_.lab_dev__material_info__add_material_combo();
         HelpA.fillComboBox(sql, box, q, null, true, false);
         //
-        if(HelpA.isEmtyJTable(table) == false){
-            String value_first_row = HelpA.getValueSelectedRow(table,"Material");
+        //
+        if (HelpA.isEmtyJTable(table) == false) {
+            String value_first_row = HelpA.getValueSelectedRow(table, "Material");
+            //".trim() is needed 100% verified"
             HelpA.ComboBoxObject cbo = new HelpA.ComboBoxObject(value_first_row.trim(), "", "", "");
             box.setSelectedItem(cbo);
-//            box.setSelectedIndex(25);
-            
         }
         //
     }
