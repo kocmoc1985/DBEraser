@@ -1153,10 +1153,10 @@ public class RecipeDetailed_ extends BasicTab {
 
     public void addNewRecipeFromScratch() {
         //
-        if (true) {
-            HelpA.showNotification("Under construction");
-            return;
-        }
+//        if (true) {
+//            HelpA.showNotification("Under construction");
+//            return;
+//        }
         //
         String q_ = "select * from Recipe_Prop_Main" + " where Code =?" + " and Release = '" + getRelease() + "'";
         //

@@ -137,6 +137,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             setPrevTabName("");
         }
         //
+        if(labDevMaterialInfo != null){
+            labDevMaterialInfo.resetLastSelectedRow();
+        }
+        //
     }
 
     private boolean defineAndSetMaterial(String order) {

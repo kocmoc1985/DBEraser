@@ -44,6 +44,10 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         super(sql, sql_additional, OUT, labDev);
         init();
     }
+    
+    public void resetLastSelectedRow(){
+        this.LAST_SELECTED_ROW = -1;
+    }
 
     private void init() {
         //

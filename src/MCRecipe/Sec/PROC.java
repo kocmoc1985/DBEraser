@@ -35,7 +35,7 @@ public class PROC {
     public static final String PROC_09 = "prc_ITF_RECIPE_FreeInfo_Update ";//#RECIPE DETAILED
     public static final String PROC_10 = "prc_ITF_Ingredient_NEW_fromScratch ";//#INGREDIENTS
     public static final String PROC_11 = "prc_ITF_Ingredient_NEW_Insert ";//#INGREDIENTS
-    public static final String PROC_12 = "prc_ITF_RECIPE_Scratch ";//#RECIPE DETAILED
+    public static final String PROC_12 = "prc_ITF_RECIPE_Scratch_1 ";//#RECIPE DETAILED
     public static final String PROC_13 = "prc_ITF_RECIPE_main_Insert ";//#RECIPE DETAILED
     public static final String PROC_14 = "prc_ITF_Igredients_DisplVendor_Delete ";//#VENDORS
     public static final String PROC_15 = "prc_ITF_Igredients_DisplPurchase_delete ";//#VENDORS
