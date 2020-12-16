@@ -1,13 +1,15 @@
 [FOR FUTURE]
-1. Create new Ingredient from scratch and Copy ingred -> TAB: "INGREDIENTS_B"
+
 
 [FOR ME]
 1. Tool Tip Texts for LabDev part
+2. Recalc -> phr is 100, problem -> make notification message that it's not possible ->
+RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) 
+-> Partially implemented -> shall be done more (or maybe not), it should not restrict but warn
 
 [FOR PAPS]
 1. Solve the problem with short "usernames" when tables are automatically created at the SQL side
-2. Recalc -> phr is 100, problem -> make notification message that it's not possible ->
-RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> Partially implemented -> shall be done more (or maybe not), it should not restrict but warn!!!
+2. Check: Create new Ingredient from scratch and Copy ingred -> TAB: "INGREDIENTS_B"
 
 [FOR BOTH]
 
@@ -26,8 +28,11 @@ java.sql.SQLException: The UPDATE statement conflicted with the FOREIGN KEY cons
 	at MyObjectTableInvert.BasicTab.saveChangesTableInvert(BasicTab.java:63)
 
 
-2. 
-3. Setting material from outside "LabDevelopment" -> search for: [#SET MATERIAL - FROM OUTSIDE LABDEV#] 
+_______________________________________________________________________________________
+
+[NOT URGENT]
+ 
+1. Setting material from outside "LabDevelopment" -> search for: [#SET MATERIAL - FROM OUTSIDE LABDEV#] 
 ID,WORDERNO,WOSTATUS,REQUESTER,CUSTOMER,EXPREADY,UpdatedBy,UpdatedOn -> table "MC_Cpworder"
 
 ID -> not present in "fn_ITF_OrdersWithMaterials" -> This "ID" shall correspong to the "ID" in the "MC_Cpworder"
@@ -38,8 +43,6 @@ CUSTOMER -> ok
 EXPREADY -> does not exist in "fn_ITF_OrdersWithMaterials"
 UpdatedOn -> ok
 UpdatedBy -> ok
-
-
 
 _______________________________________________________________________________________
 [SHOW FLORIAN - BEFORE DEMO]

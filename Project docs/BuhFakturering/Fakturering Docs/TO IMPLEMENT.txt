@@ -15,7 +15,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 -------------- 
 ------------------------<URGENT>------------------------
 
-Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves
+Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16]
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
 
