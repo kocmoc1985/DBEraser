@@ -7,7 +7,7 @@
 [FOR PAPS]
 1. Solve the problem with short "usernames" when tables are automatically created at the SQL side
 2. Recalc -> phr is 100, problem -> make notification message that it's not possible ->
-RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> Partially implemented (not activated so far)
+RecipeDetailed_.java -> edit_ingredients_parameters_table_4(int row, int col) -> Partially implemented -> shall be done more (or maybe not), it should not restrict but warn!!!
 
 [FOR BOTH]
 

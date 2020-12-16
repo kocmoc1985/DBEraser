@@ -44,8 +44,8 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         super(sql, sql_additional, OUT, labDev);
         init();
     }
-    
-    public void resetLastSelectedRow(){
+
+    public void resetLastSelectedRow() {
         this.LAST_SELECTED_ROW = -1;
     }
 
@@ -220,8 +220,14 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         //
         if (LAST_SELECTED_ROW == -1) {
             HelpA.markFirstRowJtable(table);
-        }else{
-            HelpA.setSelectedRow(table, LAST_SELECTED_ROW);
+        } else {
+            //
+            try {
+                HelpA.setSelectedRow(table, LAST_SELECTED_ROW);
+            } catch (Exception ex) {
+                HelpA.markFirstRowJtable(table);
+            }
+            //
         }
         //
     }

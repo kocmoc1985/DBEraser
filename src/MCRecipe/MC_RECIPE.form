@@ -56,30 +56,24 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="1538" max="-2" attributes="0"/>
-                              <Component id="jLabelHomeVersion" min="-2" pref="207" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jPasswordFieldHomePass" min="-2" pref="279" max="-2" attributes="0"/>
-                                  <Component id="jLabel72" min="-2" pref="279" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldHomeUserName" min="-2" pref="279" max="-2" attributes="0"/>
-                                  <Component id="jLabel69" min="-2" pref="279" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="jButton8" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="jButton19" min="-2" pref="160" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jButton_Home_Login" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
-                                  <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPasswordFieldHomePass" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="jLabel72" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="jTextFieldHomeUserName" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="jLabel69" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  <Component id="jButton8" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  <Component id="jButton19" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButton_Home_Login" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="jLabelHomeVersion" min="-2" pref="279" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="1291" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -94,26 +88,19 @@
                           <Component id="jButton8" min="-2" pref="100" max="-2" attributes="0"/>
                           <Component id="jButton19" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jLabel69" min="-2" pref="24" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldHomeUserName" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="jLabel72" min="-2" pref="24" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="jPasswordFieldHomePass" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="jButton_Home_Login" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace pref="21" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="1295" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="jLabel69" min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextFieldHomeUserName" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="jLabel72" min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="jPasswordFieldHomePass" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="jButton_Home_Login" min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="1190" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
