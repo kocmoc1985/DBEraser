@@ -2061,7 +2061,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel61Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane24)
                     .addComponent(jScrollPane23))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addContainerGap(334, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("FIND ORDER", jPanel61);
@@ -2280,7 +2280,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel60Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_lab_dev_material_info, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                     .addComponent(jScrollPane22))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("MATERIAL INFO", jPanel60);
@@ -2291,6 +2291,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel80.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev_test_definition_goto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jButton_lab_dev_test_definition_goto.setToolTipText("");
         jPanel80.add(jButton_lab_dev_test_definition_goto);
 
         jButton_lab_dev__test_def__print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -2314,7 +2315,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addComponent(jPanel80, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST DEFINITIONS", jPanel62);
@@ -2386,7 +2387,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jLabel62)
                         .addGap(5, 5, 5)
                         .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST CONFIG", jPanel63);
@@ -2406,8 +2407,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox_lab_dev__test_order__material.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         jButton_lab_dev__test_order__filter_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter.png"))); // NOI18N
+        jButton_lab_dev__test_order__filter_btn.setToolTipText("Filter");
 
         jButton_lab_dev__test_order__clear_filter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/filter_remove.png"))); // NOI18N
+        jButton_lab_dev__test_order__clear_filter.setToolTipText("Remove filter");
 
         jPanel82.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -2424,6 +2427,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel82.add(jButton_lab_dev_test_order__add_new_b);
 
         jButton_lab_dev__delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev__delete_btn.setToolTipText("Delete");
         jPanel82.add(jButton_lab_dev__delete_btn);
 
         jButton_lab_dev_test_vars__print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -2469,7 +2473,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel77, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                     .addComponent(jScrollPane29))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST VARIABLES", jPanel76);
@@ -2583,7 +2587,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addComponent(jButton_lab_dev_tab__save_notes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("NOTES", jPanel59);
@@ -2607,12 +2611,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel70.add(jButton_lab_dev__save_aging);
 
         jButton_lab_dev_aging__create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton_lab_dev_aging__create_new.setToolTipText("Create new");
         jPanel70.add(jButton_lab_dev_aging__create_new);
 
         jButton_lab_dev_aging__copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_lab_dev_aging__copy.setToolTipText("Copy");
         jPanel70.add(jButton_lab_dev_aging__copy);
 
         jButton_lab_dev_aging__delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev_aging__delete.setToolTipText("Delete");
         jPanel70.add(jButton_lab_dev_aging__delete);
 
         jPanel71.setLayout(new java.awt.GridLayout(1, 0));
@@ -2625,12 +2632,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel71.add(jButton_lab_dev__save_vulc);
 
         jButton_lab_dev_vulc__create_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton_lab_dev_vulc__create_new.setToolTipText("Create new");
         jPanel71.add(jButton_lab_dev_vulc__create_new);
 
         jButton_lab_dev_vulc__copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_lab_dev_vulc__copy.setToolTipText("Copy");
         jPanel71.add(jButton_lab_dev_vulc__copy);
 
         jButton_lab_dev_vulc__delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev_vulc__delete.setToolTipText("Delete");
         jPanel71.add(jButton_lab_dev_vulc__delete);
 
         javax.swing.GroupLayout jPanel67Layout = new javax.swing.GroupLayout(jPanel67);
@@ -2677,7 +2687,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                         .addComponent(jComboBox_lab_dev_vulc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(jPanel69, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("AGE / VULC", jPanel67);
@@ -2710,9 +2720,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel83.add(jButton__lab__dev__test_proc__save);
 
         jButton_lab_dev__test_procedure__new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
+        jButton_lab_dev__test_procedure__new.setToolTipText("Create new");
         jPanel83.add(jButton_lab_dev__test_procedure__new);
 
         jButton_lab_dev__test_proc__copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
+        jButton_lab_dev__test_proc__copy.setToolTipText("Copy");
         jPanel83.add(jButton_lab_dev__test_proc__copy);
 
         jButton_lab_dev__material_info_delete_proc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
@@ -2756,7 +2768,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel75, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST PROCEDURE", jPanel72);

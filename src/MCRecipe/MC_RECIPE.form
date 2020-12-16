@@ -2135,7 +2135,7 @@
                                       <Component id="jScrollPane24" max="32767" attributes="0"/>
                                       <Component id="jScrollPane23" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="292" max="32767" attributes="0"/>
+                                  <EmptySpace pref="334" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2564,7 +2564,7 @@
                                       <Component id="jPanel_lab_dev_material_info" pref="474" max="32767" attributes="0"/>
                                       <Component id="jScrollPane22" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="221" max="32767" attributes="0"/>
+                                  <EmptySpace pref="263" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2727,7 +2727,7 @@
                                   <Component id="jPanel80" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Component id="jScrollPane27" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="293" max="32767" attributes="0"/>
+                                  <EmptySpace pref="335" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2764,6 +2764,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/edit.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value=""/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2838,7 +2839,7 @@
                                           <Component id="jScrollPane25" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="83" max="32767" attributes="0"/>
+                                  <EmptySpace pref="125" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3130,7 +3131,7 @@
                                       <Component id="jPanel77" pref="519" max="32767" attributes="0"/>
                                       <Component id="jScrollPane29" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="175" max="32767" attributes="0"/>
+                                  <EmptySpace pref="217" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3204,6 +3205,7 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/filter.png"/>
                             </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Filter"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3214,6 +3216,7 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/icons/filter_remove.png"/>
                             </Property>
+                            <Property name="toolTipText" type="java.lang.String" value="Remove filter"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3271,6 +3274,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3512,7 +3516,7 @@
                                   <Component id="jButton_lab_dev_tab__save_notes" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane21" min="-2" pref="483" max="-2" attributes="0"/>
-                                  <EmptySpace pref="212" max="32767" attributes="0"/>
+                                  <EmptySpace pref="252" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3617,7 +3621,7 @@
                                           <Component id="jPanel69" min="-2" pref="570" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="125" max="32767" attributes="0"/>
+                                  <EmptySpace pref="165" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3699,6 +3703,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/new.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Create new"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3709,6 +3714,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/copy.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Copy"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3719,6 +3725,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3759,6 +3766,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/new.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Create new"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3769,6 +3777,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/copy.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Copy"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3779,6 +3788,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/makulerad.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Delete"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3833,7 +3843,7 @@
                                       <Component id="jScrollPane28" min="-2" pref="282" max="-2" attributes="0"/>
                                       <Component id="jPanel75" min="-2" pref="604" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                                  <EmptySpace pref="132" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3924,6 +3934,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/new.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Create new"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -3934,6 +3945,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/icons/copy.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="Copy"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
