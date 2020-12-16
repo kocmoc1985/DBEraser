@@ -65,7 +65,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
         this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
-        
+
     }
 
     public Basic getTableInvertConsumer() {
@@ -90,7 +90,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     @Override
     public void componentResized(ComponentEvent ce) {
-      
+
         resizeRows();
     }
 
@@ -217,12 +217,11 @@ public class TableInvert extends Table implements ControlsActionsIF {
             this.ROW_COUNTER++;
         }
         //
-       
+
         //
 //        resizeRows();
         //
     }
-
 
     public HashMap<String, ColumnValue> getColumnData(int colNr) {
         //
@@ -578,7 +577,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
             //
             sql.prepareStatement(q);
             //
-            String dateFormat = HelpA.define_date_format(value);
+            String dateFormat = HelpA.define_date_format__with__exceptions(value, tableName, columnName);
             //
             if (dateFormat != null) {
                 long millis = HelpA.dateToMillisConverter3(value, dateFormat);

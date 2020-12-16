@@ -5,6 +5,8 @@
 package forall;
 
 import BuhInvoice.InvoiceB;
+import LabDev.LabDevStatusTab_;
+import LabDev.LabDevelopment_;
 import MCCompound.PROD_PLAN;
 import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.ComboBoxTitle;
@@ -136,11 +138,11 @@ public class HelpA {
         }
         //
     }
-    
-    public static boolean isFirstTimeRun(){
+
+    public static boolean isFirstTimeRun() {
         return true;
     }
-    
+
     public static boolean file_exists(File f) {
         if (f == null) {
             return false;
@@ -152,7 +154,7 @@ public class HelpA {
             }
         }
     }
-    
+
     public static void addMouseListenerJComboBox(JComponent c, MouseListener ml) {
         Component[] c_arr = c.getComponents();
         for (Component component : c_arr) {
@@ -639,6 +641,46 @@ public class HelpA {
 
     public static String updatedBy() {
         return ACTUAL_USER__MCRECIPE;
+    }
+
+    public static final HashSet<String> ALLOW_SAVE__FILTER__COLUMN = new HashSet<>();
+    public static final HashSet<String> ALLOW_SAVE__FILTER__TABLE = new HashSet<>();
+    
+    static {
+        //
+        ALLOW_SAVE__FILTER__TABLE.add(LabDevelopment_.TABLE__MC_CPWORDER);
+        //
+        ALLOW_SAVE__FILTER__COLUMN.add("STUSERINFO");
+        ALLOW_SAVE__FILTER__COLUMN.add("STUSERINFO2");
+        ALLOW_SAVE__FILTER__COLUMN.add("AIMLINE1");
+        ALLOW_SAVE__FILTER__COLUMN.add("AIMLINE2");
+        //
+    }
+
+    public static String define_date_format__with__exceptions(String date, String sqlTableName, String colName) {
+        //
+        // This fix was done on [2020-12-16] because it was not possible to save only date in a field
+        // of TableInvert which does not have "date format" on the level of SQL
+        // See TableInvert -> updateFieldString() method which is consuming this one
+        //
+        if (ALLOW_SAVE__FILTER__TABLE.contains(sqlTableName) && ALLOW_SAVE__FILTER__COLUMN.contains(colName)) {
+            //
+            return null;
+            //
+        }
+        //
+        if (date != null) {
+            for (String parse : formats) {
+                SimpleDateFormat sdf = new SimpleDateFormat(parse);
+                try {
+                    sdf.parse(date);
+                    return parse;
+                } catch (ParseException e) {
+                    //Do nothing
+                }
+            }
+        }
+        return null;
     }
 
     public static String define_date_format(String date) {
@@ -2903,14 +2945,13 @@ public class HelpA {
             if (obj == null) {
                 return false;
             }
-            
+
             // DISABLED ON 2020-10-15 because it did not compare ComboBoxObject & ComboBoxObjectB/C
             // Using instance of instead
 //            if (getClass() != obj.getClass()) {
 //                return false;
 //            }
-            
-            if(obj instanceof ComboBoxObject == false){
+            if (obj instanceof ComboBoxObject == false) {
                 return false;
             }
 

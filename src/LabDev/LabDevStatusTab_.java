@@ -35,7 +35,11 @@ public class LabDevStatusTab_ extends LabDevTab_ {
     private Table TABLE_INVERT_3;
     private Table TABLE_INVERT_4;
     private Table TABLE_INVERT_5;
-
+    //
+    public static String TABLE_INVERT_4__NAME = "lab_dev_status_tab__ti_4";
+    public static String TABLE_INVERT_5__NAME = "lab_dev_status_tab__ti_5";
+    //
+    
     public LabDevStatusTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
@@ -229,7 +233,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
      */
     public void showTableInvert_4() {
         //
-        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_4(), false, "lab_development_4");
+        TABLE_BUILDER_INVERT_4 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_4(), false, "lab_dev_status_tab__ti_4");
         //
         TABLE_INVERT_4 = null;
         //
@@ -283,7 +287,7 @@ public class LabDevStatusTab_ extends LabDevTab_ {
      */
     public void showTableInvert_5() {
         //
-        TABLE_BUILDER_INVERT_5 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_5(), false, "lab_development_5");
+        TABLE_BUILDER_INVERT_5 = new TableBuilderInvert(OUT, sql, getConfigTableInvert_5(), false, "lab_dev_status_tab__ti_5");
         //
         TABLE_INVERT_5 = null;
         //
