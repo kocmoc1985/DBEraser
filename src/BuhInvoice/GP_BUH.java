@@ -8,6 +8,8 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import forall.GP;
 import forall.HelpA;
+import static forall.HelpA.file_exists;
+import static forall.HelpA.objectToFile;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Frame;
@@ -20,6 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -50,7 +53,7 @@ public class GP_BUH {
     //
     public static String KUND_ID;
     //
-    
+
     /*
      * By [2020-10-07]
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765"
@@ -61,36 +64,44 @@ public class GP_BUH {
     //
     public static String USER = "";
     public static String PASS = "";
+
     //
-    public static String getChangedBy(){
+    public static String getChangedBy() {
         return USER.split("@")[0];
     }
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
     private static final String LOGO_PATH = "io/logo.png";
 
-    
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
+    public static final String GDPR_ACCEPTED_FILE_PATH = "io/gdpr";
+    
+    public static boolean isGdprAccepted() {
+        //
+        return !file_exists(new File(GDPR_ACCEPTED_FILE_PATH));
+        //
+    }
+
     public static final String LOGO_PATH() {
         return "io/logo_" + KUND_ID + ".png";
     }
-    
+
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
     }
-    
-    public static boolean loggedIn(){
-       return KUND_ID != null;
+
+    public static boolean loggedIn() {
+        return KUND_ID != null;
     }
-    
-    public static boolean isGuestUser(){
+
+    public static boolean isGuestUser() {
         return !(USER == null || !USER.contains("guest_"));
     }
-    
+
     public static String replaceColon(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll(":", "#");
@@ -106,7 +117,7 @@ public class GP_BUH {
             return text.replaceAll("¤", ",");
         }
     }
-    
+
     public static String replacePlus(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll("\\+", "£");
@@ -131,7 +142,6 @@ public class GP_BUH {
 //            return value;
 //        }
 //    }
-
     public static String _get(HashMap<String, String> map, String param) {
         return _get(map, param, false);
     }
@@ -152,8 +162,6 @@ public class GP_BUH {
             return val;
         }
     }
-    
-    
 
     public static void enableDisableButtons(JPanel parent, boolean enabled) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -308,10 +316,6 @@ public class GP_BUH {
         //
     }
 
-    
-    
-   
-
     private static String chooseFile(Component parent) {
         JFileChooser chooser = new JFileChooser();
         //
@@ -330,7 +334,7 @@ public class GP_BUH {
             return null;
         }
     }
-    
+
     public static int countForfallnaFakturorJTable(JTable table, String colName) {
         //
         int forfallna = 0;
@@ -351,7 +355,7 @@ public class GP_BUH {
             boolean isMakulerad = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD).equals(DB.STATIC__YES);
             boolean isFakturaTypeNormal = HelpA.getValueGivenRow(table, x, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP).equals(DB.STATIC__FAKTURA_TYPE_NORMAL);
             //
-            if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false){
+            if (forfallen && isFakturaTypeNormal && isBetald == false && isMakulerad == false) {
                 forfallna++;
             }
             //

@@ -132,7 +132,7 @@ public class HelpA {
         } else {
             //Why do i have HashSet - it does not have any sence just for making a file
             HashSet<String> set = new HashSet<String>();
-            set.add("DONE");
+            set.add(HelpA.updatedOn());
             objectToFile(filePathAndName, set);
             return true;
         }
