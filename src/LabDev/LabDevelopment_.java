@@ -111,6 +111,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
     public void setTestCode(String code) {
         this.TEST_CODE = code;
     }
+    
+    public void resetTestCode(){
+        this.TEST_CODE = "";
+    }
 
     public String getMaterial_description() {
         String q = SQL_A_.get_lab_dev__test_definition_material_add_info(PROC.PROC_68, getOrderNo(), null, getMaterial());
@@ -139,6 +143,10 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         if(labDevMaterialInfo != null){
             labDevMaterialInfo.resetLastSelectedRow();
+        }
+        //
+        if(labDevTestDefinitionTab != null){
+            resetTestCode();
         }
         //
     }

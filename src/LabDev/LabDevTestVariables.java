@@ -140,9 +140,12 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         removeFilter__mcs(getComboBoxTestCode());
         //
         JTable table = getTable();
-        fillJTable(null, null);
+        //
+        fillJTable(labDev.getTestCode(), labDev.getMaterial());
+        //
         HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
+        //
     }
 
     private void refresh_b() {

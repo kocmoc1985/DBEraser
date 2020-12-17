@@ -940,7 +940,7 @@ public class SQL_A_ {
 
     public static String quotes(String str, boolean number) {
         //
-        if (str == null || str.equals("NULL")) {
+        if (str == null || str.isEmpty() ||str.equals("NULL")) {
             return "NULL";
         }
         //

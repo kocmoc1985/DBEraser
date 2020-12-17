@@ -2290,8 +2290,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel80.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton_lab_dev_test_definition_goto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        jButton_lab_dev_test_definition_goto.setToolTipText("");
+        jButton_lab_dev_test_definition_goto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton_lab_dev_test_definition_goto.setToolTipText("Set test code");
         jPanel80.add(jButton_lab_dev_test_definition_goto);
 
         jButton_lab_dev__test_def__print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -2421,9 +2421,11 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel82.add(jButton_lab_dev__test_vars_print_invert);
 
         jButton_lab_dev__test_order_add_new.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev__test_order_add_new.setToolTipText("Add test procedure values");
         jPanel82.add(jButton_lab_dev__test_order_add_new);
 
         jButton_lab_dev_test_order__add_new_b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_b.png"))); // NOI18N
+        jButton_lab_dev_test_order__add_new_b.setToolTipText("Add test procedure");
         jPanel82.add(jButton_lab_dev_test_order__add_new_b);
 
         jButton_lab_dev__delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
@@ -2728,11 +2730,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel83.add(jButton_lab_dev__test_proc__copy);
 
         jButton_lab_dev__material_info_delete_proc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev__material_info_delete_proc.setToolTipText("Delete");
         jPanel83.add(jButton_lab_dev__material_info_delete_proc);
 
         jPanel84.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_lab_dev__material_info_delete_entry.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
+        jButton_lab_dev__material_info_delete_entry.setToolTipText("Delete");
         jPanel84.add(jButton_lab_dev__material_info_delete_entry);
 
         jButton_lab_dev__testproc_print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N

@@ -145,7 +145,9 @@ public class LabDevHeaderComponent implements ItemListener {
         //
         buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_9(), labDev.getMaterial_batchammount(), false);
         //
-        for (int i = 0; i < 2; i++) {
+        buildJLabelJTextFieldComonent(lower, LAB_DEV.LBL_7_2(), labDev.getTestCode(), false);
+        //
+        for (int i = 0; i < 1; i++) {
             lower.add(new JPanel()); // Adding empty for compacting 
         }
         //

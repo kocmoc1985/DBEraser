@@ -92,6 +92,13 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         ArrayList<String> codes_list = getTestCodesList_given_order_and_material(labDev.getOrderNo(), labDev.getMaterial());
         ArrayList<TestDefinitionEntry> table_data = buildJTableData(codes_list);
         fillJTable(table_data);
+        //
+        String testCode = labDev.getTestCode();
+        //
+        if(testCode.isEmpty() == false){
+            HelpA.markRowByValue(getTable(), "Code", testCode);
+        }
+        //
 //        System.out.println("");
     }
     
