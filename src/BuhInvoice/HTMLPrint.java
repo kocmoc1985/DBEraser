@@ -1,10 +1,14 @@
+package BuhInvoice;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BuhInvoice;
 
+
+import BuhInvoice.DB;
+import BuhInvoice.EditPanel_Send;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -16,10 +20,17 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.HTMLPrint_A;
+import BuhInvoice.JSon;
+import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
+import BuhInvoice.sec.HeadersValuesHTMLPrint;
+import BuhInvoice.sec.IO;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.SMTP;
 import BuhInvoice.sec.SMTP;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
@@ -42,7 +53,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.SystemUtils;
 
 /**
  *
@@ -533,7 +543,6 @@ public abstract class HTMLPrint extends JFrame {
                     } else {
                         loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_PAMMINELSE);
                     }
-
                     //
                 } else {
                     if (htmlprint instanceof HTMLPrint_A) {
