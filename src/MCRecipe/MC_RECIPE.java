@@ -2690,17 +2690,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox_lab_dev_test_proc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_lab_dev_test_proc.setModel(new javax.swing.DefaultComboBoxModel<>());
 
-        jTable_lab_dev__test_proc.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable_lab_dev__test_proc.setModel(new javax.swing.table.DefaultTableModel());
         jScrollPane28.setViewportView(jTable_lab_dev__test_proc);
 
         jPanel75.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2762,10 +2752,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                     .addComponent(jComboBox_lab_dev_test_proc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel75, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel75, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .addComponent(jScrollPane28))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jTabbedPane3_Lab_Dev.addTab("TEST PROCEDURE", jPanel72);

@@ -41,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
 public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyListener, MouseListener, ActionListener {
     
     private boolean oneTimeFlag = false;
-    private String materialPrev = "";
+    private boolean createCopyFlag = false;
     
     public LabDevFindOrderTab(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
@@ -63,14 +63,24 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
         //
     }
     
+    private void refresh__insert_and_copy(String order) {
+        labDev.setOrderNo(order);
+        fillTable_order(order);
+        HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
+        labDev.lab_dev_tab__tab_main_data__clicked();
+        labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
+        createCopyFlag = true;
+    }
+    
     public void refresh() {
         //
         getTexField().setText("");
         showCheckBoxComponent();
         //
         // Refresh after adding new
-        if (getTable().getRowCount() == 1) {
+        if (createCopyFlag) {
             fillTable_order(labDev.getOrderNo());
+            createCopyFlag = false;
         } else {
             //
             fillTable_filter();
@@ -92,15 +102,18 @@ public class LabDevFindOrderTab extends ChkBoxItemListComponent implements KeyLi
             //==================================================================
         }
         //
+        JTable table = getTable();
+        int rowCount = table.getRowCount();
+        //
+        if(labDev.getOrderNo().isEmpty() == false && rowCount > 0){
+            HelpA.markRowByValue(table, "WORDERNO", labDev.getOrderNo()); // WORDERNO = Order
+        }else if(labDev.getOrderNo().isEmpty() && rowCount > 0){
+            HelpA.markFirstRowJtable(table);
+        }
+        //
     }
     
-    private void refresh__insert_and_copy(String order) {
-        labDev.setOrderNo(order);
-        fillTable_order(order);
-        HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA());
-        labDev.lab_dev_tab__tab_main_data__clicked();
-        labDev.setPrevTabName(LNG.LAB_DEVELOPMENT_TAB__TAB_MAIN_DATA()); // Important!
-    }
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {

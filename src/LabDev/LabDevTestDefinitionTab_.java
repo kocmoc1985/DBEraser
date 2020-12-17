@@ -32,17 +32,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListener,ActionListener {
-    
+public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListener, ActionListener {
+
     private final String COL_1_NAME = LAB_DEV.test_definition_tab__get_col_1();
     private final String COL_2_NAME = LAB_DEV.test_definition_tab__get_col_2();
     private final String COL_3_NAME = LAB_DEV.test_definition_tab__get_col_3();
-    
+
     public LabDevTestDefinitionTab_(SqlBasicLocal sql, SqlBasicLocal sql_additional, ShowMessage OUT, LabDevelopment_ labDev) {
         super(sql, sql_additional, OUT, labDev);
         init();
     }
-    
+
     private void init() {
         getEditBtn().addActionListener(this);
         getPrintBtn().addActionListener(this);
@@ -52,26 +52,26 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         HelpA.setUneditableJTable(table);
         refresh();
     }
-    
-     @Override
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         //
-        if(e.getSource().equals(getEditBtn())){
+        if (e.getSource().equals(getEditBtn())) {
             lab_dev_test_definitions_table_clicked();
-        }else if(e.getSource().equals(getPrintBtn())){
+        } else if (e.getSource().equals(getPrintBtn())) {
             tableCommonRepport(getTable(), false);
         }
         //
     }
-    
-    private JButton getEditBtn(){
+
+    private JButton getEditBtn() {
         return mcRecipe.jButton_lab_dev_test_definition_goto;
     }
-    
-     private JButton getPrintBtn(){
+
+    private JButton getPrintBtn() {
         return mcRecipe.jButton_lab_dev__test_def__print_jtable;
     }
-    
+
     public void refresh() {
         //
         JTable table = getTable();
@@ -82,12 +82,13 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         HelpA.setColumnWidthByName(COL_2_NAME, table, 0.25);
         HelpA.setColumnWidthByName(COL_3_NAME, table, 0.65);
         //
+        //
     }
-    
+
     private JTable getTable() {
         return mcRecipe.jTable_test_definitions;
     }
-    
+
     private void build() {
         ArrayList<String> codes_list = getTestCodesList_given_order_and_material(labDev.getOrderNo(), labDev.getMaterial());
         ArrayList<TestDefinitionEntry> table_data = buildJTableData(codes_list);
@@ -95,13 +96,18 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         //
         String testCode = labDev.getTestCode();
         //
-        if(testCode.isEmpty() == false){
-            HelpA.markRowByValue(getTable(), "Code", testCode);
+        JTable table = getTable();
+        //
+        if (testCode.isEmpty() == false && table.getRowCount() > 0) {
+            HelpA.markRowByValue(table, "Code", testCode);
+        } else if (testCode.isEmpty() && table.getRowCount() > 0) {
+            HelpA.markFirstRowJtable(table);
+            setTestCode__();
         }
         //
 //        System.out.println("");
     }
-    
+
     private ArrayList<TestDefinitionEntry> buildJTableData(ArrayList<String> codes_list) {
         //
         ArrayList<TestDefinitionEntry> listToReturn = new ArrayList<>();
@@ -146,8 +152,7 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         //
         return listToReturn;
     }
-    
-    
+
     private void fillJTableHeader() {
         //
         JTable table = getTable();
@@ -161,7 +166,7 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
-    
+
     private void fillJTable(ArrayList<TestDefinitionEntry> tableData) {
         //
         JTable table = getTable();
@@ -182,29 +187,29 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         }
         //
     }
-    
+
     @Override
     public void fillNotes() {
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         return null;
     }
-    
+
     @Override
     public void showTableInvert() {
     }
-    
+
     @Override
     public void initializeSaveIndicators() {
     }
-    
+
     @Override
     public boolean getUnsaved(int nr) {
         return false;
     }
-    
+
     @Override
     public void mousePressed(MouseEvent me) {
         //
@@ -214,16 +219,18 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
             //
             lab_dev_test_definitions_table_clicked();
             //
+        } else if (me.getSource() == table && (me.getClickCount() == 1)) {
+            //
+            System.out.println("CLIKED: 1");
+            setTestCode__();
+            //
         }
         //
     }
-    
+
     private void lab_dev_test_definitions_table_clicked() {
         //
-        JTable table = getTable();
-        //
-        String testCode = HelpA.getValueSelectedRow(table, "Code");
-        labDev.setTestCode(testCode);
+        setTestCode__();
         //
         HelpA.openTabByName(labDev.getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_TEST_CONFIG());
         //
@@ -231,18 +238,24 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
         //
     }
     
+     private void setTestCode__() {
+        JTable table = getTable();
+        String testCode = HelpA.getValueSelectedRow(table, "Code");
+        labDev.setTestCode(testCode);
+        labDev.refreshHeader();
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
@@ -251,12 +264,10 @@ public class LabDevTestDefinitionTab_ extends LabDevTab_ implements MouseListene
     public String[] getComboParams__mcs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     @Override
+
+    @Override
     public String getQuery__mcs(String procedure, String colName, String[] comboParameters) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
-    
 }

@@ -198,43 +198,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
-    protected static ArrayList<HashMap<String, String>> jTableToList(JTable table) {
-        //
-        for (int x = 0; x < table.getRowCount(); x++) {
-            //
-            ArrayList rowValues = HelpA.getLineValuesVisibleColsOnly(table, x);
-            //
-        }
-        //
-        return null;
-    }
-
-
-//    @Override
-//    public void go() {
-//        //
-//        JEditorPane jep = getEditorPane();
-//        //
-//        String[] CSSRules = getCssRules();
-//        //
-//        HTMLEditorKit kit = new HTMLEditorKit();
-//        jep.setEditorKit(kit);
-//        //
-//        StyleSheet styleSheet = kit.getStyleSheet();
-//        //
-//        //
-//        for (int i = 0; i < CSSRules.length; i++) {
-//            styleSheet.addRule(CSSRules[i]);
-//        }
-//        //
-//        Document doc = kit.createDefaultDocument();
-//        jep.setDocument(doc);
-//        //
-//        jep.setText(buildHTML());
-//        //
-//    }
-
-    
 
     protected String getFakturaId() {
         return map_a_0.get(DB.BUH_FAKTURA__ID__);
