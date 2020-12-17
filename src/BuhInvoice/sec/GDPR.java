@@ -7,16 +7,18 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.GP_BUH;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author KOCMOC
  */
-public class GDPR extends javax.swing.JFrame {
+public class GDPR extends HTMLBasic {
 
     private final BUH_INVOICE_MAIN bim;
-    
+
     /**
      * Creates new form GDPR
      */
@@ -25,16 +27,14 @@ public class GDPR extends javax.swing.JFrame {
         initComponents();
         init();
     }
-    
-    private void init(){
-       this.setTitle("Personuppgiftshantering GDPR");
-       this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-       this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-       this.setAlwaysOnTop(true);
-       this.jButton_forsatt.setEnabled(false);
+
+    private void init() {
+        this.setTitle("Personuppgiftshantering GDPR");
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setAlwaysOnTop(true);
+        this.jButton_forsatt.setEnabled(false);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,9 +110,9 @@ public class GDPR extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if(jCheckBox1.isSelected()){
+        if (jCheckBox1.isSelected()) {
             this.jButton_forsatt.setEnabled(true);
-        }else{
+        } else {
             this.jButton_forsatt.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -126,7 +126,51 @@ public class GDPR extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButton_avbrytActionPerformed
 
-    
+    @Override
+    public String[] getCssRules() {
+        //
+        String[] CSSRules = {
+            //            "table {margin-bottom:10px;}",
+            "table {width: 99%;}",
+            //            "img {width: 20px}", not working from here
+            ".fontStd {font-size:9pt; color:gray;}",
+            "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
+            //            "table {border: 1px solid black}",//----------------------------->!!!!!!
+            "td {border: 1px solid gray;}",//------------------------------------>!!!!!
+            "td {padding-left: 4px;}",
+            //
+            ".marginTop {margin-top: 5px;}",
+            ".marginLeft {margin-left: 10px;}",
+            ".paddingLeft {padding-left: 5px;}",
+            ".bold {font-weight:800;}", // font-weight:800;
+            ".no-border {border: 0px}", // search for: [#no-border#]
+            ".border-a {border: 1px solid gray;}"
+        //    
+        };
+        //
+        return CSSRules;
+        //
+    }
+
+    @Override
+    public String buildHTML() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JEditorPane getEditorPane() {
+        return this.jEditorPane1;
+    }
+
+    @Override
+    public JScrollPane getJScrollPane() {
+        return this.jScrollPane1;
+    }
+
+    @Override
+    public String getWindowTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_avbryt;
@@ -135,4 +179,5 @@ public class GDPR extends javax.swing.JFrame {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
 }

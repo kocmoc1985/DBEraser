@@ -21,7 +21,6 @@ import javax.swing.border.Border;
 public class BlinkThread implements Runnable {
 
     private final JComponent component;
-    private JLabel label;
     private final boolean red;
     private static boolean ready = true;
     private boolean blinkText = false;
@@ -32,12 +31,12 @@ public class BlinkThread implements Runnable {
         startThread();
     }
 
-    public BlinkThread(JComponent component, JLabel label, boolean red) {
-        this.component = component;
-        this.label = label;
-        this.red = red;
-        startThread();
-    }
+//    public BlinkThread(JComponent component, JLabel label, boolean red) {
+//        this.component = component;
+//        this.label = label;
+//        this.red = red;
+//        startThread();
+//    }
 
     public void setBlinkText() {
         this.blinkText = true;
@@ -53,7 +52,7 @@ public class BlinkThread implements Runnable {
 
     @Override
     public void run() {
-        if (label == null) {
+       
             if (blinkText) {
                 if (red) {
                     blinkText(component, Color.red);
@@ -67,13 +66,7 @@ public class BlinkThread implements Runnable {
                     blink(component, Color.green);
                 }
             }
-        } else {
-            if (red) {
-                blink_b(component, Color.red);
-            } else {
-                blink_b(component, Color.green);
-            }
-        }
+        
     }
 
     private void blink(JComponent jc, Color color) {
@@ -93,27 +86,7 @@ public class BlinkThread implements Runnable {
         }
     }
 
-    private void blink_b(JComponent jc, Color color) {
-        ready = false;
-        if (jc != null) {
-            //
-            Border prevBorder = jc.getBorder();
-            jc.setBorder(BorderFactory.createLineBorder(color, 2));
-            label.setVisible(true);
-            wait_(500);
-            jc.setBorder(prevBorder);
-            label.setVisible(false);
-            wait_(500);
-            jc.setBorder(BorderFactory.createLineBorder(color, 2));
-            label.setVisible(true);
-            wait_(500);
-            jc.setBorder(prevBorder);
-            label.setVisible(false);
-            //
-            ready = true;
-        }
-    }
-
+   
     private void blinkText(JComponent jc, Color color) {
         ready = false;
         if (jc != null) {

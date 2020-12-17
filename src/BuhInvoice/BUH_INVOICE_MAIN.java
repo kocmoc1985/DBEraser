@@ -2159,7 +2159,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
-                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, jLabel__dont_forget_to_save__info, false);
+                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
                         faktua_tab_blockUntilSavedOrAborted_invoice(false);
                     }
                 } else {

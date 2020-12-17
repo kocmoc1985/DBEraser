@@ -63,7 +63,6 @@ public class HTMLPrint_A extends HTMLPrint {
         } else {
             return LANG.FRAME_TITLE_1;
         }
-
     }
 
     @Override

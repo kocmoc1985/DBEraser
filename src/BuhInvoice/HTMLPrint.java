@@ -209,14 +209,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         return null;
     }
 
-    protected void scrollToTop() {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                getJScrollPane().getVerticalScrollBar().setValue(0);
-            }
-        });
-    }
 
 //    @Override
 //    public void go() {
@@ -242,50 +234,7 @@ public abstract class HTMLPrint extends HTMLBasic {
 //        //
 //    }
 
-    /**
-     * Use this one when, getting the image from the "inside project / .jar
-     * file"
-     *
-     * @param path
-     * @param imgName
-     * @return - like: "file:/J:/MyDocs/src/...."
-     */
-    protected String getPathResources(String path, String imgName) {
-        return getImageIconURL(path, imgName).toString();
-    }
-
-    /**
-     *
-     * @param path - path to image folder, play around to get the path working
-     * @param picName
-     * @return
-     */
-    protected URL getImageIconURL(String path, String picName) {
-        //OBS! YES the first "/" is NEEDED - 100% [2020-06-09]
-        return HTMLPrint.class.getResource("/" + path + "/" + picName);
-    }
-
-    /**
-     * Use this one when, getting the image from inside the "project dir / root"
-     *
-     * @param pathAndFileName
-     * @return - like: "file:/J:/MyDocs/src/...."
-     */
-    protected String getPathNormal(String pathAndFileName) {
-        //
-        File f = new File(pathAndFileName);
-        //
-        if (f.exists() == false) {
-            return null;
-        }
-        //
-        try {
-            return new File(pathAndFileName).toURI().toURL().toString();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
+    
 
     protected String getFakturaId() {
         return map_a_0.get(DB.BUH_FAKTURA__ID__);
