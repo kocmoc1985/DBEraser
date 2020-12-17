@@ -102,6 +102,8 @@ public class LANG {
     public static String MSG_23_1 = "Gästanvändare kan inte radera konto";
     public static String MSG_23_2 = "Fel lösenord, kontot har inte raderats";
     
+    public static String MSG_24 = "Lämna utan att spara fakturan?";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
