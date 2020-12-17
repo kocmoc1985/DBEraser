@@ -308,6 +308,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 //            HelpA.hideTabByName(jTabbedPane1, LNG.RECIPE_ADD_TAB());
         } else if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
             //
+            // [#FIXED-MIXER-FIX#]
+            jComboBox4_Mixer_Code.addItem(new HelpA.ComboBoxObjectC("M1", "M1   GK 1.5 E", ""));
+            jComboBox4_Mixer_Code.setEnabled(false);
+            //
             this.customPanelRecipeInitial = new CustomPanelCp();
             initCustomPanel((Component) customPanelRecipeInitial);
             //
