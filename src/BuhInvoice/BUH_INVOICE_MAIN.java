@@ -76,7 +76,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         setMarginLeftLabelsHomeTab();
         //
         if (HelpA.isFirstTimeRun()) {
-            GDPR gdpr = new GDPR();
+            this.setEnabled(false);
+            GDPR gdpr = new GDPR(this);
             GP_BUH.centerAndBringToFront(gdpr);
         }
         //

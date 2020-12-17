@@ -5,8 +5,8 @@
  */
 package BuhInvoice.sec;
 
+import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.GP_BUH;
-import java.io.File;
 import javax.swing.JFrame;
 
 /**
@@ -15,10 +15,13 @@ import javax.swing.JFrame;
  */
 public class GDPR extends javax.swing.JFrame {
 
+    private final BUH_INVOICE_MAIN bim;
+    
     /**
      * Creates new form GDPR
      */
-    public GDPR() {
+    public GDPR(BUH_INVOICE_MAIN bim) {
+        this.bim = bim;
         initComponents();
         init();
     }
@@ -26,7 +29,9 @@ public class GDPR extends javax.swing.JFrame {
     private void init(){
        this.setTitle("Personuppgiftshantering GDPR");
        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-       this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+       this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+       this.setAlwaysOnTop(true);
+       this.jButton_forsatt.setEnabled(false);
     }
     
     
@@ -43,18 +48,33 @@ public class GDPR extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton_forsatt = new javax.swing.JButton();
+        jButton_avbryt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(jEditorPane1);
 
         jCheckBox1.setText("Jag samtycker");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Fortsätt");
+        jButton_forsatt.setText("Fortsätt");
+        jButton_forsatt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_forsattActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Avbryt");
+        jButton_avbryt.setText("Avbryt");
+        jButton_avbryt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_avbrytActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,11 +85,11 @@ public class GDPR extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 227, Short.MAX_VALUE))
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton_forsatt, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_avbryt, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 200, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -81,52 +101,36 @@ public class GDPR extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton_forsatt)
+                    .addComponent(jButton_avbryt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GDPR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GDPR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GDPR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GDPR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(jCheckBox1.isSelected()){
+            this.jButton_forsatt.setEnabled(true);
+        }else{
+            this.jButton_forsatt.setEnabled(false);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GDPR().setVisible(true);
-            }
-        });
-    }
+    private void jButton_forsattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_forsattActionPerformed
+        this.dispose();
+        bim.setEnabled(true);
+    }//GEN-LAST:event_jButton_forsattActionPerformed
+
+    private void jButton_avbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_avbrytActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton_avbrytActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton_avbryt;
+    private javax.swing.JButton jButton_forsatt;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
