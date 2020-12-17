@@ -29,7 +29,8 @@ public class GDPR extends HTMLBasic {
     }
 
     private void init() {
-        this.setTitle("Personuppgiftshantering GDPR");
+        go();
+        this.setTitle("Personuppgiftshantering - GDPR");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);
@@ -154,7 +155,27 @@ public class GDPR extends HTMLBasic {
 
     @Override
     public String buildHTML() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // 
+        String img_a = getPathNormal(GP_BUH.LOGO_PATH());
+        //
+        return "<html>"
+                + "<body>" //style='background-color:#F1F3F6'
+                + "<div style='margin-left:10px;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
+                //
+                + integritetsPolicy()
+                //
+                + "</div>"
+                + "</body>"
+                + "</html>";
+        //
+    }
+
+    private String integritetsPolicy() {
+        return ""
+                + "<h3>Integritetspolicy</h3>"
+                + "<p>"
+                + "Vi arbetar för att säkerställa en hög nivå av dataskydd som värnar om din personliga integritet vid användning av vår webbplats. Denna integritetspolicy förklarar därför hur dina personuppgifter bearbetas och skyddas, dina rättigheter och hur du kan göra dem gällande. Vi strävar efter att du ska känna dig trygg i vår behandling av dina personuppgifter. Vid eventuella frågor är du välkommen att kontakta oss. Våra kontaktuppgifter hittar du längst ned på denna sida."
+                + "</p>";
     }
 
     @Override
