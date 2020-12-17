@@ -81,7 +81,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         if (e.getSource().equals(getSaveButton())) {
             saveTableInvert();
         } else if (e.getSource().equals(getFilterBtn())) {
-            refresh_b();
+            refresh_d();
         } else if (e.getSource().equals(getRemoveFilterBtn())) {
             removeFilterButtonClicked(table);
         } else if (e.getSource().equals(getAddNewButton())) {
@@ -98,13 +98,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
     }
 
-    private String getTestCode() {
-        // EX: VUG01
-        JTable table = getTable();
-        //
-        if (HelpA.rowSelected(table)) {
-            return HelpA.getValueSelectedRow(table, "TestCode");
-        }
+    private String getTestCode_combo() {
         // 
         HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxTestCode());
         if (cbo == null) {
@@ -112,15 +106,22 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         } else {
             return cbo.getParamAuto();
         }
+        //
     }
 
-    private String getMaterial() {
-        // EX: WE8486
+    private String getTestCode_both() {
+        // EX: VUG01
         JTable table = getTable();
         //
         if (HelpA.rowSelected(table)) {
-            return HelpA.getValueSelectedRow(table, "CODE");
+            return HelpA.getValueSelectedRow(table, "TestCode");
         }
+        //
+        return getTestCode_combo();
+        //
+    }
+
+    private String getMaterial_combo() {
         // 
         HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) HelpA.getSelectedComboBoxObject_b(getComboBoxMaterial());
         if (cbo == null) {
@@ -128,6 +129,19 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         } else {
             return cbo.getParamAuto();
         }
+        //
+    }
+
+    private String getMaterial_both() {
+        // EX: WE8486
+        JTable table = getTable();
+        //
+        if (HelpA.rowSelected(table)) {
+            return HelpA.getValueSelectedRow(table, "CODE");
+        }
+        // 
+        return getMaterial_combo();
+        //
     }
 
     public void refresh() {
@@ -150,20 +164,27 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
 
     private void refresh_b() {
         JTable table = getTable();
-        fillJTable(getTestCode(), getMaterial());
+        fillJTable(getTestCode_both(), getMaterial_both());
         HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
     }
 
     private void refresh_c(String testCode) {
         JTable table = getTable();
-        fillJTable(testCode, getMaterial());
+        fillJTable(testCode, getMaterial_both());
         HelpA.markFirstRowJtable(table);
         mouseClickedOnTable(table);
         //
         removeFilter__mcs(getComboBoxMaterial());
         removeFilter__mcs(getComboBoxTestCode());
         //
+    }
+    
+    private void refresh_d() {
+        JTable table = getTable();
+        fillJTable(getTestCode_combo(), getMaterial_combo());
+        HelpA.markFirstRowJtable(table);
+        mouseClickedOnTable(table);
     }
 
     private JButton getSaveButton() {
@@ -343,8 +364,6 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         saveChangesTableInvert(TABLE_INVERT);
         //
-        JTable table = getTable();
-        //
         refresh_b();
         //
     }
@@ -365,10 +384,8 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         //
         try {
             sql.execute(q, OUT);
-            System.out.println("DELETE SUCCESS: ************************");
         } catch (SQLException ex) {
             Logger.getLogger(LabDevTestVariables.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("DELETE FAILED: ************************");
         }
         //
         refresh_b();
@@ -382,8 +399,8 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         // addNewB == true -> "Double plus icon" -> Add new test procedure
         // addNewB == false -> "Single plus icon" -> Add test variable
         //
-        String testCode = getTestCode();
-        String material = getMaterial();
+        String testCode = getTestCode_both();
+        String material = getMaterial_both();
         //
         if (addNewB && (material == null || material.isEmpty() || material.equals("NULL"))) {
             HelpA.showNotification(MSG.LANG("Material not chosen"));
@@ -425,7 +442,7 @@ public class LabDevTestVariables extends LabDevTab_ implements ActionListener, I
         cnft.dispose();
         //
         String order = labDev.getOrderNo();
-        String material = getMaterial();
+        String material = getMaterial_both();
         String testcode = paramters[0];
         String id = paramters[1];
         //

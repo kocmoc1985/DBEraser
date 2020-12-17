@@ -55,23 +55,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPasswordFieldHomePass" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Component id="jLabel72" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Component id="jTextFieldHomeUserName" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Component id="jLabel69" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="jButton8" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  <Component id="jButton19" min="-2" pref="160" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jButton_Home_Login" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
-                              <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPasswordFieldHomePass" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Component id="jLabel72" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Component id="jTextFieldHomeUserName" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Component id="jLabel69" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButton1" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" pref="200" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jButton19" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabelHomeVersion" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Component id="jButton_Home_Login" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
+                          <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="1291" max="32767" attributes="0"/>
                   </Group>
@@ -98,19 +95,12 @@
                       <Component id="jPasswordFieldHomePass" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       <Component id="jButton_Home_Login" min="-2" pref="36" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                      <Component id="jLabelHomeVersion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="1190" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1316" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabelHomeVersion">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Version"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel46">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
