@@ -7,8 +7,6 @@ package BuhInvoice;
  */
 
 
-import BuhInvoice.DB;
-import BuhInvoice.EditPanel_Send;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -20,17 +18,11 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
-import BuhInvoice.HTMLPrint_A;
-import BuhInvoice.JSon;
 import BuhInvoice.sec.EmailSendingStatus;
-import BuhInvoice.sec.EmailSendingStatus;
-import BuhInvoice.sec.HeadersValuesHTMLPrint;
+import BuhInvoice.sec.HTMLBasic;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.IO;
-import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
-import BuhInvoice.sec.LANG;
-import BuhInvoice.sec.SMTP;
 import BuhInvoice.sec.SMTP;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
@@ -58,7 +50,7 @@ import org.apache.commons.lang.ArrayUtils;
  *
  * @author KOCMOC
  */
-public abstract class HTMLPrint extends JFrame {
+public abstract class HTMLPrint extends HTMLBasic {
 
     protected final BUH_INVOICE_MAIN bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
@@ -180,17 +172,7 @@ public abstract class HTMLPrint extends JFrame {
 
     protected abstract void buttonLogic();
 
-    protected abstract String getWindowTitle();
-
     protected abstract void initComponents_();
-
-    protected abstract JEditorPane getEditorPane();
-
-    protected abstract JScrollPane getJScrollPane();
-
-    protected abstract String[] getCssRules();
-
-    protected abstract String buildHTML();
 
     private void init() {
         //
@@ -236,28 +218,29 @@ public abstract class HTMLPrint extends JFrame {
         });
     }
 
-    protected void go() {
-        //
-        JEditorPane jep = getEditorPane();
-        //
-        String[] CSSRules = getCssRules();
-        //
-        HTMLEditorKit kit = new HTMLEditorKit();
-        jep.setEditorKit(kit);
-        //
-        StyleSheet styleSheet = kit.getStyleSheet();
-        //
-        //
-        for (int i = 0; i < CSSRules.length; i++) {
-            styleSheet.addRule(CSSRules[i]);
-        }
-        //
-        Document doc = kit.createDefaultDocument();
-        jep.setDocument(doc);
-        //
-        jep.setText(buildHTML());
-        //
-    }
+//    @Override
+//    public void go() {
+//        //
+//        JEditorPane jep = getEditorPane();
+//        //
+//        String[] CSSRules = getCssRules();
+//        //
+//        HTMLEditorKit kit = new HTMLEditorKit();
+//        jep.setEditorKit(kit);
+//        //
+//        StyleSheet styleSheet = kit.getStyleSheet();
+//        //
+//        //
+//        for (int i = 0; i < CSSRules.length; i++) {
+//            styleSheet.addRule(CSSRules[i]);
+//        }
+//        //
+//        Document doc = kit.createDefaultDocument();
+//        jep.setDocument(doc);
+//        //
+//        jep.setText(buildHTML());
+//        //
+//    }
 
     /**
      * Use this one when, getting the image from the "inside project / .jar

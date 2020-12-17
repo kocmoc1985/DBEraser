@@ -24,7 +24,9 @@ public abstract class HTMLBasic extends JFrame{
 
     public abstract JEditorPane getEditorPane();
 
-    protected abstract JScrollPane getJScrollPane();
+    public abstract JScrollPane getJScrollPane();
+    
+    public abstract String getWindowTitle();
 
     protected void scrollToTop() {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

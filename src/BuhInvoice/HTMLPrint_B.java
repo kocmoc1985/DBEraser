@@ -50,7 +50,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     @Override
-    protected String getWindowTitle() {
+    public String getWindowTitle() {
         if (preview) {
             return LANG.FRAME_TITLE_1_3;
         } else {
@@ -59,17 +59,17 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     @Override
-    protected JEditorPane getEditorPane() {
+    public JEditorPane getEditorPane() {
         return this.jEditorPane1;
     }
 
     @Override
-    protected JScrollPane getJScrollPane() {
+    public JScrollPane getJScrollPane() {
         return jScrollPane2;
     }
 
     @Override
-    protected String[] getCssRules() {
+    public String[] getCssRules() {
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -111,7 +111,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     @Override
-    protected String buildHTML() {
+    public String buildHTML() {
         // 
 //        String img_a = getPathResources("images", "mixcont_logo_md.png"); // WORKING
         // 
