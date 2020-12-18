@@ -100,6 +100,7 @@ public class DB {
     public static final String PHP_FUNC_FAKTURA_KUND_TO_DB = "faktura_kund_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB = "faktura_kund_address_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTIKEL_TO_DB = "artikel_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB = "faktura_rut_to_db"; // using php-function: "insert()"
     //
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     //
@@ -266,8 +267,11 @@ public class DB {
     public static final String BUH_LICENS__JAVA = "java";
     public static final String BUH_LICENS__DATE_CREATED = "date_created";
     //
+    public static final String BUH_FAKTURA_RUT__KUNDID = "kundId";
+    public static final String BUH_FAKTURA_RUT__FAKTURAID = "fakturaId";
     public static final String BUH_FAKTURA_RUT__SKATTEREDUKTION = "skattereduktion";
     public static final String BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING = "fastighets_beteckning";
+    public static final String BUH_FAKTURA_RUT__DATE_CREATED = "date_created";
     //
     public static final String BUH_FAKTURA_RUT_PERSON__FORNAMN = "fornamn";
     public static final String BUH_FAKTURA_RUT_PERSON__EFTERNAMN = "efternamn";

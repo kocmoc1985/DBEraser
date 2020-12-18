@@ -78,6 +78,54 @@ public class HelpBuh {
         }
         //
     }
+    
+    public static void buh_faktura_rut__test_insert(){
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //BUH_FAKTURA_RUT__DATE_CREATED
+        map.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
+        map.put(DB.BUH_FAKTURA_RUT__FAKTURAID, "339"); // Trell faktura: 10114
+        map.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "1200");
+        map.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, "Sonarp 3:11");
+        map.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
+       
+        String json = JSon.hashMapToJSON(map);
+        //
+        try {
+            //
+            String rutId = executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
+            //
+            System.out.println("rutId of inserted entry: " + rutId);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+    
+    public static void main(String[] args) {
+        //
+//        checkUpdates(null);
+        //
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
+        //
+
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("25", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
+        buh_faktura_rut__test_insert();
+        //
+    }
 
     public static void update(String json) {
         //
@@ -125,26 +173,7 @@ public class HelpBuh {
         //
     }
 
-    public static void main(String[] args) {
-        //
-//        checkUpdates(null);
-        //
-//        GP_BUH.USER = "mixcont";
-//        GP_BUH.PASS = "mixcont4765";
-
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-        deleteCustomer_a("25", "Vxuw6lpMzF");
-        //
-        //
-//        restorePwd("andrej.brassas@gmail.com");
-        //
-    }
+    
 
     public static HttpResponce shareAccount(String userEmailToShareWith) {
         //

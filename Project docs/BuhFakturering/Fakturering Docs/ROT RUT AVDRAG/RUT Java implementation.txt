@@ -1,15 +1,30 @@
 
 [DETAILS]
 
-1. MainFrame: "BuhInvoice.Sec.RutRotFrame.class"
+1. Main classes: "BuhInvoice.Sec.RutRotFrame.class" & "BuhInvoice.Sec.RutRot.class (TableInverts)"
 
-
-
-
-
+2. OSB! OBS! SEE "HelpBuh -> buh_faktura_rut__test_insert()" ***********************************************************
 
 [ALREADY IMPLEMENTED]
 1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing
+
+
+
+[TO IMPLEMENT]
+
+- Create Table "buh_faktura_rut" at PHP [DONE]
+- Create Table "buh_faktura_rut_person" at PHP [DONE]
+
+- It should be only possible to have ONE "buh_faktura_rut" entry per faktura -> 1:1 relation -> think how to solve this
+
+- Add new tables to the procedure of FAKTURA DELETION
+- Add new tables to the procedure of ENTIRE DELETION -> shall be deleted in a propper sequence as you remember
+
+
+[ADDING RUT-ENTRY TO DB]
+
+1. Add an entry to "buh_faktura_rut" with return of "rutId" -> It's now working [2020-12-17]
+2. Add an entry to "buh_faktura_rut_person" with using the returned "rutId" -> as it's done in "_http_buh.php -> insert_buh_faktura_return_fakturaId()"
 
 
 [IMPORTANT NOTES]

@@ -10,6 +10,7 @@ import BuhInvoice.Basic_Buh;
 import BuhInvoice.DB;
 import BuhInvoice.Validator;
 import MyObjectTable.OutPut;
+import MyObjectTable.Table;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
@@ -26,11 +27,13 @@ import javax.swing.JPanel;
  */
 public class RutRot extends Basic_Buh {
 
+    private Table TABLE_INVERT_2;
     private final RutRotFrame rutRotFrame;
     public static final String COL__FORNAMN = "FÖRNAMN";
     public static final String COL__EFTERNAMN = "EFTERNAMN";
     public static final String COL__AVDRAG = "AVDRAG";
     public static final String COL__PNR = "PERSONNUMMER";
+    public static final String COL__FATSTIGHETS_BETECKNING = "FASTIGHETSBETECKNING";
 
     public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame) {
         super(bim);
@@ -41,6 +44,10 @@ public class RutRot extends Basic_Buh {
         return rutRotFrame.jPanel_table_invert;
     }
 
+    public JPanel getTableInvertPanel_2() {
+        return rutRotFrame.jPanel_fastighets_beteckning;
+    }
+
     public HashMap<String, String> getValuesTableInvert() {
         return tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
     }
@@ -48,7 +55,7 @@ public class RutRot extends Basic_Buh {
     @Override
     public void showTableInvert() {
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "rut_person");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -74,6 +81,27 @@ public class RutRot extends Basic_Buh {
         return rows;
     }
 
+    public void showTableInvert_2() {
+        //
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "rut");
+        TABLE_INVERT_2 = null;
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
+        showTableInvert(getTableInvertPanel_2(), TABLE_INVERT_2);
+        //
+    }
+
+    public RowDataInvert[] getConfigTableInvert_2() {
+        //
+        RowDataInvert fastighets_beteckning = new RowDataInvertB("", DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, COL__FATSTIGHETS_BETECKNING, "", true, true, true);
+        //
+        RowDataInvert[] rows = {
+            fastighets_beteckning
+        };
+        //
+        return rows;
+    }
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -91,7 +119,8 @@ public class RutRot extends Basic_Buh {
             }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN)
-                || col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN)) {
+                || col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN)
+                || col_name.equals(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING)) {
             //
             Validator.validateMaxInputLength(jli, 100);
             //
@@ -105,12 +134,14 @@ public class RutRot extends Basic_Buh {
     @Override
     protected boolean fieldsValidated(boolean insert) {
         //
-        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+        if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())
+                || containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_2);
             return false;
         }
         //
-        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+        if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())
+                || containsInvalidatedFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
             HelpA.showNotification(LANG.MSG_1);
             return false;
         }
