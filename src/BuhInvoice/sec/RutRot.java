@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -87,22 +88,37 @@ public class RutRot extends Basic_Buh {
         }
         //
         //
-        HashMap<String, String> map_rut_person = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        String avdrag = HelpA.getValueSelectedRow(rutRotFrame.jTable3, COL__AVDRAG);
-        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
-        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
-        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, avdrag);
+        JTable table_person = rutRotFrame.jTable3;
         //
-        String json_ = JSon.hashMapToJSON(map_rut_person);
-        //
-        try {
+        for (int row = 0; row < table_person.getRowCount(); row++) {
             //
-            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json_);
+            HashMap<String, String> map_rut_person = new HashMap<>();
             //
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+            String avdrag = HelpA.getValueGivenRow(table_person, row, COL__AVDRAG);
+            String namn = HelpA.getValueGivenRow(table_person, row, COL__FORNAMN);
+            String efternamn = HelpA.getValueGivenRow(table_person, row, COL__EFTERNAMN);
+            String pnr = HelpA.getValueGivenRow(table_person, row, COL__PNR);
+            //
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777");
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, avdrag);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, namn);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, efternamn);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__PNR, pnr);
+            //
+            String json_ = JSon.hashMapToJSON(map_rut_person);
+            //
+            try {
+                //
+                executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json_);
+                //
+            } catch (Exception ex) {
+                Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
         }
+        //
     }
 
     @Override
