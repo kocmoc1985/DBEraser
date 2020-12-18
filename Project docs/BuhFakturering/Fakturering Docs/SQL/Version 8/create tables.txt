@@ -157,13 +157,15 @@ Foreign key (fakturaId) references buh_faktura(fakturaId)
 
 
 CREATE TABLE buh_faktura_rut_person (
-rutId integer primary key not null AUTO_INCREMENT,
+personId integer primary key not null AUTO_INCREMENT,
+rutId integer not null,
 kundId integer not null,
 namn varchar(50) DEFAULT '',
 efternamn varchar(50) DEFAULT '',
 pnr varchar(50) DEFAULT '',
 skattereduktion float DEFAULT 0,
-Foreign key (kundId) references buh_kund(kundId)
+Foreign key (kundId) references buh_kund(kundId),
+Foreign key (rutId) references buh_faktura_rut(rutId)
 );
 
 CREATE TABLE buh_faktura_artikel (

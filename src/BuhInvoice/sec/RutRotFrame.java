@@ -29,7 +29,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private RutRot rut;
     private JTable articlesTable;
     private double AVDRAGS_GILL_BELOPP = 0;
-    private double AVDRAG_TOTAL = 0;
+    protected double AVDRAG_TOTAL = 0;
     private double AVDRAG_PER_PERSON = 0;
     private double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
 
@@ -365,7 +365,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Samtliga faktura artiklar");
 
-        jButton5.setText("DONE");
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton5.setText("KLART");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -382,9 +383,6 @@ public class RutRotFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -413,7 +411,10 @@ public class RutRotFrame extends javax.swing.JFrame {
                                 .addGap(0, 15, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
-                                .addComponent(jPanel_fastighets_beteckning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jPanel_fastighets_beteckning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -454,8 +455,8 @@ public class RutRotFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -508,8 +509,11 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        invoice.setRutAvdragTotal(AVDRAG_TOTAL);
+       rut.sendRutDataToDB();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+   
+    
     private void setRotOrRut_CheckBoxes(java.awt.event.ActionEvent evt) {
         //
         JCheckBox box = (JCheckBox) evt.getSource();
@@ -551,6 +555,6 @@ public class RutRotFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    public javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }

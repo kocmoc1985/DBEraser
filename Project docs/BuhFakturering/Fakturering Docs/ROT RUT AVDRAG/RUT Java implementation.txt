@@ -3,7 +3,9 @@
 
 1. Main classes: "BuhInvoice.Sec.RutRotFrame.class" & "BuhInvoice.Sec.RutRot.class (TableInverts)"
 
-2. OSB! OBS! SEE "HelpBuh -> buh_faktura_rut__test_insert()" ***********************************************************
+2. OSB! OBS! SEE "HelpBuh.class -> buh_faktura_rut__test_insert()" ***********************************************************
+3. OSB! OBS! SEE "HelpBuh.class -> buh_faktura_rut_person__test_insert()" ***********************************************************
+4. IMPORTANT COUNTING DONE HERE: invoice.setRutAvdragTotal(AVDRAG_TOTAL);
 
 [ALREADY IMPLEMENTED]
 1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing

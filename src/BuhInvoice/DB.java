@@ -82,9 +82,9 @@ public class DB {
     //
     public static final String PHP_FUNC_DEFINE_KUNDID = "define_kundid"; // using php-function: "defineKundId()"
     public static final String PHP_FUNC_CREATE_ACCOUNT_MAIN = "create_account_main"; // using php-function: "createAccount()"
-    public static final String PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER = "create_account_existing_customer"; 
-    public static final String PHP_FUNC_RESTORE_PWD = "restore_pwd"; 
-    public static final String PHP_FUNC_SHARE_ACCOUNT = "share_user_account"; 
+    public static final String PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER = "create_account_existing_customer";
+    public static final String PHP_FUNC_RESTORE_PWD = "restore_pwd";
+    public static final String PHP_FUNC_SHARE_ACCOUNT = "share_user_account";
     //
     public static final String PHP_FUNC_DELETE_CUSTOMER__B = "delete_customer_b"; // for a user to delete the account bu him self
     public static final String PHP_FUNC_DELETE_CUSTOMER__A = "delete_customer_a"; //  
@@ -101,6 +101,7 @@ public class DB {
     public static final String PHP_FUNC_FAKTURA_KUND_ADDR_TO_DB = "faktura_kund_address_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_ARTIKEL_TO_DB = "artikel_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB = "faktura_rut_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB = "faktura_rut_person_to_db"; // using php-function: "insert()"
     //
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     //
@@ -109,7 +110,7 @@ public class DB {
     public static final String PHP_FUNC_LATEST = "get_latest"; // using php-finction: "latest()"
     public static final String PHP_FUNC_DELETE = "delete_entry"; // using php-finction: "latest()"
     //
-     public static final String PHP_FUNC_PARAM__SHARED_USERS = "get_shared_users"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM__SHARED_USERS = "get_shared_users"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FTG_NAME = "get_ftg_name"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
@@ -172,7 +173,7 @@ public class DB {
     public static final String BUH_FAKTURA__KOMMENT = "komment"; // length 200 -> OBS! Writing to this field is only possbile internaly - from code
     public static final String BUH_FAKTURA__DATE_CREATED__ = "date_created";
     public static final String BUH_FAKTURA__CHANGED_BY = "changed_by"; // [2020-10-28]
-    
+
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND__KUND_ID = "kundId";
@@ -273,7 +274,11 @@ public class DB {
     public static final String BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING = "fastighets_beteckning";
     public static final String BUH_FAKTURA_RUT__DATE_CREATED = "date_created";
     //
-    public static final String BUH_FAKTURA_RUT_PERSON__FORNAMN = "fornamn";
+    public static final String BUH_FAKTURA_RUT_PERSON__RUTID = "rutId";
+    public static final String BUH_FAKTURA_RUT_PERSON__KUNDID = "kundId";
+    public static final String BUH_FAKTURA_RUT_PERSON__FORNAMN = "namn";
     public static final String BUH_FAKTURA_RUT_PERSON__EFTERNAMN = "efternamn";
-    public static final String BUH_FAKTURA_RUT_PERSON__PNR = "personnummer";
+    public static final String BUH_FAKTURA_RUT_PERSON__PNR = "pnr";
+    public static final String BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION = "skattereduktion";
+    //
 }

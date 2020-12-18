@@ -78,8 +78,30 @@ public class HelpBuh {
         }
         //
     }
-    
-    public static void buh_faktura_rut__test_insert(){
+
+    public static void buh_faktura_rut_person__test_insert(String rutId) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, "Vladimir");
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, "Vladimirovich");
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__PNR, "850131-0737");
+        map.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, "1799");
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+         try {
+            //
+            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void buh_faktura_rut__test_insert() {
         //
         HashMap<String, String> map = new HashMap<>();
         //BUH_FAKTURA_RUT__DATE_CREATED
@@ -88,7 +110,7 @@ public class HelpBuh {
         map.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "1200");
         map.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, "Sonarp 3:11");
         map.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
-       
+        //
         String json = JSon.hashMapToJSON(map);
         //
         try {
@@ -102,7 +124,7 @@ public class HelpBuh {
         }
         //
     }
-    
+
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
@@ -123,7 +145,7 @@ public class HelpBuh {
         //
 //        restorePwd("andrej.brassas@gmail.com");
         //
-        buh_faktura_rut__test_insert();
+        buh_faktura_rut_person__test_insert("1");
         //
     }
 
@@ -172,8 +194,6 @@ public class HelpBuh {
         }
         //
     }
-
-    
 
     public static HttpResponce shareAccount(String userEmailToShareWith) {
         //

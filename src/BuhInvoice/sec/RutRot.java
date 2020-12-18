@@ -7,7 +7,11 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.Basic_Buh;
+import BuhInvoice.CustomersA_;
 import BuhInvoice.DB;
+import BuhInvoice.GP_BUH;
+import static BuhInvoice.HelpBuh.executePHP;
+import BuhInvoice.JSon;
 import BuhInvoice.Validator;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
@@ -19,6 +23,8 @@ import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -52,6 +58,53 @@ public class RutRot extends Basic_Buh {
         return tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
     }
 
+    public void sendRutDataToDB() {
+        //
+        HashMap<String, String> map_rut = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
+        //
+        map_rut.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
+        map_rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, "339"); // Trell faktura: 10114
+        map_rut.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "" + rutRotFrame.AVDRAG_TOTAL);
+//        map_rut.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, getValueTableInvert(COL__FATSTIGHETS_BETECKNING, TABLE_INVERT_2));
+        map_rut.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
+        //
+        String json = JSon.hashMapToJSON(map_rut);
+        //
+        String rutId = null;
+        //
+        try {
+            //
+            rutId = executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
+            //
+            System.out.println("rutId of inserted entry: " + rutId);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        if (rutId == null || rutId.isEmpty()) {
+            return;
+        }
+        //
+        //
+        HashMap<String, String> map_rut_person = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
+        //
+        String avdrag = HelpA.getValueSelectedRow(rutRotFrame.jTable3, COL__AVDRAG);
+        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
+        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
+        map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, avdrag);
+        //
+        String json_ = JSon.hashMapToJSON(map_rut_person);
+        //
+        try {
+            //
+            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json_);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public void showTableInvert() {
         //
@@ -70,7 +123,7 @@ public class RutRot extends Basic_Buh {
         //
         RowDataInvert efternamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, COL__EFTERNAMN, "", true, true, true);
         //
-        RowDataInvert pnr = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (12 SIFFROR)", "", true, true, true);
+        RowDataInvert pnr = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (YYMMDD-XXXX)", "", true, true, true);
         //
         RowDataInvert[] rows = {
             fornamn,
@@ -113,7 +166,7 @@ public class RutRot extends Basic_Buh {
         //
         if (col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__PNR)) {
             //
-            if (Validator.validateMaxInputLength(jli, 13)) {
+            if (Validator.validateMaxInputLength(jli, 11)) {
                 Validator.validatePnr(jli);
                 pnr_additional(jli, ti);
             }

@@ -216,7 +216,7 @@ public abstract class Basic_Buh extends Basic {
         //
         String txt = jtfi.getText();
         //
-        if (txt.length() == 8 && prevLengthOrgnr == 7) {
+        if (txt.length() == 6 && prevLengthOrgnr == 5) {
             jtfi.setText(orgnr + "-");
         } else if (txt.contains("--")) {
             txt = txt.replaceAll("--", "-");
