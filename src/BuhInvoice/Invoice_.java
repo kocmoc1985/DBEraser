@@ -1137,8 +1137,6 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             String rutavdrag = jli.getValue();
             //
-            System.out.println("RUTAvdrag: " + rutavdrag);
-            //
             if (ie.getStateChange() != 1) {
                 return;
             }

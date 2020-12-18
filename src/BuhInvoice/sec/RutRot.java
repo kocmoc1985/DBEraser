@@ -59,11 +59,11 @@ public class RutRot extends Basic_Buh {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert fornamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT__FORNAMN, COL__FORNAMN, "", true, true, true);
+        RowDataInvert fornamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, COL__FORNAMN, "", true, true, true);
         //
-        RowDataInvert efternamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT__EFTERNAMN, COL__EFTERNAMN, "", true, true, true);
+        RowDataInvert efternamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, COL__EFTERNAMN, "", true, true, true);
         //
-        RowDataInvert pnr = new RowDataInvertB("", DB.BUH_FAKTURA_RUT__PNR, COL__PNR + " (12 SIFFROR)", "", true, true, true);
+        RowDataInvert pnr = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (12 SIFFROR)", "", true, true, true);
         //
         RowDataInvert[] rows = {
             fornamn,
@@ -83,15 +83,15 @@ public class RutRot extends Basic_Buh {
         //
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
-        if (col_name.equals(DB.BUH_FAKTURA_RUT__PNR)) {
+        if (col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__PNR)) {
             //
             if (Validator.validateMaxInputLength(jli, 13)) {
                 Validator.validatePnr(jli);
                 pnr_additional(jli, ti);
             }
             //
-        } else if (col_name.equals(DB.BUH_FAKTURA_RUT__FORNAMN)
-                || col_name.equals(DB.BUH_FAKTURA_RUT__EFTERNAMN)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN)
+                || col_name.equals(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN)) {
             //
             Validator.validateMaxInputLength(jli, 100);
             //

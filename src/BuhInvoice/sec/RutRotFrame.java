@@ -118,10 +118,10 @@ public class RutRotFrame extends javax.swing.JFrame {
         HashMap<String, String> map = rut.getValuesTableInvert();
         //
         Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_FAKTURA_RUT__FORNAMN),
-            map.get(DB.BUH_FAKTURA_RUT__EFTERNAMN),
+            map.get(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN),
+            map.get(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN),
             "0",
-            map.get(DB.BUH_FAKTURA_RUT__PNR)
+            map.get(DB.BUH_FAKTURA_RUT_PERSON__PNR)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

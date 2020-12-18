@@ -1,0 +1,30 @@
+
+[DETAILS]
+
+1. MainFrame: "BuhInvoice.Sec.RutRotFrame.class"
+
+
+
+
+
+
+[ALREADY IMPLEMENTED]
+1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing
+
+
+[IMPORTANT NOTES]
+
+Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
+
+
+
+[CHANGES TO HTML-FAKTURA]
+- HTML-Faktura -> visa: pnr / namn / skatteavdrag summa -----> OBS! Är obligatoriskt
+
+- HTML-Faktura -> visa "speciell information" -> den texten är tagen från SPCS Visma exempel faktura, som finns i mappen:
+"Obs! Denna faktura avser husarbete för fastighet Vitsippa 15.
+Enligt dig som köpare finns det möjlighet till preliminär skattereduktion på 2625,00 kr.
+För att vi ska kunna göra ansökan till Skatteverket, ska du betala 18340,00 kr.
+Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare."
+
+- HTML-Faktura -> Ska visa avdraget/avdragsumman på följande sätt: "Avgår skattereduktion 2 625,00"

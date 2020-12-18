@@ -212,7 +212,7 @@ public abstract class Basic_Buh extends Basic {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
-        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_RUT__PNR, ti);
+        String orgnr = getValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__PNR, ti);
         //
         String txt = jtfi.getText();
         //
