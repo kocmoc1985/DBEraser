@@ -12,6 +12,7 @@ import MCRecipe.Lang.MSG;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;
+import forall.GP;
 import forall.HelpA;
 import forall.JComboBoxA;
 import forall.JComboBoxM;
@@ -754,8 +755,15 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
     public void clearBoxes() {
         //
         for (JComboBox box : mCRecipe2.recipeInitialGroupA) {
+            //
+            //[#FIXED-MIXER-FIX#]
+            if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER) && box.equals(mCRecipe2.jComboBox4_Mixer_Code)){
+                continue;
+            }
+            //
             box.setSelectedItem(null);
             box.setEditable(false);
+            //
         }
         //
         mCRecipe2.jComboBox_Ingred_1.setSelectedItem(null);

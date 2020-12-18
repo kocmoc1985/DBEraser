@@ -7,6 +7,9 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.GP_BUH;
+import forall.HelpA;
+import static forall.HelpA.objectToFile;
+import java.util.HashSet;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -119,9 +122,19 @@ public class GDPR extends HTMLBasic {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton_forsattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_forsattActionPerformed
+        continueBtnClicked_accepted();
+    }//GEN-LAST:event_jButton_forsattActionPerformed
+
+    private void continueBtnClicked_accepted() {
         this.dispose();
         bim.setEnabled(true);
-    }//GEN-LAST:event_jButton_forsattActionPerformed
+        //
+        // creating files as a "flag"
+        HashSet<String> set = new HashSet<String>();
+        set.add(HelpA.updatedOn());
+        objectToFile(GP_BUH.GDPR_ACCEPTED_FILE_PATH, set);
+        //
+    }
 
     private void jButton_avbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_avbrytActionPerformed
         System.exit(0);

@@ -75,12 +75,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         setMarginLeftLabelsHomeTab();
         //
-        if (HelpA.isFirstTimeRun()) {
+        gdpr();
+        //
+    }
+
+    private void gdpr() {
+        if (GP_BUH.isGdprAccepted()) {
             this.setEnabled(false);
             GDPR gdpr = new GDPR(this);
             GP_BUH.centerAndBringToFront(gdpr);
         }
-        //
     }
 
     private void setHomePageBackground() {
@@ -123,9 +127,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected void faktua_tab_blockUntilSavedOrAborted_invoice(boolean disabled) {
+        //
+        if (disabled) {
+            jButton_dont_save_settings.setEnabled(true);
+        } else {
+            jButton_dont_save_settings.setEnabled(false);
+        }
+        //
         GP_BUH.setEnabled(jTabbedPane1, disabled);
         GP_BUH.setEnabled(jButton_create_new_faktura_b, disabled);
         GP_BUH.setEnabled(jButton_create_new_kontant_faktura_b, disabled);
+        //
     }
 
     private void initOhter() {
@@ -704,7 +716,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_rabatt_total = new javax.swing.JTextField();
         jTextField_moms_total = new javax.swing.JTextField();
         jTextField_total_inkl_moms = new javax.swing.JTextField();
-        jLabel__dont_forget_to_save__info = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jPanel4_Customers = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -1506,10 +1517,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextField_total_inkl_moms.setToolTipText("Frakt + Exp.Avg + Moms frakt + Moms artiklar + Exkl. moms");
         jPanel15.add(jTextField_total_inkl_moms);
 
-        jLabel__dont_forget_to_save__info.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel__dont_forget_to_save__info.setText(" Glöm ej spara!");
-        jLabel__dont_forget_to_save__info.setVisible(false);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1524,8 +1531,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel__dont_forget_to_save__info, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
@@ -1549,8 +1554,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel__dont_forget_to_save__info))
+                    .addComponent(jLabel_Faktura_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -2473,7 +2477,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_erase_account_btnActionPerformed
 
     private void jButton_dont_save_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_dont_save_settingsActionPerformed
-        if (HelpA.confirmWarning("Lämna utan att spara fakturan?")) {
+        if (HelpA.confirmWarning(LANG.MSG_24)) {
             faktua_tab_blockUntilSavedOrAborted_invoice(true);
             openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
         }
@@ -2556,7 +2560,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JButton jButton_delete_faktura;
     private javax.swing.JButton jButton_delete_reminder_msg;
     protected javax.swing.JButton jButton_delete_smtp_settings;
-    private javax.swing.JButton jButton_dont_save_settings;
+    public javax.swing.JButton jButton_dont_save_settings;
     private javax.swing.JButton jButton_edit_faktura;
     protected javax.swing.JButton jButton_erase_account_btn;
     protected javax.swing.JButton jButton_forgot_password;
@@ -2597,7 +2601,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
-    public javax.swing.JLabel jLabel__dont_forget_to_save__info;
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
@@ -2700,6 +2703,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     // End of variables declaration//GEN-END:variables
 
     private void mousePressedOnTab(MouseEvent me) {
+        //
+        if (jTabbedPane1.isEnabled() == false) {
+            return;
+        }
         //
         if (me.getSource() == jTabbedPane1) {
             //
