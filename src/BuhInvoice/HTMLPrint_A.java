@@ -187,6 +187,8 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + ovmvantSkattNotation()
                 //
+                + rutAvdrag() //[#RUTROT#]
+                //
                 + brElements()
                 //
                 + faktura_data_C_to_html()
@@ -413,7 +415,7 @@ public class HTMLPrint_A extends HTMLPrint {
             //
             OMVANT_SKATT__EXIST = true;
             //
-            if(ertVatNrExist() == false){
+            if (ertVatNrExist() == false) {
                 HelpA.showNotification_separate_thread(LANG.MSG_22);
             }
             //
@@ -547,6 +549,10 @@ public class HTMLPrint_A extends HTMLPrint {
         } else {
             return "";
         }
+    }
+
+    private String rutAvdrag() {
+        return "";
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {
