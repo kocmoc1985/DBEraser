@@ -435,6 +435,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
         BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
+        //
+        BUH_INVOICE_MAIN.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
+        //
     }
 
     public void setRutAvdragTotal(double avdragTotal, RutRot rutRot) {
