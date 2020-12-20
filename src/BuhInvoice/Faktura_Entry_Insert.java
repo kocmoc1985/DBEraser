@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.RutRot;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
             articlesToHttpDB(articlesList);
             //
+            sendRutRotToDb(fakturaId);// [#RUTROT#]
+            //
             EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
             //
         } else {
@@ -60,6 +63,18 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
         resetLists();
+        //
+    }
+    
+    private void sendRutRotToDb(String fakturaId){
+        //
+        RutRot rut = invoice.getRutRot();
+        //
+        if(rut == null){
+            return;
+        }
+        //
+        rut.sendRutDataToDB(fakturaId);
         //
     }
 

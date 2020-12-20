@@ -9,6 +9,7 @@ import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.MomsBuh_F_artikel;
 import BuhInvoice.sec.MomsComporator;
+import BuhInvoice.sec.RutRot;
 import BuhInvoice.sec.RutRotFrame;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
@@ -65,6 +66,7 @@ public abstract class Invoice_ extends Basic_Buh {
     //
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
+    private RutRot rutRot;
 
     public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -154,6 +156,11 @@ public abstract class Invoice_ extends Basic_Buh {
             }
             //
         }
+    }
+
+    public RutRot getRutRot() {
+        //[#RUTROT#]
+        return this.rutRot;
     }
 
     /**
@@ -430,8 +437,9 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
     }
 
-    public void setRutAvdragTotal(double avdragTotal) {
+    public void setRutAvdragTotal(double avdragTotal, RutRot rutRot) {
         RUT_AVDRAG_TOTAL = avdragTotal;
+        this.rutRot = rutRot;
         countFakturaTotal(getArticlesTable());
     }
 
@@ -1133,20 +1141,21 @@ public abstract class Invoice_ extends Basic_Buh {
                 box.setEnabled(true);
             }
             //
-        } else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
-            //
-            String rutavdrag = jli.getValue();
-            //
-            if (ie.getStateChange() != 1) {
-                return;
-            }
-            //
-            if (rutavdrag.equals("1")) {
-                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
-//                rrf.setVisible(true);
-            }
-            //
         }
+//        else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+//            
+//            String rutavdrag = jli.getValue();
+//            
+//            if (ie.getStateChange() != 1) {
+//                return;
+//            }
+//            
+//            if (rutavdrag.equals("1")) {
+//                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
+//                rrf.setVisible(true);
+//            }
+        //
+//        }
 
     }
 

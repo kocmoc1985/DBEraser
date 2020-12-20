@@ -59,12 +59,12 @@ public class RutRot extends Basic_Buh {
         return tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
     }
 
-    public void sendRutDataToDB() {
-        //
+    public void sendRutDataToDB(String fakturaId) {
+        //[#RUTROT#]
         HashMap<String, String> map_rut = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
         //
         map_rut.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
-        map_rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, "339"); // Trell faktura: 10114
+        map_rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, fakturaId); // 339 -> Trell faktura: 10114
         map_rut.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "" + rutRotFrame.AVDRAG_TOTAL);
 //        map_rut.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, getValueTableInvert(COL__FATSTIGHETS_BETECKNING, TABLE_INVERT_2));
         map_rut.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());

@@ -42,7 +42,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 //    public RutRotFrame() {
 //        initComponents();
 //    }
-    public RutRotFrame(BUH_INVOICE_MAIN bim, JTable articlesTable,Invoice_ invoice) {
+    public RutRotFrame(BUH_INVOICE_MAIN bim, JTable articlesTable, Invoice_ invoice) {
         initComponents();
         this.bim = bim;
         this.invoice = invoice;
@@ -137,9 +137,9 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         rut.showTableInvert();
     }
-    
-    private void recalcAndSetAvdragPerPers(){
-         HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
+
+    private void recalcAndSetAvdragPerPers() {
+        HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
 
     private void countAvdrag(int antalPers) {
@@ -508,12 +508,14 @@ public class RutRotFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox_RUTActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       invoice.setRutAvdragTotal(AVDRAG_TOTAL);
-       rut.sendRutDataToDB();
+        // [#RUTROT#]
+        // Setting "AVDRAG_TOTAL" for counting
+        invoice.setRutAvdragTotal(AVDRAG_TOTAL, rut);
+        //
+        this.setVisible(false);
+        //
     }//GEN-LAST:event_jButton5ActionPerformed
 
-   
-    
     private void setRotOrRut_CheckBoxes(java.awt.event.ActionEvent evt) {
         //
         JCheckBox box = (JCheckBox) evt.getSource();

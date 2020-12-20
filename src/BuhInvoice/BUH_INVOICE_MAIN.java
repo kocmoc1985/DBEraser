@@ -2202,6 +2202,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_confirm_insert_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirm_insert_updateActionPerformed
         // "FAKTURA HTTP" BTN
+        jButton_confirm_insert_updateActionPerformed();
+        //
+    }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
+
+    public void jButton_confirm_insert_updateActionPerformed() {
+        // "FAKTURA HTTP" BTN
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
             if (invoiceA_insert.fieldsValidated(true)) {
                 //
@@ -2234,9 +2240,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         }
         //
-
-        //
-    }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
+    }
 
     private void createNewFaktura(boolean isKontantfaktura) {
         //

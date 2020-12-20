@@ -7,6 +7,10 @@
 3. OSB! OBS! SEE "HelpBuh.class -> buh_faktura_rut_person__test_insert()" ***********************************************************
 4. IMPORTANT COUNTING DONE HERE: invoice.setRutAvdragTotal(AVDRAG_TOTAL);
 
+5. HERE IT'S TRIGGERED: InvoiceA_Insert.class->jComboBoxItemStateChangedForward(...) -> "else if (col_name.equals(DB.BUH_FAKTURA__RUT))"
+
+6. SUPER IMPORTAN HERE IT'S PROCESSED TO DB: Faktura_Entry_Insert -> insertOrUpdate();
+
 [ALREADY IMPLEMENTED]
 1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing
 
@@ -27,6 +31,8 @@
 
 1. Add an entry to "buh_faktura_rut" with return of "rutId" -> It's now working [2020-12-17]
 2. Add an entry to "buh_faktura_rut_person" with using the returned "rutId" -> as it's done in "_http_buh.php -> insert_buh_faktura_return_fakturaId()"
+
+3.  
 
 
 [IMPORTANT NOTES]

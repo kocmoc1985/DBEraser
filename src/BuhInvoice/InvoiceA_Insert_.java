@@ -7,9 +7,13 @@ package BuhInvoice;
 
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.RutRotFrame;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.event.ItemEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,28 +22,55 @@ import javax.swing.table.DefaultTableModel;
  * @author MCREMOTE
  */
 public class InvoiceA_Insert_ extends Invoice_ {
-    
+
     private final Faktura_Entry_Insert faktura_entry_insert;
     public static boolean EDIT__ARTICLE_UPPON_INSERT__SWITCH = false;
-    
-    
+
     public InvoiceA_Insert_(BUH_INVOICE_MAIN bim) {
         super(bim);
         this.faktura_entry_insert = (Faktura_Entry_Insert) faktura_entry;
     }
-    
+
     @Override
     protected Faktura_Entry initFakturaEntry() {
         return new Faktura_Entry_Insert(this);
     }
-    
+
     @Override
     protected void startUp() {
         //
         fillJTableheader();
         //
     }
-    
+
+    @Override
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        //
+        super.jComboBoxItemStateChangedForward(ti, ie);
+        //
+        String col_name = ti.getCurrentColumnName(ie.getSource());
+        //
+        JLinkInvert jli = (JLinkInvert) ie.getSource();
+        //
+        if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+            //
+            String rutavdrag = jli.getValue();
+            //
+            if (ie.getStateChange() != 1) {
+                return;
+            }
+            //
+            if (rutavdrag.equals("1")) {
+                //
+//                bim.jButton_confirm_insert_updateActionPerformed();
+                //[#RUTROT#]
+                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
+                //
+//                rrf.setVisible(true);
+            }
+        }
+    }
+
     protected void createNew(boolean isKontantfaktura) {
         //
         CREATE_KONTANT_FAKTURA__OPERATION_INSERT = isKontantfaktura;
@@ -65,7 +96,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         });
         //
     }
-    
+
     private void fillJTableheader() {
         //
         JTable table = getArticlesTable();
@@ -87,7 +118,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET);
         //
     }
-    
+
     protected void deleteArtikel() {
         //
         if (GP_BUH.confirmWarning(LANG.MSG_4) == false) {
@@ -98,21 +129,21 @@ public class InvoiceA_Insert_ extends Invoice_ {
         countFakturaTotal(getArticlesTable());
         //
     }
-    
+
     protected void submitEditedArticle() {
         this.faktura_entry_insert.submitEditedArticle();
         // Clearing the rows with the code below
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
     }
-    
+
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_insert.addArticleForJTable(table);
         //
     }
-    
+
     @Override
     protected void addArticleForDB() {
         //
@@ -123,7 +154,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         refreshTableInvert(TABLE_INVERT_2);
         //
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -140,12 +171,12 @@ public class InvoiceA_Insert_ extends Invoice_ {
         RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);
         forfalo_datum.setUneditable();
-        
+
         //
 //        String er_referens_last = HelpA.loadLastEntered(IO.getErReferens(getFakturaKundId()),"");
         RowDataInvert er_ref = new RowDataInvertB("", DB.BUH_FAKTURA__ER_REFERENS, "ER REFERENS", "", true, true, false);
         //
-        String var_ref = IO.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS,"");
+        String var_ref = IO.loadLastEntered(DB.BUH_FAKTURA__VAR_REFERENS, "");
         RowDataInvert var_referens = new RowDataInvertB(var_ref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = DB.STATIC__BETAL_VILKOR;
@@ -163,7 +194,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
         //
-        if(CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
+        if (CREATE_KONTANT_FAKTURA__OPERATION_INSERT) {
             forfalo_datum.setVisible_(false);
             betal_vilkor.setVisible_(false);
         }
@@ -181,7 +212,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         return rows;
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -196,16 +227,13 @@ public class InvoiceA_Insert_ extends Invoice_ {
         }
         //
     }
-    
-    
-    
+
     /**
-     * @deprecated 
-     * @return 
+     * @deprecated @return
      */
-    private String defineInklExklMoms(){
+    private String defineInklExklMoms() {
 //        if (momsSaveEntry.getInklExklMoms() == null) {
-            return DB.STATIC__INKL_EXKL_MOMS;
+        return DB.STATIC__INKL_EXKL_MOMS;
 //        }else{
 //            return JSon._get_special_(
 //                    DB.STATIC__INKL_EXKL_MOMS,
@@ -213,7 +241,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
 //            );
 //        }
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
@@ -236,13 +264,13 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //
-        String expavgift_ = IO.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG,"0");
+        String expavgift_ = IO.loadLastEntered(DB.BUH_FAKTURA__EXP_AVG, "0");
         RowDataInvert expavgift = new RowDataInvertB(expavgift_, DB.BUH_FAKTURA__EXP_AVG, InvoiceB.TABLE_ALL_INVOICES__EXP_AVG, "", false, true, false);
         //
-        String frakt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FRAKT,"0");
+        String frakt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FRAKT, "0");
         RowDataInvert frakt = new RowDataInvertB(frakt_, DB.BUH_FAKTURA__FRAKT, InvoiceB.TABLE_ALL_INVOICES__FRAKT, "", false, true, false);
         //
-        String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA,"0");
+        String ranta = IO.loadLastEntered(DB.BUH_FAKTURA__DROJSMALSRANTA, "0");
         RowDataInvert drojsmalsranta = new RowDataInvertB(ranta, DB.BUH_FAKTURA__DROJSMALSRANTA, InvoiceB.TABLE_ALL_INVOICES__DROJSMALSRANTA, "", false, true, false);
         //
         //
@@ -257,8 +285,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
         rut.setUneditable();
         //
         RowDataInvert[] rows = {
-//            inkl_exkl_moms,
-//            moms,
+            //            inkl_exkl_moms,
+            //            moms,
             fakturanr_alt,
             order,
             expavgift,
@@ -270,6 +298,5 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         return rows;
     }
-    
-    
+
 }
