@@ -443,6 +443,30 @@ public abstract class Invoice_ extends Basic_Buh {
         countFakturaTotal(getArticlesTable());
     }
 
+    private double getRutAvdragTotal() {
+        //[#RUTROT#]
+        String json = bim.getSELECT_fakturaId();
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_RUT, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (entries.isEmpty() == false) {
+                return Double.parseDouble(entries.get(0).get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION));
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+        //
+        return 0;
+        //
+    }
+
     protected void countFakturaTotal(JTable table) {
         //
         if (table.equals(bim.jTable_InvoiceA_Insert_articles) == false) {
@@ -455,6 +479,11 @@ public abstract class Invoice_ extends Basic_Buh {
         bim.displayArticlesCount();
         //
         SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
+        //
+        //[#RUTROT#]
+        if (bim.isRUT()) {
+            RUT_AVDRAG_TOTAL = getRutAvdragTotal();
+        }
         //
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;

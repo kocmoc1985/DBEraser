@@ -413,6 +413,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
 
+    /**
+     * [#RUTROT#]
+     * @return 
+     */
     protected boolean isRUT() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__RUT);
@@ -480,6 +484,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+    }
+    
+    public static String getSELECT_(String whereColName, String whereValue) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        return JSon.hashMapToJSON(map);
     }
 
     protected String getSELECT(String whereColName, String whereValue) {

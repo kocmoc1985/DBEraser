@@ -62,11 +62,9 @@ public class InvoiceA_Insert_ extends Invoice_ {
             //
             if (rutavdrag.equals("1")) {
                 //
-//                bim.jButton_confirm_insert_updateActionPerformed();
                 //[#RUTROT#]
                 RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
                 //
-//                rrf.setVisible(true);
             }
         }
     }

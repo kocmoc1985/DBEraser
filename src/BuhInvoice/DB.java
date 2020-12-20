@@ -122,6 +122,8 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR = "get_kund_fakturor"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_RUT_PERSON = "get_rut_person"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_RUT = "get_rut"; // using php-function: "select()"
     //Search filters below..
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD = "get_kund_fakturor__obetald"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FORFALLEN = "get_kund_fakturor__forfallen"; // using php-function: "select()"

@@ -79,7 +79,28 @@ public class HelpBuh {
         //
     }
 
-    public static void buh_faktura_rut_person__test_insert(String rutId) {
+    private static void buh_faktura_rut__get__rut_person() {
+        //
+        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_FAKTURA__ID__, "339");
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_RUT_PERSON, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> val : entries) {
+                System.out.println("out: " + val);
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
+    private static void buh_faktura_rut_person__test_insert(String rutId) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
@@ -92,7 +113,7 @@ public class HelpBuh {
         //
         String json = JSon.hashMapToJSON(map);
         //
-         try {
+        try {
             //
             executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json);
             //
@@ -101,7 +122,7 @@ public class HelpBuh {
         }
     }
 
-    public static void buh_faktura_rut__test_insert() {
+    private static void buh_faktura_rut__test_insert() {
         //
         HashMap<String, String> map = new HashMap<>();
         //BUH_FAKTURA_RUT__DATE_CREATED
@@ -145,8 +166,9 @@ public class HelpBuh {
         //
 //        restorePwd("andrej.brassas@gmail.com");
         //
-        buh_faktura_rut_person__test_insert("1");
+//        buh_faktura_rut_person__test_insert("1");
         //
+        buh_faktura_rut__get__rut_person();
     }
 
     public static void update(String json) {
