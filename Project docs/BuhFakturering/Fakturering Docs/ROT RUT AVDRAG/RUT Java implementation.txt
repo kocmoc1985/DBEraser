@@ -14,7 +14,7 @@ SELECT * from buh_faktura_rut WHERE buh_faktura_rut.fakturaId=339
 SELECT buh_faktura_rut.skattereduktion,buh_faktura_rut_person.pnr from buh_faktura_rut 
 INNER JOIN buh_faktura_rut_person ON buh_faktura_rut.rutId = buh_faktura_rut_person.rutId WHERE buh_faktura_rut.fakturaId=348 
 
-DELETE FROM BUH_FAKTURA_RUT & BUH_FAKTURA_RUT_PERSON WHEN DELETING FAKTURA*******
+DELETE FROM BUH_FAKTURA_RUT & BUH_FAKTURA_RUT_PERSON WHEN DELETING FAKTURA -> delete from "buh_faktura_rut_person" first
 
 [ALREADY IMPLEMENTED]
 1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing

@@ -364,7 +364,7 @@ public class InvoiceB extends Basic_Buh {
         if (isKontantFaktura) {
             bim.jLabel_info__kontant_faktura.setVisible(true);
         }
-       
+
         //
 //        System.out.println("BETALD: " + faktura_betald);
 //        System.out.println("FORFALLEN: " + forfallen);
@@ -718,9 +718,25 @@ public class InvoiceB extends Basic_Buh {
         //
         deleteFakturaSend(fakturaId);
         //
+        deleteFakturaRut(fakturaId);//[#RUTROT#]
+        //
         deleteFaktura(fakturaId);
         //
         refresh(null);
+        //
+    }
+
+    private void deleteFakturaRut(String fakturaId) {
+        //
+        // DELETE from "buh_faktura_rut_person"
+        HashMap<String, String> map_ = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA_RUT_PERSON);
+        String json_ = JSon.hashMapToJSON(map_);
+        executeDelete(json_);
+        //
+        //DELETE from "buh_faktura_rut"
+        HashMap<String, String> map = bim.getDELETE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA_RUT);
+        String json = JSon.hashMapToJSON(map);
+        executeDelete(json);
         //
     }
 

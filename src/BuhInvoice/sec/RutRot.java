@@ -101,6 +101,7 @@ public class RutRot extends Basic_Buh {
             String pnr = HelpA.getValueGivenRow(table_person, row, COL__PNR);
             //
             map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__FAKTURAID, fakturaId);
             map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777");
             map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, avdrag);
             map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, namn);

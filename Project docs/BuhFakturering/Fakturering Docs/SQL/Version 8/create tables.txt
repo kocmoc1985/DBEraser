@@ -160,6 +160,7 @@ CREATE TABLE buh_faktura_rut_person (
 personId integer primary key not null AUTO_INCREMENT,
 rutId integer not null,
 kundId integer not null,
+fakturaId integer not null,
 namn varchar(50) DEFAULT '',
 efternamn varchar(50) DEFAULT '',
 pnr varchar(50) DEFAULT '',

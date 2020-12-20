@@ -71,6 +71,8 @@ public class DB {
     //
     public static final String TABLE__BUH_F_ARTIKEL = "buh_f_artikel";
     public static final String TABLE__BUH_FAKTURA = "buh_faktura";
+    public static final String TABLE__BUH_FAKTURA_RUT = "buh_faktura_rut";
+    public static final String TABLE__BUH_FAKTURA_RUT_PERSON = "buh_faktura_rut_person";
     public static final String TABLE__BUH_FAKTURA_KUND = "buh_faktura_kund";
     public static final String TABLE__BUH_FAKTURA_ARTIKEL = "buh_faktura_artikel";
     public static final String TABLE__BUH_ADDRESS = "buh_address";
@@ -277,6 +279,7 @@ public class DB {
     public static final String BUH_FAKTURA_RUT__DATE_CREATED = "date_created";
     //
     public static final String BUH_FAKTURA_RUT_PERSON__RUTID = "rutId";
+    public static final String BUH_FAKTURA_RUT_PERSON__FAKTURAID = "fakturaId";
     public static final String BUH_FAKTURA_RUT_PERSON__KUNDID = "kundId";
     public static final String BUH_FAKTURA_RUT_PERSON__FORNAMN = "namn";
     public static final String BUH_FAKTURA_RUT_PERSON__EFTERNAMN = "efternamn";
