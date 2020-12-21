@@ -7,25 +7,16 @@ ________
 [ESSENTIALS]
 
 1. RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
-
+2. Counting of "AVDRAG TOTAL" is done in RutRotFrame.class uppon editing of the JTables. The "AVDRAG TOTAL" is finally submitted when "KLART" is klicked. OBS! Not recorded to DB.
 ________
-
-1. Main classes: "BuhInvoice.Sec.RutRotFrame.class" & "BuhInvoice.Sec.RutRot.class (TableInverts)"
-
-4. IMPORTANT COUNTING DONE HERE: invoice.setRutAvdragTotal(AVDRAG_TOTAL);
 
 SELECT * from buh_faktura_rut WHERE buh_faktura_rut.fakturaId=339 
 
 SELECT buh_faktura_rut.skattereduktion,buh_faktura_rut_person.pnr from buh_faktura_rut 
 INNER JOIN buh_faktura_rut_person ON buh_faktura_rut.rutId = buh_faktura_rut_person.rutId WHERE buh_faktura_rut.fakturaId=348 
 
-DELETE FROM BUH_FAKTURA_RUT & BUH_FAKTURA_RUT_PERSON WHEN DELETING FAKTURA -> delete from "buh_faktura_rut_person" first [DONE]
-
 _____
 
-DELETE ALL DATA FOR CUSTOMER --- !!!
-
-HTML Faktura
 
 SEND EMAIL WHEN A GUEST ACCOUNT LOGS IN **** 
 
@@ -33,9 +24,9 @@ IF A KUND IS SAVED IS PRIVAT PERSON HANNS DATA SKA SÄTTAS IN AUTOMATISKT NÄR RUT
 
 DET "TOTALA FAKTURA BELOPPET" INKL. AVDRAG SKA FINNAS MED UNDER FLICK "FAKTURA"
 
-COPY INVOICE WITH RUT
+COPY INVOICE WITH RUT -> Copies the faktura but without copying of RUT data. Tested on [2020-12-21]
 
-KREDIT FAKTURA WHICH IS RUT
+KREDIT FAKTURA WHICH IS RUT -> Will be a problem!!
 
 EDIT RUT DATA
 
