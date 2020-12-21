@@ -67,7 +67,7 @@ public class OptionsTab extends Basic_Buh {
             return;
         }
         //
-        JPasswordField jpf = HelpA.chooseFromPasswordField(LANG.MSG_4_4, true);
+        JPasswordField jpf = HelpA.chooseFromPasswordField(LANG.MSG_4_4, true,30);
         String pwd = new String(jpf.getPassword());
         //
         if (pwd.isEmpty()) {
@@ -77,6 +77,8 @@ public class OptionsTab extends Basic_Buh {
         HttpResponce responce = HelpBuh.deleteCustomer_b(pwd);
         //
         responce.defineStatus();
+        //
+        System.exit(0);
         //
     }
 

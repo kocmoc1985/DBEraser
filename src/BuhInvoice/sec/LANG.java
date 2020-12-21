@@ -44,7 +44,7 @@ public class LANG {
     public final static String MSG_4 = "Radera rad?";
     public final static String MSG_4_2 = "Radera konto delning?";
     public final static String MSG_4_3 = "OBS! Kontot och all relaterat information kommer att raderas permanent, vill du forsätta ändå?";
-    public final static String MSG_4_4 = "Ange lösenordet som du loggar in med! OBS! Du kommer inte kunna ångra efter du har klickat Ja!";
+    public final static String MSG_4_4 = "Ange lösenordet som du loggar in med!";
     public final static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
     public final static String MSG_5_2 = "Du kan inte lägga till fler artiklar!";

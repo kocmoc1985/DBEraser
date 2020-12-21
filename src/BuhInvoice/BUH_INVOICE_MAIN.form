@@ -2088,28 +2088,24 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jScrollPane14" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jPanel21" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jPanel_email_client_options" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jPanel22" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" pref="212" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane14" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jPanel21" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace pref="362" max="32767" attributes="0"/>
+                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton_erase_account_btn" min="-2" pref="159" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="565" max="-2" attributes="0"/>
+                              <Component id="jPanel_email_client_options" alignment="1" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jPanel22" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabel9" min="-2" pref="212" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jButton_erase_account_btn" min="-2" pref="204" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jScrollPane15" pref="554" max="32767" attributes="0"/>
                               <Component id="jScrollPane16" max="32767" attributes="0"/>
@@ -2145,9 +2141,9 @@
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButton_erase_account_btn" min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="jScrollPane18" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane18" min="-2" pref="178" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="528" max="32767" attributes="0"/>
+                          <EmptySpace pref="487" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2255,7 +2251,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="P&#xe5;mminelse meddelande"/>
+                    <Property name="text" type="java.lang.String" value="P&#xe5;mminelse text"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel22">
@@ -2329,6 +2325,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/icons/warning.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="RADERA KONTO"/>
                   </Properties>
                   <Events>
@@ -2349,7 +2348,7 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data hos LAFakturering.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen. &#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n en g&#xe4;stkonto."/>
+                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data hos LAFakturering.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! All data kommer att raderas permanent&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n en g&#xe4;stkonto."/>
                       </Properties>
                     </Component>
                   </SubComponents>

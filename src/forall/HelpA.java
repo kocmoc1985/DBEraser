@@ -2320,6 +2320,20 @@ public class HelpA {
 
         x.start();
     }
+    
+    public static JPasswordField chooseFromPasswordField(String msg, boolean hideChars, int cols) {
+        //
+        JPasswordField jpf = new JPasswordField(cols);
+        //
+        requestFocus(jpf);
+        //
+        if (hideChars == false) {
+            jpf.setEchoChar((char) 0);
+        }
+        //
+        boolean x = JOptionPane.showConfirmDialog(null, jpf, msg, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
+        return jpf;
+    }
 
     public static JPasswordField chooseFromPasswordField(String msg, boolean hideChars) {
         //
