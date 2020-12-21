@@ -992,9 +992,15 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private HashMap<String, String> getForetagData(String phpFunction) {
+    private HashMap<String, String> getForetagData(String phpFunction, boolean kundId) {
         //
-        String json = bim.getSELECT_kundId();
+        String json;
+        //
+        if(kundId){
+            json = bim.getSELECT_kundId();
+        }else{
+            json = bim.getSELECT_fakturaId();
+        }
         //
         try {
             //
@@ -1003,13 +1009,42 @@ public class InvoiceB extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> list = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            return list.get(0);
+            if (list.isEmpty()) {
+                return null;
+            } else {
+                return list.get(0);
+            }
             //
         } catch (Exception ex) {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return null;
+    }
+
+    private ArrayList<HashMap<String, String>> getForetagData_B(String phpFunction, boolean kundId) {
+        //
+        String json;
+        //
+        if(kundId){
+            json = bim.getSELECT_kundId();
+        }else{
+            json = bim.getSELECT_fakturaId();
+        }
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            return JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return null;
+        //
     }
 
     private String getKontantFakturaBetalMetod() {
@@ -1105,8 +1140,10 @@ public class InvoiceB extends Basic_Buh {
         HashMap<String, String> map_d = new HashMap<>();
         HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, null);
         HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, null);
-        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
-        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
+        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA,true);
+        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS,true);
+        HashMap<String, String> map_rut = getForetagData(DB.PHP_FUNC_PARAM_GET_RUT,false);
+        ArrayList<HashMap<String, String>> map_rut_pers = getForetagData_B(DB.PHP_FUNC_PARAM_GET_RUT_PERSON,false);
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID));
         //
@@ -1160,7 +1197,9 @@ public class InvoiceB extends Basic_Buh {
                             map_e__lev_addr,
                             map_e__lev_data,
                             map_f__ftg_data,
-                            map_g__ftg_addr
+                            map_g__ftg_addr,
+                            map_rut,
+                            map_rut_pers
                     );
                     //
                     hTMLPrint_A.setVisible(true);
@@ -1221,8 +1260,10 @@ public class InvoiceB extends Basic_Buh {
         HashMap<String, String> map_d = new HashMap<>();
         HashMap<String, String> map_e__lev_addr = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES, ti);
         HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
-        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
-        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS);
+        HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA,true);
+        HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS,true);
+        HashMap<String, String> map_rut = getForetagData(DB.PHP_FUNC_PARAM_GET_RUT,false);
+        ArrayList<HashMap<String, String>> map_rut_pers = getForetagData_B(DB.PHP_FUNC_PARAM_GET_RUT_PERSON,false);
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID)); // In fact not needed for preview as the "id" is required for sending
         //
@@ -1278,7 +1319,9 @@ public class InvoiceB extends Basic_Buh {
                             map_e__lev_addr,
                             map_e__lev_data,
                             map_f__ftg_data,
-                            map_g__ftg_addr
+                            map_g__ftg_addr,
+                            map_rut,
+                            map_rut_pers
                     );
                     //
                     hTMLPrint_A.setVisible(true);

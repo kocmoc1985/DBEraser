@@ -63,6 +63,8 @@ public abstract class HTMLPrint extends HTMLBasic {
     protected final HashMap<String, String> map_e_2__lev_data;
     protected final HashMap<String, String> map_f;
     protected final HashMap<String, String> map_g;
+    protected final HashMap<String, String> map_rut;
+    protected final ArrayList<HashMap<String, String>> map_rut_pers;
     protected final String FAKTURA_TYPE;
     protected final boolean preview;
     //
@@ -144,7 +146,9 @@ public abstract class HTMLPrint extends HTMLBasic {
             HashMap<String, String> map_e,
             HashMap<String, String> map_e_2,
             HashMap<String, String> map_f,
-            HashMap<String, String> map_g
+            HashMap<String, String> map_g,
+            HashMap<String, String> map_rut,
+            ArrayList<HashMap<String, String>> map_rut_pers
     ) {
         //
         initComponents_();
@@ -165,6 +169,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         this.map_e_2__lev_data = map_e_2;
         this.map_f = map_f;
         this.map_g = map_g;
+        this.map_rut = map_rut;
+        this.map_rut_pers = map_rut_pers;
         //
         init();
         //

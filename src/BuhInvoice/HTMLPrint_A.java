@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
+   
 
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
@@ -41,9 +42,13 @@ public class HTMLPrint_A extends HTMLPrint {
             HashMap<String, String> map_e,
             HashMap<String, String> map_e_2,
             HashMap<String, String> map_f,
-            HashMap<String, String> map_g
+            HashMap<String, String> map_g,
+            HashMap<String, String> map_rut,
+            ArrayList<HashMap<String, String>> map_rut_pers
     ) {
-        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g);
+        //
+        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g,map_rut,map_rut_pers);
+        //
     }
 
     @Override
@@ -191,7 +196,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + brElements()
                 //
-                + faktura_data_C_to_html()
+                + faktura_data_C_to_html__addr()
                 //
                 + "<br><br>"
                 //
@@ -370,7 +375,7 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-    private String faktura_data_C_to_html() {
+    private String faktura_data_C_to_html__addr() {
         //
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
@@ -422,6 +427,16 @@ public class HTMLPrint_A extends HTMLPrint {
         }
         //
         return omvant;
+    }
+    
+    private boolean isRut(HashMap<String, String> map) {
+        //
+        if(map_rut != null && map_rut.isEmpty() == false){
+            return true;
+        }else{
+            return false;
+        }
+        //
     }
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
@@ -552,7 +567,8 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String rutAvdrag() {
-        return "";
+        String test = "Rut avdrag total: " + map_rut.get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION);
+        return "<p>" + test + "</p>";
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {
