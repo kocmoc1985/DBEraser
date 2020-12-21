@@ -173,6 +173,12 @@ public class HTMLPrint_A extends HTMLPrint {
         String att_betala_title = getAttBetalaTitle(FAKTURA_TYPE);
         return map_d.get(att_betala_title);
     }
+    
+    private String getTotalBeloppInnanAvdrag(){
+        double att_betala_total = Double.parseDouble(getAttBetalaTotal());
+        double rut_avdrag_total = Double.parseDouble(getRutAvdragTotal());
+        return "" + (att_betala_total + rut_avdrag_total);
+    }
 
     @Override
     public String buildHTML() {
@@ -368,12 +374,14 @@ public class HTMLPrint_A extends HTMLPrint {
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt_kr = map_d.get(T__FAKTURA_RABATT_KR);
         String rut_avdrag_total = getRutAvdragTotal();
+        String att_betala_total = getAttBetalaTotal();
+        String total_belopp_innan_avdrag = getTotalBeloppInnanAvdrag();
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, getAttBetalaTotal()};
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP,T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
+        String[] values = new String[]{total_belopp_innan_avdrag,rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total,total_belopp_innan_avdrag);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
@@ -584,6 +592,7 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "Denna faktura avser husarbete för fastighet: " + fastighets_beteckning + ".";
         html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på: " + rut_avdrag_total + ".";
         html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala: " + att_betala_total + ".";
+        html_ += "Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare.";
         //
         html_ += "</td>";
         html_ += "</tr>";

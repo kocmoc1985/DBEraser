@@ -355,14 +355,15 @@ public class HTMLPrint_B extends HTMLPrint {
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
         String rut_avdrag_total = getRutAvdragTotal();
+        String total_belopp_innan_avdrag = "0";
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_AVDRAG_TOTAL,T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
-        String[] values = new String[]{rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg};
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP,T__FAKTURA_RUT_AVDRAG_TOTAL,T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
+        String[] values = new String[]{total_belopp_innan_avdrag,rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg};
         //
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt,rut_avdrag_total);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt,rut_avdrag_total,total_belopp_innan_avdrag);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //

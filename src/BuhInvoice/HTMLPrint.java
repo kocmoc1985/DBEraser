@@ -92,7 +92,8 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
-    public static final String T__FAKTURA_RUT_AVDRAG_TOTAL = "Rut-Avdrag";
+    public static final String T__FAKTURA_RUT_AVDRAG_TOTAL = "Skattereduktion"; // Rut/Rot
+    public static final String T__FAKTURA_RUT_TOTAL_BELOPP = "Total belopp"; // Rut/Rot
     public static final String T__FAKTURA_FRAKT = "Frakt";
     public static final String T__FAKTURA_EXP_AVG = "Exp avg";
     public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
@@ -374,7 +375,8 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     protected abstract void displayStatus(String msg, Color c);
 
-    protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr, String frakt, String exp, String rabbat_kr,String rutAvdragTotal) {
+    protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr,
+            String frakt, String exp, String rabbat_kr,String rutAvdragTotal, String totalBeloppInnanAvdrag) {
         //
         if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
@@ -404,6 +406,12 @@ public abstract class HTMLPrint extends HTMLBasic {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_AVDRAG_TOTAL);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RUT_AVDRAG_TOTAL));
+        }
+        //
+        if (totalBeloppInnanAvdrag.equals("0") || totalBeloppInnanAvdrag.equals("0.0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_TOTAL_BELOPP);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RUT_TOTAL_BELOPP));
         }
         //
         return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);
