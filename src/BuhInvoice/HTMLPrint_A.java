@@ -117,10 +117,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return _get_exist_a("Ert Vatnr", ert_vatt);
     }
 
-    
-    
-   
-
     private String getForfalloDatumFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
@@ -156,8 +152,8 @@ public class HTMLPrint_A extends HTMLPrint {
             return null;
         }
     }
-    
-     protected final static String getAttBetalaTitle(String fakturatype) {
+
+    protected final static String getAttBetalaTitle(String fakturatype) {
         if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return "ATT BETALA";
         } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
@@ -168,13 +164,13 @@ public class HTMLPrint_A extends HTMLPrint {
             return null;
         }
     }
-     
-    private String getAttBetalaTotal(){
+
+    private String getAttBetalaTotal() {
         String att_betala_title = getAttBetalaTitle(FAKTURA_TYPE);
         return map_d.get(att_betala_title);
     }
-    
-    private String getTotalBeloppInnanAvdrag(){
+
+    private String getTotalBeloppInnanAvdrag() {
         double att_betala_total = Double.parseDouble(getAttBetalaTotal());
         double rut_avdrag_total = Double.parseDouble(getRutAvdragTotal());
         return "" + (att_betala_total + rut_avdrag_total);
@@ -202,9 +198,9 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + faktura_data_B_to_html__totals()
                 //
-                + rutAvdrag() //[#RUTROT#]
-                //
                 + articles_to_html(articles_map_list)
+                //
+                + rutAvdrag() //[#RUTROT#]
                 //
                 + ovmvantSkattNotation()
                 //
@@ -234,6 +230,10 @@ public class HTMLPrint_A extends HTMLPrint {
         String html = "";
         //
         int br_to_add = 17 - articles_map_list.size();
+        //
+        if (isRut()) {
+            br_to_add -= (map_rut_pers.size()) + 3;
+        }
         //
         for (int i = 0; i < br_to_add; i++) {
             html += "<br>";
@@ -377,11 +377,11 @@ public class HTMLPrint_A extends HTMLPrint {
         String att_betala_total = getAttBetalaTotal();
         String total_belopp_innan_avdrag = getTotalBeloppInnanAvdrag();
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP,T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag,rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total};
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total,total_belopp_innan_avdrag);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total, total_belopp_innan_avdrag);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
@@ -579,6 +579,48 @@ public class HTMLPrint_A extends HTMLPrint {
             return "";
         }
         //
+        String html_ = "";
+        html_ += rutAvdrag_a();
+        html_ += rutAvdrag_b();
+        return html_;
+    }
+
+    private String rutAvdrag_a() {
+        //
+        String html_ = "<table class='marginTop'>";
+        html_ += "<tr>";
+        html_ += "<td>";
+        //
+        html_ += T__RUT_PERS + ": ";
+        //
+        for (int i = 0; i < map_rut_pers.size(); i++) {
+            //
+            HashMap<String, String> rut_person = map_rut_pers.get(i);
+            //
+            String namn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN);
+            String efternamn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN);
+            String pnr = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__PNR);
+            String avdrag = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION);
+            //
+            String pers = namn + " " + efternamn + " " + pnr + "  " + avdrag + " kr";
+            //
+            if (i < (map_rut_pers.size()-1)) {
+                html_ += pers + ", ";
+            } else {
+                html_ += pers;
+            }
+            //
+        }
+        //
+        html_ += "</td>";
+        html_ += "</tr>";
+        html_ += "</table>";
+        //
+        return html_;
+    }
+
+    private String rutAvdrag_b() {
+        //
         String fastighets_beteckning = map_rut.get(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING);
         String rut_avdrag_total = getRutAvdragTotal();
         String att_betala_total = getAttBetalaTotal();
@@ -590,21 +632,10 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td class='bold'>";
         //
-        html_ += "Denna faktura avser husarbete för fastighet: " + fastighets_beteckning + ".";
-        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på: " + rut_avdrag_total + ".";
-        html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala: " + att_betala_total + ".";
-        html_ += "Om ansökan om skattereduktion avslås, ska det totala beloppet ("+ fakturans_total_belopp_innan_avdrag +") betalas av dig som köpare.";
-        html_ += "<br>";
-        //
-        for (HashMap<String, String> rut_person : map_rut_pers) {
-            String namn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN);
-            String efternamn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN);
-            String pnr = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__PNR);
-            String avdrag = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION);
-            //
-            html_ += namn + " " + efternamn + " " + pnr + "  " + avdrag + "<br>";
-            //
-        }
+        html_ += "Denna faktura avser husarbete för fastighet \"" + fastighets_beteckning + "\".";
+        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rut_avdrag_total + " kr.";
+        html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + att_betala_total + " kr.";
+        html_ += "Om ansökan om skattereduktion avslås, ska det totala beloppet (" + fakturans_total_belopp_innan_avdrag + " kr) betalas av dig som köpare.";
         //
         html_ += "</td>";
         html_ += "</tr>";

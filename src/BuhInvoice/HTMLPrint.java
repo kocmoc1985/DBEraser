@@ -132,6 +132,8 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
+    public static final String T__RUT_PERS = "Preliminär skattereduktion";
+    
     /**
      * Creates new form HTMLPrint_A
      */
