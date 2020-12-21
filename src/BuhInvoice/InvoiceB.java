@@ -8,6 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.BlinkThread;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
@@ -1245,6 +1246,28 @@ public class InvoiceB extends Basic_Buh {
             return "-";
         }
     }
+    
+    private HashMap<String, String> getRut_preview(){
+         //
+        RutRot rut = bim.getRutRot();
+        //
+        if(rut == null){
+            return null;
+        }
+        //
+        return rut.getFakturaPreview_rut();
+    }
+    
+    private ArrayList<HashMap<String, String>> getRutPerson_preview(){
+        //
+        RutRot rut = bim.getRutRot();
+        //
+        if(rut == null){
+            return null;
+        }
+        //
+        return rut.getFakturaPreview_rut_pers();
+    }
 
     public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
@@ -1262,8 +1285,8 @@ public class InvoiceB extends Basic_Buh {
         HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
         HashMap<String, String> map_f__ftg_data = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA,true);
         HashMap<String, String> map_g__ftg_addr = getForetagData(DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS,true);
-        HashMap<String, String> map_rut = getForetagData(DB.PHP_FUNC_PARAM_GET_RUT,false);
-        ArrayList<HashMap<String, String>> map_rut_pers = getForetagData_B(DB.PHP_FUNC_PARAM_GET_RUT_PERSON,false);
+        HashMap<String, String> map_rut = getRut_preview();
+        ArrayList<HashMap<String, String>> map_rut_pers = getRutPerson_preview();
         //
         map_a_0.put(DB.BUH_FAKTURA__ID__, _get(TABLE_ALL_INVOICES__FAKTURA_ID)); // In fact not needed for preview as the "id" is required for sending
         //

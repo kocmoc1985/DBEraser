@@ -6,7 +6,7 @@ SEARCH FOR: [#RUTROT#] TAG
 ________
 [ESSENTIALS]
 
-1. RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner)
+1. RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
 
 ________
 

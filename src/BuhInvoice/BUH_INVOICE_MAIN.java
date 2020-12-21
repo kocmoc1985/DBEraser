@@ -11,6 +11,7 @@ import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.Image;
@@ -63,6 +64,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
     //
     protected String FAKTURA_TYPE_CURRENT__OPERATION;
+    //
+    private RutRot rutRot;
 
     /**
      * Creates new form BUH_INVOICE_MAIN
@@ -97,6 +100,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } catch (Exception ex) {
             // Will set the initial background
         }
+    }
+    
+    public void setRutRot(RutRot rut){
+        this.rutRot = rut;
+    }
+    
+    public RutRot getRutRot(){
+        return this.rutRot;
     }
 
     private void setMarginLeftLabelsHomeTab() {

@@ -22,6 +22,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ public class RutRot extends Basic_Buh {
 
     public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame) {
         super(bim);
+        this.bim.setRutRot(this);
         this.rutRotFrame = rutRotFrame;
     }
 
@@ -61,12 +63,12 @@ public class RutRot extends Basic_Buh {
 
     public void sendRutDataToDB(String fakturaId) {
         //[#RUTROT#]
+        // OBS! OBS! "DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING" IS TAKEN HERE:
         HashMap<String, String> map_rut = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
         //
         map_rut.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
         map_rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, fakturaId); // 339 -> Trell faktura: 10114
         map_rut.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "" + rutRotFrame.AVDRAG_TOTAL);
-//        map_rut.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, getValueTableInvert(COL__FATSTIGHETS_BETECKNING, TABLE_INVERT_2));
         map_rut.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
         //
         String json = JSon.hashMapToJSON(map_rut);
@@ -119,6 +121,44 @@ public class RutRot extends Basic_Buh {
             }
             //
         }
+        //
+    }
+
+    public HashMap<String, String> getFakturaPreview_rut() {
+        //
+        HashMap<String, String> map_rut = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN);
+        //
+        map_rut.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "" + rutRotFrame.AVDRAG_TOTAL);
+        //
+        return map_rut;
+        //
+    }
+
+    public ArrayList<HashMap<String, String>> getFakturaPreview_rut_pers() {
+        //
+        JTable table_person = rutRotFrame.jTable3;
+        //
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        //
+        for (int row = 0; row < table_person.getRowCount(); row++) {
+            //
+            HashMap<String, String> map_rut_person = new HashMap<>();
+            //
+            String avdrag = HelpA.getValueGivenRow(table_person, row, COL__AVDRAG);
+            String namn = HelpA.getValueGivenRow(table_person, row, COL__FORNAMN);
+            String efternamn = HelpA.getValueGivenRow(table_person, row, COL__EFTERNAMN);
+            String pnr = HelpA.getValueGivenRow(table_person, row, COL__PNR);
+            //
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, avdrag);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, namn);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, efternamn);
+            map_rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__PNR, pnr);
+            //
+            list.add(map_rut_person);
+            //
+        }
+        //
+        return list;
         //
     }
 
