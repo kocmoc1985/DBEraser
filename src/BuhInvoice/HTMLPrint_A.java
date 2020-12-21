@@ -582,6 +582,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String fastighets_beteckning = map_rut.get(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING);
         String rut_avdrag_total = getRutAvdragTotal();
         String att_betala_total = getAttBetalaTotal();
+        String fakturans_total_belopp_innan_avdrag = getTotalBeloppInnanAvdrag();
         //
         String html_ = "<table class='marginTop'>";
         //
@@ -592,7 +593,18 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "Denna faktura avser husarbete för fastighet: " + fastighets_beteckning + ".";
         html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på: " + rut_avdrag_total + ".";
         html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala: " + att_betala_total + ".";
-        html_ += "Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare.";
+        html_ += "Om ansökan om skattereduktion avslås, ska det totala beloppet ("+ fakturans_total_belopp_innan_avdrag +") betalas av dig som köpare.";
+        html_ += "<br>";
+        //
+        for (HashMap<String, String> rut_person : map_rut_pers) {
+            String namn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN);
+            String efternamn = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN);
+            String pnr = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__PNR);
+            String avdrag = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION);
+            //
+            html_ += namn + " " + efternamn + " " + pnr + "  " + avdrag + "<br>";
+            //
+        }
         //
         html_ += "</td>";
         html_ += "</tr>";
