@@ -102,6 +102,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
     
+    private void resetRutRot(){
+        this.rutRot = null;
+    }
+    
     public void setRutRot(RutRot rut){
         this.rutRot = rut;
     }
@@ -2966,6 +2970,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         String fakturaId = getFakturaId();
         //
         invoiceB.all_invoices_table_clicked(fakturaId);
+        //
+        resetRutRot();//[#RUTROT#]
         //
     }
 
