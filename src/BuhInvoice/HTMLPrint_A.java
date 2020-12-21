@@ -117,17 +117,9 @@ public class HTMLPrint_A extends HTMLPrint {
         return _get_exist_a("Ert Vatnr", ert_vatt);
     }
 
-    protected final static String getAttBetalaTitle(String fakturatype) {
-        if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
-            return "ATT BETALA";
-        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
-            return "ATT ERHÅLLA";
-        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
-            return "BETALD";
-        } else {
-            return null;
-        }
-    }
+    
+    
+   
 
     private String getForfalloDatumFlexCol() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
@@ -164,6 +156,23 @@ public class HTMLPrint_A extends HTMLPrint {
             return null;
         }
     }
+    
+     protected final static String getAttBetalaTitle(String fakturatype) {
+        if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
+            return "ATT BETALA";
+        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
+            return "ATT ERHÅLLA";
+        } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
+            return "BETALD";
+        } else {
+            return null;
+        }
+    }
+     
+    private String getAttBetalaTotal(){
+        String att_betala_title = getAttBetalaTitle(FAKTURA_TYPE);
+        return map_d.get(att_betala_title);
+    }
 
     @Override
     public String buildHTML() {
@@ -187,11 +196,11 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + faktura_data_B_to_html__totals()
                 //
+                + rutAvdrag() //[#RUTROT#]
+                //
                 + articles_to_html(articles_map_list)
                 //
                 + ovmvantSkattNotation()
-                //
-                + rutAvdrag() //[#RUTROT#]
                 //
                 + brElements()
                 //
@@ -358,13 +367,13 @@ public class HTMLPrint_A extends HTMLPrint {
         String frakt = map_d.get(T__FAKTURA_FRAKT);
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt_kr = map_d.get(T__FAKTURA_RABATT_KR);
-        String rut_avdrag_total = getRutTotal();
+        String rut_avdrag_total = getRutAvdragTotal();
         //
         String[] headers = new String[]{T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, map_d.get(ATT_BETALA_TITLE)};
+        String[] values = new String[]{rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, getAttBetalaTotal()};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr,rut_avdrag_total);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
@@ -428,8 +437,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return omvant;
     }
-
-    
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
@@ -559,9 +566,30 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String rutAvdrag() {
-//        String test = "Rut avdrag total: " + map_rut.get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION);
-//        return "<p>" + test + "</p>";
-        return "";
+        //
+        if (isRut() == false) {
+            return "";
+        }
+        //
+        String fastighets_beteckning = map_rut.get(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING);
+        String rut_avdrag_total = getRutAvdragTotal();
+        String att_betala_total = getAttBetalaTotal();
+        //
+        String html_ = "<table class='marginTop'>";
+        //
+        //
+        html_ += "<tr>";
+        html_ += "<td class='bold'>";
+        //
+        html_ += "Denna faktura avser husarbete för fastighet: " + fastighets_beteckning + ".";
+        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på: " + rut_avdrag_total + ".";
+        html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala: " + att_betala_total + ".";
+        //
+        html_ += "</td>";
+        html_ += "</tr>";
+        html_ += "</table>";
+        //
+        return html_;
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {

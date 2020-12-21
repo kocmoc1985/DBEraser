@@ -337,7 +337,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         return i != 0;
     }
     
-    protected String getRutTotal() {
+    protected String getRutAvdragTotal() {
         //
         if (isRut() == false) {
             return "0";
@@ -346,6 +346,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
+    
+    
 
     protected boolean isRut() {
         //
@@ -356,6 +358,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
+    
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {

@@ -354,7 +354,7 @@ public class HTMLPrint_B extends HTMLPrint {
         String frakt = map_d.get(T__FAKTURA_FRAKT);
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
-        String rut_avdrag_total = getRutTotal();
+        String rut_avdrag_total = getRutAvdragTotal();
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
