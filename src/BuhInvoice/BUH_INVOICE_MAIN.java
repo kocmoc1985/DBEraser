@@ -101,16 +101,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             // Will set the initial background
         }
     }
-    
-    private void resetRutRot(){
+
+    private void resetRutRot() {
         this.rutRot = null;
     }
-    
-    public void setRutRot(RutRot rut){
+
+    public void setRutRot(RutRot rut) {
         this.rutRot = rut;
     }
-    
-    public RutRot getRutRot(){
+
+    public RutRot getRutRot() {
         return this.rutRot;
     }
 
@@ -430,7 +430,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     /**
      * [#RUTROT#]
-     * @return 
+     *
+     * @return
      */
     protected boolean isRUT() {
         //
@@ -500,7 +501,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
     }
-    
+
     public static String getSELECT_(String whereColName, String whereValue) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -2294,6 +2295,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
 //        invoiceA_insert.resetSavedMoms_jCombo();
         //
+        invoiceA_insert.resetRutRot();
         invoiceA_insert.createNew(isKontantfaktura);
         //
     }
@@ -2370,6 +2372,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (GP_BUH.confirm(msg) == false) {
             return;
+        }
+        //
+        if (invoiceA_insert != null) {
+            invoiceA_insert.resetRutRot();
+        }
+        //
+        if (invoiceA_update != null) {
+            invoiceA_update.resetRutRot();
         }
         //
         invoiceB.copy(isKreditFaktura);
@@ -2844,6 +2854,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (isMakulerad()) {
                     HelpA.showNotification_separate_thread(LANG.MSG_9);
                 }
+                //
+                invoiceA_update.resetRutRot();
                 //
                 invoiceA_update.showTableInvert();
                 invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT);

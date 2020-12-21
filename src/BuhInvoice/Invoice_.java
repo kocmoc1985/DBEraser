@@ -13,7 +13,6 @@ import BuhInvoice.sec.RutRot;
 import BuhInvoice.sec.RutRotFrame;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
-import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
@@ -67,10 +66,17 @@ public abstract class Invoice_ extends Basic_Buh {
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     //
     private RutRot rutRot;
+    private RutRotFrame rutRotFrame;
 
     public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
+    }
+    
+    public void resetRutRot(){
+        //[#RUTROT#]
+        rutRot = null;
+        rutRotFrame = null;
     }
 
     private void buttonLogic() {
@@ -1173,21 +1179,25 @@ public abstract class Invoice_ extends Basic_Buh {
                 box.setEnabled(true);
             }
             //
+        } else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+            //
+            String rutavdrag = jli.getValue();
+            //
+            if (ie.getStateChange() != 1) {
+                return;
+            }
+            //
+            if (rutavdrag.equals("1")) {
+                //
+                if (rutRotFrame == null) {
+                    rutRotFrame = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
+                } else {
+                    rutRotFrame.makeVisible();
+                }
+                //
+            }
+            //
         }
-//        else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
-//            
-//            String rutavdrag = jli.getValue();
-//            
-//            if (ie.getStateChange() != 1) {
-//                return;
-//            }
-//            
-//            if (rutavdrag.equals("1")) {
-//                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
-//                rrf.setVisible(true);
-//            }
-        //
-//        }
 
     }
 

@@ -43,31 +43,31 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
     }
 
-    @Override
-    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
-        //
-        super.jComboBoxItemStateChangedForward(ti, ie);
-        //
-        String col_name = ti.getCurrentColumnName(ie.getSource());
-        //
-        JLinkInvert jli = (JLinkInvert) ie.getSource();
-        //
-        if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
-            //
-            String rutavdrag = jli.getValue();
-            //
-            if (ie.getStateChange() != 1) {
-                return;
-            }
-            //
-            if (rutavdrag.equals("1")) {
-                //
-                //[#RUTROT#]
-                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
-                //
-            }
-        }
-    }
+//    @Override
+//    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+//        //
+//        super.jComboBoxItemStateChangedForward(ti, ie);
+//        //
+//        String col_name = ti.getCurrentColumnName(ie.getSource());
+//        //
+//        JLinkInvert jli = (JLinkInvert) ie.getSource();
+//        //
+//        if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
+//            //
+//            String rutavdrag = jli.getValue();
+//            //
+//            if (ie.getStateChange() != 1) {
+//                return;
+//            }
+//            //
+//            if (rutavdrag.equals("1")) {
+//                //
+//                //[#RUTROT#]
+//                RutRotFrame rrf = new RutRotFrame(bim, bim.jTable_InvoiceA_Insert_articles, this);
+//                //
+//            }
+//        }
+//    }
 
     protected void createNew(boolean isKontantfaktura) {
         //

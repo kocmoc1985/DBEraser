@@ -77,6 +77,12 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
     }
 
+    public void makeVisible() {
+        this.setVisible(true);
+        this.rut.showTableInvert();
+        this.rut.showTableInvert_2();
+    }
+
     private void hideCols(JTable table) {
         //
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
