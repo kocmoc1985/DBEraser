@@ -27,7 +27,6 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
-   
 
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
@@ -47,7 +46,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ArrayList<HashMap<String, String>> map_rut_pers
     ) {
         //
-        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g,map_rut,map_rut_pers);
+        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g, map_rut, map_rut_pers);
         //
     }
 
@@ -353,18 +352,19 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
         //
-        int colToMakeBold = 7;
+        int colToMakeBold = 8;
         //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
         String frakt = map_d.get(T__FAKTURA_FRAKT);
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
-        String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
+        String rabatt_kr = map_d.get(T__FAKTURA_RABATT_KR);
+        String rut_avdrag_total = getRutTotal();
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{map_d.get(T__FAKTURA_FRAKT), map_d.get(T__FAKTURA_EXP_AVG), map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), map_d.get(T__FAKTURA_MOMS_KR), map_d.get(T__FAKTURA_RABATT_KR), map_d.get(ATT_BETALA_TITLE)};
+        String[] headers = new String[]{T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
+        String[] values = new String[]{rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, map_d.get(ATT_BETALA_TITLE)};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr,rut_avdrag_total);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
@@ -428,16 +428,8 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return omvant;
     }
+
     
-    private boolean isRut(HashMap<String, String> map) {
-        //
-        if(map_rut != null && map_rut.isEmpty() == false){
-            return true;
-        }else{
-            return false;
-        }
-        //
-    }
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
@@ -567,8 +559,9 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String rutAvdrag() {
-        String test = "Rut avdrag total: " + map_rut.get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION);
-        return "<p>" + test + "</p>";
+//        String test = "Rut avdrag total: " + map_rut.get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION);
+//        return "<p>" + test + "</p>";
+        return "";
     }
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {

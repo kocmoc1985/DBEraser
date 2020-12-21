@@ -92,6 +92,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
     //
+    public static final String T__FAKTURA_RUT_AVDRAG_TOTAL = "Rut-Avdrag";
     public static final String T__FAKTURA_FRAKT = "Frakt";
     public static final String T__FAKTURA_EXP_AVG = "Exp avg";
     public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
@@ -335,6 +336,26 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         return i != 0;
     }
+    
+    protected String getRutTotal() {
+        //
+        if (isRut() == false) {
+            return "0";
+        } else {
+            return map_rut.get(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION);
+        }
+        //
+    }
+
+    protected boolean isRut() {
+        //
+        if (map_rut != null && map_rut.isEmpty() == false) {
+            return true;
+        } else {
+            return false;
+        }
+        //
+    }
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
@@ -350,7 +371,7 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     protected abstract void displayStatus(String msg, Color c);
 
-    protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr, String frakt, String exp, String rabbat_kr) {
+    protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr, String frakt, String exp, String rabbat_kr,String rutAvdragTotal) {
         //
         if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
@@ -374,6 +395,12 @@ public abstract class HTMLPrint extends HTMLBasic {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
             values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));
+        }
+        //
+        if (rutAvdragTotal.equals("0") || rutAvdragTotal.equals("0.0")) {
+            colToMakeBold--;
+            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_AVDRAG_TOTAL);
+            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RUT_AVDRAG_TOTAL));
         }
         //
         return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);

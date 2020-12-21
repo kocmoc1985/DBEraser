@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 
 /**
  * This class is for "REMINDER"
+ *
  * @author KOCMOC
  */
 public class HTMLPrint_B extends HTMLPrint {
@@ -41,7 +42,8 @@ public class HTMLPrint_B extends HTMLPrint {
             HashMap<String, String> map_f,
             HashMap<String, String> map_g
     ) {
-        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b, map_c, map_d, map_e, map_e_2, map_f, map_g,null,null);
+        super(bim, fakturatype, preview, articles_map_list, map_a_0, map_a, map_b,
+                map_c, map_d, map_e, map_e_2, map_f, map_g, null, null);
     }
 
     @Override
@@ -317,29 +319,27 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html_;
     }
-    
-    private double countDrojsmalsAvgift(){
-       String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
-       String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
-       String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
-       double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
-       String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-       //
-       int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
-       //
-       if(daysForfallen <=0){
-           return 0;
-       }
-       //
-       System.out.println("Days forfallen: " + daysForfallen);
-       double percent = Double.parseDouble(drojmalsranta) / 100;
-       double oneDayRanta = (totalInklMoms * percent) / 365;
-       //
-       return daysForfallen * oneDayRanta;
-       //
+
+    private double countDrojsmalsAvgift() {
+        String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
+        String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
+        String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
+        double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+        //
+        if (daysForfallen <= 0) {
+            return 0;
+        }
+        //
+        System.out.println("Days forfallen: " + daysForfallen);
+        double percent = Double.parseDouble(drojmalsranta) / 100;
+        double oneDayRanta = (totalInklMoms * percent) / 365;
+        //
+        return daysForfallen * oneDayRanta;
+        //
     }
-    
-  
 
     private String faktura_data_B_to_html__totals() {
         //
@@ -348,20 +348,21 @@ public class HTMLPrint_B extends HTMLPrint {
         double drojAvg = GP_BUH.round_double(countDrojsmalsAvgift());
         System.out.println("Dröj avg************************************************: " + drojAvg);
         //
-        int colToMakeBold = 8;
+        int colToMakeBold = 9;
         //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
         String frakt = map_d.get(T__FAKTURA_FRAKT);
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
+        String rut_avdrag_total = getRutTotal();
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
         //
-        String[] headers = new String[]{T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR,T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
-        String[] values = new String[]{frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt,""+drojAvg, ""+totalInkDrojAvg};
+        String[] headers = new String[]{T__FAKTURA_RUT_AVDRAG_TOTAL,T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
+        String[] values = new String[]{rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg};
         //
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt);
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt,rut_avdrag_total);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
         //
@@ -399,7 +400,6 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         return html_;
     }
-
 
     private String internal_table_x_r_1c(int rows, String[] values, boolean markFirstTd) {
         //
