@@ -171,6 +171,11 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String getTotalBeloppInnanAvdrag() {
+        //
+        if(isRut() == false){
+            return "0";
+        }
+        //
         double att_betala_total = Double.parseDouble(getAttBetalaTotal());
         double rut_avdrag_total = Double.parseDouble(getRutAvdragTotal());
         return "" + (att_betala_total + rut_avdrag_total);
@@ -367,7 +372,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
         //
-        int colToMakeBold = 8;
+        int colToMakeBold = 9;
         //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
         String frakt = map_d.get(T__FAKTURA_FRAKT);

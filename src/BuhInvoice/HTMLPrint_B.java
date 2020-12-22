@@ -348,7 +348,7 @@ public class HTMLPrint_B extends HTMLPrint {
         double drojAvg = GP_BUH.round_double(countDrojsmalsAvgift());
         System.out.println("Dröj avg************************************************: " + drojAvg);
         //
-        int colToMakeBold = 9;
+        int colToMakeBold = 10;
         //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
         String frakt = map_d.get(T__FAKTURA_FRAKT);

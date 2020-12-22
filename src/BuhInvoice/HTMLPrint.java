@@ -40,6 +40,7 @@ import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Array;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -383,37 +384,38 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_MOMS_PERCENT));
+            values = (String[]) ArrayUtils.removeElement(values, "0");//map_d.get(T__FAKTURA_MOMS_PERCENT)
         }
         //
         if (frakt.equals("0") || frakt.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_FRAKT));
+            values = (String[]) ArrayUtils.removeElement(values,"0");//map_d.get(T__FAKTURA_FRAKT)
         }
         //
         if (exp.equals("0") || exp.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_EXP_AVG));
+            values = (String[]) ArrayUtils.removeElement(values,"0");//map_d.get(T__FAKTURA_EXP_AVG)
         }
         //
         if (rabbat_kr.equals("0") || rabbat_kr.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RABATT_KR));
+            values = (String[]) ArrayUtils.removeElement(values, "0");//map_d.get(T__FAKTURA_RABATT_KR)
         }
         //
         if (rutAvdragTotal.equals("0") || rutAvdragTotal.equals("0.0")) {
             colToMakeBold--;
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_AVDRAG_TOTAL);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RUT_AVDRAG_TOTAL));
+            values = (String[]) ArrayUtils.removeElement(values, "0");//map_rut.get(T__FAKTURA_RUT_AVDRAG_TOTAL)
         }
         //
         if (totalBeloppInnanAvdrag.equals("0") || totalBeloppInnanAvdrag.equals("0.0")) {
             colToMakeBold--;
+            
             headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_TOTAL_BELOPP);
-            values = (String[]) ArrayUtils.removeElement(values, map_d.get(T__FAKTURA_RUT_TOTAL_BELOPP));
+            values = (String[]) ArrayUtils.removeElement(values,"0");//map_rut.get(T__FAKTURA_RUT_TOTAL_BELOPP)
         }
         //
         return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);
