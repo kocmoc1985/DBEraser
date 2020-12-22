@@ -17,35 +17,35 @@ import javax.swing.JTable;
  * @author MCREMOTE
  */
 public class InvoiceA_Update extends Invoice_ {
-
+    
     private Faktura_Entry_Update faktura_entry_update;
-
+    
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
         initOther();
     }
-
+    
     private void initOther() {
         faktura_entry_update = (Faktura_Entry_Update) faktura_entry;
     }
-
+    
     @Override
     protected Faktura_Entry initFakturaEntry() {
         return new Faktura_Entry_Update(this);
     }
-
+    
     @Override
     protected void startUp() {
-
+        
     }
-
+    
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_update.addArticleForJTable(table);
         //
     }
-
+    
     @Override
     protected void addArticleForDB() {
         //
@@ -58,13 +58,13 @@ public class InvoiceA_Update extends Invoice_ {
         insertOrUpdate(); // Update faktura after adding an article [2020-08-12]
         //
     }
-
+    
     protected void updateArticle() {
         //
         faktura_entry_update.updateArticle();
         //
     }
-
+    
     protected void deleteFakturaArtikel() {
         //
         if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
@@ -89,7 +89,7 @@ public class InvoiceA_Update extends Invoice_ {
         executeDelete(json);
         //
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -142,7 +142,7 @@ public class InvoiceA_Update extends Invoice_ {
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();
         //
-        if(bim.isKontantFaktura()){
+        if (bim.isKontantFaktura()) {
             forfalo_datum.setVisible_(false);
             betal_vilkor.setVisible_(false);
         }
@@ -160,7 +160,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         return rows;
     }
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -171,8 +171,7 @@ public class InvoiceA_Update extends Invoice_ {
         }
         //
     }
-
-
+    
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
@@ -224,9 +223,13 @@ public class InvoiceA_Update extends Invoice_ {
         rut.enableFixedValuesAdvanced();
         rut.setUneditable();
         //
+        if (bim.isKreditFaktura()) {
+            rut.setVisible_(false);
+        }
+        //
         RowDataInvert[] rows = {
-//            inkl_exkl_moms,
-//            moms,
+            //            inkl_exkl_moms,
+            //            moms,
             fakturanr_alt,
             order,
             expavgift,
@@ -238,5 +241,5 @@ public class InvoiceA_Update extends Invoice_ {
         //
         return rows;
     }
-
+    
 }
