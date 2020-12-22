@@ -72,8 +72,8 @@ public abstract class Invoice_ extends Basic_Buh {
         super(bim);
         initFakturaEntry_();
     }
-    
-    public void resetRutRot(){
+
+    public void resetRutRot() {
         //[#RUTROT#]
         rutRot = null;
         rutRotFrame = null;
@@ -442,7 +442,22 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
         BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
         //
-        BUH_INVOICE_MAIN.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
+        if (bim.isRUT()) {
+            //[#RUTROT#]
+            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(true);
+            BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(true);
+            BUH_INVOICE_MAIN.jLabel_rut_avdrag.setVisible(true);
+            BUH_INVOICE_MAIN.jLabel_rut_total.setVisible(true);
+            //
+            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
+            BUH_INVOICE_MAIN.jTextField_rut_total.setText("" + getTotal(RUT_AVDRAG_TOTAL + FAKTURA_TOTAL));
+        } else {
+            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(false);
+            BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(false);
+            BUH_INVOICE_MAIN.jLabel_rut_avdrag.setVisible(false);
+            BUH_INVOICE_MAIN.jLabel_rut_total.setVisible(false);
+        }
+
         //
     }
 

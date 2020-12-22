@@ -727,7 +727,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel5_separator = new javax.swing.JLabel();
         jLabel_ammount_of_articles_ = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel_rut_total = new javax.swing.JLabel();
+        jLabel_rut_avdrag = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -737,6 +738,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jTextField_rut_total = new javax.swing.JTextField();
         jTextField_rut_avdrag = new javax.swing.JTextField();
         jTextField_frakt = new javax.swing.JTextField();
         jTextField_exp_avg = new javax.swing.JTextField();
@@ -1457,12 +1459,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_ammount_of_articles_.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel12.add(jLabel_ammount_of_articles_);
 
-        jPanel15.setLayout(new java.awt.GridLayout(2, 11, 5, 0));
+        jPanel15.setLayout(new java.awt.GridLayout(2, 12, 5, 0));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel10.setText("RUT-Avdrag");
-        jPanel15.add(jLabel10);
+        jLabel_rut_total.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_rut_total.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel_rut_total.setText("RUT-Total");
+        jPanel15.add(jLabel_rut_total);
+
+        jLabel_rut_avdrag.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_rut_avdrag.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel_rut_avdrag.setText("RUT-Avdrag");
+        jPanel15.add(jLabel_rut_avdrag);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
@@ -1509,6 +1516,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("Total");
         jPanel15.add(jLabel4);
+
+        jTextField_rut_total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField_rut_total.setText("0");
+        jPanel15.add(jTextField_rut_total);
 
         jTextField_rut_avdrag.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField_rut_avdrag.setText("0");
@@ -1565,7 +1576,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 1186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2636,7 +2647,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JCheckBox jCheckBox_spara_inloggning;
     protected javax.swing.JComboBox<String> jComboBox_faktura_kunder_filter;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -2670,6 +2680,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_inloggning;
     private javax.swing.JLabel jLabel_register_new;
     private javax.swing.JLabel jLabel_restore_password;
+    protected static javax.swing.JLabel jLabel_rut_avdrag;
+    protected static javax.swing.JLabel jLabel_rut_total;
     private javax.swing.JLabel jLabel_share_account;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -2746,6 +2758,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected static javax.swing.JTextField jTextField_moms_total;
     protected static javax.swing.JTextField jTextField_rabatt_total;
     protected static javax.swing.JTextField jTextField_rut_avdrag;
+    protected static javax.swing.JTextField jTextField_rut_total;
     protected static javax.swing.JTextField jTextField_total_exkl_moms;
     protected static javax.swing.JTextField jTextField_total_inkl_moms;
     private javax.swing.JToggleButton jToggleButton_act_month_filter;
