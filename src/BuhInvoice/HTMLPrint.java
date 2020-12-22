@@ -5,8 +5,6 @@ package BuhInvoice;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -41,7 +39,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Array;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -134,7 +134,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     public static final String T__RUT_PERS = "Preliminär skattereduktion";
-    
+
     /**
      * Creates new form HTMLPrint_A
      */
@@ -209,7 +209,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
-
     protected String getFakturaId() {
         return map_a_0.get(DB.BUH_FAKTURA__ID__);
     }
@@ -245,7 +244,6 @@ public abstract class HTMLPrint extends HTMLBasic {
     protected String getForetagsNamn() {
         return _get(map_f, DB.BUH_KUND__NAMN);
     }
-
 
     protected String getFakturaDesktopPath() {
 //        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
@@ -340,7 +338,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         return i != 0;
     }
-    
+
     protected String getRutAvdragTotal() {
         //
         if (isRut() == false) {
@@ -350,8 +348,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-    
-    
 
     protected boolean isRut() {
         //
@@ -362,7 +358,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-    
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
@@ -379,46 +374,59 @@ public abstract class HTMLPrint extends HTMLBasic {
     protected abstract void displayStatus(String msg, Color c);
 
     protected HeadersValuesHTMLPrint excludeIfZero(String[] headers, String[] values, int colToMakeBold, String moms_kr,
-            String frakt, String exp, String rabbat_kr,String rutAvdragTotal, String totalBeloppInnanAvdrag) {
+            String frakt, String exp, String rabbat_kr, String rutAvdragTotal, String totalBeloppInnanAvdrag) {
+        //
+        List<String> headers_ = new ArrayList<>();
+        Collections.addAll(headers_, headers);
+        //
+        List<String> values_ = new ArrayList<>();
+        Collections.addAll(values_, values);
         //
         if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_MOMS_PERCENT);
-            values = (String[]) ArrayUtils.removeElement(values, "0");//map_d.get(T__FAKTURA_MOMS_PERCENT)
+            int index = headers_.indexOf(T__FAKTURA_MOMS_PERCENT);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
         if (frakt.equals("0") || frakt.equals("0.0")) {
             colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_FRAKT);
-            values = (String[]) ArrayUtils.removeElement(values,"0");//map_d.get(T__FAKTURA_FRAKT)
+            int index = headers_.indexOf(T__FAKTURA_FRAKT);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
         if (exp.equals("0") || exp.equals("0.0")) {
             colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_EXP_AVG);
-            values = (String[]) ArrayUtils.removeElement(values,"0");//map_d.get(T__FAKTURA_EXP_AVG)
+            int index = headers_.indexOf(T__FAKTURA_EXP_AVG);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
         if (rabbat_kr.equals("0") || rabbat_kr.equals("0.0")) {
             colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RABATT_KR);
-            values = (String[]) ArrayUtils.removeElement(values, "0");//map_d.get(T__FAKTURA_RABATT_KR)
+            int index = headers_.indexOf(T__FAKTURA_RABATT_KR);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
         if (rutAvdragTotal.equals("0") || rutAvdragTotal.equals("0.0")) {
             colToMakeBold--;
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_AVDRAG_TOTAL);
-            values = (String[]) ArrayUtils.removeElement(values, "0");//map_rut.get(T__FAKTURA_RUT_AVDRAG_TOTAL)
+            int index = headers_.indexOf(T__FAKTURA_RUT_AVDRAG_TOTAL);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
         if (totalBeloppInnanAvdrag.equals("0") || totalBeloppInnanAvdrag.equals("0.0")) {
             colToMakeBold--;
-            
-            headers = (String[]) ArrayUtils.removeElement(headers, T__FAKTURA_RUT_TOTAL_BELOPP);
-            values = (String[]) ArrayUtils.removeElement(values,"0");//map_rut.get(T__FAKTURA_RUT_TOTAL_BELOPP)
+            int index = headers_.indexOf(T__FAKTURA_RUT_TOTAL_BELOPP);
+            headers_.remove(index);
+            values_.remove(index);
         }
         //
-        return new HeadersValuesHTMLPrint(headers, values, colToMakeBold);
+        return new HeadersValuesHTMLPrint(headers_.toArray(new String[headers_.size()]),
+                values_.toArray(new String[values_.size()]), colToMakeBold);
+        //
     }
 
     /**
