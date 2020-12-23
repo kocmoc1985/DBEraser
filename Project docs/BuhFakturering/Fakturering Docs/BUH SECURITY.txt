@@ -36,6 +36,19 @@ Also search for: "login_attempt_marker" in both projects
 ________________________________________________________________________________________________________
 [BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
 
+The ban is priliminary implemented. The BAN functionality is 100% on PHP side.
+
+Search for: [#BAN-IP#] in the "_http_buh.php"
+
+Essentials: 
+
+1. The algorithm checks for combination of [user + ip]
+2. If combination of [user + ip] fails ">=10" this combination will be written to the "buh_ban" table.
+3. If combination of [user + ip] failed 7 times and succeded on 8, all the entries where this combination of [user + ip] occures will be deleted.
+
+
+OBS! If the combination of [user + ip] was added to "buh_ban" table it will be there permanently -----> MUST BE SOLVED SOON [2020-12-23]
+
 ________________________________________________________________________________________________________
 [DELETE ALL DATA RELATED TO CUSTOMER][2020-12-23]
 
