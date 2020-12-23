@@ -217,7 +217,7 @@ public class Home extends Basic_Buh {
         GP_BUH.USER = _get(map, DB.BUH_LICENS__USER);
         GP_BUH.PASS = _get(map, DB.BUH_LICENS__PASS);
         //
-        if (validate()) {
+        if (login()) {
             //
             bim.enableTabs(true);
             refresh();
@@ -254,8 +254,8 @@ public class Home extends Basic_Buh {
         }
     }
 
-    private boolean validate() {
-        //[#SEQURITY#]
+    private boolean login() {
+        //[#SEQURITY#][#&LOGIN&#]
         HashMap<String, String> map = new HashMap();
         //
         // The below parameters are for "buh_visitors" [2020-10-19]
@@ -274,8 +274,9 @@ public class Home extends Basic_Buh {
         //
         try {
             //
+            // The name of "PHP_FUNC_DEFINE_KUNDID__LOGIN" is a bit misleading.. The main thing is "login"
             responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_DEFINE_KUNDID, JSon.hashMapToJSON(map));
+                    DB.PHP_FUNC_DEFINE_KUNDID__LOGIN, JSon.hashMapToJSON(map));
             //
             return validateResponce(responce);
             //

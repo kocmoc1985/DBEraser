@@ -59,7 +59,7 @@ public class GP_BUH {
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
      * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "L5xpPomI41" 
-     * Guest Account "guest_21_kocmoc1985@gmail.com" "H8iQzm9nTB"
+     * (andrej.brassas@) -> Guest Account "guest_21_kocmoc1985@gmail.com" "g2Dpo3kGXK"
      */
     //
     public static String USER = "";
