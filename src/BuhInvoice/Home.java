@@ -217,7 +217,7 @@ public class Home extends Basic_Buh {
         GP_BUH.USER = _get(map, DB.BUH_LICENS__USER);
         GP_BUH.PASS = _get(map, DB.BUH_LICENS__PASS);
         //
-        if (validateAndefineKundId()) {
+        if (validate()) {
             //
             bim.enableTabs(true);
             refresh();
@@ -254,7 +254,7 @@ public class Home extends Basic_Buh {
         }
     }
 
-    private boolean validateAndefineKundId() {
+    private boolean validate() {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
         //
@@ -264,6 +264,11 @@ public class Home extends Basic_Buh {
         map.put(DB.BUH_LICENS__LANG, HelpA.getUserLanguge());
         map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
         map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
+        //
+        //[2020-12-23] This is the "login marker" so i can distinguish between
+        // a common request and "login". OBS! "login_attempt_marker" shall only 
+        // be used from HERE
+        map.put("login_attempt_marker", "true");
         //
         String responce;
         //

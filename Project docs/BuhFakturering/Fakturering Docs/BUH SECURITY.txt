@@ -25,14 +25,27 @@ Implementation PHP side:
 Absolutely NOTHING [100% verified]
 
 ________________________________________________________________________________________________________
+[LOGIN ATTEMPT CONNECTION MARKER]
+
+Since [2020-12-23] i have implemented a so called "LOGIN ATTEMPT MARKER" -> which means that the current connection is a "LOGIN ATTEMPT".
+At the moment it's beeing used for sending of an email when a "guest account" logs in
+
+See: _http_buh.php -> isLoginAttempt()
+
+Also search for: "login_attempt_marker" in both projects
+________________________________________________________________________________________________________
 [BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
 
 ________________________________________________________________________________________________________
-[DELETE ALL DATA RELATED TO CUSTOMER][2020-11-16]
+[DELETE ALL DATA RELATED TO CUSTOMER][2020-12-23]
 
+Is implemented [2020-12-23]
 
-_______
+See: "_http_buh.php -> deleteCustomer_b()" 
 
+OBS! This function requires that the username and pass used for login are provided as an additional secutiry layer
+
+[TEMP NOTES]:
 At the moment [2020-11-16] the account/kund can be only removed manually by the HttpBuh.class -> "deleteCustomer_a()" --> This method is infact only for development and should be removed 
 This method is using "admin password" which is stored hard coded on the website ("Vxuw6lpMzF").
 
