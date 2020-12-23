@@ -18,14 +18,7 @@ INNER JOIN buh_faktura_rut_person ON buh_faktura_rut.rutId = buh_faktura_rut_per
 _____
 
 
-SEND EMAIL WHEN A GUEST ACCOUNT LOGS IN -> _http_buh.sendMailLocal($from_email, $from_name, $to, $subject, $body) && defineIfMaster($user) **** 
-Insert in "validate()" function ---> SELECT email from buh_kund where kundId=1 
-OBS! you have to save the email of guest in raw format!!! ---> see: shareAccount() method
-Following functions should be verified:  shareAccount(), createAccountMain() as they were affected by the changes
-
 IF A KUND IS SAVED IS PRIVAT PERSON HANNS DATA SKA SÄTTAS IN AUTOMATISKT NÄR RUT SKAPAS
-
-DET "TOTALA FAKTURA BELOPPET" INKL. AVDRAG SKA FINNAS MED UNDER FLICK "FAKTURA"
 
 COPY INVOICE WITH RUT -> Copies the faktura but without copying of RUT data. Tested on [2020-12-21]
 

@@ -21,6 +21,7 @@ public class LANG {
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";
     public final static String VALIDATION_MSG__V_ERR_01 = "Fel användarnamn";
     public final static String VALIDATION_MSG__V_ERR_02 = "Fel lösenord";
+    public final static String VALIDATION_MSG__V_ERR_03 = "Din IP-Adress är förbjuden";
 
     public static final String getInloggningsMsg(String customerCompanyName) {
         return "Inloggad som: " + customerCompanyName;

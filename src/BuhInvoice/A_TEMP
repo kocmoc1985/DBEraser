@@ -1,0 +1,23 @@
+
+https://stackoverflow.com/questions/21467257/php-check-if-date-and-time-has-passed-15-minutes/21467356
+
+$dbtimestamp = strtotime($datefromdb);
+if (time() - $dbtimestamp > 15 * 60) {
+    // 15 mins has passed
+}
+
+
+[INITIAL BAN CRITERIA]:
+
+IF table "buh_login_failed" contains > 5 failed logins from given IP and given USER ->
+ban this (IP + USER) for one day
+
+SELECT COUNT(user) AS faults FROM buh_login_failed where user='guest_21_kocmoc1985@gmail.com' AND ip='213.112.78.80'
+
+SELECT COUNT(user) AS ban FROM buh_ban where user='guest_21_kocmoc1985@gmail.com' AND ip='213.112.78.80'
+
+
+login_id	     user                 user_agent          ip          date_failed	
+5	guest_21_kocmoc1985@gmail.com	Java/1.8.0_65	213.112.78.80	2020-12-23 13:57:54	
+6	guest_21_kocmoc1985@gmail.com	Java/1.8.0_65	213.112.78.80	2020-12-23 13:58:16	
+7	guest_21_kocmoc1985@gmail.com	Java/1.8.0_65	213.112.78.80	2020-12-23 13:58:19	

@@ -33,6 +33,7 @@ public class HttpResponce {
         map.put("V_ERR_0", LANG.VALIDATION_MSG__V_ERR_0); //user_or_pass_is_not_set
         map.put("V_ERR_01", LANG.VALIDATION_MSG__V_ERR_01);//user does not exist
         map.put("V_ERR_02", LANG.VALIDATION_MSG__V_ERR_02);//password wrong
+        map.put("V_ERR_03", LANG.VALIDATION_MSG__V_ERR_03);//user and ip combination banned
         //
         map.put("SAS_ERR_01", LANG.MSG_20);
         map.put("SAS_ERR_02", LANG.MSG_20_1);

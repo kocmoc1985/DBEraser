@@ -1,3 +1,12 @@
+[PHP-FUNCTIONS NAMES - HIGH RISK IF CHANGED] [2020-12-23]
+
+In Java project consider following: DB.class -> public static final String PHP_FUNC_DEFINE_KUNDID__LOGIN = "define_kundid";
+
+So i you will change the name -> "define_kundid" -> at Java side -> It will stop working
+
+If you change the name -> "define_kundid" -> at PHP side and at the current Java version -> it will stop working for the clients with previois version.
+
+____
 [INSERT] [2020-10-28]
 
 1. If the "insert" procedure is automatic like the "_http_buh.php->insert()" where the query is populated automatically depending on the
@@ -19,7 +28,6 @@ So the main idea is that adding/expanding the DB, does not influence the version
 of automatic query population in the insert and update methods. The select query does not have the automatic query population, but when
 the column is added it's not a problem as the new implemented field is just not included to the result. NOTE, that removing
 a column will casue failure because if the column is in query but does not exist in DB it WILL CAUSE FAILURE!!  
-
 
 
 [CASES WHEN NOTHING HAVE TO BE DONE ON PHP-SIDE]
