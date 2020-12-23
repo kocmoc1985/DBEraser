@@ -21,6 +21,7 @@ _____
 SEND EMAIL WHEN A GUEST ACCOUNT LOGS IN -> _http_buh.sendMailLocal($from_email, $from_name, $to, $subject, $body) && defineIfMaster($user) **** 
 Insert in "validate()" function ---> SELECT email from buh_kund where kundId=1 
 OBS! you have to save the email of guest in raw format!!! ---> see: shareAccount() method
+Following functions should be verified:  shareAccount(), createAccountMain() as they were affected by the changes
 
 IF A KUND IS SAVED IS PRIVAT PERSON HANNS DATA SKA SÄTTAS IN AUTOMATISKT NÄR RUT SKAPAS
 

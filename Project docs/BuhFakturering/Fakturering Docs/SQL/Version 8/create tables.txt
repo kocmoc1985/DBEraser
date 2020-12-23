@@ -35,6 +35,7 @@ CREATE TABLE buh_licens (
 licensId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
 user varchar(100) DEFAULT '',
+email_guest varchar(100) DEFAULT '',
 pass varchar(255) DEFAULT '',
 ip varchar(50) DEFAULT '',
 user_agent varchar(300) DEFAULT '',
