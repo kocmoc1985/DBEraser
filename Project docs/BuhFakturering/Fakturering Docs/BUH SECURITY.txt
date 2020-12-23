@@ -46,8 +46,10 @@ Essentials:
 2. If combination of [user + ip] fails ">=10" this combination will be written to the "buh_ban" table.
 3. If combination of [user + ip] failed 7 times and succeded on 8, all the entries where this combination of [user + ip] occures will be deleted.
 
+As example [ask@mixcont.com / 94.234.43.186] is banned but it will not block [andrej.brassas@gmail.com / 94.234.43.186] from logging in.
 
-OBS! If the combination of [user + ip] was added to "buh_ban" table it will be there permanently -----> MUST BE SOLVED SOON [2020-12-23]
+The BAN is active if "date_ban" is not older then 0.5 days (12 howrs) *****
+SELECT COUNT(user) AS ban_nr FROM buh_ban WHERE date_ban - INTERVAL 0.5 DAY < NOW() AND user=? AND ip=?
 
 ________________________________________________________________________________________________________
 [DELETE ALL DATA RELATED TO CUSTOMER][2020-12-23]

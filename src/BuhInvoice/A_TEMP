@@ -1,3 +1,14 @@
+_____________________________________________________________________
+
+MYSQL COMPARING DATES:
+
+https://stackoverflow.com/questions/12098899/mysql-select-dates-in-30-day-range
+
+
+if "date_ban" older then one 0.5 days
+SELECT COUNT(user) AS ban_nr FROM buh_ban WHERE date_ban - INTERVAL 0.5 DAY < NOW() AND user='ask@mixcont.com' AND ip='5.241.206.106'
+______________________________________________________________________
+
 
 https://stackoverflow.com/questions/21467257/php-check-if-date-and-time-has-passed-15-minutes/21467356
 
