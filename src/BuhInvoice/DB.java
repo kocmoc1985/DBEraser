@@ -188,6 +188,7 @@ public class DB {
     public static final String BUH_FAKTURA_KUND___VATNR = "vatnr";
     public static final String BUH_FAKTURA_KUND___EMAIL = "email";
     public static final String BUH_FAKTURA_KUND___KATEGORI = "kund_kategori";
+    public static final String BUH_FAKTURA_KUND___IS_PERSON = "is_person";
     public static final String BUH_FAKTURA_KUND__DATE_CREATED = "date_created";
 
     //

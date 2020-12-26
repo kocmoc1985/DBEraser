@@ -40,8 +40,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
     public static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
-    
-    //
     public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
@@ -191,6 +189,13 @@ public class CustomersA_ extends CustomerAForetagA_ {
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, "777"); //[#KUND-ID-INSERT#]
         //
         map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated()); // required
+        //
+        if(IS_PERSON__CUSTOMERS_A){
+             map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "1");
+             map.put(DB.BUH_FAKTURA_KUND___KATEGORI, "P");
+        }else{
+            map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "0");
+        }
         //
         String json = JSon.hashMapToJSON(map);
         //
@@ -369,6 +374,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         if(IS_PERSON__CUSTOMERS_A){
             vatnr.setVisible_(false);
+            kund_kategori.setVisible_(false);
         }
         //
         RowDataInvert[] rows = {
@@ -424,6 +430,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         if(IS_PERSON__CUSTOMERS_A){
             vatnr.setVisible_(false);
+            kategori.setVisible_(false);
         }
         //
         RowDataInvert[] rows = {

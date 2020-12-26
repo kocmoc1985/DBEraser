@@ -762,6 +762,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_update_kund = new javax.swing.JButton();
         jButton_delete_customer = new javax.swing.JButton();
         jLabel_Kund_Insert_or_Update = new javax.swing.JLabel();
+        jCheckBox__person = new javax.swing.JCheckBox();
         jPanel4_Articles = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -1697,6 +1698,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_Kund_Insert_or_Update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_Kund_Insert_or_Update.setForeground(new java.awt.Color(153, 153, 153));
 
+        jCheckBox__person.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCheckBox__person.setText("Kunden är en fysisk person");
+        jCheckBox__person.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox__personActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4_CustomersLayout = new javax.swing.GroupLayout(jPanel4_Customers);
         jPanel4_Customers.setLayout(jPanel4_CustomersLayout);
         jPanel4_CustomersLayout.setHorizontalGroup(
@@ -1706,7 +1715,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox__person, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1721,7 +1733,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox__person))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -2546,6 +2559,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }//GEN-LAST:event_jButton_dont_save_settingsActionPerformed
 
+    private void jCheckBox__personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox__personActionPerformed
+        if(jCheckBox__person.isSelected()){
+            customersA.IS_PERSON__CUSTOMERS_A = true;
+            customersA.refresh();
+        }else{
+            customersA.IS_PERSON__CUSTOMERS_A = false;
+            customersA.refresh();
+        }
+    }//GEN-LAST:event_jCheckBox__personActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -2644,6 +2667,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_update_articles_row;
     protected javax.swing.JButton jButton_update_kund;
     protected javax.swing.JButton jButton_update_kund_data;
+    private javax.swing.JCheckBox jCheckBox__person;
     protected javax.swing.JCheckBox jCheckBox_spara_inloggning;
     protected javax.swing.JComboBox<String> jComboBox_faktura_kunder_filter;
     private javax.swing.JLabel jLabel1;

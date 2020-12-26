@@ -48,7 +48,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     protected static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
     //
-    protected final boolean IS_PERSON__CUSTOMERS_A = false;
+    protected boolean IS_PERSON__CUSTOMERS_A = false;
     //
     public CustomerAForetagA_(BUH_INVOICE_MAIN bim) {
         super(bim);
