@@ -26,6 +26,7 @@ public class ForetagA extends CustomerAForetagA_ {
     protected static final String TABLE__ID = "KUND ID";
     private static final String TABLE__NAMN = "NAMN";
     private static final String TABLE__ORGNR = "ORGNR";
+   
     private static final String TABLE__VATNR = "VATNR";
     private static final String TABLE__EPOST = "E-POST";
     private static final String TABLE__BANK_GIRO = "BG";
@@ -34,6 +35,7 @@ public class ForetagA extends CustomerAForetagA_ {
     private static final String TABLE__IBAN = "IBAN";
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
+    
 
     public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);

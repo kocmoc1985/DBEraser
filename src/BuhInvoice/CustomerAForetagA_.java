@@ -47,7 +47,8 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     protected static final String TABLE_FAKTURA_KUND_ADDR__TEL_A = "TEL 1";
     protected static final String TABLE_FAKTURA_KUND_ADDR__TEL_B = "TEL 2";
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
-
+    //
+    protected final boolean IS_PERSON__CUSTOMERS_A = false;
     //
     public CustomerAForetagA_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -234,7 +235,13 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         String phpFunc = "";
         //
         if (this instanceof CustomersA_) {
-            phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
+            //
+            if(IS_PERSON__CUSTOMERS_A){
+                phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA__PERSON;
+            }else{
+                phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
+            }
+            //
         } else if (this instanceof ForetagA) {
             phpFunc = DB.PHP_FUNC_PARAM_GET_FORETAG_DATA; // ****************************************************
         }

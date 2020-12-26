@@ -35,11 +35,12 @@ public class CustomersA_ extends CustomerAForetagA_ {
     private static final String TABLE_FAKTURA_KUNDER__KUNDNR = "KUNDNR";
     private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
     private static final String TABLE_FAKTURA_KUNDER__ORGNR = "ORGNR";
+    private static final String TABLE_FAKTURA_KUNDER__PERSONNUMMER = "PERSONNUMMER";
     private static final String TABLE_FAKTURA_KUNDER__VATNR = "VATNR";
     public static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
-
+    
     //
     public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -351,7 +352,12 @@ public class CustomersA_ extends CustomerAForetagA_ {
         //
         RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
-        RowDataInvert orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
+        RowDataInvert orgnr;
+        if(IS_PERSON__CUSTOMERS_A){
+            orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__PERSONNUMMER, "", true, true, false);
+        }else{
+            orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
+        }
         //
         RowDataInvert vatnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
         //
@@ -360,6 +366,10 @@ public class CustomersA_ extends CustomerAForetagA_ {
         RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_AND_ARTICLE__KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
         kund_kategori.enableFixedValues();
         kund_kategori.setUneditable();
+        //
+        if(IS_PERSON__CUSTOMERS_A){
+            vatnr.setVisible_(false);
+        }
         //
         RowDataInvert[] rows = {
             kundnr,
@@ -390,7 +400,12 @@ public class CustomersA_ extends CustomerAForetagA_ {
         RowDataInvert kundnamn = new RowDataInvertB(kundnamn_, DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
         String orgnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__ORGNR);
-        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
+        RowDataInvert orgnr;
+        if(IS_PERSON__CUSTOMERS_A){
+            orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__PERSONNUMMER, "", true, true, false);
+        }else{
+            orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_FAKTURA_KUNDER__ORGNR, "", true, true, false);
+        }
         //
         String vatnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__VATNR);
         RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
@@ -406,6 +421,10 @@ public class CustomersA_ extends CustomerAForetagA_ {
         RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
         kategori.enableFixedValues();
         kategori.setUneditable();
+        //
+        if(IS_PERSON__CUSTOMERS_A){
+            vatnr.setVisible_(false);
+        }
         //
         RowDataInvert[] rows = {
             kundnr,
@@ -479,7 +498,12 @@ public class CustomersA_ extends CustomerAForetagA_ {
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
             //
             if (Validator.validateMaxInputLength(jli, 150)) {
-                Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+                if(IS_PERSON__CUSTOMERS_A){
+                    //
+                }else{
+                    Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
+                }
+                
             }
             //
         }
@@ -503,7 +527,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
 //            //
 //        }
 //    }
-
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
@@ -521,8 +544,6 @@ public class CustomersA_ extends CustomerAForetagA_ {
             //
         }
     }
-    
-    
 
     public String getNextKundnr() {
         //

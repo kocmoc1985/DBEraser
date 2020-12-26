@@ -42,8 +42,11 @@ public class GDPR extends HTMLBasic {
 
     @Override
     public void go() {
+        //
         super.go(); //To change body of generated methods, choose Tools | Templates.
+        //
         jEditorPane1.setCaretPosition(0);
+        //
     }
     
     

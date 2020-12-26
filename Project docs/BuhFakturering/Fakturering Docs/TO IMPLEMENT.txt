@@ -15,7 +15,9 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 -------------- 
 ------------------------<URGENT>------------------------
 
-Make adoptation for make invoices for private persons
+Make adoptation for make invoices for private persons, see variable "IS_PERSON__CUSTOMERS_A" -> CustomerAForetagA.class
+
+Make additional notes to "buh_faktura_artikel" as Ivan suposed
 
 Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16]
 
