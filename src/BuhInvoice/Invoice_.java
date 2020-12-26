@@ -505,7 +505,7 @@ public abstract class Invoice_ extends Basic_Buh {
         SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
         //
         //[#RUTROT#]
-        if (bim.isRUT()) {
+        if (bim.isRUT() && CURRENT_OPERATION_INSERT == false) {
             RUT_AVDRAG_TOTAL = getRutAvdragTotal();
         }
         //
