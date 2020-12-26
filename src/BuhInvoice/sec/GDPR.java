@@ -40,6 +40,14 @@ public class GDPR extends HTMLBasic {
         this.jButton_forsatt.setEnabled(false);
     }
 
+    @Override
+    public void go() {
+        super.go(); //To change body of generated methods, choose Tools | Templates.
+        jEditorPane1.setCaretPosition(0);
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,10 +193,57 @@ public class GDPR extends HTMLBasic {
 
     private String integritetsPolicy() {
         return ""
-                + "<h3>Integritetspolicy</h3>"
+                + "<h2>Integritetspolicy</h2>"
                 + "<p>"
                 + "Vi arbetar för att säkerställa en hög nivå av dataskydd som värnar om din personliga integritet vid användning av vår webbplats. Denna integritetspolicy förklarar därför hur dina personuppgifter bearbetas och skyddas, dina rättigheter och hur du kan göra dem gällande. Vi strävar efter att du ska känna dig trygg i vår behandling av dina personuppgifter. Vid eventuella frågor är du välkommen att kontakta oss. Våra kontaktuppgifter hittar du längst ned på denna sida."
+                + "</p>"
+                //
+                + "<h2>Var lagras dina personuppgifter?</h2>"
+                + "<p>"
+                + "Vi eftersträvar att dina personuppgifter i så hög grad som möjligt ska behandlas inom det europeiska ekonomiska samarbetsområdet (EES) och alla våra egna IT-system, men kan även överföras och bearbetas i ett land utanför EES (s.k. ”tredje land”). Sådan överföring sker endast till mottagarland med adekvat skyddsnivå och i enlighet med gällande lagstiftning. Om överföring sker till partner för en tjänst i USA sker detta endast till företag som omfattas av det så kallade ”Privacy Shield”, vilken är en överenskommelse om skydd för personuppgifter mellan EU och USA."
+                + "</p>"
+                //
+                + "<h2>Hur använder vi dina personuppgifter?</h2>"
+                + "<ul>"
+                + "<li>Vid fakturautskick via e-post"
+                + "<li>Vid kontakter angående eventuella drift problem"
+                + "<li>Vid korrespondens om frågor och övrig information"
+                + "<li>Vid utskick om erbjudanden i form av nyhetsbrev, då alltid med instruktioner om hur du kan avanmäla dig ifrån vidare utskick"
+                + "<li>Vid analyser av köpmönster för att ge relevanta erbjudanden och information"
+                + "<li>Vid eventuella enkätutskick för att förbättra våra tjänster och erbjudanden"
+                + "<li>Vid arbete som förhindrar missbruk eller annan olämplig användning av vår hemsida"
+                + "</ul"
+                //
+                + "<p>"
+                + "Vi sparar dina uppgifter så länge som det krävs för att uppfylla ovanstående ändamål eller så länge som vi enligt lag är skyldiga att göra detta. Därefter raderas dina personuppgifter"
+                + "</p>"
+                //
+                + "<h2>Vilka är dina rättigheter?</h2>"
+                + "<p>"
+                + "Du har rätt att när som helst radera all data som är kopplat till ditt konto. Du har rätt att när som helst begära information om de personuppgifter vi har om dig. Om dina uppgifter är felaktiga, ofullständiga eller irrelevanta, kan du begära att få dem rättade eller raderade. Vi kan inte radera dina uppgifter då det föreligger ett lagstadgat krav på lagring, som exempelvis bokföringsregler, eller när det finns andra legitima skäl till varför uppgifterna måste sparas, till exempel obetalda fakturor. Du kan när som helst återkalla ditt samtycke till att låta oss använda uppgifterna för marknadsföring genom att avanmäla dig från vårt nyhetsbrev. Du kan också kontakta oss genom att skicka brev, e-post eller ringa. Se kontaktuppgifter nedan."
+                + "</p>"
+                //
+                + "<h2>Vilka kan vi komma att dela dina personuppgifter med?</h2>"
+                + "<p>"
+                + "För att vi ska kunna erbjuda ovannämnda tjänster och våra åtaganden gentemot dig som kund delar vi dina personuppgifter med företag som är s.k. personuppgiftsbiträden för oss. Personuppgiftsbiträden behandlar informationen för vår räkning och enligt våra instruktioner och hjälper oss med IT-tjänster, betaltjänster och marknadsföring. Detta sker endast för ändamål för vilka vi har samlat informationen och endast till företag som kan lämna tillräckliga garantier gällande säkerhet och sekretess för personuppgifter. Vi vidarebefordrar, säljer eller byter aldrig dina personuppgifter för marknadsföringsändamål till tredje part."
+                + "</p>"
+                //
+                + "<h2>Hur skyddar vi dina personuppgifter?</h2>"
+                + "<p>"
+                + "För att dina personuppgifter som skickas till vår webbtjänst inte ska läsas av utomstående, krypteras all sådan information och skickas via en säker anslutning."
+                + "</p>"
+                //
+                + "<h2>Personuppgiftsansvarig</h2>"
+                + "<p>"
+                + "MixCont AB <br>"
+                + "Organisationsnummer: 556251-6806 <br>"
+                + "Gatuadress: Sanktagertudsväg 10 <br>"
+                + "Ort: Trelleborg <br>"
+                + "Land: Sverige <br>"
+                + "E-Post: ask@mixcont.com <br><br>"
+                + "Denna integritetspolicy uppdateras senast: 2020-12-26"
                 + "</p>";
+
     }
 
     @Override
