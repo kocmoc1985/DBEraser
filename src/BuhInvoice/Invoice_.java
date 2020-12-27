@@ -67,6 +67,7 @@ public abstract class Invoice_ extends Basic_Buh {
     //
     private RutRot rutRot;
     private RutRotFrame rutRotFrame;
+    private boolean RUT_ROT__ENABLED = false;
 
     public Invoice_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -442,7 +443,7 @@ public abstract class Invoice_ extends Basic_Buh {
         BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
         BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
         //
-        if (bim.isRUT()) {
+        if ((bim.isRUT() && CURRENT_OPERATION_INSERT == false) || RUT_ROT__ENABLED) {
             //[#RUTROT#]
             BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(true);
             BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(true);
@@ -450,7 +451,11 @@ public abstract class Invoice_ extends Basic_Buh {
             BUH_INVOICE_MAIN.jLabel_rut_total.setVisible(true);
             //
             BUH_INVOICE_MAIN.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
-            BUH_INVOICE_MAIN.jTextField_rut_total.setText("" + getTotal(RUT_AVDRAG_TOTAL + FAKTURA_TOTAL));
+            //
+            if (RUT_AVDRAG_TOTAL != 0) {
+                BUH_INVOICE_MAIN.jTextField_rut_total.setText("" + getTotal(RUT_AVDRAG_TOTAL + FAKTURA_TOTAL));
+            }
+            //
         } else {
             BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(false);
             BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(false);
@@ -505,7 +510,7 @@ public abstract class Invoice_ extends Basic_Buh {
         SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
         //
         //[#RUTROT#]
-        if (bim.isRUT() && CURRENT_OPERATION_INSERT == false) {
+        if ((bim.isRUT() && CURRENT_OPERATION_INSERT == false)) {
             RUT_AVDRAG_TOTAL = getRutAvdragTotal();
         }
         //
@@ -1197,9 +1202,23 @@ public abstract class Invoice_ extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
             //
             String rutavdrag = jli.getValue();
+            JComboBox box = (JComboBox)jli;
             //
             if (ie.getStateChange() != 1) {
                 return;
+            }
+            //
+            if(rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable())){
+                HelpA.showNotification(LANG.MSG_25);
+                resetRutComboBox(box);
+                return;
+            }
+            //
+            if(rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable()) == false){
+                if(HelpA.confirm(LANG.MSG_25_1) == false){
+                    resetRutComboBox(box);
+                    return;
+                }
             }
             //
             if (rutavdrag.equals("1")) {
@@ -1210,10 +1229,18 @@ public abstract class Invoice_ extends Basic_Buh {
                     rutRotFrame.makeVisible();
                 }
                 //
+                RUT_ROT__ENABLED = true;
+                //
+            } else {
+                RUT_ROT__ENABLED = false;
             }
             //
         }
 
+    }
+    
+    private void resetRutComboBox(JComboBox box){
+        box.setSelectedItem(new HelpA.ComboBoxObject("Nej", "0", "", ""));
     }
 
     private void setArticlePrise__and_other(boolean force) {

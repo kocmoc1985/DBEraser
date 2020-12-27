@@ -1515,7 +1515,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Total");
+        jLabel4.setText("Att betala");
         jPanel15.add(jLabel4);
 
         jTextField_rut_total.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

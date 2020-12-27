@@ -105,6 +105,9 @@ public class LANG {
     
     public static String MSG_24 = "Lämna utan att spara fakturan?";
     
+    public static String MSG_25 = "Lägg till samtliga artiklar först och förök igen";
+    public static String MSG_25_1 = "Är samtliga artiklar tilllagda?";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
