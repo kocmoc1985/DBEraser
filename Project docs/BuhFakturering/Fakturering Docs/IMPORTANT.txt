@@ -1,4 +1,10 @@
 ________________________________________________________________________________________________________
+[HIDE COLUMNS ARTICLES-TABLE][2020-12-27]
+
+Search for: [#HIDE-COLS-ARTICLES-TABLE#]
+
+It always takes much time to find places where to add column hiding
+________________________________________________________________________________________________________
 [JPANEL BACKGROUND - BACKGROUNDPANEL] [2020-11-15]
 
 Setting a background image for a JPanel.

@@ -516,6 +516,12 @@ public class RutRotFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // [#RUTROT#]
         // Setting "AVDRAG_TOTAL" for counting
+        //
+        if(HelpA.isEmtyJTable(jTable3)){
+            HelpA.showNotification(LANG.MSG_26);
+            return;
+        }
+        //
         invoice.setRutAvdragTotal(AVDRAG_TOTAL, rut);
         //
         this.setVisible(false);

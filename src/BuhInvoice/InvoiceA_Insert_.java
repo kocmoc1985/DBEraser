@@ -113,7 +113,9 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
         //
+        // [#HIDE-COLS-ARTICLES-TABLE#]
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET);
+        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
     }
 

@@ -672,10 +672,12 @@ public class InvoiceB extends Basic_Buh {
     protected void hideColumnsArticlesTable(JTable table) {
         //
         if (GP_BUH.CUSTOMER_MODE) {
+            // [#HIDE-COLS-ARTICLES-TABLE#]
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ARTIKEL_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__RABATT_KR);
 //            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
             //
             try {
@@ -1251,7 +1253,11 @@ public class InvoiceB extends Basic_Buh {
         //
         RutRot rut = bim.getRutRot();
         //
-        if (rut == null) {
+        if (bim.isRUT() && rut == null) {
+            return getForetagData(DB.PHP_FUNC_PARAM_GET_RUT, false);
+        }
+        //
+        if (rut == null && bim.isRUT() == false) {
             return null;
         }
         //
@@ -1262,7 +1268,11 @@ public class InvoiceB extends Basic_Buh {
         //
         RutRot rut = bim.getRutRot();
         //
-        if (rut == null) {
+        if (bim.isRUT() && rut == null) {
+            return getForetagData_B(DB.PHP_FUNC_PARAM_GET_RUT_PERSON, false);
+        }
+        //
+        if (rut == null && bim.isRUT() == false) {
             return null;
         }
         //
