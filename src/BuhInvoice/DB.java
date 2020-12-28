@@ -200,6 +200,8 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___PRIS = "pris";
     public static final String BUH_FAKTURA_ARTIKEL___INKOPS_PRIS = "inkopspris";
     public static final String BUH_FAKTURA_ARTIKEL___KOMMENT = "komment";
+    public static final String BUH_FAKTURA_ARTIKEL___KOMMENT_B = "komment_b";
+    public static final String BUH_FAKTURA_ARTIKEL___KOMMENT_C = "komment_c";
     public static final String BUH_FAKTURA_ARTIKEL___KATEGORI = "artikel_kategori";
     //
     public static final String BUH_F_ARTIKEL__ID = "id";

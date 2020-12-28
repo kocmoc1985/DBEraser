@@ -37,7 +37,9 @@ public class ArticlesA extends Basic_Buh {
 //    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     private static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__ARTNR = "ARTIKELNR";
-    private static final String TABLE_ARTICLES__KOMMENT = "KOMMENT";
+    private static final String TABLE_ARTICLES__KOMMENT_A = "KOMMENT A";
+    private static final String TABLE_ARTICLES__KOMMENT_B = "KOMMENT B";
+    private static final String TABLE_ARTICLES__KOMMENT_C = "KOMMENT C";
     private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
     //
     private boolean CURRENT_OPERATION_INSERT = false;
@@ -132,7 +134,9 @@ public class ArticlesA extends Basic_Buh {
             TABLE_ARTICLES__PRIS,
             //            TABLE_ARTICLES__INKOPS_PRIS,
             //            TABLE_ARTICLES__LAGER,
-            TABLE_ARTICLES__KOMMENT,
+            TABLE_ARTICLES__KOMMENT_A,
+            TABLE_ARTICLES__KOMMENT_B,
+            TABLE_ARTICLES__KOMMENT_C,
             TABLE_ARTICLES__KATEGORI
         };
         //
@@ -226,6 +230,8 @@ public class ArticlesA extends Basic_Buh {
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_B);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_C);
 //            HelpA.hideColumnByName(table, TABLE_ARTICLES__LAGER);
         }
         //
@@ -242,6 +248,8 @@ public class ArticlesA extends Basic_Buh {
             //            map.get(DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS),
             //            map.get(DB.BUH_FAKTURA_ARTIKEL___LAGER),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT),
+            map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT_B),
+            map.get(DB.BUH_FAKTURA_ARTIKEL___KOMMENT_C),
             map.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI)
         };
         //
@@ -374,8 +382,11 @@ public class ArticlesA extends Basic_Buh {
         //
 //        RowDataInvert lager = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___LAGER, "LAGER", "", false, true, false);
         //
-        RowDataInvert komment = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT, "KOMMENT", "", true, true, false);
+        RowDataInvert komment = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT_A, "", true, true, false);
         //
+        RowDataInvert komment_b = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT_B, TABLE_ARTICLES__KOMMENT_B, "", true, true, false);
+        //
+        RowDataInvert komment_c = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT_C, TABLE_ARTICLES__KOMMENT_C, "", true, true, false);
         //
         RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_AND_ARTICLE__KATEGORI, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
         kund_kategori.enableFixedValues();
@@ -388,6 +399,8 @@ public class ArticlesA extends Basic_Buh {
             //            inkopspris,
             //            lager,
             komment,
+            komment_b,
+            komment_c,
             kund_kategori
         };
         //
@@ -418,8 +431,14 @@ public class ArticlesA extends Basic_Buh {
 //        String lager_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__LAGER);
 //        RowDataInvert lager = new RowDataInvertB(lager_, DB.BUH_FAKTURA_ARTIKEL___LAGER, TABLE_ARTICLES__LAGER, "", true, true, false);
         //
-        String komment_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT);
-        RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT, "", true, true, false);
+        String komment_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT_A);
+        RowDataInvert komment = new RowDataInvertB(komment_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT, TABLE_ARTICLES__KOMMENT_A, "", true, true, false);
+        //
+        String komment_b_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT_B);
+        RowDataInvert komment_b = new RowDataInvertB(komment_b_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT_B, TABLE_ARTICLES__KOMMENT_B, "", true, true, false);
+        //
+        String komment_c_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KOMMENT_C);
+        RowDataInvert komment_c = new RowDataInvertB(komment_c_, DB.BUH_FAKTURA_ARTIKEL___KOMMENT_C, TABLE_ARTICLES__KOMMENT_C, "", true, true, false);
         //
 //        String kategori_ = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI);
 //        RowDataInvert kategori = new RowDataInvertB(kategori_, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
@@ -440,6 +459,8 @@ public class ArticlesA extends Basic_Buh {
             //            inkopspris,
             //            lager,
             komment,
+            komment_b,
+            komment_c,
             kategori
         };
         //
@@ -473,6 +494,12 @@ public class ArticlesA extends Basic_Buh {
             if (Validator.validateMaxInputLength(jli, 50)) {
                 Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__ARTNR);
             }
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___KOMMENT)
+                || col_name.equals(DB.BUH_FAKTURA_ARTIKEL___KOMMENT_B)
+                || col_name.equals(DB.BUH_FAKTURA_ARTIKEL___KOMMENT_C)) {
+            //
+            Validator.validateMaxInputLength(jli, 200);
             //
         }
         //

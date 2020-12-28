@@ -143,7 +143,8 @@ For "STRING":
 so you must have true for the "isString" parameter the one marked with "*true*:
 new RowDataInvertB(send_type_, DB.BUH_FAKTURA_SEND__SEND_TYPE, TABLE_SEND__SEND_TYPE, "", *true*, true, false);
 
-2. You must use the "Validator.class" on that field -> it set's "setSaveEmptyStringValue()" on the element
+2. You must use the "Validator.class" on that field -> it set's "setSaveEmptyStringValue()" on the element ->
+this is set from the "Validator -> setValidated(JLinkInvert jli)"
 
 For "FLOAT":
 Since [2020-10-21] same technique is used for FLOAT.
