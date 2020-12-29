@@ -475,6 +475,7 @@ public abstract class Invoice_ extends Basic_Buh {
     private double getRutAvdragTotal() {
         //[#RUTROT#]
         String json = bim.getSELECT_fakturaId();
+//        String json = bim.getSELECT_copied_from_faktura_id(); [#KREDIT-RUT#]
         //
         try {
             //

@@ -1,0 +1,21 @@
+[KREDITERA EN RUT FAKTURA]
+
+Search for: [#KREDIT-RUT#]
+
+Iam not able to "kredit" a rut invoice because even if i copy/set -> "buh_faktura.rutavdrag=true"
+there is no data from "buh_faktura_rut" table connected to my new kredit invoice.
+
+Solution:
+
+- Introduce new column in "buh_faktura" named "copied_from_id"'
+- When added uncomment: "faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId)" in:
+InvoiceB.copy(boolean isKreditFaktura) -> processFakturaMapCopy(...)
+
+- Then goto Invoice_.class -> private double getRutAvdragTotal()
+
+- You will also need to add and hide the "copied_from_id" to the mainFaktura JTable
+
+OBS! Will need this:
+This phpfunc is used to fill the main faktura table: DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND
+
+Main work to be done here: InvoiceB -> protected void copy(boolean isKreditFaktura) -> line:797

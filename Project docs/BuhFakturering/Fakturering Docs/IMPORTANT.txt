@@ -94,7 +94,7 @@ ________________________________________________________________________________
 Search for: replaceAll("%", "")
 
 ________________________________________________________________________________________________________
-[INSERT JAVA->PHP ESSENTIALS][2020-10-15]
+[INSERT JAVA -> PHP ESSENTIALS -> EMPTY VALUES][2020-10-15]
 
 It's a problem if inserting when some values are empty, this applies mainly for the prepared statements.
 Consider following: INSERT INTO buh_f_artikel (fakturaId, artikelId, antal, enhet, pris, rabatt, rabatt_kr, moms_sats) VALUES (?, ?, ?, ?, ?, ?, ?, ?)

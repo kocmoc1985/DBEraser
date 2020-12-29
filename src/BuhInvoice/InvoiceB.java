@@ -794,15 +794,16 @@ public class InvoiceB extends Basic_Buh {
 
     protected void copy(boolean isKreditFaktura) {
         //
+        String fakturaId = bim.getFakturaId();
+        //
         HashMap<String, String> faktura_data_map = getOneFakturaData();
         //
         faktura_data_map = JSon.removeEntriesWhereValueNullOrEmpty(faktura_data_map);
         //
         String fakturaNrCopy = bim.getFakturaNr();
         //
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
-        //
-        String fakturaId = bim.getFakturaId();
+        // OBS! OBS! OBS! OBS! OBS!*****
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura,fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
         //
         String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
@@ -894,7 +895,7 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura) {
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura,String fakturaId) {
         //
         String komment;
         //
@@ -917,10 +918,11 @@ public class InvoiceB extends Basic_Buh {
             faktura_data_map.put(DB.BUH_FAKTURA__BETALD, "0");
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy;
             //
-        } else {
+        } else { // Normal faktura
             komment = "Kopierad från fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);
             faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
+            faktura_data_map.remove(DB.BUH_FAKTURA__RUT); // I have decided to not allow to copy the "RUT" related data when a common invoice is copied
             faktura_data_map = setForfalloDatumCopy(faktura_data_map);
         }
         //
@@ -930,10 +932,10 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
+//        faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
         //
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
-        faktura_data_map.remove(DB.BUH_FAKTURA__RUT);
         faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
         //
     }
