@@ -15,10 +15,13 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 -------------- 
 ------------------------<URGENT>------------------------
 
-Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
+Add to Linas reklam document: Särskillt anpassad för att fakturera privat personer
 
-Kreditera en RUT faktura fungerar ej:
+Make RUT option only available when choosing a customer which is an "physisk person"
 
+It's not possible to edit rut data for an invoice and it's not even possible to replace existing RUT data when editing the invoice.
+I think it makes sence to make ready the current version - without editing possibility. The editing possibility shall be made 
+availble in the next version.
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
 
@@ -29,6 +32,8 @@ Make adoptation for make invoices for private persons, see variable "IS_PERSON__
 Make additional notes to "buh_faktura_artikel" as Ivan suposed [DONE]
 
 Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16]
+
+Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
 ------------------------</URGENT>------------------------
 
 Additional comment fields as suposed by Ivan..!?
