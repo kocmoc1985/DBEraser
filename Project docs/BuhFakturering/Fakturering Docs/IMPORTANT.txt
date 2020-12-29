@@ -1,4 +1,55 @@
 ________________________________________________________________________________________________________
+[BASIC OPERATIONS EXAMPLES, JAVA <-> PHP: INSERT, SELECT..]
+
+[INSERT EXAMPLE:]
+
+private static void insert() {
+	//
+	HashMap<String, String> map = new HashMap<>(); // ALT 1 -> No TableInvert involved
+	//
+	HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_2, DB.START_COLUMN); // ALT 2 -> TableInvert INVOLVED
+	//
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, "Andrei");
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, "Brassas");
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__PNR, "850131-0777");
+	map.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, "1799");
+	//
+	String json = JSon.hashMapToJSON(map);
+	//
+	try {
+		executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json);
+	} catch (Exception ex) {
+		Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	//
+}
+
+[SELECT EXAMPLE:]
+
+private static void buh_faktura_rut__get__rut_person() {
+	//
+	String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_FAKTURA__ID__, "339");
+	//
+	try {
+		//
+		String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+				DB.PHP_FUNC_PARAM_GET_RUT_PERSON, json);
+		//
+		ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+		//
+		for (HashMap<String, String> val : entries) {
+			System.out.println("out: " + val);
+		}
+		//
+	} catch (Exception ex) {
+		Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	//
+}
+
+________________________________________________________________________________________________________
 [LOG NOT ALWAYS LOADING WHEN PRESSING "PRINT" BTN][2020-12-29]
 
 It seems to be solved, see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
@@ -52,6 +103,11 @@ so if you have empty values it will cause problems as the ammount of values will
 The solution is following:
 Use: JSon.class-> removeEntriesWhereValueNullOrEmpty(HashMap<String, String> map) 
 
+Where it's used by [2020-12-29]:
+It's beeing used for "Copy Invoice" purpose only and namely:
+-> InvoiceB.copy_b__faktura_articles_to_db(ArrayList<HashMap<String, String>> faktura_articles, String fakturaId)
+and
+-> InvoiceB.copy(boolean isKreditFaktura)
 ________________________________________________________________________________________________________
 [THREADS - THREDIFYING THE CODE][2020-10-05]
 
@@ -137,7 +193,7 @@ OBS! Nothing on PHP side, 1000% SURE!
 
 "artikelId";"4","kundId";"1","pris";"27.9","namn";"Dörrhandtag","komment";"Färg, guld","artikel_kategori";"A"
 ________________________________________________________________________________________________________
-[SAVING EMPTY VALUES] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][2020-09-18]
+[SAVING EMPTY VALUES] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][2020-09-18] ****************************************************************OBS!********************************
 
 See "Validator.class" -> "setValidated(JLinkInvert jli)" -> "jtf.setSaveEmptyStringValue();"
 Also very very important -> "JTextFieldInvert.class" -> "setSaveEmptyStringValue()" -> pay attention at "rdi.isString()"

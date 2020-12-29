@@ -79,79 +79,12 @@ public class HelpBuh {
         //
     }
 
-    private static void buh_faktura_rut__get__rut_person() {
-        //
-        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_FAKTURA__ID__, "339");
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_RUT_PERSON, json);
-            //
-            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            for (HashMap<String, String> val : entries) {
-                System.out.println("out: " + val);
-            }
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
-    private static void buh_faktura_rut_person__test_insert(String rutId) {
-        //
-        HashMap<String, String> map = new HashMap<>();
-        //
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__RUTID, rutId);
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, "Vladimir");
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, "Vladimirovich");
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__PNR, "850131-0737");
-        map.put(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION, "1799");
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        try {
-            //
-            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private static void buh_faktura_rut__test_insert() {
-        //
-        HashMap<String, String> map = new HashMap<>();
-        //BUH_FAKTURA_RUT__DATE_CREATED
-        map.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
-        map.put(DB.BUH_FAKTURA_RUT__FAKTURAID, "339"); // Trell faktura: 10114
-        map.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "1200");
-        map.put(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, "Sonarp 3:11");
-        map.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        try {
-            //
-            String rutId = executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
-            //
-            System.out.println("rutId of inserted entry: " + rutId);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
         //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
+//        GP_BUH.USER = "ask@mixcont.com";
+//        GP_BUH.PASS = "mixcont4765";
         //
 
 //        createAccountPHP_existing_customer("1");
@@ -168,7 +101,7 @@ public class HelpBuh {
         //
 //        buh_faktura_rut_person__test_insert("1");
         //
-        buh_faktura_rut__get__rut_person();
+//        buh_faktura_rut__get__rut_person();
     }
 
     public static void update(String json) {
