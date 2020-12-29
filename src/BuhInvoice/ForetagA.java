@@ -25,7 +25,7 @@ public class ForetagA extends CustomerAForetagA_ {
 
     protected static final String TABLE__ID = "KUND ID";
     private static final String TABLE__NAMN = "NAMN";
-//    private static final String TABLE__ORGNR = "ORGNR";
+//    private static final String TABLE__COL_ORGNR__PNR = "ORGNR";
    
     private static final String TABLE__VATNR = "VATNR";
     private static final String TABLE__EPOST = "E-POST";
@@ -55,7 +55,7 @@ public class ForetagA extends CustomerAForetagA_ {
         String[] headers = {
             TABLE__ID,
             TABLE__NAMN,
-            TABLE__ORGNR,
+            TABLE__COL_ORGNR__PNR,
             TABLE__VATNR,
             TABLE__EPOST,
             TABLE__BANK_GIRO,
@@ -144,8 +144,8 @@ public class ForetagA extends CustomerAForetagA_ {
         String namn_ = HelpA.getValueSelectedRow(table, TABLE__NAMN);
         RowDataInvert namn = new RowDataInvertB(namn_, DB.BUH_KUND__NAMN, TABLE__NAMN, "", true, true, true);
         //
-        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__ORGNR);
-        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_KUND__ORGNR, TABLE__ORGNR, "", true, true, false);
+        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__COL_ORGNR__PNR);
+        RowDataInvert orgnr = new RowDataInvertB(orgnr_, DB.BUH_KUND__ORGNR, TABLE__COL_ORGNR__PNR, "", true, true, false);
         //
         String vatnr_ = HelpA.getValueSelectedRow(table, TABLE__VATNR);
         RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_KUND__VATNR, TABLE__VATNR, "", true, true, false);

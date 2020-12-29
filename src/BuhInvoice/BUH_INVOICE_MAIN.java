@@ -2982,6 +2982,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             customersA.showTableInvert_4();
             customersA.refreshTableInvert(customersA.TABLE_INVERT_4);
         } else {
+            //
             customersA.showTableInvert_2();
             customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
             //

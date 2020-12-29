@@ -35,7 +35,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     //
     protected boolean CURRENT_OPERATION_INSERT = false;
     //
-    protected static String TABLE__ORGNR = "ORGNR";
+    protected static String TABLE__COL_ORGNR__PNR = "";
     //
     protected static final String TABLE_FAKTURA_KUND_ADDR__ID = "ID";
     protected static final String TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID = "FKUNDID";
@@ -51,19 +51,10 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
     //
     protected boolean IS_PERSON__CUSTOMERS_A = false;
+
     //
     public CustomerAForetagA_(BUH_INVOICE_MAIN bim) {
         super(bim);
-    }
-    
-    private void defineOrgnrPnr(){
-        //
-        if(this instanceof CustomersA_){
-            
-        }else if(this instanceof ForetagA){
-            
-        }
-        //
     }
 
     protected abstract void SET_CURRENT_OPERATION_INSERT(boolean insert);
@@ -79,9 +70,6 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             hideAdressTable();
         }
         //
-        fillJTable_header_main();
-        fillJTable_header_address();
-        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -93,8 +81,27 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
     }
 
+    private void defineOrgnrOrPnr() {
+        //
+        if (this instanceof CustomersA_ && IS_PERSON__CUSTOMERS_A) {
+            TABLE__COL_ORGNR__PNR = "PERSONNUMMER";
+        } else {
+            TABLE__COL_ORGNR__PNR = "ORGNR";
+        }
+        //
+    }
+
     protected void refresh() {
         //#THREAD#
+        //===================================
+        //  Important block of code, change wit extreem caution [2020-12-29]
+        defineOrgnrOrPnr();
+        //
+        fillJTable_header_main();
+        hideColumnsMainTable();
+        fillJTable_header_address();
+        //====================================
+        //
         Thread x = new Thread(() -> {
             //
             fillMainTable();
@@ -248,9 +255,9 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         //
         if (this instanceof CustomersA_) {
             //
-            if(IS_PERSON__CUSTOMERS_A){
+            if (IS_PERSON__CUSTOMERS_A) {
                 phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA__PERSON;
-            }else{
+            } else {
                 phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA;
             }
             //
@@ -275,7 +282,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        hideColumnsMainTable();
+        
         //
     }
 
@@ -435,7 +442,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         RowDataInvert[] rows = {
             addr_a,
             addr_b,
-//            visit_addr,
+            //            visit_addr,
             zip,
             ort,
             land,
@@ -464,11 +471,10 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
 //            //
 //        }
 //    }
-
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
-        super.mouseClickedForward(me, column, row, tableName, ti); 
+        super.mouseClickedForward(me, column, row, tableName, ti);
         //
         JLinkInvert jli = (JLinkInvert) me.getSource();
         //
@@ -480,8 +486,6 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             //
         }
     }
-    
-    
 
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
@@ -533,7 +537,6 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
         }
         //
     }
-
 
     protected void vatnrAuto(JLinkInvert jli, TableInvert ti, String param) {
         //

@@ -34,12 +34,11 @@ public class CustomersA_ extends CustomerAForetagA_ {
     private static final String TABLE_FAKTURA_KUNDER__KUND_ID = "KUND ID";
     private static final String TABLE_FAKTURA_KUNDER__KUNDNR = "KUNDNR";
     private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
-//    private static final String TABLE_FAKTURA_KUNDER__ORGNR = "ORGNR";
     private static final String TABLE_FAKTURA_KUNDER__VATNR = "VATNR";
     public static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
     //
-    private static final String TABLE_INVERT__PERSONNUMMER = "PERSONNUMMER";
+//    private static final String TABLE_INVERT__PERSONNUMMER = "PERSONNUMMER";
     //
     public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -253,7 +252,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
             TABLE_FAKTURA_KUNDER__KUND_ID,
             TABLE_FAKTURA_KUNDER__KUND_NAMN,
             TABLE_FAKTURA_KUNDER__KUNDNR,
-            TABLE__ORGNR,
+            TABLE__COL_ORGNR__PNR,
             TABLE_FAKTURA_KUNDER__VATNR,
             TABLE_FAKTURA_KUNDER__EPOST,
             TABLE_FAKTURA_KUNDER__KATEGORI
@@ -359,11 +358,7 @@ public class CustomersA_ extends CustomerAForetagA_ {
         RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
         RowDataInvert orgnr;
-        if(IS_PERSON__CUSTOMERS_A){
-            orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE_INVERT__PERSONNUMMER, "", true, true, false);
-        }else{
-            orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE__ORGNR, "", true, true, false);
-        }
+        orgnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___ORGNR, TABLE__COL_ORGNR__PNR, "", true, true, false);
         //
         RowDataInvert vatnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
         //
@@ -406,13 +401,9 @@ public class CustomersA_ extends CustomerAForetagA_ {
         String kundnamn_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUND_NAMN);
         RowDataInvert kundnamn = new RowDataInvertB(kundnamn_, DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
-        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__ORGNR);
+        String orgnr_ = HelpA.getValueSelectedRow(table, TABLE__COL_ORGNR__PNR);
         RowDataInvert orgnr;
-        if(IS_PERSON__CUSTOMERS_A){
-            orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE_INVERT__PERSONNUMMER, "", true, true, false);
-        }else{
-            orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE__ORGNR, "", true, true, false);
-        }
+        orgnr = new RowDataInvertB(orgnr_, DB.BUH_FAKTURA_KUND___ORGNR, TABLE__COL_ORGNR__PNR, "", true, true, false);
         //
         String vatnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__VATNR);
         RowDataInvert vatnr = new RowDataInvertB(vatnr_, DB.BUH_FAKTURA_KUND___VATNR, TABLE_FAKTURA_KUNDER__VATNR, "", true, true, false);
