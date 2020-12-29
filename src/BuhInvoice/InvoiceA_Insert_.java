@@ -283,8 +283,6 @@ public class InvoiceA_Insert_ extends Invoice_ {
         rut.enableFixedValuesAdvanced();
         rut.setUneditable();
         //
-        String faktura_kund_id = getValueTableInvert(DB.BUH_FAKTURA_KUND___NAMN);
-        //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,
             //            moms,

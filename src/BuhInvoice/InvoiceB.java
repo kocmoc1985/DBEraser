@@ -325,6 +325,7 @@ public class InvoiceB extends Basic_Buh {
     private void showInfoIcons() {
         //
         bim.jLabel_info__forfallen.setVisible(false);
+        bim.jLabel_info_is_person.setVisible(false);
         bim.jLabel_info_rut.setVisible(false);
         bim.jLabel_info__printed.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
@@ -334,6 +335,7 @@ public class InvoiceB extends Basic_Buh {
         bim.jLabel_info__kontant_faktura.setVisible(false);
         //
         boolean forfallen = bim.isForfallen();
+        boolean is_person = bim.isPerson();
         boolean rut = bim.isRUT();
         boolean makulerad = bim.isMakulerad();
         boolean skickad = bim.isSent();
@@ -344,6 +346,9 @@ public class InvoiceB extends Basic_Buh {
         //
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
+        }
+        if(is_person){
+            bim.jLabel_info_is_person.setVisible(true);
         }
         if (rut) {
             bim.jLabel_info_rut.setVisible(true);
