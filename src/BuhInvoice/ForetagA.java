@@ -25,7 +25,7 @@ public class ForetagA extends CustomerAForetagA_ {
 
     protected static final String TABLE__ID = "KUND ID";
     private static final String TABLE__NAMN = "NAMN";
-    private static final String TABLE__ORGNR = "ORGNR";
+//    private static final String TABLE__ORGNR = "ORGNR";
    
     private static final String TABLE__VATNR = "VATNR";
     private static final String TABLE__EPOST = "E-POST";

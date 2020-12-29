@@ -35,6 +35,8 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     //
     protected boolean CURRENT_OPERATION_INSERT = false;
     //
+    protected static String TABLE__ORGNR = "ORGNR";
+    //
     protected static final String TABLE_FAKTURA_KUND_ADDR__ID = "ID";
     protected static final String TABLE_FAKTURA_KUND_ADDR__FAKTURAKUND_ID = "FKUNDID";
     protected static final String TABLE_FAKTURA_KUND_ADDR__IS_PRIMARY = "PRIMÄR";
@@ -52,6 +54,16 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     //
     public CustomerAForetagA_(BUH_INVOICE_MAIN bim) {
         super(bim);
+    }
+    
+    private void defineOrgnrPnr(){
+        //
+        if(this instanceof CustomersA_){
+            
+        }else if(this instanceof ForetagA){
+            
+        }
+        //
     }
 
     protected abstract void SET_CURRENT_OPERATION_INSERT(boolean insert);
