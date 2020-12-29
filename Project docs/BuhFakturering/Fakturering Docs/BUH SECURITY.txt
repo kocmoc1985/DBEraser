@@ -60,7 +60,7 @@ See: "_http_buh.php -> deleteCustomer_b()"
 
 OBS! This function requires that the username and pass used for login are provided as an additional secutiry layer
 
-[TEMP NOTES]:
+[OLD NOTES]:
 At the moment [2020-11-16] the account/kund can be only removed manually by the HttpBuh.class -> "deleteCustomer_a()" --> This method is infact only for development and should be removed 
 This method is using "admin password" which is stored hard coded on the website ("Vxuw6lpMzF").
 
