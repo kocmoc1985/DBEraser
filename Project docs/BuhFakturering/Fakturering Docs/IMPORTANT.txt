@@ -1,4 +1,11 @@
 ________________________________________________________________________________________________________
+[LOG NOT ALWAYS LOADING WHEN PRESSING "PRINT" BTN][2020-12-29]
+
+It seems to be solved, see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
+
+I have tried approx. 15 times in row.
+
+________________________________________________________________________________________________________
 [HIDE COLUMNS ARTICLES-TABLE][2020-12-27]
 
 Search for: [#HIDE-COLS-ARTICLES-TABLE#]

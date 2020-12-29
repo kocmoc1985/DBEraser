@@ -15,6 +15,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 -------------- 
 ------------------------<URGENT>------------------------
 
+Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
+
 Kreditera en RUT faktura fungerar ej
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
