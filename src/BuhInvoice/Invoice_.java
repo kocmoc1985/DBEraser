@@ -1201,9 +1201,6 @@ public abstract class Invoice_ extends Basic_Buh {
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
             //[#SHOW-HIDE-RUT--IS-PESRON#]
-//            TableInvert table = (TableInvert) TABLE_INVERT_3;
-//            TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__RUT);
-//            RowDataInvert rdi_rut = tri.getRowConfig();
             hideRutOptionIfNotPerson_b();
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
