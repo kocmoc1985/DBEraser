@@ -2702,7 +2702,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     public static javax.swing.JLabel jLabel17_new__version;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel5_separator;
     private javax.swing.JLabel jLabel6;

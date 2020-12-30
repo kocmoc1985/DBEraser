@@ -434,6 +434,13 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     private void displayTotals() {
+        //
+        if(bim.isKreditFaktura()){
+            bim.jLabel4.setText(LANG.ATT_ERHALLA);
+        }else{
+            bim.jLabel4.setText(LANG.ATT_BETALA);
+        }
+        //
         BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
         BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
         BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
