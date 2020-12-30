@@ -336,6 +336,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
+	
+	protected String getCopiedFromFakturaId() {
+        return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
+    }
 
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
@@ -499,6 +503,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
+    }
+	
+	protected String getSELECT_copied_from_faktura_id() {
+        return getSELECT(DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
     }
 
     protected String getSELECT_kundId() {

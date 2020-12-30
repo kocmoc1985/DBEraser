@@ -63,7 +63,8 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__KOMMENT_$ = "KOMMENT"; // OBS! This field will be used for diff purposes as for example like in case with kredit faktura when i save the invoice which was "krediterat"
     public static String TABLE_ALL_INVOICES__CHANGED_BY = "CHANGED BY";
     public static String TABLE_ALL_INVOICES__DATE_CREATED = "DATE CREATED";
-    public static String TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON = "IS PERSON";
+    public static String TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON = "IS PERSON"; // hidden
+    public static String TABLE_ALL_INVOICES__COPIED_FROM_ID = "COPIED FROM ID"; // hidden //[#KREDIT-RUT#]
     //
     //
     public static String TABLE_INVOICE_ARTIKLES__FAKTURA_ID = "FAKTURA ID";
@@ -275,7 +276,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__KOMMENT_$,
             TABLE_ALL_INVOICES__CHANGED_BY,
             TABLE_ALL_INVOICES__DATE_CREATED,
-            TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON
+            TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON,
+            TABLE_ALL_INVOICES__COPIED_FROM_ID
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -589,6 +591,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RUT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
         }
         //
     }
@@ -630,7 +633,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__KOMMENT),
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
             map.get(DB.BUH_FAKTURA__DATE_CREATED__),
-            map.get(DB.BUH_FAKTURA_KUND___IS_PERSON)
+            map.get(DB.BUH_FAKTURA_KUND___IS_PERSON),
+            map.get(DB.BUH_FAKTURA__COPIED_FROM_ID)
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -940,7 +944,7 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
-//        faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
+        faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
         //
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);

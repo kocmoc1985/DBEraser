@@ -474,8 +474,15 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private double getRutAvdragTotal() {
         //[#RUTROT#]
-        String json = bim.getSELECT_fakturaId();
-//        String json = bim.getSELECT_copied_from_faktura_id(); [#KREDIT-RUT#]
+        //
+        String json;
+        //
+        if (bim.getCopiedFromFakturaId().equals("0") == false) {
+            // If comes here it means the faktura is copied
+            json = bim.getSELECT_copied_from_faktura_id(); // [#KREDIT-RUT#]
+        } else {
+            json = bim.getSELECT_fakturaId();
+        }
         //
         try {
             //
@@ -511,7 +518,7 @@ public abstract class Invoice_ extends Basic_Buh {
         SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
         //
         //[#RUTROT#]
-        if (bim.isRUT() && CURRENT_OPERATION_INSERT == false &&  RUT_AVDRAG_TOTAL == 0) {
+        if (bim.isRUT() && CURRENT_OPERATION_INSERT == false && RUT_AVDRAG_TOTAL == 0) {
             RUT_AVDRAG_TOTAL = getRutAvdragTotal();
         }
         //
@@ -1203,20 +1210,20 @@ public abstract class Invoice_ extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA__RUT)) {
             //
             String rutavdrag = jli.getValue();
-            JComboBox box = (JComboBox)jli;
+            JComboBox box = (JComboBox) jli;
             //
             if (ie.getStateChange() != 1) {
                 return;
             }
             //
-            if(rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable())){
+            if (rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable())) {
                 HelpA.showNotification(LANG.MSG_25);
                 resetRutComboBox(box);
                 return;
             }
             //
-            if(rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable()) == false){
-                if(HelpA.confirm(LANG.MSG_25_1) == false){
+            if (rutavdrag.equals("1") && HelpA.isEmtyJTable(getArticlesTable()) == false) {
+                if (HelpA.confirm(LANG.MSG_25_1) == false) {
                     resetRutComboBox(box);
                     return;
                 }
@@ -1239,8 +1246,8 @@ public abstract class Invoice_ extends Basic_Buh {
         }
 
     }
-    
-    private void resetRutComboBox(JComboBox box){
+
+    private void resetRutComboBox(JComboBox box) {
         box.setSelectedItem(new HelpA.ComboBoxObject("Nej", "0", "", ""));
     }
 
