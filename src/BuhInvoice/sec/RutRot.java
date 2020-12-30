@@ -60,6 +60,14 @@ public class RutRot extends Basic_Buh {
     public HashMap<String, String> getValuesTableInvert() {
         return tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
     }
+    
+    public String getFastighetsBeteckning(){
+        return getValueTableInvert(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING,TABLE_INVERT_2);
+    }
+    
+    public void setFastighetsBeteckning(String value){
+        setValueTableInvert(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, TABLE_INVERT_2, value);
+    }
 
     public void sendRutDataToDB(String fakturaId) {
         //[#RUTROT#]

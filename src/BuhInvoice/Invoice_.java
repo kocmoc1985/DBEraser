@@ -139,11 +139,14 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             } else {
                 //
-//                if (bim.isMakulerad()) {
-//                    HelpA.showNotification_separate_thread(LANG.MSG_9);
-//                }
-                //
-                if (bim.isKreditFaktura()) {
+                if (bim.isRUT() && bim.isKreditFaktura()) {
+                    //[#RUTROT#]
+                    bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3);
+                    //
+                    GP_BUH.enableDisableButtons(bim.jPanel12, false);
+//                    GP_BUH.setEnabled(bim.jButton_confirm_insert_update, false);
+                    //
+                } else if (bim.isKreditFaktura()) {
                     // OBS! KREDIT FAKTURA [2020-09-15]  
                     String krediteradFakturaNr = bim.getKomment_$();
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_3(krediteradFakturaNr));

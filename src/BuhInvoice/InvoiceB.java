@@ -349,7 +349,7 @@ public class InvoiceB extends Basic_Buh {
         if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
         }
-        if(is_person){
+        if (is_person) {
             bim.jLabel_info_is_person.setVisible(true);
         }
         if (rut) {
@@ -815,7 +815,7 @@ public class InvoiceB extends Basic_Buh {
         String fakturaNrCopy = bim.getFakturaNr();
         //
         // OBS! OBS! OBS! OBS! OBS!*****
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura,fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura, fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
         //
         String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
@@ -907,7 +907,7 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura,String fakturaId) {
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura, String fakturaId) {
         //
         String komment;
         //
@@ -1016,7 +1016,11 @@ public class InvoiceB extends Basic_Buh {
         if (kundId) {
             json = bim.getSELECT_kundId();
         } else {
-            json = bim.getSELECT_fakturaId();
+            if (bim.getCopiedFromFakturaId().equals("0") == false) {
+                json = bim.getSELECT_copied_from_faktura_id();
+            } else {
+                json = bim.getSELECT_fakturaId();
+            }
         }
         //
         try {
@@ -1046,7 +1050,11 @@ public class InvoiceB extends Basic_Buh {
         if (kundId) {
             json = bim.getSELECT_kundId();
         } else {
-            json = bim.getSELECT_fakturaId();
+            if (bim.getCopiedFromFakturaId().equals("0") == false) {
+                json = bim.getSELECT_copied_from_faktura_id();
+            } else {
+                json = bim.getSELECT_fakturaId();
+            }
         }
         //
         try {

@@ -17,6 +17,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 Add to Linas reklam document: Särskillt anpassad för att fakturera privat personer
 
+"Att Betala" JLabel ska visa "Att Erhålla" vid en Kreditfaktura 
+
 Make RUT option only available when choosing a customer which is an "physisk person":
 Dont go the way when you add addtional "is_person" value to the jcombobox. Do instead like:
 you aquire the id from the combobox and then make a http request to get if it "is_person" or not.

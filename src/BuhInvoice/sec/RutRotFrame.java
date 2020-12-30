@@ -79,8 +79,13 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     public void makeVisible() {
         this.setVisible(true);
+        //
+        String fastighetBetackning = rut.getFastighetsBeteckning(); // Needed otherwise "fastighetBetackning" will not be shown
+        //
         this.rut.showTableInvert();
         this.rut.showTableInvert_2();
+        //
+        rut.setFastighetsBeteckning(fastighetBetackning);
     }
 
     private void hideCols(JTable table) {

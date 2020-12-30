@@ -1,70 +1,46 @@
 
 [DETAILS]
 
-SEARCH FOR: [#RUTROT#] TAG
+SEARCH FOR: [#RUTROT#] TAG & [#KREDIT-RUT#]
 
-________
+________________________________________________________________________________________________________________________________________________
 [ESSENTIALS]
 
 1. RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
 2. Counting of "AVDRAG TOTAL" is done in RutRotFrame.class uppon editing of the JTables. The "AVDRAG TOTAL" is finally submitted when "KLART" is klicked. OBS! Not recorded to DB.
-________
+________________________________________________________________________________________________________________________________________________
 
-SELECT * from buh_faktura_rut WHERE buh_faktura_rut.fakturaId=339 
+[CREATE RUT FAKTURA DETAILS]:
 
-SELECT buh_faktura_rut.skattereduktion,buh_faktura_rut_person.pnr from buh_faktura_rut 
-INNER JOIN buh_faktura_rut_person ON buh_faktura_rut.rutId = buh_faktura_rut_person.rutId WHERE buh_faktura_rut.fakturaId=348 
+- RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
 
-_____
+- You can edit the "rut data" but ONLY before the data was submited.
 
+- If you will try to edit the "rut data" after submitting you will simply overwrite the previous data ---- OR ?? ***
 
-IF A KUND IS SAVED IS PRIVAT PERSON HANNS DATA SKA SÄTTAS IN AUTOMATISKT NÄR RUT SKAPAS
+[KOPIERA RUT FAKTURA DETAILS]:
 
-COPY INVOICE WITH RUT -> Copies the faktura but without copying of RUT data. Tested on [2020-12-21]
+- You can copy a "rut faktura" but it will not copy the "rut data"
 
-KREDIT FAKTURA WHICH IS RUT -> Will be a problem!!
-
-EDIT RUT DATA
-
-_____
-
-[ALREADY IMPLEMENTED]
-1. DB.BUH_FAKTURA__RUT / DB colname: "rutavdrag" (table: buh_faktura) -> is implemented and is beeing saved uppon changing
+- After the copy is made the "total summ" fot the invoice is in fact wrong because of the reason stated above. But when 
+you click edit - the calculation is correct.
 
 
+[KREDITERA RUT FAKTURA DETAILS]:
 
-[TO IMPLEMENT]
+Läs först nedan under [#RUT-KREDIT#]
 
-- Create Table "buh_faktura_rut" at PHP [DONE]
-- Create Table "buh_faktura_rut_person" at PHP [DONE]
+- Det går att göra en kreditfaktura på en rut faktura.
 
-- It should be only possible to have ONE "buh_faktura_rut" entry per faktura -> 1:1 relation -> think how to solve this
-
-- Add new tables to the procedure of FAKTURA DELETION
-- Add new tables to the procedure of ENTIRE DELETION -> shall be deleted in a propper sequence as you remember
+- Det går inte att korrigera artiklar (jag blockerar knappar) och rut data för en kreditfaktura som avser rut
 
 
-[ADDING RUT-ENTRY TO DB]
-
-1. Add an entry to "buh_faktura_rut" with return of "rutId" -> It's now working [2020-12-17]
-2. Add an entry to "buh_faktura_rut_person" with using the returned "rutId" -> as it's done in "_http_buh.php -> insert_buh_faktura_return_fakturaId()"
-
-3.  
-
+________________________________________________________________________________________________________________________________________________
 
 [IMPORTANT NOTES]
 
 Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
 
-
-
-[CHANGES TO HTML-FAKTURA]
-- HTML-Faktura -> visa: pnr / namn / skatteavdrag summa -----> OBS! Är obligatoriskt
-
-- HTML-Faktura -> visa "speciell information" -> den texten är tagen från SPCS Visma exempel faktura, som finns i mappen:
-"Obs! Denna faktura avser husarbete för fastighet Vitsippa 15.
-Enligt dig som köpare finns det möjlighet till preliminär skattereduktion på 2625,00 kr.
-För att vi ska kunna göra ansökan till Skatteverket, ska du betala 18340,00 kr.
-Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare."
-
-- HTML-Faktura -> Ska visa avdraget/avdragsumman på följande sätt: "Avgår skattereduktion 2 625,00"
+Kreditera faktura med rot-/rutavdrag***[#KREDIT-RUT#][#RUT-KREDIT#]
+Om du har skapat en felaktig faktura med rot-/rutavdrag och behöver korrigera den måste du kreditera hela fakturan och skapa en ny.
+Tänk på att du måste korrigera uppgifterna hos Skatteverket om du har ansökt om rot-/rutavdrag för fakturan.

@@ -114,7 +114,9 @@ public class LANG {
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_2 = "BEARBETA FAKTURA";
     public static String LBL_MSG_2_1 = "BEARBETA KONTANTFAKTURA";
-    public static String LBL_MSG_2_2 = "FAKTURA BETALD - REDIGERING EJ MÖJLIG";
+    public static String LBL_MSG_2_2 = "FAKTURA BETALD - REDIGERING ÄR INTE TILLÅTET";
+    public static String LBL_MSG_2_3 = "REDIGERING AV ARTIKLAR ÄR INTE TILLÅTET";
+    
     public static String LBL_MSG_3 = "SKAPA NY KUND";
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
