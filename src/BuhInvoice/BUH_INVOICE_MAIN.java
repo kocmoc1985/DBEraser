@@ -336,8 +336,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
-	
-	protected String getCopiedFromFakturaId() {
+
+    protected String getCopiedFromFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
 
@@ -447,8 +447,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-    
-     protected boolean isPerson() {
+
+    protected boolean isPerson() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
         //
@@ -458,9 +458,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-	
-	protected boolean isPerson(String fakturaKundId){
-	   //
+
+    protected boolean isPerson(String fakturaKundId) {
+        //
         String json = getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
         //
         try {
@@ -481,8 +481,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
         return false;
-	}
-	
+    }
 
     protected boolean isKreditFaktura() {
         //
@@ -529,8 +528,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
-	
-	protected String getSELECT_copied_from_faktura_id() {
+
+    protected String getSELECT_copied_from_faktura_id() {
         return getSELECT(DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
     }
 
@@ -2609,10 +2608,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_dont_save_settingsActionPerformed
 
     private void jCheckBox__personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox__personActionPerformed
-        if(jCheckBox__person.isSelected()){
+        if (jCheckBox__person.isSelected()) {
             customersA.IS_PERSON__CUSTOMERS_A = true;
             customersA.refresh();
-        }else{
+        } else {
             customersA.IS_PERSON__CUSTOMERS_A = false;
             customersA.refresh();
         }
