@@ -7,13 +7,9 @@ package BuhInvoice;
 
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
-import BuhInvoice.sec.RutRotFrame;
-import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
-import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import java.awt.event.ItemEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -282,6 +278,9 @@ public class InvoiceA_Insert_ extends Invoice_ {
         RowDataInvert rut = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__RUT, InvoiceB.TABLE_ALL_INVOICES__RUT, "", true, true, false);
         rut.enableFixedValuesAdvanced();
         rut.setUneditable();
+        //
+        //[#SHOW-HIDE-RUT--IS-PESRON#]
+        hideRutOptionIfNotPerson(rut);
         //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,

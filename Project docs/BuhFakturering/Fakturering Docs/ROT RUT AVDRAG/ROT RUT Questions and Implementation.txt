@@ -1,3 +1,6 @@
+
+VIKTIGT ---> Det är bara fysiska personer fyllda 18 år (vid beskattningsårets utgång) som kan få ROT-avdrag. Juridiska personer omfattas varken av ROT- eller RUT-avdrag.
+
 Godkända RUT tjänster:
 Städning – Läs mer rutavdrag för städning
 Trädgårdsarbete/Trädfällning
@@ -59,20 +62,3 @@ Det personerna betalar i sådana fall är 250000 - 100000 = 150000:-
 
 ____________________________________________________________________________________________________________________________
 
-ATT IMPLEMENTERA I PROGRAMMET:
-
-1. Jag kommer behöva implementera en ny tabel något i still med:
-1.2 Jag kommer också behöva införa ny column i "buh_faktura" -> för att kunna avgöra om RUT används
-
-
-Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
-
-2. HTML-Faktura -> visa: pnr / namn / skatteavdrag summa -----> OBS! Är obligatoriskt
-
-3. HTML-Faktura -> visa "speciell information" -> den texten är tagen från SPCS Visma exempel faktura, som finns i mappen:
-"Obs! Denna faktura avser husarbete för fastighet Vitsippa 15.
-Enligt dig som köpare finns det möjlighet till preliminär skattereduktion på 2625,00 kr.
-För att vi ska kunna göra ansökan till Skatteverket, ska du betala 18340,00 kr.
-Om ansökan om skattereduktion avslås, ska beloppet Fakturans totala belopp betalas av dig som köpare."
-
-3. HTML-Faktura -> Ska visa avdraget/avdragsumman på följande sätt: "Avgår skattereduktion 2 625,00"

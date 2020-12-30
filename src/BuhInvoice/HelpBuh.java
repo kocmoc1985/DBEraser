@@ -79,12 +79,36 @@ public class HelpBuh {
         //
     }
 
+    public static boolean isPerson(String fakturaKundId) {
+        //
+        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET__FAKTURA_KUND__IS_PERSON, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (entries == null || entries.isEmpty()) {
+                return false;
+            } else {
+                return true;
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return false;
+    }
+
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
         //
-//        GP_BUH.USER = "ask@mixcont.com";
-//        GP_BUH.PASS = "mixcont4765";
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
         //
 
 //        createAccountPHP_existing_customer("1");
@@ -101,7 +125,7 @@ public class HelpBuh {
         //
 //        buh_faktura_rut_person__test_insert("1");
         //
-//        buh_faktura_rut__get__rut_person();
+        System.out.println("" + isPerson("45"));;
     }
 
     public static void update(String json) {

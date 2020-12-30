@@ -458,6 +458,31 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
+	
+	protected boolean isPerson(String fakturaKundId){
+	   //
+        String json = getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET__FAKTURA_KUND__IS_PERSON, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (entries == null || entries.isEmpty()) {
+                return false;
+            } else {
+                return true;
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        return false;
+	}
+	
 
     protected boolean isKreditFaktura() {
         //

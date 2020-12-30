@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvertB;
+import MyObjectTableInvert.TableRowInvert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -435,9 +436,9 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private void displayTotals() {
         //
-        if(bim.isKreditFaktura()){
+        if (bim.isKreditFaktura()) {
             bim.jLabel4.setText(LANG.ATT_ERHALLA);
-        }else{
+        } else {
             bim.jLabel4.setText(LANG.ATT_BETALA);
         }
         //
@@ -1177,6 +1178,10 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         JLinkInvert jli = (JLinkInvert) ie.getSource();
         //
+        if (ie.getStateChange() != 1) {
+            return;
+        }
+        //
         if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
             //
             forfalloDatumAutoChange(ti);
@@ -1194,6 +1199,12 @@ public abstract class Invoice_ extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
+            //
+            //[#SHOW-HIDE-RUT--IS-PESRON#]
+//            TableInvert table = (TableInvert) TABLE_INVERT_3;
+//            TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__RUT);
+//            RowDataInvert rdi_rut = tri.getRowConfig();
+            hideRutOptionIfNotPerson_b();
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
@@ -1295,6 +1306,49 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         }
         //
+    }
+
+    /**
+     *
+     * @return
+     */
+    protected String getActualFakturaKundId() {
+        return getValueTableInvert(DB.BUH_FAKTURA_KUND__ID, TABLE_INVERT);
+    }
+
+    /**
+     * [#SHOW-HIDE-RUT--IS-PESRON#]
+     *
+     * @param rut
+     */
+    protected void hideRutOptionIfNotPerson(RowDataInvert rut) {
+        //
+        String fakturaKundId = getActualFakturaKundId();
+        //
+        if (bim.isPerson(fakturaKundId) == false) {
+            rut.setVisible_(false);
+        }
+        //
+    }
+
+    /**
+     * [#SHOW-HIDE-RUT--IS-PESRON#]
+     */
+    protected void hideRutOptionIfNotPerson_b() {
+        //
+        TableInvert table = (TableInvert) TABLE_INVERT_3;
+        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__RUT);
+        RowDataInvert rut = tri.getRowConfig();
+        //
+        String fakturaKundId = getActualFakturaKundId();
+        //
+        if (bim.isPerson(fakturaKundId) == false) {
+            rut.setVisible_(false);
+            refreshTableInvert(TABLE_INVERT_3);
+        } else {
+            rut.setVisible_(true);
+            refreshTableInvert(TABLE_INVERT_3);
+        }
     }
 
 }

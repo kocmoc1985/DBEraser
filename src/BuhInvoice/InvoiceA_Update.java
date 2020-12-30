@@ -223,9 +223,8 @@ public class InvoiceA_Update extends Invoice_ {
         rut.enableFixedValuesAdvanced();
         rut.setUneditable();
         //
-        if (bim.isKreditFaktura()) {
-            rut.setVisible_(false);
-        }
+        //[#SHOW-HIDE-RUT--IS-PESRON#]
+        hideRutOptionIfNotPerson(rut);
         //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,
