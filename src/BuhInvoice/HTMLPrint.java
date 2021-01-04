@@ -267,6 +267,14 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
     }
 
+    protected String _get_exist_d(String name, String value) {
+        if (value.isEmpty() == false) {
+            return " <span class='bold'>" + name + "</span>: " + value;
+        } else {
+            return "";
+        }
+    }
+
     protected String _get_exist_b(String name, String value) {
         if (value.isEmpty() == false) {
             return ", " + name + ": " + value;
