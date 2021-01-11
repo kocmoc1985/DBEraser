@@ -103,6 +103,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void resetRutRot() {
+		System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         this.rutRot = null;
     }
 
@@ -2367,6 +2368,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
 //        invoiceA_insert.resetSavedMoms_jCombo();
         //
+		resetRutRot();
+		//
         invoiceA_insert.resetRutRot();
         invoiceA_insert.createNew(isKontantfaktura);
         //

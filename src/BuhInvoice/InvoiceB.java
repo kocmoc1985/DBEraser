@@ -1275,15 +1275,22 @@ public class InvoiceB extends Basic_Buh {
         //
         RutRot rut = bim.getRutRot();
         //
-        if (bim.isRUT() && rut == null) {
-            return getForetagData(DB.PHP_FUNC_PARAM_GET_RUT, false);
+        if (Invoice_.CURRENT_OPERATION_INSERT == false) { // "UPDATE / BEARBETA"
+            //
+            if (bim.isRUT() && rut == null) {
+                return getForetagData(DB.PHP_FUNC_PARAM_GET_RUT, false);
+            }
+            //
+        } else { // CREATE / SKAPA
+            //
+            if (rut != null) {
+                return rut.getFakturaPreview_rut();
+            }
+            //
         }
         //
-        if (rut == null && bim.isRUT() == false) {
-            return null;
-        }
+        return null;
         //
-        return rut.getFakturaPreview_rut();
     }
 
     private ArrayList<HashMap<String, String>> getRutPerson_preview() {
