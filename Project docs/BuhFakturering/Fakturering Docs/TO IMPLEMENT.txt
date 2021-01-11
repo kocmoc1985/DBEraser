@@ -15,8 +15,6 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 -------------- 
 ------------------------<URGENT>------------------------
 
-[OBS!][2021-01-11] Important problem detected -> the "Antal" is not takken into account when calculating RUT.
-
 Add to Linas reklam document: Särskillt anpassad för att fakturera privat personer
 
 [IMPORTANT]According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS

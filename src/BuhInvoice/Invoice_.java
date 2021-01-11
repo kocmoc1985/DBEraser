@@ -770,7 +770,7 @@ public abstract class Invoice_ extends Basic_Buh {
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //
-        hideOmvantSkattIfPerson(omvant_skatt); //******
+        hideFieldIfPerson(omvant_skatt); //******
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
@@ -833,7 +833,7 @@ public abstract class Invoice_ extends Basic_Buh {
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //
-        hideOmvantSkattIfPerson(omvant_skatt); //  ******
+        hideFieldIfPerson(omvant_skatt); //  ******
         //
         boolean omvant = isOmvant(valSelectedRow_translated);
         //
@@ -1204,9 +1204,9 @@ public abstract class Invoice_ extends Basic_Buh {
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
             //[#SHOW-HIDE-RUT--IS-PESRON#]
-            hideRutOptionIfNotPerson_b();
+            hideFieldIfNotPerson_b(TABLE_INVERT_3, DB.BUH_FAKTURA__RUT);
             //
-            hideOmvantSkattIfPerson_b();
+            hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
@@ -1321,62 +1321,76 @@ public abstract class Invoice_ extends Basic_Buh {
     /**
      * [#SHOW-HIDE-RUT--IS-PESRON#]
      *
+     * @param rdi
      * @param rut
      */
-    protected void hideRutOptionIfNotPerson(RowDataInvert rut) {
+    protected void hideFieldIfNotPerson(RowDataInvert rdi) {
         //
         String fakturaKundId = getActualFakturaKundId();
         //
         if (bim.isPerson(fakturaKundId) == false) {
-            rut.setVisible_(false);
+            rdi.setVisible_(false);
         }
         //
     }
 
     /**
      * [#SHOW-HIDE-RUT--IS-PESRON#]
+     * [#SHOW-HIDE--IF#]
+     * @param ti
+     * @param colName
      */
-    protected void hideRutOptionIfNotPerson_b() {
+    protected void hideFieldIfNotPerson_b(Table ti, String colName) {
         //
-        TableInvert table = (TableInvert) TABLE_INVERT_3;
-        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_FAKTURA__RUT);
-        RowDataInvert rut = tri.getRowConfig();
+        TableInvert table = (TableInvert) ti;
+        TableRowInvert tri = (TableRowInvert) table.getRowByColName(colName);
+        RowDataInvert rdi = tri.getRowConfig();
         //
         String fakturaKundId = getActualFakturaKundId();
         //
         if (bim.isPerson(fakturaKundId) == false) {
-            rut.setVisible_(false);
-            refreshTableInvert(TABLE_INVERT_3);
+            rdi.setVisible_(false);
+            refreshTableInvert(ti);
         } else {
-            rut.setVisible_(true);
-            refreshTableInvert(TABLE_INVERT_3);
+            rdi.setVisible_(true);
+            refreshTableInvert(ti);
         }
+        //
     }
-    
-    protected void hideOmvantSkattIfPerson(RowDataInvert omvantSkatt) {
+
+    /**
+     * [#SHOW-HIDE--IF#]
+     * @param rdi 
+     */
+    protected void hideFieldIfPerson(RowDataInvert rdi) {
         //
         String fakturaKundId = getActualFakturaKundId();
         //
         if (bim.isPerson(fakturaKundId)) {
-            omvantSkatt.setVisible_(false);
+            rdi.setVisible_(false);
         }
         //
     }
-    
-    protected void hideOmvantSkattIfPerson_b() {
+
+    /**
+     * [#SHOW-HIDE--IF#]
+     * @param ti
+     * @param colName 
+     */
+    protected void hideFieldIfPerson_b(Table ti, String colName) {
         //
-        TableInvert table = (TableInvert) TABLE_INVERT_2;
-        TableRowInvert tri = (TableRowInvert) table.getRowByColName(DB.BUH_F_ARTIKEL__OMVANT_SKATT);
-        RowDataInvert omvant_skatt = tri.getRowConfig();
+        TableInvert table = (TableInvert) ti;
+        TableRowInvert tri = (TableRowInvert) table.getRowByColName(colName);
+        RowDataInvert rdi = tri.getRowConfig();
         //
         String fakturaKundId = getActualFakturaKundId();
         //
         if (bim.isPerson(fakturaKundId)) {
-            omvant_skatt.setVisible_(false);
-            refreshTableInvert(TABLE_INVERT_2);
+            rdi.setVisible_(false);
+            refreshTableInvert(ti);
         } else {
-            omvant_skatt.setVisible_(true);
-            refreshTableInvert(TABLE_INVERT_2);
+            rdi.setVisible_(true);
+            refreshTableInvert(ti);
         }
     }
 

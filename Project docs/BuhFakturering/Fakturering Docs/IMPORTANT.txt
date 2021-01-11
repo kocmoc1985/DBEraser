@@ -48,9 +48,12 @@ private static void buh_faktura_rut__get__rut_person() {
 	}
 	//
 }
-
 ________________________________________________________________________________________________________
-[LOG NOT ALWAYS LOADING WHEN PRESSING "PRINT" BTN][2020-12-29]
+[HIDE FAKTURA FIELDS - IF FYSISK PERSON - IF NOT PERSON]
+
+Search for: [#SHOW-HIDE--IF#]
+________________________________________________________________________________________________________
+[LOGO NOT ALWAYS LOADING WHEN PRESSING "PRINT" BTN][2020-12-29]
 
 It seems to be solved, see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
 

@@ -280,7 +280,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         rut.setUneditable();
         //
         //[#SHOW-HIDE-RUT--IS-PESRON#]
-        hideRutOptionIfNotPerson(rut);
+        hideFieldIfNotPerson(rut);
         //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,
