@@ -90,7 +90,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void hideCols(JTable table) {
         //
-        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+//        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
