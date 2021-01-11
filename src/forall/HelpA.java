@@ -2931,7 +2931,7 @@ public class HelpA {
 //        }
         @Override
         public String toString() {
-            if (param_4 != null && param_4.isEmpty() == false) {
+            if (param_4 != null && param_4.isEmpty() == false && param_4.equals("null") == false) {
                 return param_1 + "  (" + param_4 + ")";
             } else {
                 return param_1;

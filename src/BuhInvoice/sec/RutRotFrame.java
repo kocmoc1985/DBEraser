@@ -186,15 +186,17 @@ public class RutRotFrame extends javax.swing.JFrame {
             return sum;
         }
         //
-        ArrayList<DoubleParamEntry> list = new ArrayList<>();
+        ArrayList<TrippleParamEntry> list = new ArrayList<>();
         //
         for (int x = 0; x < table.getRowCount(); x++) {
             //
             int col_pris = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
             int col_percent = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
+            int col_antal = HelpA.getColByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
             //
             String val_pris = (String) table.getValueAt(x, col_pris);
             String val_percent = (String) table.getValueAt(x, col_percent);
+            String val_antal = (String) table.getValueAt(x, col_antal);
             //
             if (val_pris == null || val_pris.isEmpty() || val_pris.equals("null")
                     || val_percent == null || val_percent.isEmpty() || val_percent.equals("null")) {
@@ -203,15 +205,16 @@ public class RutRotFrame extends javax.swing.JFrame {
                 //
             }
             //
-            DoubleParamEntry dpe = new DoubleParamEntry(val_pris, val_percent);
+            TrippleParamEntry dpe = new TrippleParamEntry(val_pris, val_percent,val_antal);
             list.add(dpe);
             //
         }
         //
-        for (DoubleParamEntry entry : list) {
+        for (TrippleParamEntry entry : list) {
             double pris = entry.getParam_a__double();
             double moms = entry.getParam_b__percent();
-            double inkl_moms = pris + (pris * moms);
+            double antal = entry.getParam_c__double();
+            double inkl_moms = (pris + (pris * moms)) * antal;
             sum += inkl_moms;
         }
         //
