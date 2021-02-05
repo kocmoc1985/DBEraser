@@ -414,6 +414,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
+		if(isBetald()){
+		   return false;
+		}
+		//
         if (daysForfallen < 0) {
             return false;
         } else {
