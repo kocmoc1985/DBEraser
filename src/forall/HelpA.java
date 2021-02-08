@@ -648,7 +648,7 @@ public class HelpA {
     
     static {
         //
-        ALLOW_SAVE__FILTER__TABLE.add(LabDevelopment_.TABLE__MC_CPWORDER);
+        ALLOW_SAVE__FILTER__TABLE.add("MC_Cpworder");
         //
         ALLOW_SAVE__FILTER__COLUMN.add("STUSERINFO");
         ALLOW_SAVE__FILTER__COLUMN.add("STUSERINFO2");
