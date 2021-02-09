@@ -5,17 +5,13 @@
  */
 package MyObjectTable;
 
-import images.ImgUrls;
-import java.awt.BorderLayout;
+import images.ImggUrls;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -27,9 +23,9 @@ import javax.swing.JPanel;
 public class CommonControllsPanel extends JPanel implements ActionListener {
 
     private final ArrayList<Component> cotrolls_list = new ArrayList<Component>();
-    private static final URL SAVE_ICON = ImgUrls.class.getResource("save.png");
-    private static final URL PRINT_ICON = ImgUrls.class.getResource("print.png");
-    private static final URL COPY_ICON = ImgUrls.class.getResource("copy.png");
+    private static final URL SAVE_ICON = ImggUrls.class.getResource("save.png");
+    private static final URL PRINT_ICON = ImggUrls.class.getResource("print.png");
+    private static final URL COPY_ICON = ImggUrls.class.getResource("copy.png");
     private JButton SAVE_BTN;
     private JButton COPY_BUTTON;
     private JButton PRINT_BUTTON;

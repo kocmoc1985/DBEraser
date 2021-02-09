@@ -179,7 +179,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         setUneditableAllJTables();
         //
-        this.setTitle(GP_BUH.PRODUCT_NAME);
+        this.setTitle(GP_BUH.PRODUCT_NAME + " " + GP_BUH.VERSION);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //

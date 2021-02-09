@@ -5,9 +5,7 @@
  */
 package icons;
 
-import images.ImgUrls;
 import java.awt.Image;
-import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,7 +14,6 @@ import javax.swing.ImageIcon;
  */
 public class ICON {
 
-    public static final URL UNSAVED_ICON_URL = ImgUrls.class.getResource("unsaved.png");
     
     public static ImageIcon getImageIcon(String imageName, int width, int height) {
         ImageIcon icon = new ImageIcon(ICON.class.getResource(imageName));

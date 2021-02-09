@@ -24,7 +24,6 @@ import forall.JComboBoxA;
 import forall.SqlBasicLocal;
 import forall.TextFieldCheck;
 import icons.IconUrls;
-import images.ImgUrls;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
