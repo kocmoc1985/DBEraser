@@ -239,8 +239,6 @@ public class HelpBuh {
         //        
     }
 
-    
-
     /**
      * OBS! Deletes ALL tables since [2020-10-20]
      *
@@ -703,7 +701,9 @@ public class HelpBuh {
         //
 //        String url = url_ + fileNameAndPathServerSide;
         //
-        String url = url_ + fileNameAndPathServerSide + "&json={\"user\";\"" + GP_BUH.USER + "\"," + "\"pass\";\"" + GP_BUH.PASS + "\"}";
+//        String url = url_ + fileNameAndPathServerSide + "&json={\"user\";\"" + GP_BUH.USER + "\"," + "\"pass\";\"" + GP_BUH.PASS + "\"}";
+        //
+        String url = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
         //
         //http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=xx&json={"user";"kocmoc1985@gmail.com","pass";"geDRkHrzht"}
         //
@@ -742,7 +742,7 @@ public class HelpBuh {
         return retur.equals("1");
         //
     }
-    
+
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
@@ -775,6 +775,7 @@ public class HelpBuh {
         } catch (InterruptedException ex) {
             Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
     }
 
     /**
