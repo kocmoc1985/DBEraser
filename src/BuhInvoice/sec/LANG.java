@@ -40,14 +40,14 @@ public class LANG {
     public final static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
     public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
     public final static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
-    public final static String MSG_3 = "Data kommer att raderas permanent! Vill du forsätta?";
-    public final static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du forsätta?";
-    public final static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du forsätta?";
+    public final static String MSG_3 = "Data kommer att raderas permanent! Vill du fortsätta?";
+    public final static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du fortsätta?";
+    public final static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du fortsätta?";
     public final static String MSG_3_2_2 = "Ingen inbetalning vald! Markera en i tabellen nedan och prova igen";
     public final static String MSG_3_3 = "Radera kommentar?";
     public final static String MSG_4 = "Radera rad?";
     public final static String MSG_4_2 = "Radera konto delning?";
-    public final static String MSG_4_3 = "OBS! Kontot och all relaterat information kommer att raderas permanent, vill du forsätta ändå?";
+    public final static String MSG_4_3 = "OBS! Kontot och all relaterat information kommer att raderas permanent, vill du fortsätta ändå?";
     public final static String MSG_4_4 = "Ange lösenordet som du loggar in med!";
     public final static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
@@ -102,8 +102,8 @@ public class LANG {
     public static String MSG_22 = "OBS! Du använder \"Omvänd skattskyldighet\" men motpartens VAT nr saknas.\n"
             + "Gå till flik KUNDER och ange VAT nr för den aktuella kunden.";
     
-    public static String MSG_23 = "Ditt konto och all konto relaterad data är raderat!";
-    public static String MSG_23_1 = "Gästanvändare kan inte radera konto";
+    public static String MSG_23 = "Ditt konto och all relaterad data är raderat!";
+    public static String MSG_23_1 = "Gästanvändare kan inte radera kontot";
     public static String MSG_23_2 = "Fel lösenord, kontot har inte raderats";
     
     public static String MSG_24 = "Lämna utan att spara fakturan?";

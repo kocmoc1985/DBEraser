@@ -13,7 +13,22 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 )as `MAKULERADE`
 
 -------------- 
+------------------------<CHECK>------------------------
+ - Create new account - tested & working[2021-02-11]
+ - Total account delete - tested & working[2021-02-11]
+ - Creating 2 accounts with same email is not allowed - tested & working[2021-02-11]
+ - sharing a guest account - tested & working[2021-02-11]
+ - logging in with guest account - tested & working[2021-02-11]
+ - notification is sent to the master account when the guest loggs in - tested & working[2021-02-11]
+------------------------</CHECK>------------------------
+
 ------------------------<URGENT>------------------------
+
+No error output for distributions
+
+Change the email from which the emails are sent, now it is "faktura@mixcont.com". Also make different emails for sending faktura and for example creating an account (bot@lafakturering.se)
+
+Migrate from mixcont.com to lafaturering.se
 
 Add to Linas reklam document: Särskillt anpassad för att fakturera privat personer
 
@@ -25,7 +40,10 @@ availble in the next version.
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
 
-To each email send add the name of Company with webb address
+To each email send add the name of Company with webb address:
+1. When account is created
+2. When faktura is sent
+3. When påminnelse is sent
 
 Make adoptation for make invoices for private persons, see variable "IS_PERSON__CUSTOMERS_A" -> CustomerAForetagA.class [DONE]
 

@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    private static final boolean HTTPS = true;
+    private static final boolean HTTPS = false;
 
     /**
      * @deprecated @throws Exception
@@ -81,30 +81,7 @@ public class HelpBuh {
 
     
 
-    public static void main(String[] args) {
-        //
-//        checkUpdates(null);
-        //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
-        //
-
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-//        deleteCustomer_a("25", "Vxuw6lpMzF");
-        //
-        //
-//        restorePwd("andrej.brassas@gmail.com");
-        //
-//        buh_faktura_rut_person__test_insert("1");
-        //
-//        System.out.println("" + isPerson("45"));;
-    }
+   
 
     public static void update(String json) {
         //
@@ -265,6 +242,31 @@ public class HelpBuh {
         }
         //        
     }
+    
+     public static void main(String[] args) {
+        //
+//        checkUpdates(null);
+        //
+        GP_BUH.USER = "kocmoc1985@gmail.com";
+        GP_BUH.PASS = "geDRkHrzht";
+        //
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("25", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
+//        buh_faktura_rut_person__test_insert("1");
+        //    
+        deleteCustomer_b("geDRkHrzht");
+        //
+     }
 
     /**
      * OBS! Deletes ALL tables since [2020-10-20]

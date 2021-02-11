@@ -1,16 +1,30 @@
+The sequence of deleting is approved on  [2021-02-11]
+
 drop table buh_address;
 drop table buh_f_artikel;
 drop table buh_faktura_inbet;
 drop table buh_faktura_send;
-drop table buh_faktura_rut_person; ---------> Not verified yet [2020-12-17]
-drop table buh_faktura_rut; ---------> Not verified yet [2020-12-17]
+drop table buh_faktura_rut_person;
+drop table buh_faktura_rut; 
 drop table buh_faktura;
 drop table buh_faktura_artikel;
 drop table buh_faktura_kund;
 drop table buh_licens;
 drop table buh_kund;
 
-The sequence of deleting is approved on  [2020-10-20]
+The sequence of deleting is approved on  [2021-02-11]
+
+DELETE FROM buh_address WHERE kundId=22;
+DELETE FROM buh_f_artikel WHERE kundId=22;
+DELETE FROM buh_faktura_inbet WHERE kundId=22;
+DELETE FROM buh_faktura_send WHERE kundId=22;
+DELETE FROM buh_faktura_rut_person WHERE kundId=22;
+DELETE FROM buh_faktura_rut WHERE kundId=22;
+DELETE FROM buh_faktura WHERE kundId=22;
+DELETE FROM buh_faktura_artikel WHERE kundId=22;
+DELETE FROM buh_faktura_kund WHERE kundId=22;
+DELETE FROM buh_licens WHERE kundId=22;
+DELETE FROM buh_kund WHERE kundId=22;
 ________________________________________________________________________________________
 
 
