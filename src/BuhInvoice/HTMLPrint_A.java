@@ -937,31 +937,31 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }
 
-    private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
-        Thread x = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //
-                //
-                boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
-                //
-                String fakturaId = getFakturaId();
-                // 
-                // [2020-09-08]
-                if (ok) {
-                    //
-                    loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
-                    //
-                } else {
-                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
-                            DB.STATIC__SENT_TYPE_FAKTURA);
-                }
-            }
-        });
-        //
-        x.start();
-        //
-    }
+//    private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
+//        Thread x = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                //
+//                //
+//                boolean ok = print_upload_sendmail(serverPath, fileName, sendToEmail, ftgName);
+//                //
+//                String fakturaId = getFakturaId();
+//                // 
+//                // [2020-09-08]
+//                if (ok) {
+//                    //
+//                    loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
+//                    //
+//                } else {
+//                    EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+//                            DB.STATIC__SENT_TYPE_FAKTURA);
+//                }
+//            }
+//        });
+//        //
+//        x.start();
+//        //
+//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

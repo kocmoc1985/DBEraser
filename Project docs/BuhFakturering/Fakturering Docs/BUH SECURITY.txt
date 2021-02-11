@@ -1,4 +1,28 @@
 ________________________________________________________________________________________________________
+[SENDING EMAILS WITH ATTACHMENT][2021-02-11]
+
+I suspect following: it seems to be easy to upload just anything to the website. And more...
+
+See following:
+1. HTMLPrint.class -> print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName)
+
+2. print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) -> HelpBuh.uploadFile(fileName, serverPath + fileName)
+
+3. HelpBuh.uploadFile(fileName, serverPath + fileName) -> HelpBuh.class -> http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide)
+
+4. http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) -> "USING: http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=" -> OBS! DEFINED ON CLIENT SIDE
+
+http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=uploads/&json={"user";"ask@mixcont.com","pass";"mixcont4765"}
+
+http://www.mixcont.com/php/_http_buh.php?delete_customer_b=true&json={"user";"kocmoc1985@gmail.com","pass";"geDRkHrzht"}
+
+http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=xx&json={"user";"kocmoc1985@gmail.com","pass";"geDRkHrzht"}
+__
+Yes, it's true an upload can be done easily without authorization[2021-02-11]
+___
+
+I STOPPED HERE: HelpBuh.class -> http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) ****************
+________________________________________________________________________________________________________
 [HTTPS][2020-11-16]
 
 one.com -> does have support for certificates from -> "https://letsencrypt.org/"

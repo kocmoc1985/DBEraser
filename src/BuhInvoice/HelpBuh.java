@@ -79,10 +79,6 @@ public class HelpBuh {
         //
     }
 
-    
-
-   
-
     public static void update(String json) {
         //
         try {
@@ -242,31 +238,8 @@ public class HelpBuh {
         }
         //        
     }
+
     
-     public static void main(String[] args) {
-        //
-//        checkUpdates(null);
-        //
-        GP_BUH.USER = "kocmoc1985@gmail.com";
-        GP_BUH.PASS = "geDRkHrzht";
-        //
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-//        deleteCustomer_a("25", "Vxuw6lpMzF");
-        //
-        //
-//        restorePwd("andrej.brassas@gmail.com");
-        //
-//        buh_faktura_rut_person__test_insert("1");
-        //    
-        deleteCustomer_b("geDRkHrzht");
-        //
-     }
 
     /**
      * OBS! Deletes ALL tables since [2020-10-20]
@@ -372,6 +345,8 @@ public class HelpBuh {
      * where the script is. So working paths ("fileNameAndPathServerSide") for
      * the moment are: "test.pdf" OR "uploads/test.pdf"
      *
+     * OBS! Is called from HTMLPrint.class -> print_upload_sendmail(...)
+     *
      * @param from
      * @param fromNameOptional
      * @param to
@@ -465,6 +440,7 @@ public class HelpBuh {
      * results in, taking the file from the root dir of the "netbeans" project
      * @param fileNameAndPathServerSide - specifying file name without path
      * results in, placing the file in the same dir as the "upload" script
+     * @return
      * @throws ProtocolException
      * @throws IOException
      * @throws MalformedURLException
@@ -725,7 +701,11 @@ public class HelpBuh {
      */
     private static boolean http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
-        String url = url_ + fileNameAndPathServerSide;
+//        String url = url_ + fileNameAndPathServerSide;
+        //
+        String url = url_ + fileNameAndPathServerSide + "&json={\"user\";\"" + GP_BUH.USER + "\"," + "\"pass\";\"" + GP_BUH.PASS + "\"}";
+        //
+        //http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=xx&json={"user";"kocmoc1985@gmail.com","pass";"geDRkHrzht"}
         //
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         httpUrlConnection.setDoOutput(true);
@@ -761,6 +741,40 @@ public class HelpBuh {
         //
         return retur.equals("1");
         //
+    }
+    
+    public static void main(String[] args) {
+        //
+//        checkUpdates(null);
+        //
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
+        //
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("25", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
+//        buh_faktura_rut_person__test_insert("1");
+        //    
+//        deleteCustomer_b("geDRkHrzht");
+        //
+        try {
+            http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "faktura.pdf", "uploads/");
+        } catch (ProtocolException ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
