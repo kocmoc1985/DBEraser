@@ -710,6 +710,8 @@ public class HelpBuh {
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         httpUrlConnection.setDoOutput(true);
         httpUrlConnection.setRequestMethod("POST");
+//        httpUrlConnection.setRequestProperty("Content-length", "200");
+//        httpUrlConnection.setRequestProperty("Content-Type", "script"); //
         OutputStream os = httpUrlConnection.getOutputStream();
         //
 //        Thread.sleep(1000); // Needed ????
@@ -800,6 +802,7 @@ public class HelpBuh {
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         httpUrlConnection.setDoOutput(true);
         httpUrlConnection.setRequestMethod("POST");
+//        httpUrlConnection.setRequestProperty("Content-Type", "application/pdf"); //
         OutputStream os = httpUrlConnection.getOutputStream();
         //
 //        Thread.sleep(1000); // Needed ????

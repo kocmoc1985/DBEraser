@@ -54,7 +54,7 @@ public class LANG {
     public final static String MSG_5_2 = "Du kan inte lägga till fler artiklar!";
     public final static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
-    public final static String MSG_7_2 = "Skriv en e-post du vill skicka till";
+    public final static String MSG_7_2 = "Skriv en e-post du vill skicka den till";
     public final static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
     public final static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
 

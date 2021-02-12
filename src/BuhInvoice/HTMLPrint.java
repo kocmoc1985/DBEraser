@@ -481,6 +481,13 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
+    /**
+     * 
+     * @param serverPath
+     * @param fileName
+     * @param sendToEmail
+     * @param ftgName 
+     */
     private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
         HTMLPrint htmlprint = this;
@@ -584,6 +591,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
         if (upload_success && ess != null && ess.allSuccessful()) {
+            email_sending_ok = true;
             System.out.println("Email sending: " + email_sending_ok);
             displayStatus(LANG.MSG_10_2, null);
             return true;
@@ -591,6 +599,8 @@ public abstract class HTMLPrint extends HTMLBasic {
             displayStatus(LANG.MSG_10_3, Color.red);
             return false;
         }
+        //
+        // OBS! The uploaded file is deleted from: _http_buh.php -> sendMailHelp(...) -> unlink($filePathServerSide);
         //
     }
 
