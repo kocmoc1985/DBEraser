@@ -456,7 +456,7 @@ public class HelpBuh {
         boolean upload_success = false;
         //
         try {
-            upload_success = HelpBuh.uploadFile("test.pdf", SERVER_UPLOAD_PATH + "test.pdf"); //[clientPath][ServerPath]
+            upload_success = HelpBuh.uploadFile("faktura.pdf", SERVER_UPLOAD_PATH + "faktura.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -686,9 +686,11 @@ public class HelpBuh {
 
     /**
      * [2020-08-27]
-     *
+     * 
      * working initial example
      *
+     * [2021-02-11] introduced validation of the user performing the upload
+     * 
      * @param url_ - http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=
      * @param fileNameAndPathClientSide - were to take on client side (Java)
      * @param fileNameAndPathServerSide - were to place on the server side (PHP)
@@ -701,17 +703,15 @@ public class HelpBuh {
         //
 //        String url = url_ + fileNameAndPathServerSide;
         //
-//        String url = url_ + fileNameAndPathServerSide + "&json={\"user\";\"" + GP_BUH.USER + "\"," + "\"pass\";\"" + GP_BUH.PASS + "\"}";
-        //
         String url = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
         //
-        //http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=xx&json={"user";"kocmoc1985@gmail.com","pass";"geDRkHrzht"}
         //
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         httpUrlConnection.setDoOutput(true);
         httpUrlConnection.setRequestMethod("POST");
+//        httpUrlConnection.setRequestProperty("Content-Type", "multipart/form-data"); //
+//        httpUrlConnection.setRequestProperty("Content-Disposition", "form-data;" + "name=file;" + "filename=faktura.pdf"); //
 //        httpUrlConnection.setRequestProperty("Content-length", "200");
-//        httpUrlConnection.setRequestProperty("Content-Type", "script"); //
         OutputStream os = httpUrlConnection.getOutputStream();
         //
 //        Thread.sleep(1000); // Needed ????
@@ -724,7 +724,7 @@ public class HelpBuh {
         for (int i = 0; i < totalByte; i++) {
             os.write(fis.read());
             byteTrasferred = i + 1;
-//            System.out.println("" + byteTrasferred + " / " + totalByte);
+            System.out.println("" + byteTrasferred + " / " + totalByte);
         }
         //
         os.close();
@@ -768,15 +768,7 @@ public class HelpBuh {
         //    
 //        deleteCustomer_b("geDRkHrzht");
         //
-        try {
-            http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, "faktura.pdf", "uploads/");
-        } catch (ProtocolException ex) {
-            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        test__uploadFile();
         //
     }
 

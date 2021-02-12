@@ -3,7 +3,15 @@ ________________________________________________________________________________
 
 The initial problem which i discovered [2021-02-11] was that a file upload could be made without "validation"
 
-See: "_u_u_u_x_upload.php" -> this is the script responsible for the file/faktura uploads
+See: "_u_u_u_x_upload.php" -> this is the script on PHP side responsible for the file/faktura uploads
+
+ESSENTIAL PROBLEMS:
+1. "//:https" shall be used instead of "//:http"
+
+
+IMPORTANT DETAILS:
+1. Max upload size = 500kb (500 000bytes) and the is restricted on PHP side. See: _u_u_u_x_upload.php -> file_get_contents('php://input', FALSE, NULL, 0, 500000)
+
 
 See following:
 1. HTMLPrint.class -> print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName)
