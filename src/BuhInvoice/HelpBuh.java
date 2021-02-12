@@ -445,7 +445,12 @@ public class HelpBuh {
      * @throws InterruptedException
      */
     public static boolean uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
-        return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+        if (HTTPS) {
+            return https_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+        } else {
+            return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+        }
+
     }
 
     public static final String SERVER_UPLOAD_PATH = "uploads/";
@@ -686,11 +691,11 @@ public class HelpBuh {
 
     /**
      * [2020-08-27]
-     * 
+     *
      * working initial example
      *
      * [2021-02-11] introduced validation of the user performing the upload
-     * 
+     *
      * @param url_ - http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=
      * @param fileNameAndPathClientSide - were to take on client side (Java)
      * @param fileNameAndPathServerSide - were to place on the server side (PHP)
@@ -729,6 +734,54 @@ public class HelpBuh {
         //
         os.close();
         BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
+        //
+        String s;
+        String retur = "";
+        //
+        while ((s = in.readLine()) != null) {
+            System.out.println(s);
+            retur = "" + s; // yes it's needed [2020-08-28]
+        }
+        //
+        in.close();
+        fis.close();
+        //
+        return retur.equals("1");
+        //
+    }
+
+    private static boolean https_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
+        //
+//        String url = url_ + fileNameAndPathServerSide;
+        //
+        String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
+        //
+        URL url = new URL(link);
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        //
+//        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+//        httpUrlConnection.setRequestProperty("Content-Type", "multipart/form-data"); //
+//        httpUrlConnection.setRequestProperty("Content-Disposition", "form-data;" + "name=file;" + "filename=faktura.pdf"); //
+//        httpUrlConnection.setRequestProperty("Content-length", "200");
+        OutputStream os = conn.getOutputStream();
+        //
+//        Thread.sleep(1000); // Needed ????
+        BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
+        //
+        long totalByte = fis.available();
+        //
+        long byteTrasferred = 0;
+        //
+        for (int i = 0; i < totalByte; i++) {
+            os.write(fis.read());
+            byteTrasferred = i + 1;
+            System.out.println("" + byteTrasferred + " / " + totalByte);
+        }
+        //
+        os.close();
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         //
         String s;
         String retur = "";
