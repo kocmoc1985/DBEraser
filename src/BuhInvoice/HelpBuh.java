@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    private static final boolean HTTPS = false;
+    private static final boolean HTTPS = true;
 
     /**
      * @deprecated @throws Exception
@@ -446,9 +446,9 @@ public class HelpBuh {
      */
     public static boolean uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
         if (HTTPS) {
-            return https_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+            return https_send_image(DB.PHP_SCRIPT_UPLOAD_URL__HTTPS, fileNameAndPathClientSide, fileNameAndPathServerSide);
         } else {
-            return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL, fileNameAndPathClientSide, fileNameAndPathServerSide);
+            return http_send_image(DB.PHP_SCRIPT_UPLOAD_URL__HTTP, fileNameAndPathClientSide, fileNameAndPathServerSide);
         }
 
     }
@@ -696,6 +696,7 @@ public class HelpBuh {
      *
      * [2021-02-11] introduced validation of the user performing the upload
      *
+     * @deprecated 
      * @param url_ - http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=
      * @param fileNameAndPathClientSide - were to take on client side (Java)
      * @param fileNameAndPathServerSide - were to place on the server side (PHP)
@@ -706,20 +707,15 @@ public class HelpBuh {
      */
     private static boolean http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
-//        String url = url_ + fileNameAndPathServerSide;
-        //
         String url = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
         //
         //
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         httpUrlConnection.setDoOutput(true);
         httpUrlConnection.setRequestMethod("POST");
-//        httpUrlConnection.setRequestProperty("Content-Type", "multipart/form-data"); //
-//        httpUrlConnection.setRequestProperty("Content-Disposition", "form-data;" + "name=file;" + "filename=faktura.pdf"); //
-//        httpUrlConnection.setRequestProperty("Content-length", "200");
         OutputStream os = httpUrlConnection.getOutputStream();
         //
-//        Thread.sleep(1000); // Needed ????
+//        Thread.sleep(1000); // // Seems not to be needed
         BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
         //
         long totalByte = fis.available();
@@ -729,7 +725,7 @@ public class HelpBuh {
         for (int i = 0; i < totalByte; i++) {
             os.write(fis.read());
             byteTrasferred = i + 1;
-            System.out.println("" + byteTrasferred + " / " + totalByte);
+//            System.out.println("" + byteTrasferred + " / " + totalByte);
         }
         //
         os.close();
@@ -752,22 +748,16 @@ public class HelpBuh {
 
     private static boolean https_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
-//        String url = url_ + fileNameAndPathServerSide;
-        //
         String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
         //
         URL url = new URL(link);
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         //
-//        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
-//        httpUrlConnection.setRequestProperty("Content-Type", "multipart/form-data"); //
-//        httpUrlConnection.setRequestProperty("Content-Disposition", "form-data;" + "name=file;" + "filename=faktura.pdf"); //
-//        httpUrlConnection.setRequestProperty("Content-length", "200");
         OutputStream os = conn.getOutputStream();
         //
-//        Thread.sleep(1000); // Needed ????
+//        Thread.sleep(1000); // Seems not to be needed
         BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
         //
         long totalByte = fis.available();
@@ -777,7 +767,7 @@ public class HelpBuh {
         for (int i = 0; i < totalByte; i++) {
             os.write(fis.read());
             byteTrasferred = i + 1;
-            System.out.println("" + byteTrasferred + " / " + totalByte);
+//            System.out.println("" + byteTrasferred + " / " + totalByte);
         }
         //
         os.close();

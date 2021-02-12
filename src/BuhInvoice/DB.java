@@ -20,7 +20,8 @@ public class DB {
     public static final String PHP_SCRIPT_RETURN_EMPTY = "empty";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
-    public static final String PHP_SCRIPT_UPLOAD_URL = "http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=";
+    public static final String PHP_SCRIPT_UPLOAD_URL__HTTP = "http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=";
+    public static final String PHP_SCRIPT_UPLOAD_URL__HTTPS = "https://www.mixcont.com/php/_u_u_u_x_upload.php?filename=";
     //
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
