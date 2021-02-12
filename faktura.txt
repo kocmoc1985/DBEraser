@@ -1,0 +1,641 @@
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=
+
+
+#mysql or mssql (must be typed so!)
+# This is importatnt! Options are: mssql, mysql, odbc
+db_type=mssql
+mssql_create_statement_simple=false
+use_jtds_library=true
+use_named_pipes=false
+jtds_instance=
+domain_or_workgroup=workgroup
+login_time_out=60
+#
+odbc=MILLSMDB
+odbc_user=
+odbc_pass=
+#
+host=10.87.0.2
+#mssql port = 1433 ; mysql port = 3306;
+port=1433
+db_name=MCLAB
+user=sa
+pass=

@@ -1,27 +1,30 @@
 ________________________________________________________________________________________________________
-[SENDING EMAILS WITH ATTACHMENT - VALIDATION/USER & PASS PROTECTION][2021-02-11]
+[FILE UPLOAD / SENDING EMAILS WITH ATTACHMENT / SECURITY][2021-02-11]
 
-The initial problem which i discovered [2021-02-11] was that a file upload could be made without "validation"
-
-See: "_u_u_u_x_upload.php" -> this is the script on PHP side responsible for the file/faktura uploads
-
-ESSENTIAL PROBLEMS:
-1. "//:https" shall be used instead of "//:http"
+Preamble: The initial problem which i discovered [2021-02-11] was that a file upload could be made without "validation".
+This made that the upload functionality is now secured by several features, see below.
 
 
-IMPORTANT DETAILS:
-1. Max upload size = 500kb (500 000bytes) and the is restricted on PHP side. See: _u_u_u_x_upload.php -> file_get_contents('php://input', FALSE, NULL, 0, 500000)
+IMPORTANT DETAILS - SECURITY DETAILS:
+0. Yes since [2021-02-12] it's not possible to upload without validation. The validation is done in: _u_u_u_x_upload.php -> 
+1. Making the upload is now handled with "//:https". See: HelpBuh.class -> https_send_image(...) 
+2. Max upload size = 500kb (500 000bytes) and the is restricted on PHP side. See: _u_u_u_x_upload.php -> file_get_contents('php://input', FALSE, NULL, 0, 500000)
+2.2 Note that this "size restriction" does not stop uploading when it reaches 500kb! What will happen is that it will not save the file on the server side.
+3. The type of uploaded file is checked when the file is uploaded. See: _u_u_u_x_upload.php -> mime_content_type($filename).
+3.2 The "mime_content_type()" is not checking by the fileextenssion. So if i change extension of a ".pdf" file to ".txt" it will in any case detect that's it's a ".pdf"
+
+POTENTIAL SECURITY RISKS:
+1. A hacker may use a valid login data. Extract the "HelpBuh.uploadFile(...)" method. And make a loop with uploading one after another, even if it's 
+not infected files it will eventually slow down my website/service.
 
 
-See following:
-1. HTMLPrint.class -> print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName)
+Java essential places:
+1. HTMLPrint.class -> print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) -> HelpBuh.uploadFile(fileName, serverPath + fileName)
+2. Start with looking at "HelpBuh.uploadFile()"
 
-2. print_upload_sendmail(String serverPath, String fileName, String sendToEmail, String ftgName) -> HelpBuh.uploadFile(fileName, serverPath + fileName)
 
-3. HelpBuh.uploadFile(fileName, serverPath + fileName) -> HelpBuh.class -> http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide)
-
-4. http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) -> "USING: http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=" -> OBS! DEFINED ON CLIENT SIDE
-
+PHP essential places:
+_u_u_u_x_upload.php
 
 ________________________________________________________________________________________________________
 [HTTPS][2020-11-16]

@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    private static final boolean HTTPS = true;
+    private static final boolean HTTPS = false;
 
     /**
      * @deprecated @throws Exception
@@ -460,17 +460,19 @@ public class HelpBuh {
         //
         boolean upload_success = false;
         //
-        try {
-            upload_success = HelpBuh.uploadFile("faktura.pdf", SERVER_UPLOAD_PATH + "faktura.pdf"); //[clientPath][ServerPath]
-        } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        for (int i = 0; i < 10; i++) {
+            try {
+                upload_success = HelpBuh.uploadFile("faktura.txt", SERVER_UPLOAD_PATH + "faktura.txt"); //[clientPath][ServerPath]
+            } catch (ProtocolException ex) {
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            System.out.println("Upload Succeded: " + upload_success);
         }
-        //
-        System.out.println("Upload Succeded: " + upload_success);
         //
     }
 
@@ -690,13 +692,64 @@ public class HelpBuh {
     }
 
     /**
-     * [2020-08-27]
+     * Introduced [2021-02-12]
      *
-     * working initial example
+     * @param url_
+     * @param fileNameAndPathClientSide - were to take on client side (Java)
+     * @param fileNameAndPathServerSide - were to place on the server side (PHP)
+     * @throws MalformedURLException
+     * @throws ProtocolException
+     * @throws IOException
+     * @throws InterruptedException
+     * @return
+     */
+    private static boolean https_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
+        //
+        String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
+        //
+        URL url = new URL(link);
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        //
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        OutputStream os = conn.getOutputStream();
+        //
+//        Thread.sleep(1000); // Seems not to be needed
+        BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
+        //
+        long totalByte = fis.available();
+        //
+        long byteTrasferred = 0;
+        //
+        for (int i = 0; i < totalByte; i++) {
+            os.write(fis.read());
+            byteTrasferred = i + 1;
+//            System.out.println("" + byteTrasferred + " / " + totalByte);
+        }
+        //
+        os.close();
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        //
+        String s;
+        String retur = "";
+        //
+        while ((s = in.readLine()) != null) {
+            System.out.println(s);
+            retur = "" + s; // yes it's needed [2020-08-28]
+        }
+        //
+        in.close();
+        fis.close();
+        //
+        return retur.equals("1");
+        //
+    }
+
+    /**
+     * [2020-08-27] working initial example [2021-02-11] introduced validation
+     * of the user performing the upload
      *
-     * [2021-02-11] introduced validation of the user performing the upload
-     *
-     * @deprecated 
+     * @deprecated
      * @param url_ - http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=
      * @param fileNameAndPathClientSide - were to take on client side (Java)
      * @param fileNameAndPathServerSide - were to place on the server side (PHP)
@@ -746,48 +799,6 @@ public class HelpBuh {
         //
     }
 
-    private static boolean https_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
-        //
-        String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
-        //
-        URL url = new URL(link);
-        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-        //
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        OutputStream os = conn.getOutputStream();
-        //
-//        Thread.sleep(1000); // Seems not to be needed
-        BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
-        //
-        long totalByte = fis.available();
-        //
-        long byteTrasferred = 0;
-        //
-        for (int i = 0; i < totalByte; i++) {
-            os.write(fis.read());
-            byteTrasferred = i + 1;
-//            System.out.println("" + byteTrasferred + " / " + totalByte);
-        }
-        //
-        os.close();
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        //
-        String s;
-        String retur = "";
-        //
-        while ((s = in.readLine()) != null) {
-            System.out.println(s);
-            retur = "" + s; // yes it's needed [2020-08-28]
-        }
-        //
-        in.close();
-        fis.close();
-        //
-        return retur.equals("1");
-        //
-    }
-
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
@@ -813,126 +824,6 @@ public class HelpBuh {
         //
         test__uploadFile();
         //
-    }
-
-    /**
-     * [2020-08-27]
-     * "http://www.mixcont.com/_u_u_u_x_upload.php?filename=php/test.pdf" -
-     * working initial example
-     *
-     * @deprecated
-     * @throws MalformedURLException
-     * @throws ProtocolException
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static void http_send_image__initial_testing() throws MalformedURLException, ProtocolException, IOException, InterruptedException {
-        //
-        String fileNameAndPathClientSide = "test.pdf";
-        //
-        String fileNameAndPathServerSide = "php/test.pdf";
-        //
-        String url = "http://www.mixcont.com/php/_u_u_u_x_upload.php?filename=" + fileNameAndPathServerSide;
-        //
-        HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
-        httpUrlConnection.setDoOutput(true);
-        httpUrlConnection.setRequestMethod("POST");
-//        httpUrlConnection.setRequestProperty("Content-Type", "application/pdf"); //
-        OutputStream os = httpUrlConnection.getOutputStream();
-        //
-//        Thread.sleep(1000); // Needed ????
-        BufferedInputStream fis = new BufferedInputStream(new FileInputStream(fileNameAndPathClientSide));
-        //
-        long totalByte = fis.available();
-        //
-        long byteTrasferred = 0;
-        //
-        for (int i = 0; i < totalByte; i++) {
-            os.write(fis.read());
-            byteTrasferred = i + 1;
-        }
-        //
-        os.close();
-        BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
-        //
-        String s;
-        //
-        while ((s = in.readLine()) != null) {
-            System.out.println(s);
-        }
-        //
-        in.close();
-        fis.close();
-        //
-    }
-
-    /**
-     * Was trying to make it working for sending JSON but no success, it can be
-     * leaved for further investigations
-     *
-     * @param url_
-     * @return
-     * @throws Exception
-     * @deprecated
-     */
-    public static String http_get_content_post___test(String url_) throws Exception {
-        //
-        String urlParameters = url_.split("\\?")[1];
-        byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-        int postDataLength = postData.length;
-        String request = url_.split("\\?")[0];
-        //
-        URL url = new URL(request);
-        URLConnection conn = url.openConnection();
-        //
-        conn.setDoOutput(true);
-        ((HttpURLConnection) conn).setInstanceFollowRedirects(false);
-        ((HttpURLConnection) conn).setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json"); //
-        conn.setRequestProperty("Accept", "application/json");
-        conn.setRequestProperty("charset", "utf-8");
-        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-        conn.setUseCaches(false);
-        //
-        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
-            wr.write(postData);
-        }
-        //
-        InputStream ins = conn.getInputStream();
-        InputStreamReader isr = new InputStreamReader(ins);
-        BufferedReader in = new BufferedReader(isr);
-        String inputLine;
-        String result = "";
-        while ((inputLine = in.readLine()) != null) {
-            result += inputLine;
-        }
-
-        String[] arr = result.split("###");
-        //
-        if (arr.length == 0) {
-            System.out.println("HTTP REQ FAILED");
-            return "";
-        }
-        //
-//        String temp = arr[1];
-//        String value = temp.split(":")[1];
-//        System.out.println("HTTP REQ VAL: " + value);
-//        return value;
-        //
-        String temp = arr[1];
-        System.out.println("HTTP REQ VAL: " + temp);
-        return temp;
-    }
-
-    /**
-     * Working test example [2020-07-16]
-     *
-     * @param json
-     * @deprecated
-     * @return
-     */
-    private static String testSendJson(String json) {
-        return String.format("http://www.mixcont.com/index.php?link=_http_buh&test_json=true&json=%s", json);
     }
 
     /**
