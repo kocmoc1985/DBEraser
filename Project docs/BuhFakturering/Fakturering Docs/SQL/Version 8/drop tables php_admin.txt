@@ -1,5 +1,8 @@
-The sequence of deleting is approved on  [2021-02-11]
+The sequence of deleting is approved on  [2021-02-15]
 
+drop table buh_ban;
+drop table buh_login_failed;
+drop table buh_visitors;
 drop table buh_address;
 drop table buh_f_artikel;
 drop table buh_faktura_inbet;
@@ -25,6 +28,8 @@ DELETE FROM buh_faktura_artikel WHERE kundId=22;
 DELETE FROM buh_faktura_kund WHERE kundId=22;
 DELETE FROM buh_licens WHERE kundId=22;
 DELETE FROM buh_kund WHERE kundId=22;
+
+OBS! OBS! OBS! INSERTING OF DATA TO TABLES IS DONE "NAOBOROT" which means starting with the last table -> "buh_kund".  Verified and tested on[2021-02-15]
 ________________________________________________________________________________________
 
 

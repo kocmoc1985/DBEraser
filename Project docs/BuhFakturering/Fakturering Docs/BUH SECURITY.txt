@@ -12,6 +12,7 @@ IMPORTANT DETAILS - SECURITY DETAILS:
 2.2 Note that this "size restriction" does not stop uploading when it reaches 500kb! What will happen is that it will not save the file on the server side.
 3. The type of uploaded file is checked when the file is uploaded. See: _u_u_u_x_upload.php -> mime_content_type($filename).
 3.2 The "mime_content_type()" is not checking by the fileextenssion. So if i change extension of a ".pdf" file to ".txt" it will in any case detect that's it's a ".pdf"
+4. The filename of the upload is now also checked. The file must contain "faktura" or "minnelse".
 
 POTENTIAL SECURITY RISKS:
 1. A hacker may use a valid login data. Extract the "HelpBuh.uploadFile(...)" method. And make a loop with uploading one after another, even if it's 

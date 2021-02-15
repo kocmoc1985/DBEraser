@@ -14,7 +14,7 @@ bank_konto varchar (30) DEFAULT '',
 iban varchar (30) DEFAULT '',
 swish varchar (30) DEFAULT '',
 f_skatt boolean DEFAULT false,
-date_created varchar(30) DEFAULT 'no',
+date_created varchar(30) DEFAULT 'no'
 );
 
 CREATE TABLE buh_login_failed (
@@ -51,6 +51,7 @@ date_visit timestamp DEFAULT CURRENT_TIMESTAMP()
 CREATE TABLE buh_licens (
 licensId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
+master boolean DEFAULT false,
 user varchar(100) DEFAULT '',
 email_guest varchar(100) DEFAULT '',
 pass varchar(255) DEFAULT '',
@@ -196,6 +197,8 @@ pris float DEFAULT 0,
 namn varchar(50) DEFAULT '',
 artnr varchar(50) DEFAULT '',
 komment varchar(500) DEFAULT '',
+komment_b varchar(500) DEFAULT '',
+komment_c varchar(500) DEFAULT '',
 artikel_kategori varchar (1) DEFAULT 'A',
 Foreign key (kundId) references buh_kund(kundId)
 );
