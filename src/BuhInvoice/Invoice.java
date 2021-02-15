@@ -40,7 +40,7 @@ import javax.swing.JTable;
  *
  * @author KOCMOC
  */
-public abstract class Invoice_ extends Basic_Buh {
+public abstract class Invoice extends Basic_Buh {
 
     //
     protected Table TABLE_INVERT_2;
@@ -70,7 +70,7 @@ public abstract class Invoice_ extends Basic_Buh {
     private RutRotFrame rutRotFrame;
     private boolean RUT_ROT__ENABLED = false;
 
-    public Invoice_(BUH_INVOICE_MAIN bim) {
+    public Invoice(BUH_INVOICE_MAIN bim) {
         super(bim);
         initFakturaEntry_();
     }

@@ -263,7 +263,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected TableInvert getTableInvert() {
-        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT;
         } else {
             return (TableInvert) invoiceA_update.TABLE_INVERT;
@@ -271,7 +271,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected TableInvert getTableInvert_3() {
-        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT_3;
         } else {
             return (TableInvert) invoiceA_update.TABLE_INVERT_3;
@@ -2222,7 +2222,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
             invoiceA_insert.deleteArtikel();
             //
-            invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice_.disableMomsJComboIf()"
+            invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice.disableMomsJComboIf()"
             //
         } else {
             //
@@ -2342,7 +2342,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
             //
 //            boolean isKontantFaktura = isKontantFaktura();
-            boolean isKontantFaktura = Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
+            boolean isKontantFaktura = Invoice.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
             //
             if (isKontantFaktura) {
                 makeInbetalning(isKontantFaktura, true);
@@ -2529,7 +2529,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_forfallen_filterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_insert);
         } else {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_update);
@@ -3062,7 +3062,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
-        if (Invoice_.CURRENT_OPERATION_INSERT == false) {
+        if (Invoice.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.SET_CURRENT_OPERATION_INSERT(false);
             invoiceA_update.showTableInvert_2();
         } else {

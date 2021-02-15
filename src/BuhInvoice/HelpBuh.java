@@ -460,9 +460,9 @@ public class HelpBuh {
         //
         boolean upload_success = false;
         //
-        for (int i = 0; i < 10; i++) {
+//        for (int i = 0; i < 10; i++) {
             try {
-                upload_success = HelpBuh.uploadFile("faktura.txt", SERVER_UPLOAD_PATH + "faktura.txt"); //[clientPath][ServerPath]
+                upload_success = HelpBuh.uploadFile("påminnelse_1.pdf", SERVER_UPLOAD_PATH + "påminnelse_1.pdf"); //[clientPath][ServerPath]
             } catch (ProtocolException ex) {
                 Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -472,7 +472,7 @@ public class HelpBuh {
             }
             //
             System.out.println("Upload Succeded: " + upload_success);
-        }
+//        }
         //
     }
 

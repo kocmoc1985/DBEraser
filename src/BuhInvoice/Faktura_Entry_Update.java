@@ -18,7 +18,7 @@ import javax.swing.JTable;
  */
 public class Faktura_Entry_Update extends Faktura_Entry {
 
-    public Faktura_Entry_Update(Invoice_ invoice) {
+    public Faktura_Entry_Update(Invoice invoice) {
         super(invoice);
     }
 

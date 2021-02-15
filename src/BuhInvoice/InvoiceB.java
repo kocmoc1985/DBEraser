@@ -941,7 +941,7 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
-        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
@@ -1261,7 +1261,7 @@ public class InvoiceB extends Basic_Buh {
 
     }
 
-    private String getFakturaNrAltIfExist(Invoice_ invoice) {
+    private String getFakturaNrAltIfExist(Invoice invoice) {
         TableInvert ti3 = (TableInvert) invoice.TABLE_INVERT_3;
         String fakturanr_alt = ti3.getValueAt(DB.BUH_FAKTURA__FAKTURANR_ALT);
         if (fakturanr_alt.equals("0") == false) {
@@ -1275,7 +1275,7 @@ public class InvoiceB extends Basic_Buh {
         //
         RutRot rut = bim.getRutRot();
         //
-        if (Invoice_.CURRENT_OPERATION_INSERT == false) { // "UPDATE / BEARBETA"
+        if (Invoice.CURRENT_OPERATION_INSERT == false) { // "UPDATE / BEARBETA"
             //
             if (bim.isRUT() && rut == null) {
                 return getForetagData(DB.PHP_FUNC_PARAM_GET_RUT, false);
@@ -1308,7 +1308,7 @@ public class InvoiceB extends Basic_Buh {
         return rut.getFakturaPreview_rut_pers();
     }
 
-    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
+    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //
