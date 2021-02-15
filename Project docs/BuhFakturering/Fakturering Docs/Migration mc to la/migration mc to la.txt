@@ -1,0 +1,30 @@
+[MAIN PROBLEMS DURING MIGRATION]
+
+PREAMBLE: in fact the migration shall be done "automatically" which means creating the create & insert script and running
+it on the new database. The **important** problem i faced was that i only executed the table create scripts but forgot to run
+the table bindings/constraints which are created separetely from the table create script. So the bindings where not created and 
+it caused that i was not able to execute any scripts which used the db and i thaught that something was wrong with connection to 
+the mysql db.
+
+It was a bit tricky to make "automatic" migration due to the "mixcont_com" db contained many databases which don't relate to the BuhInvoice.
+So i had to copy the scripts which relates to BuhInvoice and forgot to copy the scripts related to table bindings
+
+0. Moving the php scripts
+0.2 the scripts are placed in the root dir in the "php" folder
+0.3 Also created a folder named "uploads" inside the "php" folder. The "uploads" folder is needed for uploading and sending invoices 
+and reminders via email. 
+
+1. Moving DB
+1.2 I moved the DB manually by creating all tables from the script and then inserting the data. Important to remember
+that the insertion of data is done sequentially oposite to how the tables are dropped. So the insertion of data starts with table: "buh_kund"
+1.3 Another problem i faced was that my create script was not up to date and some columns were missing.
+
+2. Enabling FTP
+2.2 Easy
+
+3. Introducing Email: no-reply@lafakturering.se
+3.2 replacing faktura@mixcont.com with no-reply@lafakturering.se
+
+4. Java Side
+4.2 Replacing the URL for calling the scripts from www.lafakturering.se instead of www.mixcont.com
+4.3 So the url is: https://www.lafakturering.se/php/_http_buh.php?get_newest_version=true&json={"user";"","pass";""}
