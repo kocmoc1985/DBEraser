@@ -9,7 +9,7 @@ import static MCRecipe.Lang.LNG.LANG_ENG;
 import java.util.Properties;
 
 /**
- *
+ * [2021-02-19]Moved to "forall" package because is used not only MCRecipe project
  * @author KOCMOC
  */
 public class MSG {

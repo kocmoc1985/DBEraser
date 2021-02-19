@@ -83,7 +83,7 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
     private void defineOrgnrOrPnr() {
         //
         if (this instanceof CustomersA_ && IS_PERSON__CUSTOMERS_A) {
-            TABLE__COL_ORGNR__PNR = "PERSONNUMMER";
+            TABLE__COL_ORGNR__PNR = "PERSONNUMMER (YYMMDD-XXXX)";
         } else {
             TABLE__COL_ORGNR__PNR = "ORGNR";
         }
