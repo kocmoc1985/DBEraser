@@ -4,7 +4,7 @@
  */
 package MCRecipe;
 
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.RowDataInvert;

@@ -4,7 +4,7 @@
  */
 package Reporting;
 
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
 
 import java.math.BigDecimal;

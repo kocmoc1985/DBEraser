@@ -7,9 +7,9 @@ package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__AGEMENT;
 import static LabDev.LabDevelopment_.TABLE__VULC;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.REGEX;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.MSG;
+import MCRecipeLang.REGEX;
+import MCRecipeLang.T_INV;
 import MCRecipe.SQL_A_;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;

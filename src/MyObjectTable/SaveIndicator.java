@@ -4,7 +4,7 @@
  */
 package MyObjectTable;
 
-import MCRecipe.Lang.TOOLTIP;
+import MCRecipeLang.TOOLTIP;
 import icons.IconUrls;
 import java.util.logging.Level;
 import java.util.logging.Logger;

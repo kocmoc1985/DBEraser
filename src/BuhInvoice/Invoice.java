@@ -419,6 +419,13 @@ public abstract class Invoice extends Basic_Buh {
         //
         bim.resetArticlesCount();
         //
+        resetValues();
+        //
+        displayTotals();
+        //
+    }
+    
+    private void resetValues(){
         FAKTURA_TOTAL = 0;
         RABATT_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
@@ -429,9 +436,6 @@ public abstract class Invoice extends Basic_Buh {
         MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
         //
         RUT_AVDRAG_TOTAL = 0;
-        //
-        displayTotals();
-        //
     }
 
     private void displayTotals() {
@@ -544,10 +548,7 @@ public abstract class Invoice extends Basic_Buh {
             return;
         }
         //
-        FAKTURA_TOTAL = 0;
-        FAKTURA_TOTAL_EXKL_MOMS = 0;
-        MOMS_TOTAL = 0;
-        RABATT_TOTAL = 0;
+        resetValues(); // IMPORTANT [2020-02-19]
         //
         double pris_exkl_moms;
         int antal;

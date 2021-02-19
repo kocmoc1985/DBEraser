@@ -5,7 +5,7 @@
  */
 package MCRecipe;
 
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.T_INV;
 import MyObjectTableInvert.RowDataInvert;
 
 /**

@@ -5,9 +5,9 @@
  */
 package LabDev;
 
-import MCRecipe.Lang.LAB_DEV;
-import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.LAB_DEV;
+import MCRecipeLang.LNG;
+import MCRecipeLang.MSG;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import forall.HelpA;

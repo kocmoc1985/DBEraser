@@ -10,15 +10,15 @@ import MCRecipe.Sec.CustomPanelCp;
 import MCRecipe.Sec.CustomPanelIF;
 import MCRecipe.Sec.CustomPanelQew;
 import MCRecipe.Sec.CompareRecipes;
-import MCRecipe.Lang.INGR;
-import MCRecipe.Lang.LAB_DEV;
-import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.RECIPE_OVERVIEW_;
-import MCRecipe.Lang.R_DETAILED;
-import MCRecipe.Lang.SEQUENCE;
-import MCRecipe.Lang.TOOLTIP;
-import MCRecipe.Lang.VENDOR_A_B;
+import MCRecipeLang.INGR;
+import MCRecipeLang.LAB_DEV;
+import MCRecipeLang.LNG;
+import MCRecipeLang.MSG;
+import MCRecipeLang.RECIPE_OVERVIEW_;
+import MCRecipeLang.R_DETAILED;
+import MCRecipeLang.SEQUENCE;
+import MCRecipeLang.TOOLTIP;
+import MCRecipeLang.VENDOR_A_B;
 import MCRecipe.Sec.AdminTools;
 import MCRecipe.Sec.AdministrateIngredGroups;
 import MCRecipe.Sec.AdministrateMixerInfoBasic;
@@ -1237,40 +1237,40 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBox8_Class.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox8_Class, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 157, -1));
 
-        jLabel12.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ORIGIN());
+        jLabel12.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ORIGIN());
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 150, -1));
 
-        jLabel13.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_STAGE());
+        jLabel13.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_STAGE());
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 150, -1));
 
-        jLabel14.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_VERSION());
+        jLabel14.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_VERSION());
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        jLabel15.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ADDITIONAL());
+        jLabel15.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_ADDITIONAL());
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
 
-        jLabel16.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__POLYMER_GROUP());
+        jLabel16.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__POLYMER_GROUP());
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel17.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__MIXER());
+        jLabel17.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__MIXER());
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        jLabel18.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__STATUS());
+        jLabel18.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__STATUS());
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
 
-        jLabel19.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_2());
+        jLabel19.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_2());
         jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 70, -1, -1));
 
         jComboBox_Ingred_1.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Ingred_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 40, 140, -1));
 
-        jLabel55.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__CLASS());
+        jLabel55.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__CLASS());
         jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, -1, -1));
 
         jComboBox_Ingred_2.setModel(new javax.swing.DefaultComboBoxModel());
         jPanel2.add(jComboBox_Ingred_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 140, -1));
 
-        jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
+        jCheckBoxRecipeInitialSearchByIngredients.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENTS_CHKBOX());
         jCheckBoxRecipeInitialSearchByIngredients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxRecipeInitialSearchByIngredientsActionPerformed(evt);
@@ -1303,13 +1303,13 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jPanel2.add(jPanel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 100, 50));
 
-        jCheckBoxRecipeInitialOR.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__OR_CHKBOX());
+        jCheckBoxRecipeInitialOR.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__OR_CHKBOX());
         jPanel2.add(jCheckBoxRecipeInitialOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 130, -1));
 
-        jLabel86.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_DESCRIPTION());
+        jLabel86.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_DESCRIPTION());
         jPanel2.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
 
-        jLabel87.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_1());
+        jLabel87.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__INGREDIENT_1());
         jPanel2.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, -1, -1));
 
         jPanel46.setLayout(new java.awt.BorderLayout());
@@ -1333,7 +1333,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel44.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_SET());
+        jLabel44.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_SET());
 
         jPanel41.setPreferredSize(new java.awt.Dimension(180, 50));
         jPanel41.setLayout(new java.awt.GridLayout(1, 0));
@@ -1435,7 +1435,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel45.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_INFO());
+        jLabel45.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__RECIPE_INFO());
 
         jPanel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel17.setName(""); // NOI18N
@@ -1453,7 +1453,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel67.setText(MCRecipe.Lang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE());
+        jLabel67.setText(MCRecipeLang.RECIPE_OVERVIEW_.RECIPE_OVERVIEW__SORT_BY_NOTE_VALUE());
 
         jPanel44.setPreferredSize(new java.awt.Dimension(100, 50));
         jPanel44.setLayout(new java.awt.GridLayout(1, 0));
@@ -2839,9 +2839,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         });
         jPanel50.add(jButtonTestParametersClear);
 
-        jLabel73.setText(MCRecipe.Lang.T_INV.LANG("ORDER"));
+        jLabel73.setText(MCRecipeLang.T_INV.LANG("ORDER"));
 
-        jLabel88.setText(MCRecipe.Lang.T_INV.LANG("RECIPE"));
+        jLabel88.setText(MCRecipeLang.T_INV.LANG("RECIPE"));
 
         javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
         jPanel49.setLayout(jPanel49Layout);
@@ -2897,7 +2897,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel89.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel89.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel89.setText(MCRecipe.Lang.TEST_PARAMS.TABLE_INVERT_NAME());
+        jLabel89.setText(MCRecipeLang.TEST_PARAMS.TABLE_INVERT_NAME());
 
         javax.swing.GroupLayout jPanel_Test_ParametersLayout = new javax.swing.GroupLayout(jPanel_Test_Parameters);
         jPanel_Test_Parameters.setLayout(jPanel_Test_ParametersLayout);
@@ -3460,12 +3460,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel34.setText(MCRecipe.Lang.VENDOR_A_B.PURCHASE_TABLE());
+        jLabel34.setText(MCRecipeLang.VENDOR_A_B.PURCHASE_TABLE());
         jPanelVendors.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel35.setText(MCRecipe.Lang.VENDOR_A_B.VENDOR_TABLE());
+        jLabel35.setText(MCRecipeLang.VENDOR_A_B.VENDOR_TABLE());
         jPanelVendors.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 590, -1, -1));
 
         jPanelInvertTable4_2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -3476,12 +3476,12 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel38.setText(MCRecipe.Lang.VENDOR_A_B.PERSONAL_TABLE());
+        jLabel38.setText(MCRecipeLang.VENDOR_A_B.PERSONAL_TABLE());
         jPanelVendors.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 590, -1, -1));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel53.setText(MCRecipe.Lang.VENDOR_A_B.INGREDIENT_TABLE());
+        jLabel53.setText(MCRecipeLang.VENDOR_A_B.INGREDIENT_TABLE());
         jPanelVendors.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 80, -1, -1));
 
         jButtonVendorsPrintTable4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
@@ -3496,7 +3496,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jComboBoxVendorChooseIngred.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBoxVendorChooseIngred.setModel(new javax.swing.DefaultComboBoxModel());
 
-        jLabel36.setText(MCRecipe.Lang.VENDOR_A_B.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
+        jLabel36.setText(MCRecipeLang.VENDOR_A_B.VENDOR_A__CHOOSE_INGREDIENT_TO_START());
 
         jPanel25.setPreferredSize(new java.awt.Dimension(120, 50));
         jPanel25.setLayout(new java.awt.GridLayout(1, 0));
@@ -3651,7 +3651,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
         jLabel79.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel79.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel79.setText(MCRecipe.Lang.VENDOR_A_B.WAREHOUSE_TABLE());
+        jLabel79.setText(MCRecipeLang.VENDOR_A_B.WAREHOUSE_TABLE());
         jPanelVendors.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 80, -1, -1));
 
         jLabel80.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

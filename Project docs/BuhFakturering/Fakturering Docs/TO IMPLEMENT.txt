@@ -24,13 +24,13 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
+See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+
+IMPORTANT: When changing date and saving invoices after some time it starts to calculate wrongly **************************************[URGENT][FIXED][2021-02-19] ---> the problem was not resetting of all of the variables.
+
+RUT / ROT when creating a RUT faktura it makes sence to take/copy the name and pnr from the "privatkund".[2021-02-19]
+
 No error output for distributions
-
-Change the email from which the emails are sent, now it is "faktura@mixcont.com". Also make different emails for sending faktura and for example creating an account (bot@lafakturering.se)
-
-Migrate from mixcont.com to lafaturering.se
-
-Add to Linas reklam document: Särskillt anpassad för att fakturera privat personer
 
 [IMPORTANT]According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
 

@@ -5,11 +5,11 @@
 package MCRecipe;
 
 import MCRecipe.Sec.HelpM;
-import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.REGEX;
-import MCRecipe.Lang.R_DETAILED;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.LNG;
+import MCRecipeLang.MSG;
+import MCRecipeLang.REGEX;
+import MCRecipeLang.R_DETAILED;
+import MCRecipeLang.T_INV;
 import static MCRecipe.MC_RECIPE.USER_ROLE;
 import static MCRecipe.RecipeInitial.T1_RECIPE_ID;
 import static MCRecipe.RecipeInitial.T1_STATUS;

@@ -6,7 +6,7 @@ package MCCompound;
 
 import MyObjectTable.ShowMessage;
 import DatabaseBrowser.FQ;
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.Sec.PROC;
 import com.jezhumble.javasysmon.JavaSysMon;

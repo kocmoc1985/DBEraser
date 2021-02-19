@@ -6,8 +6,8 @@
 package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__MC_CPWORDER;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.MSG;
+import MCRecipeLang.T_INV;
 import MCRecipe.SQL_A_;
 import MCRecipe.TestParameters_;
 import MyObjectTable.SaveIndicator;

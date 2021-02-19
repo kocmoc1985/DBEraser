@@ -4,7 +4,7 @@
  */
 package forall;
 
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import MCRecipe.RecipeDetailed_;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnValue;

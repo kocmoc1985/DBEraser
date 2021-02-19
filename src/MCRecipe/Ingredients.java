@@ -5,12 +5,12 @@
 package MCRecipe;
 
 import MCRecipe.Sec.HelpM;
-import MCRecipe.Lang.INGR;
-import MCRecipe.Lang.JTB;
-import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.REGEX;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.INGR;
+import MCRecipeLang.JTB;
+import MCRecipeLang.LNG;
+import MCRecipeLang.MSG;
+import MCRecipeLang.REGEX;
+import MCRecipeLang.T_INV;
 import MCRecipe.Sec.PROC;
 import MyObjectTableInvert.BasicTab;
 import MyObjectTableInvert.TableBuilderInvert;

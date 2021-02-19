@@ -7,8 +7,8 @@ package LabDev;
 
 import LabDev.sec.TestDefinitionEntry;
 import LabDev.sec.TestDefinitionEntryB;
-import MCRecipe.Lang.LAB_DEV;
-import MCRecipe.Lang.LNG;
+import MCRecipeLang.LAB_DEV;
+import MCRecipeLang.LNG;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;
 import MyObjectTable.ShowMessage;

@@ -4,7 +4,7 @@
  */
 package forall;
 
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import MCCompound.PROD_PLAN;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;

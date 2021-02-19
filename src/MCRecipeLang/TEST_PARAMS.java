@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MCRecipe.Lang;
+package MCRecipeLang;
 
-import static MCRecipe.Lang.LNG.LANG_ENG;
+import static MCRecipeLang.LNG.LANG_ENG;
 
 /**
  *

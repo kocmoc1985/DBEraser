@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package MCRecipe.Sec;
-import MCRecipe.Lang.RECIPE_OVERVIEW_;
+import MCRecipeLang.RECIPE_OVERVIEW_;
 /**
  *
  * @author KOCMOC

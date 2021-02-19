@@ -7,7 +7,7 @@ package LabDev;
 
 import BuhInvoice.*;
 import BuhInvoice.sec.LANG;
-import MCRecipe.Lang.MSG;
+import MCRecipeLang.MSG;
 import MCRecipe.MC_RECIPE;
 import MyObjectTableInvert.HeaderInvert;
 import MyObjectTableInvert.JLinkInvert;

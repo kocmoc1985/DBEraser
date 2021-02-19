@@ -6,9 +6,9 @@
 package LabDev;
 
 import MCRecipe.ChangeSaver;
-import MCRecipe.Lang.LNG;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.LNG;
+import MCRecipeLang.MSG;
+import MCRecipeLang.T_INV;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.RecipeDetailed_;
 import MCRecipe.SQL_A_;

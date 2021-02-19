@@ -7,8 +7,8 @@ package LabDev;
 
 import static LabDev.LabDevelopment_.TABLE__TEST_PROCEDURE;
 import LabDev.sec.TestVarEntry;
-import MCRecipe.Lang.MSG;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.MSG;
+import MCRecipeLang.T_INV;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MCRecipe.Sec.PROC;

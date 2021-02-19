@@ -6,7 +6,7 @@
 package LabDev.sec;
 
 import LabDev.LAB_DEV__STATUS;
-import MCRecipe.Lang.LNG;
+import MCRecipeLang.LNG;
 import java.awt.Component;
 import java.awt.LayoutManager;
 import javax.swing.JCheckBox;

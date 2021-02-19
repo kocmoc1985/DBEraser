@@ -6,7 +6,7 @@ package MCRecipe.Sec;
 
 import BuhInvoice.JSon;
 import MCRecipe.Ingredients;
-import MCRecipe.Lang.T_INV;
+import MCRecipeLang.T_INV;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_B;
 import MyObjectTable.SaveIndicator;

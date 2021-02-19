@@ -5,7 +5,7 @@
  */
 package LabDev;
 
-import static MCRecipe.Lang.LNG.LANG_ENG;
+import static MCRecipeLang.LNG.LANG_ENG;
 import forall.HelpA;
 import java.util.Properties;
 
