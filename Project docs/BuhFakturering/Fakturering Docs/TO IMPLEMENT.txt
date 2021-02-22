@@ -24,6 +24,10 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
+Make GDPR text-size smaller especially the "Company credentials"
+
+Användningsvillkor vid progrmets installation *******************IMPORTANT
+
 See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 
 IMPORTANT: When changing date and saving invoices after some time it starts to calculate wrongly **************************************[URGENT][FIXED][2021-02-19] ---> the problem was not resetting of all of the variables.
