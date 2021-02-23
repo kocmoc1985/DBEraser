@@ -48,8 +48,6 @@ public class GDPR extends HTMLBasic {
         jEditorPane1.setCaretPosition(0);
         //
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +153,8 @@ public class GDPR extends HTMLBasic {
     public String[] getCssRules() {
         //
         String[] CSSRules = {
+            //
+            //            "body {font-size:12pt}",
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
             //            "img {width: 20px}", not working from here
@@ -184,11 +184,17 @@ public class GDPR extends HTMLBasic {
         //
         return "<html>"
                 + "<body>" //style='background-color:#F1F3F6'
-                + "<div style='margin-left:10px;padding:5 5 5 5px;'>" // ;background-color:#EEF0F4
-                //
+                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:12px;'>" // ;background-color:#EEF0F4
                 + integritetsPolicy()
-                //
                 + "</div>"
+                //
+                + "<br>"
+                //
+                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:9px;'>"
+                + personUppgiftsAnsvarig()
+                + "</div>"
+                //
+                + "<br>"
                 + "</body>"
                 + "</html>";
         //
@@ -234,19 +240,22 @@ public class GDPR extends HTMLBasic {
                 + "<h2>Hur skyddar vi dina personuppgifter?</h2>"
                 + "<p>"
                 + "För att dina personuppgifter som skickas till vår webbtjänst inte ska läsas av utomstående, krypteras all sådan information och skickas via en säker anslutning."
-                + "</p>"
-                //
+                + "</p>";
+        //
+    }
+
+    private String personUppgiftsAnsvarig() {
+        return ""
                 + "<h2>Personuppgiftsansvarig</h2>"
                 + "<p>"
                 + "MixCont AB <br>"
-                + "Organisationsnummer: 556251-6806 <br>"
+//                + "Organisationsnummer: 556251-6806 <br>"
                 + "Gatuadress: Sanktagertudsväg 10 <br>"
                 + "Ort: Trelleborg <br>"
                 + "Land: Sverige <br>"
-                + "E-Post: ask@mixcont.com <br><br>"
+                + "E-Post: info@lafakturering.se <br><br>"
                 + "Denna integritetspolicy uppdateras senast: 2020-12-26"
                 + "</p>";
-
     }
 
     @Override

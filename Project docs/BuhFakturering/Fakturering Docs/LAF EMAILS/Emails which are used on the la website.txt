@@ -1,0 +1,6 @@
+
+[info@lafakturering.se]
+Used by: wp-admin, also is linked from GDPR
+
+[no-reply@lafakturering.se]
+Is used for faktura sending
