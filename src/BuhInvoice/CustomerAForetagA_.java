@@ -533,6 +533,10 @@ public abstract class CustomerAForetagA_ extends Basic_Buh {
             //
             Validator.validateMaxInputLength(jli, 500);
             //
+        }else if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
+            //
+            Validator.validateMaxInputLength(jli, 30);
+            //
         }
         //
     }
