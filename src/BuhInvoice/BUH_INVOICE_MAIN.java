@@ -2666,7 +2666,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //</editor-fold>
         //
-        if (HelpA.runningInNetBeans() == false && HelpBuh.ERR_OUTPUT_TO_FILE) {
+        if (HelpA.runningInNetBeans() == false && HelpBuh.ERR_OUTPUT_TO_FILE__DISTRIBUTED) {
             HelpA.err_output_to_file();
         }
         //

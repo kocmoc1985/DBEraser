@@ -42,10 +42,21 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    public static final boolean ERR_OUTPUT_TO_FILE = true;
-    private static final boolean HTTPS = false;
-    private static final boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
+    //
+    private final static boolean IS_DISTRIBUTION = false;
+    //
+    public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
+    private static  boolean HTTPS = false;
+    private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
 
+    static{
+        if(IS_DISTRIBUTION){
+            DOMAIN_LA = true;
+            HTTPS = true;
+            ERR_OUTPUT_TO_FILE__DISTRIBUTED = false;
+        }
+    }
+    
     /**
      * @deprecated @throws Exception
      */
