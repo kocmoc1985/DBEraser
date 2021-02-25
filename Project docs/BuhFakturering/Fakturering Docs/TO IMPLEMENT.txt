@@ -24,7 +24,11 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
-When some new clients registers, send an email to me - so i know about that ************************
+Also send email when a user deletes it's account **************
+
+Make logo for sending it as footer in emails. ***************
+
+When some new clients registers, send an email to me - so i know about that ************************ [DONE]
 
 If the internet connection is missing a propper message shall appear ********************[IMPORTANT]
 
