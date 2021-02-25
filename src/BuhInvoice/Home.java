@@ -50,10 +50,20 @@ public class Home extends Basic_Buh {
 
     @Override
     protected void startUp() {
+        //
+        if(HelpA.checkInternetConnection(this,2) == false){
+            //
+            HelpA.showNotification(LANG.INTERNET_CONNECTION_MISSING);
+            //
+            System.exit(0);
+            //
+        }
+        //
         loadCheckBoxSaveLoginState();
         fillJTableHeader();
         refresh();
         HelpBuh.checkUpdates(BUH_INVOICE_MAIN.jLabel17_new__version);
+        //
     }
 
     private void fillJTableHeader() {

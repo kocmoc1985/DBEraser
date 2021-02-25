@@ -1274,7 +1274,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel23.add(jLabel_info__forfallen);
 
         jLabel_info_is_person.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/person.png"))); // NOI18N
-        jLabel_info_is_person.setToolTipText("Privatkund");
+        jLabel_info_is_person.setToolTipText("Fysisk person (Ej företag)");
         jPanel23.add(jLabel_info_is_person);
 
         jLabel_info_rut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1752,7 +1752,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_Kund_Insert_or_Update.setForeground(new java.awt.Color(153, 153, 153));
 
         jCheckBox__person.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox__person.setText("Privatkund");
+        jCheckBox__person.setText("Kunden är en fysisk person");
         jCheckBox__person.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox__personActionPerformed(evt);
@@ -2666,7 +2666,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //</editor-fold>
         //
-        if (HelpA.runningInNetBeans() == false) {
+        if (HelpA.runningInNetBeans() == false && HelpBuh.ERR_OUTPUT_TO_FILE) {
             HelpA.err_output_to_file();
         }
         //

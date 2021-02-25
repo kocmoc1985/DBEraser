@@ -17,6 +17,8 @@ import BuhInvoice.HTMLPrint_B;
  */
 public class LANG {
 
+    public final static String INTERNET_CONNECTION_MISSING = "Kan ej starta LAFakturering. Internetanslutning saknas!";
+    //
     public final static String VALIDATION_MSG_1 = "Inloggning misslyckades";
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";
     public final static String VALIDATION_MSG__V_ERR_01 = "Fel användarnamn";

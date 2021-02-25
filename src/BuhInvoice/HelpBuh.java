@@ -42,8 +42,9 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
+    public static final boolean ERR_OUTPUT_TO_FILE = true;
     private static final boolean HTTPS = false;
-    private static final boolean DOMAIN_LA = true; //false = "mixcont.com", true = "lafakturering.se"
+    private static final boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
 
     /**
      * @deprecated @throws Exception

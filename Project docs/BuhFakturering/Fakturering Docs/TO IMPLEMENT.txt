@@ -24,11 +24,15 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
-Anpassa Outlook e-post text and subject when sending invoice ************************[IMPORTANT]
+When some new clients registers, send an email to me - so i know about that ************************
+
+If the internet connection is missing a propper message shall appear ********************[IMPORTANT]
+
+Anpassa Outlook e-post text and subject when sending invoice see: HTMLPrint.class-> sendWithStandardEmailClient(boolean reminder) ----- PROBLEMATIC - was not able to append to the String[2021-02-25]
 
 Make GDPR text-size smaller especially the "Company credentials"
 
-Användningsvillkor vid progrmets installation *******************IMPORTANT
+Användningsvillkor vid progrmets installation *******************IMPORTANT****[DONE]
 
 See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 

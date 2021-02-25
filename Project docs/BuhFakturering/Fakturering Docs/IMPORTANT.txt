@@ -1,4 +1,11 @@
 ________________________________________________________________________________________________________
+[INTERNET CHECK ON START UP][2021-02-25]
+Since [2021-02-25] LAFakturering checks for the internet connection and does not start if internet is missing:
+
+See here: Home.class -> startUp()
+
+
+________________________________________________________________________________________________________
 [BASIC OPERATIONS EXAMPLES, JAVA <-> PHP: INSERT, SELECT..]
 
 [INSERT EXAMPLE:]

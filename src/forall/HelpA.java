@@ -9,6 +9,7 @@ import MCCompound.PROD_PLAN;
 import MCRecipe.MC_RECIPE;
 import MCRecipe.SQL_A_;
 import MyObjectTable.ShowMessage;
+import Server.Server;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.swing.AutoCompleteSupport;
 import com.michaelbaranov.microba.calendar.DatePicker;
@@ -118,6 +119,59 @@ public class HelpA {
     private static int nr_properties;
     public static String LAST_ERR_OUT_PUT_FILE_PATH;
     private static Border PREV_BORDER;
+    
+    private static int checkInetAttempts = 0;
+
+    public static boolean checkInternetConnection(Object toSynchronizeOn, int connectionAttempts) {
+        //
+        checkInetAttempts++;
+        //
+        int limit = connectionAttempts;
+        //
+        if (checkInetAttempts == (limit + 1)) {
+            return false;
+        }
+        //
+        try {
+            //
+            if (ping2("www.microsoft.com") || HelpM.ping2("www.lafakturering.se")) {
+                return true;
+            } else {
+                wait_x(toSynchronizeOn, 1000);
+                checkInternetConnection(toSynchronizeOn, connectionAttempts);
+
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            wait_x(toSynchronizeOn, 1000);
+            checkInternetConnection(toSynchronizeOn,connectionAttempts);
+        }
+        //
+        return false;
+        //
+    }
+    
+    public static boolean ping2(String host) throws IOException, InterruptedException {
+        boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
+
+        ProcessBuilder processBuilder = new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", host);
+        Process proc = processBuilder.start();
+
+        int returnVal = proc.waitFor();
+//        System.out.println("" + returnVal);
+        return returnVal == 0;
+    }
+
+    private static void wait_x(Object toSynchronizeOn, int millis) {
+        synchronized (toSynchronizeOn) {
+            try {
+                toSynchronizeOn.wait(millis);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     public static boolean isFirstTimeRun(String filePathAndName) {
         //

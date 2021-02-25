@@ -616,6 +616,7 @@ public abstract class HTMLPrint extends HTMLBasic {
      * This will work with all mail clients, but it does not attach
      * automatically. So the solution is to silently write ".pdf" to desktop,
      * and give the user a message where to find the file
+     * @param reminder
      */
     protected void sendWithStandardEmailClient(boolean reminder) {
         //
@@ -635,7 +636,7 @@ public abstract class HTMLPrint extends HTMLBasic {
             // Attachments not working with "mailTo:" 100% verified [2020-09-23]
             url = mailTo(mailto, subject, body);
             //
-            System.out.println("URL: " + url);
+//            System.out.println("URL: " + url);
             //
             mailTo = new URI(url);
             desktop.mail(mailTo);
