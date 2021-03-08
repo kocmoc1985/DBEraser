@@ -276,6 +276,8 @@ public class DB {
     public static final String BUH_LICENS__JAVA = "java";
     public static final String BUH_LICENS__DATE_CREATED = "date_created";
     //
+    public static final String BUH_VISITORS__PROGRAM_VER = "program_ver";
+    //
     public static final String BUH_FAKTURA_RUT__KUNDID = "kundId";
     public static final String BUH_FAKTURA_RUT__FAKTURAID = "fakturaId";
     public static final String BUH_FAKTURA_RUT__SKATTEREDUKTION = "skattereduktion";

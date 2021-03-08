@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class CustomersA_ extends CustomerAForetagA_ {
+public class CustomersA_ extends CustomerAForetagA {
 
     //
     protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";

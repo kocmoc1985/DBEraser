@@ -37,6 +37,7 @@ date_ban timestamp DEFAULT CURRENT_TIMESTAMP()
 CREATE TABLE buh_visitors (
 visitId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
+program_ver varchar (10) DEFAULT '',
 user varchar(100) DEFAULT '',
 ip varchar(50) DEFAULT '',
 user_agent varchar(300) DEFAULT '',

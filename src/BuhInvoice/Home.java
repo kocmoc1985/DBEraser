@@ -275,6 +275,8 @@ public class Home extends Basic_Buh {
         map.put(DB.BUH_LICENS__PC_USER_NAME, HelpA.getUserName());
         map.put(DB.BUH_LICENS__JAVA, HelpA.getJavaVersionAndBitAndVendor_b());
         //
+        map.put(DB.BUH_VISITORS__PROGRAM_VER, "" + GP_BUH.VERSION_INTEGER); // added on[2021-03-08]
+        //
         //[2020-12-23] This is the "login marker" so i can distinguish between
         // a common request and "login". OBS! "login_attempt_marker" shall only 
         // be used from HERE

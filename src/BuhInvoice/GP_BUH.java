@@ -54,9 +54,12 @@ public class GP_BUH {
 
     /*
      * By [2020-10-07]
+     * For demo use: "info@lafakturering.se" ->  p:"8oBFYIAuMH"
+     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "jdHFe2Qz1i" --> www.la.se!!
+     *
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
-     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "jdHFe2Qz1i" --> www.la.se!!
+     * 
      * (andrej.brassas@) -> Guest Account "guest_21_kocmoc1985@gmail.com" "g2Dpo3kGXK"
      */
     //
