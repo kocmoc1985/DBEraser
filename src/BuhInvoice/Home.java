@@ -48,14 +48,30 @@ public class Home extends Basic_Buh {
         super(bim);
     }
 
+    private void notifyAboutTestEnvironment() {
+        //
+        if (HelpBuh.USE_TEST_DB && HelpBuh.USE_TEST_SCRIPTS) {
+            HelpA.showNotification("NOTE, TEST DATABASE AND TEST SCRIPTS IN USE");
+            return;
+        }
+        //
+        if (HelpBuh.USE_TEST_DB) {
+            HelpA.showNotification("NOTE, TEST DATABASE IN USE");
+            return;
+        }
+        //
+        if (HelpBuh.USE_TEST_SCRIPTS) {
+            HelpA.showNotification("ATTENTION, ONLY TEST SCRIPTS IN USE - SO THE MAIN DB IS IN USE");
+            return;
+        }
+    }
+
     @Override
     protected void startUp() {
         //
-        if(HelpBuh.USE_TEST_DB){
-           HelpA.showNotification("NOTE, TEST DATABASE IN USE"); 
-        }
+        notifyAboutTestEnvironment();
         //
-        if(HelpA.checkInternetConnection(this,2) == false){
+        if (HelpA.checkInternetConnection(this, 2) == false) {
             //
             HelpA.showNotification(LANG.INTERNET_CONNECTION_MISSING);
             //
@@ -214,7 +230,7 @@ public class Home extends Basic_Buh {
             fillSharedUsersTable();
         }
         //
-        if(GP_BUH.isGuestUser()){
+        if (GP_BUH.isGuestUser()) {
             bim.jButton_delete_account_sharing.setEnabled(false);
         }
         //

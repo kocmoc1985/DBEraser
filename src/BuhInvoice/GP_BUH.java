@@ -53,7 +53,7 @@ public class GP_BUH {
     //
 
     /*
-     * By [2020-10-07]
+     * By [2021-03-09]
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy
      *
      * For demo use: "info@lafakturering.se" ->  p:"8oBFYIAuMH"
