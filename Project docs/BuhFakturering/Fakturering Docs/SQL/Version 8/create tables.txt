@@ -1,6 +1,3 @@
-DROP DATABASE if EXISTS buh;
-CREATE DATABASE buh;
-USE buh;
 
 CREATE TABLE buh_kund (
 kundId integer primary key not null AUTO_INCREMENT,
