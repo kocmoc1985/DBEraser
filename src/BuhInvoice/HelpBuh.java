@@ -48,12 +48,20 @@ public class HelpBuh {
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
     private static  boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
-
+    public static boolean USE_TEST_DB = false; // [#TEST-DB#]
+    //
     static{
         if(IS_DISTRIBUTION){
+            //
             DOMAIN_LA = true;
             HTTPS = true;
             ERR_OUTPUT_TO_FILE__DISTRIBUTED = false;
+            //
+            USE_TEST_DB = false;
+            //
+            GP_BUH.TRACKING_TOOL_TIP_ENABLED = false;
+            GP_BUH.CUSTOMER_MODE = true;
+            //
         }
     }
     
@@ -67,7 +75,7 @@ public class HelpBuh {
 
     /**
      * [2020-09-07]
-     *
+     * OBS! All calls to PHP do bypass this method, verified on [2021-03-21]
      * @param phpScriptName - example: "_http_buh"
      * @param phpFunctionName - example: "delete_entry"
      * @param json
@@ -81,6 +89,13 @@ public class HelpBuh {
         //
         map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
         map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]
+        //
+        // [#TEST-DB#]
+        if(USE_TEST_DB){
+            map.put("use_test_db", "1");
+        }else{
+            map.put("use_test_db", "0");
+        }
         //
         String url = buildUrl(phpScriptName, phpFunctionName, JSon.hashMapToJSON(map));
         //

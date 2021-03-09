@@ -51,6 +51,10 @@ public class Home extends Basic_Buh {
     @Override
     protected void startUp() {
         //
+        if(HelpBuh.USE_TEST_DB){
+           HelpA.showNotification("NOTE, TEST DATABASE IN USE"); 
+        }
+        //
         if(HelpA.checkInternetConnection(this,2) == false){
             //
             HelpA.showNotification(LANG.INTERNET_CONNECTION_MISSING);

@@ -1,3 +1,12 @@
+
+[TEST-DB FOR TESTING OF THE NEW FUNCTIONALITY][2021-03-09]
+
+So the main idea is to have a TEST-DB when testing new features.'
+ 
+Search for: [#TEST-DB#] in both projects
+
+The database for test is named: "lafakturering_setest"  (*the main one is called: "lafakturering_semain")
+
 ________________________________________________________________________________________________________
 [INTERNET CHECK ON START UP][2021-02-25]
 Since [2021-02-25] LAFakturering checks for the internet connection and does not start if internet is missing:
