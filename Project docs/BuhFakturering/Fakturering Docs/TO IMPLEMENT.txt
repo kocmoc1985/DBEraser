@@ -32,7 +32,7 @@ Make logo for sending it as footer in emails. ***************
 
 When some new clients registers, send an email to me - so i know about that ************************ [DONE]
 
-If the internet connection is missing a propper message shall appear ********************[IMPORTANT]
+If the internet connection is missing a propper message shall appear ********************[IMPORTANT][DONE?!]
 
 Anpassa Outlook e-post text and subject when sending invoice see: HTMLPrint.class-> sendWithStandardEmailClient(boolean reminder) ----- PROBLEMATIC - was not able to append to the String[2021-02-25]
 

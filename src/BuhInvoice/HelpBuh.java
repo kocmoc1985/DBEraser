@@ -49,7 +49,7 @@ public class HelpBuh {
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     public static boolean USE_TEST_DB = true; // [#TEST-DB#]
-    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#]
+    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
 
     static {

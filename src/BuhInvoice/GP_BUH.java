@@ -11,6 +11,7 @@ import forall.HelpA;
 import static forall.HelpA.file_exists;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Point;
@@ -29,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -82,7 +84,7 @@ public class GP_BUH {
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
     public static final String GDPR_ACCEPTED_FILE_PATH = "io/gdpr";
-    
+
     public static boolean isGdprAccepted() {
         //
         return !file_exists(new File(GDPR_ACCEPTED_FILE_PATH));
@@ -193,11 +195,13 @@ public class GP_BUH {
     }
 
     public static boolean confirmWarning(String message) {
-        return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
+        JLabel label = new JLabel(message);
+        label.setFont(new Font(label.getFont().getFontName(), Font.BOLD, 14));
+        return JOptionPane.showConfirmDialog(null, label, "Bekräfta", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION;
     }
 
     public static boolean confirm(String message) {
-        return JOptionPane.showConfirmDialog(null, message, "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, message, "Bekräfta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
     public static String getDate_yyyy_MM_dd() {
