@@ -5755,8 +5755,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     }
 
     public void test_parameters_tab_clicked() {
-        testParameters.fillTable1();
-        testParameters.showTableInvert();
+        testParameters.test_parameters_tab_clicked();
     }
 
     public void vendors_tab_b_clicked() {

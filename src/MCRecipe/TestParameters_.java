@@ -31,6 +31,7 @@ public class TestParameters_ extends BasicTab {
     private final MC_RECIPE mCRecipe;
     private TableBuilderInvert TABLE_BUILDER_INVERT;
     private final JTableM jTable_1;
+    private boolean flag_a = false;
 
     public TestParameters_(SqlBasicLocal sql, SqlBasicLocal sql_additional, MC_RECIPE mCRecipe) {
         super(sql, sql_additional, mCRecipe);
@@ -59,6 +60,12 @@ public class TestParameters_ extends BasicTab {
         if(GP.COMPANY_NAME.equals(GP.COMPANY_NAME_QEW)){
             mCRecipe.jComboBoxTestParams_Order.setVisible(false);
         }
+    }
+    
+    public void test_parameters_tab_clicked(){
+        flag_a = true; //[2021-03-30]
+        fillTable1();
+        showTableInvert();
     }
 
     public void clearBoxes() {
@@ -179,7 +186,9 @@ public class TestParameters_ extends BasicTab {
         String val = HelpA.getComboBoxSelectedValueB(mCRecipe.jComboBoxTestPararams_Recipe);
         //
         //
-        if (val == null) {
+        if (val == null && flag_a == true) {
+            //
+            flag_a = false;
             //
             JTable table = mCRecipe.jTable1;
             //
@@ -194,6 +203,7 @@ public class TestParameters_ extends BasicTab {
                 return rst;
             }
         }
+        //
         //
         return val;
     }
