@@ -1,6 +1,0 @@
-Tables:
-
-Buh_Kund -> En kund som använder vår tjänst
-Faktura -> Typer av fakturor: Normal faktura, Kredit Faktura, Kontant nota
-Faktura_Kund
-Faktura_Artikel

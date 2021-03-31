@@ -1,4 +1,28 @@
+________________________________________________________________________________________________________
+[DISTRIBUTION - BUILD - FAT JAR - EXCLUDE PACKAGES][IMPORTANT]
 
+LAST BUILD MADE: 2021-03-31
+
+[BEFORE BUILD]
+Set variable: HelpBuh.class -> "IS_DISTRIBUTION=true"
+This enables following:
+	DOMAIN_LA = true;
+	HTTPS = true;
+	ERR_OUTPUT_TO_FILE__DISTRIBUTED = false;
+	USE_TEST_DB = false;
+	USE_TEST_SCRIPTS = false;
+	GP_BUH.TRACKING_TOOL_TIP_ENABLED = false;
+	GP_BUH.CUSTOMER_MODE = true;
+
+[BUILD]
+See: CorsairUsb\HERE\KNOWLEDGE\JAVA.vsd -> tab: "Fat, Obfuscated and excluded"
+
+So short instruction is following, consider that all settings are DONE then you have to do following:
+1. Clean and Build
+2. Build a fat and obfuscated jar: right click on "build.xml" -> "Run Target" -> "Other Targets" -> "package-for-store"
+3. The final ".jar" is placed in a folder, named: "store"
+
+________________________________________________________________________________________________________
 [TEST-DB & TEST SCRIPTS FOR TESTING OF THE NEW FUNCTIONALITY][2021-03-09] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT]
 
 So the main idea is to have a *TEST-DB* and *TEST-SCRIPTS* when testing new features.
