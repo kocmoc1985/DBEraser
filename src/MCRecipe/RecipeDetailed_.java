@@ -873,7 +873,8 @@ public class RecipeDetailed_ extends BasicTab {
             return;
         }
         //
-        if (col == HelpA.getColByName(table4, t4_weight) || col == HelpA.getColByName(table4, t4_phr)) {
+        if (col == HelpA.getColByName(table4, t4_phr)) { // col == HelpA.getColByName(table4, t4_weight) ||
+            //
             String percRubber = HelpA.getValueSelectedRow(table4, t4_percRubber);
             Double percRubber_ = Double.parseDouble(percRubber);
             //
