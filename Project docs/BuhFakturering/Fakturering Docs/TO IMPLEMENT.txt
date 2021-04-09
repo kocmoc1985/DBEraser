@@ -24,6 +24,14 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
+Faktura Offert:
+#OFFERT#
+InvoiceB.class -> public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse)
+
+
+______
+
+
 When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
 
 Also send email when a user deletes it's account **************

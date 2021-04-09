@@ -66,7 +66,7 @@ public class InvoiceA_Insert_ extends Invoice {
 //    }
 
     protected void createNew(boolean isKontantfaktura) {
-        //
+        //[#OFFERT#] VERY IMPORTANT Here it should be also adjusted
         CREATE_KONTANT_FAKTURA__OPERATION_INSERT = isKontantfaktura;
         //
         java.awt.EventQueue.invokeLater(new Runnable() {

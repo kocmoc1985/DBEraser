@@ -130,7 +130,8 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String getBetalVilkorFlexCol() {
-        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+        //[#OFFERT#]
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
@@ -142,7 +143,7 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String getDrojsmalsrantaFlexCol() {
-        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return HTMLPrint.T__FAKTURA_VALFRI_TEXT;
@@ -154,13 +155,14 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     protected final static String getAttBetalaTitle(String fakturatype) {
-        if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
+        //[#OFFERT#]
+        if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || fakturatype.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             return "ATT BETALA";
         } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return "ATT ERHÅLLA";
         } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "BETALD";
-        } else {
+        }else {
             return null;
         }
     }

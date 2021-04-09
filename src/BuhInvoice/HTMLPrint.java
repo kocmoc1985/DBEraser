@@ -374,7 +374,10 @@ public abstract class HTMLPrint extends HTMLBasic {
             return "Kreditfaktura";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "Kvitto";
-        } else {
+        }else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
+            //[#OFFERT#]
+            return "Offert";
+        }else {
             return null;
         }
     }

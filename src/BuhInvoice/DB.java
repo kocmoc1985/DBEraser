@@ -54,11 +54,15 @@ public class DB {
     public static final String STATIC__FAKTURA_TYPE_NORMAL__NUM = "0";
     public static final String STATIC__FAKTURA_TYPE_KREDIT__NUM = "1";
     public static final String STATIC__FAKTURA_TYPE_KONTANT__NUM = "2";
+    public static final String STATIC__FAKTURA_TYPE_OFFERT__NUM = "3";
     public static final String STATIC__FAKTURA_TYPE_NORMAL = "NORMAL";
     public static final String STATIC__FAKTURA_TYPE_KREDIT = "KREDIT";
     public static final String STATIC__FAKTURA_TYPE_KONTANT = "KONTANT";
+    public static final String STATIC__FAKTURA_TYPE_OFFERT = "OFFERT";//[#OFFERT#]
     public static final String STATIC__FAKTURA_TYPES = STATIC__FAKTURA_TYPE_NORMAL + ";0,"
-            + STATIC__FAKTURA_TYPE_KREDIT + ";1," + STATIC__FAKTURA_TYPE_KONTANT + ";2";// "NORMAL;0,KREDIT;1,KONTANT;2"
+            + STATIC__FAKTURA_TYPE_KREDIT + ";1," 
+            + STATIC__FAKTURA_TYPE_KONTANT + ";2" 
+            + STATIC__FAKTURA_TYPE_OFFERT + ";3";// "NORMAL;0,KREDIT;1,KONTANT;2";OFFERT;3
 
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
     public static final String STATIC__BETAL_METHODS = "Bank Giro;bg,Kort;kt,Kontant;ko,Plus Giro;pg,Bank Konto;bk,Swish;sw";
