@@ -517,6 +517,21 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
+    
+    protected boolean isOffert() {
+        //
+        String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
+        //
+        if (fakturaTyp == null) {
+            return false;
+        }
+        //
+        if (fakturaTyp.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * OBS! Remember the "komment" field is used internally for different

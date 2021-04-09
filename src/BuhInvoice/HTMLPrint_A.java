@@ -118,7 +118,8 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String getForfalloDatumFlexCol() {
-        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) { // NORMAL
+        //[#OFFERT#]
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_FORFALLODATUM__FLEX, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_KREDITERAR_FAKTURA_NR, map_c);
@@ -143,6 +144,7 @@ public class HTMLPrint_A extends HTMLPrint {
     }
 
     private String getDrojsmalsrantaFlexCol() {
+        //[#OFFERT#]
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
@@ -251,7 +253,19 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String faktura_header_with_logo_to_html(String imgPath) {
         //
-        String[] headers = new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM};
+        String title_nr;
+        String title_datum;
+        //
+        if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+            //[#OFFERT#]
+            title_nr = "Offertnr.";
+            title_datum = "Offertdatum";
+        }else{
+            title_nr = T__FAKTURA_NR;
+            title_datum = T__FAKTURA_DATUM;
+        }
+        //
+        String[] headers = new String[]{title_nr, T__KUND_NR, title_datum};
         String[] values = new String[]{map_a.get(T__FAKTURA_NR), map_a.get(T__KUND_NR), map_a.get(T__FAKTURA_DATUM)};
         //
         return "<table style='margin-top:15px;'>"

@@ -162,7 +162,10 @@ public abstract class Invoice extends Basic_Buh {
                 } else if (bim.isKontantFaktura()) { // KONTANT FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
-                } else {
+                }else if(bim.isOffert()){
+                    bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1_2);
+                    bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_OFFERT;
+                }else {
                     // NORMAL FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
