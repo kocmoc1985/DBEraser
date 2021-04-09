@@ -25,9 +25,10 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 ------------------------<URGENT>------------------------
 
 Faktura Offert:
-#OFFERT#
-InvoiceB.class -> public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse)
+Search for tag: #OFFERT#
 
+1. When sending an offert via email the "subject" of the email shall be like "Offert från"
+2. 
 
 ______
 
