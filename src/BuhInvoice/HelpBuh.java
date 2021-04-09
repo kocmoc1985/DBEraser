@@ -43,7 +43,7 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class HelpBuh {
 
     //
-    private final static boolean IS_DISTRIBUTION = true;
+    private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
     private static boolean HTTPS = false;
