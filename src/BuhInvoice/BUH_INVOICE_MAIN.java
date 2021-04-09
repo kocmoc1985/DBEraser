@@ -769,6 +769,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info__sent = new javax.swing.JLabel();
         jLabel_info__kontant_faktura = new javax.swing.JLabel();
         jLabel_info__kredit_faktura = new javax.swing.JLabel();
+        jLabel_info__offert = new javax.swing.JLabel();
         jLabel_info__makulerad = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
@@ -1288,7 +1289,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel_faktura_changed_by__user.setForeground(new java.awt.Color(153, 153, 153));
 
-        jPanel23.setLayout(new java.awt.GridLayout(9, 1));
+        jPanel23.setLayout(new java.awt.GridLayout(10, 1));
 
         jLabel_info__forfallen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
         jLabel_info__forfallen.setToolTipText("Förfallen");
@@ -1322,6 +1323,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info__kredit_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_b.png"))); // NOI18N
         jLabel_info__kredit_faktura.setToolTipText("Kreditfaktura");
         jPanel23.add(jLabel_info__kredit_faktura);
+
+        jLabel_info__offert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_c.png"))); // NOI18N
+        jPanel23.add(jLabel_info__offert);
 
         jLabel_info__makulerad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N
         jLabel_info__makulerad.setToolTipText("Makulerad");
@@ -1367,7 +1371,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                                     .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(5, 5, 5)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
@@ -1400,7 +1404,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_faktura_changed_by__user, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton2)
@@ -2138,7 +2142,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(487, Short.MAX_VALUE))
+                .addContainerGap(491, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel20);
@@ -2794,6 +2798,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_info__kontant_faktura;
     protected javax.swing.JLabel jLabel_info__kredit_faktura;
     protected javax.swing.JLabel jLabel_info__makulerad;
+    protected javax.swing.JLabel jLabel_info__offert;
     protected javax.swing.JLabel jLabel_info__printed;
     protected javax.swing.JLabel jLabel_info__sent;
     protected javax.swing.JLabel jLabel_info_is_person;

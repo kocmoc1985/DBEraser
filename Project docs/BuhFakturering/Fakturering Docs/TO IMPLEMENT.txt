@@ -27,8 +27,9 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 Faktura Offert:
 Search for tag: #OFFERT#
 
-1. When sending an offert via email the "subject" of the email shall be like "Offert från"
-2. 
+1. When sending an offert via email the "subject" of the email shall be like "Offert fran"
+HTMLPrint.class -> protected void sendMail(String toEmail): line 463
+
 
 ______
 
