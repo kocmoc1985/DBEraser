@@ -2375,7 +2375,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 		resetRutRot();
 		//
         invoiceA_insert.resetRutRot();
-        invoiceA_insert.createNew(isKontantfaktura);
+        invoiceA_insert.createNew(isKontantfaktura);//[#OFFERT#] IMPORTANT - "isKontantfaktura" shall be changed to faktura type
         //
     }
 
