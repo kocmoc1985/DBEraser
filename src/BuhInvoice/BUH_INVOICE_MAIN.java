@@ -103,7 +103,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     private void resetRutRot() {
-		System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         this.rutRot = null;
     }
 
@@ -255,6 +255,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         } else if (isKontantFaktura()) {
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
+        } else if (isOffert()) {
+            GP_BUH.setEnabled(jButton_copy_faktura, false);
+            GP_BUH.setEnabled(jButton_inbetalning, false);
+            GP_BUH.setEnabled(jButton_send_reminder, false);
+            GP_BUH.setEnabled(jButton_kredit_faktura, false);
         } else if (isMakulerad()) {
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_copy_faktura, false);
@@ -414,10 +419,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
-		if(isBetald()){
-		   return false;
-		}
-		//
+        if (isBetald()) {
+            return false;
+        }
+        //
         if (daysForfallen < 0) {
             return false;
         } else {
@@ -517,7 +522,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return false;
         }
     }
-    
+
     protected boolean isOffert() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -2402,8 +2407,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
 //        invoiceA_insert.resetSavedMoms_jCombo();
         //
-		resetRutRot();
-		//
+        resetRutRot();
+        //
         invoiceA_insert.resetRutRot();
         invoiceA_insert.createNew(fakturaType);//[#OFFERT#] IMPORTANT - "isKontantfaktura" shall be changed to faktura type
         //
