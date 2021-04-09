@@ -61,7 +61,7 @@ public class DB {
     public static final String STATIC__FAKTURA_TYPE_OFFERT = "OFFERT";//[#OFFERT#]
     public static final String STATIC__FAKTURA_TYPES = STATIC__FAKTURA_TYPE_NORMAL + ";0,"
             + STATIC__FAKTURA_TYPE_KREDIT + ";1," 
-            + STATIC__FAKTURA_TYPE_KONTANT + ";2" 
+            + STATIC__FAKTURA_TYPE_KONTANT + ";2," // OBS! PAY ATTENTION AT ","
             + STATIC__FAKTURA_TYPE_OFFERT + ";3";// "NORMAL;0,KREDIT;1,KONTANT;2";OFFERT;3
 
     public static final String STATIC__ENHET = "Styck;st,Förp;Förp,Timmar;Tim";
