@@ -65,6 +65,7 @@ public abstract class Invoice extends Basic_Buh {
 //    protected final Moms momsSaveEntry = new Moms();
     //
     protected static boolean CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
+    protected static boolean CREATE_OFFERT__OPERATION_INSERT = false;
     //
     private RutRot rutRot;
     private RutRotFrame rutRotFrame;
@@ -118,6 +119,10 @@ public abstract class Invoice extends Basic_Buh {
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1_2);
                 bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
                 //
+            } else if (CREATE_OFFERT__OPERATION_INSERT == true) {
+                //[#OFFERT#]
+                bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1_3);
+                bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_OFFERT;
             } else {
                 // NORMAL FAKTURA
                 bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_1);
@@ -424,8 +429,8 @@ public abstract class Invoice extends Basic_Buh {
         displayTotals();
         //
     }
-    
-    private void resetValues(){
+
+    private void resetValues() {
         FAKTURA_TOTAL = 0;
         RABATT_TOTAL = 0;
         FAKTURA_TOTAL_EXKL_MOMS = 0;
@@ -1336,8 +1341,8 @@ public abstract class Invoice extends Basic_Buh {
     }
 
     /**
-     * [#SHOW-HIDE-RUT--IS-PESRON#]
-     * [#SHOW-HIDE--IF#]
+     * [#SHOW-HIDE-RUT--IS-PESRON#] [#SHOW-HIDE--IF#]
+     *
      * @param ti
      * @param colName
      */
@@ -1361,7 +1366,8 @@ public abstract class Invoice extends Basic_Buh {
 
     /**
      * [#SHOW-HIDE--IF#]
-     * @param rdi 
+     *
+     * @param rdi
      */
     protected void hideFieldIfPerson(RowDataInvert rdi) {
         //
@@ -1375,8 +1381,9 @@ public abstract class Invoice extends Basic_Buh {
 
     /**
      * [#SHOW-HIDE--IF#]
+     *
      * @param ti
-     * @param colName 
+     * @param colName
      */
     protected void hideFieldIfPerson_b(Table ti, String colName) {
         //

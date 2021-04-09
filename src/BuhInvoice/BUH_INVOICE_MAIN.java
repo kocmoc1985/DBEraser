@@ -2358,7 +2358,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
 
-    private void createNewFaktura(boolean isKontantfaktura) {
+    private void createNewFaktura(String fakturaType) {
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert_(this);
@@ -2375,7 +2375,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 		resetRutRot();
 		//
         invoiceA_insert.resetRutRot();
-        invoiceA_insert.createNew(isKontantfaktura);//[#OFFERT#] IMPORTANT - "isKontantfaktura" shall be changed to faktura type
+        invoiceA_insert.createNew(fakturaType);//[#OFFERT#] IMPORTANT - "isKontantfaktura" shall be changed to faktura type
         //
     }
 
@@ -2385,7 +2385,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        createNewFaktura(false);
+        createNewFaktura(DB.STATIC__FAKTURA_TYPE_NORMAL);//false
         //
     }//GEN-LAST:event_jButton_create_new_faktura_bActionPerformed
 
@@ -2422,7 +2422,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_create_new_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_fakturaActionPerformed
         openTabByName(TAB_FAKTURA);
-        createNewFaktura(false);
+        createNewFaktura(DB.STATIC__FAKTURA_TYPE_NORMAL);//false
     }//GEN-LAST:event_jButton_create_new_fakturaActionPerformed
 
     private void jButton4_save_faktura_kommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_save_faktura_kommentActionPerformed
@@ -2480,7 +2480,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_kontant_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_kontant_fakturaActionPerformed
         openTabByName(TAB_FAKTURA);
-        createNewFaktura(true);
+        createNewFaktura(DB.STATIC__FAKTURA_TYPE_KONTANT);//true
     }//GEN-LAST:event_jButton_kontant_fakturaActionPerformed
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
@@ -2584,7 +2584,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        createNewFaktura(true);
+        createNewFaktura(DB.STATIC__FAKTURA_TYPE_KONTANT);//true
         //
     }//GEN-LAST:event_jButton_create_new_kontant_faktura_bActionPerformed
 
@@ -2940,7 +2940,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 if (getFakturaNr() == null || getFakturaNr().isEmpty()) {
                     //It's for the cases when the faktura list is empty
-                    createNewFaktura(false);
+                    createNewFaktura(DB.STATIC__FAKTURA_TYPE_NORMAL);//false
                     return;
                 }
                 //

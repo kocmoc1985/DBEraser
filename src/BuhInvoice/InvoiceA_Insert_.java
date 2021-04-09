@@ -65,9 +65,14 @@ public class InvoiceA_Insert_ extends Invoice {
 //        }
 //    }
 
-    protected void createNew(boolean isKontantfaktura) {
-        //[#OFFERT#] VERY IMPORTANT Here it should be also adjusted
-        CREATE_KONTANT_FAKTURA__OPERATION_INSERT = isKontantfaktura;
+    protected void createNew(String fakturaType) {
+        //
+        if(fakturaType.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
+           CREATE_KONTANT_FAKTURA__OPERATION_INSERT = true; 
+        }else if(fakturaType.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+            //[#OFFERT#]
+            CREATE_OFFERT__OPERATION_INSERT = true;
+        }
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override

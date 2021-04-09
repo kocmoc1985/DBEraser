@@ -106,6 +106,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KONTANT__NUM); // 2 = KONTANT FAKTURA
             this.fakturaMap.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
 //            this.fakturaMap.put(DB.BUH_FAKTURA__BETALD, "1"); // 1 = Betald
+        }else if(Invoice.CREATE_OFFERT__OPERATION_INSERT){
+            //[#OFFERT#]
+            this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_OFFERT__NUM); // 3 = OFFERT
         }
         //
         //
