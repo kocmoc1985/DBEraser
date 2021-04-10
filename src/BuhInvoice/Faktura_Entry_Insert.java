@@ -54,7 +54,11 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
             sendRutRotToDb(fakturaId);// [#RUTROT#]
             //
-            EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+            if(invoice.bim.isOffert()){
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
+            }else{
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+            }
             //
         } else {
             //

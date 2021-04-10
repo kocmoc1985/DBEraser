@@ -27,19 +27,16 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 Faktura Offert:
 Search for tag: #OFFERT#
 
-1. When sending an offert via email the "subject" of the email shall be like "Offert fran"
-HTMLPrint.class -> protected void sendMail(String toEmail): line 463 
-HTMLPrint.class -> print_upload_sendmail(...)line:542 -------> SUPER important
+1. HTMLPrint.java -> line: 513
 
-HTMLPrint.class -> line: 478
+Faktura_Entry_Insert -> line:57 ----------------------------IMPORTANT
 
-_u_u_u_x_upload.php -> line: 66 *************************************!!!!!!!!!!!!!!!!!!!!!!!!!!!
+bim.FAKTURA_TYPE_CURRENT__OPERATION
 
-HelpBuh.class line: 495
+OBS! AFTER CREATION OF NEW OFFERT, ehn clicked on create new faktura the title is "SKAPA OfFERT"
 
-check with HTTPS!!!!
-
-2. _http_buh.php -> function sendMailHelp($email, $obj, $from_email, $from_name, $to, $subject, $body): line:1203
+InvoiceA_Insert.class line:70
+Invoice.class line:109
 
 ______
 

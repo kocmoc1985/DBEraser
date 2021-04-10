@@ -37,7 +37,7 @@ public class DB {
     public static final String STATIC__JA_NEJ__EMPTY_NEJ = "-;0,Ja;1";
     //===
     public static final String STATIC__SENT_STATUS = "Ej Skickad;0,Skickad;1,Makulerad;2,Utskriven;3,Kopierad;4,Skapad;5,Skickad med Outlook;6,Skickad med vanlig post;7";
-    public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1";
+    public static final String STATIC__SEND_TYPES = "Faktura;0,Påminnelse;1,Offert;2";
     //
     public static final String STATIC__SENT_STATUS__EJ_SKICKAD = "0";
     public static final String STATIC__SENT_STATUS__SKICKAD = "1";
@@ -50,6 +50,7 @@ public class DB {
     //
     public static final String STATIC__SENT_TYPE_FAKTURA = "0";
     public static final String STATIC__SENT_TYPE_PAMMINELSE = "1";
+    public static final String STATIC__SENT_TYPE_OFFERT = "2";
     //===
     public static final String STATIC__FAKTURA_TYPE_NORMAL__NUM = "0";
     public static final String STATIC__FAKTURA_TYPE_KREDIT__NUM = "1";

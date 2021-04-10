@@ -108,7 +108,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
-        bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
+//        bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
         //
         buttonLogic();
         //

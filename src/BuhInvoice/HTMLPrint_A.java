@@ -902,7 +902,12 @@ public class HTMLPrint_A extends HTMLPrint {
         boolean print_ok = print_normal();
         //
         if (print_ok) {
-            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+            if(this instanceof HTMLPrint_A && bim.isOffert()){
+                //[#OFFERT#]
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+            }else if(this instanceof HTMLPrint_A){
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
+            }
         }
         //
     }//GEN-LAST:event_jButton1ActionPerformed

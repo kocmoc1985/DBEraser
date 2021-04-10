@@ -607,7 +607,7 @@ public class HTMLPrint_B extends HTMLPrint {
         boolean print_ok = print_normal();
         //
         if (print_ok) {
-            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_PAMMINELSE);
         }
         //
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -525,6 +525,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected boolean isOffert() {
         //
+        if(FAKTURA_TYPE_CURRENT__OPERATION != null && FAKTURA_TYPE_CURRENT__OPERATION.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+            return true;
+        }
+        //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
         //
         if (fakturaTyp == null) {

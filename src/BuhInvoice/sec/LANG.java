@@ -67,6 +67,7 @@ public class LANG {
     public static String MSG_10_3 = "Filen ej skickad!";
 
     public static String MSG_10_4 = "Fakturan markerad som skickad med vanlig post!";
+    public static String MSG_10_4_2 = "Offerten markerad som skickad med vanlig post!";
     public static String MSG_10_5 = "Vill du att fakturan ska markeras som skickad?";
 
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";

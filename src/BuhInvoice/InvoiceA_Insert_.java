@@ -72,6 +72,9 @@ public class InvoiceA_Insert_ extends Invoice {
         }else if(fakturaType.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
             //[#OFFERT#]
             CREATE_OFFERT__OPERATION_INSERT = true;
+        }else{
+            CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
+            CREATE_OFFERT__OPERATION_INSERT = false;
         }
         //
         java.awt.EventQueue.invokeLater(new Runnable() {

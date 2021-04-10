@@ -446,9 +446,18 @@ public abstract class HTMLPrint extends HTMLBasic {
      * Marks as is the invoice was sent by the common/physical post
      */
     protected void setSentByCommonPost() {
-        loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
+        //
+        if (this instanceof HTMLPrint_A && bim.isOffert()) {
+            //[#OFFERT#]
+            loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_OFFERT);
+            HelpA.showNotification(LANG.MSG_10_4_2);
+        } else if (this instanceof HTMLPrint_A) {
+            loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
+            HelpA.showNotification(LANG.MSG_10_4);
+        }
+        //
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
-        HelpA.showNotification(LANG.MSG_10_4);
+        //
     }
 
     protected void sendMailTargeted() {
@@ -509,14 +518,22 @@ public abstract class HTMLPrint extends HTMLBasic {
                 // [2020-09-08]
                 if (ok) {
                     //
-                    if (htmlprint instanceof HTMLPrint_A) {
+                    if (htmlprint instanceof HTMLPrint_A && bim.isOffert()) {
+                        //[#OFFERT#]
+                        loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_OFFERT);
+                    } else if (htmlprint instanceof HTMLPrint_A) {
                         loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_FAKTURA);
                     } else {
                         loggDocumentSent(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD, DB.STATIC__SENT_TYPE_PAMMINELSE);
                     }
+
                     //
                 } else {
-                    if (htmlprint instanceof HTMLPrint_A) {
+                    if (htmlprint instanceof HTMLPrint_A && bim.isOffert()) {
+                        //[#OFFERT#]
+                        EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
+                                DB.STATIC__SENT_TYPE_OFFERT);
+                    } else if (htmlprint instanceof HTMLPrint_A) {
                         EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
                                 DB.STATIC__SENT_TYPE_FAKTURA);
                     } else {
@@ -648,7 +665,10 @@ public abstract class HTMLPrint extends HTMLBasic {
             desktop.mail(mailTo);
             //
             //
-            if (this instanceof HTMLPrint_A) {
+            if (this instanceof HTMLPrint_A && bim.isOffert()) {
+                //[#OFFERT#]
+                loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK, DB.STATIC__SENT_TYPE_OFFERT);
+            } else if (this instanceof HTMLPrint_A) {
                 loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK, DB.STATIC__SENT_TYPE_FAKTURA);
             } else if (this instanceof HTMLPrint_B) {
                 loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_OUTLOOK, DB.STATIC__SENT_TYPE_PAMMINELSE);

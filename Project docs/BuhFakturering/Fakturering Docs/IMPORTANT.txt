@@ -29,6 +29,7 @@ So the main idea is to have a *TEST-DB* and *TEST-SCRIPTS* when testing new feat
 
 Search for: [#TEST-DB#] in both projects
 Search for: [#TEST-SCRIPTS#] in the java "DBEraser.proj"
+Search for: "$_SESSION["use_test_db"]" in "MCWebNew.proj"
 
 
 INSTRUCTIONS WHEN IMPLEMENTING NEW FUNCTIONS:
