@@ -46,7 +46,7 @@ public class HelpBuh {
     private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
-    private static boolean HTTPS = false;
+    private static boolean HTTPS = true;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     public static boolean USE_TEST_DB = true; // [#TEST-DB#]
     public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
@@ -347,6 +347,14 @@ public class HelpBuh {
         }
         return true;
     }
+    
+    private static String useTestDB(){
+        if(USE_TEST_DB){
+            return "1";
+        }else{
+            return "0";
+        }
+    }
 
     private static String getDomain() {
         if (DOMAIN_LA) {
@@ -494,9 +502,9 @@ public class HelpBuh {
      */
     public static boolean uploadFile(String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws ProtocolException, IOException, MalformedURLException, InterruptedException {
         if (HTTPS) {
-            return https_send_image("https://" + getDomain() + "/php/_u_u_u_x_upload.php?filename=", fileNameAndPathClientSide, fileNameAndPathServerSide);
+            return https_send_image("https://" + getDomain() + "/" + getScriptsFolder() + "/_u_u_u_x_upload.php?filename=", fileNameAndPathClientSide, fileNameAndPathServerSide);
         } else {
-            return http_send_image("http://" + getDomain() + "/php/_u_u_u_x_upload.php?filename=", fileNameAndPathClientSide, fileNameAndPathServerSide);
+            return http_send_image("http://" + getDomain() + "/" + getScriptsFolder() + "/_u_u_u_x_upload.php?filename=", fileNameAndPathClientSide, fileNameAndPathServerSide);
         }
     }
 
@@ -752,7 +760,7 @@ public class HelpBuh {
      */
     private static boolean https_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
-        String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
+        String link = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS + "&use_test_db=" + useTestDB();
         //
         URL url = new URL(link);
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -807,7 +815,7 @@ public class HelpBuh {
      */
     private static boolean http_send_image(String url_, String fileNameAndPathClientSide, String fileNameAndPathServerSide) throws MalformedURLException, ProtocolException, IOException, InterruptedException {
         //
-        String url = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS;
+        String url = url_ + fileNameAndPathServerSide + "&user=" + GP_BUH.USER + "&pass=" + GP_BUH.PASS + "&use_test_db=" + useTestDB();
         //
         //
         HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();

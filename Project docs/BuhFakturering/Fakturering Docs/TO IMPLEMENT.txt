@@ -28,8 +28,18 @@ Faktura Offert:
 Search for tag: #OFFERT#
 
 1. When sending an offert via email the "subject" of the email shall be like "Offert fran"
-HTMLPrint.class -> protected void sendMail(String toEmail): line 463
+HTMLPrint.class -> protected void sendMail(String toEmail): line 463 
+HTMLPrint.class -> print_upload_sendmail(...)line:542 -------> SUPER important
 
+HTMLPrint.class -> line: 478
+
+_u_u_u_x_upload.php -> line: 66 *************************************!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+HelpBuh.class line: 495
+
+check with HTTPS!!!!
+
+2. _http_buh.php -> function sendMailHelp($email, $obj, $from_email, $from_name, $to, $subject, $body): line:1203
 
 ______
 

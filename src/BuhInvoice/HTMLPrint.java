@@ -217,7 +217,9 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         String fileName;
         //
-        if (this instanceof HTMLPrint_A) {
+        if (this instanceof HTMLPrint_A && bim.isOffert()) {
+            fileName = LANG.OFFERT.toLowerCase();
+        } else if (this instanceof HTMLPrint_A) {
             fileName = LANG.FAKTURA.toLowerCase();
         } else if (this instanceof HTMLPrint_B) {
             fileName = LANG.PAMINNELSE.replaceAll("å", "a").toLowerCase(); // I can't have "å" as it's not accepted on server side[2020-09-30]
@@ -374,10 +376,10 @@ public abstract class HTMLPrint extends HTMLBasic {
             return "Kreditfaktura";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "Kvitto";
-        }else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
+        } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             //[#OFFERT#]
             return "Offert";
-        }else {
+        } else {
             return null;
         }
     }
@@ -485,11 +487,11 @@ public abstract class HTMLPrint extends HTMLBasic {
     }
 
     /**
-     * 
+     *
      * @param serverPath
      * @param fileName
      * @param sendToEmail
-     * @param ftgName 
+     * @param ftgName
      */
     private void print_upload_sendmail__thr(String serverPath, String fileName, String sendToEmail, String ftgName) {
         //
@@ -619,6 +621,7 @@ public abstract class HTMLPrint extends HTMLBasic {
      * This will work with all mail clients, but it does not attach
      * automatically. So the solution is to silently write ".pdf" to desktop,
      * and give the user a message where to find the file
+     *
      * @param reminder
      */
     protected void sendWithStandardEmailClient(boolean reminder) {

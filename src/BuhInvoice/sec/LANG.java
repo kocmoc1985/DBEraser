@@ -31,6 +31,7 @@ public class LANG {
 
     public final static String FAKTURA = "Faktura";
     public final static String PAMINNELSE = "Påminnelse";
+    public final static String OFFERT = "Offert";
     
     public final static String ATT_BETALA = "Att betala";
     public final static String ATT_ERHALLA = "Att erhålla";
