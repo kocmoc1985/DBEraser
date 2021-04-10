@@ -343,6 +343,10 @@ public abstract class CustomerAForetagA extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN);
         //
+        if(map == null || map.isEmpty()){
+            return;
+        }
+        //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_ADDR__ID, id, DB.TABLE__BUH_ADDRESS);
         //
         HashMap<String, String> final_map = JSon.joinHashMaps(map, update_map);

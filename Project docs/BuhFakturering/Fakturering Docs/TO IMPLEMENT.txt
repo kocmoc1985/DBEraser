@@ -33,6 +33,8 @@ Make search for "Faktura" and annalyze the "LANG.java" document for occurencies
 Make video how to make Offert
 Make video how to write on Faktura before printing
 
+Updating "Företags Inställningar" causes error when updating data if the "address data" is empty--->>>>>SUPER IMPORTANT
+
 ______
 
 
