@@ -649,7 +649,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder,bim.isOffert()));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;

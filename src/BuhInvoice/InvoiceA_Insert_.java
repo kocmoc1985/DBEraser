@@ -64,15 +64,14 @@ public class InvoiceA_Insert_ extends Invoice {
 //            }
 //        }
 //    }
-
     protected void createNew(String fakturaType) {
         //
-        if(fakturaType.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)){
-           CREATE_KONTANT_FAKTURA__OPERATION_INSERT = true; 
-        }else if(fakturaType.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+        if (fakturaType.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
+            CREATE_KONTANT_FAKTURA__OPERATION_INSERT = true;
+        } else if (fakturaType.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             //[#OFFERT#]
             CREATE_OFFERT__OPERATION_INSERT = true;
-        }else{
+        } else {
             CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
             CREATE_OFFERT__OPERATION_INSERT = false;
         }
@@ -263,7 +262,7 @@ public class InvoiceA_Insert_ extends Invoice {
         //
 //        String fakturanr_alt_ = IO.loadLastEntered(DB.BUH_FAKTURA__FAKTURANR_ALT,"0");
         RowDataInvert fakturanr_alt = new RowDataInvertB("", DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
-        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3);
+        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3(bim.isOffert()));
         //
         RowDataInvert order = new RowDataInvertB("", DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", true, true, false);
         //

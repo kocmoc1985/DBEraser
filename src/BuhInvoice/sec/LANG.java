@@ -161,7 +161,11 @@ public class LANG {
     }
 
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
-    public static String TOOL_TIP_3 = "Om det alternativa numret finns angivet, visas den i fakturan istället";
+    public static final String TOOL_TIP_3(boolean isOffert){
+        String part1 = "Om det alternativa numret finns angivet, visas den i ";
+        String part2 = " istället";
+        return isOffert?part1+offerten+part2:part1+fakturan+part2;
+    }
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
 
@@ -212,16 +216,19 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder) {
-        String fakturaOrReminder = "";
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert) {
+        //
+        String name;
         //
         if (remminder) {
-            fakturaOrReminder = "Påminnelsen";
+            name = "Påminnelsen";
+        } else if (isOffert) {
+            name = Offerten;
         } else {
-            fakturaOrReminder = "Fakturan";
+            name = Fakturan;
         }
         //
-        return fakturaOrReminder + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga fakturan i din e-post klient";
+        return name + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
     }
 
     public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {

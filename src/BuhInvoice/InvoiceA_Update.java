@@ -17,35 +17,35 @@ import javax.swing.JTable;
  * @author MCREMOTE
  */
 public class InvoiceA_Update extends Invoice {
-    
+
     private Faktura_Entry_Update faktura_entry_update;
-    
+
     public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
         super(buh_invoice_main);
         initOther();
     }
-    
+
     private void initOther() {
         faktura_entry_update = (Faktura_Entry_Update) faktura_entry;
     }
-    
+
     @Override
     protected Faktura_Entry initFakturaEntry() {
         return new Faktura_Entry_Update(this);
     }
-    
+
     @Override
     protected void startUp() {
-        
+
     }
-    
+
     @Override
     protected void addArticleForJTable(JTable table) {
         //
         this.faktura_entry_update.addArticleForJTable(table);
         //
     }
-    
+
     @Override
     protected void addArticleForDB() {
         //
@@ -58,13 +58,13 @@ public class InvoiceA_Update extends Invoice {
         insertOrUpdate(); // Update faktura after adding an article [2020-08-12]
         //
     }
-    
+
     protected void updateArticle() {
         //
         faktura_entry_update.updateArticle();
         //
     }
-    
+
     protected void deleteFakturaArtikel() {
         //
         if (GP_BUH.confirmWarning(LANG.MSG_3) == false) {
@@ -89,7 +89,7 @@ public class InvoiceA_Update extends Invoice {
         executeDelete(json);
         //
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -160,7 +160,7 @@ public class InvoiceA_Update extends Invoice {
         //
         return rows;
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert_2() {
         //
@@ -171,7 +171,7 @@ public class InvoiceA_Update extends Invoice {
         }
         //
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert_3() {
         //
@@ -192,7 +192,7 @@ public class InvoiceA_Update extends Invoice {
         //
         String fakturanr_alt_ = HelpA.getValueSelectedRow_replace_zero(table, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT);
         RowDataInvert fakturanr_alt = new RowDataInvertB(fakturanr_alt_, DB.BUH_FAKTURA__FAKTURANR_ALT, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR_ALT, "", false, true, false);
-        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3);
+        fakturanr_alt.setToolTipFixed(LANG.TOOL_TIP_3(bim.isOffert()));
         //
         String order_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER);
         RowDataInvert order = new RowDataInvertB(order_, DB.BUH_FAKTURA__ERT_ORDER, InvoiceB.TABLE_ALL_INVOICES__ERT_ORDER, "", false, true, false);
@@ -240,5 +240,5 @@ public class InvoiceA_Update extends Invoice {
         //
         return rows;
     }
-    
+
 }

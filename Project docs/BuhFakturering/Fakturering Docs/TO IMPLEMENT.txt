@@ -30,6 +30,9 @@ Search for tag: #OFFERT#
 Make ready translations like: "Fakturan markerad som skickad med vanlig post!" ->Faktura/Offert------IMPORTANT
 Make search for "Faktura" and annalyze the "LANG.java" document for occurencies
 
+Make video how to make Offert
+Make video how to write on Faktura before printing
+
 ______
 
 
