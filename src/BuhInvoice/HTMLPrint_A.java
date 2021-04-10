@@ -940,7 +940,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_send_with_common_postActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_common_postActionPerformed
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_10_5) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_10_5(bim.isOffert())) == false) {
             return;
         }
         //

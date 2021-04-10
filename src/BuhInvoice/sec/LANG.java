@@ -19,6 +19,15 @@ public class LANG {
 
     public final static String INTERNET_CONNECTION_MISSING = "Kan ej starta LAFakturering. Internetanslutning saknas!";
     //
+    private final static String Fakturan = "Fakturan";
+    private final static String Faktura = "Faktura";
+    private final static String fakturan = "fakturan";
+    private final static String faktura = "faktura";
+    private final static String Offerten = "Offerten";
+    private final static String Offert = "Offert";
+    private final static String offerten = "offerten";
+    private final static String offert = "offert";
+    //
     public final static String VALIDATION_MSG_1 = "Inloggning misslyckades";
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";
     public final static String VALIDATION_MSG__V_ERR_01 = "Fel användarnamn";
@@ -32,11 +41,11 @@ public class LANG {
     public final static String FAKTURA = "Faktura";
     public final static String PAMINNELSE = "Påminnelse";
     public final static String OFFERT = "Offert";
-    
+
     public final static String ATT_BETALA = "Att betala";
     public final static String ATT_ERHALLA = "Att erhålla";
 
-    public final static String FRAME_TITLE_1 = "Skriv ut " + FAKTURA.toLowerCase();
+    public final static String FRAME_TITLE_1 = "Skriv ut"; //+ FAKTURA.toLowerCase()
     public final static String FRAME_TITLE_1_2 = "Skriv ut " + PAMINNELSE.toLowerCase();
     public final static String FRAME_TITLE_1_3 = "Förhandsgranska";
 
@@ -44,7 +53,11 @@ public class LANG {
     public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
     public final static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
     public final static String MSG_3 = "Data kommer att raderas permanent! Vill du fortsätta?";
-    public final static String MSG_3_1 = "Fakturan kommer att raderas permanent! Vill du fortsätta?";
+    private final static String MSG_3_1 = " kommer att raderas permanent! Vill du fortsätta?";
+
+    public static final String MSG_3_1(boolean offert) {
+        return offert ? Offerten + MSG_3_1 : Fakturan + MSG_3_1;
+    }
     public final static String MSG_3_2 = "Inbetalningen kommer att raderas permanent! Vill du fortsätta?";
     public final static String MSG_3_2_2 = "Ingen inbetalning vald! Markera en i tabellen nedan och prova igen";
     public final static String MSG_3_3 = "Radera kommentar?";
@@ -66,9 +79,17 @@ public class LANG {
     public static String MSG_10_2 = "Filen skickad!";
     public static String MSG_10_3 = "Filen ej skickad!";
 
-    public static String MSG_10_4 = "Fakturan markerad som skickad med vanlig post!";
-    public static String MSG_10_4_2 = "Offerten markerad som skickad med vanlig post!";
-    public static String MSG_10_5 = "Vill du att fakturan ska markeras som skickad?";
+    public static final String MSG_10_4(boolean offert) {
+        return offert ? Offerten + MSG_10_4 : Fakturan + MSG_10_4;
+    }
+
+    public static final String MSG_10_5(boolean offert) {
+        String part1 = "Vill du att ";
+        String part2 = " ska markeras som skickad?";
+        return offert ? part1 + offerten + part2 : part1 + fakturan + part2;
+    }
+
+    private static String MSG_10_4 = " markerad som skickad med vanlig post!";
 
     public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
@@ -105,18 +126,18 @@ public class LANG {
 
     public static String MSG_22 = "OBS! Du använder \"Omvänd skattskyldighet\" men motpartens VAT nr saknas.\n"
             + "Gå till flik KUNDER och ange VAT nr för den aktuella kunden.";
-    
+
     public static String MSG_23 = "Ditt konto och all relaterad data är raderat!";
     public static String MSG_23_1 = "Gästanvändare kan inte radera kontot";
     public static String MSG_23_2 = "Fel lösenord, kontot har inte raderats";
-    
+
     public static String MSG_24 = "Lämna utan att spara fakturan?";
-    
+
     public static String MSG_25 = "Lägg till samtliga artiklar först och försök igen";
     public static String MSG_25_1 = "Är samtliga artiklar tilllagda?";
-    
+
     public static String MSG_26 = "Inga personer finns tillagda, lägg till en och försök igen";
-    
+
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";
@@ -125,7 +146,7 @@ public class LANG {
     public static String LBL_MSG_2_1_2 = "BEARBETA OFFERT";
     public static String LBL_MSG_2_2 = "FAKTURA BETALD - REDIGERING ÄR INTE TILLÅTET";
     public static String LBL_MSG_2_3 = "REDIGERING AV ARTIKLAR ÄR INTE TILLÅTET";
-    
+
     public static String LBL_MSG_3 = "SKAPA NY KUND";
     public static String LBL_MSG_4 = "BEARBETA KUND";
     public static String LBL_MSG_5 = "SKAPA ARTIKEL";
@@ -219,9 +240,12 @@ public class LANG {
         return "Logotyp för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
     }
 
-    public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print) {
-        if (print instanceof HTMLPrint_A) {
-            return "Skicka " + FAKTURA.toLowerCase() + " till: " + sendTo + " ?";
+    public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print, boolean offert) {
+        if (print instanceof HTMLPrint_A && offert) {
+            //[#OFFERT#]
+            return "Skicka " + LANG.offerten + " till: " + sendTo + " ?";
+        } else if (print instanceof HTMLPrint_A) {
+            return "Skicka " + LANG.fakturan + " till: " + sendTo + " ?";
         } else if (print instanceof HTMLPrint_B) {
             return "Skicka " + PAMINNELSE.toLowerCase() + " till: " + sendTo + " ?";
         } else {

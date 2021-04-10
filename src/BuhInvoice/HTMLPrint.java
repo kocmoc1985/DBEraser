@@ -450,10 +450,10 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (this instanceof HTMLPrint_A && bim.isOffert()) {
             //[#OFFERT#]
             loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_OFFERT);
-            HelpA.showNotification(LANG.MSG_10_4_2);
+            HelpA.showNotification(LANG.MSG_10_4(true));
         } else if (this instanceof HTMLPrint_A) {
             loggDocumentSent(getFakturaId(), DB.STATIC__SENT_STATUS__SKICKAD_COMMON_POST, DB.STATIC__SENT_TYPE_FAKTURA);
-            HelpA.showNotification(LANG.MSG_10_4);
+            HelpA.showNotification(LANG.MSG_10_4(false));
         }
         //
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
@@ -480,7 +480,7 @@ public abstract class HTMLPrint extends HTMLBasic {
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail, this)) == false) {
+        if (GP_BUH.confirmWarning(LANG.CONFIRM_SEND_MAIL(toEmail, this, bim.isOffert())) == false) {
             return;
         }
         //

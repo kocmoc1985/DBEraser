@@ -27,16 +27,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 Faktura Offert:
 Search for tag: #OFFERT#
 
-1. HTMLPrint.java -> line: 513
-
-Faktura_Entry_Insert -> line:57 ----------------------------IMPORTANT
-
-bim.FAKTURA_TYPE_CURRENT__OPERATION
-
-OBS! AFTER CREATION OF NEW OFFERT, ehn clicked on create new faktura the title is "SKAPA OfFERT"
-
-InvoiceA_Insert.class line:70
-Invoice.class line:109
+Make ready translations like: "Fakturan markerad som skickad med vanlig post!" ->Faktura/Offert------IMPORTANT
+Make search for "Faktura" and annalyze the "LANG.java" document for occurencies
 
 ______
 

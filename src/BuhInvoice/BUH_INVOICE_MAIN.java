@@ -2165,7 +2165,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_3_1) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_3_1(isOffert())) == false) {
             return;
         }
         //
