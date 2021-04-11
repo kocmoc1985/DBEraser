@@ -238,6 +238,10 @@ public class LANG {
     public static String FAKTURA_COPY_MSG_A(String fakturaCopy) {
         return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + "?";
     }
+    
+    public static String OFFERT_COPY_MSG(String offertCopy) {
+        return "Vill du verkligen kopiera offertnummer: " + offertCopy + "?";
+    }
 
     public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {
         return "Du kopierade precis fakturanummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;

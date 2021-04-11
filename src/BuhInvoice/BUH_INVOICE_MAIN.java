@@ -11,6 +11,7 @@ import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.OffertCopyOrOmvandlaFrame;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
@@ -2476,6 +2477,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             return;
         }
         //
+        if (invoiceA_insert != null) {
+            invoiceA_insert.resetRutRot();
+        }
+        //
+        if (invoiceA_update != null) {
+            invoiceA_update.resetRutRot();
+        }
+        //
         String msg;
         //
         String fakturaNr = getFakturaNr();
@@ -2486,21 +2495,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             msg = LANG.FAKTURA_COPY_MSG_A(fakturaNr);
         }
         //
-        if (GP_BUH.confirm(msg) == false) {
+        if (isOffert()) {
+            OffertCopyOrOmvandlaFrame ocoof = new OffertCopyOrOmvandlaFrame(this);
+            GP_BUH.centerAndBringToFront(ocoof);
             return;
         }
         //
-        if (invoiceA_insert != null) {
-            invoiceA_insert.resetRutRot();
-        }
-        //
-        if (invoiceA_update != null) {
-            invoiceA_update.resetRutRot();
+        if (GP_BUH.confirm(msg) == false) {
+            return;
         }
         //
         invoiceB.copy(isKreditFaktura, isOffert(), true); // OMVANDLA If isOffert
 //        invoiceB.copy(isKreditFaktura, isOffert(), false); // COPY If isOffert
         //
+    }
+    
+    public void copyOrOmvandlaOffert(boolean omvandla){
+        invoiceB.copy(false, true, omvandla);
     }
 
     private void jButton4_delete_faktura_komment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4_delete_faktura_komment1ActionPerformed
