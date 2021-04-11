@@ -348,7 +348,7 @@ public class InvoiceB extends Basic_Buh {
         boolean printed = isPrinted();
         boolean isOffert =  bim.isOffert();
         //
-        if (forfallen && bim.isKreditFaktura() == false && bim.isKontantFaktura() == false) {
+        if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
         }
         if (is_person) {

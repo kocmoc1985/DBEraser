@@ -256,7 +256,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
         } else if (isOffert()) {
-            GP_BUH.setEnabled(jButton_copy_faktura, false);
+//            GP_BUH.setEnabled(jButton_copy_faktura, false);
             GP_BUH.setEnabled(jButton_inbetalning, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
@@ -1336,6 +1336,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel23.add(jLabel_info__kredit_faktura);
 
         jLabel_info__offert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new_c.png"))); // NOI18N
+        jLabel_info__offert.setToolTipText("Offert");
         jPanel23.add(jLabel_info__offert);
 
         jLabel_info__makulerad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/makulerad.png"))); // NOI18N

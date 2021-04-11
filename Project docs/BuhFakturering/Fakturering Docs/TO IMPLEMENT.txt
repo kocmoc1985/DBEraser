@@ -27,8 +27,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 Faktura Offert:
 Search for tag: #OFFERT#
 
-Make ready translations like: "Fakturan markerad som skickad med vanlig post!" ->Faktura/Offert------IMPORTANT
-Make search for "Faktura" and annalyze the "LANG.java" document for occurencies
+Omvandla Offert to Faktura
+See: BUH_INVOICE_MAIN.class -> line:259
 
 Make video how to make Offert
 Make video how to write on Faktura before printing
