@@ -346,7 +346,7 @@ public class InvoiceB extends Basic_Buh {
         boolean isKontantFaktura = bim.isKontantFaktura();
         boolean betald = bim.isBetald();
         boolean printed = isPrinted();
-        boolean isOffert =  bim.isOffert();
+        boolean isOffert = bim.isOffert();
         //
         if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
@@ -375,7 +375,7 @@ public class InvoiceB extends Basic_Buh {
         if (isKontantFaktura) {
             bim.jLabel_info__kontant_faktura.setVisible(true);
         }
-        if(isOffert){
+        if (isOffert) {
             bim.jLabel_info__offert.setVisible(true);
         }
 
@@ -809,7 +809,7 @@ public class InvoiceB extends Basic_Buh {
         return "" + rst;
     }
 
-    protected void copy(boolean isKreditFaktura) {
+    protected void copy(boolean isKreditFaktura, boolean isOffert, boolean omvandlaOffertToFaktura) {
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -820,7 +820,7 @@ public class InvoiceB extends Basic_Buh {
         String fakturaNrCopy = bim.getFakturaNr();
         //
         // OBS! OBS! OBS! OBS! OBS!*****
-        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura, fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
+        processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura, isOffert, omvandlaOffertToFaktura, fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
         //
         String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
@@ -912,7 +912,7 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura, String fakturaId) {
+    private void processFakturaMapCopy(HashMap<String, String> faktura_data_map, String fakturaNrCopy, boolean isKreditFaktura, boolean isOffert, boolean omvandlaOffertToFaktura, String fakturaId) {
         //
         String komment;
         //
@@ -926,6 +926,13 @@ public class InvoiceB extends Basic_Buh {
             faktura_data_map.put(DB.BUH_FAKTURA__KOMMENT, fakturaNrCopy); // Saving the "krediterad" invoice
             //
             komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
+            //
+        } else if (isOffert && omvandlaOffertToFaktura) {
+            //
+            faktura_data_map = setForfalloDatumCopy(faktura_data_map);
+            faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "0"); // set to STATIC__FAKTURA_TYPE_NORMAL__NUM
+            //
+            komment = "Skapad från offertummer# " + fakturaNrCopy;
             //
         } else if (bim.isKontantFaktura()) {
             //
@@ -958,8 +965,10 @@ public class InvoiceB extends Basic_Buh {
     }
 
     private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
-        String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
+//        String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
+        String fakturaDatum = HelpA.get_proper_date_yyyy_MM_dd();
         String forfallodatum = HelpA.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURA_DATUM, fakturaDatum);
         faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
         return faktura_data_map;
     }

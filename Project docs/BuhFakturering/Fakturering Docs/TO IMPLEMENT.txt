@@ -28,7 +28,9 @@ Faktura Offert:
 Search for tag: #OFFERT#
 
 Omvandla Offert to Faktura
-See: BUH_INVOICE_MAIN.class -> line:259
+- See: BUH_INVOICE_MAIN.class -> line:259 -> line: 2501 ----->>>>>>> OBS! OBS! IMPORTANT -->Here is defined if to "omvandla" or "copy"
+- Don't forget to make corresponding changes to the messages in connection with copying or "omvandling"
+- When i copy OFFERT in events it shows "Faktura" which is wrong
 
 Make video how to make Offert
 Make video how to write on Faktura before printing

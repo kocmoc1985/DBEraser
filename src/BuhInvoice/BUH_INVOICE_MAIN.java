@@ -525,7 +525,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected boolean isOffert() {
         //
-        if(FAKTURA_TYPE_CURRENT__OPERATION != null && FAKTURA_TYPE_CURRENT__OPERATION.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+        if (FAKTURA_TYPE_CURRENT__OPERATION != null && FAKTURA_TYPE_CURRENT__OPERATION.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             return true;
         }
         //
@@ -1145,7 +1145,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jButton_kredit_faktura);
 
         jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
-        jButton_copy_faktura.setToolTipText("Kopiera faktura");
+        jButton_copy_faktura.setToolTipText("Kopiera");
         jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_copy_fakturaActionPerformed(evt);
@@ -2498,7 +2498,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             invoiceA_update.resetRutRot();
         }
         //
-        invoiceB.copy(isKreditFaktura);
+        invoiceB.copy(isKreditFaktura, isOffert(), true); // OMVANDLA If isOffert
+//        invoiceB.copy(isKreditFaktura, isOffert(), false); // COPY If isOffert
         //
     }
 

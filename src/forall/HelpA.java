@@ -4,6 +4,7 @@
  */
 package forall;
 
+import BuhInvoice.GP_BUH;
 import MCRecipeLang.MSG;
 import MCCompound.PROD_PLAN;
 import MCRecipe.MC_RECIPE;
@@ -3484,7 +3485,7 @@ public class HelpA {
 
     public static synchronized String get_date_time_plus_some_time_in_days(String date, long days) {
         //
-        String date_format = "yyyy-MM-dd";
+        String date_format = GP_BUH.DATE_FORMAT_BASIC;//yyyy-MM-dd
         //
         if (days > 10) { // Yes it's needed [2020-09-21] Otherwise 2020-10-02 "+30days" = 2020-10-31
             days += 1;
