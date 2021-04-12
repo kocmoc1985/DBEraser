@@ -956,7 +956,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         if (jli.getValue().isEmpty()) {
             //
-            jtfi.setText(HelpA.get_proper_date_yyyy_MM_dd());
+            jtfi.setText(GP_BUH.getDate_yyyy_MM_dd());
             //
             if (Validator.validateDate(jli)) {
                 forfalloDatumAutoChange(ti);
@@ -998,9 +998,9 @@ public abstract class Invoice extends Basic_Buh {
             String date_new;
             //
             if (value > 0) {
-                date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+                date_new = GP_BUH.get_date_time_plus_some_time_in_days(date, value);
             } else {
-                date_new = HelpA.get_date_time_minus_some_time_in_days(date, value);
+                date_new = GP_BUH.get_date_time_minus_some_time_in_days(date, value);
             }
             //
             setValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, TABLE_INVERT, date_new);
@@ -1171,7 +1171,7 @@ public abstract class Invoice extends Basic_Buh {
         long value = Long.parseLong(val);
         String date = getValueTableInvert(DB.BUH_FAKTURA__FAKTURA_DATUM, ti);
         //
-        String date_new = HelpA.get_date_time_plus_some_time_in_days(date, value);
+        String date_new = GP_BUH.get_date_time_plus_some_time_in_days(date, value);
         setValueTableInvert(DB.BUH_FAKTURA__FORFALLO_DATUM, ti, date_new);
     }
 

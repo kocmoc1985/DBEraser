@@ -188,7 +188,7 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         map.put(DB.BUH_FAKTURA_KUND__KUND_ID, "777"); //[#KUND-ID-INSERT#]
         //
-        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated()); // required
+        map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated_special()); // required
         //
         if(IS_PERSON__CUSTOMERS_A){
              map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "1");

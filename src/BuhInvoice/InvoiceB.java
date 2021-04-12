@@ -850,7 +850,7 @@ public class InvoiceB extends Basic_Buh {
             //
             //
             if (isOffert && omvandlaOffertToFaktura == false) { // COPY OFFERT
-                //
+                //[#OFFERT#]
                 HelpA.showNotification(LANG.OFFERT_COPY_MSG(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_OFFERT);
@@ -859,7 +859,7 @@ public class InvoiceB extends Basic_Buh {
                 refresh_sync(null);
                 //
             } else if (isOffert && omvandlaOffertToFaktura) { // OMVANDLA OFFERT
-                //
+                //[#OFFERT#]
                 HelpA.showNotification(LANG.OFFERT_OMVANDLA_MSG(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT);
@@ -945,7 +945,7 @@ public class InvoiceB extends Basic_Buh {
             komment = "Krediterar fakturanummer# " + fakturaNrCopy; // "#" for ":" [2020-09-14]
             //
         } else if (isOffert && omvandlaOffertToFaktura) {
-            //
+            //[#OFFERT#]
             faktura_data_map = setForfalloDatumCopy(faktura_data_map);
             faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "0"); // set to STATIC__FAKTURA_TYPE_NORMAL__NUM
             //
@@ -971,7 +971,7 @@ public class InvoiceB extends Basic_Buh {
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr()); // OBS! Aquired from http
-        faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
+        faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated_special());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
         //
@@ -983,8 +983,8 @@ public class InvoiceB extends Basic_Buh {
 
     private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
 //        String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
-        String fakturaDatum = HelpA.get_proper_date_yyyy_MM_dd();
-        String forfallodatum = HelpA.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
+        String fakturaDatum = GP_BUH.getDate_yyyy_MM_dd();
+        String forfallodatum = GP_BUH.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURA_DATUM, fakturaDatum);
         faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
         return faktura_data_map;

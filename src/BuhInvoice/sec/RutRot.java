@@ -77,7 +77,7 @@ public class RutRot extends Basic_Buh {
         map_rut.put(DB.BUH_FAKTURA_RUT__KUNDID, "777"); // OBS! 777 is "fake" -> kundId is defined on the serverSide
         map_rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, fakturaId); // 339 -> Trell faktura: 10114
         map_rut.put(DB.BUH_FAKTURA_RUT__SKATTEREDUKTION, "" + rutRotFrame.AVDRAG_TOTAL);
-        map_rut.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated());
+        map_rut.put(DB.BUH_FAKTURA_RUT__DATE_CREATED, GP_BUH.getDateCreated_special());
         //
         String json = JSon.hashMapToJSON(map_rut);
         //

@@ -291,7 +291,7 @@ public class Validator {
         //
         boolean validated = validate_(DATE_YYYY_MM_DD, val);
         //
-        if (validated && HelpA.isDateValid(val)) {
+        if (validated && GP_BUH.isDateValid(val)) {
             return setValidated(jli);
         } else {
             return setNotValidated(jli);

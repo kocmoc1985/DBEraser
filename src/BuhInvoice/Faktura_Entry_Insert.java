@@ -116,7 +116,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
         //
-        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated());
+        this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated_special());
         //
         System.out.println("-------------------------------------------------");
         //

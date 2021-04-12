@@ -140,7 +140,7 @@ public class GDPR extends HTMLBasic {
         //
         // creating files as a "flag"
         HashSet<String> set = new HashSet<String>();
-        set.add(HelpA.updatedOn());
+        set.add(GP_BUH.updatedOn());
         objectToFile(GP_BUH.GDPR_ACCEPTED_FILE_PATH, set);
         //
     }

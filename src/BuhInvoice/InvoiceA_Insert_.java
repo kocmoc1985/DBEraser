@@ -169,7 +169,7 @@ public class InvoiceA_Insert_ extends Invoice {
         kund.enableFixedValuesAdvanced();
 //        kund.setUneditable();
         //
-        String faktura_datum_val = HelpA.get_proper_date_yyyy_MM_dd();
+        String faktura_datum_val = GP_BUH.getDate_yyyy_MM_dd();
         String faktura_datum_forfallo = HelpA.get_today_plus_x_days(30);
         RowDataInvert faktura_datum = new RowDataInvertB(faktura_datum_val, DB.BUH_FAKTURA__FAKTURA_DATUM, "FAKTURADATUM", "", true, true, true);
         RowDataInvert forfalo_datum = new RowDataInvertB(faktura_datum_forfallo, DB.BUH_FAKTURA__FORFALLO_DATUM, "FÖRFALLODATUM", "", true, true, false);

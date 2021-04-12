@@ -228,7 +228,7 @@ public class HelpBuh {
         map.put(DB.BUH_KUND__NAMN, ftgname);
         map.put(DB.BUH_KUND__ORGNR, orgnr);
         //
-        map.put(DB.BUH_KUND__DATE_CREATED, GP_BUH.getDateCreated());
+        map.put(DB.BUH_KUND__DATE_CREATED, GP_BUH.getDateCreated_special());
         //
         map.put(DB.BUH_LICENS__MAC_ADDR, HelpA.getMacAddress());
         map.put(DB.BUH_LICENS__OS, HelpA.getOperatingSystem());

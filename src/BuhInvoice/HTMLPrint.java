@@ -253,6 +253,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     }
 
     protected String getEmailBody() {
+        //Du har fått offert från: Pico AB
         String body = "Du har fått " + getHTMLPrintTitle().toLowerCase() + " från: " + getForetagsNamn();
         return body;
     }

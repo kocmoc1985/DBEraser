@@ -1,4 +1,17 @@
 ________________________________________________________________________________________________________
+[DATE FORMAT - "yyyy-MM-dd"][2021-04-12]
+
+This topic corresponds to project: "DBEraser/BuhInvoice"
+
+Search for: GP_BUH.DATE_FORMAT_BASIC
+
+The universal "DATE-FORMAT" is applied to the entire "DBEraser/BuhInvoice" project.
+- The "DATE-FORMAT" is defined in "GP_BUH.DATE_FORMAT_BASIC"
+- All "DATE-FUNCTIONS" used by the "DBEraser/BuhInvoice" project are defined in the "GP_BUH.class"
+
+Regarding the PHP side:
+- MySql is using default format="yyyy-MM-dd" -> 100% verified
+________________________________________________________________________________________________________
 [DISTRIBUTION - BUILD - FAT JAR - EXCLUDE PACKAGES][IMPORTANT]
 
 LAST BUILD MADE: 2021-03-31

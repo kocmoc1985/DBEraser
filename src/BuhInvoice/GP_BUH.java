@@ -8,7 +8,9 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import forall.GP;
 import forall.HelpA;
+import static forall.HelpA.dateToMillisConverter3;
 import static forall.HelpA.file_exists;
+import static forall.HelpA.millisToDateConverter;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -19,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -205,17 +208,67 @@ public class GP_BUH {
     }
 
     public static String getDate_yyyy_MM_dd() {
-        return HelpA.get_proper_date_yyyy_MM_dd();
+        DateFormat formatter = new SimpleDateFormat(DATE_FORMAT_BASIC);
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+
+    public static String updatedOn() {
+        return getDate_yyyy_MM_dd();
     }
 
     public static String getDateTime_yyyy_MM_dd() {
-        return HelpA.get_proper_date_time_same_format_on_all_computers();
-    }
-
-    public static String getDateCreated() {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS");
+        DateFormat formatter = new SimpleDateFormat(DATE_FORMAT_BASIC + " HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
+    }
+
+    public static String getDateCreated_special() {
+        //OBS! Pay attention att ".SSS"
+        DateFormat formatter = new SimpleDateFormat(DATE_FORMAT_BASIC + " HH.mm.ss.SSS");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+    
+    public static boolean isDateValid(String date_yyyy_mm_dd) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_BASIC);
+        sdf.setLenient(false);
+        return sdf.parse(date_yyyy_mm_dd, new ParsePosition(0)) != null;
+    }
+    
+    public static synchronized String get_date_time_plus_some_time_in_days(String date, long days) {
+        //
+        String date_format = DATE_FORMAT_BASIC;
+        //
+        if (days > 10) { // Yes it's needed [2020-09-21] Otherwise 2020-10-02 "+30days" = 2020-10-31
+            days += 1;
+        }
+        //
+        long time_to_plus = (long) 86400000 * days; // 86400000 = 1 day, 115200000 = 1 and 1/3 days
+        long ms = HelpA.dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = HelpA.millisToDateConverter("" + new_date_in_ms, date_format);
+        //
+        if (new_date.equals(date)) {
+            new_date_in_ms += 28800000;
+            return HelpA.millisToDateConverter("" + new_date_in_ms, date_format);
+        }
+        //
+        return new_date;
+        //
+    }
+    
+    public static String get_date_time_minus_some_time_in_days(String date, long days) {
+        String date_format = DATE_FORMAT_BASIC;
+        long time_to_minus = 86400000 * Math.abs(days);
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms - time_to_minus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+    
+    public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2) {
+        return HelpA.get_diff_in_days__two_dates(date1, date_format1, date2, date_format2);
     }
 
     public static boolean verifyId(String fakturaId) {

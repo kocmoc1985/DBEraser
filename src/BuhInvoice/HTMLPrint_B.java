@@ -321,19 +321,19 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     private double countDrojsmalsAvgift() {
-        String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
         String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
         String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
         double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
         //
-        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+        int daysForfallen = GP_BUH.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
         if (daysForfallen <= 0) {
             return 0;
         }
         //
-        System.out.println("Days forfallen: " + daysForfallen);
+//        System.out.println("Days forfallen: " + daysForfallen);
         double percent = Double.parseDouble(drojmalsranta) / 100;
         double oneDayRanta = (totalInklMoms * percent) / 365;
         //

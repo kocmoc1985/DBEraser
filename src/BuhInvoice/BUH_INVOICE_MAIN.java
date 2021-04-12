@@ -411,14 +411,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected boolean isForfallen() {
         //
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        String dateNow = HelpA.get_proper_date_yyyy_MM_dd();
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
         String forfallodatum = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FORFALLODATUM);
         //
         if (forfallodatum == null || forfallodatum.isEmpty()) {
             return false;
         }
         //
-        int daysForfallen = HelpA.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
+        int daysForfallen = GP_BUH.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
         //
         if (isBetald()) {
             return false;
