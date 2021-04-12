@@ -398,11 +398,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String html_;
         //
-        if (NO_BORDER) {
-            html_ = "<div class='marginTop' style='border-bottom:1px solid gray;margin-right:15px'>";//style='border-bottom:1px solid gray'
-        } else {
-            html_ = "<div class='marginTop'>";
-        }
+        html_ = "<div class='marginTop'>";
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
         //
@@ -426,6 +422,9 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         html_ += "</div>";//</table>
         //
+        if(NO_BORDER){
+            html_ += "<div style='width:95%;height:5px;border-bottom:1px solid gray;margin-right:15px'></div>";
+        }
 //        System.out.println("" + html_);
         //
         return html_;
