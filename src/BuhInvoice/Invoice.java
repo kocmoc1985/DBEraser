@@ -762,7 +762,7 @@ public abstract class Invoice extends Basic_Buh {
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
 //        articles.setUneditable();
-        articles.enableEmptyValue(); //[2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
+        articles.enableEmptyValue(); //["#EMPTY-ARTICLE#"][2020-09-28] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
         //
         //
         String fixedComboValues_c = JSon._get_special_(
@@ -832,6 +832,7 @@ public abstract class Invoice extends Basic_Buh {
 //        String fixedComboValues_a = "Skruv;1,Spik;2,Hammare;3,Traktor;4,Skruvmejsel;5"; // This will aquired from SQL
         RowDataInvert articles = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_a, DB.BUH_F_ARTIKEL__ARTIKELID, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, "", true, true, true);
         articles.enableFixedValuesAdvanced();
+        articles.enableEmptyValue(); //["#EMPTY-ARTICLE#"][2021-04-12] -> this makes that is't shown like "-" in the artcles jcombo for the empty entry
 //        articles.setUneditable();
 //        articles.setDisabled();
         //

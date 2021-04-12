@@ -3,6 +3,9 @@ ________________________________________________________________________________
 
 Such messages are sent to "kocmoc1985@gmail.com"
 
+at the moment [2021-04-12] following service messages exist;
+- New user account is created
+- User deletes it's account
 
 ________________________________________________________________________________________________________
 [DATE FORMAT - "yyyy-MM-dd"][2021-04-12]

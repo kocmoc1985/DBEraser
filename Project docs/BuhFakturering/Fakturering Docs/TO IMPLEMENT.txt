@@ -24,11 +24,12 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
+Invoice.class -> line: 765
 ______
 Make video how to make Offert
 Make video how to write on Faktura before printing
 
-When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******
+When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******[DONE] search for tag ["#EMPTY-ARTICLE#"]
 
 Make statics TAB which will show fakturor for act. month for whole year, for prev year [NOT URGENT]
 
