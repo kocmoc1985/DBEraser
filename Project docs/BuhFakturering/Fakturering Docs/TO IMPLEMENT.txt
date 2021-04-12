@@ -37,13 +37,11 @@ See: what can be done regarding the Faktura content exceeds A4 *****************
 
 When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
 
-Make logo for sending it as footer in emails. ***************
-
 Also send email when a user deletes it's account **************  [DONE] Verified [2021-04-12] the emails are sent to "kocmoc1985@gmail.com"
 
 When some new clients registers, send an email to me - so i know about that ************************ [DONE] Verified [2021-04-12] the emails are sent to "kocmoc1985@gmail.com"
 
-If the internet connection is missing a propper message shall appear ********************[IMPORTANT][DONE?!]
+If the internet connection is missing a propper message shall appear ********************[IMPORTANT][DONE]
 
 Anpassa Outlook e-post text and subject when sending invoice see: HTMLPrint.class-> sendWithStandardEmailClient(boolean reminder) ----- PROBLEMATIC - was not able to append to the String[2021-02-25]
 
@@ -51,6 +49,7 @@ Make GDPR text-size smaller especially the "Company credentials"
 
 Användningsvillkor vid progrmets installation *******************IMPORTANT****[DONE]
 
+Make logo for sending it as footer in emails.
 
 IMPORTANT: When changing date and saving invoices after some time it starts to calculate wrongly **************************************[URGENT][FIXED][2021-02-19] ---> the problem was not resetting of all of the variables.
 
@@ -66,10 +65,6 @@ availble in the next version.
 
 If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
 
-To each email send add the name of Company with webb address:
-1. When account is created
-2. When faktura is sent
-3. When påminnelse is sent
 
 Make adoptation for make invoices for private persons, see variable "IS_PERSON__CUSTOMERS_A" -> CustomerAForetagA.class [DONE]
 
@@ -78,6 +73,8 @@ Make additional notes to "buh_faktura_artikel" as Ivan suposed [DONE]
 Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16] [DONE]
 
 Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
+
+
 ------------------------</URGENT>------------------------
 
 Additional comment fields as suposed by Ivan..!?
