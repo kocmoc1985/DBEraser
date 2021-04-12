@@ -239,12 +239,16 @@ public class LANG {
         return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + "?";
     }
     
-    public static String OFFERT_COPY_MSG(String offertCopy) {
-        return "Vill du verkligen kopiera offertnummer: " + offertCopy + "?";
-    }
-
     public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {
         return "Du kopierade precis fakturanummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
+    }
+    
+    public static String OFFERT_COPY_MSG(String fakturaCopy, String fakturaNew) {
+        return "Du kopierade precis offertnummer: " + fakturaCopy + ", det nya offertnumret är: " + fakturaNew;
+    }
+    
+     public static String OFFERT_OMVANDLA_MSG(String fakturaCopy, String fakturaNew) {
+        return "Du omvandlade precis offertnummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
     }
 
     public static String LOGOTYP_TO_SMALL(String requiredMinWidth, String widthActual) {

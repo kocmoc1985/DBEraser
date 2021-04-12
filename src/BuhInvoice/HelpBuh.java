@@ -46,7 +46,7 @@ public class HelpBuh {
     private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
-    private static boolean HTTPS = true;
+    private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     public static boolean USE_TEST_DB = true; // [#TEST-DB#]
     public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP

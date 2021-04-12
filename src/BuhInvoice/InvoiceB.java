@@ -849,12 +849,25 @@ public class InvoiceB extends Basic_Buh {
             String newFakturaNr = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURANR__);
             //
             //
-            if (isKreditFaktura == false && ok) { // COPY
+            if (isOffert && omvandlaOffertToFaktura == false) { // COPY OFFERT
+                //
+                HelpA.showNotification(LANG.OFFERT_COPY_MSG(fakturaNrCopy, newFakturaNr));
+                //
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_OFFERT);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
+                //
+            } else if (isOffert && omvandlaOffertToFaktura) { // OMVANDLA OFFERT
+                //
+                HelpA.showNotification(LANG.OFFERT_OMVANDLA_MSG(fakturaNrCopy, newFakturaNr));
+                //
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
+                //
+            } else if (isKreditFaktura == false && ok) { // COPY NORMAL FAKTURA
                 //
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA);
-                //
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
                 //
                 refresh_sync(null);
