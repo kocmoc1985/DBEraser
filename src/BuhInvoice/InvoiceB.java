@@ -856,12 +856,16 @@ public class InvoiceB extends Basic_Buh {
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_OFFERT);
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
                 //
+                refresh_sync(null);
+                //
             } else if (isOffert && omvandlaOffertToFaktura) { // OMVANDLA OFFERT
                 //
                 HelpA.showNotification(LANG.OFFERT_OMVANDLA_MSG(fakturaNrCopy, newFakturaNr));
                 //
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT);
                 EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
+                //
+                refresh_sync(null);
                 //
             } else if (isKreditFaktura == false && ok) { // COPY NORMAL FAKTURA
                 //
