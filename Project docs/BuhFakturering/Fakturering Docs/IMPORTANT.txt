@@ -1,4 +1,10 @@
 ________________________________________________________________________________________________________
+[SERVICE EMAILS: LIKE - USER CREATED ACCOUNT, DELETED etc..][2021-04-12]
+
+Such messages are sent to "kocmoc1985@gmail.com"
+
+
+________________________________________________________________________________________________________
 [DATE FORMAT - "yyyy-MM-dd"][2021-04-12]
 
 This topic corresponds to project: "DBEraser/BuhInvoice"

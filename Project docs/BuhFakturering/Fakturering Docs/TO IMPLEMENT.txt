@@ -24,27 +24,23 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
-Faktura Offert:
-Search for tag: #OFFERT#
-
-DB.BUH_FAKTURA__FAKTURA_DATUM
-DB.BUH_FAKTURA__FORFALLO_DATUM
-GP_BUH.getDate_yyyy_MM_dd();
-
 ______
-
-Make statics TAB which will show fakturor for act. month for whole year, for prev year
-
 Make video how to make Offert
 Make video how to write on Faktura before printing
 
-When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
+When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******
 
-Also send email when a user deletes it's account **************
+Make statics TAB which will show fakturor for act. month for whole year, for prev year [NOT URGENT]
+
+See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+
+When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
 
 Make logo for sending it as footer in emails. ***************
 
-When some new clients registers, send an email to me - so i know about that ************************ [DONE]
+Also send email when a user deletes it's account **************  [DONE] Verified [2021-04-12] the emails are sent to "kocmoc1985@gmail.com"
+
+When some new clients registers, send an email to me - so i know about that ************************ [DONE] Verified [2021-04-12] the emails are sent to "kocmoc1985@gmail.com"
 
 If the internet connection is missing a propper message shall appear ********************[IMPORTANT][DONE?!]
 
@@ -54,7 +50,6 @@ Make GDPR text-size smaller especially the "Company credentials"
 
 Användningsvillkor vid progrmets installation *******************IMPORTANT****[DONE]
 
-See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 
 IMPORTANT: When changing date and saving invoices after some time it starts to calculate wrongly **************************************[URGENT][FIXED][2021-02-19] ---> the problem was not resetting of all of the variables.
 
@@ -79,7 +74,7 @@ Make adoptation for make invoices for private persons, see variable "IS_PERSON__
 
 Make additional notes to "buh_faktura_artikel" as Ivan suposed [DONE]
 
-Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16]
+Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16] [DONE]
 
 Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
 ------------------------</URGENT>------------------------
