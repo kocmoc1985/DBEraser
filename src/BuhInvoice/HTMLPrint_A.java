@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
+    private static final boolean NO_BORDER = true;
 
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
@@ -81,6 +82,15 @@ public class HTMLPrint_A extends HTMLPrint {
 
     @Override
     public String[] getCssRules() {
+        //
+        String border__or_no_border;
+        //
+        if (NO_BORDER) {
+            border__or_no_border = "td {border: 0px solid gray;}";
+        } else {
+            border__or_no_border = "td {border: 1px solid gray;}";
+        }
+        //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -88,7 +98,7 @@ public class HTMLPrint_A extends HTMLPrint {
             ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",//----------------------------->!!!!!!
-            "td {border: 1px solid gray;}",//------------------------------------>!!!!!
+            border__or_no_border,//------------------------------------>!!!!!
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
@@ -96,9 +106,11 @@ public class HTMLPrint_A extends HTMLPrint {
             ".paddingLeft {padding-left: 5px;}",
             ".bold {font-weight:800;}", // font-weight:800;
             ".no-border {border: 0px}", // search for: [#no-border#]
-            ".border-a {border: 1px solid gray;}"
+        //            ".border-a {border: 1px solid gray;}"
         //    
         };
+        //
+
         //
         return CSSRules;
         //
@@ -164,7 +176,7 @@ public class HTMLPrint_A extends HTMLPrint {
             return "ATT ERHÅLLA";
         } else if (fakturatype.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return "BETALD";
-        }else {
+        } else {
             return null;
         }
     }
@@ -176,7 +188,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String getTotalBeloppInnanAvdrag() {
         //
-        if(isRut() == false){
+        if (isRut() == false) {
             return "0";
         }
         //
@@ -256,11 +268,11 @@ public class HTMLPrint_A extends HTMLPrint {
         String title_nr;
         String title_datum;
         //
-        if(FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)){
+        if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             //[#OFFERT#]
             title_nr = "Offertnr.";
             title_datum = "Offertdatum";
-        }else{
+        } else {
             title_nr = T__FAKTURA_NR;
             title_datum = T__FAKTURA_DATUM;
         }
@@ -384,7 +396,13 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String faktura_data_B_to_html__totals() {
         //
-        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
+        String html_;
+        //
+        if (NO_BORDER) {
+            html_ = "<div class='marginTop' style='border-bottom:1px solid gray;margin-right:15px'>";//style='border-bottom:1px solid gray'
+        } else {
+            html_ = "<div class='marginTop'>";
+        }
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle(FAKTURA_TYPE);
         //
@@ -469,7 +487,13 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String articles_to_html(ArrayList<HashMap<String, String>> list) {
         //
-        String html_ = "<table class='marginTop' style='border: 1px solid gray'>";
+        String html_;
+        //
+        if (NO_BORDER) {
+            html_ = "<table class='marginTop' style='border: 0px solid gray'>"; //style='border: 1px solid gray'
+        } else {
+            html_ = "<table class='marginTop' style='border: 1px solid gray'>";
+        }
         //
         html_ += "<span class='no-border'>";
         //
@@ -625,7 +649,7 @@ public class HTMLPrint_A extends HTMLPrint {
             //
             String pers = namn + " " + efternamn + " " + pnr + "  " + avdrag + " kr";
             //
-            if (i < (map_rut_pers.size()-1)) {
+            if (i < (map_rut_pers.size() - 1)) {
                 html_ += pers + ", ";
             } else {
                 html_ += pers;
@@ -902,10 +926,10 @@ public class HTMLPrint_A extends HTMLPrint {
         boolean print_ok = print_normal();
         //
         if (print_ok) {
-            if(this instanceof HTMLPrint_A && bim.isOffert()){
+            if (this instanceof HTMLPrint_A && bim.isOffert()) {
                 //[#OFFERT#]
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
-            }else if(this instanceof HTMLPrint_A){
+            } else if (this instanceof HTMLPrint_A) {
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
             }
         }
@@ -983,7 +1007,6 @@ public class HTMLPrint_A extends HTMLPrint {
 //        x.start();
 //        //
 //    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
