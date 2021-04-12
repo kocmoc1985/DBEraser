@@ -879,6 +879,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jPanel84 = new javax.swing.JPanel();
         jButton_lab_dev__material_info_delete_entry = new javax.swing.JButton();
         jButton_lab_dev__testproc_print_jtable = new javax.swing.JButton();
+        jButton_lab_dev__test_procedure__add_test_var = new javax.swing.JButton();
         jPanel_lab_dev_header = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jPanel57 = new javax.swing.JPanel();
@@ -2729,6 +2730,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         jButton_lab_dev__testproc_print_jtable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
         jPanel84.add(jButton_lab_dev__testproc_print_jtable);
 
+        jButton_lab_dev__test_procedure__add_test_var.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        jButton_lab_dev__test_procedure__add_test_var.setToolTipText("Add test variable");
+
         javax.swing.GroupLayout jPanel72Layout = new javax.swing.GroupLayout(jPanel72);
         jPanel72.setLayout(jPanel72Layout);
         jPanel72Layout.setHorizontalGroup(
@@ -2742,6 +2746,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel72Layout.createSequentialGroup()
                         .addComponent(jComboBox_lab_dev_test_proc, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton_lab_dev__test_procedure__add_test_var, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2753,8 +2759,9 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
                 .addGap(10, 10, 10)
                 .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel83, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox_lab_dev_test_proc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_lab_dev__test_procedure__add_test_var, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_lab_dev_test_proc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel72Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel75, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
@@ -5243,6 +5250,7 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     public javax.swing.JButton jButton_lab_dev__test_order__filter_btn;
     public javax.swing.JButton jButton_lab_dev__test_order_add_new;
     public javax.swing.JButton jButton_lab_dev__test_proc__copy;
+    public javax.swing.JButton jButton_lab_dev__test_procedure__add_test_var;
     public javax.swing.JButton jButton_lab_dev__test_procedure__new;
     public javax.swing.JButton jButton_lab_dev__test_vars_print_invert;
     public javax.swing.JButton jButton_lab_dev__testproc__print_invert;

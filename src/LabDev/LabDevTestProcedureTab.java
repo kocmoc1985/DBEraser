@@ -62,6 +62,7 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         getCopyBtn().addActionListener(this);
         getDeleteBtn().addActionListener(this);
         getDeleteBtn_b().addActionListener(this);
+        getAddTestVarBtn().addActionListener(this);
         //
         getComboBox().addItemListener(this);
         table.addMouseListener(this);
@@ -129,6 +130,9 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
             delete(true);
         } else if (e.getSource().equals(getDeleteBtn_b())) {
             delete(false);
+        }else if(e.getSource().equals(getAddTestVarBtn())){
+            //OBS! OBS! IT'S A FAKE METHOD AT THE MOMEMNT [2021-04-12]
+            createNewTestVariable__fake(LabDevelopment_.TABLE__TEST_PROCEDURE, "CODE", null);
         }
         //
     }
@@ -240,6 +244,26 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
         return false;
         //
     }
+    
+    /**
+     * For the moment it's a fake method[2021-04-12]
+     * @return 
+     */
+    private boolean createNewTestVariable__fake(String tableName, String colName, String regex){
+        //
+        String q = "SELECT DISTINCT " + colName + " from " + tableName + " WHERE " + colName + " = ?";
+        //
+        TextFieldCheck tfc = new TextFieldCheck(sql, q, regex, 15, 22);
+        //
+        boolean yesNo = HelpA.chooseFromJTextFieldWithCheck(tfc, MSG.LANG("Add new test variable"));
+        String code = tfc.getText();
+        //
+        if (code == null || yesNo == false) {
+            return false;
+        }
+        //
+        return true;
+    }
 
     public String getCurrentId() {
         return ID_PROC;
@@ -271,6 +295,10 @@ public class LabDevTestProcedureTab extends LabDevTab_ implements ActionListener
 
     private JButton getCopyBtn() {
         return mcRecipe.jButton_lab_dev__test_proc__copy;
+    }
+    
+     private JButton getAddTestVarBtn() {
+        return mcRecipe.jButton_lab_dev__test_procedure__add_test_var;
     }
 
     private JComboBox getComboBox() {

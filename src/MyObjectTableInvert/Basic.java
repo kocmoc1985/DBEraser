@@ -953,10 +953,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
-     * if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
-     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
-     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
-     * }
+ if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+ toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+ return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+ }
      *
      * @param arr
      * @param columnsToRemove
