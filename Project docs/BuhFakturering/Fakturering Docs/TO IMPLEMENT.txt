@@ -32,13 +32,13 @@ Omvandla Offert to Faktura
 - Don't forget to make corresponding changes to the messages in connection with copying or "omvandling"
 - When i copy OFFERT in events it shows "Faktura" which is wrong
 
-Make video how to make Offert
-Make video how to write on Faktura before printing
-
-Updating "Företags Inställningar" causes error when updating data if the "address data" is empty--->>>>>SUPER IMPORTANT
 
 ______
 
+Make statics TAB which will show fakturor for act. month for whole year, for prev year
+
+Make video how to make Offert
+Make video how to write on Faktura before printing
 
 When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
 
