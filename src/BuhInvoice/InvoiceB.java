@@ -1008,6 +1008,9 @@ public class InvoiceB extends Basic_Buh {
             return null;
         }
         //
+        //
+        //
+        //
     }
 
     //  DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES
@@ -1037,6 +1040,9 @@ public class InvoiceB extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+        //
+        //
+        //
         //
     }
 
@@ -1126,6 +1132,9 @@ public class InvoiceB extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+        //
+        //
+        //
         //
     }
 

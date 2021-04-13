@@ -270,7 +270,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
             //[#OFFERT#]
-            title_nr = "Offertnr.";
+            title_nr = "Offertnr";
             title_datum = "Offertdatum";
         } else {
             title_nr = T__FAKTURA_NR;

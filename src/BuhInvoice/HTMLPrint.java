@@ -73,7 +73,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     //
     //
     //
-    public static final String T__FAKTURA_NR = "Fakturanr.";
+    public static final String T__FAKTURA_NR = "Fakturanr";
     public static final String T__KUND_NR = "Kundnr";
     public static final String T__FAKTURA_DATUM = "Fakturadatum";
     //
