@@ -10,6 +10,7 @@ import BuhInvoice.DB;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.InvoiceB;
 import BuhInvoice.Invoice;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +76,17 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         autodefineRutArticlesJTable(jTable1);
         //
+        getPersonalData();
+        //
     }
+    
+    private void getPersonalData(){
+        TableInvert ti = bim.getTableInvert();
+        HashMap<String, String> map_e__lev_data = invoice.getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
+        System.out.println("PERS KUND DATA: " + map_e__lev_data);
+    }
+    
+    
 
     public void makeVisible() {
         this.setVisible(true);

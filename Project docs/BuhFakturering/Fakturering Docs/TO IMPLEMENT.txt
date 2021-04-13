@@ -24,7 +24,14 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
-Invoice.class -> line: 765
+RUT ROT: Person data autofill
+
+Invoice.class -> 1269
+InvoiceB.class -> 1356
+
+InvoiceB.class -> 1365 -> Here the pers. data is aquired 
+-> HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti); ->
+TableInvert ti = bim.getTableInvert();
 ______
 Make video how to make Offert
 Make video how to write on Faktura before printing

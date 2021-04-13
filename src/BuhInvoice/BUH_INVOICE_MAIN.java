@@ -268,7 +268,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
 
-    protected TableInvert getTableInvert() {
+    public TableInvert getTableInvert() {
         if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT;
         } else {

@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.InvoiceB.TABLE_ALL_INVOICES__KUND_ID;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.MomsBuh_F_artikel;
@@ -162,11 +163,11 @@ public abstract class Invoice extends Basic_Buh {
                 } else if (bim.isKontantFaktura()) { // KONTANT FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_KONTANT;
-                }else if(bim.isOffert()){
+                } else if (bim.isOffert()) {
                     //[#OFFERT#]
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2_1_2);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_OFFERT;
-                }else {
+                } else {
                     // NORMAL FAKTURA
                     bim.jLabel_Faktura_Insert_or_Update.setText(LANG.LBL_MSG_2);
                     bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
@@ -1405,6 +1406,38 @@ public abstract class Invoice extends Basic_Buh {
             rdi.setVisible_(true);
             refreshTableInvert(ti);
         }
+    }
+
+    public HashMap<String, String> getFakturaKundData(String phpFunction, TableInvert ti) {
+        //
+        String fakturaKundId;
+        //
+        if (ti == null) {
+            fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        } else {
+            fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
+        }
+        //
+        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return addresses.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    private String _get(String colNameJTable) {
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        return HelpA.getValueSelectedRow(table, colNameJTable);
     }
 
 }
