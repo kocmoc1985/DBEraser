@@ -133,6 +133,14 @@ public class GP_BUH {
             return text.replaceAll("£", "+");
         }
     }
+    
+     public static String replaceAnd(String text, boolean reverse) {
+        if (reverse == false) {
+            return text.replaceAll("&", "~");
+        } else {
+            return text.replaceAll("~", "&");
+        }
+    }
 
 //    public static String getShortName(String staticJaNej, String value) {
 //        HashMap<String, String> map = JSon.JSONToHashMap(staticJaNej, false);

@@ -300,6 +300,7 @@ public class JSon {
                     value = GP_BUH.replaceColon(value, specialCharsRevers); // value.replaceAll("#", ":");
                     value = GP_BUH.replaceComma(value, specialCharsRevers); // value.replaceAll("¤", ",");
                     value = GP_BUH.replacePlus(value, specialCharsRevers); //value.replaceAll("£", "+");
+                    value = GP_BUH.replaceAnd(value, specialCharsRevers); //value.replaceAll("~", "&");
                 }
             }
             //

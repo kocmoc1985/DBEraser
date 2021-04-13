@@ -216,6 +216,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 val = GP_BUH.replaceColon(val, false); // replace ":" with "#"
                 val = GP_BUH.replaceComma(val, false); // replace "," with "¤"
                 val = GP_BUH.replacePlus(val, false); // replace "+" with "£"
+                val = GP_BUH.replaceAnd(val, false); // replace "&" with "~"
                 //
                 // [2020-08-18] Not taking into account empty or null
                 // Using 'DEFAULT' in Database helps when inserting
