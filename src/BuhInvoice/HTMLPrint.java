@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.text.Document;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.html.StyleSheet;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HTMLBasic;
@@ -31,21 +27,15 @@ import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.sql.Array;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
-import org.apache.commons.lang.ArrayUtils;
 
 /**
  *

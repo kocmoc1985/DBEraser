@@ -485,7 +485,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String html_;
         //
-        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
+        if (NO_BORDER) { // [#NO-BORDER-PROPPER#]
             html_ = "<table class='marginTop' style='border: 0px solid gray'>"; //style='border: 1px solid gray'
         } else {
             html_ = "<table class='marginTop' style='border: 1px solid gray'>";
