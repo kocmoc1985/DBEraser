@@ -137,6 +137,8 @@ public class LANG {
     public static String MSG_25_1 = "Är samtliga artiklar tilllagda?";
 
     public static String MSG_26 = "Inga personer finns tillagda, lägg till en och försök igen";
+    
+    public static String MSG_27 = "Lägg till artiklar först";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

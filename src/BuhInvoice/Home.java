@@ -244,8 +244,8 @@ public class Home extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
         //
-        GP_BUH.USER = _get(map, DB.BUH_LICENS__USER);
-        GP_BUH.PASS = _get(map, DB.BUH_LICENS__PASS);
+        GP_BUH.USER = GP_BUH._get(map, DB.BUH_LICENS__USER);
+        GP_BUH.PASS = GP_BUH._get(map, DB.BUH_LICENS__PASS);
         //
         if (login()) {
             //

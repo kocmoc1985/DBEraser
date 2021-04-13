@@ -1408,36 +1408,6 @@ public abstract class Invoice extends Basic_Buh {
         }
     }
 
-    public HashMap<String, String> getFakturaKundData(String phpFunction, TableInvert ti) {
-        //
-        String fakturaKundId;
-        //
-        if (ti == null) {
-            fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
-        } else {
-            fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
-        }
-        //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    phpFunction, json);
-            //
-            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            return addresses.get(0);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    private String _get(String colNameJTable) {
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
-        return HelpA.getValueSelectedRow(table, colNameJTable);
-    }
+    
 
 }

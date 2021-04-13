@@ -797,10 +797,10 @@ public class InvoiceB extends Basic_Buh {
         executeDelete(json);
     }
 
-    private String _get(String colNameJTable) {
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
-        return HelpA.getValueSelectedRow(table, colNameJTable);
-    }
+//    private String _get(String colNameJTable) {
+//        JTable table = bim.jTable_invoiceB_alla_fakturor;
+//        return HelpA.getValueSelectedRow(table, colNameJTable);
+//    }
 
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
@@ -1013,38 +1013,6 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    //  DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES
-    //  DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA
-    private HashMap<String, String> getFakturaKundData(String phpFunction, TableInvert ti) {
-        //
-        String fakturaKundId;
-        //
-        if (ti == null) {
-            fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
-        } else {
-            fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
-        }
-        //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    phpFunction, json);
-            //
-            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            return addresses.get(0);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-        //
-        //
-        //
-        //
-    }
 
     private HashMap<String, String> getForetagData(String phpFunction, boolean kundId) {
         //
@@ -1132,9 +1100,6 @@ public class InvoiceB extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        //
-        //
-        //
         //
     }
 

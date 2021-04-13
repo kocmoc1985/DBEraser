@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class RutRotFrame extends javax.swing.JFrame {
-
+    
     private final BUH_INVOICE_MAIN bim;
     private final Invoice invoice;
     private RutRot rut;
@@ -53,7 +53,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.articlesTable = articlesTable;
         init();
     }
-
+    
     private void init() {
         //
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
@@ -81,7 +81,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         autodefineRutArticlesJTable(jTable1);
         //
     }
-
+    
     private void getPersonalData() {
         TableInvert ti = bim.getTableInvert();
         HashMap<String, String> map_e__lev_data = invoice.getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
@@ -102,7 +102,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
         //
     }
-
+    
     public void makeVisible() {
         this.setVisible(true);
         //
@@ -113,7 +113,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         rut.setFastighetsBeteckning(fastighetBetackning);
     }
-
+    
     private void hideCols(JTable table) {
         //
 //        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
@@ -122,7 +122,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
     }
-
+    
     private void fillJTableheader_person() {
         //
         JTable table = jTable3;
@@ -136,7 +136,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
-
+    
     private void deletePerson() {
         //
         JTable table = jTable3;
@@ -144,7 +144,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.removeRowJTable(table, table.getSelectedRow());
         //
     }
-
+    
     private void addPerson() {
         //
         if (rut.fieldsValidated(false) == false) {
@@ -173,12 +173,15 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.markFirstRowJtable(table);
         //
         rut.showTableInvert();
+        //
+        TableInvert ti = (TableInvert) rut.TABLE_INVERT;
+        ti.clearAllRows();
     }
-
+    
     private void recalcAndSetAvdragPerPers() {
         HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
-
+    
     private void countAvdrag(int antalPers) {
         //
         AVDRAGS_GILL_BELOPP = countJTable(jTable2); // ja det inkluderar moms
@@ -203,7 +206,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON);
         //
     }
-
+    
     private static Double countJTable(JTable table) {
         //
         double sum = 0;
@@ -247,7 +250,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         return sum;
         //
     }
-
+    
     private void autodefineRutArticlesJTable(JTable table) {
         //
         String[] dict = new String[]{"arbete"};
@@ -518,11 +521,15 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
+        if (HelpA.isEmtyJTable(jTable2)) {
+            HelpA.showNotification(LANG.MSG_27);
+            return;
+        }
+        //
         countAvdrag(jTable3.getRowCount() + 1);
         //
         addPerson();
         //
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -561,7 +568,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.setVisible(false);
         //
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     private void setRotOrRut_CheckBoxes(java.awt.event.ActionEvent evt) {
         //
         JCheckBox box = (JCheckBox) evt.getSource();

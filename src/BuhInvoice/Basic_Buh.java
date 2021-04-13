@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.InvoiceB.TABLE_ALL_INVOICES__KUND_ID;
 import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
@@ -13,13 +14,14 @@ import MyObjectTableInvert.JTextFieldInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
+import forall.HelpA;
 import java.awt.AWTEvent;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -45,16 +47,16 @@ public abstract class Basic_Buh extends Basic {
     }
 
     /**
-     * 
-     * @param fakturaId 
+     *
+     * @param fakturaId
      */
-    public static void executeSetFakturaSentPerEmail(String fakturaId, boolean sent){
-       //
+    public static void executeSetFakturaSentPerEmail(String fakturaId, boolean sent) {
+        //
         HashMap<String, String> map = BUH_INVOICE_MAIN.getUPDATE_static(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
         //
-        if(sent){
+        if (sent) {
             map.put(DB.BUH_FAKTURA__SENT, "1"); // 1 = "yes", "0"
-        }else{
+        } else {
             map.put(DB.BUH_FAKTURA__SENT, "0"); // 1 = "yes", "0"
         }
         //
@@ -63,9 +65,9 @@ public abstract class Basic_Buh extends Basic {
         HelpBuh.update(json);
         //
     }
-    
+
     /**
-     * 
+     *
      * @param fakturaId
      * @param status 0 = ej betald; 1 = betald; 2 = delvis; 3 = över
      */
@@ -105,7 +107,7 @@ public abstract class Basic_Buh extends Basic {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     php_function, json);
             //
-            if(json_str_return.equals(DB.PHP_SCRIPT_RETURN_EMPTY)){
+            if (json_str_return.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) {
                 return "";
             }
             //
@@ -132,8 +134,6 @@ public abstract class Basic_Buh extends Basic {
 //        fieldUpdateWatcher(ke);
         //
     }
-
-
 
     /**
      * [2020-07-30] Marking the field is considered to be updated.
@@ -186,10 +186,10 @@ public abstract class Basic_Buh extends Basic {
         }
         //
     }
-    
+
     private int prevLengthOrgnr;
-    
-    protected  void orgnr_additional(JLinkInvert jli, TableInvert ti) {
+
+    protected void orgnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
@@ -207,8 +207,8 @@ public abstract class Basic_Buh extends Basic {
         prevLengthOrgnr = txt.length();
         //
     }
-    
-     protected  void pnr_additional(JLinkInvert jli, TableInvert ti) {
+
+    protected void pnr_additional(JLinkInvert jli, TableInvert ti) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //
@@ -227,6 +227,38 @@ public abstract class Basic_Buh extends Basic {
         //
     }
 
+    public HashMap<String, String> getFakturaKundData(String phpFunction, TableInvert ti) {
+        //
+        String fakturaKundId;
+        //
+        if (ti == null) {
+            fakturaKundId = _get(TABLE_ALL_INVOICES__KUND_ID);
+        } else {
+            fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
+        }
+        //
+        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return addresses.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public String _get(String colNameJTable) {
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        return HelpA.getValueSelectedRow(table, colNameJTable);
+    }
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -236,7 +268,6 @@ public abstract class Basic_Buh extends Basic {
     public void showTableInvert() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public boolean getUnsaved(int nr) {
