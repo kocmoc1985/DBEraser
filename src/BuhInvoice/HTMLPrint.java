@@ -53,6 +53,8 @@ import org.apache.commons.lang.ArrayUtils;
  */
 public abstract class HTMLPrint extends HTMLBasic {
 
+    public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
+    
     protected final BUH_INVOICE_MAIN bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
     protected final HashMap<String, String> map_a_0;

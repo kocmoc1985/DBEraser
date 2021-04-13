@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HTMLPrint.NO_BORDER;
 import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
@@ -72,6 +73,15 @@ public class HTMLPrint_B extends HTMLPrint {
 
     @Override
     public String[] getCssRules() {
+        //
+        String border__or_no_border; 
+        //
+        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
+            border__or_no_border = "td {border: 0px solid gray;}";
+        } else {
+            border__or_no_border = "td {border: 1px solid gray;}";
+        }
+        //
         String[] CSSRules = {
             //            "table {margin-bottom:10px;}",
             "table {width: 99%;}",
@@ -79,7 +89,7 @@ public class HTMLPrint_B extends HTMLPrint {
             ".fontStd {font-size:9pt; color:gray;}",
             "table {font-size:9pt; color:gray;}", // 9pt seems to be optimal
             //            "table {border: 1px solid black}",
-            "td {border: 1px solid gray;}",
+            border__or_no_border,
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
@@ -369,7 +379,9 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "</div>";//</table>
         //
-//        System.out.println("" + html_);
+        if(NO_BORDER){ //[#NO-BORDER-PROPPER#]
+            html_ += "<div style='width:95%;height:5px;border-bottom:1px solid gray;margin-right:15px'></div>";
+        }
         //
         return html_;
     }

@@ -27,8 +27,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
-    private static final boolean NO_BORDER = true;
-
+    
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
@@ -85,7 +84,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String border__or_no_border;
         //
-        if (NO_BORDER) {
+        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
             border__or_no_border = "td {border: 0px solid gray;}";
         } else {
             border__or_no_border = "td {border: 1px solid gray;}";
@@ -109,8 +108,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //            ".border-a {border: 1px solid gray;}"
         //    
         };
-        //
-
         //
         return CSSRules;
         //
@@ -422,7 +419,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         html_ += "</div>";//</table>
         //
-        if(NO_BORDER){
+        if(NO_BORDER){ //[#NO-BORDER-PROPPER#]
             html_ += "<div style='width:95%;height:5px;border-bottom:1px solid gray;margin-right:15px'></div>";
         }
 //        System.out.println("" + html_);
@@ -488,7 +485,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String html_;
         //
-        if (NO_BORDER) {
+        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
             html_ = "<table class='marginTop' style='border: 0px solid gray'>"; //style='border: 1px solid gray'
         } else {
             html_ = "<table class='marginTop' style='border: 1px solid gray'>";
