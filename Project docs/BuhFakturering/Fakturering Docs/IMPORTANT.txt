@@ -253,9 +253,9 @@ ________________________________________________________________________________
 
 [SEMI COLON, COMMA & PLUS SEND JSON (JAVA->PHP)][2020-08-25][2020-09-17][2021-04-13]
 
-So the "special chars" which are replaced are: ":" -> "," -> "+"
+So the "special chars" which are replaced are: ":" -> "," -> "+" -> "&"
 
-The replacement chars are the following: ":" -> "#" / "," -> "¤" / "+" -> "£"
+The replacement chars are the following: ":" -> "#" / "," -> "¤" / "+" -> "£" / "&" -> "~"
 
 It's a problem when you have to send ":" (semicolon) as json to php. -> This fails because of HTTP URL "specialities"
 It's also a problem sending "," (comma) as json to php. -> This is uploaded without problems to HTTP -> but fails when recieving
