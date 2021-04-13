@@ -42,11 +42,17 @@ public class RutRot extends Basic_Buh {
     public static final String COL__AVDRAG = "AVDRAG";
     public static final String COL__PNR = "PERSONNUMMER";
     public static final String COL__FATSTIGHETS_BETECKNING = "FASTIGHETSBETECKNING";
+    private final String PNR;
+    private final String FORNAMN;
+    private final String EFTERNAMN;
 
-    public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame) {
+    public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame,String pnr,String fornamn,String efternamn) {
         super(bim);
         this.bim.setRutRot(this);
         this.rutRotFrame = rutRotFrame;
+        this.PNR = pnr;
+        this.FORNAMN = fornamn;
+        this.EFTERNAMN = efternamn;
     }
 
     public JPanel getTableInvertPanel() {
@@ -60,12 +66,12 @@ public class RutRot extends Basic_Buh {
     public HashMap<String, String> getValuesTableInvert() {
         return tableInvertToHashMap(TABLE_INVERT, DB.START_COLUMN);
     }
-    
-    public String getFastighetsBeteckning(){
-        return getValueTableInvert(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING,TABLE_INVERT_2);
+
+    public String getFastighetsBeteckning() {
+        return getValueTableInvert(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, TABLE_INVERT_2);
     }
-    
-    public void setFastighetsBeteckning(String value){
+
+    public void setFastighetsBeteckning(String value) {
         setValueTableInvert(DB.BUH_FAKTURA_RUT__FASTIGHETS_BETECKNING, TABLE_INVERT_2, value);
     }
 
@@ -184,11 +190,11 @@ public class RutRot extends Basic_Buh {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert fornamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, COL__FORNAMN, "", true, true, true);
+        RowDataInvert fornamn = new RowDataInvertB(FORNAMN, DB.BUH_FAKTURA_RUT_PERSON__FORNAMN, COL__FORNAMN, "", true, true, true);
         //
-        RowDataInvert efternamn = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, COL__EFTERNAMN, "", true, true, true);
+        RowDataInvert efternamn = new RowDataInvertB(EFTERNAMN, DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN, COL__EFTERNAMN, "", true, true, true);
         //
-        RowDataInvert pnr = new RowDataInvertB("", DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (YYMMDD-XXXX)", "", true, true, true);
+        RowDataInvert pnr = new RowDataInvertB(PNR, DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (YYMMDD-XXXX)", "", true, true, true);
         //
         RowDataInvert[] rows = {
             fornamn,

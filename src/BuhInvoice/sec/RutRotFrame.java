@@ -28,11 +28,14 @@ public class RutRotFrame extends javax.swing.JFrame {
     private final BUH_INVOICE_MAIN bim;
     private final Invoice invoice;
     private RutRot rut;
-    private JTable articlesTable;
+    private final JTable articlesTable;
     private double AVDRAGS_GILL_BELOPP = 0;
     protected double AVDRAG_TOTAL = 0;
     private double AVDRAG_PER_PERSON = 0;
     private double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
+    private String PNR = "";
+    private String EFTERNAMN = "";
+    private String FORNAMN = "";
 
     /**
      * Creates new form RutRot
@@ -57,7 +60,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.setTitle("RUT-Avdrag");
         GP_BUH.centerAndBringToFront(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.rut = new RutRot(bim, this);
+        getPersonalData();
+        this.rut = new RutRot(bim, this, PNR, FORNAMN, EFTERNAMN);
         this.rut.showTableInvert();
         this.rut.showTableInvert_2();
         //
@@ -76,17 +80,28 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         autodefineRutArticlesJTable(jTable1);
         //
-        getPersonalData();
-        //
     }
-    
-    private void getPersonalData(){
+
+    private void getPersonalData() {
         TableInvert ti = bim.getTableInvert();
         HashMap<String, String> map_e__lev_data = invoice.getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
-        System.out.println("PERS KUND DATA: " + map_e__lev_data);
+        PNR = map_e__lev_data.getOrDefault(DB.BUH_FAKTURA_KUND___ORGNR, "");
+        String namnFornamn = map_e__lev_data.getOrDefault(DB.BUH_FAKTURA_KUND___NAMN, "");
+        //
+        if (namnFornamn == null || namnFornamn.isEmpty()) {
+            return;
+        }
+        //
+        String[] arr = namnFornamn.split(" ");
+        //
+        if (arr.length == 2) {
+            FORNAMN = arr[0];
+            EFTERNAMN = arr[1];
+        } else if (arr.length == 1) {
+            FORNAMN = arr[0];
+        }
+        //
     }
-    
-    
 
     public void makeVisible() {
         this.setVisible(true);
@@ -216,7 +231,7 @@ public class RutRotFrame extends javax.swing.JFrame {
                 //
             }
             //
-            TrippleParamEntry dpe = new TrippleParamEntry(val_pris, val_percent,val_antal);
+            TrippleParamEntry dpe = new TrippleParamEntry(val_pris, val_percent, val_antal);
             list.add(dpe);
             //
         }
@@ -536,7 +551,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         // [#RUTROT#]
         // Setting "AVDRAG_TOTAL" for counting
         //
-        if(HelpA.isEmtyJTable(jTable3)){
+        if (HelpA.isEmtyJTable(jTable3)) {
             HelpA.showNotification(LANG.MSG_26);
             return;
         }
