@@ -24,14 +24,23 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 ------------------------<URGENT>------------------------
 
-RUT ROT: Person data autofill
+Statistics:
+ 
+String json = bim.getSELECT_kundId();
+String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, json);
+ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+ 
+"kundId";"29","fakturaId";"424","fakturanr";"4","fakturanr_alt";"0","fakturatyp";"3",
+"fakturadatum";"2021-04-13","forfallodatum";"2021-05-13","total_exkl_moms";"6594",
+"rabatt_total";"0","total_ink_moms";"8242.5","valuta";"SEK","betald";"0",
+"sent_with_email";"0","var_referens";"Martin Andrersson","er_referens";"",
+"ert_ordernr";"","betal_vilkor";"30","lev_vilkor";"FVL","lev_satt";"P",
+"exp_avg";"0","drojsmalsranta";"7","frakt";"0","makulerad";"0",
+"rutavdrag";"0","moms_total";"1648.5","important_komment";"","komment";"",
+"changed_by";"exempel","date_created";"2021-04-13 12.17.24.265",
+"copied_from_id";"0","fakturaKundId";"58",
+"kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0"
 
-Invoice.class -> 1269
-InvoiceB.class -> 1356
-
-InvoiceB.class -> 1365 -> Here the pers. data is aquired 
--> HashMap<String, String> map_e__lev_data = getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti); ->
-TableInvert ti = bim.getTableInvert();
 ______
 Make video how to make Offert
 Make video how to write on Faktura before printing

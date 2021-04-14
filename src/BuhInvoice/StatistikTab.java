@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author HP-A
  */
-public class StatistikTab {
+public class StatistikTab implements Runnable{
 
     private final BUH_INVOICE_MAIN bim;
 
@@ -27,10 +27,20 @@ public class StatistikTab {
     }
 
     private void init() {
-        refresh();
+       refresh();
+    }
+    
+    public void refresh(){
+        Thread x = new Thread(this);
+        x.start();
     }
 
-    public void refresh() {
+    private void refresh_() {
+        // OBS! OBS! Superimportant - see "MyGraphXY.class
+        // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
+        // visible from the beginning it will NOT WORK as it will wait untill the height>50
+        //
+        bim.jPanel_graph_panel_a.removeAll();
         //
         XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice("test", new MyGraphXY_BuhInvoice(), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
         //
@@ -41,7 +51,9 @@ public class StatistikTab {
         String json_str_return = "";
         //
         try {
-            json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, json);
+            // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR ---> GET ALL
+            // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH --> ACT MONTH
+            json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json);
         } catch (Exception ex) {
             Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -50,6 +62,11 @@ public class StatistikTab {
         //
         xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
         //
+    }
+
+    @Override
+    public void run() {
+        refresh_();
     }
 
 }
