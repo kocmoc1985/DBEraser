@@ -14,6 +14,7 @@ import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.OffertCopyOrOmvandlaFrame;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
+import XY_RUN.Buh_Invoice_Main__IF;
 import forall.HelpA;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener {
+public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener, Buh_Invoice_Main__IF {
 
     private InvoiceA_Insert_ invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -2264,8 +2265,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     public void editFakturaBtnKlicked() {
         openTabByName(TAB_FAKTURA);
-        fakturaTabClicked();
+        fakturaTabClicked(getFakturaNr());
     }
+    
+     @Override
+    public void goToFaktura(String fakturaNr) {
+//        String fakturaNr = "1"; // this should be sent as a parameter later
+        openTabByName(TAB_INVOICES_OVERVIEW);
+        HelpA.markRowByValue(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+    }
+
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
@@ -2958,7 +2967,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_FAKTURA) && sameTabClicked == false) {
                 //
-                fakturaTabClicked();
+                fakturaTabClicked(getFakturaNr());
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_KUDNER)) {
                 //
@@ -3019,7 +3028,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
     }
 
-    private void fakturaTabClicked() {
+    private void fakturaTabClicked(String fakturaNr) {
         //
         DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
         jTable_InvoiceA_Insert_articles.setModel(dtm);
@@ -3032,7 +3041,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             @Override
             public void run() {
                 //
-                if (getFakturaNr() == null || getFakturaNr().isEmpty()) {
+                if (fakturaNr == null || fakturaNr.isEmpty()) {
                     //It's for the cases when the faktura list is empty
                     createNewFaktura(DB.STATIC__FAKTURA_TYPE_NORMAL);//false
                     return;
@@ -3220,4 +3229,5 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
 
+   
 }

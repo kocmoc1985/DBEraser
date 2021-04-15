@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author HP-A
  */
-public class StatistikTab implements Runnable{
+public class StatistikTab implements Runnable {
 
     private final BUH_INVOICE_MAIN bim;
 
@@ -27,10 +27,10 @@ public class StatistikTab implements Runnable{
     }
 
     private void init() {
-       refresh();
+        refresh();
     }
-    
-    public void refresh(){
+
+    public void refresh() {
         Thread x = new Thread(this);
         x.start();
     }
@@ -42,7 +42,10 @@ public class StatistikTab implements Runnable{
         //
         bim.jPanel_graph_panel_a.removeAll();
         //
-        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice("test", new MyGraphXY_BuhInvoice(), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice("test", new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
         //
         bim.jPanel_graph_panel_a.add(xghm.getGraph());
         //
