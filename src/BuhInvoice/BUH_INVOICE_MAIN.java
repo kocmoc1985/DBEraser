@@ -2292,8 +2292,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         openTabByName(TAB_FAKTURA);
         fakturaTabClicked(getFakturaNr());
     }
-    
-     @Override
+
+    @Override
     public void goToFaktura(String fakturaNr) {
 //        String fakturaNr = "1"; // this should be sent as a parameter later
         openTabByName(TAB_INVOICES_OVERVIEW);
@@ -2571,8 +2571,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //        invoiceB.copy(isKreditFaktura, isOffert(), false); // COPY If isOffert
         //
     }
-    
-    public void copyOrOmvandlaOffert(boolean omvandla){
+
+    public void copyOrOmvandlaOffert(boolean omvandla) {
         invoiceB.copy(false, true, omvandla);
     }
 
@@ -3029,7 +3029,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     optionsTab.refresh();
                 }
                 //
-            }else if(ACTUAL_TAB_NAME.equals(TAB_STATISTIK) && sameTabClicked == false){
+            } else if (ACTUAL_TAB_NAME.equals(TAB_STATISTIK) && sameTabClicked == false) {
                 //
                 if (statistikTab == null) {
                     statistikTab = new StatistikTab(this);
@@ -3118,6 +3118,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             });
             //
             x.start();
+            //
+        } else if (e.getSource() == jTable_invoiceB_alla_fakturor && (e.getClickCount() == 2)) {
+            //
+            editFakturaBtnKlicked();
             //
         } else if (e.getSource() == jTable_InvoiceA_Insert_articles && (e.getClickCount() == 1)) {
             //
@@ -3257,5 +3261,4 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
 
-   
 }
