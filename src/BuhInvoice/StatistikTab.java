@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 /**
  *
@@ -40,14 +41,22 @@ public class StatistikTab implements Runnable {
         // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
         // visible from the beginning it will NOT WORK as it will wait untill the height>50
         //
-        bim.jPanel_graph_panel_a.removeAll();
+        drawGraph_basic( bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR);
+        //
+        drawGraph_basic( bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+        //
+    }
+
+    private void drawGraph_basic(JPanel container, String name, String phpScript) {
+        //
+        container.removeAll();
         //
         String dateNow = GP_BUH.getDate_yyyy_MM_dd();
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
         //
-        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice("test", new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice(name, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
         //
-        bim.jPanel_graph_panel_a.add(xghm.getGraph());
+        container.add(xghm.getGraph());
         //
         String json = bim.getSELECT_kundId();
         //
@@ -55,8 +64,8 @@ public class StatistikTab implements Runnable {
         //
         try {
             // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR ---> GET ALL
-            // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH --> ACT MONTH
-            json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR, json);
+            // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH --> ACT MONTHF
+            json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
         } catch (Exception ex) {
             Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
         }
