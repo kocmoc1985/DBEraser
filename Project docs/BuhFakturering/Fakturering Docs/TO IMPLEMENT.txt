@@ -23,12 +23,6 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 ------------------------</CHECK>------------------------
 
 ------------------------<URGENT>------------------------
-
-Statistics:
- 
-String json = bim.getSELECT_kundId();
-String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, json);
-ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
  
 "kundId";"29","fakturaId";"424","fakturanr";"4","fakturanr_alt";"0","fakturatyp";"3",
 "fakturadatum";"2021-04-13","forfallodatum";"2021-05-13","total_exkl_moms";"6594",
@@ -40,6 +34,10 @@ ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json
 "changed_by";"exempel","date_created";"2021-04-13 12.17.24.265",
 "copied_from_id";"0","fakturaKundId";"58",
 "kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0"
+
+select * 
+from orders 
+where order_date >= DATE_SUB(NOW(),INTERVAL 1 YEAR);
 
 ______
 Make video how to make Offert

@@ -64,7 +64,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
     //
-    public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
+    public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK;
     private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
     //
     protected String FAKTURA_TYPE_CURRENT__OPERATION;
@@ -131,11 +131,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected void RESET_SEARCH_FILTER() {
-        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR;
+        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK;
     }
 
     protected boolean isInitialFilter() {
-        if (PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR)) {
+        if (PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
             return true;
         } else {
             return false;
@@ -760,8 +760,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton4_delete_faktura_komment1 = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         jToggleButton_obetald_filter = new javax.swing.JToggleButton();
-        jToggleButton_forfallen_filter = new javax.swing.JToggleButton();
         jToggleButton_delvis_betald_filter = new javax.swing.JToggleButton();
+        jToggleButton_forfallen_filter = new javax.swing.JToggleButton();
         jToggleButton_not_send_filter = new javax.swing.JToggleButton();
         jToggleButton_makulerad_filter = new javax.swing.JToggleButton();
         jToggleButton_act_month_filter = new javax.swing.JToggleButton();
@@ -1251,6 +1251,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel18.add(jToggleButton_obetald_filter);
 
+        jToggleButton_delvis_betald_filter.setForeground(new java.awt.Color(102, 102, 102));
+        jToggleButton_delvis_betald_filter.setText("ALLA FAKTUROR");
+        jToggleButton_delvis_betald_filter.setToolTipText("Visar samtliga fakturor");
+        jToggleButton_delvis_betald_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton_delvis_betald_filterActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jToggleButton_delvis_betald_filter);
+
         jToggleButton_forfallen_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_forfallen_filter.setText("FÖRFALLNA");
         jToggleButton_forfallen_filter.setToolTipText("Visar förfallna, ej betalda, ej makulerade fakturor av typen NORMAL");
@@ -1260,15 +1270,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
         jPanel18.add(jToggleButton_forfallen_filter);
-
-        jToggleButton_delvis_betald_filter.setForeground(new java.awt.Color(102, 102, 102));
-        jToggleButton_delvis_betald_filter.setText("DELVIS BETALD");
-        jToggleButton_delvis_betald_filter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton_delvis_betald_filterActionPerformed(evt);
-            }
-        });
-        jPanel18.add(jToggleButton_delvis_betald_filter);
 
         jToggleButton_not_send_filter.setForeground(new java.awt.Color(102, 102, 102));
         jToggleButton_not_send_filter.setText("EJ SKICKADE");
@@ -1738,7 +1739,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel10.setText("Alla fakturor");
+        jLabel10.setText("Alla fakturor under ett år");
 
         jPanel_graph_panel_b.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_graph_panel_b.setLayout(new java.awt.GridLayout(1, 0));
@@ -1755,9 +1756,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGap(20, 20, 20)
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel10)
                     .addComponent(jPanel_graph_panel_a, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel_graph_panel_b, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel_graph_panel_b, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(480, Short.MAX_VALUE))
         );
         jPanel24Layout.setVerticalGroup(
@@ -1765,11 +1766,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel_graph_panel_a, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel_graph_panel_b, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(863, Short.MAX_VALUE))
         );
@@ -2617,7 +2618,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_not_send_filterActionPerformed
 
     private void jToggleButton_delvis_betald_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_delvis_betald_filterActionPerformed
-        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DELVIS_BETALD, evt);
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL, evt);
     }//GEN-LAST:event_jToggleButton_delvis_betald_filterActionPerformed
 
     private void jToggleButton_makulerad_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_makulerad_filterActionPerformed

@@ -749,6 +749,18 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_obetald_filterActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JToggleButton" name="jToggleButton_delvis_betald_filter">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ALLA FAKTUROR"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Visar samtliga fakturor"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_delvis_betald_filterActionPerformed"/>
+                      </Events>
+                    </Component>
                     <Component class="javax.swing.JToggleButton" name="jToggleButton_forfallen_filter">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -759,17 +771,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_forfallen_filterActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton_delvis_betald_filter">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="66" green="66" red="66" type="rgb"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="DELVIS BETALD"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton_delvis_betald_filterActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="jToggleButton_not_send_filter">
@@ -1644,9 +1645,9 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel_graph_panel_a" min="-2" pref="943" max="-2" attributes="0"/>
                               <Component id="jPanel_graph_panel_b" min="-2" pref="943" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" pref="222" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="480" max="32767" attributes="0"/>
                       </Group>
@@ -1657,11 +1658,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jPanel_graph_panel_a" min="-2" pref="396" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jPanel_graph_panel_b" min="-2" pref="396" max="-2" attributes="0"/>
                           <EmptySpace pref="863" max="32767" attributes="0"/>
                       </Group>
@@ -1694,7 +1695,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="99" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Alla fakturor"/>
+                    <Property name="text" type="java.lang.String" value="Alla fakturor under ett &#xe5;r"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel_graph_panel_b">

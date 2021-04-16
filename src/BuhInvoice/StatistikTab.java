@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author HP-A
  */
-public class StatistikTab implements Runnable {
+public class StatistikTab {
 
     private final BUH_INVOICE_MAIN bim;
 
@@ -32,8 +32,13 @@ public class StatistikTab implements Runnable {
     }
 
     public void refresh() {
-        Thread x = new Thread(this);
+        //
+        Thread x = new Thread(new Thread_A());
         x.start();
+        //
+        Thread x2 = new Thread(new Thread_B());
+        x2.start();
+        //
     }
 
     private void refresh_() {
@@ -41,7 +46,7 @@ public class StatistikTab implements Runnable {
         // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
         // visible from the beginning it will NOT WORK as it will wait untill the height>50
         //
-        drawGraph_basic( bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR);
+        drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         //
         drawGraph_basic( bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
         //
@@ -76,9 +81,23 @@ public class StatistikTab implements Runnable {
         //
     }
 
-    @Override
-    public void run() {
-        refresh_();
+    
+    class Thread_A implements Runnable{
+
+        @Override
+        public void run() {
+            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+        }
+        
+    }
+    
+     class Thread_B implements Runnable{
+
+        @Override
+        public void run() {
+            drawGraph_basic( bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+        }
+        
     }
 
 }
