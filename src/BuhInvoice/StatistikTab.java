@@ -41,16 +41,6 @@ public class StatistikTab {
         //
     }
 
-    private void refresh_() {
-        // OBS! OBS! Superimportant - see "MyGraphXY.class
-        // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
-        // visible from the beginning it will NOT WORK as it will wait untill the height>50
-        //
-        drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
-        //
-        drawGraph_basic( bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
-        //
-    }
 
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
         //
@@ -81,23 +71,25 @@ public class StatistikTab {
         //
     }
 
-    
-    class Thread_A implements Runnable{
+    class Thread_A implements Runnable {
 
         @Override
         public void run() {
+            // OBS! OBS! Superimportant - see "MyGraphXY.class
+            // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
+            // visible from the beginning it will NOT WORK as it will wait untill the height>50
             drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         }
-        
+
     }
-    
-     class Thread_B implements Runnable{
+
+    class Thread_B implements Runnable {
 
         @Override
         public void run() {
-            drawGraph_basic( bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+            drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
         }
-        
+
     }
 
 }
