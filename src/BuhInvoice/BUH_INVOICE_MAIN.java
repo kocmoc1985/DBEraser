@@ -14,7 +14,7 @@ import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.OffertCopyOrOmvandlaFrame;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
-import XY_RUN.Buh_Invoice_Main__IF;
+import XY_BUH_INVOICE.Buh_Invoice_Main__IF;
 import forall.HelpA;
 import java.awt.Image;
 import java.awt.event.ActionEvent;

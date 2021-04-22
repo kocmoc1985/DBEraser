@@ -6,8 +6,8 @@
 package BuhInvoice;
 
 import XYG_BASIC.MyGraphContainer;
-import XY_RUN.MyGraphXY_BuhInvoice;
-import XY_RUN.XyGraph_BuhInvoice;
+import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
+import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
