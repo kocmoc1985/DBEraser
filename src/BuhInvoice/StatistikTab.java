@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.BarGraphMonths;
 import XYG_BASIC.MyGraphContainer;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 public class StatistikTab {
 
     private final BUH_INVOICE_MAIN bim;
+    private ArrayList<HashMap<String, String>> fakturor_one_year_map;
 
     public StatistikTab(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
@@ -66,6 +68,10 @@ public class StatistikTab {
         }
         //
         ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+        //
+        if(phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)){
+            BarGraphMonths bgm = new BarGraphMonths(invoices);
+        }
         //
         xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
         //
