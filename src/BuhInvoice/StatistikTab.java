@@ -57,6 +57,8 @@ public class StatistikTab implements BarGraphListener {
 
     private void drawGraph_bargraph(JPanel container, String name) {
         //
+        container.removeAll();
+        //
         BasicGraphListener gg;
         MyGraphXY_BG mgxyhm;
         //
@@ -143,6 +145,9 @@ public class StatistikTab implements BarGraphListener {
             // -> private synchronized void waitForPanelHeightIsInitialized()" -> So if the component is not
             // visible from the beginning it will NOT WORK as it will wait untill the height>50
             drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+            //
+            drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+            //
         }
 
     }
