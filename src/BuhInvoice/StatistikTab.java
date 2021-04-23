@@ -6,20 +6,32 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.BarGraphMonths;
+import XYG_BARGRAPH.BARGraph;
+import XYG_BARGRAPH.MyGraphXY_BG;
 import XYG_BASIC.MyGraphContainer;
+import XYG_BASIC.MyPoint;
+import XYG_STATS.BarGraphListener;
+import XYG_STATS.BasicGraphListener;
+import XYG_STATS.XyGraph_M;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
+import forall.HelpA;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import other.StringDouble;
 
 /**
  *
  * @author HP-A
  */
-public class StatistikTab {
+public class StatistikTab implements BarGraphListener {
 
     private final BUH_INVOICE_MAIN bim;
     private ArrayList<HashMap<String, String>> fakturor_one_year_map;
@@ -43,6 +55,51 @@ public class StatistikTab {
         //
     }
 
+    private void drawGraph_bargraph(JPanel container, String name) {
+        //
+        BasicGraphListener gg;
+        MyGraphXY_BG mgxyhm;
+        //
+        final XyGraph_M xygraph = new XyGraph_M(name, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        //
+        mgxyhm = new MyGraphXY_BG();
+        mgxyhm.addBarGraphListener(this);
+        gg = new BARGraph(name, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        //
+        xygraph.setGistoGraph(gg);
+        container.add(gg.getGraph()); //*****
+        //
+        final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
+        //
+        for (HashMap<String, String> map : fakturor_one_year_map) {
+            //
+            String fakturadatum = map.get("fakturadatum");
+            String total = map.get("total_ink_moms");
+            //
+            String[] arr = fakturadatum.split("-");
+            String faktura_datum_short = arr[0] + "-" + arr[1];
+            //
+            HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
+            //
+        }
+        //
+        //
+        Set set = mont_sum_map.keySet();
+        Iterator it = set.iterator();
+        //
+        final ArrayList<StringDouble> barGraphValuesList = new ArrayList<>();
+        //
+        while (it.hasNext()) {
+            String key = (String) it.next();
+            Double value = mont_sum_map.get(key);
+            System.out.println("key = " + key + "  value = " + value);
+            barGraphValuesList.add(new StringDouble(key, value));
+        }
+        //
+        BARGraph barg = (BARGraph) gg;
+        barg.addData(barGraphValuesList);
+        //
+    }
 
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
         //
@@ -69,8 +126,9 @@ public class StatistikTab {
         //
         ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
         //
-        if(phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)){
+        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
             BarGraphMonths bgm = new BarGraphMonths(invoices);
+            fakturor_one_year_map = invoices;
         }
         //
         xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
@@ -96,6 +154,16 @@ public class StatistikTab {
             drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
         }
 
+    }
+
+    @Override
+    public void barGraphHoverEvent(MouseEvent me, MyPoint mp) {
+        // See MCLabStats 
+    }
+
+    @Override
+    public void barGraphHoverOutEvent(MouseEvent me) {
+        // See MCLabStats 
     }
 
 }
