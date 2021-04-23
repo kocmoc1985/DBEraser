@@ -73,10 +73,8 @@ public class StatistikTab implements BarGraphListener {
         mgxyhm.addBarGraphListener(this);
         gg = new BARGraph(name, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
         //
-        xygraph.setGistoGraph(gg);
-        JComponent graph = gg.getGraph();
-        graph.setSize(200, 200);
-        container.add(graph); //*****
+        xygraph.setGraph(gg);
+        container.add(gg.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
         //
         final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
         //
@@ -108,8 +106,8 @@ public class StatistikTab implements BarGraphListener {
         BARGraph barg = (BARGraph) gg;
         barg.addData(barGraphValuesList);
         //
-        container.revalidate();
-        container.repaint();
+//        container.revalidate();
+//        container.repaint();
     }
 
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
