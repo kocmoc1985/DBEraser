@@ -18,6 +18,7 @@ import forall.HelpA;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -102,6 +103,16 @@ public class StatistikTab implements BarGraphListener {
             System.out.println("key = " + key + "  value = " + value);
             barGraphValuesList.add(new StringDouble(key, value));
         }
+        //
+        if(barGraphValuesList.size() < 12){
+            //
+            while(barGraphValuesList.size() < 12){
+                barGraphValuesList.add(new StringDouble("", 0));
+            }
+            //
+        }
+        //
+        Collections.reverse(barGraphValuesList);
         //
         BARGraph barg = (BARGraph) gg;
         barg.addData(barGraphValuesList);
