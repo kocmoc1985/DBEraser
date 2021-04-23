@@ -5,7 +5,6 @@
  */
 package BuhInvoice;
 
-import BuhInvoice.sec.BarGraphMonths;
 import XYG_BARGRAPH.BARGraph;
 import XYG_BARGRAPH.MyGraphXY_BG;
 import XYG_BASIC.MyGraphContainer;
@@ -16,6 +15,7 @@ import XYG_STATS.XyGraph_M;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import other.StringDouble;
 
@@ -35,6 +36,7 @@ public class StatistikTab implements BarGraphListener {
 
     private final BUH_INVOICE_MAIN bim;
     private ArrayList<HashMap<String, String>> fakturor_one_year_map;
+    private final Object lock_a = new Object();
 
     public StatistikTab(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
@@ -47,11 +49,14 @@ public class StatistikTab implements BarGraphListener {
 
     public void refresh() {
         //
-        Thread x = new Thread(new Thread_A());
+        Thread x = new Thread(new Thread_A(lock_a));
         x.start();
         //
         Thread x2 = new Thread(new Thread_B());
         x2.start();
+        //
+        Thread x3 = new Thread(new Thread_C(lock_a));
+        x3.start();
         //
     }
 
@@ -69,7 +74,9 @@ public class StatistikTab implements BarGraphListener {
         gg = new BARGraph(name, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
         //
         xygraph.setGistoGraph(gg);
-        container.add(gg.getGraph()); //*****
+        JComponent graph = gg.getGraph();
+        graph.setSize(200, 200);
+        container.add(graph); //*****
         //
         final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
         //
@@ -101,6 +108,8 @@ public class StatistikTab implements BarGraphListener {
         BARGraph barg = (BARGraph) gg;
         barg.addData(barGraphValuesList);
         //
+        container.revalidate();
+        container.repaint();
     }
 
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
@@ -129,7 +138,6 @@ public class StatistikTab implements BarGraphListener {
         ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
         //
         if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
-            BarGraphMonths bgm = new BarGraphMonths(invoices);
             fakturor_one_year_map = invoices;
         }
         //
@@ -139,6 +147,12 @@ public class StatistikTab implements BarGraphListener {
 
     class Thread_A implements Runnable {
 
+        private final Object lock;
+
+        public Thread_A(Object lock) {
+            this.lock = lock;
+        }
+
         @Override
         public void run() {
             // OBS! OBS! Superimportant - see "MyGraphXY.class
@@ -146,7 +160,10 @@ public class StatistikTab implements BarGraphListener {
             // visible from the beginning it will NOT WORK as it will wait untill the height>50
             drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
             //
-            drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+            synchronized (lock) {
+                lock.notify();
+                System.out.println("Notified A");
+            }
             //
         }
 
@@ -157,6 +174,37 @@ public class StatistikTab implements BarGraphListener {
         @Override
         public void run() {
             drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+        }
+
+    }
+
+    class Thread_C implements Runnable {
+
+        private final Object lock;
+
+        public Thread_C(Object lock) {
+            this.lock = lock;
+        }
+
+        @Override
+        public void run() {
+            synchronized (lock) {
+                try {
+                    //
+                    System.out.println("Waiting");
+                    lock.wait();
+                    System.out.println("Notified B");
+                    //
+//                    java.awt.EventQueue.invokeLater(() -> {
+                        drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+//                    });
+                    //
+                    System.out.println("Drawn");
+                    //
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
 
     }
