@@ -120,8 +120,6 @@ public class StatistikTab implements BarGraphListener {
         BARGraph barg = (BARGraph) gg;
         barg.addData(barGraphValuesList);
         //
-//        container.revalidate();
-//        container.repaint();
     }
 
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
