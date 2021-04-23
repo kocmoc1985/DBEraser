@@ -83,11 +83,14 @@ public class StatistikTab implements BarGraphListener {
             //
             String fakturadatum = map.get("fakturadatum");
             String total = map.get("total_ink_moms");
+            int fakturatyp = Integer.parseInt(map.get("fakturatyp")); 
             //
             String[] arr = fakturadatum.split("-");
             String faktura_datum_short = arr[0] + "-" + arr[1];
             //
-            HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
+            if(fakturatyp == 0 || fakturatyp == 2){
+                HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
+            }
             //
         }
         //
