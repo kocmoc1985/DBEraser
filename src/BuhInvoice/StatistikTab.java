@@ -45,11 +45,19 @@ public class StatistikTab implements BarGraphListener {
     private void init() {
         refresh();
     }
+    
+    public void go(){
+        //
+         java.awt.EventQueue.invokeLater(() -> {
+            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+        });
+        //
+    }
 
     public void refresh() {
         //
 //        java.awt.EventQueue.invokeLater(() -> {
-            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+//            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
 //        });
         //
 //        java.awt.EventQueue.invokeLater(() -> {
