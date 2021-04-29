@@ -15,7 +15,6 @@ import XYG_STATS.XyGraph_M;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import other.StringDouble;
 
@@ -50,14 +48,26 @@ public class StatistikTab implements BarGraphListener {
 
     public void refresh() {
         //
-        Thread x = new Thread(new Thread_A(lock_a));
-        x.start();
+//        java.awt.EventQueue.invokeLater(() -> {
+            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+//        });
         //
-        Thread x2 = new Thread(new Thread_B());
-        x2.start();
+//        java.awt.EventQueue.invokeLater(() -> {
+//            drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+//        });
+//        //
+//        java.awt.EventQueue.invokeLater(() -> {
+//            drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+//        });
         //
-        Thread x3 = new Thread(new Thread_C(lock_a));
-        x3.start();
+//        Thread x = new Thread(new Thread_A(lock_a));
+//        x.start();
+//        //
+//        Thread x2 = new Thread(new Thread_B());
+//        x2.start();
+//        //
+//        Thread x3 = new Thread(new Thread_C(lock_a));
+//        x3.start();
         //
     }
 
@@ -152,6 +162,8 @@ public class StatistikTab implements BarGraphListener {
         }
         //
         xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
+        //
+        System.out.println("Data added ****************************");
         //
     }
 
