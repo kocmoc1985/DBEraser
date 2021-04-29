@@ -48,9 +48,25 @@ public class StatistikTab implements BarGraphListener {
     
     public void go(){
         //
-         java.awt.EventQueue.invokeLater(() -> {
-            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
-        });
+        drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+        drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
+        drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+        //
+//         java.awt.EventQueue.invokeLater(() -> {
+//            drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
+//        });
+        //
+//        Thread x = new Thread(new Thread_A(lock_a));
+//        x.setName("Thread-A");
+//        x.start();
+//        //
+//        Thread x2 = new Thread(new Thread_B());
+//        x2.setName("Thread-B");
+//        x2.start();
+//        //
+//        Thread x3 = new Thread(new Thread_C(lock_a));
+//        x3.setName("Thread-C");
+//        x3.start();
         //
     }
 
@@ -149,6 +165,11 @@ public class StatistikTab implements BarGraphListener {
         //
         XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice(name, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
         //
+        System.out.println("Container: w: " + container.getWidth() + " / " + container.getHeight());
+        System.out.println("Layout: " + container.getLayout() + " **************************");
+        System.out.println("Thread:" + Thread.currentThread().getName());
+        //
+        //
         container.add(xghm.getGraph());
         //
         String json = bim.getSELECT_kundId();
@@ -173,6 +194,15 @@ public class StatistikTab implements BarGraphListener {
         //
         System.out.println("Data added ****************************");
         //
+    }
+    
+    class Thread_A_A implements Runnable {
+
+        @Override
+        public void run() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        
     }
 
     class Thread_A implements Runnable {
