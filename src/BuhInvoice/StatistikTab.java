@@ -48,6 +48,8 @@ public class StatistikTab implements BarGraphListener {
 
     public void go() {
         //
+        reset();
+        //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
         drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
@@ -56,9 +58,37 @@ public class StatistikTab implements BarGraphListener {
 
     public void refresh() {
         //
+        reset();
+        //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
         drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+        //
+    }
+    
+    private void reset(){
+       //
+       fakturor_one_year_map = null;
+       //
+    }
+    
+    
+    private void drawGraph_basic(JPanel container, String name, String phpScript) {
+        //
+        container.removeAll();
+        //
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice(name, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+        //
+        System.out.println("Thread:" + Thread.currentThread().getName());
+        //
+        container.add(xghm.getGraph());
+        //
+        Thread x = new Thread(new Thread_A_A(phpScript, xghm));
+        x.setName("Thread_A_A");
+        x.start();
         //
     }
 
@@ -84,23 +114,59 @@ public class StatistikTab implements BarGraphListener {
         //
     }
 
-    private void drawGraph_basic(JPanel container, String name, String phpScript) {
-        //
-        container.removeAll();
-        //
-        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
-        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        //
-        XyGraph_BuhInvoice xghm = new XyGraph_BuhInvoice(name, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
-        //
-        System.out.println("Thread:" + Thread.currentThread().getName());
-        //
-        container.add(xghm.getGraph());
-        //
-        Thread x = new Thread(new Thread_A_A(phpScript, xghm));
-        x.setName("Thread_A_A");
-        x.start();
-        //
+    
+
+    class Thread_A_A implements Runnable {
+
+        private final String phpScript;
+        private final XyGraph_BuhInvoice xghm;
+
+        public Thread_A_A(String phpScript, XyGraph_BuhInvoice xghm) {
+            this.phpScript = phpScript;
+            System.out.println("CCC:" + this.phpScript);
+            this.xghm = xghm;
+        }
+
+        @Override
+        public void run() {
+            getData_and_add_to_graph();
+        }
+
+        private void getData_and_add_to_graph() {
+            //
+            String json = bim.getSELECT_kundId();
+            //
+            String json_str_return = "";
+            //
+            try {
+                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
+            } catch (Exception ex) {
+                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
+                fakturor_one_year_map = invoices;
+            }
+            //
+            if (this.phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
+                //
+                synchronized (lock_a) {
+                    lock_a.notify();
+                    System.out.println("NOTIFY......................................." + phpScript);
+                }
+                //
+            }
+            //
+            // OBS! HERE Below it's done with AWT-Thread
+            java.awt.EventQueue.invokeLater(() -> {
+                System.out.println("Thread addData: " + Thread.currentThread());
+                this.xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
+            });
+            //
+        }
+
     }
 
     class Thread_B_B implements Runnable {
@@ -119,6 +185,18 @@ public class StatistikTab implements BarGraphListener {
         private void getData_and_add_to_graph() {
             //
             final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
+            //
+            if (fakturor_one_year_map == null) {
+                synchronized (lock_a) {
+                    try {
+                        System.out.println("WAIT.......................................");
+                        lock_a.wait();
+                        System.out.println("NOTIFIED.......................................");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
             //
             for (HashMap<String, String> map : fakturor_one_year_map) {
                 //
@@ -162,51 +240,6 @@ public class StatistikTab implements BarGraphListener {
             //
             java.awt.EventQueue.invokeLater(() -> {
                 barg.addData(barGraphValuesList);
-            });
-            //
-        }
-
-    }
-
-    class Thread_A_A implements Runnable {
-
-        private final String phpScript;
-        private final XyGraph_BuhInvoice xghm;
-
-        public Thread_A_A(String phpScript, XyGraph_BuhInvoice xghm) {
-            this.phpScript = phpScript;
-            this.xghm = xghm;
-        }
-
-        @Override
-        public void run() {
-            getData_and_add_to_graph();
-        }
-
-        private void getData_and_add_to_graph() {
-            //
-            String json = bim.getSELECT_kundId();
-            //
-            String json_str_return = "";
-            //
-            try {
-                // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR ---> GET ALL
-                // DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH --> ACT MONTHF
-                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
-            } catch (Exception ex) {
-                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
-                fakturor_one_year_map = invoices;
-            }
-            //
-            // OBS! HERE Below it's done with AWT-Thread
-            java.awt.EventQueue.invokeLater(() -> {
-                System.out.println("Thread addData: " + Thread.currentThread());
-                this.xghm.addData(invoices, new String[]{"fakturadatum", "forfallodatum"});
             });
             //
         }
