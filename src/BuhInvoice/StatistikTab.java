@@ -52,7 +52,7 @@ public class StatistikTab implements BarGraphListener {
         //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
-        drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, "bar_graph_total_per_month", "bar_graph_ammount_per_month");
         //
     }
 
@@ -62,17 +62,16 @@ public class StatistikTab implements BarGraphListener {
         //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
-        drawGraph_bargraph(bim.jPanel_graph_panel_c, "bar_graph_one_year_back");
+        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, "bar_graph_total_per_month", "bar_graph_ammount_per_month");
         //
     }
-    
-    private void reset(){
-       //
-       fakturor_one_year_map = null;
-       //
+
+    private void reset() {
+        //
+        fakturor_one_year_map = null;
+        //
     }
-    
-    
+
     private void drawGraph_basic(JPanel container, String name, String phpScript) {
         //
         container.removeAll();
@@ -92,29 +91,45 @@ public class StatistikTab implements BarGraphListener {
         //
     }
 
-    private void drawGraph_bargraph(JPanel container, String name) {
+    private void drawGraph_bargraph(JPanel containerTotalPerMonth, JPanel containerAmmountPerMonth, String name_a, String name_b) {
         //
-        container.removeAll();
+        containerTotalPerMonth.removeAll();
+        containerAmmountPerMonth.removeAll();
         //
-        BasicGraphListener gg;
+        //
+        BasicGraphListener gg__total_per_month;
         MyGraphXY_BG mgxyhm;
         //
-        final XyGraph_M xygraph = new XyGraph_M(name, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        final XyGraph_M xygraph = new XyGraph_M(name_a, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
         //
         mgxyhm = new MyGraphXY_BG();
         mgxyhm.addBarGraphListener(this);
-        gg = new BARGraph(name, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        gg__total_per_month = new BARGraph(name_a, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
         //
-        xygraph.setGraph(gg);
-        container.add(gg.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
+        xygraph.setGraph(gg__total_per_month);
+        containerTotalPerMonth.add(gg__total_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
         //
-        Thread x = new Thread(new Thread_B_B(gg));
+        //
+        //
+        BasicGraphListener gg__ammount_per_month;
+        MyGraphXY_BG mgxyhm_b;
+        //
+        final XyGraph_M xygraph_b = new XyGraph_M(name_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        //
+        mgxyhm_b = new MyGraphXY_BG();
+        mgxyhm_b.addBarGraphListener(this);
+        gg__ammount_per_month = new BARGraph(name_a, mgxyhm_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        //
+        xygraph_b.setGraph(gg__ammount_per_month);
+        containerAmmountPerMonth.add(gg__ammount_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
+        //
+        //
+        //
+        Thread x = new Thread(new Thread_B_B(gg__total_per_month, gg__ammount_per_month));
         x.setName("Thread_B_B");
         x.start();
         //
     }
-
-    
 
     class Thread_A_A implements Runnable {
 
@@ -171,10 +186,12 @@ public class StatistikTab implements BarGraphListener {
 
     class Thread_B_B implements Runnable {
 
-        private final BasicGraphListener gg;
+        private final BasicGraphListener gg__total_per_month;
+        private final BasicGraphListener gg__ammount_per_month;
 
-        public Thread_B_B(BasicGraphListener bgl) {
-            this.gg = bgl;
+        public Thread_B_B(BasicGraphListener gg__total_per_month, BasicGraphListener gg__ammount_per_month) {
+            this.gg__total_per_month = gg__total_per_month;
+            this.gg__ammount_per_month = gg__ammount_per_month;
         }
 
         @Override
@@ -185,6 +202,7 @@ public class StatistikTab implements BarGraphListener {
         private void getData_and_add_to_graph() {
             //
             final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
+            final LinkedHashMap<String, Double> mont_ammount_map = new LinkedHashMap<>();
             //
             if (fakturor_one_year_map == null) {
                 synchronized (lock_a) {
@@ -208,7 +226,11 @@ public class StatistikTab implements BarGraphListener {
                 String faktura_datum_short = arr[0] + "-" + arr[1];
                 //
                 if (fakturatyp == 0 || fakturatyp == 2) {
+                    //
                     HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
+                    //
+                    HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, mont_ammount_map);
+                    //
                 }
                 //
             }
@@ -217,29 +239,59 @@ public class StatistikTab implements BarGraphListener {
             Set set = mont_sum_map.keySet();
             Iterator it = set.iterator();
             //
-            final ArrayList<StringDouble> barGraphValuesList = new ArrayList<>();
+            final ArrayList<StringDouble> barGraphValuesList_total = new ArrayList<>();
             //
             while (it.hasNext()) {
                 String key = (String) it.next();
                 Double value = mont_sum_map.get(key);
                 System.out.println("key = " + key + "  value = " + value);
-                barGraphValuesList.add(new StringDouble(key, value));
+                barGraphValuesList_total.add(new StringDouble(key, value));
             }
             //
-            if (barGraphValuesList.size() < 12) {
+            if (barGraphValuesList_total.size() < 12) {
                 //
-                while (barGraphValuesList.size() < 12) {
-                    barGraphValuesList.add(new StringDouble("", 0));
+                while (barGraphValuesList_total.size() < 12) {
+                    barGraphValuesList_total.add(new StringDouble("", 0));
                 }
                 //
             }
             //
-            Collections.reverse(barGraphValuesList);
+            Collections.reverse(barGraphValuesList_total);
             //
-            BARGraph barg = (BARGraph) gg;
+            BARGraph barg_a = (BARGraph) gg__total_per_month;
             //
             java.awt.EventQueue.invokeLater(() -> {
-                barg.addData(barGraphValuesList);
+                barg_a.addData(barGraphValuesList_total);
+            });
+            //
+            //
+            //
+            Set set_b = mont_ammount_map.keySet();
+            Iterator it_b = set_b.iterator();
+            //
+            final ArrayList<StringDouble> barGraphValuesList_ammount = new ArrayList<>();
+            //
+            while (it_b.hasNext()) {
+                String key = (String) it_b.next();
+                Double value = mont_ammount_map.get(key);
+                System.out.println("key = " + key + "  value = " + value);
+                barGraphValuesList_ammount.add(new StringDouble(key, value));
+            }
+            //
+            if (barGraphValuesList_ammount.size() < 12) {
+                //
+                while (barGraphValuesList_ammount.size() < 12) {
+                    barGraphValuesList_ammount.add(new StringDouble("", 0));
+                }
+                //
+            }
+            //
+            Collections.reverse(barGraphValuesList_ammount);
+            //
+            BARGraph barg_b = (BARGraph) gg__ammount_per_month;
+            //
+            java.awt.EventQueue.invokeLater(() -> {
+                barg_b.addData(barGraphValuesList_ammount);
             });
             //
         }
