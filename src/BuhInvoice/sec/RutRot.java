@@ -197,7 +197,7 @@ public class RutRot extends Basic_Buh {
         //
         RowDataInvert pnr = new RowDataInvertB(PNR, DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (YYMMDD-XXXX)", "", true, true, true);
         //
-        RowDataInvert avdrags_tak = new RowDataInvertB("" + RutRotFrame.defineAvdragsTak(), DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__AVDRAGS_TAK, "", false, true, true);
+        RowDataInvert avdrags_tak = new RowDataInvertB("" + rutRotFrame.defineAvdragsTak(), DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, COL__AVDRAGS_TAK, "", false, true, true);
         avdrags_tak.setDontAquireTableInvertToHashMap();
         //
         RowDataInvert[] rows = {

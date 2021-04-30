@@ -192,7 +192,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
 
-    private static boolean is_ROT__Bygg() {
+    private boolean is_ROT__Bygg() {
         if (ROT_ELLER_RUT__PERCENT == 0.3) { // ROT -> BYGG -> 30%
             return true;
         } else {
@@ -200,12 +200,24 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
     }
 
-    public static double defineAvdragsTak() {
+    public double defineAvdragsTak() {
+        //
+        if(rut != null && rut.TABLE_INVERT != null){
+            //
+            String val = rut.getValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE);
+            //
+            if(HelpA.isNumber(val)){
+               return Double.parseDouble(val);  
+            }
+            //
+        }
+        //
         if (is_ROT__Bygg()) {
             return ROT_MAX;
         } else {
             return RUT_MAX;
         }
+        //
     }
 
     private void countAvdrag(int antalPers) {
@@ -400,7 +412,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("Artiklar som gäller arbetskostnaden");
+        jLabel1.setText("Artiklar som omfattas av ROT eller RUT");
 
         jPanel_table_invert.setLayout(new java.awt.BorderLayout());
 
@@ -520,18 +532,20 @@ public class RutRotFrame extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jPanel_table_invert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 81, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel_table_invert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -608,9 +622,15 @@ public class RutRotFrame extends javax.swing.JFrame {
         if (box.equals(jCheckBox_ROT)) {
             jCheckBox_RUT.setSelected(false);
             ROT_ELLER_RUT__PERCENT = ROT_PERCENT; // ROT -> BYGG -> 30%
+            //
+            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, ROT_MAX);
+            //
         } else if (box.equals(jCheckBox_RUT)) {
             jCheckBox_ROT.setSelected(false);
             ROT_ELLER_RUT__PERCENT = RUT_PERCENT; // RUT -> STÄD -> 50%
+            //
+            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, RUT_MAX);
+            //
         }
         //
         //IF both unselected

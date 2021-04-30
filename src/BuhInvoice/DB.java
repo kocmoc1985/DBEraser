@@ -298,5 +298,6 @@ public class DB {
     public static final String BUH_FAKTURA_RUT_PERSON__EFTERNAMN = "efternamn";
     public static final String BUH_FAKTURA_RUT_PERSON__PNR = "pnr";
     public static final String BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION = "skattereduktion";
+    public static final String BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE = "avdragstak"; // OBS! This one is not present in DB [2021-04-30]
     //
 }
