@@ -549,7 +549,9 @@ public abstract class Invoice extends Basic_Buh {
         //
         String prisColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS;
         String antalColumn = InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL;
+        //
         countFakturaTotal(table, prisColumn, antalColumn);
+        //
     }
 
     private void countFakturaTotal(JTable table, String prisColumn, String antalColumn) {
