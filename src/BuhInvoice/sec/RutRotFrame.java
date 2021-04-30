@@ -35,7 +35,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private double AVDRAGS_GILL_BELOPP = 0;
     protected double AVDRAG_TOTAL = 0;
     private double AVDRAG_PER_PERSON = 0;
-    private double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
+    private static double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
     private String PNR = "";
     private String EFTERNAMN = "";
     private String FORNAMN = "";
@@ -192,7 +192,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
 
-    private boolean is_ROT__Bygg() {
+    private static boolean is_ROT__Bygg() {
         if (ROT_ELLER_RUT__PERCENT == 0.3) { // ROT -> BYGG -> 30%
             return true;
         } else {
@@ -200,7 +200,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
     }
 
-    private double defineAvdragsTak() {
+    public static double defineAvdragsTak() {
         if (is_ROT__Bygg()) {
             return ROT_MAX;
         } else {

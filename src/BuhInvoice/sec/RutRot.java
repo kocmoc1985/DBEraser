@@ -41,6 +41,7 @@ public class RutRot extends Basic_Buh {
     public static final String COL__EFTERNAMN = "EFTERNAMN";
     public static final String COL__AVDRAG = "AVDRAG";
     public static final String COL__PNR = "PERSONNUMMER";
+    public static final String COL__AVDRAGS_TAK = "AVDRAGSTAK";
     public static final String COL__FATSTIGHETS_BETECKNING = "FASTIGHETSBETECKNING";
     private final String PNR;
     private final String FORNAMN;
@@ -196,10 +197,14 @@ public class RutRot extends Basic_Buh {
         //
         RowDataInvert pnr = new RowDataInvertB(PNR, DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__PNR + " (YYMMDD-XXXX)", "", true, true, true);
         //
+        RowDataInvert avdrags_tak = new RowDataInvertB("" + RutRotFrame.defineAvdragsTak(), DB.BUH_FAKTURA_RUT_PERSON__PNR, COL__AVDRAGS_TAK, "", false, true, true);
+        avdrags_tak.setDontAquireTableInvertToHashMap();
+        //
         RowDataInvert[] rows = {
             fornamn,
             efternamn,
-            pnr
+            pnr,
+            avdrags_tak
         };
         //
         return rows;
