@@ -96,7 +96,7 @@ public class StatistikTab implements BarGraphListener {
         containerTotalPerMonth.removeAll();
         containerAmmountPerMonth.removeAll();
         //
-        //
+        //====================================================
         BasicGraphListener gg__total_per_month;
         MyGraphXY_BG mgxyhm;
         //
@@ -109,7 +109,7 @@ public class StatistikTab implements BarGraphListener {
         xygraph.setGraph(gg__total_per_month);
         containerTotalPerMonth.add(gg__total_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
         //
-        //
+        //====================================================
         //
         BasicGraphListener gg__ammount_per_month;
         MyGraphXY_BG mgxyhm_b;
@@ -123,7 +123,7 @@ public class StatistikTab implements BarGraphListener {
         xygraph_b.setGraph(gg__ammount_per_month);
         containerAmmountPerMonth.add(gg__ammount_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
         //
-        //
+        //====================================================
         //
         Thread x = new Thread(new Thread_B_B(gg__total_per_month, gg__ammount_per_month));
         x.setName("Thread_B_B");
@@ -235,6 +235,7 @@ public class StatistikTab implements BarGraphListener {
                 //
             }
             //
+            //====================================================
             //
             Set set = mont_sum_map.keySet();
             Iterator it = set.iterator();
@@ -264,7 +265,7 @@ public class StatistikTab implements BarGraphListener {
                 barg_a.addData(barGraphValuesList_total);
             });
             //
-            //
+            //====================================================
             //
             Set set_b = mont_ammount_map.keySet();
             Iterator it_b = set_b.iterator();
@@ -293,6 +294,8 @@ public class StatistikTab implements BarGraphListener {
             java.awt.EventQueue.invokeLater(() -> {
                 barg_b.addData(barGraphValuesList_ammount);
             });
+            //
+            //====================================================
             //
         }
 
