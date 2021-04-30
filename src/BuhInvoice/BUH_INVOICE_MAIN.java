@@ -1772,7 +1772,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel17.setText("Antal fakturor (sista tolv månader)");
+        jLabel17.setText("Antal fakturor per månad (sista tolv månader)");
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);

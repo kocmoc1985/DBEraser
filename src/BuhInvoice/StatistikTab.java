@@ -102,7 +102,7 @@ public class StatistikTab implements BarGraphListener {
         //
         final XyGraph_M xygraph = new XyGraph_M(name_a, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
         //
-        mgxyhm = new MyGraphXY_BG();
+        mgxyhm = new MyGraphXY_BG("Total",":-");
         mgxyhm.addBarGraphListener(this);
         gg__total_per_month = new BARGraph(name_a, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
         //
@@ -116,9 +116,9 @@ public class StatistikTab implements BarGraphListener {
         //
         final XyGraph_M xygraph_b = new XyGraph_M(name_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
         //
-        mgxyhm_b = new MyGraphXY_BG();
+        mgxyhm_b = new MyGraphXY_BG("Antal"," st");
         mgxyhm_b.addBarGraphListener(this);
-        gg__ammount_per_month = new BARGraph(name_a, mgxyhm_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        gg__ammount_per_month = new BARGraph(name_b, mgxyhm_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
         //
         xygraph_b.setGraph(gg__ammount_per_month);
         containerAmmountPerMonth.add(gg__ammount_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
