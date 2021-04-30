@@ -445,7 +445,15 @@ public abstract class Invoice extends Basic_Buh {
         //
         MOMS_SATS__FRAKT_AND_EXP_AVG = 0;
         //
-        RUT_AVDRAG_TOTAL = 0;
+        if (DONT_RESET_RUT__FLAG) {
+            // DO NOTHING, [2021-04-30]
+        } else {
+            RUT_AVDRAG_TOTAL = 0;
+        }
+        //
+        DONT_RESET_RUT__FLAG = false;
+        //
+
     }
 
     private void displayTotals() {
@@ -491,8 +499,11 @@ public abstract class Invoice extends Basic_Buh {
         //
     }
 
+    private boolean DONT_RESET_RUT__FLAG = false;
+
     public void setRutAvdragTotal(double avdragTotal, RutRot rutRot) {
         RUT_AVDRAG_TOTAL = avdragTotal;
+        DONT_RESET_RUT__FLAG = true;
         this.rutRot = rutRot;
         countFakturaTotal(getArticlesTable());
     }
@@ -1409,7 +1420,5 @@ public abstract class Invoice extends Basic_Buh {
             refreshTableInvert(ti);
         }
     }
-
-    
 
 }

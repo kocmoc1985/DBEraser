@@ -20,11 +20,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Sedan 1 januari 2021 är taket för rutavdraget 75 000 kronor per person och
+ * år. Rotavdraget kvarstår med max 50 000 kronor per person och år. Sammanlagt
+ * kan en privatperson få 75 000 kronor i rotavdrag och rutavdrag per år.
  *
  * @author KOCMOC
  */
 public class RutRotFrame extends javax.swing.JFrame {
-    
+
     private final BUH_INVOICE_MAIN bim;
     private final Invoice invoice;
     private RutRot rut;
@@ -36,6 +39,13 @@ public class RutRotFrame extends javax.swing.JFrame {
     private String PNR = "";
     private String EFTERNAMN = "";
     private String FORNAMN = "";
+    //
+    private final static double ROT_PERCENT = 0.3; // Verified for 2021
+    private final static double RUT_PERCENT = 0.5; // Verified for 2021
+    //
+    private final static double ROT_MAX = 50000; // Verified for 2021
+    private final static double RUT_MAX = 75000; // Verified for 2021
+    //
 
     /**
      * Creates new form RutRot
@@ -53,7 +63,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.articlesTable = articlesTable;
         init();
     }
-    
+
     private void init() {
         //
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
@@ -81,7 +91,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         autodefineRutArticlesJTable(jTable1);
         //
     }
-    
+
     private void getPersonalData() {
         TableInvert ti = bim.getTableInvert();
         HashMap<String, String> map_e__lev_data = invoice.getFakturaKundData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, ti);
@@ -102,7 +112,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
         //
     }
-    
+
     public void makeVisible() {
         this.setVisible(true);
         //
@@ -113,7 +123,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         rut.setFastighetsBeteckning(fastighetBetackning);
     }
-    
+
     private void hideCols(JTable table) {
         //
 //        HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
@@ -122,7 +132,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.hideColumnByName(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
         //
     }
-    
+
     private void fillJTableheader_person() {
         //
         JTable table = jTable3;
@@ -136,7 +146,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         table.setModel(new DefaultTableModel(null, headers));
         //
     }
-    
+
     private void deletePerson() {
         //
         JTable table = jTable3;
@@ -144,7 +154,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.removeRowJTable(table, table.getSelectedRow());
         //
     }
-    
+
     private void addPerson() {
         //
         if (rut.fieldsValidated(false) == false) {
@@ -177,16 +187,38 @@ public class RutRotFrame extends javax.swing.JFrame {
         TableInvert ti = (TableInvert) rut.TABLE_INVERT;
         ti.clearAllRows();
     }
-    
+
     private void recalcAndSetAvdragPerPers() {
         HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
-    
+
+    private boolean is_ROT__Bygg() {
+        if (ROT_ELLER_RUT__PERCENT == 0.3) { // ROT -> BYGG -> 30%
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private double defineAvdragsTak() {
+        if (is_ROT__Bygg()) {
+            return ROT_MAX;
+        } else {
+            return RUT_MAX;
+        }
+    }
+
     private void countAvdrag(int antalPers) {
         //
         AVDRAGS_GILL_BELOPP = countJTable(jTable2); // ja det inkluderar moms
         //
         AVDRAG_TOTAL = AVDRAGS_GILL_BELOPP * ROT_ELLER_RUT__PERCENT;
+        //
+        double avdragsTaket = defineAvdragsTak();
+        //
+        if (AVDRAG_TOTAL > avdragsTaket) {
+            AVDRAG_TOTAL = avdragsTaket;
+        }
         //
         System.out.println("RUT BELOPP INNAN AVDRAG: " + AVDRAGS_GILL_BELOPP);
         System.out.println("AVDRAG TOTAL: " + AVDRAG_TOTAL);
@@ -206,7 +238,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON);
         //
     }
-    
+
     private static Double countJTable(JTable table) {
         //
         double sum = 0;
@@ -250,10 +282,10 @@ public class RutRotFrame extends javax.swing.JFrame {
         return sum;
         //
     }
-    
+
     private void autodefineRutArticlesJTable(JTable table) {
         //
-        String[] dict = new String[]{"arbete"};
+        String[] dict = new String[]{"arbet"};
         //
         for (int row = 0; row < table.getRowCount(); row++) {
             //
@@ -568,17 +600,17 @@ public class RutRotFrame extends javax.swing.JFrame {
         this.setVisible(false);
         //
     }//GEN-LAST:event_jButton5ActionPerformed
-    
+
     private void setRotOrRut_CheckBoxes(java.awt.event.ActionEvent evt) {
         //
         JCheckBox box = (JCheckBox) evt.getSource();
         //
         if (box.equals(jCheckBox_ROT)) {
             jCheckBox_RUT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = 0.3; // ROT -> BYGG -> 30%
+            ROT_ELLER_RUT__PERCENT = ROT_PERCENT; // ROT -> BYGG -> 30%
         } else if (box.equals(jCheckBox_RUT)) {
             jCheckBox_ROT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = 0.5; // RUT -> STÄD -> 50%
+            ROT_ELLER_RUT__PERCENT = RUT_PERCENT; // RUT -> STÄD -> 50%
         }
         //
         //IF both unselected

@@ -35,9 +35,16 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 "copied_from_id";"0","fakturaKundId";"58",
 "kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0"
 
-select * 
-from orders 
-where order_date >= DATE_SUB(NOW(),INTERVAL 1 YEAR);
+
+[RUT AVDRAG TAK]
+
+Rut avdrag taket för en person kan inte överskrida 75000:-
+
+See: RutRotFram -> countAvdrag(int antalPers): line: 187
+
+Sedan 1 januari 2021 är taket för rutavdraget 75 000 kronor per person och år.
+Rotavdraget kvarstår med max 50 000 kronor per person och år.
+Sammanlagt kan en privatperson få 75 000 kronor i rotavdrag och rutavdrag per år.
 
 ______
 Make video how to make Offert
