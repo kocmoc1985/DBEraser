@@ -61,8 +61,9 @@ public class GP_BUH {
      * By [2021-03-09]
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy [domain la.se][php-test]
      *
-     * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se]
-     * Auto creted on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "jdHFe2Qz1i" --> www.la.se!!
+     * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se] [not test]
+     * Auto created on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "jdHFe2Qz1i" --> www.la.se [not test]
+     * Auto created on [2021-04-30] "kocmoc1985@gmail.com / eVsPrYJiAp" --> www.la.se [not test]
      *
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765"
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
