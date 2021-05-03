@@ -555,6 +555,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         //[#RUTROT#]
         if (bim.isRUT() && CURRENT_OPERATION_INSERT == false && RUT_AVDRAG_TOTAL == 0) {
+            DONT_RESET_RUT__FLAG = true;
             RUT_AVDRAG_TOTAL = getRutAvdragTotal();
         }
         //

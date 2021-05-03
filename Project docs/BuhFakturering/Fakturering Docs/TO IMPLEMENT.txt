@@ -36,18 +36,17 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 "kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0"
 
 
-[RUT AVDRAG TAK]
+_____
 
-Rut avdrag taket för en person kan inte överskrida 75000:-
+Don't allow to have "," in the articles name when creating one. See Validator.class: 242 -> ArticlesA: 489
 
-See: RutRotFram -> countAvdrag(int antalPers): line: 187
+Ändra "Fysisk Peron" till "Privatperson". Search for "Fysisk"
 
-Sedan 1 januari 2021 är taket för rutavdraget 75 000 kronor per person och år.
-Rotavdraget kvarstår med max 50 000 kronor per person och år.
-Sammanlagt kan en privatperson få 75 000 kronor i rotavdrag och rutavdrag per år.
+
 
 ______
 Make video how to make Offert
+
 Make video how to write on Faktura before printing
 
 When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******[DONE] search for tag ["#EMPTY-ARTICLE#"]

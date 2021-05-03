@@ -47,6 +47,11 @@ Project docs\BuhFakturering\Fakturering Docs\ROT RUT AVDRAG\ROT RUT Questions an
 ***DET HÄR ÄR DEN SLUTLIGA FORMELN****:
 [summa avdrag] = [arbetskostnad inkl. moms] * 0.3 ------> i det konkreta fallet (från Linas faktura) -> [43500 * 0.25] * 0.3 = 16312.5 :- --> för båda ---> [16312.5 / 2] = 8156.25 --> per person
 
+Senaste uppdateringen från Skatteverket[2021-05-03]:
+Sedan 1 januari 2021 är taket för rutavdraget 75 000 kronor per person och år.
+Rotavdraget kvarstår med max 50 000 kronor per person och år.
+Sammanlagt kan en privatperson få 75 000 kronor i rotavdrag och rutavdrag per år.
+
 ___________________________________________________________________________________________________________________________________________________________________________
 
 Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
