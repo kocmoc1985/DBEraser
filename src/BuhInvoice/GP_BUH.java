@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
+import MyObjectTableInvert.JLinkInvert;
 import forall.GP;
 import forall.HelpA;
 import static forall.HelpA.dateToMillisConverter3;
@@ -37,6 +38,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
@@ -111,12 +113,20 @@ public class GP_BUH {
         return !(USER == null || !USER.contains("guest_"));
     }
 
-    public static String replaceColon(String text, boolean reverse) {
-        if (reverse == false) {
-            return text.replaceAll(":", "#");
-        } else {
-            return text.replaceAll("#", ":");
+    /**
+     * // [2021-05-03]
+     * For the strings like below used for filling comboboxes. So the "," is such Strings is the SEPARATOR
+     * arbetskostnad;119;300;,byggnadsmaterial;120;6544;,cola 0.33 burk;132;10;,dill chips olw;128;29;,ekologiska gårds chips;130;49.9;,fanta 0.33 burk;133;10;05.345.901,grill chips olw;129;34.9;,hammare;117;99;,millersättning;121;544;,moped bmw;126;36799;,moped vw;127;29589;
+     */
+    public static void onFlightReplaceComma(JLinkInvert jli, String val) { 
+        //
+        JTextField jtf = (JTextField) jli;
+        //
+        if (val.contains(",")) {
+            val = val.replaceAll(",", ".");
+            jtf.setText(val);
         }
+        //
     }
 
     public static String replaceComma(String text, boolean reverse) {
@@ -127,6 +137,14 @@ public class GP_BUH {
         }
     }
 
+    public static String replaceColon(String text, boolean reverse) {
+        if (reverse == false) {
+            return text.replaceAll(":", "#");
+        } else {
+            return text.replaceAll("#", ":");
+        }
+    }
+
     public static String replacePlus(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll("\\+", "£");
@@ -134,8 +152,8 @@ public class GP_BUH {
             return text.replaceAll("£", "+");
         }
     }
-    
-     public static String replaceAnd(String text, boolean reverse) {
+
+    public static String replaceAnd(String text, boolean reverse) {
         if (reverse == false) {
             return text.replaceAll("&", "~");
         } else {
@@ -238,13 +256,13 @@ public class GP_BUH {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
-    
+
     public static boolean isDateValid(String date_yyyy_mm_dd) {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_BASIC);
         sdf.setLenient(false);
         return sdf.parse(date_yyyy_mm_dd, new ParsePosition(0)) != null;
     }
-    
+
     public static synchronized String get_date_time_plus_some_time_in_days(String date, long days) {
         //
         String date_format = DATE_FORMAT_BASIC;
@@ -266,7 +284,7 @@ public class GP_BUH {
         return new_date;
         //
     }
-    
+
     public static String get_date_time_minus_some_time_in_days(String date, long days) {
         String date_format = DATE_FORMAT_BASIC;
         long time_to_minus = 86400000 * Math.abs(days);
@@ -275,7 +293,7 @@ public class GP_BUH {
         String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
         return new_date;
     }
-    
+
     public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2) {
         return HelpA.get_diff_in_days__two_dates(date1, date_format1, date2, date_format2);
     }

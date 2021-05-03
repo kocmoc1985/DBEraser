@@ -42,7 +42,7 @@ Don't allow to have "," in the articles name when creating one. See Validator.cl
 
 Ändra "Fysisk Peron" till "Privatperson". Search for "Fysisk"
 
-
+Antal should be Double: see:Invoice:589
 
 ______
 Make video how to make Offert

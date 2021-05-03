@@ -47,7 +47,9 @@ public class Validator {
         //
         String valToCheck = jtfi.getText();
         //
-        if (valToCheck == null ||valToCheck.isEmpty() || table.getRowCount() == 0) {
+        GP_BUH.onFlightReplaceComma(jli, valToCheck);// 2021-05-03
+        //
+        if (valToCheck == null || valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);
         }
         //
@@ -57,8 +59,8 @@ public class Validator {
             //
             String val = (String) table.getValueAt(x, col);
             //
-            if(val == null){
-                 return setValidated(jli);
+            if (val == null) {
+                return setValidated(jli);
             }
             //
             if (val.equals(valToCheck)) {
@@ -117,17 +119,18 @@ public class Validator {
 
     /**
      * [2020-10-01]
-     * @param box 
+     *
+     * @param box
      */
     public static void validateJComboInput(JComboBox box) {
         if (box.getSelectedIndex() == -1) {
             // OBS! The border is set here and not from "setNotValidater()" because
             // setting border is the only method that works in this situation
             box.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-            setNotValidated((JLinkInvert)box);
+            setNotValidated((JLinkInvert) box);
         } else {
             box.setBorder(null);
-            setValidated((JLinkInvert)box);
+            setValidated((JLinkInvert) box);
         }
     }
 
@@ -223,8 +226,6 @@ public class Validator {
         jli.setValidated(false);
         return false;
     }
-    
-    
 
     /**
      * Verify input of digits/numbers
@@ -236,14 +237,9 @@ public class Validator {
         //
         String val = jli.getValue();
         //
-        JTextField jtf = (JTextField) jli;
+        GP_BUH.onFlightReplaceComma(jli, val); // 2021-05-03
         //
-        if (val.contains(",")) {
-            val = val.replaceAll(",", ".");
-            jtf.setText(val);
-        }
-        //
-        if(val.isEmpty()){
+        if (val.isEmpty()) {
             return setValidated(jli);
         }
         //
@@ -254,7 +250,7 @@ public class Validator {
         }
         //
     }
-    
+
     public static boolean validatePnr(JLinkInvert jli) {
         return validate(jli, PNR);
     }
