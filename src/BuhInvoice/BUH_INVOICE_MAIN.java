@@ -16,6 +16,7 @@ import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
 import XY_BUH_INVOICE.Buh_Invoice_Main__IF;
 import forall.HelpA;
+import icons.ICON;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -234,6 +235,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         GP_BUH.enableDisableButtons(jPanel4, true); // Enable ALL
         GP_BUH.setEnabled(jButton4_save_faktura_komment, true);
         GP_BUH.setEnabled(jButton4_delete_faktura_komment1, true);
+        GP_BUH.copy_btn_adjustment(jButton_copy_faktura, false);
         //
         if (jTable_invoiceB_alla_fakturor.getRowCount() == 0) {
             GP_BUH.setEnabled(jButton_edit_faktura, false);
@@ -260,7 +262,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
         } else if (isOffert()) {
-//            GP_BUH.setEnabled(jButton_copy_faktura, false);
+            GP_BUH.copy_btn_adjustment(jButton_copy_faktura, true);
             GP_BUH.setEnabled(jButton_inbetalning, false);
             GP_BUH.setEnabled(jButton_send_reminder, false);
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
@@ -1159,7 +1161,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel4.add(jButton_kredit_faktura);
 
         jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
-        jButton_copy_faktura.setToolTipText("Kopiera");
+        jButton_copy_faktura.setToolTipText("");
         jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_copy_fakturaActionPerformed(evt);

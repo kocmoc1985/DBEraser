@@ -12,6 +12,7 @@ import forall.HelpA;
 import static forall.HelpA.dateToMillisConverter3;
 import static forall.HelpA.file_exists;
 import static forall.HelpA.millisToDateConverter;
+import icons.ICON;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -114,11 +115,15 @@ public class GP_BUH {
     }
 
     /**
-     * // [2021-05-03]
-     * For the strings like below used for filling comboboxes. So the "," is such Strings is the SEPARATOR
-     * arbetskostnad;119;300;,byggnadsmaterial;120;6544;,cola 0.33 burk;132;10;,dill chips olw;128;29;,ekologiska gårds chips;130;49.9;,fanta 0.33 burk;133;10;05.345.901,grill chips olw;129;34.9;,hammare;117;99;,millersättning;121;544;,moped bmw;126;36799;,moped vw;127;29589;
+     * // [2021-05-03] For the strings like below used for filling comboboxes.
+     * So the "," is such Strings is the SEPARATOR
+     * arbetskostnad;119;300;,byggnadsmaterial;120;6544;,cola 0.33
+     * burk;132;10;,dill chips olw;128;29;,ekologiska gårds
+     * chips;130;49.9;,fanta 0.33 burk;133;10;05.345.901,grill chips
+     * olw;129;34.9;,hammare;117;99;,millersättning;121;544;,moped
+     * bmw;126;36799;,moped vw;127;29589;
      */
-    public static void onFlightReplaceComma(JLinkInvert jli, String val) { 
+    public static void onFlightReplaceComma(JLinkInvert jli, String val) {
         //
         JTextField jtf = (JTextField) jli;
         //
@@ -208,6 +213,16 @@ public class GP_BUH {
             }
         });
 
+    }
+
+    public static void copy_btn_adjustment(JButton btn, boolean isOffert) {
+        if (isOffert) {
+            btn.setIcon(ICON.getImageIcon("swap.png", 32, 32));
+            btn.setToolTipText("Omvandla till faktura eller kopiera");
+        } else {
+            btn.setIcon(ICON.getImageIcon("copy.png", 32, 32));
+            btn.setToolTipText("Kopiera");
+        }
     }
 
     public static void setEnabled(JComponent c, boolean enabled) {
