@@ -111,9 +111,11 @@ public class HelpBuh {
         //
     }
 
-    private static void get_constants() {
+    public static HashMap<String, String> get_constants() {
+        //In fact the "where" is fake, i use it just because the select statement uses a "where"
+        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // 
         //
-        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // In fact the "where" is fake, i use it just because the select statement uses a "where"
+        HashMap<String, String> constants = new HashMap<>();
         //
         try {
             //
@@ -124,10 +126,16 @@ public class HelpBuh {
             //
             for (HashMap<String, String> val : entries) {
                 System.out.println("out: " + val);
+                constants.put(val.get("name"), val.get("val"));
             }
+            //
+            System.out.println("");
+            //
+            return constants;
             //
         } catch (Exception ex) {
             Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         //
     }

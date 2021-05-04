@@ -25,23 +25,53 @@ public class DB {
     public static final String PHP_SCRIPT_RETURN_EMPTY = "empty";
     //
     public static final String PHP_SCRIPT_MAIN = "_http_buh";
+
     //
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
-    
-    
+
+    /**
+     * The value in table "buh_constants" should be stored without using ","
+     *
+     * @param strToProcess
+     * @return
+     */
+    public static String convert(String strToProcess) {
+        return strToProcess.replaceAll(",", "¤");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("" + convert(STATIC__LEV_VILKOR));
+    }
+
+    private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
+
+    static {
+        BUH_CONSTANTS = HelpBuh.get_constants(); // taken from table "buh_constants"
+    }
 
     public final static double ROT_PERCENT = 0.3; // Verified for 2021
     public final static double RUT_PERCENT = 0.5; // Verified for 2021
     public final static double ROT_MAX = 50000; // Verified for 2021
     public final static double RUT_MAX = 75000; // Verified for 2021
-    
+
     public static final String STATIC__YES = "Ja";
     public static final String STATIC__NO = "Nej";
 
+
+    public static final String GET_CONSTANT(String alias,String defaultVal) {
+        String key = alias;
+        if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
+            return defaultVal;
+        } else {
+            return BUH_CONSTANTS.get(key);
+        }
+    }
+    
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
     public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
+    
     public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
     public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
     public static final String STATIC__MOMS_SATS = "25%;25,12%;12,6%;6,0%;0";
@@ -74,7 +104,7 @@ public class DB {
     public static final String STATIC__FAKTURA_TYPE_KONTANT = "KONTANT";
     public static final String STATIC__FAKTURA_TYPE_OFFERT = "OFFERT";//[#OFFERT#]
     public static final String STATIC__FAKTURA_TYPES = STATIC__FAKTURA_TYPE_NORMAL + ";0,"
-            + STATIC__FAKTURA_TYPE_KREDIT + ";1," 
+            + STATIC__FAKTURA_TYPE_KREDIT + ";1,"
             + STATIC__FAKTURA_TYPE_KONTANT + ";2," // OBS! PAY ATTENTION AT ","
             + STATIC__FAKTURA_TYPE_OFFERT + ";3";// "NORMAL;0,KREDIT;1,KONTANT;2";OFFERT;3
 

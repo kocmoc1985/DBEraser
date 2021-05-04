@@ -119,7 +119,7 @@ public class InvoiceA_Update extends Invoice {
         RowDataInvert var_referens = new RowDataInvertB(varref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR),
-                DB.STATIC__BETAL_VILKOR
+                DB.GET_CONSTANT("STATIC__BETAL_VILKOR", DB.STATIC__BETAL_VILKOR)
         );
         //
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", false, true, false);
