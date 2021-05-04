@@ -5,6 +5,11 @@
  */
 package BuhInvoice;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author MCREMOTE
@@ -24,6 +29,8 @@ public class DB {
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
+    
+    
 
     public final static double ROT_PERCENT = 0.3; // Verified for 2021
     public final static double RUT_PERCENT = 0.5; // Verified for 2021
@@ -91,6 +98,8 @@ public class DB {
     public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
     //
     public static final String PHP_FUNC_GET_NEWEST_AVAILABLE_VERSION = "get_newest_version";
+    //
+    public static final String PHP_FUNC_GET_CONSTANTS = "get_constants";
     //
     public static final String PHP_FUNC_DEFINE_KUNDID__LOGIN = "define_kundid"; // using php-function: "defineKundId__login()"
     public static final String PHP_FUNC_CREATE_ACCOUNT_MAIN = "create_account_main"; // using php-function: "createAccount()"
@@ -305,4 +314,7 @@ public class DB {
     public static final String BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION = "skattereduktion";
     public static final String BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE = "avdragstak"; // OBS! This one is not present in DB [2021-04-30]
     //
+    public static final String BUH_CONSTANTS__ID = "constant_id";
+    public static final String BUH_CONSTANTS__NAME = "name";
+    public static final String BUH_CONSTANTS__VAL = "name";
 }

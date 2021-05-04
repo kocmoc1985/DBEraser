@@ -1,0 +1,7 @@
+
+INSERT INTO `buh_constants` (`constant_id`, `name`, `val`) VALUES
+(1, 'ROT_PERCENT', '0.3'),
+(2, 'RUT_PERCENT', '0.5'),
+(3, 'ROT_MAX', '50000'),
+(4, 'RUT_MAX', '75000'),
+(5, 'STATIC__BETAL_VILKOR', '30,60,20,15,10,5');

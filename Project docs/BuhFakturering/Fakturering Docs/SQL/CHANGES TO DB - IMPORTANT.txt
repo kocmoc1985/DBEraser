@@ -1,0 +1,8 @@
+OBS! REMEMBER THAT THE CHANGES SHALL BE DONE TO ALL ACTIVE DATABASES:
+- lafakturering_semain
+- lafakturering_setest
+- mixcont_com -----> @deprecated ---> will be taken out of usage soon
+
+
+[2021-05-04] Table:"buh_f_artikel" -> column: "antal" -> changed from int to float #CHANGED IN ALL DB'S:YES#
+[2021-05-04] Table "buh_constants" -> created #ADDED TO ALL DB'S:YES#

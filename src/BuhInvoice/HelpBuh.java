@@ -111,6 +111,56 @@ public class HelpBuh {
         //
     }
 
+    private static void get_constants() {
+        //
+        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // In fact the "where" is fake, i use it just because the select statement uses a "where"
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_GET_CONSTANTS, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> val : entries) {
+                System.out.println("out: " + val);
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+    
+     public static void main(String[] args) {
+        //
+//        checkUpdates(null);
+        //
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
+        //
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("25", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
+//        buh_faktura_rut_person__test_insert("1");
+        //    
+//        deleteCustomer_b("geDRkHrzht");
+        //
+//        test__uploadFile();
+        //
+        get_constants();
+        //
+    }
+
     public static void update(String json) {
         //
         try {
@@ -347,11 +397,11 @@ public class HelpBuh {
         }
         return true;
     }
-    
-    private static String useTestDB(){
-        if(USE_TEST_DB){
+
+    private static String useTestDB() {
+        if (USE_TEST_DB) {
             return "1";
-        }else{
+        } else {
             return "0";
         }
     }
@@ -854,32 +904,7 @@ public class HelpBuh {
         //
     }
 
-    public static void main(String[] args) {
-        //
-//        checkUpdates(null);
-        //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
-        //
-//        createAccountPHP_existing_customer("1");
-        //
-//        test__sendEmailWithAttachment();
-        //
-//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-        //
-        //
-//        deleteCustomer_a("25", "Vxuw6lpMzF");
-        //
-        //
-//        restorePwd("andrej.brassas@gmail.com");
-        //
-//        buh_faktura_rut_person__test_insert("1");
-        //    
-//        deleteCustomer_b("geDRkHrzht");
-        //
-        test__uploadFile();
-        //
-    }
+   
 
     /**
      * For testing only Used by "Run_Invert_Example_C.java" [2020-07-24]

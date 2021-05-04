@@ -1,0 +1,227 @@
+CREATE TABLE buh_constants (
+constant_id integer primary key not null AUTO_INCREMENT,
+name varchar(1000) DEFAULT '',
+val varchar(1000) DEFAULT ''
+);
+
+CREATE TABLE buh_kund (
+kundId integer primary key not null AUTO_INCREMENT,
+namn varchar(150) DEFAULT '',
+orgnr varchar(30) DEFAULT '',
+vatnr varchar (30) DEFAULT '',
+email varchar (320) DEFAULT '',
+bank_giro varchar (20) DEFAULT '',
+post_giro varchar (20) DEFAULT '',
+bank_konto varchar (30) DEFAULT '',
+iban varchar (30) DEFAULT '',
+swish varchar (30) DEFAULT '',
+f_skatt boolean DEFAULT false,
+date_created varchar(30) DEFAULT 'no'
+);
+
+CREATE TABLE buh_login_failed (
+login_id integer primary key not null AUTO_INCREMENT,
+user varchar(100) DEFAULT '',
+user_agent varchar(200) DEFAULT '',
+ip varchar(100) not null,
+date_failed timestamp DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE buh_ban (
+ban_id integer primary key not null AUTO_INCREMENT,
+user varchar(100) DEFAULT '',
+pass varchar(100) DEFAULT '',
+user_agent varchar(200) DEFAULT '',
+ip varchar(100) not null,
+date_ban timestamp DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE buh_visitors (
+visitId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+program_ver varchar (10) DEFAULT '',
+user varchar(100) DEFAULT '',
+ip varchar(50) DEFAULT '',
+user_agent varchar(300) DEFAULT '',
+mac varchar(50) DEFAULT '',
+os varchar(50) DEFAULT '',
+lang varchar(20) DEFAULT '',
+pc_user_name varchar(100) DEFAULT '',
+java varchar(100) DEFAULT '',
+date_visit timestamp DEFAULT CURRENT_TIMESTAMP()
+);
+
+CREATE TABLE buh_licens (
+licensId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+master boolean DEFAULT false,
+user varchar(100) DEFAULT '',
+email_guest varchar(100) DEFAULT '',
+pass varchar(255) DEFAULT '',
+ip varchar(50) DEFAULT '',
+user_agent varchar(300) DEFAULT '',
+mac varchar(50) DEFAULT '',
+os varchar(50) DEFAULT '',
+lang varchar(20) DEFAULT '',
+pc_user_name varchar(100) DEFAULT '',
+java varchar(100) DEFAULT '',
+date_created timestamp DEFAULT CURRENT_TIMESTAMP(),
+Foreign key (kundId) references buh_kund(kundId),
+UNIQUE (user)
+);
+
+CREATE TABLE buh_faktura_kund (
+fakturaKundId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+kundnr integer not null,
+namn varchar(150) not null,
+orgnr varchar(30) DEFAULT '',
+vatnr varchar (30) DEFAULT '',
+email varchar (320) DEFAULT '',
+kund_kategori varchar (1) DEFAULT 'A',
+is_person boolean DEFAULT false,
+date_created varchar(30) DEFAULT 'no',
+Foreign key (kundId) references buh_kund(kundId)
+);
+
+CREATE TABLE buh_address (
+id integer primary key not null AUTO_INCREMENT,
+kundId integer,
+fakturaKundId integer,
+primary_addr boolean DEFAULT true,
+postaddr_a varchar (300) DEFAULT '',
+postaddr_b varchar (300) DEFAULT '',
+visit_addr varchar (300) DEFAULT '',
+zip varchar (10) DEFAULT '',
+ort varchar (100) DEFAULT '',
+land varchar (100) DEFAULT '',
+tel_a varchar (50) DEFAULT '',
+tel_b varchar (50) DEFAULT '',
+other varchar (500) DEFAULT '',
+Foreign key (kundId) references buh_kund(kundId),
+Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
+);
+
+
+CREATE TABLE buh_faktura (
+fakturaId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaKundId integer,
+fakturanr integer DEFAULT 0,
+fakturanr_alt integer DEFAULT 0,
+fakturatyp integer DEFAULT 0,
+fakturadatum varchar(10) DEFAULT CURDATE(),
+forfallodatum varchar(10) DEFAULT CURDATE(),
+valuta varchar(3) DEFAULT 'SEK',
+ert_ordernr varchar(150) DEFAULT '',
+er_referens varchar(100) DEFAULT '',
+var_referens varchar(100) DEFAULT '',
+frakt float DEFAULT 0,
+betal_vilkor integer DEFAULT 10,
+lev_vilkor varchar(3) DEFAULT 'FVL',
+lev_satt varchar(4) DEFAULT 'P',
+exp_avg float DEFAULT 0,
+drojsmalsranta float DEFAULT 0,
+total_ink_moms float DEFAULT 0,
+total_exkl_moms float DEFAULT 0,
+rabatt_total float DEFAULT 0,
+moms_total float DEFAULT 0,
+komment varchar(200) DEFAULT '',
+important_komment varchar(100) DEFAULT '',
+ska_bokforas boolean DEFAULT false,
+request_factoring boolean DEFAULT false,
+factoring_status integer DEFAULT 0,
+makulerad boolean DEFAULT false,
+betald integer DEFAULT 0,
+sent_with_email integer DEFAULT 0,
+date_created varchar(30) DEFAULT 'no',
+changed_by varchar(300) DEFAULT '',
+rutavdrag boolean DEFAULT false,
+copied_from_id integer DEFAULT 0,
+Foreign key (kundId) references buh_kund(kundId),
+Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
+); 
+
+CREATE TABLE buh_faktura_inbet (
+inbetId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaId integer not null,
+inbetald float DEFAULT 0,
+betal_metod varchar(20) DEFAULT '',
+betal_datum varchar(10) DEFAULT CURDATE(),
+annat varchar(50) DEFAULT '',
+done_by varchar(100) DEFAULT '',
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (kundId) references buh_kund(kundId)
+);
+
+CREATE TABLE buh_faktura_send (
+sendId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaId integer not null,
+send_type integer DEFAULT 0,
+send_ok integer DEFAULT 0,
+send_datum varchar(10) DEFAULT CURDATE(),
+annat varchar(50) DEFAULT '',
+done_by varchar(100) DEFAULT '',
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (kundId) references buh_kund(kundId)
+);
+
+CREATE TABLE buh_faktura_rut (
+rutId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+fakturaId integer not null,
+skattereduktion float DEFAULT 0,
+fastighets_beteckning varchar(100) DEFAULT '',
+date_created varchar(30) DEFAULT 'no',
+Foreign key (kundId) references buh_kund(kundId),
+Foreign key (fakturaId) references buh_faktura(fakturaId)
+);
+
+
+CREATE TABLE buh_faktura_rut_person (
+personId integer primary key not null AUTO_INCREMENT,
+rutId integer not null,
+kundId integer not null,
+fakturaId integer not null,
+namn varchar(50) DEFAULT '',
+efternamn varchar(50) DEFAULT '',
+pnr varchar(50) DEFAULT '',
+skattereduktion float DEFAULT 0,
+Foreign key (kundId) references buh_kund(kundId),
+Foreign key (rutId) references buh_faktura_rut(rutId)
+);
+
+CREATE TABLE buh_faktura_artikel (
+artikelId integer primary key not null AUTO_INCREMENT,
+kundId integer not null,
+pris float DEFAULT 0,
+namn varchar(50) DEFAULT '',
+artnr varchar(50) DEFAULT '',
+komment varchar(500) DEFAULT '',
+komment_b varchar(500) DEFAULT '',
+komment_c varchar(500) DEFAULT '',
+artikel_kategori varchar (1) DEFAULT 'A',
+Foreign key (kundId) references buh_kund(kundId)
+);
+
+
+CREATE TABLE buh_f_artikel (
+id integer primary key not null AUTO_INCREMENT,
+kundId integer DEFAULT 0,
+fakturaId integer not null,
+artikelId integer,
+komment varchar (200) DEFAULT '',
+komment_b varchar (200) DEFAULT '',
+komment_c varchar (200) DEFAULT '',
+antal float DEFAULT 1,
+pris float DEFAULT 0,
+enhet varchar(30) DEFAULT 'St',
+rabatt integer DEFAULT 0,
+rabatt_kr float DEFAULT 0,
+moms_sats integer DEFAULT 0,
+omvant_skatt boolean DEFAULT false,
+Foreign key (fakturaId) references buh_faktura(fakturaId),
+Foreign key (artikelId) references buh_faktura_artikel(artikelId)
+);

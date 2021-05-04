@@ -1,0 +1,97 @@
+The sequence of deleting is approved on  [2021-02-15]
+
+drop table buh_ban;
+drop table buh_login_failed;
+drop table buh_visitors;
+drop table buh_address;
+drop table buh_f_artikel;
+drop table buh_faktura_inbet;
+drop table buh_faktura_send;
+drop table buh_faktura_rut_person;
+drop table buh_faktura_rut; 
+drop table buh_faktura;
+drop table buh_faktura_artikel;
+drop table buh_faktura_kund;
+drop table buh_licens;
+drop table buh_kund;
+
+The sequence of deleting is approved on  [2021-02-11]
+
+DELETE FROM buh_address WHERE kundId=22;
+DELETE FROM buh_f_artikel WHERE kundId=22;
+DELETE FROM buh_faktura_inbet WHERE kundId=22;
+DELETE FROM buh_faktura_send WHERE kundId=22;
+DELETE FROM buh_faktura_rut_person WHERE kundId=22;
+DELETE FROM buh_faktura_rut WHERE kundId=22;
+DELETE FROM buh_faktura WHERE kundId=22;
+DELETE FROM buh_faktura_artikel WHERE kundId=22;
+DELETE FROM buh_faktura_kund WHERE kundId=22;
+DELETE FROM buh_licens WHERE kundId=22;
+DELETE FROM buh_kund WHERE kundId=22;
+
+OBS! OBS! OBS! INSERTING OF DATA TO TABLES IS DONE "NAOBOROT" which means starting with the last table -> "buh_kund".  Verified and tested on[2021-02-15]
+________________________________________________________________________________________
+
+
+[DELETE FAKTURA ("buh_faktura") SEQUENCE][2020-10-15]
+deleteFakturaArticles(fakturaId); // "buh_f_artikel"
+deleteFakturaInbetalningar(fakturaId); // "buh_faktura_inbet"
+deleteFakturaSend(fakturaId); // "buh_faktura_send"
+deleteFaktura(fakturaId); //"buh_faktura"
+
+[DELETE FAKTURA-ARTICLE ("buh_faktura_artikel") SEQUENCE][2020-10-15]
+deleteFakturaArticles(fakturaId); // "buh_f_artikel"
+deleteFakturaInbetalningar(fakturaId); // "buh_faktura_inbet"
+deleteFakturaSend(fakturaId); // "buh_faktura_send"
+deleteFaktura(fakturaId); //"buh_faktura"
++
+delete from ("buh_faktura_artikel")
+
+
+[TABLES WITHOUT ("kundId")][2020-10-15]
+So now [2020-10-20] ALL TABLES DO HAVE "kundId"
+table buh_address -> --------------------------> OBS! Since [2020-10-20] it has always "kundId"
+table buh_f_artikel --------------------------> OBS! Since [2020-10-15] it has "kundId"
+table buh_faktura_inbet  --------------------------> OBS! Since [2020-10-20] it has "kundId"
+buh_faktura_send --------------------------> OBS! Since [2020-10-20] it has "kundId"
+________________________________________________________________________________________
+
+
+Delete ALL "buh_address" for "buh_faktura_kund"
+"DELETE FROM buh_address where kundId=13 AND fakturaKundId IS NOT NULL"
+
+Delete "buh_address" for "buh_kund"
+"DELETE FROM buh_address where kundId=13 AND fakturaKundId IS NULL"
+
+Delete ALL "buh_address" for given "buh_kund"
+"DELETE FROM buh_address where kundId=13
+
+________________________________________________________________________________________
+
+DELETE FROM buh_address WHERE kundId=13;
+DELETE FROM buh_f_artikel WHERE kundId=13;
+DELETE FROM buh_faktura_inbet WHERE kundId=13;
+DELETE FROM buh_faktura_send WHERE kundId=13;
+DELETE FROM buh_faktura WHERE kundId=13;
+DELETE FROM buh_faktura_artikel WHERE kundId=13;
+DELETE FROM buh_faktura_kund WHERE kundId=13;
+DELETE FROM buh_licens WHERE kundId=13;
+DELETE FROM buh_kund WHERE kundId=13;
+
+________________________________________________________________________________________
+
+
+
+
+PREV:
+drop table buh_address;
+drop table buh_f_artikel;
+drop table buh_faktura;
+drop table buh_faktura_artikel;
+drop table buh_faktura_kund;
+drop table buh_kund;
+
+
+
+
+
