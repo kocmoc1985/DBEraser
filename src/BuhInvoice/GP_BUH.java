@@ -215,6 +215,17 @@ public class GP_BUH {
 
     }
 
+    public static void reminder_btn_adjustment(JButton btn, boolean forfallnaFakturorFinns) {
+        //
+        int wh  = 32;
+        //
+        if (forfallnaFakturorFinns) {
+            btn.setIcon(ICON.getImageIcon("bell_b.png", wh, wh));
+        } else {
+            btn.setIcon(ICON.getImageIcon("bell.png", wh, wh));
+        }
+    }
+
     public static void copy_btn_adjustment(JButton btn, boolean isOffert) {
         if (isOffert) {
             btn.setIcon(ICON.getImageIcon("swap.png", 32, 32));

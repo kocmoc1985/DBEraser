@@ -153,9 +153,11 @@ public class InvoiceB extends Basic_Buh {
         int forfallna = GP_BUH.countForfallnaFakturorJTable(table, TABLE_ALL_INVOICES__FORFALLODATUM);
         //
         if (forfallna > 0) {
-            button.setIcon(ICON.getImageIcon("bell_b.png", 32, 32));
+//            button.setIcon(ICON.getImageIcon("bell_b.png", 32, 32));
+            GP_BUH.reminder_btn_adjustment(button, true);
         } else {
-            button.setIcon(ICON.getImageIcon("bell.png", 32, 32));
+//            button.setIcon(ICON.getImageIcon("bell.png", 32, 32));
+            GP_BUH.reminder_btn_adjustment(button, false);
         }
         //
         button.setToolTipText(LANG.TOOL_TIP_1(forfallna));
