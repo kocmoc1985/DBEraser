@@ -25,6 +25,11 @@ public class DB {
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
 
+    public final static double ROT_PERCENT = 0.3; // Verified for 2021
+    public final static double RUT_PERCENT = 0.5; // Verified for 2021
+    public final static double ROT_MAX = 50000; // Verified for 2021
+    public final static double RUT_MAX = 75000; // Verified for 2021
+    
     public static final String STATIC__YES = "Ja";
     public static final String STATIC__NO = "Nej";
 

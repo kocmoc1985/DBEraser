@@ -39,13 +39,6 @@ public class RutRotFrame extends javax.swing.JFrame {
     private String PNR = "";
     private String EFTERNAMN = "";
     private String FORNAMN = "";
-    //
-    private final static double ROT_PERCENT = 0.3; // Verified for 2021
-    private final static double RUT_PERCENT = 0.5; // Verified for 2021
-    //
-    private final static double ROT_MAX = 50000; // Verified for 2021
-    private final static double RUT_MAX = 75000; // Verified for 2021
-    //
 
     /**
      * Creates new form RutRot
@@ -213,9 +206,9 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
         //
         if (is_ROT__Bygg()) {
-            return ROT_MAX;
+            return DB.ROT_MAX;
         } else {
-            return RUT_MAX;
+            return DB.RUT_MAX;
         }
         //
     }
@@ -621,15 +614,15 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         if (box.equals(jCheckBox_ROT)) {
             jCheckBox_RUT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = ROT_PERCENT; // ROT -> BYGG -> 30%
+            ROT_ELLER_RUT__PERCENT = DB.ROT_PERCENT; // ROT -> BYGG -> 30%
             //
-            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, ROT_MAX);
+            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, DB.ROT_MAX);
             //
         } else if (box.equals(jCheckBox_RUT)) {
             jCheckBox_ROT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = RUT_PERCENT; // RUT -> STÄD -> 50%
+            ROT_ELLER_RUT__PERCENT = DB.RUT_PERCENT; // RUT -> STÄD -> 50%
             //
-            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, RUT_MAX);
+            rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, DB.RUT_MAX);
             //
         }
         //
