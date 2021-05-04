@@ -575,7 +575,7 @@ public abstract class Invoice extends Basic_Buh {
         resetValues(); // IMPORTANT [2020-02-19]
         //
         double pris_exkl_moms;
-        int antal;
+        Double antal;
         //
         HashMap<Double, Double> moms_map = new HashMap<>();
         //
@@ -586,7 +586,7 @@ public abstract class Invoice extends Basic_Buh {
             double moms_sats = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
-            antal = Integer.parseInt(HelpA.getValueGivenRow(table, i, antalColumn));
+            antal = Double.parseDouble(HelpA.getValueGivenRow(table, i, antalColumn));
             //
             //
             if (rabatt_percent == 0 && rabatt_kr == 0) {
