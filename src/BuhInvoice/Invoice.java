@@ -15,6 +15,7 @@ import BuhInvoice.sec.RutRotFrame;
 import MyObjectTable.OutPut;
 import MyObjectTable.Table;
 import MyObjectTableInvert.ColumnDataEntryInvert;
+import MyObjectTableInvert.JComboBoxInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
@@ -1216,7 +1217,17 @@ public abstract class Invoice extends Basic_Buh {
             forfalloDatumAutoChange(ti);
             //
             //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__BETAL_VILKOR]
-            IO.writeToFile(IO.getBetalVilkor(getFakturaKundId()), jli.getValue());
+            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__BETAL_VILKOR, getFakturaKundId()), jli.getValue());
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA__LEV_VILKOR)) {
+            //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__LEV_VILKOR]
+            JComboBoxInvert boxInvert = (JComboBoxInvert) jli;
+            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_VILKOR, getFakturaKundId()), boxInvert.getValue(1)); // jli.getValue() -> does not fit here
+            //
+        } else if (col_name.equals(DB.BUH_FAKTURA__LEV_SATT)) {
+            //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__LEV_SATT]
+            JComboBoxInvert boxInvert = (JComboBoxInvert) jli;
+            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_SATT, getFakturaKundId()), boxInvert.getValue(1)); // jli.getValue() -> does not fit here
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
@@ -1237,9 +1248,9 @@ public abstract class Invoice extends Basic_Buh {
             //
             hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
             //
-            //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][RESTORE][[DB.BUH_FAKTURA__BETAL_VILKOR]]
-            String betal_vilkor_fakturakund = IO.loadLastEntered(IO.getBetalVilkor(getFakturaKundId()), "30");
-            ti.setValueAt(DB.BUH_FAKTURA__BETAL_VILKOR, betal_vilkor_fakturakund);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__BETAL_VILKOR, "30", false);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_SATT, "Post", true);
             //
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
@@ -1302,6 +1313,39 @@ public abstract class Invoice extends Basic_Buh {
             //
         }
 
+    }
+
+    /**
+     * "jcombo_only" means for the values stored in "jcombos" like "betal
+     * vilkor", "leverans sätt" ....
+     *
+     * @param ti
+     * @param DB__PARAMETER
+     * @param default_
+     */
+    private void restore_fakturaKund_related__jcombo_only(TableInvert ti, String DB__PARAMETER, String default_, boolean boxObject) {
+        //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][RESTORE]
+        String fileName = IO.get_universal(DB__PARAMETER, getFakturaKundId());
+        String lastEntered = IO.loadLastEntered(fileName, null);
+        //
+        if (lastEntered != null && boxObject) { // HelpA.ComboBoxObject
+            setValueTableInvert(DB__PARAMETER, ti, new HelpA.ComboBoxObject(lastEntered, "", "", ""));
+        }
+        //
+        if (lastEntered == null && boxObject) {
+            setValueTableInvert(DB__PARAMETER, ti, new HelpA.ComboBoxObject(default_, "", "", ""));
+        }
+        //
+        //
+        if (lastEntered != null && boxObject == false) { //String
+            setValueTableInvert(DB__PARAMETER, ti, lastEntered);
+        }
+        //
+        if (lastEntered == null && boxObject == false) {
+            setValueTableInvert(DB__PARAMETER, ti, default_);
+        }
+//        ti.setValueAt(DB__PARAMETER, betal_vilkor_fakturakund);
+//        setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("0%", "", "", ""));
     }
 
     private void resetRutComboBox(JComboBox box) {

@@ -29,11 +29,15 @@ public class IO {
     static {
         HelpA.create_dir_if_missing(LAST_INPUT_DIR);
     }
-
     
-     public static final String getBetalVilkor(String kundFakturaId) {
-        return DB.BUH_FAKTURA__BETAL_VILKOR + "_" + kundFakturaId;
+    public static final boolean exist(String fileName){
+        return HelpA.file_exists(LAST_INPUT_DIR + fileName);
     }
+
+    public static final String get_universal(String DB__PARAMETER, String kundFakturaId) {
+        return DB__PARAMETER + "_" + kundFakturaId;
+    }
+
     //
     public static final String getErReferens(String kundFakturaId) {
         return DB.BUH_FAKTURA__ER_REFERENS + "_" + kundFakturaId;
@@ -50,6 +54,7 @@ public class IO {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      
 
     public static String loadLastEntered(String fileName, String defaultValue) {
         return HelpA.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
@@ -77,21 +82,21 @@ public class IO {
             return null;
         }
     }
-    
-    public static boolean deleteSMTP(){
+
+    public static boolean deleteSMTP() {
         return delete("smtp");
     }
-    
-    public static String loadReminderMsg(){
+
+    public static String loadReminderMsg() {
         try {
             return (String) fileToObject(LAST_INPUT_DIR + "remindermsg");
         } catch (IOException | ClassNotFoundException ex) {
             return null;
         }
     }
-    
-    public static boolean saveReminderMsg(Object obj){
-         try {
+
+    public static boolean saveReminderMsg(Object obj) {
+        try {
             objectToFile(LAST_INPUT_DIR + "remindermsg", obj);
             return true;
         } catch (IOException ex) {
@@ -99,8 +104,8 @@ public class IO {
             return false;
         }
     }
-    
-    public static void deleteReminderMsg(){
+
+    public static void deleteReminderMsg() {
         delete("remindermsg");
     }
 
