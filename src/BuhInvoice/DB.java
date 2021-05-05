@@ -50,6 +50,7 @@ public class DB {
     private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
 
     static {
+//        BUH_CONSTANTS = null; ////[#BUH-CONSTANTS#] taken from table "buh_constants"
         BUH_CONSTANTS = HelpBuh.get_constants(); ////[#BUH-CONSTANTS#] taken from table "buh_constants"
     }
 
