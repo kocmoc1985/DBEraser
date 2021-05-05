@@ -30,7 +30,6 @@ public class DB {
     /**
      * OBS! CHANGING OF STATIC VALUES MUST BE DONE WITH CAUTION
      */
-
     /**
      * The value in table "buh_constants" should be stored without using ","
      *
@@ -40,12 +39,12 @@ public class DB {
     public static String convert(String strToProcess) {
         //
         strToProcess = strToProcess.replaceAll(",", "¤"); // is replaced from "JSon.java -> JSONToHashMap(String json, boolean reverse)"
-        strToProcess = strToProcess.replaceAll("\\;", "#"); // is replaced from "HelpBuh.class -> get_constants()"
+        strToProcess = strToProcess.replaceAll("\\;", "*"); // is replaced from "HelpBuh.class -> get_constants()"
         return strToProcess;
     }
 
     public static void main(String[] args) {
-        System.out.println("" + convert(STATIC__LEV_VILKOR));
+        System.out.println("" + convert(STATIC__MOMS_SATS));
     }
 
     private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
@@ -62,8 +61,7 @@ public class DB {
     public static final String STATIC__YES = "Ja";
     public static final String STATIC__NO = "Nej";
 
-
-    public static final String GET_CONSTANT(String alias,String defaultVal) {
+    public static final String GET_CONSTANT(String alias, String defaultVal) {
         String key = alias;
         if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
             return defaultVal;
@@ -72,10 +70,19 @@ public class DB {
         }
     }
     
+    public static final double GET_CONSTANT__DOUBLE(String alias, double defaultVal) {
+        String key = alias;
+        if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
+            return defaultVal;
+        } else {
+            return Double.parseDouble(BUH_CONSTANTS.get(key));
+        }
+    }
+
     public static final String STATIC__BETAL_VILKOR = "30,60,20,15,10,5";
     public static final String STATIC__LEV_VILKOR = "Fritt vårt lager;FVL,CIF;CIF,FAS;FAS,Fritt Kund;FK,FOB;FOB";
-    
-    public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM";
+
+    public static final String STATIC__LEV_SATT = "Post;P,Hämtas;HAM"; // ,Digitalt;D
     public static final String STATIC__INKL_EXKL_MOMS = "Inkl moms;1,Exkl moms;0";
     public static final String STATIC__MOMS_SATS = "25%;25,12%;12,6%;6,0%;0";
     public static final String STATIC__JA_NEJ = "Nej;0,Ja;1";

@@ -35,7 +35,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private double AVDRAGS_GILL_BELOPP = 0;
     protected double AVDRAG_TOTAL = 0;
     private double AVDRAG_PER_PERSON = 0;
-    private static double ROT_ELLER_RUT__PERCENT = 0.3; // RUT = 50% ->bygg, ROT = 30% -> tvätt, städ
+    private static double ROT_ELLER_RUT__PERCENT = DB.GET_CONSTANT__DOUBLE("ROT_PERCENT", DB.ROT_PERCENT); // RUT = 50% -> tvätt, städ / ROT = 30% ->bygg
     private String PNR = "";
     private String EFTERNAMN = "";
     private String FORNAMN = "";
@@ -206,9 +206,9 @@ public class RutRotFrame extends javax.swing.JFrame {
         }
         //
         if (is_ROT__Bygg()) {
-            return DB.ROT_MAX;
+            return DB.GET_CONSTANT__DOUBLE("ROT_MAX", DB.ROT_MAX);
         } else {
-            return DB.RUT_MAX;
+            return DB.GET_CONSTANT__DOUBLE("RUT_MAX", DB.RUT_MAX);
         }
         //
     }
@@ -614,13 +614,13 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         if (box.equals(jCheckBox_ROT)) {
             jCheckBox_RUT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = DB.ROT_PERCENT; // ROT -> BYGG -> 30%
+            ROT_ELLER_RUT__PERCENT = DB.GET_CONSTANT__DOUBLE("ROT_PERCENT", DB.ROT_PERCENT); // ROT -> BYGG -> 30%
             //
             rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, DB.ROT_MAX);
             //
         } else if (box.equals(jCheckBox_RUT)) {
             jCheckBox_ROT.setSelected(false);
-            ROT_ELLER_RUT__PERCENT = DB.RUT_PERCENT; // RUT -> STÄD -> 50%
+            ROT_ELLER_RUT__PERCENT = DB.GET_CONSTANT__DOUBLE("RUT_PERCENT", DB.RUT_PERCENT); // RUT -> STÄD -> 50%
             //
             rut.setValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, rut.TABLE_INVERT, DB.RUT_MAX);
             //

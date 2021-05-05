@@ -122,11 +122,15 @@ public class HelpBuh {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_GET_CONSTANTS, json);
             //
+            if(json_str_return.equals("V_ERR_0")){
+                return null;
+            }
+            //
             ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
             //
             for (HashMap<String, String> val : entries) {
                 System.out.println("out: " + val);
-                constants.put(val.get("name"), val.get("val").replaceAll("#", ";"));
+                constants.put(val.get("name"), val.get("val").replaceAll("\\*", ";"));
             }
             //
             System.out.println("");

@@ -186,12 +186,12 @@ public class InvoiceA_Insert_ extends Invoice {
         betal_vilkor.enableFixedValues();
         betal_vilkor.setUneditable();
         //
-        String fixedComboValues_c = DB.STATIC__LEV_VILKOR;
+        String fixedComboValues_c = DB.GET_CONSTANT("STATIC__LEV_VILKOR", DB.STATIC__LEV_VILKOR);
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
         lev_vilkor.enableFixedValuesAdvanced();
         lev_vilkor.setUneditable();
         //
-        String fixedComboValues_d = DB.STATIC__LEV_SATT;
+        String fixedComboValues_d = DB.GET_CONSTANT("STATIC__LEV_SATT", DB.STATIC__LEV_SATT);
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
         lev_satt.enableFixedValuesAdvanced();
         lev_satt.setUneditable();

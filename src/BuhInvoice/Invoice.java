@@ -715,7 +715,7 @@ public abstract class Invoice extends Basic_Buh {
 
     protected String defineMomsSats() {
 //        if (momsSaveEntry.getMomsSats() == null) {
-        return DB.STATIC__MOMS_SATS;
+        return DB.GET_CONSTANT("STATIC__MOMS_SATS", DB.STATIC__MOMS_SATS);
 //        } else {
 //            return JSon._get_special_(
 //                    DB.STATIC__MOMS_SATS,
@@ -727,9 +727,9 @@ public abstract class Invoice extends Basic_Buh {
     protected String defineMomsSats(JTable table, boolean isOmvantMoms) {
         //
         if (isOmvantMoms) {
-            return JSon._get_special_(DB.STATIC__MOMS_SATS, "0");
+            return JSon._get_special_(DB.GET_CONSTANT("STATIC__MOMS_SATS", DB.STATIC__MOMS_SATS), "0");
         } else {
-            return JSon._get_special_(DB.STATIC__MOMS_SATS,
+            return JSon._get_special_(DB.GET_CONSTANT("STATIC__MOMS_SATS", DB.STATIC__MOMS_SATS),
                     HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS));
         }
 
@@ -781,7 +781,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         //
         String fixedComboValues_c = JSon._get_special_(
-                DB.STATIC__MOMS_SATS,
+                DB.GET_CONSTANT("STATIC__MOMS_SATS", DB.STATIC__MOMS_SATS),
                 IO.loadLastEntered(DB.BUH_F_ARTIKEL__MOMS_SATS, "25")
         );
 //        String fixedComboValues_c = defineMomsSats();

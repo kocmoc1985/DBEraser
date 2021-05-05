@@ -127,7 +127,7 @@ public class InvoiceA_Update extends Invoice {
         betal_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_c = JSon._get_special_(DB.STATIC__LEV_VILKOR,
+        String fixedComboValues_c = JSon._get_special_(DB.GET_CONSTANT("STATIC__LEV_VILKOR", DB.STATIC__LEV_VILKOR),
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_VILKOR)
         );
         RowDataInvert lev_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_c, DB.BUH_FAKTURA__LEV_VILKOR, "LEVERANS VILKOR", "", true, true, false);
@@ -135,7 +135,7 @@ public class InvoiceA_Update extends Invoice {
         lev_vilkor.setUneditable();
         //
         //
-        String fixedComboValues_d = JSon._get_special_(DB.STATIC__LEV_SATT,
+        String fixedComboValues_d = JSon._get_special_(DB.GET_CONSTANT("STATIC__LEV_SATT", DB.STATIC__LEV_SATT),
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__LEV_SATT)
         );
         RowDataInvert lev_satt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_FAKTURA__LEV_SATT, "LEVERANS SÄTT", "", true, true, false);
