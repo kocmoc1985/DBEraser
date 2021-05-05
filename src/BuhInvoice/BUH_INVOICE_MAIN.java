@@ -372,7 +372,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-
+    
+    protected int getBetalVilkor() {
+        return Integer.parseInt(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR));
+    }
+    
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }

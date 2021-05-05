@@ -803,7 +803,6 @@ public class InvoiceB extends Basic_Buh {
 //        JTable table = bim.jTable_invoiceB_alla_fakturor;
 //        return HelpA.getValueSelectedRow(table, colNameJTable);
 //    }
-
     private String _get_percent(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         double val = Double.parseDouble(HelpA.getValueSelectedRow(table, colNameJTable));
@@ -948,7 +947,7 @@ public class InvoiceB extends Basic_Buh {
             //
         } else if (isOffert && omvandlaOffertToFaktura) {
             //[#OFFERT#]
-            faktura_data_map = setForfalloDatumCopy(faktura_data_map);
+            faktura_data_map = setForfalloDatumCopy(faktura_data_map, bim.getBetalVilkor());
             faktura_data_map.put(DB.BUH_FAKTURA__FAKTURATYP, "0"); // set to STATIC__FAKTURA_TYPE_NORMAL__NUM
             //
             komment = "Skapad från offertummer# " + fakturaNrCopy;
@@ -966,7 +965,7 @@ public class InvoiceB extends Basic_Buh {
             faktura_data_map.remove(DB.BUH_FAKTURA__BETALD);
             faktura_data_map.remove(DB.BUH_FAKTURA__ERT_ORDER);
             faktura_data_map.remove(DB.BUH_FAKTURA__RUT); // I have decided to not allow to copy the "RUT" related data when a common invoice is copied
-            faktura_data_map = setForfalloDatumCopy(faktura_data_map);
+            faktura_data_map = setForfalloDatumCopy(faktura_data_map, bim.getBetalVilkor());
         }
         //
         faktura_data_map.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
@@ -983,10 +982,10 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map) {
+    private HashMap<String, String> setForfalloDatumCopy(HashMap<String, String> faktura_data_map, int betalVilkor) {
 //        String fakturaDatum = faktura_data_map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
         String fakturaDatum = GP_BUH.getDate_yyyy_MM_dd();
-        String forfallodatum = GP_BUH.get_date_time_plus_some_time_in_days(fakturaDatum, 30);
+        String forfallodatum = GP_BUH.get_date_time_plus_some_time_in_days(fakturaDatum, betalVilkor);
         faktura_data_map.put(DB.BUH_FAKTURA__FAKTURA_DATUM, fakturaDatum);
         faktura_data_map.put(DB.BUH_FAKTURA__FORFALLO_DATUM, forfallodatum);
         return faktura_data_map;
@@ -1026,7 +1025,6 @@ public class InvoiceB extends Basic_Buh {
         //
         //
     }
-
 
     private HashMap<String, String> getForetagData(String phpFunction, boolean kundId) {
         //
