@@ -1,3 +1,9 @@
+[SAVE FAKTURAKUND RELATED DATA ("JComboBoxed") - AS FOR EXAMPLE "BETAL VILKOR"][2021-05-05]
+
+The main idea is to save last chosen parameter as for example "BETAL VILKOR" for a given customer.
+This topic covers only the values stored in "JCOMBOBOX'es"
+
+________________________________________________________________________________________________________
 [BUH_CONSTANTS - AQUIRED FROM PHP][IMPORTANT][IMPORTANT][2021-05-05]
 
 The main idea is that it's possible to change constants like "RUT_MAX" without updating the program but instead changing

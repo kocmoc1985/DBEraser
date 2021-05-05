@@ -1215,13 +1215,8 @@ public abstract class Invoice extends Basic_Buh {
             //
             forfalloDatumAutoChange(ti);
             //
+            //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__BETAL_VILKOR]
             IO.writeToFile(IO.getBetalVilkor(getFakturaKundId()), jli.getValue());
-            //
-        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURAKUND_ID)) {
-            //
-            String betal_vilkor_fakturakund = IO.loadLastEntered(IO.getBetalVilkor(getFakturaKundId()), "30");
-            //
-            ti.setValueAt(DB.BUH_FAKTURA__BETAL_VILKOR, betal_vilkor_fakturakund);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
@@ -1241,6 +1236,11 @@ public abstract class Invoice extends Basic_Buh {
             hideFieldIfNotPerson_b(TABLE_INVERT_3, DB.BUH_FAKTURA__RUT);
             //
             hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
+            //
+            //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][RESTORE][[DB.BUH_FAKTURA__BETAL_VILKOR]]
+            String betal_vilkor_fakturakund = IO.loadLastEntered(IO.getBetalVilkor(getFakturaKundId()), "30");
+            ti.setValueAt(DB.BUH_FAKTURA__BETAL_VILKOR, betal_vilkor_fakturakund);
+            //
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
