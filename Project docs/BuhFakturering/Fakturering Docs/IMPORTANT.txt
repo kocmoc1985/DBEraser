@@ -3,6 +3,10 @@
 The main idea is to save last chosen parameter as for example "BETAL VILKOR" for a given customer.
 This topic covers only the values stored in "JCOMBOBOX'es"
 
+NACKDEL: When the TableInvert is initially loaded it does not trigger the itemStateChangedEvent
+so for the fakturaKund initially loaded the saved settings are not loaded. It could be maybe solved
+by switching JComboBox item forward and then back programatically which will trigger the itemStateChangedEvent
+
 Search for: [#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#]
 ________________________________________________________________________________________________________
 [BUH_CONSTANTS - AQUIRED FROM PHP][IMPORTANT][IMPORTANT][2021-05-05]
