@@ -48,7 +48,8 @@ Make so the BETAL VILKOR IS SAVED FOR GIVEN KUND:
 
 3. Here iam trying to change: InvoiceA_Insert.java line:185 --------------------> IMPORTANT
 
-4. OBS! The BETAL VILKORT is saved from: Invoice.java line:1218		
+4. OBS! The BETAL VILKORT is saved from: Invoice.java line:1218		---> Saving works [2021-05-05]
+5. It's loaded from Invoice.java line:1222
 ______
 Make video how to make Offert
 
