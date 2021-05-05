@@ -1332,7 +1332,7 @@ public abstract class Invoice extends Basic_Buh {
             setValueTableInvert(DB__PARAMETER, ti, new HelpA.ComboBoxObject(lastEntered, "", "", ""));
         }
         //
-        if (lastEntered == null && boxObject) {
+        if (lastEntered == null && boxObject) {// HelpA.ComboBoxObject
             setValueTableInvert(DB__PARAMETER, ti, new HelpA.ComboBoxObject(default_, "", "", ""));
         }
         //
@@ -1341,11 +1341,10 @@ public abstract class Invoice extends Basic_Buh {
             setValueTableInvert(DB__PARAMETER, ti, lastEntered);
         }
         //
-        if (lastEntered == null && boxObject == false) {
+        if (lastEntered == null && boxObject == false) { //String
             setValueTableInvert(DB__PARAMETER, ti, default_);
         }
-//        ti.setValueAt(DB__PARAMETER, betal_vilkor_fakturakund);
-//        setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("0%", "", "", ""));
+        //
     }
 
     private void resetRutComboBox(JComboBox box) {
