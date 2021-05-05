@@ -1128,7 +1128,7 @@ public abstract class Invoice extends Basic_Buh {
             //
             Validator.validateMaxInputLength(jli, 100);
             //
-        } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
+        }  else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
             if (Validator.validateDate(jli)) {
                 forfalloDatumAutoChange(ti);
@@ -1214,6 +1214,8 @@ public abstract class Invoice extends Basic_Buh {
         if (col_name.equals(DB.BUH_FAKTURA__BETAL_VILKOR)) {
             //
             forfalloDatumAutoChange(ti);
+            //
+            IO.writeToFile(IO.getBetalVilkor(getFakturaKundId()), jli.getValue());
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //

@@ -30,6 +30,10 @@ public class IO {
         HelpA.create_dir_if_missing(LAST_INPUT_DIR);
     }
 
+    
+     public static final String getBetalVilkor(String kundFakturaId) {
+        return DB.BUH_FAKTURA__BETAL_VILKOR + "_" + kundFakturaId;
+    }
     //
     public static final String getErReferens(String kundFakturaId) {
         return DB.BUH_FAKTURA__ER_REFERENS + "_" + kundFakturaId;

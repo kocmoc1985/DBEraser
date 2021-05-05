@@ -37,7 +37,7 @@ public class DB {
      * @return
      */
     public static String convert(String strToProcess) {
-        //
+        ////[#BUH-CONSTANTS#]
         strToProcess = strToProcess.replaceAll(",", "¤"); // is replaced from "JSon.java -> JSONToHashMap(String json, boolean reverse)"
         strToProcess = strToProcess.replaceAll("\\;", "*"); // is replaced from "HelpBuh.class -> get_constants()"
         return strToProcess;
@@ -50,7 +50,7 @@ public class DB {
     private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
 
     static {
-        BUH_CONSTANTS = HelpBuh.get_constants(); // taken from table "buh_constants"
+        BUH_CONSTANTS = HelpBuh.get_constants(); ////[#BUH-CONSTANTS#] taken from table "buh_constants"
     }
 
     public final static double ROT_PERCENT = 0.3; // Verified for 2021
@@ -62,7 +62,7 @@ public class DB {
     public static final String STATIC__NO = "Nej";
 
     public static final String GET_CONSTANT(String alias, String defaultVal) {
-        String key = alias;
+        String key = alias; //[#BUH-CONSTANTS#]
         if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
             return defaultVal;
         } else {
@@ -71,7 +71,7 @@ public class DB {
     }
     
     public static final double GET_CONSTANT__DOUBLE(String alias, double defaultVal) {
-        String key = alias;
+        String key = alias; //[#BUH-CONSTANTS#]
         if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
             return defaultVal;
         } else {

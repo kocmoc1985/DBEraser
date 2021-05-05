@@ -112,6 +112,7 @@ public class HelpBuh {
     }
 
     public static HashMap<String, String> get_constants() {
+        //[#BUH-CONSTANTS#]
         //In fact the "where" is fake, i use it just because the select statement uses a "where"
         String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // 
         //

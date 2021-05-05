@@ -38,12 +38,17 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Don't allow to have "," in the articles name when creating one. See Validator.class: 242 -> ArticlesA: 489
+Make so the BETAL VILKOR IS SAVED FOR GIVEN KUND:
+1. Search for: IO.loadLastEntered
+2. Invoice.class line:783 -----> Important example:
+ String fixedComboValues_c = JSon._get_special_(
+                DB.GET_CONSTANT("STATIC__MOMS_SATS", DB.STATIC__MOMS_SATS),
+                IO.loadLastEntered(DB.BUH_F_ARTIKEL__MOMS_SATS, "25")
+        );
 
-Ändra "Fysisk Peron" till "Privatperson". Search for "Fysisk"
+3. Here iam trying to change: InvoiceA_Insert.java line:185 --------------------> IMPORTANT
 
-Antal should be Double: see:Invoice:589
-
+4. OBS! The BETAL VILKORT is saved from: Invoice.java line:1218		
 ______
 Make video how to make Offert
 

@@ -182,6 +182,10 @@ public class InvoiceA_Insert_ extends Invoice {
         RowDataInvert var_referens = new RowDataInvertB(var_ref, DB.BUH_FAKTURA__VAR_REFERENS, "VÅR REFERENS", "", true, true, false);
         //
         String fixedComboValues_b = DB.GET_CONSTANT("STATIC__BETAL_VILKOR", DB.STATIC__BETAL_VILKOR);
+//        String fixedComboValues_b = JSon._get_special_(
+//                DB.GET_CONSTANT("STATIC__BETAL_VILKOR", DB.STATIC__BETAL_VILKOR),
+//                IO.loadLastEntered(DB.BUH_FAKTURA__BETAL_VILKOR, "30")
+//        );
         RowDataInvert betal_vilkor = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA__BETAL_VILKOR, "BETAL VILKOR", "", true, true, false);
         betal_vilkor.enableFixedValues();
         betal_vilkor.setUneditable();

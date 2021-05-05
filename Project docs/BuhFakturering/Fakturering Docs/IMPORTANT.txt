@@ -1,3 +1,9 @@
+[BUH_CONSTANTS - AQUIRED FROM PHP][IMPORTANT][IMPORTANT][2021-05-05]
+
+The main idea is that it's possible to change constants like "RUT_MAX" without updating the program but instead changing
+it in the "buh_constants" mysql table.
+
+Search for [#BUH-CONSTANTS#]
 ________________________________________________________________________________________________________
 [SERVICE EMAILS: LIKE - USER CREATED ACCOUNT, DELETED etc..][2021-04-12]
 
