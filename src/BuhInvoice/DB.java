@@ -38,7 +38,10 @@ public class DB {
      * @return
      */
     public static String convert(String strToProcess) {
-        return strToProcess.replaceAll(",", "¤");
+        //
+        strToProcess = strToProcess.replaceAll(",", "¤"); // is replaced from "JSon.java -> JSONToHashMap(String json, boolean reverse)"
+        strToProcess = strToProcess.replaceAll("\\;", "#"); // is replaced from "HelpBuh.class -> get_constants()"
+        return strToProcess;
     }
 
     public static void main(String[] args) {

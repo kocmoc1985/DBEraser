@@ -126,7 +126,7 @@ public class HelpBuh {
             //
             for (HashMap<String, String> val : entries) {
                 System.out.println("out: " + val);
-                constants.put(val.get("name"), val.get("val"));
+                constants.put(val.get("name"), val.get("val").replaceAll("#", ";"));
             }
             //
             System.out.println("");
