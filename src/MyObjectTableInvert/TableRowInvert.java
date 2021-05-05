@@ -281,7 +281,7 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
         //
         if (c instanceof JComboBox) {
             JComboBox comboBox = (JComboBox) c;
-            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
+            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn, -1);
         } else {
             return null;
         }

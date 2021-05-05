@@ -66,7 +66,7 @@ public class ColumnValue {
         } else if (value instanceof JComboBoxInvert) {
             JComboBoxInvert comboBox = (JComboBoxInvert) value;
 //            return HelpA.getComboBoxSelectedValue(comboBox);
-            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn);
+            return HelpA.getComboBoxSelectedValue(comboBox, paramToReturn,-1);
         } else if (value instanceof JTextFieldInvert) {
             JTextFieldInvert jtf = (JTextFieldInvert) value;
             return (String) jtf.getText();

@@ -2673,7 +2673,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton_search_by_kundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_search_by_kundActionPerformed
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND;
-        String fakturaKundId = HelpA.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2);
+        String fakturaKundId = HelpA.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2, -1);
         untoggleAll();
         invoiceB.refresh(fakturaKundId);
     }//GEN-LAST:event_jButton_search_by_kundActionPerformed

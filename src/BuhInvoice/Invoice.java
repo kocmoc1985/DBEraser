@@ -1222,12 +1222,12 @@ public abstract class Invoice extends Basic_Buh {
         } else if (col_name.equals(DB.BUH_FAKTURA__LEV_VILKOR)) {
             //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__LEV_VILKOR]
             JComboBoxInvert boxInvert = (JComboBoxInvert) jli;
-            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_VILKOR, getFakturaKundId()), boxInvert.getValue(1)); // jli.getValue() -> does not fit here
+            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_VILKOR, getFakturaKundId()), boxInvert.getValue(1, 2)); // jli.getValue() -> does not fit here
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__LEV_SATT)) {
             //[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][SAVE][DB.BUH_FAKTURA__LEV_SATT]
             JComboBoxInvert boxInvert = (JComboBoxInvert) jli;
-            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_SATT, getFakturaKundId()), boxInvert.getValue(1)); // jli.getValue() -> does not fit here
+            IO.writeToFile(IO.get_universal(DB.BUH_FAKTURA__LEV_SATT, getFakturaKundId()), boxInvert.getValue(1, 2)); // jli.getValue() -> does not fit here
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__MAKULERAD)) {
             //
@@ -1248,9 +1248,9 @@ public abstract class Invoice extends Basic_Buh {
             //
             hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
             //
-//            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__BETAL_VILKOR, "30", false);
-//            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);
-//            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_SATT, "Post", true);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__BETAL_VILKOR, "30", false);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);
+            restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_SATT, "Post", true);
             //
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {

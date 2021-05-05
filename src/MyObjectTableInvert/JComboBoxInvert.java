@@ -38,10 +38,14 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
         return this.parent;
     }
 
-    public String getValue(int paramToReturn){
-        return HelpA.getComboBoxSelectedValue(this,paramToReturn);
+    public String getValue(int paramToReturn, int resetParamToReturn) {
+        return HelpA.getComboBoxSelectedValue(this, paramToReturn, resetParamToReturn);
     }
-    
+
+    public String getValue(int paramToReturn) {
+        return HelpA.getComboBoxSelectedValue(this, paramToReturn, -1);
+    }
+
     @Override
     public String getValue() {
         return HelpA.getComboBoxSelectedValue(this);
@@ -51,7 +55,7 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
     public boolean valueUpdated() {
         return !child.getInitialValue().equals(getValue());
     }
-    
+
     @Override
     public void setFieldUpdatedAuto() {
         if (valueUpdated()) {
@@ -60,7 +64,7 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
             child.setUpdated(false);
         }
     }
-    
+
     @Override
     public void setValidated(boolean validated) {
         child.setValidated(validated);
@@ -75,8 +79,8 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
     public int getInputLengthValidationManual() {
         return 0;
     }
-    
-     @Override
+
+    @Override
     public void setFieldVarcharLength(int length) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -85,7 +89,5 @@ public class JComboBoxInvert extends JComboBoxA implements JLinkInvert {
     public int getFieldVarcharLength() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 
 }

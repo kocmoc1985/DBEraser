@@ -120,7 +120,7 @@ public class HelpA {
     private static int nr_properties;
     public static String LAST_ERR_OUT_PUT_FILE_PATH;
     private static Border PREV_BORDER;
-    
+
     private static int checkInetAttempts = 0;
 
     public static boolean checkInternetConnection(Object toSynchronizeOn, int connectionAttempts) {
@@ -146,13 +146,13 @@ public class HelpA {
         } catch (Exception ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             wait_x(toSynchronizeOn, 1000);
-            checkInternetConnection(toSynchronizeOn,connectionAttempts);
+            checkInternetConnection(toSynchronizeOn, connectionAttempts);
         }
         //
         return false;
         //
     }
-    
+
     public static boolean ping2(String host) throws IOException, InterruptedException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
 
@@ -694,7 +694,7 @@ public class HelpA {
 
     public static final HashSet<String> ALLOW_SAVE__FILTER__COLUMN = new HashSet<>();
     public static final HashSet<String> ALLOW_SAVE__FILTER__TABLE = new HashSet<>();
-    
+
     static {
         //
         ALLOW_SAVE__FILTER__TABLE.add("MC_Cpworder");
@@ -2369,7 +2369,7 @@ public class HelpA {
 
         x.start();
     }
-    
+
     public static JPasswordField chooseFromPasswordField(String msg, boolean hideChars, int cols) {
         //
         JPasswordField jpf = new JPasswordField(cols);
@@ -2858,9 +2858,10 @@ public class HelpA {
      *
      * @param box
      * @param paramToReturn
+     * @param resetParamToReturn
      * @return
      */
-    public static String getComboBoxSelectedValue(JComboBox box, int paramToReturn) {
+    public static String getComboBoxSelectedValue(JComboBox box, int paramToReturn, int resetParamToReturn) {
         Object val = box.getSelectedItem();
         //
         if (val == null) {
@@ -2881,10 +2882,16 @@ public class HelpA {
         }
         //
         if (val instanceof HelpA.ComboBoxObject) {
+            //
             HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) val;
             cbo.setParamToReturn(paramToReturn);
-//            return cbo.getParam_1();
-            return cbo.getParamAuto(); // Introduced [2020-07-13]
+            String rst = cbo.getParamAuto();
+            //
+            if(resetParamToReturn != -1){
+                cbo.setParamToReturn(resetParamToReturn);//[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][IMPORTANT][REFERS TO JComboBoxInvert -> public String getValue(int paramToReturn, int resetParamToReturn)]
+            }
+            //
+            return rst; // Introduced [2020-07-13]
         }
         //
         return null;
