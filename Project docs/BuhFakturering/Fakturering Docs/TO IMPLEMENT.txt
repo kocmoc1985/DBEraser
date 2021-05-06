@@ -38,10 +38,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Basic.java -> line:244
-
-BETAL VILKOR WHEN COPIED:
-See InvoiceB.java -> line:969
+1. Table.java ->  public Object getObjectAt(int row, int column)
+2. Invoice.java ->  showTableInvert() -> line: 752
 
 ______
 Make video how to make Offert

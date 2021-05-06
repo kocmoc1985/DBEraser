@@ -749,6 +749,15 @@ public abstract class Invoice extends Basic_Buh {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel2_faktura_main);
         //
+        // [#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][#INITIAL LOAD#] 
+        Object obj = TABLE_INVERT.getObjectAt(0, 1);
+        JComboBoxInvert jcbi = (JComboBoxInvert) obj;
+        //
+        java.awt.EventQueue.invokeLater(() -> {
+            jcbi.setSelectedIndex(jcbi.getSelectedIndex() - 1);
+            jcbi.setSelectedIndex(jcbi.getSelectedIndex() + 1);
+        });
+        //
     }
 
     public void showTableInvert_2() {

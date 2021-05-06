@@ -224,6 +224,12 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         }
         return csv_string;
     }
+    
+    public Object getObjectAt(int row, int column){
+        TableRow tableRow = getRow(row);
+        Object obj = tableRow.getObjectAt(column);
+        return obj;
+    }
 
     public String getValueAt(int row, int column) {
         TableRow tableRow = getRow(row);
