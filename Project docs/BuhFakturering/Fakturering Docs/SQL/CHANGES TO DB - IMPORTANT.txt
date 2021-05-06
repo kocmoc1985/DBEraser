@@ -6,3 +6,4 @@ OBS! REMEMBER THAT THE CHANGES SHALL BE DONE TO ALL ACTIVE DATABASES:
 
 [2021-05-04] Table:"buh_f_artikel" -> column: "antal" -> changed from int to float #CHANGED IN ALL DB'S:YES#
 [2021-05-04] Table "buh_constants" -> created #ADDED TO ALL DB'S:YES#
+[2021-05-06] Table "buh_constants -> lafakturering_setest" synchronized with "lafakturering_semain" -> synchronized means they contain same data now

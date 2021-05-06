@@ -1,7 +1,12 @@
 
+[2021-05-06]
+
 INSERT INTO `buh_constants` (`constant_id`, `name`, `val`) VALUES
 (1, 'ROT_PERCENT', '0.3'),
 (2, 'RUT_PERCENT', '0.5'),
 (3, 'ROT_MAX', '50000'),
 (4, 'RUT_MAX', '75000'),
-(5, 'STATIC__BETAL_VILKOR', '30,60,20,15,10,5');
+(5, 'STATIC__BETAL_VILKOR', '30¤60¤20¤15¤10¤5¤90'),
+(6, 'STATIC__LEV_VILKOR', 'Fritt vårt lager*FVL¤CIF*CIF¤FAS*FAS¤Fritt Kund*FK¤FOB*FOB'),
+(7, 'STATIC__LEV_SATT', 'Post*P¤Hämtas*HAM¤Digitalt*D'),
+(8, 'STATIC__MOMS_SATS', '25%*25¤12%*12¤6%*6¤0%*0');
