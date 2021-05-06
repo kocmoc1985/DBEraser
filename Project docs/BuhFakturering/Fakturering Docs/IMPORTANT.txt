@@ -12,7 +12,12 @@ so for the fakturaKund initially loaded the saved settings are not loaded. It co
 by switching JComboBox item forward and then back programatically which will trigger the itemStateChangedEvent
 
 SOLVING OF THE NACKDEL:
-Search for: [#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][#INITIAL LOAD#] 
+Search for: [#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][#INITIAL LOAD#]
+
+____
+
+One last issue to solve is to implement auto insert of "ER REFERENS". At the moment it's 
+beeing insert when cliking on that field. But it should be inserted on the "ItemStateChanged" event instead.
 
 ________________________________________________________________________________________________________
 [BUH_CONSTANTS - AQUIRED FROM PHP][IMPORTANT][IMPORTANT][2021-05-05]
