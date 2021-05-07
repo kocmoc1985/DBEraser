@@ -38,8 +38,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-1. Table.java ->  public Object getObjectAt(int row, int column)
-2. Invoice.java ->  showTableInvert() -> line: 752
+Make another point color for the Invoices for privat persons [IMPORTANT]
 
 ______
 Make video how to make Offert

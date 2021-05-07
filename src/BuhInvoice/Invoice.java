@@ -938,11 +938,11 @@ public abstract class Invoice extends Basic_Buh {
         if (col_name.equals(DB.BUH_FAKTURA__ER_REFERENS)) {
             //
             JLinkInvert jli = (JLinkInvert) me.getSource();
-            //
-            if (jli.getValue().isEmpty()) {
-                String er_referens_last = IO.loadLastEntered(IO.getErReferens(getFakturaKundId()), "");
-                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
-            }
+//            //
+//            if (jli.getValue().isEmpty()) {
+//                String er_referens_last = IO.loadLastEntered(IO.getErReferens(getFakturaKundId()), "");
+//                setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, TABLE_INVERT, er_referens_last);
+//            }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
@@ -1261,6 +1261,8 @@ public abstract class Invoice extends Basic_Buh {
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_SATT, "Post", true);
             //
+            String er_referens_last = IO.loadLastEntered(IO.getErReferens(jli.getValue()), ""); // getFakturaKundId() 
+            setValueTableInvert(DB.BUH_FAKTURA__ER_REFERENS, ti, er_referens_last);
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
