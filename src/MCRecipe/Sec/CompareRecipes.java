@@ -174,7 +174,7 @@ public class CompareRecipes extends javax.swing.JFrame {
 //            ResultSet rs = sql.execute(q1,mc_recipe);
             ResultSet rs = HelpA.runProcedureResultSetReturn(sql.getConnection(), q1);
             //
-            HelpA.build_table_common_return(rs, table);
+            table = HelpA.build_table_common_return(rs, table);
             //
 //            HelpA.build_table_common_with_rounding(rs,q1, table, "%2.2f",
 //                    new String[]{},
@@ -184,6 +184,8 @@ public class CompareRecipes extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+//        HelpA.paintTableRow(table, 2, 2, Color.red);
         //
 //        hideColumns(table);
         //
