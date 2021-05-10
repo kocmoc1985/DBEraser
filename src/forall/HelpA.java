@@ -852,7 +852,7 @@ public class HelpA {
     }
 
     public static ResultSet runProcedureResultSetReturn(Connection sqlConnection, String procedure) throws SQLException {
-        //
+        //[#COMPARE-RECIPES-2021#]
 //        CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
         CallableStatement proc = sqlConnection.prepareCall(procedure, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         boolean results = proc.execute();
