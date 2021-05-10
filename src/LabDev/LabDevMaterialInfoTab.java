@@ -147,7 +147,8 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
         //
         try {
 //            sql.execute(q, OUT);
-            sql.executeProcedure(q, OUT);
+//            sql.executeProcedure(q, OUT);
+            HelpA.runProcedureIntegerReturn_A_2(sql, q);
             fillJTable();
             return true;
         } catch (Exception ex) {

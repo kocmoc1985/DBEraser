@@ -851,6 +851,28 @@ public class HelpA {
         return dialog.isEmpty() ? "0" : dialog;
     }
 
+    public static ResultSet runProcedureResultSetReturn(Connection sqlConnection, String procedure) throws SQLException {
+        //
+//        CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
+        CallableStatement proc = sqlConnection.prepareCall(procedure, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        boolean results = proc.execute();
+        //
+        for (;;) {
+            if (results) {
+                return proc.getResultSet();
+            } else if (proc.getUpdateCount() != -1) {
+                //
+            } else {
+                break;
+            }
+            //
+            results = proc.getMoreResults();
+            //
+        }
+        //
+        return null;
+    }
+
     public static int runProcedureIntegerReturn_A(Connection sqlConnection, String procedure) throws SQLException {
         CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
         proc.registerOutParameter(1, Types.INTEGER);
@@ -1104,6 +1126,8 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
     public static synchronized JTable build_table_common_return(ResultSet rs, JTable jTable) {
         //
@@ -2887,7 +2911,7 @@ public class HelpA {
             cbo.setParamToReturn(paramToReturn);
             String rst = cbo.getParamAuto();
             //
-            if(resetParamToReturn != -1){
+            if (resetParamToReturn != -1) {
                 cbo.setParamToReturn(resetParamToReturn);//[#FAKTURAKUND-RELATED-SAVE-RESTORE-JCOMBO#][IMPORTANT][REFERS TO JComboBoxInvert -> public String getValue(int paramToReturn, int resetParamToReturn)]
             }
             //

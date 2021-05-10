@@ -1,4 +1,6 @@
-Tab "TEST VARIABLES" -> Add buttons -> Test code chosen from JCombo -> correct ??
-It would be good to have tool tips for this 2 add buttons
 
-Fix double clicking and editing of a "long value" -> shall not be possible
+2021-05-10 -> Adding new compare methods
+
+[#COMPARE-RECIPES-2021#]
+
+1. CompareRecipes.java -> fillTable_b(String orderByCriteria)

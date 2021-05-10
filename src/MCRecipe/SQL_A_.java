@@ -41,6 +41,19 @@ public class SQL_A_ {
                 + " FROM " + param1 + "_C"
                 + " " + orderByCriteria;
     }
+    
+    /**
+     * [#COMPARE-RECIPES-2021#]
+     * @param PROC
+     * @param param1
+     * @param param2
+     * @return 
+     */
+    public static String compareRecipesShow__b(String PROC, String param1, String param2) {
+        return "[dbo].[" + PROC + "] " + ""
+                + quotes(param1, true) + ","
+                + quotes(param2, false);
+    }
 
     /**
      *

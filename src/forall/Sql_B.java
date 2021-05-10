@@ -371,6 +371,13 @@ public class Sql_B implements SqlBasicLocal, SqlBasic {
         return null;
     }
 
+    /**
+     * Use the one from HelpA
+     * @param q
+     * @param sm
+     * @deprecated 
+     * @return 
+     */
     @Override
     public int executeProcedure(String q, ShowMessage sm) {
         //
