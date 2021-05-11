@@ -853,7 +853,7 @@ public class HelpA {
 
     public static ResultSet runProcedureResultSetReturn(Connection sqlConnection, String procedure) throws SQLException {
         //[#COMPARE-RECIPES-2021#]
-//        CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
+        //[#RUN-SQL-PROCEDURE-JAVA#][#RESULT-SET-RETURN-JAVA#]
         CallableStatement proc = sqlConnection.prepareCall(procedure, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         boolean results = proc.execute();
         //
@@ -874,6 +874,7 @@ public class HelpA {
     }
 
     public static int runProcedureIntegerReturn_A(Connection sqlConnection, String procedure) throws SQLException {
+        //[#RUN-SQL-PROCEDURE-JAVA#]
         CallableStatement proc = sqlConnection.prepareCall("{ ? = call " + procedure + " }");
         proc.registerOutParameter(1, Types.INTEGER);
         proc.execute();
@@ -891,6 +892,7 @@ public class HelpA {
     }
 
     public static int runProcedureIntegerReturn_A_2(SqlBasicLocal sql, String procedure) {
+        //[#RUN-SQL-PROCEDURE-JAVA#]
         CallableStatement proc;
         //
         try {

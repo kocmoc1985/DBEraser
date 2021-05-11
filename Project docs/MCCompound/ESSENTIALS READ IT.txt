@@ -1,3 +1,21 @@
+[PROCEDURES, FUNCTIONS, EXECUTE][2021-05-11][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][LET THIS ONE BE ON TOP]
+
+Search for tag: [#RUN-SQL-PROCEDURE-JAVA#]
+
+SOME IMPORTANT STATEMENTS:
+1. Yes a procedure can return a "ResultSet" - this is 100% verified on [2021-05-11] 
+-> search for [#RUN-SQL-PROCEDURE-JAVA#][#RESULT-SET-RETURN-JAVA#] in the "DBEraser" project
+2. Procedures can also return an "Int" - an error code or something
+3. When using with Java a Procedure shall only have one return
+
+Some important notes:
+"Sql-procedures" are mainly used for other things then returning a ResultSet. An example of using Sql-procedures is
+insertion, delitions, updating.. "Sql-functions" on other hand are mainly used for "SELECT" statements.
+
+_______________________________________________________________________________________________
+
+
+
 [ADDING NEW TAB PROCEDURE]
 
 Start from: "MCRecipe.lang -> LNG.class"
