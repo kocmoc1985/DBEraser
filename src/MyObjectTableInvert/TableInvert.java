@@ -539,7 +539,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
                 //
                 Component c = (Component) unsavedEntryInvert.getDataField();
 //                c.setForeground(Color.green);
-                HelpA.font_change_type((JComponent) c, Font.PLAIN);
+                HelpA.font_change_type(c, Font.PLAIN);
                 //
                 if (c instanceof JComboBox) {
                     JComboBox box = (JComboBox) c;

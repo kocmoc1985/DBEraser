@@ -166,28 +166,19 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         JTable table = jTable1;
         //
-//        String q1 = SQL_A_.compareRecipesShow(HelpA.updatedBy(), orderByCriteria);
         String q1 = SQL_A_.compareRecipesShow__b(PROC.PROC_88, toShowNr, HelpA.updatedBy() + "_C");
         //
         try {
             //
-//            ResultSet rs = sql.execute(q1,mc_recipe);
             ResultSet rs = HelpA.runProcedureResultSetReturn(sql.getConnection(), q1);
             //
             table = HelpA.build_table_common_return(rs, table);
-            //
-//            HelpA.build_table_common_with_rounding(rs,q1, table, "%2.2f",
-//                    new String[]{},
-//                    new String[]{},
-//                    new String[]{});
             //
         } catch (SQLException ex) {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-//        HelpA.paintTableRow(table, 2, 2, Color.red);
-        //
-//        hideColumns(table);
+        HelpA.tableRowSetBold__first_and_last_rows(table);
         //
     }
     

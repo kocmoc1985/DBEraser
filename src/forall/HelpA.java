@@ -1127,8 +1127,6 @@ public class HelpA {
         }
     }
 
-    
-
     public static synchronized JTable build_table_common_return(ResultSet rs, JTable jTable) {
         //
         if (rs == null) {
@@ -1948,36 +1946,75 @@ public class HelpA {
         };
     }
 
-    public static void paintTableRow(JTable table, int col, int row, final Color borederColor) {
+    public static void tableRowSetBold__first_and_last_rows(JTable table) {
+        //[#COMPARE-RECIPES-2021#]
+        if (table == null || isEmtyJTable(table)) {
+            return;
+        }
         //
-        JTableHeader th = table.getTableHeader();
-        TableColumnModel tcm = th.getColumnModel();
-        TableColumn tc = tcm.getColumn(col);
+        int firstRow = 0;
+        int lastRow = table.getRowCount() - 1;
         //
-        TableCellRenderer renderer = new DefaultTableCellRenderer() {
-            JLabel label = new JLabel();
+        if (table.getRowCount() == 1) {
+            table.setDefaultRenderer(Object.class, new TableCellRenderer_A(firstRow, -1));
+            table.repaint();
+        } else {
+            table.setDefaultRenderer(Object.class, new TableCellRenderer_A(firstRow, lastRow));
+            table.repaint();
+        }
+        //
+    }
 
+    public static void tableRowSetBold(JTable table, int row) {
+        //
+        table.setDefaultRenderer(Object.class, new TableCellRenderer_A(row, -1));
+        table.repaint();
+        //
+    }
+
+    public static void tableRowSetBold_two_Rows(JTable table, int row_a, int row_b) {
+        //
+        table.setDefaultRenderer(Object.class, new TableCellRenderer_A(row_a, row_b));
+        table.repaint();
+        //
+    }
+
+    static class TableCellRenderer_A extends DefaultTableCellRenderer {
+
+        private final int row_a;
+        private final int row_b;
+
+        public TableCellRenderer_A(int row_a, int row_b) {
+            this.row_a = row_a;
+            this.row_b = row_b;
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int col) {
+
+            Component c = super.getTableCellRendererComponent(table, value,
+                    isSelected, hasFocus, row, col);
             //
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-
-                String status = (String) table.getModel().getValueAt(row, col);
-
-                if (status.equals("1")) {
-                    label.setOpaque(true);
-                    label.setText("" + value);
-                    label.setBorder(BorderFactory.createLineBorder(borederColor));
-                    return label;
+//            Object valueAt = table.getModel().getValueAt(row, col);
+//            System.out.println(valueAt + " row: " + row + " col: " + col);
+            //
+            if (row_b == -1) { // Here it means row_b not specified
+                if (row == this.row_a) {
+                    font_change_type(c, Font.BOLD);
                 } else {
-                    return this;
+                    font_change_type(c, Font.PLAIN);
+                }
+            } else { // Here it means both rows specified
+                if (row == this.row_a || row == this.row_b) {
+                    font_change_type(c, Font.BOLD);
+                } else {
+                    font_change_type(c, Font.PLAIN);
                 }
             }
-        };
-        //
-        tc.setHeaderRenderer(renderer);
-        th.repaint();
-        //
+            //
+            return c;
+        }
     }
 
     //
@@ -3839,13 +3876,13 @@ public class HelpA {
         }
     }
 
-    public static void increase_font(JComponent comp, float size) {
+    public static void increase_font(Component comp, float size) {
         Font actFont = comp.getFont();
         Font newFont = actFont.deriveFont(size);
         comp.setFont(newFont);
     }
 
-    public static void font_change_type(JComponent comp, int type) {
+    public static void font_change_type(Component comp, int type) {
         Font actFont = comp.getFont();
         Font newFont = actFont.deriveFont(type);
         comp.setFont(newFont);
