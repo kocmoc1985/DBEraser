@@ -183,7 +183,7 @@ public class CompareRecipes extends javax.swing.JFrame {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-//        
+        //        
         markUpRecipesC(table, markUpColName, true);
 //        HelpA.tableRowSetBold__first_and_last_rows(table);
         //
@@ -205,6 +205,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     }
 
     private void markUpRecipesC(JTable table, String colName, boolean switchGetColor) {
+        //[#COMPARE-RECIPES-2021#]
         paint_selected_rows_c(buildMarkUpListB(table, colName, switchGetColor), table);
     }
 
