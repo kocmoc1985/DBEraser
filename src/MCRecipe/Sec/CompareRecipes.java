@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author KOCMOC
  */
 public class CompareRecipes extends javax.swing.JFrame {
-    
+
     private final MC_RECIPE mc_recipe;
     private final SqlBasicLocal sql;
     private final SqlBasicLocal sql_additional;
@@ -46,33 +46,33 @@ public class CompareRecipes extends javax.swing.JFrame {
         this.sql_additional = sql_additional;
         initOther();
     }
-    
+
     private void initOther() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL_RECIPE).getImage());
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Compare Recipes");
     }
-    
+
     public void tableCommonRepport(JTable table, boolean landscape) {
         new JTableBasicRepport(table, landscape);
     }
-    
+
     public boolean dropCompareTable(String user) {
         String q = SQL_A_.compareRecipeDropTable(user);
         //
         try {
-            sql.execute(q,mc_recipe);
+            sql.execute(q, mc_recipe);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(CompareRecipes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-    
+
     public boolean addToCompare(String recipeCode, String release, String user) {
         //
-        String q = SQL_A_.compareRecipesAddToCompare(PROC.PROC_01,recipeCode, release, user);
+        String q = SQL_A_.compareRecipesAddToCompare(PROC.PROC_01, recipeCode, release, user);
         //
         mc_recipe.showMessage(q);
         //
@@ -82,7 +82,7 @@ public class CompareRecipes extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     public void fillComboBoxes() {
         //
         ArrayList<String> colNames = HelpA.getVisibleColumnsNames(jTable1);
@@ -93,7 +93,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         HelpA.fillComboBox(jComboBoxCompareRecipesOrderby2, colNamesArr, "");
         //
     }
-    
+
     public void orderByDynamic() {
         //
         String orderParam1 = (String) jComboBoxCompareRecipesOrderBy1.getSelectedItem();
@@ -118,7 +118,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         fillTable(orderByString);
         //
     }
-    
+
     public void fillAndShow() {
         //
         unpaintAllRows_a(jTable1);
@@ -133,8 +133,8 @@ public class CompareRecipes extends javax.swing.JFrame {
         }
         //
     }
-    
-    public void fillTable(String orderByCriteria) {
+
+    private void fillTable(String orderByCriteria) {
         //
         JTable table = jTable1;
         //
@@ -142,10 +142,10 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         try {
             //
-            ResultSet rs = sql.execute(q1,mc_recipe);
+            ResultSet rs = sql.execute(q1, mc_recipe);
             //
-            HelpA.build_table_common_with_rounding(rs,q1, table, "%2.2f",
-                    new String[]{RecipeDetailed_.t4_id, RecipeDetailed_.t4_loadingSeq,RecipeDetailed_.t4_material,RecipeDetailed_.t4_release},
+            HelpA.build_table_common_with_rounding(rs, q1, table, "%2.2f",
+                    new String[]{RecipeDetailed_.t4_id, RecipeDetailed_.t4_loadingSeq, RecipeDetailed_.t4_material, RecipeDetailed_.t4_release},
                     new String[]{RecipeDetailed_.t4_density},
                     new String[]{});
             //
@@ -156,13 +156,13 @@ public class CompareRecipes extends javax.swing.JFrame {
         hideColumns(table);
         //
     }
-    
+
     /**
-     * 2021-05-10
-     * [#COMPARE-RECIPES-2021#]
-     * @param toShowNr 
+     * 2021-05-10 [#COMPARE-RECIPES-2021#]
+     *
+     * @param toShowNr
      */
-    public void fillTable_b(String toShowNr) {
+    public void fillTable_b(String toShowNr,String markUpColName) {
         //
         JTable table = jTable1;
         //
@@ -178,10 +178,11 @@ public class CompareRecipes extends javax.swing.JFrame {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        HelpA.tableRowSetBold__first_and_last_rows(table);
+//        HelpA.tableRowSetBold__first_and_last_rows(table);
+        markUpRecipesB(table, markUpColName, true);
         //
     }
-    
+
     private void hideColumns(JTable table) {
         HelpA.hideColumnByName(table, "Recipe_Recipe_ID");
         HelpA.hideColumnByName(table, "RecipeID");
@@ -192,18 +193,18 @@ public class CompareRecipes extends javax.swing.JFrame {
         HelpA.hideColumnByName(table, "BalanceID");
         HelpA.hideColumnByName(table, "PriceData");
     }
-    
-    private void undoAllMarkUps(JTable table){
+
+    private void undoAllMarkUps(JTable table) {
         unpaintAllRows_a(table);
     }
-    
-    private void markUpRecipesB(JTable table) {
-        paint_selected_rows_b(buildMarkUpListB(table), table);
+
+    private void markUpRecipesB(JTable table, String colName, boolean switchGetColor) {
+        paint_selected_rows_b(buildMarkUpListB(table, colName, switchGetColor), table);
     }
-    
-    private LinkedList<Object> buildMarkUpListB(JTable table) {
+
+    private LinkedList<Object> buildMarkUpListB(JTable table, String colName, boolean switchGetColor) {
         //
-        LinkedList<Color> colorList = new LinkedList<Color>();
+        LinkedList<Color> colorList = new LinkedList<>();
         colorList.add(Color.lightGray);
         colorList.add(new Color(253, 255, 178)); //light yellow
         colorList.add(new Color(253, 193, 213)); // light pink 
@@ -216,10 +217,19 @@ public class CompareRecipes extends javax.swing.JFrame {
         LinkedList listToReturn = new LinkedList();
         //
         for (int i = 0; i < table.getRowCount(); i++) {
-            String rName = HelpA.getValueGivenRow(table, i, "RecipeName");
+            //
+            String rName = HelpA.getValueGivenRow(table, i, colName);
             //
             if (colMap.containsKey(rName) == false) {
-                Color color = colorList.pollFirst();
+                //
+                Color color = Color.RED;
+                //
+                if (switchGetColor == false) {
+                    color = colorList.pollFirst();
+                } else {
+                    color = switchGetColor();
+                }
+                // 
                 colMap.put(rName, color);
                 listToReturn.add(new PaintObject(i, color));
             } else {
@@ -230,11 +240,30 @@ public class CompareRecipes extends javax.swing.JFrame {
         //
         return listToReturn;
     }
-    
+
+    private static final LinkedList<Color> colorListSwitch = new LinkedList<>();
+
+    static {
+        colorListSwitch.add(new Color(253, 193, 213)); // light pink 
+        colorListSwitch.add(new Color(202, 255, 209)); // light green
+    }
+    private static int colorSwitch = 1;
+
+    private static Color switchGetColor() {
+        //
+        colorSwitch++;
+        //
+        if (colorSwitch % 2 == 0) {
+            return colorListSwitch.get(0);
+        } else {
+            return colorListSwitch.get(1);
+        }
+    }
+
     private void markUpRecipes(JTable table) {
         paint_selected_rows_a(buildMarkUpList(table), table, Color.lightGray);
     }
-    
+
     private LinkedList<Integer> buildMarkUpList(JTable table) {
         //
         String actRecipeName = "";
@@ -250,7 +279,7 @@ public class CompareRecipes extends javax.swing.JFrame {
             }
             //
         }
-        
+
         return list;
     }
 
@@ -443,21 +472,23 @@ public class CompareRecipes extends javax.swing.JFrame {
 
     private void jButtonCompareRecipesMarkUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompareRecipesMarkUpActionPerformed
         //
+        fillTable("");
         markUpRecipes(jTable1);
         //
     }//GEN-LAST:event_jButtonCompareRecipesMarkUpActionPerformed
-    
+
     private void jButtonCompareRecipesPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompareRecipesPrintActionPerformed
         tableCommonRepport(jTable1, true);
     }//GEN-LAST:event_jButtonCompareRecipesPrintActionPerformed
-    
+
     private void jButtonCompareRecipesOrderByDynamicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompareRecipesOrderByDynamicActionPerformed
         unpaintAllRows_a(jTable1);
         orderByDynamic();
     }//GEN-LAST:event_jButtonCompareRecipesOrderByDynamicActionPerformed
-    
+
     private void jButtonCompareRecipesMarkUp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompareRecipesMarkUp2ActionPerformed
-        markUpRecipesB(jTable1);
+        fillTable("");
+        markUpRecipesB(jTable1, "RecipeName", false);
     }//GEN-LAST:event_jButtonCompareRecipesMarkUp2ActionPerformed
 
     private void jButtonCompareRecipesUndoMarkUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCompareRecipesUndoMarkUpActionPerformed
@@ -465,51 +496,51 @@ public class CompareRecipes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCompareRecipesUndoMarkUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fillTable_b("1");
+        fillTable_b("1","Material");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        fillTable_b("2");
+        fillTable_b("2","Phase");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       fillTable_b("3");
+        fillTable_b("3",null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        fillTable_b("4");
+        fillTable_b("4",null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        fillTable_b("5");
+        fillTable_b("5",null);
     }//GEN-LAST:event_jButton5ActionPerformed
-    
+
     public void paint_selected_rows_a(final LinkedList<Integer> rowsToPaint, final JTable jTable, final Color color) {
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 setBackground(null);
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                
+
                 for (Integer r : rowsToPaint) {
                     if (row == r) {
                         c.setBackground(color);
-                        
+
                         return c;
                     }
                 }
-                
+
                 return this;
             }
         });
         //
         jTable.repaint();
     }
-    
+
     public void unpaintAllRows_a(JTable table) {
         paint_selected_rows_a(new LinkedList<Integer>(), table, null);
     }
-    
+
     public void paint_selected_rows_b(final LinkedList<Object> rowsToPaint, final JTable jTable) {
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
@@ -524,44 +555,43 @@ public class CompareRecipes extends javax.swing.JFrame {
                         //
                         Color light_yellow = new Color(253, 255, 178);
                         //
-                        if(po.getColor().getRGB() == light_yellow.getRGB() && isSelected){ // light yellow == new Color(253, 255, 178)
+                        if (po.getColor().getRGB() == light_yellow.getRGB() && isSelected) { // light yellow == new Color(253, 255, 178)
                             c.setForeground(Color.BLUE);
                         }
                         //
-                        if(!isSelected){
+                        if (!isSelected) {
                             c.setForeground(Color.BLACK);
                         }
                         //
-                        if(po.getColor().getRGB() == light_yellow.getRGB() && !isSelected){
+                        if (po.getColor().getRGB() == light_yellow.getRGB() && !isSelected) {
                             c.setForeground(Color.BLACK);
                         }
                         //
                         return c;
                     }
                 }
-                
+
                 return this;
             }
         });
         //
         jTable.repaint();
     }
-    
-    
+
     class PaintObject {
-        
+
         private final int row;
         private final Color color;
-        
+
         public PaintObject(int row, Color color) {
             this.row = row;
             this.color = color;
         }
-        
+
         public int getRow() {
             return row;
         }
-        
+
         public Color getColor() {
             return color;
         }
