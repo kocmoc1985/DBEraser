@@ -55,7 +55,7 @@
                               <Component id="jButton4" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton5" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace pref="166" max="32767" attributes="0"/>
+                              <EmptySpace pref="178" max="32767" attributes="0"/>
                               <Component id="jPanel2" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -67,22 +67,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonCompareRecipesOrderByDynamic" alignment="1" max="32767" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jComboBoxCompareRecipesOrderBy1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxCompareRecipesOrderby2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
                           <Component id="jButton1" max="32767" attributes="0"/>
                           <Component id="jButton2" max="32767" attributes="0"/>
                           <Component id="jButton3" max="32767" attributes="0"/>
                           <Component id="jButton4" max="32767" attributes="0"/>
                           <Component id="jButton5" max="32767" attributes="0"/>
+                          <Component id="jComboBoxCompareRecipesOrderBy1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jComboBoxCompareRecipesOrderby2" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="864" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -111,6 +109,9 @@
             </Container>
             <Component class="javax.swing.JComboBox" name="jComboBoxCompareRecipesOrderBy1">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.DefaultComboBoxModel()" type="code"/>
                 </Property>
@@ -118,6 +119,9 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxCompareRecipesOrderby2">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.DefaultComboBoxModel()" type="code"/>
                 </Property>

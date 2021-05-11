@@ -10,9 +10,12 @@ import MCRecipe.SQL_A_;
 import Reporting.JTableBasicRepport;
 import forall.GP;
 import forall.HelpA;
+import static forall.HelpA.font_change_type;
+import static forall.HelpA.isEmtyJTable;
 import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,6 +62,7 @@ public class CompareRecipes extends javax.swing.JFrame {
     }
 
     public boolean dropCompareTable(String user) {
+        //
         String q = SQL_A_.compareRecipeDropTable(user);
         //
         try {
@@ -68,6 +72,7 @@ public class CompareRecipes extends javax.swing.JFrame {
             Logger.getLogger(CompareRecipes.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+        //
     }
 
     public boolean addToCompare(String recipeCode, String release, String user) {
@@ -162,7 +167,7 @@ public class CompareRecipes extends javax.swing.JFrame {
      *
      * @param toShowNr
      */
-    public void fillTable_b(String toShowNr,String markUpColName) {
+    public void fillTable_b(String toShowNr, String markUpColName) {
         //
         JTable table = jTable1;
         //
@@ -178,8 +183,9 @@ public class CompareRecipes extends javax.swing.JFrame {
             Logger.getLogger(RecipeDetailed_.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+//        
+        markUpRecipesC(table, markUpColName, true);
 //        HelpA.tableRowSetBold__first_and_last_rows(table);
-        markUpRecipesB(table, markUpColName, true);
         //
     }
 
@@ -196,6 +202,10 @@ public class CompareRecipes extends javax.swing.JFrame {
 
     private void undoAllMarkUps(JTable table) {
         unpaintAllRows_a(table);
+    }
+
+    private void markUpRecipesC(JTable table, String colName, boolean switchGetColor) {
+        paint_selected_rows_c(buildMarkUpListB(table, colName, switchGetColor), table);
     }
 
     private void markUpRecipesB(JTable table, String colName, boolean switchGetColor) {
@@ -326,8 +336,10 @@ public class CompareRecipes extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTable1);
 
+        jComboBoxCompareRecipesOrderBy1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxCompareRecipesOrderBy1.setModel(new javax.swing.DefaultComboBoxModel());
 
+        jComboBoxCompareRecipesOrderby2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBoxCompareRecipesOrderby2.setModel(new javax.swing.DefaultComboBoxModel());
 
         jButtonCompareRecipesOrderByDynamic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
@@ -439,7 +451,7 @@ public class CompareRecipes extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -447,20 +459,19 @@ public class CompareRecipes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonCompareRecipesOrderByDynamic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxCompareRecipesOrderBy1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxCompareRecipesOrderby2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxCompareRecipesOrderBy1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBoxCompareRecipesOrderby2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         jScrollPane5.setViewportView(jPanel1);
@@ -496,23 +507,23 @@ public class CompareRecipes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCompareRecipesUndoMarkUpActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fillTable_b("1","Material");
+        fillTable_b("1", "Material");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        fillTable_b("2","Phase");
+        fillTable_b("2", "Phase");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        fillTable_b("3",null);
+        fillTable_b("3", null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        fillTable_b("4",null);
+        fillTable_b("4", null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        fillTable_b("5",null);
+        fillTable_b("5", null);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public void paint_selected_rows_a(final LinkedList<Integer> rowsToPaint, final JTable jTable, final Color color) {
@@ -535,6 +546,7 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         //
         jTable.repaint();
+        //
     }
 
     public void unpaintAllRows_a(JTable table) {
@@ -542,15 +554,18 @@ public class CompareRecipes extends javax.swing.JFrame {
     }
 
     public void paint_selected_rows_b(final LinkedList<Object> rowsToPaint, final JTable jTable) {
+        //
         jTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 setBackground(null);
+                //
                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 //
                 for (Object obj : rowsToPaint) {
                     PaintObject po = (PaintObject) obj;
                     if (row == po.getRow()) {
+                        //
                         c.setBackground(po.getColor());
                         //
                         Color light_yellow = new Color(253, 255, 178);
@@ -576,6 +591,86 @@ public class CompareRecipes extends javax.swing.JFrame {
         });
         //
         jTable.repaint();
+        //
+    }
+
+    public void paint_selected_rows_c(final LinkedList<Object> rowsToPaint, final JTable table) {
+        //
+        if (table == null || isEmtyJTable(table)) {
+            return;
+        }
+        //
+        int firstRow = 0;
+        int lastRow = table.getRowCount() - 1;
+        //
+        //
+        table.setDefaultRenderer(Object.class, new TableCellRenderer_A(firstRow, lastRow, rowsToPaint));
+        //
+        table.repaint();
+        //
+    }
+
+    class TableCellRenderer_A extends DefaultTableCellRenderer {
+
+        private final int row_a;
+        private final int row_b;
+        private final LinkedList<Object> rowsToPaint;
+
+        public TableCellRenderer_A(int row_a, int row_b, LinkedList<Object> rowsToPaint) {
+            this.row_a = row_a;
+            this.row_b = row_b;
+            this.rowsToPaint = rowsToPaint;
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            //
+            setBackground(null);
+            //
+            final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            //
+            for (Object obj : rowsToPaint) {
+                PaintObject po = (PaintObject) obj;
+                if (row == po.getRow()) {
+                    //
+                    c.setBackground(po.getColor());
+                    //
+                    Color light_yellow = new Color(253, 255, 178);
+                    //
+                    if (po.getColor().getRGB() == light_yellow.getRGB() && isSelected) { // light yellow == new Color(253, 255, 178)
+                        c.setForeground(Color.BLUE);
+                    }
+                    //
+                    if (!isSelected) {
+                        c.setForeground(Color.BLACK);
+                    }
+                    //
+                    if (po.getColor().getRGB() == light_yellow.getRGB() && !isSelected) {
+                        c.setForeground(Color.BLACK);
+                    }
+                    //
+                }
+            }
+            //
+            if (row_b == -1) { // Here it means row_b not specified
+                if (row == this.row_a) {
+                    font_change_type(c, Font.BOLD);
+                    c.setBackground(Color.LIGHT_GRAY);
+                } else {
+                    font_change_type(c, Font.PLAIN);
+                }
+            } else { // Here it means both rows specified
+                if (row == this.row_a || row == this.row_b) {
+                    font_change_type(c, Font.BOLD);
+                    c.setBackground(Color.LIGHT_GRAY);
+                } else {
+                    font_change_type(c, Font.PLAIN);
+                }
+            }
+            //
+            return this;
+            //
+        }
     }
 
     class PaintObject {
