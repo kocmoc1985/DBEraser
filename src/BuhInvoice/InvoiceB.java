@@ -598,8 +598,10 @@ public class InvoiceB extends Basic_Buh {
             //
         }
         //
-        System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
-        System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
+        bim.jTextField__nyckel_tal__ing_moms.setText(""+NYCKEL_TAL__ING_MOMS_TOTAL);
+        bim.jTextField__nyckel_tal__antal_fakturor.setText(""+NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
+//        System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
+//        System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
         //
     }
 
