@@ -413,7 +413,7 @@ public class InvoiceB extends Basic_Buh {
             //
             //
         } catch (Exception ex) {
-            Logger.getLogger(EditPanel_Inbet_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditPanel_Inbet.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return false;

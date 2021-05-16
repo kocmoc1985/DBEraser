@@ -2556,7 +2556,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void makeInbetalning(boolean isKontantFaktura, boolean directlyAfterCreation) {
         //
-        EditPanel_Inbet_ epb = new EditPanel_Inbet_(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
+        EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
         //
         if (directlyAfterCreation) {
             epb.setHeaderAfterCreationOfKontantFaktura();

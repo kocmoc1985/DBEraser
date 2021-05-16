@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author KOCMOC
  */
-public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListener {
+public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener {
 
     protected Basic_Buh basic;
     protected final BUH_INVOICE_MAIN bim;
@@ -56,7 +56,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
      * @param fakturaNr
      * @param fakturaKund
      */
-    public EditPanel_Inbet_(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
+    public EditPanel_Inbet(BUH_INVOICE_MAIN bim,boolean isKontantFaktura, String fakturaId, String fakturaNr, String fakturaKund) {
         initComponents();
         this.bim = bim;
         this.IS_KONTANT_FAKTURA = isKontantFaktura;
@@ -239,7 +239,7 @@ public class EditPanel_Inbet_ extends javax.swing.JFrame implements MouseListene
             //
             //
         } catch (Exception ex) {
-            Logger.getLogger(EditPanel_Inbet_.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditPanel_Inbet.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
