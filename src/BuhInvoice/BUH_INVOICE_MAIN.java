@@ -3168,11 +3168,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (e.getSource() == jTable_invoiceB_alla_fakturor && (e.getClickCount() == 1)) {
             //
-            Thread x = new Thread(() -> {
-                jtable_InvoiceB_all_invoices_clicked();
-            });
-            //
-            x.start();
+            changeToFakturaWithsync();
             //
         } else if (e.getSource() == jTable_invoiceB_alla_fakturor && (e.getClickCount() == 2)) {
             //
@@ -3260,6 +3256,22 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
+    
+    protected void changeToFakturaWithsync() {
+        //
+        Thread x = new Thread(() -> {
+            jtable_InvoiceB_all_invoices_clicked();
+        });
+        //
+        x.start();
+        //
+        try {
+            x.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
 
     protected void jtable_InvoiceB_all_invoices_clicked() {
         //
@@ -3298,11 +3310,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         if (e.getSource() == jTable_invoiceB_alla_fakturor && cond_1) {
             //
-            Thread x = new Thread(() -> {
-                jtable_InvoiceB_all_invoices_clicked();
-            });
-            //
-            x.start();
+            changeToFakturaWithsync();
             //
         } else if (e.getSource() == jTextArea_faktura_komment) {
             //
