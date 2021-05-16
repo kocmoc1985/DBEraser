@@ -653,6 +653,12 @@ public class HelpA {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
+    
+    public static String get_act_year_first_date() {
+        DateFormat formatter = new SimpleDateFormat("yyyy");
+        Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime()) + "-01-01";
+    }
 
     public static String dateToDateConverter(String date, String date_format_1, String date_format_2) throws ParseException {
         DateFormat formatter = new SimpleDateFormat(date_format_1);
@@ -3277,10 +3283,7 @@ public class HelpA {
         return cbo_arr;
     }
 
-    public static void main(String[] args) {
-        double x = 2.54456546;
-        System.out.println("" + round_double(x));
-    }
+    
 
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);

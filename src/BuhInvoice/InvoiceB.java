@@ -558,6 +558,10 @@ public class InvoiceB extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
+            if (bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
+                //[#NYCKEL-TAL#]
+                countIngaendeMomsSedanStartOfYear(invoices);
+            }
             //
             for (HashMap<String, String> invoice_map : invoices) {
                 addRowJtable_all_invoices(invoice_map, table);
@@ -569,6 +573,33 @@ public class InvoiceB extends Basic_Buh {
         }
         //
         hideColumnsFakturaTable(table);
+        //
+    }
+
+    public static int NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
+    public static double NYCKEL_TAL__ING_MOMS_TOTAL = 0;
+
+    private void countIngaendeMomsSedanStartOfYear(ArrayList<HashMap<String, String>> invoices) {
+        //
+        NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
+        NYCKEL_TAL__ING_MOMS_TOTAL = 0;
+        //
+        String start_of_year_date = HelpA.get_act_year_first_date();
+        //
+        for (HashMap<String, String> map : invoices) {
+            //
+            String fakturadatum = map.get("fakturadatum");
+            //
+            if (GP_BUH.compareDates_b(start_of_year_date, GP_BUH.DATE_FORMAT_BASIC, fakturadatum, GP_BUH.DATE_FORMAT_BASIC)) {
+                double moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__MOMS_TOTAL__));
+                NYCKEL_TAL__ING_MOMS_TOTAL += moms;
+                NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA++;
+            }
+            //
+        }
+        //
+        System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
+        System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
         //
     }
 
@@ -971,7 +1002,7 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
         //
         faktura_data_map.put(DB.BUH_FAKTURA__KUNDID__, "777"); // [#KUND-ID-INSERT#] [2020-10-26] OBS! The value sent does not have any meaning any longer
-        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice.getNextFakturaNr()); // OBS! Aquired from http
+        faktura_data_map.put(DB.BUH_FAKTURA__FAKTURANR__, Invoice_.getNextFakturaNr()); // OBS! Aquired from http
         faktura_data_map.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated_special());
         faktura_data_map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, komment);
         faktura_data_map.put(DB.BUH_FAKTURA__COPIED_FROM_ID, fakturaId); //[#KREDIT-RUT#]
@@ -1282,7 +1313,7 @@ public class InvoiceB extends Basic_Buh {
 
     }
 
-    private String getFakturaNrAltIfExist(Invoice invoice) {
+    private String getFakturaNrAltIfExist(Invoice_ invoice) {
         TableInvert ti3 = (TableInvert) invoice.TABLE_INVERT_3;
         String fakturanr_alt = ti3.getValueAt(DB.BUH_FAKTURA__FAKTURANR_ALT);
         if (fakturanr_alt.equals("0") == false) {
@@ -1296,7 +1327,7 @@ public class InvoiceB extends Basic_Buh {
         //
         RutRot rut = bim.getRutRot();
         //
-        if (Invoice.CURRENT_OPERATION_INSERT == false) { // "UPDATE / BEARBETA"
+        if (Invoice_.CURRENT_OPERATION_INSERT == false) { // "UPDATE / BEARBETA"
             //
             if (bim.isRUT() && rut == null) {
                 return getForetagData(DB.PHP_FUNC_PARAM_GET_RUT, false);
@@ -1329,7 +1360,7 @@ public class InvoiceB extends Basic_Buh {
         return rut.getFakturaPreview_rut_pers();
     }
 
-    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice invoice) {
+    public void htmlFakturaOrReminder_preview(String fakturatype, boolean paminnelse, Invoice_ invoice) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //

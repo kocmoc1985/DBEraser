@@ -9,7 +9,7 @@ import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.DB;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.InvoiceB;
-import BuhInvoice.Invoice;
+import BuhInvoice.Invoice_;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class RutRotFrame extends javax.swing.JFrame {
 
     private final BUH_INVOICE_MAIN bim;
-    private final Invoice invoice;
+    private final Invoice_ invoice;
     private RutRot rut;
     private final JTable articlesTable;
     private double AVDRAGS_GILL_BELOPP = 0;
@@ -49,7 +49,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 //    public RutRotFrame() {
 //        initComponents();
 //    }
-    public RutRotFrame(BUH_INVOICE_MAIN bim, JTable articlesTable, Invoice invoice) {
+    public RutRotFrame(BUH_INVOICE_MAIN bim, JTable articlesTable, Invoice_ invoice) {
         initComponents();
         this.bim = bim;
         this.invoice = invoice;

@@ -11,7 +11,7 @@ import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
-import BuhInvoice.sec.OffertCopyOrOmvandlaFrame;
+import BuhInvoice.sec.OffertCopyOrOmvandlaFrame_;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
 import XY_BUH_INVOICE.Buh_Invoice_Main__IF;
@@ -274,7 +274,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     public TableInvert getTableInvert() {
-        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT;
         } else {
             return (TableInvert) invoiceA_update.TABLE_INVERT;
@@ -282,7 +282,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected TableInvert getTableInvert_3() {
-        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT_3;
         } else {
             return (TableInvert) invoiceA_update.TABLE_INVERT_3;
@@ -2493,7 +2493,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
             //
 //            boolean isKontantFaktura = isKontantFaktura();
-            boolean isKontantFaktura = Invoice.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
+            boolean isKontantFaktura = Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT;
             //
             if (isKontantFaktura) {
                 makeInbetalning(isKontantFaktura, true);
@@ -2609,7 +2609,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
         if (isOffert()) {
-            OffertCopyOrOmvandlaFrame ocoof = new OffertCopyOrOmvandlaFrame(this);
+            OffertCopyOrOmvandlaFrame_ ocoof = new OffertCopyOrOmvandlaFrame_(this);
             GP_BUH.centerAndBringToFront(ocoof);
             return;
         }
@@ -2691,7 +2691,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_forfallen_filterActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (Invoice.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
+        if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_insert);
         } else {
             invoiceB.htmlFakturaOrReminder_preview(FAKTURA_TYPE_CURRENT__OPERATION, false, invoiceA_update);
@@ -3248,7 +3248,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
-        if (Invoice.CURRENT_OPERATION_INSERT == false) {
+        if (Invoice_.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.SET_CURRENT_OPERATION_INSERT(false);
             invoiceA_update.showTableInvert_2();
         } else {

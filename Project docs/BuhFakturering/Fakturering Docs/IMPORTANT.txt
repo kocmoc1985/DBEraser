@@ -1,3 +1,10 @@
+[COUNT IMPORTANT STATISTIC VALUES LIKE: INGÅENDE MOMS SEDAN ÅRS START][2021-05-16]
+
+Counting "nyckel tal" like: ingående moms sedan års start och andra värden sedan års start
+
+Search for: [#NYCKEL-TAL#]
+
+________________________________________________________________________________________________________
 [AMMOUNT OF INVOICES SHOWN BY DEFAULT][2021-04-XX]
 
 When the program loads the program shows invoices for 365 days back -> uses: "DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK"

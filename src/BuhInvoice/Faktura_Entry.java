@@ -18,7 +18,7 @@ import javax.swing.JTable;
 public abstract class Faktura_Entry {
 
     //
-    protected final Invoice invoice;
+    protected final Invoice_ invoice;
     protected HashMap<String, String> mainMap = new HashMap<>();
     protected HashMap<String, String> secMap = new HashMap<>();
     protected HashMap<String, String> fakturaMap = new HashMap<>();
@@ -26,7 +26,7 @@ public abstract class Faktura_Entry {
     protected ArrayList<HashMap<String, String>> articlesList = new ArrayList<>();
     //
 
-    public Faktura_Entry(Invoice invoice) {
+    public Faktura_Entry(Invoice_ invoice) {
         this.invoice = invoice;
     }
 

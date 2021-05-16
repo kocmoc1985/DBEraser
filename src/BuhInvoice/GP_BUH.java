@@ -323,6 +323,18 @@ public class GP_BUH {
     public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2) {
         return HelpA.get_diff_in_days__two_dates(date1, date_format1, date2, date_format2);
     }
+    
+    public static boolean compareDates_b(String date1, String date_format1, String date2, String date_format2){
+         //
+         long ms_date1 = dateToMillisConverter3(date1, date_format1);
+         long ms_date2 = dateToMillisConverter3(date2, date_format2);
+         //
+         if(ms_date2 >= ms_date1){
+             return true;
+         }else{
+             return false;
+         }
+    }
 
     public static boolean verifyId(String fakturaId) {
         //

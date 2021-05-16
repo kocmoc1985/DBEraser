@@ -13,14 +13,14 @@ import javax.swing.JFrame;
  *
  * @author MCREMOTE
  */
-public class OffertCopyOrOmvandlaFrame extends javax.swing.JFrame {
+public class OffertCopyOrOmvandlaFrame_ extends javax.swing.JFrame {
 
     private final BUH_INVOICE_MAIN bim;
 
     /**
      * Creates new form OffertCopyOrOmvandlaFrame
      */
-    public OffertCopyOrOmvandlaFrame(BUH_INVOICE_MAIN bim) {
+    public OffertCopyOrOmvandlaFrame_(BUH_INVOICE_MAIN bim) {
         initComponents();
         this.bim = bim;
         init();
@@ -47,7 +47,7 @@ public class OffertCopyOrOmvandlaFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
 
@@ -101,20 +101,21 @@ public class OffertCopyOrOmvandlaFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OffertCopyOrOmvandlaFrame_.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OffertCopyOrOmvandlaFrame(null).setVisible(true);
+                new OffertCopyOrOmvandlaFrame_(null).setVisible(true);
             }
         });
     }
