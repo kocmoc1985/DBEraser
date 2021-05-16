@@ -38,9 +38,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16]
-The query below will get all invoices from the START OF THE ACTUAL YEAR
-SELECT * FROM `buh_faktura` WHERE buh_faktura.kundId=1 AND (`fakturadatum` between DATE_FORMAT(NOW() ,'%Y-01-01') AND NOW())
+Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16][DONE][PÅGÅENDE ANDRA SAKER]
 
 Invoices with "omvänd skatt" shall also be shown from the "GRAFISK VY" - but there is a problem -> "buh_faktura" table does not contain any field which 
 shows if faktura has "omvänd skatt" or not [2021-05-16]

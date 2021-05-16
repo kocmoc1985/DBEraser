@@ -578,6 +578,8 @@ public class InvoiceB extends Basic_Buh {
 
     public static int NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
     public static double NYCKEL_TAL__ING_MOMS_TOTAL = 0;
+    public static double NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
+    public static double NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
 
     private void countIngaendeMomsSedanStartOfYear(ArrayList<HashMap<String, String>> invoices) {
         //
@@ -588,18 +590,24 @@ public class InvoiceB extends Basic_Buh {
         //
         for (HashMap<String, String> map : invoices) {
             //
-            String fakturadatum = map.get("fakturadatum");
+            String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
             //
             if (GP_BUH.compareDates_b(start_of_year_date, GP_BUH.DATE_FORMAT_BASIC, fakturadatum, GP_BUH.DATE_FORMAT_BASIC)) {
+                //
                 double moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__MOMS_TOTAL__));
+                double inkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL__));
+                double exkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__));
+                //
                 NYCKEL_TAL__ING_MOMS_TOTAL += moms;
+                NYCKEL_TAL__TOTAL_INKL_MOMS += inkl_moms;
+                NYCKEL_TAL__TOTAL_EXKL_MOMS += exkl_moms;
                 NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA++;
             }
             //
         }
         //
-        bim.jTextField__nyckel_tal__ing_moms.setText(""+NYCKEL_TAL__ING_MOMS_TOTAL);
-        bim.jTextField__nyckel_tal__antal_fakturor.setText(""+NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
+        bim.jTextField__nyckel_tal__ing_moms.setText("" + NYCKEL_TAL__ING_MOMS_TOTAL);
+        bim.jTextField__nyckel_tal__antal_fakturor.setText("" + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
 //        System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
 //        System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
         //
