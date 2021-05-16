@@ -54,7 +54,7 @@ Sammanlagt kan en privatperson få 75 000 kronor i rotavdrag och rutavdrag per år
 
 ___________________________________________________________________________________________________________________________________________________________________________
 
-Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
+Omvänt Omvänd skattskyldighet - för bygg, men inte bara. Is bound to "buh_f_artikel". If is set for an article moms is set to 0.
 If it's beeing used the faktura shall contain note like: Omvänd skattskyldighet, Ert vatnr: 556251-6806
 
 Vad är omvänd skattskyldighet?

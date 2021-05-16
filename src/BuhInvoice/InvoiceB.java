@@ -56,7 +56,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__DROJSMALSRANTA = "DRÖJSMÅLSRÄNTA %";
     public static String TABLE_ALL_INVOICES__MAKULERAD = "MAKULERAD";
     public static String TABLE_ALL_INVOICES__RUT = "RUT ROT AVDRAG";
-    public static String TABLE_ALL_INVOICES__OMVANT_SKATTSKYLDIGHET = "OMVÄNT SKATTSKYLDIGHET";
+    public static String TABLE_ALL_INVOICES__OMVAND_SKATTSKYLDIGHET = "OMVÄND SKATTSKYLDIGHET";
     public static String TABLE_ALL_INVOICES__VALUTA = "VALUTA";
     public static String TABLE_ALL_INVOICES__BETALD = "BETALD";
     public static String TABLE_ALL_INVOICES__SKICKAD = "SKICKAD";
@@ -78,7 +78,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
     public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
     public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
-    public static String TABLE_INVOICE_ARTIKLES__OMVANT_SKATT = "OMVÄNT SKATTSKYLDIGHET";
+    public static String TABLE_INVOICE_ARTIKLES__OMVAND_SKATT = "OMVÄND SKATTSKYLDIGHET";
 
     public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
 
@@ -91,7 +91,7 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__PRIS, DB.BUH_F_ARTIKEL__PRIS);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ANTAL, DB.BUH_F_ARTIKEL__ANTAL);
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__ENHET, DB.BUH_F_ARTIKEL__ENHET);
-        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
+        ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
     }
 
     public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
@@ -304,7 +304,7 @@ public class InvoiceB extends Basic_Buh {
             TABLE_INVOICE_ARTIKLES__RABATT,
             TABLE_INVOICE_ARTIKLES__RABATT_KR,
             TABLE_INVOICE_ARTIKLES__MOMS_SATS,
-            TABLE_INVOICE_ARTIKLES__OMVANT_SKATT
+            TABLE_INVOICE_ARTIKLES__OMVAND_SKATT
         };
         //
         table_b.setModel(new DefaultTableModel(null, headers_b));

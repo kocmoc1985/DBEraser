@@ -801,7 +801,7 @@ public abstract class Invoice extends Basic_Buh {
         //
         //
         String fixedComboValues_d = DB.STATIC__JA_NEJ; // This will aquired from SQL
-        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
+        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, "", false, true, false);
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //
@@ -862,10 +862,10 @@ public abstract class Invoice extends Basic_Buh {
 //        articles.setDisabled();
         //
         //
-        String valSelectedRow = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
+        String valSelectedRow = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT);
         String valSelectedRow_translated = JSon.getShortName(DB.STATIC__JA_NEJ, valSelectedRow);
         String fixedComboValues_d = JSon._get_special_(DB.STATIC__JA_NEJ, valSelectedRow_translated);
-        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT, "", false, true, false);
+        RowDataInvert omvant_skatt = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_d, DB.BUH_F_ARTIKEL__OMVANT_SKATT, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, "", false, true, false);
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //

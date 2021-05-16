@@ -3257,6 +3257,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
     }
     
+	/**
+	* [2021-05-16]
+	* [#SWITCH-FAKTURA-NO-COLLISION#]
+	*/
     protected void changeToFakturaWithsync() {
         //
         Thread x = new Thread(() -> {

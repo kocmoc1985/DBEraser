@@ -1,3 +1,10 @@
+[AMMOUNT OF INVOICES SHOWN BY DEFAULT][2021-04-XX]
+
+When the program loads the program shows invoices for 365 days back -> uses: "DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK"
+
+To see aboslutely all invoices yo need to press the button "VISA ALLA" -> uses: "DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL"
+
+________________________________________________________________________________________________________
 [SWITH ROW IN MAIN FAKTURA TABLE  WITHOUT COLLISION][IMPORTANT][IMPORTANT][2021-05-16]
 
 The problem was that if you switched fast between invoices from "ALLA FAKTUROR" tab, collisions 

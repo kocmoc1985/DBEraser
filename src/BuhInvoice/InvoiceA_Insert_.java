@@ -111,7 +111,7 @@ public class InvoiceA_Insert_ extends Invoice {
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT,
             InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR,
             InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS,
-            InvoiceB.TABLE_INVOICE_ARTIKLES__OMVANT_SKATT
+            InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT
         };
         //
         getArticlesTable().setModel(new DefaultTableModel(null, headers));
