@@ -38,12 +38,13 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Make another point color for the Invoices for privat persons [IMPORTANT]
 
 ______
 Make video how to make Offert
 
 Make video how to write on Faktura before printing
+
+Make another point color for the Invoices for privat persons [IMPORTANT][DONE 2021-05-16]
 
 When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******[DONE] search for tag ["#EMPTY-ARTICLE#"]
 
