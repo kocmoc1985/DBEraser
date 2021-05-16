@@ -787,8 +787,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info__makulerad = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jLabel_nycke_tal__ing_moms = new javax.swing.JLabel();
+        jLabel_nycke_tal__total_inkl_moms = new javax.swing.JLabel();
+        jLabel_nycke_tal__total_exkl_moms = new javax.swing.JLabel();
         jLabel_nycke_tal__antal_fakturor = new javax.swing.JLabel();
         jTextField__nyckel_tal__ing_moms = new javax.swing.JTextField();
+        jTextField__nyckel_tal__tot_inkl_moms = new javax.swing.JTextField();
+        jTextField__nyckel_tal__tot_exkl_moms = new javax.swing.JTextField();
         jTextField__nyckel_tal__antal_fakturor = new javax.swing.JTextField();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -1376,6 +1380,16 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_nycke_tal__ing_moms.setText("INGÅENDE MOMS");
         jPanel25.add(jLabel_nycke_tal__ing_moms);
 
+        jLabel_nycke_tal__total_inkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_nycke_tal__total_inkl_moms.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel_nycke_tal__total_inkl_moms.setText("TOTAL INKL. MOMS");
+        jPanel25.add(jLabel_nycke_tal__total_inkl_moms);
+
+        jLabel_nycke_tal__total_exkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel_nycke_tal__total_exkl_moms.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel_nycke_tal__total_exkl_moms.setText("TOTAL EXKL. MOMS");
+        jPanel25.add(jLabel_nycke_tal__total_exkl_moms);
+
         jLabel_nycke_tal__antal_fakturor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_nycke_tal__antal_fakturor.setForeground(new java.awt.Color(102, 102, 102));
         jLabel_nycke_tal__antal_fakturor.setText("ANTAL FAKTUROR");
@@ -1383,6 +1397,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jTextField__nyckel_tal__ing_moms.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel25.add(jTextField__nyckel_tal__ing_moms);
+
+        jTextField__nyckel_tal__tot_inkl_moms.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel25.add(jTextField__nyckel_tal__tot_inkl_moms);
+
+        jTextField__nyckel_tal__tot_exkl_moms.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel25.add(jTextField__nyckel_tal__tot_exkl_moms);
 
         jTextField__nyckel_tal__antal_fakturor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel25.add(jTextField__nyckel_tal__antal_fakturor);
@@ -1424,7 +1444,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(178, 178, 178))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1447,13 +1467,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 32, Short.MAX_VALUE))
+                        .addGap(0, 33, Short.MAX_VALUE))
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_faktura_changed_by__user, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 359, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2962,6 +2982,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_inloggning;
     private javax.swing.JLabel jLabel_nycke_tal__antal_fakturor;
     private javax.swing.JLabel jLabel_nycke_tal__ing_moms;
+    private javax.swing.JLabel jLabel_nycke_tal__total_exkl_moms;
+    private javax.swing.JLabel jLabel_nycke_tal__total_inkl_moms;
     private javax.swing.JLabel jLabel_register_new;
     private javax.swing.JLabel jLabel_restore_password;
     protected static javax.swing.JLabel jLabel_rut_avdrag;
@@ -3043,6 +3065,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JTextArea jTextArea_reminder_message;
     public javax.swing.JTextField jTextField__nyckel_tal__antal_fakturor;
     public javax.swing.JTextField jTextField__nyckel_tal__ing_moms;
+    public javax.swing.JTextField jTextField__nyckel_tal__tot_exkl_moms;
+    public javax.swing.JTextField jTextField__nyckel_tal__tot_inkl_moms;
     protected static javax.swing.JTextField jTextField_exp_avg;
     protected static javax.swing.JTextField jTextField_frakt;
     protected static javax.swing.JTextField jTextField_moms_artiklar;
