@@ -38,7 +38,21 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-
+protected void changeToFakturaWithsync() {
+        //
+        Thread x = new Thread(() -> {
+            jtable_InvoiceB_all_invoices_clicked();
+        });
+        //
+        x.start();
+        //
+        try {
+            x.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
 ______
 Make video how to make Offert
 
