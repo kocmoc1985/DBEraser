@@ -45,6 +45,23 @@ public abstract class Faktura_Entry {
 
     public abstract void addArticleForDB();
 
+    /**
+     * [2021-05-17]
+     * [#INVOICE-HAS-OMVAND-SKATT#]
+     * @return 
+     */
+    public boolean containsOmvandMoms() {
+        //
+        for (HashMap<String, String> article_row_map : articlesList) {
+            int omvant_skatt = Integer.parseInt(article_row_map.getOrDefault(DB.BUH_F_ARTIKEL__OMVANT_SKATT, "0"));
+            if(omvant_skatt == 1){
+                return true;
+            }
+        }
+        //
+        return false;
+    }
+
     public void addArticleForJTable(JTable table) {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"

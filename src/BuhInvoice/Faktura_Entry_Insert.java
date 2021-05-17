@@ -115,6 +115,10 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_OFFERT__NUM); // 3 = OFFERT
         }
         //
+        if(containsOmvandMoms()){
+            //[#INVOICE-HAS-OMVAND-SKATT#]
+            this.fakturaMap.put(DB.BUH_FAKTURA__OMVANT_SKATT, "1");
+        }
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__DATE_CREATED__, GP_BUH.getDateCreated_special());
         //
