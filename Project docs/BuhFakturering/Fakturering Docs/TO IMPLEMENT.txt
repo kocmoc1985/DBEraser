@@ -40,11 +40,6 @@ _____
 
 Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16][DONE][PÅGÅENDE ANDRA SAKER]
 
-Invoices with "omvänd skatt" shall also be shown from the "GRAFISK VY" - but there is a problem -> "buh_faktura" table does not contain any field which 
-shows if faktura has "omvänd skatt" or not [2021-05-16]
-
-
-
 ______
 Make video how to make Offert
 
@@ -54,7 +49,8 @@ Make another point color for the Invoices for privat persons [IMPORTANT][DONE 20
 
 When Editing a Faktura it's not possible to add an "-" (empty) article. This is only possible if creating new one [URGENT] ****** IMPORTANT******[DONE] search for tag ["#EMPTY-ARTICLE#"]
 
-Make statistics TAB which will show fakturor for act. month for whole year, for prev year [NOT URGENT]
+Invoices with "omvänd skatt" shall also be shown from the "GRAFISK VY" - but there is a problem -> "buh_faktura" table does not contain any field which 
+shows if faktura has "omvänd skatt" or not [2021-05-16][DONE][#INVOICE-HAS-OMVAND-SKATT#]
 
 See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 

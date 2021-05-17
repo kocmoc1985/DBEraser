@@ -361,11 +361,11 @@ public class InvoiceB extends Basic_Buh {
             bim.jLabel_info_is_person.setVisible(true);
         }
         if (rut) {
-            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "rut.png","RUT / ROT-Avdrag");
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "rut.png", "RUT / ROT-Avdrag");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
-        if(isOmvantSkatt){
-            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png","Omvänd moms");
+        if (isOmvantSkatt) {
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd moms");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
         if (printed) {
@@ -615,10 +615,10 @@ public class InvoiceB extends Basic_Buh {
             //
         }
         //
-        bim.jTextField__nyckel_tal__ing_moms.setText("" + NYCKEL_TAL__ING_MOMS_TOTAL);
-        bim.jTextField__nyckel_tal__antal_fakturor.setText("" + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
-        bim.jTextField__nyckel_tal__tot_inkl_moms.setText("" + NYCKEL_TAL__TOTAL_INKL_MOMS);
-        bim.jTextField__nyckel_tal__tot_exkl_moms.setText("" + NYCKEL_TAL__TOTAL_EXKL_MOMS);
+        bim.jTextField__nyckel_tal__ing_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ING_MOMS_TOTAL));
+        bim.jTextField__nyckel_tal__antal_fakturor.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA)); // NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA
+        bim.jTextField__nyckel_tal__tot_inkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_INKL_MOMS)); // NYCKEL_TAL__TOTAL_INKL_MOMS
+        bim.jTextField__nyckel_tal__tot_exkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_EXKL_MOMS)); // NYCKEL_TAL__TOTAL_EXKL_MOMS
         // System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
         // System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
         //

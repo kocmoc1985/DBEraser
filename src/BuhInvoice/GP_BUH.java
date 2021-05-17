@@ -251,8 +251,8 @@ public class GP_BUH {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
 
-    public static double round_double_b(double rst) {
-        return Double.parseDouble(String.format("%2.0f", rst).replace(",", "."));
+    public static int round_double_b(double rst) {
+        return (int)Math.round(rst);
     }
 
     public static boolean confirmWarning(String message) {
