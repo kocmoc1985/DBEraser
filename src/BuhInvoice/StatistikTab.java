@@ -319,9 +319,9 @@ public class StatistikTab implements BarGraphListener {
             //
             MyPoint_BG mpbg = (MyPoint_BG) e.getSource();
             //
-            if (mpbg.getSerieName().equals(SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH)) {
+//            if (mpbg.getSerieName().equals(SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH)) {
                 highlight_a(mpbg, xygraph);
-            }
+//            }
             //
         }
     }
