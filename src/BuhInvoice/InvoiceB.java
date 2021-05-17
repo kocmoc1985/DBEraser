@@ -65,6 +65,8 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__DATE_CREATED = "DATE CREATED";
     public static String TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON = "IS PERSON"; // hidden
     public static String TABLE_ALL_INVOICES__COPIED_FROM_ID = "COPIED FROM ID"; // hidden //[#KREDIT-RUT#]
+    public static String TABLE_ALL_INVOICES__OMVANT_SKATT = "OMVANT SKATT"; // hidden //[#INVOICE-HAS-OMVAND-SKATT#]
+    //OBS! Search for [#ADD-TO-MAIN-TABLE#]
     //
     //
     public static String TABLE_INVOICE_ARTIKLES__FAKTURA_ID = "FAKTURA ID";
@@ -244,7 +246,7 @@ public class InvoiceB extends Basic_Buh {
         JTable table = this.bim.jTable_invoiceB_alla_fakturor;
         //        
         // "ID" -> "buh_faktura.fakturaId"
-        //
+        //[#ADD-TO-MAIN-TABLE#]
         String[] headers = {
             TABLE_ALL_INVOICES__FAKTURA_ID,
             TABLE_ALL_INVOICES__KUND_ID,
@@ -279,7 +281,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__CHANGED_BY,
             TABLE_ALL_INVOICES__DATE_CREATED,
             TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON,
-            TABLE_ALL_INVOICES__COPIED_FROM_ID
+            TABLE_ALL_INVOICES__COPIED_FROM_ID,
+            TABLE_ALL_INVOICES__OMVANT_SKATT
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -616,6 +619,7 @@ public class InvoiceB extends Basic_Buh {
     }
 
     private void hideColumnsFakturaTable(JTable table) {
+        //[#ADD-TO-MAIN-TABLE#]
         if (GP_BUH.CUSTOMER_MODE) {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_ID);
@@ -642,12 +646,13 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RUT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
         }
         //
     }
 
     private void addRowJtable_all_invoices(HashMap<String, String> map, JTable table) {
-        //
+        //[#ADD-TO-MAIN-TABLE#]
         Object[] jtableRow = new Object[]{
             map.get(DB.BUH_FAKTURA__ID__),
             map.get(DB.BUH_FAKTURA_KUND__ID),
@@ -684,7 +689,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__CHANGED_BY),
             map.get(DB.BUH_FAKTURA__DATE_CREATED__),
             map.get(DB.BUH_FAKTURA_KUND___IS_PERSON),
-            map.get(DB.BUH_FAKTURA__COPIED_FROM_ID)
+            map.get(DB.BUH_FAKTURA__COPIED_FROM_ID),
+            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__OMVANT_SKATT))
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();

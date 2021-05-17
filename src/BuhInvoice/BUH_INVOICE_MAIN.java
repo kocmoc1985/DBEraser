@@ -353,6 +353,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
 
+    protected Boolean getIfOmvantSkatt() {
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
+        if (val.equals(DB.STATIC__YES)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
     }
@@ -372,11 +381,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-    
+
     protected int getBetalVilkor() {
         return Integer.parseInt(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR));
     }
-    
+
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
@@ -3330,11 +3339,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-    
-	/**
-	* [2021-05-16]
-	* [#SWITCH-FAKTURA-NO-COLLISION#]
-	*/
+
+    /**
+     * [2021-05-16] [#SWITCH-FAKTURA-NO-COLLISION#]
+     */
     protected void changeToFakturaWithsync() {
         //
         Thread x = new Thread(() -> {
