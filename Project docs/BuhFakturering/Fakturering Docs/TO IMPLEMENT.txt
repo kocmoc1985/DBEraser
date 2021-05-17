@@ -43,6 +43,8 @@ Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-
 Invoices with "omvänd skatt" shall also be shown from the "GRAFISK VY" - but there is a problem -> "buh_faktura" table does not contain any field which 
 shows if faktura has "omvänd skatt" or not [2021-05-16]
 
+
+
 ______
 Make video how to make Offert
 
