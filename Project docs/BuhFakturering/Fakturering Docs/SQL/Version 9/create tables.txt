@@ -138,6 +138,7 @@ date_created varchar(30) DEFAULT 'no',
 changed_by varchar(300) DEFAULT '',
 rutavdrag boolean DEFAULT false,
 copied_from_id integer DEFAULT 0,
+omvant_skatt integer DEFAULT 0,
 Foreign key (kundId) references buh_kund(kundId),
 Foreign key (fakturaKundId) references buh_faktura_kund(fakturaKundId)
 ); 
