@@ -190,6 +190,12 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //
         }
         //
+        if (containsOmvandMoms()) {
+            //[#INVOICE-HAS-OMVAND-SKATT#]
+            this.fakturaMap.put(DB.BUH_FAKTURA__OMVANT_SKATT, "1");
+        }
+        //
+        //
         this.fakturaMap.put(DB.BUH_FAKTURA__CHANGED_BY, GP_BUH.getChangedBy()); // [2020-10-28]
         //
         this.fakturaMap.put(DB.BUH_FAKTURA__TOTAL__, "" + invoice.getFakturaTotal());
