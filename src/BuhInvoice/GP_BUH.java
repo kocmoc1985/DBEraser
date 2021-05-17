@@ -214,6 +214,11 @@ public class GP_BUH {
         });
 
     }
+    
+    public static void setLabelIconAndToolTip(JLabel label,String iconFileName,String toolTip){
+        label.setToolTipText(toolTip);
+        label.setIcon(ICON.getImageIcon(iconFileName, 32, 32));
+    }
 
     public static void reminder_btn_adjustment(JButton btn, boolean forfallnaFakturorFinns) {
         //

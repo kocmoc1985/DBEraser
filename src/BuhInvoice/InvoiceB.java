@@ -333,7 +333,7 @@ public class InvoiceB extends Basic_Buh {
         //
         bim.jLabel_info__forfallen.setVisible(false);
         bim.jLabel_info_is_person.setVisible(false);
-        bim.jLabel_info_rut.setVisible(false);
+        bim.jLabel_info_rut__or_omvant_skatt.setVisible(false);
         bim.jLabel_info__printed.setVisible(false);
         bim.jLabel_info__sent.setVisible(false);
         bim.jLabel_info__betald.setVisible(false);
@@ -352,6 +352,7 @@ public class InvoiceB extends Basic_Buh {
         boolean betald = bim.isBetald();
         boolean printed = isPrinted();
         boolean isOffert = bim.isOffert();
+        boolean isOmvantSkatt = bim.isOmvantSkatt();
         //
         if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false) {
             bim.jLabel_info__forfallen.setVisible(true);
@@ -360,7 +361,12 @@ public class InvoiceB extends Basic_Buh {
             bim.jLabel_info_is_person.setVisible(true);
         }
         if (rut) {
-            bim.jLabel_info_rut.setVisible(true);
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "rut.png","RUT / ROT-Avdrag");
+            bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
+        }
+        if(isOmvantSkatt){
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png","Omvänd moms");
+            bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
         if (printed) {
             bim.jLabel_info__printed.setVisible(true);

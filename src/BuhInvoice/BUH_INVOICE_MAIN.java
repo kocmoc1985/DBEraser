@@ -352,12 +352,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getCopiedFromFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
-
-    protected Boolean getIfOmvantSkatt() {
-        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
-        if (val.equals(DB.STATIC__YES)) {
+    
+     protected Boolean isOmvantSkatt() {
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
+        if(val.equals(DB.STATIC__YES)){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
@@ -381,11 +381,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-
+    
     protected int getBetalVilkor() {
         return Integer.parseInt(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR));
     }
-
+    
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
@@ -786,7 +786,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jPanel23 = new javax.swing.JPanel();
         jLabel_info__forfallen = new javax.swing.JLabel();
         jLabel_info_is_person = new javax.swing.JLabel();
-        jLabel_info_rut = new javax.swing.JLabel();
+        jLabel_info_rut__or_omvant_skatt = new javax.swing.JLabel();
         jLabel_info__betald = new javax.swing.JLabel();
         jLabel_info__printed = new javax.swing.JLabel();
         jLabel_info__sent = new javax.swing.JLabel();
@@ -1350,10 +1350,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_info_is_person.setToolTipText("Privatperson (Ej företag)");
         jPanel23.add(jLabel_info_is_person);
 
-        jLabel_info_rut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel_info_rut.setText("RUT");
-        jLabel_info_rut.setToolTipText("RUT / ROT-Avdrag");
-        jPanel23.add(jLabel_info_rut);
+        jLabel_info_rut__or_omvant_skatt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_info_rut__or_omvant_skatt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/rut.png"))); // NOI18N
+        jLabel_info_rut__or_omvant_skatt.setToolTipText("");
+        jPanel23.add(jLabel_info_rut__or_omvant_skatt);
 
         jLabel_info__betald.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payed.png"))); // NOI18N
         jLabel_info__betald.setToolTipText("Betald");
@@ -3002,7 +3002,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_info__printed;
     protected javax.swing.JLabel jLabel_info__sent;
     protected javax.swing.JLabel jLabel_info_is_person;
-    public javax.swing.JLabel jLabel_info_rut;
+    public javax.swing.JLabel jLabel_info_rut__or_omvant_skatt;
     protected javax.swing.JLabel jLabel_inloggning;
     private javax.swing.JLabel jLabel_nycke_tal__antal_fakturor;
     private javax.swing.JLabel jLabel_nycke_tal__ing_moms;
@@ -3339,10 +3339,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-
-    /**
-     * [2021-05-16] [#SWITCH-FAKTURA-NO-COLLISION#]
-     */
+    
+	/**
+	* [2021-05-16]
+	* [#SWITCH-FAKTURA-NO-COLLISION#]
+	*/
     protected void changeToFakturaWithsync() {
         //
         Thread x = new Thread(() -> {
