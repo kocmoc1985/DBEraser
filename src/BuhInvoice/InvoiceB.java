@@ -332,7 +332,7 @@ public class InvoiceB extends Basic_Buh {
     }
 
     private void showInfoIcons() {
-        //
+        //[#ADD-TO-MAIN-TABLE#][#A-BIT-OFF-TOPIC#]
         bim.jLabel_info__forfallen.setVisible(false);
         bim.jLabel_info_is_person.setVisible(false);
         bim.jLabel_info_rut__or_omvant_skatt.setVisible(false);
@@ -352,7 +352,7 @@ public class InvoiceB extends Basic_Buh {
         boolean isKreditFaktura = bim.isKreditFaktura();
         boolean isKontantFaktura = bim.isKontantFaktura();
         boolean betald = bim.isBetald();
-        boolean printed = isPrinted();
+        boolean printed = bim.isPrinted();
         boolean isOffert = bim.isOffert();
         boolean isOmvantSkatt = bim.isOmvantSkatt();
         //
@@ -393,13 +393,13 @@ public class InvoiceB extends Basic_Buh {
         }
 
         //
-//        System.out.println("BETALD: " + faktura_betald);
-//        System.out.println("FORFALLEN: " + forfallen);
-//        System.out.println("MAKULERAD: " + makulerad);
-//        System.out.println("SKICKAD: " + skickad);
-        //
     }
 
+    /**
+     * Not used since [2021-05-18]
+     * @deprecated 
+     * @return 
+     */
     private boolean isPrinted() {
         //
         String json = bim.getSELECT_fakturaId();
@@ -655,7 +655,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_PRINTED);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__UTSKRIVEN);
         }
         //
     }

@@ -353,14 +353,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
     
-     protected Boolean isOmvantSkatt() {
-        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
-        if(val.equals(DB.STATIC__YES)){
-            return true;
-        }else{
-            return false;
-        }
-    }
+     
 
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
@@ -396,6 +389,28 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
+    }
+    
+    protected Boolean isPrinted() {
+        //
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__UTSKRIVEN);
+        //
+        if(val.equals(DB.STATIC__YES)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected Boolean isOmvantSkatt() {
+        //
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
+        //
+        if(val.equals(DB.STATIC__YES)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     protected boolean isBetald() {
