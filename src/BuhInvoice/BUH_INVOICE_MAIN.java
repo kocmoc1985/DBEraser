@@ -2437,6 +2437,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //        String fakturaNr = "1"; // this should be sent as a parameter later
         openTabByName(TAB_INVOICES_OVERVIEW);
         HelpA.markRowByValue(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
+        changeToFakturaWithsync();
     }
 
 
