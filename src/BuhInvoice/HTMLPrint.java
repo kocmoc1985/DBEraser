@@ -449,7 +449,9 @@ public abstract class HTMLPrint extends HTMLBasic {
             HelpA.showNotification(LANG.MSG_10_4(false));
         }
         //
-        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
+//        bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
+        this.dispose();
+        bim.invoiceB.refresh_c();
         //
     }
 

@@ -332,7 +332,7 @@ public class InvoiceB extends Basic_Buh {
     }
 
     private void showInfoIcons() {
-        //
+        //[#ADD-TO-MAIN-TABLE#][#A-BIT-OFF-TOPIC#]
         bim.jLabel_info__forfallen.setVisible(false);
         bim.jLabel_info_is_person.setVisible(false);
         bim.jLabel_info_rut__or_omvant_skatt.setVisible(false);
@@ -352,28 +352,28 @@ public class InvoiceB extends Basic_Buh {
         boolean isKreditFaktura = bim.isKreditFaktura();
         boolean isKontantFaktura = bim.isKontantFaktura();
         boolean betald = bim.isBetald();
-        boolean printed = isPrinted();
+        boolean printed = bim.isPrinted();
         boolean isOffert = bim.isOffert();
         boolean isOmvantSkatt = bim.isOmvantSkatt();
         //
-        if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false) {
+        if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false && makulerad == false) {
             bim.jLabel_info__forfallen.setVisible(true);
         }
-        if (is_person) {
+        if (is_person && makulerad == false) {
             bim.jLabel_info_is_person.setVisible(true);
         }
-        if (rut) {
+        if (rut && makulerad == false) {
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "rut.png", "RUT / ROT-Avdrag");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
-        if (isOmvantSkatt) {
+        if (isOmvantSkatt && makulerad == false) {
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd moms");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
-        if (printed) {
+        if (printed && makulerad == false) {
             bim.jLabel_info__printed.setVisible(true);
         }
-        if (skickad) {
+        if (skickad && makulerad == false) {
             bim.jLabel_info__sent.setVisible(true);
         }
         if (betald) {
@@ -393,13 +393,13 @@ public class InvoiceB extends Basic_Buh {
         }
 
         //
-//        System.out.println("BETALD: " + faktura_betald);
-//        System.out.println("FORFALLEN: " + forfallen);
-//        System.out.println("MAKULERAD: " + makulerad);
-//        System.out.println("SKICKAD: " + skickad);
-        //
     }
 
+    /**
+     * Not used since [2021-05-18]
+     * @deprecated 
+     * @return 
+     */
     private boolean isPrinted() {
         //
         String json = bim.getSELECT_fakturaId();
@@ -617,10 +617,10 @@ public class InvoiceB extends Basic_Buh {
             //
         }
         //
-        bim.jTextField__nyckel_tal__ing_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ING_MOMS_TOTAL));
-        bim.jTextField__nyckel_tal__antal_fakturor.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA)); // NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA
-        bim.jTextField__nyckel_tal__tot_inkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_INKL_MOMS)); // NYCKEL_TAL__TOTAL_INKL_MOMS
-        bim.jTextField__nyckel_tal__tot_exkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_EXKL_MOMS)); // NYCKEL_TAL__TOTAL_EXKL_MOMS
+        bim.jLabel__nyckel_tal__ing_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ING_MOMS_TOTAL));
+        bim.jLabel__nyckel_tal__antal_fakturor.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA)); // NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA
+        bim.jLabel__nyckel_tal__tot_inkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_INKL_MOMS)); // NYCKEL_TAL__TOTAL_INKL_MOMS
+        bim.jLabel__nyckel_tal__tot_exkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_EXKL_MOMS)); // NYCKEL_TAL__TOTAL_EXKL_MOMS
         // System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
         // System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
         //
@@ -649,13 +649,14 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__LEV_SATT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KOMMENT_$);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__SKICKAD);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CHANGED_BY);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__DATE_CREATED);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__RUT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_PRINTED);
+            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__UTSKRIVEN);
         }
         //
     }

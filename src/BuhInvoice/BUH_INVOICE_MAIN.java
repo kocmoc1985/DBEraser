@@ -353,14 +353,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
     
-     protected Boolean isOmvantSkatt() {
-        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
-        if(val.equals(DB.STATIC__YES)){
-            return true;
-        }else{
-            return false;
-        }
-    }
+     
 
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
@@ -396,6 +389,28 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
+    }
+    
+    protected Boolean isPrinted() {
+        //
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__UTSKRIVEN);
+        //
+        if(val.equals(DB.STATIC__YES)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    protected Boolean isOmvantSkatt() {
+        //
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
+        //
+        if(val.equals(DB.STATIC__YES)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     protected boolean isBetald() {
@@ -799,10 +814,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_nycke_tal__total_inkl_moms = new javax.swing.JLabel();
         jLabel_nycke_tal__total_exkl_moms = new javax.swing.JLabel();
         jLabel_nycke_tal__antal_fakturor = new javax.swing.JLabel();
-        jTextField__nyckel_tal__ing_moms = new javax.swing.JTextField();
-        jTextField__nyckel_tal__tot_inkl_moms = new javax.swing.JTextField();
-        jTextField__nyckel_tal__tot_exkl_moms = new javax.swing.JTextField();
-        jTextField__nyckel_tal__antal_fakturor = new javax.swing.JTextField();
+        jLabel__nyckel_tal__ing_moms = new javax.swing.JLabel();
+        jLabel__nyckel_tal__tot_inkl_moms = new javax.swing.JLabel();
+        jLabel__nyckel_tal__tot_exkl_moms = new javax.swing.JLabel();
+        jLabel__nyckel_tal__antal_fakturor = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -1405,21 +1420,21 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel_nycke_tal__antal_fakturor.setText("ANTAL FAKTUROR");
         jPanel25.add(jLabel_nycke_tal__antal_fakturor);
 
-        jTextField__nyckel_tal__ing_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField__nyckel_tal__ing_moms.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel25.add(jTextField__nyckel_tal__ing_moms);
+        jLabel__nyckel_tal__ing_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel__nyckel_tal__ing_moms.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel25.add(jLabel__nyckel_tal__ing_moms);
 
-        jTextField__nyckel_tal__tot_inkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField__nyckel_tal__tot_inkl_moms.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel25.add(jTextField__nyckel_tal__tot_inkl_moms);
+        jLabel__nyckel_tal__tot_inkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel__nyckel_tal__tot_inkl_moms.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel25.add(jLabel__nyckel_tal__tot_inkl_moms);
 
-        jTextField__nyckel_tal__tot_exkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField__nyckel_tal__tot_exkl_moms.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel25.add(jTextField__nyckel_tal__tot_exkl_moms);
+        jLabel__nyckel_tal__tot_exkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel__nyckel_tal__tot_exkl_moms.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel25.add(jLabel__nyckel_tal__tot_exkl_moms);
 
-        jTextField__nyckel_tal__antal_fakturor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField__nyckel_tal__antal_fakturor.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel25.add(jTextField__nyckel_tal__antal_fakturor);
+        jLabel__nyckel_tal__antal_fakturor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel__nyckel_tal__antal_fakturor.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel25.add(jLabel__nyckel_tal__antal_fakturor);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(153, 153, 153));
@@ -2989,6 +3004,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JLabel jLabel_Artikel_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Faktura_Insert_or_Update;
     protected javax.swing.JLabel jLabel_Kund_Insert_or_Update;
+    public javax.swing.JLabel jLabel__nyckel_tal__antal_fakturor;
+    public javax.swing.JLabel jLabel__nyckel_tal__ing_moms;
+    public javax.swing.JLabel jLabel__nyckel_tal__tot_exkl_moms;
+    public javax.swing.JLabel jLabel__nyckel_tal__tot_inkl_moms;
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
@@ -3087,10 +3106,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JTextArea jTextArea3;
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected javax.swing.JTextArea jTextArea_reminder_message;
-    public javax.swing.JTextField jTextField__nyckel_tal__antal_fakturor;
-    public javax.swing.JTextField jTextField__nyckel_tal__ing_moms;
-    public javax.swing.JTextField jTextField__nyckel_tal__tot_exkl_moms;
-    public javax.swing.JTextField jTextField__nyckel_tal__tot_inkl_moms;
     protected static javax.swing.JTextField jTextField_exp_avg;
     protected static javax.swing.JTextField jTextField_frakt;
     protected static javax.swing.JTextField jTextField_moms_artiklar;

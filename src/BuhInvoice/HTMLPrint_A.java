@@ -960,6 +960,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         HelpBuh.update(json);
         //
+        bim.invoiceB.refresh_c();
     }
     
     
