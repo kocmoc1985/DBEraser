@@ -27,7 +27,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
-    
+
     public HTMLPrint_A(
             BUH_INVOICE_MAIN bim,
             String fakturatype,
@@ -377,11 +377,22 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "<tr>";
         //
         html_ += "<td>";
+        //
+        //[2021-05-18] This additional construction with <table> is used for lining-up with previous sections
+//        html_ += "<table>"; 
+//        html_ += "<tr>";
+//        html_ += "<td>";
+        //
         html_ += T__FTG_BETALA_TILL
                 + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                 + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
                 + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
                 + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        //
+//        html_ += "</td>";
+//        html_ += "</tr>";
+//        html_ += "</table>";
+        //
         html_ += "</td>";
         //
         html_ += "</tr>";
@@ -419,7 +430,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         html_ += "</div>";//</table>
         //
-        if(NO_BORDER){ //[#NO-BORDER-PROPPER#]
+        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
             html_ += "<div style='width:95%;height:5px;border-bottom:1px solid gray;margin-right:15px'></div>";
         }
 //        System.out.println("" + html_);

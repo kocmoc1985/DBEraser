@@ -752,7 +752,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__FAKTURA_ID);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__ENHET);
             HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__RABATT_KR);
-//            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__OMVANT_SKATT);
+            HelpA.hideColumnByName(table, TABLE_INVOICE_ARTIKLES__OMVAND_SKATT);
             //
             try {
                 HelpA.setColumnWidthByName(TABLE_INVOICE_ARTIKLES__KOMMENT, table, 0.25);
