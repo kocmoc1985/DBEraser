@@ -242,6 +242,7 @@ public class DB {
     public static final String BUH_FAKTURA__CHANGED_BY = "changed_by"; // [2020-10-28]
     public static final String BUH_FAKTURA__COPIED_FROM_ID = "copied_from_id";
     public static final String BUH_FAKTURA__OMVANT_SKATT = "omvant_skatt"; // [#INVOICE-HAS-OMVAND-SKATT#]
+    public static final String BUH_FAKTURA__PRINTED = "is_printed";
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND__KUND_ID = "kundId";

@@ -33,10 +33,14 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 "rutavdrag";"0","moms_total";"1648.5","important_komment";"","komment";"",
 "changed_by";"exempel","date_created";"2021-04-13 12.17.24.265",
 "copied_from_id";"0","fakturaKundId";"58",
-"kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0"
+"kundnr";"1","namn";"DIN BYGGARE AB","is_person";"0","omvant_skatt";"0","is_printed";"0"
 
 
 _____
+
+Add column is is_printed to the "buh_faktura" table:
+1. HTML_PrintA line: 943 -----> Implement here
+2. Don't forget to make corresponding changes for displaying of the printed icon
 
 Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16][DONE][PÅGÅENDE ANDRA SAKER]
 

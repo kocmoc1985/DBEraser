@@ -66,6 +66,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON = "IS PERSON"; // hidden
     public static String TABLE_ALL_INVOICES__COPIED_FROM_ID = "COPIED FROM ID"; // hidden //[#KREDIT-RUT#]
     public static String TABLE_ALL_INVOICES__OMVANT_SKATT = "OMVANT SKATT"; // hidden //[#INVOICE-HAS-OMVAND-SKATT#]
+    public static String TABLE_ALL_INVOICES__UTSKRIVEN = "PRINT"; //[#IS_PRINTED#]
     //OBS! Search for [#ADD-TO-MAIN-TABLE#]
     //
     //
@@ -282,7 +283,8 @@ public class InvoiceB extends Basic_Buh {
             TABLE_ALL_INVOICES__DATE_CREATED,
             TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON,
             TABLE_ALL_INVOICES__COPIED_FROM_ID,
-            TABLE_ALL_INVOICES__OMVANT_SKATT
+            TABLE_ALL_INVOICES__OMVANT_SKATT,
+            TABLE_ALL_INVOICES__UTSKRIVEN
         };
         //
         table.setModel(new DefaultTableModel(null, headers));
@@ -653,6 +655,7 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
+//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__IS_PRINTED);
         }
         //
     }
@@ -696,7 +699,8 @@ public class InvoiceB extends Basic_Buh {
             map.get(DB.BUH_FAKTURA__DATE_CREATED__),
             map.get(DB.BUH_FAKTURA_KUND___IS_PERSON),
             map.get(DB.BUH_FAKTURA__COPIED_FROM_ID),
-            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__OMVANT_SKATT))
+            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__OMVANT_SKATT)),
+            JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_FAKTURA__PRINTED))
         };
         //
         DefaultTableModel model = (DefaultTableModel) table.getModel();
