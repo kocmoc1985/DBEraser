@@ -571,7 +571,7 @@ public class InvoiceB extends Basic_Buh {
             //
             if (bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
                 //[#NYCKEL-TAL#]
-                countIngaendeMomsSedanStartOfYear(invoices);
+                countNyckelTal(invoices);
             }
             //
             for (HashMap<String, String> invoice_map : invoices) {
@@ -592,10 +592,12 @@ public class InvoiceB extends Basic_Buh {
     public static double NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
     public static double NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
 
-    private void countIngaendeMomsSedanStartOfYear(ArrayList<HashMap<String, String>> invoices) {
+    private void countNyckelTal(ArrayList<HashMap<String, String>> invoices) {
         //
         NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
         NYCKEL_TAL__ING_MOMS_TOTAL = 0;
+        NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
+        NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
         //
         String start_of_year_date = HelpA.get_act_year_first_date();
         //

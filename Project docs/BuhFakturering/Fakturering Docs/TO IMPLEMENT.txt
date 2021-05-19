@@ -42,12 +42,20 @@ Add column is is_printed to the "buh_faktura" table:
 1. HTML_PrintA line: 943 -----> Implement here
 2. Don't forget to make corresponding changes for displaying of the printed icon
 
-Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16][DONE][PÅGÅENDE ANDRA SAKER]
+
 
 ______
+
 Make video how to make Offert
 
 Make video how to write on Faktura before printing
+
+See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+
+No error output for distributions
+
+[IMPORTANT]According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
+____
 
 Make another point color for the Invoices for privat persons [IMPORTANT][DONE 2021-05-16]
 
@@ -56,9 +64,9 @@ When Editing a Faktura it's not possible to add an "-" (empty) article. This is 
 Invoices with "omvänd skatt" shall also be shown from the "GRAFISK VY" - but there is a problem -> "buh_faktura" table does not contain any field which 
 shows if faktura has "omvänd skatt" or not [2021-05-16][DONE][#INVOICE-HAS-OMVAND-SKATT#]
 
-See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
-
 When user deletes an "artikel" it will delete all fakturas in which this "artikel" is used -> is it correct? (Ivan Dontu) talled me it on 2021-03-XX
+
+Make a calculation of ammount of "ingående moms" sedan början av året. [2021-05-16][DONE][PÅGÅENDE ANDRA SAKER]
 
 Also send email when a user deletes it's account **************  [DONE] Verified [2021-04-12] the emails are sent to "kocmoc1985@gmail.com"
 
@@ -72,22 +80,15 @@ Make GDPR text-size smaller especially the "Company credentials"
 
 Användningsvillkor vid progrmets installation *******************IMPORTANT****[DONE]
 
-Make logo for sending it as footer in emails.
+Make logo for sending it as footer in emails. [NEEDED??]
 
 IMPORTANT: When changing date and saving invoices after some time it starts to calculate wrongly **************************************[URGENT][FIXED][2021-02-19] ---> the problem was not resetting of all of the variables.
 
-RUT / ROT when creating a RUT faktura it makes sence to take/copy the name and pnr from the "privatkund".[2021-02-19]
-
-No error output for distributions
-
-[IMPORTANT]According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
+RUT / ROT when creating a RUT faktura it makes sence to take/copy the name and pnr from the "privatkund".[2021-02-19][DONE]
 
 It's not possible to edit rut data for an invoice and it's not even possible to replace existing RUT data when editing the invoice.
 I think it makes sence to make ready the current version - without editing possibility. The editing possibility shall be made 
 availble in the next version.
-
-If ROT & RUT is tried to be applied you must check if omvänt skatt for an article is implemented 
-
 
 Make adoptation for make invoices for private persons, see variable "IS_PERSON__CUSTOMERS_A" -> CustomerAForetagA.class [DONE]
 
@@ -96,7 +97,6 @@ Make additional notes to "buh_faktura_artikel" as Ivan suposed [DONE]
 Don't allow to leave the "FAKTURA" tab if not saved -> by disabling other TABS untill the user saves -> solved[2020-12-16] [DONE]
 
 Logo not always loading when clicking print button, seems to be solved on [2020-12-29] see: HTMLBasic.class -> public void go() -> invalidate(), validate(), repaint()
-
 
 ------------------------</URGENT>------------------------
 
