@@ -36,23 +36,14 @@ public class DB {
      * @param strToProcess
      * @return
      */
-    public static String convert(String strToProcess) {
-        ////[#BUH-CONSTANTS#]
-        strToProcess = strToProcess.replaceAll(",", "¤"); // is replaced from "JSon.java -> JSONToHashMap(String json, boolean reverse)"
-        strToProcess = strToProcess.replaceAll("\\;", "*"); // is replaced from "HelpBuh.class -> get_constants()"
-        return strToProcess;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("" + convert(STATIC__MOMS_SATS));
-    }
+//    public static String convert(String strToProcess) {
+//        ////[#BUH-CONSTANTS#]
+//        strToProcess = strToProcess.replaceAll(",", "¤"); // is replaced from "JSon.java -> JSONToHashMap(String json, boolean reverse)"
+//        strToProcess = strToProcess.replaceAll("\\;", "*"); // is replaced from "HelpBuh.class -> get_constants()"
+//        return strToProcess;
+//    }
 
     private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
-
-    static {
-//        BUH_CONSTANTS = null; ////[#BUH-CONSTANTS#] taken from table "buh_constants"
-        BUH_CONSTANTS = HelpBuh.get_constants(); ////[#BUH-CONSTANTS#] taken from table "buh_constants"
-    }
 
     public final static double ROT_PERCENT = 0.3; // Verified for 2021
     public final static double RUT_PERCENT = 0.5; // Verified for 2021
@@ -63,14 +54,21 @@ public class DB {
     public static final String STATIC__NO = "Nej";
 
     public static final String GET_CONSTANT(String alias, String defaultVal) {
+        //
+        if (BUH_CONSTANTS.isEmpty()) {
+            BUH_CONSTANTS = HelpBuh.get_constants();
+        }
+        //
         String key = alias; //[#BUH-CONSTANTS#]
+        //
         if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
             return defaultVal;
         } else {
             return BUH_CONSTANTS.get(key);
         }
+        //
     }
-    
+
     public static final double GET_CONSTANT__DOUBLE(String alias, double defaultVal) {
         String key = alias; //[#BUH-CONSTANTS#]
         if (BUH_CONSTANTS == null || BUH_CONSTANTS.isEmpty() || BUH_CONSTANTS.containsKey(alias) == false) {
@@ -198,7 +196,8 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND = "get_kund_fakturor__fakturakund"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH = "get_kund_fakturor__actmonth"; // using php-function: "select()"
     //
-    public static HashMap<String,String>FILTER_DICT_MAP = new HashMap<>();
+    public static HashMap<String, String> FILTER_DICT_MAP = new HashMap<>();
+
     //
     static {
         FILTER_DICT_MAP.put(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, "sedan årsskiftet");

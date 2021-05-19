@@ -38,9 +38,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Add column is is_printed to the "buh_faktura" table:
-1. HTML_PrintA line: 943 -----> Implement here
-2. Don't forget to make corresponding changes for displaying of the printed icon
+Nyckeltal för angiven urval
 
 
 

@@ -149,8 +149,8 @@ public class HelpBuh {
         //
 //        checkUpdates(null);
         //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
+//        GP_BUH.USER = "ask@mixcont.com";
+//        GP_BUH.PASS = "mixcont4765";
         //
 //        createAccountPHP_existing_customer("1");
         //
