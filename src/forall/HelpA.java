@@ -653,7 +653,7 @@ public class HelpA {
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());
     }
-    
+
     public static String get_act_year_first_date() {
         DateFormat formatter = new SimpleDateFormat("yyyy");
         Calendar calendar = Calendar.getInstance();
@@ -3284,8 +3284,6 @@ public class HelpA {
         return cbo_arr;
     }
 
-    
-
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);
     }
@@ -3782,6 +3780,32 @@ public class HelpA {
             //
         } else {
             map.put(key, value);
+            return map;
+        }
+    }
+
+    public static HashMap decrease_map_value_with_x(Object key, Object value, HashMap map) {
+        if (map.containsKey(key)) {
+            Object result = null;
+            if (map.get(key) instanceof Integer && value instanceof Integer) {
+                int val_1 = (Integer) map.get(key);
+                int val_2 = (Integer) value;
+                result = val_1 - val_2;
+            } else if (map.get(key) instanceof Integer && value instanceof Double) {
+                int val_1 = (Integer) map.get(key);
+                double val_2 = (Double) value;
+                result = (double) (val_1 - val_2);
+            } else if (map.get(key) instanceof Double && value instanceof Double) {
+                double val_1 = (Double) map.get(key);
+                double val_2 = (Double) value;
+                result = (double) (val_1 - val_2);
+            }
+            //
+            return update_value_hash_map(key, result, map);
+            //
+        } else {
+            Double val = 0 - ((Double) value);
+            map.put(key, val);
             return map;
         }
     }

@@ -213,6 +213,11 @@ public class StatistikTab implements BarGraphListener {
 
         private void getData_and_add_to_graph() {
             //
+            int normal = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_NORMAL__NUM);
+            int kredit = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_KREDIT__NUM);
+            int kontant = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_KONTANT__NUM);
+            int offert = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_OFFERT__NUM);
+            //
             final LinkedHashMap<String, Double> mont_sum_map = new LinkedHashMap<>();
             final LinkedHashMap<String, Double> mont_ammount_map = new LinkedHashMap<>();
             //
@@ -233,17 +238,29 @@ public class StatistikTab implements BarGraphListener {
                 String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
                 String total = map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__);
                 int fakturatyp = Integer.parseInt(map.get(DB.BUH_FAKTURA__FAKTURATYP));
+                int makuleared = Integer.parseInt(map.get(DB.BUH_FAKTURA__MAKULERAD));
+                //
                 //
                 String[] arr = fakturadatum.split("-");
                 String faktura_datum_short = arr[0] + "-" + arr[1];
                 //
-                if (fakturatyp == 0 || fakturatyp == 2) {
+                if (makuleared == 1) {
+                    HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, mont_ammount_map);
+                    continue;
+                }
+                //
+                //
+                if (fakturatyp == normal || fakturatyp == kontant) {
                     //
                     HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
                     //
-                    HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, mont_ammount_map);
+                } else if (fakturatyp == kredit) {
+                    //
+                    HelpA.decrease_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
                     //
                 }
+                //
+                HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, mont_ammount_map);
                 //
             }
             //

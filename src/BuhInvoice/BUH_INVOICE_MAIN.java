@@ -290,6 +290,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             GP_BUH.setEnabled(jButton_kredit_faktura, false);
             GP_BUH.setEnabled(jButton_copy_faktura, false);
             GP_BUH.setEnabled(jButton_inbetalning, false);
+            GP_BUH.setEnabled(jButton_send_reminder, false);
         }
     }
 
