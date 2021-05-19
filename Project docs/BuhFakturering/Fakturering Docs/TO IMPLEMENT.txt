@@ -45,11 +45,6 @@ Fördelar - text till sajten:
 
 ______
 
-BUH_INVOICE_MAIN -> goToFaktura(....)
-
-HelpA -> scrollToVisible(...)
-______
-
 Make video how to make Offert
 
 Make video how to write on Faktura before printing
