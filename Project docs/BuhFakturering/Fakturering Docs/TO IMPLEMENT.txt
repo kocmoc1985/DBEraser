@@ -40,9 +40,14 @@ _____
 
 Fördelar - text till sajten:
 - Nyckeltal för angiven urval
+- 
 
 
+______
 
+BUH_INVOICE_MAIN -> goToFaktura(....)
+
+HelpA -> scrollToVisible(...)
 ______
 
 Make video how to make Offert
