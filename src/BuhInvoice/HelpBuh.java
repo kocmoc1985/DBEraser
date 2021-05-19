@@ -111,6 +111,10 @@ public class HelpBuh {
         //
     }
 
+    /**
+     * OBS! It does require login
+     * @return 
+     */
     public static HashMap<String, String> get_constants() {
         //[#BUH-CONSTANTS#]
         //In fact the "where" is fake, i use it just because the select statement uses a "where"

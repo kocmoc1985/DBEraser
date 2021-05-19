@@ -241,11 +241,11 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>"
                 //
-                + "<td>"
+                + "<td style='width:50%'>"
                 + internal_table_x_r_1c(3, values_a, false)
                 + "</td>"
                 //
-                + "<td>"
+                + "<td style='width:50%'>"
                 + internal_table_x_r_1c(3, values_b, true)
                 + "</td>"
                 //
@@ -271,11 +271,11 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>"
                 //
-                + "<td>"
+                + "<td style='width:50%'>"
                 + internal_table_x_r_1c(2, values_t_1, false)
                 + "</td>"
                 //
-                + "<td>"
+                + "<td style='width:50%'>"
                 + internal_table_x_r_1c(2, values_t_2, false)
                 + "</td>"
                 //
