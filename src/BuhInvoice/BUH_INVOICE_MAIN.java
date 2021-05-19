@@ -65,7 +65,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     //
     private ArrayList<HashMap<String, String>> ARTICLES_ACTUAL_INVOICE;
     //
-    public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK;
+    public String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER;
     private final ArrayList<JToggleButton> toggleBtnList = new ArrayList<>();
     //
     protected String FAKTURA_TYPE_CURRENT__OPERATION;
@@ -78,6 +78,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     public BUH_INVOICE_MAIN() {
         initComponents();
         initOhter();
+        //
+        SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, true);
         //
         setHomePageBackground();
         //
@@ -132,7 +134,23 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }
 
     protected void RESET_SEARCH_FILTER() {
-        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK;
+        SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, false);
+    }
+
+    private void SET_SEARCH_FILTER(String filter, boolean affectNyckelTalInfo) {
+        //
+        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = filter;
+        //
+        if (affectNyckelTalInfo) {
+            //
+            if (filter.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__MAKULERAD)) {
+                jLabel_nyckel_tal__info_label.setText("Nyckeltal, urval: " + DB.FILTER_DICT_MAP.get(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER));
+            } else {
+                jLabel_nyckel_tal__info_label.setText("Nyckeltal, urval: " + DB.FILTER_DICT_MAP.get(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER) + " (exkl. makulerade)");
+            }
+            //
+        }
+        //
     }
 
     protected boolean isInitialFilter() {
@@ -354,8 +372,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getCopiedFromFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
-    
-     
 
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
@@ -376,11 +392,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-    
+
     protected int getBetalVilkor() {
         return Integer.parseInt(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR));
     }
-    
+
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
@@ -392,25 +408,25 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
-    
+
     protected Boolean isPrinted() {
         //
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__UTSKRIVEN);
         //
-        if(val.equals(DB.STATIC__YES)){
+        if (val.equals(DB.STATIC__YES)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     protected Boolean isOmvantSkatt() {
         //
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
         //
-        if(val.equals(DB.STATIC__YES)){
+        if (val.equals(DB.STATIC__YES)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -820,7 +836,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel__nyckel_tal__tot_inkl_moms = new javax.swing.JLabel();
         jLabel__nyckel_tal__tot_exkl_moms = new javax.swing.JLabel();
         jLabel__nyckel_tal__antal_fakturor = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        jLabel_nyckel_tal__info_label = new javax.swing.JLabel();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -1404,7 +1420,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jLabel_nycke_tal__ing_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_nycke_tal__ing_moms.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel_nycke_tal__ing_moms.setText("INGÅENDE MOMS");
+        jLabel_nycke_tal__ing_moms.setText("UTGÅENDE MOMS");
         jPanel25.add(jLabel_nycke_tal__ing_moms);
 
         jLabel_nycke_tal__total_inkl_moms.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -1438,9 +1454,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jLabel__nyckel_tal__antal_fakturor.setForeground(new java.awt.Color(102, 102, 102));
         jPanel25.add(jLabel__nyckel_tal__antal_fakturor);
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel18.setText("Sedan årsskiftet:");
+        jLabel_nyckel_tal__info_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_nyckel_tal__info_label.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_nyckel_tal__info_label.setText("Sedan årsskiftet:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1479,10 +1495,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel_nyckel_tal__info_label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE))))
                 .addGap(178, 178, 178))
         );
         jPanel3Layout.setVerticalGroup(
@@ -1514,7 +1529,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jLabel18)
+                .addComponent(jLabel_nyckel_tal__info_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(155, 155, 155))
@@ -2382,6 +2397,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         //"Refresh btn"
+        //
+        SET_SEARCH_FILTER(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, true);
+        //
         invoiceB.refresh(null);
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -2767,7 +2785,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jToggleButton_makulerad_filterActionPerformed
 
     private void jButton_search_by_kundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_search_by_kundActionPerformed
-        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND;
+//        PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND;
+        SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND, true);
         String fakturaKundId = HelpA.getComboBoxSelectedValue(jComboBox_faktura_kunder_filter, 2, -1);
         untoggleAll();
         invoiceB.refresh(fakturaKundId);
@@ -2887,7 +2906,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         JToggleButton jtb = (JToggleButton) evt.getSource();
         //
         if (jtb.isSelected() == true) {
-            PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
+//            PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
+            SET_SEARCH_FILTER(phpFunc, true);
             invoiceB.refresh(null);
             untoggleAllExcept((JToggleButton) evt.getSource());
         } else {
@@ -2994,7 +3014,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     public static javax.swing.JLabel jLabel17_new__version;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -3030,6 +3049,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel_nycke_tal__ing_moms;
     private javax.swing.JLabel jLabel_nycke_tal__total_exkl_moms;
     private javax.swing.JLabel jLabel_nycke_tal__total_inkl_moms;
+    private javax.swing.JLabel jLabel_nyckel_tal__info_label;
     private javax.swing.JLabel jLabel_register_new;
     private javax.swing.JLabel jLabel_restore_password;
     protected static javax.swing.JLabel jLabel_rut_avdrag;
@@ -3357,11 +3377,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         }
         //
     }
-    
-	/**
-	* [2021-05-16]
-	* [#SWITCH-FAKTURA-NO-COLLISION#]
-	*/
+
+    /**
+     * [2021-05-16] [#SWITCH-FAKTURA-NO-COLLISION#]
+     */
     protected void changeToFakturaWithsync() {
         //
         Thread x = new Thread(() -> {

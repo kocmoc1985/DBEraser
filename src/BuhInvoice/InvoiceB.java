@@ -397,8 +397,9 @@ public class InvoiceB extends Basic_Buh {
 
     /**
      * Not used since [2021-05-18]
-     * @deprecated 
-     * @return 
+     *
+     * @deprecated
+     * @return
      */
     private boolean isPrinted() {
         //
@@ -563,16 +564,17 @@ public class InvoiceB extends Basic_Buh {
                 bim.untoggleAll();
             }
             //
-            bim.RESET_SEARCH_FILTER();
-            //
             //=======
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            if (bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
-                //[#NYCKEL-TAL#]
-                countNyckelTal(invoices);
-            }
+            //
+            //[#NYCKEL-TAL#]
+            countNyckelTal(invoices, bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER);
+            //
+            //
+            bim.RESET_SEARCH_FILTER(); //***************
+            //
             //
             for (HashMap<String, String> invoice_map : invoices) {
                 addRowJtable_all_invoices(invoice_map, table);
@@ -592,7 +594,7 @@ public class InvoiceB extends Basic_Buh {
     public static double NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
     public static double NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
 
-    private void countNyckelTal(ArrayList<HashMap<String, String>> invoices) {
+    private void countNyckelTal(ArrayList<HashMap<String, String>> invoices, String filter) {
         //
         NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
         NYCKEL_TAL__ING_MOMS_TOTAL = 0;
@@ -604,17 +606,25 @@ public class InvoiceB extends Basic_Buh {
         for (HashMap<String, String> map : invoices) {
             //
             String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
+            int makulerad = Integer.parseInt( map.get(DB.BUH_FAKTURA__MAKULERAD));
             //
-            if (GP_BUH.compareDates_b(start_of_year_date, GP_BUH.DATE_FORMAT_BASIC, fakturadatum, GP_BUH.DATE_FORMAT_BASIC)) {
+            if(filter.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__MAKULERAD) && makulerad == 1){
+                countNyckelTal_help(map);
+            }
+            //
+            if(makulerad == 1){
+                continue;
+            }
+            //
+            if (filter.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)
+                    && GP_BUH.compareDates_b(start_of_year_date, GP_BUH.DATE_FORMAT_BASIC, fakturadatum, GP_BUH.DATE_FORMAT_BASIC)) {
                 //
-                double moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__MOMS_TOTAL__));
-                double inkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL__));
-                double exkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__));
+                countNyckelTal_help(map);
                 //
-                NYCKEL_TAL__ING_MOMS_TOTAL += moms;
-                NYCKEL_TAL__TOTAL_INKL_MOMS += inkl_moms;
-                NYCKEL_TAL__TOTAL_EXKL_MOMS += exkl_moms;
-                NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA++;
+            } else {
+                //
+                countNyckelTal_help(map);
+                //
             }
             //
         }
@@ -623,8 +633,19 @@ public class InvoiceB extends Basic_Buh {
         bim.jLabel__nyckel_tal__antal_fakturor.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA)); // NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA
         bim.jLabel__nyckel_tal__tot_inkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_INKL_MOMS)); // NYCKEL_TAL__TOTAL_INKL_MOMS
         bim.jLabel__nyckel_tal__tot_exkl_moms.setText("" + GP_BUH.round_double_b(NYCKEL_TAL__TOTAL_EXKL_MOMS)); // NYCKEL_TAL__TOTAL_EXKL_MOMS
-        // System.out.println("MOMS TOTAL********************************: " + NYCKEL_TAL__ING_MOMS_TOTAL);
-        // System.out.println("FAKTUROR TOTAL ANTAL********************************: " + NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA);
+        //
+    }
+
+    private void countNyckelTal_help(HashMap<String, String> map) {
+        //
+        double moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__MOMS_TOTAL__));
+        double inkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL__));
+        double exkl_moms = Double.parseDouble(map.get(DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__));
+        //
+        NYCKEL_TAL__ING_MOMS_TOTAL += moms;
+        NYCKEL_TAL__TOTAL_INKL_MOMS += inkl_moms;
+        NYCKEL_TAL__TOTAL_EXKL_MOMS += exkl_moms;
+        NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA++;
         //
     }
 
