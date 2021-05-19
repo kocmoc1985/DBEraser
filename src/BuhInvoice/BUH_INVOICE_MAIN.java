@@ -217,6 +217,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected void openTabByName(String tabName) {
         HelpA.openTabByName(jTabbedPane1, tabName);
+        ACTUAL_TAB_NAME = tabName;
+        PREVIOUS_TAB_NAME = ACTUAL_TAB_NAME;
     }
 
     private void setUneditableAllJTables() {
