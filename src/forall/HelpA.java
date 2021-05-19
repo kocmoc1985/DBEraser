@@ -2260,6 +2260,7 @@ public class HelpA {
     public static void markRowByValue(JTable table, String colName, String colValue) {
         int row = getRowByValue(table, colName, colValue);
         setSelectedRow(table, row);
+        scrollToVisible(table, row, 1);
     }
 
     public static void markRowByValue_contains(JTable table, String colName, String colValue) {

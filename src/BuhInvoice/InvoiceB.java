@@ -601,20 +601,27 @@ public class InvoiceB extends Basic_Buh {
         NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
         NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
         //
+        int normal = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_NORMAL__NUM);
+        int kredit = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_KREDIT__NUM);
+        int kontant = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_KONTANT__NUM);
+        int offert = Integer.parseInt(DB.STATIC__FAKTURA_TYPE_OFFERT__NUM);
+        //
         String start_of_year_date = HelpA.get_act_year_first_date();
         //
         for (HashMap<String, String> map : invoices) {
             //
             String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
             int makulerad = Integer.parseInt( map.get(DB.BUH_FAKTURA__MAKULERAD));
+            int fakturaTyp = Integer.parseInt( map.get(DB.BUH_FAKTURA__FAKTURATYP));
+            //
             //
             if(filter.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__MAKULERAD) && makulerad == 1){
                 countNyckelTal_help(map);
             }
-            //
             if(makulerad == 1){
                 continue;
             }
+            //
             //
             if (filter.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)
                     && GP_BUH.compareDates_b(start_of_year_date, GP_BUH.DATE_FORMAT_BASIC, fakturadatum, GP_BUH.DATE_FORMAT_BASIC)) {
