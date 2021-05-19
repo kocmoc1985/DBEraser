@@ -38,7 +38,8 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 
 _____
 
-Nyckeltal för angiven urval
+Fördelar - text till sajten:
+- Nyckeltal för angiven urval
 
 
 
