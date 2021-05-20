@@ -1,18 +1,4 @@
 
-Implement statistics like on "Home" tab like, "antal obetalda, antal förfallna" -> Kanske i forsättningen även göra det i form av graf
-SELECT COUNT(betald) as ´BETALDA´ FROM buh_faktura WHERE kundId=1 AND betald=1
-SELECT COUNT(makulerad) as ´MAKULERADE´ FROM buh_faktura WHERE kundId=1 AND makulerad=1
-SELECT COUNT(fakturaId) as ´FAKTUROR´ FROM buh_faktura WHERE kundId=1 AND MONTH(buh_faktura.fakturadatum)=MONTH(CURRENT_DATE()) AND YEAR(buh_faktura.fakturadatum)=YEAR(CURRENT_DATE())
-
-Multiple Select:
-SELECT(
-SELECT COUNT(betald) FROM buh_faktura WHERE kundId=1 AND betald=1
-)as `BETALDA`,
-(
-SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1    
-)as `MAKULERADE`
-
--------------- 
 ------------------------<CHECK>------------------------
  - Create new account - tested & working[2021-02-11]
  - Total account delete - tested & working[2021-02-11]
@@ -42,12 +28,13 @@ Fördelar - text till sajten:
 - Nyckeltal för angiven urval
 - 
 
-
-______
-
 Make video how to make Offert
 
 Make video how to write on Faktura before printing
+
+______
+
+Tab "ARTIKLAR" - there is field named "artikelnr" but there is no search function connected to that field
 
 See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 
