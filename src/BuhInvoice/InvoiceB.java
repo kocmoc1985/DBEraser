@@ -114,10 +114,7 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    /**
-     * This one can not be called several times because of using
-     * "AutoCompleteSupport" from "glazedlists_java15-1.9.1.jar"
-     */
+   
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});

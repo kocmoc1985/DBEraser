@@ -1485,7 +1485,9 @@ public class HelpA {
             //
             String val = (String) table.getValueAt(x, col);
             //
-            list.add(val);
+            if (val != null && val.isEmpty() == false) {
+                list.add(val);
+            }
             //
         }
         //

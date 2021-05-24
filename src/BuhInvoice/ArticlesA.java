@@ -45,6 +45,8 @@ public class ArticlesA extends Basic_Buh {
     private static final String TABLE_ARTICLES__KATEGORI = "KATEGORI";
     //
     private boolean CURRENT_OPERATION_INSERT = false;
+    //
+    public static String ARTIKEL_NAME__OR__NR__COLUMN = TABLE_ARTICLES__NAMN;
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
@@ -71,6 +73,18 @@ public class ArticlesA extends Basic_Buh {
 
     protected boolean getCurrentOperationInsert() {
         return CURRENT_OPERATION_INSERT;
+    }
+    
+    public void setJComboParam_colName(boolean artikelNr){
+        //
+        if(artikelNr){
+            ARTIKEL_NAME__OR__NR__COLUMN = TABLE_ARTICLES__ARTNR;
+        }else{
+            ARTIKEL_NAME__OR__NR__COLUMN = TABLE_ARTICLES__NAMN;
+        }
+        //
+        fillSearchJCombo(ARTIKEL_NAME__OR__NR__COLUMN);
+        //
     }
     
     public void jTableArticles_clicked(){
@@ -107,7 +121,7 @@ public class ArticlesA extends Basic_Buh {
         HelpA.markFirstRowJtable(getTableArticles());
         bim.jTableArticles_clicked();
         //
-        fillJCombo_article_names(); // 2021-05-24
+        fillSearchJCombo(ARTIKEL_NAME__OR__NR__COLUMN); // 2021-05-24
         //
         //#THREAD# Causes trouble due to asynchron execution [2020-10-15]
 //        Thread x = new Thread(() -> {
@@ -137,12 +151,12 @@ public class ArticlesA extends Basic_Buh {
         return this.bim.jTable_ArticlesA_articles;
     }
 
-    private void fillJCombo_article_names() {
+    private void fillSearchJCombo(String colName) {
         //
-        Object[] objects = HelpA.getValuesOneColumnJTable(getTableArticles(), TABLE_ARTICLES__NAMN);
+        Object[] objects = HelpA.getValuesOneColumnJTable(getTableArticles(), colName);
         //
         if (objects != null) {
-            HelpA.fillComboBox(bim.jComboBox_articles_a__tab__article_name, objects, "");
+            HelpA.fillComboBox(bim.jComboBox_articles_a__tab, objects, "");
         }
         //
     }

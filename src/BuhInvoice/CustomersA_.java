@@ -33,7 +33,7 @@ public class CustomersA_ extends CustomerAForetagA {
     protected static final String TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID = "FKUNDID";
     private static final String TABLE_FAKTURA_KUNDER__KUND_ID = "KUND ID";
     private static final String TABLE_FAKTURA_KUNDER__KUNDNR = "KUNDNR";
-    private static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
+    public static final String TABLE_FAKTURA_KUNDER__KUND_NAMN = "KUND NAMN";
     private static final String TABLE_FAKTURA_KUNDER__VATNR = "VATNR";
     public static final String TABLE_FAKTURA_KUNDER__EPOST = "E-POST";
     private static final String TABLE_FAKTURA_KUNDER__KATEGORI = "KUND KATEGORI";
@@ -77,6 +77,16 @@ public class CustomersA_ extends CustomerAForetagA {
                 refreshTableInvert(TABLE_INVERT_4);
             }
         });
+        //
+    }
+    
+     public void fillSearchJCombo(String colName) {
+        //
+        Object[] objects = HelpA.getValuesOneColumnJTable(getTableMain(), colName);
+        //
+        if (objects != null) {
+            HelpA.fillComboBox(bim.jComboBox_customers_a__tab, objects, "");
+        }
         //
     }
 

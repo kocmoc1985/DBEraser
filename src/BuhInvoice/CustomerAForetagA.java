@@ -51,6 +51,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
     protected static final String TABLE_FAKTURA_KUND_ADDR__OTHER = "ANNAT";
     //
     protected boolean IS_PERSON__CUSTOMERS_A = false;
+
     //
     public CustomerAForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
@@ -108,7 +109,14 @@ public abstract class CustomerAForetagA extends Basic_Buh {
             //
             java.awt.EventQueue.invokeLater(() -> {
                 if (this instanceof CustomersA_) {
+                    //
+                    if (this instanceof CustomersA_) {
+                        CustomersA_ ca = (CustomersA_) this;
+                        ca.fillSearchJCombo(CustomersA_.TABLE_FAKTURA_KUNDER__KUND_NAMN);
+                    }
+                    //
                     bim.jTableCustomersA_kunder_clicked();
+                    //
                 } else if (this instanceof ForetagA) {
                     bim.jTableForetagA_ftg_table_clicked();
                 }
@@ -281,7 +289,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
             Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
-        
+
         //
     }
 
@@ -343,7 +351,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
         //
         HashMap<String, String> map = tableInvertToHashMap(TABLE_INVERT_3, DB.START_COLUMN);
         //
-        if(map == null || map.isEmpty()){
+        if (map == null || map.isEmpty()) {
             return;
         }
         //
@@ -537,7 +545,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
             //
             Validator.validateMaxInputLength(jli, 500);
             //
-        }else if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
+        } else if (col_name.equals(DB.BUH_FAKTURA_KUND___VATNR)) {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
