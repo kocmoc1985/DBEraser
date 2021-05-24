@@ -268,7 +268,7 @@ public class ArticlesA extends Basic_Buh {
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
-            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
+//            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_B);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_C);

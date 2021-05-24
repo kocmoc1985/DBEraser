@@ -15,6 +15,7 @@ SELECT COUNT(makulerad) FROM buh_faktura WHERE kundId=1 AND makulerad=1
 [2020-10-07]
 SELECT * FROM `buh_licens` WHERE user='user' and pass='pass'
 ----------------------------------------------------------------------
+
 [2020-07-23]
 
 GET LATEST FAKTURA NR (fakturanr) for given KUND ID (kundid).
@@ -36,6 +37,39 @@ select buh_faktura.fakturanr, buh_faktura.fakturaId from buh_faktura
 INNER JOIN buh_f_artikel 
 ON buh_f_artikel.fakturaId = buh_faktura.fakturaId
 where buh_f_artikel.artikelId = 3 GROUP BY buh_faktura.fakturanr
+
+-----------------------------------------------------------------------
+
+[2021-05-24]**********************************************************************************
+SUPER DUPER IMPORTANT - MULTIPLY AND SUM
+
+select buh_f_artikel.artikelId, buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris, buh_faktura_artikel.namn from `buh_f_artikel`
+INNER JOIN buh_faktura_artikel 
+ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
+where buh_f_artikel.artikelId = 132
+
+select buh_f_artikel.artikelId,buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris,
+buh_f_artikel.kundId,buh_f_artikel.antal * buh_faktura_artikel.pris as total, buh_faktura_artikel.namn,
+buh_faktura.fakturadatum
+from `buh_f_artikel`
+INNER JOIN buh_faktura_artikel 
+ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
+INNER JOIN buh_faktura
+ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
+where buh_f_artikel.artikelId = 132
+and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
+
+select buh_f_artikel.artikelId,buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris,
+buh_f_artikel.kundId,SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura_artikel.namn,
+buh_faktura.fakturadatum
+from `buh_f_artikel`
+INNER JOIN buh_faktura_artikel 
+ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
+INNER JOIN buh_faktura
+ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
+where buh_f_artikel.artikelId = 132
+and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
+and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
 
 -----------------------------------------------------------------------
 IMPORTANT:

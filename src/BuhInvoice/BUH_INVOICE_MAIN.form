@@ -2256,20 +2256,20 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel14" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="jComboBox_articles_a__tab" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jButton_articles_a__tab__search_btn" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBox_articles_a__tab" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jButton_articles_a__tab__search_btn" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel_Artikel_Insert_or_Update" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane7" min="-2" pref="560" max="-2" attributes="0"/>
-                          <Component id="jPanel6" min="-2" pref="384" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jPanel6" pref="384" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
