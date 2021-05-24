@@ -34,6 +34,8 @@ Make video how to write on Faktura before printing
 
 ______
 
+Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar"
+
 Tab "ARTIKLAR" - there is field named "artikelnr" but there is no search function connected to that field
 
 See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
