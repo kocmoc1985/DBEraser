@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +37,7 @@ public class ArticlesA extends Basic_Buh {
 //    private static final String TABLE_ARTICLES__LAGER = "LAGER";
     private static final String TABLE_ARTICLES__PRIS = "PRIS";
 //    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
-    private static final String TABLE_ARTICLES__NAMN = "NAMN";
+    public static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__ARTNR = "ARTIKELNR";
     private static final String TABLE_ARTICLES__KOMMENT_A = "KOMMENT A";
     private static final String TABLE_ARTICLES__KOMMENT_B = "KOMMENT B";
@@ -70,11 +72,23 @@ public class ArticlesA extends Basic_Buh {
     protected boolean getCurrentOperationInsert() {
         return CURRENT_OPERATION_INSERT;
     }
+    
+    public void jTableArticles_clicked(){
+        if (getTableArticles().getRowCount() == 0) {
+            showTableInvert();
+            refreshTableInvert();
+        } else {
+            showTableInvert_2();
+            refreshTableInvert(TABLE_INVERT_2);
+        }
+    }
 
     @Override
     protected void startUp() {
         //
         fillJTableheader();
+        //
+
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -92,6 +106,8 @@ public class ArticlesA extends Basic_Buh {
         fillArtiklesJTable();
         HelpA.markFirstRowJtable(getTableArticles());
         bim.jTableArticles_clicked();
+        //
+        fillJCombo_article_names(); // 2021-05-24
         //
         //#THREAD# Causes trouble due to asynchron execution [2020-10-15]
 //        Thread x = new Thread(() -> {
@@ -119,6 +135,16 @@ public class ArticlesA extends Basic_Buh {
 
     protected JTable getTableArticles() {
         return this.bim.jTable_ArticlesA_articles;
+    }
+
+    private void fillJCombo_article_names() {
+        //
+        Object[] objects = HelpA.getValuesOneColumnJTable(getTableArticles(), TABLE_ARTICLES__NAMN);
+        //
+        if (objects != null) {
+            HelpA.fillComboBox(bim.jComboBox_articles_a__tab__article_name, objects, "");
+        }
+        //
     }
 
     private void fillJTableheader() {

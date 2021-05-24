@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-89,0,0,5,-86"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,5,109,0,0,5,-86"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -462,7 +462,7 @@
                               <Component id="jLabel_all_invoices_list1" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="jLabel_faktura_changed_by__user" min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace pref="378" max="32767" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="198" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel_nyckel_tal__info_label" min="-2" max="-2" attributes="0"/>
@@ -831,6 +831,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
@@ -1139,13 +1140,13 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jPanel10" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jPanel2_faktura_main" alignment="0" pref="674" max="32767" attributes="0"/>
+                                      <Component id="jPanel2_faktura_main" alignment="0" pref="682" max="32767" attributes="0"/>
                                       <Component id="jPanel_articles" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jPanel3_faktura_sec" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel2" pref="649" max="32767" attributes="0"/>
+                                      <Component id="jPanel2" pref="658" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel12" min="-2" pref="250" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -2207,7 +2208,13 @@
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel_Artikel_Insert_or_Update" min="-2" pref="245" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel_Artikel_Insert_or_Update" min="-2" pref="245" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jComboBox_articles_a__tab__article_name" min="-2" pref="193" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton_articles_a__tab__search_btn" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="jScrollPane7" min="-2" pref="638" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -2220,7 +2227,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanel14" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel_Artikel_Insert_or_Update" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="jComboBox_articles_a__tab__article_name" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jButton_articles_a__tab__search_btn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel_Artikel_Insert_or_Update" alignment="1" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2332,6 +2345,31 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="jComboBox_articles_a__tab__article_name">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;()" type="code"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBoxA()"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton_articles_a__tab__search_btn">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/icons/search.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_articles_a__tab__search_btnActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane10">

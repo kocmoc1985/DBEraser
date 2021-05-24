@@ -1471,6 +1471,27 @@ public class HelpA {
         //
     }
 
+    public static Object[] getValuesOneColumnJTable(JTable table, String colName) {
+        //
+        ArrayList<String> list = new ArrayList<>();
+        //
+        if (isEmtyJTable(table)) {
+            return null;
+        }
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            //
+            int col = HelpA.getColByName(table, colName);
+            //
+            String val = (String) table.getValueAt(x, col);
+            //
+            list.add(val);
+            //
+        }
+        //
+        return list.toArray();
+    }
+
     /**
      * [2020-08-26]
      *
@@ -3220,9 +3241,14 @@ public class HelpA {
         //
         Object[] arr = list.toArray();
         //
-        //#AutoComplete, Auto complete# glazedlists_java15-1.9.1.jar is needed
-        AutoCompleteSupport support = AutoCompleteSupport.install(
-                jbox, GlazedLists.eventListOf(arr));
+        if (jbox instanceof JComboBoxA) {
+            JComboBoxA boxA = (JComboBoxA) jbox;
+            boxA.AUTOFILL_ADD(list);
+        } else {
+            //#AutoComplete, Auto complete# glazedlists_java15-1.9.1.jar is needed
+            AutoCompleteSupport support = AutoCompleteSupport.install(
+                    jbox, GlazedLists.eventListOf(arr));
+        }
         //
         //
         if (arr.length == 1) {

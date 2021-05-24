@@ -107,15 +107,10 @@ public class InvoiceB extends Basic_Buh {
         fillJTableheader();
         hideColumnsFakturaTable(bim.jTable_invoiceB_alla_fakturor);
         refresh(null); // this is used instead of fillFakturaTable
-//        fillFakturaTable(null);
-//        HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
-//        String fakturaId = bim.getFakturaId();
-//        all_invoices_table_clicked(fakturaId);
+        //
         java.awt.EventQueue.invokeLater(() -> {
             fillJComboSearchByFakturaKund();
         });
-        //
-//        refresh(null); // fillTable done here, and also marking first row
         //
     }
 
@@ -135,7 +130,6 @@ public class InvoiceB extends Basic_Buh {
         if (bim.jComboBox_faktura_kunder_filter.getItemCount() == 0) {
             bim.jComboBox_faktura_kunder_filter.setVisible(false);
             bim.jButton_search_by_kund.setVisible(false);
-
         }
         //
     }

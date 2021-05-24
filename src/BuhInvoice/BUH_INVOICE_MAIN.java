@@ -16,6 +16,7 @@ import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.TableInvert;
 import XY_BUH_INVOICE.Buh_Invoice_Main__IF;
 import forall.HelpA;
+import forall.JComboBoxA;
 import icons.ICON;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -814,7 +815,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jToggleButton_not_send_filter = new javax.swing.JToggleButton();
         jToggleButton_makulerad_filter = new javax.swing.JToggleButton();
         jToggleButton_act_month_filter = new javax.swing.JToggleButton();
-        jComboBox_faktura_kunder_filter = new javax.swing.JComboBox<>();
+        jComboBox_faktura_kunder_filter = new JComboBoxA();
         jButton_search_by_kund = new javax.swing.JButton();
         jLabel_faktura_changed_by__user = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
@@ -919,6 +920,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton16 = new javax.swing.JButton();
         jButton_update_article = new javax.swing.JButton();
         jButton_delete_article = new javax.swing.JButton();
+        jComboBox_articles_a__tab__article_name = new JComboBoxA();
+        jButton_articles_a__tab__search_btn = new javax.swing.JButton();
         jScrollPane10 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -1527,7 +1530,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_faktura_changed_by__user, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel_nyckel_tal__info_label)
@@ -1802,12 +1805,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                            .addComponent(jPanel2_faktura_main, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
                             .addComponent(jPanel_articles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2104,6 +2107,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
         jPanel14.add(jButton_delete_article);
 
+        jComboBox_articles_a__tab__article_name.setModel(new javax.swing.DefaultComboBoxModel<>());
+
+        jButton_articles_a__tab__search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        jButton_articles_a__tab__search_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_articles_a__tab__search_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4_ArticlesLayout = new javax.swing.GroupLayout(jPanel4_Articles);
         jPanel4_Articles.setLayout(jPanel4_ArticlesLayout);
         jPanel4_ArticlesLayout.setHorizontalGroup(
@@ -2115,7 +2127,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_Artikel_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
+                        .addComponent(jLabel_Artikel_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox_articles_a__tab__article_name, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_articles_a__tab__search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
@@ -2125,7 +2142,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addContainerGap()
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Artikel_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox_articles_a__tab__article_name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_articles_a__tab__search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel_Artikel_Insert_or_Update, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2906,6 +2927,12 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         createNewFaktura(DB.STATIC__FAKTURA_TYPE_OFFERT);//true [#OFFERT#]
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton_articles_a__tab__search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_articles_a__tab__search_btnActionPerformed
+        String val = HelpA.getComboBoxSelectedValue(jComboBox_articles_a__tab__article_name);
+        HelpA.markRowByValue(articlesA.getTableArticles(), ArticlesA.TABLE_ARTICLES__NAMN, val);
+        jTableArticles_clicked();
+    }//GEN-LAST:event_jButton_articles_a__tab__search_btnActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -2973,6 +3000,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
     protected javax.swing.JButton jButton_add_article;
+    protected javax.swing.JButton jButton_articles_a__tab__search_btn;
     protected javax.swing.JButton jButton_confirm_insert_update;
     private javax.swing.JButton jButton_copy_faktura;
     private javax.swing.JButton jButton_create_new_faktura;
@@ -3008,6 +3036,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_update_kund_data;
     private javax.swing.JCheckBox jCheckBox__person;
     protected javax.swing.JCheckBox jCheckBox_spara_inloggning;
+    public javax.swing.JComboBox<String> jComboBox_articles_a__tab__article_name;
     protected javax.swing.JComboBox<String> jComboBox_faktura_kunder_filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3328,7 +3357,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             articlesA.showTableInvert_2();
             articlesA.refreshTableInvert(articlesA.TABLE_INVERT_2);
         }
-
+        //
     }
 
     protected void jTableCustomersA_adress_clicked() {
