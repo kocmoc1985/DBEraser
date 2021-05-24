@@ -2019,6 +2019,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jComboBox_customers_a__tab.setModel(new javax.swing.DefaultComboBoxModel<>());
 
@@ -2968,6 +2973,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
        jComboBox_articles_a__tab.requestFocus();
        //
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String val = HelpA.getComboBoxSelectedValue(jComboBox_customers_a__tab);
+        HelpA.markRowByValue(customersA.getTableMain(), CustomersA_.TABLE_FAKTURA_KUNDER__KUND_NAMN, val);
+        jTableCustomersA_kunder_clicked();
+        jComboBox_customers_a__tab.setSelectedItem(null);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
