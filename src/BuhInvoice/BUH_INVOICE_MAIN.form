@@ -2305,11 +2305,11 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jCheckBox__person" min="-2" pref="204" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane8" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jScrollPane6" pref="679" max="32767" attributes="0"/>
-                              <Component id="jScrollPane8" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel_Kund_Insert_or_Update" min="-2" pref="245" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -2317,8 +2317,9 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jButton3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jPanel__customers_a__graph_panel_a" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2342,10 +2343,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane8" pref="0" max="32767" attributes="0"/>
+                              <Component id="jPanel__customers_a__graph_panel_a" max="32767" attributes="0"/>
                               <Component id="jPanel7" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" min="-2" pref="127" max="-2" attributes="0"/>
+                          <EmptySpace pref="634" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2525,6 +2528,23 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
+                <Container class="javax.swing.JPanel" name="jPanel__customers_a__graph_panel_a">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                        <BevelBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                    <Property name="columns" type="int" value="0"/>
+                    <Property name="rows" type="int" value="1"/>
+                  </Layout>
+                </Container>
               </SubComponents>
             </Container>
           </SubComponents>

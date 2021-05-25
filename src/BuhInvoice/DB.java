@@ -198,6 +198,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_ARTICLE_TOTALS_CURR_YEAR = "get_article_totals_curr_year"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR_GIVEN_ARTICLE__CURR_YEAR = "get_fakturor_given_article_curr_year"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTUROR_TOTALS__GIVEN_KUND_CURR_YEAR = "get_fakturor_totals_given_kund_curr_year"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR = "get_kund_fakturor__fakturakund_curr_year"; // using php-function: "select()"
     //
     public static HashMap<String, String> FILTER_DICT_MAP = new HashMap<>();
     //

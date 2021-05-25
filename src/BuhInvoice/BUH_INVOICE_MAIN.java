@@ -932,6 +932,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jCheckBox__person = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
         jComboBox_customers_a__tab = new JComboBoxA();
+        jPanel__customers_a__graph_panel_a = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -2184,6 +2185,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jComboBox_customers_a__tab.setModel(new javax.swing.DefaultComboBoxModel<>());
 
+        jPanel__customers_a__graph_panel_a.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel__customers_a__graph_panel_a.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout jPanel4_CustomersLayout = new javax.swing.GroupLayout(jPanel4_Customers);
         jPanel4_Customers.setLayout(jPanel4_CustomersLayout);
         jPanel4_CustomersLayout.setHorizontalGroup(
@@ -2196,18 +2200,19 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckBox__person, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jCheckBox__person, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
-                    .addComponent(jScrollPane8)
                     .addGroup(jPanel4_CustomersLayout.createSequentialGroup()
                         .addComponent(jLabel_Kund_Insert_or_Update, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBox_customers_a__tab, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel__customers_a__graph_panel_a, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4_CustomersLayout.setVerticalGroup(
             jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2226,9 +2231,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4_CustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel__customers_a__graph_panel_a, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(142, 142, 142))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(634, Short.MAX_VALUE))
         );
 
         jScrollPane9.setViewportView(jPanel4_Customers);
@@ -3225,6 +3232,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     public javax.swing.JPanel jPanel__artcles_a__graph_panel_a;
     public javax.swing.JPanel jPanel__artcles_a__graph_panel_b;
     public javax.swing.JPanel jPanel__artcles_a__graph_panel_c;
+    public javax.swing.JPanel jPanel__customers_a__graph_panel_a;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
     public javax.swing.JPanel jPanel_graph_panel_a;

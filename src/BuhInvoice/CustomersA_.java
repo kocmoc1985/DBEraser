@@ -85,7 +85,7 @@ public class CustomersA_ extends CustomerAForetagA {
             //
             String fakturaKundId = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
             //
-            drawGraph_basic(fakturaKundId, null, "fakturor_given_faktura_kund", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND);
+            drawGraph_basic(fakturaKundId, bim.jPanel__customers_a__graph_panel_a, "fakturor_given_faktura_kund", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR);
             //
             showTableInvert_2();
             refreshTableInvert(TABLE_INVERT_2);
@@ -100,20 +100,22 @@ public class CustomersA_ extends CustomerAForetagA {
 
     private void drawGraph_basic(String fakturaKundId, JPanel container, String name, String phpScript) {
         //
-//        container.removeAll();
+        container.removeAll();
+        container.revalidate();
+        container.repaint();
         //
         String dateNow = GP_BUH.getDate_yyyy_MM_dd();
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
         //
         XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
         //
-        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND)) {
+        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR)) {
             xygraph = xygm;
         }
         //
         System.out.println("Thread:" + Thread.currentThread().getName());
         //
-//        container.add(xygm.getGraph());
+        container.add(xygm.getGraph());
         //
         Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
         x.setName("Thread_A_A");
