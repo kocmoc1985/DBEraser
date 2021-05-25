@@ -2229,30 +2229,35 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel6" pref="571" max="32767" attributes="0"/>
-                              <Component id="jPanel14" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="jPanel__artcles_a__graph_panel_a" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel__artcles_a__graph_panel_c" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel_Artikel_Insert_or_Update" min="-2" pref="245" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jComboBox_articles_a__tab" min="-2" pref="193" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton_articles_a__tab__search_btn" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jLabel19" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jPanel6" pref="571" max="32767" attributes="0"/>
+                                      <Component id="jPanel14" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="jPanel__artcles_a__graph_panel_c" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jPanel__artcles_a__graph_panel_b" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel20" min="-2" pref="427" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane7" pref="638" max="32767" attributes="0"/>
-                              <Component id="jPanel__artcles_a__graph_panel_b" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel_Artikel_Insert_or_Update" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jComboBox_articles_a__tab" min="-2" pref="193" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButton_articles_a__tab__search_btn" min="-2" pref="30" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane7" pref="638" max="32767" attributes="0"/>
+                                      <Component id="jPanel__artcles_a__graph_panel_a" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <Component id="jLabel19" min="-2" pref="303" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -2263,34 +2268,38 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel14" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox_articles_a__tab" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jPanel14" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                          <Component id="jComboBox_articles_a__tab" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jButton_articles_a__tab__search_btn" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jLabel_Artikel_Insert_or_Update" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="jButton_articles_a__tab__search_btn" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel_Artikel_Insert_or_Update" alignment="1" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jPanel6" pref="384" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="jPanel__artcles_a__graph_panel_a" min="-2" pref="280" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel__artcles_a__graph_panel_c" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanel6" pref="384" max="32767" attributes="0"/>
-                          <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel__artcles_a__graph_panel_a" min="-2" pref="280" max="-2" attributes="0"/>
-                          <Component id="jPanel__artcles_a__graph_panel_b" min="-2" pref="280" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel__artcles_a__graph_panel_c" min="-2" pref="280" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel__artcles_a__graph_panel_b" min="-2" pref="280" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2501,6 +2510,17 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
             </Container>
+            <Component class="javax.swing.JLabel" name="jLabel20">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Fakturor som inneh&#xe5;ler artikeln (sedan &#xe5;rsskiftet)"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane10">
