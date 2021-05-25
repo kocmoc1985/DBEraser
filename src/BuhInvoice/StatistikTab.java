@@ -42,8 +42,8 @@ public class StatistikTab implements BarGraphListener {
     private final Object lock_a = new Object();
     private XyGraph_BuhInvoice xygraph;
 
-    private final static String SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH = "bar_graph_total_per_month";
-    private final static String SERIE_NAME__BARGTAPH__AMMOUNT_PER_MONTH = "bar_graph_ammount_per_month";
+    private final static String SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH = "bar_graph_total_per_month";
+    private final static String SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH = "bar_graph_ammount_per_month";
 
     public StatistikTab(BUH_INVOICE_MAIN bim) {
         this.bim = bim;
@@ -60,7 +60,7 @@ public class StatistikTab implements BarGraphListener {
         //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
-        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGTAPH__AMMOUNT_PER_MONTH);
+        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
         //
     }
 
@@ -70,7 +70,7 @@ public class StatistikTab implements BarGraphListener {
         //
         drawGraph_basic(bim.jPanel_graph_panel_a, "all_invoices", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK);
         drawGraph_basic(bim.jPanel_graph_panel_b, "act_month", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH);
-        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGTAPH__AMMOUNT_PER_MONTH);
+        drawGraph_bargraph(bim.jPanel_graph_panel_c, bim.jPanel_graph_panel_d, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
         //
     }
 
@@ -327,7 +327,6 @@ public class StatistikTab implements BarGraphListener {
             //====================================================
             //
         }
-
     }
 
     @Override
