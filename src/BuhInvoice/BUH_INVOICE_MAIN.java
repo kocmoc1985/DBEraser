@@ -2956,7 +2956,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_articles_a__tab__search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_articles_a__tab__search_btnActionPerformed
         String val = HelpA.getComboBoxSelectedValue(jComboBox_articles_a__tab);
         HelpA.markRowByValue(articlesA.getTableArticles(), ArticlesA.ARTIKEL_NAME__OR__NR__COLUMN, val);
-        jTableArticles_clicked();
+        articlesA.jTableArticles_clicked();
         jComboBox_articles_a__tab.setSelectedItem(null);
     }//GEN-LAST:event_jButton_articles_a__tab__search_btnActionPerformed
 
@@ -3268,7 +3268,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 if (articlesA == null) {
                     articlesA = new ArticlesA(this);
                 } else {
-                    jTableArticles_clicked();
+                    articlesA.jTableArticles_clicked();
                 }
                 //
             } else if (ACTUAL_TAB_NAME.equals(TAB_FTG_SETUP)) {
@@ -3391,12 +3391,15 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             //
         } else if (e.getSource() == jTable_ArticlesA_articles && (e.getClickCount() == 1)) {
             //
-            jTableArticles_clicked();
+            articlesA.jTableArticles_clicked();
             //
         }
     }
 
-    protected void jTableArticles_clicked() {
+    /**
+     * @deprecated 2021-05-25
+     */
+    private void jTableArticles_clicked() {
         //
         if (articlesA.getTableArticles().getRowCount() == 0) {
             articlesA.showTableInvert();
