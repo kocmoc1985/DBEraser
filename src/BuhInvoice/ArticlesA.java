@@ -130,7 +130,7 @@ public class ArticlesA extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> totals = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            drawGraph_bargraph(totals, null, null, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
+            drawGraph_bargraph(totals, bim.jPanel__artcles_a__graph_panel_a, bim.jPanel__artcles_a__graph_panel_b, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
             //
         } catch (Exception ex) {
             Logger.getLogger(ArticlesA.class.getName()).log(Level.SEVERE, null, ex);

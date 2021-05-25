@@ -925,6 +925,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jComboBox_articles_a__tab = new JComboBoxA();
         jButton_articles_a__tab__search_btn = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel__artcles_a__graph_panel_a = new javax.swing.JPanel();
+        jPanel__artcles_a__graph_panel_b = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
@@ -2139,15 +2141,26 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             }
         });
 
+        jPanel__artcles_a__graph_panel_a.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel__artcles_a__graph_panel_a.setLayout(new java.awt.GridLayout());
+
+        jPanel__artcles_a__graph_panel_b.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel__artcles_a__graph_panel_b.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout jPanel4_ArticlesLayout = new javax.swing.GroupLayout(jPanel4_Articles);
         jPanel4_Articles.setLayout(jPanel4_ArticlesLayout);
         jPanel4_ArticlesLayout.setHorizontalGroup(
             jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4_ArticlesLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jPanel__artcles_a__graph_panel_a, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4_ArticlesLayout.createSequentialGroup()
@@ -2158,8 +2171,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jComboBox_articles_a__tab, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_articles_a__tab__search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(jPanel__artcles_a__graph_panel_b, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4_ArticlesLayout.setVerticalGroup(
             jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2177,7 +2191,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(187, 187, 187))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4_ArticlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel__artcles_a__graph_panel_a, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel__artcles_a__graph_panel_b, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(621, 621, 621))
         );
 
         jTabbedPane1.addTab("ARTIKLAR", jPanel4_Articles);
@@ -3166,6 +3184,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     protected javax.swing.JPanel jPanel9;
+    public javax.swing.JPanel jPanel__artcles_a__graph_panel_a;
+    public javax.swing.JPanel jPanel__artcles_a__graph_panel_b;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
     public javax.swing.JPanel jPanel_graph_panel_a;
