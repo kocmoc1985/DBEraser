@@ -204,6 +204,7 @@ public class ArticlesA extends Basic_Buh {
                 //
                 String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
                 String total = map.get("total"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
+                String antal = map.get(DB.BUH_F_ARTIKEL__ANTAL);
                 //
                 //
                 String[] arr = fakturadatum.split("-");
@@ -211,7 +212,7 @@ public class ArticlesA extends Basic_Buh {
                 //
                 HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), month_sum_map);
                 //
-                HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, month_ammount_map);
+                HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(antal), month_ammount_map);
                 //
             }
             //
@@ -241,9 +242,9 @@ public class ArticlesA extends Basic_Buh {
             //
             BARGraph barg_a = (BARGraph) gg__total_per_month;
             //
-            java.awt.EventQueue.invokeLater(() -> {
+//            java.awt.EventQueue.invokeLater(() -> {
                 barg_a.addData(barGraphValuesList_total);
-            });
+//            });
             //
             //====================================================
             //
@@ -271,9 +272,9 @@ public class ArticlesA extends Basic_Buh {
             //
             BARGraph barg_b = (BARGraph) gg__ammount_per_month;
             //
-            java.awt.EventQueue.invokeLater(() -> {
+//            java.awt.EventQueue.invokeLater(() -> {
                 barg_b.addData(barGraphValuesList_ammount);
-            });
+//            });
             //
             //====================================================
             //
