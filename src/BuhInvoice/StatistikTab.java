@@ -336,9 +336,11 @@ public class StatistikTab implements BarGraphListener {
             MyPoint_BG mpbg = (MyPoint_BG) e.getSource();
             //
 //            if (mpbg.getSerieName().equals(SERIE_NAME__BARGTAPH__TOTAL_PER_MONTH)) {
-            highlight_a(mpbg, xygraph);
+                BARGraph bg = mpbg.getBarGraph();
+                bg.highlight_a(mpbg, xygraph, DB.BUH_FAKTURA__FAKTURA_DATUM);
 //            }
             //
+           
         }
     }
 
@@ -347,31 +349,6 @@ public class StatistikTab implements BarGraphListener {
         xygraph.getSerie().resetPointsColorAndForm();
     }
 
-    private void highlight_a(MyPoint_BG mpbg, XyGraph_BuhInvoice xygraph_) {
-        //
-        MySerie serie = xygraph_.getSerie();
-        //
-        serie.resetPointsColorAndForm();
-        //
-        String monthYear = mpbg.getBarName(); // "2021-02"
-        //
-        for (MyPoint point : serie.getPoints()) {
-            //
-            HashMap<String, String> map = point.getPointInfo();
-            String fakturaDatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
-            //
-            if (fakturaDatum.contains(monthYear)) {
-                point.setPointColor(Color.MAGENTA);
-                point.setPointBorder(null, false);
-                point.setPointRectBorder(null, false);
-                point.setPointDrawRect(true);
-            }
-            //
-        }
-        //
-        xygraph_.getGraph().revalidate();
-        xygraph_.getGraph().repaint();
-        //
-    }
+    
 
 }
