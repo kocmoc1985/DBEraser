@@ -79,11 +79,12 @@ INNER JOIN buh_faktura_artikel
 ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
 INNER JOIN buh_faktura
 ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
-where buh_f_artikel.artikelId=%s
-and buh_f_artikel.kundId=%s
+where buh_f_artikel.artikelId=132
+and buh_f_artikel.kundId=29
 and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
 and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
-GROUP BY buh_faktura.fakturadatum
+GROUP BY buh_faktura.fakturadatum 
+ORDER BY buh_faktura.fakturadatum ASC
 
 -----------------------------------------------------------------------
 [2021-05-25] **********************************************************************************
