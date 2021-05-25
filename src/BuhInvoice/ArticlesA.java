@@ -107,7 +107,8 @@ public class ArticlesA extends Basic_Buh {
 
     private void draw_bar_graph(String artikelId) {
         //
-        String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__ID, artikelId, DB.BUH_F_ARTIKEL__KUND_ID, "777");
+//        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId);
+        String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId,DB.BUH_F_ARTIKEL__KUND_ID,"777");
         //
         try {
             //
@@ -145,7 +146,7 @@ public class ArticlesA extends Basic_Buh {
         //
         fillArtiklesJTable();
         HelpA.markFirstRowJtable(getTableArticles());
-        bim.jTableArticles_clicked();
+        jTableArticles_clicked();
         //
         fillSearchJCombo(ARTIKEL_NAME__OR__NR__COLUMN); // 2021-05-24
         //
