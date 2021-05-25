@@ -3483,21 +3483,24 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected void jTableCustomersA_kunder_clicked() {
         //
-        if (customersA.getTableMain().getRowCount() == 0) {
-            // This makes that when there are no custmers it's opened directly not for "update" but for "insert" [2020-09-29]
-            customersA.showTableInvert();
-            customersA.refreshTableInvert();
-            customersA.showTableInvert_4();
-            customersA.refreshTableInvert(customersA.TABLE_INVERT_4);
-        } else {
-            //
-            customersA.showTableInvert_2();
-            customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
-            //
-            customersA.fillAddressTable();
-            HelpA.markFirstRowJtable(jTable_kund_adresses);
-            jTableCustomersA_adress_clicked();
-        }
+        customersA.jTableCustomersA_kunder_clicked();
+        //
+//        if (customersA.getTableMain().getRowCount() == 0) {
+//            // This makes that when there are no custmers it's opened directly not for "update" but for "insert" [2020-09-29]
+//            customersA.showTableInvert();
+//            customersA.refreshTableInvert();
+//            customersA.showTableInvert_4();
+//            customersA.refreshTableInvert(customersA.TABLE_INVERT_4);
+//        } else {
+//            //
+//            customersA.showTableInvert_2();
+//            customersA.refreshTableInvert(customersA.TABLE_INVERT_2);
+//            //
+//            customersA.fillAddressTable();
+//            HelpA.markFirstRowJtable(jTable_kund_adresses);
+//            jTableCustomersA_adress_clicked();
+//            //
+//        }
         //
     }
 

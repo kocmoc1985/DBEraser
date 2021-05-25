@@ -13,6 +13,9 @@ import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
+import XYG_BASIC.MyGraphContainer;
+import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
+import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,6 +44,8 @@ public class CustomersA_ extends CustomerAForetagA {
     //
 //    private static final String TABLE_INVERT__PERSONNUMMER = "PERSONNUMMER";
     //
+    private XyGraph_BuhInvoice xygraph;
+
     public CustomersA_(BUH_INVOICE_MAIN bim) {
         super(bim);
     }
@@ -64,6 +70,104 @@ public class CustomersA_ extends CustomerAForetagA {
         }
     }
 
+    protected void jTableCustomersA_kunder_clicked() {
+        //
+        JTable table = getTableMain();
+        //
+        if (table.getRowCount() == 0) {
+            // This makes that when there are no custmers it's opened directly not for "update" but for "insert" [2020-09-29]
+            showTableInvert();
+            refreshTableInvert();
+            showTableInvert_4();
+            refreshTableInvert(TABLE_INVERT_4);
+            //
+        } else {
+            //
+            String fakturaKundId = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
+            //
+            drawGraph_basic(fakturaKundId, null, "fakturor_given_faktura_kund", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND);
+            //
+            showTableInvert_2();
+            refreshTableInvert(TABLE_INVERT_2);
+            //
+            fillAddressTable();
+            HelpA.markFirstRowJtable(getTableAdress());
+            bim.jTableCustomersA_adress_clicked();
+            //
+        }
+        //
+    }
+
+    private void drawGraph_basic(String fakturaKundId, JPanel container, String name, String phpScript) {
+        //
+//        container.removeAll();
+        //
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+        //
+        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND)) {
+            xygraph = xygm;
+        }
+        //
+        System.out.println("Thread:" + Thread.currentThread().getName());
+        //
+//        container.add(xygm.getGraph());
+        //
+        Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
+        x.setName("Thread_A_A");
+        x.start();
+        //
+    }
+
+    class Thread_A_A implements Runnable {
+
+        private final String fakturaKundId;
+        private final String phpScript;
+        private final XyGraph_BuhInvoice xghm;
+
+        public Thread_A_A(String fakturaKundId, String phpScript, XyGraph_BuhInvoice xghm) {
+            this.fakturaKundId = fakturaKundId;
+            this.phpScript = phpScript;
+            System.out.println("CCC:" + this.phpScript);
+            this.xghm = xghm;
+        }
+
+        @Override
+        public void run() {
+            getData_and_add_to_graph();
+        }
+
+        private void getData_and_add_to_graph() {
+            //
+            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__KUND_ID, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+            //
+            String json_str_return = "";
+            //
+            try {
+                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
+            } catch (Exception ex) {
+                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (invoices == null || invoices.isEmpty()) {
+                this.xghm.getGraph().getParent().removeAll();
+                return;
+            }
+            //
+            // OBS! HERE Below it's done with AWT-Thread
+//            java.awt.EventQueue.invokeLater(() -> {
+            System.out.println("Thread addData: " + Thread.currentThread());
+            this.xghm.addData(invoices, new String[]{DB.BUH_FAKTURA__FAKTURA_DATUM, DB.BUH_FAKTURA__FORFALLO_DATUM});
+//            });
+            //
+        }
+
+    }
+
     protected void createNewFakturaKund() {
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,8 +183,8 @@ public class CustomersA_ extends CustomerAForetagA {
         });
         //
     }
-    
-     public void fillSearchJCombo(String colName) {
+
+    public void fillSearchJCombo(String colName) {
         //
         Object[] objects = HelpA.getValuesOneColumnJTable(getTableMain(), colName);
         //
@@ -200,10 +304,10 @@ public class CustomersA_ extends CustomerAForetagA {
         //
         map.put(DB.BUH_FAKTURA_KUND__DATE_CREATED, GP_BUH.getDateCreated_special()); // required
         //
-        if(IS_PERSON__CUSTOMERS_A){
-             map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "1");
-             map.put(DB.BUH_FAKTURA_KUND___KATEGORI, "P");
-        }else{
+        if (IS_PERSON__CUSTOMERS_A) {
+            map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "1");
+            map.put(DB.BUH_FAKTURA_KUND___KATEGORI, "P");
+        } else {
             map.put(DB.BUH_FAKTURA_KUND___IS_PERSON, "0");
         }
         //
@@ -378,7 +482,7 @@ public class CustomersA_ extends CustomerAForetagA {
         kund_kategori.enableFixedValues();
         kund_kategori.setUneditable();
         //
-        if(IS_PERSON__CUSTOMERS_A){
+        if (IS_PERSON__CUSTOMERS_A) {
             vatnr.setVisible_(false);
             kund_kategori.setVisible_(false);
         }
@@ -430,7 +534,7 @@ public class CustomersA_ extends CustomerAForetagA {
         kategori.enableFixedValues();
         kategori.setUneditable();
         //
-        if(IS_PERSON__CUSTOMERS_A){
+        if (IS_PERSON__CUSTOMERS_A) {
             vatnr.setVisible_(false);
             kategori.setVisible_(false);
         }
@@ -507,12 +611,12 @@ public class CustomersA_ extends CustomerAForetagA {
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_KUND___NAMN, DB.TABLE__BUH_FAKTURA_KUND);
             //
             if (Validator.validateMaxInputLength(jli, 150)) {
-                if(IS_PERSON__CUSTOMERS_A){
+                if (IS_PERSON__CUSTOMERS_A) {
                     //
-                }else{
+                } else {
                     Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUND_NAMN);
                 }
-                
+
             }
             //
         }
