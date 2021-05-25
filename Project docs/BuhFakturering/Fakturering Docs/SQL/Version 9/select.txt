@@ -72,7 +72,7 @@ and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
 and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
 
 select buh_f_artikel.artikelId,buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris,
-buh_f_artikel.kundId,SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura_artikel.namn,
+SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura_artikel.namn,
 buh_faktura.fakturadatum
 from `buh_f_artikel`
 INNER JOIN buh_faktura_artikel 

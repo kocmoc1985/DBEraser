@@ -195,9 +195,9 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__MAKULERAD = "get_kund_fakturor__makulerad"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND = "get_kund_fakturor__fakturakund"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH = "get_kund_fakturor__actmonth"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_ARTICLE_TOTALS_CURR_YEAR = "get_article_totals_curr_year"; // using php-function: "select()"
     //
     public static HashMap<String, String> FILTER_DICT_MAP = new HashMap<>();
-
     //
     static {
         FILTER_DICT_MAP.put(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, "sedan årsskiftet");

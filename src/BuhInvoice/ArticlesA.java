@@ -74,26 +74,52 @@ public class ArticlesA extends Basic_Buh {
     protected boolean getCurrentOperationInsert() {
         return CURRENT_OPERATION_INSERT;
     }
-    
-    public void setJComboParam_colName(boolean artikelNr){
+
+    public void setJComboParam_colName(boolean artikelNr) {
         //
-        if(artikelNr){
+        if (artikelNr) {
             ARTIKEL_NAME__OR__NR__COLUMN = TABLE_ARTICLES__ARTNR;
-        }else{
+        } else {
             ARTIKEL_NAME__OR__NR__COLUMN = TABLE_ARTICLES__NAMN;
         }
         //
         fillSearchJCombo(ARTIKEL_NAME__OR__NR__COLUMN);
         //
     }
-    
-    public void jTableArticles_clicked(){
+
+    public void jTableArticles_clicked() {
+        //
+        JTable table = getTableArticles();
+        //
         if (getTableArticles().getRowCount() == 0) {
             showTableInvert();
             refreshTableInvert();
         } else {
+            //
+            String artikelId = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__ID);
+            //
+            draw_bar_graph(artikelId);
+            //
             showTableInvert_2();
             refreshTableInvert(TABLE_INVERT_2);
+        }
+    }
+
+    private void draw_bar_graph(String artikelId) {
+        //
+        String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__ID, artikelId, DB.BUH_F_ARTIKEL__KUND_ID, "777");
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_ARTICLE_TOTALS_CURR_YEAR, json);
+            //
+            ArrayList<HashMap<String, String>> addresses = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            System.out.println("" + addresses);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(ArticlesA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
