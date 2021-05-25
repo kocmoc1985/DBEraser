@@ -30,7 +30,7 @@ public class R_DETAILED {
     }
 
     public static String RECIPE_MANAGER_TABLE() {
-        return LANG_ENG ? "RECIPE MANGARER" : "REZEPT VERWALTUNG";
+        return LANG_ENG ? "RECIPE MANAGER" : "REZEPT VERWALTUNG";
     }
 
     //====
