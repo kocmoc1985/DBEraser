@@ -18,14 +18,12 @@ import XYG_BARGRAPH.MyGraphXY_BG;
 import XYG_BARGRAPH.MyPoint_BG;
 import XYG_BASIC.MyGraphContainer;
 import XYG_BASIC.MyPoint;
-import XYG_BASIC.MySerie;
 import XYG_STATS.BarGraphListener;
 import XYG_STATS.BasicGraphListener;
 import XYG_STATS.XyGraph_M;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -37,8 +35,6 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -599,9 +595,6 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
     //==========================================================================
     //==========================================================================
     //==========================================================================
-    
-    
-
     private void drawGraph_basic(String artikelId, JPanel container, String name, String phpScript) {
         //
         container.removeAll();
@@ -657,6 +650,11 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
             //
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
+            if(invoices == null || invoices.isEmpty()){
+               this.xghm.getGraph().getParent().removeAll();
+               return; 
+            }
+            //
             // OBS! HERE Below it's done with AWT-Thread
 //            java.awt.EventQueue.invokeLater(() -> {
             System.out.println("Thread addData: " + Thread.currentThread());
@@ -690,6 +688,13 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         containerTotalPerMonth.removeAll();
         containerAmmountPerMonth.removeAll();
         //
+        if(totals == null || totals.isEmpty()){
+            containerTotalPerMonth.revalidate();
+            containerTotalPerMonth.repaint();
+            containerAmmountPerMonth.revalidate();
+            containerAmmountPerMonth.repaint();
+          return;
+        }
         //====================================================
         BasicGraphListener gg__total_per_month;
         MyGraphXY_BG mgxyhm;
@@ -828,7 +833,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
             //
         }
     }
-    
+
     @Override
     public void barGraphHoverEvent(MouseEvent e, MyPoint mp) {
         if (e.getSource() instanceof MyPoint_BG) {
@@ -843,7 +848,6 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
             //
         }
     }
-
 
     @Override
     public void barGraphHoverOutEvent(MouseEvent me) {
