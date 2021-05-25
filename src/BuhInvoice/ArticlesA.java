@@ -18,6 +18,8 @@ import XYG_BARGRAPH.MyGraphXY_BG;
 import XYG_BASIC.MyGraphContainer;
 import XYG_STATS.BasicGraphListener;
 import XYG_STATS.XyGraph_M;
+import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
+import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
@@ -61,6 +63,7 @@ public class ArticlesA extends Basic_Buh {
     //
     private final static String SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH = "bar_graph_total_per_month";
     private final static String SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH = "bar_graph_ammount_per_month";
+    private XyGraph_BuhInvoice xygraph;
 
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
         //
@@ -112,14 +115,82 @@ public class ArticlesA extends Basic_Buh {
             //
             String artikelId = HelpA.getValueSelectedRow(table, TABLE_ARTICLES__ID);
             //
-            get_data__and_draw(artikelId);
+            drawGraph_basic(artikelId, bim.jPanel__artcles_a__graph_panel_c, "invoices_which_include_article_curr_year", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR_GIVEN_ARTICLE__CURR_YEAR);
+            //
+            get_data__and_draw__bar_graph(artikelId);
             //
             showTableInvert_2();
             refreshTableInvert(TABLE_INVERT_2);
         }
     }
+    
+    private void drawGraph_basic(String artikelId,JPanel container, String name, String phpScript) {
+        //
+        container.removeAll();
+        //
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+        //
+        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR_GIVEN_ARTICLE__CURR_YEAR)) {
+            xygraph = xygm;
+        }
+        //
+        System.out.println("Thread:" + Thread.currentThread().getName());
+        //
+        container.add(xygm.getGraph());
+        //
+        Thread x = new Thread(new Thread_A_A(artikelId,phpScript, xygm));
+        x.setName("Thread_A_A");
+        x.start();
+        //
+    }
+    
+    class Thread_A_A implements Runnable {
 
-    private void get_data__and_draw(String artikelId) {
+        private final String artikelId;
+        private final String phpScript;
+        private final XyGraph_BuhInvoice xghm;
+
+        public Thread_A_A(String artikelId,String phpScript, XyGraph_BuhInvoice xghm) {
+            this.artikelId = artikelId;
+            this.phpScript = phpScript;
+            System.out.println("CCC:" + this.phpScript);
+            this.xghm = xghm;
+        }
+
+        @Override
+        public void run() {
+            getData_and_add_to_graph();
+        }
+
+        private void getData_and_add_to_graph() {
+            //
+            String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.BUH_F_ARTIKEL__KUND_ID, "777");
+            //
+            String json_str_return = "";
+            //
+            try {
+                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
+            } catch (Exception ex) {
+                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            // OBS! HERE Below it's done with AWT-Thread
+//            java.awt.EventQueue.invokeLater(() -> {
+                System.out.println("Thread addData: " + Thread.currentThread());
+                this.xghm.addData(invoices, new String[]{DB.BUH_FAKTURA__FAKTURA_DATUM, DB.BUH_FAKTURA__FORFALLO_DATUM});
+//            });
+            //
+        }
+
+    }
+    
+
+    private void get_data__and_draw__bar_graph(String artikelId) {
         //
         String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId, DB.BUH_F_ARTIKEL__KUND_ID, "777");
         //

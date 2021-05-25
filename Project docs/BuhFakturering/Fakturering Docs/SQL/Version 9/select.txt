@@ -40,8 +40,9 @@ where buh_f_artikel.artikelId = 3 GROUP BY buh_faktura.fakturanr
 
 -----------------------------------------------------------------------
 
-[2021-05-24]**********************************************************************************
+[2021-05-24]
 SUPER DUPER IMPORTANT - MULTIPLY AND SUM
+GET TOTAL FOR AN ARTICLE FOR THE CURRENT YEAR
 
 select buh_f_artikel.artikelId, buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris, buh_faktura_artikel.namn from `buh_f_artikel`
 INNER JOIN buh_faktura_artikel 
@@ -83,6 +84,16 @@ and buh_f_artikel.kundId=%s
 and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
 and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
 GROUP BY buh_faktura.fakturadatum
+
+-----------------------------------------------------------------------
+[2021-05-25] **********************************************************************************
+Select all invoices which contains given article
+
+SELECT * from buh_faktura
+INNER JOIN buh_f_artikel on buh_f_artikel.fakturaId = buh_faktura.fakturaId
+WHERE buh_f_artikel.artikelId=119
+AND buh_f_artikel.kundId=29
+
 -----------------------------------------------------------------------
 IMPORTANT:
 GET FAKTURA ID (fakturaId) for the created FAKTURA with given "kundId".
