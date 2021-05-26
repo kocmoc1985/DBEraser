@@ -608,12 +608,28 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return JSon.getValNoNull(val);
     }
 
+    /**
+     * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
+     * @return
+     */
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
 
+    protected String getSELECT_fakturaId__doubleWhere() {
+        return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__ID__, getFakturaId());
+    }
+
+    /**
+     * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
+     * @return
+     */
     protected String getSELECT_copied_from_faktura_id() {
         return getSELECT(DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
+    }
+
+    protected String getSELECT_copied_from_faktura_id__doubleWhere() {
+        return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
     }
 
     protected String getSELECT_kundId() {
@@ -627,7 +643,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     /**
      * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
      * @param fakturaKundId
-     * @return 
+     * @return
      */
     private String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
@@ -3067,14 +3083,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     }//GEN-LAST:event_jButton_articles_a__tab__search_btnActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-       if(jCheckBox1.isSelected()){
-           articlesA.setJComboParam_colName(true);
-       }else{
-           articlesA.setJComboParam_colName(false);
-       }
-       //
-       jComboBox_articles_a__tab.requestFocus();
-       //
+        if (jCheckBox1.isSelected()) {
+            articlesA.setJComboParam_colName(true);
+        } else {
+            articlesA.setJComboParam_colName(false);
+        }
+        //
+        jComboBox_articles_a__tab.requestFocus();
+        //
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
