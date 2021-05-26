@@ -344,7 +344,7 @@ public class HelpBuh {
      * @param kundId
      * @param admPass
      */
-    public static void deleteCustomer_a(String kundId, String admPass) {
+    private void deleteCustomer_a(String kundId, String admPass) {
         //
         HashMap<String, String> map = new HashMap();
         map.put(DB.BUH_KUND__ID, kundId);
@@ -393,7 +393,7 @@ public class HelpBuh {
      * @param kundId
      * @return
      */
-    public static boolean createAccountPHP_existing_customer(String kundId) {
+    private boolean createAccountPHP_existing_customer(String kundId) {
         //[#SEQURITY#]
         HashMap<String, String> map = new HashMap();
         //

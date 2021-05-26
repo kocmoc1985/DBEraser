@@ -128,12 +128,40 @@ has no meaning and is replaced with the real "kundId" at the PHP-Side.
 Search for tag [#KUND-ID-INSERT#] in the Java project.
 
 [SELECT]The "select()" function, is now also using "kundId" which is set on PHP side.
+OBS! OBS! OBS! When you make the query for the "select()" you must always use "WHERE kundId=%s AND ...."
+if you will not have "kundId=%s" in this case consider following:
+"SELECT * FROM buh_address WHERE fakturaKundId=%s ORDER BY id ASC" -> THIS ONE IS WRONG because you can set any "fakturaKundId" manually and you will be able to get all data
+"SELECT * FROM buh_address WHERE kundId=%s AND fakturaKundId=%s ORDER BY id ASC" -> THIS ONE IS CORRECT because the "kundId" is defined on PHP side
+
 [DELETE] - yes also using "kundId" defined at PHP side
 
 OBS! [#KUND-ID-INSERT#] tag is valid not only for insert -> You may also search for "777" as i replaced all the places where kundId was used with this number.
 
-To check later:
-exist() funtction still using "mysqli". "kundId" is now set on PHP side
+SO A POSSIBLE ATTACK SCENARIO[2021-05-26]:
+Let's say you use your own login data and run the scripts with setting the parameters manually:
+
+So you may just make following in case if the query did not have "WHERE buh_faktura.kundId=%s":
+	//
+	String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_FAKTURA__ID__, "339");
+	//
+	try {
+			//
+			String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+					DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA, json);  // DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA -> "SELECT * FROM buh_faktura WHERE buh_faktura.kundId=%s AND fakturaId=%s"
+			//
+			ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+			//
+			for (HashMap<String, String> val : entries) {
+				System.out.println("out: " + val);
+			}
+			//
+	} catch (Exception ex) {
+			Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	//
+	//
+CONCLUSION: NOT HAVING "WHERE buh_faktura.kundId=%s" should have made that you could just randomize the "fakturaId" and gain all faktura data for any customer
+
 ________________________________________________________________________________________________________
 [SEQURITY FUNCTIONS - VALIDATE FUNCTION][2020-10-07]
 
@@ -146,7 +174,7 @@ Java side, see: "HelpBuh.class -> executePHP(String phpScriptName, String phpFun
 1.2 In fact there are some functions called before "validate()" -> all except the getVersion(), restorePwd() and createAccountMain() shall be removed in future
 2. Java -> "BUH_INVOICE_MAIN.class" -> "DEFINE_KUNDID()"
 
-A. Even if a hacker nows some "kundId" it's not possible to use it somehow as the validation is done uppon ALL of the requests.
+A. Even if a hacker knows some "kundId" it's not possible to use it somehow as the validation is done uppon ALL of the requests.
 ________________________________________________________________________________________________________
 
 [SHARING OF USER ACCOUNT][2020-10-22]
@@ -203,7 +231,6 @@ Note important to know when using:
 2. The values which are set instead of "?" should not contain additional "''"
 
 IMPLEMENTED prepared statements for **ALL** functions including SELECT and other [2020-10-08]
-
 
 __________
 

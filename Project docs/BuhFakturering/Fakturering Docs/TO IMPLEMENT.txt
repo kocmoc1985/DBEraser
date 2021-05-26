@@ -34,10 +34,7 @@ Make video how to write on Faktura before printing
 
 ______
 
-Some of the "select" quiries does not have kundId implemented which makes it a potential threat, see "_http_buh.php" -> line: 1488. OBS! There are 
-more of them!!
-
-Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar"
+Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar" [DONE]
 
 Tab "ARTIKLAR" - there is field named "artikelnr" but there is no search function connected to that field [DONE][2021-05-25]
 

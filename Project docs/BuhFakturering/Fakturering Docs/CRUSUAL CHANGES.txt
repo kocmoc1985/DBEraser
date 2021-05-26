@@ -1,3 +1,13 @@
+[CHANGING ON PHP - PREVIOUS VERSIONS NOT WORKING PROPERLY] [2021-05-26]
+
+Consider following: search for [#CRUSUAL-CHANGES-EXAMPLE-A#] in MCWebNew and in the DBEraser projects
+
+So in the "select()" method you will see the query which looks like following:
+"SELECT * FROM buh_faktura WHERE buh_faktura.kundId=%s AND fakturaId=%s" -> before the change it looked like: "SELECT * FROM buh_faktura WHERE fakturaId=%s"
+
+So when i on [2021-05-26] added "WHERE buh_faktura.kundId=%s" on PHP side i had to make corresponding changes on java side. But the 
+previous versions could not longer use the functions where such change was made.
+____
 [PHP-FUNCTIONS NAMES - HIGH RISK IF CHANGED] [2020-12-23]
 
 In Java project consider following: DB.class -> public static final String PHP_FUNC_DEFINE_KUNDID__LOGIN = "define_kundid";
