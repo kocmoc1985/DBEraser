@@ -15,6 +15,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import XYG_BARGRAPH.BARGraph;
 import XYG_BARGRAPH.MyGraphXY_BG;
+import XYG_BARGRAPH.MyPoint_BG;
 import XYG_BASIC.MyGraphContainer;
 import XYG_BASIC.MyPoint;
 import XYG_STATS.BarGraphListener;
@@ -115,7 +116,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
 
     private void get_data__and_draw__bar_graph(String fakturaKundId) {
         //
-        String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__KUND_ID, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+        String json = bim.getSELECT_doubleWhere( DB.BUH_FAKTURA_KUND__ID, fakturaKundId,DB.BUH_FAKTURA_KUND__KUND_ID, "777");
         //
         try {
             //
@@ -124,7 +125,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
             //
             ArrayList<HashMap<String, String>> totals = JSon.phpJsonResponseToHashMap(json_str_return);
             //
-            drawGraph_bargraph(totals, null, null, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
+            drawGraph_bargraph(totals, bim.jPanel__customers_a__graph_panel_c, bim.jPanel__customers_a__graph_panel_b, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
             //
         } catch (Exception ex) {
             Logger.getLogger(ArticlesA.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,14 +180,24 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
     }
 
-    @Override
-    public void barGraphHoverEvent(MouseEvent me, MyPoint mp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     @Override
+    public void barGraphHoverEvent(MouseEvent e, MyPoint mp) {
+        if (e.getSource() instanceof MyPoint_BG) {
+            //
+            MyPoint_BG mpbg = (MyPoint_BG) e.getSource();
+            //
+            BARGraph bg = mpbg.getBarGraph();
+            //
+            bg.highlight_a(mpbg, xygraph, DB.BUH_FAKTURA__FAKTURA_DATUM);
+            //
+//            highlight_a(mpbg, xygraph);
+            //
+        }
     }
 
     @Override
     public void barGraphHoverOutEvent(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        xygraph.getSerie().resetPointsColorAndForm();
     }
 
     class Thread_B_B implements Runnable {
@@ -216,15 +227,13 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
                 //
                 String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
                 String total = map.get("total"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
-                String antal = map.get(DB.BUH_F_ARTIKEL__ANTAL);
-                //
                 //
                 String[] arr = fakturadatum.split("-");
                 String faktura_datum_short = arr[0] + "-" + arr[1];
                 //
                 HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), month_sum_map);
                 //
-                HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(antal), month_ammount_map);
+                HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, month_ammount_map);
                 //
             }
             //
