@@ -100,7 +100,6 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
             String fakturaKundId = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID);
             //
             drawGraph_basic(fakturaKundId, bim.jPanel__customers_a__graph_panel_a, "fakturor_given_faktura_kund", DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR);
-            //
             get_data__and_draw__bar_graph(fakturaKundId);
             //
             showTableInvert_2();
@@ -112,266 +111,6 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
             //
         }
         //
-    }
-
-    private void get_data__and_draw__bar_graph(String fakturaKundId) {
-        //
-        String json = bim.getSELECT_doubleWhere( DB.BUH_FAKTURA_KUND__ID, fakturaKundId,DB.BUH_FAKTURA_KUND__KUND_ID, "777");
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    DB.PHP_FUNC_PARAM_GET_FAKTUROR_TOTALS__GIVEN_KUND_CURR_YEAR, json);
-            //
-            ArrayList<HashMap<String, String>> totals = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            drawGraph_bargraph(totals, bim.jPanel__customers_a__graph_panel_c, bim.jPanel__customers_a__graph_panel_b, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(ArticlesA.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
-    private void drawGraph_bargraph(ArrayList<HashMap<String, String>> totals, JPanel containerTotalPerMonth, JPanel containerAmmountPerMonth, String name_a, String name_b) {
-        //
-        containerTotalPerMonth.removeAll();
-        containerAmmountPerMonth.removeAll();
-        //
-        if (totals == null || totals.isEmpty()) {
-            containerTotalPerMonth.revalidate();
-            containerTotalPerMonth.repaint();
-            containerAmmountPerMonth.revalidate();
-            containerAmmountPerMonth.repaint();
-            return;
-        }
-        //====================================================
-        BasicGraphListener gg__total_per_month;
-        MyGraphXY_BG mgxyhm;
-        //
-        final XyGraph_M xygraph = new XyGraph_M(name_a, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
-        //
-        mgxyhm = new MyGraphXY_BG("Total", ":-");
-        mgxyhm.addBarGraphListener(this);
-        gg__total_per_month = new BARGraph(name_a, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
-        //
-        xygraph.setGraph(gg__total_per_month);
-        containerTotalPerMonth.add(gg__total_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
-        //
-        //====================================================
-        //
-        BasicGraphListener gg__ammount_per_month;
-        MyGraphXY_BG mgxyhm_b;
-        //
-        final XyGraph_M xygraph_b = new XyGraph_M(name_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
-        //
-        mgxyhm_b = new MyGraphXY_BG("Antal", " st");
-        mgxyhm_b.addBarGraphListener(this);
-        gg__ammount_per_month = new BARGraph(name_b, mgxyhm_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
-        //
-        xygraph_b.setGraph(gg__ammount_per_month);
-        containerAmmountPerMonth.add(gg__ammount_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
-        //
-        //====================================================
-        //
-        Thread x = new Thread(new Thread_B_B(totals, gg__total_per_month, gg__ammount_per_month));
-        x.setName("Thread_B_B");
-        x.start();
-        //
-    }
-
-     @Override
-    public void barGraphHoverEvent(MouseEvent e, MyPoint mp) {
-        if (e.getSource() instanceof MyPoint_BG) {
-            //
-            MyPoint_BG mpbg = (MyPoint_BG) e.getSource();
-            //
-            BARGraph bg = mpbg.getBarGraph();
-            //
-            bg.highlight_a(mpbg, xygraph, DB.BUH_FAKTURA__FAKTURA_DATUM);
-            //
-//            highlight_a(mpbg, xygraph);
-            //
-        }
-    }
-
-    @Override
-    public void barGraphHoverOutEvent(MouseEvent me) {
-        xygraph.getSerie().resetPointsColorAndForm();
-    }
-
-    class Thread_B_B implements Runnable {
-
-        private final ArrayList<HashMap<String, String>> totals;
-        private final BasicGraphListener gg__total_per_month;
-        private final BasicGraphListener gg__ammount_per_month;
-
-        public Thread_B_B(ArrayList<HashMap<String, String>> totals, BasicGraphListener gg__total_per_month, BasicGraphListener gg__ammount_per_month) {
-            this.totals = totals;
-            this.gg__total_per_month = gg__total_per_month;
-            this.gg__ammount_per_month = gg__ammount_per_month;
-        }
-
-        @Override
-        public void run() {
-            getData_and_add_to_graph();
-        }
-
-        private void getData_and_add_to_graph() {
-            //
-            final LinkedHashMap<String, Double> month_sum_map = new LinkedHashMap<>();
-            final LinkedHashMap<String, Double> month_ammount_map = new LinkedHashMap<>();
-            //
-            //
-            for (HashMap<String, String> map : totals) {
-                //
-                String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
-                String total = map.get("total"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
-                //
-                String[] arr = fakturadatum.split("-");
-                String faktura_datum_short = arr[0] + "-" + arr[1];
-                //
-                HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), month_sum_map);
-                //
-                HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, month_ammount_map);
-                //
-            }
-            //
-            //====================================================
-            //
-            Set set = month_sum_map.keySet();
-            Iterator it = set.iterator();
-            //
-            final ArrayList<StringDouble> barGraphValuesList_total = new ArrayList<>();
-            //
-            while (it.hasNext()) {
-                String key = (String) it.next();
-                Double value = month_sum_map.get(key);
-//                System.out.println("key = " + key + "  value = " + value);
-                barGraphValuesList_total.add(new StringDouble(key, value));
-            }
-            //
-            if (barGraphValuesList_total.size() < 12) {
-                //
-                while (barGraphValuesList_total.size() < 12) {
-                    barGraphValuesList_total.add(new StringDouble("", 0));
-                }
-                //
-            }
-            //
-            Collections.reverse(barGraphValuesList_total);
-            //
-            BARGraph barg_a = (BARGraph) gg__total_per_month;
-            //
-//            java.awt.EventQueue.invokeLater(() -> {
-            barg_a.addData(barGraphValuesList_total);
-//            });
-            //
-            //====================================================
-            //
-            Set set_b = month_ammount_map.keySet();
-            Iterator it_b = set_b.iterator();
-            //
-            final ArrayList<StringDouble> barGraphValuesList_ammount = new ArrayList<>();
-            //
-            while (it_b.hasNext()) {
-                String key = (String) it_b.next();
-                Double value = month_ammount_map.get(key);
-                System.out.println("key = " + key + "  value = " + value);
-                barGraphValuesList_ammount.add(new StringDouble(key, value));
-            }
-            //
-            if (barGraphValuesList_ammount.size() < 12) {
-                //
-                while (barGraphValuesList_ammount.size() < 12) {
-                    barGraphValuesList_ammount.add(new StringDouble("", 0));
-                }
-                //
-            }
-            //
-            Collections.reverse(barGraphValuesList_ammount);
-            //
-            BARGraph barg_b = (BARGraph) gg__ammount_per_month;
-            //
-//            java.awt.EventQueue.invokeLater(() -> {
-            barg_b.addData(barGraphValuesList_ammount);
-//            });
-            //
-            //====================================================
-            //
-        }
-    }
-
-    private void drawGraph_basic(String fakturaKundId, JPanel container, String name, String phpScript) {
-        //
-        container.removeAll();
-        container.revalidate();
-        container.repaint();
-        //
-        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
-        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        //
-        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
-        //
-        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR)) {
-            xygraph = xygm;
-        }
-        //
-        System.out.println("Thread:" + Thread.currentThread().getName());
-        //
-        container.add(xygm.getGraph());
-        //
-        Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
-        x.setName("Thread_A_A");
-        x.start();
-        //
-    }
-
-    class Thread_A_A implements Runnable {
-
-        private final String fakturaKundId;
-        private final String phpScript;
-        private final XyGraph_BuhInvoice xghm;
-
-        public Thread_A_A(String fakturaKundId, String phpScript, XyGraph_BuhInvoice xghm) {
-            this.fakturaKundId = fakturaKundId;
-            this.phpScript = phpScript;
-            System.out.println("CCC:" + this.phpScript);
-            this.xghm = xghm;
-        }
-
-        @Override
-        public void run() {
-            getData_and_add_to_graph();
-        }
-
-        private void getData_and_add_to_graph() {
-            //
-            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__KUND_ID, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
-            //
-            String json_str_return = "";
-            //
-            try {
-                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
-            } catch (Exception ex) {
-                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            //
-            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
-            //
-            if (invoices == null || invoices.isEmpty()) {
-                this.xghm.getGraph().getParent().removeAll();
-                return;
-            }
-            //
-            // OBS! HERE Below it's done with AWT-Thread
-            java.awt.EventQueue.invokeLater(() -> {
-                System.out.println("Thread addData: " + Thread.currentThread());
-                this.xghm.addData(invoices, new String[]{DB.BUH_FAKTURA__FAKTURA_DATUM, DB.BUH_FAKTURA__FORFALLO_DATUM});
-            });
-            //
-        }
-
     }
 
     protected void createNewFakturaKund() {
@@ -889,14 +628,11 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         }
         //
         //
-        //
-        //
-        //
-        //
-        //
-        //
     }
 
+    //==========================================================================
+    //==========================================================================
+    //==========================================================================
     private void supposeNextKundNr(JLinkInvert jli) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
@@ -904,6 +640,274 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         String next = getNextKundnr();
         //
         jtfi.setText(next);
+    }
+
+    private void get_data__and_draw__bar_graph(String fakturaKundId) {
+        //
+        new Thread(() -> {
+            //
+            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__ID, fakturaKundId, DB.BUH_FAKTURA_KUND__KUND_ID, "777");
+            //
+            try {
+                //
+                String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_PARAM_GET_FAKTUROR_TOTALS__GIVEN_KUND_CURR_YEAR, json);
+                //
+                ArrayList<HashMap<String, String>> totals = JSon.phpJsonResponseToHashMap(json_str_return);
+                //
+                java.awt.EventQueue.invokeLater(() -> {
+                    drawGraph_bargraph(totals, bim.jPanel__customers_a__graph_panel_c, bim.jPanel__customers_a__graph_panel_b, SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH, SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH);
+                });
+                //
+            } catch (Exception ex) {
+                Logger.getLogger(ArticlesA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }).start();
+        //
+    }
+
+    private void drawGraph_bargraph(ArrayList<HashMap<String, String>> totals, JPanel containerTotalPerMonth, JPanel containerAmmountPerMonth, String name_a, String name_b) {
+        //
+        containerTotalPerMonth.removeAll();
+        containerAmmountPerMonth.removeAll();
+        containerTotalPerMonth.revalidate();
+        containerTotalPerMonth.repaint();
+        containerAmmountPerMonth.revalidate();
+        containerAmmountPerMonth.repaint();
+        //
+        if (totals == null || totals.isEmpty()) {
+            return;
+        }
+        //====================================================
+        BasicGraphListener gg__total_per_month;
+        MyGraphXY_BG mgxyhm;
+        //
+        final XyGraph_M xygraph = new XyGraph_M(name_a, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        //
+        mgxyhm = new MyGraphXY_BG("Total", ":-");
+        mgxyhm.addBarGraphListener(this);
+        gg__total_per_month = new BARGraph(name_a, mgxyhm, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        //
+        xygraph.setGraph(gg__total_per_month);
+        containerTotalPerMonth.add(gg__total_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
+        //
+        //====================================================
+        //
+        BasicGraphListener gg__ammount_per_month;
+        MyGraphXY_BG mgxyhm_b;
+        //
+        final XyGraph_M xygraph_b = new XyGraph_M(name_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN);
+        //
+        mgxyhm_b = new MyGraphXY_BG("Antal", " st");
+        mgxyhm_b.addBarGraphListener(this);
+        gg__ammount_per_month = new BARGraph(name_b, mgxyhm_b, MyGraphContainer.DISPLAY_MODE_FULL_SCREEN); // MyGraphContainer.DISPLAY_MODE_FOOT_DISABLED
+        //
+        xygraph_b.setGraph(gg__ammount_per_month);
+        containerAmmountPerMonth.add(gg__ammount_per_month.getGraph()); //***** //[#WAIT-FOR-HEIGHT#]
+        //
+        //====================================================
+        //
+        Thread x = new Thread(new Thread_B_B(totals, gg__total_per_month, gg__ammount_per_month));
+        x.setName("Thread_B_B");
+        x.start();
+        //
+    }
+
+    @Override
+    public void barGraphHoverEvent(MouseEvent e, MyPoint mp) {
+        if (e.getSource() instanceof MyPoint_BG) {
+            //
+            MyPoint_BG mpbg = (MyPoint_BG) e.getSource();
+            //
+            BARGraph bg = mpbg.getBarGraph();
+            //
+            bg.highlight_a(mpbg, xygraph, DB.BUH_FAKTURA__FAKTURA_DATUM);
+            //
+//            highlight_a(mpbg, xygraph);
+            //
+        }
+    }
+
+    @Override
+    public void barGraphHoverOutEvent(MouseEvent me) {
+        xygraph.getSerie().resetPointsColorAndForm();
+    }
+
+    class Thread_B_B implements Runnable {
+
+        private final ArrayList<HashMap<String, String>> totals;
+        private final BasicGraphListener gg__total_per_month;
+        private final BasicGraphListener gg__ammount_per_month;
+
+        public Thread_B_B(ArrayList<HashMap<String, String>> totals, BasicGraphListener gg__total_per_month, BasicGraphListener gg__ammount_per_month) {
+            this.totals = totals;
+            this.gg__total_per_month = gg__total_per_month;
+            this.gg__ammount_per_month = gg__ammount_per_month;
+        }
+
+        @Override
+        public void run() {
+            getData_and_add_to_graph();
+        }
+
+        private void getData_and_add_to_graph() {
+            //
+            final LinkedHashMap<String, Double> month_sum_map = new LinkedHashMap<>();
+            final LinkedHashMap<String, Double> month_ammount_map = new LinkedHashMap<>();
+            //
+            //
+            for (HashMap<String, String> map : totals) {
+                //
+                String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
+                String total = map.get("total"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
+                //
+                String[] arr = fakturadatum.split("-");
+                String faktura_datum_short = arr[0] + "-" + arr[1];
+                //
+                HelpA.increase_map_value_with_x(faktura_datum_short, Double.parseDouble(total), month_sum_map);
+                //
+                HelpA.increase_map_value_with_x(faktura_datum_short, 1.0, month_ammount_map);
+                //
+            }
+            //
+            //====================================================
+            //
+            Set set = month_sum_map.keySet();
+            Iterator it = set.iterator();
+            //
+            final ArrayList<StringDouble> barGraphValuesList_total = new ArrayList<>();
+            //
+            while (it.hasNext()) {
+                String key = (String) it.next();
+                Double value = month_sum_map.get(key);
+//                System.out.println("key = " + key + "  value = " + value);
+                barGraphValuesList_total.add(new StringDouble(key, value));
+            }
+            //
+            if (barGraphValuesList_total.size() < 12) {
+                //
+                while (barGraphValuesList_total.size() < 12) {
+                    barGraphValuesList_total.add(new StringDouble("", 0));
+                }
+                //
+            }
+            //
+            Collections.reverse(barGraphValuesList_total);
+            //
+            BARGraph barg_a = (BARGraph) gg__total_per_month;
+            //
+            java.awt.EventQueue.invokeLater(() -> {
+                barg_a.addData(barGraphValuesList_total);
+            });
+            //
+            //====================================================
+            //
+            Set set_b = month_ammount_map.keySet();
+            Iterator it_b = set_b.iterator();
+            //
+            final ArrayList<StringDouble> barGraphValuesList_ammount = new ArrayList<>();
+            //
+            while (it_b.hasNext()) {
+                String key = (String) it_b.next();
+                Double value = month_ammount_map.get(key);
+                System.out.println("key = " + key + "  value = " + value);
+                barGraphValuesList_ammount.add(new StringDouble(key, value));
+            }
+            //
+            if (barGraphValuesList_ammount.size() < 12) {
+                //
+                while (barGraphValuesList_ammount.size() < 12) {
+                    barGraphValuesList_ammount.add(new StringDouble("", 0));
+                }
+                //
+            }
+            //
+            Collections.reverse(barGraphValuesList_ammount);
+            //
+            BARGraph barg_b = (BARGraph) gg__ammount_per_month;
+            //
+            java.awt.EventQueue.invokeLater(() -> {
+                barg_b.addData(barGraphValuesList_ammount);
+            });
+            //
+            //====================================================
+            //
+        }
+    }
+
+    private void drawGraph_basic(String fakturaKundId, JPanel container, String name, String phpScript) {
+        //
+        container.removeAll();
+        container.revalidate();
+        container.repaint();
+        //
+        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+        //
+        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+        //
+        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR)) {
+            xygraph = xygm;
+        }
+        //
+        System.out.println("Thread:" + Thread.currentThread().getName());
+        //
+        container.add(xygm.getGraph());
+        //
+        Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
+        x.setName("Thread_A_A");
+        x.start();
+        //
+    }
+
+    class Thread_A_A implements Runnable {
+
+        private final String fakturaKundId;
+        private final String phpScript;
+        private final XyGraph_BuhInvoice xghm;
+
+        public Thread_A_A(String fakturaKundId, String phpScript, XyGraph_BuhInvoice xghm) {
+            this.fakturaKundId = fakturaKundId;
+            this.phpScript = phpScript;
+            System.out.println("CCC:" + this.phpScript);
+            this.xghm = xghm;
+        }
+
+        @Override
+        public void run() {
+            getData_and_add_to_graph();
+        }
+
+        private void getData_and_add_to_graph() {
+            //
+            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__KUND_ID, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+            //
+            String json_str_return = "";
+            //
+            try {
+                json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN, phpScript, json);
+            } catch (Exception ex) {
+                Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            if (invoices == null || invoices.isEmpty()) {
+                if (this.xghm.getGraph() != null && this.xghm.getGraph().getParent() != null) {
+                    this.xghm.getGraph().getParent().removeAll();
+                }
+                return;
+            }
+            //
+            // OBS! HERE Below it's done with AWT-Thread
+            java.awt.EventQueue.invokeLater(() -> {
+                System.out.println("Thread addData: " + Thread.currentThread());
+                this.xghm.addData(invoices, new String[]{DB.BUH_FAKTURA__FAKTURA_DATUM, DB.BUH_FAKTURA__FORFALLO_DATUM});
+            });
+            //
+        }
+
     }
 
 }
