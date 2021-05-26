@@ -1087,7 +1087,7 @@ public class InvoiceB extends Basic_Buh {
 
     private HashMap<String, String> getOneFakturaData() {
         //
-        String json = bim.getSELECT_fakturaId();
+        String json = bim.getSELECT_fakturaId__doubleWhere();
         //
         try {
             //
@@ -1128,9 +1128,9 @@ public class InvoiceB extends Basic_Buh {
             json = bim.getSELECT_kundId();
         } else {
             if (bim.getCopiedFromFakturaId().equals("0") == false) {
-                json = bim.getSELECT_copied_from_faktura_id();
+                json = bim.getSELECT_copied_from_faktura_id__doubleWhere();
             } else {
-                json = bim.getSELECT_fakturaId();
+                json = bim.getSELECT_fakturaId__doubleWhere();
             }
         }
         //
