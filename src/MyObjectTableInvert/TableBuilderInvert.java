@@ -12,6 +12,7 @@ import MyObjectTable.TableRow;
 import forall.GP;
 import forall.HelpA;
 import forall.SqlBasicLocal;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -37,6 +38,7 @@ public class TableBuilderInvert {
     private final boolean SHOW_UNITS;
     private final ShowMessage SM;
     private final String TABLE_NAME;
+    private Color tableInvertBackgroundColor = null;
 
     public TableBuilderInvert(ShowMessage sm, SqlBasicLocal sql, RowDataInvert[] config, boolean showUnits, String tableName) {
         this.sql = sql;
@@ -48,6 +50,11 @@ public class TableBuilderInvert {
 
     public void showMessage(String msg) {
         SM.showMessage(msg);
+    }
+
+    public Table buildTable_B(Basic tableInvertConsumer, Color tableInvertBackground) {
+        this.tableInvertBackgroundColor = tableInvertBackground;
+        return buildTable_B(tableInvertConsumer);
     }
 
     /**
@@ -107,17 +114,34 @@ public class TableBuilderInvert {
             //
             //
             tableData.addRowData(CURR_ROW);
-        }
+        } //
+       
+        //
+        return cretateTable_buildTable_B(tableData, tableInvertConsumer, tableInvertBackgroundColor);
         //
         //
-        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME, tableInvertConsumer);
-        table.setShowUnits(SHOW_UNITS);
-//        table.setSql(sql);
-        table.setTableEmpty(true);
+//        TableInvert table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME, tableInvertConsumer);
+//        table.setShowUnits(SHOW_UNITS);
+//        table.setTableEmpty(true);
 //        HelpA.setTrackingToolTip(table, query);
         //
-        return table;
+//        return table;
         //
+    }
+
+    private TableInvert cretateTable_buildTable_B(TableData tableData, Basic tableInvertConsumer,Color backgroundColor) {
+        //
+        TableInvert table;
+        //
+        if(backgroundColor == null){
+             table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME, tableInvertConsumer);
+        }else{
+            table = new TableInvert(tableData, TableRow.GRID_LAYOUT, 45, null, TABLE_NAME, tableInvertConsumer,backgroundColor);
+        }
+        //
+        table.setShowUnits(SHOW_UNITS);
+        table.setTableEmpty(true);
+        return table;
     }
 
     public Table buildTable(String query, Basic tableInvertConsumer) throws SQLException {
@@ -230,12 +254,10 @@ public class TableBuilderInvert {
         //
     }
 
-
     /**
-     * [2020-11-16]
-     * OBS! Uses 2 ResultSet's
-     * In contrast to "buldTable_B" this one builds the table from
-     * multiple rows. See the visio file "InvertedTable.vsd" for more info
+     * [2020-11-16] OBS! Uses 2 ResultSet's In contrast to "buldTable_B" this
+     * one builds the table from multiple rows. See the visio file
+     * "InvertedTable.vsd" for more info
      */
     public Table buildTable_C_C(String query, String query_2, Basic tableInvertConsumer, int layout) throws SQLException {
         //
@@ -321,14 +343,15 @@ public class TableBuilderInvert {
         return table;
         //
     }
-    
+
     /**
      * Same as _C_C but using singe query
+     *
      * @param query
      * @param tableInvertConsumer
      * @param layout
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
     private Table buildTable_C(String query, Basic tableInvertConsumer, int layout) throws SQLException {
         //

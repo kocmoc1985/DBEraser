@@ -371,7 +371,7 @@ public class Home extends Basic_Buh {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "login");
         TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B(this);
+        TABLE_INVERT = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_inloggning);
         //
@@ -386,7 +386,7 @@ public class Home extends Basic_Buh {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
         TABLE_INVERT_2 = null;
-        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_register_new, TABLE_INVERT_2);
         //
@@ -401,7 +401,7 @@ public class Home extends Basic_Buh {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "restore");
         TABLE_INVERT_3 = null;
-        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_restore_password, TABLE_INVERT_3);
         //
@@ -414,7 +414,7 @@ public class Home extends Basic_Buh {
         // Yes, it's correct that "getConfigTableInvert_3()" is used
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
         TABLE_INVERT_4 = null;
-        TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
+        TABLE_INVERT_4 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_share_account, TABLE_INVERT_4);
         //

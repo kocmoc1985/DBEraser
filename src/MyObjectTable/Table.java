@@ -59,6 +59,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
     public int ROW_WIDTH_INITIAL;
     public int ROW_WIDTH_MINUS = 20;
     public int TABLE_ROW_LAYOUT = TableRow.FLOW_LAYOUT;
+    public Color backgroundColor;
 
     public Table(TableData data, String[] headers, int row_layout, int row_height, int[] column_width_percent) {
         super(new FlowLayout(FlowLayout.LEFT));
@@ -91,6 +92,18 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         //====
         this.TABLE_DATA = data;
         this.NR_ROWS = TABLE_DATA.size();
+        init();
+    }
+
+    public Table(TableData data, int row_layout, int row_height, int[] column_width_percent, Color backgroundColor) {
+        super(new FlowLayout(FlowLayout.LEFT));
+        this.TABLE_ROW_LAYOUT = row_layout;
+        this.ROW_HEIGHT = row_height;
+        this.COLUMN_WIDTHS_PERCENT = column_width_percent;
+        //====
+        this.TABLE_DATA = data;
+        this.NR_ROWS = TABLE_DATA.size();
+        this.backgroundColor = backgroundColor;
         init();
     }
 
@@ -224,8 +237,8 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
         }
         return csv_string;
     }
-    
-    public Object getObjectAt(int row, int column){
+
+    public Object getObjectAt(int row, int column) {
         TableRow tableRow = getRow(row);
         Object obj = tableRow.getObjectAt(column);
         return obj;
@@ -276,7 +289,7 @@ public class Table extends JPanel implements ComponentListener, SelectRowButtonP
 
     public int getCurrentColumn(Object source) {
 //        try {
-            return row_col_object__column_count__map.get((Component) source);
+        return row_col_object__column_count__map.get((Component) source);
 //        } catch (Exception ex) {
 //            return -1;
 //        }

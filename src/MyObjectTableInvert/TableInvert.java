@@ -47,6 +47,7 @@ public class TableInvert extends Table implements ControlsActionsIF {
     private boolean SHOW_UNITS = false;
     private boolean IS_EMPTY = false;
     private Basic TABLE_INVERT_CONSUMER;
+    
 
     /**
      * @deprecated since [2020-01-05] Not used any longer
@@ -65,7 +66,13 @@ public class TableInvert extends Table implements ControlsActionsIF {
         super(data, row_layout, row_height, column_width_percent);
         this.TABLE_NAME = tableName;
         this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
+    }
 
+    public TableInvert(TableData data, int row_layout, int row_height, int[] column_width_percent, String tableName, Basic tableInvertConsumer, Color backgroundColor) {
+        super(data, row_layout, row_height, column_width_percent,backgroundColor);
+        this.TABLE_NAME = tableName;
+        this.TABLE_INVERT_CONSUMER = tableInvertConsumer;
+        
     }
 
     public Basic getTableInvertConsumer() {
@@ -110,7 +117,10 @@ public class TableInvert extends Table implements ControlsActionsIF {
     @Override
     public void initTable() {
         // 
-//        setBackground(Color.yellow); // Good for debuging
+        if (backgroundColor != null) {
+            setBackground(backgroundColor);
+        }
+//        setBackground(Color.BLACK); // Good for debuging
         //
         double height = (rows_list.size() * ROW_HEIGHT) * 1.13;//1.13
         RowData rcd = (RowData) TABLE_DATA.get(0);
