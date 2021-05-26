@@ -237,7 +237,7 @@ public abstract class Basic_Buh extends Basic {
             fakturaKundId = getValueTableInvert(DB.BUH_FAKTURA__FAKTURAKUND_ID, ti);
         }
         //
-        String json = bim.getSELECT_fakturaKundId(fakturaKundId);
+        String json = bim.getSELECT_fakturaKundId__doubleWhere(fakturaKundId);
         //
         try {
             //

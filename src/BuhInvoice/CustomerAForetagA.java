@@ -191,21 +191,29 @@ public abstract class CustomerAForetagA extends Basic_Buh {
         String idColName = "";
         String phpFunc = "";
         //
+        String id = null;
+        String json = null;
+        //
         if (this instanceof CustomersA_) {
             idColName = CustomersA_.TABLE_FAKTURA_KUNDER__FAKTURA_KUND_ID;
             phpFunc = DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES;
+            id = HelpA.getValueSelectedRow(getTableMain(), idColName);
+            //
+            if (id == null || id.isEmpty()) {
+                return;
+            }
+            //
+            json = bim.getSELECT_fakturaKundId__doubleWhere(id);
+            //
         } else if (this instanceof ForetagA) {
             idColName = ForetagA.TABLE__ID;
             phpFunc = DB.PHP_FUNC_PARAM_GET_FORETAG_ADDRESS; // **********************************************
+            //
+            json = bim.getSELECT_kundId();
+            //
         }
         //
-        String id = HelpA.getValueSelectedRow(getTableMain(), idColName);
-        //
-        if (id == null || id.isEmpty()) {
-            return;
-        }
-        //
-        String json = bim.getSELECT_fakturaKundId(id);
+
         //
         try {
             //

@@ -158,9 +158,9 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    protected void refresh_sync(String secondWhereValue) {
+    protected void refresh_sync(String fakturaKundId) {
         //#THREAD#
-        fillFakturaTable(secondWhereValue);
+        fillFakturaTable(fakturaKundId);
         checkIfForfallnaFakturorExist();
         HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
         String fakturaId = bim.getFakturaId();
@@ -168,10 +168,10 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    protected void refresh(String secondWhereValue) {
+    protected void refresh(String fakturaKundId) {
         //#THREAD#
         Thread x = new Thread(() -> {
-            fillFakturaTable(secondWhereValue);
+            fillFakturaTable(fakturaKundId);
             checkIfForfallnaFakturorExist();
             HelpA.markFirstRowJtable(bim.jTable_invoiceB_alla_fakturor);
             String fakturaId = bim.getFakturaId();
@@ -525,7 +525,7 @@ public class InvoiceB extends Basic_Buh {
         updateKomment(true);
     }
 
-    private void fillFakturaTable(String secondWhereValue) {
+    private void fillFakturaTable(String fakturaKundId) {
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
@@ -537,8 +537,8 @@ public class InvoiceB extends Basic_Buh {
         //
         String json;
         //
-        if (secondWhereValue != null) {
-            json = bim.getSELECT_kundId__doubleWhere(secondWhereValue);
+        if (fakturaKundId != null) {
+            json = bim.getSELECT_fakturaKundId__doubleWhere(fakturaKundId);
         } else {
             json = bim.getSELECT_kundId();
         }
