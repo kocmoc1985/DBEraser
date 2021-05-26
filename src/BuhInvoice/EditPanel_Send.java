@@ -130,7 +130,8 @@ public class EditPanel_Send extends EditPanel_Inbet {
         //
         HelpA.clearAllRowsJTable(table);
         //
-        String json = bim.getSELECT_fakturaId();
+//        String json = bim.getSELECT_fakturaId();
+        String json = bim.getSELECT_fakturaId__doubleWhere();
         //
         try {
             //

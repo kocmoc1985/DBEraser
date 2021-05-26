@@ -223,7 +223,8 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
         //
         HelpA.clearAllRowsJTable(table);
         //
-        String json = bim.getSELECT_fakturaId();
+//        String json = bim.getSELECT_fakturaId();
+        String json = bim.getSELECT_fakturaId__doubleWhere();
         //
         try {
             //

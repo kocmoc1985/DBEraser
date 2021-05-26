@@ -393,7 +393,8 @@ public class InvoiceB extends Basic_Buh {
      */
     private boolean isPrinted() {
         //
-        String json = bim.getSELECT_fakturaId();
+//        String json = bim.getSELECT_fakturaId();
+        String json = bim.getSELECT_fakturaId__doubleWhere();
         //
         try {
             //
@@ -1186,7 +1187,8 @@ public class InvoiceB extends Basic_Buh {
 
     private String getKontantFakturaBetalMetod() {
         //
-        String json = bim.getSELECT_fakturaId();
+//        String json = bim.getSELECT_fakturaId();
+        String json = bim.getSELECT_fakturaId__doubleWhere();
         //
         try {
             //
