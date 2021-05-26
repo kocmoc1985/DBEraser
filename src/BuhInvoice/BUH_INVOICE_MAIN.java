@@ -525,7 +525,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
     protected boolean isPerson(String fakturaKundId) {
         //
-        String json = getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+//        String json = getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+        String json = getSELECT_fakturaKundId__doubleWhere(fakturaKundId);
         //
         try {
             //
