@@ -114,7 +114,6 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-   
     protected void fillJComboSearchByFakturaKund() {
         //
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID});
@@ -652,7 +651,7 @@ public class InvoiceB extends Basic_Buh {
             NYCKEL_TAL__TOTAL_EXKL_MOMS -= exkl_moms;
         }
         //
-        if(fakturaTyp == offert){
+        if (fakturaTyp == offert) {
             // DO NOTHING
         }
         //
@@ -753,7 +752,8 @@ public class InvoiceB extends Basic_Buh {
             return;
         }
         //
-        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+//        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__KUND_ID, "777", DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
         try {
             //
@@ -917,7 +917,8 @@ public class InvoiceB extends Basic_Buh {
         // OBS! OBS! OBS! OBS! OBS!*****
         processFakturaMapCopy(faktura_data_map, fakturaNrCopy, isKreditFaktura, isOffert, omvandlaOffertToFaktura, fakturaId); // IMPORTANT! Remove/Reset some entries like "faktura datum" etc.
         //
-        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+//        String json = bim.getSELECT(DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+        String json = bim.getSELECT_doubleWhere(DB.BUH_F_ARTIKEL__KUND_ID, "777", DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
         //
         ArrayList<HashMap<String, String>> faktura_articles = null;
         //

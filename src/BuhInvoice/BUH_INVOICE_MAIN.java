@@ -658,6 +658,11 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return JSon.hashMapToJSON(map);
     }
 
+     /**
+     * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
+     * @param fakturaKundId
+     * @return
+     */
     protected String getSELECT(String whereColName, String whereValue) {
         //
         HashMap<String, String> map = new HashMap<>();
