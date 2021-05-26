@@ -937,9 +937,9 @@ public class HTMLPrint_A extends HTMLPrint {
         if (print_ok) {
             if (this instanceof HTMLPrint_A && bim.isOffert()) {
                 //[#OFFERT#]
-                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
-            } else if (this instanceof HTMLPrint_A) {
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
+            } else if (this instanceof HTMLPrint_A) {
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
             }
             //
             // Here implement update of "is_printed" [#IS_PRINTED#]
