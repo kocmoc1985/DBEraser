@@ -82,7 +82,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         //
         SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, true);
         //
-        GP_BUH.setPageBackground(jPanel19,GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+        GP_BUH.setPageBackground(jPanel19, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
         //
         setMarginLeftLabelsHomeTab();
         //
@@ -109,7 +109,6 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 //            // Will set the initial background
 //        }
 //    }
-
     private void resetRutRot() {
         System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         this.rutRot = null;
@@ -659,7 +658,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         return JSon.hashMapToJSON(map);
     }
 
-     /**
+    /**
      * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
      * @param fakturaKundId
      * @return
@@ -996,6 +995,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jButton_erase_account_btn = new javax.swing.JButton();
         jScrollPane18 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        jTextArea_rut_message = new javax.swing.JTextArea();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jPanel26 = new javax.swing.JPanel();
+        jButton_save_rut_msg = new javax.swing.JButton();
+        jButton_delete_rut_msg = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -2499,6 +2506,40 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea3.setEnabled(false);
         jScrollPane18.setViewportView(jTextArea3);
 
+        jTextArea_rut_message.setColumns(20);
+        jTextArea_rut_message.setRows(5);
+        jScrollPane21.setViewportView(jTextArea_rut_message);
+
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jTextArea4.setEnabled(false);
+        jScrollPane22.setViewportView(jTextArea4);
+
+        jPanel26.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel26.setLayout(new java.awt.GridLayout());
+
+        jButton_save_rut_msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton_save_rut_msg.setToolTipText("Spara meddelande");
+        jButton_save_rut_msg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_save_rut_msgActionPerformed(evt);
+            }
+        });
+        jPanel26.add(jButton_save_rut_msg);
+
+        jButton_delete_rut_msg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_delete_rut_msg.setToolTipText("Återställ meddelande");
+        jButton_delete_rut_msg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_delete_rut_msgActionPerformed(evt);
+            }
+        });
+        jPanel26.add(jButton_delete_rut_msg);
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("RUT / ROT text");
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -2506,6 +2547,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                         .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2518,12 +2560,17 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                         .addComponent(jLabel9))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                     .addComponent(jScrollPane15)
-                    .addComponent(jScrollPane18))
+                    .addComponent(jScrollPane18)
+                    .addComponent(jScrollPane22))
                 .addGap(275, 275, 275))
         );
         jPanel20Layout.setVerticalGroup(
@@ -2546,10 +2593,18 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                     .addComponent(jScrollPane14))
                 .addGap(25, 25, 25)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(jScrollPane21))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                     .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(1214, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         jScrollPane13.setViewportView(jPanel20);
@@ -3124,6 +3179,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jComboBox_customers_a__tab.setSelectedItem(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton_delete_rut_msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_rut_msgActionPerformed
+        optionsTab.restoreRutMessage();
+    }//GEN-LAST:event_jButton_delete_rut_msgActionPerformed
+
+    private void jButton_save_rut_msgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_save_rut_msgActionPerformed
+        optionsTab.saveRutMessage();
+    }//GEN-LAST:event_jButton_save_rut_msgActionPerformed
+
     private void toggleFilterBtnPressed(String phpFunc, ActionEvent evt) {
         //
         JToggleButton jtb = (JToggleButton) evt.getSource();
@@ -3204,6 +3267,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_delete_customer;
     private javax.swing.JButton jButton_delete_faktura;
     private javax.swing.JButton jButton_delete_reminder_msg;
+    public javax.swing.JButton jButton_delete_rut_msg;
     protected javax.swing.JButton jButton_delete_smtp_settings;
     public javax.swing.JButton jButton_dont_save_settings;
     private javax.swing.JButton jButton_edit_faktura;
@@ -3216,6 +3280,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JButton jButton_print_faktura;
     protected javax.swing.JButton jButton_register_new_user;
     private javax.swing.JButton jButton_save_reminder_msg;
+    public javax.swing.JButton jButton_save_rut_msg;
     protected javax.swing.JButton jButton_save_smtp_settings;
     protected javax.swing.JButton jButton_search_by_kund;
     protected javax.swing.JButton jButton_send_reminder;
@@ -3250,6 +3315,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3308,6 +3374,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
@@ -3349,6 +3416,8 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     protected javax.swing.JScrollPane jScrollPane1_faktura;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3369,8 +3438,10 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected javax.swing.JTextArea jTextArea_reminder_message;
+    public javax.swing.JTextArea jTextArea_rut_message;
     protected static javax.swing.JTextField jTextField_exp_avg;
     protected static javax.swing.JTextField jTextField_frakt;
     protected static javax.swing.JTextField jTextField_moms_artiklar;

@@ -684,7 +684,7 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td class='bold'>";
         //
-        html_ += LANG.RUT_MSG_MAIN(fastighets_beteckning, rut_avdrag_total, att_betala_total, fakturans_total_belopp_innan_avdrag);
+        html_ += LANG.RUT_MSG_MAIN__AUTO(fastighets_beteckning, rut_avdrag_total, att_betala_total, fakturans_total_belopp_innan_avdrag);
         //
 //        html_ += "Denna faktura avser husarbete för fastighet \"" + fastighets_beteckning + "\".";
 //        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rut_avdrag_total + " kr.";

@@ -60,6 +60,7 @@ public class OptionsTab extends Basic_Buh {
         }
         //
         showReminderOption();
+        showRutOption();
         //
     }
 
@@ -263,7 +264,7 @@ public class OptionsTab extends Basic_Buh {
         //
         String remindMsg = LANG.RUT_MSG_MAIN__AUTO("?", "?", "?", "?");
         //
-        JTextArea jtxt = null;
+        JTextArea jtxt = bim.jTextArea_rut_message;
         //
         jtxt.setText(remindMsg);
         //
@@ -271,7 +272,22 @@ public class OptionsTab extends Basic_Buh {
 
     protected void saveReminderMessage() {
         //
-        JTextArea jtxt = null;
+        JTextArea jtxt = bim.jTextArea_reminder_message;
+        //
+        if (IO.saveReminderMsg(jtxt.getText())) {
+            BlinkThread bt = new BlinkThread(jtxt, false);
+        } else {
+            BlinkThread bt = new BlinkThread(jtxt, true);
+        }
+        //
+        showReminderOption();
+        showRutOption();
+        //
+    }
+    
+    protected void saveRutMessage() {
+        //
+        JTextArea jtxt = bim.jTextArea_rut_message;
         //
         if (IO.saveRutMsg(jtxt.getText())) {
             BlinkThread bt = new BlinkThread(jtxt, false);
@@ -299,6 +315,7 @@ public class OptionsTab extends Basic_Buh {
         IO.deleteReminderMsg();
         //
         showReminderOption();
+        showRutOption();
         //
     }
 
