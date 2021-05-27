@@ -1,4 +1,6 @@
-OBFUSCATION, EXCLUDING AND FAT JAR:
+
+__________________
+[1]OBFUSCATION, EXCLUDING AND FAT JAR:
 
 So from [2021-02-09] the distributions shall be made "obfuscated, excluded and fat" 
 
@@ -6,12 +8,13 @@ External libraries used for BuhInvoice and placed in "lib_fat_jar":
 commons-lang-2.6.jar,
 glazedlists_java15-1.9.1.jar,
 jPDFWriter.v2016R1.00.jar,
+MyGraphProj.jar,
 thumbnailator-0.4.8.jar
+
 __________________
-CHECK FOLLOWING:
+[2]CHECK FOLLOWING:
 
 [IN PROJECT]
-
 1. HelpBuh -> private final static boolean IS_DISTRIBUTION -> must be set = true
 
 2. GP_BUH -> public static final String VERSION

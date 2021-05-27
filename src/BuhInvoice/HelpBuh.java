@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -53,7 +54,15 @@ public class HelpBuh {
     //
 
     static {
+        //
         if (IS_DISTRIBUTION) {
+            //
+            System.setOut(new PrintStream(new OutputStream() {
+                @Override
+                public void write(int b) {
+                    // nothing / DISABLE OF System.out.println()
+                }
+            }));
             //
             DOMAIN_LA = true;
             HTTPS = true;
@@ -66,6 +75,7 @@ public class HelpBuh {
             GP_BUH.CUSTOMER_MODE = true;
             //
         }
+        //
     }
 
     /**
@@ -110,11 +120,11 @@ public class HelpBuh {
         }
         //
     }
-    
 
     /**
      * OBS! It does require login
-     * @return 
+     *
+     * @return
      */
     public static HashMap<String, String> get_constants() {
         //[#BUH-CONSTANTS#]
@@ -128,7 +138,7 @@ public class HelpBuh {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_GET_CONSTANTS, json);
             //
-            if(json_str_return.equals("V_ERR_0")){
+            if (json_str_return.equals("V_ERR_0")) {
                 return null;
             }
             //
@@ -149,8 +159,8 @@ public class HelpBuh {
         }
         //
     }
-    
-     public static void main(String[] args) {
+
+    public static void main(String[] args) {
         //
 //        checkUpdates(null);
         //
@@ -921,8 +931,6 @@ public class HelpBuh {
         return retur.equals("1");
         //
     }
-
-   
 
     /**
      * For testing only Used by "Run_Invert_Example_C.java" [2020-07-24]

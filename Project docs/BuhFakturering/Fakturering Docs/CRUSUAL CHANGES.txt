@@ -1,3 +1,27 @@
+[PROTOCOL OF HOW TO CHANGE]
+
+1. Any more or less essential change frontend/backend shall be tested on the 
+TEST-SCRIPT AND TEST-DB -> HelpBuh.USE_TEST_DB & HelpBuh.USE_TEST_SCRIPTS
+
+[THIS WILL 100% SABOTAGE]
+1. Let say you have a following query on PHP: "SELECT user, date_created from buh_licens where kundId=%s and master=0" -> changing ammount of "%s" will SABOTAGE
+2. Changing the name of the PhpScript only on one side Java/PHP
+
+
+[CASES WHEN NOTHING HAVE TO BE DONE ON JAVA-SIDE]
+1. 
+
+[CASES WHEN NOTHING HAVE TO BE DONE ON PHP-SIDE]
+1. You are using the "insert()" which populates the query automatically
+1.2 You added some columns to a DB table
+1.3 You made corresponding changes in [JAVA]
+1.4 Yes nothing has to be done at the PHP-Side
+
+
+ABOUT DISTRIBUTION READ FROM "DBEraser\Project docs\BuhFakturering\BEFORE MAKING DIST  - LAFakturering.txt"
+
+____________________________________________________________________________________________________________________________________________________________
+
 [CHANGING ON PHP - PREVIOUS VERSIONS NOT WORKING PROPERLY] [2021-05-26]
 
 Consider following: search for [#CRUSUAL-CHANGES-EXAMPLE-A#] in MCWebNew and in the DBEraser projects
@@ -40,8 +64,3 @@ the column is added it's not a problem as the new implemented field is just not 
 a column will casue failure because if the column is in query but does not exist in DB it WILL CAUSE FAILURE!!  
 
 
-[CASES WHEN NOTHING HAVE TO BE DONE ON PHP-SIDE]
-1.  You are using the "insert()" which populates the query automatically
-1.2 You added some columns to a DB table
-1.3 You made corresponding changes in [JAVA]
-1.4 Yes nothing has to be done at the PHP-Side

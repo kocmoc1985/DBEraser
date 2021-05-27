@@ -50,8 +50,8 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class GP_BUH {
 
-    public static final String VERSION = "1.03"; // prev: 1.02
-    public static final int VERSION_INTEGER = 103; // prev: 102
+    public static final String VERSION = "1.07"; // prev: 1.03
+    public static final int VERSION_INTEGER = 107; // prev: 103
     public static final String PRODUCT_NAME = "LAFakturering";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;
@@ -65,6 +65,8 @@ public class GP_BUH {
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy [domain la.se][php-test]
      *
      * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se] [not test]
+     * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "sgycPkSeFY" -> GUEST ACCOUNT:
+     * guest_31_kocmoc1985@gmail.com / "BMZYyw2kv4"
      * Auto created on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "jdHFe2Qz1i" --> www.la.se [not test]
      * Auto created on [2021-04-30] "kocmoc1985@gmail.com / eVsPrYJiAp" --> www.la.se [not test]
      *
