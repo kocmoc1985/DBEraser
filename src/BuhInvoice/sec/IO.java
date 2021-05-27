@@ -94,6 +94,24 @@ public class IO {
             return null;
         }
     }
+    
+    public static String loadRutMsg() {
+        try {
+            return (String) fileToObject(LAST_INPUT_DIR + "rutrotmsg");
+        } catch (IOException | ClassNotFoundException ex) {
+            return null;
+        }
+    }
+    
+    public static boolean saveRutMsg(Object obj) {
+        try {
+            objectToFile(LAST_INPUT_DIR + "rutrotmsg", obj);
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
     public static boolean saveReminderMsg(Object obj) {
         try {
@@ -105,6 +123,10 @@ public class IO {
         }
     }
 
+     public static void deleteRutMsg() {
+        delete("rutrotmsg");
+    }
+    
     public static void deleteReminderMsg() {
         delete("remindermsg");
     }

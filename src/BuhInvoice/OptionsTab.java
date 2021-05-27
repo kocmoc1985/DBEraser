@@ -55,8 +55,8 @@ public class OptionsTab extends Basic_Buh {
 
     private void initOther() {
         //
-        if(GP_BUH.isGuestUser()){
-           bim.jButton_erase_account_btn.setEnabled(false);
+        if (GP_BUH.isGuestUser()) {
+            bim.jButton_erase_account_btn.setEnabled(false);
         }
         //
         showReminderOption();
@@ -69,7 +69,7 @@ public class OptionsTab extends Basic_Buh {
             return;
         }
         //
-        JPasswordField jpf = HelpA.chooseFromPasswordField(LANG.MSG_4_4, true,30);
+        JPasswordField jpf = HelpA.chooseFromPasswordField(LANG.MSG_4_4, true, 30);
         String pwd = new String(jpf.getPassword());
         //
         if (pwd.isEmpty()) {
@@ -155,7 +155,7 @@ public class OptionsTab extends Basic_Buh {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "e_mail_options");
         TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B(this,Color.BLACK);
+        TABLE_INVERT = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_email_client_options);
         //
@@ -259,24 +259,27 @@ public class OptionsTab extends Basic_Buh {
         //
     }
 
-    protected void saveReminderMessage() {
-        JTextArea jtxt = bim.jTextArea_reminder_message;
+    private void showRutOption() {
         //
-        if (IO.saveReminderMsg(jtxt.getText())) {
+        String remindMsg = LANG.RUT_MSG_MAIN__AUTO("?", "?", "?", "?");
+        //
+        JTextArea jtxt = null;
+        //
+        jtxt.setText(remindMsg);
+        //
+    }
+
+    protected void saveReminderMessage() {
+        //
+        JTextArea jtxt = null;
+        //
+        if (IO.saveRutMsg(jtxt.getText())) {
             BlinkThread bt = new BlinkThread(jtxt, false);
         } else {
             BlinkThread bt = new BlinkThread(jtxt, true);
         }
         //
-        showReminderOption();
-        //
-    }
-
-    protected void restoreReminderMessage() {
-        //
-        IO.deleteReminderMsg();
-        //
-        showReminderOption();
+        showRutOption();
         //
     }
 
@@ -290,4 +293,20 @@ public class OptionsTab extends Basic_Buh {
         //
     }
 
+
+    protected void restoreReminderMessage() {
+        //
+        IO.deleteReminderMsg();
+        //
+        showReminderOption();
+        //
+    }
+
+    protected void restoreRutMessage() {
+        //
+        IO.deleteRutMsg();
+        //
+        showRutOption();
+        //
+    }
 }

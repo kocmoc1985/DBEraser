@@ -684,10 +684,12 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td class='bold'>";
         //
-        html_ += "Denna faktura avser husarbete för fastighet \"" + fastighets_beteckning + "\".";
-        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rut_avdrag_total + " kr.";
-        html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + att_betala_total + " kr.";
-        html_ += "Om ansökan om skattereduktion avslås, ska det totala beloppet (" + fakturans_total_belopp_innan_avdrag + " kr) betalas av dig som köpare.";
+        html_ += LANG.RUT_MSG_MAIN(fastighets_beteckning, rut_avdrag_total, att_betala_total, fakturans_total_belopp_innan_avdrag);
+        //
+//        html_ += "Denna faktura avser husarbete för fastighet \"" + fastighets_beteckning + "\".";
+//        html_ += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rut_avdrag_total + " kr.";
+//        html_ += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + att_betala_total + " kr.";
+//        html_ += "Om ansökan om skattereduktion avslås, ska det totala beloppet (" + fakturans_total_belopp_innan_avdrag + " kr) betalas av dig som köpare.";
         //
         html_ += "</td>";
         html_ += "</tr>";
@@ -949,7 +951,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void setPrinted(String fakturaId){
+    private void setPrinted(String fakturaId) {
         //[#IS_PRINTED#]
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
         //
@@ -962,8 +964,8 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         bim.invoiceB.refresh_c();
     }
-    
-    
+
+
     private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
         String faktura_kund_email = getFakturaKundEmail();

@@ -137,7 +137,7 @@ public class LANG {
     public static String MSG_25_1 = "Är samtliga artiklar tilllagda?";
 
     public static String MSG_26 = "Inga personer finns tillagda, lägg till en och försök igen";
-    
+
     public static String MSG_27 = "Lägg till artiklar först";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
@@ -163,10 +163,11 @@ public class LANG {
     }
 
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
-    public static final String TOOL_TIP_3(boolean isOffert){
+
+    public static final String TOOL_TIP_3(boolean isOffert) {
         String part1 = "Om det alternativa numret finns angivet, visas den i ";
         String part2 = " istället";
-        return isOffert?part1+offerten+part2:part1+fakturan+part2;
+        return isOffert ? part1 + offerten + part2 : part1 + fakturan + part2;
     }
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
@@ -182,6 +183,31 @@ public class LANG {
         } else {
             return basicStr;
         }
+    }
+
+    //==========================================================================
+    public static String RUT_MSG_MAIN(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {
+        String str = "Denna faktura avser husarbete för fastighet \"" + fastighetsBeteckning + "\".";
+        str += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rutAvdragTotal + " kr.";
+        str += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + attBetalaTotal + " kr.";
+        str += "Om ansökan om skattereduktion avslås, ska det totala beloppet (" + fakturansTotalBeloppInnanAvdrag + " kr) betalas av dig som köpare.";
+        return str;
+    }
+
+    public static String RUT_MSG_MAIN__AUTO(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {
+        //
+        String savedRutMsg = IO.loadRutMsg();
+        //
+        if (savedRutMsg != null && savedRutMsg.isEmpty() == false) {
+            if (savedRutMsg.contains("%s")) {
+                return String.format(savedRutMsg, fastighetsBeteckning, rutAvdragTotal, attBetalaTotal, fakturansTotalBeloppInnanAvdrag);
+            } else {
+                return savedRutMsg;
+            }
+        } else {
+            return RUT_MSG_MAIN(fastighetsBeteckning, rutAvdragTotal, attBetalaTotal, fakturansTotalBeloppInnanAvdrag);
+        }
+        //
     }
 
     private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
@@ -204,7 +230,7 @@ public class LANG {
         } else {
             return PAMMINELSE_MSG_MAIN(fakturanr);
         }
-
+        //
     }
 
     public static String LBL_MSG_2_3(String fakturaCopy) {
@@ -240,16 +266,16 @@ public class LANG {
     public static String FAKTURA_COPY_MSG_A(String fakturaCopy) {
         return "Vill du verkligen kopiera fakturanummer: " + fakturaCopy + "?";
     }
-    
+
     public static String FAKTURA_COPY_MSG_B(String fakturaCopy, String fakturaNew) {
         return "Du kopierade precis fakturanummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
     }
-    
+
     public static String OFFERT_COPY_MSG(String fakturaCopy, String fakturaNew) {
         return "Du kopierade precis offertnummer: " + fakturaCopy + ", det nya offertnumret är: " + fakturaNew;
     }
-    
-     public static String OFFERT_OMVANDLA_MSG(String fakturaCopy, String fakturaNew) {
+
+    public static String OFFERT_OMVANDLA_MSG(String fakturaCopy, String fakturaNew) {
         return "Du omvandlade precis offertnummer: " + fakturaCopy + ", det nya fakturanumret är: " + fakturaNew;
     }
 

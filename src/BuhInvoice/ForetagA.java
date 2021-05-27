@@ -39,7 +39,7 @@ public class ForetagA extends CustomerAForetagA {
 
     public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
-        GP_BUH.setPageBackground(bim.jPanel8, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+//        GP_BUH.setPageBackground(bim.jPanel8, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ForetagA extends CustomerAForetagA {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
         TABLE_INVERT_2 = null;
-        TABLE_INVERT_2 = tableBuilder.buildTable_B(this, Color.BLACK);
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this); // , Color.BLACK
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel16, TABLE_INVERT_2);
         //
@@ -126,7 +126,7 @@ public class ForetagA extends CustomerAForetagA {
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
         TABLE_INVERT_3 = null;
-        TABLE_INVERT_3 = tableBuilder.buildTable_B(this, Color.BLACK);
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this); //, Color.BLACK
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel17, TABLE_INVERT_3);
         //
