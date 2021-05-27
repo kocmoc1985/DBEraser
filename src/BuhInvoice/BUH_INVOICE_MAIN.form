@@ -2819,15 +2819,12 @@
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel_email_client_options" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jButton_erase_account_btn" min="-2" pref="204" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jPanel22" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jButton_erase_account_btn" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -2835,7 +2832,7 @@
                               <Component id="jScrollPane16" max="32767" attributes="0"/>
                               <Component id="jScrollPane18" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="154" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3022,6 +3019,7 @@
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
                         <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du skulle vilja ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -3038,8 +3036,9 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte SMTP &#xa;anv&#xe4;ndning.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte anv&#xe4;ndning av SMTP.&#xa;"/>
                         <Property name="wrapStyleWord" type="boolean" value="true"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -3072,7 +3071,8 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data hos LAFakturering.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! All data kommer att raderas permanent&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n en g&#xe4;stkonto."/>
+                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data hos LAFakturering.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! ALL DATA KOMMER ATT RADERAS PERMANENT!&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n ett g&#xe4;stkonto."/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
