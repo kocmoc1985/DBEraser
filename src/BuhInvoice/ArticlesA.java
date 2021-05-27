@@ -296,7 +296,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         }
         //
         if (GP_BUH.CUSTOMER_MODE) {
-//            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
+            HelpA.hideColumnByName(table, TABLE_ARTICLES__ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KUND_ID);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_B);
             HelpA.hideColumnByName(table, TABLE_ARTICLES__KOMMENT_C);
@@ -596,25 +596,30 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
     //==========================================================================
     private void drawGraph_basic(String artikelId, JPanel container, String name, String phpScript) {
         //
-        container.removeAll();
-        //
-        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
-        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        //
-        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
-        //
-        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR_GIVEN_ARTICLE__CURR_YEAR)) {
-            xygraph = xygm;
-        }
-        //
-        System.out.println("Thread:" + Thread.currentThread().getName());
-        //
-        container.add(xygm.getGraph());
-        //
-        Thread x = new Thread(new Thread_A_A(artikelId, phpScript, xygm));
-        x.setName("Thread_A_A");
-        x.start();
-        //
+        new Thread(() -> {
+            //
+            container.removeAll();
+            container.revalidate();
+            container.repaint();
+            //
+            String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+            String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+            //
+            XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+            //
+            if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR_GIVEN_ARTICLE__CURR_YEAR)) {
+                xygraph = xygm;
+            }
+            //
+            System.out.println("Thread:" + Thread.currentThread().getName());
+            //
+            container.add(xygm.getGraph());
+            //
+            Thread x = new Thread(new Thread_A_A(artikelId, phpScript, xygm));
+            x.setName("Thread_A_A");
+            x.start();
+            //
+        }).start();
     }
 
     class Thread_A_A implements Runnable {
@@ -650,7 +655,9 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
             ArrayList<HashMap<String, String>> invoices = JSon.phpJsonResponseToHashMap(json_str_return);
             //
             if (invoices == null || invoices.isEmpty()) {
-                this.xghm.getGraph().getParent().removeAll();
+                this.xghm.getGraph().removeAll();
+                this.xghm.getGraph().revalidate();
+                this.xghm.getGraph().repaint();
                 return;
             }
             //

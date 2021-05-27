@@ -41,12 +41,11 @@ where buh_f_artikel.artikelId = 3 GROUP BY buh_faktura.fakturanr
 -----------------------------------------------------------------------
 
 [2021-05-24]
-SUPER DUPER IMPORTANT - MULTIPLY AND SUM
+SUPER DUPER IMPORTANT - MULTIPLY AND SUM *****************************************************************************
 GET TOTAL FOR AN ARTICLE FOR THE CURRENT YEAR
 
 
-select buh_f_artikel.artikelId,buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris,
-SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura_artikel.namn, buh_faktura.fakturadatum
+select SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura.fakturadatum, buh_f_artikel.antal
 from `buh_f_artikel`
 INNER JOIN buh_faktura_artikel 
 ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
@@ -54,49 +53,13 @@ INNER JOIN buh_faktura
 ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
 where buh_f_artikel.artikelId=132
 and buh_f_artikel.kundId=29
-and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
-and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
-GROUP BY buh_faktura.fakturadatum 
-ORDER BY buh_faktura.fakturadatum ASC
-
------------------------------------------------------------------------
-[2021-05-25] 
-Select all invoices which contains given article
-
-SELECT * from buh_faktura
-INNER JOIN buh_f_artikel on buh_f_artikel.fakturaId = buh_faktura.fakturaId
-WHERE buh_f_artikel.artikelId=119
-AND buh_f_artikel.kundId=29
-
------------------------------------------------------------------------
-[2021-05-25] **********************************************************************************
-COUNT TOTALS FOR A FAKTURA_KUND DEVIDED IN MONTHS FOR THE CURR YEAR
-
-select buh_f_artikel.artikelId,buh_f_artikel.kundId,buh_f_artikel.antal, buh_faktura_artikel.pris,
-SUM(buh_f_artikel.antal * buh_faktura_artikel.pris) as total, buh_faktura_artikel.namn,
-buh_faktura.fakturadatum,buh_faktura.fakturaId, buh_faktura_kund.fakturaKundId, buh_faktura_kund.namn
-from `buh_f_artikel`
-INNER JOIN buh_faktura_artikel 
-ON buh_faktura_artikel.artikelId = buh_f_artikel.artikelId
-INNER JOIN buh_faktura
-ON buh_faktura.fakturaId = buh_f_artikel.fakturaId
-INNER JOIN buh_faktura_kund
-ON buh_faktura_kund.fakturaKundId = buh_faktura.fakturaKundId
-where buh_faktura_kund.fakturaKundId=62
-and buh_f_artikel.kundId=29
-and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
-and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
 and buh_faktura.makulerad=0
-GROUP BY buh_faktura.fakturaId 
-ORDER BY buh_faktura.fakturadatum ASC
-
-
-
-SELECT * from buh_faktura 
-WHERE buh_faktura.fakturaKundId = 62
-ORDER BY buh_faktura.fakturadatum DESC
+and (buh_faktura.fakturatyp=0 or buh_faktura.fakturatyp=2)
+and YEAR(buh_faktura.fakturadatum) = YEAR(CURDATE())
+GROUP BY buh_faktura.fakturadatum ORDER BY buh_faktura.fakturadatum DESC
 
 -----------------------------------------------------------------------
+
 
 IMPORTANT:
 GET FAKTURA ID (fakturaId) for the created FAKTURA with given "kundId".

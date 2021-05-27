@@ -646,7 +646,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         new Thread(() -> {
             //
-            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__ID, fakturaKundId, DB.BUH_FAKTURA_KUND__KUND_ID, "777");
+            String json = bim.getSELECT_doubleWhere(DB.BUH_FAKTURA_KUND__KUND_ID, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
             //
             try {
                 //
@@ -760,7 +760,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
             for (HashMap<String, String> map : totals) {
                 //
                 String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
-                String total = map.get("total"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
+                String total = map.get("total_exkl_moms"); // the column name is the "as" column which means it's not present in the table but defined in the select statement
                 //
                 String[] arr = fakturadatum.split("-");
                 String faktura_datum_short = arr[0] + "-" + arr[1];
@@ -838,27 +838,30 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
 
     private void drawGraph_basic(String fakturaKundId, JPanel container, String name, String phpScript) {
         //
-        container.removeAll();
-        container.revalidate();
-        container.repaint();
-        //
-        String dateNow = GP_BUH.getDate_yyyy_MM_dd();
-        String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
-        //
-        XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
-        //
-        if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR)) {
-            xygraph = xygm;
-        }
-        //
-        System.out.println("Thread:" + Thread.currentThread().getName());
-        //
-        container.add(xygm.getGraph());
-        //
-        Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
-        x.setName("Thread_A_A");
-        x.start();
-        //
+        new Thread(() -> {
+            //
+            container.removeAll();
+            container.revalidate();
+            container.repaint();
+            //
+            String dateNow = GP_BUH.getDate_yyyy_MM_dd();
+            String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
+            //
+            XyGraph_BuhInvoice xygm = new XyGraph_BuhInvoice(name, DB.BUH_FAKTURA__TOTAL_EXKL_MOMS__, new MyGraphXY_BuhInvoice(bim), MyGraphContainer.DISPLAY_MODE_FULL_SCREEN, dateNow, dateFormat);
+            //
+            if (phpScript.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR)) {
+                xygraph = xygm;
+            }
+            //
+            System.out.println("Thread:" + Thread.currentThread().getName());
+            //
+            container.add(xygm.getGraph());
+            //
+            Thread x = new Thread(new Thread_A_A(fakturaKundId, phpScript, xygm));
+            x.setName("Thread_A_A");
+            x.start();
+            //
+        }).start();
     }
 
     class Thread_A_A implements Runnable {

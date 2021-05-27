@@ -34,10 +34,6 @@ Make video how to write on Faktura before printing
 
 ______
 
-Make black background for the Home page 
--> TableInvert line: 112 
--> TableBuilderInvert -> buildTable_B() constructor
-
 Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar" [DONE]
 
 Tab "ARTIKLAR" - there is field named "artikelnr" but there is no search function connected to that field [DONE][2021-05-25]
