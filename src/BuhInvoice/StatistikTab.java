@@ -10,14 +10,12 @@ import XYG_BARGRAPH.MyGraphXY_BG;
 import XYG_BARGRAPH.MyPoint_BG;
 import XYG_BASIC.MyGraphContainer;
 import XYG_BASIC.MyPoint;
-import XYG_BASIC.MySerie;
 import XYG_STATS.BarGraphListener;
 import XYG_STATS.BasicGraphListener;
 import XYG_STATS.XyGraph_M;
 import XY_BUH_INVOICE.MyGraphXY_BuhInvoice;
 import XY_BUH_INVOICE.XyGraph_BuhInvoice;
 import forall.HelpA;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,7 +104,11 @@ public class StatistikTab implements BarGraphListener {
     private void drawGraph_bargraph(JPanel containerTotalPerMonth, JPanel containerAmmountPerMonth, String name_a, String name_b) {
         //
         containerTotalPerMonth.removeAll();
+        containerTotalPerMonth.revalidate();
+        containerTotalPerMonth.repaint();
         containerAmmountPerMonth.removeAll();
+        containerAmmountPerMonth.revalidate();
+        containerAmmountPerMonth.repaint();
         //
         //====================================================
         BasicGraphListener gg__total_per_month;
@@ -231,6 +233,10 @@ public class StatistikTab implements BarGraphListener {
                         Logger.getLogger(StatistikTab.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            }
+            //
+            if(fakturor_one_year_map.isEmpty()){
+                return;
             }
             //
             for (HashMap<String, String> map : fakturor_one_year_map) {
