@@ -185,9 +185,9 @@ public class LANG {
     }
 
     private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
-        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald.\n"
+        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald."
                 + "Därför ber vi er att omgående betala in det förfallna beloppet.\n"
-                + "Vänligen uppge fakturanummer vid betalning.\n"
+                + "Vänligen uppge fakturanummer vid betalning."
                 + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
     }
 

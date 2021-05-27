@@ -19,6 +19,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import forall.TextFieldCheck;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JPasswordField;
@@ -39,6 +40,7 @@ public class OptionsTab extends Basic_Buh {
 
     public OptionsTab(BUH_INVOICE_MAIN bim) {
         super(bim);
+        GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
     }
 
     protected void refresh() {
@@ -153,7 +155,7 @@ public class OptionsTab extends Basic_Buh {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "e_mail_options");
         TABLE_INVERT = null;
-        TABLE_INVERT = tableBuilder.buildTable_B(this);
+        TABLE_INVERT = tableBuilder.buildTable_B(this,Color.BLACK);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_email_client_options);
         //

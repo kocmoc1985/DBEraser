@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
+import forall.BackgroundPanel;
 import forall.GP;
 import forall.HelpA;
 import static forall.HelpA.dateToMillisConverter3;
@@ -106,6 +107,20 @@ public class GP_BUH {
 
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
+    }
+    
+    public static String BASIC_BACKGROUND_IMG__PATH = "io/bg.jpg";
+    
+    public static void setPageBackground(JPanel panel,String path) {
+        //
+        BackgroundPanel bg = (BackgroundPanel) panel;
+        //
+        try {
+            Image image = ImageIO.read(new File(path)); //"io/bg.jpg"
+            bg.go(image);
+        } catch (Exception ex) {
+            // Will set the initial background
+        }
     }
 
     public static boolean loggedIn() {

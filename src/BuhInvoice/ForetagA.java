@@ -12,6 +12,7 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -26,7 +27,7 @@ public class ForetagA extends CustomerAForetagA {
     protected static final String TABLE__ID = "KUND ID";
     private static final String TABLE__NAMN = "NAMN";
 //    private static final String TABLE__COL_ORGNR__PNR = "ORGNR";
-   
+
     private static final String TABLE__VATNR = "VATNR";
     private static final String TABLE__EPOST = "E-POST";
     private static final String TABLE__BANK_GIRO = "BG";
@@ -35,10 +36,10 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__IBAN = "IBAN";
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
-    
 
     public ForetagA(BUH_INVOICE_MAIN bim) {
         super(bim);
+        GP_BUH.setPageBackground(bim.jPanel8, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
     }
 
     @Override
@@ -116,7 +117,7 @@ public class ForetagA extends CustomerAForetagA {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
         TABLE_INVERT_2 = null;
-        TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
+        TABLE_INVERT_2 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel16, TABLE_INVERT_2);
         //
@@ -125,7 +126,7 @@ public class ForetagA extends CustomerAForetagA {
     public void showTableInvert_3() {
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
         TABLE_INVERT_3 = null;
-        TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
+        TABLE_INVERT_3 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel17, TABLE_INVERT_3);
         //
@@ -218,12 +219,12 @@ public class ForetagA extends CustomerAForetagA {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
-        }else if (col_name.equals(DB.BUH_KUND__SWISH)) {
+        } else if (col_name.equals(DB.BUH_KUND__SWISH)) {
             //
             Validator.validateMaxInputLength(jli, 30);
             //
         }
-        
+
     }
 
 }
