@@ -167,7 +167,8 @@ public class LANG {
     public static final String TOOL_TIP_3(boolean isOffert) {
         String part1 = "Om det alternativa numret finns angivet, visas den i ";
         String part2 = " istället";
-        return isOffert ? part1 + offerten + part2 : part1 + fakturan + part2;
+//        return isOffert ? part1 + offerten + part2 : part1 + fakturan + part2; // must be fixed shows offerten hela tiden [2021-05-28]
+        return  part1 + fakturan + part2;
     }
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
