@@ -1983,7 +1983,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel_graph_panel_d, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel_graph_panel_b, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(25, 25, 25))
         );
 
         jScrollPane19.setViewportView(jPanel24);
