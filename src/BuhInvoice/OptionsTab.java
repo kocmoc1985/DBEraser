@@ -59,6 +59,8 @@ public class OptionsTab extends Basic_Buh {
             bim.jButton_erase_account_btn.setEnabled(false);
         }
         //
+        bim.jTextArea4.setCaretPosition(0);
+        //
         showReminderOption();
         showRutOption();
         //
@@ -262,7 +264,7 @@ public class OptionsTab extends Basic_Buh {
 
     private void showRutOption() {
         //
-        String remindMsg = LANG.RUT_MSG_MAIN__AUTO("?", "?", "?", "?");
+        String remindMsg = LANG.RUT_MSG_MAIN__AUTO("%s", "%s", "%s", "%s");
         //
         JTextArea jtxt = bim.jTextArea_rut_message;
         //
@@ -301,7 +303,7 @@ public class OptionsTab extends Basic_Buh {
 
     private void showReminderOption() {
         //
-        String remindMsg = LANG.PAMMINELSE_MSG_MAIN__AUTO("?");
+        String remindMsg = LANG.PAMMINELSE_MSG_MAIN__AUTO("%s");
         //
         JTextArea jtxt = bim.jTextArea_reminder_message;
         //

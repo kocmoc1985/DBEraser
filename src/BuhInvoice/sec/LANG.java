@@ -188,10 +188,10 @@ public class LANG {
 
     //==========================================================================
     public static String RUT_MSG_MAIN(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {
-        String str = "Denna faktura avser husarbete för fastighet \"(" + fastighetsBeteckning + ")\".\n";
-        str += "Enligt dig som köpare har du rätt till preliminär skattereduktion på (" + rutAvdragTotal + ") kr.\n";
-        str += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala (" + attBetalaTotal + ") kr.\n";
-        str += "Om ansökan om skattereduktion avslås, ska det totala beloppet (" + fakturansTotalBeloppInnanAvdrag + ") kr betalas av dig som köpare.";
+        String str = "Denna faktura avser husarbete för fastighet " + fastighetsBeteckning + ".\n";
+        str += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rutAvdragTotal + " kr.\n";
+        str += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + attBetalaTotal + " kr.\n";
+        str += "Om ansökan om skattereduktion avslås, ska det totala beloppet " + fakturansTotalBeloppInnanAvdrag + " kr betalas av dig som köpare.";
         return str;
     }
 
@@ -212,8 +212,8 @@ public class LANG {
     }
 
     private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
-        return "Fakturanr (" + fakturanr + ") är enligt våra noteringar fortfarande obetald."
-                + "Därför ber vi er att omgående betala in det förfallna beloppet.\n"
+        return "Fakturanr " + fakturanr + " är enligt våra noteringar fortfarande obetald."
+                + " Därför ber vi er att omgående betala in det förfallna beloppet.\n"
                 + "Vänligen uppge fakturanummer vid betalning."
                 + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
     }

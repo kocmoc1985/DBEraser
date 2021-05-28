@@ -2844,7 +2844,7 @@
                               <Component id="jScrollPane14" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jPanel21" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <EmptySpace pref="363" max="32767" attributes="0"/>
+                                  <EmptySpace pref="375" max="32767" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel_email_client_options" alignment="1" max="32767" attributes="0"/>
@@ -2863,12 +2863,14 @@
                                   <Component id="jLabel25" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane16" pref="433" max="32767" attributes="0"/>
-                              <Component id="jScrollPane15" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane18" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane22" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jScrollPane16" pref="433" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane15" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane18" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane22" min="-2" pref="433" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
                       </Group>
@@ -3079,7 +3081,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du skulle vilja ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du vill ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -3167,8 +3169,12 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="&#xc4;ndra eller skriv din egen text h&#xe4;r till v&#xe4;nster. F&#xf6;rsta f&#xf6;rekomsten av &#xa;%s kommer att ers&#xe4;ttas med fastighetsbeteckning. Den andra&#xa;tredje och fj&#xe4;rde ers&#xe4;tts med - se nedan:&#xa;&#xa;1. %s = fastighetsbeteckning&#xa;2. %s = rut/rot-avdrag total&#xa;3. %s = totalt att betala&#xa;4. %s = fakturans totala belopp innan avdrag"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
