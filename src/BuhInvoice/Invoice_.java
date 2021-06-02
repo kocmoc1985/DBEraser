@@ -88,6 +88,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
+        GP_BUH.setVisible(bim.jLabel__spara_faktura_arrow, true);
+        GP_BUH.setVisible(bim.jLabel__spara_faktura, true);
+        //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
@@ -144,6 +147,8 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 GP_BUH.enableDisableButtons(bim.jPanel12, false);
                 GP_BUH.setEnabled(bim.jButton_confirm_insert_update, false);
+                GP_BUH.setVisible(bim.jLabel__spara_faktura_arrow, false);
+                GP_BUH.setVisible(bim.jLabel__spara_faktura, false);
                 //
             } else {
                 //

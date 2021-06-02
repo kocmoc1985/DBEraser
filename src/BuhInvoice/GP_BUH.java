@@ -263,6 +263,12 @@ public class GP_BUH {
             c.setEnabled(enabled);
         });
     }
+    
+    public static void setVisible(JComponent c, boolean visible) {
+        java.awt.EventQueue.invokeLater(() -> {
+            c.setVisible(visible);
+        });
+    }
 
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));

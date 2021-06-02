@@ -1,3 +1,9 @@
+[SMTP - PHPMailer - SECURITY THREAT?]
+
+I was using SMTP in BuhInvoice with andrei.brassas@mixcont.com
+On 2021-05-2X the email mentioned above was hacked. Now i suspect
+that PHPMailer could hand over the password to third-party
+
 ________________________________________________________________________________________________________
 [FILE UPLOAD / SENDING EMAILS WITH ATTACHMENT / SECURITY][2021-02-11]
 
