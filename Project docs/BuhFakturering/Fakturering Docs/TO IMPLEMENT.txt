@@ -24,9 +24,9 @@
 
 _____
 
-Fördelar - text till sajten:
-- Nyckeltal för angiven urval
-- 
+
+SMTP Options PROBLEM -> When changing password for SMTP it must be saved before test sending a test email. [2021-06-02]
+
 
 Make video how to make Offert
 
