@@ -26,6 +26,12 @@ public class EmailSendingStatus {
 
     private void extract(String status) {
         //
+        if(status.toLowerCase().contains("exception")){ // 2021-06-02
+            attachmentStatus = 0;
+            emailStatus = 0;
+            return;
+        }
+        //
         String[] arr = status.split(";");
         //
         attachmentStatus = Integer.parseInt(arr[0]);
