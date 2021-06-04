@@ -51,8 +51,8 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class GP_BUH {
 
-    public static final String VERSION = "1.07"; // prev: 1.03
-    public static final int VERSION_INTEGER = 107; // prev: 103
+    public static final String VERSION = "1.08"; // prev: 1.07
+    public static final int VERSION_INTEGER = 108; // prev: 107
     public static final String PRODUCT_NAME = "LAFakturering";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;

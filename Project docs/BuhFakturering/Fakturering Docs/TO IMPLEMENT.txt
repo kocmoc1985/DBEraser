@@ -24,15 +24,15 @@
 
 _____
 
+IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
 
-SMTP Options PROBLEM -> When changing password for SMTP it must be saved before test sending a test email. [2021-06-02]
-
-
-Make video how to make Offert
+Backup of all data
 
 Make video how to write on Faktura before printing
 
 ______
+
+SMTP Options PROBLEM -> When changing password for SMTP it must be saved before test sending a test email. [2021-06-02]
 
 Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar" [DONE]
 
@@ -88,13 +88,7 @@ Logo not always loading when clicking print button, seems to be solved on [2020-
 
 ------------------------</URGENT>------------------------
 
-Additional comment fields as suposed by Ivan..!?
 
-Backup of all data
-
-IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
-
-Think about initial articles list for different types of companies, like for Bygg it can implement already articles with "omvänt skattskyldighet"
 
 For the "buh_faktura_artikel" -> implement so you can save moms and omvänd momssats so when you create an article those values are automatically set
 
@@ -104,7 +98,7 @@ Send mail to all users of LAFakturering -> get all user emails from DB and send
 
 All libraries to one jar -> https://www.oracle.com/technical-resources/articles/javase/single-jar.html
 
-Implement security check for failling login in row
+Implement security check for failling login in row[DONE]
 
 Making installers for MAC OS:
 https://stackoverflow.com/questions/30981132/how-to-create-installer-for-mac-software
