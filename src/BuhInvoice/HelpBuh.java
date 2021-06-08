@@ -22,6 +22,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.net.CookieHandler;
+import java.net.CookieManager;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -661,6 +663,7 @@ public class HelpBuh {
         int postDataLength = postData.length;
         String request = url_.split("\\?")[0];
         //
+//        CookieHandler.setDefault(new CookieManager()); // OBS! 2021-06-08
         URL url = new URL(request);
         URLConnection conn = url.openConnection();
         //
