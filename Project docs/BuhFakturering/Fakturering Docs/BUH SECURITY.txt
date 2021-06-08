@@ -1,3 +1,21 @@
+________________________________________________________________________________________________________
+[OBS! DONT FORGET THE BUH_SECURITY.vsd]
+
+________________________________________________________________________________________________________
+[SECURITY WEEKPOINTS][2021-06-08]
+
+Things to think about and protect in feature:
+
+- A hacker may utilize the function for creating/sharing a user. I mean running it with faked users so the PHP-Side will be forced to create the users
+in a loop which will highly likely almostly kill the server side. So why is this function "särskillt" vulnerable, yes because it's processed
+before the validation - in general all methods which occurs before validation shall be secured. 
+
+- In fact a hacker can use any of the methods on back-end using a valid login - so let's say you make a code
+which inserts invoices, customers or what ever in a loop. This will surely cause problems for the server-side.
+
+
+
+________________________________________________________________________________________________________
 [SMTP - PHPMailer - SECURITY THREAT?]
 
 I was using SMTP in BuhInvoice with andrei.brassas@mixcont.com

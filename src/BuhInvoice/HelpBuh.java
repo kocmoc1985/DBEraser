@@ -44,13 +44,13 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class HelpBuh {
 
     //
-    private final static boolean IS_DISTRIBUTION = true;
+    private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
-    public static boolean USE_TEST_DB = false; // [#TEST-DB#]
-    public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
+    public static boolean USE_TEST_DB = true; // [#TEST-DB#]
+    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
 
     static {
@@ -160,34 +160,37 @@ public class HelpBuh {
         //
     }
 
-//    public static void main(String[] args) {
-//        //
-////        checkUpdates(null);
-//        //
-////        GP_BUH.USER = "ask@mixcont.com";
-////        GP_BUH.PASS = "mixcont4765";
-//        //
-////        createAccountPHP_existing_customer("1");
-//        //
-////        test__sendEmailWithAttachment();
-//        //
-////        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
-//        //
-//        //
-////        deleteCustomer_a("25", "Vxuw6lpMzF");
-//        //
-//        //
-////        restorePwd("andrej.brassas@gmail.com");
-//        //
-////        buh_faktura_rut_person__test_insert("1");
-//        //    
-////        deleteCustomer_b("geDRkHrzht");
-//        //
-////        test__uploadFile();
-//        //
-//        get_constants();
-//        //
-//    }
+    public static void main(String[] args) {
+        //
+//        checkUpdates(null);
+        //
+//        GP_BUH.USER = "ask@mixcont.com";
+//        GP_BUH.PASS = "mixcont4765";
+        //
+//        GP_BUH.USER = "eval(return 5;)";
+//        GP_BUH.PASS = "mixcont4765";
+        //
+//        createAccountPHP_existing_customer("1");
+        //
+//        test__sendEmailWithAttachment();
+        //
+//        createAccountPHP_main("andrej.brassas@gmail.com", "BuhInvoice", "556251-6806");
+        //
+        //
+//        deleteCustomer_a("25", "Vxuw6lpMzF");
+        //
+        //
+//        restorePwd("andrej.brassas@gmail.com");
+        //
+//        buh_faktura_rut_person__test_insert("1");
+        //    
+//        deleteCustomer_b("geDRkHrzht");
+        //
+//        test__uploadFile();
+        //
+        get_constants();
+        //
+    }
 
     public static void update(String json) {
         //
