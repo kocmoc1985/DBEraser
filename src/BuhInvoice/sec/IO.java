@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.DB;
+import BuhInvoice.GP_BUH;
 import forall.HelpA;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,8 +30,8 @@ public class IO {
     static {
         HelpA.create_dir_if_missing(LAST_INPUT_DIR);
     }
-    
-    public static final boolean exist(String fileName){
+
+    public static final boolean exist(String fileName) {
         return HelpA.file_exists(LAST_INPUT_DIR + fileName);
     }
 
@@ -54,7 +55,6 @@ public class IO {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
 
     public static String loadLastEntered(String fileName, String defaultValue) {
         return HelpA.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
@@ -67,7 +67,7 @@ public class IO {
 
     public static boolean saveSMTP(Object obj) {
         try {
-            objectToFile(LAST_INPUT_DIR + "smtp", obj);
+            objectToFile(GP_BUH.SMTP_PATH(), obj);
             return true;
         } catch (IOException ex) {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,14 +77,14 @@ public class IO {
 
     public static SMTP loadSMTP() {
         try {
-            return (SMTP) fileToObject(LAST_INPUT_DIR + "smtp");
+            return (SMTP) fileToObject(GP_BUH.SMTP_PATH());
         } catch (IOException | ClassNotFoundException ex) {
             return null;
         }
     }
 
     public static boolean deleteSMTP() {
-        return delete("smtp");
+        return delete(GP_BUH.SMTP_PATH());
     }
 
     public static String loadReminderMsg() {
@@ -94,7 +94,7 @@ public class IO {
             return null;
         }
     }
-    
+
     public static String loadRutMsg() {
         try {
             return (String) fileToObject(LAST_INPUT_DIR + "rutrotmsg");
@@ -102,7 +102,7 @@ public class IO {
             return null;
         }
     }
-    
+
     public static boolean saveRutMsg(Object obj) {
         try {
             objectToFile(LAST_INPUT_DIR + "rutrotmsg", obj);
@@ -123,10 +123,10 @@ public class IO {
         }
     }
 
-     public static void deleteRutMsg() {
+    public static void deleteRutMsg() {
         delete("rutrotmsg");
     }
-    
+
     public static void deleteReminderMsg() {
         delete("remindermsg");
     }

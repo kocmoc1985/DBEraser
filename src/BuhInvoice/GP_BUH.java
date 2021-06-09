@@ -105,6 +105,10 @@ public class GP_BUH {
     public static final String LOGO_PATH() {
         return "io/logo_" + KUND_ID + ".png";
     }
+    
+    public static final String SMTP_PATH() {
+        return "io/smtp_" + KUND_ID;
+    }
 
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
