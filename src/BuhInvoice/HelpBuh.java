@@ -169,8 +169,8 @@ public class HelpBuh {
 //        GP_BUH.USER = "ask@mixcont.com";
 //        GP_BUH.PASS = "mixcont4765";
         //
-//        GP_BUH.USER = "eval(return 5;)";
-//        GP_BUH.PASS = "mixcont4765";
+        GP_BUH.USER = "kocmoc1985@gmail.com";
+        GP_BUH.PASS = "dbJztp1PR9";
         //
 //        createAccountPHP_existing_customer("1");
         //
@@ -186,11 +186,11 @@ public class HelpBuh {
         //
 //        buh_faktura_rut_person__test_insert("1");
         //    
-//        deleteCustomer_b("geDRkHrzht");
+//        deleteCustomer_b("dbJztp1PR9"); //dbJztp1PR9
         //
 //        test__uploadFile();
         //
-        get_constants();
+//        get_constants();
         //
     }
 

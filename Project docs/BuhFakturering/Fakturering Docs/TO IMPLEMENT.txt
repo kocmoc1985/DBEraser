@@ -24,6 +24,10 @@
 
 _____
 
+The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
+
+The saved user password (Java-Side) is strored in clear text in "io" folder file "pass"
+
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
 
 Backup of all data

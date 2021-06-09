@@ -1,13 +1,18 @@
 [2021-06-08]
 
 PRIORITY: MAX
+AMMOUNT OF CHANGES: (7) [1-10]
 
 Some security changes done like "string sanitizing". See "issetPost()" & "filterJson()" methods in _http_buh.php
 
-NOTE: the _http_buh.php was ONLY updated for the TEST-DB
+NOTE: the _http_buh.php was ONLY updated for the PHP-TEST
 
 So when you have 100% verified the consequenses of the changes don't forget to update the MAIN-DB
 
+DATE-LAST-WORK-DONE: [2021-06-09]
 CHANGES ON JAVA-SIDE: NO
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-06-09]
+PHP-MAIN-SCRIPTS UPDATED: NO ******************************************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ________________________________________________________________________________________

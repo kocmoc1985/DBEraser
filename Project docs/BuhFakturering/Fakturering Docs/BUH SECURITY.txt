@@ -6,9 +6,15 @@ ________________________________________________________________________________
 
 Things to think about and protect in feature:
 
+[DIFFERENT-ATTACKS]:
+- in many places in the "_http_buh.php" i am doing the echo "[###status:$q###]\n"; -> this reveals the construction of query to the hacker.
+
+[SLOW-DOWN-ATTACKS]:
 - A hacker may utilize the function for creating/sharing a user. I mean running it with faked users so the PHP-Side will be forced to create the users
 in a loop which will highly likely almostly kill the server side. So why is this function "särskillt" vulnerable, yes because it's processed
-before the validation - in general all methods which occurs before validation shall be secured. 
+before the validation - in general all methods which occurs before validation shall be secured.  
+[2021-06-09] OBS! now i see "AGAIN" that maximum 2 users can be created from a PC with same MAC -> BUT the hacker may offcourse MANIPULATE the MAC addr -> 
+So yes this requires to be solved somehow
 
 - In fact a hacker can use any of the methods on back-end using a valid login - so let's say you make a code
 which inserts invoices, customers or what ever in a loop. This will surely cause problems for the server-side.
