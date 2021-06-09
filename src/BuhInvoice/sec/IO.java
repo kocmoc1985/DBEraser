@@ -30,6 +30,7 @@ public class IO {
     static {
         HelpA.create_dir_if_missing(LAST_INPUT_DIR);
     }
+    
 
     public static final boolean exist(String fileName) {
         return HelpA.file_exists(LAST_INPUT_DIR + fileName);
