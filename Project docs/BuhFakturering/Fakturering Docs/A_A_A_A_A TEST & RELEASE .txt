@@ -1,3 +1,7 @@
+
+
+________________________________________________________________________________________
+
 [2021-06-08]
 
 PRIORITY: MAX
@@ -11,8 +15,9 @@ So when you have 100% verified the consequenses of the changes don't forget to u
 
 DATE-LAST-WORK-DONE: [2021-06-09]
 CHANGES ON JAVA-SIDE: NO
+PHP-SCRIPTS-INVOLVED: _http_buh.php
 
 PHP-TEST-SCRIPTS UPDATED: YES [2021-06-09]
-PHP-MAIN-SCRIPTS UPDATED: NO ******************************************************!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-14] **************
 
 ________________________________________________________________________________________
