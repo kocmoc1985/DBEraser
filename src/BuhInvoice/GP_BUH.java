@@ -472,6 +472,14 @@ public class GP_BUH {
                 .size(w_new, h_new)
                 .toFile(new File(GP_BUH.LOGO_PATH()));
         //
+        //https://stackoverflow.com/questions/64645129/image-resize-bad-quality
+        //
+//         bufferedImage = Thumbnails.of(bufferedImage)
+//                .imageType(BufferedImage.TYPE_INT_RGB)
+//                .size(imageSize, imageSize)
+//                .outputQuality(1)
+//                .asBufferedImage();
+        //
     }
 
     private static String chooseFile(Component parent) {
