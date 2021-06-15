@@ -18,15 +18,20 @@ import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
+import com.qoppa.pdfWriter.ImageParam;
+import com.qoppa.pdfWriter.PDFDocument;
+import com.qoppa.pdfWriter.PDFPage;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import forall.TextFieldCheck;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.io.IOException;
 import java.net.ProtocolException;
 import java.net.URI;
@@ -44,7 +49,7 @@ import java.util.logging.Logger;
 public abstract class HTMLPrint extends HTMLBasic {
 
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
-    
+
     protected final BUH_INVOICE_MAIN bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
     protected final HashMap<String, String> map_a_0;
@@ -644,7 +649,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder,bim.isOffert()));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder, bim.isOffert()));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
@@ -744,8 +749,9 @@ public abstract class HTMLPrint extends HTMLBasic {
      * [2020-09-03] uses: jPDFWriter.v2016R1.00.jar Enables silent print_java
      *
      * @param filename
+     * @return
      */
-    protected void print_java(String filename) {
+    protected boolean print_java(String filename) {
         //
         JEditorPane jep = getEditorPane();
         //
@@ -767,6 +773,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         pageFormat.setPaper(paper);
         //
 //        PrinterJob pj = PrinterJob.getPrinterJob(); // old
+
         PDFPrinterJob pj = (PDFPrinterJob) PDFPrinterJob.getPrinterJob(); // ******[JAVA PDF PRINT][2020-09-03]
         //
         PageFormat validatedFormat = pj.validatePage(pageFormat);
@@ -779,10 +786,57 @@ public abstract class HTMLPrint extends HTMLBasic {
         try {
 //            pj.print_java();
             pj.print(filename); // [JAVA PDF PRINT]******[SILENT PRINT]
+            return true;
         } catch (PrinterException ex) {
             Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
         //
+    }
+
+    /**
+     * Not making A4
+     * @deprecated
+     * @param filename
+     * @return 
+     */
+    protected boolean print_java_b(String filename) {
+        //
+        Paper paper = new Paper();
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        //
+        // This one sets the margins
+        paper.setImageableArea(0, 0, paper.getWidth(), paper.getHeight());
+        //
+        PageFormat pageFormat = new PageFormat();
+        pageFormat.setPaper(paper);
+        //
+        //
+        JEditorPane jep = getEditorPane();
+        //
+        PDFDocument pdfDoc = new PDFDocument();
+        //
+        PDFPage page = pdfDoc.createPage(pageFormat);
+        //
+        pdfDoc.addPage(page);
+        //
+        Graphics2D g2d = page.createGraphics();
+        //
+        jep.print(g2d);
+        //
+        File outFile = new File(filename);
+        //
+        // save document
+        if (outFile != null) {
+            try {
+                pdfDoc.saveDocument(outFile.getAbsolutePath());
+                return true;
+            } catch (IOException ex) {
+                Logger.getLogger(HTMLPrint.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+        return false;
     }
 
     private static double fromCMToPPI(double cm) {

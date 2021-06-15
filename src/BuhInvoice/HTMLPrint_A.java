@@ -821,7 +821,8 @@ public class HTMLPrint_A extends HTMLPrint {
         jPanel2 = new javax.swing.JPanel();
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButton_print_btn = new javax.swing.JButton();
+        jButton_pdf_btn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_faktura_any_email = new javax.swing.JButton();
@@ -839,14 +840,23 @@ public class HTMLPrint_A extends HTMLPrint {
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
-        jButton1.setToolTipText("Skriv ut faktura");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_print_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
+        jButton_print_btn.setToolTipText("Skriv ut faktura");
+        jButton_print_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_print_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanel1.add(jButton_print_btn);
+
+        jButton_pdf_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon.png"))); // NOI18N
+        jButton_pdf_btn.setToolTipText("Spara faktura i .pdf format på skrivbordet");
+        jButton_pdf_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_pdf_btnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_pdf_btn);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
         jButton3.setToolTipText("Sätt eller radera logotyp");
@@ -904,7 +914,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -930,9 +940,38 @@ public class HTMLPrint_A extends HTMLPrint {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_print_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_btnActionPerformed
         //
-        boolean print_ok = print_normal();
+        print_help(false);
+        //
+//        boolean print_ok = print_normal();
+//        //
+//        String fakturaId = bim.getFakturaId();
+//        //
+//        if (print_ok) {
+//            if (this instanceof HTMLPrint_A && bim.isOffert()) {
+//                //[#OFFERT#]
+//                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
+//            } else if (this instanceof HTMLPrint_A) {
+//                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+//            }
+//            //
+//            // Here implement update of "is_printed" [#IS_PRINTED#]
+//            setPrinted(fakturaId);
+//            //
+//        }
+        //
+    }//GEN-LAST:event_jButton_print_btnActionPerformed
+
+    protected void print_help(boolean printJava){
+        //
+        boolean print_ok;
+        //
+        if(printJava){
+            print_ok = print_java(getFakturaDesktopPath());
+        }else{
+            print_ok = print_normal();
+        }
         //
         String fakturaId = bim.getFakturaId();
         //
@@ -948,9 +987,8 @@ public class HTMLPrint_A extends HTMLPrint {
             setPrinted(fakturaId);
             //
         }
-        //
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
+    
     private void setPrinted(String fakturaId) {
         //[#IS_PRINTED#]
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -1001,6 +1039,14 @@ public class HTMLPrint_A extends HTMLPrint {
         setSentByCommonPost();
     }//GEN-LAST:event_jButton_send_with_common_postActionPerformed
 
+    private void jButton_pdf_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdf_btnActionPerformed
+        //
+        print_help(true);
+        //
+    }//GEN-LAST:event_jButton_pdf_btnActionPerformed
+
+    
+    
     @Override
     protected void displayStatus(String msg, Color c) {
         //
@@ -1039,8 +1085,9 @@ public class HTMLPrint_A extends HTMLPrint {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_pdf_btn;
+    private javax.swing.JButton jButton_print_btn;
     private javax.swing.JButton jButton_send_faktura_any_email;
     private javax.swing.JButton jButton_send_faktura_email;
     private javax.swing.JButton jButton_send_with_common_post;
