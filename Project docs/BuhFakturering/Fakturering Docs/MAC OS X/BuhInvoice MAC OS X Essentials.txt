@@ -4,3 +4,8 @@ PROBLEM: When you try printing a Invoice with mac it prompts you to choose a pri
 you chose the "pdf" option -> it fails to print as the printer was not chosen and it does not create the ".pdf"
 
 SOLUTION: When iam sending the invoice by e-mail the ".pdf" is created with the "java" library -> So the solution is to make an addtional button for ".pdf" priniting
+
+
+[SAVE TO DESKTOP - STILL A PROBLEM][2021-XX-XX]
+
+I shall find a function which returns the desktop path for the MAC-OS-X or save to the current dir
