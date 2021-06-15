@@ -1,0 +1,6 @@
+[PRINT-PROBLEM][2021-06-15]
+
+PROBLEM: When you try printing a Invoice with mac it prompts you to choose a printer -> you continue without choosing a printer as it's not present -> 
+you chose the "pdf" option -> it fails to print as the printer was not chosen and it does not create the ".pdf"
+
+SOLUTION: When iam sending the invoice by e-mail the ".pdf" is created with the "java" library -> So the solution is to make an addtional button for ".pdf" priniting

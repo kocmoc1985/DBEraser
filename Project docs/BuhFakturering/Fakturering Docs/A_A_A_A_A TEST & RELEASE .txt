@@ -1,4 +1,15 @@
+[2021-06-15]
 
+Adding the ".pdf" print button
+
+PRIORITY: MIDDLE
+AMMOUNT OF CHANGES: (?) [1-10]
+
+DATE-LAST-WORK-DONE: [2021-06-15]
+CHANGES ON JAVA-SIDE: YES
+PHP-SCRIPTS-INVOLVED: NO
+
+DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: NO
 
 ________________________________________________________________________________________
 
