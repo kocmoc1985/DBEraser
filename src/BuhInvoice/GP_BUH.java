@@ -44,6 +44,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 
 /**
  *
@@ -103,6 +104,10 @@ public class GP_BUH {
     }
 
     public static final String LOGO_PATH() {
+        return "io/logo_" + KUND_ID + ".jpg";
+    }
+    
+     private static final String LOGO_PATH_B() {
         return "io/logo_" + KUND_ID + ".png";
     }
     
@@ -468,9 +473,15 @@ public class GP_BUH {
         File f = new File(path);
         //
         //
-        Thumbnails.of(f)
+//        Thumbnails.of(f)
+//                .size(w_new, h_new)
+//                .toFile(new File(GP_BUH.LOGO_PATH()));
+        //
+         Thumbnails.of(f)
                 .size(w_new, h_new)
-                .toFile(new File(GP_BUH.LOGO_PATH()));
+                .outputQuality(1.0) // OBS! Important! Working with .jpg only!
+                .toFile(new File(GP_BUH.LOGO_PATH())); 
+        //
         //
         //https://stackoverflow.com/questions/64645129/image-resize-bad-quality
         //
