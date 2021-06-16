@@ -442,10 +442,11 @@ public class GP_BUH {
         }
         //
         int MIN_WIDTH = 120;
-        int MAX_WIDTH = 180;
-        int MAX_HEIGHT = 70;
-//        int MAX_WIDTH = 170;
-//        int MAX_HEIGHT = 90;
+//        int MAX_WIDTH = 180;
+//        int MAX_HEIGHT = 70;
+        //
+        int MAX_WIDTH = 200;
+        int MAX_HEIGHT = 85;
         //
         BufferedImage img;
         //
