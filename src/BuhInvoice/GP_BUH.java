@@ -16,6 +16,7 @@ import static forall.HelpA.millisToDateConverter;
 import icons.ICON;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
@@ -423,6 +424,53 @@ public class GP_BUH {
         }
         //
     }
+    
+    public static Dimension getImageWidthHeight(String path) throws IOException{
+        //
+        if (path == null || path.isEmpty()) {
+            return null;
+        }
+        //
+        int MAX_WIDTH = 170;
+        int MIN_WIDTH = 120;
+        int MAX_HEIGHT = 90;
+        //
+        BufferedImage img = ImageIO.read(new File(path));
+        //
+        int w_orig = img.getWidth();
+        int h_orig = img.getHeight();
+        //
+        if (w_orig < MIN_WIDTH) {
+            HelpA.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
+            return null;
+        }
+        //
+        double wh_proportion = (double) w_orig / (double) h_orig;
+        //
+        System.out.println("Original img w: " + w_orig + " height: " + h_orig);
+        System.out.println("wh_proportion: " + wh_proportion);
+        //
+        int w_new = 0;
+        int h_new = 0;
+        //
+        if (w_orig > MAX_WIDTH) {
+            w_new = MAX_WIDTH;
+            //
+            if (h_orig > MAX_HEIGHT) {
+                h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
+            } else {
+                h_new = (int) (w_new / wh_proportion);
+            }
+            //
+
+        } else {
+            w_new = w_orig;
+            h_new = h_orig;
+        }
+        //
+        return new Dimension(w_new, h_new);
+        //
+    }
 
     private static void resizeLogo(String path) throws IOException {
         //
@@ -467,8 +515,8 @@ public class GP_BUH {
             h_new = h_orig;
         }
         //
-        System.out.println("w_new: " + w_new);
-        System.out.println("h_new: " + h_new);
+//        System.out.println("w_new: " + w_new);
+//        System.out.println("h_new: " + h_new);
         //
         File f = new File(path);
         //
@@ -476,6 +524,8 @@ public class GP_BUH {
         // For ".png" below:
         Thumbnails.of(f)
                 .size(w_new, h_new)
+                .imageType(BufferedImage.TYPE_INT_ARGB) // should make the quality better
+                .outputFormat("png") // Not needed in fact..
                 .toFile(new File(GP_BUH.LOGO_PATH()));
         //
         //

@@ -1,0 +1,16 @@
+
+[MODIFY]
+
+On 2021-06-16 i modified the "ImageParam.java" in order to increase quality settings.
+
+Follow these steps:
+
+1. Open the PDFWriter project with netbeans - the folder is located in this folder
+2. From Netbeans modify the "ImageParam.java"
+3. Right click on the "ImageParam.java" from netbeans -> and choose "Compile file"
+4. Find the compiled file in "NetBeansProjects\PDFWriter\build\classes\com\qoppa\pdfWriter\"
+5. Now unzip the "jPDFWriter.v2021R1.00.jar"
+6. Delete all files except "MANIFEST.MF" from the "META-INF" folder -> OBLIGATORY
+7. Place the "ImageParam.java" to the "com\qoppa\pdfWriter\" in the unzipped folder
+8. Zip "META-INF" & the "com" folder
+9. Change the ".zip" to ".jar"
