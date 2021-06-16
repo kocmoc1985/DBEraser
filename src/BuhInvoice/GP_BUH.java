@@ -104,10 +104,10 @@ public class GP_BUH {
     }
 
     public static final String LOGO_PATH() {
-        return "io/logo_" + KUND_ID + ".jpg";
+        return "io/logo_" + KUND_ID + ".png";
     }
     
-     private static final String LOGO_PATH_B() {
+     private static  String LOGO_PATH_B() {
         return "io/logo_" + KUND_ID + ".png";
     }
     
@@ -473,23 +473,17 @@ public class GP_BUH {
         File f = new File(path);
         //
         //
-//        Thumbnails.of(f)
-//                .size(w_new, h_new)
-//                .toFile(new File(GP_BUH.LOGO_PATH()));
-        //
-         Thumbnails.of(f)
+        // For ".png" below:
+        Thumbnails.of(f)
                 .size(w_new, h_new)
-                .outputQuality(1.0) // OBS! Important! Working with .jpg only!
-                .toFile(new File(GP_BUH.LOGO_PATH())); 
+                .toFile(new File(GP_BUH.LOGO_PATH()));
         //
         //
-        //https://stackoverflow.com/questions/64645129/image-resize-bad-quality
-        //
-//         bufferedImage = Thumbnails.of(bufferedImage)
-//                .imageType(BufferedImage.TYPE_INT_RGB)
-//                .size(imageSize, imageSize)
-//                .outputQuality(1)
-//                .asBufferedImage();
+        //For the ".jpeg, jpg" below, not working good
+//         Thumbnails.of(f)
+//                .size(w_new, h_new)
+//                .outputQuality(0.5F) // OBS! Important! Working with .jpg only!
+//                .toFile(new File(GP_BUH.LOGO_PATH())); 
         //
     }
 
