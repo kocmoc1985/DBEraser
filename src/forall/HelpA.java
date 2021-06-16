@@ -3933,6 +3933,13 @@ public class HelpA {
             return "";
         }
     }
+    
+    public static double get_file_size_mb(String file_path) {
+        File f = new File(file_path);
+        double rst_unrounded = (double) f.length() / 1048576;
+        double rst_rounded = Double.parseDouble(String.format("%2.2f", rst_unrounded).replace(",", "."));
+        return rst_rounded;
+    }
 
     public static void increase_font(Component comp, float size) {
         Font actFont = comp.getFont();

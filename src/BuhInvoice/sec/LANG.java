@@ -168,7 +168,7 @@ public class LANG {
         String part1 = "Om det alternativa numret finns angivet, visas den i ";
         String part2 = " istället";
 //        return isOffert ? part1 + offerten + part2 : part1 + fakturan + part2; // must be fixed shows offerten hela tiden [2021-05-28]
-        return  part1 + fakturan + part2;
+        return part1 + fakturan + part2;
     }
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
@@ -282,6 +282,10 @@ public class LANG {
 
     public static String LOGOTYP_TO_SMALL(String requiredMinWidth, String widthActual) {
         return "Logotyp för liten, minimal bredd: " + requiredMinWidth + ", den aktuella är: " + widthActual;
+    }
+
+    public static String LOGOTYP_FILE_SIZE_TO_BIG(String fileSize, String maxFileSize) {
+        return "Logotypen är för stor: " + fileSize + "mb, maximal filstorlek: " + maxFileSize + "mb";
     }
 
     public static String CONFIRM_SEND_MAIL(String sendTo, HTMLPrint print, boolean offert) {

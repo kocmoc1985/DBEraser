@@ -24,6 +24,8 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -46,6 +48,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;
+import supplementary.HelpM;
 
 /**
  *
@@ -107,11 +110,11 @@ public class GP_BUH {
     public static final String LOGO_PATH() {
         return "io/logo_" + KUND_ID + ".png";
     }
-    
-     private static  String LOGO_PATH_B() {
+
+    private static String LOGO_PATH_B() {
         return "io/logo_" + KUND_ID + ".png";
     }
-    
+
     public static final String SMTP_PATH() {
         return "io/smtp_" + KUND_ID;
     }
@@ -119,10 +122,10 @@ public class GP_BUH {
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
     }
-    
+
     public static String BASIC_BACKGROUND_IMG__PATH = "io/bg.jpg";
-    
-    public static void setPageBackground(JPanel panel,String path) {
+
+    public static void setPageBackground(JPanel panel, String path) {
         //
         BackgroundPanel bg = (BackgroundPanel) panel;
         //
@@ -242,15 +245,15 @@ public class GP_BUH {
         });
 
     }
-    
-    public static void setLabelIconAndToolTip(JLabel label,String iconFileName,String toolTip){
+
+    public static void setLabelIconAndToolTip(JLabel label, String iconFileName, String toolTip) {
         label.setToolTipText(toolTip);
         label.setIcon(ICON.getImageIcon(iconFileName, 32, 32));
     }
 
     public static void reminder_btn_adjustment(JButton btn, boolean forfallnaFakturorFinns) {
         //
-        int wh  = 32;
+        int wh = 32;
         //
         if (forfallnaFakturorFinns) {
             btn.setIcon(ICON.getImageIcon("bell_b.png", wh, wh));
@@ -274,7 +277,7 @@ public class GP_BUH {
             c.setEnabled(enabled);
         });
     }
-    
+
     public static void setVisible(JComponent c, boolean visible) {
         java.awt.EventQueue.invokeLater(() -> {
             c.setVisible(visible);
@@ -286,7 +289,13 @@ public class GP_BUH {
     }
 
     public static int round_double_b(double rst) {
-        return (int)Math.round(rst);
+        return (int) Math.round(rst);
+    }
+
+    public static void showNotification(String message) {
+        JLabel label = new JLabel(message);
+        label.setFont(new Font(label.getFont().getFontName(), Font.BOLD, 14));
+        JOptionPane.showMessageDialog(null, label);
     }
 
     public static boolean confirmWarning(String message) {
@@ -362,17 +371,17 @@ public class GP_BUH {
     public static int get_diff_in_days__two_dates(String date1, String date_format1, String date2, String date_format2) {
         return HelpA.get_diff_in_days__two_dates(date1, date_format1, date2, date_format2);
     }
-    
-    public static boolean compareDates_b(String date1, String date_format1, String date2, String date_format2){
-         //
-         long ms_date1 = dateToMillisConverter3(date1, date_format1);
-         long ms_date2 = dateToMillisConverter3(date2, date_format2);
-         //
-         if(ms_date2 >= ms_date1){
-             return true;
-         }else{
-             return false;
-         }
+
+    public static boolean compareDates_b(String date1, String date_format1, String date2, String date_format2) {
+        //
+        long ms_date1 = dateToMillisConverter3(date1, date_format1);
+        long ms_date2 = dateToMillisConverter3(date2, date_format2);
+        //
+        if (ms_date2 >= ms_date1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean verifyId(String fakturaId) {
@@ -418,24 +427,32 @@ public class GP_BUH {
         String path = chooseFile(null);
         //
         try {
-            resizeLogo(path);
+            copyAndConvertImage(path);
+//            Files.copy(new File(path).toPath(), new File(LOGO_PATH()).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
             Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
-    
-    public static Dimension getImageWidthHeight(String path) throws IOException{
+
+    public static Dimension calculate_w_h__proportionalScaling(String path) {
         //
-        if (path == null || path.isEmpty()) {
-            return null;
+        if (path == null || path.isEmpty() || HelpM.file_exists(new File(path)) == false) {
+            return new Dimension(0, 0);
         }
         //
         int MAX_WIDTH = 170;
         int MIN_WIDTH = 120;
         int MAX_HEIGHT = 90;
         //
-        BufferedImage img = ImageIO.read(new File(path));
+        BufferedImage img;
+        //
+        try {
+            img = ImageIO.read(new File(path));
+        } catch (IOException ex) {
+            Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
+            return new Dimension(0, 0);
+        }
         //
         int w_orig = img.getWidth();
         int h_orig = img.getHeight();
@@ -454,6 +471,7 @@ public class GP_BUH {
         int h_new = 0;
         //
         if (w_orig > MAX_WIDTH) {
+            //
             w_new = MAX_WIDTH;
             //
             if (h_orig > MAX_HEIGHT) {
@@ -472,15 +490,18 @@ public class GP_BUH {
         //
     }
 
-    private static void resizeLogo(String path) throws IOException {
+    /**
+     *
+     * @param path
+     * @throws IOException
+     */
+    private static void copyAndConvertImage(String path) throws IOException {
         //
         if (path == null || path.isEmpty()) {
             return;
         }
         //
-        int MAX_WIDTH = 170;
         int MIN_WIDTH = 120;
-        int MAX_HEIGHT = 90;
         //
         BufferedImage img = ImageIO.read(new File(path));
         //
@@ -488,42 +509,24 @@ public class GP_BUH {
         int h_orig = img.getHeight();
         //
         if (w_orig < MIN_WIDTH) {
-            HelpA.showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
+            showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
             return;
         }
         //
-        double wh_proportion = (double) w_orig / (double) h_orig;
+        Double fileSizeMb = HelpA.get_file_size_mb(path);
         //
-        System.out.println("Original img w: " + w_orig + " height: " + h_orig);
-        System.out.println("wh_proportion: " + wh_proportion);
-        //
-        int w_new = 0;
-        int h_new = 0;
-        //
-        if (w_orig > MAX_WIDTH) {
-            w_new = MAX_WIDTH;
-            //
-            if (h_orig > MAX_HEIGHT) {
-                h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
-            } else {
-                h_new = (int) (w_new / wh_proportion);
-            }
-            //
-
-        } else {
-            w_new = w_orig;
-            h_new = h_orig;
+        if (fileSizeMb > 3) {
+            showNotification(LANG.LOGOTYP_FILE_SIZE_TO_BIG("" + fileSizeMb, VERSION));
+            return;
         }
-        //
-//        System.out.println("w_new: " + w_new);
-//        System.out.println("h_new: " + h_new);
         //
         File f = new File(path);
         //
         //
         // For ".png" below:
         Thumbnails.of(f)
-                .size(w_new, h_new)
+                //                .scale(1f)
+                .size(w_orig, h_orig)
                 .imageType(BufferedImage.TYPE_INT_ARGB) // should make the quality better
                 .outputFormat("png") // Not needed in fact..
                 .toFile(new File(GP_BUH.LOGO_PATH()));

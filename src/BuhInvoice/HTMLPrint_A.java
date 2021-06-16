@@ -295,16 +295,9 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String titleOrLogoIfExist(String imgPath) {
         //
-        Dimension imgD;
+        Dimension imgD = GP_BUH.calculate_w_h__proportionalScaling(GP_BUH.LOGO_PATH());
         //
-        try {
-             imgD = GP_BUH.getImageWidthHeight(GP_BUH.LOGO_PATH());
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLPrint_A.class.getName()).log(Level.SEVERE, null, ex);
-            imgD = new Dimension(0, 0);
-        }
-        //
-        if (imgPath != null) {
+        if (imgPath != null && imgD.height != 0) {
             return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image' width='" + imgD.width + "' height='" + imgD.height + "'></td>" // width='32' height='32'
                     + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
         } else {
@@ -975,13 +968,13 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton_print_btnActionPerformed
 
-    protected void print_help(boolean printJava){
+    protected void print_help(boolean printJava) {
         //
         boolean print_ok;
         //
-        if(printJava){
+        if (printJava) {
             print_ok = print_java(getFakturaDesktopPath());
-        }else{
+        } else {
             print_ok = print_normal();
         }
         //
@@ -1000,7 +993,7 @@ public class HTMLPrint_A extends HTMLPrint {
             //
         }
     }
-    
+
     private void setPrinted(String fakturaId) {
         //[#IS_PRINTED#]
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -1057,8 +1050,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton_pdf_btnActionPerformed
 
-    
-    
     @Override
     protected void displayStatus(String msg, Color c) {
         //
