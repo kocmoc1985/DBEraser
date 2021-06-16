@@ -291,6 +291,8 @@ public class HTMLPrint_A extends HTMLPrint {
                 + "</tr>"
                 //
                 + "</table>";
+        //
+        
     }
 
     private String titleOrLogoIfExist(String imgPath) {
@@ -298,11 +300,11 @@ public class HTMLPrint_A extends HTMLPrint {
         Dimension imgD = GP_BUH.calculate_w_h__proportionalScaling(GP_BUH.LOGO_PATH());
         //
         if (imgPath != null && imgD.height != 0) {
-            return "<td rowspan='2' class='paddingLeft'><img src='" + imgPath + "' alt='image' width='" + imgD.width + "' height='" + imgD.height + "'></td>" // width='32' height='32'
-                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
+            return "<td rowspan='2' class='paddingLeft' width='50%'><img src='" + imgPath + "' alt='image' width='" + imgD.width + "' height='" + imgD.height + "'></td>" // width='32' height='32'
+                    + "<td width='50%'><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
         } else {
-            return "<td rowspan='2'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
-                    + "<td><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
+            return "<td rowspan='2' width='50%'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
+                    + "<td width='50%'><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
 
         }
         //
