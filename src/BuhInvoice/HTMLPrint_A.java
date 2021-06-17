@@ -857,7 +857,7 @@ public class HTMLPrint_A extends HTMLPrint {
         });
         jPanel1.add(jButton_print_btn);
 
-        jButton_pdf_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon.png"))); // NOI18N
+        jButton_pdf_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon-c.png"))); // NOI18N
         jButton_pdf_btn.setToolTipText("Spara faktura i .pdf format på skrivbordet");
         jButton_pdf_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

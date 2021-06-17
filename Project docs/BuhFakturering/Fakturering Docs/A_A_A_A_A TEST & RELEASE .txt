@@ -1,9 +1,33 @@
+[2021-06-17][NEW VERSION 1.09]
 
-[2021-06-17]
+What was updated: Proportional scaling of logotype, save .pdf file to desktop, updated GDPR text, small visual changes to the invoice and reminder 
 
+OTHER INFO: I made 2 releases at the same day. The second one just contained the updated GDPR text.
 
+AMMOUNT OF CHANGES: (2) [1-10]
 
+DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: YES [2021-06-17] *****
 ________________________________________________________________________________________
+
+[2021-06-17][PHP]
+
+Make so when you send invoice or reminder it does not contain "_1" (kundId) like "faktura_1.pdf" -> so no it is like "faktura.pdf".
+OBS! Important to mention that when the file is uploaded to the php it's named like "faktura_1.pdf" -> so it's only for naming the file when it's beiing sent as attachment [100% verified]
+
+PRIORITY: LOW
+AMMOUNT OF CHANGES: (1) [1-10]
+
+DATE-LAST-WORK-DONE: [2021-06-17]
+CHANGES ON JAVA-SIDE: NO
+PHP-SCRIPTS-INVOLVED: _http_buh.php -> "function defineAttachmentName($filePathServerSide)"
+
+PHP CHANGES AFFECT CLIENT-SIDE [!CRUSUAL!]:NO
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-06-17]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-17] ********
+________________________________________________________________________________________
+
+[2021-06-17][PHP]
 
 Sanitizing input for: "_u_u_u_x_upload.php" & increasing the upload size to 1MB -> It seams that upload is rather slow... Most possible reason is the provider
 
@@ -12,7 +36,9 @@ AMMOUNT OF CHANGES: (1) [1-10]
 
 DATE-LAST-WORK-DONE: [2021-06-17]
 CHANGES ON JAVA-SIDE: NO
-PHP-SCRIPTS-INVOLVED: YES
+PHP-SCRIPTS-INVOLVED: _u_u_u_x_upload.php
+
+PHP CHANGES AFFECT CLIENT-SIDE [!CRUSUAL!]:NO
 
 PHP-TEST-SCRIPTS UPDATED: YES [2021-06-17]
 PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-17] ********
@@ -21,7 +47,7 @@ PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-17] ********
 ________________________________________________________________________________________
 
 
-[2021-06-15]
+[2021-06-15][JAVA]
 
 Adding the ".pdf" print button
 
@@ -32,11 +58,11 @@ DATE-LAST-WORK-DONE: [2021-06-16]
 CHANGES ON JAVA-SIDE: YES
 PHP-SCRIPTS-INVOLVED: NO
 
-DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: NO
+DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: YES [2021-06-17] *****
 
 ________________________________________________________________________________________
 
-[2021-06-08]
+[2021-06-08][PHP]
 
 PRIORITY: MAX
 AMMOUNT OF CHANGES: (7) [1-10]
@@ -50,6 +76,8 @@ So when you have 100% verified the consequenses of the changes don't forget to u
 DATE-LAST-WORK-DONE: [2021-06-09]
 CHANGES ON JAVA-SIDE: NO
 PHP-SCRIPTS-INVOLVED: _http_buh.php
+
+PHP CHANGES AFFECT CLIENT-SIDE [!CRUSUAL!]:NO
 
 PHP-TEST-SCRIPTS UPDATED: YES [2021-06-09]
 PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-14] **************

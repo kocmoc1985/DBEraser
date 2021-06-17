@@ -108,7 +108,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
-import supplementary.HelpM;
 
 /**
  *
@@ -135,7 +134,7 @@ public class HelpA {
         //
         try {
             //
-            if (ping2("www.microsoft.com") || HelpM.ping2("www.lafakturering.se")) {
+            if (ping2("www.microsoft.com") || ping2("www.lafakturering.se")) {
                 return true;
             } else {
                 wait_x(toSynchronizeOn, 1000);
@@ -334,7 +333,7 @@ public class HelpA {
         try {
             currentJar = new File(HelpA.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         } catch (URISyntaxException ex) {
-            Logger.getLogger(HelpM.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (currentJar == null) {

@@ -24,30 +24,40 @@
 
 _____
 
+- Changes to google adwords "Fakturera och skapa Offerter"
+- Changes to LA site change to "Fakturera och skapa Offerter Gratis"
+
+
+IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
+
+Update mechanism -> some essential changes could lead into the old Clien-Applications cannot work with updated Server-Side.
+So the file named "version" {"version":"109"} shall also contain {"version":"109","obligatory";"0"}
+
+Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 
+Just a comment from somewhere: "The files are digitally signed with Symantec Class 3 SHA256 Code Signing CA - Microsoft Software Validation"
+
 The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
 
 The saved user password (Java-Side) is strored in clear text in "io" folder file "pass"
 
-IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
+Backup of all data  (have in mind that kundId could id is present in all tables)
 
-Backup of all data
-
-Make video how to write on Faktura before printing
 
 ______
 
+See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+
 SMTP Options PROBLEM -> When changing password for SMTP it must be saved before test sending a test email. [2021-06-02]
+
+According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
+
+__________________________________
 
 Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar" [DONE]
 
 Tab "ARTIKLAR" - there is field named "artikelnr" but there is no search function connected to that field [DONE][2021-05-25]
 
-See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
-
-No error output for distributions
-
-[IMPORTANT]According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
-____
+No error output for distributions [DONE]
 
 Make another point color for the Invoices for privat persons [IMPORTANT][DONE 2021-05-16]
 

@@ -45,7 +45,7 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
-import supplementary.HelpM;
+
 
 /**
  *
@@ -53,8 +53,8 @@ import supplementary.HelpM;
  */
 public class GP_BUH {
 
-    public static final String VERSION = "1.08"; // prev: 1.07
-    public static final int VERSION_INTEGER = 108; // prev: 107
+    public static final String VERSION = "1.09"; // prev: 1.08
+    public static final int VERSION_INTEGER = 109; // prev: 108
     public static final String PRODUCT_NAME = "LAFakturering";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;
@@ -434,7 +434,7 @@ public class GP_BUH {
 
     public static Dimension calculate_w_h__proportionalScaling(String path) {
         //
-        if (path == null || path.isEmpty() || HelpM.file_exists(new File(path)) == false) {
+        if (path == null || path.isEmpty() || HelpA.file_exists(new File(path)) == false) {
             return new Dimension(0, 0);
         }
         //

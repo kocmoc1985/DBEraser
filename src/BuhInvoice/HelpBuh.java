@@ -46,9 +46,9 @@ import org.apache.commons.lang.StringEscapeUtils;
 public class HelpBuh {
 
     //
-    private final static boolean IS_DISTRIBUTION = false;
+    private final static boolean IS_DISTRIBUTION = true;
     //
-    public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = false; // So if "false" the ready distribution will not generate "err_output"
+    public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     public static boolean USE_TEST_DB = false; // [#TEST-DB#]

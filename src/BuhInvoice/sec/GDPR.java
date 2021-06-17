@@ -204,12 +204,12 @@ public class GDPR extends HTMLBasic {
         return ""
                 + "<h2>Integritetspolicy</h2>"
                 + "<p>"
-                + "Vi arbetar för att säkerställa en hög nivå av dataskydd som värnar om din personliga integritet vid användning av vår webbplats. Denna integritetspolicy förklarar därför hur dina personuppgifter bearbetas och skyddas, dina rättigheter och hur du kan göra dem gällande. Vi strävar efter att du ska känna dig trygg i vår behandling av dina personuppgifter. Vid eventuella frågor är du välkommen att kontakta oss. Våra kontaktuppgifter hittar du längst ned på denna sida."
+                + "Vi arbetar för att säkerställa en hög nivå av dataskydd som värnar om din personliga integritet vid användning av vår webbplats. Denna integritetspolicy förklarar därför hur dina personuppgifter bearbetas och skyddas, dina rättigheter och hur du kan göra dem gällande. Vi strävar efter att du ska känna dig trygg i vår behandling av dina personuppgifter. Vid eventuella frågor är du välkommen att kontakta oss."
                 + "</p>"
                 //
                 + "<h2>Var lagras dina personuppgifter?</h2>"
                 + "<p>"
-                + "Vi eftersträvar att dina personuppgifter i så hög grad som möjligt ska behandlas inom det europeiska ekonomiska samarbetsområdet (EES) och alla våra egna IT-system, men kan även överföras och bearbetas i ett land utanför EES (s.k. ”tredje land”). Sådan överföring sker endast till mottagarland med adekvat skyddsnivå och i enlighet med gällande lagstiftning. Om överföring sker till partner för en tjänst i USA sker detta endast till företag som omfattas av det så kallade ”Privacy Shield”, vilken är en överenskommelse om skydd för personuppgifter mellan EU och USA."
+                + "Dina personuppgifter lagras i en databas där vår IT-partner ansvarar för driften. Dina personuppgifter lagras bara så länge de är relevanta för de ändamål som anges i vår policy eller så länge det krävs för att uppfylla gällande lagkrav."
                 + "</p>"
                 //
                 + "<h2>Hur använder vi dina personuppgifter?</h2>"
@@ -218,14 +218,9 @@ public class GDPR extends HTMLBasic {
                 + "<li>Vid kontakter angående eventuella drift problem"
                 + "<li>Vid korrespondens om frågor och övrig information"
                 + "<li>Vid utskick om erbjudanden i form av nyhetsbrev, då alltid med instruktioner om hur du kan avanmäla dig ifrån vidare utskick"
-                + "<li>Vid analyser av köpmönster för att ge relevanta erbjudanden och information"
                 + "<li>Vid eventuella enkätutskick för att förbättra våra tjänster och erbjudanden"
                 + "<li>Vid arbete som förhindrar missbruk eller annan olämplig användning av vår hemsida"
                 + "</ul"
-                //
-                + "<p>"
-                + "Vi sparar dina uppgifter så länge som det krävs för att uppfylla ovanstående ändamål eller så länge som vi enligt lag är skyldiga att göra detta. Därefter raderas dina personuppgifter"
-                + "</p>"
                 //
                 + "<h2>Vilka är dina rättigheter?</h2>"
                 + "<p>"
