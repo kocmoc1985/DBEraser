@@ -652,18 +652,25 @@ public abstract class HTMLPrint extends HTMLBasic {
         String mailto = getFakturaKundEmail();
         String subject = getHTMLPrintTitle();
         String body = getEmailBody();
-        String desktopPath = getFakturaDesktopPath();
+        String desktopPath = getFakturaDesktopPath(); // MAC OS X adoptation here
         //
         print_java(desktopPath);
         //
-        HelpA.run_application_with_associated_application__b(new File(desktopPath));
+        String fileName = getPdfFileName(false);
         //
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder, bim.isOffert()));
+        if(HelpBuh.IS_MAC_OS){
+            HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),new File(fileName)));
+        }else{
+            HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),null));
+        }
+        //
+        HelpA.run_application_with_associated_application__b(new File(desktopPath));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
         URI mailTo;
         //
+        // The below does not work for MAC OS X
         try {
             // Attachments not working with "mailTo:" 100% verified [2020-09-23]
             url = mailTo(mailto, subject, body);

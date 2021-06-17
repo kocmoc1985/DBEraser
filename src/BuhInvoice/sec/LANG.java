@@ -10,6 +10,7 @@ import BuhInvoice.CustomersA_;
 import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
+import BuhInvoice.HelpBuh;
 import java.io.File;
 
 /**
@@ -140,13 +141,13 @@ public class LANG {
     public static String MSG_26 = "Inga personer finns tillagda, lägg till en och försök igen";
 
     public static String MSG_27 = "Lägg till artiklar först";
-    
-    public static String MSG_28(String pdfFileName){
-        return "PDF-dokument med namnet: " +"\""+ pdfFileName +"\""+ " finns på skrivbordet";
+
+    public static String MSG_28(String pdfFileName) {
+        return "PDF-dokument med namnet: " + "\"" + pdfFileName + "\"" + " finns på skrivbordet";
     }
-    
-    public static String MSG_28_2(String pdfFileName, File f){
-        return "PDF-dokument med namnet: " +"\""+ pdfFileName +"\""+ " finns på här: " + f.getAbsolutePath();
+
+    public static String MSG_28_2(String pdfFileName, File f) {
+        return "PDF-dokument med namnet: " + "\"" + pdfFileName + "\"" + " finns på här: " + f.getAbsolutePath();
     }
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
@@ -254,7 +255,7 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert) {
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert, File f) {
         //
         String name;
         //
@@ -266,7 +267,15 @@ public class LANG {
             name = Fakturan;
         }
         //
-        return name + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
+        if (f == null && HelpBuh.IS_MAC_OS == false) {
+            return name + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
+        } else if (f != null && HelpBuh.IS_MAC_OS == true) {
+            return "dokumentet sparades till: " + f.getAbsolutePath() + " glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
+        } else {
+            return "";
+        }
+        //
+
     }
 
     public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {
