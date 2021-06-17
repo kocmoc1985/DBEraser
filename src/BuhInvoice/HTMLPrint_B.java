@@ -529,7 +529,8 @@ public class HTMLPrint_B extends HTMLPrint {
         jPanel2 = new javax.swing.JPanel();
         jEditorPane1 = new javax.swing.JEditorPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jButton_print = new javax.swing.JButton();
+        jButton_pdf = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_faktura_any_email = new javax.swing.JButton();
@@ -544,16 +545,25 @@ public class HTMLPrint_B extends HTMLPrint {
         jEditorPane1.setMaximumSize(new java.awt.Dimension(545, 842));
         jEditorPane1.setMinimumSize(new java.awt.Dimension(545, 842));
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
-        jButton1.setToolTipText("Skriv ut påminnelse");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/printer.png"))); // NOI18N
+        jButton_print.setToolTipText("Skriv ut påminnelse");
+        jButton_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_printActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanel1.add(jButton_print);
+
+        jButton_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon.png"))); // NOI18N
+        jButton_pdf.setToolTipText("Spara faktura i .pdf format på skrivbordet");
+        jButton_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_pdfActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_pdf);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
         jButton3.setToolTipText("Välj logotyp / bild");
@@ -602,7 +612,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status_reminder, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -628,15 +638,17 @@ public class HTMLPrint_B extends HTMLPrint {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_printActionPerformed
         //
-        boolean print_ok = print_normal();
+        print_help(false);
         //
-        if (print_ok) {
-            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_PAMMINELSE);
-        }
+//        boolean print_ok = print_normal();
+//        //
+//        if (print_ok) {
+//            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_PAMMINELSE);
+//        }
         //
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_printActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
@@ -660,6 +672,10 @@ public class HTMLPrint_B extends HTMLPrint {
     private void jButton_send_faktura_any_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_any_emailActionPerformed
         sendMailTargeted();
     }//GEN-LAST:event_jButton_send_faktura_any_emailActionPerformed
+
+    private void jButton_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdfActionPerformed
+        print_help(true);
+    }//GEN-LAST:event_jButton_pdfActionPerformed
 
     @Override
     protected void displayStatus(String msg, Color c) {
@@ -700,8 +716,9 @@ public class HTMLPrint_B extends HTMLPrint {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_pdf;
+    private javax.swing.JButton jButton_print;
     private javax.swing.JButton jButton_send_faktura_any_email;
     private javax.swing.JButton jButton_send_faktura_email;
     private javax.swing.JButton jButton_send_with_outlook;

@@ -688,6 +688,57 @@ public abstract class HTMLPrint extends HTMLBasic {
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         //
     }
+    
+    protected void print_help(boolean printJava) {
+        //
+        boolean print_ok;
+        //
+        if (printJava) {
+            //
+            print_ok = print_java(getFakturaDesktopPath());
+            //
+            if(print_ok){
+               GP_BUH.showNotification(LANG.MSG_28(getPdfFileName(false)));
+            }
+            //
+        } else {
+            print_ok = print_normal();
+        }
+        //
+        String fakturaId = bim.getFakturaId();
+        //
+        if (print_ok) {
+            //
+            if (this instanceof HTMLPrint_A && bim.isOffert()) {
+                //[#OFFERT#]
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
+            } else if (this instanceof HTMLPrint_A) {
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+            }else if(this instanceof HTMLPrint_B){
+                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_PAMMINELSE);
+            }
+            //
+            // Here implement update of "is_printed" [#IS_PRINTED#]
+            if(this instanceof HTMLPrint_A){ // Faktura OR Offert
+                 setPrinted(fakturaId);
+            }
+            //
+        }
+    }
+    
+    private void setPrinted(String fakturaId) {
+        //[#IS_PRINTED#]
+        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        update_map.put(DB.BUH_FAKTURA__PRINTED, "1");
+        //
+        //
+        String json = JSon.hashMapToJSON(update_map);
+        //
+        HelpBuh.update(json);
+        //
+        bim.invoiceB.refresh_c();
+    }
 
     protected boolean print_normal() {
         //

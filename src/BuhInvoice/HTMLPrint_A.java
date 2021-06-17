@@ -971,46 +971,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
     }//GEN-LAST:event_jButton_print_btnActionPerformed
 
-    protected void print_help(boolean printJava) {
-        //
-        boolean print_ok;
-        //
-        if (printJava) {
-            print_ok = print_java(getFakturaDesktopPath());
-        } else {
-            print_ok = print_normal();
-        }
-        //
-        String fakturaId = bim.getFakturaId();
-        //
-        if (print_ok) {
-            if (this instanceof HTMLPrint_A && bim.isOffert()) {
-                //[#OFFERT#]
-                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
-            } else if (this instanceof HTMLPrint_A) {
-                EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
-            }
-            //
-            // Here implement update of "is_printed" [#IS_PRINTED#]
-            setPrinted(fakturaId);
-            //
-        }
-    }
-
-    private void setPrinted(String fakturaId) {
-        //[#IS_PRINTED#]
-        HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
-        //
-        update_map.put(DB.BUH_FAKTURA__PRINTED, "1");
-        //
-        //
-        String json = JSon.hashMapToJSON(update_map);
-        //
-        HelpBuh.update(json);
-        //
-        bim.invoiceB.refresh_c();
-    }
-
 
     private void jButton_send_faktura_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_emailActionPerformed
         //
