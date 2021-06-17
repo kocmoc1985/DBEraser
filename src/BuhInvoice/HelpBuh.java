@@ -45,7 +45,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    public final static boolean IS_MAC_OS = true;
+    public final static boolean IS_MAC_OS = false;
     //
     private final static boolean IS_DISTRIBUTION = false;
     //
