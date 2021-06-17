@@ -565,7 +565,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         print_java(fileName);
         //
 //        System.out.println("Print pdf complete");
-        displayStatus(LANG.MSG_10_1, null);
+        displayStatus(LANG.MSG_10_1, Color.white);
         //
         //
         boolean upload_success = false;
@@ -615,7 +615,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (upload_success && ess != null && ess.allSuccessful()) {
             email_sending_ok = true;
             System.out.println("Email sending: " + email_sending_ok);
-            displayStatus(LANG.MSG_10_2, null);
+            displayStatus(LANG.MSG_10_2, Color.black);
             return true;
         } else {
             displayStatus(LANG.MSG_10_3, Color.red);

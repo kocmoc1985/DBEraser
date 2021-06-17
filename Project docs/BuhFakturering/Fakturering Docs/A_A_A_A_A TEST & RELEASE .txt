@@ -1,3 +1,26 @@
+
+[2021-06-17]
+
+
+
+________________________________________________________________________________________
+
+Sanitizing input for: "_u_u_u_x_upload.php" & increasing the upload size to 1MB -> It seams that upload is rather slow... Most possible reason is the provider
+
+PRIORITY: LOW
+AMMOUNT OF CHANGES: (1) [1-10]
+
+DATE-LAST-WORK-DONE: [2021-06-17]
+CHANGES ON JAVA-SIDE: NO
+PHP-SCRIPTS-INVOLVED: YES
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-06-17]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-06-17] ********
+
+
+________________________________________________________________________________________
+
+
 [2021-06-15]
 
 Adding the ".pdf" print button
