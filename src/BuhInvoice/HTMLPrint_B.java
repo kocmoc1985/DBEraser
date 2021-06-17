@@ -94,6 +94,7 @@ public class HTMLPrint_B extends HTMLPrint {
             //
             ".marginTop {margin-top: 5px;}",
             ".marginLeft {margin-left: 10px;}",
+            ".marginLeftB {margin-left: 5px;}",
             ".paddingLeft {padding-left: 5px;}",
             ".bold {font-weight:800;}", // font-weight:800;
             ".no-border {border: 0px}",
@@ -317,12 +318,23 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         html_ += "<tr>";
         //
-        html_ += "<td style='padding:5 5 5 5px;'>";
+        html_ += "<td>"; // style='padding:5 5 5 5px;'
+        //
+        //[2021-05-18] This additional construction with <table> is used for lining-up with previous sections
+        html_ += "<table>"; 
+        html_ += "<tr>";
+        html_ += "<td>";
+        //
         html_ += T__FTG_BETALA_TILL
                 + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                 + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
                 + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
                 + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        //
+        html_ += "</table>"; 
+        html_ += "</tr>";
+        html_ += "</td>";
+        //
         html_ += "</td>";
         //
         html_ += "</tr>";
@@ -377,7 +389,7 @@ public class HTMLPrint_B extends HTMLPrint {
         //
         HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt,rut_avdrag_total,total_belopp_innan_avdrag);
         //
-        html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "");
+        html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "marginLeftB");
         //
         html_ += "</div>";//</table>
         //
