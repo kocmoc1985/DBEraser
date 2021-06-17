@@ -246,7 +246,13 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     protected String getFakturaDesktopPath() {
 //        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
-        return javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory() + "/" + getPdfFileName(false);
+
+        if (HelpBuh.IS_MAC_OS) {
+            return getPdfFileName(false);
+        } else {
+            return javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory() + "/" + getPdfFileName(false);
+        }
+
     }
 
     protected String getEmailBody() {
@@ -649,6 +655,9 @@ public abstract class HTMLPrint extends HTMLBasic {
         String desktopPath = getFakturaDesktopPath();
         //
         print_java(desktopPath);
+        //
+        HelpA.run_application_with_associated_application__b(new File(desktopPath));
+        //
         HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(getPdfFileName(false), reminder, bim.isOffert()));
         //
         Desktop desktop = Desktop.getDesktop();
@@ -688,7 +697,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         //
     }
-    
+
     protected void print_help(boolean printJava) {
         //
         boolean print_ok;
@@ -697,8 +706,17 @@ public abstract class HTMLPrint extends HTMLBasic {
             //
             print_ok = print_java(getFakturaDesktopPath());
             //
-            if(print_ok){
-               GP_BUH.showNotification(LANG.MSG_28(getPdfFileName(false)));
+            if (print_ok && HelpBuh.IS_MAC_OS) { // 
+                 String fileName = getPdfFileName(false);
+                 GP_BUH.showNotification(LANG.MSG_28_2(fileName,new File(fileName)));
+            }
+            //
+            if (print_ok && HelpBuh.IS_MAC_OS == false) {
+                GP_BUH.showNotification(LANG.MSG_28(getPdfFileName(false)));
+            }
+            //
+            if(print_ok && printJava){
+                HelpA.run_application_with_associated_application__b(new File(getFakturaDesktopPath()));
             }
             //
         } else {
@@ -714,18 +732,18 @@ public abstract class HTMLPrint extends HTMLBasic {
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_OFFERT);
             } else if (this instanceof HTMLPrint_A) {
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
-            }else if(this instanceof HTMLPrint_B){
+            } else if (this instanceof HTMLPrint_B) {
                 EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_PAMMINELSE);
             }
             //
             // Here implement update of "is_printed" [#IS_PRINTED#]
-            if(this instanceof HTMLPrint_A){ // Faktura OR Offert
-                 setPrinted(fakturaId);
+            if (this instanceof HTMLPrint_A) { // Faktura OR Offert
+                setPrinted(fakturaId);
             }
             //
         }
     }
-    
+
     private void setPrinted(String fakturaId) {
         //[#IS_PRINTED#]
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -847,9 +865,10 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     /**
      * Not making A4
+     *
      * @deprecated
      * @param filename
-     * @return 
+     * @return
      */
     protected boolean print_java_b(String filename) {
         //

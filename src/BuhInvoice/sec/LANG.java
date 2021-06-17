@@ -10,6 +10,7 @@ import BuhInvoice.CustomersA_;
 import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
+import java.io.File;
 
 /**
  *
@@ -142,6 +143,10 @@ public class LANG {
     
     public static String MSG_28(String pdfFileName){
         return "PDF-dokument med namnet: " +"\""+ pdfFileName +"\""+ " finns på skrivbordet";
+    }
+    
+    public static String MSG_28_2(String pdfFileName, File f){
+        return "PDF-dokument med namnet: " +"\""+ pdfFileName +"\""+ " finns på här: " + f.getAbsolutePath();
     }
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";

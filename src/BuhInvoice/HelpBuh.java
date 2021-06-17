@@ -45,11 +45,12 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
+    public final static boolean IS_MAC_OS = true;
     //
-    private final static boolean IS_DISTRIBUTION = true;
+    private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
-    private static boolean HTTPS = false;
+    private static boolean HTTPS = true;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     public static boolean USE_TEST_DB = false; // [#TEST-DB#]
     public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP

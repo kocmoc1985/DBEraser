@@ -15,8 +15,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -666,7 +669,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
-        sendWithStandardEmailClient(true);
+            sendWithStandardEmailClient(true);
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
     private void jButton_send_faktura_any_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_any_emailActionPerformed

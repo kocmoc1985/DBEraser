@@ -3314,6 +3314,14 @@ public class HelpA {
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);
     }
+    
+    public static void run_application_with_associated_application__b(File file) {
+        try {
+            Desktop.getDesktop().open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public static void run_application_exe_or_jar(String application_to_run_name, String path) throws IOException {
         String[] commands = new String[3];
