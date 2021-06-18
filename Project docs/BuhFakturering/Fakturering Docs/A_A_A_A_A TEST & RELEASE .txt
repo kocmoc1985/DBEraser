@@ -2,7 +2,7 @@
 [2021-06-18][JAVA]
 
 Obligatory version update feature: Consider file ->  "C:\xampp\htdocs\MCWebNew\php\version" -> {"version":"110","obligatory":"true"} ->
-so if "obligatory:true" the user is forced to update the program.
+so if the version is newer and "obligatory:true" the user is forced to update the program.
 
 
 PRIORITY: MIDDLE
@@ -13,7 +13,7 @@ CHANGES ON JAVA-SIDE: YES
 PHP-SCRIPTS-INVOLVED: NO
 FILES-SERVER-SIDE-INVOLVED: php/version
 
-DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: NO
+DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: YES [2021-06-18](Version number not increased)
 ________________________________________________________________________________________
 
 [2021-06-17][NEW VERSION 1.09]

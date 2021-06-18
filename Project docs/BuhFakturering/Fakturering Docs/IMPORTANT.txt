@@ -1,7 +1,8 @@
 [OBLIGATORY UPDATE FUNCTION][2021-06-18]
 
 Main idea: some updates on server side may cause that the client side will not work. Therefore this function is needed.
-So setting "obligatory":"true" will force the user to download the latest version. The program will not work otherwise
+So setting "obligatory":"true" will force the user to download the latest version. The program will not work otherwise. 
+Also note that mentioned above is true: if the version recieved from the "version" file from PHP is newer then the actual version.
 
 Search for: [#OBLIGATORY-UPDATE#] in the "DBEraser.proj"
 

@@ -49,7 +49,7 @@ public class HelpBuh {
     // Also remember that for win10 it can also be a trouble saving to desktop
     public final static boolean IS_MAC_OS = false; 
     //
-    private final static boolean IS_DISTRIBUTION = false;
+    private final static boolean IS_DISTRIBUTION = true;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;
@@ -221,6 +221,7 @@ public class HelpBuh {
         HashMap<String, String> map = new HashMap();
         //
         String version = "";
+        String obligatory = "";
         //
         try {
             //
@@ -231,15 +232,11 @@ public class HelpBuh {
             //
             version = version__.get(0).get("version");
             //
-            String obligatory = version__.get(0).get("obligatory");
-            //
-            if(obligatory != null){
-                //[#OBLIGATORY-UPDATE#]
-                OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = Boolean.parseBoolean(obligatory);
-            }
+            obligatory = version__.get(0).get("obligatory");
             //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            obligatory = "false";
         }
         //
         System.out.println("" + version);
@@ -249,6 +246,13 @@ public class HelpBuh {
         if (label != null && newVerAvailable) {
             label.setText("Ny version är tillgänglig på " + GP_BUH.LA_WEB_ADDR);
         }
+        //
+        boolean oblig = Boolean.parseBoolean(obligatory);
+        //
+        if(newVerAvailable && obligatory != null && oblig){
+                //[#OBLIGATORY-UPDATE#]
+                OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = Boolean.parseBoolean(obligatory);
+            }
         //
     }
 
