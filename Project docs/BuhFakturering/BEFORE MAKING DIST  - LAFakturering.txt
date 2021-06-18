@@ -22,6 +22,7 @@ __________________
 
 [IN PROJECT]
 1. HelpBuh -> private final static boolean IS_DISTRIBUTION -> must be set = true
+1.2  HelpBuh -> private final static boolean -> IS_MAC_OS -> Check!
 
 2. GP_BUH -> public static final String VERSION
 2.1. GP_BUH -> public static final int VERSION_INTEGER

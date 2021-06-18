@@ -255,7 +255,7 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert, File f) {
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert,File f) {
         //
         String name;
         //
@@ -267,15 +267,8 @@ public class LANG {
             name = Fakturan;
         }
         //
-        if (f == null && HelpBuh.IS_MAC_OS == false) {
-            return name + " sparades till skrivbordet (" + fakturaFileName + "), glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
-        } else if (f != null && HelpBuh.IS_MAC_OS == true) {
-            return "dokumentet sparades till: " + f.getAbsolutePath() + " glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
-        } else {
-            return "";
-        }
+        return name + " sparades till "+ f.getAbsolutePath() +", glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
         //
-
     }
 
     public static String FAKTURA_KREDIT_MSG(String fakturaCopy) {

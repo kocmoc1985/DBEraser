@@ -98,6 +98,7 @@ import javax.swing.JTextPane;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -3314,7 +3315,7 @@ public class HelpA {
     public static void run_application_with_associated_application(File file) throws IOException {
         Desktop.getDesktop().open(file);
     }
-    
+
     public static void run_application_with_associated_application__b(File file) {
         try {
             Desktop.getDesktop().open(file);
@@ -3700,6 +3701,7 @@ public class HelpA {
         }
     }
 
+
     public static String get_desktop_path() {
         return System.getProperty("user.home") + "\\" + "Desktop";
     }
@@ -3940,7 +3942,7 @@ public class HelpA {
             return "";
         }
     }
-    
+
     public static double get_file_size_mb(String file_path) {
         File f = new File(file_path);
         double rst_unrounded = (double) f.length() / 1048576;

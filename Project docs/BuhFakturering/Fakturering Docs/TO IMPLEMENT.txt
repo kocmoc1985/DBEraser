@@ -31,7 +31,7 @@ _____
 IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
 No iam saving to the folder of LAFakturering but the problem is that the default E-post client is not opened under MAC OSX
 
-Update mechanism -> some essential changes could lead into the old Clien-Applications cannot work with updated Server-Side.
+Update mechanism -> some essential changes could lead into the old Client-Applications cannot work with updated Server-Side.
 So the file named "version" {"version":"109"} shall also contain {"version":"109","obligatory";"0"}
 
 Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 

@@ -55,6 +55,11 @@ public class HTMLPrint_A extends HTMLPrint {
 
     @Override
     protected void buttonLogic() {
+        //
+        if(HelpBuh.IS_MAC_OS){
+            GP_BUH.setEnabled(jButton_send_with_outlook, false);
+        }
+        //
         if (preview) {
             GP_BUH.setEnabled(jButton_send_faktura_email, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);

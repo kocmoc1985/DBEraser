@@ -244,19 +244,26 @@ public abstract class HTMLPrint extends HTMLBasic {
         return _get(map_f, DB.BUH_KUND__NAMN);
     }
 
-    protected String getFakturaDesktopPath() {
+    protected String getFakturaPath() {
 //        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
-
-        if (HelpBuh.IS_MAC_OS) {
-            return getPdfFileName(false);
-        } else {
-            return javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory() + "/" + getPdfFileName(false);
-        }
+        //
+        HelpA.create_dir_if_missing("mina dokument");
+        //
+         return "mina dokument/" + getPdfFileName(false);
+        //
+//        if (HelpBuh.IS_MAC_OS) {
+//            return "mina dokument/" + getPdfFileName(false);
+//        } else {
+//            return getPdfFileName(false);
+////            return javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory() + "/" + getPdfFileName(false);
+//        }
 
     }
 
     protected String getEmailBody() {
         //Du har fått offert från: Pico AB
+        // + "\n\n\n Fakturera enkelt och gratis! Besök oss på www.lafakturering.se"; -> NOT WORKING!![2021-06-18]
+        // + "<br><br><br>Fakturera enkelt och gratis! Besök oss på www.lafakturering.se" -> NOT WORKING!![2021-06-18]
         String body = "Du har fått " + getHTMLPrintTitle().toLowerCase() + " från: " + getForetagsNamn();
         return body;
     }
@@ -652,19 +659,16 @@ public abstract class HTMLPrint extends HTMLBasic {
         String mailto = getFakturaKundEmail();
         String subject = getHTMLPrintTitle();
         String body = getEmailBody();
-        String desktopPath = getFakturaDesktopPath(); // MAC OS X adoptation here
+        String documentPath = getFakturaPath();
         //
-        print_java(desktopPath);
+        print_java(documentPath);
         //
         String fileName = getPdfFileName(false);
         //
-        if(HelpBuh.IS_MAC_OS){
-            HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),new File(fileName)));
-        }else{
-            HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),null));
-        }
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),new File(documentPath)));
         //
-        HelpA.run_application_with_associated_application__b(new File(desktopPath));
+        HelpA.open_dir(new File(documentPath).getParent());
+        HelpA.run_application_with_associated_application__b(new File(documentPath));
         //
         Desktop desktop = Desktop.getDesktop();
         String url;
@@ -711,19 +715,11 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         if (printJava) {
             //
-            print_ok = print_java(getFakturaDesktopPath());
+            print_ok = print_java(getFakturaPath());
             //
-            if (print_ok && HelpBuh.IS_MAC_OS) { // 
-                 String fileName = getPdfFileName(false);
-                 GP_BUH.showNotification(LANG.MSG_28_2(fileName,new File(fileName)));
-            }
-            //
-            if (print_ok && HelpBuh.IS_MAC_OS == false) {
-                GP_BUH.showNotification(LANG.MSG_28(getPdfFileName(false)));
-            }
-            //
-            if(print_ok && printJava){
-                HelpA.run_application_with_associated_application__b(new File(getFakturaDesktopPath()));
+            if(print_ok){
+                HelpA.open_dir(new File(getFakturaPath()).getParent());
+                HelpA.run_application_with_associated_application__b(new File(getFakturaPath()));
             }
             //
         } else {
