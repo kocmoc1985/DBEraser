@@ -3105,7 +3105,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du texten f&#xf6;r p&#xe5;minnelsen. Om du vill ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du p&#xe5;minnelsetexten. Om du vill ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -3123,7 +3123,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post genom v&#xe5;r standard server.&#xa;&#xa;Komm ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer till&#xe5;ter inte anv&#xe4;ndning av SMTP.&#xa;"/>
+                        <Property name="text" type="java.lang.String" value="SMTP E-post inst&#xe4;llningar till&#xe5;ter dig att skicka e-post fr&#xe5;n&#xa;den e-post du sj&#xe4;lv anger. Om du inte anger din egen e-post&#xa;s&#xe5; skickas alla e-post fr&#xe5;m no-reply@lafakturering.se.&#xa;&#xa;Kom ocks&#xe5; ih&#xe5;g att kan alltid skicka fakturor via din lokala&#xa;e-post klient, exemplevis Outlook.&#xa;&#xa;Om du undrar var du hittar de inst&#xe4;llningarna s&#xe5; g&#xf6;r man det enklast&#xa;genom att googla p&#xe5; &quot;smtp inst&#xe4;llningar&quot; f&#xf6;r din e-post leverant&#xf6;r. &#xa;&#xa;Observera att visa e-post leverant&#xf6;rer f&#xf6;rbjuder anv&#xe4;ndning av SMTP.&#xa;&#xa;&#xa;OBS! Gl&#xf6;m ej att spara inst&#xe4;llningarna! Det g&#xf6;r du med knappen som &#xe4;r l&#xe4;ngst&#xa;uppe till v&#xe4;nster&#xa;"/>
                         <Property name="wrapStyleWord" type="boolean" value="true"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
@@ -3158,7 +3158,7 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! ALL DATA KOMMER ATT RADERAS PERMANENT!&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n ett g&#xe4;stkonto."/>
+                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! ALL DATA KOMMER ATT RADERAS PERMANENT!&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n ett g&#xe4;stkonto."/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -3193,7 +3193,7 @@
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="&#xc4;ndra eller skriv din egen text h&#xe4;r till v&#xe4;nster. F&#xf6;rsta f&#xf6;rekomsten av &#xa;%s kommer att ers&#xe4;ttas med fastighetsbeteckning. Den andra&#xa;tredje och fj&#xe4;rde ers&#xe4;tts med - se nedan:&#xa;&#xa;1. %s = fastighetsbeteckning&#xa;2. %s = rut/rot-avdrag total&#xa;3. %s = totalt att betala&#xa;4. %s = fakturans totala belopp innan avdrag"/>
+                        <Property name="text" type="java.lang.String" value="&#xc4;ndra eller skriv din egen text h&#xe4;r till v&#xe4;nster. F&#xf6;rsta f&#xf6;rekomsten av &#xa;%s kommer att ers&#xe4;ttas med fastighetsbeteckning. Den andra&#xa;tredje och fj&#xe4;rde ers&#xe4;tts med, se nedan:&#xa;&#xa;1. %s = fastighetsbeteckning&#xa;2. %s = rut/rot-avdrag total&#xa;3. %s = totalt att betala&#xa;4. %s = fakturans totala belopp innan avdrag"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <AuxValues>

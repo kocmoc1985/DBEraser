@@ -2486,14 +2486,14 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Här till vänster ändrar du texten för påminnelsen. Om du vill ha \nfakturanummer med i texten så skriver du %s. Det ersätts av\nfakturanummer när du skriver ut eller skickar påminnelsen.\n\nOm du vill återställa standard text då trycker du på \"kryss\".\n");
+        jTextArea1.setText("Här till vänster ändrar du påminnelsetexten. Om du vill ha \nfakturanummer med i texten så skriver du %s. Det ersätts av\nfakturanummer när du skriver ut eller skickar påminnelsen.\n\nOm du vill återställa standard text då trycker du på \"kryss\".\n");
         jTextArea1.setEnabled(false);
         jScrollPane15.setViewportView(jTextArea1);
 
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
-        jTextArea2.setText("SMTP E-post inställningar tillåter dig att skicka e-post från\nden e-post du själv anger. Om du inte anger din egen e-post\nså skickas alla e-post genom vår standard server.\n\nKomm också ihåg att kan alltid skicka fakturor via din lokala\ne-post klient, exemplevis Outlook.\n\nOm du undrar var du hittar de inställningarna så gör man det enklast\ngenom att googla på \"smtp inställningar\" för din e-post leverantör. \n\nObservera att visa e-post leverantörer tillåter inte användning av SMTP.\n");
+        jTextArea2.setText("SMTP E-post inställningar tillåter dig att skicka e-post från\nden e-post du själv anger. Om du inte anger din egen e-post\nså skickas alla e-post fråm no-reply@lafakturering.se.\n\nKom också ihåg att kan alltid skicka fakturor via din lokala\ne-post klient, exemplevis Outlook.\n\nOm du undrar var du hittar de inställningarna så gör man det enklast\ngenom att googla på \"smtp inställningar\" för din e-post leverantör. \n\nObservera att visa e-post leverantörer förbjuder användning av SMTP.\n\n\nOBS! Glöm ej att spara inställningarna! Det gör du med knappen som är längst\nuppe till vänster\n");
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setEnabled(false);
         jScrollPane16.setViewportView(jTextArea2);
@@ -2509,7 +2509,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
-        jTextArea3.setText("Du kan när som helst radera ditt konto och all relaterat data.\nDu kommer att behöva ange lösenordet du använder vid inloggning för\natt bekräfta borttagningen.\n\nOBS! ALL DATA KOMMER ATT RADERAS PERMANENT!\nAtt radera kontot är ej möjligt från ett gästkonto.");
+        jTextArea3.setText("Du kan när som helst radera ditt konto och all relaterat data.\nDu kommer att behöva ange lösenordet du använder vid inloggning för\natt bekräfta borttagningen.\n\nOBS! ALL DATA KOMMER ATT RADERAS PERMANENT!\n\nAtt radera kontot är ej möjligt från ett gästkonto.");
         jTextArea3.setEnabled(false);
         jScrollPane18.setViewportView(jTextArea3);
 
@@ -2519,7 +2519,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
 
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
-        jTextArea4.setText("Ändra eller skriv din egen text här till vänster. Första förekomsten av \n%s kommer att ersättas med fastighetsbeteckning. Den andra\ntredje och fjärde ersätts med - se nedan:\n\n1. %s = fastighetsbeteckning\n2. %s = rut/rot-avdrag total\n3. %s = totalt att betala\n4. %s = fakturans totala belopp innan avdrag");
+        jTextArea4.setText("Ändra eller skriv din egen text här till vänster. Första förekomsten av \n%s kommer att ersättas med fastighetsbeteckning. Den andra\ntredje och fjärde ersätts med, se nedan:\n\n1. %s = fastighetsbeteckning\n2. %s = rut/rot-avdrag total\n3. %s = totalt att betala\n4. %s = fakturans totala belopp innan avdrag");
         jTextArea4.setEnabled(false);
         jScrollPane22.setViewportView(jTextArea4);
 
