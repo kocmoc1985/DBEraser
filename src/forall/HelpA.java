@@ -51,6 +51,7 @@ import java.io.PrintStream;
 import java.io.RandomAccessFile;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.CallableStatement;
@@ -135,7 +136,7 @@ public class HelpA {
         //
         try {
             //
-            if (ping2("www.microsoft.com") || ping2("www.lafakturering.se")) {
+            if (ping2("www.microsoft.com") || ping2(GP_BUH.LA_WEB_ADDR)) {
                 return true;
             } else {
                 wait_x(toSynchronizeOn, 1000);
@@ -1074,6 +1075,102 @@ public class HelpA {
         //
         //
         //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
     }
 
     public static synchronized void build_table_common(SqlBasicLocal sql, ShowMessage sm, JTable jTable, String q, String[] colsToHide) {
@@ -1108,6 +1205,30 @@ public class HelpA {
         } catch (SQLException ex) {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
         //
         //
         //
@@ -3310,6 +3431,23 @@ public class HelpA {
             i++;
         }
         return cbo_arr;
+    }
+    
+    public static void navigate_to_webbpage(String addr) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                try {
+                    Desktop.getDesktop().browse(new URI(addr));//"http://www.mixcont.com"
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showInputDialog(null, "Your current configuration doesn't allow"
+                    + " to open web browser please open this link manually:", addr);
+        }
     }
 
     public static void run_application_with_associated_application(File file) throws IOException {

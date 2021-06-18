@@ -7,6 +7,7 @@ package BuhInvoice.sec;
 
 import BuhInvoice.BUH_INVOICE_MAIN;
 import BuhInvoice.CustomersA_;
+import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
@@ -150,6 +151,8 @@ public class LANG {
         return "PDF-dokument med namnet: " + "\"" + pdfFileName + "\"" + " finns på här: " + f.getAbsolutePath();
     }
 
+    public static String MSG_29 = "Version: " + GP_BUH.VERSION + " stöds ej längre, hämta en ny version från " + GP_BUH.LA_WEB_ADDR;
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";

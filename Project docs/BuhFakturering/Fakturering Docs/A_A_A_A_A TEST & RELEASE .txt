@@ -1,3 +1,21 @@
+
+[2021-06-18][JAVA]
+
+Obligatory version update feature: Consider file ->  "C:\xampp\htdocs\MCWebNew\php\version" -> {"version":"110","obligatory":"true"} ->
+so if "obligatory:true" the user is forced to update the program.
+
+
+PRIORITY: MIDDLE
+AMMOUNT OF CHANGES: (1) [1-10]
+
+DATE-LAST-WORK-DONE: [2021-06-18]
+CHANGES ON JAVA-SIDE: YES
+PHP-SCRIPTS-INVOLVED: NO
+FILES-SERVER-SIDE-INVOLVED: php/version
+
+DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: NO
+________________________________________________________________________________________
+
 [2021-06-17][NEW VERSION 1.09]
 
 What was updated: Proportional scaling of logotype, save .pdf file to desktop, updated GDPR text, small visual changes to the invoice and reminder 

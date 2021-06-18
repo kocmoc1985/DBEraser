@@ -67,8 +67,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 //
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
                 //
-                String fixedComboValues_b = JSon._get_simple(
-                        HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,poweruser,developer"
+                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,poweruser,developer"
                 );
                 RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 role.enableFixedValues();

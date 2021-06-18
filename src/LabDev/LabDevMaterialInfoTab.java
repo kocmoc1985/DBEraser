@@ -229,6 +229,9 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
                 HelpA.markFirstRowJtable(table);
             }
             //
+            //
+            //
+            //
         }
         //
     }

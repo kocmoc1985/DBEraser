@@ -62,7 +62,8 @@ public class GP_BUH {
     //
     public static String KUND_ID;
     //
-
+    public static String LA_WEB_ADDR = "www.lafakturering.se";
+    
     /*
      * By [2021-03-09]
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy [domain la.se][php-test]

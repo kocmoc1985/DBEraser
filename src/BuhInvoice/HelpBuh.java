@@ -209,6 +209,8 @@ public class HelpBuh {
         //
     }
 
+    public static boolean OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = false;
+    
     /**
      * JSON: {"version":"versionVersion"}
      *
@@ -229,6 +231,13 @@ public class HelpBuh {
             //
             version = version__.get(0).get("version");
             //
+            String obligatory = version__.get(0).get("obligatory");
+            //
+            if(obligatory != null){
+                //[#OBLIGATORY-UPDATE#]
+                OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = Boolean.parseBoolean(obligatory);
+            }
+            //
         } catch (Exception ex) {
             Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -238,7 +247,7 @@ public class HelpBuh {
         boolean newVerAvailable = Integer.parseInt(version) > GP_BUH.VERSION_INTEGER;
         //
         if (label != null && newVerAvailable) {
-            label.setText("Ny version är tillgänglig på www.lafakturering.se");
+            label.setText("Ny version är tillgänglig på " + GP_BUH.LA_WEB_ADDR);
         }
         //
     }
@@ -444,7 +453,7 @@ public class HelpBuh {
 
     private static String getDomain() {
         if (DOMAIN_LA) {
-            return "www.lafakturering.se";
+            return GP_BUH.LA_WEB_ADDR;
         } else {
             return "www.mixcont.com";
         }

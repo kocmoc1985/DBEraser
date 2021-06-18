@@ -8,4 +8,5 @@ SOLUTION: When iam sending the invoice by e-mail the ".pdf" is created with the 
 
 [SAVE TO DESKTOP - STILL A PROBLEM][2021-XX-XX]
 
-I shall find a function which returns the desktop path for the MAC-OS-X or save to the current dir
+I shall find a function which returns the desktop path for the MAC-OS-X or save to the current dir -> This is solved by not using
+the desktop path at all for both win & mac [2021-06-18]

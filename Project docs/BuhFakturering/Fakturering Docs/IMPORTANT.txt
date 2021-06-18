@@ -1,3 +1,12 @@
+[OBLIGATORY UPDATE FUNCTION][2021-06-18]
+
+Main idea: some updates on server side may cause that the client side will not work. Therefore this function is needed.
+So setting "obligatory":"true" will force the user to download the latest version. The program will not work otherwise
+
+Search for: [#OBLIGATORY-UPDATE#] in the "DBEraser.proj"
+
+Also remember the´version file: "C:\xampp\htdocs\MCWebNew\php\version" -> {"version":"110","obligatory":"true"}
+________________________________________________________________________________________________________
 [COUNT IMPORTANT STATISTIC VALUES LIKE: INGÅENDE MOMS SEDAN ÅRS START][2021-05-16]
 
 Counting "nyckel tal" like: ingående moms sedan års start och andra värden sedan års start

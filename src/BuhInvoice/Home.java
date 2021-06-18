@@ -84,6 +84,17 @@ public class Home extends Basic_Buh {
         refresh();
         HelpBuh.checkUpdates(BUH_INVOICE_MAIN.jLabel17_new__version);
         //
+        if(HelpBuh.OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED){
+            //[#OBLIGATORY-UPDATE#]
+            boolean b = GP_BUH.confirmWarning(LANG.MSG_29);
+            //
+            if(b){
+               HelpA.navigate_to_webbpage(GP_BUH.LA_WEB_ADDR);
+            }
+            //
+            System.exit(0);
+        }
+        //
     }
 
     private void fillJTableHeader() {

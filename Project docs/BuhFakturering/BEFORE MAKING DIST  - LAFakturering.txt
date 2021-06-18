@@ -30,6 +30,8 @@ __________________
 ---
 [ON PHP SIDE]
 1. Change version if a new one is released - > Path server side: php -> "version"
+2. OBS! Is it a OBLIGATORY update? -> {"version":"109","obligatory":"true"} -> then set -> "obligatory":"true"
+The obligatory update means that the user must make the update in order to use the program.
 
 ________________
 
