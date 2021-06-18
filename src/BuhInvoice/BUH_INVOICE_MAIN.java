@@ -2493,7 +2493,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
-        jTextArea2.setText("SMTP E-post inställningar tillåter dig att skicka e-post från\nden e-post du själv anger. Om du inte anger din egen e-post\nså skickas alla e-post fråm no-reply@lafakturering.se.\n\nKom också ihåg att kan alltid skicka fakturor via din lokala\ne-post klient, exemplevis Outlook.\n\nOm du undrar var du hittar de inställningarna så gör man det enklast\ngenom att googla på \"smtp inställningar\" för din e-post leverantör. \n\nObservera att visa e-post leverantörer förbjuder användning av SMTP.\n\n\nOBS! Glöm ej att spara inställningarna! Det gör du med knappen som är längst\nuppe till vänster\n");
+        jTextArea2.setText("SMTP E-post inställningar tillåter dig att skicka e-post från\nden e-post du själv anger. Om du inte anger din egen e-post\nså skickas alla e-post fråm no-reply@lafakturering.se.\n\nKom också ihåg att kan alltid skicka fakturor via din lokala\ne-post klient, exemplevis Outlook.\n\nOm du undrar var du hittar de inställningarna så gör man det enklast\ngenom att googla på \"smtp inställningar\" för din e-post leverantör. \n\nObservera att visa e-post leverantörer förbjuder användning av SMTP.\n\n\nOBS! Glöm ej att spara inställningarna! Det gör du med knappen \nsom är längst uppe till vänster.\n");
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setEnabled(false);
         jScrollPane16.setViewportView(jTextArea2);
