@@ -44,7 +44,7 @@ public class Home extends Basic_Buh {
     private static final String TABLE_SHARED_USERS__USER = "ANVÄNDARE";
     private static final String TABLE_SHARED_USERS__DATE_CREATED = "SKAPAD";
 
-    public Home(BUH_INVOICE_MAIN bim) {
+    public Home(LAFakturering bim) {
         super(bim);
     }
 
@@ -82,7 +82,7 @@ public class Home extends Basic_Buh {
         loadCheckBoxSaveLoginState();
         fillJTableHeader();
         refresh();
-        HelpBuh.checkUpdates(BUH_INVOICE_MAIN.jLabel17_new__version);
+        HelpBuh.checkUpdates(LAFakturering.jLabel17_new__version);
         //
         if(HelpBuh.OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED){
             //[#OBLIGATORY-UPDATE#]
@@ -265,7 +265,7 @@ public class Home extends Basic_Buh {
             getFtgName();
             setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
             //
-            bim.openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+            bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
         } else {
@@ -324,7 +324,7 @@ public class Home extends Basic_Buh {
             return validateResponce(responce);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }

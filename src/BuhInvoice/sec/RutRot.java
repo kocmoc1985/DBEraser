@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import BuhInvoice.Basic_Buh;
 import BuhInvoice.CustomersA_;
 import BuhInvoice.DB;
@@ -47,7 +47,7 @@ public class RutRot extends Basic_Buh {
     private final String FORNAMN;
     private final String EFTERNAMN;
 
-    public RutRot(BUH_INVOICE_MAIN bim, RutRotFrame rutRotFrame,String pnr,String fornamn,String efternamn) {
+    public RutRot(LAFakturering bim, RutRotFrame rutRotFrame,String pnr,String fornamn,String efternamn) {
         super(bim);
         this.bim.setRutRot(this);
         this.rutRotFrame = rutRotFrame;

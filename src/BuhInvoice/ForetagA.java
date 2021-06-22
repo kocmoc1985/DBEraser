@@ -37,7 +37,7 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
 
-    public ForetagA(BUH_INVOICE_MAIN bim) {
+    public ForetagA(LAFakturering bim) {
         super(bim);
 //        GP_BUH.setPageBackground(bim.jPanel8, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
     }

@@ -60,7 +60,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
     private final static String SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH = "bar_graph_total_per_month";
     private final static String SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH = "bar_graph_ammount_per_month";
 
-    public CustomersA_(BUH_INVOICE_MAIN bim) {
+    public CustomersA_(LAFakturering bim) {
         super(bim);
     }
 
@@ -268,7 +268,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
             System.out.println("FAKTURA_KUND_ID AQUIRED: " + fakturaKundId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         if (GP_BUH.verifyId(fakturaKundId)) {

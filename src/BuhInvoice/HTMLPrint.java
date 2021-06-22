@@ -50,7 +50,7 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
 
-    protected final BUH_INVOICE_MAIN bim;
+    protected final LAFakturering bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
     protected final HashMap<String, String> map_a_0;
     protected final HashMap<String, String> map_a;
@@ -136,7 +136,7 @@ public abstract class HTMLPrint extends HTMLBasic {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint(
-            BUH_INVOICE_MAIN bim,
+            LAFakturering bim,
             String fakturatype,
             boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,
@@ -586,11 +586,11 @@ public abstract class HTMLPrint extends HTMLBasic {
         try {
             upload_success = HelpBuh.uploadFile(fileName, serverPath + fileName); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
 //        System.out.println("Upload to PHP: " + upload_success);

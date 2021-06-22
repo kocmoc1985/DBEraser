@@ -5,7 +5,7 @@
  */
 package MyObjectTableInvert;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import MyObjectTable.ControlsActionsIF;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;

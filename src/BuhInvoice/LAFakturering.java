@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MCREMOTE
  */
-public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListener, KeyListener, Buh_Invoice_Main__IF {
+public class LAFakturering extends javax.swing.JFrame implements MouseListener, KeyListener, Buh_Invoice_Main__IF {
 
     private InvoiceA_Insert_ invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
@@ -72,7 +72,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     /**
      * Creates new form BUH_INVOICE_MAIN
      */
-    public BUH_INVOICE_MAIN() {
+    public LAFakturering() {
         initComponents();
         initOhter();
         //
@@ -2859,7 +2859,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 //
                 faktua_tab_blockUntilSavedOrAborted_invoice(true);
                 //
-                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+                openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
                 //
             }
             //
@@ -2874,7 +2874,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
             if (invoiceA_update.fieldsValidated(true)) {
                 invoiceA_update.insertOrUpdate();
                 invoiceB.refresh_c();
-                openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+                openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             }
         }
         //
@@ -3144,7 +3144,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
     private void jButton_dont_save_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_dont_save_settingsActionPerformed
         if (HelpA.confirmWarning(LANG.MSG_24)) {
             faktua_tab_blockUntilSavedOrAborted_invoice(true);
-            openTabByName(BUH_INVOICE_MAIN.TAB_INVOICES_OVERVIEW);
+            openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
         }
     }//GEN-LAST:event_jButton_dont_save_settingsActionPerformed
 
@@ -3229,13 +3229,13 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LAFakturering.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LAFakturering.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LAFakturering.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LAFakturering.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //
@@ -3247,7 +3247,7 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BUH_INVOICE_MAIN().setVisible(true);
+                new LAFakturering().setVisible(true);
             }
         });
     }
@@ -3722,8 +3722,9 @@ public class BUH_INVOICE_MAIN extends javax.swing.JFrame implements MouseListene
         try {
             x.join();
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //
         //
     }
 

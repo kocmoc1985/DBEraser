@@ -35,7 +35,7 @@ import javax.swing.text.html.StyleSheet;
  */
 public class HTMLPrint_Backup extends javax.swing.JFrame {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final LAFakturering bim;
     private final ArrayList<HashMap<String, String>> articles_map_list;
     private final HashMap<String, String> map_a_0;
     private final HashMap<String, String> map_a;
@@ -53,7 +53,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
      * Creates new form HTMLPrint_A
      */
     public HTMLPrint_Backup(
-            BUH_INVOICE_MAIN bim,
+            LAFakturering bim,
             ArrayList<HashMap<String, String>> articles_map_list,
             HashMap<String, String> map_a_0,
             HashMap<String, String> map_a,

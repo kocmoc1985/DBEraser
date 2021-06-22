@@ -20,7 +20,7 @@ public class InvoiceA_Update extends Invoice_ {
 
     private Faktura_Entry_Update faktura_entry_update;
 
-    public InvoiceA_Update(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceA_Update(LAFakturering buh_invoice_main) {
         super(buh_invoice_main);
         initOther();
     }

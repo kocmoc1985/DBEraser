@@ -73,7 +73,7 @@ public abstract class Invoice_ extends Basic_Buh {
     private RutRotFrame rutRotFrame;
     private boolean RUT_ROT__ENABLED = false;
 
-    public Invoice_(BUH_INVOICE_MAIN bim) {
+    public Invoice_(LAFakturering bim) {
         super(bim);
         initFakturaEntry_();
     }
@@ -346,7 +346,7 @@ public abstract class Invoice_ extends Basic_Buh {
             }
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -470,36 +470,36 @@ public abstract class Invoice_ extends Basic_Buh {
             bim.jLabel4.setText(LANG.ATT_BETALA);
         }
         //
-        BUH_INVOICE_MAIN.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
-        BUH_INVOICE_MAIN.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
-        BUH_INVOICE_MAIN.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
-        BUH_INVOICE_MAIN.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
+        LAFakturering.jTextField_total_inkl_moms.setText("" + getTotal(FAKTURA_TOTAL));
+        LAFakturering.jTextField_total_exkl_moms.setText("" + getTotal(FAKTURA_TOTAL_EXKL_MOMS));
+        LAFakturering.jTextField_moms_total.setText("" + getTotal(MOMS_TOTAL));
+        LAFakturering.jTextField_rabatt_total.setText("" + getTotal(RABATT_TOTAL));
+        LAFakturering.jTextField_moms_artiklar.setText("" + getTotal(MOMS_ARTIKLAR));
+        LAFakturering.jTextField_moms_frakt_expavg.setText("" + getTotal(MOMS_FRAKT_AND_EXP_AVG));
         //
-        BUH_INVOICE_MAIN.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
+        LAFakturering.jTextField_moms_sats_frakt_exp_avg.setText("" + getTotal(MOMS_SATS__FRAKT_AND_EXP_AVG) * 100);
         //
-        BUH_INVOICE_MAIN.jTextField_frakt.setText("" + getTotal(FRAKT));
-        BUH_INVOICE_MAIN.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
+        LAFakturering.jTextField_frakt.setText("" + getTotal(FRAKT));
+        LAFakturering.jTextField_exp_avg.setText("" + getTotal(EXP_AVG));
         //
         if ((bim.isRUT() && CURRENT_OPERATION_INSERT == false) || RUT_ROT__ENABLED) {
             //[#RUTROT#]
-            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(true);
-            BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(true);
-            BUH_INVOICE_MAIN.jLabel_rut_avdrag.setVisible(true);
-            BUH_INVOICE_MAIN.jLabel_rut_total.setVisible(true);
+            LAFakturering.jTextField_rut_avdrag.setVisible(true);
+            LAFakturering.jTextField_rut_total.setVisible(true);
+            LAFakturering.jLabel_rut_avdrag.setVisible(true);
+            LAFakturering.jLabel_rut_total.setVisible(true);
             //
-            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
+            LAFakturering.jTextField_rut_avdrag.setText("" + getTotal(RUT_AVDRAG_TOTAL));
             //
             if (RUT_AVDRAG_TOTAL != 0) {
-                BUH_INVOICE_MAIN.jTextField_rut_total.setText("" + getTotal(RUT_AVDRAG_TOTAL + FAKTURA_TOTAL));
+                LAFakturering.jTextField_rut_total.setText("" + getTotal(RUT_AVDRAG_TOTAL + FAKTURA_TOTAL));
             }
             //
         } else {
-            BUH_INVOICE_MAIN.jTextField_rut_avdrag.setVisible(false);
-            BUH_INVOICE_MAIN.jTextField_rut_total.setVisible(false);
-            BUH_INVOICE_MAIN.jLabel_rut_avdrag.setVisible(false);
-            BUH_INVOICE_MAIN.jLabel_rut_total.setVisible(false);
+            LAFakturering.jTextField_rut_avdrag.setVisible(false);
+            LAFakturering.jTextField_rut_total.setVisible(false);
+            LAFakturering.jLabel_rut_avdrag.setVisible(false);
+            LAFakturering.jLabel_rut_total.setVisible(false);
         }
 
         //

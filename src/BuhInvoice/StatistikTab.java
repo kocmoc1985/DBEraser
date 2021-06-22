@@ -35,7 +35,7 @@ import other.StringDouble;
  */
 public class StatistikTab implements BarGraphListener {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final LAFakturering bim;
     private ArrayList<HashMap<String, String>> fakturor_one_year_map;
     private final Object lock_a = new Object();
     private XyGraph_BuhInvoice xygraph;
@@ -43,7 +43,7 @@ public class StatistikTab implements BarGraphListener {
     private final static String SERIE_NAME__BARGRAPH__TOTAL_PER_MONTH = "bar_graph_total_per_month";
     private final static String SERIE_NAME__BARGRAPH__AMMOUNT_PER_MONTH = "bar_graph_ammount_per_month";
 
-    public StatistikTab(BUH_INVOICE_MAIN bim) {
+    public StatistikTab(LAFakturering bim) {
         this.bim = bim;
         init();
     }

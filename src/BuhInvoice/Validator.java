@@ -83,7 +83,7 @@ public class Validator {
      * @param tableName
      * @return
      */
-    public static boolean checkIfExistInDB(BUH_INVOICE_MAIN bim, JLinkInvert jli, String colName, String tableName) {
+    public static boolean checkIfExistInDB(LAFakturering bim, JLinkInvert jli, String colName, String tableName) {
         //
         JTextFieldInvert jtfi = (JTextFieldInvert) jli;
         //

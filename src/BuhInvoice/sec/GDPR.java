@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import BuhInvoice.GP_BUH;
 import forall.HelpA;
 import static forall.HelpA.objectToFile;
@@ -20,12 +20,12 @@ import javax.swing.JScrollPane;
  */
 public class GDPR extends HTMLBasic {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final LAFakturering bim;
 
     /**
      * Creates new form GDPR
      */
-    public GDPR(BUH_INVOICE_MAIN bim) {
+    public GDPR(LAFakturering bim) {
         this.bim = bim;
         initComponents();
         init();

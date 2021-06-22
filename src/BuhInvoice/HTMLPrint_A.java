@@ -32,7 +32,7 @@ public class HTMLPrint_A extends HTMLPrint {
     private boolean OMVANT_SKATT__EXIST = false;
 
     public HTMLPrint_A(
-            BUH_INVOICE_MAIN bim,
+            LAFakturering bim,
             String fakturatype,
             boolean preview,
             ArrayList<HashMap<String, String>> articles_map_list,

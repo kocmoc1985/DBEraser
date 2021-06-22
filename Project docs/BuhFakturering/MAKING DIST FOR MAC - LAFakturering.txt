@@ -1,0 +1,35 @@
+[NONE VERIFIED DEVELOPPER PROBLEM - IMPORTANT]
+
+1.Leta reda på programmet du vill öppna i Finder.
+2. Använd inte Launchpad när du gör detta. Du kan inte komma åt kontextmenyn via Launchpad.
+3. Höger-klicka på programsymbolen och välj "Öppna" från kontextmenyn.
+4.Klicka på Öppna.
+5.Programmet sparas som ett undantag till säkerhetsinställningarna och du kan öppna det i framtiden genom att dubbelklicka på det precis som med registrerade program.
+
+________________________________________________________________________________________________________
+[PAY ATTENTION]
+
+When running a Java app with MAC it shows the "Class name" of the MainClass so for LAFakturering it shows "BUH_INVOICE_MAIN" in the very top of the screen.
+
+________________________________________________________________________________________________________
+1. Create a ".dmg" file:
+
+- Run "Disk Utility" from the Launchpad
+- Choose File -> New Image -> Image from folder
+- OBS! IMPORTANT! To be able to make changes to ".dmg" file (changing background picture, icon size etc.) -> set "Image Format: read/write"
+
+- Save the ".dmg" to desktop
+- Double click on the ".dmg" to mount
+- Choose the window for mounted ".dmg". Right click anywhere in window and choose "Show View Options" -> From there you can adjust background image etc..
+- So after you made changes and unmounted the image, the ".dmg" file will contain the changes -> because of: "Image Format: read/write"
+
+
+2. Once you have a created ".dmg" file with "Image Format: read/write" you may only change the "la.jar" and it will be saved.
+
+
+How to enable the hidden option: Allow app from any developper -> From terminal run: sudo spctl --master-disable
+
+________________________________________________________________________________________________________
+
+
+

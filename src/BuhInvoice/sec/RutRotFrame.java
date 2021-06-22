@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import BuhInvoice.DB;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.InvoiceB;
@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RutRotFrame extends javax.swing.JFrame {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final LAFakturering bim;
     private final Invoice_ invoice;
     private RutRot rut;
     private final JTable articlesTable;
@@ -49,7 +49,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 //    public RutRotFrame() {
 //        initComponents();
 //    }
-    public RutRotFrame(BUH_INVOICE_MAIN bim, JTable articlesTable, Invoice_ invoice) {
+    public RutRotFrame(LAFakturering bim, JTable articlesTable, Invoice_ invoice) {
         initComponents();
         this.bim = bim;
         this.invoice = invoice;

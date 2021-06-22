@@ -38,7 +38,7 @@ public class OptionsTab extends Basic_Buh {
     private final static String SMTP_PASS = "pass";
     private final static String SMTP_FROM_NAME = "name";
 
-    public OptionsTab(BUH_INVOICE_MAIN bim) {
+    public OptionsTab(LAFakturering bim) {
         super(bim);
         GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
     }

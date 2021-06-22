@@ -97,7 +97,7 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
     }
 
-    public InvoiceB(BUH_INVOICE_MAIN buh_invoice_main) {
+    public InvoiceB(LAFakturering buh_invoice_main) {
         super(buh_invoice_main);
     }
 
@@ -1018,7 +1018,7 @@ public class InvoiceB extends Basic_Buh {
 //            System.out.println("FAKTURA ID AQUIRED: " + fakturaId);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             fakturaId = "-1";
         }
         //

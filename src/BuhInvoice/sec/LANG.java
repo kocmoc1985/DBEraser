@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import BuhInvoice.CustomersA_;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
@@ -72,7 +72,7 @@ public class LANG {
     public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
     public final static String MSG_5_2 = "Du kan inte lägga till fler artiklar!";
     public final static String MSG_7 = "Kund e-post saknas, var god gå till flik"
-            + " \"" + BUH_INVOICE_MAIN.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
+            + " \"" + LAFakturering.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public final static String MSG_7_2 = "Skriv en e-post du vill skicka den till";
     public final static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
     public final static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
@@ -94,7 +94,7 @@ public class LANG {
 
     private static String MSG_10_4 = " markerad som skickad med vanlig post!";
 
-    public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + BUH_INVOICE_MAIN.TAB_KUDNER + " och registrera en.";
+    public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + LAFakturering.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
     public static String MSG_12_2 = "Var god observera, fakturan har inte förfallit till betalning!";
 

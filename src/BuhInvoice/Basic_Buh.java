@@ -29,9 +29,9 @@ import javax.swing.JTable;
  */
 public abstract class Basic_Buh extends Basic {
 
-    protected final BUH_INVOICE_MAIN bim;
+    protected final LAFakturering bim;
 
-    public Basic_Buh(BUH_INVOICE_MAIN bim) {
+    public Basic_Buh(LAFakturering bim) {
         this.bim = bim;
         initOther();
     }
@@ -52,7 +52,7 @@ public abstract class Basic_Buh extends Basic {
      */
     public static void executeSetFakturaSentPerEmail(String fakturaId, boolean sent) {
         //
-        HashMap<String, String> map = BUH_INVOICE_MAIN.getUPDATE_static(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        HashMap<String, String> map = LAFakturering.getUPDATE_static(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
         //
         if (sent) {
             map.put(DB.BUH_FAKTURA__SENT, "1"); // 1 = "yes", "0"

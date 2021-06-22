@@ -5,7 +5,7 @@
  */
 package BuhInvoice.sec;
 
-import BuhInvoice.BUH_INVOICE_MAIN;
+import BuhInvoice.LAFakturering;
 import BuhInvoice.GP_BUH;
 import javax.swing.JFrame;
 
@@ -15,12 +15,12 @@ import javax.swing.JFrame;
  */
 public class OffertCopyOrOmvandlaFrame_ extends javax.swing.JFrame {
 
-    private final BUH_INVOICE_MAIN bim;
+    private final LAFakturering bim;
 
     /**
      * Creates new form OffertCopyOrOmvandlaFrame
      */
-    public OffertCopyOrOmvandlaFrame_(BUH_INVOICE_MAIN bim) {
+    public OffertCopyOrOmvandlaFrame_(LAFakturering bim) {
         initComponents();
         this.bim = bim;
         init();

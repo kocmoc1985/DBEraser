@@ -53,7 +53,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
     protected boolean IS_PERSON__CUSTOMERS_A = false;
 
     //
-    public CustomerAForetagA(BUH_INVOICE_MAIN bim) {
+    public CustomerAForetagA(LAFakturering bim) {
         super(bim);
     }
 

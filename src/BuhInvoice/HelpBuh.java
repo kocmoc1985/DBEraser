@@ -47,9 +47,9 @@ public class HelpBuh {
 
     // I'am now no using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
-    public final static boolean IS_MAC_OS = false; 
+    public final static boolean IS_MAC_OS = true; 
     //
-    private final static boolean IS_DISTRIBUTION = true;
+    private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;
@@ -134,7 +134,7 @@ public class HelpBuh {
     public static HashMap<String, String> get_constants() {
         //[#BUH-CONSTANTS#]
         //In fact the "where" is fake, i use it just because the select statement uses a "where"
-        String json = BUH_INVOICE_MAIN.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // 
+        String json = LAFakturering.getSELECT_(DB.BUH_CONSTANTS__ID, "0"); // 
         //
         HashMap<String, String> constants = new HashMap<>();
         //
@@ -235,7 +235,7 @@ public class HelpBuh {
             obligatory = version__.get(0).get("obligatory");
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             obligatory = "false";
         }
         //
@@ -278,9 +278,12 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_20_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_20_0);
         }
+        //
+        //
+        //
         //
     }
 
@@ -299,7 +302,7 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_18_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_18_0);
         }
     }
@@ -343,9 +346,12 @@ public class HelpBuh {
             return new HttpResponce(responce, LANG.MSG_16_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0);
         }
+        //
+        //
+        //
         //
     }
 
@@ -364,9 +370,12 @@ public class HelpBuh {
             return new HttpResponce(response, LANG.MSG_23);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_23);
         }
+        //        
+        //        
+        //        
         //        
     }
 
@@ -390,7 +399,7 @@ public class HelpBuh {
             System.out.println("response: " + response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
@@ -411,9 +420,12 @@ public class HelpBuh {
             return new HttpResponce(response, LANG.MSG_21_0);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_21_0);
         }
+        //
+        //
+        //
         //
     }
 
@@ -441,7 +453,7 @@ public class HelpBuh {
             GP_BUH.KUND_ID = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_CREATE_ACCOUNT_EXISTING_CUSTOMER, JSon.hashMapToJSON(map));
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -534,7 +546,7 @@ public class HelpBuh {
 //            System.out.println("EMAIL RESP: " + response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return ess;
@@ -574,7 +586,7 @@ public class HelpBuh {
             ess = new EmailSendingStatus(response);
             //
         } catch (Exception ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         return ess;
@@ -618,11 +630,11 @@ public class HelpBuh {
         try {
             upload_success = HelpBuh.uploadFile("påminnelse_1.pdf", SERVER_UPLOAD_PATH + "påminnelse_1.pdf"); //[clientPath][ServerPath]
         } catch (ProtocolException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
-            Logger.getLogger(BUH_INVOICE_MAIN.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
         System.out.println("Upload Succeded: " + upload_success);

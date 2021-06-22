@@ -86,7 +86,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         }
     }
 
-    public ArticlesA(BUH_INVOICE_MAIN bim) {
+    public ArticlesA(LAFakturering bim) {
         super(bim);
     }
 
