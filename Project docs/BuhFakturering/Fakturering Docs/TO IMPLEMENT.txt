@@ -36,6 +36,7 @@ So the file named "version" {"version":"109"} shall also contain {"version":"109
 
 Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 
 Just a comment from somewhere: "The files are digitally signed with Symantec Class 3 SHA256 Code Signing CA - Microsoft Software Validation"
+Search for: "Code Signing certificate" in google
 
 The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
 
