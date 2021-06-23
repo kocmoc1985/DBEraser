@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
 import forall.BackgroundPanel;
@@ -24,6 +25,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -90,14 +92,13 @@ public class GP_BUH {
     }
     //
     public static final String DATE_FORMAT_BASIC = "yyyy-MM-dd";
-    private static final String LOGO_PATH = "io/logo.png";
 
     //
     // OBS! Have also look in "Basic_Buh.class" for "FREQUENTLY USED METHODS" ****************
     //
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
-    public static final String GDPR_ACCEPTED_FILE_PATH = "io/gdpr";
+    public static final String GDPR_ACCEPTED_FILE_PATH = IO.IO_DIR + "gdpr";
 
     public static boolean isGdprAccepted() {
         //
@@ -106,24 +107,22 @@ public class GP_BUH {
     }
 
     public static final String LOGO_PATH() {
-        return "io/logo_" + KUND_ID + ".png";
+        return IO.IO_DIR + "logo_" + KUND_ID + ".png";
     }
 
-    private static String LOGO_PATH_B() {
-        return "io/logo_" + KUND_ID + ".png";
-    }
 
     public static final String SMTP_PATH() {
-        return "io/smtp_" + KUND_ID;
+        return IO.IO_DIR + "smtp_" + KUND_ID;
     }
 
     public static Image getBuhInvoicePrimIcon() {
         return new ImageIcon(GP.IMAGE_ICON_URL_LAFAKTURERING).getImage();
     }
 
-    public static String BASIC_BACKGROUND_IMG__PATH = "io/bg.jpg";
+    public static String BASIC_BACKGROUND_IMG__PATH = IO.IO_DIR + "bg.jpg";
 
-    public static void setPageBackground(JPanel panel, String path) {
+    
+    private static void setPageBackground(JPanel panel, String path) {
         //
         BackgroundPanel bg = (BackgroundPanel) panel;
         //
@@ -133,6 +132,19 @@ public class GP_BUH {
         } catch (Exception ex) {
             // Will set the initial background
         }
+    }
+    
+    public static void setPageBackground(JPanel panel, URL url) {
+        //
+        BackgroundPanel bg = (BackgroundPanel) panel;
+        //
+        try {
+            Image image = ImageIO.read(url); //"io/bg.jpg"
+            bg.go(image);
+        } catch (Exception ex) {
+            // Will set the initial background
+        }
+        //
     }
 
     public static boolean loggedIn() {

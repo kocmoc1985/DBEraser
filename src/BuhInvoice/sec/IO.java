@@ -24,16 +24,16 @@ import java.util.logging.Logger;
  */
 public class IO {
 
-    private final static String LAST_INPUT_DIR = "io/";
+    public final static String IO_DIR = "la/";
 
     //
     static {
-        HelpA.create_dir_if_missing(LAST_INPUT_DIR);
+        HelpA.create_dir_if_missing(IO_DIR);
     }
     
 
     public static final boolean exist(String fileName) {
-        return HelpA.file_exists(LAST_INPUT_DIR + fileName);
+        return HelpA.file_exists(IO_DIR + fileName);
     }
 
     public static final String get_universal(String DB__PARAMETER, String kundFakturaId) {
@@ -46,23 +46,23 @@ public class IO {
     }
 
     public static final String _get(String DBparameter) {
-        return LAST_INPUT_DIR + DBparameter;
+        return IO_DIR + DBparameter;
     }
 
     public static final void writeToFile(String fileName, String value) {
         try {
-            HelpA.writeToFile(LAST_INPUT_DIR + fileName, value, false);
+            HelpA.writeToFile(IO_DIR + fileName, value, false);
         } catch (IOException ex) {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static String loadLastEntered(String fileName, String defaultValue) {
-        return HelpA.loadLastEntered(LAST_INPUT_DIR + fileName, defaultValue);
+        return HelpA.loadLastEntered(IO_DIR + fileName, defaultValue);
     }
 
     public static boolean delete(String fileName) {
-        File f = new File(LAST_INPUT_DIR + fileName);
+        File f = new File(IO_DIR + fileName);
         return f.delete();
     }
 
@@ -90,7 +90,7 @@ public class IO {
 
     public static String loadReminderMsg() {
         try {
-            return (String) fileToObject(LAST_INPUT_DIR + "remindermsg");
+            return (String) fileToObject(IO_DIR + "remindermsg");
         } catch (IOException | ClassNotFoundException ex) {
             return null;
         }
@@ -98,7 +98,7 @@ public class IO {
 
     public static String loadRutMsg() {
         try {
-            return (String) fileToObject(LAST_INPUT_DIR + "rutrotmsg");
+            return (String) fileToObject(IO_DIR + "rutrotmsg");
         } catch (IOException | ClassNotFoundException ex) {
             return null;
         }
@@ -106,7 +106,7 @@ public class IO {
 
     public static boolean saveRutMsg(Object obj) {
         try {
-            objectToFile(LAST_INPUT_DIR + "rutrotmsg", obj);
+            objectToFile(IO_DIR + "rutrotmsg", obj);
             return true;
         } catch (IOException ex) {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,7 +116,7 @@ public class IO {
 
     public static boolean saveReminderMsg(Object obj) {
         try {
-            objectToFile(LAST_INPUT_DIR + "remindermsg", obj);
+            objectToFile(IO_DIR + "remindermsg", obj);
             return true;
         } catch (IOException ex) {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);

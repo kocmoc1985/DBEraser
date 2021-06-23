@@ -13,6 +13,7 @@ import java.net.URL;
  */
 public class IconUrls {
 
+    public static final URL LA_BG = IconUrls.class.getResource("bg.jpg");
     public static final URL UNSAVED_ICON_URL = IconUrls.class.getResource("unsaved.png");
     public static final URL OK_ICON_URL = IconUrls.class.getResource("correct.png");
     public static final URL INFO_ICON_URL = IconUrls.class.getResource("info.png");

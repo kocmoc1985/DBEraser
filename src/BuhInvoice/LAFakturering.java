@@ -32,7 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
-
+import icons.IconUrls;
+import BuhInvoice.sec.IO;
 /**
  *
  * @author MCREMOTE
@@ -74,11 +75,15 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
      */
     public LAFakturering() {
         initComponents();
+		//
+		HelpA.create_dir_if_missing(IO.IO_DIR);
+		//
         initOhter();
         //
         SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, true);
         //
-        GP_BUH.setPageBackground(jPanel19, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+        //GP_BUH.setPageBackground(jPanel19, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+		GP_BUH.setPageBackground(jPanel19, IconUrls.LA_BG);
         //
         setMarginLeftLabelsHomeTab();
         //

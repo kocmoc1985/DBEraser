@@ -5,9 +5,7 @@
  */
 package images;
 
-import forall.GP;
 import java.net.URL;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,6 +14,7 @@ import javax.swing.ImageIcon;
 public class ImggUrls {
     
     public static final URL UNSAVED_ICON_URL = ImggUrls.class.getResource("unsaved.png");
+    
     
     
 }

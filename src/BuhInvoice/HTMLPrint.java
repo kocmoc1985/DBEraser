@@ -247,9 +247,9 @@ public abstract class HTMLPrint extends HTMLBasic {
     protected String getFakturaPath() {
 //        return System.getProperty("user.home") + "/Desktop/" + getPdfFileName(false);
         //
-        HelpA.create_dir_if_missing("mina dokument");
+        HelpA.create_dir_if_missing("la-dokument");
         //
-         return "mina dokument/" + getPdfFileName(false);
+         return "la-dokument/" + getPdfFileName(false);
         //
 //        if (HelpBuh.IS_MAC_OS) {
 //            return "mina dokument/" + getPdfFileName(false);

@@ -19,6 +19,7 @@ import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import forall.TextFieldCheck;
+import icons.IconUrls;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -40,7 +41,8 @@ public class OptionsTab extends Basic_Buh {
 
     public OptionsTab(LAFakturering bim) {
         super(bim);
-        GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+//        GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
+        GP_BUH.setPageBackground(bim.jPanel20, IconUrls.LA_BG);
     }
 
     protected void refresh() {
