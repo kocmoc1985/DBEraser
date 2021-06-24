@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import forall.BackgroundPanel;
 import BuhInvoice.sec.BlinkThread;
+import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
@@ -92,11 +93,16 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }
 
     private void gdpr() {
+        //
         if (GP_BUH.isGdprAccepted()) {
+            //
+            new CreateShortcut();
+            //
             this.setEnabled(false);
             GDPR gdpr = new GDPR(this);
             GP_BUH.centerAndBringToFront(gdpr);
         }
+        //
     }
 
 //    private void setPageBackground(JPanel panel) {

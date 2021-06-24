@@ -34,7 +34,7 @@ public class CreateShortcut {
         //
     }
 
-    private CreateShortcut() {
+    public CreateShortcut() {
         go();
     }
 
