@@ -28,12 +28,6 @@ _____
 - Changes to LA site change to "Fakturera och skapa Offerter Gratis"
 
 
-IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
-No iam saving to the folder of LAFakturering but the problem is that the default E-post client is not opened under MAC OSX
-
-Update mechanism -> some essential changes could lead into the old Client-Applications cannot work with updated Server-Side.
-So the file named "version" {"version":"109"} shall also contain {"version":"109","obligatory";"0"}
-
 Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 
 Just a comment from somewhere: "The files are digitally signed with Symantec Class 3 SHA256 Code Signing CA - Microsoft Software Validation"
 Search for: "Code Signing certificate" in google
@@ -44,6 +38,11 @@ The saved user password (Java-Side) is strored in clear text in "io" folder file
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
 
+Update mechanism -> some essential changes could lead into the old Client-Applications cannot work with updated Server-Side.
+So the file named "version" {"version":"109"} shall also contain {"version":"109","obligatory";"0"}[DONE]
+
+IMPORTANT solve the problem with not saving to desktop, and also have MAC OSX in mind *****
+No iam saving to the folder of LAFakturering but the problem is that the default E-post client is not opened under MAC OSX[DONE]
 
 ______
 
