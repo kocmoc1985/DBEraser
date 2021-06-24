@@ -5,6 +5,7 @@
  */
 package BuhInvoice.sec;
 
+import BuhInvoice.HelpBuh;
 import forall.HelpA;
 import icons.IconUrls;
 import java.io.BufferedWriter;
@@ -14,7 +15,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,8 +46,14 @@ public class CreateShortcut {
 
     private void go() {
         //
+        if(HelpBuh.IS_MAC_OS){
+            return;
+        }
+        //
+        HelpA.create_dir_if_missing(IO.IO_DIR);
+        //
         try {
-            copy_file(IconUrls.LA_SHORTCUT_ICON.toURI(), IO.IO_DIR + iconNameWithExt);
+            copy_file_b(getClass().getResourceAsStream("/icons/ic.ico"),  IO.IO_DIR + iconNameWithExt);
         } catch (Exception ex) {
             Logger.getLogger(CreateShortcut.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,21 +155,22 @@ public class CreateShortcut {
             }
         }
     }
-
-    private void copy_file(URI uri, String name_of_duplicate) throws FileNotFoundException, IOException {
-        File inputFile = new File(uri);
-        File outputFile = new File(name_of_duplicate);
-
-        FileInputStream in = new FileInputStream(inputFile);
-        FileOutputStream out = new FileOutputStream(outputFile);
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
+    
+    private boolean copy_file_b(InputStream source , String destination) {
+        //
+        boolean succeess = true;
+        //
+//        System.out.println("Copying ->" + source + "\n\tto ->" + destination);
+        //
+        try {
+            Files.copy(source, Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            succeess = false;
         }
+        //
+        return succeess;
 
-        in.close();
-        out.close();
     }
+
 
 }
