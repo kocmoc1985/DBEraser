@@ -24,6 +24,7 @@ public class GDPR extends HTMLBasic {
 
     /**
      * Creates new form GDPR
+     * @param bim
      */
     public GDPR(LAFakturering bim) {
         this.bim = bim;

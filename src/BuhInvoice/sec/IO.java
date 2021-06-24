@@ -26,11 +26,16 @@ public class IO {
 
     public final static String IO_DIR = "la/";
 
+    // Without "/"
+    public final static String getIO_DIR() {
+        int a = IO_DIR.length() - 1;
+        return IO_DIR.substring(0, a);
+    }
+
     //
     static {
         HelpA.create_dir_if_missing(IO_DIR);
     }
-    
 
     public static final boolean exist(String fileName) {
         return HelpA.file_exists(IO_DIR + fileName);
