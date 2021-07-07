@@ -1,10 +1,24 @@
-[0]OTHER
+[0] OTHER
 
 1. OBS! Make sure you don't use "import supplementary.HelpM;" anywhere in classes related to the BuhInvoice. This is not only about "import supplementary.HelpM;"
 but also about any other libraries which are not included into the libs of the BuhInvoice.  By the way "supplementary.HelpM" is a part of "NetProcMonitor.jar" library.
 The exception it throws looks like:
 Exception in thread "AWT-EventQueue-0" java.lang.NoClassDefFoundError: supplementary.HelpM
 	at BuhInvoice.GP_BUH.calculate_w_h__proportionalScaling(SourceFile:437)
+	
+__________________
+
+[0.1] Distribution of ".zip" instead of installation file which generates "virus-warnings"
+
+Instead for installation iam now using ".zip" file with one signal ".jar" file
+
+1. For Windows:
+1.1 Remember having "HelpBuh.IS_MAC_OS=false"
+1.2 Zip la.jar without having upper directory "LAFakturering"
+
+2. For MAC-OS:
+2.1 Remember having "HelpBuh.IS_MAC_OS=true"
+2.2 Zip la.jar HAVING upper directory "LAFakturering"
 __________________
 [1]OBFUSCATION, EXCLUDING AND FAT JAR:
 

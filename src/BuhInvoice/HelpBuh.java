@@ -47,7 +47,7 @@ public class HelpBuh {
 
     // I'am now no using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
-    public final static boolean IS_MAC_OS = false; 
+    public final static boolean IS_MAC_OS = true; 
     //
     private final static boolean IS_DISTRIBUTION = true;
     //
