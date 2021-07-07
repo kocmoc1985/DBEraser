@@ -1075,6 +1075,7 @@ public class InvoiceB extends Basic_Buh {
         faktura_data_map.remove(DB.BUH_FAKTURA__ID__); // [IMPORTANT]
         faktura_data_map.remove(DB.BUH_FAKTURA__MAKULERAD);
         faktura_data_map.remove(DB.BUH_FAKTURA__SENT);
+        faktura_data_map.remove(DB.BUH_FAKTURA__PRINTED);
         //
     }
 
