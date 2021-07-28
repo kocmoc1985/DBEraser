@@ -19,6 +19,14 @@ Instead for installation iam now using ".zip" file with one signal ".jar" file
 2. For MAC-OS:
 2.1 Remember having "HelpBuh.IS_MAC_OS=true"
 2.2 Zip la.jar HAVING upper directory "LAFakturering"
+
+[NONE VERIFIED DEVELOPPER PROBLEM - IMPORTANT] MAC-OS
+
+1.Leta reda på programmet du vill öppna i Finder.
+2. Använd inte Launchpad när du gör detta. Du kan inte komma åt kontextmenyn via Launchpad.
+3. Höger-klicka på programsymbolen och välj "Öppna" från kontextmenyn.
+4.Klicka på Öppna.
+5.Programmet sparas som ett undantag till säkerhetsinställningarna och du kan öppna det i framtiden genom att dubbelklicka på det precis som med registrerade program.
 __________________
 [1]OBFUSCATION, EXCLUDING AND FAT JAR:
 

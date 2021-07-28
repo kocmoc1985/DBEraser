@@ -48,6 +48,8 @@ import java.util.logging.Logger;
  */
 public abstract class HTMLPrint extends HTMLBasic {
 
+    public static final boolean LANG_ENG = false;
+
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
 
     protected final LAFakturering bim;
@@ -178,6 +180,77 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
+    public String T__FAKTURA_DATUM() {
+        return LANG_ENG == false ? T__FAKTURA_DATUM : "Invoice date";
+    }
+
+    public String T__FAKTURA_NR() {
+        return LANG_ENG == false ? T__FAKTURA_NR : "Invoice No.";
+    }
+
+    public String T__KUND_NR() {
+        return LANG_ENG == false ? T__KUND_NR : "Custommer No.";
+    }
+    
+    public String T__FAKTURA_ER_REF(){
+         return LANG_ENG == false ? T__FAKTURA_ER_REF : "Your reference";
+    }
+    
+    public String T__FAKTURA_VAR_REF(){
+         return LANG_ENG == false ? T__FAKTURA_VAR_REF : "Our reference";
+    }
+    
+    public String T__FAKTURA_ERT_ORDER_NR(){
+         return LANG_ENG == false ? T__FAKTURA_ERT_ORDER_NR : "Order / Note";
+    }
+
+    public String T__FAKTURA_MOMS_KR() {
+        return LANG_ENG == false ? T__FAKTURA_MOMS_KR : "VAT Eur";
+    }
+
+    public String T__FAKTURA_EXKL_MOMS() {
+        return LANG_ENG == false ? T__FAKTURA_EXKL_MOMS : "Without VAT";
+    }
+    
+    public String T__FAKTURA_LEV_VILKOR() {
+        return LANG_ENG == false ? T__FAKTURA_LEV_VILKOR : "Without VAT";
+    }
+
+    public String T__ARTIKEL_PRIS() {
+        return LANG_ENG == false ? T__ARTIKEL_PRIS : "Unit price";
+    }
+
+    public String T__ARTIKEL_ANTAL() {
+        return LANG_ENG == false ? T__ARTIKEL_ANTAL : "Ammount";
+    }
+
+    public String T__ARTIKEL_ENHET() {
+        return LANG_ENG == false ? T__ARTIKEL_ENHET : "Unit";
+    }
+
+    public String T__ARTIKEL_KOMMENT() {
+        return LANG_ENG == false ? T__ARTIKEL_KOMMENT : "Description";
+    }
+
+    public String T__ARTIKEL_NAMN() {
+        return LANG_ENG == false ? T__ARTIKEL_NAMN : "Article";
+    }
+
+    public String get_ENHET(HashMap<String, String> map) {
+        //
+        String enhet = map.get(DB.BUH_F_ARTIKEL__ENHET);
+        //
+        if (LANG_ENG == false) {
+            return enhet;
+        } else {
+            if (enhet.equals("st")) {
+                return "pcs";
+            }
+        }
+        //
+        return enhet;
+    }
+
     protected abstract void buttonLogic();
 
     protected abstract void initComponents_();
@@ -249,7 +322,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         HelpA.create_dir_if_missing("la-dokument");
         //
-         return "la-dokument/" + getPdfFileName(false);
+        return "la-dokument/" + getPdfFileName(false);
         //
 //        if (HelpBuh.IS_MAC_OS) {
 //            return "mina dokument/" + getPdfFileName(false);
@@ -269,7 +342,20 @@ public abstract class HTMLPrint extends HTMLBasic {
     }
 
     protected String _get_colon_sep(String key, HashMap<String, String> map) {
-        return key + ": " + map.get(key);
+        //
+        HashMap<String,String>dict = new HashMap<>();
+        //
+        dict.put(T__FAKTURA_FORFALLODATUM__FLEX, "Due date");
+        dict.put(T__FAKTURA_BETAL_VILKOR__FLEX, "Terms of payment");
+        dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
+        //
+        String key_= key;
+        //
+        if(LANG_ENG){
+            key_ = dict.get(key);
+        }
+        //
+        return key_ + ": " + map.get(key);
     }
 
     protected String _get_exist_a(String name, String value) {
@@ -382,7 +468,7 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
-            return LANG.FAKTURA;
+            return LANG_ENG == false ? LANG.FAKTURA : "Invoice";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
             return "Kreditfaktura";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
@@ -665,7 +751,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         String fileName = getPdfFileName(false);
         //
-        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(),new File(documentPath)));
+        HelpA.showNotification(LANG.FAKTURA_UTSKRIVEN_OUTLOOK(fileName, reminder, bim.isOffert(), new File(documentPath)));
         //
         HelpA.open_dir(new File(documentPath).getParent());
         HelpA.run_application_with_associated_application__b(new File(documentPath));
@@ -717,7 +803,7 @@ public abstract class HTMLPrint extends HTMLBasic {
             //
             print_ok = print_java(getFakturaPath());
             //
-            if(print_ok){
+            if (print_ok) {
                 HelpA.open_dir(new File(getFakturaPath()).getParent());
                 HelpA.run_application_with_associated_application__b(new File(getFakturaPath()));
             }
