@@ -48,7 +48,7 @@ import java.util.logging.Logger;
  */
 public abstract class HTMLPrint extends HTMLBasic {
 
-    public static final boolean LANG_ENG = false;
+    public static final boolean LANG_ENG = true;
 
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
 
