@@ -72,17 +72,17 @@ public abstract class HTMLPrint extends HTMLBasic {
     //
     //
     //
-    public static final String T__FAKTURA_NR = LANG_ENG == false ? "Fakturanr" : "Invoice No.";
-    public static final String T__KUND_NR = LANG_ENG == false ? "Kundnr" : "Custommer No.";
-    public static final String T__FAKTURA_DATUM = LANG_ENG == false ? "Fakturadatum" : "Invoice date";
+    public static final String T__FAKTURA_NR = "Fakturanr";
+    public static final String T__KUND_NR = "Kundnr";
+    public static final String T__FAKTURA_DATUM = "Fakturadatum";
     //
-    public static final String T__FAKTURA_ER_REF = LANG_ENG == false ? "Er referens" : "Your reference";
-    public static final String T__FAKTURA_ERT_ORDER_NR = LANG_ENG == false ? "Order / Notis" : "Order / Note";
-    public static final String T__FAKTURA_LEV_VILKOR = LANG_ENG == false ? "Lveransvilkor" : "Without VAT";
+    public static final String T__FAKTURA_ER_REF = "Er referens";
+    public static final String T__FAKTURA_ERT_ORDER_NR = "Order / Notis";
+    public static final String T__FAKTURA_LEV_VILKOR = "Lveransvilkor";
     public static final String T__FAKTURA_LEV_SATT = "Leveranssätt";
     public static final String T__FAKTURA_ERT_VAT_NR = "Ert VAT nummer";
     //
-    public static final String T__FAKTURA_VAR_REF = LANG_ENG == false ? "Vår referens" : "Our reference";
+    public static final String T__FAKTURA_VAR_REF = "Vår referens";
     public static final String T__FAKTURA_BETAL_VILKOR__FLEX = "Betalningsvilkor";
     public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
@@ -96,9 +96,9 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_RUT_TOTAL_BELOPP = "Total belopp"; // Rut/Rot
     public static final String T__FAKTURA_FRAKT = "Frakt";
     public static final String T__FAKTURA_EXP_AVG = "Exp avg";
-    public static final String T__FAKTURA_EXKL_MOMS = LANG_ENG == false ? "Exkl moms" : "Without VAT";
+    public static final String T__FAKTURA_EXKL_MOMS = "Exkl moms";
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
-    public static final String T__FAKTURA_MOMS_KR = LANG_ENG == false ? "Moms kr" : "VAT EUR";
+    public static final String T__FAKTURA_MOMS_KR = "Moms kr";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
     public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
     //
@@ -110,28 +110,28 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String COL_3_1 = DB.BUH_ADDR__LAND;
     public static final String COL_4 = DB.BUH_ADDR__TEL_A;
     //
-    public static final String T__ARTIKEL_NAMN = LANG_ENG == false ? "Artikel" : "Article";
-    public static final String T__ARTIKEL_KOMMENT = LANG_ENG == false ? "Beskrivning" : "Description";
-    public static final String T__ARTIKEL_ANTAL = LANG_ENG == false ? "Antal" : "Ammount";
-    public static final String T__ARTIKEL_ENHET = LANG_ENG == false ? "Enhet" : "Unit";
+    public static final String T__ARTIKEL_NAMN = "Artikel";
+    public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
+    public static final String T__ARTIKEL_ANTAL = "Antal";
+    public static final String T__ARTIKEL_ENHET = "Enhet";
     ;
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_MOMS_SATS = "Moms%";
     public static final String T__ARTIKEL_MOMS_KR = "Moms Kr";
-    public static final String T__ARTIKEL_PRIS = LANG_ENG == false ? "A`Pris" : "Unit price";
+    public static final String T__ARTIKEL_PRIS = "A`Pris";
     public static final String T__ARTIKEL_OMVANT_SKATT = "Omvänt skattskyldighet";
     //
-    public static final String T__FTG_KONTAKTA_OSS = LANG_ENG == false ? "Kontakta oss" : "Contact us";
-    public static final String T__FTG_BETALA_TILL = LANG_ENG == false ? "Betala till" : "Pay to";
-    public static final String T__FTG_TELEFON = LANG_ENG == false ? "Telefon" : "Phone";
-    public static final String T__FTG_EPOST = LANG_ENG == false ? "Mejla" : "E-mail";
+    public static final String T__FTG_KONTAKTA_OSS = "Kontakta oss";
+    public static final String T__FTG_BETALA_TILL = "Betala till";
+    public static final String T__FTG_TELEFON = "Telefon";
+    public static final String T__FTG_EPOST = "Mejla";
     public static final String T__FTG_BANKGIRO = "BG";
     public static final String T__FTG_POSTGIRO = "PG";
     public static final String T__FTG_IBAN = "IBAN";
-    public static final String T__FTG_KONTO = LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? "Konto" : "BIC";
-    public static final String T__FTG_SWISH = LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? "Swish" : "SWIFT";
-    public static final String T__FTG_ORGNR = "Organisationsnr"; //
-    public static final String T__FTG_MOMS_REG_NR = LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? "Momsregnr" : "Our VAT"; //Momsregnr
+    public static final String T__FTG_KONTO = "Konto";
+    public static final String T__FTG_SWISH = "Swish";
+    public static final String T__FTG_ORGNR = "Organisationsnr";
+    public static final String T__FTG_MOMS_REG_NR = "Momsregnr"; 
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     public static final String T__RUT_PERS = "Preliminär skattereduktion";
@@ -181,7 +181,91 @@ public abstract class HTMLPrint extends HTMLBasic {
         init();
         //
     }
+    
+    public String T__FAKTURA_NR(){
+        return LANG_ENG == false ? T__FAKTURA_NR : "Invoice No.";
+    }
+    
+    public String T__KUND_NR(){
+        return LANG_ENG == false ? T__KUND_NR : "Custommer No.";
+    }
+    
+    public String T__FAKTURA_DATUM(){
+        return LANG_ENG == false ? T__FAKTURA_DATUM : "Invoice date";
+    }
+    
+    public String T__FAKTURA_ER_REF(){
+        return LANG_ENG == false ? T__FAKTURA_ER_REF : "Your reference";        
+    }
+    
+    public String T__FAKTURA_VAR_REF(){
+        return LANG_ENG == false ? T__FAKTURA_VAR_REF : "Our reference";
+    }
+    
+    public String T__FAKTURA_ERT_ORDER_NR(){
+        return LANG_ENG == false ? T__FAKTURA_ERT_ORDER_NR : "Order / Note";
+    }
 
+    public String T__FAKTURA_LEV_VILKOR(){
+        return LANG_ENG == false ? T__FAKTURA_LEV_VILKOR : "Without VAT";
+    }
+    
+    public String T__FAKTURA_EXKL_MOMS(){
+        return  LANG_ENG == false ? T__FAKTURA_EXKL_MOMS : "Without VAT";
+    }
+    
+    public String T__FAKTURA_MOMS_KR(){
+        return LANG_ENG == false ? T__FAKTURA_MOMS_KR : "VAT EUR";
+    }
+    
+    public String T__ARTIKEL_NAMN(){
+        return LANG_ENG == false ? T__ARTIKEL_NAMN : "Article";
+    }
+    
+    public String T__ARTIKEL_KOMMENT(){
+        return LANG_ENG == false ? T__ARTIKEL_KOMMENT : "Description";
+    }
+    
+    public String T__ARTIKEL_ANTAL(){
+        return LANG_ENG == false ? T__ARTIKEL_ANTAL : "Ammount";
+    }
+    
+    public String T__ARTIKEL_ENHET(){
+        return LANG_ENG == false ? T__ARTIKEL_ENHET : "Unit";
+    }
+    
+    public String T__ARTIKEL_PRIS(){
+        return LANG_ENG == false ? T__ARTIKEL_PRIS : "Unit price";
+    }
+    
+    public String T__FTG_KONTAKTA_OSS(){
+        return LANG_ENG == false ? T__FTG_KONTAKTA_OSS : "Contact us";
+    }
+    
+    public String T__FTG_BETALA_TILL(){
+        return LANG_ENG == false ? T__FTG_BETALA_TILL : "Pay to";
+    }
+    
+    public String T__FTG_TELEFON(){
+        return LANG_ENG == false ? T__FTG_TELEFON : "Phone";
+    }
+    
+    public String T__FTG_EPOST(){
+        return LANG_ENG == false ? T__FTG_EPOST : "E-mail";
+    }
+    
+    public String T__FTG_KONTO(){
+        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_KONTO : "BIC";
+    }
+    
+    public String T__FTG_SWISH(){
+        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
+    }
+    
+    public String T__FTG_MOMS_REG_NR(){
+        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_MOMS_REG_NR : "Our VAT";
+    }
+    
     public String get_ENHET(HashMap<String, String> map) {
         //
         //
