@@ -45,12 +45,16 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
+    public static final boolean LANG_ENG = true;
+    public static final boolean FOREIGN_CUSTOMER = true;
+    public static final boolean EU_CUSTOMER = true;
+    
     // I'am now no using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
     // OBS! No Desktop icon creation for the MAC-OS
     public final static boolean IS_MAC_OS = false; 
     //
-    private final static boolean IS_DISTRIBUTION = true;
+    private final static boolean IS_DISTRIBUTION = false;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;

@@ -6,6 +6,9 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HelpBuh.EU_CUSTOMER;
+import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
+import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
@@ -13,11 +16,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -109,6 +109,7 @@ public class HTMLPrint_A extends HTMLPrint {
             "td {padding-left: 4px;}",
             //
             ".marginTop {margin-top: 5px;}",
+            ".marginTopB {margin-top: 50px;}",
             ".marginLeft {margin-left: 10px;}",
             ".marginLeftB {margin-left: 5px;}",
             ".paddingLeft {padding-left: 5px;}",
@@ -227,6 +228,8 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + articles_to_html(articles_map_list)
                 //
+                + foreign_faktura__reverse_charge()
+                //
                 + rutAvdrag() //[#RUTROT#]
                 //
                 + ovmvantSkattNotation()
@@ -250,13 +253,19 @@ public class HTMLPrint_A extends HTMLPrint {
      */
     private String brElements() {
         //
+        int INITIAL_AMMOUNT = 17;
+        //
+        if(EU_CUSTOMER){
+            INITIAL_AMMOUNT = 12;
+        }
+        //
         if (articles_map_list == null) {
             return "";
         }
         //
         String html = "";
         //
-        int br_to_add = 17 - articles_map_list.size();
+        int br_to_add = INITIAL_AMMOUNT - articles_map_list.size();
         //
         if (isRut()) {
             br_to_add -= (map_rut_pers.size()) + 3;
@@ -279,11 +288,11 @@ public class HTMLPrint_A extends HTMLPrint {
             title_nr = "Offertnr";
             title_datum = "Offertdatum";
         } else {
-            title_nr = T__FAKTURA_NR();
-            title_datum = T__FAKTURA_DATUM();
+            title_nr = T__FAKTURA_NR;
+            title_datum = T__FAKTURA_DATUM;
         }
         //
-        String[] headers = new String[]{title_nr, T__KUND_NR(), title_datum};
+        String[] headers = new String[]{title_nr, T__KUND_NR, title_datum};
         String[] values = new String[]{map_a.get(T__FAKTURA_NR), map_a.get(T__KUND_NR), map_a.get(T__FAKTURA_DATUM)};
         //
         return "<table style='margin-top:15px;'>"
@@ -354,11 +363,11 @@ public class HTMLPrint_A extends HTMLPrint {
         String html_ = "<table class='marginTop'>";
         //
         String[] values_t_1 = new String[]{
-            T__FAKTURA_ER_REF() + ": " + map_b.get(T__FAKTURA_ER_REF),
-            T__FAKTURA_VAR_REF() + ": " + map_c.get(T__FAKTURA_VAR_REF),};
+            T__FAKTURA_ER_REF + ": " + map_b.get(T__FAKTURA_ER_REF),
+            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),};
         //
         String[] values_t_2 = new String[]{
-            T__FAKTURA_ERT_ORDER_NR() + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
+            T__FAKTURA_ERT_ORDER_NR + ": " + map_b.get(T__FAKTURA_ERT_ORDER_NR),
             LANG_ENG == false
             ? T__FAKTURA_LEV_VILKOR + ": " + map_b.get(T__FAKTURA_LEV_VILKOR) + " / " + T__FAKTURA_LEV_SATT + ": " + map_b.get(T__FAKTURA_LEV_SATT)
             : ""};
@@ -398,11 +407,19 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td>";
         //
-        html_ += T__FTG_BETALA_TILL
-                + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            html_ += T__FTG_BETALA_TILL
+                    + _get_exist_a(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
+                    + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO))
+                    + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH));
+        } else {
+            html_ += T__FTG_BETALA_TILL
+                    + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                    + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
+                    + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
+                    + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        }
+
         //
         html_ += "</td>";
         html_ += "</tr>";
@@ -435,8 +452,10 @@ public class HTMLPrint_A extends HTMLPrint {
         String att_betala_total = getAttBetalaTotal();
         String total_belopp_innan_avdrag = getTotalBeloppInnanAvdrag();
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total};
+        String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
+        //
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total + " " + currencyUnit};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
         HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total, total_belopp_innan_avdrag);
@@ -469,9 +488,16 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "</div>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
-                + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
-                + T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
+        //
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            html_ += T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + "";
+        } else {
+            html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
+                    + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
+                    + T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
+        }
+
+        //
         html_ += "</div>";
         //
         html_ += "</div>";
@@ -529,23 +555,21 @@ public class HTMLPrint_A extends HTMLPrint {
         boolean containsKomment = listContainsAtLeastOne(list, DB.BUH_F_ARTIKEL__KOMMENT);
         boolean containsSameMomsSats = listContainsSameEntries(list, DB.BUH_F_ARTIKEL__MOMS_SATS);
         //
-
-        //
         html_ += "<tr class='bold'>";
         //
         if (containsArticleNames) {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_NAMN + "</td>";
         }
         //
         if (containsKomment) {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_KOMMENT + "</td>";
         }
         //
         if (containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt) {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL() + " / " + T__ARTIKEL_ENHET() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + " / " + T__ARTIKEL_ENHET + "</td>";
         } else {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET() + "</td>";
-            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
         }
         //
         //
@@ -558,7 +582,7 @@ public class HTMLPrint_A extends HTMLPrint {
             html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR + "</td>";
         }
         //
-        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS() + "</td>";
+        html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS + "</td>";
         //
         html_ += "</tr>";
         //
@@ -624,6 +648,26 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         html_ += "</span>"; // "class='no-border'"
         //
+        html_ += "</table>";
+        //
+        return html_;
+    }
+    
+    private String foreign_faktura__reverse_charge(){
+        //
+        if(EU_CUSTOMER == false){
+            return "";
+        }
+        //
+        String html_ = "<table class='marginTopB'>";
+        //
+        html_ += "<tr>";
+        html_ += "<td class='bold'>";
+        //
+        html_ += "REVERSE CHARGE";
+        //
+        html_ += "</td>";
+        html_ += "</tr>";
         html_ += "</table>";
         //
         return html_;
