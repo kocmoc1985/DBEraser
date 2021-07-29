@@ -12,6 +12,7 @@ import java.util.HashMap;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HTMLBasic;
@@ -48,8 +49,6 @@ import java.util.logging.Logger;
  * @author KOCMOC
  */
 public abstract class HTMLPrint extends HTMLBasic {
-
-    
 
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
 
@@ -97,7 +96,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_RUT_TOTAL_BELOPP = "Total belopp"; // Rut/Rot
     public static final String T__FAKTURA_FRAKT = "Frakt";
     public static final String T__FAKTURA_EXP_AVG = "Exp avg";
-    public static final String T__FAKTURA_EXKL_MOMS =LANG_ENG == false ? "Exkl moms" : "Without VAT";
+    public static final String T__FAKTURA_EXKL_MOMS = LANG_ENG == false ? "Exkl moms" : "Without VAT";
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = LANG_ENG == false ? "Moms kr" : "VAT EUR";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
@@ -114,15 +113,16 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__ARTIKEL_NAMN = LANG_ENG == false ? "Artikel" : "Article";
     public static final String T__ARTIKEL_KOMMENT = LANG_ENG == false ? "Beskrivning" : "Description";
     public static final String T__ARTIKEL_ANTAL = LANG_ENG == false ? "Antal" : "Ammount";
-    public static final String T__ARTIKEL_ENHET = LANG_ENG == false ? "Enhet" : "Unit";;
+    public static final String T__ARTIKEL_ENHET = LANG_ENG == false ? "Enhet" : "Unit";
+    ;
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
     public static final String T__ARTIKEL_MOMS_SATS = "Moms%";
     public static final String T__ARTIKEL_MOMS_KR = "Moms Kr";
     public static final String T__ARTIKEL_PRIS = LANG_ENG == false ? "A`Pris" : "Unit price";
     public static final String T__ARTIKEL_OMVANT_SKATT = "Omvänt skattskyldighet";
     //
-    public static final String T__FTG_KONTAKTA_OSS = LANG_ENG == false ? "Kontakta oss" : "Contact us"; 
-    public static final String T__FTG_BETALA_TILL = LANG_ENG == false ? "Betala till" : "Pay to"; 
+    public static final String T__FTG_KONTAKTA_OSS = LANG_ENG == false ? "Kontakta oss" : "Contact us";
+    public static final String T__FTG_BETALA_TILL = LANG_ENG == false ? "Betala till" : "Pay to";
     public static final String T__FTG_TELEFON = LANG_ENG == false ? "Telefon" : "Phone";
     public static final String T__FTG_EPOST = LANG_ENG == false ? "Mejla" : "E-mail";
     public static final String T__FTG_BANKGIRO = "BG";
@@ -182,11 +182,10 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
-
     public String get_ENHET(HashMap<String, String> map) {
         //
-         //
-        HashMap<String,String>dict = new HashMap<>();
+        //
+        HashMap<String, String> dict = new HashMap<>();
         //
         dict.put("st", "Pcs");
         dict.put("Förp", "Pkg");
@@ -289,21 +288,27 @@ public abstract class HTMLPrint extends HTMLBasic {
         //Du har fått offert från: Pico AB
         // + "\n\n\n Fakturera enkelt och gratis! Besök oss på www.lafakturering.se"; -> NOT WORKING!![2021-06-18]
         // + "<br><br><br>Fakturera enkelt och gratis! Besök oss på www.lafakturering.se" -> NOT WORKING!![2021-06-18]
+        //
         String body = "Du har fått " + getHTMLPrintTitle().toLowerCase() + " från: " + getForetagsNamn();
+        //
+        if (FOREIGN_CUSTOMER) {
+            body = "Hello! This " +  getHTMLPrintTitle().toLowerCase() + " is automatically sent from " + getForetagsNamn(); 
+        }
+        //
         return body;
     }
 
     protected String _get_colon_sep(String key, HashMap<String, String> map) {
         //
-        HashMap<String,String>dict = new HashMap<>();
+        HashMap<String, String> dict = new HashMap<>();
         //
         dict.put(T__FAKTURA_FORFALLODATUM__FLEX, "Due date");
         dict.put(T__FAKTURA_BETAL_VILKOR__FLEX, "Terms of payment");
         dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
         //
-        String key_= key;
+        String key_ = key;
         //
-        if(LANG_ENG){
+        if (LANG_ENG) {
             key_ = dict.get(key);
         }
         //

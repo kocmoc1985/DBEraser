@@ -409,7 +409,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         if (HelpBuh.FOREIGN_CUSTOMER) {
             html_ += T__FTG_BETALA_TILL
-                    + _get_exist_a(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
+                    + _get_exist_d(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
                     + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO))
                     + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH));
         } else {
