@@ -33,6 +33,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
@@ -45,14 +46,10 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    public static final boolean LANG_ENG = true;
-    public static final boolean FOREIGN_CUSTOMER = true;
-    public static final boolean EU_CUSTOMER = true;
-    
     // I'am now no using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
     // OBS! No Desktop icon creation for the MAC-OS
-    public final static boolean IS_MAC_OS = false; 
+    public final static boolean IS_MAC_OS = false;
     //
     private final static boolean IS_DISTRIBUTION = false;
     //
@@ -62,7 +59,32 @@ public class HelpBuh {
     public static boolean USE_TEST_DB = false; // [#TEST-DB#]
     public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
+    public static boolean LANG_ENG = false;
+    public static boolean FOREIGN_CUSTOMER = false;
+    public static boolean EU_CUSTOMER = false;
 
+    public static void predefinedForeignCustomers(String fakturaKundNamn) {
+        //
+        if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont") == false) {
+            return;
+        }
+        //
+        if (fakturaKundNamn.contains("Trico") || fakturaKundNamn.contains("QEW")) {
+            LANG_ENG = true;
+            FOREIGN_CUSTOMER = true;
+            EU_CUSTOMER = true;
+        } else if (fakturaKundNamn.contains("Compounds")) {
+            LANG_ENG = true;
+            FOREIGN_CUSTOMER = true;
+            EU_CUSTOMER = false;
+        } else {
+            LANG_ENG = false;
+            FOREIGN_CUSTOMER = false;
+            EU_CUSTOMER = false;
+        }
+    }
+
+    //
     static {
         //
         if (IS_DISTRIBUTION) {
@@ -215,7 +237,7 @@ public class HelpBuh {
     }
 
     public static boolean OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = false;
-    
+
     /**
      * JSON: {"version":"versionVersion"}
      *
@@ -254,10 +276,10 @@ public class HelpBuh {
         //
         boolean oblig = Boolean.parseBoolean(obligatory);
         //
-        if(newVerAvailable && obligatory != null && oblig){
-                //[#OBLIGATORY-UPDATE#]
-                OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = Boolean.parseBoolean(obligatory);
-            }
+        if (newVerAvailable && obligatory != null && oblig) {
+            //[#OBLIGATORY-UPDATE#]
+            OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = Boolean.parseBoolean(obligatory);
+        }
         //
     }
 

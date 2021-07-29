@@ -308,6 +308,8 @@ public class InvoiceB extends Basic_Buh {
 
     protected void all_invoices_table_clicked(String fakturaId) {
         //
+        HelpBuh.predefinedForeignCustomers(bim.getFakturaKund());// [2021-07-29]
+        //
         fillFakturaArticlesTable(fakturaId);
         //
         showImportantKomment();
