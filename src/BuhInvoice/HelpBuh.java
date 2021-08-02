@@ -46,12 +46,12 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 public class HelpBuh {
 
-    // I'am now no using "save to desktop" both for win & mac. 
+    // I'am now not using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
     // OBS! No Desktop icon creation for the MAC-OS
     public final static boolean IS_MAC_OS = false;
     //
-    private final static boolean IS_DISTRIBUTION = false;
+    private final static boolean IS_DISTRIBUTION = true;
     //
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;
@@ -59,15 +59,20 @@ public class HelpBuh {
     public static boolean USE_TEST_DB = false; // [#TEST-DB#]
     public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
-    public static boolean LANG_ENG = false;
-    public static boolean FOREIGN_CUSTOMER = false;
-    public static boolean EU_CUSTOMER = false;
+    //
+    //
+    public static boolean LANG_ENG = false; // DON'T CHANGE MANUALLY
+    public static boolean FOREIGN_CUSTOMER = false; // DON'T CHANGE MANUALLY
+    public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
+    public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
     public static void predefinedForeignCustomers(String fakturaKundNamn) {
         //
         if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont") == false) {
             return;
         }
+        //
+        COMPANY_MIXCONT = true;
         //
         if (fakturaKundNamn.contains("Trico") || fakturaKundNamn.contains("QEW")) {
             LANG_ENG = true;
