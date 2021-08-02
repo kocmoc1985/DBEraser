@@ -262,9 +262,9 @@ public abstract class HTMLPrint extends HTMLBasic {
     public String T__FTG_SWISH() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
     }
-
-    public String T__FTG_MOMS_REG_NR() {
-        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_MOMS_REG_NR : "Our VAT";
+    
+    public String T__FTG_MOMS_REG_NR(){
+        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
     }
 
     public String get_ENHET(HashMap<String, String> map) {
