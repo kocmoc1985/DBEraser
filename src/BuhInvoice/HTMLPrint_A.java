@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
 import static BuhInvoice.HelpBuh.EU_CUSTOMER;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
@@ -255,7 +256,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         int INITIAL_AMMOUNT = 17;
         //
-        if(EU_CUSTOMER){
+        if (EU_CUSTOMER) {
             INITIAL_AMMOUNT = 12;
         }
         //
@@ -412,6 +413,10 @@ public class HTMLPrint_A extends HTMLPrint {
                     + _get_exist_d(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
                     + _get_exist_a(T__FTG_KONTO(), _get(map_f, DB.BUH_KUND__KONTO))
                     + _get_exist_a(T__FTG_SWISH(), _get(map_f, DB.BUH_KUND__SWISH));
+        } else if (HelpBuh.FOREIGN_CUSTOMER == false && COMPANY_MIXCONT) {
+            html_ += T__FTG_BETALA_TILL()
+                    + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                    + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO));
         } else {
             html_ += T__FTG_BETALA_TILL()
                     + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
@@ -652,10 +657,10 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return html_;
     }
-    
-    private String foreign_faktura__reverse_charge(){
+
+    private String foreign_faktura__reverse_charge() {
         //
-        if(EU_CUSTOMER == false){
+        if (EU_CUSTOMER == false) {
             return "";
         }
         //
