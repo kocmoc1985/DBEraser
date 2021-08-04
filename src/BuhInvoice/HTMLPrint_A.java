@@ -12,6 +12,7 @@ import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
+import icons.IconUrls;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -256,7 +257,8 @@ public class HTMLPrint_A extends HTMLPrint {
         int INITIAL_AMMOUNT = 17;
         //
         if(EU_CUSTOMER){
-            INITIAL_AMMOUNT = 12;
+//            INITIAL_AMMOUNT = 12; // If having only text = "REVERSE CHARGE"
+            INITIAL_AMMOUNT = 6; // If using the picture: "reverse_charge.png"
         }
         //
         if (articles_map_list == null) {
@@ -320,7 +322,6 @@ public class HTMLPrint_A extends HTMLPrint {
         } else {
             return "<td rowspan='2' width='50%'><h1 class='marginLeft'>" + map_f.get(DB.BUH_KUND__NAMN) + "</h1></td>"
                     + "<td width='50%'><h1 class='marginLeft'>" + getHTMLPrintTitle() + "</h1></td>";
-
         }
         //
     }
@@ -496,7 +497,6 @@ public class HTMLPrint_A extends HTMLPrint {
                     + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
                     + T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
         }
-
         //
         html_ += "</div>";
         //
@@ -659,12 +659,17 @@ public class HTMLPrint_A extends HTMLPrint {
             return "";
         }
         //
+        String img_a = IconUrls.REVERSER_CHARGE.toString();
+        //
         String html_ = "<table class='marginTopB'>";
         //
         html_ += "<tr>";
         html_ += "<td class='bold'>";
         //
-        html_ += "REVERSE CHARGE";
+//        html_ += "REVERSE CHARGE";
+        // OBS! Note iam using a none cropped image (171 kb) because if iam using one with 
+        // lower quality the "pdf" button will produce a low quality image.
+        html_ += "<img src='" + img_a + "' alt='image' width='" + 128 + "' height='" + 128 + "'>";
         //
         html_ += "</td>";
         html_ += "</tr>";
@@ -682,6 +687,7 @@ public class HTMLPrint_A extends HTMLPrint {
         } else {
             return "";
         }
+        //
     }
 
     private String rutAvdrag() {
