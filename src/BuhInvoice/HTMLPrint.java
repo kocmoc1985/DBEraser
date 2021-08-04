@@ -12,6 +12,7 @@ import java.util.HashMap;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import static BuhInvoice.GP_BUH._get;
+import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.EmailSendingStatus;
@@ -131,7 +132,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FTG_KONTO = "Konto";
     public static final String T__FTG_SWISH = "Swish";
     public static final String T__FTG_ORGNR = "Organisationsnr";
-    public static final String T__FTG_MOMS_REG_NR = "Momsregnr"; 
+    public static final String T__FTG_MOMS_REG_NR = "Momsregnr";
     public static final String T__FTG_F_SKATT = "Godkänd för F-skatt";
 
     public static final String T__RUT_PERS = "Preliminär skattereduktion";
@@ -181,91 +182,91 @@ public abstract class HTMLPrint extends HTMLBasic {
         init();
         //
     }
-    
-    public String T__FAKTURA_NR(){
+
+    public String T__FAKTURA_NR() {
         return LANG_ENG == false ? T__FAKTURA_NR : "Invoice No.";
     }
-    
-    public String T__KUND_NR(){
+
+    public String T__KUND_NR() {
         return LANG_ENG == false ? T__KUND_NR : "Custommer No.";
     }
-    
-    public String T__FAKTURA_DATUM(){
+
+    public String T__FAKTURA_DATUM() {
         return LANG_ENG == false ? T__FAKTURA_DATUM : "Invoice date";
     }
-    
-    public String T__FAKTURA_ER_REF(){
-        return LANG_ENG == false ? T__FAKTURA_ER_REF : "Your reference";        
+
+    public String T__FAKTURA_ER_REF() {
+        return LANG_ENG == false ? T__FAKTURA_ER_REF : "Your reference";
     }
-    
-    public String T__FAKTURA_VAR_REF(){
+
+    public String T__FAKTURA_VAR_REF() {
         return LANG_ENG == false ? T__FAKTURA_VAR_REF : "Our reference";
     }
-    
-    public String T__FAKTURA_ERT_ORDER_NR(){
+
+    public String T__FAKTURA_ERT_ORDER_NR() {
         return LANG_ENG == false ? T__FAKTURA_ERT_ORDER_NR : "Order / Note";
     }
 
-    public String T__FAKTURA_LEV_VILKOR(){
+    public String T__FAKTURA_LEV_VILKOR() {
         return LANG_ENG == false ? T__FAKTURA_LEV_VILKOR : "Without VAT";
     }
-    
-    public String T__FAKTURA_EXKL_MOMS(){
-        return  LANG_ENG == false ? T__FAKTURA_EXKL_MOMS : "Without VAT";
+
+    public String T__FAKTURA_EXKL_MOMS() {
+        return LANG_ENG == false ? T__FAKTURA_EXKL_MOMS : "Without VAT";
     }
-    
-    public String T__FAKTURA_MOMS_KR(){
+
+    public String T__FAKTURA_MOMS_KR() {
         return LANG_ENG == false ? T__FAKTURA_MOMS_KR : "VAT EUR";
     }
-    
-    public String T__ARTIKEL_NAMN(){
+
+    public String T__ARTIKEL_NAMN() {
         return LANG_ENG == false ? T__ARTIKEL_NAMN : "Article";
     }
-    
-    public String T__ARTIKEL_KOMMENT(){
+
+    public String T__ARTIKEL_KOMMENT() {
         return LANG_ENG == false ? T__ARTIKEL_KOMMENT : "Description";
     }
-    
-    public String T__ARTIKEL_ANTAL(){
+
+    public String T__ARTIKEL_ANTAL() {
         return LANG_ENG == false ? T__ARTIKEL_ANTAL : "Ammount";
     }
-    
-    public String T__ARTIKEL_ENHET(){
+
+    public String T__ARTIKEL_ENHET() {
         return LANG_ENG == false ? T__ARTIKEL_ENHET : "Unit";
     }
-    
-    public String T__ARTIKEL_PRIS(){
+
+    public String T__ARTIKEL_PRIS() {
         return LANG_ENG == false ? T__ARTIKEL_PRIS : "Unit price";
     }
-    
-    public String T__FTG_KONTAKTA_OSS(){
+
+    public String T__FTG_KONTAKTA_OSS() {
         return LANG_ENG == false ? T__FTG_KONTAKTA_OSS : "Contact us";
     }
-    
-    public String T__FTG_BETALA_TILL(){
+
+    public String T__FTG_BETALA_TILL() {
         return LANG_ENG == false ? T__FTG_BETALA_TILL : "Pay to";
     }
-    
-    public String T__FTG_TELEFON(){
+
+    public String T__FTG_TELEFON() {
         return LANG_ENG == false ? T__FTG_TELEFON : "Phone";
     }
-    
-    public String T__FTG_EPOST(){
+
+    public String T__FTG_EPOST() {
         return LANG_ENG == false ? T__FTG_EPOST : "E-mail";
     }
-    
-    public String T__FTG_KONTO(){
+
+    public String T__FTG_KONTO() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_KONTO : "BIC";
     }
-    
-    public String T__FTG_SWISH(){
+
+    public String T__FTG_SWISH() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
     }
     
     public String T__FTG_MOMS_REG_NR(){
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
     }
-    
+
     public String get_ENHET(HashMap<String, String> map) {
         //
         //
@@ -373,10 +374,10 @@ public abstract class HTMLPrint extends HTMLBasic {
         // + "\n\n\n Fakturera enkelt och gratis! Besök oss på www.lafakturering.se"; -> NOT WORKING!![2021-06-18]
         // + "<br><br><br>Fakturera enkelt och gratis! Besök oss på www.lafakturering.se" -> NOT WORKING!![2021-06-18]
         //
-        String body = "Du har fått " + getHTMLPrintTitle().toLowerCase() + " från: " + getForetagsNamn();
+        String body = "Hej! Du har fått " + getHTMLPrintTitle().toLowerCase() + " från: " + getForetagsNamn();
         //
         if (FOREIGN_CUSTOMER) {
-            body = "Hello! This " +  getHTMLPrintTitle().toLowerCase() + " is automatically sent from " + getForetagsNamn(); 
+            body = "Dear customer! This " + getHTMLPrintTitle().toLowerCase() + " is automatically sent from " + getForetagsNamn();
         }
         //
         return body;
@@ -506,6 +507,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
+
+    
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
