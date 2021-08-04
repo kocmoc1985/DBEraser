@@ -257,7 +257,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         int INITIAL_AMMOUNT = 17;
         //
-        if(EU_CUSTOMER){
+        if(EU_CUSTOMER && COMPANY_MIXCONT){
 //            INITIAL_AMMOUNT = 12; // If having only text = "REVERSE CHARGE"
             INITIAL_AMMOUNT = 6; // If using the picture: "reverse_charge.png"
         }
@@ -660,7 +660,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String foreign_faktura__reverse_charge() {
         //
-        if (EU_CUSTOMER == false) {
+        if (EU_CUSTOMER == false && COMPANY_MIXCONT) {
             return "";
         }
         //
