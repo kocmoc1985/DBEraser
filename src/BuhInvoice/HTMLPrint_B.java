@@ -8,6 +8,7 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HTMLPrint.NO_BORDER;
 import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
+import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
@@ -54,8 +55,8 @@ public class HTMLPrint_B extends HTMLPrint {
     @Override
     protected void buttonLogic() {
         //
-        if(HelpBuh.IS_MAC_OS){
-           GP_BUH.setEnabled(jButton_send_with_outlook, false);  
+        if (HelpBuh.IS_MAC_OS) {
+            GP_BUH.setEnabled(jButton_send_with_outlook, false);
         }
         //
     }
@@ -82,7 +83,7 @@ public class HTMLPrint_B extends HTMLPrint {
     @Override
     public String[] getCssRules() {
         //
-        String border__or_no_border; 
+        String border__or_no_border;
         //
         if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
             border__or_no_border = "td {border: 0px solid gray;}";
@@ -116,7 +117,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }
 
     protected final static String getAttBetalaTitle() {
-        return "ATT BETALA";
+        return LANG_ENG == false ? "ATT BETALA" : "TO PAY";
     }
 
     private String getForfalloDatumFlexCol() {
@@ -159,7 +160,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 + brElements()
                 //
-                + faktura_data_C_to_html()
+                + faktura_data_C_to_html__addr()
                 //
                 + "<br><br>"
                 //
@@ -329,13 +330,13 @@ public class HTMLPrint_B extends HTMLPrint {
         html_ += "<td>"; // style='padding:5 5 5 5px;'
         //
         //[2021-05-18] This additional construction with <table> is used for lining-up with previous sections
-        html_ += "<table>"; 
+        html_ += "<table>";
         html_ += "<tr>";
         html_ += "<td>";
         //
         betalAlternativStringBuilder();
         //
-        html_ += "</table>"; 
+        html_ += "</table>";
         html_ += "</tr>";
         html_ += "</td>";
         //
@@ -388,46 +389,20 @@ public class HTMLPrint_B extends HTMLPrint {
         String ATT_BETALA_TITLE = getAttBetalaTitle();
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP,T__FAKTURA_RUT_AVDRAG_TOTAL,T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS, T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR, T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX, ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag,rut_avdrag_total,frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg};
+        String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
         //
-        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt,rut_avdrag_total,total_belopp_innan_avdrag);
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX(), ATT_BETALA_TITLE};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg + " " + currencyUnit};
+        //
+        HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt, rut_avdrag_total, total_belopp_innan_avdrag);
         //
         html_ += internal_table_2r_xc(hvp.getHeaders(), hvp.getValues(), hvp.getColToMakeBold(), "marginLeftB");
         //
         html_ += "</div>";//</table>
         //
-        if(NO_BORDER){ //[#NO-BORDER-PROPPER#]
+        if (NO_BORDER) { //[#NO-BORDER-PROPPER#]
             html_ += "<div style='width:95%;height:5px;border-bottom:1px solid gray;margin-right:15px'></div>";
         }
-        //
-        return html_;
-    }
-
-    private String faktura_data_C_to_html() {
-        //
-        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
-        //
-        html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + "," + _get(map_g, DB.BUH_ADDR__POSTNR_ZIP) + " " + _get(map_g, DB.BUH_ADDR__ADDR_A) + ".";
-        html_ += "</p>";
-        //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_KONTAKTA_OSS + _get_exist_b(T__FTG_TELEFON, _get(map_g, DB.BUH_ADDR__TEL_A))
-                + _get_exist_b(T__FTG_EPOST, _get(map_f, DB.BUH_KUND__EPOST)) + ".";
-
-//        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
-        html_ += "</div>";
-        //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
-                + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
-                + T__FTG_MOMS_REG_NR + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
-        html_ += "</div>";
-        //
-        html_ += "</div>";
-        //
-//        System.out.println("" + html_);
         //
         return html_;
     }
@@ -670,7 +645,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
-            sendWithStandardEmailClient(true);
+        sendWithStandardEmailClient(true);
     }//GEN-LAST:event_jButton_send_with_outlookActionPerformed
 
     private void jButton_send_faktura_any_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_faktura_any_emailActionPerformed
@@ -717,7 +692,6 @@ public class HTMLPrint_B extends HTMLPrint {
 //        x.start();
 //        //
 //    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;

@@ -462,39 +462,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-    private String faktura_data_C_to_html__addr() {
-        //
-        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
-        //
-        html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A)) + ".";
-        html_ += "</p>";
-        //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        html_ += T__FTG_KONTAKTA_OSS() + _get_exist_b(T__FTG_TELEFON(), _get(map_g, DB.BUH_ADDR__TEL_A))
-                + _get_exist_b(T__FTG_EPOST(), _get(map_f, DB.BUH_KUND__EPOST)) + ".";
-
-//        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
-        html_ += "</div>";
-        //
-        html_ += "<div class='fontStd' style='text-align:center'>";
-        //
-        if (HelpBuh.FOREIGN_CUSTOMER) {
-            html_ += T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + "";
-        } else {
-            html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
-                    + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
-                    + T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
-        }
-        //
-        html_ += "</div>";
-        //
-        html_ += "</div>";
-        //
-//        System.out.println("" + html_);
-        //
-        return html_;
-    }
 
     private String countMoms(HashMap<String, String> map) {
         int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));

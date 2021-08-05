@@ -183,9 +183,13 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
+    public String T__FAKTURA_DROJMALSRANTA__FLEX() {
+        return LANG_ENG == false ? T__FAKTURA_DROJMALSRANTA__FLEX : "Penalty EUR";
+    }
+
     public String T__FAKTURA_NR() {
         return LANG_ENG == false ? T__FAKTURA_NR : "Invoice No.";
-    }
+    } // T__FAKTURA_DROJMALSRANTA__FLEX
 
     public String T__KUND_NR() {
         return LANG_ENG == false ? T__KUND_NR : "Custommer No.";
@@ -262,13 +266,11 @@ public abstract class HTMLPrint extends HTMLBasic {
     public String T__FTG_SWISH() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
     }
-    
-    public String T__FTG_MOMS_REG_NR(){
+
+    public String T__FTG_MOMS_REG_NR() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
     }
 
-    
-    
     public String get_ENHET(HashMap<String, String> map) {
         //
         //
@@ -288,8 +290,42 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-    
-    protected String betalAlternativStringBuilder(){
+
+    protected String faktura_data_C_to_html__addr() {
+        //
+        String html_ = "<div class='marginTop'>";//<table class='marginTop'>
+        //
+        html_ += "<p class='fontStd' style='text-align:center'>";
+        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A)) + ".";
+        html_ += "</p>";
+        //
+        html_ += "<div class='fontStd' style='text-align:center'>";
+        html_ += T__FTG_KONTAKTA_OSS() + _get_exist_b(T__FTG_TELEFON(), _get(map_g, DB.BUH_ADDR__TEL_A))
+                + _get_exist_b(T__FTG_EPOST(), _get(map_f, DB.BUH_KUND__EPOST)) + ".";
+
+//        html_ += T__FTG_TELEFON + " " + _get(map_g, DB.BUH_ADDR__TEL_A) + ". " + T__FTG_EPOST + " " + _get(map_f, DB.BUH_KUND__EPOST);
+        html_ += "</div>";
+        //
+        html_ += "<div class='fontStd' style='text-align:center'>";
+        //
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            html_ += T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + "";
+        } else {
+            html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
+                    + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
+                    + T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
+        }
+        //
+        html_ += "</div>";
+        //
+        html_ += "</div>";
+        //
+//        System.out.println("" + html_);
+        //
+        return html_;
+    }
+
+    protected String betalAlternativStringBuilder() {
         //
         String html_ = "";
         //
@@ -416,7 +452,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         dict.put(T__FAKTURA_FORFALLODATUM__FLEX, "Due date");
         dict.put(T__FAKTURA_BETAL_VILKOR__FLEX, "Terms of payment");
         dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
-        dict.put(T__FAKTURA_UTSKRIVET,"Printed");
+        dict.put(T__FAKTURA_UTSKRIVET, "Printed");
         //
         String key_ = key;
         //
@@ -534,8 +570,6 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-
-    
 
     protected String getHTMLPrintTitle() {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
