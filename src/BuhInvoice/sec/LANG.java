@@ -152,7 +152,7 @@ public class LANG {
     }
 
     public static String MSG_29 = "Version: " + GP_BUH.VERSION + " stöds ej längre, hämta en ny version från " + GP_BUH.LA_WEB_ADDR;
-    
+
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";
@@ -225,10 +225,17 @@ public class LANG {
     }
 
     private static String PAMMINELSE_MSG_MAIN(String fakturanr) {
-        return "Kära Kund! Fakturanr " + fakturanr + " är enligt våra noteringar fortfarande obetald."
-                + " Därför ber vi er att omgående betala in det förfallna beloppet.\n"
-                + "Vänligen uppge fakturanummer vid betalning."
-                + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
+        if (HelpBuh.LANG_ENG == false) {
+            return "Kära Kund! Fakturanr " + fakturanr + " är enligt våra noteringar fortfarande obetald."
+                    + " Därför ber vi er att omgående betala in det förfallna beloppet.\n"
+                    + "Vänligen uppge fakturanummer vid betalning."
+                    + "Kontakta vår handläggare om du har frågor kring denna betalningspåminnelse.";
+        } else {
+            return "Dear Customer, our records show that invoice " + fakturanr + " is still not paid.\n"
+                    + "Please proceed with the payment as soon as possible. Please specify invoice no. in the payment."
+                    + " Contact us if you have any questions. Ignore this message if the payment is already done.";
+        }
+        
     }
 
     public static String PAMMINELSE_MSG_MAIN__AUTO(String fakturanr) {
@@ -258,7 +265,7 @@ public class LANG {
      */
     public static String MSG_ERROR_1 = "Uppladning misslyckades helt eller delvis";
 
-    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert,File f) {
+    public static String FAKTURA_UTSKRIVEN_OUTLOOK(String fakturaFileName, boolean remminder, boolean isOffert, File f) {
         //
         String name;
         //
@@ -270,7 +277,7 @@ public class LANG {
             name = Fakturan;
         }
         //
-        return name + " sparades till "+ f.getAbsolutePath() +", glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
+        return name + " sparades till " + f.getAbsolutePath() + ", glöm ej att bifoga " + name.toLowerCase() + " i din e-post klient";
         //
     }
 
