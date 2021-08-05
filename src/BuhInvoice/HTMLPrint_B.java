@@ -334,7 +334,7 @@ public class HTMLPrint_B extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td>";
         //
-        betalAlternativStringBuilder();
+        html_ += betalAlternativStringBuilder();
         //
         html_ += "</table>";
         html_ += "</tr>";
