@@ -8,6 +8,7 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HTMLPrint.NO_BORDER;
 import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
+import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
@@ -196,7 +197,7 @@ public class HTMLPrint_B extends HTMLPrint {
 
     private String faktura_header_with_logo_to_html(String imgPath) {
         //
-        String[] headers = new String[]{T__FAKTURA_NR, T__KUND_NR, T__FAKTURA_DATUM};
+        String[] headers = new String[]{T__FAKTURA_NR(), T__KUND_NR(), T__FAKTURA_DATUM()};
         String[] values = new String[]{map_a.get(T__FAKTURA_NR), map_a.get(T__KUND_NR), map_a.get(T__FAKTURA_DATUM)};
         //
         return "<table style='margin-top:15px;'>"
@@ -214,7 +215,7 @@ public class HTMLPrint_B extends HTMLPrint {
 
     @Override
     protected String getHTMLPrintTitle() {
-        return LANG.PAMINNELSE;
+        return LANG_ENG == false ? LANG.PAMINNELSE : "Invoice Reminder";
 //          return "Påminnelse";
     }
 
@@ -271,12 +272,12 @@ public class HTMLPrint_B extends HTMLPrint {
         String html_ = "<table class='marginTop'>";
         //
         String[] values_t_1 = new String[]{
-            T__FAKTURA_VAR_REF + ": " + map_c.get(T__FAKTURA_VAR_REF),
-            T__FTG_TELEFON + ": " + _get(map_g, DB.BUH_ADDR__TEL_A)};
+            T__FAKTURA_VAR_REF() + ": " + map_c.get(T__FAKTURA_VAR_REF),
+            T__FTG_TELEFON() + ": " + _get(map_g, DB.BUH_ADDR__TEL_A)};
         //
         String[] values_t_2 = new String[]{
-            T__FTG_EPOST + ": " + _get(map_f, DB.BUH_KUND__EPOST),
-            "Notis" + ": "
+            T__FTG_EPOST() + ": " + _get(map_f, DB.BUH_KUND__EPOST),
+            T__FAKTURA_ERT_ORDER_NR() + ": "
         };
         //
         html_ += "<tr>"
@@ -332,11 +333,7 @@ public class HTMLPrint_B extends HTMLPrint {
         html_ += "<tr>";
         html_ += "<td>";
         //
-        html_ += T__FTG_BETALA_TILL
-                + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
-                + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
+        betalAlternativStringBuilder();
         //
         html_ += "</table>"; 
         html_ += "</tr>";

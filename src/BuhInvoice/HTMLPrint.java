@@ -88,7 +88,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
     public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
-    public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // only for "kontantfaktura"
+    public static final String T__FAKTURA_UTSKRIVET = "Utskrivet"; // 
     public static final String T__FAKTURA_VALFRI_TEXT = "Valfri text:"; // only for "kontantfaktura"
     public static final String T__FAKTURA_KREDITERAR_FAKTURA_NR = "Krediterar fakturanr";
     public static final String T__FAKTURA_XXXXXXX = "Ledig*";
@@ -267,6 +267,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
     }
 
+    
+    
     public String get_ENHET(HashMap<String, String> map) {
         //
         //
@@ -285,6 +287,30 @@ public abstract class HTMLPrint extends HTMLBasic {
             return dict.get(enhet);
         }
         //
+    }
+    
+    protected String betalAlternativStringBuilder(){
+        //
+        String html_ = "";
+        //
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            html_ += T__FTG_BETALA_TILL()
+                    + _get_exist_d(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
+                    + _get_exist_a(T__FTG_KONTO(), _get(map_f, DB.BUH_KUND__KONTO))
+                    + _get_exist_a(T__FTG_SWISH(), _get(map_f, DB.BUH_KUND__SWISH));
+        } else if (HelpBuh.FOREIGN_CUSTOMER == false && COMPANY_MIXCONT) {
+            html_ += T__FTG_BETALA_TILL()
+                    + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                    + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO));
+        } else {
+            html_ += T__FTG_BETALA_TILL()
+                    + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
+                    + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
+                    + _get_exist_a(T__FTG_SWISH(), _get(map_f, DB.BUH_KUND__SWISH))
+                    + _get_exist_a(T__FTG_KONTO(), _get(map_f, DB.BUH_KUND__KONTO));
+        }
+        //
+        return html_;
     }
 
     protected abstract void buttonLogic();
@@ -390,6 +416,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         dict.put(T__FAKTURA_FORFALLODATUM__FLEX, "Due date");
         dict.put(T__FAKTURA_BETAL_VILKOR__FLEX, "Terms of payment");
         dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
+        dict.put(T__FAKTURA_UTSKRIVET,"Printed");
         //
         String key_ = key;
         //
