@@ -23,5 +23,6 @@ public class IconUrls {
     public static final URL LOCKED_ICON = IconUrls.class.getResource("locked.png");
     public static final URL UNLOCKED_ICON = IconUrls.class.getResource("unlocked.png");
     public static final URL REVERSER_CHARGE = IconUrls.class.getResource("reverse_charge.png");
+    public static final URL C02_FREE = IconUrls.class.getResource("c02_free.jpg");
     
 }

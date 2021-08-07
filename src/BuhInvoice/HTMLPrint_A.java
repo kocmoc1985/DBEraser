@@ -32,6 +32,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
+    private boolean STAMP_IN_USE = false;
 
     public HTMLPrint_A(
             LAFakturering bim,
@@ -257,7 +258,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         int INITIAL_AMMOUNT = 17;
         //
-        if(EU_CUSTOMER && COMPANY_MIXCONT){
+        if (STAMP_IN_USE) {
 //            INITIAL_AMMOUNT = 12; // If having only text = "REVERSE CHARGE"
             INITIAL_AMMOUNT = 6; // If using the picture: "reverse_charge.png"
         }
@@ -462,7 +463,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-
     private String countMoms(HashMap<String, String> map) {
         int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));
         double pris = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__PRIS));
@@ -611,11 +611,18 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String foreign_faktura__reverse_charge() {
         //
-        if (EU_CUSTOMER == false && COMPANY_MIXCONT) {
+        String img_a;
+        //
+        if (EU_CUSTOMER && COMPANY_MIXCONT) {
+            img_a = IconUrls.REVERSER_CHARGE.toString();
+            STAMP_IN_USE = true;
+        } else if (COMPANY_MIXCONT) {
+            img_a = IconUrls.C02_FREE.toString();
+            STAMP_IN_USE = true;
+        } else {
+            STAMP_IN_USE = false;
             return "";
         }
-        //
-        String img_a = IconUrls.REVERSER_CHARGE.toString();
         //
         String html_ = "<table class='marginTopB'>";
         //
