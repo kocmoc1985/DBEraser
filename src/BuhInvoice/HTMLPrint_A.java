@@ -33,6 +33,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
     private boolean STAMP_IN_USE = false;
+    private int h;
 
     public HTMLPrint_A(
             LAFakturering bim,
@@ -258,9 +259,11 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         int INITIAL_AMMOUNT = 17;
         //
-        if (STAMP_IN_USE) {
+        if (STAMP_IN_USE && h == 128) {
 //            INITIAL_AMMOUNT = 12; // If having only text = "REVERSE CHARGE"
             INITIAL_AMMOUNT = 6; // If using the picture: "reverse_charge.png"
+        }else if(STAMP_IN_USE && h < 128){
+            INITIAL_AMMOUNT = 9;
         }
         //
         if (articles_map_list == null) {
@@ -612,13 +615,18 @@ public class HTMLPrint_A extends HTMLPrint {
     private String foreign_faktura__reverse_charge() {
         //
         String img_a;
+        int w;
         //
         if (EU_CUSTOMER && COMPANY_MIXCONT) {
             img_a = IconUrls.REVERSER_CHARGE.toString();
             STAMP_IN_USE = true;
+            w = 128;
+            h = 128;
         } else if (COMPANY_MIXCONT) {
             img_a = IconUrls.C02_FREE.toString();
             STAMP_IN_USE = true;
+            w = 128;
+            h = 75;
         } else {
             STAMP_IN_USE = false;
             return "";
@@ -632,7 +640,7 @@ public class HTMLPrint_A extends HTMLPrint {
 //        html_ += "REVERSE CHARGE";
         // OBS! Note iam using a none cropped image (171 kb) because if iam using one with 
         // lower quality the "pdf" button will produce a low quality image.
-        html_ += "<img src='" + img_a + "' alt='image' width='" + 128 + "' height='" + 128 + "'>";
+        html_ += "<img src='" + img_a + "' alt='image' width='" + w + "' height='" + h + "'>";
         //
         html_ += "</td>";
         html_ += "</tr>";
