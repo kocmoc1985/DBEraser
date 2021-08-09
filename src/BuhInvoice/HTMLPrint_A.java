@@ -262,7 +262,7 @@ public class HTMLPrint_A extends HTMLPrint {
         if (STAMP_IN_USE && h == 128) {
 //            INITIAL_AMMOUNT = 12; // If having only text = "REVERSE CHARGE"
             INITIAL_AMMOUNT = 6; // If using the picture: "reverse_charge.png"
-        }else if(STAMP_IN_USE && h < 128){
+        } else if (STAMP_IN_USE && h < 128) {
             INITIAL_AMMOUNT = 9;
         }
         //
@@ -444,12 +444,15 @@ public class HTMLPrint_A extends HTMLPrint {
         String rabatt_kr = map_d.get(T__FAKTURA_RABATT_KR);
         String rut_avdrag_total = getRutAvdragTotal();
         String att_betala_total = getAttBetalaTotal();
+        att_betala_total = getSpecial_foreign_customer(att_betala_total);
         String total_belopp_innan_avdrag = getTotalBeloppInnanAvdrag();
+        String total_exkl_moms = map_d.get(T__FAKTURA_EXKL_MOMS);
+        total_exkl_moms = getSpecial_foreign_customer(total_exkl_moms);
         //
         String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
         //
         String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR, ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total + " " + currencyUnit};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, roundBetalaTotal(att_betala_total) + " " + currencyUnit};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
         HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total, total_belopp_innan_avdrag);
@@ -465,6 +468,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return html_;
     }
+
 
     private String countMoms(HashMap<String, String> map) {
         int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));

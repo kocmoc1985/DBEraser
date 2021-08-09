@@ -290,6 +290,23 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
+    
+    protected String roundBetalaTotal(String value){
+        double dbl = Double.parseDouble(value);
+        return "" + (int)GP_BUH.round_double__whole_number(dbl);
+    }
+    
+    protected String getSpecial_foreign_customer(String value) {
+        //[2021-08-09]
+        double dbl = Double.parseDouble(value);
+        //
+        if (COMPANY_MIXCONT && FOREIGN_CUSTOMER) {
+            return "" + GP_BUH.round_double_b((dbl / HelpBuh.getEurSekKurs()));
+        } else {
+            return value;
+        }
+        //
+    }
 
     protected String faktura_data_C_to_html__addr() {
         //

@@ -269,7 +269,8 @@ public class Home extends Basic_Buh {
             bim.allInvoicesTabClicked();
             //
             if (HelpBuh.COMPANY_MIXCONT) {
-                LAFakturering.jTextField_eur_sek__kurs.setText("" + HelpBuh.EUR_SEK);
+                LAFakturering.jTextField_eur_sek__kurs.setText("" + HelpBuh.getEurSekKurs());
+                LAFakturering.jTextField_eur_sek__kurs.setEnabled(false);
                 LAFakturering.jPanel_eur_sek__kurs.setVisible(true);
             }else{
                 LAFakturering.jPanel_eur_sek__kurs.setVisible(false);

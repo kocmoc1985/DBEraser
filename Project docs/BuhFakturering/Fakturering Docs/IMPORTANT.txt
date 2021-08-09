@@ -1,3 +1,12 @@
+[EUR SEK FOR COMPANY MIXCONT ONLY][2021-08-09]
+
+When you are logged in under comapny name "MixCont AB" you can
+manually specify the EUR/SEK kursen.
+
+Search for: HelpBuh.EUR_SEK
+
+
+________________________________________________________________________________________________________
 [EASY INSTALLATION][2021-07-XX]
 
 1. It was decided to not use the ".exe" installation by the "Install Creator Pro" because

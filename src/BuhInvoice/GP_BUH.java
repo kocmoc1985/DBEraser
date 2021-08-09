@@ -293,9 +293,20 @@ public class GP_BUH {
             c.setVisible(visible);
         });
     }
+    
+    /**
+     *  This one is used only for the "Print" of the invoice
+     */
+    public static double round_double__whole_number(double rst) {
+        return Double.parseDouble(String.format("%2.0f", rst).replace(",", "."));
+    }
 
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("" + round_double(24.889));
     }
 
     public static int round_double_b(double rst) {

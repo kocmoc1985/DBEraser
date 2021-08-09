@@ -353,7 +353,9 @@ public class HTMLPrint_B extends HTMLPrint {
         String dateNow = GP_BUH.getDate_yyyy_MM_dd();
         String drojmalsranta = _get(map_c, T__FAKTURA_DROJMALSRANTA__FLEX);
         String forfallodatum = _get(map_c, T__FAKTURA_FORFALLODATUM__FLEX);
-        double totalInklMoms = Double.parseDouble(map_d.get(getAttBetalaTitle()));
+        String total_inkl_moms = map_d.get(getAttBetalaTitle());
+        total_inkl_moms = getSpecial_foreign_customer(total_inkl_moms);
+        double totalInklMoms = Double.parseDouble(total_inkl_moms);
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
         //
         int daysForfallen = GP_BUH.get_diff_in_days__two_dates(dateNow, dateFormat, forfallodatum, dateFormat);
@@ -385,14 +387,19 @@ public class HTMLPrint_B extends HTMLPrint {
         String rabatt = map_d.get(T__FAKTURA_RABATT_KR);
         String rut_avdrag_total = getRutAvdragTotal();
         String total_belopp_innan_avdrag = "0";
+        String total_exkl_moms = map_d.get(T__FAKTURA_EXKL_MOMS);
+        total_exkl_moms = getSpecial_foreign_customer(total_exkl_moms);
         //
         String ATT_BETALA_TITLE = getAttBetalaTitle();
-        Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(map_d.get(ATT_BETALA_TITLE)) + drojAvg);
+        //
+        String total = ""+ Double.parseDouble(map_d.get(ATT_BETALA_TITLE));
+        total = getSpecial_foreign_customer(total);
+        Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(total) + drojAvg);
         //
         String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
         //
         String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR, T__FAKTURA_DROJMALSRANTA__FLEX(), ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, map_d.get(T__FAKTURA_EXKL_MOMS), map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + totalInkDrojAvg + " " + currencyUnit};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + roundBetalaTotal(""+totalInkDrojAvg) + " " + currencyUnit};
         //
         HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt, rut_avdrag_total, total_belopp_innan_avdrag);
         //
