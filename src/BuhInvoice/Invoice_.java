@@ -599,7 +599,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 double actPris = (pris_exkl_moms * antal);
                 //
                 if(HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT){
-                    FAKTURA_TOTAL += actPris * HelpBuh.EUR_SEK;
+                    FAKTURA_TOTAL += actPris * HelpBuh.getEurSekKurs();
                 }else{
                     FAKTURA_TOTAL += actPris;
                 }
@@ -615,7 +615,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 double actPris = (pris_exkl_moms - rabatt_kr) * antal;
                 //
                 if(HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT){
-                    FAKTURA_TOTAL += actPris * HelpBuh.EUR_SEK;
+                    FAKTURA_TOTAL += actPris * HelpBuh.getEurSekKurs();
                 }else{
                     FAKTURA_TOTAL += actPris;
                 }

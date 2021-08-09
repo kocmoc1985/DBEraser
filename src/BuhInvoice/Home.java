@@ -269,10 +269,10 @@ public class Home extends Basic_Buh {
             bim.allInvoicesTabClicked();
             //
             if (HelpBuh.COMPANY_MIXCONT) {
-                bim.jTextField_eur_sek__kurs.setText("" + HelpBuh.EUR_SEK);
-                bim.jPanel_eur_sek__kurs.setVisible(true);
+                LAFakturering.jTextField_eur_sek__kurs.setText("" + HelpBuh.EUR_SEK);
+                LAFakturering.jPanel_eur_sek__kurs.setVisible(true);
             }else{
-                bim.jPanel_eur_sek__kurs.setVisible(false);
+                LAFakturering.jPanel_eur_sek__kurs.setVisible(false);
             }
             //
         } else {

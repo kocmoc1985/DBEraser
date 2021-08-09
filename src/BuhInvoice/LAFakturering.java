@@ -3374,7 +3374,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
-    public javax.swing.JLabel jLabel_eur_sek__kurs;
+    public static javax.swing.JLabel jLabel_eur_sek__kurs;
     protected javax.swing.JLabel jLabel_faktura_changed_by__user;
     protected javax.swing.JLabel jLabel_info__betald;
     protected javax.swing.JLabel jLabel_info__forfallen;
@@ -3435,7 +3435,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     public javax.swing.JPanel jPanel__customers_a__graph_panel_c;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
-    public javax.swing.JPanel jPanel_eur_sek__kurs;
+    public static javax.swing.JPanel jPanel_eur_sek__kurs;
     public javax.swing.JPanel jPanel_graph_panel_a;
     public javax.swing.JPanel jPanel_graph_panel_b;
     public javax.swing.JPanel jPanel_graph_panel_c;
@@ -3484,7 +3484,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected javax.swing.JTextArea jTextArea_reminder_message;
     public javax.swing.JTextArea jTextArea_rut_message;
-    public javax.swing.JTextField jTextField_eur_sek__kurs;
+    public static javax.swing.JTextField jTextField_eur_sek__kurs;
     protected static javax.swing.JTextField jTextField_exp_avg;
     protected static javax.swing.JTextField jTextField_frakt;
     protected static javax.swing.JTextField jTextField_moms_artiklar;

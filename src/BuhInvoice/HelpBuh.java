@@ -61,13 +61,24 @@ public class HelpBuh {
     //
     //
     //
-    public static double EUR_SEK = 10.1000;
+    public static final double EUR_SEK = 10.1000;
     //
     public static boolean LANG_ENG = false; // DON'T CHANGE MANUALLY
     public static boolean FOREIGN_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
+    public static double getEurSekKurs(){
+        //
+        String txt = LAFakturering.jTextField_eur_sek__kurs.getText();
+        //
+        if(txt != null && txt.isEmpty() == false){
+            return Double.parseDouble(txt);
+        }else{
+            return EUR_SEK;
+        }
+        //
+    }
     
     public static void predefinedForeignCustomers(String fakturaKundNamn) {
         //
