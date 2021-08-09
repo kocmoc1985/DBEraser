@@ -68,6 +68,7 @@ public class HelpBuh {
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
+    
     public static void predefinedForeignCustomers(String fakturaKundNamn) {
         //
         if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont") == false) {
