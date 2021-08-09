@@ -611,6 +611,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 MOMS_TOTAL += actMoms;
                 //
             } else if (rabatt_kr != 0) {
+                //
                 double actPris = (pris_exkl_moms - rabatt_kr) * antal;
                 //
                 if(HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT){
