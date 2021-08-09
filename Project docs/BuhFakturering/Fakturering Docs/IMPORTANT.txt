@@ -1,3 +1,19 @@
+[EASY INSTALLATION][2021-07-XX]
+
+1. It was decided to not use the ".exe" installation by the "Install Creator Pro" because
+of the warnings during the download and warnings during the installation.
+
+2. The "NEW" type of installation means that you just download the "la.jar" file. When you click it
+first time it makes following (mentioned below is valid only for Windows Os):
+
+- Creates the "la" folder
+- Extracts the "ic.ico" shortcut icon from the inside of "la.jar"
+- Automatically creates the "shortcut.cmd" script and saves it to the "la" folder
+- Runs the "shortcut.cmd" script
+- Deletes the "shortcut.cmd" script
+- All actions named above are done by the "BuhInvoice.sec.CreateShortcut.java"
+
+________________________________________________________________________________________________________
 [OBLIGATORY UPDATE FUNCTION][2021-06-18]
 
 Main idea: some updates on server side may cause that the client side will not work. Therefore this function is needed.

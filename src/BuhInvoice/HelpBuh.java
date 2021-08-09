@@ -61,6 +61,8 @@ public class HelpBuh {
     //
     //
     //
+    public static double EUR_SEK = 10.1000;
+    //
     public static boolean LANG_ENG = false; // DON'T CHANGE MANUALLY
     public static boolean FOREIGN_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY

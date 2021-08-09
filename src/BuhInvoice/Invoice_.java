@@ -597,7 +597,13 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             if (rabatt_percent == 0 && rabatt_kr == 0) {
                 double actPris = (pris_exkl_moms * antal);
-                FAKTURA_TOTAL += actPris;
+                //
+                if(HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT){
+                    FAKTURA_TOTAL += actPris * HelpBuh.EUR_SEK;
+                }else{
+                    FAKTURA_TOTAL += actPris;
+                }
+                //
                 double actMoms = (pris_exkl_moms * antal) * moms_sats;
                 //
                 HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
@@ -606,7 +612,13 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             } else if (rabatt_kr != 0) {
                 double actPris = (pris_exkl_moms - rabatt_kr) * antal;
-                FAKTURA_TOTAL += actPris;
+                //
+                if(HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT){
+                    FAKTURA_TOTAL += actPris * HelpBuh.EUR_SEK;
+                }else{
+                    FAKTURA_TOTAL += actPris;
+                }
+                //
                 RABATT_TOTAL += (rabatt_kr * antal);
                 double actMoms = ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
                 //
