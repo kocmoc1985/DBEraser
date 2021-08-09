@@ -182,6 +182,14 @@ public abstract class HTMLPrint extends HTMLBasic {
         init();
         //
     }
+    
+     public String T__ARTIKEL_RABATT() {
+        return LANG_ENG == false ? T__ARTIKEL_RABATT : "Discount%";
+    } 
+    
+    public String T__FAKTURA_RABATT_KR() {
+        return LANG_ENG == false ? T__FAKTURA_RABATT_KR : "Discount EUR";
+    } 
 
     public String T__FAKTURA_DROJMALSRANTA__FLEX() {
         return LANG_ENG == false ? T__FAKTURA_DROJMALSRANTA__FLEX : "Penalty EUR";
@@ -298,6 +306,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     
     protected String getSpecial_foreign_customer(String value) {
         //[2021-08-09]
+        //[#EUR-SEK#]
         double dbl = Double.parseDouble(value);
         //
         if (COMPANY_MIXCONT && FOREIGN_CUSTOMER) {
@@ -637,7 +646,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         if (rabbat_kr.equals("0") || rabbat_kr.equals("0.0")) {
             colToMakeBold--;
-            int index = headers_.indexOf(T__FAKTURA_RABATT_KR);
+            int index = headers_.indexOf(T__FAKTURA_RABATT_KR());
             headers_.remove(index);
             values_.remove(index);
         }

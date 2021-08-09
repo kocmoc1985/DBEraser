@@ -1,11 +1,15 @@
 [EUR SEK FOR COMPANY MIXCONT ONLY][2021-08-09]
 
-When you are logged in under comapny name "MixCont AB" you can
-manually specify the EUR/SEK kursen.
+When you are logged in under comapny name "MixCont AB" EUR / SEK is activated which means:
 
-Search for: HelpBuh.EUR_SEK
+1. When you make invoice you provide the prices in EUR
+2. The "TOTAL" for the invoice is saved in SEK which means [total price in EUR] * [EUR/SEK KURS] 
+3. When you make "Print" the total ammount in SEK will be devided by "EUR/SEK" kurs which is for the moment "**PERMANENT";
 
+**PERMANENT - NEVER change the "KURS" until you implement an addtional field in database with eur/sek kurs [2021-08-09]
+If you change the "KURS" it will show wrong for all of the previous invoices using "EUR"
 
+Search for: [#EUR-SEK#]
 ________________________________________________________________________________________________________
 [EASY INSTALLATION][2021-07-XX]
 

@@ -64,7 +64,8 @@ public class HelpBuh {
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
     public static double getEurSekKurs(){
-        // NEVER change this one untill you implement an addtional field with eur/sek kurs [2021-08-09]
+        //[#EUR-SEK#]
+        // NEVER change this one untill you implement an addtional field in database with eur/sek kurs [2021-08-09]
         // If you change this one it will show wrong for all of the previous invoices using "EUR"
         return 10.1;
         //
