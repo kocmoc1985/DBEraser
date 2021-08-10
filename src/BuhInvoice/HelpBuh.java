@@ -65,13 +65,6 @@ public class HelpBuh {
 
     public static final double DEFAULT_EUR_SEK_CURRENCY_RATE = 10.1; // [#EUR-SEK#] CHANGE THIS WITH CAUTION [2021-08-10]
     
-    public static double getEurSekKurs(){
-        //[#EUR-SEK#]
-        // NEVER change this one untill you implement an addtional field in database with eur/sek kurs [2021-08-09]
-        // If you change this one it will show wrong for all of the previous invoices using "EUR"
-        return 10.1;
-        //
-    }
     
     public static void predefinedForeignCustomers(String fakturaKundNamn) {
         //

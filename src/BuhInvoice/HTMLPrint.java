@@ -310,7 +310,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         double dbl = Double.parseDouble(value);
         //
         if (COMPANY_MIXCONT && FOREIGN_CUSTOMER) {
-            return "" + GP_BUH.round_double_b((dbl / HelpBuh.getEurSekKurs()));
+            return "" + GP_BUH.round_double_b((dbl / bim.getCurrencyRateA()));
         } else {
             return value;
         }
