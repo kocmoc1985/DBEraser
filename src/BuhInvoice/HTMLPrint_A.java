@@ -232,7 +232,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + articles_to_html(articles_map_list)
                 //
-                + foreign_faktura__reverse_charge()
+                + insert_invoice_stamp()
                 //
                 + rutAvdrag() //[#RUTROT#]
                 //
@@ -616,7 +616,7 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-    private String foreign_faktura__reverse_charge() {
+    private String insert_invoice_stamp() {
         //
         String img_a;
         int w;
