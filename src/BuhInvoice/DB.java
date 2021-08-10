@@ -259,6 +259,7 @@ public class DB {
     public static final String BUH_FAKTURA__COPIED_FROM_ID = "copied_from_id";
     public static final String BUH_FAKTURA__OMVANT_SKATT = "omvant_skatt"; // [#INVOICE-HAS-OMVAND-SKATT#]
     public static final String BUH_FAKTURA__PRINTED = "is_printed";
+    public static final String BUH_FAKTURA__CURRENCY_RATE_A = "currency_rate_a";
     //
     public static final String BUH_FAKTURA_KUND__ID = "fakturaKundId";
     public static final String BUH_FAKTURA_KUND__KUND_ID = "kundId";
