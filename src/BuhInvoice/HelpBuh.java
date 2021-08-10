@@ -74,13 +74,13 @@ public class HelpBuh {
         //
     }
     
-    public static void predefinedForeignCustomers(String fakturaKundNamn) {
-        //
-        if (fakturaKundNamn.contains("Trico") || fakturaKundNamn.contains("QEW")) {
+    public static void predefinedForeignCustomers(String fakturaKundKategori) {
+        //[#KUND-KATEGORI-CONDITION#]
+        if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
-        } else if (fakturaKundNamn.contains("Compounds")) {
+        } else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = false;

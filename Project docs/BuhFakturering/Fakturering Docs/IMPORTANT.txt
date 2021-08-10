@@ -1,3 +1,18 @@
+[KUND KATEGORI && COMPANY MIXCONT][2021-08-10]
+
+Now you can just change the "KUND KATEGORI" via the "KUNDER" tab.
+What does it affect? It affects:
+the language of the fatura print,
+the stamp,
+and currency rate usage.
+
+KATEGORI A: Inhemska fakturor like "Trelleborg Ind. AB"
+KATEGORI B: EU fakturor like "QEW" and "Trico/Fedmog"
+KATEGORI C: Utländska fakturor like Compounds AG
+
+Search for: [#KUND-KATEGORI-CONDITION#]
+
+________________________________________________________________________________________________________
 [EUR SEK FOR COMPANY MIXCONT ONLY][2021-08-09]
 
 When you are logged in under comapny name "MixCont AB" EUR / SEK is activated which means:
