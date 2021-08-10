@@ -362,10 +362,6 @@ public abstract class HTMLPrint extends HTMLBasic {
                     + _get_exist_d(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
                     + _get_exist_a(T__FTG_BIC, _get(map_f, DB.BUH_KUND__BIC))
                     + _get_exist_a(T__FTG_SWIFT, _get(map_f, DB.BUH_KUND__SWIFT));
-        } else if (HelpBuh.FOREIGN_CUSTOMER == false && COMPANY_MIXCONT) {
-            html_ += T__FTG_BETALA_TILL()
-                    + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
-                    + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO));
         } else {
             html_ += T__FTG_BETALA_TILL()
                     + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
