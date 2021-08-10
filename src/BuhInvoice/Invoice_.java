@@ -841,6 +841,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //[#EUR-SEK#]
         RowDataInvert currency_rate_a = new RowDataInvertB("10.1", DB.BUH_FAKTURA__CURRENCY_RATE_A, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A, "", true, true, false);
         hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate_a);
+        currency_rate_a.setDontAquireTableInvertToHashMap(); // OBS! SUPER IMPORTANT
         //
         RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", true, true, false);
         //
@@ -934,9 +935,11 @@ public abstract class Invoice_ extends Basic_Buh {
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
         //
         //[#EUR-SEK#]
+        // OBS! Pay attention "table_b"!!
         String currency_rate_a_ = HelpA.getValueSelectedRow(table_b, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
         RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS", "", false, true, false);
         hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate);
+        currency_rate.setDontAquireTableInvertToHashMap(); // OBS! SUPER IMPORTANT
         //
         String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", false, true, false);
