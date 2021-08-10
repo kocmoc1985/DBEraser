@@ -422,9 +422,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //[#EUR-SEK#]
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
         //
-        double rate = Double.parseDouble(val);
-        //
-        return rate == 0 ? HelpBuh.DEFAULT_EUR_SEK_CURRENCY_RATE : rate;
+        return Double.parseDouble(val);
         //
     }
 
@@ -883,9 +881,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jLabel__nyckel_tal__tot_exkl_moms = new javax.swing.JLabel();
         jLabel__nyckel_tal__antal_fakturor = new javax.swing.JLabel();
         jLabel_nyckel_tal__info_label = new javax.swing.JLabel();
-        jPanel_eur_sek__kurs = new javax.swing.JPanel();
-        jLabel_eur_sek__kurs = new javax.swing.JLabel();
-        jTextField_eur_sek__kurs = new javax.swing.JTextField();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -1537,16 +1532,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jLabel_nyckel_tal__info_label.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_nyckel_tal__info_label.setText("Sedan årsskiftet:");
 
-        jPanel_eur_sek__kurs.setLayout(new java.awt.GridLayout(1, 0));
-
-        jLabel_eur_sek__kurs.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel_eur_sek__kurs.setText("EUR/SEK");
-        jLabel_eur_sek__kurs.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
-        jPanel_eur_sek__kurs.add(jLabel_eur_sek__kurs);
-
-        jTextField_eur_sek__kurs.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel_eur_sek__kurs.add(jTextField_eur_sek__kurs);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1585,10 +1570,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(158, 158, 158)
-                                .addComponent(jPanel_eur_sek__kurs, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_nyckel_tal__info_label, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(173, Short.MAX_VALUE))
         );
@@ -1623,9 +1605,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 .addGap(33, 33, 33)
                 .addComponent(jLabel_nyckel_tal__info_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_eur_sek__kurs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1145, 1145, 1145))
         );
 
@@ -3386,7 +3366,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
-    public static javax.swing.JLabel jLabel_eur_sek__kurs;
     protected javax.swing.JLabel jLabel_faktura_changed_by__user;
     protected javax.swing.JLabel jLabel_info__betald;
     protected javax.swing.JLabel jLabel_info__forfallen;
@@ -3447,7 +3426,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     public javax.swing.JPanel jPanel__customers_a__graph_panel_c;
     protected javax.swing.JPanel jPanel_articles;
     protected javax.swing.JPanel jPanel_email_client_options;
-    public static javax.swing.JPanel jPanel_eur_sek__kurs;
     public javax.swing.JPanel jPanel_graph_panel_a;
     public javax.swing.JPanel jPanel_graph_panel_b;
     public javax.swing.JPanel jPanel_graph_panel_c;
@@ -3496,7 +3474,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected javax.swing.JTextArea jTextArea_reminder_message;
     public javax.swing.JTextArea jTextArea_rut_message;
-    public static javax.swing.JTextField jTextField_eur_sek__kurs;
     protected static javax.swing.JTextField jTextField_exp_avg;
     protected static javax.swing.JTextField jTextField_frakt;
     protected static javax.swing.JTextField jTextField_moms_artiklar;

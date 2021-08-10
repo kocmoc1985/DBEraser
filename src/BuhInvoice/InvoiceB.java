@@ -695,7 +695,9 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__COPIED_FROM_ID);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__UTSKRIVEN);
-//            HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CURRENCY_RATE_A);
+            if(HelpBuh.COMPANY_MIXCONT == false){
+              HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CURRENCY_RATE_A);  
+            }
         }
         //
     }

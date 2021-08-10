@@ -264,18 +264,10 @@ public class Home extends Basic_Buh {
             refresh();
             getFtgName();
             setInloggningsLabel(LANG.getInloggningsMsg(GP_BUH.CUSTOMER_COMPANY_NAME));
+            HelpBuh.defineIfCompanyMixcont();
             //
             bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
-            //
-            if (HelpBuh.COMPANY_MIXCONT) {
-                //[#EUR-SEK#]
-                LAFakturering.jTextField_eur_sek__kurs.setText("" + bim.getCurrencyRateA());
-                LAFakturering.jTextField_eur_sek__kurs.setEnabled(false);
-                LAFakturering.jPanel_eur_sek__kurs.setVisible(true);
-            }else{
-                LAFakturering.jPanel_eur_sek__kurs.setVisible(false);
-            }
             //
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);

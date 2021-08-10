@@ -838,8 +838,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         RowDataInvert pris = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, "", true, true, true);
         //
+        //[#EUR-SEK#]
         RowDataInvert currency_rate_a = new RowDataInvertB("10.1", DB.BUH_FAKTURA__CURRENCY_RATE_A, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A, "", true, true, false);
-        hideFieldIfNotMixcont(currency_rate_a);
+        hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate_a);
         //
         RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", true, true, false);
         //
@@ -874,6 +875,7 @@ public abstract class Invoice_ extends Basic_Buh {
     public RowDataInvert[] getConfigTableInvert_edit_articles() {
         //
         JTable table = getArticlesTable();
+        JTable table_b = getAllInvoicesTable();
         //
         String fixedComboValues_a = JSon._get__with_merge(HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN),
                 HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_ID),
@@ -931,9 +933,10 @@ public abstract class Invoice_ extends Basic_Buh {
         String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
         //
-        String currency_rate_a_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
+        //[#EUR-SEK#]
+        String currency_rate_a_ = HelpA.getValueSelectedRow(table_b, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
         RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS", "", false, true, false);
-        hideFieldIfNotMixcont(currency_rate);
+        hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate);
         //
         String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", false, true, false);
@@ -1475,9 +1478,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
     }
     
-    protected void hideFieldIfNotMixcont(RowDataInvert rdi) {
+    protected void hideFieldIfNotMixcontAndNotForeignCustomer(RowDataInvert rdi) {
         //
-        if(HelpBuh.COMPANY_MIXCONT == false){
+        if(HelpBuh.COMPANY_MIXCONT == false || (HelpBuh.COMPANY_MIXCONT && HelpBuh.FOREIGN_CUSTOMER == false)){
             rdi.setVisible_(false);
         }
         //

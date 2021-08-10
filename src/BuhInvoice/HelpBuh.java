@@ -63,16 +63,18 @@ public class HelpBuh {
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
-    public static final double DEFAULT_EUR_SEK_CURRENCY_RATE = 10.1; // [#EUR-SEK#] CHANGE THIS WITH CAUTION [2021-08-10]
     
-    
-    public static void predefinedForeignCustomers(String fakturaKundNamn) {
+    public static void defineIfCompanyMixcont(){
         //
         if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont") == false) {
             return;
         }
         //
         COMPANY_MIXCONT = true;
+        //
+    }
+    
+    public static void predefinedForeignCustomers(String fakturaKundNamn) {
         //
         if (fakturaKundNamn.contains("Trico") || fakturaKundNamn.contains("QEW")) {
             LANG_ENG = true;
