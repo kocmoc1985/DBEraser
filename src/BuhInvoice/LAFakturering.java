@@ -49,7 +49,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private ArticlesA articlesA;
     protected InvoiceB invoiceB;
     protected Home home;
-    protected OptionsTab optionsTab;
+    protected OptionsTab_ optionsTab;
     protected StatistikTab statistikTab;
 
     private String ACTUAL_TAB_NAME;
@@ -3545,7 +3545,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             } else if (ACTUAL_TAB_NAME.equals(TAB_OTHER_SETUP) && sameTabClicked == false) {
                 //
                 if (optionsTab == null) {
-                    optionsTab = new OptionsTab(this);
+                    optionsTab = new OptionsTab_(this);
                 } else {
                     optionsTab.refresh();
                 }

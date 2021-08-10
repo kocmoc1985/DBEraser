@@ -30,7 +30,7 @@ import javax.swing.JTextArea;
  *
  * @author KOCMOC
  */
-public class OptionsTab extends Basic_Buh {
+public class OptionsTab_ extends Basic_Buh {
 
     private final static String SMTP_HOST = "host";
     private final static String SMTP_PORT = "port";
@@ -39,7 +39,7 @@ public class OptionsTab extends Basic_Buh {
     private final static String SMTP_PASS = "pass";
     private final static String SMTP_FROM_NAME = "name";
 
-    public OptionsTab(LAFakturering bim) {
+    public OptionsTab_(LAFakturering bim) {
         super(bim);
 //        GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
         GP_BUH.setPageBackground(bim.jPanel20, IconUrls.LA_BG);

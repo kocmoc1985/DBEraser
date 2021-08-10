@@ -14,6 +14,8 @@ bank_giro varchar (20) DEFAULT '',
 post_giro varchar (20) DEFAULT '',
 bank_konto varchar (30) DEFAULT '',
 iban varchar (30) DEFAULT '',
+bic varchar (20) DEFAULT '',
+swift varchar (20) DEFAULT '',
 swish varchar (30) DEFAULT '',
 f_skatt boolean DEFAULT false,
 date_created varchar(30) DEFAULT 'no'

@@ -322,6 +322,8 @@ public class DB {
     public static final String BUH_KUND__POST_GIRO = "post_giro";
     public static final String BUH_KUND__KONTO = "bank_konto";
     public static final String BUH_KUND__IBAN = "iban";
+    public static final String BUH_KUND__BIC = "bic";
+    public static final String BUH_KUND__SWIFT = "swift";
     public static final String BUH_KUND__SWISH = "swish";
     public static final String BUH_KUND__F_SKATT = "f_skatt";
     public static final String BUH_KUND__DATE_CREATED = "date_created";

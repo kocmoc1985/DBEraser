@@ -34,6 +34,8 @@ public class ForetagA extends CustomerAForetagA {
     private static final String TABLE__POST_GIRO = "PG";
     private static final String TABLE__KONTO = "KONTO";
     private static final String TABLE__IBAN = "IBAN";
+    private static final String TABLE__BIC = "BIC";
+    private static final String TABLE__SWIFT = "SWIFT";
     private static final String TABLE__SWISH = "SWISH";
     private static final String TABLE__F_SKATT = "F-SKATT";
 
@@ -63,6 +65,8 @@ public class ForetagA extends CustomerAForetagA {
             TABLE__POST_GIRO,
             TABLE__KONTO,
             TABLE__IBAN,
+            TABLE__BIC,
+            TABLE__SWIFT,
             TABLE__SWISH,
             TABLE__F_SKATT
         };
@@ -84,6 +88,8 @@ public class ForetagA extends CustomerAForetagA {
             map.get(DB.BUH_KUND__POST_GIRO),
             map.get(DB.BUH_KUND__KONTO),
             map.get(DB.BUH_KUND__IBAN),
+            map.get(DB.BUH_KUND__BIC),
+            map.get(DB.BUH_KUND__SWIFT),
             map.get(DB.BUH_KUND__SWISH),
             map.get(DB.BUH_KUND__F_SKATT)
         };
@@ -166,6 +172,12 @@ public class ForetagA extends CustomerAForetagA {
         String iban_ = HelpA.getValueSelectedRow(table, TABLE__IBAN);
         RowDataInvert iban = new RowDataInvertB(iban_, DB.BUH_KUND__IBAN, TABLE__IBAN, "", true, true, false);
         //
+        String bic_ = HelpA.getValueSelectedRow(table, TABLE__BIC);
+        RowDataInvert bic = new RowDataInvertB(bic_, DB.BUH_KUND__BIC, TABLE__BIC, "", true, true, false);
+        //
+        String swift_ = HelpA.getValueSelectedRow(table, TABLE__SWIFT);
+        RowDataInvert swift = new RowDataInvertB(swift_, DB.BUH_KUND__SWIFT, TABLE__SWIFT, "", true, true, false);
+        //
         String swish_ = HelpA.getValueSelectedRow(table, TABLE__SWISH);
         RowDataInvert swish = new RowDataInvertB(swish_, DB.BUH_KUND__SWISH, TABLE__SWISH, "", true, true, false);
         //
@@ -186,8 +198,11 @@ public class ForetagA extends CustomerAForetagA {
             bg,
             pg,
             konto,
+            swish,
             iban,
-            swish
+            bic,
+            swift
+                
         };
         //
         return rows;

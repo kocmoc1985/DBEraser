@@ -75,7 +75,7 @@ public class GP_BUH {
      * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "sgycPkSeFY" -> GUEST ACCOUNT:
      * guest_31_kocmoc1985@gmail.com / "BMZYyw2kv4"
      * Auto created on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "8RDoPnvugb" --> www.la.se [not test]
-     * Auto created on [2021-04-30] "kocmoc1985@gmail.com / eVsPrYJiAp" --> www.la.se [not test]
+     * Auto created on [2021-04-30] "kocmoc1985@gmail.com / ZEzdghFNRP" --> www.la.se [not test]
      *
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765" ---> THE REAL ONE****
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
