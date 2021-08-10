@@ -226,6 +226,11 @@ public class InvoiceA_Update extends Invoice_ {
         //[#SHOW-HIDE-RUT--IS-PESRON#]
         hideFieldIfNotPerson(rut);
         //
+        //[#EUR-SEK#]
+        String currency_rate_a_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
+        RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS", "", false, true, false);
+        hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate);
+        //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,
             //            moms,
@@ -235,7 +240,8 @@ public class InvoiceA_Update extends Invoice_ {
             frakt,
             drojranta,
             rut,
-            makulerad
+            makulerad,
+            currency_rate
         };
         //
         return rows;
