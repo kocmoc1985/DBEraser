@@ -5,6 +5,7 @@ OBS! REMEMBER THAT THE CHANGES SHALL BE DONE TO ALL ACTIVE DATABASES:
 
 [#UPDATED BOTH#] = lafakturering_semain & lafakturering_setest
 
+[2021-05-17] Table: "buh_faktura" -> added column currency_rate_a [#UPDATED BOTH#]
 [2021-05-17] Table: "buh_faktura" -> added column "is_printed" [#UPDATED BOTH#]
 [2021-05-17] Table: "buh_faktura" -> added column "omvant_skatt" [#UPDATED BOTH#]
 [2021-05-06] Table: "buh_constants -> lafakturering_setest" synchronized with "lafakturering_semain" -> synchronized means they contain same data now
