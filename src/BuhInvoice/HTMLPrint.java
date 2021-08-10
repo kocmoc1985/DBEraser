@@ -129,6 +129,8 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FTG_BANKGIRO = "BG";
     public static final String T__FTG_POSTGIRO = "PG";
     public static final String T__FTG_IBAN = "IBAN";
+    public static final String T__FTG_BIC = "BIC";
+    public static final String T__FTG_SWIFT = "SWIFT";
     public static final String T__FTG_KONTO = "Konto";
     public static final String T__FTG_SWISH = "Swish";
     public static final String T__FTG_ORGNR = "Organisationsnr";
@@ -271,9 +273,9 @@ public abstract class HTMLPrint extends HTMLBasic {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_KONTO : "BIC";
     }
 
-    public String T__FTG_SWISH() {
-        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
-    }
+//    public String T__FTG_SWISH() {
+//        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
+//    }
 
     public String T__FTG_MOMS_REG_NR() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
@@ -358,8 +360,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (HelpBuh.FOREIGN_CUSTOMER) {
             html_ += T__FTG_BETALA_TILL()
                     + _get_exist_d(T__FTG_IBAN, _get(map_f, DB.BUH_KUND__IBAN))
-                    + _get_exist_a(T__FTG_KONTO(), _get(map_f, DB.BUH_KUND__KONTO))
-                    + _get_exist_a(T__FTG_SWISH(), _get(map_f, DB.BUH_KUND__SWISH));
+                    + _get_exist_a(T__FTG_BIC, _get(map_f, DB.BUH_KUND__BIC))
+                    + _get_exist_a(T__FTG_SWIFT, _get(map_f, DB.BUH_KUND__SWIFT));
         } else if (HelpBuh.FOREIGN_CUSTOMER == false && COMPANY_MIXCONT) {
             html_ += T__FTG_BETALA_TILL()
                     + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
@@ -368,8 +370,8 @@ public abstract class HTMLPrint extends HTMLBasic {
             html_ += T__FTG_BETALA_TILL()
                     + _get_exist_d(T__FTG_BANKGIRO, _get(map_f, DB.BUH_KUND__BANK_GIRO))
                     + _get_exist_a(T__FTG_POSTGIRO, _get(map_f, DB.BUH_KUND__POST_GIRO))
-                    + _get_exist_a(T__FTG_SWISH(), _get(map_f, DB.BUH_KUND__SWISH))
-                    + _get_exist_a(T__FTG_KONTO(), _get(map_f, DB.BUH_KUND__KONTO));
+                    + _get_exist_a(T__FTG_SWISH, _get(map_f, DB.BUH_KUND__SWISH))
+                    + _get_exist_a(T__FTG_KONTO, _get(map_f, DB.BUH_KUND__KONTO));
         }
         //
         return html_;
