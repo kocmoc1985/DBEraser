@@ -416,6 +416,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
+    
+    protected double getCurrencyRateA(){
+        //
+        String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
+        //
+        return Double.parseDouble(val);
+        //
+    }
 
     protected Boolean isPrinted() {
         //
