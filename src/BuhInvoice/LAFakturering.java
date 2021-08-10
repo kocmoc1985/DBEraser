@@ -35,6 +35,7 @@ import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 import icons.IconUrls;
 import BuhInvoice.sec.IO;
+
 /**
  *
  * @author MCREMOTE
@@ -76,15 +77,15 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
      */
     public LAFakturering() {
         initComponents();
-		//
-		HelpA.create_dir_if_missing(IO.IO_DIR);
-		//
+        //
+        HelpA.create_dir_if_missing(IO.IO_DIR);
+        //
         initOhter();
         //
         SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, true);
         //
         //GP_BUH.setPageBackground(jPanel19, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
-		GP_BUH.setPageBackground(jPanel19, IconUrls.LA_BG);
+        GP_BUH.setPageBackground(jPanel19, IconUrls.LA_BG);
         //
         setMarginLeftLabelsHomeTab();
         //
@@ -416,12 +417,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
-    
-    protected double getCurrencyRateA(){
-        //
+
+    protected double getCurrencyRateA() {
+        //[#EUR-SEK#]
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
         //
-        return Double.parseDouble(val);
+        double rate = Double.parseDouble(val);
+        //
+        return rate == 0 ? HelpBuh.DEFAULT_EUR_SEK_CURRENCY_RATE : rate;
         //
     }
 

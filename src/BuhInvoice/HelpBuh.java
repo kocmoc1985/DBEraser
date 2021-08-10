@@ -63,6 +63,8 @@ public class HelpBuh {
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
+    public static final double DEFAULT_EUR_SEK_CURRENCY_RATE = 10.1; // [#EUR-SEK#] CHANGE THIS WITH CAUTION [2021-08-10]
+    
     public static double getEurSekKurs(){
         //[#EUR-SEK#]
         // NEVER change this one untill you implement an addtional field in database with eur/sek kurs [2021-08-09]
