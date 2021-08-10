@@ -1109,7 +1109,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 2, 48)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 250));
-        jLabel16.setText("LAFakturering");
+        jLabel16.setText("LAFakturering ");
+        jLabel16.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 5));
 
         jLabel17_new__version.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17_new__version.setForeground(new java.awt.Color(255, 255, 255));
