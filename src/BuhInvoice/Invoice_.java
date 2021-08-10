@@ -838,6 +838,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         RowDataInvert pris = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, "", true, true, true);
         //
+        RowDataInvert currency_rate_a = new RowDataInvertB("10.1", DB.BUH_FAKTURA__CURRENCY_RATE_A, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A, "", true, true, false);
+        hideFieldIfNotMixcont(currency_rate_a);
+        //
         RowDataInvert rabatt = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", true, true, false);
         //
         RowDataInvert rabatt_kr = new RowDataInvertB("0", DB.BUH_F_ARTIKEL__RABATT_KR, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, "", true, true, false);
@@ -851,6 +854,7 @@ public abstract class Invoice_ extends Basic_Buh {
             antal,
             enhet,
             pris,
+            currency_rate_a,
             rabatt,
             rabatt_kr
         };
@@ -927,6 +931,10 @@ public abstract class Invoice_ extends Basic_Buh {
         String pris_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
         RowDataInvert pris = new RowDataInvertB(pris_, DB.BUH_F_ARTIKEL__PRIS, "PRIS", "", false, true, true);
         //
+        String currency_rate_a_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
+        RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS", "", false, true, false);
+        hideFieldIfNotMixcont(currency_rate);
+        //
         String rabatt_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
         RowDataInvert rabatt = new RowDataInvertB(rabatt_, DB.BUH_F_ARTIKEL__RABATT, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, "", false, true, false);
         //
@@ -941,6 +949,7 @@ public abstract class Invoice_ extends Basic_Buh {
             antal,
             enhet,
             pris,
+            currency_rate,
             rabatt,
             rabatt_kr
         };
@@ -1462,6 +1471,14 @@ public abstract class Invoice_ extends Basic_Buh {
         } else {
             rdi.setVisible_(true);
             refreshTableInvert(ti);
+        }
+        //
+    }
+    
+    protected void hideFieldIfNotMixcont(RowDataInvert rdi) {
+        //
+        if(HelpBuh.COMPANY_MIXCONT == false){
+            rdi.setVisible_(false);
         }
         //
     }
