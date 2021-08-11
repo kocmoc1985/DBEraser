@@ -469,7 +469,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-
     private String countMoms(HashMap<String, String> map) {
         int antal = Integer.parseInt(_get(map, DB.BUH_F_ARTIKEL__ANTAL));
         double pris = Double.parseDouble(_get(map, DB.BUH_F_ARTIKEL__PRIS));
@@ -621,7 +620,12 @@ public class HTMLPrint_A extends HTMLPrint {
         String img_a;
         int w;
         //
-        if (EU_CUSTOMER && COMPANY_MIXCONT) {
+        if (STAMP_CO2__NEUTRAL__MANUAL) {
+            img_a = IconUrls.C02_FREE.toString();
+            STAMP_IN_USE = true;
+            w = 128;
+            h = 75;
+        } else if (EU_CUSTOMER && COMPANY_MIXCONT) {
             img_a = IconUrls.REVERSER_CHARGE.toString();
             STAMP_IN_USE = true;
             w = 128;
@@ -635,6 +639,7 @@ public class HTMLPrint_A extends HTMLPrint {
             STAMP_IN_USE = false;
             return "";
         }
+
         //
         String html_ = "<table class='marginTopB'>";
         //
@@ -868,6 +873,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jButton_send_faktura_any_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
         jButton_send_with_common_post = new javax.swing.JButton();
+        jButton_make_stamp = new javax.swing.JButton();
         jLabel_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -943,6 +949,15 @@ public class HTMLPrint_A extends HTMLPrint {
         });
         jPanel1.add(jButton_send_with_common_post);
 
+        jButton_make_stamp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stamp.png"))); // NOI18N
+        jButton_make_stamp.setToolTipText("Välj och infoga en stämpel");
+        jButton_make_stamp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_make_stampActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_make_stamp);
+
         jLabel_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_status.setForeground(new java.awt.Color(153, 153, 153));
 
@@ -954,7 +969,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_status, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jEditorPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1001,6 +1016,7 @@ public class HTMLPrint_A extends HTMLPrint {
         GP_BUH.chooseLogo(this);
         //
         go();
+        //
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
@@ -1020,6 +1036,7 @@ public class HTMLPrint_A extends HTMLPrint {
         }
         //
         setSentByCommonPost();
+        //
     }//GEN-LAST:event_jButton_send_with_common_postActionPerformed
 
     private void jButton_pdf_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdf_btnActionPerformed
@@ -1027,6 +1044,12 @@ public class HTMLPrint_A extends HTMLPrint {
         print_help(true);
         //
     }//GEN-LAST:event_jButton_pdf_btnActionPerformed
+
+    private void jButton_make_stampActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_make_stampActionPerformed
+        //
+        setAndUseStamp();
+        //
+    }//GEN-LAST:event_jButton_make_stampActionPerformed
 
     @Override
     protected void displayStatus(String msg, Color c) {
@@ -1067,6 +1090,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_make_stamp;
     private javax.swing.JButton jButton_pdf_btn;
     private javax.swing.JButton jButton_print_btn;
     private javax.swing.JButton jButton_send_faktura_any_email;

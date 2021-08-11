@@ -667,6 +667,17 @@ public abstract class HTMLPrint extends HTMLBasic {
                 values_.toArray(new String[values_.size()]), colToMakeBold);
         //
     }
+    
+    
+    public static boolean STAMP_CO2__NEUTRAL__MANUAL = false;
+    
+    protected void setAndUseStamp(){
+        //
+        STAMP_CO2__NEUTRAL__MANUAL = true;
+        //
+        go();
+        //
+    }
 
     /**
      * Marks as is the invoice was sent by the common/physical post
