@@ -10,6 +10,7 @@ import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
 import static BuhInvoice.HelpBuh.EU_CUSTOMER;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
+import BuhInvoice.sec.ChooseStamp;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
@@ -620,12 +621,20 @@ public class HTMLPrint_A extends HTMLPrint {
         String img_a;
         int w;
         //
-        if (STAMP_CO2__NEUTRAL__MANUAL) {
+        if (ChooseStamp.STAMP_CO2__NEUTRAL__MANUAL) {
             img_a = IconUrls.C02_FREE.toString();
             STAMP_IN_USE = true;
             w = 128;
             h = 75;
-        } else if (EU_CUSTOMER && COMPANY_MIXCONT) {
+        }else if (ChooseStamp.STAMP_REVERSER_CHARGE_EU) {
+            img_a = IconUrls.REVERSER_CHARGE.toString();
+            STAMP_IN_USE = true;
+            w = 128;
+            h = 128;
+        }
+        //
+        //
+        else if (EU_CUSTOMER && COMPANY_MIXCONT) {
             img_a = IconUrls.REVERSER_CHARGE.toString();
             STAMP_IN_USE = true;
             w = 128;

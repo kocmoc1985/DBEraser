@@ -15,6 +15,7 @@ import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
+import BuhInvoice.sec.ChooseStamp;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HTMLBasic;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
@@ -669,13 +670,11 @@ public abstract class HTMLPrint extends HTMLBasic {
     }
     
     
-    public static boolean STAMP_CO2__NEUTRAL__MANUAL = false;
+    
     
     protected void setAndUseStamp(){
         //
-        STAMP_CO2__NEUTRAL__MANUAL = true;
-        //
-        go();
+        ChooseStamp stamp = new ChooseStamp(this);
         //
     }
 
