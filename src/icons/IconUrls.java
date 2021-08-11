@@ -22,7 +22,8 @@ public class IconUrls {
     public static final URL ADD_COMPLETE = IconUrls.class.getResource("add.png");
     public static final URL LOCKED_ICON = IconUrls.class.getResource("locked.png");
     public static final URL UNLOCKED_ICON = IconUrls.class.getResource("unlocked.png");
-    public static final URL REVERSER_CHARGE = IconUrls.class.getResource("reverse_charge.png");
-    public static final URL C02_FREE = IconUrls.class.getResource("co2_free.png");
+    public static final URL STAMP_REVERSER_CHARGE = IconUrls.class.getResource("reverse_charge.png");
+    public static final URL STAMP_THANK_YOU = IconUrls.class.getResource("stamp_thank_you.png");
+    public static final URL STAMP_C02_FREE = IconUrls.class.getResource("co2_free.png");
     
 }

@@ -13,6 +13,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
+import static BuhInvoice.HelpBuh.EU_CUSTOMER;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.ChooseStamp;
@@ -22,12 +23,14 @@ import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
+import BuhInvoice.sec.Stamp;
 import com.qoppa.pdfWriter.ImageParam;
 import com.qoppa.pdfWriter.PDFDocument;
 import com.qoppa.pdfWriter.PDFPage;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import forall.HelpA;
 import forall.TextFieldCheck;
+import icons.IconUrls;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Graphics2D;
@@ -53,6 +56,9 @@ import java.util.logging.Logger;
 public abstract class HTMLPrint extends HTMLBasic {
 
     public static final boolean NO_BORDER = true; //[#NO-BORDER-PROPPER#]
+    private Stamp MANUAL_STAMP;
+    protected boolean STAMP_IN_USE = false;
+    protected int h;
 
     protected final LAFakturering bim;
     protected final ArrayList<HashMap<String, String>> articles_map_list;
@@ -318,6 +324,60 @@ public abstract class HTMLPrint extends HTMLBasic {
             return value;
         }
         //
+    }
+    
+    public void setManualStamp(Stamp stamp){
+        this.MANUAL_STAMP = stamp;
+    }
+    
+    public Stamp getManualStamp(){
+        return MANUAL_STAMP;
+    }
+    
+    protected String insert_stamp(){
+        //
+        String img_a;
+        int w;
+        //
+        if (MANUAL_STAMP != null) {
+            STAMP_IN_USE = true;
+            img_a = MANUAL_STAMP.getPath();
+            w = MANUAL_STAMP.getW();
+            h = MANUAL_STAMP.getH();
+        }
+        //
+        //
+        else if (EU_CUSTOMER && COMPANY_MIXCONT) {
+            img_a = IconUrls.STAMP_REVERSER_CHARGE.toString();
+            STAMP_IN_USE = true;
+            w = 128;
+            h = 128;
+        } else if (COMPANY_MIXCONT) {
+            img_a = IconUrls.STAMP_C02_FREE.toString();
+            STAMP_IN_USE = true;
+            w = 128;
+            h = 75;
+        } else {
+            STAMP_IN_USE = false;
+            return "";
+        }
+
+        //
+        String html_ = "<table class='marginTopB'>";
+        //
+        html_ += "<tr>";
+        html_ += "<td class='bold'>";
+        //
+//        html_ += "REVERSE CHARGE";
+        // OBS! Note iam using a none cropped image (171 kb) because if iam using one with 
+        // lower quality the "pdf" button will produce a low quality image.
+        html_ += "<img src='" + img_a + "' alt='image' width='" + w + "' height='" + h + "'>";
+        //
+        html_ += "</td>";
+        html_ += "</tr>";
+        html_ += "</table>";
+        //
+        return html_;
     }
 
     protected String faktura_data_C_to_html__addr() {

@@ -7,9 +7,12 @@ package BuhInvoice.sec;
 
 import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
+import icons.IconUrls;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,16 +24,11 @@ import javax.swing.border.Border;
  */
 public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
 
-    public static Boolean STAMP_CO2__NEUTRAL__MANUAL = false;
-    public static Boolean STAMP_REVERSER_CHARGE_EU = false;
-    public static Boolean STAMP_C = false;
-    public static Boolean STAMP_D = false;
-
-    private final ArrayList<JLabel> list_labels = new ArrayList<JLabel>();
     private Border INITIAL_LABEL_BORDER = null;
     private final Border LABEL_BORDER_ON_ENTER = BorderFactory.createRaisedBevelBorder();
-
+    private HashMap<JLabel, Stamp> jlabel_stamp_map = new HashMap<JLabel, Stamp>();
     private HTMLPrint print;
+
     /**
      * Creates new form ChooseStamp
      */
@@ -39,7 +37,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         init_a();
         init_b();
     }
-    
+
     public ChooseStamp(HTMLPrint print) {
         initComponents();
         this.print = print;
@@ -49,41 +47,42 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
 
     private void init_a() {
         //
+        this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
+        this.setTitle("Välj stämpel");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //
         INITIAL_LABEL_BORDER = jLabel_stamp_1.getBorder();
         //
-        list_labels.add(jLabel_stamp_1);
-        list_labels.add(jLabel_stamp_2);
-        list_labels.add(jLabel_stamp_3);
-        list_labels.add(jLabel_stamp_4);
+        // SET THE ICONS HERE ****************************
+        jlabel_stamp_map.put(jLabel_stamp_1, new Stamp(IconUrls.STAMP_C02_FREE, 128, 75));
+        jlabel_stamp_map.put(jLabel_stamp_2, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_3, new Stamp(IconUrls.STAMP_THANK_YOU));
+        jlabel_stamp_map.put(jLabel_stamp_4, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
         //
     }
 
     private void init_b() {
         //
-        for (JLabel label : list_labels) {
+        Set set = jlabel_stamp_map.keySet();
+        Iterator it = set.iterator();
+        //
+        while (it.hasNext()) {
+            //
+            JLabel label = (JLabel) it.next();
+            Stamp stamp = (Stamp) jlabel_stamp_map.get(label);
             //
             label.setOpaque(true); // Making the background white
             //
             label.addMouseListener(this);
             //
+            GP_BUH.setLabelIconAndToolTip(label, stamp.getFileName(), stamp.getW(), stamp.getH());
+            //
         }
         //
-        //
-        GP_BUH.setLabelIconAndToolTip(jLabel_stamp_1, "co2_free.png", 128, 75);
-        GP_BUH.setLabelIconAndToolTip(jLabel_stamp_2, "reverse_charge.png", 128, 128);
         this.setSize(280, 320);
         //
         GP_BUH.centerAndBringToFront(this);
         //
-    }
-
-    private void resetStampsBools() {
-        STAMP_CO2__NEUTRAL__MANUAL = false;
-        STAMP_REVERSER_CHARGE_EU = false;
-        STAMP_C = false;
-        STAMP_D = false;
     }
 
     /**
@@ -176,17 +175,9 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         //
         JLabel lbl = (JLabel) e.getSource();
         //
-        resetStampsBools();
+        Stamp stamp = jlabel_stamp_map.get(lbl);
         //
-        if (lbl.equals(jLabel_stamp_1)) {
-            STAMP_CO2__NEUTRAL__MANUAL = true;
-        } else if (lbl.equals(jLabel_stamp_2)) {
-            STAMP_REVERSER_CHARGE_EU = true;
-        } else if (lbl.equals(jLabel_stamp_3)) {
-            STAMP_C = true;
-        } else if (lbl.equals(jLabel_stamp_4)) {
-            STAMP_D = true;
-        }
+        print.setManualStamp(stamp);
         //
         this.setVisible(false);
         //

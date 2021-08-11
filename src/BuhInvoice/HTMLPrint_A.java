@@ -33,8 +33,7 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
-    private boolean STAMP_IN_USE = false;
-    private int h;
+    
 
     public HTMLPrint_A(
             LAFakturering bim,
@@ -233,7 +232,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + articles_to_html(articles_map_list)
                 //
-                + insert_invoice_stamp()
+                + insert_stamp()
                 //
                 + rutAvdrag() //[#RUTROT#]
                 //
@@ -616,56 +615,6 @@ public class HTMLPrint_A extends HTMLPrint {
         return html_;
     }
 
-    private String insert_invoice_stamp() {
-        //
-        String img_a;
-        int w;
-        //
-        if (ChooseStamp.STAMP_CO2__NEUTRAL__MANUAL) {
-            img_a = IconUrls.C02_FREE.toString();
-            STAMP_IN_USE = true;
-            w = 128;
-            h = 75;
-        }else if (ChooseStamp.STAMP_REVERSER_CHARGE_EU) {
-            img_a = IconUrls.REVERSER_CHARGE.toString();
-            STAMP_IN_USE = true;
-            w = 128;
-            h = 128;
-        }
-        //
-        //
-        else if (EU_CUSTOMER && COMPANY_MIXCONT) {
-            img_a = IconUrls.REVERSER_CHARGE.toString();
-            STAMP_IN_USE = true;
-            w = 128;
-            h = 128;
-        } else if (COMPANY_MIXCONT) {
-            img_a = IconUrls.C02_FREE.toString();
-            STAMP_IN_USE = true;
-            w = 128;
-            h = 75;
-        } else {
-            STAMP_IN_USE = false;
-            return "";
-        }
-
-        //
-        String html_ = "<table class='marginTopB'>";
-        //
-        html_ += "<tr>";
-        html_ += "<td class='bold'>";
-        //
-//        html_ += "REVERSE CHARGE";
-        // OBS! Note iam using a none cropped image (171 kb) because if iam using one with 
-        // lower quality the "pdf" button will produce a low quality image.
-        html_ += "<img src='" + img_a + "' alt='image' width='" + w + "' height='" + h + "'>";
-        //
-        html_ += "</td>";
-        html_ += "</tr>";
-        html_ += "</table>";
-        //
-        return html_;
-    }
 
     private String ovmvantSkattNotation() {
         //
