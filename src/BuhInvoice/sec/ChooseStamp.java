@@ -8,6 +8,8 @@ package BuhInvoice.sec;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint;
 import icons.IconUrls;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
@@ -55,9 +57,13 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         //
         // SET THE ICONS HERE ****************************
         jlabel_stamp_map.put(jLabel_stamp_1, new Stamp(IconUrls.STAMP_C02_FREE, 128, 75));
-        jlabel_stamp_map.put(jLabel_stamp_2, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_2, new Stamp(IconUrls.STAMP_KLIMAT_SMART));
         jlabel_stamp_map.put(jLabel_stamp_3, new Stamp(IconUrls.STAMP_THANK_YOU));
-        jlabel_stamp_map.put(jLabel_stamp_4, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_4, new Stamp(IconUrls.STAMP_THANK_YOU__HEARTS));
+        jlabel_stamp_map.put(jLabel_stamp_5, new Stamp(IconUrls.STAMP_THANK_YOU__VLKMN_ATER));
+        jlabel_stamp_map.put(jLabel_stamp_6, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_7, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_8, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
         //
     }
 
@@ -72,6 +78,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
             Stamp stamp = (Stamp) jlabel_stamp_map.get(label);
             //
             label.setOpaque(true); // Making the background white
+            label.setBackground(Color.white);
             //
             label.addMouseListener(this);
             //
@@ -79,7 +86,16 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
             //
         }
         //
-        this.setSize(280, 320);
+        // Width: one column = 128, so to calculate [ammount of columns] * [128] + [24]
+        // Height: [ammount of rows] * [128] + [64]
+        //
+        GridLayout gl = (GridLayout)this.getContentPane().getLayout();
+        int rows = gl.getRows();
+        int columns = gl.getColumns();
+        int frame_w = columns * 128 + 24;
+        int frame_h = rows * 128 + 64;
+        //
+        this.setSize(frame_w, frame_h); 
         //
         GP_BUH.centerAndBringToFront(this);
         //
@@ -98,9 +114,13 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         jLabel_stamp_2 = new javax.swing.JLabel();
         jLabel_stamp_3 = new javax.swing.JLabel();
         jLabel_stamp_4 = new javax.swing.JLabel();
+        jLabel_stamp_5 = new javax.swing.JLabel();
+        jLabel_stamp_6 = new javax.swing.JLabel();
+        jLabel_stamp_7 = new javax.swing.JLabel();
+        jLabel_stamp_8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(2, 2, 2, 2));
+        getContentPane().setLayout(new java.awt.GridLayout(2, 4, 2, 2));
 
         jLabel_stamp_1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_stamp_1);
@@ -113,6 +133,10 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
 
         jLabel_stamp_4.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_stamp_4);
+        getContentPane().add(jLabel_stamp_5);
+        getContentPane().add(jLabel_stamp_6);
+        getContentPane().add(jLabel_stamp_7);
+        getContentPane().add(jLabel_stamp_8);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,6 +187,10 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
     private javax.swing.JLabel jLabel_stamp_2;
     private javax.swing.JLabel jLabel_stamp_3;
     private javax.swing.JLabel jLabel_stamp_4;
+    private javax.swing.JLabel jLabel_stamp_5;
+    private javax.swing.JLabel jLabel_stamp_6;
+    private javax.swing.JLabel jLabel_stamp_7;
+    private javax.swing.JLabel jLabel_stamp_8;
     // End of variables declaration//GEN-END:variables
 
     @Override
