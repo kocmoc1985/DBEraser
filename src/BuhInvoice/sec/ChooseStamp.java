@@ -61,9 +61,11 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         jlabel_stamp_map.put(jLabel_stamp_3, new Stamp(IconUrls.STAMP_THANK_YOU));
         jlabel_stamp_map.put(jLabel_stamp_4, new Stamp(IconUrls.STAMP_THANK_YOU__HEARTS));
         jlabel_stamp_map.put(jLabel_stamp_5, new Stamp(IconUrls.STAMP_THANK_YOU__VLKMN_ATER));
-        jlabel_stamp_map.put(jLabel_stamp_6, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
-        jlabel_stamp_map.put(jLabel_stamp_7, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
-        jlabel_stamp_map.put(jLabel_stamp_8, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
+        jlabel_stamp_map.put(jLabel_stamp_6, new Stamp(IconUrls.STAMP_BETALD,128,78));
+        jlabel_stamp_map.put(jLabel_stamp_7, new Stamp(IconUrls.STAMP_BETALD_B));
+        jlabel_stamp_map.put(jLabel_stamp_8, new Stamp(IconUrls.STAMP_IKKE_BETALD,128,78));
+        jlabel_stamp_map.put(jLabel_stamp_9, new Stamp(IconUrls.STAMP_IKKE_BETALD_B));
+        jlabel_stamp_map.put(jLabel_stamp_10, new Stamp(IconUrls.STAMP_REVERSER_CHARGE));
         //
     }
 
@@ -118,9 +120,11 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         jLabel_stamp_6 = new javax.swing.JLabel();
         jLabel_stamp_7 = new javax.swing.JLabel();
         jLabel_stamp_8 = new javax.swing.JLabel();
+        jLabel_stamp_9 = new javax.swing.JLabel();
+        jLabel_stamp_10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(2, 4, 2, 2));
+        getContentPane().setLayout(new java.awt.GridLayout(2, 5, 2, 2));
 
         jLabel_stamp_1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_stamp_1);
@@ -137,6 +141,8 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         getContentPane().add(jLabel_stamp_6);
         getContentPane().add(jLabel_stamp_7);
         getContentPane().add(jLabel_stamp_8);
+        getContentPane().add(jLabel_stamp_9);
+        getContentPane().add(jLabel_stamp_10);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,6 +190,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel_stamp_1;
+    private javax.swing.JLabel jLabel_stamp_10;
     private javax.swing.JLabel jLabel_stamp_2;
     private javax.swing.JLabel jLabel_stamp_3;
     private javax.swing.JLabel jLabel_stamp_4;
@@ -191,6 +198,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
     private javax.swing.JLabel jLabel_stamp_6;
     private javax.swing.JLabel jLabel_stamp_7;
     private javax.swing.JLabel jLabel_stamp_8;
+    private javax.swing.JLabel jLabel_stamp_9;
     // End of variables declaration//GEN-END:variables
 
     @Override

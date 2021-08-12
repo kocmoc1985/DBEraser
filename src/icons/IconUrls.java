@@ -28,5 +28,9 @@ public class IconUrls {
     public static final URL STAMP_THANK_YOU__HEARTS = IconUrls.class.getResource("stamp_thank_you_c.png");
     public static final URL STAMP_C02_FREE = IconUrls.class.getResource("co2_free.png");
     public static final URL STAMP_KLIMAT_SMART = IconUrls.class.getResource("stamp_klimatsmart.png");
+    public static final URL STAMP_BETALD = IconUrls.class.getResource("stamp_betald.png");
+    public static final URL STAMP_BETALD_B = IconUrls.class.getResource("stamp_betald_b.png");
+    public static final URL STAMP_IKKE_BETALD = IconUrls.class.getResource("stamp_ikke_betald.png");
+    public static final URL STAMP_IKKE_BETALD_B = IconUrls.class.getResource("stamp_ikke_betald_b.png");
     
 }
