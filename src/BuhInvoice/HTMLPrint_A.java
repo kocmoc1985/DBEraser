@@ -232,9 +232,9 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + articles_to_html(articles_map_list)
                 //
-                + insert_stamp()
-                //
                 + rutAvdrag() //[#RUTROT#]
+                //
+                + insert_stamp()
                 //
                 + ovmvantSkattNotation()
                 //

@@ -32,5 +32,7 @@ public class IconUrls {
     public static final URL STAMP_BETALD_B = IconUrls.class.getResource("stamp_betald_b.png");
     public static final URL STAMP_IKKE_BETALD = IconUrls.class.getResource("stamp_ikke_betald.png");
     public static final URL STAMP_IKKE_BETALD_B = IconUrls.class.getResource("stamp_ikke_betald_b.png");
+    public static final URL STAMP_ROT_RUT = IconUrls.class.getResource("stamp_rot_rut.png");
+    public static final URL STAMP_LOWERST_PRICE_GR = IconUrls.class.getResource("stamp_lowest_price_gr.png");
     
 }
