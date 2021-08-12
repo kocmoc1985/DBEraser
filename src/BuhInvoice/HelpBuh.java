@@ -63,8 +63,7 @@ public class HelpBuh {
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean COMPANY_MIXCONT = false; // DON'T CHANGE MANUALLY
 
-    
-    public static void defineIfCompanyMixcont(){
+    public static void defineIfCompanyMixcont() {
         //
         if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont") == false) {
             return;
@@ -73,10 +72,14 @@ public class HelpBuh {
         COMPANY_MIXCONT = true;
         //
     }
-    
+
     public static void predefinedForeignCustomers(String fakturaKundKategori) {
         //[#KUND-KATEGORI-CONDITION#]
         if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
+            LANG_ENG = true;
+            FOREIGN_CUSTOMER = true;
+            EU_CUSTOMER = true;
+        } else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { // THIS IS BETA TESTING FOR ENG MODE
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
