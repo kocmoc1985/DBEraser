@@ -291,7 +291,6 @@ public class InvoiceA_Insert_ extends Invoice_ {
         //
         //[#EUR-SEK#]
         RowDataInvert currency_rate_a = new RowDataInvertB("10.1", DB.BUH_FAKTURA__CURRENCY_RATE_A, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A, "", true, true, false);
-//        hideFieldIfNotMixcontAndNotForeignCustomer(currency_rate_a);
         //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,

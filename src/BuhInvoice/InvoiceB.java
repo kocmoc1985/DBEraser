@@ -312,7 +312,7 @@ public class InvoiceB extends Basic_Buh {
 
     protected void all_invoices_table_clicked(String fakturaId) {
         //
-        HelpBuh.predefinedForeignCustomers(bim.getFakturaKundKategori());// [#KUND-KATEGORI-CONDITION#][2021-07-29]
+        HelpBuh.defineForeignCustomers(bim.getFakturaKundKategori());// [#KUND-KATEGORI-CONDITION#][2021-07-29]
         //
         fillFakturaArticlesTable(fakturaId);
         //

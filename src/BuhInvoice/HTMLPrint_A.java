@@ -6,15 +6,11 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
-import static BuhInvoice.HelpBuh.COMPANY_MIXCONT;
-import static BuhInvoice.HelpBuh.EU_CUSTOMER;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
-import BuhInvoice.sec.ChooseStamp;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
-import icons.IconUrls;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -449,7 +445,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String total_exkl_moms = map_d.get(T__FAKTURA_EXKL_MOMS);
         total_exkl_moms = getSpecial_foreign_customer(total_exkl_moms);
         //
-        String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
+        String currencyUnit = FOREIGN_CUSTOMER ? HelpBuh.CURRENCY__EUR : "";
         //
         String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR(), ATT_BETALA_TITLE};
         String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, roundBetalaTotal(att_betala_total) + " " + currencyUnit};
@@ -530,8 +526,8 @@ public class HTMLPrint_A extends HTMLPrint {
         if (containsSameMomsSats == false || (containsKomment && containsArticleNames) || containsRabatt) {
             html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL() + " / " + T__ARTIKEL_ENHET() + "</td>";
         } else {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET + "</td>";
-            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_ENHET() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_ANTAL() + "</td>";
         }
         //
         //

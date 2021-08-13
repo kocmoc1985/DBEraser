@@ -598,7 +598,7 @@ public abstract class Invoice_ extends Basic_Buh {
             if (rabatt_percent == 0 && rabatt_kr == 0) {
                 double actPris = (pris_exkl_moms * antal);
                 //
-                if (HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT) {
+                if (HelpBuh.FOREIGN_CUSTOMER) {
                     //[#EUR-SEK#]
                     FAKTURA_TOTAL += actPris * getCurrencyRateTableInvert3();
                 } else {
@@ -615,7 +615,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 double actPris = (pris_exkl_moms - rabatt_kr) * antal;
                 //
-                if (HelpBuh.FOREIGN_CUSTOMER && HelpBuh.COMPANY_MIXCONT) {
+                if (HelpBuh.FOREIGN_CUSTOMER) {
                     //[#EUR-SEK#]
                     FAKTURA_TOTAL += actPris * getCurrencyRateTableInvert3();
                 } else {
@@ -1277,15 +1277,25 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
-            System.out.println("" + jli.getValue());// Returns KundId
-            HelpBuh.predefinedForeignCustomers("F");//bim.getFakturaKundKategori()
+            //===================
+            //[#EUR-SEK#]
+            String fakturaKundId = jli.getValue();
+            HashMap<String, String> fakturaKundMap = getFakturaKundData_b(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, fakturaKundId);
+            //
+            if(fakturaKundMap != null){
+                //[#KUND-KATEGORI-CONDITION#]
+                HelpBuh.defineForeignCustomers(fakturaKundMap.get(DB.BUH_FAKTURA_KUND___KATEGORI));//bim.getFakturaKundKategori()
+            }
+            //
+            hideFieldIfNotMixcontAndNotForeignCustomer(TABLE_INVERT_3,DB.BUH_FAKTURA__CURRENCY_RATE_A);
+            //====================
             //
             //[#SHOW-HIDE-RUT--IS-PESRON#]
             hideFieldIfNotPerson_b(TABLE_INVERT_3, DB.BUH_FAKTURA__RUT);
             //
             hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
             //
-            hideFieldIfNotMixcontAndNotForeignCustomer(TABLE_INVERT_3,DB.BUH_FAKTURA__CURRENCY_RATE_A);
+            
             //
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__BETAL_VILKOR, "30", false);
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);

@@ -58,6 +58,7 @@ public class HelpBuh {
     //
     //
     //
+    public static final String CURRENCY__EUR = "EUR";
     public static boolean LANG_ENG = false; // DON'T CHANGE MANUALLY
     public static boolean FOREIGN_CUSTOMER = false; // DON'T CHANGE MANUALLY
     public static boolean EU_CUSTOMER = false; // DON'T CHANGE MANUALLY
@@ -73,17 +74,22 @@ public class HelpBuh {
         //
     }
 
-    public static void predefinedForeignCustomers(String fakturaKundKategori) {
-        //[#KUND-KATEGORI-CONDITION#]
+    public static void defineForeignCustomers(String fakturaKundKategori) {
+        //[#KUND-KATEGORI-CONDITION#][#EUR-SEK#]
         if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
-        } else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { // THIS IS BETA TESTING FOR ENG MODE
+        }
+        //==============================
+        // THIS IS BETA TESTING FOR ENG MODE FOR NOT ONLY MIXCONT
+        else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { 
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
-        } else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
+        }
+        //================================
+        else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = false;

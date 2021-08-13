@@ -396,7 +396,7 @@ public class HTMLPrint_B extends HTMLPrint {
         total = getSpecial_foreign_customer(total);
         Double totalInkDrojAvg = GP_BUH.round_double(Double.parseDouble(total) + drojAvg);
         //
-        String currencyUnit = FOREIGN_CUSTOMER ? "EUR" : "";
+        String currencyUnit = FOREIGN_CUSTOMER ? HelpBuh.CURRENCY__EUR : "";
         //
         String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR(), T__FAKTURA_DROJMALSRANTA__FLEX(), ATT_BETALA_TITLE};
         String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt, "" + drojAvg, "" + roundBetalaTotal(""+totalInkDrojAvg) + " " + currencyUnit};
