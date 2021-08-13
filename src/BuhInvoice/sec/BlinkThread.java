@@ -19,56 +19,49 @@ import javax.swing.border.Border;
  * @author KOCMOC
  */
 public class BlinkThread implements Runnable {
-    
+
     private final JComponent component;
     private final boolean red;
     private static boolean ready = true;
-    private boolean blinkText = false;
+//    private boolean blinkText = false;
     private boolean blinkIcon = false;
-    
+    private boolean run = true;
+
     public BlinkThread(JComponent component, boolean red) {
         this.component = component;
         this.red = red;
         startThread();
     }
-    
+
     public BlinkThread(JComponent component) {
         this.component = component;
         red = false;
         blinkIcon = true;
-        startThread();
+        startThreadB();
     }
 
-//    public BlinkThread(JComponent component, JLabel label, boolean red) {
-//        this.component = component;
-//        this.label = label;
-//        this.red = red;
-//        startThread();
-//    }
-    public void setBlinkText() {
-        this.blinkText = true;
-    }
-    
-   
-    
-    private void startThread() {
-        if (ready == false) {
-            return;
-        }
+    private void startThreadB() {
         Thread x = new Thread(this);
         x.start();
     }
-    
+
+    public void abortThreadB() {
+        run = false;
+    }
+
+    private void startThread() {
+        //
+        if (ready == false) {
+            return;
+        }
+        //
+        Thread x = new Thread(this);
+        x.start();
+    }
+
     @Override
     public void run() {
-        
-        if (blinkText) {
-            if (red) {
-                blinkText(component, Color.red);
-            } else {
-                blinkText(component, Color.green);
-            }
-        } else if (blinkIcon) {
+        if (blinkIcon) {
             blinkIcon(component);
         } else {
             if (red) {
@@ -77,9 +70,8 @@ public class BlinkThread implements Runnable {
                 blink(component, Color.green);
             }
         }
-        
     }
-    
+
     private void blink(JComponent jc, Color color) {
         ready = false;
         if (jc != null) {
@@ -96,52 +88,29 @@ public class BlinkThread implements Runnable {
             ready = true;
         }
     }
-    
+
     private void blinkIcon(JComponent jc) {
-        ready = false;
         int millis = 800;
         if (jc != null) {
             //
-            jc.setVisible(false);
-            wait_(millis);
-            jc.setVisible(true);
-            wait_(millis);
-            jc.setVisible(false);
-            wait_(millis);
-            jc.setVisible(true);
-            wait_(millis);
-            jc.setVisible(false);
-            wait_(millis);
-            jc.setVisible(true);
-            wait_(millis);
-            jc.setVisible(false);
-            wait_(millis);
-            jc.setVisible(true);
-            wait_(millis);
-            jc.setVisible(false);
-            wait_(millis);
-            jc.setVisible(true);
+            for (int i = 0; i < 8; i++) {
+                //
+                wait_(millis);
+                //
+                if (run == false) {
+                    break;
+                }
+                //
+                if (jc.isVisible()) {
+                    jc.setVisible(false);
+                } else {
+                    jc.setVisible(true);
+                }
+            }
             //
-            ready = true;
         }
     }
-    
-    private void blinkText(JComponent jc, Color color) {
-        ready = false;
-        if (jc != null) {
-            Color prevColor = jc.getForeground();
-            jc.setForeground(color);
-            wait_(500);
-            jc.setForeground(prevColor);
-            wait_(500);
-            jc.setForeground(color);
-            wait_(500);
-            jc.setForeground(prevColor);
-            //
-            ready = true;
-        }
-    }
-    
+
     private synchronized void wait_(int millis) {
         try {
             wait(millis);
@@ -149,5 +118,5 @@ public class BlinkThread implements Runnable {
             Logger.getLogger(ErrorOutputListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

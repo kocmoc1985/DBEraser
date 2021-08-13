@@ -315,6 +315,8 @@ public class InvoiceB extends Basic_Buh {
         //
         HelpBuh.defineForeignCustomers(bim.getFakturaKundKategori());// [#KUND-KATEGORI-CONDITION#][2021-07-29]
         //
+        abortPreviousBlinkThreads();
+        //
         fillFakturaArticlesTable(fakturaId);
         //
         showImportantKomment();
@@ -369,8 +371,8 @@ public class InvoiceB extends Basic_Buh {
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd moms");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
-        if(isForeignCustomer){
-            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "euro.png", "EU Kund");
+        if (isForeignCustomer) {
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "euro.png", "Valuta EUR");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
             blink(bim.jLabel_info_rut__or_omvant_skatt);
         }
@@ -397,9 +399,23 @@ public class InvoiceB extends Basic_Buh {
         }
         //
     }
-    
-    private void blink(JComponent component){
+
+    private final ArrayList<BlinkThread> blinkThreadList = new ArrayList<>();
+
+    private void blink(JComponent component) {
+        //
+        abortPreviousBlinkThreads();
+        //
         BlinkThread btr = new BlinkThread(component);
+        //
+        blinkThreadList.add(btr);
+        //
+    }
+
+    private void abortPreviousBlinkThreads() {
+        for (BlinkThread blinkThread : blinkThreadList) {
+            blinkThread.abortThreadB();
+        }
     }
 
     /**
@@ -709,8 +725,8 @@ public class InvoiceB extends Basic_Buh {
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__OMVANT_SKATT);
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__UTSKRIVEN);//TABLE_ALL_INVOICES__KUND_KATEGORI
             HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__KUND_KATEGORI);
-            if(HelpBuh.COMPANY_MIXCONT == false){
-              HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CURRENCY_RATE_A);  
+            if (HelpBuh.COMPANY_MIXCONT == false) {
+                HelpA.hideColumnByName(table, TABLE_ALL_INVOICES__CURRENCY_RATE_A);
             }
         }
         //

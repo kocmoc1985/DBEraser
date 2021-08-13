@@ -61,9 +61,9 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         jlabel_stamp_map.put(jLabel_stamp_3, new Stamp(IconUrls.STAMP_THANK_YOU));
         jlabel_stamp_map.put(jLabel_stamp_4, new Stamp(IconUrls.STAMP_THANK_YOU__HEARTS));
         jlabel_stamp_map.put(jLabel_stamp_5, new Stamp(IconUrls.STAMP_THANK_YOU__VLKMN_ATER));
-        jlabel_stamp_map.put(jLabel_stamp_6, new Stamp(IconUrls.STAMP_BETALD,128,78));
+        jlabel_stamp_map.put(jLabel_stamp_6, new Stamp(IconUrls.STAMP_BETALD, 128, 78));
         jlabel_stamp_map.put(jLabel_stamp_7, new Stamp(IconUrls.STAMP_BETALD_B));
-        jlabel_stamp_map.put(jLabel_stamp_8, new Stamp(IconUrls.STAMP_IKKE_BETALD,128,78));
+        jlabel_stamp_map.put(jLabel_stamp_8, new Stamp(IconUrls.STAMP_IKKE_BETALD, 128, 78));
         jlabel_stamp_map.put(jLabel_stamp_9, new Stamp(IconUrls.STAMP_IKKE_BETALD_B));
         jlabel_stamp_map.put(jLabel_stamp_10, new Stamp(IconUrls.STAMP_ROT_RUT));
         jlabel_stamp_map.put(jLabel_stamp_11, new Stamp(IconUrls.STAMP_LOWERST_PRICE_GR));
@@ -93,13 +93,13 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
         // Width: one column = 128, so to calculate [ammount of columns] * [128] + [24]
         // Height: [ammount of rows] * [128] + [64]
         //
-        GridLayout gl = (GridLayout)this.getContentPane().getLayout();
+        GridLayout gl = (GridLayout) this.getContentPane().getLayout();
         int rows = gl.getRows();
         int columns = gl.getColumns();
         int frame_w = columns * 128 + 24;
         int frame_h = rows * 128 + 64;
         //
-        this.setSize(frame_w, frame_h); 
+        this.setSize(frame_w, frame_h);
         //
         GP_BUH.centerAndBringToFront(this);
         //
