@@ -68,7 +68,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_ALL_INVOICES__COPIED_FROM_ID = "COPIED FROM ID"; // hidden //[#KREDIT-RUT#]
     public static String TABLE_ALL_INVOICES__OMVANT_SKATT = "OMVANT SKATT"; // hidden //[#INVOICE-HAS-OMVAND-SKATT#]
     public static String TABLE_ALL_INVOICES__UTSKRIVEN = "PRINT"; //[#IS_PRINTED#]
-    public static String TABLE_ALL_INVOICES__CURRENCY_RATE_A = "EURSEK";
+    public static String TABLE_ALL_INVOICES__CURRENCY_RATE_A = "EUR / SEK";
     public static String TABLE_ALL_INVOICES__KUND_KATEGORI = "KUND KATEGORI";
     //OBS! Search for [#ADD-TO-MAIN-TABLE#]
     //
@@ -315,7 +315,7 @@ public class InvoiceB extends Basic_Buh {
         //
         HelpBuh.defineForeignCustomers(bim.getFakturaKundKategori());// [#KUND-KATEGORI-CONDITION#][2021-07-29]
         //
-        abortPreviousBlinkThreads();
+        abortPreviousBlinkThreads();// [#INFO-ICON-BLINK#]
         //
         fillFakturaArticlesTable(fakturaId);
         //
@@ -358,7 +358,7 @@ public class InvoiceB extends Basic_Buh {
         //
         if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false && makulerad == false) {
             bim.jLabel_info__forfallen.setVisible(true);
-            blink(bim.jLabel_info__forfallen);
+            infoIconBlink(bim.jLabel_info__forfallen); // [#INFO-ICON-BLINK#]
         }
         if (is_person && makulerad == false) {
             bim.jLabel_info_is_person.setVisible(true);
@@ -374,7 +374,7 @@ public class InvoiceB extends Basic_Buh {
         if (isForeignCustomer) {
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "euro.png", "Valuta EUR");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
-            blink(bim.jLabel_info_rut__or_omvant_skatt);
+            infoIconBlink(bim.jLabel_info_rut__or_omvant_skatt);// [#INFO-ICON-BLINK#]
         }
         if (printed && makulerad == false) {
             bim.jLabel_info__printed.setVisible(true);
@@ -400,22 +400,28 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private final ArrayList<BlinkThread> blinkThreadList = new ArrayList<>();
-
-    private void blink(JComponent component) {
-        //
+    private void infoIconBlink(JComponent component) {
+        //[#INFO-ICON-BLINK#]
         abortPreviousBlinkThreads();
         //
-        BlinkThread btr = new BlinkThread(component);
+        BlinkThread btr = new BlinkThread(component,bim.getFakturaId());
         //
         blinkThreadList.add(btr);
         //
     }
 
+    private final ArrayList<BlinkThread> blinkThreadList = new ArrayList<>();
+
     private void abortPreviousBlinkThreads() {
+        //[#INFO-ICON-BLINK#]
+        String fakturaId = bim.getFakturaId();
+        //
         for (BlinkThread blinkThread : blinkThreadList) {
-            blinkThread.abortThreadB();
+            if (blinkThread.getFakturaId().equals(fakturaId) == false) {
+                blinkThread.abortThreadB();
+            }
         }
+        //
     }
 
     /**

@@ -26,6 +26,7 @@ public class BlinkThread implements Runnable {
 //    private boolean blinkText = false;
     private boolean blinkIcon = false;
     private boolean run = true;
+    private String fakturaId;
 
     public BlinkThread(JComponent component, boolean red) {
         this.component = component;
@@ -33,16 +34,21 @@ public class BlinkThread implements Runnable {
         startThread();
     }
 
-    public BlinkThread(JComponent component) {
+    public BlinkThread(JComponent component, String fakturaId) {
         this.component = component;
+        this.fakturaId = fakturaId;
         red = false;
         blinkIcon = true;
-        startThreadB();
+        startThreadB(); // [#INFO-ICON-BLINK#]
     }
 
     private void startThreadB() {
         Thread x = new Thread(this);
         x.start();
+    }
+
+    public String getFakturaId() {
+        return fakturaId; // [#INFO-ICON-BLINK#]
     }
 
     public void abortThreadB() {
@@ -57,10 +63,12 @@ public class BlinkThread implements Runnable {
         //
         Thread x = new Thread(this);
         x.start();
+        //
     }
 
     @Override
     public void run() {
+        //
         if (blinkIcon) {
             blinkIcon(component);
         } else {
@@ -70,6 +78,7 @@ public class BlinkThread implements Runnable {
                 blink(component, Color.green);
             }
         }
+        //
     }
 
     private void blink(JComponent jc, Color color) {
@@ -90,7 +99,9 @@ public class BlinkThread implements Runnable {
     }
 
     private void blinkIcon(JComponent jc) {
+        // [#INFO-ICON-BLINK#]
         int millis = 800;
+        //
         if (jc != null) {
             //
             for (int i = 0; i < 8; i++) {
