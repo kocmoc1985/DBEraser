@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -355,6 +356,7 @@ public class InvoiceB extends Basic_Buh {
         //
         if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false && makulerad == false) {
             bim.jLabel_info__forfallen.setVisible(true);
+            blink(bim.jLabel_info__forfallen);
         }
         if (is_person && makulerad == false) {
             bim.jLabel_info_is_person.setVisible(true);
@@ -370,6 +372,7 @@ public class InvoiceB extends Basic_Buh {
         if(isForeignCustomer){
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "euro.png", "EU Kund");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
+            blink(bim.jLabel_info_rut__or_omvant_skatt);
         }
         if (printed && makulerad == false) {
             bim.jLabel_info__printed.setVisible(true);
@@ -393,6 +396,10 @@ public class InvoiceB extends Basic_Buh {
             bim.jLabel_info__offert.setVisible(true);
         }
         //
+    }
+    
+    private void blink(JComponent component){
+        BlinkThread btr = new BlinkThread(component);
     }
 
     /**
