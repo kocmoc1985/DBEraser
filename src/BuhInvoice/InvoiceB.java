@@ -351,6 +351,7 @@ public class InvoiceB extends Basic_Buh {
         boolean printed = bim.isPrinted();
         boolean isOffert = bim.isOffert();
         boolean isOmvantSkatt = bim.isOmvantSkatt();
+        boolean isForeignCustomer = HelpBuh.FOREIGN_CUSTOMER;
         //
         if (forfallen && bim.isKreditFaktura() == false && isOffert == false && bim.isKontantFaktura() == false && makulerad == false) {
             bim.jLabel_info__forfallen.setVisible(true);
@@ -364,6 +365,10 @@ public class InvoiceB extends Basic_Buh {
         }
         if (isOmvantSkatt && makulerad == false) {
             GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd moms");
+            bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
+        }
+        if(isForeignCustomer){
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "euro.png", "EU Kund");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
         if (printed && makulerad == false) {
@@ -387,7 +392,6 @@ public class InvoiceB extends Basic_Buh {
         if (isOffert) {
             bim.jLabel_info__offert.setVisible(true);
         }
-
         //
     }
 
