@@ -228,7 +228,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         //[#EUR-SEK#]
         String currency_rate_a_ = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
-        RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS", "", false, true, false);
+        RowDataInvert currency_rate = new RowDataInvertB(currency_rate_a_, DB.BUH_FAKTURA__CURRENCY_RATE_A, "VALUTA KURS EUR / SEK", "", false, true, false);
         //
         RowDataInvert[] rows = {
             //            inkl_exkl_moms,

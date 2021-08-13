@@ -639,15 +639,25 @@ public abstract class Invoice_ extends Basic_Buh {
 //        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
         //
         MOMS_ARTIKLAR = MOMS_TOTAL;
+        //
         //here below is "MOMS_SATS__FRAKT_AND_EXP_AVG" calculated
-        MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(FRAKT, EXP_AVG, moms_map);
+        if(HelpBuh.FOREIGN_CUSTOMER == false){
+            MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(FRAKT, EXP_AVG, moms_map);
+        }
+        //
         MOMS_TOTAL += MOMS_FRAKT_AND_EXP_AVG;
         FAKTURA_TOTAL += MOMS_TOTAL;
         FAKTURA_TOTAL_EXKL_MOMS = FAKTURA_TOTAL - MOMS_TOTAL;
         //
         //
-        FAKTURA_TOTAL += FRAKT;
-        FAKTURA_TOTAL += EXP_AVG;
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            FAKTURA_TOTAL += FRAKT * getCurrencyRateTableInvert3();
+            FAKTURA_TOTAL += EXP_AVG * getCurrencyRateTableInvert3();
+        } else {
+            FAKTURA_TOTAL += FRAKT;
+            FAKTURA_TOTAL += EXP_AVG;
+        }
+
         //
         FAKTURA_TOTAL -= RUT_AVDRAG_TOTAL;
         //
@@ -829,7 +839,7 @@ public abstract class Invoice_ extends Basic_Buh {
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //
-        hideFieldIfPerson(omvant_skatt); //******
+//        hideFieldIfPerson(omvant_skatt); //******
         //
         RowDataInvert komment = new RowDataInvertB("", DB.BUH_F_ARTIKEL__KOMMENT, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, "", true, true, false);
         //
@@ -893,7 +903,7 @@ public abstract class Invoice_ extends Basic_Buh {
         omvant_skatt.enableFixedValuesAdvanced();
         omvant_skatt.setUneditable();
         //
-        hideFieldIfPerson(omvant_skatt); //  ******
+//        hideFieldIfPerson(omvant_skatt); //  ******
         //
         boolean omvant = isOmvant(valSelectedRow_translated);
         //
@@ -1282,20 +1292,27 @@ public abstract class Invoice_ extends Basic_Buh {
             String fakturaKundId = jli.getValue();
             HashMap<String, String> fakturaKundMap = getFakturaKundData_b(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA, fakturaKundId);
             //
-            if(fakturaKundMap != null){
+            if (fakturaKundMap != null) {
                 //[#KUND-KATEGORI-CONDITION#]
                 HelpBuh.defineForeignCustomers(fakturaKundMap.get(DB.BUH_FAKTURA_KUND___KATEGORI));//bim.getFakturaKundKategori()
+                //
+                if (HelpBuh.FOREIGN_CUSTOMER) {
+                    //OBS! Setting MOMS/VAT = 0%
+//                    setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("0%", "", "", ""));
+                    setMomsSats_tableInvert(0);
+                }
+                //
             }
             //
-            hideFieldIfNotMixcontAndNotForeignCustomer(TABLE_INVERT_3,DB.BUH_FAKTURA__CURRENCY_RATE_A);
+            hideField_IF_NOT_ForeignCustomer(TABLE_INVERT_3, DB.BUH_FAKTURA__CURRENCY_RATE_A);
+            //
             //====================
             //
             //[#SHOW-HIDE-RUT--IS-PESRON#]
             hideFieldIfNotPerson_b(TABLE_INVERT_3, DB.BUH_FAKTURA__RUT);
             //
-            hideFieldIfPerson_b(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
+            hideFieldIfPerson_OR_ForeignCustomer(TABLE_INVERT_2, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
             //
-            
             //
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__BETAL_VILKOR, "30", false);
             restore_fakturaKund_related__jcombo_only(ti, DB.BUH_FAKTURA__LEV_VILKOR, "Fritt vårt lager", true);
@@ -1306,10 +1323,11 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__MOMS_SATS)) {
             //
-            String omvant = getValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, ti);
-            if (omvant.equals("0")) {
-                IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
-            }
+//            String omvant = getValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, ti);
+//            //
+//            if (omvant.equals("0")) {
+//                IO.writeToFile(DB.BUH_F_ARTIKEL__MOMS_SATS, jli.getValue());
+//            }
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__OMVANT_SKATT)) {
             //
@@ -1319,10 +1337,12 @@ public abstract class Invoice_ extends Basic_Buh {
             JComboBox box = (JComboBox) cde.getObject();
             //
             if (omvant.equals("1")) { // Means using omvänt skattskyldighet
-                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("0%", "", "", ""));
+//                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("0%", "", "", ""));
+                setMomsSats_tableInvert(0);
                 box.setEnabled(false);
             } else if (omvant.equals("0")) {
-                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("25%", "", "", ""));
+                setMomsSats_tableInvert(25);
+//                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, ti, new HelpA.ComboBoxObject("25%", "", "", ""));
                 box.setEnabled(true);
             }
             //
@@ -1430,11 +1450,23 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT, TABLE_INVERT_2, "0");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2, "0");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, TABLE_INVERT_2, new HelpA.ComboBoxObject("Nej", "", "", ""));
-                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("25%", "", "", ""));
-
+//                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("25%", "", "", ""));
+                setMomsSats_tableInvert(25);
             }
             //
         }
+        //
+    }
+
+    private void setMomsSats_tableInvert(int momsToSet) {
+        // For the foreign customers moms shall be 0% by default
+        if (HelpBuh.FOREIGN_CUSTOMER && momsToSet == 25) {
+            return;
+        }
+        //
+        String momssats = momsToSet + "%";
+        //
+        setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject(momssats, "", "", ""));
         //
     }
 
@@ -1486,15 +1518,14 @@ public abstract class Invoice_ extends Basic_Buh {
         //
     }
 
-//    protected void hideFieldIfNotMixcontAndNotForeignCustomer(RowDataInvert rdi) {
+//    protected void hideField_IF_NOT_ForeignCustomer(RowDataInvert rdi) {
 //        //
 //        if (HelpBuh.FOREIGN_CUSTOMER == false) {//HelpBuh.COMPANY_MIXCONT == false || (HelpBuh.COMPANY_MIXCONT && HelpBuh.FOREIGN_CUSTOMER == false)
 //            rdi.setVisible_(false);
 //        }
 //        //
 //    }
-
-    protected void hideFieldIfNotMixcontAndNotForeignCustomer(Table ti, String colName) {
+    protected void hideField_IF_NOT_ForeignCustomer(Table ti, String colName) {
         //
         TableInvert table = (TableInvert) ti;
         TableRowInvert tri = (TableRowInvert) table.getRowByColName(colName);
@@ -1503,7 +1534,7 @@ public abstract class Invoice_ extends Basic_Buh {
         if (HelpBuh.FOREIGN_CUSTOMER == false) {//HelpBuh.COMPANY_MIXCONT == false || (HelpBuh.COMPANY_MIXCONT && HelpBuh.FOREIGN_CUSTOMER == false)
             rdi.setVisible_(false);
             refreshTableInvert(ti);
-        }else{
+        } else {
             rdi.setVisible_(true);
             refreshTableInvert(ti);
         }
@@ -1531,7 +1562,7 @@ public abstract class Invoice_ extends Basic_Buh {
      * @param ti
      * @param colName
      */
-    protected void hideFieldIfPerson_b(Table ti, String colName) {
+    protected void hideFieldIfPerson_OR_ForeignCustomer(Table ti, String colName) {
         //
         TableInvert table = (TableInvert) ti;
         TableRowInvert tri = (TableRowInvert) table.getRowByColName(colName);
@@ -1539,7 +1570,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         String fakturaKundId = getActualFakturaKundId();
         //
-        if (bim.isPerson(fakturaKundId)) {
+        if (bim.isPerson(fakturaKundId) || HelpBuh.FOREIGN_CUSTOMER) {
             rdi.setVisible_(false);
             refreshTableInvert(ti);
         } else {

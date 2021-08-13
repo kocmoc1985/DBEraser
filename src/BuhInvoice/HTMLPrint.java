@@ -190,6 +190,23 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         init();
         //
+    } // T__FAKTURA_FRAKT
+    
+    
+      public String T__FAKTURA_FRAKT() {
+        return LANG_ENG == false ? T__FAKTURA_FRAKT : "Shipping";
+    }
+    
+    public String T__FAKTURA_EXP_AVG() {
+        return LANG_ENG == false ? T__FAKTURA_EXP_AVG : "Handling fee";
+    }
+    
+    public String T__FAKTURA_MOMS_PERCENT() {
+        return LANG_ENG == false ? T__FAKTURA_MOMS_PERCENT : "VAT %";
+    }
+    
+     public String T__FAKTURA_VALFRI_TEXT() {
+        return LANG_ENG == false ? T__FAKTURA_VALFRI_TEXT : "Optional notes";
     }
     
      public String T__ARTIKEL_RABATT() {
@@ -538,6 +555,8 @@ public abstract class HTMLPrint extends HTMLBasic {
         dict.put(T__FAKTURA_BETAL_VILKOR__FLEX, "Terms of payment");
         dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
         dict.put(T__FAKTURA_UTSKRIVET, "Printed");
+        dict.put(T__FAKTURA_BETAL_METOD, "Payment method");
+        dict.put(T__FAKTURA_KREDITERAR_FAKTURA_NR,"Credits invoice");
         //
         String key_ = key;
         //
@@ -660,12 +679,11 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return LANG_ENG == false ? LANG.FAKTURA : "Invoice";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
-            return "Kreditfaktura";
+             return LANG_ENG == false ? LANG.KREDIT_FAKTURA : "Credit Invoice";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
-            return "Kvitto";
+            return LANG_ENG == false ? LANG.KONTANT_FAKTURA : "Receipt";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
-            //[#OFFERT#]
-            return "Offert";
+            return LANG_ENG == false ? LANG.OFFERT : "Offer"; //[#OFFERT#]
         } else {
             return null;
         }
@@ -684,21 +702,21 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         if (moms_kr.equals("0") || moms_kr.equals("0.0")) {
             colToMakeBold--;
-            int index = headers_.indexOf(T__FAKTURA_MOMS_PERCENT);
+            int index = headers_.indexOf(T__FAKTURA_MOMS_PERCENT());
             headers_.remove(index);
             values_.remove(index);
         }
         //
         if (frakt.equals("0") || frakt.equals("0.0")) {
             colToMakeBold--;
-            int index = headers_.indexOf(T__FAKTURA_FRAKT);
+            int index = headers_.indexOf(T__FAKTURA_FRAKT());
             headers_.remove(index);
             values_.remove(index);
         }
         //
         if (exp.equals("0") || exp.equals("0.0")) {
             colToMakeBold--;
-            int index = headers_.indexOf(T__FAKTURA_EXP_AVG);
+            int index = headers_.indexOf(T__FAKTURA_EXP_AVG());
             headers_.remove(index);
             values_.remove(index);
         }

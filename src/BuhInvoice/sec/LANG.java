@@ -42,6 +42,8 @@ public class LANG {
     }
 
     public final static String FAKTURA = "Faktura";
+    public final static String KONTANT_FAKTURA = "Kvitto";
+    public final static String KREDIT_FAKTURA = "Kreditfaktura";
     public final static String PAMINNELSE = "Påminnelse";
     public final static String OFFERT = "Offert";
 

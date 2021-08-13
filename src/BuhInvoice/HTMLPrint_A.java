@@ -167,9 +167,9 @@ public class HTMLPrint_A extends HTMLPrint {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
             return _get_colon_sep(T__FAKTURA_DROJMALSRANTA__FLEX, map_c) + " %";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
-            return HTMLPrint.T__FAKTURA_VALFRI_TEXT;
+            return T__FAKTURA_VALFRI_TEXT();
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT
-            return HTMLPrint.T__FAKTURA_VALFRI_TEXT;
+            return T__FAKTURA_VALFRI_TEXT();
         } else {
             return null;
         }
@@ -447,7 +447,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         String currencyUnit = FOREIGN_CUSTOMER ? HelpBuh.CURRENCY__EUR : "";
         //
-        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT, T__FAKTURA_EXP_AVG, T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT, T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR(), ATT_BETALA_TITLE};
+        String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT(), T__FAKTURA_EXP_AVG(), T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT(), T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR(), ATT_BETALA_TITLE};
         String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, roundBetalaTotal(att_betala_total) + " " + currencyUnit};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
