@@ -76,28 +76,42 @@ public class HelpBuh {
 
     public static void defineForeignCustomers(String fakturaKundKategori) {
         //[#KUND-KATEGORI-CONDITION#][#EUR-SEK#]
-        if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
+        if (fakturaKundKategori.equals(DB.STATIC__KUND__KATEGORI__EU_EUR)) { // KATEGORI B: EU Invoices like QEW and Fedmog
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
-        }
-        //==============================
-        // THIS IS BETA TESTING FOR ENG MODE FOR NOT ONLY MIXCONT
-        else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { 
-            LANG_ENG = true;
-            FOREIGN_CUSTOMER = true;
-            EU_CUSTOMER = true;
-        }
-        //================================
-        else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
+        }else if(fakturaKundKategori.equals(DB.STATIC__KUND__KATEGORI__UTL_EUR)){
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = false;
-        } else {
+        }else{
             LANG_ENG = false;
             FOREIGN_CUSTOMER = false;
             EU_CUSTOMER = false;
         }
+        
+//        if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
+//            LANG_ENG = true;
+//            FOREIGN_CUSTOMER = true;
+//            EU_CUSTOMER = true;
+//        }
+//        //==============================
+//        // THIS IS BETA TESTING FOR ENG MODE FOR NOT ONLY MIXCONT
+//        else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { 
+//            LANG_ENG = true;
+//            FOREIGN_CUSTOMER = true;
+//            EU_CUSTOMER = true;
+//        }
+//        //================================
+//        else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
+//            LANG_ENG = true;
+//            FOREIGN_CUSTOMER = true;
+//            EU_CUSTOMER = false;
+//        } else {
+//            LANG_ENG = false;
+//            FOREIGN_CUSTOMER = false;
+//            EU_CUSTOMER = false;
+//        }
     }
 
     //

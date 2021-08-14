@@ -364,12 +364,12 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
         //
-        else if (EU_CUSTOMER && COMPANY_MIXCONT) {
+        else if (EU_CUSTOMER && bim.isOffert() == false && bim.isKreditFaktura() == false) {
             img_a = IconUrls.STAMP_REVERSER_CHARGE.toString();
             STAMP_IN_USE = true;
             w = 128;
             h = 128;
-        } else if (COMPANY_MIXCONT) {
+        }else if (COMPANY_MIXCONT) {
             img_a = IconUrls.STAMP_C02_FREE.toString();
             STAMP_IN_USE = true;
             w = 128;
@@ -378,7 +378,6 @@ public abstract class HTMLPrint extends HTMLBasic {
             STAMP_IN_USE = false;
             return "";
         }
-
         //
         String html_ = "<table class='marginTopB'>";
         //

@@ -423,7 +423,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         RowDataInvert email = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___EMAIL, TABLE_FAKTURA_KUNDER__EPOST, "", true, true, false);
         //
-        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_AND_ARTICLE__KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
+        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND__KATEGORI, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);
         kund_kategori.enableFixedValues();
         kund_kategori.setUneditable();
         //
@@ -472,7 +472,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         //
         String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KATEGORI),
-                DB.STATIC__KUND_AND_ARTICLE__KATEGORI
+                DB.STATIC__KUND__KATEGORI
         );
         //
         RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_KUND___KATEGORI, TABLE_FAKTURA_KUNDER__KATEGORI, "", true, true, false);

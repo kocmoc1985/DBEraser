@@ -456,7 +456,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         RowDataInvert komment_c = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___KOMMENT_C, TABLE_ARTICLES__KOMMENT_C, "", true, true, false);
         //
-        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__KUND_AND_ARTICLE__KATEGORI, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
+        RowDataInvert kund_kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, DB.STATIC__ARTICLE__KATEGORI, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);
         kund_kategori.enableFixedValues();
         kund_kategori.setUneditable();
         //
@@ -513,7 +513,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         //
         String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(table, TABLE_ARTICLES__KATEGORI),
-                DB.STATIC__KUND_AND_ARTICLE__KATEGORI
+                DB.STATIC__ARTICLE__KATEGORI
         );
         //
         RowDataInvert kategori = new RowDataInvertB(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, DB.BUH_FAKTURA_ARTIKEL___KATEGORI, TABLE_ARTICLES__KATEGORI, "", true, true, false);

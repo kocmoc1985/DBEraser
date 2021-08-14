@@ -80,7 +80,7 @@ namn varchar(150) not null,
 orgnr varchar(30) DEFAULT '',
 vatnr varchar (30) DEFAULT '',
 email varchar (320) DEFAULT '',
-kund_kategori varchar (1) DEFAULT 'A',
+kund_kategori varchar (20) DEFAULT 'A',
 is_person boolean DEFAULT false,
 date_created varchar(30) DEFAULT 'no',
 Foreign key (kundId) references buh_kund(kundId)

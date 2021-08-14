@@ -6,9 +6,11 @@ the language of the fatura print,
 the stamp,
 and currency rate usage.
 
-KATEGORI A: Inhemska fakturor like "Trelleborg Ind. AB"
-KATEGORI B: EU fakturor like "QEW" and "Trico/Fedmog"
-KATEGORI C: Utländska fakturor like Compounds AG
+KATEGORI A-F: Inhemska fakturor like "Trelleborg Ind. AB"
+KATEGORI P: Privat person - kan ej väljas manuellt
+KATEGORI EU EUR: EU fakturor like "QEW" and "Trico/Fedmog"
+KATEGORI UTL EUR: Utländska fakturor like Compounds AG
+
 
 Search for: [#KUND-KATEGORI-CONDITION#]
 
