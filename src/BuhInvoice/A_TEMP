@@ -1,3 +1,12 @@
+
+1. Key typed not working for Customers and Articles tab
+2. Implement article Kategori MOMS SE 6% .....
+
+
+
+
+
+
 Invoice_.java:
 1. hideFieldIfNotMixcontAndNotForeignCustomer(..)
 1.2. InvoiceA_Insert_ -> hideFieldIfNotMixcontAndNotForeignCustomer(...)
