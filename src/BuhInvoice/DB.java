@@ -39,7 +39,6 @@ public class DB {
 //        strToProcess = strToProcess.replaceAll("\\;", "*"); // is replaced from "HelpBuh.class -> get_constants()"
 //        return strToProcess;
 //    }
-
     private static HashMap<String, String> BUH_CONSTANTS = new HashMap<>();
 
     public final static double ROT_PERCENT = 0.3; // Verified for 2021
@@ -119,7 +118,10 @@ public class DB {
     public static final String STATIC_BET_STATUS_KREDIT = "-";
     public static final String STATIC__BETAL_STATUS = STATIC__NO + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //
-        public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F,MOMS 12%"; //MOMS 12%
+    public static final String MOMS_0 = "MOMS 0%";
+    public static final String MOMS_6 = "MOMS 6%";
+    public static final String MOMS_12 = "MOMS 12%";
+    public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F," + MOMS_0 + "," + MOMS_6 + "," + MOMS_12;// [#ARTICLE-KATEGORI-CONDITION#]
     public static final String STATIC__KUND__KATEGORI = "A,B,C,D,E,F,EU EUR,UTL EUR";
     public static final String STATIC__KUND__KATEGORI__EU_EUR = "EU EUR";
     public static final String STATIC__KUND__KATEGORI__UTL_EUR = "UTL EUR";
@@ -202,6 +204,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FAKTURA_KUND_CURR_YEAR = "get_kund_fakturor__fakturakund_curr_year"; // using php-function: "select()"
     //
     public static HashMap<String, String> FILTER_DICT_MAP = new HashMap<>();
+
     //
     static {
         FILTER_DICT_MAP.put(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, "sedan årsskiftet");

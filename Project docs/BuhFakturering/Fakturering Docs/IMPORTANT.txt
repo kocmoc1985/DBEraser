@@ -1,3 +1,7 @@
+[ARTICLE KATEGORI][2021-08-16]
+
+Search for: [#ARTICLE-KATEGORI-CONDITION#]
+________________________________________________________________________________________________________
 [KUND KATEGORI && COMPANY MIXCONT][2021-08-10]
 
 Now you can just change the "KUND KATEGORI" via the "KUNDER" tab.

@@ -1278,7 +1278,7 @@ public abstract class Invoice_ extends Basic_Buh {
             System.out.println("FAKTURA MAKULERAD");
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)) {
-            //
+            //[#ARTICLE-KATEGORI-CONDITION#]
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
             String artikelId = jli.getValue(); // verified, yes it's the artikelId
@@ -1426,19 +1426,25 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     private void setArticlePrise__and_other(boolean force, HashMap<String, String> fakturaArticleMap) {
-        //
+        //[#ARTICLE-KATEGORI-CONDITION#]
         boolean momsSet = false;
+        //
+        Map<String, Integer> map = new HashMap<String, Integer>() {
+            {
+                put(DB.MOMS_0, 0);
+                put(DB.MOMS_6, 6);
+                put(DB.MOMS_12, 12);
+            }
+        };
         //
         if (fakturaArticleMap != null) {
             //
             String articleKategori = fakturaArticleMap.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI);
             //
-            if (articleKategori.equals("MOMS 12%")) {
-                setMomsSats_tableInvert(12);
+            if (articleKategori.contains("MOMS")) {
+                setMomsSats_tableInvert(map.get(articleKategori));
                 momsSet = true;
             }
-            //
-            System.out.println("KATEGORI: " + articleKategori);
             //
         }
         //
