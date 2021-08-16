@@ -458,6 +458,9 @@ public class GP_BUH {
             Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
+        //
+        //
+        //
     }
 
     public static Dimension calculate_w_h__proportionalScaling(String path) {

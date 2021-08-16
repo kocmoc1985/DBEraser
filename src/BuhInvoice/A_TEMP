@@ -1,7 +1,6 @@
 
-1. Key typed not working for Customers and Articles tab
-2. Implement article Kategori MOMS SE 6% .....
-
+1. CREATE TABLE buh_faktura_artikel -> artikel_kategori -> change to varchar(20)
+2. Search for "col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ID)"
 
 
 

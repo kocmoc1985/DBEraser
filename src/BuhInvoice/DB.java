@@ -119,7 +119,7 @@ public class DB {
     public static final String STATIC_BET_STATUS_KREDIT = "-";
     public static final String STATIC__BETAL_STATUS = STATIC__NO + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //
-    public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F";
+    public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F, MOMS 12%";
     public static final String STATIC__KUND__KATEGORI = "A,B,C,D,E,F,EU EUR,UTL EUR";
     public static final String STATIC__KUND__KATEGORI__EU_EUR = "EU EUR";
     public static final String STATIC__KUND__KATEGORI__UTL_EUR = "UTL EUR";
@@ -179,6 +179,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA__PERSON = "get_faktura_kunder_all_data__person"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA = "get_one_faktura_kund_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA = "get_one_faktura_all_data"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_ARTICLE_ALL_DATA = "get_one_faktura_article_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FORETAG_DATA = "get_kund_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"

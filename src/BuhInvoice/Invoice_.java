@@ -641,7 +641,7 @@ public abstract class Invoice_ extends Basic_Buh {
         MOMS_ARTIKLAR = MOMS_TOTAL;
         //
         //here below is "MOMS_SATS__FRAKT_AND_EXP_AVG" calculated
-        if(HelpBuh.FOREIGN_CUSTOMER == false){
+        if (HelpBuh.FOREIGN_CUSTOMER == false) {
             MOMS_FRAKT_AND_EXP_AVG = countMomsFraktAndExpAvg(FRAKT, EXP_AVG, moms_map);
         }
         //
@@ -802,7 +802,7 @@ public abstract class Invoice_ extends Basic_Buh {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
         //
-        setArticlePrise__and_other(false); // [2020-08-19]
+        setArticlePrise__and_other(false,null); // [2020-08-19]
         //
     }
 
@@ -1282,8 +1282,9 @@ public abstract class Invoice_ extends Basic_Buh {
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
             String artikelId = jli.getValue(); // verified, yes it's the artikelId
+            HashMap<String, String> map = getFakturaArtikelData(DB.PHP_FUNC_PARAM_GET_ONE_FAKTURA_ARTICLE_ALL_DATA, artikelId);
             //
-            setArticlePrise__and_other(true);
+            setArticlePrise__and_other(true, map);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {
             //
@@ -1424,7 +1425,16 @@ public abstract class Invoice_ extends Basic_Buh {
         box.setSelectedItem(new HelpA.ComboBoxObject("Nej", "0", "", ""));
     }
 
-    private void setArticlePrise__and_other(boolean force) {
+    private void setArticlePrise__and_other(boolean force, HashMap<String, String> fakturaArticleMap) {
+        //
+        if (fakturaArticleMap != null) {
+            //
+            String articleKategori = fakturaArticleMap.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI);
+            //
+            if (articleKategori.equals("MOMS 12%")) {
+                setMomsSats_tableInvert(12);
+            }
+        }
         //
         boolean conditionSpecial = CURRENT_OPERATION_INSERT == false && articlesJTableEmpty() == true;
         //

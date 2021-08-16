@@ -283,9 +283,7 @@ public abstract class Basic_Buh extends Basic {
             return null;
         }
         //
-        
-        //
-        String json = bim.getSELECT_fakturaKundId__doubleWhere(artikelId);
+        String json = bim.getSELECT_artikelId__doubleWhere(artikelId);
         //
         try {
             //
