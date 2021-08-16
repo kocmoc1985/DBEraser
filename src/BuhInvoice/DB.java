@@ -119,7 +119,7 @@ public class DB {
     public static final String STATIC_BET_STATUS_KREDIT = "-";
     public static final String STATIC__BETAL_STATUS = STATIC__NO + ";0,Ja;1,Delvis;2,Ja - Överbetald;3," + STATIC_BET_STATUS_KREDIT + ";4";
     //
-    public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F, MOMS 12%";
+        public static final String STATIC__ARTICLE__KATEGORI = "A,B,C,D,E,F,MOMS 12%"; //MOMS 12%
     public static final String STATIC__KUND__KATEGORI = "A,B,C,D,E,F,EU EUR,UTL EUR";
     public static final String STATIC__KUND__KATEGORI__EU_EUR = "EU EUR";
     public static final String STATIC__KUND__KATEGORI__UTL_EUR = "UTL EUR";

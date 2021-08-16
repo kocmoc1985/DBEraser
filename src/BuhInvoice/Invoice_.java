@@ -802,7 +802,7 @@ public abstract class Invoice_ extends Basic_Buh {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
         //
-        setArticlePrise__and_other(false,null); // [2020-08-19]
+        setArticlePrise__and_other(false, null); // [2020-08-19]
         //
     }
 
@@ -1427,13 +1427,19 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private void setArticlePrise__and_other(boolean force, HashMap<String, String> fakturaArticleMap) {
         //
+        boolean momsSet = false;
+        //
         if (fakturaArticleMap != null) {
             //
             String articleKategori = fakturaArticleMap.get(DB.BUH_FAKTURA_ARTIKEL___KATEGORI);
             //
             if (articleKategori.equals("MOMS 12%")) {
                 setMomsSats_tableInvert(12);
+                momsSet = true;
             }
+            //
+            System.out.println("KATEGORI: " + articleKategori);
+            //
         }
         //
         boolean conditionSpecial = CURRENT_OPERATION_INSERT == false && articlesJTableEmpty() == true;
@@ -1463,7 +1469,10 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2, "0");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, TABLE_INVERT_2, new HelpA.ComboBoxObject("Nej", "", "", ""));
 //                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("25%", "", "", ""));
-                setMomsSats_tableInvert(25);
+                if (momsSet == false) {
+                    setMomsSats_tableInvert(25);
+                }
+
             }
             //
         }

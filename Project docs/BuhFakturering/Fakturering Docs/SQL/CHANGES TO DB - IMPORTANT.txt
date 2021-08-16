@@ -5,6 +5,7 @@ OBS! REMEMBER THAT THE CHANGES SHALL BE DONE TO ALL ACTIVE DATABASES:
 
 [#UPDATED BOTH#] = lafakturering_semain & lafakturering_setest
  
+[2021-08-16] Table: "buh_faktura_article" -> column -> artikel_kategori -> changed from varchar(1) to varchar(20)
 [2021-08-14] Table: "buh_faktura_kund" -> column -> kund_kategori -> changed from varchar(1) to varchar(20) 
 [2021-08-10] Table: "buh_kund" -> added columns bic, swift [#UPDATED BOTH#]
 [2021-08-10] Table: "buh_faktura" -> added column currency_rate_a [#UPDATED BOTH#]
