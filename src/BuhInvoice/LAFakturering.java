@@ -203,6 +203,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         this.jTable_ArticlesA_articles.addMouseListener(this);
         //
         this.jTextArea_faktura_komment.addKeyListener(this);
+        this.jTable_ArticlesA_articles.addKeyListener(this);
+        this.jTable_kunder.addKeyListener(this);
         //
         home = new Home(this);
         //
@@ -413,8 +415,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getFakturaType() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
-    
-     protected String getFakturaKundKategori() {
+
+    protected String getFakturaKundKategori() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_KATEGORI);
     }
 
@@ -3791,6 +3793,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         if (e.getSource() == jTable_invoiceB_alla_fakturor && cond_1) {
             //
             changeToFakturaWithsync();
+            //
+        } else if (e.getSource() == jTable_ArticlesA_articles && cond_1) {
+            //
+             articlesA.jTableArticles_clicked();
+            //
+        } else if (e.getSource() == jTable_kunder && cond_1) {
+            //
+            customersA.jTableCustomersA_kunder_clicked();
             //
         } else if (e.getSource() == jTextArea_faktura_komment) {
             //
