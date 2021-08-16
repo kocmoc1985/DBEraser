@@ -1281,6 +1281,8 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             Validator.validateJComboInput((JComboBox) ie.getSource()); // OBS! JCombo input validation
             //
+            String artikelId = jli.getValue(); // verified, yes it's the artikelId
+            //
             setArticlePrise__and_other(true);
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_KUND__ID)) {

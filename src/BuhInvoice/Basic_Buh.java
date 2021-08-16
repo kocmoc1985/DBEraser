@@ -276,6 +276,31 @@ public abstract class Basic_Buh extends Basic {
             return null;
         }
     }
+    
+    public HashMap<String, String> getFakturaArtikelData(String phpFunction,String artikelId) {
+        //
+        if(artikelId == null || artikelId.equals("NULL") || artikelId.isEmpty()){
+            return null;
+        }
+        //
+        
+        //
+        String json = bim.getSELECT_fakturaKundId__doubleWhere(artikelId);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunction, json);
+            //
+            ArrayList<HashMap<String, String>> map = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return map.get(0);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public String _get(String colNameJTable) {
         JTable table = bim.jTable_invoiceB_alla_fakturor;

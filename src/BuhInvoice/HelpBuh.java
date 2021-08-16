@@ -90,28 +90,6 @@ public class HelpBuh {
             EU_CUSTOMER = false;
         }
         
-//        if (fakturaKundKategori.equals("B") && COMPANY_MIXCONT) { // KATEGORI B: EU Invoices like QEW and Fedmog
-//            LANG_ENG = true;
-//            FOREIGN_CUSTOMER = true;
-//            EU_CUSTOMER = true;
-//        }
-//        //==============================
-//        // THIS IS BETA TESTING FOR ENG MODE FOR NOT ONLY MIXCONT
-//        else if (fakturaKundKategori.equals("F") && COMPANY_MIXCONT == false) { 
-//            LANG_ENG = true;
-//            FOREIGN_CUSTOMER = true;
-//            EU_CUSTOMER = true;
-//        }
-//        //================================
-//        else if (fakturaKundKategori.equals("C") && COMPANY_MIXCONT) { // KATEGORI C: Invoices like Compounds AG
-//            LANG_ENG = true;
-//            FOREIGN_CUSTOMER = true;
-//            EU_CUSTOMER = false;
-//        } else {
-//            LANG_ENG = false;
-//            FOREIGN_CUSTOMER = false;
-//            EU_CUSTOMER = false;
-//        }
     }
 
     //
