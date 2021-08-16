@@ -1302,7 +1302,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 if (HelpBuh.FOREIGN_CUSTOMER) {
                     //OBS! Setting MOMS/VAT = 0%
 //                    setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("0%", "", "", ""));
-                    setMomsSats_tableInvert(0);
+//                    setMomsSats_tableInvert(0);
                 }
                 //
             }
