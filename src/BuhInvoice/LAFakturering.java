@@ -641,6 +641,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getSELECT_fakturaId__doubleWhere() {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__ID__, getFakturaId());
     }
+    
+    protected String getSELECT_artikelId__doubleWhere(String artikelId) {
+        return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
+    }
 
     /**
      * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""
