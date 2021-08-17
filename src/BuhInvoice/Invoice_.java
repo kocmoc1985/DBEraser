@@ -521,9 +521,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         if (bim.getCopiedFromFakturaId().equals("0") == false) {
             // If comes here it means the faktura is copied
-            json = bim.getSELECT_copied_from_faktura_id(); // [#KREDIT-RUT#]
+            json = bim.getSELECT_copied_from_faktura_id__doubleWhere(); // [#KREDIT-RUT#]
         } else {
-            json = bim.getSELECT_fakturaId();
+            json = bim.getSELECT_fakturaId__doubleWhere();
         }
         //
         try {
