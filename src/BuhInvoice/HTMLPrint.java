@@ -191,31 +191,30 @@ public abstract class HTMLPrint extends HTMLBasic {
         init();
         //
     } // T__FAKTURA_FRAKT
-    
-    
-      public String T__FAKTURA_FRAKT() {
+
+    public String T__FAKTURA_FRAKT() {
         return LANG_ENG == false ? T__FAKTURA_FRAKT : "Shipping";
     }
-    
+
     public String T__FAKTURA_EXP_AVG() {
         return LANG_ENG == false ? T__FAKTURA_EXP_AVG : "Handling fee";
     }
-    
+
     public String T__FAKTURA_MOMS_PERCENT() {
         return LANG_ENG == false ? T__FAKTURA_MOMS_PERCENT : "VAT %";
     }
-    
-     public String T__FAKTURA_VALFRI_TEXT() {
+
+    public String T__FAKTURA_VALFRI_TEXT() {
         return LANG_ENG == false ? T__FAKTURA_VALFRI_TEXT : "Optional notes";
     }
-    
-     public String T__ARTIKEL_RABATT() {
+
+    public String T__ARTIKEL_RABATT() {
         return LANG_ENG == false ? T__ARTIKEL_RABATT : "Discount%";
-    } 
-    
+    }
+
     public String T__FAKTURA_RABATT_KR() {
         return LANG_ENG == false ? T__FAKTURA_RABATT_KR : "Discount EUR";
-    } 
+    }
 
     public String T__FAKTURA_DROJMALSRANTA__FLEX() {
         return LANG_ENG == false ? T__FAKTURA_DROJMALSRANTA__FLEX : "Penalty EUR";
@@ -300,7 +299,6 @@ public abstract class HTMLPrint extends HTMLBasic {
 //    public String T__FTG_SWISH() {
 //        return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER ? T__FTG_SWISH : "SWIFT";
 //    }
-
     public String T__FTG_MOMS_REG_NR() {
         return LANG_ENG == false && HelpBuh.FOREIGN_CUSTOMER == false ? T__FTG_MOMS_REG_NR : "Our VAT";
     }
@@ -324,12 +322,12 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-    
-    protected String roundBetalaTotal(String value){
+
+    protected String roundBetalaTotal(String value) {
         double dbl = Double.parseDouble(value);
-        return "" + (int)GP_BUH.round_double__whole_number(dbl);
+        return "" + (int) GP_BUH.round_double__whole_number(dbl);
     }
-    
+
     protected String getSpecial_foreign_customer(String value) {
         //[2021-08-09]
         //[#EUR-SEK#]
@@ -342,16 +340,16 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
     }
-    
-    public void setManualStamp(Stamp stamp){
+
+    public void setManualStamp(Stamp stamp) {
         this.MANUAL_STAMP = stamp;
     }
-    
-    public Stamp getManualStamp(){
+
+    public Stamp getManualStamp() {
         return MANUAL_STAMP;
     }
-    
-    protected String insert_stamp(){
+
+    protected String insert_stamp() {
         //
         String img_a;
         int w;
@@ -361,15 +359,14 @@ public abstract class HTMLPrint extends HTMLBasic {
             img_a = MANUAL_STAMP.getPath();
             w = MANUAL_STAMP.getW();
             h = MANUAL_STAMP.getH();
-        }
-        //
+        } //
         //
         else if (EU_CUSTOMER && bim.isOffert() == false && bim.isKreditFaktura() == false) {
             img_a = IconUrls.STAMP_REVERSER_CHARGE.toString();
             STAMP_IN_USE = true;
             w = 128;
             h = 128;
-        }else if (COMPANY_MIXCONT) {
+        } else if (COMPANY_MIXCONT) {
             img_a = IconUrls.STAMP_C02_FREE.toString();
             STAMP_IN_USE = true;
             w = 128;
@@ -401,7 +398,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         String html_ = "<div class='marginTop'>";//<table class='marginTop'>
         //
         html_ += "<p class='fontStd' style='text-align:center'>";
-        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A)) + ".";
+        html_ += _get(map_f, DB.BUH_KUND__NAMN) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ADDR_A)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__POSTNR_ZIP)) + _get_exist_c(_get(map_g, DB.BUH_ADDR__ORT)) + ".";
         html_ += "</p>";
         //
         html_ += "<div class='fontStd' style='text-align:center'>";
@@ -416,8 +413,10 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (HelpBuh.FOREIGN_CUSTOMER) {
             html_ += T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + "";
         } else {
-            html_ += T__FTG_F_SKATT + ": " + _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ) + ". "
-                    + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
+            //
+            String fskatt = define_godkand_for_fskatt(map_f);
+            //
+            html_ += fskatt + T__FTG_ORGNR + ": " + _get(map_f, DB.BUH_KUND__ORGNR) + ". "
                     + T__FTG_MOMS_REG_NR() + ": " + _get(map_f, DB.BUH_KUND__VATNR) + ".";
         }
         //
@@ -428,6 +427,11 @@ public abstract class HTMLPrint extends HTMLBasic {
 //        System.out.println("" + html_);
         //
         return html_;
+    }
+
+    private String define_godkand_for_fskatt(HashMap<String, String> map_f) {
+        String godkand_for_fskatt = _get_longname(map_f, DB.BUH_KUND__F_SKATT, DB.STATIC__JA_NEJ);
+        return godkand_for_fskatt.equals(DB.STATIC__YES) ? T__FTG_F_SKATT + "." : "";
     }
 
     protected String betalAlternativStringBuilder() {
@@ -555,7 +559,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         dict.put(T__FAKTURA_DROJMALSRANTA__FLEX, "Penalty interest");
         dict.put(T__FAKTURA_UTSKRIVET, "Printed");
         dict.put(T__FAKTURA_BETAL_METOD, "Payment method");
-        dict.put(T__FAKTURA_KREDITERAR_FAKTURA_NR,"Credits invoice");
+        dict.put(T__FAKTURA_KREDITERAR_FAKTURA_NR, "Credits invoice");
         //
         String key_ = key;
         //
@@ -678,7 +682,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL)) {
             return LANG_ENG == false ? LANG.FAKTURA : "Invoice";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) {
-             return LANG_ENG == false ? LANG.KREDIT_FAKTURA : "Credit Invoice";
+            return LANG_ENG == false ? LANG.KREDIT_FAKTURA : "Credit Invoice";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return LANG_ENG == false ? LANG.KONTANT_FAKTURA : "Receipt";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
@@ -745,11 +749,8 @@ public abstract class HTMLPrint extends HTMLBasic {
                 values_.toArray(new String[values_.size()]), colToMakeBold);
         //
     }
-    
-    
-    
-    
-    protected void setAndUseStamp(){
+
+    protected void setAndUseStamp() {
         //
         ChooseStamp stamp = new ChooseStamp(this);
         //
