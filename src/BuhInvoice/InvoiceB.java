@@ -313,6 +313,7 @@ public class InvoiceB extends Basic_Buh {
     
     private void resetOther(){
         //[2021-08-17]
+        bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
         Invoice_.CREATE_OFFERT__OPERATION_INSERT = false; // This was needed otherwise bim.isOffert() always shown "true" if you triggered creation of a new offert
         Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
     }
