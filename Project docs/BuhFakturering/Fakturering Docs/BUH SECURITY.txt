@@ -7,7 +7,7 @@ ________________________________________________________________________________
 Things to think about and protect in feature:
 
 [DIFFERENT-ATTACKS]:
-- in many places in the "_http_buh.php" i am doing the echo "[###status:$q###]\n"; -> this reveals the construction of query to the hacker.
+- in many places in the "_http_buh.php" i am doing the echo "[###status:$q###]\n"; -> this reveals the construction of query to the hacker. -> search for [#QUERY-ECHO-SECURITY-BREACH#]
 
 [SLOW-DOWN-ATTACKS]:
 - A hacker may utilize the function for creating/sharing a user. I mean running it with faked users so the PHP-Side will be forced to create the users
