@@ -310,8 +310,16 @@ public class InvoiceB extends Basic_Buh {
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
     }
+    
+    private void resetOther(){
+        //[2021-08-17]
+        Invoice_.CREATE_OFFERT__OPERATION_INSERT = false; // This was needed otherwise bim.isOffert() always shown "true" if you triggered creation of a new offert
+        Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT = false;
+    }
 
     protected void all_invoices_table_clicked(String fakturaId) {
+        //
+        resetOther();
         //
         HelpBuh.defineForeignCustomers(bim.getFakturaKundKategori());// [#KUND-KATEGORI-CONDITION#][2021-07-29]
         //
