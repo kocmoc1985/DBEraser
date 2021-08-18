@@ -71,6 +71,7 @@ public class GP_BUH {
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy [domain la.se][php-test]
      * For the TEST-DB: guest_1_kocmoc1985@gmail.com / 41zKTnoAwU  [domain la.se][php-test]
      *
+     * For demoDemo.. use "demo@lafakturering.se" -> p:e2gK0knpf9
      * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se] [not test]
      * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "sgycPkSeFY" -> GUEST ACCOUNT:
      * guest_31_kocmoc1985@gmail.com / "BMZYyw2kv4"

@@ -50,7 +50,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
     private static final String TABLE_ARTICLES__ID = "ARTIKEL ID";
     private static final String TABLE_ARTICLES__KUND_ID = "KUND ID";
 //    private static final String TABLE_ARTICLES__LAGER = "LAGER";
-    private static final String TABLE_ARTICLES__PRIS = "PRIS";
+    private static final String TABLE_ARTICLES__PRIS = "PRIS (EXKL MOMS)";
 //    private static final String TABLE_ARTICLES__INKOPS_PRIS = "INKÖPSPRIS";
     public static final String TABLE_ARTICLES__NAMN = "NAMN";
     private static final String TABLE_ARTICLES__ARTNR = "ARTIKELNR";
@@ -444,7 +444,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         RowDataInvert artnr = new RowDataInvertB("", DB.BUH_FAKTURA_ARTIKEL___ARTNR, TABLE_ARTICLES__ARTNR, "", true, true, false);
         //
-        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, "PRIS", "", false, true, false);
+        RowDataInvert pris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_ARTICLES__PRIS, "", false, true, false);
         //
 //        RowDataInvert inkopspris = new RowDataInvertB("0", DB.BUH_FAKTURA_ARTIKEL___INKOPS_PRIS, "INKÖPS PRIS", "", false, true, false);
         //
