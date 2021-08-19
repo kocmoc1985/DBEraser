@@ -1,3 +1,31 @@
+[AUTOMATICALLY REPLACING "," with "." FOR CREATING OF ARTICLES/CUSTOMERS]
+
+If you will try to create a new article having "," it will be automatically replaced with "."
+
+
+arbetskostnad;119;300;
+,byggnadsmaterial;120;6544;
+,cola 0.33 burk, liten;132;10;  <------------- Here is the problem the "," in the name "cola 0.33 burk, liten" was devided!!!
+,dill chips olw;128;29;
+,ekologiska gårds chips;130;49.9;
+,fanta 0.33 burk;133;10;05.345.901
+,grill chips olw;129;34.9;
+,hammare;117;99;
+,millersättning;121;544;
+,moped bmw;126;36799;
+,moped vw;127;29589;
+,moped yamaha;125;19855;
+,ost macka;131;25;
+,pepsi 0.5 flaska;134;19;
+,skruv;112;5;
+,skruvdragare;118;399;
+,spik;111;3;
+,traktor honda;123;69800;
+,traktor suzuki;124;57899;
+,
+
+Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+________________________________________________________________________________________________________
 [RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]
 
 It happens when you crete a new Invoice and then add an article to it.

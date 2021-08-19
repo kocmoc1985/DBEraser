@@ -110,7 +110,7 @@ public abstract class Basic_Buh extends Basic {
             if (json_str_return.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) {
                 return "";
             }
-            //
+            //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
             comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys);
             //
 //            System.out.println("combo string: " + comboString);

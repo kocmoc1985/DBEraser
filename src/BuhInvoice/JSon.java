@@ -414,8 +414,9 @@ public class JSon {
             //
             HashMap<String, String> map = JSONToHashMap(json, false);
             //
+            //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#][!!!]
             if (keys.length == 2) {
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ",";
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ","; 
             } else if (keys.length == 3) {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";
             } else if (keys.length == 4) {

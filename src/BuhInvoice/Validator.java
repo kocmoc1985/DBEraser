@@ -47,7 +47,7 @@ public class Validator {
         //
         String valToCheck = jtfi.getText();
         //
-        GP_BUH.onFlightReplaceComma(jli, valToCheck);// 2021-05-03
+        GP_BUH.onFlightReplaceComma(jli, valToCheck);// 2021-05-03 // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
         //
         if (valToCheck == null || valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);

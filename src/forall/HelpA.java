@@ -3408,7 +3408,7 @@ public class HelpA {
             return null;
         }
         str = str.trim();
-        String[] arr = str.split(",");
+        String[] arr = str.split(","); // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
         int i = 0;
         for (String stringObj : arr) {
