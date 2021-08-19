@@ -46,15 +46,15 @@ public abstract class Faktura_Entry {
     public abstract void addArticleForDB();
 
     /**
-     * [2021-05-17]
-     * [#INVOICE-HAS-OMVAND-SKATT#]
-     * @return 
+     * [2021-05-17] [#INVOICE-HAS-OMVAND-SKATT#]
+     *
+     * @return
      */
     public boolean containsOmvandMoms() {
         //
         for (HashMap<String, String> article_row_map : articlesList) {
             int omvant_skatt = Integer.parseInt(article_row_map.getOrDefault(DB.BUH_F_ARTIKEL__OMVANT_SKATT, "0"));
-            if(omvant_skatt == 1){
+            if (omvant_skatt == 1) {
                 return true;
             }
         }
@@ -70,7 +70,8 @@ public abstract class Faktura_Entry {
         this.articlesListJTable.add(map);
         //
         Object[] jtableRow = new Object[]{
-            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
+            //            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
+            _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true), // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
             _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__ENHET),

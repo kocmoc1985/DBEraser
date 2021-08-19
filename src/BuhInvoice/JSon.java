@@ -408,19 +408,20 @@ public class JSon {
         //
         String jcomboStr = "";
         //
+        String separator = GP_BUH.SEPARATOR; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        //
         ArrayList<String> jsons = phpJsonStringSplit(phpJsonString);
         //
         for (String json : jsons) {
             //
             HashMap<String, String> map = JSONToHashMap(json, false);
             //
-            //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#][!!!]
             if (keys.length == 2) {
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ","; 
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + separator; 
             } else if (keys.length == 3) {
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ",";
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + separator;
             } else if (keys.length == 4) {
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ";" + map.get(keys[3]) + ",";
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + ";" + map.get(keys[3]) + separator;
             }
             //
         }
@@ -557,7 +558,7 @@ public class JSon {
     }
 
     private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
-        //
+        //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
         LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true, true);
         LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true, true);
         //

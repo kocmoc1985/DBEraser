@@ -24,6 +24,9 @@ arbetskostnad;119;300;
 ,traktor suzuki;124;57899;
 ,
 
+Skylt, återsamlingsplats, självhäftande polyester;165;null;null,A4-Panel;;;, blå;148;349;:SEPARATOR:Bokhylla Plexus, gelform;;;, 0.5 L ;155;79;143792:SEPARATOR:Klädhängare FLORIA, 40 mm;157;565;381101:SEPARATOR:Magnettejp, 25mm;;;, vit ;161;295;230622:SEPARATOR:Nätkorgsvagn vit , 50 mm;;;, 16 pärmar;151;1995;:SEPARATOR:Pärmvagn, 24 pärmar;152;2195;:SEPARATOR:Pedalhink Pranklin, 935-1330 mm;158;2295;381219:SEPARATOR:Skylt, återsamlingsplats;;;, självhäftande polyester;165;49;306232:SEPARATOR:Skylt, brandsläckare;;;, självhäftande;163;29;106239:SEPARATOR:Skylt, första hjälpen;;;, nödutgång höger;;;, självhäftande ;164;39;306231:SEPARATOR:Stol DANTE, hopfällbar;169;1395; 17420:SEPARATOR:,
+
+
 Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
 ________________________________________________________________________________________________________
 [RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]

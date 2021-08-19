@@ -156,6 +156,8 @@ public class GP_BUH {
         return !(USER == null || !USER.contains("guest_"));
     }
 
+    public static final String SEPARATOR = "#SEPARATOR#"; //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+    
     /**
      * // [2021-05-03] For the strings like below used for filling comboboxes.
      * So the "," is such Strings is the SEPARATOR

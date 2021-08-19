@@ -3404,11 +3404,21 @@ public class HelpA {
      * @return
      */
     public static ComboBoxObject[] extract_comma_separated_objects(String str, int paramToReturn) {
+        //
         if (str.isEmpty()) {
             return null;
         }
+        //
+        String separator;
+        //
+        if (str.contains(GP_BUH.SEPARATOR)) {
+            separator = GP_BUH.SEPARATOR;
+        } else {
+            separator = ",";
+        }
+        //
         str = str.trim();
-        String[] arr = str.split(","); // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        String[] arr = str.split(separator); // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
         ComboBoxObject[] cbo_arr = new ComboBoxObject[arr.length];
         int i = 0;
         for (String stringObj : arr) {
@@ -3432,7 +3442,7 @@ public class HelpA {
         }
         return cbo_arr;
     }
-    
+
     public static void navigate_to_webbpage(String addr) {
         if (Desktop.isDesktopSupported()) {
             try {
@@ -3838,7 +3848,6 @@ public class HelpA {
             Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     public static String get_desktop_path() {
         return System.getProperty("user.home") + "\\" + "Desktop";
