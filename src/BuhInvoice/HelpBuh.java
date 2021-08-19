@@ -80,16 +80,16 @@ public class HelpBuh {
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = true;
-        }else if(fakturaKundKategori.equals(DB.STATIC__KUND__KATEGORI__UTL_EUR)){
+        } else if (fakturaKundKategori.equals(DB.STATIC__KUND__KATEGORI__UTL_EUR)) {
             LANG_ENG = true;
             FOREIGN_CUSTOMER = true;
             EU_CUSTOMER = false;
-        }else{
+        } else {
             LANG_ENG = false;
             FOREIGN_CUSTOMER = false;
             EU_CUSTOMER = false;
         }
-        
+
     }
 
     //
@@ -139,7 +139,7 @@ public class HelpBuh {
     public static String executePHP(String phpScriptName, String phpFunctionName, String json) throws Exception {
         //
         // OBS! Prev-Last "false" means don't replace special chars - very important [2020-10-11]
-        HashMap<String, String> map = JSONToHashMap(json, false, 1, false, false);
+        HashMap<String, String> map = JSONToHashMap(json, false, 1, false, false, null);
         //
         map.put(DB.BUH_LICENS__USER, GP_BUH.USER); // [#SEQURITY#] Required by the PHP (_http_buh.php->validate(..))
         map.put(DB.BUH_LICENS__PASS, GP_BUH.PASS); // [#SEQURITY#]

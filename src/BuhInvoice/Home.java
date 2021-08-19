@@ -285,7 +285,7 @@ public class Home extends Basic_Buh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__GET_FTG_NAME, req);
             //
-            HashMap<String, String> map = JSon.JSONToHashMap(responce, false);
+            HashMap<String, String> map = JSon.JSONToHashMap(responce, false,null);
             //
             GP_BUH.CUSTOMER_COMPANY_NAME = map.get(DB.BUH_KUND__NAMN);
             //

@@ -96,7 +96,7 @@ public abstract class Basic_Buh extends Basic {
         }
     }
 
-    protected String requestJComboValuesHttp(String php_function, String[] keys,boolean specialSeparator) {
+    protected String requestJComboValuesHttp(String php_function, String[] keys, boolean specialSeparator) {
         //
         String comboString;
         //
@@ -111,7 +111,7 @@ public abstract class Basic_Buh extends Basic {
                 return "";
             }
             //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys,specialSeparator);
+            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys, specialSeparator);
             //
 //            System.out.println("combo string: " + comboString);
             //
@@ -253,10 +253,10 @@ public abstract class Basic_Buh extends Basic {
             return null;
         }
     }
-    
-    public HashMap<String, String> getFakturaKundData_b(String phpFunction,String fakturaKundId) {
+
+    public HashMap<String, String> getFakturaKundData_b(String phpFunction, String fakturaKundId) {
         //
-        if(fakturaKundId == null || fakturaKundId.equals("NULL") || fakturaKundId.isEmpty()){
+        if (fakturaKundId == null || fakturaKundId.equals("NULL") || fakturaKundId.isEmpty()) {
             return null;
         }
         //
@@ -276,10 +276,10 @@ public abstract class Basic_Buh extends Basic {
             return null;
         }
     }
-    
-    public HashMap<String, String> getFakturaArtikelData(String phpFunction,String artikelId) {
+
+    public HashMap<String, String> getFakturaArtikelData(String phpFunction, String artikelId) {
         //
-        if(artikelId == null || artikelId.equals("NULL") || artikelId.isEmpty()){
+        if (artikelId == null || artikelId.equals("NULL") || artikelId.isEmpty()) {
             return null;
         }
         //

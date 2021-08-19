@@ -21,17 +21,16 @@ import javax.swing.JTable;
  */
 public class JSon {
 
-     
     public static String getLongName(String statics, String valToTranslate) {
-        HashMap<String, String> map = JSONToHashMap(statics, true);
+        HashMap<String, String> map = JSONToHashMap(statics, true, null);
         return map.get(valToTranslate);
     }
-    
+
     public static String getShortName(String staticString, String value) {
-        HashMap<String, String> map = JSon.JSONToHashMap(staticString, false);
+        HashMap<String, String> map = JSon.JSONToHashMap(staticString, false, null);
         return getValNoNull(map.get(value));
     }
-    
+
     public static void main(String[] args) {
         System.out.println("LONG_NAME: " + getLongName(DB.STATIC__JA_NEJ, "0"));
         System.out.println("SHORT_NAME: " + getShortName(DB.STATIC__JA_NEJ, "Ja"));
@@ -44,7 +43,7 @@ public class JSon {
             return value;
         }
     }
-    
+
     /**
      * [2020-10-01] OBS! Only visible column taken into account
      *
@@ -255,22 +254,30 @@ public class JSon {
     }
 
     public static String getValueFromJSonString(String json, String key, boolean reverse) {
-        HashMap<String, String> map = JSONToHashMap(json, reverse);
+        HashMap<String, String> map = JSONToHashMap(json, reverse, null);
         return map.get(key);
     }
 
-    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse) {
-        return JSONToHashMap(json, reverse, 1, true, true);
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, String noneCommonSeparator) {
+        return JSONToHashMap(json, reverse, 1, true, true, noneCommonSeparator);
     }
 
-    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars, boolean specialCharsRevers) {
+    public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, int valueIndex, boolean replaceSpecialChars, boolean specialCharsRevers, String noneCommonSeparator) {
         //
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        //
+        String separator;
+        //
+        if (noneCommonSeparator == null || noneCommonSeparator.isEmpty()) {
+            separator = ",";
+        } else {
+            separator = noneCommonSeparator; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        }
         //
         json = json.replaceAll("\"", "");
         json = json.replaceAll("\\{", "");
         json = json.replaceAll("\\}", "");
-        String[] arr = json.split(",");
+        String[] arr = json.split(separator);
         //
         if (arr[0].isEmpty()) { // [2020-10-07]
             return map;
@@ -335,16 +342,16 @@ public class JSon {
     }
 
     /**
-     * [2020-10-27]
-     * This one is SUPER important. The problem i discovered on [2020-10-27]
-     * was that if i copy/kredit an invoice it failed. So it turned out that
-     * it was because of "," in the comment. So when the invoice was copied 
-     * the special characters were not "converted" as usual. So if you
-     * look here, consider "JSONToHashMap(json, false, 1, true, false)"
-     * the last "false" argument makes so that the special character are converted
-     * when copied
+     * [2020-10-27] This one is SUPER important. The problem i discovered on
+     * [2020-10-27] was that if i copy/kredit an invoice it failed. So it turned
+     * out that it was because of "," in the comment. So when the invoice was
+     * copied the special characters were not "converted" as usual. So if you
+     * look here, consider "JSONToHashMap(json, false, 1, true, false)" the last
+     * "false" argument makes so that the special character are converted when
+     * copied
+     *
      * @param phpJsonString
-     * @return 
+     * @return
      */
     public static ArrayList<HashMap<String, String>> phpJsonResponseToHashMap__for_copy_and_krediting(String phpJsonString) {
         //
@@ -359,7 +366,7 @@ public class JSon {
         for (String json : jsonEnriesList) {
             //
             // OBS!!! LAST "false" is the one which is IMPORTANT HERE----*************************
-            HashMap<String, String> map = JSONToHashMap(json, false, 1, true, false);  
+            HashMap<String, String> map = JSONToHashMap(json, false, 1, true, false, null);
             //
             list.add(map);
             //
@@ -386,7 +393,7 @@ public class JSon {
         //
         for (String json : jsonEnriesList) {
             //
-            HashMap<String, String> map = JSONToHashMap(json, false);
+            HashMap<String, String> map = JSONToHashMap(json, false, null);
             //
 //            System.out.println("map: " + map);
             //
@@ -410,9 +417,9 @@ public class JSon {
         //
         String separator;
         //
-        if(specialSeparator){
+        if (specialSeparator) {
             separator = GP_BUH.SEPARATOR; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
-        }else{
+        } else {
             separator = ",";
         }
         //
@@ -420,10 +427,10 @@ public class JSon {
         //
         for (String json : jsons) {
             //
-            HashMap<String, String> map = JSONToHashMap(json, false);
+            HashMap<String, String> map = JSONToHashMap(json, false, null);
             //
             if (keys.length == 2) {
-                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + separator; 
+                jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + separator;
             } else if (keys.length == 3) {
                 jcomboStr += map.get(keys[0]) + ";" + map.get(keys[1]) + ";" + map.get(keys[2]) + separator;
             } else if (keys.length == 4) {
@@ -453,7 +460,7 @@ public class JSon {
         //
         for (String json : jsons) {
             //
-            HashMap<String, String> map = JSONToHashMap(json, false);
+            HashMap<String, String> map = JSONToHashMap(json, false, null);
             //
             jcomboStr += map.get(keyOne) + ";" + map.get(keyTwo) + ",";
             //
@@ -502,7 +509,7 @@ public class JSon {
         String toShowValue = getValueFromJSonString(jsonStr, returnValue, true);
         return _get(toShowValue, returnValue, jsonStr);
     }
-    
+
     public static String _get_special__b(String jsonStr, String returnValue) {
         String toShowValue = getValueFromJSonString(jsonStr, returnValue, false);
         return _get(toShowValue, returnValue, jsonStr);
@@ -530,7 +537,7 @@ public class JSon {
             map.put(new HashMapKeyCaseInsensitive(showVal), returnVal);
         }
         //
-        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false);
+        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false, null);
         //
         map_all.entrySet().forEach((entry) -> {
             String key = entry.getKey();
@@ -552,7 +559,7 @@ public class JSon {
             map.put(new HashMapKeyCaseInsensitive(showVal), returnVal);
         }
         //
-        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false);
+        LinkedHashMap<String, String> map_all = (LinkedHashMap<String, String>) JSONToHashMap(all, false, GP_BUH.SEPARATOR);
         //
         map_all.entrySet().forEach((entry) -> {
             String key = entry.getKey();
@@ -565,8 +572,8 @@ public class JSon {
 
     private static String merge(String withPriseStr, LinkedHashMap<HashMapKeyCaseInsensitive, String> map) {
         //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
-        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true, true);
-        LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true, true);
+        LinkedHashMap<String, String> mapListPrice = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 2, true, true, GP_BUH.SEPARATOR);
+        LinkedHashMap<String, String> mapArtNr = (LinkedHashMap<String, String>) JSONToHashMap(withPriseStr, false, 3, true, true, GP_BUH.SEPARATOR);
         //
         String str = "";
         //
@@ -578,13 +585,11 @@ public class JSon {
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
             String art_nr = mapArtNr.get(key);
-            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + GP_BUH.SEPARATOR; // ","
+            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + GP_BUH.SEPARATOR;
         }
         //
         return str;
     }
-
-    
 
     /**
      * USE "_get()" This one uses string operations which is less clear and

@@ -47,7 +47,11 @@ public class Validator {
         //
         String valToCheck = jtfi.getText();
         //
-//        GP_BUH.onFlightReplaceComma(jli, valToCheck);// 2021-05-03 // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        if (colName.equals(CustomersA_.TABLE_FAKTURA_KUNDER__KUND_NAMN)) {
+            // 2021-05-03 // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+            GP_BUH.onFlightReplaceComma(jli, valToCheck);
+            //
+        }
         //
         if (valToCheck == null || valToCheck.isEmpty() || table.getRowCount() == 0) {
             return setValidated(jli);

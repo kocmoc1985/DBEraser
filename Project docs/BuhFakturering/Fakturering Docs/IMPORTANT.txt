@@ -2,42 +2,20 @@
 
 If you will try to create a new article having "," it will be automatically replaced with "."
 
+The problem it caused that when you wanted to have the article name as: "Magnettejp, 25mm, vit" 
+it caused that the article name was devided in parts when it was shown in JCombobox.
 
-arbetskostnad;119;300;
-,byggnadsmaterial;120;6544;
-,cola 0.33 burk, liten;132;10;  <------------- Here is the problem the "," in the name "cola 0.33 burk, liten" was devided!!!
-,dill chips olw;128;29;
-,ekologiska gårds chips;130;49.9;
-,fanta 0.33 burk;133;10;05.345.901
-,grill chips olw;129;34.9;
-,hammare;117;99;
-,millersättning;121;544;
-,moped bmw;126;36799;
-,moped vw;127;29589;
-,moped yamaha;125;19855;
-,ost macka;131;25;
-,pepsi 0.5 flaska;134;19;
-,skruv;112;5;
-,skruvdragare;118;399;
-,spik;111;3;
-,traktor honda;123;69800;
-,traktor suzuki;124;57899;
-,
+Solution: if to be short the new "separator" was introduced "GP_BUH.SEPARATOR"
 
-Skylt, återsamlingsplats, självhäftande polyester;165;null;null,A4-Panel;;;, blå;148;349;,Bokhylla Plexus;150;825;,Bordsuttag usb;149;179;,Bordsuttag usb beg;156;39;,Glasskrivtavla SELLA;167;2790; 3803517,golv skydd 1200 x 1500;147;475;,golv skydd 900 x 1200;146;575;,Handdesinfektion;;;, gelform;;;, 0.5 L ;155;79;143792,Klädhängare FLORIA;159;225;142790,Klämskydd för innerdörrar;;;, 40 mm;157;565;381101,Magnettejp;;;, 25mm;;;, vit ;161;295;230622, 50 mm;;;,Nätkorgsvagn vit ;170;2295;231519,Pärmvagn;;;, 16 pärmar;151;1995;, 24 pärmar;152;2195;,Pedalhink Pranklin;153;180;,Plastback 12 liter;166;75;26653,Skyddsgrind;;;, 935-1330 mm;158;2295;381219,Skylt;;;, återsamlingsplats;;;, självhäftande polyester;165;49;306232, brandsläckare;;;, självhäftande;163;29;106239, första hjälpen;;;, nödutgång höger;;;, självhäftande ;164;39;306231,Stol DANTE;168;550;362855,Stol SAWE röd;154;615;,Tvättvagn;;;, hopfällbar;169;1395; 17420,
+Magnettejp, 25mm, vit ;160;160;#SEPARATOR#
+A4-Panel, blå;148;349;#SEPARATOR#
+Bokhylla Plexus;150;825;#SEPARATOR#
+Bordsuttag usb;149;179;#SEPARATOR#
+Bordsuttag usb beg;156;39;#SEPARATOR#
+Glasskrivtavla SELLA;167;2790; 3803517#SEPARATOR#
+golv skydd 1200 x 1500;147;475;#SEPARATOR#
 
-Skylt, återsamlingsplats, självhäftande polyester;165;null;null#SEPARATOR#A4-Panel;;;#SEPARATOR# blå;148;349;#SEPARATOR#Bokhylla Plexus;150;825;#SEPARATOR#Bordsuttag usb;149;179;#SEPARATOR#Bordsuttag usb beg;156;39;#SEPARATOR#Glasskrivtavla SELLA;167;2790; 3803517#SEPARATOR#golv skydd 1200 x 1500;147;475;#SEPARATOR#golv skydd 900 x 1200;146;575;#SEPARATOR#Handdesinfektion;;;#SEPARATOR# gelform;;;#SEPARATOR# 0.5 L ;155;79;143792#SEPARATOR#Klädhängare FLORIA;159;225;142790#SEPARATOR#Klämskydd för innerdörrar;;;#SEPARATOR# 40 mm;157;565;381101#SEPARATOR#Magnettejp;;;#SEPARATOR# 25mm;;;#SEPARATOR# vit ;161;295;230622#SEPARATOR# 50 mm;;;#SEPARATOR#Nätkorgsvagn vit ;170;2295;231519#SEPARATOR#Pärmvagn;;;#SEPARATOR# 16 pärmar;151;1995;#SEPARATOR# 24 pärmar;152;2195;#SEPARATOR#Pedalhink Pranklin;153;180;#SEPARATOR#Plastback 12 liter;166;75;26653#SEPARATOR#Skyddsgrind;;;#SEPARATOR# 935-1330 mm;158;2295;381219#SEPARATOR#Skylt;;;#SEPARATOR# återsamlingsplats;;;#SEPARATOR# självhäftande polyester;165;49;306232#SEPARATOR# brandsläckare;;;#SEPARATOR# självhäftande;163;29;106239#SEPARATOR# första hjälpen;;;#SEPARATOR# nödutgång höger;;;#SEPARATOR# självhäftande ;164;39;306231#SEPARATOR#Stol DANTE;168;550;362855#SEPARATOR#Stol SAWE röd;154;615;#SEPARATOR#Tvättvagn;;;#SEPARATOR# hopfällbar;169;1395; 17420#SEPARATOR#
-
-golv skydd 900 x 1200;146;575;#SEPARATOR#A4-Panel;;;#SEPARATOR# blå;148;349;#SEPARATOR#Bokhylla Plexus;150;825;#SEPARATOR#Bordsuttag usb;149;179;#SEPARATOR#Bordsuttag usb beg;156;39;#SEPARATOR#Glasskrivtavla SELLA;167;2790; 3803517#SEPARATOR#golv skydd 1200 x 1500;147;475;#SEPARATOR#Handdesinfektion;;;#SEPARATOR# gelform;;;#SEPARATOR# 0.5 L ;155;79;143792#SEPARATOR#Klädhängare FLORIA;159;225;142790#SEPARATOR#Klämskydd för innerdörrar;;;#SEPARATOR# 40 mm;157;565;381101#SEPARATOR#Magnettejp;;;#SEPARATOR# 25mm;;;#SEPARATOR# vit ;161;295;230622#SEPARATOR# 50 mm;;;#SEPARATOR#Nätkorgsvagn vit ;170;2295;231519#SEPARATOR#Pärmvagn;;;#SEPARATOR# 16 pärmar;151;1995;#SEPARATOR# 24 pärmar;152;2195;#SEPARATOR#Pedalhink Pranklin;153;180;#SEPARATOR#Plastback 12 liter;166;75;26653#SEPARATOR#Skyddsgrind;;;#SEPARATOR# 935-1330 mm;158;2295;381219#SEPARATOR#Skylt;;;#SEPARATOR# återsamlingsplats;;;#SEPARATOR# självhäftande polyester;165;49;306232#SEPARATOR# brandsläckare;;;#SEPARATOR# självhäftande;163;29;106239#SEPARATOR# första hjälpen;;;#SEPARATOR# nödutgång höger;;;#SEPARATOR# självhäftande ;164;39;306231#SEPARATOR#Stol DANTE;168;550;362855#SEPARATOR#Stol SAWE röd;154;615;#SEPARATOR#Tvättvagn;;;#SEPARATOR# hopfällbar;169;1395; 17420#SEPARATOR#
-
-Most important points now when working with "Invoice Edit":
-1. Invoice_.class: line:889
-2. JSon.class: line:562
-3. JSONToHashMap(....) JSon.class: line:568
-
-
-
-Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] & for the usages of "GP_BUH.SEPARATOR"
 ________________________________________________________________________________________________________
 [RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]
 
