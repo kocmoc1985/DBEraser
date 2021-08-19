@@ -96,7 +96,7 @@ public abstract class Basic_Buh extends Basic {
         }
     }
 
-    protected String requestJComboValuesHttp(String php_function, String[] keys) {
+    protected String requestJComboValuesHttp(String php_function, String[] keys,boolean specialSeparator) {
         //
         String comboString;
         //
@@ -111,7 +111,7 @@ public abstract class Basic_Buh extends Basic {
                 return "";
             }
             //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
-            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys);
+            comboString = JSon.phpJsonResponseToComboBoxString(json_str_return, keys,specialSeparator);
             //
 //            System.out.println("combo string: " + comboString);
             //

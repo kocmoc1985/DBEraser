@@ -404,11 +404,17 @@ public class JSon {
      * @param keys
      * @return
      */
-    public static String phpJsonResponseToComboBoxString(String phpJsonString, String[] keys) {
+    public static String phpJsonResponseToComboBoxString(String phpJsonString, String[] keys, boolean specialSeparator) {
         //
         String jcomboStr = "";
         //
-        String separator = GP_BUH.SEPARATOR; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        String separator;
+        //
+        if(specialSeparator){
+            separator = GP_BUH.SEPARATOR; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+        }else{
+            separator = ",";
+        }
         //
         ArrayList<String> jsons = phpJsonStringSplit(phpJsonString);
         //
@@ -572,7 +578,7 @@ public class JSon {
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
             String art_nr = mapArtNr.get(key);
-            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + ",";
+            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + GP_BUH.SEPARATOR; // ","
         }
         //
         return str;

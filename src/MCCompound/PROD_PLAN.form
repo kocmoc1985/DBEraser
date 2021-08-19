@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="1113" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -465,12 +465,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton4Export" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox3SelectColumn" alignment="3" max="32767" attributes="0"/>
-                          <Component id="jButton4Export1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonClearAll" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="jButtonClearColumn" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButton4Export" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBox3SelectColumn" alignment="3" max="32767" attributes="0"/>
+                              <Component id="jButton4Export1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonClearColumn" min="-2" pref="33" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel5" pref="884" max="32767" attributes="0"/>
