@@ -1,3 +1,15 @@
+[RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]
+
+It happens when you crete a new Invoice and then add an article to it.
+After the article was added the "resize-cursor" is not shown.
+
+Cause of the problem: First of all i found on internet that it's a bugg. It happens because
+when an article is added i call the "faktua_tab_blockUntilSavedOrAborted_invoice(false)"
+which disables the "jTabbedPane" (jTabbedPane1.setEnabled(false)) and exactly this causes the problem.
+
+Search for: [#RESIZE-COLUMN-CURSOR-BUGG#]
+
+________________________________________________________________________________________________________
 [ARTICLE KATEGORI][2021-08-16]
 
 Search for: [#ARTICLE-KATEGORI-CONDITION#]

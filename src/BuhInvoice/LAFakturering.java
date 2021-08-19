@@ -2833,7 +2833,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
                         BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
-                        faktua_tab_blockUntilSavedOrAborted_invoice(false);
+                        faktua_tab_blockUntilSavedOrAborted_invoice(false); // [#RESIZE-COLUMN-CURSOR-BUGG#]
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {
