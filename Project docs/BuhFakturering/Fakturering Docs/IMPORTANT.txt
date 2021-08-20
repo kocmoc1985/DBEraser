@@ -15,6 +15,8 @@ Bordsuttag usb beg;156;39;#SEPARATOR#
 Glasskrivtavla SELLA;167;2790; 3803517#SEPARATOR#
 golv skydd 1200 x 1500;147;475;#SEPARATOR#
 
+OBS! No changes on the PHP-side! 100% verified!
+
 Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] & for the usages of "GP_BUH.SEPARATOR"
 ________________________________________________________________________________________________________
 [RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]

@@ -48,7 +48,7 @@ public class Validator {
         String valToCheck = jtfi.getText();
         //
         if (colName.equals(CustomersA_.TABLE_FAKTURA_KUNDER__KUND_NAMN)) {
-            // 2021-05-03 // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+            // 2021-05-03 // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#][THIS WAS HERE THE PROBLEM STARTED]
             GP_BUH.onFlightReplaceComma(jli, valToCheck);
             //
         }

@@ -554,7 +554,7 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
             //
 //            Validator.checkIfExistInDB(bim, jli, DB.BUH_FAKTURA_ARTIKEL___NAMN, DB.TABLE__BUH_FAKTURA_ARTIKEL);
             if (Validator.validateMaxInputLength(jli, 50)) {
-                Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN); // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
+                Validator.checkIfExistInJTable(getTableArticles(), jli, TABLE_ARTICLES__NAMN);
             }
             //
         } else if (col_name.equals(DB.BUH_FAKTURA_ARTIKEL___ARTNR)) {

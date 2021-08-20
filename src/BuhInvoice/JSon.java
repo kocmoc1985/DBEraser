@@ -585,7 +585,7 @@ public class JSon {
             String value_id = (String) map.get(hk);
             String value_price = mapListPrice.get(key);
             String art_nr = mapArtNr.get(key);
-            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + GP_BUH.SEPARATOR;
+            str += key + ";" + value_id + ";" + value_price + ";" + art_nr + GP_BUH.SEPARATOR; // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
         }
         //
         return str;

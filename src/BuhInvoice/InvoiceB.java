@@ -377,7 +377,7 @@ public class InvoiceB extends Basic_Buh {
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
         if (isOmvantSkatt && makulerad == false) {
-            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd moms");
+            GP_BUH.setLabelIconAndToolTip(bim.jLabel_info_rut__or_omvant_skatt, "swap.png", "Omvänd skattskyldighet");
             bim.jLabel_info_rut__or_omvant_skatt.setVisible(true);
         }
         if (isForeignCustomer) {
