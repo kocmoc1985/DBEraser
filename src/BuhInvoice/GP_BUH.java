@@ -22,6 +22,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Window;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class GP_BUH {
      * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "sgycPkSeFY" -> GUEST ACCOUNT:
      * guest_31_kocmoc1985@gmail.com / "BMZYyw2kv4"
      * Auto created on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "8RDoPnvugb" --> www.la.se [not test]
-     * Auto created on [2021-04-30] "kocmoc1985@gmail.com / ZEzdghFNRP" --> www.la.se [not test]
+     * Auto created on [2021-08-20] "kocmoc1985@gmail.com / 1bYAk9KUI8" --> www.la.se [not test]
      *
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765" ---> THE REAL ONE****
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"
@@ -100,8 +101,9 @@ public class GP_BUH {
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
     public static final String GDPR_ACCEPTED_FILE_PATH = IO.IO_DIR + "gdpr";
+    public static boolean FIRST_TIME_RUN__FLAG = false;
 
-    public static boolean isGdprAccepted() {
+    public static boolean GDPRMissing() {
         //
         return !file_exists(new File(GDPR_ACCEPTED_FILE_PATH));
         //
@@ -426,14 +428,25 @@ public class GP_BUH {
         //
     }
 
-    public static void centerAndBringToFront(JFrame frame) {
-        Point p = HelpA.position_window_in_center_of_the_screen(frame);
-        frame.setLocation(p);
-        frame.setVisible(true);
+//    public static void centerAndBringToFront(JFrame frame) {
+//        Point p = HelpA.position_window_in_center_of_the_screen(frame);
+//        frame.setLocation(p);
+//        frame.setVisible(true);
+//        //
+//        java.awt.EventQueue.invokeLater(() -> {
+//            frame.toFront();
+//            frame.repaint();
+//        });
+//    }
+    
+    public static void centerAndBringToFront(Window window) {
+        Point p = HelpA.position_window_in_center_of_the_screen(window);
+        window.setLocation(p);
+        window.setVisible(true);
         //
         java.awt.EventQueue.invokeLater(() -> {
-            frame.toFront();
-            frame.repaint();
+            window.toFront();
+            window.repaint();
         });
     }
 

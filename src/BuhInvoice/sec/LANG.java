@@ -30,6 +30,9 @@ public class LANG {
     private final static String Offert = "Offert";
     private final static String offerten = "offerten";
     private final static String offert = "offert";
+    
+    //
+    public final static String MESSAGE = "Meddelande";
     //
     public final static String VALIDATION_MSG_1 = "Inloggning misslyckades";
     public final static String VALIDATION_MSG__V_ERR_0 = "Autentiseringsproblem";

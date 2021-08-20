@@ -313,7 +313,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         }
         //
         if (ACTUAL_TAB_NAME.equals(LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER()) == false && getOrderNo().isEmpty()) {
-            HelpA.showNotification_separate_thread("Order not chosen, please choose one");
+            HelpA.showNotification_separate_thread("Order not chosen, please choose one",null);
             HelpA.openTabByName(getTabbedPane(), LNG.LAB_DEVELOPMENT_TAB__TAB_FIND_ORDER());
             lab_dev_tab_tab_find_order__clicked();
         }

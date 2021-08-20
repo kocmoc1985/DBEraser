@@ -279,7 +279,7 @@ public abstract class Basic_Buh extends Basic {
 
     public HashMap<String, String> getFakturaArtikelData(String phpFunction, String artikelId) {
         //
-        if (artikelId == null || artikelId.equals("NULL") || artikelId.isEmpty()) {
+        if (artikelId == null || artikelId.equals("NULL") || artikelId.isEmpty() || artikelId.equals("-")) {
             return null;
         }
         //

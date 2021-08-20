@@ -483,7 +483,7 @@ public class HTMLPrint_A extends HTMLPrint {
             OMVANT_SKATT__EXIST = true;
             //
             if (ertVatNrExist() == false) {
-                HelpA.showNotification_separate_thread(LANG.MSG_22);
+                HelpA.showNotification_separate_thread(LANG.MSG_22,null);
             }
             //
         }

@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.BlinkThread;
+import BuhInvoice.sec.HTMLDialog;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.RutRot;
@@ -102,6 +103,10 @@ public class InvoiceB extends Basic_Buh {
 
     public InvoiceB(LAFakturering buh_invoice_main) {
         super(buh_invoice_main);
+         if (GP_BUH.FIRST_TIME_RUN__FLAG) {
+           HelpA.showNotification_separate_thread__welcome_message(bim,"Hej!");
+//            HTMLDialog htd = new HTMLDialog(bim, false, 800, 400, "Hej!");
+        }
     }
 
     @Override
@@ -115,11 +120,13 @@ public class InvoiceB extends Basic_Buh {
             fillJComboSearchByFakturaKund();
         });
         //
+       
+        //
     }
 
     protected void fillJComboSearchByFakturaKund() {
         //
-        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID},false);
+        String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID}, false);
         HelpA.ComboBoxObject[] boxObjects = HelpA.extract_comma_separated_objects(fixedComboValues_a, 2);
         //
         if (boxObjects != null) {
@@ -135,7 +142,7 @@ public class InvoiceB extends Basic_Buh {
 
     protected boolean noCustomersPresent() {
         try {
-            String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID},false);
+            String customers = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID}, false);
             return customers.isEmpty();
         } catch (Exception ex) {
             return false;
@@ -310,8 +317,8 @@ public class InvoiceB extends Basic_Buh {
         table_b.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-    
-    private void resetOther(){
+
+    private void resetOther() {
         //[2021-08-17]
         bim.FAKTURA_TYPE_CURRENT__OPERATION = DB.STATIC__FAKTURA_TYPE_NORMAL;
         Invoice_.CREATE_OFFERT__OPERATION_INSERT = false; // This was needed otherwise bim.isOffert() always shown "true" if you triggered creation of a new offert
@@ -413,7 +420,7 @@ public class InvoiceB extends Basic_Buh {
         //[#INFO-ICON-BLINK#]
         abortPreviousBlinkThreads();
         //
-        BlinkThread btr = new BlinkThread(component,bim.getFakturaId());
+        BlinkThread btr = new BlinkThread(component, bim.getFakturaId());
         //
         blinkThreadList.add(btr);
         //

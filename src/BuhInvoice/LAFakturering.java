@@ -9,6 +9,7 @@ import forall.BackgroundPanel;
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
+import BuhInvoice.sec.HTMLDialog;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -56,10 +57,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private String PREVIOUS_TAB_NAME;
     public final static String TAB_HOME = "HEM";
     public final static String TAB_INVOICES_OVERVIEW = "ALLA FAKTUROR";
-    private final static String TAB_FAKTURA = "FAKTURA";
+    public final static String TAB_FAKTURA = "FAKTURA";
     public final static String TAB_KUDNER = "KUNDER";
-    private final static String TAB_ARTIKLAR = "ARTIKLAR";
-    private final static String TAB_FTG_SETUP = "FÖRETAGS INSTÄLLNINGAR";
+    public final static String TAB_ARTIKLAR = "ARTIKLAR";
+    public final static String TAB_FTG_SETUP = "FÖRETAGS INSTÄLLNINGAR";
     private final static String TAB_OTHER_SETUP = "ÖVRIGA INSTÄLLNINGAR";
     private final static String TAB_STATISTIK = "GRAFISK VY";
     //
@@ -95,7 +96,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void gdpr() {
         //
-        if (GP_BUH.isGdprAccepted()) {
+        if (GP_BUH.GDPRMissing()) {
+            //
+            GP_BUH.FIRST_TIME_RUN__FLAG = true;
             //
             new CreateShortcut();
             //
@@ -2692,8 +2695,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //"Refresh btn"
         //
         SET_SEARCH_FILTER(PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, true);
-        //
         invoiceB.refresh(null);
+        //
+//        HTMLDialog htd = new HTMLDialog(this, false, 800, 400, "Hej!"); // Only for testing!!
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton_delete_customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_customerActionPerformed
@@ -2757,7 +2761,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
         if (isMakulerad()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_9);
+            HelpA.showNotification_separate_thread(LANG.MSG_9,null);
         }
         //
         String fakturatype = getFakturaType();
@@ -2919,7 +2923,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         if (invoiceB != null) {
             if (noCustomersPresent()) {
-                HelpA.showNotification_separate_thread(LANG.MSG_11);
+                HelpA.showNotification_separate_thread(LANG.MSG_11,null);
             }
         }
         //
@@ -3050,11 +3054,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
         if (isBetald()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12);
+            HelpA.showNotification_separate_thread(LANG.MSG_12,null);
         }
         //
         if (isForfallen() == false) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12_2);
+            HelpA.showNotification_separate_thread(LANG.MSG_12_2,null);
         }
         //
         invoiceB.htmlFakturaOrReminder(null, true);
@@ -3607,7 +3611,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 }
                 //
                 if (isMakulerad()) {
-                    HelpA.showNotification_separate_thread(LANG.MSG_9);
+                    HelpA.showNotification_separate_thread(LANG.MSG_9,null);
                 }
                 //
                 invoiceA_update.resetRutRot();

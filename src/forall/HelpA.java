@@ -5,6 +5,8 @@
 package forall;
 
 import BuhInvoice.GP_BUH;
+import BuhInvoice.sec.HTMLDialog;
+import BuhInvoice.sec.LANG;
 import MCRecipeLang.MSG;
 import MCCompound.PROD_PLAN;
 import MCRecipe.MC_RECIPE;
@@ -29,6 +31,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -2505,12 +2508,52 @@ public class HelpA {
         JOptionPane.showMessageDialog(null, msg);
     }
 
-    public static void showNotification_separate_thread(String msg) {
+    public static void showNotification_separate_thread(String msg, String title) {
+        //
+
+        //
         Thread x = new Thread(() -> {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    JOptionPane.showMessageDialog(null, msg);
+                    //
+                    String title_;
+                    //
+                    if (title == null || title.isEmpty()) {
+                        title_ = LANG.MESSAGE;
+                    }else{
+                        title_ = title;
+                    }
+                    //
+                    JOptionPane.showMessageDialog(null, msg, title_, JOptionPane.INFORMATION_MESSAGE);
+                    //
+                }
+            });
+
+        });
+        x.start();
+    }
+    
+    public static void main(String[] args) {
+        showNotification_separate_thread__welcome_message(null,"Title");
+    }
+    
+    public static synchronized void showNotification_separate_thread__welcome_message(Frame parent,String title) {
+        //
+        Thread x = new Thread(() -> {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //
+                        Thread.sleep(1500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    //
+                    HTMLDialog htd = new HTMLDialog(parent, false,800,400, title);
+//                    htd.setVisible(true);
+                    //
                 }
             });
 
@@ -3894,7 +3937,7 @@ public class HelpA {
         out.close();
     }
 
-    public static Point position_window_in_center_of_the_screen(JFrame window) {
+    public static Point position_window_in_center_of_the_screen(Window window) {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
