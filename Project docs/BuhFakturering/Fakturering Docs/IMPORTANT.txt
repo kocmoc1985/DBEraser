@@ -127,6 +127,16 @@ ________________________________________________________________________________
 The main idea is that it's possible to change constants like "RUT_MAX" without updating the program but instead changing
 it in the "buh_constants" mysql table.
 
+The below is from the "buh_constants" table [2021-08-20]
+ROT_PERCENT: 0.3
+RUT_PERCENT: 0.5
+ROT_MAX: 50000
+RUT_MAX: 75000
+STATIC__BETAL_VILKOR: 30¤60¤20¤15¤10¤5¤90
+STATIC__LEV_VILKOR: Fritt vårt lager*FVL¤CIF*CIF¤FAS*FAS¤Fritt Kund*FK¤FOB*FOB
+STATIC__LEV_SATT: Post*P¤Hämtas*HAM¤Digitalt*D
+STATIC__MOMS_SATS: 25%*25¤12%*12¤6%*6¤0%*0
+
 Search for [#BUH-CONSTANTS#]
 ________________________________________________________________________________________________________
 [SERVICE EMAILS: LIKE - USER CREATED ACCOUNT, DELETED etc..][2021-04-12]

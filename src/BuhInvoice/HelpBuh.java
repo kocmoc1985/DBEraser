@@ -189,7 +189,6 @@ public class HelpBuh {
                 constants.put(val.get("name"), val.get("val").replaceAll("\\*", ";"));
             }
             //
-            System.out.println("");
             //
             return constants;
             //
