@@ -5,6 +5,7 @@
  */
 package icons;
 
+import forall.GP;
 import java.net.URL;
 
 /**
@@ -34,5 +35,6 @@ public class IconUrls {
     public static final URL STAMP_IKKE_BETALD_B = IconUrls.class.getResource("stamp_ikke_betald_b.png");
     public static final URL STAMP_ROT_RUT = IconUrls.class.getResource("stamp_rot_rut.png");
     public static final URL STAMP_LOWERST_PRICE_GR = IconUrls.class.getResource("stamp_lowest_price_gr.png");
-    
+    //
+    public static final URL CREATE_NEW_IMAGE_ICON_URL = IconUrls.class.getResource("new.png");
 }

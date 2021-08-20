@@ -7,16 +7,15 @@ package BuhInvoice.sec;
 import BuhInvoice.GP_BUH;
 import BuhInvoice.LAFakturering;
 import forall.GP;
+import icons.IconUrls;
 import java.awt.Desktop;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 /**
  * IF you plan to use it for another project, take the example from
@@ -58,15 +57,24 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         }
         //
     }
-    
-    public void initAdditional(){
+
+    public void initAdditional() {
         this.setAlwaysOnTop(true);
+    }
+
+    public String[] getCssRules() {
+        String[] CSSRules = {
+            "table {width: auto;}",
+            "td {border: 0px solid gray;}"
+        };
+
+        return CSSRules;
     }
 
     private void initOther() {
         //
-        jEditorPane1.setEditable(false);
-        jEditorPane1.setContentType("text/html");
+        jEditorPane_1.setEditable(false);
+        jEditorPane_1.setContentType("text/html");
 //        jEditorPane1.addHyperlinkListener(this);
         //
         this.setSize(w, h);
@@ -79,18 +87,37 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         //
         initAdditional();
         //
-        jEditorPane1.setText(buildHTML(img_path));
+        HTMLEditorKit kit = new HTMLEditorKit();
+        StyleSheet styleSheet = kit.getStyleSheet();
+        String[] CSSRules = getCssRules();
+        //
+        for (int i = 0; i < CSSRules.length; i++) {
+            styleSheet.addRule(CSSRules[i]);
+        }
+        jEditorPane_1.setEditorKit(kit);
+        //
+        Document doc = kit.createDefaultDocument();
+        jEditorPane_1.setDocument(doc);
+        //
+        jEditorPane_1.setText(buildHTML(img_path));
         //
         setVisible(true);
+        //
+        jEditorPane_1.invalidate();
+        jEditorPane_1.validate();
+        jEditorPane_1.repaint();
     }
 
     private String buildHTML(String imgPath) {
+        //
+        String path_new_icon = IconUrls.CREATE_NEW_IMAGE_ICON_URL.toString();
+        //
         return "<html>"
                 + "<body style='background-color:#F1F3F6'>" //style='background-color:#F1F3F6'
                 + "<div style='margin-left:10px;color:gray;background-color:#EEF0F4;padding:5 5 5 5px;'>"
                 + "<table>"
                 + "<tr>"
-                + "<td><img src='" + imgPath + "' alt='LAFakturering' width='32' height='32' ></td>"
+                + "<td style='width:5%'><img src='" + imgPath + "' alt='LAFakturering' width='32' height='32' >" + "</td>"
                 + "<td><h1>" + "Hej och välkommen till LAFakturering" + "</h1></td>"
                 + "</tr>"
                 + "</table>"
@@ -98,7 +125,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "<table style='font-size:14px'>"
                 + "<tr><td>Det är första gången du kör LAFakturering, trevligt!</td></tr>"
                 + "<tr><td>Bara inom några minuter är du redo at skapa din första faktura.</td></tr>"
-                + "<tr><td>Följ gärna de enkla tipsen som följer nedan för att komma igång så fort som möjligt:</td></tr>"
+                + "<tr><td>Följ gärna de enkla stegen som följer nedan för att komma igång så fort som möjligt:</td></tr>"
                 + "</table>"
                 + "</div>"
                 //
@@ -118,7 +145,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 //
                 + "<tr>"
                 + "<td>"
-                + "3. Du kan redan nu börja fakturera genom att gå till flik \"" + LAFakturering.TAB_FAKTURA + "\". "
+                + "3. Du kan redan nu börja fakturera genom att" + "<img src='" + path_new_icon + "' alt='new' width='32' height='32' >" + " gå till flik \"" + LAFakturering.TAB_FAKTURA + "\". "
                 + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till flik " + LAFakturering.TAB_ARTIKLAR
                 + " <td>"
                 + "</tr>"
@@ -154,7 +181,6 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
 //        frame.setVisible(true);
 ////
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,14 +191,14 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        jEditorPane_1 = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setType(java.awt.Window.Type.UTILITY);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jScrollPane2.setViewportView(jEditorPane1);
+        jScrollPane2.setViewportView(jEditorPane_1);
 
         getContentPane().add(jScrollPane2);
 
@@ -180,7 +206,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JEditorPane jEditorPane_1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 

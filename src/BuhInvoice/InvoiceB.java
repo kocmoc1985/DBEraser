@@ -103,10 +103,6 @@ public class InvoiceB extends Basic_Buh {
 
     public InvoiceB(LAFakturering buh_invoice_main) {
         super(buh_invoice_main);
-         if (GP_BUH.FIRST_TIME_RUN__FLAG) {
-           HelpA.showNotification_separate_thread__welcome_message(bim,"Hej!");
-//            HTMLDialog htd = new HTMLDialog(bim, false, 800, 400, "Hej!");
-        }
     }
 
     @Override
@@ -120,7 +116,7 @@ public class InvoiceB extends Basic_Buh {
             fillJComboSearchByFakturaKund();
         });
         //
-       
+
         //
     }
 

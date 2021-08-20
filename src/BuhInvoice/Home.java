@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.HTMLDialog;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
@@ -32,22 +33,22 @@ import javax.swing.table.DefaultTableModel;
  * @author KOCMOC
  */
 public class Home extends Basic_Buh {
-    
+
     protected Table TABLE_INVERT_2;
     protected Table TABLE_INVERT_3;
     protected Table TABLE_INVERT_4;
-    
+
     public static final String CHECK_BOX__SAVE_LOGIN_STATE = "chkbox";
-    
+
     private static final String LOGIN = "E-POST - ANVÄNDARNAMN";
     //
     private static final String TABLE_SHARED_USERS__USER = "ANVÄNDARE";
     private static final String TABLE_SHARED_USERS__DATE_CREATED = "SKAPAD";
-    
+
     public Home(LAFakturering bim) {
         super(bim);
     }
-    
+
     private void notifyAboutTestEnvironment() {
         //
         if (HelpBuh.USE_TEST_DB && HelpBuh.USE_TEST_SCRIPTS) {
@@ -65,7 +66,7 @@ public class Home extends Basic_Buh {
             return;
         }
     }
-    
+
     @Override
     protected void startUp() {
         //
@@ -96,7 +97,7 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     private void fillJTableHeader() {
         //
         JTable table = this.bim.jTable_shared_users;
@@ -109,7 +110,7 @@ public class Home extends Basic_Buh {
         table.setModel(new DefaultTableModel(null, headers_b));
         //
     }
-    
+
     private void fillSharedUsersTable() {
         //
         JTable table = bim.jTable_shared_users;
@@ -131,7 +132,7 @@ public class Home extends Basic_Buh {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void addRowJTableSharedUsers(HashMap<String, String> map, JTable table) {
         //
         Object[] jtableRow = new Object[]{
@@ -143,7 +144,7 @@ public class Home extends Basic_Buh {
         model.addRow(jtableRow);
         //
     }
-    
+
     protected void processDeleteGuest() {
         //
         String guestUser = HelpA.getValueSelectedRow(bim.jTable_shared_users, TABLE_SHARED_USERS__USER);
@@ -154,7 +155,7 @@ public class Home extends Basic_Buh {
         //
         res.defineStatus();
     }
-    
+
     protected void processShareAccount() {
         //
         if (fieldsValidated_tableInvert_4(false)) {
@@ -171,7 +172,7 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     protected void processForgotPass() {
         //
         if (fieldsValidated_tableInvert_3(false)) {
@@ -187,7 +188,7 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     protected void processUserRegistration() {
         //
         if (fieldsValidated_tableInvert_2(false)) {
@@ -205,13 +206,13 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     private void setInloggningsLabel(String text) {
         bim.jLabel_inloggning.setText(text);
 //        BlinkThread bt = new BlinkThread(bim.jLabel_inloggning, false);
 //        bt.setBlinkText();
     }
-    
+
     private void loadCheckBoxSaveLoginState() {
         //
         String state = IO.loadLastEntered(CHECK_BOX__SAVE_LOGIN_STATE, "0");
@@ -220,15 +221,15 @@ public class Home extends Basic_Buh {
             bim.jCheckBox_spara_inloggning.setSelected(true);
         }
     }
-    
+
     private boolean saveInloggning() {
         return bim.jCheckBox_spara_inloggning.isSelected();
     }
-    
+
     private JTable getJTable() {
         return bim.jTable_shared_users;
     }
-    
+
     protected void refresh() {
         //
         showTableInvert();
@@ -246,7 +247,7 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     protected void loggaIn() {
         //
         if (fieldsValidated(false) == false) {
@@ -269,13 +270,17 @@ public class Home extends Basic_Buh {
             bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
+            if (GP_BUH.FIRST_TIME_RUN__FLAG) {
+                HTMLDialog htd = new HTMLDialog(bim, false, 800, 400, "Hej!");
+            }
+            //
         } else {
             HelpA.showNotification(LANG.VALIDATION_MSG_1);
 //            System.exit(0);
         }
         //
     }
-    
+
     private void getFtgName() {
         //
         String req = bim.getSELECT(DB.BUH_KUND__ID, GP_BUH.KUND_ID);
@@ -285,7 +290,7 @@ public class Home extends Basic_Buh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM__GET_FTG_NAME, req);
             //
-            HashMap<String, String> map = JSon.JSONToHashMap(responce, false,null);
+            HashMap<String, String> map = JSon.JSONToHashMap(responce, false, null);
             //
             GP_BUH.CUSTOMER_COMPANY_NAME = map.get(DB.BUH_KUND__NAMN);
             //
@@ -295,7 +300,7 @@ public class Home extends Basic_Buh {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private boolean login() {
         //[#SEQURITY#][#&LOGIN&#]
         HashMap<String, String> map = new HashMap();
@@ -330,7 +335,7 @@ public class Home extends Basic_Buh {
         }
         //
     }
-    
+
     private boolean validateResponce(String responce) {
         //[#SEQURITY#]
         boolean isNumber = HelpA.isNumber(responce);
@@ -352,7 +357,7 @@ public class Home extends Basic_Buh {
         //
         return false;
     }
-    
+
     private void makeTransparent(Table tableInvert, JPanel parentContainer) {
         //
 //        java.awt.EventQueue.invokeLater(new Runnable() {
@@ -421,7 +426,7 @@ public class Home extends Basic_Buh {
         makeTransparent(TABLE_INVERT_3, bim.jPanel_restore_password);
         //
     }
-    
+
     public void showTableInvert_4() {
         //
         // Yes, it's correct that "getConfigTableInvert_3()" is used
@@ -434,7 +439,7 @@ public class Home extends Basic_Buh {
         makeTransparent(TABLE_INVERT_4, bim.jPanel_share_account);
         //
     }
-    
+
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
@@ -455,7 +460,7 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_2() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
@@ -482,7 +487,7 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_3() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
@@ -500,7 +505,7 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     public RowDataInvert[] getConfigTableInvert_4() {
         //
         RowDataInvert user = new RowDataInvertB("", DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
@@ -519,7 +524,7 @@ public class Home extends Basic_Buh {
         //
         return rows;
     }
-    
+
     @Override
     protected boolean fieldsValidated(boolean insert) {
         //
@@ -536,7 +541,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     private boolean fieldsValidated_tableInvert_2(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_2, DB.START_COLUMN, getConfigTableInvert_2())) {
@@ -552,7 +557,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     private boolean fieldsValidated_tableInvert_3(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_3, DB.START_COLUMN, getConfigTableInvert_3())) {
@@ -568,7 +573,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     private boolean fieldsValidated_tableInvert_4(boolean insert) {
         //
         if (containsEmptyObligatoryFields(TABLE_INVERT_4, DB.START_COLUMN, getConfigTableInvert_4())) {
@@ -584,7 +589,7 @@ public class Home extends Basic_Buh {
         return true;
         //
     }
-    
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -631,16 +636,16 @@ public class Home extends Basic_Buh {
         save(DB.BUH_LICENS__USER, getValueTableInvert(DB.BUH_LICENS__USER));
         save(DB.BUH_LICENS__PASS, getValueTableInvert(DB.BUH_LICENS__PASS));
     }
-    
+
     protected void deleteUserAndPass() {
         IO.delete(DB.BUH_LICENS__USER);
         IO.delete(DB.BUH_LICENS__PASS);
     }
-    
+
     private void save(String param, String value) {
         if (saveInloggning()) {
             IO.writeToFile(param, value);
         }
     }
-    
+
 }

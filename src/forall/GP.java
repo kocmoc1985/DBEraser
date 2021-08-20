@@ -39,6 +39,8 @@ public class GP {
     public static final URL IMAGE_ICON_URL_LAFAKTURERING = GP.class.getResource("la.png");
     public static final URL COMPLETE_IMAGE_ICON_URL = GP.class.getResource("ok.png");
     //
+    
+    //
     //=================================================
     public final static Properties FREE_QUERY_AND_NOT_ONLY_PROPS = HelpA.properties_load_properties("freeq.properties", false);
     //=================================================
