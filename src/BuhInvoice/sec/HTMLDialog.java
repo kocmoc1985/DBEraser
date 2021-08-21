@@ -145,8 +145,8 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 //
                 + "<tr>"
                 + "<td>"
-                + "3. Du kan redan nu börja fakturera genom att" + "<img src='" + path_new_icon + "' alt='new' width='32' height='32' >" + " gå till flik \"" + LAFakturering.TAB_FAKTURA + "\". "
-                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till flik " + LAFakturering.TAB_ARTIKLAR
+                + "3. Du kan redan nu börja fakturera genom att klicka på " + "<img src='" + path_new_icon + "' alt='new' width='32' height='32' >" + " under fliken \"" + LAFakturering.TAB_INVOICES_OVERVIEW + "\". "
+                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till flik \"" + LAFakturering.TAB_ARTIKLAR+"\"."
                 + " <td>"
                 + "</tr>"
                 //

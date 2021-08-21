@@ -271,7 +271,7 @@ public class Home extends Basic_Buh {
             bim.allInvoicesTabClicked();
             //
             if (GP_BUH.FIRST_TIME_RUN__FLAG) {
-                HTMLDialog htd = new HTMLDialog(bim, false, 800, 400, "Hej!");
+                HTMLDialog htd = new HTMLDialog(bim, false, 850, 400, "Hej!");
             }
             //
         } else {
