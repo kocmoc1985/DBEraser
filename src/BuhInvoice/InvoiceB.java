@@ -548,6 +548,8 @@ public class InvoiceB extends Basic_Buh {
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
             important_komment = GP_BUH.replaceColon(important_komment, false);
+            important_komment = GP_BUH.replaceComma(important_komment, false);
+            important_komment = GP_BUH.replacePlus(important_komment, false);
         }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
