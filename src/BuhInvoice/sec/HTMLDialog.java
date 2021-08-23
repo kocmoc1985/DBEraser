@@ -76,13 +76,11 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         //
         jEditorPane_1.setEditable(false);
         jEditorPane_1.setContentType("text/html");
-//        jEditorPane1.addHyperlinkListener(this);
+        jEditorPane_1.addHyperlinkListener(this);
         //
         this.setSize(w, h);
         //
         this.setTitle(title);
-        //
-        String img_path = GP.IMAGE_ICON_URL_LAFAKTURERING.toString();
         //
         GP_BUH.centerAndBringToFront(this);
         //
@@ -107,6 +105,11 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         jEditorPane_1.invalidate();
         jEditorPane_1.validate();
         jEditorPane_1.repaint();
+        //
+    }
+    
+    protected String footerHTML(){
+        return "<tr></tr><tr><td><a style='text-decoration:none;font-size:12px' href='https://www.lafakturering.se/?page_id=800'>Läs mer på www.lafakturering.se</a></td></tr>";
     }
 
     protected String buildHTML() {
@@ -155,6 +158,8 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till fliken \"" + LAFakturering.TAB_ARTIKLAR+"\"."
                 + " <td>"
                 + "</tr>"
+                //
+                + footerHTML()
                 //
                 + "</table>"
                 + "</div>"

@@ -63,6 +63,8 @@ public class HTMLDialog_B extends HTMLDialog{
                 + " <td>"
                 + "</tr>"
                 //
+                + footerHTML()
+                //
                 + "</table>"
                 + "</div>"
                 + "</body>"

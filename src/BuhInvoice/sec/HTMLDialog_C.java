@@ -56,6 +56,8 @@ public class HTMLDialog_C extends HTMLDialog {
                 + " <td>"
                 + "</tr>"
                 //
+                + footerHTML()
+                //
                 + "</table>"
                 + "</div>"
                 + "</body>"
