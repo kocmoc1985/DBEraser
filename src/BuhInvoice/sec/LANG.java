@@ -99,7 +99,7 @@ public class LANG {
 
     private static String MSG_10_4 = " markerad som skickad med vanlig post!";
 
-    public static String MSG_11 = "Du saknar registrerade kunder, var god gå till flik " + LAFakturering.TAB_KUDNER + " och registrera en.";
+    private static String MSG_11 = "Du saknar registrerade kunder, var god gå till fliken " + LAFakturering.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
     public static String MSG_12_2 = "Var god observera, fakturan har inte förfallit till betalning!";
 

@@ -14,6 +14,7 @@ import forall.HelpA;
 import static forall.HelpA.dateToMillisConverter3;
 import static forall.HelpA.file_exists;
 import static forall.HelpA.millisToDateConverter;
+import static forall.HelpA.objectToFile;
 import icons.ICON;
 import java.awt.Color;
 import java.awt.Component;
@@ -32,6 +33,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -49,7 +51,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
 
-
 /**
  *
  * @author KOCMOC
@@ -66,7 +67,7 @@ public class GP_BUH {
     public static String KUND_ID;
     //
     public static String LA_WEB_ADDR = "www.lafakturering.se";
-    
+
     /*
      * By [2021-03-09]
      * For the TEST-DB: andrej.brassas@gmail.com / 09WYJK1aUy [domain la.se][php-test]
@@ -101,6 +102,7 @@ public class GP_BUH {
     public static final int MAX_AMMOUNT_ARTICLES__FAKTURA = 14;
 
     public static final String GDPR_ACCEPTED_FILE_PATH = IO.IO_DIR + "gdpr";
+    public static final String FIRST_LOGIN_FILE_PATH = IO.IO_DIR + "firstlogin";
     public static boolean FIRST_TIME_RUN__FLAG = false;
 
     public static boolean GDPRMissing() {
@@ -109,10 +111,21 @@ public class GP_BUH {
         //
     }
 
+    public static boolean firstLogin() {
+        //
+        return !file_exists(new File(FIRST_LOGIN_FILE_PATH));
+        //
+    }
+
+    public static void fileFlagMaker_basic(String pathAndFileName) {
+        HashSet<String> set = new HashSet<>();
+        set.add(GP_BUH.updatedOn());
+        objectToFile(pathAndFileName, set);
+    }
+
     public static final String LOGO_PATH() {
         return IO.IO_DIR + "logo_" + KUND_ID + ".png";
     }
-
 
     public static final String SMTP_PATH() {
         return IO.IO_DIR + "smtp_" + KUND_ID;
@@ -124,7 +137,6 @@ public class GP_BUH {
 
     public static String BASIC_BACKGROUND_IMG__PATH = IO.IO_DIR + "bg.jpg";
 
-    
     private static void setPageBackground(JPanel panel, String path) {
         //
         BackgroundPanel bg = (BackgroundPanel) panel;
@@ -136,7 +148,7 @@ public class GP_BUH {
             // Will set the initial background
         }
     }
-    
+
     public static void setPageBackground(JPanel panel, URL url) {
         //
         BackgroundPanel bg = (BackgroundPanel) panel;
@@ -159,7 +171,7 @@ public class GP_BUH {
     }
 
     public static final String SEPARATOR = "#SEPARATOR#"; //[#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#]
-    
+
     /**
      * // [2021-05-03] For the strings like below used for filling comboboxes.
      * So the "," is such Strings is the SEPARATOR
@@ -265,7 +277,7 @@ public class GP_BUH {
         label.setToolTipText(toolTip);
         label.setIcon(ICON.getImageIcon(iconFileName, 32, 32));
     }
-    
+
     public static void setLabelIconAndToolTip(JLabel label, String iconFileName, int w, int h) {
         label.setIcon(ICON.getImageIcon(iconFileName, w, h));
     }
@@ -302,9 +314,9 @@ public class GP_BUH {
             c.setVisible(visible);
         });
     }
-    
+
     /**
-     *  This one is used only for the "Print" of the invoice
+     * This one is used only for the "Print" of the invoice
      */
     public static double round_double__whole_number(double rst) {
         return Double.parseDouble(String.format("%2.0f", rst).replace(",", "."));
@@ -313,7 +325,7 @@ public class GP_BUH {
     public static double round_double(double rst) {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
-    
+
     public static void main(String[] args) {
         System.out.println("" + round_double(24.889));
     }
@@ -438,7 +450,6 @@ public class GP_BUH {
 //            frame.repaint();
 //        });
 //    }
-    
     public static void centerAndBringToFront(Window window) {
         Point p = HelpA.position_window_in_center_of_the_screen(window);
         window.setLocation(p);
@@ -558,7 +569,7 @@ public class GP_BUH {
         //
         System.out.println("");
         //
-        return new Dimension((int)w, (int)h);
+        return new Dimension((int) w, (int) h);
     }
 
     /**

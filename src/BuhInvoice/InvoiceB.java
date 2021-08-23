@@ -116,8 +116,6 @@ public class InvoiceB extends Basic_Buh {
             fillJComboSearchByFakturaKund();
         });
         //
-
-        //
     }
 
     protected void fillJComboSearchByFakturaKund() {

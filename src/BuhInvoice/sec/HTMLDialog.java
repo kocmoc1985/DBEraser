@@ -26,9 +26,10 @@ import javax.swing.text.html.StyleSheet;
 public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener {
 //
 
-    private String title = "";
-    private final int w;
-    private final int h;
+    protected String title = "";
+    protected final int w;
+    protected final int h;
+    protected String imgPath = IconUrls.TIPS_IMAGE_ICON_URL.toString();
 
     /**
      * Creates new form AboutDialog
@@ -99,7 +100,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         Document doc = kit.createDefaultDocument();
         jEditorPane_1.setDocument(doc);
         //
-        jEditorPane_1.setText(buildHTML(img_path));
+        jEditorPane_1.setText(buildHTML());
         //
         setVisible(true);
         //
@@ -108,9 +109,10 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         jEditorPane_1.repaint();
     }
 
-    private String buildHTML(String imgPath) {
+    protected String buildHTML() {
         //
         String path_new_icon = IconUrls.CREATE_NEW_IMAGE_ICON_URL.toString();
+        String path_save_icon = IconUrls.ACCEPT_SAVE_IMAGE_ICON_URL.toString();
         //
         return "<html>"
                 + "<body style='background-color:#F1F3F6'>" //style='background-color:#F1F3F6'
@@ -125,7 +127,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "<table style='font-size:14px'>"
                 + "<tr><td>Det är första gången du kör LAFakturering, trevligt!</td></tr>"
                 + "<tr><td>Bara inom några minuter är du redo at skapa din första faktura.</td></tr>"
-                + "<tr><td>Följ gärna de enkla stegen som följer nedan för att komma igång så fort som möjligt:</td></tr>"
+                + "<tr><td>Följ gärna de enkla stegen nedan för att komma igång så fort som möjligt:</td></tr>"
                 + "</table>"
                 + "</div>"
                 //
@@ -136,17 +138,21 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "<table style='font-size:14px'>"
                 //
                 + "<tr>"
-                + "<td>1. Gå till flik \"" + LAFakturering.TAB_FTG_SETUP + "\" och fyll i dina företagsuppgifter" + " <td>"
+                + "<td>1. Gå till flik \"" + LAFakturering.TAB_FTG_SETUP + "\" och fyll i dina företagsuppgifter."
+                + " Glöm ej att spara ändringar genom att klicka på <img src='" + path_save_icon + "' alt='save' width='32' height='32' >"
+                + "<td>"
                 + "</tr>"
                 //
                 + "<tr>"
-                + "<td>2. Gå till flik \"" + LAFakturering.TAB_KUDNER + "\" och skapa åtminstone en kund" + "<td>"
+                + "<td>2. Gå till flik \"" + LAFakturering.TAB_KUDNER + "\" och skapa åtminstone en kund." 
+                + " Glöm ej att spara ändringar genom att klicka på <img src='" + path_save_icon + "' alt='save' width='32' height='32' >"
+                + "<td>"
                 + "</tr>"
                 //
                 + "<tr>"
                 + "<td>"
                 + "3. Du kan redan nu börja fakturera genom att klicka på " + "<img src='" + path_new_icon + "' alt='new' width='32' height='32' >" + " under fliken \"" + LAFakturering.TAB_INVOICES_OVERVIEW + "\". "
-                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till flik \"" + LAFakturering.TAB_ARTIKLAR+"\"."
+                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till fliken \"" + LAFakturering.TAB_ARTIKLAR+"\"."
                 + " <td>"
                 + "</tr>"
                 //
@@ -156,31 +162,6 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "</html>";
     }
 
-    /**
-     * This is for testing
-     *
-     * @param args
-     */
-//    public static void main(String[] args) {
-//        final JFrame frame = new JFrame();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(200, 200);
-//        frame.setLayout(new GridLayout(1, 1));
-//        JButton b = new JButton("Open");
-//        final HTMLDialog ad = new HTMLDialog(frame, true, 800, 400, "test title");
-//        ad.setSize(400, 400);
-//        b.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                ad.setVisible(true);
-//            }
-//
-//        });
-//        //
-//        frame.add(b);
-//        frame.setVisible(true);
-////
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

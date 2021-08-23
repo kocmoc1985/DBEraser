@@ -10,6 +10,7 @@ import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.HTMLDialog;
+import BuhInvoice.sec.HTMLDialog_C;
 import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
@@ -2923,7 +2924,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         if (invoiceB != null) {
             if (noCustomersPresent()) {
-                HelpA.showNotification_separate_thread(LANG.MSG_11,null);
+//                HelpA.showNotification_separate_thread(LANG.MSG_11,null);
+                  HTMLDialog_C dialog = new HTMLDialog_C(this, false, 800, 370, "Viktigt");
             }
         }
         //

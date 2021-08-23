@@ -136,13 +136,16 @@ public class GDPR extends HTMLBasic {
     }//GEN-LAST:event_jButton_forsattActionPerformed
 
     private void continueBtnClicked_accepted() {
+        //
         this.dispose();
         bim.setEnabled(true);
         //
         // creating files as a "flag"
-        HashSet<String> set = new HashSet<String>();
-        set.add(GP_BUH.updatedOn());
-        objectToFile(GP_BUH.GDPR_ACCEPTED_FILE_PATH, set);
+//        HashSet<String> set = new HashSet<String>();
+//        set.add(GP_BUH.updatedOn());
+//        objectToFile(GP_BUH.GDPR_ACCEPTED_FILE_PATH, set);
+        //
+        GP_BUH.fileFlagMaker_basic(GP_BUH.GDPR_ACCEPTED_FILE_PATH);
         //
     }
 

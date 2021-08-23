@@ -37,4 +37,6 @@ public class IconUrls {
     public static final URL STAMP_LOWERST_PRICE_GR = IconUrls.class.getResource("stamp_lowest_price_gr.png");
     //
     public static final URL CREATE_NEW_IMAGE_ICON_URL = IconUrls.class.getResource("new.png");
+    public static final URL ACCEPT_SAVE_IMAGE_ICON_URL = IconUrls.class.getResource("correct.png");
+    public static final URL TIPS_IMAGE_ICON_URL = IconUrls.class.getResource("tips.png");
 }

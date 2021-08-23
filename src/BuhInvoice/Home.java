@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.HTMLDialog;
+import BuhInvoice.sec.HTMLDialog_B;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
 import MyObjectTable.Table;
@@ -270,8 +271,11 @@ public class Home extends Basic_Buh {
             bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
-            if (GP_BUH.FIRST_TIME_RUN__FLAG) {
-                HTMLDialog htd = new HTMLDialog(bim, false, 850, 400, "Hej!");
+            if (GP_BUH.firstLogin()) {
+                GP_BUH.fileFlagMaker_basic(GP_BUH.FIRST_LOGIN_FILE_PATH);
+                HTMLDialog htd = new HTMLDialog(bim, false, 850, 450, "Hej!");
+            }else if(bim.noCustomersPresent()){
+                 HTMLDialog_B htd = new HTMLDialog_B(bim, false, 850, 400, "Hej!");
             }
             //
         } else {
