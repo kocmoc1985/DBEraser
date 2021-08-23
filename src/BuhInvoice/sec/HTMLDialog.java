@@ -24,8 +24,8 @@ import javax.swing.text.html.StyleSheet;
  * @author
  */
 public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener {
-//
 
+    protected final String html;
     protected String title = "";
     protected final int w;
     protected final int h;
@@ -37,12 +37,13 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
      * @param parent
      * @param modal
      */
-    public HTMLDialog(java.awt.Frame parent, boolean modal, int w, int h, String title) {
+    public HTMLDialog(java.awt.Frame parent, boolean modal, int w, int h, String title,String html) {
         super(parent, modal);
         initComponents();
         this.w = w;
         this.h = h;
         this.title = title;
+        this.html = html;
         initOther();
     }
 
@@ -98,7 +99,11 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         Document doc = kit.createDefaultDocument();
         jEditorPane_1.setDocument(doc);
         //
-        jEditorPane_1.setText(buildHTML());
+        if(html == null || html.isEmpty()){
+            jEditorPane_1.setText(buildHTML());
+        }else{
+            jEditorPane_1.setText(html);
+        }
         //
         setVisible(true);
         //

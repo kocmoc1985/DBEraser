@@ -2534,32 +2534,6 @@ public class HelpA {
         x.start();
     }
     
-    public static void main(String[] args) {
-        showNotification_separate_thread__welcome_message(null,"Title");
-    }
-    
-    public static synchronized void showNotification_separate_thread__welcome_message(Frame parent,String title) {
-        //
-        Thread x = new Thread(() -> {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //
-                        Thread.sleep(1500);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(HelpA.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //
-                    HTMLDialog htd = new HTMLDialog(parent, false,800,400, title);
-//                    htd.setVisible(true);
-                    //
-                }
-            });
-
-        });
-        x.start();
-    }
 
     public static void showNotification_Data_Truncation_Error() {
         JOptionPane.showMessageDialog(null, MSG.LANG("The length of input exceeded the limit"));

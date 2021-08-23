@@ -12,7 +12,9 @@ import BuhInvoice.HTMLPrint;
 import BuhInvoice.HTMLPrint_A;
 import BuhInvoice.HTMLPrint_B;
 import BuhInvoice.HelpBuh;
+import icons.IconUrls;
 import java.io.File;
+import java.net.URL;
 
 /**
  *
@@ -30,7 +32,7 @@ public class LANG {
     private final static String Offert = "Offert";
     private final static String offerten = "offerten";
     private final static String offert = "offert";
-    
+
     //
     public final static String MESSAGE = "Meddelande";
     //
@@ -113,7 +115,36 @@ public class LANG {
     public static String MSG_15_4 = "E-Post skickades, SMTP inställningar fungerar!";
     public static String MSG_15_5 = "E-Post skickades ej, prova att ändra inställningar";
 
-    public static String MSG_16_0 = "Registrering lyckades, kolla din e-post för lösenord! Kolla \"skräppost\" om du inte hittar e-post från oss";
+    public static String MSG_16_0_0 = "Ditt konto är nu skapat!";
+    public static String MSG_16_0_1 = "Vi har skickat lösenordet till den angivna E-posten.<br>Kolla \"skräppost\" om du inte hittar E-post från LAFakturering inom 5-10 minuter.";
+
+    public static String MSG_16_0_3_HTML(){
+        return HTML_MSG_BASIC(IconUrls.THUMB_UP_ICON_URL, MSG_16_0_0, MSG_16_0_1); // [#HTML-DIALOG#]
+    }
+    
+    public static String HTML_MSG_BASIC(URL mainImage,String title, String text) {
+        //[#HTML-DIALOG#]
+        String imgPath = mainImage.toString();
+        //
+        return "<html>"
+                + "<body style='background-color:#F1F3F6'>" //style='background-color:#F1F3F6'
+                + "<div style='margin-left:10px;color:gray;background-color:#EEF0F4;padding:5 5 5 5px;'>"
+                + "<table>"
+                + "<tr>"
+                + "<td style='width:5%'><img src='" + imgPath + "' alt='LAFakturering' width='32' height='32' >" + "</td>"
+                + "<td><h1>" + title + "</h1></td>"
+                + "</tr>"
+                + "</table>"
+                //
+                + "<table style='font-size:14px'>"
+                + "<tr><td>" + text + "</td></tr>"
+                + "</table>"
+                + "</div>"
+                //
+                + "</body>"
+                + "</html>";
+    }
+
     public static String MSG_16 = "Kontot kunde ej skapas, anledning oklar";
     public static String MSG_16_1 = "Kunde ej skapa, den angivna användaren finns redan";
     public static String MSG_16_2 = "Det är inte möjligt att skapa fler konton";
@@ -240,7 +271,7 @@ public class LANG {
                     + "Please proceed with the payment as soon as possible. Please specify invoice no. in the payment."
                     + " Contact us if you have any questions. Ignore this message if the payment is already done.";
         }
-        
+
     }
 
     public static String PAMMINELSE_MSG_MAIN__AUTO(String fakturanr) {

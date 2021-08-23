@@ -273,9 +273,9 @@ public class Home extends Basic_Buh {
             //
             if (GP_BUH.firstLogin()) {
                 GP_BUH.fileFlagMaker_basic(GP_BUH.FIRST_LOGIN_FILE_PATH);
-                HTMLDialog htd = new HTMLDialog(bim, false, 850, 510, "Hej!");
+                HTMLDialog htd = new HTMLDialog(bim, false, 850, 510, "Hej!",null); // [#HTML-DIALOG#]
             }else if(bim.noCustomersPresent()){
-                HTMLDialog_B htd = new HTMLDialog_B(bim, false, 850, 440, "Hej!");
+                HTMLDialog_B htd = new HTMLDialog_B(bim, false, 850, 440, "Hej!",null); // [#HTML-DIALOG#]
             }
             //
         } else {

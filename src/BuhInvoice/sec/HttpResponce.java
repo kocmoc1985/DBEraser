@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import forall.HelpA;
+import icons.IconUrls;
 import java.util.HashMap;
 
 /**
@@ -55,11 +56,21 @@ public class HttpResponce {
     private void showNotification(String errMsg) {
         //
         if (errMsg == null && successfulMesage != null) {
-            HelpA.showNotification(successfulMesage);
+            if(successfulMesage.contains("<html>")){
+                HTMLDialog htmlDialog = new HTMLDialog(null, false, 800, 200, "Viktig meddelande", successfulMesage);
+            }else{
+                HelpA.showNotification(successfulMesage);
+            }
         } else {
             HelpA.showNotification(errMsg);
         }
         //
+    }
+    
+    public static void main(String[] args) {
+        String successfulMesage = LANG.MSG_16_0_3_HTML();
+        HttpResponce httpResponce = new HttpResponce("ERROR", successfulMesage);
+        httpResponce.defineStatus();
     }
 
     public void defineStatus() {

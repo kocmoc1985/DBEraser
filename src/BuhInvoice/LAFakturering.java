@@ -2925,7 +2925,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         if (invoiceB != null) {
             if (noCustomersPresent()) {
 //                HelpA.showNotification_separate_thread(LANG.MSG_11,null);
-                  HTMLDialog_C dialog = new HTMLDialog_C(this, false, 800, 370, "Viktigt");
+                  HTMLDialog_C dialog = new HTMLDialog_C(this, false, 800, 370, "Viktigt",null);// [#HTML-DIALOG#]
             }
         }
         //

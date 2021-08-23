@@ -39,4 +39,5 @@ public class IconUrls {
     public static final URL CREATE_NEW_IMAGE_ICON_URL = IconUrls.class.getResource("new.png");
     public static final URL ACCEPT_SAVE_IMAGE_ICON_URL = IconUrls.class.getResource("correct.png");
     public static final URL TIPS_IMAGE_ICON_URL = IconUrls.class.getResource("tips.png");
+    public static final URL THUMB_UP_ICON_URL = IconUrls.class.getResource("thumb-up.png");
 }

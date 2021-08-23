@@ -377,11 +377,11 @@ public class HelpBuh {
             String responce = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_CREATE_ACCOUNT_MAIN, JSon.hashMapToJSON(map));
             //
-            return new HttpResponce(responce, LANG.MSG_16_0);
+            return new HttpResponce(responce, LANG.MSG_16_0_3_HTML()); // [#HTML-DIALOG#]
             //
         } catch (Exception ex) {
             Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
-            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_16_0_3_HTML()); // [#HTML-DIALOG#]
         }
         //
         //

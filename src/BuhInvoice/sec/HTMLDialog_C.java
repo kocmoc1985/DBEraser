@@ -14,8 +14,8 @@ import icons.IconUrls;
  */
 public class HTMLDialog_C extends HTMLDialog {
     
-    public HTMLDialog_C(java.awt.Frame parent, boolean modal, int w, int h, String title) {
-       super(parent, modal, w, h, title);
+    public HTMLDialog_C(java.awt.Frame parent, boolean modal, int w, int h, String title,String html) {
+       super(parent, modal, w, h, title, html);
     }
 
     @Override

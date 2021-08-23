@@ -1,3 +1,7 @@
+[HTML-DIALOGS ADVANCED INFORMATION MESSAGES][2021-08-23]
+
+Search for: [#HTML-DIALOG#]
+________________________________________________________________________________________________________
 [AUTOMATICALLY REPLACING "," with "." FOR CREATING OF ARTICLES/CUSTOMERS]
 
 If you will try to create a new article having "," it will be automatically replaced with "."
@@ -19,7 +23,7 @@ OBS! No changes on the PHP-side! 100% verified!
 
 Search for: [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] & for the usages of "GP_BUH.SEPARATOR"
 ________________________________________________________________________________________________________
-[RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG]
+[RESIZE-COLUMN-CURSOR NOT SHOWING JTABLE BUGG][2021-08-20]
 
 It happens when you crete a new Invoice and then add an article to it.
 After the article was added the "resize-cursor" is not shown.
