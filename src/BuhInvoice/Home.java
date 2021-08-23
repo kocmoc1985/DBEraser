@@ -271,7 +271,7 @@ public class Home extends Basic_Buh {
             bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
             //
-            if (GP_BUH.firstLogin()) {
+            if (GP_BUH.firstLogin() && bim.noCustomersPresent()) {
                 GP_BUH.fileFlagMaker_basic(GP_BUH.FIRST_LOGIN_FILE_PATH);
                 HTMLDialog htd = new HTMLDialog(bim, false, 850, 510, "Hej!",null); // [#HTML-DIALOG#]
             }else if(bim.noCustomersPresent()){

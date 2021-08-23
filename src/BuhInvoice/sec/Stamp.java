@@ -39,9 +39,10 @@ public class Stamp {
 
     public String getFileName() {
         try {
-            File f = new File(url.toURI());
+//            File f = new File(url.toURI()); // This one doe only work from inside the NetBeans!!! Dont use it [2021-08-23]
+            File f = new File(url.toString());
             return f.getName();
-        } catch (URISyntaxException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Stamp.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
