@@ -6,14 +6,12 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.BlinkThread;
-import BuhInvoice.sec.HTMLDialog;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import icons.ICON;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -541,12 +539,15 @@ public class InvoiceB extends Basic_Buh {
         String fakturaId = bim.getFakturaId();
         //
         String important_komment;
+        String important_komment__no_replace;
         //
         if (clear) {
             important_komment = "";
+            important_komment__no_replace = "";
             jtxt.setText("");
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
+            important_komment__no_replace = "" + important_komment;
             important_komment = GP_BUH.replaceColon(important_komment, false);
             important_komment = GP_BUH.replaceComma(important_komment, false);
             important_komment = GP_BUH.replacePlus(important_komment, false);
@@ -561,7 +562,7 @@ public class InvoiceB extends Basic_Buh {
         HelpBuh.update(json);
         //
         // OBS! This is done to skip refreshing the entire faktura list
-        HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment);
+        HelpA.setValueCurrentRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT, important_komment__no_replace);
         //
         //
         if (clear) {

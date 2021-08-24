@@ -151,7 +151,7 @@ public class LANG {
 
     public static String MSG_17 = "Logotypen finns redan, vill du radera den befintliga?";
 
-    public static String MSG_18_0 = "Återställning lyckades, kolla din e-post för det nya lösenordet";
+    public static String MSG_18_0 = "Återställning lyckades, kolla din e-post för det nya lösenordet. \nKontrollera \"skräppost\" om du inte hittar mejlet från LAFakturering.";
     public static String MSG_18 = "Återställning misslyckades, den angivna användaren finns ej";
     public static String MSG_18_1 = "Ett okänt fel inträffade, återställning misslyckades";
 

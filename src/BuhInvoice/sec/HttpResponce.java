@@ -6,7 +6,6 @@
 package BuhInvoice.sec;
 
 import forall.HelpA;
-import icons.IconUrls;
 import java.util.HashMap;
 
 /**
@@ -68,8 +67,13 @@ public class HttpResponce {
     }
     
     public static void main(String[] args) {
-        String successfulMesage = LANG.MSG_16_0_3_HTML();
-        HttpResponce httpResponce = new HttpResponce("ERROR", successfulMesage);
+        // Verifying a "HTMLDialog" message:
+//        String successfulMesage = LANG.MSG_16_0_3_HTML();
+//        HttpResponce httpResponce = new HttpResponce("ERROR", successfulMesage);
+//        httpResponce.defineStatus();
+        //
+        //
+        HttpResponce httpResponce = new HttpResponce("ERROR", LANG.MSG_18_0);
         httpResponce.defineStatus();
     }
 
