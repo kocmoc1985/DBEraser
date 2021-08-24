@@ -2456,7 +2456,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("E-Post SMTP intällningar");
+        jLabel8.setText("E-Post SMTP inställningar");
 
         jPanel21.setBackground(new java.awt.Color(51, 51, 51));
         jPanel21.setLayout(new java.awt.GridLayout(1, 0));
@@ -3761,12 +3761,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         } catch (InterruptedException ex) {
             Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
-        //
-        //
-        //
-        //
-        //
         //
         //
     }

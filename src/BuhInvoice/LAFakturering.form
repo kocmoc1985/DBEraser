@@ -2971,7 +2971,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="E-Post SMTP int&#xe4;llningar"/>
+                    <Property name="text" type="java.lang.String" value="E-Post SMTP inst&#xe4;llningar"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel21">
