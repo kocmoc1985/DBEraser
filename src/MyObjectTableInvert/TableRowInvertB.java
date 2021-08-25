@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import javax.swing.JLabel;
+import javax.swing.event.DocumentEvent;
 
 /**
  * For the case when SQL is NOT used [2020-07-14]
@@ -28,16 +29,16 @@ public class TableRowInvertB extends TableRowInvert {
 
     @Override
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
-        if(GP_BUH.TRACKING_TOOL_TIP_ENABLED){
+        if (GP_BUH.TRACKING_TOOL_TIP_ENABLED) {
             if (hi.getTableName() != null) {
-            HelpA.setTrackingToolTip_b(label, hi.getRealColName() + " / " + hi.getTableName());
-        } else {
-            HelpA.setTrackingToolTip_b(label, hi.getRealColName());
-        }
+                HelpA.setTrackingToolTip_b(label, hi.getRealColName() + " / " + hi.getTableName());
+            } else {
+                HelpA.setTrackingToolTip_b(label, hi.getRealColName());
+            }
         }
     }
-    
-     @Override
+
+    @Override
     public void mouseClicked(MouseEvent me) {
         //
         TableInvert t = (TableInvert) getTable();
@@ -56,8 +57,6 @@ public class TableRowInvertB extends TableRowInvert {
             consumer.mouseWheelForward(ti, e);
         }
     }
-    
-    
 
     @Override
     public void keyReleased(KeyEvent ke) {
@@ -83,6 +82,34 @@ public class TableRowInvertB extends TableRowInvert {
         if (consumer != null) {
             consumer.jComboBoxItemStateChangedForward(ti, ie);
         }
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+//        jTextFieldValueChangedForward(e);
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+//        jTextFieldValueChangedForward(e);
+    }
+    
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        jTextFieldValueChangedForward(e);
+    }
+
+    private void jTextFieldValueChangedForward(DocumentEvent e) {
+        //
+        TableInvert ti = (TableInvert) getTable();
+        Basic consumer = ti.getTableInvertConsumer();
+        //
+        if (consumer != null) {
+            JLinkInvert jli = (JLinkInvert) e.getDocument().getProperty("owner");
+            String col_name = ti.getCurrentColumnName(jli);
+            consumer.jTextFieldValueChangedForward(ti, e, jli,col_name);
+        }
+        //
     }
 
     @Override

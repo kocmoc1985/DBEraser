@@ -39,6 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -137,6 +138,17 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
      */
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
         System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvert. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
+    }
+    
+    /**
+     * Call from: TableRowInvertB
+     * @param ti
+     * @param evt
+     * @param parent
+     * @param colName 
+     */
+    public void jTextFieldValueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName){
+        System.out.println(this.getClass() + ":   jTextFieldValueChangedForward() from TableRowInvert. curr_col_check: " + colName);
     }
 
     /**

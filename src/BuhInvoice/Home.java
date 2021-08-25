@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -618,6 +619,21 @@ public class Home extends Basic_Buh {
 //        }
 //        //
 //    }
+    @Override
+    public void jTextFieldValueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
+        //
+        super.jTextFieldValueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
+        //
+        System.out.println("parent aaaaaaaaaaa: " + colName);
+        //
+        //THIS IS TO CATCH THE "PASTE" EVENT [2021-08-25]
+        //
+        if (colName.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT)) {
+            Validator.validateEmail(parent);
+        }
+        //
+    }
+
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //

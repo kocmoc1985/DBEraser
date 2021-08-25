@@ -30,12 +30,14 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author mcab
  */
-public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener {
+public class TableRowInvert extends TableRow implements KeyListener, MouseWheelListener, ItemListener, DocumentListener {
 
     private HeaderInvert headerInvert;
 
@@ -131,6 +133,8 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
             if (cde.getObject() instanceof String) {
                 //
                 JTextFieldInvert jtf = new JTextFieldInvert((String) cde.getObject());
+                jtf.getDocument().addDocumentListener(this);
+                jtf.getDocument().putProperty("owner", jtf);
                 //
                 jtf.setChildObject(cde);
                 jtf.setParentObj(this); // *************** setting separately here!
@@ -420,5 +424,20 @@ public class TableRowInvert extends TableRow implements KeyListener, MouseWheelL
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        
     }
 }
