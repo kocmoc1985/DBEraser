@@ -83,35 +83,32 @@ public class TableRowInvertB extends TableRowInvert {
             consumer.jComboBoxItemStateChangedForward(ti, ie);
         }
     }
-
-    @Override
-    public void changedUpdate(DocumentEvent e) {
-//        jTextFieldValueChangedForward(e);
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-//        jTextFieldValueChangedForward(e);
-    }
     
-    @Override
+     @Override
     public void insertUpdate(DocumentEvent e) {
-        jTextFieldValueChangedForward(e);
-    }
-
-    private void jTextFieldValueChangedForward(DocumentEvent e) {
-        //
+        //This one is trigere uppon data is "paste" to the JTextField
         TableInvert ti = (TableInvert) getTable();
         Basic consumer = ti.getTableInvertConsumer();
         //
         if (consumer != null) {
             JLinkInvert jli = (JLinkInvert) e.getDocument().getProperty("owner");
             String col_name = ti.getCurrentColumnName(jli);
-            consumer.jTextFieldValueChangedForward(ti, e, jli,col_name);
+            consumer.jTextFieldPasteEventForward(ti, e, jli,col_name);
         }
         //
     }
 
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        // Might be useful for the future 
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        // Might be useful for the future
+    }
+    
+   
     @Override
     public void mouseEntered(MouseEvent me) {
         //

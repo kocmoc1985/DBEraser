@@ -141,13 +141,15 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     }
     
     /**
+     * OBS! OBS! OBS! This one is needed when you paste by RIGHT-CLIKING and than choosing
+     * "paste" from the menu.
      * Call from: TableRowInvertB
      * @param ti
      * @param evt
      * @param parent
      * @param colName 
      */
-    public void jTextFieldValueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName){
+    public void jTextFieldPasteEventForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName){
         System.out.println(this.getClass() + ":   jTextFieldValueChangedForward() from TableRowInvert. curr_col_check: " + colName);
     }
 

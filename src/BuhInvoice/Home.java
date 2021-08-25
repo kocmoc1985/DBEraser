@@ -620,13 +620,12 @@ public class Home extends Basic_Buh {
 //        //
 //    }
     @Override
-    public void jTextFieldValueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
+    public void jTextFieldPasteEventForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
         //
-        super.jTextFieldValueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
+        super.jTextFieldPasteEventForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
         //
-        System.out.println("parent aaaaaaaaaaa: " + colName);
-        //
-        //THIS IS TO CATCH THE "PASTE" EVENT [2021-08-25]
+        //THIS ONE IS TO CATCH THE "PASTE" EVENT which is triggered by 
+        // right-cliking and then choosing "PASTE"  [2021-08-25]
         //
         if (colName.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT)) {
             Validator.validateEmail(parent);
