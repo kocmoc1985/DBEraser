@@ -436,7 +436,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Basic method for getting value from a TableInvert Obs! The rowName is the
-     * column name from DB not the nickName
+ column name from DB not the nickName
      *
      * @param rowName
      * @return

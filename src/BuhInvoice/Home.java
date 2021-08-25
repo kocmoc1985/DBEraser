@@ -24,6 +24,7 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -262,6 +263,11 @@ public class Home extends Basic_Buh {
         //
         if (login()) {
             //
+            if (saveInloggning()) { // This is since [2021-08-25] the only place when the login data is saved
+                save(DB.BUH_LICENS__USER, GP_BUH.USER);
+                save(DB.BUH_LICENS__PASS, GP_BUH.PASS);
+            }
+            //
             bim.enableTabs(true);
             refresh();
             getFtgName();
@@ -273,9 +279,9 @@ public class Home extends Basic_Buh {
             //
             if (GP_BUH.firstLogin() && bim.noCustomersPresent()) {
                 GP_BUH.fileFlagMaker_basic(GP_BUH.FIRST_LOGIN_FILE_PATH);
-                HTMLDialog htd = new HTMLDialog(bim, false, 850, 510, "Hej!",null); // [#HTML-DIALOG#]
-            }else if(bim.noCustomersPresent()){
-                HTMLDialog_B htd = new HTMLDialog_B(bim, false, 850, 440, "Hej!",null); // [#HTML-DIALOG#]
+                HTMLDialog htd = new HTMLDialog(bim, false, 850, 510, "Hej!", null); // [#HTML-DIALOG#]
+            } else if (bim.noCustomersPresent()) {
+                HTMLDialog_B htd = new HTMLDialog_B(bim, false, 850, 440, "Hej!", null); // [#HTML-DIALOG#]
             }
             //
         } else {
@@ -594,6 +600,24 @@ public class Home extends Basic_Buh {
         //
     }
 
+//    @Override
+//    public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
+//        //
+//        super.mouseClickedForward(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
+//        //
+//        JLinkInvert jli = (JLinkInvert) me.getSource();
+//        //
+//        String col_name = ti.getCurrentColumnName(me.getSource());
+//        //
+//        if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
+//            //
+//            if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
+//                save(DB.BUH_LICENS__PASS, jli.getValue());
+//            }
+//            //  
+//        }
+//        //
+//    }
     @Override
     public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
         //
@@ -604,15 +628,17 @@ public class Home extends Basic_Buh {
         String col_name = ti.getCurrentColumnName(ke.getSource());
         //
         if (col_name.equals(DB.BUH_LICENS__USER) && ti.equals(TABLE_INVERT)) {
+            //
             if (Validator.validateMaxInputLength(jli, 100)) { // The length 100 has also nothing with db to do
-                save(DB.BUH_LICENS__USER, jli.getValue());
+//                save(DB.BUH_LICENS__USER, jli.getValue());
             }
             //
             Validator.validateEmail(jli);
             //
         } else if (col_name.equals(DB.BUH_LICENS__PASS) && ti.equals(TABLE_INVERT)) {
+            //
             if (Validator.validateMaxInputLength(jli, 50)) { // The length 50 has nothing to do with db storage as the password sent is only compared on PHP side
-                save(DB.BUH_LICENS__PASS, jli.getValue());
+//                save(DB.BUH_LICENS__PASS, jli.getValue());
             }
             //
             //
@@ -636,7 +662,7 @@ public class Home extends Basic_Buh {
     /**
      * Saving when the checkBox state changed to "1/selected"
      */
-    protected void saveUserAndPass() {
+    private void saveUserAndPass() {
         save(DB.BUH_LICENS__USER, getValueTableInvert(DB.BUH_LICENS__USER));
         save(DB.BUH_LICENS__PASS, getValueTableInvert(DB.BUH_LICENS__PASS));
     }

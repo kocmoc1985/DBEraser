@@ -3114,7 +3114,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jCheckBox_spara_inloggningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_spara_inloggningActionPerformed
         if (jCheckBox_spara_inloggning.isSelected()) {
             IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "1");
-            home.saveUserAndPass();
+//            home.saveUserAndPass();
         } else {
             IO.writeToFile(Home.CHECK_BOX__SAVE_LOGIN_STATE, "0");
             home.deleteUserAndPass();

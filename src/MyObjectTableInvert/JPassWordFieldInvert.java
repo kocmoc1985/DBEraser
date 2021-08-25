@@ -5,13 +5,13 @@
  */
 package MyObjectTableInvert;
 
-import javax.swing.JPasswordField;
+import forall.JPasswordFieldCopyPaste;
 
 /**
  *
  * @author KOCMOC
  */
-public class JPassWordFieldInvert extends JPasswordField implements JLinkInvert{
+public class JPassWordFieldInvert extends JPasswordFieldCopyPaste implements JLinkInvert{
 
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;

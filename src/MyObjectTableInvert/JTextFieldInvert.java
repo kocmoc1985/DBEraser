@@ -5,13 +5,14 @@
  */
 package MyObjectTableInvert;
 
+import forall.JTextFieldCopyPaste;
 import javax.swing.JTextField;
 
 /**
  *
  * @author KOCMOC
  */
-public class JTextFieldInvert extends JTextField implements JLinkInvert {
+public class JTextFieldInvert extends JTextFieldCopyPaste implements JLinkInvert {
 
     private ColumnDataEntryInvert child;
     private TableRowInvert parent;
