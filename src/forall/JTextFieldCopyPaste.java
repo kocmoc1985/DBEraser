@@ -22,7 +22,8 @@ import javax.swing.JTextField;
 public class JTextFieldCopyPaste extends JTextField {
 
     private static final boolean SHORT_HAND_COMMANDS = false;
-    
+    private static final boolean ENG = false;
+
     public JTextFieldCopyPaste(String text) {
         super(text);
         init();
@@ -30,41 +31,39 @@ public class JTextFieldCopyPaste extends JTextField {
 
     private void init() {
         JPopupMenu menu = new JPopupMenu();
-        Action cut = new DefaultEditorKit.CutAction();
-        cut.putValue(Action.NAME, "Cut");
-//        cut.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control X"));
-        addShortHandCommands(cut, "control X");
-        menu.add(cut);
-
-        Action copy = new DefaultEditorKit.CopyAction();
-        copy.putValue(Action.NAME, "Copy");
-//        copy.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control C"));
-        addShortHandCommands(cut, "control C");
-        menu.add(copy);
-
+        //
+//        Action cut = new DefaultEditorKit.CutAction();
+//        cut.putValue(Action.NAME, ENG ? "Cut" : "Klipp ut");
+//        addShortHandCommands(cut, "control X");
+//        menu.add(cut);
+//        //
+//        Action copy = new DefaultEditorKit.CopyAction();
+//        copy.putValue(Action.NAME, ENG ? "Copy" : "Kopiera");
+//        addShortHandCommands(cut, "control C");
+//        menu.add(copy);
+        //
         Action paste = new DefaultEditorKit.PasteAction();
-        paste.putValue(Action.NAME, "Paste");
-//        paste.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control V"));
-        addShortHandCommands(cut, "control V");
+        paste.putValue(Action.NAME, ENG ? "Paste" : "Klistra in");
+        addShortHandCommands(paste, "control V");
         menu.add(paste);
 
-        Action selectAll = new JTextFieldCopyPaste.SelectAll();
-        menu.add(selectAll);
+//        Action selectAll = new JTextFieldCopyPaste.SelectAll();
+//        menu.add(selectAll);
 
         setComponentPopupMenu(menu);
     }
-    
-    private void addShortHandCommands(Action action,String command){
-        if(SHORT_HAND_COMMANDS){
-           action.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(command)); 
+
+    private void addShortHandCommands(Action action, String command) {
+        if (SHORT_HAND_COMMANDS) {
+            action.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(command));
         }
     }
 
     static class SelectAll extends TextAction {
 
         public SelectAll() {
-            super("Select All");
-            if(SHORT_HAND_COMMANDS){
+            super(ENG ? "Select All" : "Välj allt");
+            if (SHORT_HAND_COMMANDS) {
                 putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke("control S"));
             }
         }

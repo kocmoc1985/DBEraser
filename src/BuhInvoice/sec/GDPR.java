@@ -24,6 +24,7 @@ public class GDPR extends HTMLBasic {
 
     /**
      * Creates new form GDPR
+     *
      * @param bim
      */
     public GDPR(LAFakturering bim) {
@@ -34,11 +35,16 @@ public class GDPR extends HTMLBasic {
 
     private void init() {
         go();
-        this.setTitle("Personuppgiftshantering - GDPR");
+        this.setTitle("Licensavtal och Personuppgiftshantering - GDPR");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);
         this.jButton_forsatt.setEnabled(false);
+    }
+
+    public static void main(String[] args) {
+        GDPR gdpr = new GDPR(null);
+        gdpr.setVisible(true);
     }
 
     @Override
@@ -188,7 +194,12 @@ public class GDPR extends HTMLBasic {
         //
         return "<html>"
                 + "<body>" //style='background-color:#F1F3F6'
-                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:12px;'>" // ;background-color:#EEF0F4
+                //
+                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:9px;'>" // ;background-color:#EEF0F4
+                + licensAvtal()
+                + "</div>"
+                //
+                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:9px;'>" // ;background-color:#EEF0F4
                 + integritetsPolicy()
                 + "</div>"
                 //
@@ -202,6 +213,31 @@ public class GDPR extends HTMLBasic {
                 + "</body>"
                 + "</html>";
         //
+    }
+
+    private String licensAvtal() {
+        return ""
+                + "<h2>Licensavtal</h2>"
+                + "<p>Detta avtal om programvarulicens är ett juridiskt avtal mellan dig som egenföretagare, företag eller organisation och LAFakturering.</p>"
+                + "<p>Om du inte förstår eller godkänner villkoren i detta licensavtal har du ingen rätt att installera, kopiera eller använda LAFakturering.</p>"
+                + "<p>Genom att installera, kopiera, öppna eller på annat sätt använda LAFakturering godkänner licenstagaren att bli bunden av villkoren i detta avtal, i enighet med vad som närmare anges nedan:</p>"
+                + "<p>LAFakturering är fri från avgifter och provisioner och brukande av tjänsten är helt gratis under ett år.</p>"
+                + "<p>1. Licensbeviljande</p>"
+                + "<p>1.1 LAFakturering ger dig begränsad, icke-exklusiv rätt att installera och använda LAFakturering. Alla villkor som anges i detta avtal gäller både för LAFakturering som helhet och för alla dess enskilda delar. När du godkänner licensavtalet ger du ditt medgivande bland annat till följande:</p>"
+                + "<p>1.1.1 LAFakturering kan upphöra att vara gratis.</p>"
+                + "<p>1.1.2 Valfria begränsningar kann börja gälla utan att i förväg meddela användaren om det.</p>"
+                + "<p>1.1.2 LAFakturering bär inget ansvar för alla typer av fel och eller problem relaterade till användning av LAFakturering dvs. inte bara datorfel utan även rättsliga fel och hälsoproblem som till exempel stress.</p>"
+                + "<p>1.1.3 LAFakturering bär inget ansvar för dataförluster.</p>"
+                + "<p>1.2 Användaren ansvarar för egna handlingar som utförs inom och i samband med användandet av LAFakturering. LAFakturering kan fritt och helt efter egen bedömning helt eller delvis begränsa användarens brukande av LAFakturering.</p>"
+                + "<p>1.3 Alla rättigheter som LAFakturering inte uttryckligen ger dig är förbehållna LAFakturering.</p>"
+                + "<p>1.4 All användning av LAFakturering och samtliga i den ingående delar som ligger utanför eller strider mot villkoren i detta licensavtal utgör ett brott mot LAFakturerings och/eller tredje parts immateriella rättigheter och leder till att alla rättigheter att använda LAFakturering som du har fått i och med detta licensavtal återkallas.</p>"
+                + "<p>1.5 LAFakturering förbehåller sig rätten att när som helst, utan särskilt meddelande härom, ändra föreliggande användarvillkor.</p>"
+                + "<br>"
+                + "<p>2. Användningsbegränsningar:</p>"
+                + "<p>2.1 Licenstagaren får inte dekompilera eller på annat sätt efterforska mjukvarans konstruktion eller på annat sätt bearbeta mjukvaran på sådant sätt att den kan läsas eller tolkas på annat sätt än vad som gällande lag ger rätt till. Licenstagaren får inte anpassa sälja, hyra ut, leasa, låna ut eller skapa bearbetningar baserade på mjukvaran eller någon del därav.</p>"
+                + "<p>2.2 Licenstagaren får inte överlåta eller upplåta sina rättigheter under denna licens till någon annan part utan en skriftlig godkännande från LAFakturering.</p>"
+                + "<p>2.3 Du får inte kringgå programvarans användargränssnitt såvida du inte först har upprättat ett skriftligt avtal med LAFakturering. Detta innefattar även all användning av programvaran tillsammans med annan programvara.</p>";
+        //"<p></p>";
     }
 
     private String integritetsPolicy() {
@@ -248,7 +284,7 @@ public class GDPR extends HTMLBasic {
                 + "<h2>Personuppgiftsansvarig</h2>"
                 + "<p>"
                 + "MixCont AB <br>"
-//                + "Organisationsnummer: 556251-6806 <br>"
+                //                + "Organisationsnummer: 556251-6806 <br>"
                 + "Gatuadress: Sanktagertudsväg 10 <br>"
                 + "Ort: Trelleborg <br>"
                 + "Land: Sverige <br>"
