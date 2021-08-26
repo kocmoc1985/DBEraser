@@ -52,8 +52,10 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             "",
             "",
             "",
-            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
-            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            //            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
+            //            map.get(DB.BUH_F_ARTIKEL__KOMMENT),
+            _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true), // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
+            _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
             map.get(DB.BUH_F_ARTIKEL__ANTAL),
             map.get(DB.BUH_F_ARTIKEL__ENHET),
             map.get(DB.BUH_F_ARTIKEL__PRIS),
@@ -139,7 +141,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, map.get(DB.BUH_F_ARTIKEL__RABATT_KR));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS));
         HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)));
-        
+
         //
         //
 //        invoic.countFakturaTotal(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);

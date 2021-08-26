@@ -2746,6 +2746,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }//GEN-LAST:event_jButton_edit_fakturaActionPerformed
 
     public void editFakturaBtnKlicked() {
+        //
+        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
+        BlinkThread.ready_b = true;
+        //
         openTabByName(TAB_FAKTURA);
         fakturaTabClicked(getFakturaNr());
     }
@@ -2837,7 +2841,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
-                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
+//                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
                         faktua_tab_blockUntilSavedOrAborted_invoice(false); // [#RESIZE-COLUMN-CURSOR-BUGG#]
                     }
                 } else {
@@ -2919,6 +2923,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }
 
     private void createNewFaktura(String fakturaType) {
+        //
+        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
+        BlinkThread.ready_b = true;
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert_(this);
