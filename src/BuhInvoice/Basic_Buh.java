@@ -17,6 +17,7 @@ import MyObjectTableInvert.TableInvert;
 import MyObjectTableInvert.TableRowInvert;
 import forall.HelpA;
 import java.awt.AWTEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -159,6 +160,19 @@ public abstract class Basic_Buh extends Basic {
     public void valueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
         //
         super.valueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (GP_BUH.INVOICE_TABLES_INITIALIZATION_READY) {
+            //[#SAVE-INVOICE-NOTE#]
+            GP_BUH.showSaveInvoice_note(true);
+            //
+        }
+        //
+    }
+
+    @Override
+    public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
+        //
+        super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
         //
         if (GP_BUH.INVOICE_TABLES_INITIALIZATION_READY) {
             //[#SAVE-INVOICE-NOTE#]

@@ -22,7 +22,7 @@ public class BlinkThread implements Runnable {
 
     private final JComponent component;
     private final boolean red;
-    private static boolean ready = true;
+    public static boolean ready = true;
 //    private boolean blinkText = false;
     private boolean blinkIcon = false;
     private boolean run = true;
@@ -40,6 +40,19 @@ public class BlinkThread implements Runnable {
         red = false;
         blinkIcon = true;
         startThreadB(); // [#INFO-ICON-BLINK#]
+    }
+
+    public BlinkThread(JComponent component) {
+        this.component = component;
+        red = false;
+        blinkIcon = true;
+        //
+        if (ready == true) {
+            System.out.println("NEW BLINK THREAD STARTED****");
+            ready = false;
+            startThreadB();   
+        }
+        //
     }
 
     private void startThreadB() {
@@ -118,6 +131,8 @@ public class BlinkThread implements Runnable {
                     jc.setVisible(true);
                 }
             }
+            //
+            ready = true;
             //
         }
     }

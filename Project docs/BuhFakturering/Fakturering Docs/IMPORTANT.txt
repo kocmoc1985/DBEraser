@@ -1,6 +1,6 @@
 ["<-SPARA" NOTE - APPEARS NOW ON CHANGE ][2021-08-26]
 
-Search for: "#SAVE-INVOICE-NOTE#"
+Search for: "[#SAVE-INVOICE-NOTE#]"
 ________________________________________________________________________________________________________
 [HTML-DIALOGS ADVANCED INFORMATION MESSAGES][2021-08-23]
 

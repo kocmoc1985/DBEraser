@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
@@ -319,18 +320,30 @@ public class GP_BUH {
     public static boolean INVOICE_TABLES_INITIALIZATION_READY = false;
 
     public static void showSaveInvoice_note(boolean visible) {
-            // #SAVE-INVOICE-NOTE#
+        // #SAVE-INVOICE-NOTE#
         java.awt.EventQueue.invokeLater(() -> {
             //
             if (IS_BETALD) {
                 LAFakturering.jLabel__spara_faktura.setVisible(false);
                 LAFakturering.jLabel__spara_faktura_arrow.setVisible(false);
             } else {
-                LAFakturering.jLabel__spara_faktura.setVisible(visible);
-                LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
+                //
+                if (BlinkThread.ready) {
+                    LAFakturering.jLabel__spara_faktura.setVisible(visible);
+                    LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
+                }
+                //
+                if (visible) {
+                    System.out.println("VISIBLE AA: " + visible + " ********************************");
+                    BlinkThread bt = new BlinkThread(LAFakturering.jLabel__spara_faktura);
+                }
+                //
             }
             //
         });
+        //
+
+        //
     }
 
     /**

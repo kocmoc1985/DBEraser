@@ -2848,6 +2848,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     }
                 }
                 //
+                GP_BUH.showSaveInvoice_note(true); // [#SAVE-INVOICE-NOTE#]
+                //
             }
         });
         //
