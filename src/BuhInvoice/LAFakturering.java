@@ -2747,8 +2747,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     public void editFakturaBtnKlicked() {
         //
-        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
-        BlinkThread.ready_b = true;
+        GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
         //
         openTabByName(TAB_FAKTURA);
         fakturaTabClicked(getFakturaNr());
@@ -2924,8 +2923,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void createNewFaktura(String fakturaType) {
         //
-        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
-        BlinkThread.ready_b = true;
+        GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
         //
         if (invoiceA_insert == null) {
             invoiceA_insert = new InvoiceA_Insert_(this);

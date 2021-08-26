@@ -1,4 +1,10 @@
+________________________________________________________________________________________________________
 ["<-SPARA" NOTE - APPEARS NOW ON CHANGE ][2021-08-26]
+
+The main idea is to give the user the propper indication about saving of the invoice. So it's all about
+the "<- SPARA" which is visible when you create or edit an invoice.
+
+This subject may seem rather simple implementation but it's not so.
 
 Search for: "[#SAVE-INVOICE-NOTE#]"
 ________________________________________________________________________________________________________

@@ -344,8 +344,11 @@ public class GP_BUH {
             //
         });
         //
+    }
 
-        //
+    public static void showSaveInvoice_note__reset() {
+        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
+        BlinkThread.ready_b = true;
     }
 
     /**
