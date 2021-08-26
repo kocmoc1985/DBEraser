@@ -1376,7 +1376,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="25"/>
                       </AuxValues>
                     </Component>
                   </SubComponents>
@@ -1781,7 +1781,7 @@
                     <Property name="text" type="java.lang.String" value=" SPARA"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="25"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

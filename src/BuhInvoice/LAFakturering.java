@@ -909,7 +909,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_create_new_kontant_faktura_b = new javax.swing.JButton();
         jButton_dont_save_settings = new javax.swing.JButton();
         jButton_confirm_insert_update = new javax.swing.JButton();
-        jLabel__spara_faktura_arrow = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -944,7 +943,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jTextField_rabatt_total = new javax.swing.JTextField();
         jTextField_moms_total = new javax.swing.JTextField();
         jTextField_total_inkl_moms = new javax.swing.JTextField();
-        jLabel__spara_faktura = new javax.swing.JLabel();
         jScrollPane19 = new javax.swing.JScrollPane();
         jPanel24 = new javax.swing.JPanel();
         jPanel_graph_panel_a = new javax.swing.JPanel();
@@ -3377,8 +3375,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     public javax.swing.JLabel jLabel__nyckel_tal__ing_moms;
     public javax.swing.JLabel jLabel__nyckel_tal__tot_exkl_moms;
     public javax.swing.JLabel jLabel__nyckel_tal__tot_inkl_moms;
-    public javax.swing.JLabel jLabel__spara_faktura;
-    public javax.swing.JLabel jLabel__spara_faktura_arrow;
+    public static final javax.swing.JLabel jLabel__spara_faktura = new javax.swing.JLabel();
+    public static final javax.swing.JLabel jLabel__spara_faktura_arrow = new javax.swing.JLabel();
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;

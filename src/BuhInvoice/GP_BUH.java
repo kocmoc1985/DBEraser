@@ -315,6 +315,13 @@ public class GP_BUH {
         });
     }
 
+    public static void showSaveInvoice_note(boolean visible) {
+        java.awt.EventQueue.invokeLater(() -> {
+            LAFakturering.jLabel__spara_faktura.setVisible(visible);
+            LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
+        });
+    }
+
     /**
      * This one is used only for the "Print" of the invoice
      */
