@@ -1143,7 +1143,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel9" min="-2" pref="250" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel__spara_faktura" min="-2" pref="204" max="-2" attributes="0"/>
+                                          <Component id="jLabel__spara_faktura" min="-2" pref="94" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jPanel10" min="-2" pref="50" max="-2" attributes="0"/>
                                       </Group>
@@ -1778,7 +1778,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="24" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value=" SPARA FAKTURA"/>
+                    <Property name="text" type="java.lang.String" value=" SPARA"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

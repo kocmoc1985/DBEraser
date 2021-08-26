@@ -412,7 +412,8 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        RowDataInvert kundnr = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
+        RowDataInvert kundnr = new RowDataInvertB(getNextKundnr(), DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
+        kundnr.setDisabled();
         //
         RowDataInvert namn = new RowDataInvertB("", DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
         //
@@ -456,6 +457,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         String kundnr_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUNDNR);
         RowDataInvert kundnr = new RowDataInvertB(kundnr_, DB.BUH_FAKTURA_KUND___KUNDNR, TABLE_FAKTURA_KUNDER__KUNDNR, "", true, true, true);
+        kundnr.setDisabled();
         //
         String kundnamn_ = HelpA.getValueSelectedRow(table, TABLE_FAKTURA_KUNDER__KUND_NAMN);
         RowDataInvert kundnamn = new RowDataInvertB(kundnamn_, DB.BUH_FAKTURA_KUND___NAMN, TABLE_FAKTURA_KUNDER__KUND_NAMN, "", true, true, true);
@@ -568,23 +570,6 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
     }
 
-//    @Override
-//    public void mouseClicked(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
-//        //
-//        super.mouseClicked(me, column, row, tableName, ti); //To change body of generated methods, choose Tools | Templates.
-//        //
-//        JLinkInvert jli = (JLinkInvert) me.getSource();
-//        //
-//        String col_name = ti.getCurrentColumnName(me.getSource());
-//        //
-//        if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
-//            //
-//            supposeNextKundNr(jli);
-//            //
-//            Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
-//            //
-//        }
-//    }
     @Override
     public void mouseClickedForward(MouseEvent me, int column, int row, String tableName, TableInvert ti) {
         //
@@ -596,11 +581,12 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         if (col_name.equals(DB.BUH_FAKTURA_KUND___KUNDNR)) {
             //
-            supposeNextKundNr(jli);
+//            supposeNextKundNr(jli);
             //
             Validator.checkIfExistInJTable(getTableMain(), jli, TABLE_FAKTURA_KUNDER__KUNDNR);
             //
         }
+        //
     }
 
     public String getNextKundnr() {
