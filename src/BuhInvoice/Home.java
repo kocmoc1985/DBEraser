@@ -620,9 +620,9 @@ public class Home extends Basic_Buh {
 //        //
 //    }
     @Override
-    public void jTextFieldPasteEventForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
+    public void valueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
         //
-        super.jTextFieldPasteEventForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
+        super.valueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
         //
         //THIS ONE IS TO CATCH THE "PASTE" EVENT which is triggered by 
         // right-cliking and then choosing "PASTE"  [2021-08-25]

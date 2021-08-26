@@ -315,10 +315,21 @@ public class GP_BUH {
         });
     }
 
+    public static boolean IS_BETALD = false;
+    public static boolean INVOICE_TABLES_INITIALIZATION_READY = false;
+
     public static void showSaveInvoice_note(boolean visible) {
+            // #SAVE-INVOICE-NOTE#
         java.awt.EventQueue.invokeLater(() -> {
-            LAFakturering.jLabel__spara_faktura.setVisible(visible);
-            LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
+            //
+            if (IS_BETALD) {
+                LAFakturering.jLabel__spara_faktura.setVisible(false);
+                LAFakturering.jLabel__spara_faktura_arrow.setVisible(false);
+            } else {
+                LAFakturering.jLabel__spara_faktura.setVisible(visible);
+                LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
+            }
+            //
         });
     }
 

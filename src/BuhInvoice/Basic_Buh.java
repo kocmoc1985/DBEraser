@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.InvoiceB.TABLE_ALL_INVOICES__KUND_ID;
+import MyObjectTable.Table;
 import MyObjectTable.TableData;
 import MyObjectTableInvert.Basic;
 import MyObjectTableInvert.ColumnDataEntryInvert;
@@ -21,7 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.event.DocumentEvent;
 
 /**
  *
@@ -44,6 +47,23 @@ public abstract class Basic_Buh extends Basic {
 
     protected String getKundId() {
         return bim.getKundId();
+    }
+
+    @Override
+    public void showTableInvert(JComponent container, Table tableInvert) {
+        //
+        GP_BUH.INVOICE_TABLES_INITIALIZATION_READY = false; //[#SAVE-INVOICE-NOTE#]
+        //
+        super.showTableInvert(container, tableInvert); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void doOtherRepaintThread(Table table) {
+        TableInvert ti = (TableInvert) table;
+        String tableName = ti.getTABLE_NAME();
+        if (tableName.equals("buh_faktura_b__table_3")) {
+            GP_BUH.INVOICE_TABLES_INITIALIZATION_READY = true; // [#SAVE-INVOICE-NOTE#]
+        }
     }
 
     /**
@@ -132,6 +152,19 @@ public abstract class Basic_Buh extends Basic {
         //
 //        TEST_REFERENSES(ke);
 //        fieldUpdateWatcher(ke);
+        //
+    }
+
+    @Override
+    public void valueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
+        //
+        super.valueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
+        //
+        if (GP_BUH.INVOICE_TABLES_INITIALIZATION_READY) {
+            //[#SAVE-INVOICE-NOTE#]
+            GP_BUH.showSaveInvoice_note(true);
+            //
+        }
         //
     }
 

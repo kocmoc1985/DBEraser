@@ -88,7 +88,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
-        GP_BUH.showSaveInvoice_note(true);
+        GP_BUH.showSaveInvoice_note(false); // [#SAVE-INVOICE-NOTE#] 
         //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
@@ -146,7 +146,6 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 GP_BUH.enableDisableButtons(bim.jPanel12, false);
                 GP_BUH.setEnabled(bim.jButton_confirm_insert_update, false);
-                GP_BUH.showSaveInvoice_note(false);
                 //
             } else {
                 //
@@ -661,6 +660,8 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         displayTotals();
         //
+//        System.out.println("COUNT FAKTURA TOTAL*********************************************");
+        //
     }
 
     private double getCurrencyRateTableInvert3() {
@@ -805,12 +806,11 @@ public abstract class Invoice_ extends Basic_Buh {
     }
 
     public void showTableInvert_3() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "buh_faktura_b__table_3");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
-        //
+        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);       
     }
 
     public RowDataInvert[] getConfigTableInvert_insert() {

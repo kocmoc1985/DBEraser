@@ -139,18 +139,19 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
     public void jComboBoxItemStateChangedForward(TableInvert ti, ItemEvent ie) {
         System.out.println(this.getClass() + ":   jComboBoxItemStateChangedForward() from TableRowInvert. curr_col_check: " + ti.getCurrentColumnName(ie.getSource()));
     }
-    
+
     /**
-     * OBS! OBS! OBS! This one is needed when you paste by RIGHT-CLIKING and than choosing
-     * "paste" from the menu.
-     * Call from: TableRowInvertB
+     * This one is useful because the keyEvent does not mean changes in value,
+     * as example when you press "Ctrl" the event is triggered but the value is
+     * not changed. Call from: TableRowInvertB
+     *
      * @param ti
      * @param evt
      * @param parent
-     * @param colName 
+     * @param colName
      */
-    public void jTextFieldPasteEventForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName){
-        System.out.println(this.getClass() + ":   jTextFieldValueChangedForward() from TableRowInvert. curr_col_check: " + colName);
+    public void valueChangedForward(TableInvert ti, DocumentEvent evt, JLinkInvert parent, String colName) {
+        System.out.println(this.getClass() + ":   valueChangedForward() from TableRowInvert. curr_col_check: " + colName + ". EventType: " + evt.getType());
     }
 
     /**
@@ -450,7 +451,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     /**
      * Basic method for getting value from a TableInvert Obs! The rowName is the
- column name from DB not the nickName
+     * column name from DB not the nickName
      *
      * @param rowName
      * @return
@@ -939,6 +940,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
         public RepaintThread(JComponent container, Table table) {
             this.container = container;
             this.table = table;
+
         }
 
         @Override
@@ -963,15 +965,25 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                     SwingUtilities.updateComponentTreeUI(table);
                 }
             });
+            //
+            doOtherRepaintThread(table);
+            // 
         }
+
     }
+
+    protected void doOtherRepaintThread(Table table){
+        //
+    }
+        
+    
 
     /**
      * Is called from the "public RowDataInvert[] getConfigTableInvert()". Like:
- if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
- toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
- return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
- }
+     * if (MC_RECIPE.SHOW_EXTRA_PARAMS_RECIPE_TABLE_INVERT == false) { String[]
+     * toRemove = new String[]{T_INV.LANG("PRICE/KG"), T_INV.LANG("PRICE/L")};
+     * return removeFromTableConfigInvert(rows, toRemove); } else { return rows;
+     * }
      *
      * @param arr
      * @param columnsToRemove

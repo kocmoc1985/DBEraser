@@ -22,11 +22,11 @@ import javax.swing.event.DocumentEvent;
  * @author MCREMOTE
  */
 public class TableRowInvertB extends TableRowInvert {
-
+    
     public TableRowInvertB(RowData rowColumnObjects, String database_id, int row_nr, int layout, Table table) {
         super(rowColumnObjects, database_id, row_nr, layout, table);
     }
-
+    
     @Override
     protected void setTrackingToolTip(HeaderInvert hi, JLabel label) {
         if (GP_BUH.TRACKING_TOOL_TIP_ENABLED) {
@@ -37,7 +37,7 @@ public class TableRowInvertB extends TableRowInvert {
             }
         }
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent me) {
         //
@@ -47,7 +47,7 @@ public class TableRowInvertB extends TableRowInvert {
         consumer.mouseClickedForward(me, t.getCurrentColumn(me.getSource()), t.getCurrentRow(), t.getTABLE_NAME(), t);
         //
     }
-
+    
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         TableInvert ti = (TableInvert) getTable();
@@ -57,7 +57,7 @@ public class TableRowInvertB extends TableRowInvert {
             consumer.mouseWheelForward(ti, e);
         }
     }
-
+    
     @Override
     public void keyReleased(KeyEvent ke) {
         //
@@ -70,7 +70,7 @@ public class TableRowInvertB extends TableRowInvert {
             consumer.keyReleasedForward(ti, ke);
         }
     }
-
+    
     @Override
     public void itemStateChanged(ItemEvent ie) {
         //
@@ -84,31 +84,39 @@ public class TableRowInvertB extends TableRowInvert {
         }
     }
     
-     @Override
+    @Override
     public void insertUpdate(DocumentEvent e) {
-        //This one is trigere uppon data is "paste" to the JTextField
+        //This one is trigere uppon data is "paste" to the JTextField - OBS! not only!
+        valueChanged(e);
+        //
+    }
+    
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        // I dont yet understand when this one happens [2021-08-26]
+//        System.out.println("CHANGED UPDATE:................................................AAAAAAAAA");
+        valueChanged(e);
+    }
+    
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+//        System.out.println("REMOVE UPDATE:................................................AAAAAAAAA");
+        valueChanged(e);
+    }
+    
+    private void valueChanged(DocumentEvent e) {
+        //
         TableInvert ti = (TableInvert) getTable();
         Basic consumer = ti.getTableInvertConsumer();
         //
         if (consumer != null) {
             JLinkInvert jli = (JLinkInvert) e.getDocument().getProperty("owner");
             String col_name = ti.getCurrentColumnName(jli);
-            consumer.jTextFieldPasteEventForward(ti, e, jli,col_name);
+            consumer.valueChangedForward(ti, e, jli, col_name);
         }
         //
     }
-
-    @Override
-    public void changedUpdate(DocumentEvent e) {
-        // Might be useful for the future 
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-        // Might be useful for the future
-    }
     
-   
     @Override
     public void mouseEntered(MouseEvent me) {
         //
@@ -139,11 +147,11 @@ public class TableRowInvertB extends TableRowInvert {
         System.out.println("attr. additionalInfo: " + dataInvertB.additionalInfo);
         System.out.println("attr. initialValue: " + dataInvertB.getInitialValue());
         System.out.println("attr. editable: " + dataInvertB.isEditable());
-
+        
         System.out.println("==============================");
         //
         //
 
     }
-
+    
 }

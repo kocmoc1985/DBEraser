@@ -463,12 +463,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         JTable table = jTable_invoiceB_alla_fakturor;
         //
         if (table.getRowCount() == 0) {
-            return false;
+            GP_BUH.IS_BETALD = false;
+            return GP_BUH.IS_BETALD;
         }
         //
         String betald = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_ALL_INVOICES__BETALD);
         //
-        return !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
+        GP_BUH.IS_BETALD = !betald.equals(DB.STATIC__NO) && !betald.equals(DB.STATIC_BET_STATUS_KREDIT);
+        return GP_BUH.IS_BETALD;
         //
     }
 
