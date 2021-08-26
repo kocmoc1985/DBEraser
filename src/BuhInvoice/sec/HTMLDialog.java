@@ -37,7 +37,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
      * @param parent
      * @param modal
      */
-    public HTMLDialog(java.awt.Frame parent, boolean modal, int w, int h, String title,String html) {
+    public HTMLDialog(java.awt.Frame parent, boolean modal, int w, int h, String title, String html) {
         super(parent, modal);
         initComponents();
         this.w = w;
@@ -99,9 +99,9 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         Document doc = kit.createDefaultDocument();
         jEditorPane_1.setDocument(doc);
         //
-        if(html == null || html.isEmpty()){
+        if (html == null || html.isEmpty()) {
             jEditorPane_1.setText(buildHTML());
-        }else{
+        } else {
             jEditorPane_1.setText(html);
         }
         //
@@ -112,9 +112,9 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
         jEditorPane_1.repaint();
         //
     }
-    
-    protected String footerHTML(){
-        return "<tr></tr><tr><td><a style='text-decoration:none;font-size:12px' href='https://www.lafakturering.se/?page_id=800'>Läs mer på www.lafakturering.se</a></td></tr>";
+
+    protected String footerHTML() {
+        return "<tr></tr><tr><td><a style='text-decoration:none;font-size:12px' href='https://" + GP_BUH.LA_WEB_ADDR + "/?page_id=800'>Läs mer på www.lafakturering.se</a></td></tr>";
     }
 
     protected String buildHTML() {
@@ -152,7 +152,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "</tr>"
                 //
                 + "<tr>"
-                + "<td>2. Gå till flik \"" + LAFakturering.TAB_KUDNER + "\" och skapa åtminstone en kund." 
+                + "<td>2. Gå till flik \"" + LAFakturering.TAB_KUDNER + "\" och skapa åtminstone en kund."
                 + " Glöm ej att spara ändringar genom att klicka på <img src='" + path_save_icon + "' alt='save' width='32' height='32' >"
                 + "<td>"
                 + "</tr>"
@@ -160,7 +160,7 @@ public class HTMLDialog extends javax.swing.JDialog implements HyperlinkListener
                 + "<tr>"
                 + "<td>"
                 + "3. Du kan redan nu börja fakturera genom att klicka på " + "<img src='" + path_new_icon + "' alt='new' width='32' height='32' >" + " under fliken \"" + LAFakturering.TAB_INVOICES_OVERVIEW + "\". "
-                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till fliken \"" + LAFakturering.TAB_ARTIKLAR+"\"."
+                + " Vi skulle dock rekommendera att också skapar några artiklar genom att gå till fliken \"" + LAFakturering.TAB_ARTIKLAR + "\"."
                 + " <td>"
                 + "</tr>"
                 //
