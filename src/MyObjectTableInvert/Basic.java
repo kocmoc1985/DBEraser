@@ -179,6 +179,10 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                 antal += value; // OBS! it's always "+" because value is "+" or "-"
             }
             //
+            if(antal < 0){
+                antal = 0;
+            }
+            //
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             jtf.setValue("" + antal);
             //

@@ -26,13 +26,9 @@ _____
 
 ___
 
-  När jag lägger till exakt samma artikel utan extra kommentar och liknande ska den inte visas separat utan läggas ihop med den befintliga.	[2021-08-27]
-  
-The saved user password (Java-Side) is strored in clear text in "io" folder file "pass". 
-Save is done here: Home.class: 267
-Load is done here: Home.class: 458
 
-For encryption see: HTTPCOmm proj -> MyPasswordEncryptionAES
+När jag lägger till exakt samma artikel utan extra kommentar och liknande ska den inte visas separat utan läggas ihop med den befintliga.	[2021-08-27]
+  
 ___
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
@@ -43,6 +39,7 @@ När jag skapar en kund - "KUNDNR" dyker upp endast när jag klickar i fältet, vil
 
 The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
 
+Antal & Pris can be scrolled to minus values.[DONE]
 
 Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 
 Just a comment from somewhere: "The files are digitally signed with Symantec Class 3 SHA256 Code Signing CA - Microsoft Software Validation"
