@@ -2747,10 +2747,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     public void editFakturaBtnKlicked() {
         //
-        GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
-        //
         openTabByName(TAB_FAKTURA);
         fakturaTabClicked(getFakturaNr());
+        //
     }
 
     @Override
@@ -3604,6 +3603,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void fakturaTabClicked(String fakturaNr) {
         //
+        GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
+        //
         DefaultTableModel dtm = (DefaultTableModel) jTable_invoiceB_faktura_artiklar.getModel();
         jTable_InvoiceA_Insert_articles.setModel(dtm);
         //
@@ -3746,10 +3747,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
-            invoiceA_update.SET_CURRENT_OPERATION_INSERT(false);
+            invoiceA_update.SET_CURRENT_OPERATION_INSERT(false,true);
             invoiceA_update.showTableInvert_2(false);
         } else {
-            invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true);
+            invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true,true);
         }
         //
     }

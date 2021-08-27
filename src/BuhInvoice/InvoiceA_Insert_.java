@@ -162,7 +162,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        SET_CURRENT_OPERATION_INSERT(true);
+        SET_CURRENT_OPERATION_INSERT(true,false);
         //
 //        String fixedComboValues_a = "Securitas;1,Telenor;2,Telia;3";
         String fixedComboValues_a = requestJComboValuesHttp(DB.PHP_FUNC_PARAM__GET_KUNDER, new String[]{DB.BUH_FAKTURA_KUND___NAMN, DB.BUH_FAKTURA_KUND__ID},false);

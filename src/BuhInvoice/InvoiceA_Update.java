@@ -93,7 +93,7 @@ public class InvoiceA_Update extends Invoice_ {
     @Override
     public RowDataInvert[] getConfigTableInvert() {
         //
-        SET_CURRENT_OPERATION_INSERT(false);
+        SET_CURRENT_OPERATION_INSERT(false,false);
         //
         JTable table = getAllInvoicesTable();
         //

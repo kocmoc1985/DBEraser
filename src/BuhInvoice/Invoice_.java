@@ -88,10 +88,6 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
-        if(GP_BUH.ONCE_PER_SESSION__FLAG){
-            GP_BUH.showSaveInvoice_note(false); // [#SAVE-INVOICE-NOTE#] 
-        }
-        //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
@@ -110,11 +106,15 @@ public abstract class Invoice_ extends Basic_Buh {
         //
     }
 
-    protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
+    protected void SET_CURRENT_OPERATION_INSERT(boolean insert, boolean skipHideSaveNotice) {
         //
         CURRENT_OPERATION_INSERT = insert;
         //
 //        bim.FAKTURA_TYPE_CURRENT__OPERATION = bim.getFakturaType();
+        //
+        if (skipHideSaveNotice == false) {
+            GP_BUH.showSaveInvoice_note(false); // [#SAVE-INVOICE-NOTE#] // true: means skip
+        }
         //
         buttonLogic();
         //
@@ -556,7 +556,7 @@ public abstract class Invoice_ extends Basic_Buh {
         // is executed uppon almost all actions [2020-09-30]
         bim.displayArticlesCount();
         //
-        SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT); // For buttons enabled/disabled logics
+        SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT, false); // For buttons enabled/disabled logics
         //
         //[#RUTROT#]
         if (bim.isRUT() && CURRENT_OPERATION_INSERT == false && RUT_AVDRAG_TOTAL == 0) {
@@ -816,7 +816,7 @@ public abstract class Invoice_ extends Basic_Buh {
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
-        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);       
+        showTableInvert(bim.jPanel3_faktura_sec, TABLE_INVERT_3);
     }
 
     public RowDataInvert[] getConfigTableInvert_insert() {
