@@ -914,8 +914,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel10 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
+        jButton19_bearbeta_artikel = new javax.swing.JButton();
+        jButton20_accept_edited_article = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jButton_add_article = new javax.swing.JButton();
         jButton_update_articles_row = new javax.swing.JButton();
@@ -1713,23 +1713,23 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
         jPanel11.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        jButton19.setToolTipText("Bearbeta artikel");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        jButton19_bearbeta_artikel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jButton19_bearbeta_artikel.setToolTipText("Bearbeta artikel");
+        jButton19_bearbeta_artikel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                jButton19_bearbeta_artikelActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton19);
+        jPanel11.add(jButton19_bearbeta_artikel);
 
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton20.setToolTipText("Bekräfta ändringar");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        jButton20_accept_edited_article.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
+        jButton20_accept_edited_article.setToolTipText("Bekräfta ändringar");
+        jButton20_accept_edited_article.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                jButton20_accept_edited_articleActionPerformed(evt);
             }
         });
-        jPanel11.add(jButton20);
+        jPanel11.add(jButton20_accept_edited_article);
 
         jPanel12.setLayout(new java.awt.GridLayout(1, 3));
 
@@ -2785,6 +2785,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             //
             invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice.disableMomsJComboIf()"
             //
+            invoiceA_insert.showTableInvert_2(true);
+            //
         } else {
             //
             invoiceA_update.deleteFakturaArtikel();
@@ -2793,7 +2795,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             invoiceA_update.insertOrUpdate(); // Update entire faktura after delete
 //            invoiceB.refresh_c();
             //
-            invoiceA_update.showTableInvert_2(); // some kind of redraw, OBS! needed
+            invoiceA_update.showTableInvert_2(true); // some kind of redraw, OBS! needed
 //            invoiceA_update.showTableInvert_3(); // some kind of redraw, OBS! needed
             //
         }
@@ -2858,26 +2860,26 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
     }//GEN-LAST:event_jButton_add_articleActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void jButton20_accept_edited_articleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20_accept_edited_articleActionPerformed
         //
         if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             return;
         }
         //
         invoiceA_insert.submitEditedArticle();
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_jButton20_accept_edited_articleActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void jButton19_bearbeta_artikelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19_bearbeta_artikelActionPerformed
         //
         if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
             return;
         }
         //
         InvoiceA_Insert_.EDIT__ARTICLE_UPPON_INSERT__SWITCH = true;
-        invoiceA_insert.showTableInvert_2();
+        invoiceA_insert.showTableInvert_2(false);
         invoiceA_insert.refreshTableInvert(invoiceA_insert.TABLE_INVERT_2);
         //
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_jButton19_bearbeta_artikelActionPerformed
 
     private void jButton_confirm_insert_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_confirm_insert_updateActionPerformed
         // "FAKTURA HTTP" BTN
@@ -3301,9 +3303,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton19_bearbeta_artikel;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton20_accept_edited_article;
     private javax.swing.JButton jButton3;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
@@ -3632,7 +3634,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     HelpA.markFirstRowJtable(jTable_InvoiceA_Insert_articles);
                     jTable_InvoiceA_Insert_articles_clicked();
                 } else {
-                    invoiceA_update.showTableInvert_2();
+                    invoiceA_update.showTableInvert_2(false);
                     invoiceA_update.refreshTableInvert(invoiceA_update.TABLE_INVERT_2);
                 }
                 //
@@ -3745,7 +3747,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
             invoiceA_update.SET_CURRENT_OPERATION_INSERT(false);
-            invoiceA_update.showTableInvert_2();
+            invoiceA_update.showTableInvert_2(false);
         } else {
             invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true);
         }

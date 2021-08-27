@@ -318,7 +318,7 @@ public class GP_BUH {
 
     public static boolean IS_BETALD = false;
     public static boolean INVOICE_TABLES_INITIALIZATION_READY = false;
-    public static boolean BLINK_ONCE_PER_CREATE_SESSION = false;
+    public static boolean ONCE_PER_SESSION__FLAG = false;
 
     public static void showSaveInvoice_note(boolean visible) {
         // #SAVE-INVOICE-NOTE#
@@ -334,8 +334,8 @@ public class GP_BUH {
                     LAFakturering.jLabel__spara_faktura_arrow.setVisible(visible);
                 }
                 //
-                if (visible && BLINK_ONCE_PER_CREATE_SESSION) {
-                    BLINK_ONCE_PER_CREATE_SESSION = false;
+                if (visible && ONCE_PER_SESSION__FLAG) {
+                    ONCE_PER_SESSION__FLAG = false;
                     System.out.println("VISIBLE AA: " + visible + " ********************************");
                     BlinkThread bt = new BlinkThread(LAFakturering.jLabel__spara_faktura);
                 }
@@ -347,7 +347,7 @@ public class GP_BUH {
     }
 
     public static void showSaveInvoice_note__reset() {
-        GP_BUH.BLINK_ONCE_PER_CREATE_SESSION = true; // [#SAVE-INVOICE-NOTE#]
+        GP_BUH.ONCE_PER_SESSION__FLAG = true; // [#SAVE-INVOICE-NOTE#]
         BlinkThread.ready_b = true;
     }
 

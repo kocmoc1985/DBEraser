@@ -81,7 +81,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
             public void run() {
                 //
                 showTableInvert();
-                showTableInvert_2();
+                showTableInvert_2(false);
                 showTableInvert_3();
                 //
                 refreshTableInvert(TABLE_INVERT);
@@ -137,7 +137,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
     protected void submitEditedArticle() {
         this.faktura_entry_insert.submitEditedArticle();
         // Clearing the rows with the code below
-        showTableInvert_2();
+        showTableInvert_2(false);
         refreshTableInvert(TABLE_INVERT_2);
     }
 
@@ -154,7 +154,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
         this.faktura_entry_insert.addArticleForDB();
         //
         // Clearing the rows with the code below
-        showTableInvert_2();
+        showTableInvert_2(true);
         refreshTableInvert(TABLE_INVERT_2);
         //
     }

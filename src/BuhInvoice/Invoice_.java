@@ -88,7 +88,9 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
-        GP_BUH.showSaveInvoice_note(false); // [#SAVE-INVOICE-NOTE#] 
+        if(GP_BUH.ONCE_PER_SESSION__FLAG){
+            GP_BUH.showSaveInvoice_note(false); // [#SAVE-INVOICE-NOTE#] 
+        }
         //
         GP_BUH.enableDisableButtons(bim.jPanel9, true);
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
@@ -793,7 +795,7 @@ public abstract class Invoice_ extends Basic_Buh {
         //
     }
 
-    public void showTableInvert_2() {
+    public void showTableInvert_2(boolean force) {
         //
         TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_f_artikel");
         TABLE_INVERT_2 = null;
@@ -801,7 +803,11 @@ public abstract class Invoice_ extends Basic_Buh {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_articles, TABLE_INVERT_2);
         //
-        setArticlePrise__and_other(false, null); // [2020-08-19]
+        // Reason why i cannot have "force=true" in all cases is because:
+        // When you edit an Invoice and point on an article it showd show data from this row,
+        // so consider you did have specified "rabbat" for this article and if force is enabled
+        // the specified rabbat will be replaced with "0" [2021-08-27]
+        setArticlePrise__and_other(force, null); // [2020-08-19]
         //
     }
 
