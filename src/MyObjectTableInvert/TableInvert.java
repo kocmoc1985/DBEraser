@@ -5,7 +5,6 @@
  */
 package MyObjectTableInvert;
 
-import BuhInvoice.LAFakturering;
 import MyObjectTable.ControlsActionsIF;
 import MyObjectTable.RowData;
 import MyObjectTable.Table;
@@ -17,7 +16,6 @@ import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.sql.DataTruncation;
@@ -27,15 +25,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -634,4 +631,33 @@ public class TableInvert extends Table implements ControlsActionsIF {
             return false;
         }
     }
+
+    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TableInvert other = (TableInvert) obj;
+        if (!Objects.equals(this.TABLE_NAME, other.TABLE_NAME)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {//[#SAVE-INVOICE-NOTE#]
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.TABLE_NAME);
+        return hash;
+    }
+    
+    
 }

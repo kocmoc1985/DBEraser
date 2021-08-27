@@ -21,6 +21,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
@@ -34,6 +35,7 @@ import javax.swing.event.DocumentEvent;
 public abstract class Basic_Buh extends Basic {
 
     protected final LAFakturering bim;
+    private final HashSet<TableInvert>tableInitReadySet = new HashSet<>();
 
     public Basic_Buh(LAFakturering bim) {
         this.bim = bim;
@@ -49,22 +51,24 @@ public abstract class Basic_Buh extends Basic {
     protected String getKundId() {
         return bim.getKundId();
     }
+    
+    public boolean allTableInvertsDrawnReady(){
+        return tableInitReadySet.isEmpty();
+    }
 
     @Override
     public void showTableInvert(JComponent container, Table tableInvert) {
         //
-        GP_BUH.INVOICE_TABLES_INITIALIZATION_READY = false; //[#SAVE-INVOICE-NOTE#]
+        tableInitReadySet.add((TableInvert)tableInvert); //[#SAVE-INVOICE-NOTE#]
         //
         super.showTableInvert(container, tableInvert); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected void doOtherRepaintThread(Table table) {
-        TableInvert ti = (TableInvert) table;
-        String tableName = ti.getTABLE_NAME();
-        if (tableName.equals("buh_faktura_b__table_3")) {
-            GP_BUH.INVOICE_TABLES_INITIALIZATION_READY = true; // [#SAVE-INVOICE-NOTE#]
-        }
+        //
+        tableInitReadySet.remove((TableInvert)table); //[#SAVE-INVOICE-NOTE#]
+        //
     }
 
     /**
@@ -161,7 +165,7 @@ public abstract class Basic_Buh extends Basic {
         //
         super.valueChangedForward(ti, evt, parent, colName); //To change body of generated methods, choose Tools | Templates.
         //
-        if (GP_BUH.INVOICE_TABLES_INITIALIZATION_READY) {
+        if (tableInitReadySet.isEmpty()) { // GP_BUH.INVOICE_TABLES_INITIALIZATION_READY
             //[#SAVE-INVOICE-NOTE#]
             GP_BUH.showSaveInvoice_note(true);
             //
@@ -174,7 +178,7 @@ public abstract class Basic_Buh extends Basic {
         //
         super.jComboBoxItemStateChangedForward(ti, ie); //To change body of generated methods, choose Tools | Templates.
         //
-        if (GP_BUH.INVOICE_TABLES_INITIALIZATION_READY) {
+        if (tableInitReadySet.isEmpty()) {
             //[#SAVE-INVOICE-NOTE#]
             GP_BUH.showSaveInvoice_note(true);
             //

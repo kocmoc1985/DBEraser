@@ -317,7 +317,6 @@ public class GP_BUH {
     }
 
     public static boolean IS_BETALD = false;
-    public static boolean INVOICE_TABLES_INITIALIZATION_READY = false;
     public static boolean ONCE_PER_SESSION__FLAG = false;
 
     public static void showSaveInvoice_note(boolean visible) {

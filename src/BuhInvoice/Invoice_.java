@@ -556,7 +556,7 @@ public abstract class Invoice_ extends Basic_Buh {
         // is executed uppon almost all actions [2020-09-30]
         bim.displayArticlesCount();
         //
-        SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT, false); // For buttons enabled/disabled logics
+        SET_CURRENT_OPERATION_INSERT(CURRENT_OPERATION_INSERT, true); // For buttons enabled/disabled logics
         //
         //[#RUTROT#]
         if (bim.isRUT() && CURRENT_OPERATION_INSERT == false && RUT_AVDRAG_TOTAL == 0) {
