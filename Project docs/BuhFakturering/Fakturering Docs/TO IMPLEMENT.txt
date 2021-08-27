@@ -24,21 +24,20 @@
 
 _____
 
-ask@@mixcont.com
-The below is a listener when user makes paste to a JTextField:
-[jTextFieldValueChangedForward] -> Home.jTextFieldValueChangedForward(TableInvert ti, DocumentEvent evt)
-See: TableRowInvert: 135 -> Very important
+___
 
-När jag skapar en kund - "KUNDNR" dyker upp endast när jag klickar i fältet, vilket är inte så bra och det hadde varit bättre att ha det på plats från början. [2021-08-24]
-
-Betalnings vilkor (30 dagar netto osv.) studera ämnet nogrant och implementera då jag har bara "dagar" i betalningsvilkoren vilket är ej korrekt. [2021-08-24]
-
+  När jag lägger till exakt samma artikel utan extra kommentar och liknande ska den inte visas separat utan läggas ihop med den befintliga.	[2021-08-27]
+  
+  The saved user password (Java-Side) is strored in clear text in "io" folder file "pass"
+___
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
 
-The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
+Betalnings vilkor (30 dagar netto osv.) studera ämnet nogrant och implementera då jag har bara "dagar" i betalningsvilkoren vilket är ej korrekt. [2021-08-24][DONE]
 
-The saved user password (Java-Side) is strored in clear text in "io" folder file "pass"
+När jag skapar en kund - "KUNDNR" dyker upp endast när jag klickar i fältet, vilket är inte så bra och det hadde varit bättre att ha det på plats från början. [2021-08-24][DONE]
+
+The settings for SMTP are saved without "_11" kundId prefix. Which makes that it loads same settings regardless of the user loged-in.
 
 
 Digital sign of files -> This is regarding the problem when the file is downloaded and the browser tells you that it is not safe 

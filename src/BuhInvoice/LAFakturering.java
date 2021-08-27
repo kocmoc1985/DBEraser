@@ -177,7 +177,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jTabbedPane1.setEnabled(enable);
     }
 
-    protected void faktua_tab_blockUntilSavedOrAborted_invoice(boolean disabled) {
+    protected void faktura_tab_blockUntilSavedOrAborted_invoice(boolean disabled) {
+        //
+        Invoice_.FAKTURA_TAB_ENABLED = disabled;
         //
         if (disabled) {
             jButton_dont_save_settings.setEnabled(true);
@@ -2842,7 +2844,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     if (invoiceA_insert.fieldsValidatedArticle()) {
                         invoiceA_insert.addArticle();
 //                        BlinkThread bt = new BlinkThread(jButton_confirm_insert_update, false);
-                        faktua_tab_blockUntilSavedOrAborted_invoice(false); // [#RESIZE-COLUMN-CURSOR-BUGG#]
+                        faktura_tab_blockUntilSavedOrAborted_invoice(false); // [#RESIZE-COLUMN-CURSOR-BUGG#]
                     }
                 } else {
                     if (invoiceA_update.fieldsValidatedArticle()) {
@@ -2899,7 +2901,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                     invoiceB = new InvoiceB(this);
                 }
                 //
-                faktua_tab_blockUntilSavedOrAborted_invoice(true);
+                faktura_tab_blockUntilSavedOrAborted_invoice(true);
                 //
                 openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
                 //
@@ -3188,7 +3190,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_dont_save_settingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_dont_save_settingsActionPerformed
         if (HelpA.confirmWarning(LANG.MSG_24)) {
-            faktua_tab_blockUntilSavedOrAborted_invoice(true);
+            faktura_tab_blockUntilSavedOrAborted_invoice(true);
             openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
         }
     }//GEN-LAST:event_jButton_dont_save_settingsActionPerformed
@@ -3313,8 +3315,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JButton jButton_confirm_insert_update;
     private javax.swing.JButton jButton_copy_faktura;
     private javax.swing.JButton jButton_create_new_faktura;
-    private javax.swing.JButton jButton_create_new_faktura_b;
-    private javax.swing.JButton jButton_create_new_kontant_faktura_b;
+    protected javax.swing.JButton jButton_create_new_faktura_b;
+    protected javax.swing.JButton jButton_create_new_kontant_faktura_b;
     protected javax.swing.JButton jButton_delete_account_sharing;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;

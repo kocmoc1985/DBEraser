@@ -152,7 +152,7 @@ public class HTMLPrint_A extends HTMLPrint {
     private String getBetalVilkorFlexCol() {
         //[#OFFERT#]
         if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_NORMAL) || FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) { // NORMAL
-            return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c);
+            return _get_colon_sep(T__FAKTURA_BETAL_VILKOR__FLEX, map_c) + " " + T__FAKTURA_DAGAR_NETTO();
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KREDIT)) { // KREDIT
             return _get_colon_sep(T__FAKTURA_UTSKRIVET, map_c);
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) { // KONTANT

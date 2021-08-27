@@ -72,6 +72,7 @@ public abstract class Invoice_ extends Basic_Buh {
     private RutRot rutRot;
     private RutRotFrame rutRotFrame;
     private boolean RUT_ROT__ENABLED = false;
+    public static boolean FAKTURA_TAB_ENABLED = true;
 
     public Invoice_(LAFakturering bim) {
         super(bim);
@@ -88,10 +89,15 @@ public abstract class Invoice_ extends Basic_Buh {
         //
         boolean rowSelected = HelpA.rowSelected(bim.jTable_InvoiceA_Insert_articles);
         //
-        GP_BUH.enableDisableButtons(bim.jPanel9, true);
+        GP_BUH.enableDisableButtons(bim.jPanel9, true); // Buttons: Create New Invoice, Create new Kontant Invoice, Abort, Save
         GP_BUH.enableDisableButtons(bim.jPanel11, true);
         GP_BUH.enableDisableButtons(bim.jPanel12, true);
         GP_BUH.setEnabled(bim.jButton_delete_articles_row, true);
+        //
+        if (FAKTURA_TAB_ENABLED == false) {
+            GP_BUH.setEnabled(bim.jButton_create_new_faktura_b, false);
+            GP_BUH.setEnabled(bim.jButton_create_new_kontant_faktura_b, false);
+        }
         //
         if (articlesJTableEmpty()) {
             GP_BUH.setEnabled(bim.jButton_update_articles_row, false);

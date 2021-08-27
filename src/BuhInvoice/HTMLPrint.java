@@ -92,6 +92,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     //
     public static final String T__FAKTURA_VAR_REF = "Vår referens";
     public static final String T__FAKTURA_BETAL_VILKOR__FLEX = "Betalningsvilkor";
+    public static final String T__FAKTURA_DAGAR_NETTO = "dgr netto";
     public static final String T__FAKTURA_FORFALLODATUM__FLEX = "Förfallodag";
     public static final String T__FAKTURA_DROJMALSRANTA__FLEX = "Dröjsmålsränta";
     public static final String T__FAKTURA_BETAL_METOD = "Betalmetod"; // only for "kontantfaktura"
@@ -190,8 +191,12 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         init();
         //
-    } // T__FAKTURA_FRAKT
+    } // 
 
+    public String T__FAKTURA_DAGAR_NETTO() {
+        return LANG_ENG == false ? T__FAKTURA_DAGAR_NETTO : "days net";
+    }
+    
     public String T__FAKTURA_FRAKT() {
         return LANG_ENG == false ? T__FAKTURA_FRAKT : "Shipping";
     }
