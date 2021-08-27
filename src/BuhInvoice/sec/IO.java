@@ -15,8 +15,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -61,10 +68,77 @@ public class IO {
             Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     public static String loadLastEntered(String fileName, String defaultValue) {
         return HelpA.loadLastEntered(IO_DIR + fileName, defaultValue);
     }
+    
+    public static final void writeToFile_with_encrypt(String fileName, String value) {
+        //
+        String encr_val = encrypt(value, "qEp4lylfuMQ=");
+        //
+        try {
+            HelpA.writeToFile(IO_DIR + fileName, encr_val, false);
+        } catch (IOException ex) {
+            Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static String loadLastEntered_decrypt(String fileName, String defaultValue) {
+        String val = HelpA.loadLastEntered(IO_DIR + fileName, defaultValue);
+        return decrypt(val, "qEp4lylfuMQ=");
+    }
+    
+    //==========================================================================
+    //==========================================================================
+    //==========================================================================
+    
+    private static SecretKeySpec secretKeySpec;
+    private static byte[] key;
+    
+    private static String encrypt(String strToEncrypt, String secret) {
+        try {
+            setKey(secret);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (Exception e) {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+
+    private static String decrypt(String strToDecrypt, String secret) {
+        try {
+            setKey(secret);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+        } catch (Exception e) {
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+        return null;
+    }
+    
+    private static void setKey(String myKey) {
+        MessageDigest sha = null;
+        try {
+            key = myKey.getBytes("UTF-8");
+            sha = MessageDigest.getInstance("SHA-1"); // SHA-1 // OBS! THINK TWICE BEFORE CHANGING IT
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16);
+            secretKeySpec = new SecretKeySpec(key, "AES");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //==========================================================================
+    //==========================================================================
+    //==========================================================================
 
     public static boolean delete(String fileName) {
         File f = new File(IO_DIR + fileName);

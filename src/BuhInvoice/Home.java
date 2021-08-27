@@ -264,7 +264,7 @@ public class Home extends Basic_Buh {
             //
             if (saveInloggning()) { // This is since [2021-08-25] the only place when the login data is saved
                 save(DB.BUH_LICENS__USER, GP_BUH.USER);
-                save(DB.BUH_LICENS__PASS, GP_BUH.PASS);
+                save_with_encrypt(DB.BUH_LICENS__PASS, GP_BUH.PASS);
             }
             //
             bim.enableTabs(true);
@@ -455,7 +455,8 @@ public class Home extends Basic_Buh {
         String user_ = IO.loadLastEntered(DB.BUH_LICENS__USER, "");
         RowDataInvert user = new RowDataInvertB(user_, DB.BUH_LICENS__USER, LOGIN, "", true, true, true);
         //
-        String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS, "");
+//        String pass_ = IO.loadLastEntered(DB.BUH_LICENS__PASS, "");
+        String pass_ = IO.loadLastEntered_decrypt(DB.BUH_LICENS__PASS, "");
         RowDataInvert pass = new RowDataInvertB(RowDataInvert.TYPE_JPASSWORD_FIELD, pass_, DB.BUH_LICENS__PASS, "LÖSENORD", "", true, true, true);
         //
         if (GP_BUH.loggedIn()) {
@@ -688,6 +689,12 @@ public class Home extends Basic_Buh {
     private void save(String param, String value) {
         if (saveInloggning()) {
             IO.writeToFile(param, value);
+        }
+    }
+    
+    private void save_with_encrypt(String param, String value) {
+        if (saveInloggning()) {
+            IO.writeToFile_with_encrypt(param, value);
         }
     }
 
