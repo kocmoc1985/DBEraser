@@ -28,7 +28,11 @@ ___
 
   När jag lägger till exakt samma artikel utan extra kommentar och liknande ska den inte visas separat utan läggas ihop med den befintliga.	[2021-08-27]
   
-  The saved user password (Java-Side) is strored in clear text in "io" folder file "pass"
+The saved user password (Java-Side) is strored in clear text in "io" folder file "pass". 
+Save is done here: Home.class: 267
+Load is done here: Home.class: 458
+
+For encryption see: HTTPCOmm proj -> MyPasswordEncryptionAES
 ___
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
