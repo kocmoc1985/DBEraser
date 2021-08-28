@@ -1,3 +1,21 @@
+[ADDING SAME ARTICLE SEVERAL TIMES][2021-08-28]
+
+When you add same article twice for example, it will not appear 
+as two separate articles but instead this function makes that only the "antal" 
+is exceeded.
+
+It works when you create new[2021-08-28]
+It does NOT work when you edit an article[2021-08-28]
+
+Another issue which was detected in connection to this subkject is
+the "Faktura_Entry.java -> containsOmvandMoms()": the problem is 
+that this method is using "articleList" which is rather useless when
+you updates articles of an invoice because it only takes into account
+the new articles added and not those which was already present when
+the update procedure started. The solution seems to be using JTable for checking "containsOmvandMoms()".
+See method "Validator.checkIfExistInJTable(JTable table, JLinkInvert jli, String colName)"
+
+Search for: [#SAME-ARTICLE-ADDED-TWICE#]
 ________________________________________________________________________________________________________
 ["<-SPARA" NOTE - APPEARS NOW ON CHANGE ][2021-08-26]
 

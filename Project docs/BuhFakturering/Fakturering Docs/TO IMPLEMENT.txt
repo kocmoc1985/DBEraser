@@ -28,6 +28,15 @@ ___
 
 
 När jag lägger till exakt samma artikel utan extra kommentar och liknande ska den inte visas separat utan läggas ihop med den befintliga.	[2021-08-27]
+
+Invoice_.class: 322
+[#SAME-ARTICLE-ADDED-TWICE#]
+
+HelpA.public static int getRowByValue(JTable table, String col_name, String row_value)
+
+HelpA.public static String getValueGivenRow(JTable table, int row, String colName) -> to get the actual "antal"
+
+HelpA.public static void setValueGivenRow(JTable table, int row, String colName, Object value) -> "actual antal" + "new antal"
   
 ___
 

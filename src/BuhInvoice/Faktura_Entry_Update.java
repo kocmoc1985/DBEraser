@@ -45,8 +45,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
-        //        
-        this.articlesListJTable.add(map);
+        //
+        // [#SAME-ARTICLE-ADDED-TWICE#]
         //
         Object[] jtableRow = new Object[]{
             "",
@@ -91,8 +91,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         map.put(DB.BUH_F_ARTIKEL__KUND_ID, "777"); // [#KUND-ID-INSERT#]
         //
-        this.articlesList.add(map);
-//        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
+        this.articlesList.add(map); // OBS! Most likely unneeded [2021-08-28]
+        //
         invoice.countFakturaTotal(getArticlesTable());
         //
         String json = JSon.hashMapToJSON(map);

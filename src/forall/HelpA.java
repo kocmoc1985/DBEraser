@@ -5,7 +5,6 @@
 package forall;
 
 import BuhInvoice.GP_BUH;
-import BuhInvoice.sec.HTMLDialog;
 import BuhInvoice.sec.LANG;
 import MCRecipeLang.MSG;
 import MCCompound.PROD_PLAN;
@@ -102,7 +101,6 @@ import javax.swing.JTextPane;
 import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-import javax.swing.filechooser.FileSystemView;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -2266,7 +2264,9 @@ public class HelpA {
     public static int getRowByValue(JTable table, String col_name, String row_value) {
         for (int i = 0; i < table.getColumnCount(); ++i) {
             if (table.getColumnName(i).equals(col_name)) {
+                //
                 for (int y = 0; y < table.getRowCount(); ++y) {
+                    //
                     String curr_row_value = "" + table.getValueAt(y, i);
                     //
                     if (curr_row_value == null) {
@@ -2276,6 +2276,7 @@ public class HelpA {
                     if (curr_row_value.equals(row_value)) {
                         return y;
                     }
+                    //
                 }
             }
         }
@@ -2521,7 +2522,7 @@ public class HelpA {
                     //
                     if (title == null || title.isEmpty()) {
                         title_ = LANG.MESSAGE;
-                    }else{
+                    } else {
                         title_ = title;
                     }
                     //
@@ -2533,7 +2534,6 @@ public class HelpA {
         });
         x.start();
     }
-    
 
     public static void showNotification_Data_Truncation_Error() {
         JOptionPane.showMessageDialog(null, MSG.LANG("The length of input exceeded the limit"));
