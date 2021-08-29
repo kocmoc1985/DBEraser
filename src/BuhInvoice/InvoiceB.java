@@ -86,6 +86,8 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__OMVAND_SKATT = "OMVÄND SKATTSKYLDIGHET";
 
     public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
+    
+    private final InvoiceA_Update invoiceA_Update;
 
     static {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__KOMMENT, DB.BUH_F_ARTIKEL__KOMMENT);
@@ -99,8 +101,13 @@ public class InvoiceB extends Basic_Buh {
         ARTICLES_TABLE_DICT.put(TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, DB.BUH_F_ARTIKEL__OMVANT_SKATT);
     }
 
-    public InvoiceB(LAFakturering buh_invoice_main) {
+    public InvoiceB(LAFakturering buh_invoice_main, InvoiceA_Update invoiceA_Update) {
         super(buh_invoice_main);
+        this.invoiceA_Update = invoiceA_Update;
+    }
+    
+    private ArrayList<HashMap<String, String>> getFakturaEntry_articleList(){
+        return invoiceA_Update.faktura_entry.articlesList;
     }
 
     @Override
@@ -829,8 +836,14 @@ public class InvoiceB extends Basic_Buh {
             //
             bim.setArticlesMarkedInvoice(articles); //[2020-08-18]
             //
+            ArrayList<HashMap<String, String>> articlesList = getFakturaEntry_articleList();
+            //
             for (HashMap<String, String> articles_map : articles) {
+                //
+                articlesList.add(articles_map);
+                //
                 addRowJtable_faktura_articles(articles_map, table);
+                //
             }
             //
         } catch (Exception ex) {

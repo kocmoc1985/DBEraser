@@ -2898,7 +2898,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 if (invoiceB != null) {
                     invoiceB.refresh_sync(null);// OBS! Important [2020-10-11]  
                 } else {
-                    invoiceB = new InvoiceB(this);
+                    invoiceB = new InvoiceB(this,invoiceA_update);
                 }
                 //
                 faktura_tab_blockUntilSavedOrAborted_invoice(true);
@@ -3594,7 +3594,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     protected void allInvoicesTabClicked() {
         if (invoiceB == null) {
-            invoiceB = new InvoiceB(this);
+            invoiceB = new InvoiceB(this,invoiceA_update);
             HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
             jtable_InvoiceB_all_invoices_clicked();
         } else {

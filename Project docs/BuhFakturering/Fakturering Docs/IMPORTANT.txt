@@ -15,6 +15,12 @@ the new articles added and not those which was already present when
 the update procedure started. The solution seems to be using JTable for checking "containsOmvandMoms()".
 See method "Validator.checkIfExistInJTable(JTable table, JLinkInvert jli, String colName)"
 
+InvoiceB.class -> fillFakturaArticlesTable(String fakturaId)
+
+InvoiceB.class -> ArrayList<HashMap<String, String>> getFakturaEntry_articleList()
+
+Faktura_Entry_Update.java -> line:94 ----> Here should be checked
+
 Search for: [#SAME-ARTICLE-ADDED-TWICE#]
 ________________________________________________________________________________________________________
 ["<-SPARA" NOTE - APPEARS NOW ON CHANGE ][2021-08-26]

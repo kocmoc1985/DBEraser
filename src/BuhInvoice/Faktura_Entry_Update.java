@@ -91,7 +91,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
         map.put(DB.BUH_F_ARTIKEL__KUND_ID, "777"); // [#KUND-ID-INSERT#]
         //
-        this.articlesList.add(map); // OBS! Most likely unneeded [2021-08-28]
+        this.articlesList.add(map); // OBS! Most likely unneeded, or it should be filled from JTable when update procedure starts [2021-08-28]
         //
         invoice.countFakturaTotal(getArticlesTable());
         //
