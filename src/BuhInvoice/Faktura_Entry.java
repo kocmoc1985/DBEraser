@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.JTableRowData;
+import BuhInvoice.sec.LANG;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,6 +103,8 @@ public abstract class Faktura_Entry {
             int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
             //
             int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
+            //
+            GP_BUH.showNotification(LANG.MSG_30(antal_new));
             //
             HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + (antal_actual + antal_new));
             //

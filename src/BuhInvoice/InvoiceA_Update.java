@@ -52,7 +52,7 @@ public class InvoiceA_Update extends Invoice_ {
         this.faktura_entry_update.addArticleForDB();
         //
         // Clearing the rows with the code below
-        showTableInvert_2(false);
+        showTableInvert_2(true);
         refreshTableInvert(TABLE_INVERT_2);
         //
         insertOrUpdate(); // Update faktura after adding an article [2020-08-12]
@@ -61,7 +61,7 @@ public class InvoiceA_Update extends Invoice_ {
 
     protected void updateArticle() {
         //
-        faktura_entry_update.updateArticle(false, -1,"-1"); // -1 means not taken into account
+        faktura_entry_update.updateArticle(false, -1); // -1 means not taken into account
         //
     }
 

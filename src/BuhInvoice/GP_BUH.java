@@ -361,10 +361,6 @@ public class GP_BUH {
         return Double.parseDouble(String.format("%2.2f", rst).replace(",", "."));
     }
 
-    public static void main(String[] args) {
-        System.out.println("" + round_double(24.889));
-    }
-
     public static int round_double_b(double rst) {
         return (int) Math.round(rst);
     }

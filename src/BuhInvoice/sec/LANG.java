@@ -118,11 +118,11 @@ public class LANG {
     public static String MSG_16_0_0 = "Ditt konto är nu skapat!";
     public static String MSG_16_0_1 = "Vi har skickat lösenordet till den angivna E-posten.<br>Kolla \"skräppost\" om du inte hittar E-post från LAFakturering inom 5-10 minuter.";
 
-    public static String MSG_16_0_3_HTML(){
+    public static String MSG_16_0_3_HTML() {
         return HTML_MSG_BASIC(IconUrls.THUMB_UP_ICON_URL, MSG_16_0_0, MSG_16_0_1); // [#HTML-DIALOG#]
     }
-    
-    public static String HTML_MSG_BASIC(URL mainImage,String title, String text) {
+
+    public static String HTML_MSG_BASIC(URL mainImage, String title, String text) {
         //[#HTML-DIALOG#]
         String imgPath = mainImage.toString();
         //
@@ -188,6 +188,11 @@ public class LANG {
     }
 
     public static String MSG_29 = "Version: " + GP_BUH.VERSION + " stöds ej längre, hämta en ny version från " + GP_BUH.LA_WEB_ADDR;
+
+
+    public static String MSG_30(int antal) {
+        return "Samma artikel finns redan, kommer att öka antalet med " + antal + " istället";
+    }
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

@@ -7,6 +7,7 @@ package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.JTableRowData;
+import BuhInvoice.sec.LANG;
 import com.sun.corba.se.impl.orbutil.ORBConstants;
 import forall.HelpA;
 import java.util.HashMap;
@@ -89,13 +90,15 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //
             ADDING_SAME_ARTICLE = true;
             //
-            ARTIKEL_ID_ADDING_SAME = map_with_artikelId.get(DB.BUH_F_ARTIKEL__ARTIKELID);
+            ARTIKEL_ID_ADDING_SAME = map.get(DB.BUH_F_ARTIKEL__ARTIKELID);
             //
             int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
             //
             int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
             //
             int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
+            //
+             GP_BUH.showNotification(LANG.MSG_30(antal_new));
             //
             ANTAL_ADDING_SAME = (antal_actual + antal_new);
             //
@@ -116,7 +119,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     }
 
     private void addArticleForDB_adding_same() {
-        updateArticle(true, ANTAL_ADDING_SAME, ARTIKEL_ID_ADDING_SAME);
+        updateArticle(true, ANTAL_ADDING_SAME);
     }
 
     private void addArticleForDB_common() {
@@ -157,7 +160,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
     }
 
-    protected void updateArticle(boolean addingSameArticle, int antal, String artikelId) {
+    protected void updateArticle(boolean addingSameArticle, int antal) {
         //
         InvoiceA_Update invoic = (InvoiceA_Update) invoice;
         //
@@ -171,10 +174,9 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //[#SAME-ARTICLE-ADDED-TWICE#]
             map.remove(DB.BUH_F_ARTIKEL__ANTAL);
             map.put(DB.BUH_F_ARTIKEL__ANTAL, "" + antal);
-            buh_f_artikel_id = artikelId;
-        } else {
-            buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
-        }
+        } 
+        //
+        buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
         //
         HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
         //
