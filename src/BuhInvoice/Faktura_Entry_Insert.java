@@ -6,11 +6,13 @@
 package BuhInvoice;
 
 import static BuhInvoice.GP_BUH._get;
+import BuhInvoice.sec.JTableRowData;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.RutRot;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -54,9 +56,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
             sendRutRotToDb(fakturaId);// [#RUTROT#]
             //
-            if(invoice.bim.isOffert()){
+            if (invoice.bim.isOffert()) {
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
-            }else{
+            } else {
                 EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
             }
             //
@@ -69,12 +71,12 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         resetLists();
         //
     }
-    
-    private void sendRutRotToDb(String fakturaId){
+
+    private void sendRutRotToDb(String fakturaId) {
         //
         RutRot rut = invoice.getRutRot();
         //
-        if(rut == null){
+        if (rut == null) {
             return;
         }
         //
@@ -106,16 +108,16 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         this.fakturaMap.put(DB.BUH_FAKTURA__MOMS_TOTAL__, "" + invoice.getMomsTotal());
         //
         //OBS! KONTANT FAKTURA [2020-09-22]
-        if(Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT){
+        if (Invoice_.CREATE_KONTANT_FAKTURA__OPERATION_INSERT) {
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_KONTANT__NUM); // 2 = KONTANT FAKTURA
             this.fakturaMap.remove(DB.BUH_FAKTURA__FORFALLO_DATUM);
 //            this.fakturaMap.put(DB.BUH_FAKTURA__BETALD, "1"); // 1 = Betald
-        }else if(Invoice_.CREATE_OFFERT__OPERATION_INSERT){
+        } else if (Invoice_.CREATE_OFFERT__OPERATION_INSERT) {
             //[#OFFERT#]
             this.fakturaMap.put(DB.BUH_FAKTURA__FAKTURATYP, DB.STATIC__FAKTURA_TYPE_OFFERT__NUM); // 3 = OFFERT
         }
         //
-        if(containsOmvandMoms()){
+        if (containsOmvandMoms()) {
             //[#INVOICE-HAS-OMVAND-SKATT#]
             this.fakturaMap.put(DB.BUH_FAKTURA__OMVANT_SKATT, "1");
         }
@@ -165,15 +167,13 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
     }
 
-    protected void deleteArtikel() {
+    protected void deleteFakturaArtikel() {
         //
         JTable table = getArticlesTable();
         //
         int currRow = table.getSelectedRow();
         //
-        HelpA.removeRowJTable(table, currRow);
-        //
-        articlesList.remove(currRow);
+        deleteFakturaArtikel_help(table, currRow);
         //
     }
 
@@ -189,7 +189,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
 //        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map,DB.BUH_F_ARTIKEL__KOMMENT,true));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
@@ -206,6 +206,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
 
     @Override
     public void addArticleForDB() {
+        //OBS! It can seem that it's added to the DB on this step - NO, here it's only PREPARED for adding
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
         //

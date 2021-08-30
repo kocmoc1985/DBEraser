@@ -61,7 +61,7 @@ public class InvoiceA_Update extends Invoice_ {
 
     protected void updateArticle() {
         //
-        faktura_entry_update.updateArticle();
+        faktura_entry_update.updateArticle(false, -1,"-1"); // -1 means not taken into account
         //
     }
 
@@ -84,7 +84,7 @@ public class InvoiceA_Update extends Invoice_ {
         //
         String json = JSon.hashMapToJSON(map);
         //
-        HelpA.removeRowJTable(table, selectedRow);
+        faktura_entry.deleteFakturaArtikel_help(table, selectedRow);
         //
         executeDelete(json);
         //

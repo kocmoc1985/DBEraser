@@ -3775,6 +3775,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
         //
+        //
+        //
+        //
+        //
+        //
+        //
     }
 
     protected void jtable_InvoiceB_all_invoices_clicked() {

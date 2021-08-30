@@ -70,24 +70,25 @@ public abstract class Faktura_Entry {
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
+        HashMap<String, String> map_with_artikelId = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, 2);
         //
         //[#SAME-ARTICLE-ADDED-TWICE#]
         //
-        JTableRowData jtrd = new JTableRowData(map);
+        JTableRowData jtrd = new JTableRowData(map_with_artikelId);
+        jtrd.setArtikelNamn(_get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
         Object[] jtableRow;
         //
         if (this.articlesHashSet.contains(jtrd) == false) {
             jtableRow = new Object[]{
-                //            map.get(DB.BUH_F_ARTIKEL__ARTIKELID),
-                jtrd.getArtikelNamn(), // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
-                jtrd.getArtikelKomment(),
-                jtrd.getArtikelAntal(),
-                jtrd.getArtikelEnhet(),
-                jtrd.getArtikelPris(),
-                jtrd.getArtikelRabatt(),
-                jtrd.getArtikelRabattKr(),
-                jtrd.getArtikelMomsSats(),
-                jtrd.getArtikelOmvantSkatt()
+                _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true),// [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
+                _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
+                map.get(DB.BUH_F_ARTIKEL__ANTAL),
+                map.get(DB.BUH_F_ARTIKEL__ENHET),
+                map.get(DB.BUH_F_ARTIKEL__PRIS),
+                map.get(DB.BUH_F_ARTIKEL__RABATT),
+                map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
+                map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""),
+                map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)
             };
             //
             this.articlesHashSet.add(jtrd);
@@ -95,20 +96,36 @@ public abstract class Faktura_Entry {
             HelpA.addRowToJTable(jtableRow, table);
             //
         } else {
-           //
-           int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, jtrd.getArtikelNamn());
-           //
-           int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
-           //
-           int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
-           //
-           HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + (antal_actual + antal_new));
-           //
+            //
+            int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+            //
+            int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
+            //
+            int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
+            //
+            HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + (antal_actual + antal_new));
+            //
         }
         //
+    }
 
+    protected void deleteFakturaArtikel_help(JTable table, int currRow) {
+        //Yes, "artikelNamn" is correct - the artikelId is not available here[2021-08-30]
+        String artikelNamn = HelpA.getValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN);
         //
-//        HelpA.addRowToJTable(jtableRow, table);
+        //[#SAME-ARTICLE-ADDED-TWICE#]
+        //
+        for (JTableRowData jtrd : articlesHashSet) {
+            //
+            if (jtrd.getArtikelNamn().equals(artikelNamn)) {
+                articlesHashSet.remove(jtrd);
+                break;
+            }
+            //
+        }
+        //
+        HelpA.removeRowJTable(table, currRow);
+        articlesList.remove(currRow);
         //
     }
 

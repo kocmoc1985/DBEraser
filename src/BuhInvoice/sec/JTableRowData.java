@@ -16,7 +16,10 @@ import java.util.Objects;
  */
 public class JTableRowData {
 
-    private final String artikedId_name;
+    //
+    private String artikelNamn; // Not used for "equals()" and "hashCode()"
+    //
+    private final String artikelId;
     private final String artikelKomment;
     private final String artikelAntal;
     private final String artikelEnhet;
@@ -27,7 +30,7 @@ public class JTableRowData {
     private final String artikelOmvantSkatt;
 
     public JTableRowData(HashMap<String, String> map) {
-        this.artikedId_name = _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true);
+        this.artikelId =_get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true);
         this.artikelKomment = _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true);
         this.artikelAntal = map.get(DB.BUH_F_ARTIKEL__ANTAL);
         this.artikelEnhet = map.get(DB.BUH_F_ARTIKEL__ENHET);
@@ -37,9 +40,17 @@ public class JTableRowData {
         this.artikelMomsSats = map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", "");
         this.artikelOmvantSkatt = map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT);
     }
+    
+    public void setArtikelNamn(String namn){
+        this.artikelNamn = namn;
+    }
 
     public String getArtikelNamn() {
-        return artikedId_name;
+        return artikelNamn;
+    }
+
+    public String getArtikelId() {
+        return artikelId;
     }
 
     public String getArtikelKomment() {
@@ -77,7 +88,7 @@ public class JTableRowData {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.artikedId_name);
+        hash = 17 * hash + Objects.hashCode(this.artikelId);
         hash = 17 * hash + Objects.hashCode(this.artikelKomment);
         hash = 17 * hash + Objects.hashCode(this.artikelEnhet);
         hash = 17 * hash + Objects.hashCode(this.artikelPris);
@@ -100,7 +111,7 @@ public class JTableRowData {
             return false;
         }
         final JTableRowData other = (JTableRowData) obj;
-        if (!Objects.equals(this.artikedId_name, other.artikedId_name)) {
+        if (!Objects.equals(this.artikelId, other.artikelId)) {
             return false;
         }
         if (!Objects.equals(this.artikelKomment, other.artikelKomment)) {

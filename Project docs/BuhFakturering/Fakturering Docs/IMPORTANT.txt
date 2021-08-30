@@ -19,7 +19,13 @@ InvoiceB.class -> fillFakturaArticlesTable(String fakturaId)
 
 InvoiceB.class -> ArrayList<HashMap<String, String>> getFakturaEntry_articleList()
 
-Faktura_Entry_Update.java -> line:94 ----> Here should be checked
+Faktura_Entry_Update.java -> line:120 
+
+Faktura_Entry_Update.java ->  protected void updateArticle() 
+
+Faktura_Entry_Update.java -> deleteFakturaArtikel_help(JTable table, int currRow) ****************
+
+OBS! When updating and adding article the price for the first item is not shown (0)
 
 Search for: [#SAME-ARTICLE-ADDED-TWICE#]
 ________________________________________________________________________________________________________

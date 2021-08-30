@@ -129,7 +129,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
             return;
         }
         //
-        faktura_entry_insert.deleteArtikel();
+        faktura_entry_insert.deleteFakturaArtikel();
         countFakturaTotal(getArticlesTable());
         //
     }

@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.BlinkThread;
+import BuhInvoice.sec.JTableRowData;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.RutRot;
@@ -14,6 +15,7 @@ import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -108,6 +110,10 @@ public class InvoiceB extends Basic_Buh {
     
     private ArrayList<HashMap<String, String>> getFakturaEntry_articleList(){
         return invoiceA_Update.faktura_entry.articlesList;
+    }
+    
+    private HashSet<JTableRowData> getFakturaEntry_articlesHashSet(){
+        return invoiceA_Update.faktura_entry.articlesHashSet;
     }
 
     @Override
@@ -814,6 +820,8 @@ public class InvoiceB extends Basic_Buh {
         //
         HelpA.clearAllRowsJTable(table);
         //
+        invoiceA_Update.faktura_entry.resetLists();
+        //
         if (fakturaId == null || fakturaId.isEmpty()) {
             return;
         }
@@ -838,9 +846,16 @@ public class InvoiceB extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> articlesList = getFakturaEntry_articleList();
             //
+            HashSet<JTableRowData>articlesHashSet = getFakturaEntry_articlesHashSet();
+            //
             for (HashMap<String, String> articles_map : articles) {
                 //
-                articlesList.add(articles_map);
+                articlesList.add(articles_map);//[#SAME-ARTICLE-ADDED-TWICE#]
+                //
+                JTableRowData jtrd = new JTableRowData(articles_map);
+                jtrd.setArtikelNamn(articles_map.get(DB.BUH_FAKTURA_ARTIKEL___NAMN));
+                //
+                articlesHashSet.add(jtrd); // HashSet doen not allow duplicates
                 //
                 addRowJtable_faktura_articles(articles_map, table);
                 //
