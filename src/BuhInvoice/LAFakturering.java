@@ -356,9 +356,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
      * invoice because of the "foreign key constraints".
      *
      * It will maybe make sense to verify if the "kundId" exist in cloud
-
- BY[2020-10-08] To login with needed account goto GP_BUH and change "USER"
- & "PASS"
+     *
+     * BY[2020-10-08] To login with needed account goto GP_BUH and change "USER"
+     * & "PASS"
      *
      * @return
      */
@@ -649,7 +649,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getSELECT_fakturaId__doubleWhere() {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__ID__, getFakturaId());
     }
-    
+
     protected String getSELECT_artikelId__doubleWhere(String artikelId) {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
     }
@@ -733,6 +733,43 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HashMap<String, String> map = new HashMap<>();
         map.put("where", whereColName); // $whereCoulunName
         map.put(whereColName, whereValue); // $whereValue
+        map.put("table", tableName); // $table
+        //
+        return map;
+    }
+
+    protected HashMap<String, String> getUPDATE_doubleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b, String tableName) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        map.put("where_b", whereColName_b);
+        map.put(whereColName_b, whereValue_b);
+        //
+        map.put("table", tableName); // $table
+        //
+        return map;
+    }
+
+    protected HashMap<String, String> getUPDATE_trippleWhere(
+            String whereColName, String whereValue,
+            String whereColName_b, String whereValue_b,
+            String whereColName_c, String whereValue_c,
+            String tableName) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        map.put("where_b", whereColName_b);
+        map.put(whereColName_b, whereValue_b);
+        //
+        map.put("where_c", whereColName_c);
+        map.put(whereColName_c, whereValue_c);
+        //
         map.put("table", tableName); // $table
         //
         return map;
@@ -2766,7 +2803,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
         if (isMakulerad()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_9,null);
+            HelpA.showNotification_separate_thread(LANG.MSG_9, null);
         }
         //
         String fakturatype = getFakturaType();
@@ -2784,7 +2821,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             //
             invoiceA_insert.deleteArtikel();
             //
-            invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice.disableMomsJComboIf()"
+            invoiceA_insert.showTableInvert_3(); // some kind of redraw, OBS! needed -> see: "Invoice_.disableMomsJComboIf()"
             //
             invoiceA_insert.showTableInvert_2(true);
             //
@@ -2898,7 +2935,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 if (invoiceB != null) {
                     invoiceB.refresh_sync(null);// OBS! Important [2020-10-11]  
                 } else {
-                    invoiceB = new InvoiceB(this,invoiceA_update);
+                    invoiceB = new InvoiceB(this, invoiceA_update);
                 }
                 //
                 faktura_tab_blockUntilSavedOrAborted_invoice(true);
@@ -2935,7 +2972,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         if (invoiceB != null) {
             if (noCustomersPresent()) {
 //                HelpA.showNotification_separate_thread(LANG.MSG_11,null);
-                  HTMLDialog_C dialog = new HTMLDialog_C(this, false, 800, 370, "Viktigt",null);// [#HTML-DIALOG#]
+                HTMLDialog_C dialog = new HTMLDialog_C(this, false, 800, 370, "Viktigt", null);// [#HTML-DIALOG#]
             }
         }
         //
@@ -3066,11 +3103,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
         if (isBetald()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12,null);
+            HelpA.showNotification_separate_thread(LANG.MSG_12, null);
         }
         //
         if (isForfallen() == false) {
-            HelpA.showNotification_separate_thread(LANG.MSG_12_2,null);
+            HelpA.showNotification_separate_thread(LANG.MSG_12_2, null);
         }
         //
         invoiceB.htmlFakturaOrReminder(null, true);
@@ -3594,7 +3631,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     protected void allInvoicesTabClicked() {
         if (invoiceB == null) {
-            invoiceB = new InvoiceB(this,invoiceA_update);
+            invoiceB = new InvoiceB(this, invoiceA_update);
             HelpA.markFirstRowJtable(jTable_invoiceB_alla_fakturor);
             jtable_InvoiceB_all_invoices_clicked();
         } else {
@@ -3625,7 +3662,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 }
                 //
                 if (isMakulerad()) {
-                    HelpA.showNotification_separate_thread(LANG.MSG_9,null);
+                    HelpA.showNotification_separate_thread(LANG.MSG_9, null);
                 }
                 //
                 invoiceA_update.resetRutRot();
@@ -3749,10 +3786,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
-            invoiceA_update.SET_CURRENT_OPERATION_INSERT(false,true);
+            invoiceA_update.SET_CURRENT_OPERATION_INSERT(false, true);
             invoiceA_update.showTableInvert_2(false);
         } else {
-            invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true,true);
+            invoiceA_insert.SET_CURRENT_OPERATION_INSERT(true, true);
         }
         //
     }
@@ -3824,7 +3861,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             //
         } else if (e.getSource() == jTable_ArticlesA_articles && cond_1) {
             //
-             articlesA.jTableArticles_clicked();
+            articlesA.jTableArticles_clicked();
             //
         } else if (e.getSource() == jTable_kunder && cond_1) {
             //

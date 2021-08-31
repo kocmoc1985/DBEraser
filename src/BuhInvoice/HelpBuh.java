@@ -53,8 +53,9 @@ public class HelpBuh {
     public static boolean ERR_OUTPUT_TO_FILE__DISTRIBUTED = true; // Is "false" if IS_DISTRIBUTION = true
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
-    public static boolean USE_TEST_DB = false; // [#TEST-DB#]
-    public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
+    //Yes you can use test scripts but not use the "test-db"
+    public static boolean USE_TEST_DB = false; // [#TEST-DB#] 
+    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
     //
     //

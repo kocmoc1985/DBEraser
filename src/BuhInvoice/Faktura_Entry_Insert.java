@@ -203,6 +203,63 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         //
     }
+    
+    private boolean ADDING_SAME_ARTICLE__INSERT = false;
+    private int ANTAL_ADDING_SAME__INSERT = -1;
+    
+    @Override
+    public void addArticleForJTable(JTable table) {
+         //
+        ADDING_SAME_ARTICLE__INSERT = false;
+        ANTAL_ADDING_SAME__INSERT = 0;
+        //
+        int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
+        HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
+        //
+        HashMap<String, String> map_with_artikelId = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, 2);
+        //
+        //[#SAME-ARTICLE-ADDED-TWICE#]
+        //
+        JTableRowData jtrd = new JTableRowData(map_with_artikelId);
+        jtrd.setArtikelNamn(_get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+        Object[] jtableRow;
+        //
+        if (this.articlesHashSet.contains(jtrd) == false) {
+            jtableRow = new Object[]{
+                _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true),// [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
+                _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
+                map.get(DB.BUH_F_ARTIKEL__ANTAL),
+                map.get(DB.BUH_F_ARTIKEL__ENHET),
+                map.get(DB.BUH_F_ARTIKEL__PRIS),
+                map.get(DB.BUH_F_ARTIKEL__RABATT),
+                map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
+                map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""),
+                map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)
+            };
+            //
+            this.articlesHashSet.add(jtrd);
+            //
+            HelpA.addRowToJTable(jtableRow, table);
+            //
+        } else {
+             //
+            ADDING_SAME_ARTICLE__INSERT = true;
+            //
+            int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+            //
+            int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
+            //
+            int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
+            //
+            GP_BUH.showNotification(LANG.MSG_30(antal_new));
+            //
+            ANTAL_ADDING_SAME__INSERT = (antal_actual + antal_new);
+            //
+            HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + ANTAL_ADDING_SAME__INSERT);
+            //
+        }
+        //
+    }
 
     @Override
     public void addArticleForDB() {
