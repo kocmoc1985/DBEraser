@@ -218,51 +218,6 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
     }
 
-    protected void updateArticle_(boolean addingSameArticle, int antal) {
-        //
-        InvoiceA_Update invoic = (InvoiceA_Update) invoice;
-        //
-        JTable table = getArticlesTable();
-        //
-        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN);
-        //
-        String buh_f_artikel_id;
-        //
-        if (addingSameArticle) {
-            //[#SAME-ARTICLE-ADDED-TWICE#]
-            map.remove(DB.BUH_F_ARTIKEL__ANTAL);
-            map.put(DB.BUH_F_ARTIKEL__ANTAL, "" + antal);
-        }
-        //
-        buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
-        HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
-        //
-        // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
-        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); //     
-        //
-        HashMap<String, String> final_map = JSon.joinHashMaps(map, updateMap);
-        //
-        String json = JSon.hashMapToJSON(final_map);
-        //
-        System.out.println("UPDATE json: " + json);
-        //
-        HelpBuh.update(json);
-        //
-        if (addingSameArticle == false) {
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, map.get(DB.BUH_F_ARTIKEL__RABATT_KR));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS));
-            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)));
-        }
-        //
-        invoic.countFakturaTotal(table);
-        //
-    }
-
     private void checkIfMakuleradAndReport(String fakturaId) {
         String makulerad = secMap.get(DB.BUH_FAKTURA__MAKULERAD);
         if (makulerad.equals("1")) {
@@ -332,6 +287,51 @@ public class Faktura_Entry_Update extends Faktura_Entry {
 //        System.out.println("-------------------------------------------------");
         //
 //        JSon.hashMapToJSON(this.fakturaMap); // Temporary here
+        //
+    }
+
+    private void updateArticle_(boolean addingSameArticle, int antal) {
+        //
+        InvoiceA_Update invoic = (InvoiceA_Update) invoice;
+        //
+        JTable table = getArticlesTable();
+        //
+        HashMap<String, String> map = invoic.tableInvertToHashMap(invoic.TABLE_INVERT_2, DB.START_COLUMN);
+        //
+        String buh_f_artikel_id;
+        //
+        if (addingSameArticle) {
+            //[#SAME-ARTICLE-ADDED-TWICE#]
+            map.remove(DB.BUH_F_ARTIKEL__ANTAL);
+            map.put(DB.BUH_F_ARTIKEL__ANTAL, "" + antal);
+        }
+        //
+        buh_f_artikel_id = HelpA.getValueSelectedRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
+        HashMap<String, String> updateMap = invoic.bim.getUPDATE(DB.BUH_F_ARTIKEL__ID, buh_f_artikel_id, DB.TABLE__BUH_F_ARTIKEL);
+        //
+        // OBS! Important by now [2020-07-29] i don't allow to change artikel, therefore removing "artikelId" entry
+        map.remove(DB.BUH_F_ARTIKEL__ARTIKELID); //     
+        //
+        HashMap<String, String> final_map = JSon.joinHashMaps(map, updateMap);
+        //
+        String json = JSon.hashMapToJSON(final_map);
+        //
+        System.out.println("UPDATE json: " + json);
+        //
+        HelpBuh.update(json);
+        //
+        if (addingSameArticle == false) {
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, JSon.getLongName(DB.STATIC__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET)));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, map.get(DB.BUH_F_ARTIKEL__PRIS));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT, map.get(DB.BUH_F_ARTIKEL__RABATT));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR, map.get(DB.BUH_F_ARTIKEL__RABATT_KR));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS, map.get(DB.BUH_F_ARTIKEL__MOMS_SATS));
+            HelpA.setValueCurrentRow(table, InvoiceB.TABLE_INVOICE_ARTIKLES__OMVAND_SKATT, JSon.getLongName(DB.STATIC__JA_NEJ, map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)));
+        }
+        //
+        invoic.countFakturaTotal(table);
         //
     }
 

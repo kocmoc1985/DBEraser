@@ -42,16 +42,14 @@ public abstract class Faktura_Entry {
     protected JTable getArticlesTable() {
         return invoice.getArticlesTable();
     }
-    
-    protected String getFakturaId(){
+
+    protected String getFakturaId() {
         return invoice.bim.getFakturaId();
     }
 
     protected abstract void insertOrUpdate();
 
     protected abstract void setData();
-
-    
 
     /**
      * [2021-05-17] [#INVOICE-HAS-OMVAND-SKATT#]
@@ -73,16 +71,22 @@ public abstract class Faktura_Entry {
     public abstract void addArticleForJTable(JTable table);
 
     public abstract void addArticleForDB(Object other);
-    
+
     protected void deleteFakturaArtikel_help(JTable table, int currRow) {
         //Yes, "artikelNamn" is correct - the artikelId is not available here[2021-08-30]
         String artikelNamn = HelpA.getValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN);
+        String artikelPris = HelpA.getValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS);
+        String artikelAntal = HelpA.getValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         //
         //[#SAME-ARTICLE-ADDED-TWICE#]
         //
         for (JTableRowData jtrd : articlesHashSet) {
             //
-            if (jtrd.getArtikelNamn().equals(artikelNamn)) {
+            boolean remove = jtrd.getArtikelNamn().equals(artikelNamn)
+                    && jtrd.getArtikelPris().equals(artikelPris)
+                    && jtrd.getArtikelAntal().equals(artikelAntal);
+            //
+            if (remove) {
                 articlesHashSet.remove(jtrd);
                 break;
             }
