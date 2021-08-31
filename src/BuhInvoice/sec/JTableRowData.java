@@ -90,12 +90,12 @@ public class JTableRowData {
         int hash = 7;
         hash = 17 * hash + Objects.hashCode(this.artikelId);
         hash = 17 * hash + Objects.hashCode(this.artikelKomment);
-        hash = 17 * hash + Objects.hashCode(this.artikelEnhet);
+//        hash = 17 * hash + Objects.hashCode(this.artikelEnhet);
         hash = 17 * hash + Objects.hashCode(this.artikelPris);
-        hash = 17 * hash + Objects.hashCode(this.artikelRabatt);
-        hash = 17 * hash + Objects.hashCode(this.artikelRabattKr);
-        hash = 17 * hash + Objects.hashCode(this.artikelMomsSats);
-        hash = 17 * hash + Objects.hashCode(this.artikelOmvantSkatt);
+//        hash = 17 * hash + Objects.hashCode(this.artikelRabatt);
+//        hash = 17 * hash + Objects.hashCode(this.artikelRabattKr);
+//        hash = 17 * hash + Objects.hashCode(this.artikelMomsSats);
+//        hash = 17 * hash + Objects.hashCode(this.artikelOmvantSkatt);
         return hash;
     }
 
@@ -117,24 +117,24 @@ public class JTableRowData {
         if (!Objects.equals(this.artikelKomment, other.artikelKomment)) {
             return false;
         }
-        if (!Objects.equals(this.artikelEnhet, other.artikelEnhet)) {
-            return false;
-        }
+//        if (!Objects.equals(this.artikelEnhet, other.artikelEnhet)) {
+//            return false;
+//        }
         if (!Objects.equals(this.artikelPris, other.artikelPris)) {
             return false;
         }
-        if (!Objects.equals(this.artikelRabatt, other.artikelRabatt)) {
-            return false;
-        }
-        if (!Objects.equals(this.artikelRabattKr, other.artikelRabattKr)) {
-            return false;
-        }
-        if (!Objects.equals(this.artikelMomsSats, other.artikelMomsSats)) {
-            return false;
-        }
-        if (!Objects.equals(this.artikelOmvantSkatt, other.artikelOmvantSkatt)) {
-            return false;
-        }
+//        if (!Objects.equals(this.artikelRabatt, other.artikelRabatt)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.artikelRabattKr, other.artikelRabattKr)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.artikelMomsSats, other.artikelMomsSats)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.artikelOmvantSkatt, other.artikelOmvantSkatt)) {
+//            return false;
+//        }
         return true;
     }
 

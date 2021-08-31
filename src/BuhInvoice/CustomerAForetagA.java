@@ -530,7 +530,7 @@ public abstract class CustomerAForetagA extends Basic_Buh {
             //
         } //
         //
-        // This is for both "CustomersA" & "ForetagA" [2020-09-30]
+        // This is for both "CustomersA_" & "ForetagA" [2020-09-30]
         else if (col_name.equals(DB.BUH_ADDR__ADDR_A)
                 || col_name.equals(DB.BUH_ADDR__ADDR_B)
                 || col_name.equals(DB.BUH_ADDR__BESOKS_ADDR)) {

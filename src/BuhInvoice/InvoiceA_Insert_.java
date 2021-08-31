@@ -151,7 +151,7 @@ public class InvoiceA_Insert_ extends Invoice_ {
     @Override
     protected void addArticleForDB() {
         //
-        this.faktura_entry_insert.addArticleForDB();
+        this.faktura_entry_insert.addArticleForDB(null);
         //
         // Clearing the rows with the code below
         showTableInvert_2(true);

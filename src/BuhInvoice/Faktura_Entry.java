@@ -72,7 +72,7 @@ public abstract class Faktura_Entry {
 
     public abstract void addArticleForJTable(JTable table);
 
-    public abstract void addArticleForDB();
+    public abstract void addArticleForDB(Object other);
     
     protected void deleteFakturaArtikel_help(JTable table, int currRow) {
         //Yes, "artikelNamn" is correct - the artikelId is not available here[2021-08-30]

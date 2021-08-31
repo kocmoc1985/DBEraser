@@ -614,6 +614,12 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         }
         //
         //
+        //
+        //
+        //
+        //
+        //
+        //
     }
 
     //==========================================================================

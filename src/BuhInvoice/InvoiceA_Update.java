@@ -49,7 +49,7 @@ public class InvoiceA_Update extends Invoice_ {
     @Override
     protected void addArticleForDB() {
         //
-        this.faktura_entry_update.addArticleForDB();
+        this.faktura_entry_update.addArticleForDB(null);
         //
         // Clearing the rows with the code below
         showTableInvert_2(true);

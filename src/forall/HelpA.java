@@ -2283,6 +2283,39 @@ public class HelpA {
         return -1;
     }
 
+    public static int getRowByValue_double_param(JTable table, String col_name, String col_value, String col_name_b, String col_value_b) {
+        for (int i = 0; i < table.getColumnCount(); ++i) {
+            //
+            if (table.getColumnName(i).equals(col_name)) {
+                //
+                for (int y = 0; y < table.getRowCount(); ++y) {
+                    //
+                    String curr_row_value = "" + table.getValueAt(y, i);
+                    //
+                    if (curr_row_value == null) {
+                        continue;
+                    }
+                    //
+                    if (curr_row_value.equals(col_value)) {
+                        //
+                        String val = getValueGivenRow(table, y, col_name_b);
+                        //
+                        if (val == null) {
+                            continue;
+                        }
+                        //
+                        if (val.equals(col_value_b)) {
+                            return y;
+                        }
+                        //
+                    }
+                    //
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void setValueAllRows(JTable table, String colName, String toMatch, String replace) {
         //
         int col = getColByName(table, colName);

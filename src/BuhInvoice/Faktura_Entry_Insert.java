@@ -187,8 +187,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
         //
-        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, map.get(DB.BUH_F_ARTIKEL__ARTIKELID));
-//        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, map.get(DB.BUH_F_ARTIKEL__KOMMENT));
+        HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__KOMMENT, _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, map.get(DB.BUH_F_ARTIKEL__ANTAL));
         HelpA.setValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ENHET, map.get(DB.BUH_F_ARTIKEL__ENHET));
@@ -199,19 +198,21 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         //
         articlesList.remove(currRow);
-        addArticleForDB();
+        addArticleForDB(currRow);
         //
         //
     }
-    
+
     private boolean ADDING_SAME_ARTICLE__INSERT = false;
     private int ANTAL_ADDING_SAME__INSERT = -1;
-    
+    private int ROW_NR_ADDING_SAME__INSERT = -1;
+
     @Override
     public void addArticleForJTable(JTable table) {
-         //
+        //
         ADDING_SAME_ARTICLE__INSERT = false;
         ANTAL_ADDING_SAME__INSERT = 0;
+        ROW_NR_ADDING_SAME__INSERT = -1;
         //
         int jcomboBoxParamToReturnManuallySpecified = 1; // returning the artikel "name" -> refers to "HelpA.ComboBoxObject"
         HashMap<String, String> map = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, jcomboBoxParamToReturnManuallySpecified);
@@ -220,17 +221,20 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         //[#SAME-ARTICLE-ADDED-TWICE#]
         //
+        String artikelNamn = _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true);
+        String artikelPris = map.get(DB.BUH_F_ARTIKEL__PRIS);
+        //
         JTableRowData jtrd = new JTableRowData(map_with_artikelId);
-        jtrd.setArtikelNamn(_get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+        jtrd.setArtikelNamn(artikelNamn);
         Object[] jtableRow;
         //
         if (this.articlesHashSet.contains(jtrd) == false) {
             jtableRow = new Object[]{
-                _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true),// [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
+                artikelNamn,// [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
                 _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
                 map.get(DB.BUH_F_ARTIKEL__ANTAL),
                 map.get(DB.BUH_F_ARTIKEL__ENHET),
-                map.get(DB.BUH_F_ARTIKEL__PRIS),
+                artikelPris,
                 map.get(DB.BUH_F_ARTIKEL__RABATT),
                 map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
                 map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""),
@@ -242,12 +246,14 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             HelpA.addRowToJTable(jtableRow, table);
             //
         } else {
-             //
+            //
             ADDING_SAME_ARTICLE__INSERT = true;
             //
-            int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+            ROW_NR_ADDING_SAME__INSERT = HelpA.getRowByValue_double_param(table,
+                    InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, artikelNamn,
+                    InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, artikelPris);
             //
-            int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
+            int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, ROW_NR_ADDING_SAME__INSERT, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
             //
             int antal_new = Integer.parseInt(jtrd.getArtikelAntal());
             //
@@ -255,14 +261,14 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
             //
             ANTAL_ADDING_SAME__INSERT = (antal_actual + antal_new);
             //
-            HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + ANTAL_ADDING_SAME__INSERT);
+            HelpA.setValueGivenRow(table, ROW_NR_ADDING_SAME__INSERT, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + ANTAL_ADDING_SAME__INSERT);
             //
         }
         //
     }
 
     @Override
-    public void addArticleForDB() {
+    public void addArticleForDB(Object other) {
         //OBS! It can seem that it's added to the DB on this step - NO, here it's only PREPARED for adding
         //
         int jcomboBoxParamToReturnManuallySpecified = 2; // returning the "artikelId" -> refers to "HelpA.ComboBoxObject"
@@ -274,11 +280,21 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         //
         map_for_adding_to_db.put(DB.BUH_F_ARTIKEL__KUND_ID, "777"); // [#KUND-ID-INSERT#]
         //
-        this.articlesList.add(map_for_adding_to_db);
+        if (ADDING_SAME_ARTICLE__INSERT) {
+            ADDING_SAME_ARTICLE__INSERT = false;
+            map_for_adding_to_db.remove(DB.BUH_F_ARTIKEL__ANTAL);
+            map_for_adding_to_db.put(DB.BUH_F_ARTIKEL__ANTAL, "" + ANTAL_ADDING_SAME__INSERT);
+            this.articlesList.remove(ROW_NR_ADDING_SAME__INSERT);
+            this.articlesList.add(ROW_NR_ADDING_SAME__INSERT, map_for_adding_to_db);
+        } else {
+            if (other == null) {
+                this.articlesList.add(map_for_adding_to_db);
+            } else {
+                Integer row = (Integer) other;
+                this.articlesList.add(row, map_for_adding_to_db);
+            }
+        }
         //
-//        articlesListToJson(articlesList);
-        //
-//        invoice.countFakturaTotal(getArticlesTable(), InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL);
         invoice.countFakturaTotal(getArticlesTable());
         //
     }

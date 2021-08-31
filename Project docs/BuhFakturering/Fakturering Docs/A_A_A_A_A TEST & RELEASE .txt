@@ -1,32 +1,27 @@
 ________________________________________________________________________________________
 [2021-08-31][PHP]
 
-Performing update with "double" where.
+Performing update with "double" where. This was implemented in connection with "[#SAME-ARTICLE-ADDED-TWICE#]"
 
 See: LAFakturering.class -> getUPDATE_doubleWhere(.....)
 See: _http_buh.php -> update()
 
 UPDATE buh_f_artikel SET rabatt=?, rabatt_kr=?, antal=?, pris=?, enhet=?, moms_sats=?, omvant_skatt=? WHERE artikelId='148'AND fakturaId='553'AND kundId=34
 
-Invoice_.addArticle(): 261
-
-Faktura_Entry_Insert.addArticleForJTable()
-Faktura_Entry_Insert.addArticleForDB()
-
-
-PRIORITY: MIDDLE
-AMMOUNT OF CHANGES: (2) [1-10]
+PRIORITY: -
+AMMOUNT OF CHANGES: (1) [1-10]
 COMPATIBLE WITH PREVIOUS VERSION: YES
 
 DATE-LAST-WORK-DONE: [2021-08-31]
-CHANGES ON JAVA-SIDE: YES
 PHP-SCRIPTS-INVOLVED: YES
-FILES-SERVER-SIDE-INVOLVED:
+CHANGES ON JAVA-SIDE: YES
+CHANGES-TO-DB:NO 
+FILES-SERVER-SIDE-INVOLVED:NO
 
 DISTRIBUTION UPLOADED TO FTP FOR PUBLIC: 
 
-PHP-TEST-SCRIPTS UPDATED: 
-PHP-MAIN-SCRIPTS UPDATED: 
+PHP-TEST-SCRIPTS UPDATED: YES [2021-08-31]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-08-31]
 ________________________________________________________________________________________
 [2021-06-18][JAVA]
 

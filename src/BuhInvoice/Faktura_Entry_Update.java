@@ -58,8 +58,12 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         HashMap<String, String> map_with_artikelId = invoice.tableInvertToHashMap(invoice.TABLE_INVERT_2, DB.START_COLUMN, 2); // OBS! *2*
         //
         // [#SAME-ARTICLE-ADDED-TWICE#]
+        //
+        String artikelNamn = _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true);
+        String artikelPris = map.get(DB.BUH_F_ARTIKEL__PRIS);
+        //
         JTableRowData jtrd = new JTableRowData(map_with_artikelId);
-        jtrd.setArtikelNamn(_get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+        jtrd.setArtikelNamn(artikelNamn);
         Object[] jtableRow;
         //
         if (this.articlesHashSet.contains(jtrd) == false) { // not the same article added
@@ -68,11 +72,11 @@ public class Faktura_Entry_Update extends Faktura_Entry {
                 "",
                 "",
                 "",
-                _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true), // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
+                artikelNamn, // [#AUTOMATIC-COMMA-WITH-POINT-REPLACEMENT--ARTICLE-NAME#] -> here replacing of "¤" with "," is made
                 _get(map, DB.BUH_F_ARTIKEL__KOMMENT, true),
                 map.get(DB.BUH_F_ARTIKEL__ANTAL),
                 map.get(DB.BUH_F_ARTIKEL__ENHET),
-                map.get(DB.BUH_F_ARTIKEL__PRIS),
+                artikelPris,
                 map.get(DB.BUH_F_ARTIKEL__RABATT),
                 map.get(DB.BUH_F_ARTIKEL__RABATT_KR),
                 map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", ""),
@@ -89,7 +93,9 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //
             ADDING_SAME_ARTICLE__UPDATE = true;
             //
-            int row = HelpA.getRowByValue(table, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, _get(map, DB.BUH_F_ARTIKEL__ARTIKELID, true));
+            int row = HelpA.getRowByValue_double_param(table,
+                    InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN, artikelNamn,
+                    InvoiceB.TABLE_INVOICE_ARTIKLES__PRIS, artikelPris);
             //
             int antal_actual = Integer.parseInt(HelpA.getValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL));
             //
@@ -106,7 +112,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     }
 
     @Override
-    public void addArticleForDB() {
+    public void addArticleForDB(Object other) {
         //[#SAME-ARTICLE-ADDED-TWICE#]
         if (ADDING_SAME_ARTICLE__UPDATE == false) {
             addArticleForDB_common();
