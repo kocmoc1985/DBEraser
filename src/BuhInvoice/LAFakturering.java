@@ -6,12 +6,9 @@
 package BuhInvoice;
 
 import forall.BackgroundPanel;
-import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
-import BuhInvoice.sec.HTMLDialog;
 import BuhInvoice.sec.HTMLDialog_C;
-import BuhInvoice.sec.IO;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.OffertCopyOrOmvandlaFrame_;
