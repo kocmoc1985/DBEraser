@@ -29,6 +29,7 @@ the "<- SPARA" which is visible when you create or edit an invoice.
 This subject may seem rather simple implementation but it's not so.
 
 Search for: "[#SAVE-INVOICE-NOTE#]"
+Search also for: [#COOL-BUG-0154786#] -> This was a problem which took much time to find
 ________________________________________________________________________________________________________
 [COPY-PASTE JTextField TableInvert]
 

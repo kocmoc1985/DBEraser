@@ -414,7 +414,8 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         SET_CURRENT_OPERATION_INSERT(true);
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "buh_faktura_a");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+                getConfigTableInvert(), false, "table_invert_1");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -429,7 +430,8 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         SET_CURRENT_OPERATION_INSERT(false);
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "buh_faktura_a");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+                getConfigTableInvert_2(), false, "table_invert_2");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);

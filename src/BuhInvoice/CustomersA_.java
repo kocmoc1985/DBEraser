@@ -361,7 +361,8 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         SET_CURRENT_OPERATION_INSERT(true);
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+                getConfigTableInvert(), false, "table_invert_1");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -376,7 +377,8 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         SET_CURRENT_OPERATION_INSERT(false);
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+                getConfigTableInvert_2(), false, "table_invert_2");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -389,7 +391,8 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
      * UPDATE
      */
     public void showTableInvert_3() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+                getConfigTableInvert_3(), false, "table_invert_3");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
@@ -401,7 +404,8 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
      * INSERT
      */
     public void showTableInvert_4() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null,
+        getConfigTableInvert_4(), false, "table_invert_4");
         TABLE_INVERT_4 = null;
         TABLE_INVERT_4 = tableBuilder.buildTable_B(this);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);

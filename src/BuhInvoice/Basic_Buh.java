@@ -62,9 +62,23 @@ public abstract class Basic_Buh extends Basic {
     }
 
     @Override
+    public void showTableInvert(JComponent container) {
+        //
+        TableInvert ti = (TableInvert)TABLE_INVERT; //[#SAVE-INVOICE-NOTE#]
+        //
+        showTableInvert(container, ti); //To change body of generated methods, choose Tools | Templates.
+        //
+    }
+    
+
+    @Override
     public void showTableInvert(JComponent container, Table tableInvert) {
         //
-        tableInitReadySet.add((TableInvert)tableInvert); //[#SAVE-INVOICE-NOTE#]
+        TableInvert ti = (TableInvert)tableInvert;
+        //
+        tableInitReadySet.add(ti); //[#SAVE-INVOICE-NOTE#]
+        //
+        System.out.println("ADDED: " + ti.getTABLE_NAME());
         //
         super.showTableInvert(container, tableInvert); //To change body of generated methods, choose Tools | Templates.
     }
@@ -74,8 +88,11 @@ public abstract class Basic_Buh extends Basic {
     @Override
     protected void doOtherRepaintThread(Table table) {
         //
-        tableInitReadySet.remove((TableInvert)table); //[#SAVE-INVOICE-NOTE#]
+        TableInvert ti = (TableInvert)table;
         //
+        tableInitReadySet.remove(ti); //[#SAVE-INVOICE-NOTE#]
+        //
+        System.out.println("REMOVED: " + ti.getTABLE_NAME());
     }
 
     /**

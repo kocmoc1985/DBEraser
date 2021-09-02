@@ -401,7 +401,7 @@ public class Home extends Basic_Buh {
     @Override
     public void showTableInvert() {
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "login");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert(), false, "table_invert_1_login");
         TABLE_INVERT = null;
         TABLE_INVERT = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
@@ -416,7 +416,7 @@ public class Home extends Basic_Buh {
      */
     public void showTableInvert_2() {
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "register_new");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "table_invert_2_register_new");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -431,7 +431,7 @@ public class Home extends Basic_Buh {
      */
     public void showTableInvert_3() {
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "restore");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "table_invert_3_restore");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
@@ -444,7 +444,7 @@ public class Home extends Basic_Buh {
     public void showTableInvert_4() {
         //
         // Yes, it's correct that "getConfigTableInvert_3()" is used
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "restore");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_4(), false, "table_invert_4_share");
         TABLE_INVERT_4 = null;
         TABLE_INVERT_4 = tableBuilder.buildTable_B(this, Color.BLACK);
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);

@@ -136,7 +136,7 @@ public class ForetagA extends CustomerAForetagA {
         //
         SET_CURRENT_OPERATION_INSERT(false);
         //
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_2(), false, "table_invert_2_company_main_data");
         TABLE_INVERT_2 = null;
         TABLE_INVERT_2 = tableBuilder.buildTable_B(this); // , Color.BLACK
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
@@ -145,7 +145,7 @@ public class ForetagA extends CustomerAForetagA {
     }
 
     public void showTableInvert_3() {
-        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "");
+        TableBuilderInvert tableBuilder = new TableBuilderInvert(new OutPut(), null, getConfigTableInvert_3(), false, "table_invert_3_company_address");
         TABLE_INVERT_3 = null;
         TABLE_INVERT_3 = tableBuilder.buildTable_B(this); //, Color.BLACK
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);

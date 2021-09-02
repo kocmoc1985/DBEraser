@@ -634,30 +634,30 @@ public class TableInvert extends Table implements ControlsActionsIF {
 
     
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TableInvert other = (TableInvert) obj;
-        if (!Objects.equals(this.TABLE_NAME, other.TABLE_NAME)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {//[#SAVE-INVOICE-NOTE#]
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.TABLE_NAME);
-        return hash;
-    }
+//    @Override 
+//    public boolean equals(Object obj) {//[#SAVE-INVOICE-NOTE#] NOT NEEDED CAUSES HUGE PROBLEM [2021-09-02]
+//        if (this == obj) { // [#COOL-BUG-0154786#]
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final TableInvert other = (TableInvert) obj;
+//        if (!Objects.equals(this.TABLE_NAME, other.TABLE_NAME)) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public int hashCode() {//[#SAVE-INVOICE-NOTE#] NOT NEEDED CAUSES HUGE PROBLEM [2021-09-02]
+//        int hash = 7; // [#COOL-BUG-0154786#]
+//        hash = 97 * hash + Objects.hashCode(this.TABLE_NAME);
+//        return hash;
+//    }
     
     
 }
