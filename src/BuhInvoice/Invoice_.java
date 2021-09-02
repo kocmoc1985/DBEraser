@@ -1159,15 +1159,18 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             } else if (col_name.equals(DB.BUH_FAKTURA__DROJSMALSRANTA)
                     || col_name.equals(DB.BUH_FAKTURA__FRAKT)
-                    || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
+                    || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)
+                    || col_name.equals(DB.BUH_FAKTURA__CURRENCY_RATE_A)) {
                 //
                 if (digitalInputValidated == false) {
                     return;
                 }
                 //
-                saveInput(col_name);
+                if (col_name.equals(DB.BUH_FAKTURA__CURRENCY_RATE_A) == false) {
+                    saveInput(col_name);
+                }
                 //
-                if (col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG)) {
+                if (col_name.equals(DB.BUH_FAKTURA__FRAKT) || col_name.equals(DB.BUH_FAKTURA__EXP_AVG) || col_name.equals(DB.BUH_FAKTURA__CURRENCY_RATE_A)) {
                     countFakturaTotal(getArticlesTable());
                 }
                 //
