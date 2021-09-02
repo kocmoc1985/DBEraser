@@ -12,7 +12,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 /**
- *
+ * [#COPY-PASTE-TABLE-INVERT#]
  * @author KOCMOC
  */
 public class JPasswordFieldCopyPaste extends JPasswordField {

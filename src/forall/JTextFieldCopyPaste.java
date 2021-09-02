@@ -16,7 +16,7 @@ import javax.swing.text.TextAction;
 import javax.swing.JTextField;
 
 /**
- *
+ * [#COPY-PASTE-TABLE-INVERT#]
  * @author KOCMOC
  */
 public class JTextFieldCopyPaste extends JTextField {

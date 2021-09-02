@@ -8,7 +8,6 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.JTableRowData;
 import BuhInvoice.sec.LANG;
-import com.sun.corba.se.impl.orbutil.ORBConstants;
 import forall.HelpA;
 import java.util.HashMap;
 import java.util.logging.Level;

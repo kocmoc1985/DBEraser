@@ -30,6 +30,11 @@ This subject may seem rather simple implementation but it's not so.
 
 Search for: "[#SAVE-INVOICE-NOTE#]"
 ________________________________________________________________________________________________________
+[COPY-PASTE JTextField TableInvert]
+
+Search for: "[#COPY-PASTE-TABLE-INVERT#]"
+
+________________________________________________________________________________________________________
 [HTML-DIALOGS ADVANCED INFORMATION MESSAGES][2021-08-23]
 
 Search for: [#HTML-DIALOG#]
