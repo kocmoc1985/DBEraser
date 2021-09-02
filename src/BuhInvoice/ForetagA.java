@@ -12,7 +12,6 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -47,6 +46,22 @@ public class ForetagA extends CustomerAForetagA {
     @Override
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
 
+    }
+    
+    protected void jTableForetagA_ftg_table_clicked(){
+         //
+        showTableInvert_2();
+        refreshTableInvert(TABLE_INVERT_2);
+        fillAddressTable();
+        //
+        HelpA.markFirstRowJtable(getTableAdress());
+        jTableForetagA_adress_clicked();
+        //
+    }
+    
+    protected void jTableForetagA_adress_clicked(){
+        showTableInvert_3();
+        refreshTableInvert(TABLE_INVERT_3);
     }
 
     @Override

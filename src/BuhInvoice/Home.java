@@ -238,6 +238,11 @@ public class Home extends Basic_Buh {
         showTableInvert_3();
         showTableInvert_4();
         //
+//        refreshTableInvert();
+//        refreshTableInvert(TABLE_INVERT_2);
+//        refreshTableInvert(TABLE_INVERT_3);
+//        refreshTableInvert(TABLE_INVERT_4);
+        //
         if (GP_BUH.loggedIn() && GP_BUH.isGuestUser() == false) {
             HelpA.clearAllRowsJTable(getJTable());
             fillSharedUsersTable();
@@ -402,7 +407,7 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_inloggning);
         //
-        makeTransparent(TABLE_INVERT, bim.jPanel_inloggning);
+//        makeTransparent(TABLE_INVERT, bim.jPanel_inloggning);
         //
     }
 
@@ -417,7 +422,7 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT_2, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_register_new, TABLE_INVERT_2);
         //
-        makeTransparent(TABLE_INVERT_2, bim.jPanel_register_new);
+//        makeTransparent(TABLE_INVERT_2, bim.jPanel_register_new);
         //
     }
 
@@ -432,7 +437,7 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT_3, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_restore_password, TABLE_INVERT_3);
         //
-        makeTransparent(TABLE_INVERT_3, bim.jPanel_restore_password);
+//        makeTransparent(TABLE_INVERT_3, bim.jPanel_restore_password);
         //
     }
 
@@ -445,7 +450,7 @@ public class Home extends Basic_Buh {
         setMargin(TABLE_INVERT_4, 5, 0, 5, 0);
         showTableInvert(bim.jPanel_share_account, TABLE_INVERT_4);
         //
-        makeTransparent(TABLE_INVERT_4, bim.jPanel_share_account);
+//        makeTransparent(TABLE_INVERT_4, bim.jPanel_share_account);
         //
     }
 

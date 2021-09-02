@@ -3742,8 +3742,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }
 
     protected void jTableForetagA_adress_clicked() {
-        foretagA.showTableInvert_3();
-        foretagA.refreshTableInvert(foretagA.TABLE_INVERT_3);
+        foretagA.jTableForetagA_adress_clicked();
     }
 
     protected void jTableCustomersA_kunder_clicked() {
@@ -3771,12 +3770,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     protected void jTableForetagA_ftg_table_clicked() {
         //
-        foretagA.showTableInvert_2();
-        foretagA.refreshTableInvert(foretagA.TABLE_INVERT_2);
-        foretagA.fillAddressTable();
-        //
-        HelpA.markFirstRowJtable(jTable_ftg_addr);
-        jTableForetagA_adress_clicked();
+        foretagA.jTableForetagA_ftg_table_clicked();
         //
     }
 

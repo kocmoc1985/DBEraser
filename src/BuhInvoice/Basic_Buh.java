@@ -55,6 +55,11 @@ public abstract class Basic_Buh extends Basic {
     public boolean allTableInvertsDrawnReady(){
         return tableInitReadySet.isEmpty();
     }
+    
+    @Override
+    public void refreshTableInvert(Table tableInvert) { // JUST TO REMEMBER
+        super.refreshTableInvert(tableInvert); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void showTableInvert(JComponent container, Table tableInvert) {
@@ -64,6 +69,8 @@ public abstract class Basic_Buh extends Basic {
         super.showTableInvert(container, tableInvert); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    
     @Override
     protected void doOtherRepaintThread(Table table) {
         //
