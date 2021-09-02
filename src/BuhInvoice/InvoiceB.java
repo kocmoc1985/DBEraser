@@ -115,6 +115,10 @@ public class InvoiceB extends Basic_Buh {
     private HashSet<JTableRowData> getFakturaEntry_articlesHashSet(){
         return invoiceA_Update.faktura_entry.articlesHashSet;
     }
+    
+    private void resetFakturaEntryLists(){
+        invoiceA_Update.faktura_entry.resetLists();
+    }
 
     @Override
     protected void startUp() {
@@ -820,7 +824,7 @@ public class InvoiceB extends Basic_Buh {
         //
         HelpA.clearAllRowsJTable(table);
         //
-        invoiceA_Update.faktura_entry.resetLists();
+        resetFakturaEntryLists();
         //
         if (fakturaId == null || fakturaId.isEmpty()) {
             return;
@@ -992,6 +996,8 @@ public class InvoiceB extends Basic_Buh {
     }
 
     protected void copy(boolean isKreditFaktura, boolean isOffert, boolean omvandlaOffertToFaktura) {
+        //
+        resetFakturaEntryLists();
         //
         String fakturaId = bim.getFakturaId();
         //

@@ -66,6 +66,8 @@ public class InvoiceA_Insert_ extends Invoice_ {
 //    }
     protected void createNew(String fakturaType) {
         //
+        faktura_entry.resetLists();
+        //
         if (fakturaType.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             CREATE_KONTANT_FAKTURA__OPERATION_INSERT = true;
         } else if (fakturaType.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {

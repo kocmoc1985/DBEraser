@@ -1322,7 +1322,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
             }
             //
-            hideField_IF_NOT_ForeignCustomer(TABLE_INVERT_3, DB.BUH_FAKTURA__CURRENCY_RATE_A);
+            hideField_IF_NOT_ForeignCustomer(TABLE_INVERT_3, DB.BUH_FAKTURA__CURRENCY_RATE_A); //[#EUR-SEK#]
             //
             //====================
             //

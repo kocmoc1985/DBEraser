@@ -5,9 +5,7 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.GP_BUH._get;
 import BuhInvoice.sec.JTableRowData;
-import BuhInvoice.sec.LANG;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
