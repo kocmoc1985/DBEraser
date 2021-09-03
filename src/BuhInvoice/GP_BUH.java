@@ -42,7 +42,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -58,8 +57,8 @@ import net.coobird.thumbnailator.Thumbnails;
  */
 public class GP_BUH {
 
-    public static final String VERSION = "1.12";
-    public static final int VERSION_INTEGER = 112;
+    public static final String VERSION = "1.14";
+    public static final int VERSION_INTEGER = 114;
     public static final String PRODUCT_NAME = "LAFakturering";
     public static String CUSTOMER_COMPANY_NAME = "";
     public static boolean CUSTOMER_MODE = true;

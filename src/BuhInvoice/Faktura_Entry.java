@@ -70,6 +70,12 @@ public abstract class Faktura_Entry {
 
     public abstract void addArticleForDB(Object other);
 
+    protected void addArticleForJTable_update_hashset(JTableRowData jtrd, int antal) {
+        this.articlesHashSet.remove(jtrd);
+        jtrd.setArtikelAntal("" + antal);
+        this.articlesHashSet.add(jtrd);
+    }
+
     protected void deleteFakturaArtikel_help(JTable table, int currRow) {
         //Yes, "artikelNamn" is correct - the artikelId is not available here[2021-08-30]
         String artikelNamn = HelpA.getValueGivenRow(table, currRow, InvoiceB.TABLE_INVOICE_ARTIKLES__ARTIKEL_NAMN);

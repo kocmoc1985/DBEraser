@@ -21,7 +21,7 @@ public class JTableRowData {
     //
     private final String artikelId;
     private final String artikelKomment;
-    private final String artikelAntal;
+    private  String artikelAntal;
     private final String artikelEnhet;
     private final String artikelPris;
     private final String artikelRabatt;
@@ -39,6 +39,10 @@ public class JTableRowData {
         this.artikelRabattKr = map.get(DB.BUH_F_ARTIKEL__RABATT_KR);
         this.artikelMomsSats = map.get(DB.BUH_F_ARTIKEL__MOMS_SATS).replaceAll("%", "");
         this.artikelOmvantSkatt = map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT);
+    }
+    
+    public void setArtikelAntal(String antal){
+        this.artikelAntal = antal;
     }
     
     public void setArtikelNamn(String namn){

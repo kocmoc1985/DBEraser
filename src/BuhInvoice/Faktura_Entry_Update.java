@@ -106,6 +106,8 @@ public class Faktura_Entry_Update extends Faktura_Entry {
             //
             HelpA.setValueGivenRow(table, row, InvoiceB.TABLE_INVOICE_ARTIKLES__ANTAL, "" + ANTAL_ADDING_SAME__UPDATE);
             //
+            addArticleForJTable_update_hashset(jtrd, ANTAL_ADDING_SAME__UPDATE);
+            //
         }
         //
     }
