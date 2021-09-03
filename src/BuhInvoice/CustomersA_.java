@@ -520,7 +520,7 @@ public class CustomersA_ extends CustomerAForetagA implements BarGraphListener {
         //
         RowDataInvert ort = new RowDataInvertB("", DB.BUH_ADDR__ORT, TABLE_FAKTURA_KUND_ADDR__ORT, "", true, true, false);
         //
-        RowDataInvert land = new RowDataInvertB("", DB.BUH_ADDR__LAND, TABLE_FAKTURA_KUND_ADDR__LAND, "", true, true, false);
+        RowDataInvert land = new RowDataInvertB("Sverige", DB.BUH_ADDR__LAND, TABLE_FAKTURA_KUND_ADDR__LAND, "", true, true, false);
         //
         RowDataInvert tel_a = new RowDataInvertB("", DB.BUH_ADDR__TEL_A, TABLE_FAKTURA_KUND_ADDR__TEL_A, "", true, true, false);
         //

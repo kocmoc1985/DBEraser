@@ -12,7 +12,6 @@ import BuhInvoice.sec.RutRot;
 import forall.HelpA;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -241,7 +240,9 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
                 map.get(DB.BUH_F_ARTIKEL__OMVANT_SKATT)
             };
             //
-            this.articlesHashSet.add(jtrd);
+            if(jtrd.getArtikelNamn().equals("-") == false){
+                this.articlesHashSet.add(jtrd); // [2021-09-03] Bug fix, when you add an "-" article it should not be added to the hashset
+            }
             //
             HelpA.addRowToJTable(jtableRow, table);
             //

@@ -1474,6 +1474,11 @@ public abstract class Invoice_ extends Basic_Buh {
             if (selectedObj instanceof HelpA.ComboBoxObject) {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
+                //
+                if(pris == null ||pris.equals("null")){ //[2021-09-03] Bug fix -> This was needed when you created a new Invoice added an empty article "-", then you tried to edit it. But the price became "null"
+                    return;
+                }
+                //
                 if (pris.isEmpty()) {
                     setValueTableInvert(DB.BUH_FAKTURA_ARTIKEL___PRIS, TABLE_INVERT_2, "0");
                 } else {
