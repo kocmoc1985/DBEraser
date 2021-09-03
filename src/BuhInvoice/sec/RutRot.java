@@ -106,7 +106,7 @@ public class RutRot extends Basic_Buh {
         //
         //
         //
-        JTable table_person = rutRotFrame.jTable3;
+        JTable table_person = rutRotFrame.jTable3_persons;
         //
         for (int row = 0; row < table_person.getRowCount(); row++) {
             //
@@ -154,7 +154,7 @@ public class RutRot extends Basic_Buh {
 
     public ArrayList<HashMap<String, String>> getFakturaPreview_rut_pers() {
         //
-        JTable table_person = rutRotFrame.jTable3;
+        JTable table_person = rutRotFrame.jTable3_persons;
         //
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         //

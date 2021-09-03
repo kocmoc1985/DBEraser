@@ -75,10 +75,10 @@ public class GP_BUH {
      *
      * For demoDemo.. use "demo@lafakturering.se" -> p:e2gK0knpf9
      * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se] [not test]
-     * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "sgycPkSeFY" -> GUEST ACCOUNT:
+     * Auto created on [2021-05-27] andrei.brassas@mixcont.com / "" -> GUEST ACCOUNT:
      * guest_31_kocmoc1985@gmail.com / "BMZYyw2kv4"
      * Auto created on [2020-10-14] BuhInvoice use:"andrej.brassas@gmail.com" / "8RDoPnvugb" --> www.la.se [not test]
-     * Auto created on [2021-XX-XX] "kocmoc1985@gmail.com / P8bQ2cLGfn" --> www.la.se [not test]
+     * Auto created on [2021-XX-XX] "kocmoc1985@gmail.com / xuzdOWnHK6" --> www.la.se [not test]
      *
      * For MixCont test Bolag "kundId=1" use: "ask@mixcont.com"/"mixcont4765" ---> THE REAL ONE****
      * For Alex Bolag "kundId=2" use: "alex_breicht@yahoo.se "/"alex1980"

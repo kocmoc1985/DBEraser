@@ -72,16 +72,16 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         fillJTableheader_person();
         //
-        HelpA.copyTableHeadersFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable1);
-        hideCols(jTable1);
-        HelpA.copyTableHeadersFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable2);
-        hideCols(jTable2);
+        HelpA.copyTableHeadersFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable1_all_articles);
+        hideCols(jTable1_all_articles);
+        HelpA.copyTableHeadersFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable2_rut_rot_articles);
+        hideCols(jTable2_rut_rot_articles);
         //
-        HelpA.copyDataFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable1);
+        HelpA.copyDataFromOneTableToAnother(bim.jTable_InvoiceA_Insert_articles, jTable1_all_articles);
         //
-        HelpA.markFirstRowJtable(jTable1);
+        HelpA.markFirstRowJtable(jTable1_all_articles);
         //
-        autodefineRutArticlesJTable(jTable1);
+        autodefineRutArticlesJTable(jTable1_all_articles);
         //
     }
 
@@ -128,13 +128,14 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void fillJTableheader_person() {
         //
-        JTable table = jTable3;
+        JTable table = jTable3_persons;
         //
         String[] headers = {
             RutRot.COL__FORNAMN,
             RutRot.COL__EFTERNAMN,
             RutRot.COL__AVDRAG,
-            RutRot.COL__PNR,};
+            RutRot.COL__AVDRAGS_TAK,
+            RutRot.COL__PNR};
         //
         table.setModel(new DefaultTableModel(null, headers));
         //
@@ -142,7 +143,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void deletePerson() {
         //
-        JTable table = jTable3;
+        JTable table = jTable3_persons;
         //
         HelpA.removeRowJTable(table, table.getSelectedRow());
         //
@@ -154,7 +155,7 @@ public class RutRotFrame extends javax.swing.JFrame {
             return;
         }
         //
-        JTable table = jTable3;
+        JTable table = jTable3_persons;
         //
         HashMap<String, String> map = rut.getValuesTableInvert();
         //
@@ -162,6 +163,7 @@ public class RutRotFrame extends javax.swing.JFrame {
             map.get(DB.BUH_FAKTURA_RUT_PERSON__FORNAMN),
             map.get(DB.BUH_FAKTURA_RUT_PERSON__EFTERNAMN),
             "0",
+            defineAvdragsTak(),
             map.get(DB.BUH_FAKTURA_RUT_PERSON__PNR)
         };
         //
@@ -182,7 +184,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     }
 
     private void recalcAndSetAvdragPerPers() {
-        HelpA.setValueAllRows(jTable3, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
+        HelpA.setValueAllRows(jTable3_persons, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
     }
 
     private boolean is_ROT__Bygg() {
@@ -195,12 +197,12 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     public double defineAvdragsTak() {
         //
-        if(rut != null && rut.TABLE_INVERT != null){
+        if (rut != null && rut.TABLE_INVERT != null) {
             //
             String val = rut.getValueTableInvert(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE);
             //
-            if(HelpA.isNumber(val)){
-               return Double.parseDouble(val);  
+            if (HelpA.isNumber(val)) {
+                return Double.parseDouble(val);
             }
             //
         }
@@ -215,11 +217,11 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void countAvdrag(int antalPers) {
         //
-        AVDRAGS_GILL_BELOPP = countJTable(jTable2); // ja det inkluderar moms
+        AVDRAGS_GILL_BELOPP = countJTable(jTable2_rut_rot_articles); // ja det inkluderar moms
         //
         AVDRAG_TOTAL = AVDRAGS_GILL_BELOPP * ROT_ELLER_RUT__PERCENT;
         //
-        double avdragsTaket = defineAvdragsTak();
+        double avdragsTaket = defineAvdragsTak() + countAvdragsTakJTable(jTable3_persons);
         //
         if (AVDRAG_TOTAL > avdragsTaket) {
             AVDRAG_TOTAL = avdragsTaket;
@@ -228,7 +230,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         System.out.println("RUT BELOPP INNAN AVDRAG: " + AVDRAGS_GILL_BELOPP);
         System.out.println("AVDRAG TOTAL: " + AVDRAG_TOTAL);
         //
-        double antal_pers_som_delar_på_avdraget = jTable3.getRowCount();
+        double antal_pers_som_delar_på_avdraget = jTable3_persons.getRowCount();
         //
         if (antal_pers_som_delar_på_avdraget == 0 && antalPers == -1) {
             return;
@@ -242,6 +244,24 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON);
         //
+    }
+
+    private static Double countAvdragsTakJTable(JTable table) {
+        //
+        double sum = 0;
+        //
+        if (table.getRowCount() == 0) {
+            return sum;
+        }
+        //
+        for (int x = 0; x < table.getRowCount(); x++) {
+            int col_tak = HelpA.getColByName(table, RutRot.COL__AVDRAGS_TAK);
+            Double tak = (Double) table.getValueAt(x, col_tak);
+//            double tak = Double.parseDouble(val_tak);
+            sum += tak;
+        }
+        //
+        return sum;
     }
 
     private static Double countJTable(JTable table) {
@@ -306,7 +326,7 @@ public class RutRotFrame extends javax.swing.JFrame {
                     //
                     if (val_artikel.toLowerCase().contains(str) || val_beskrivning.toLowerCase().contains(str)) {
                         //
-                        HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, row);
+                        HelpA.addRowFromOneTableToAnother_withRemove(jTable1_all_articles, jTable2_rut_rot_articles, row);
                         //
                         countAvdrag(-1);
                         //
@@ -320,6 +340,18 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
     }
 
+    private void showHideMoveArticlesButtons() {
+        //
+        if (jTable3_persons.getRowCount() == 0) {
+            jButton1.setEnabled(true);
+            jButton2.setEnabled(true);
+        }else{
+            jButton1.setEnabled(false);
+            jButton2.setEnabled(false);
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -330,17 +362,17 @@ public class RutRotFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1_all_articles = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable2_rut_rot_articles = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTable3_persons = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel_table_invert = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButton_add_person = new javax.swing.JButton();
+        jButton_delete_person = new javax.swing.JButton();
         jCheckBox_ROT = new javax.swing.JCheckBox();
         jCheckBox_RUT = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
@@ -350,7 +382,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1_all_articles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -361,9 +393,9 @@ public class RutRotFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable1_all_articles);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2_rut_rot_articles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -374,7 +406,7 @@ public class RutRotFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable2_rut_rot_articles);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/next.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -390,7 +422,7 @@ public class RutRotFrame extends javax.swing.JFrame {
             }
         });
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTable3_persons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -401,7 +433,7 @@ public class RutRotFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTable3_persons);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -409,17 +441,17 @@ public class RutRotFrame extends javax.swing.JFrame {
 
         jPanel_table_invert.setLayout(new java.awt.BorderLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/next.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_add_person.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/next.png"))); // NOI18N
+        jButton_add_person.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_add_personActionPerformed(evt);
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton_delete_person.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel-1.png"))); // NOI18N
+        jButton_delete_person.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton_delete_personActionPerformed(evt);
             }
         });
 
@@ -475,8 +507,8 @@ public class RutRotFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_add_person, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton_delete_person, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,9 +558,9 @@ public class RutRotFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_add_person, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_delete_person, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 81, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -545,45 +577,49 @@ public class RutRotFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTable1.getRowCount() > 0) {
-            HelpA.addRowFromOneTableToAnother_withRemove(jTable1, jTable2, -1);
+        if (jTable1_all_articles.getRowCount() > 0) {
+            HelpA.addRowFromOneTableToAnother_withRemove(jTable1_all_articles, jTable2_rut_rot_articles, -1);
             countAvdrag(-1);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jTable2.getRowCount() > 0) {
-            HelpA.addRowFromOneTableToAnother_withRemove(jTable2, jTable1, -1);
+        if (jTable2_rut_rot_articles.getRowCount() > 0) {
+            HelpA.addRowFromOneTableToAnother_withRemove(jTable2_rut_rot_articles, jTable1_all_articles, -1);
             countAvdrag(-1);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_add_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_add_personActionPerformed
         //
-        if (HelpA.isEmtyJTable(jTable2)) {
+        if (HelpA.isEmtyJTable(jTable2_rut_rot_articles)) {
             HelpA.showNotification(LANG.MSG_27);
             return;
         }
         //
-        countAvdrag(jTable3.getRowCount() + 1);
+        countAvdrag(jTable3_persons.getRowCount() + 1);
         //
         addPerson();
         //
-    }//GEN-LAST:event_jButton3ActionPerformed
+        showHideMoveArticlesButtons();
+        //
+    }//GEN-LAST:event_jButton_add_personActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton_delete_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_personActionPerformed
         //
         deletePerson();
         //
-        int antal_pers = jTable3.getRowCount();
+        int antal_pers = jTable3_persons.getRowCount();
         //
         if (antal_pers == 0 || antal_pers == 1) {
             countAvdrag(-1);
         } else {
             countAvdrag(antal_pers - 1);
         }
-
-    }//GEN-LAST:event_jButton4ActionPerformed
+        //
+        showHideMoveArticlesButtons();
+        //
+    }//GEN-LAST:event_jButton_delete_personActionPerformed
 
     private void jCheckBox_ROTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_ROTActionPerformed
         setRotOrRut_CheckBoxes(evt);
@@ -597,7 +633,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         // [#RUTROT#]
         // Setting "AVDRAG_TOTAL" for counting
         //
-        if (HelpA.isEmtyJTable(jTable3)) {
+        if (HelpA.isEmtyJTable(jTable3_persons)) {
             HelpA.showNotification(LANG.MSG_26);
             return;
         }
@@ -640,9 +676,9 @@ public class RutRotFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton_add_person;
+    private javax.swing.JButton jButton_delete_person;
     private javax.swing.JCheckBox jCheckBox_ROT;
     private javax.swing.JCheckBox jCheckBox_RUT;
     private javax.swing.JLabel jLabel1;
@@ -653,8 +689,8 @@ public class RutRotFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    public javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable1_all_articles;
+    private javax.swing.JTable jTable2_rut_rot_articles;
+    public javax.swing.JTable jTable3_persons;
     // End of variables declaration//GEN-END:variables
 }

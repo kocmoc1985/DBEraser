@@ -29,6 +29,11 @@ _____
 OBS! Important fix to be done! When you "kredit" an invoice the invoice which you kredited remains as nothing happens - 
 it should be marked somehow as it's kredited automatically or you should be able to do it manually.[2021-09-03][IMPORTANT][IMPORTANT][IMPORTANT]
 
+
+RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
+when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximu 2000
+but the program will devide equally....[2021-09-03][IMPORTANT]
+
 ___
 
 Backup of all data  (have in mind that kundId could id is present in all tables)

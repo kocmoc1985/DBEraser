@@ -190,7 +190,8 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private String getAttBetalaTotal() {
         String att_betala_title = getAttBetalaTitle(FAKTURA_TYPE);
-        return map_d.get(att_betala_title);
+        String total = map_d.get(att_betala_title);
+        return roundBetalaTotal(total);
     }
 
     private String getTotalBeloppInnanAvdrag() {
@@ -448,7 +449,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String currencyUnit = FOREIGN_CUSTOMER ? HelpBuh.CURRENCY__EUR : "";
         //
         String[] headers = new String[]{T__FAKTURA_RUT_TOTAL_BELOPP, T__FAKTURA_RUT_AVDRAG_TOTAL, T__FAKTURA_FRAKT(), T__FAKTURA_EXP_AVG(), T__FAKTURA_EXKL_MOMS(), T__FAKTURA_MOMS_PERCENT(), T__FAKTURA_MOMS_KR(), T__FAKTURA_RABATT_KR(), ATT_BETALA_TITLE};
-        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, roundBetalaTotal(att_betala_total) + " " + currencyUnit};
+        String[] values = new String[]{total_belopp_innan_avdrag, rut_avdrag_total, frakt, exp, total_exkl_moms, map_d.get(T__FAKTURA_MOMS_PERCENT), moms_kr, rabatt_kr, att_betala_total + " " + currencyUnit};
         //
         //[2020-09-28] Not showing "MOMS %" if "MOMS KR=0" 
         HeadersValuesHTMLPrint hvp = excludeIfZero(headers, values, colToMakeBold, moms_kr, frakt, exp, rabatt_kr, rut_avdrag_total, total_belopp_innan_avdrag);
@@ -653,10 +654,10 @@ public class HTMLPrint_A extends HTMLPrint {
             String pnr = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__PNR);
             String avdrag = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__SKATTEREDUKTION);
             //
-            String pers = namn + " " + efternamn + " " + pnr + "  " + avdrag + " kr";
+            String pers = namn + " " + efternamn + ", " + pnr + ",  " + avdrag + " kr";
             //
             if (i < (map_rut_pers.size() - 1)) {
-                html_ += pers + ", ";
+                html_ += pers + "; ";
             } else {
                 html_ += pers;
             }

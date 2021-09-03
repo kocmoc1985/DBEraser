@@ -605,7 +605,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/copy.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                        <Property name="toolTipText" type="java.lang.String" value="Kopiera faktura"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_copy_fakturaActionPerformed"/>
@@ -666,7 +666,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/event.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Se historia &#xf6;ver skickade e-post och p&#xe5;minnelser"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Se historik"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_show_actionsActionPerformed"/>
@@ -723,7 +723,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/ok_sm.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Uppdatera faktura kommentar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Uppdatera fakturakommentar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_save_faktura_kommentActionPerformed"/>
@@ -737,7 +737,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/close_sm.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Radera faktura kommentar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Radera fakturakommentar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4_delete_faktura_komment1ActionPerformed"/>
@@ -1366,7 +1366,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Spara faktura"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_confirm_insert_updateActionPerformed"/>
@@ -1470,7 +1470,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Uppdatera artikel (g&#xf6;r &#xe4;ndringar i tabellen till v&#xe4;nster)"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_update_articles_rowActionPerformed"/>
@@ -2166,7 +2166,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Uppdatera / l&#xe4;gga till artikel"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_update_articleActionPerformed"/>
@@ -2516,7 +2516,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Uppdatera faktura kund data"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_update_kundActionPerformed"/>
@@ -2828,7 +2828,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/icons/correct.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Uppdatera kund data"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_update_kund_dataActionPerformed"/>
@@ -2997,7 +2997,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/icons/correct.png"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Spara e-post SMTP inst&#xe4;llningar"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Spara"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_save_smtp_settingsActionPerformed"/>

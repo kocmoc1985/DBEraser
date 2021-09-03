@@ -109,7 +109,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__FAKTURA_MOMS_PERCENT = "Moms %";
     public static final String T__FAKTURA_MOMS_KR = "Moms kr";
     public static final String T__FAKTURA_RABATT_KR = "Rabatt kr";
-    public static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
+    private static final String T__FAKTURA_ATT_BETALA = "ATT BETALA";
     //
     public static final String COL_0 = DB.BUH_FAKTURA_KUND___NAMN;
     public static final String COL_1 = DB.BUH_ADDR__ADDR_A;

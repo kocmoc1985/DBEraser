@@ -1341,7 +1341,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel4.add(jButton_kredit_faktura);
 
         jButton_copy_faktura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/copy.png"))); // NOI18N
-        jButton_copy_faktura.setToolTipText("");
+        jButton_copy_faktura.setToolTipText("Kopiera faktura");
         jButton_copy_faktura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_copy_fakturaActionPerformed(evt);
@@ -1386,7 +1386,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel4.add(jButton_inbetalning);
 
         jButton_show_actions.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/event.png"))); // NOI18N
-        jButton_show_actions.setToolTipText("Se historia över skickade e-post och påminnelser");
+        jButton_show_actions.setToolTipText("Se historik");
         jButton_show_actions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_show_actionsActionPerformed(evt);
@@ -1410,7 +1410,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jTextArea_faktura_komment.setWrapStyleWord(true);
 
         jButton4_save_faktura_komment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ok_sm.png"))); // NOI18N
-        jButton4_save_faktura_komment.setToolTipText("Uppdatera faktura kommentar");
+        jButton4_save_faktura_komment.setToolTipText("Uppdatera fakturakommentar");
         jButton4_save_faktura_komment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4_save_faktura_kommentActionPerformed(evt);
@@ -1418,7 +1418,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         });
 
         jButton4_delete_faktura_komment1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
-        jButton4_delete_faktura_komment1.setToolTipText("Radera faktura kommentar");
+        jButton4_delete_faktura_komment1.setToolTipText("Radera fakturakommentar");
         jButton4_delete_faktura_komment1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4_delete_faktura_komment1ActionPerformed(evt);
@@ -1725,7 +1725,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel9.add(jButton_dont_save_settings);
 
         jButton_confirm_insert_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_confirm_insert_update.setToolTipText("Spara faktura");
+        jButton_confirm_insert_update.setToolTipText("Spara");
         jButton_confirm_insert_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_confirm_insert_updateActionPerformed(evt);
@@ -1779,7 +1779,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel12.add(jButton_add_article);
 
         jButton_update_articles_row.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_articles_row.setToolTipText("Uppdatera artikel (gör ändringar i tabellen till vänster)");
+        jButton_update_articles_row.setToolTipText("Spara");
         jButton_update_articles_row.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_articles_rowActionPerformed(evt);
@@ -2099,7 +2099,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel14.add(jButton16);
 
         jButton_update_article.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_article.setToolTipText("Uppdatera / lägga till artikel");
+        jButton_update_article.setToolTipText("Spara");
         jButton_update_article.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_articleActionPerformed(evt);
@@ -2267,7 +2267,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel13.add(jButton13);
 
         jButton_update_kund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_kund.setToolTipText("Uppdatera faktura kund data");
+        jButton_update_kund.setToolTipText("Spara");
         jButton_update_kund.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_kundActionPerformed(evt);
@@ -2430,7 +2430,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jScrollPane12.setViewportView(jTable_ftg_addr);
 
         jButton_update_kund_data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_update_kund_data.setToolTipText("Uppdatera kund data");
+        jButton_update_kund_data.setToolTipText("Spara");
         jButton_update_kund_data.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_update_kund_dataActionPerformed(evt);
@@ -2498,7 +2498,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel21.setLayout(new java.awt.GridLayout(1, 0));
 
         jButton_save_smtp_settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
-        jButton_save_smtp_settings.setToolTipText("Spara e-post SMTP inställningar");
+        jButton_save_smtp_settings.setToolTipText("Spara");
         jButton_save_smtp_settings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_save_smtp_settingsActionPerformed(evt);

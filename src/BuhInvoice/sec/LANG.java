@@ -242,7 +242,7 @@ public class LANG {
 
     //==========================================================================
     public static String RUT_MSG_MAIN(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {
-        String str = "Denna faktura avser husarbete för fastighet " + fastighetsBeteckning + ".\n";
+        String str = "Denna faktura avser husarbete för fastighet \"" + fastighetsBeteckning + "\".\n";
         str += "Enligt dig som köpare har du rätt till preliminär skattereduktion på " + rutAvdragTotal + " kr.\n";
         str += "För att vi ska kunna göra ansökan till Skatteverket, ska du betala " + attBetalaTotal + " kr.\n";
         str += "Om ansökan om skattereduktion avslås, ska det totala beloppet " + fakturansTotalBeloppInnanAvdrag + " kr betalas av dig som köpare.";
