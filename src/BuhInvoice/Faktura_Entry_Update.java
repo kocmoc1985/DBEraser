@@ -224,7 +224,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
     private void checkIfMakuleradAndReport(String fakturaId) {
         String makulerad = secMap.get(DB.BUH_FAKTURA__MAKULERAD);
         if (makulerad.equals("1")) {
-            EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__MAKULERAD, DB.STATIC__SENT_TYPE_FAKTURA);
+            EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__MAKULERAD, DB.STATIC__SENT_TYPE_FAKTURA,null);
         }
     }
 

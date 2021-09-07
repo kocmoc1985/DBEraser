@@ -42,6 +42,11 @@ public class LANG {
     public final static String VALIDATION_MSG__V_ERR_02 = "Fel lösenord";
     public final static String VALIDATION_MSG__V_ERR_03 = "Din IP-Adress är förbjuden";
 
+    public final static String OMVANDLADES_TILL = "omvandlades till fknr ";
+    public final static String SKAPADES_FRAN = "skapades från fknr ";
+    public final static String NY_FAKTURANR = "ny fknr ";
+    public final static String KREDITERAR = "krediterar fknr ";
+    
     public static final String getInloggningsMsg(String customerCompanyName) {
         return "Inloggad som: " + customerCompanyName;
     }

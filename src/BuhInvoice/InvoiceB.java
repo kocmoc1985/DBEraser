@@ -88,7 +88,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__OMVAND_SKATT = "OMVÄND SKATTSKYLDIGHET";
 
     public static final HashMap<String, String> ARTICLES_TABLE_DICT = new HashMap<>();
-    
+
     private final InvoiceA_Update invoiceA_Update;
 
     static {
@@ -107,16 +107,16 @@ public class InvoiceB extends Basic_Buh {
         super(buh_invoice_main);
         this.invoiceA_Update = invoiceA_Update;
     }
-    
-    private ArrayList<HashMap<String, String>> getFakturaEntry_articleList(){
+
+    private ArrayList<HashMap<String, String>> getFakturaEntry_articleList() {
         return invoiceA_Update.faktura_entry.articlesList;
     }
-    
-    private HashSet<JTableRowData> getFakturaEntry_articlesHashSet(){
+
+    private HashSet<JTableRowData> getFakturaEntry_articlesHashSet() {
         return invoiceA_Update.faktura_entry.articlesHashSet;
     }
-    
-    private void resetFakturaEntryLists(){
+
+    private void resetFakturaEntryLists() {
         invoiceA_Update.faktura_entry.resetLists();
     }
 
@@ -850,7 +850,7 @@ public class InvoiceB extends Basic_Buh {
             //
             ArrayList<HashMap<String, String>> articlesList = getFakturaEntry_articleList();
             //
-            HashSet<JTableRowData>articlesHashSet = getFakturaEntry_articlesHashSet();
+            HashSet<JTableRowData> articlesHashSet = getFakturaEntry_articlesHashSet();
             //
             for (HashMap<String, String> articles_map : articles) {
                 //
@@ -1042,8 +1042,8 @@ public class InvoiceB extends Basic_Buh {
                 //[#OFFERT#]
                 HelpA.showNotification(LANG.OFFERT_COPY_MSG(fakturaNrCopy, newFakturaNr));
                 //
-                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_OFFERT);
-                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT);
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_OFFERT, newFakturaNr);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_OFFERT, fakturaNrCopy);
                 //
                 refresh_sync(null);
                 //
@@ -1051,8 +1051,8 @@ public class InvoiceB extends Basic_Buh {
                 //[#OFFERT#]
                 HelpA.showNotification(LANG.OFFERT_OMVANDLA_MSG(fakturaNrCopy, newFakturaNr));
                 //
-                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT);
-                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT,LANG.OMVANDLADES_TILL +""+ newFakturaNr);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA,LANG.SKAPADES_FRAN + "" + fakturaNrCopy);
                 //
                 refresh_sync(null);
                 //
@@ -1060,8 +1060,8 @@ public class InvoiceB extends Basic_Buh {
                 //
                 HelpA.showNotification(LANG.FAKTURA_COPY_MSG_B(fakturaNrCopy, newFakturaNr));
                 //
-                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA);
-                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__KOPIERAD, DB.STATIC__SENT_TYPE_FAKTURA, LANG.NY_FAKTURANR + "" + newFakturaNr);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA, LANG.SKAPADES_FRAN + "" + fakturaNrCopy);
                 //
                 refresh_sync(null);
                 //
@@ -1071,7 +1071,7 @@ public class InvoiceB extends Basic_Buh {
                 //
                 bim.editFakturaBtnKlicked();
                 //
-                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA, LANG.KREDITERAR + "" + fakturaNrCopy);
                 //
             }
             //

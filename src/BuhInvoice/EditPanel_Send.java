@@ -168,8 +168,9 @@ public class EditPanel_Send extends EditPanel_Inbet {
      * @param status
      * @param type
      * @param faktura
+     * @param comment
      */
-    protected static void insert(String fakturaId, String status, String type) {
+    protected static void insert(String fakturaId, String status, String type, String comment) {
         //
         HashMap<String, String> map = new HashMap<>();
         //
@@ -180,6 +181,10 @@ public class EditPanel_Send extends EditPanel_Inbet {
         map.put(DB.BUH_FAKTURA_SEND__SEND_OK, status); // 0 is default
         //
         map.put(DB.BUH_FAKTURA_SEND__SEND_TYPE, type); // 0 is default
+        //
+        if(comment != null){
+            map.put(DB.BUH_FAKTURA_SEND__ANNAT, comment); // introduced [2021-09-07]
+        }
         //
         String json = JSon.hashMapToJSON(map);
         //
