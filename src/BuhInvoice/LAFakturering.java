@@ -40,7 +40,7 @@ import BuhInvoice.sec.IO;
  * @author MCREMOTE
  */
 public class LAFakturering extends javax.swing.JFrame implements MouseListener, KeyListener, Buh_Invoice_Main__IF {
-
+    
     private InvoiceA_Insert_ invoiceA_insert;
     private InvoiceA_Update invoiceA_update;
     private CustomersA_ customersA;
@@ -50,7 +50,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected Home home;
     protected OptionsTab_ optionsTab;
     protected StatistikTab statistikTab;
-
+    
     private String ACTUAL_TAB_NAME;
     private String PREVIOUS_TAB_NAME;
     public final static String TAB_HOME = "HEM";
@@ -91,7 +91,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         gdpr();
         //
     }
-
+    
     private void gdpr() {
         //
         if (GP_BUH.GDPRMissing()) {
@@ -122,30 +122,30 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         this.rutRot = null;
     }
-
+    
     public void setRutRot(RutRot rut) {
         this.rutRot = rut;
     }
-
+    
     public RutRot getRutRot() {
         return this.rutRot;
     }
-
+    
     private void setMarginLeftLabelsHomeTab() {
         this.jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
         this.jLabel_register_new.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
         this.jLabel_restore_password.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
         this.jLabel_share_account.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
-
+    
     private void setMarginJLabelsHomeTab() {
         jLabel_inloggning.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
-
+    
     protected void RESET_SEARCH_FILTER() {
         SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, false);
     }
-
+    
     private void SET_SEARCH_FILTER(String filter, boolean affectNyckelTalInfo) {
         //
         PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = filter;
@@ -161,7 +161,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
     protected boolean isInitialFilter() {
         if (PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK)) {
             return true;
@@ -169,11 +169,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected void enableTabs(boolean enable) {
         jTabbedPane1.setEnabled(enable);
     }
-
+    
     protected void faktura_tab_blockUntilSavedOrAborted_invoice(boolean disabled) {
         //
         Invoice_.FAKTURA_TAB_ENABLED = disabled;
@@ -189,7 +189,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         GP_BUH.setEnabled(jButton_create_new_kontant_faktura_b, disabled);
         //
     }
-
+    
     private void initOhter() {
         //
 //        DEFINE_KUNDID();
@@ -221,8 +221,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         initToggleBtnList();
         //
+        jLabel_create_shortcut_options_tab.setEnabled(HelpBuh.IS_MAC_OS ? false : true);
+        //
     }
-
+    
     private void initToggleBtnList() {
         toggleBtnList.add(jToggleButton_not_send_filter);
         toggleBtnList.add(jToggleButton_obetald_filter);
@@ -231,13 +233,13 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         toggleBtnList.add(jToggleButton_act_month_filter);
         toggleBtnList.add(jToggleButton_forfallen_filter);
     }
-
+    
     protected void untoggleAll() {
         for (JToggleButton btn : toggleBtnList) {
             btn.setSelected(false);
         }
     }
-
+    
     private void untoggleAllExcept(JToggleButton exceptBtn) {
         for (JToggleButton btn : toggleBtnList) {
             if (btn.equals(exceptBtn) == false) {
@@ -245,13 +247,13 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             }
         }
     }
-
+    
     protected void openTabByName(String tabName) {
         HelpA.openTabByName(jTabbedPane1, tabName);
         ACTUAL_TAB_NAME = tabName;
         PREVIOUS_TAB_NAME = ACTUAL_TAB_NAME;
     }
-
+    
     private void setUneditableAllJTables() {
         HelpA.setUneditableJTable(jTable_invoiceB_alla_fakturor);
         HelpA.setUneditableJTable(jTable_invoiceB_faktura_artiklar);
@@ -262,7 +264,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HelpA.setUneditableJTable(jTable_kund_adresses);
         HelpA.setUneditableJTable(jTable_kunder);
     }
-
+    
     protected void hideShowButtonsDependingOnConditions() {
         //
         GP_BUH.enableDisableButtons(jPanel4, true); // Enable ALL
@@ -306,7 +308,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             GP_BUH.setEnabled(jButton_send_reminder, false);
         }
     }
-
+    
     public TableInvert getTableInvert() {
         if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT;
@@ -314,7 +316,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return (TableInvert) invoiceA_update.TABLE_INVERT;
         }
     }
-
+    
     protected TableInvert getTableInvert_3() {
         if (Invoice_.CURRENT_OPERATION_INSERT && invoiceA_insert != null) {
             return (TableInvert) invoiceA_insert.TABLE_INVERT_3;
@@ -322,28 +324,28 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return (TableInvert) invoiceA_update.TABLE_INVERT_3;
         }
     }
-
+    
     protected void displayArticlesCount() {
         if (invoiceB != null) {
             invoiceB.displayArticlesCount();
         }
     }
-
+    
     protected void resetArticlesCount() {
         if (invoiceB != null) {
             invoiceB.resetArticlesCount();
         }
-
+        
     }
-
+    
     protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
-
+    
     protected ArrayList<HashMap<String, String>> getArticlesMarkedInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
     }
-
+    
     protected ArrayList<HashMap<String, String>> getArticlesCurrInvoiceJTable() {
         return JSon.jTableToHashMaps(jTable_InvoiceA_Insert_articles, InvoiceB.ARTICLES_TABLE_DICT);
     }
@@ -362,11 +364,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getKundId() {
         return GP_BUH.KUND_ID;
     }
-
+    
     protected boolean noCustomersPresent() {
         return invoiceB.noCustomersPresent();
     }
-
+    
     protected boolean articlesLimitReached() {
         if (getInvoiceArticleCount() >= GP_BUH.MAX_AMMOUNT_ARTICLES__FAKTURA) {
             return true;
@@ -374,59 +376,59 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected int getInvoiceArticleCount() {
         return jTable_InvoiceA_Insert_articles.getRowCount();
     }
-
+    
     protected String getFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_ID);
     }
-
+    
     protected String getCopiedFromFakturaId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__COPIED_FROM_ID);
     }
-
+    
     protected void deleteFaktura(String fakturaId) {
         invoiceB.deleteFakturaPrimary(fakturaId);
     }
-
+    
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
-
+    
     protected String getFakturaKund() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
     }
-
+    
     protected String getFakturaKundId() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_ID);
     }
-
+    
     protected double getFakturaTotal() {
         return Double.parseDouble(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
     }
-
+    
     protected int getBetalVilkor() {
         return Integer.parseInt(HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__BET_VILKOR));
     }
-
+    
     protected String getFakturaArtikelId() {
         return HelpA.getValueSelectedRow(jTable_InvoiceA_Insert_articles, InvoiceB.TABLE_INVOICE_ARTIKLES__ID);
     }
-
+    
     protected String getFakturaType() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
     }
-
+    
     protected String getFakturaKundKategori() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND_KATEGORI);
     }
-
+    
     protected String getFakturaType_actual_operation() {
         return FAKTURA_TYPE_CURRENT__OPERATION;
     }
-
+    
     protected double getCurrencyRateA() {
         //[#EUR-SEK#]
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__CURRENCY_RATE_A);
@@ -434,7 +436,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return Double.parseDouble(val);
         //
     }
-
+    
     protected Boolean isPrinted() {
         //
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__UTSKRIVEN);
@@ -445,7 +447,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected Boolean isOmvantSkatt() {
         //
         String val = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__OMVANT_SKATT);
@@ -456,7 +458,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected boolean isBetald() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
@@ -472,7 +474,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return GP_BUH.IS_BETALD;
         //
     }
-
+    
     protected boolean isSent() {
         //
         JTable table = jTable_invoiceB_alla_fakturor;
@@ -486,7 +488,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return sent.equals(DB.STATIC__YES);
         //
     }
-
+    
     protected boolean isForfallen() {
         //
         String dateFormat = GP_BUH.DATE_FORMAT_BASIC;
@@ -510,7 +512,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
     protected boolean isMakulerad() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__MAKULERAD);
@@ -537,7 +539,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected boolean isPerson() {
         //
         String makulerad = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_KUND__IS_PERSON);
@@ -548,7 +550,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected boolean isPerson(String fakturaKundId) {
         //
 //        String json = getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
@@ -573,7 +575,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return false;
     }
-
+    
     protected boolean isKreditFaktura() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -588,7 +590,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected boolean isKontantFaktura() {
         //
         String fakturaTyp = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURA_TYP);
@@ -603,7 +605,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return false;
         }
     }
-
+    
     protected boolean isOffert() {
         //
         if (FAKTURA_TYPE_CURRENT__OPERATION != null && FAKTURA_TYPE_CURRENT__OPERATION.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
@@ -642,11 +644,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getSELECT_fakturaId() {
         return getSELECT(DB.BUH_FAKTURA__ID__, getFakturaId());
     }
-
+    
     protected String getSELECT_fakturaId__doubleWhere() {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__ID__, getFakturaId());
     }
-
+    
     protected String getSELECT_artikelId__doubleWhere(String artikelId) {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
     }
@@ -658,15 +660,15 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getSELECT_copied_from_faktura_id() {
         return getSELECT(DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
     }
-
+    
     protected String getSELECT_copied_from_faktura_id__doubleWhere() {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA__COPIED_FROM_ID, getCopiedFromFakturaId());
     }
-
+    
     protected String getSELECT_kundId() {
         return getSELECT(DB.BUH_FAKTURA__KUNDID__, "777");// [#KUND-ID-INSERT#]
     }
-
+    
     protected String getSELECT_fakturaKundId__doubleWhere(String fakturaKundId) {
         return getSELECT_doubleWhere(DB.BUH_FAKTURA__KUNDID__, "777", DB.BUH_FAKTURA_KUND__ID, fakturaKundId); // [#KUND-ID-INSERT#]
     }
@@ -679,7 +681,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private String getSELECT_fakturaKundId(String fakturaKundId) {
         return getSELECT(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
     }
-
+    
     public static String getSELECT_(String whereColName, String whereValue) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -702,7 +704,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getSELECT_doubleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -734,7 +736,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return map;
     }
-
+    
     protected HashMap<String, String> getUPDATE_doubleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -749,7 +751,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return map;
     }
-
+    
     protected HashMap<String, String> getUPDATE_trippleWhere(
             String whereColName, String whereValue,
             String whereColName_b, String whereValue_b,
@@ -771,7 +773,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return map;
     }
-
+    
     protected static HashMap<String, String> getUPDATE_static(String whereColName, String whereValue, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -781,11 +783,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return map;
     }
-
+    
     protected HashMap<String, String> getDELETE(String whereColName, String whereValue, String tableName) {
         return getUPDATE(whereColName, whereValue, tableName);
     }
-
+    
     protected String getExist(String columnName, String value, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -797,7 +799,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getLatest(String columnName, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -808,7 +810,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-
+    
     protected String getForeignKeyBindings(JTable table, String idColName, String whereParam, String phpFunc, String getFromMapParam) {
         //
         String returnStr = "";
@@ -842,7 +844,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return "";
         }
     }
-
+    
     public void setValueAllInvoicesJTable(String colName, String value) {
         HelpA.setValueCurrentRow(jTable_invoiceB_alla_fakturor, colName, value);
     }
@@ -1072,6 +1074,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_save_rut_msg = new javax.swing.JButton();
         jButton_delete_rut_msg = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
+        jLabel_create_shortcut_options_tab = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -2631,6 +2634,16 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("RUT / ROT text");
 
+        jLabel_create_shortcut_options_tab.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_create_shortcut_options_tab.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_create_shortcut_options_tab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/la.png"))); // NOI18N
+        jLabel_create_shortcut_options_tab.setText(" Skapa genväg till LAFakturering på skrivbordet");
+        jLabel_create_shortcut_options_tab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel_create_shortcut_options_tabMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -2653,7 +2666,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2666,7 +2680,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2720,7 +2736,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         deleteFaktura(getFakturaId());
         //
     }//GEN-LAST:event_jButton_delete_fakturaActionPerformed
-
+    
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         customersA.createNewFakturaKund();
@@ -2790,14 +2806,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_edit_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_edit_fakturaActionPerformed
         editFakturaBtnKlicked();
     }//GEN-LAST:event_jButton_edit_fakturaActionPerformed
-
+    
     public void editFakturaBtnKlicked() {
         //
         openTabByName(TAB_FAKTURA);
         fakturaTabClicked(getFakturaNr());
         //
     }
-
+    
     @Override
     public void goToFaktura(String fakturaNr) {
 //        String fakturaNr = "1"; // this should be sent as a parameter later
@@ -2805,7 +2821,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HelpA.markRowByValue(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR, fakturaNr);
         changeToFakturaWithsync();
     }
-
+    
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
@@ -2931,7 +2947,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_confirm_insert_updateActionPerformed();
         //
     }//GEN-LAST:event_jButton_confirm_insert_updateActionPerformed
-
+    
     public void jButton_confirm_insert_updateActionPerformed() {
         // "FAKTURA HTTP" BTN
         if (InvoiceA_Update.CURRENT_OPERATION_INSERT) {
@@ -2967,7 +2983,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
     private void createNewFaktura(String fakturaType) {
         //
         GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
@@ -3015,7 +3031,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_inbetalningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_inbetalningActionPerformed
         makeInbetalning(isKontantFaktura(), false);
     }//GEN-LAST:event_jButton_inbetalningActionPerformed
-
+    
     private void makeInbetalning(boolean isKontantFaktura, boolean directlyAfterCreation) {
         //
         EditPanel_Inbet epb = new EditPanel_Inbet(this, isKontantFaktura, getFakturaId(), getFakturaNr(), getFakturaKund());
@@ -3045,7 +3061,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_copy_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_copy_fakturaActionPerformed
         copyFaktura_createKreditFaktura(false);
     }//GEN-LAST:event_jButton_copy_fakturaActionPerformed
-
+    
     private void copyFaktura_createKreditFaktura(boolean isKreditFaktura) {
         //
         if (HelpA.rowSelected(jTable_invoiceB_alla_fakturor) == false) {
@@ -3084,7 +3100,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 //        invoiceB.copy(isKreditFaktura, isOffert(), false); // COPY If isOffert
         //
     }
-
+    
     public void copyOrOmvandlaOffert(boolean omvandla) {
         invoiceB.copy(false, true, omvandla);
     }
@@ -3119,7 +3135,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         invoiceB.htmlFakturaOrReminder(null, true);
     }//GEN-LAST:event_jButton_send_reminderActionPerformed
-
+    
 
     private void jToggleButton_obetald_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_obetald_filterActionPerformed
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD, evt);
@@ -3288,17 +3304,21 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }//GEN-LAST:event_jButton_save_rut_msgActionPerformed
 
     private void jLabel_logo_home_tabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_logo_home_tabMousePressed
-        createDesktopShortCutByClickingOnLogo();
+        createDesktopShortcut();
     }//GEN-LAST:event_jLabel_logo_home_tabMousePressed
 
-    private void createDesktopShortCutByClickingOnLogo(){
+    private void jLabel_create_shortcut_options_tabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_create_shortcut_options_tabMousePressed
+       createDesktopShortcut();
+    }//GEN-LAST:event_jLabel_create_shortcut_options_tabMousePressed
+    
+    private void createDesktopShortcut() {
         //
-        if(HelpBuh.IS_MAC_OS){
+        if (HelpBuh.IS_MAC_OS) {
             return;
         }
         //
-        if(GP_BUH.confirm("Vill du skapa genväg på skrivbordet?")){
-           new CreateShortcut();
+        if (GP_BUH.confirm("Vill du skapa genväg på skrivbordet?")) {
+            new CreateShortcut();
         }
         //
     }
@@ -3316,7 +3336,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             jtb.setSelected(false);
             invoiceB.refresh(null);
         }
-
+        
     }
 
     /**
@@ -3452,6 +3472,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
+    private javax.swing.JLabel jLabel_create_shortcut_options_tab;
     protected javax.swing.JLabel jLabel_faktura_changed_by__user;
     protected javax.swing.JLabel jLabel_info__betald;
     protected javax.swing.JLabel jLabel_info__forfallen;
@@ -3652,7 +3673,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
     protected void allInvoicesTabClicked() {
         if (invoiceB == null) {
             invoiceB = new InvoiceB(this, invoiceA_update);
@@ -3663,7 +3684,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             jtable_InvoiceB_all_invoices_clicked();
         }
     }
-
+    
     private void fakturaTabClicked(String fakturaNr) {
         //
         GP_BUH.showSaveInvoice_note__reset(); // [#SAVE-INVOICE-NOTE#]
@@ -3709,13 +3730,13 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 //
             }
         });
-
+        
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         //
@@ -3762,16 +3783,16 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
     protected void jTableCustomersA_adress_clicked() {
         customersA.showTableInvert_3();
         customersA.refreshTableInvert(customersA.TABLE_INVERT_3);
     }
-
+    
     protected void jTableForetagA_adress_clicked() {
         foretagA.jTableForetagA_adress_clicked();
     }
-
+    
     protected void jTableCustomersA_kunder_clicked() {
         //
         customersA.jTableCustomersA_kunder_clicked();
@@ -3794,13 +3815,13 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 //        }
         //
     }
-
+    
     protected void jTableForetagA_ftg_table_clicked() {
         //
         foretagA.jTableForetagA_ftg_table_clicked();
         //
     }
-
+    
     private void jTable_InvoiceA_Insert_articles_clicked() {
         //
         if (Invoice_.CURRENT_OPERATION_INSERT == false) {
@@ -3837,7 +3858,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         //
     }
-
+    
     protected void jtable_InvoiceB_all_invoices_clicked() {
         //
         String fakturaId = getFakturaId();
@@ -3847,27 +3868,27 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         resetRutRot();//[#RUTROT#]
         //
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
         //
@@ -3896,5 +3917,5 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
         //
     }
-
+    
 }
