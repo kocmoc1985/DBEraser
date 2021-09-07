@@ -47,6 +47,8 @@ public class LANG {
     public final static String NY_FAKTURANR = "ny fknr ";
     public final static String KREDITERAR = "krediterar fknr ";
     
+    
+    
     public static final String getInloggningsMsg(String customerCompanyName) {
         return "Inloggad som: " + customerCompanyName;
     }
@@ -78,7 +80,7 @@ public class LANG {
     public final static String MSG_3_3 = "Radera kommentar?";
     public final static String MSG_4 = "Radera rad?";
     public final static String MSG_4_2 = "Radera konto delning?";
-    public final static String MSG_4_3 = "OBS! Kontot och all relaterat information kommer att raderas permanent, vill du fortsätta ändå?";
+    public final static String MSG_4_3 = "OBS! Kontot och all relaterat data kommer att raderas permanent, vill du fortsätta ändå?";
     public final static String MSG_4_4 = "Ange lösenordet som du loggar in med!";
     public final static String MSG_5 = "Ingen artikel vald! Markera en artikel i tabellen till höger och prova igen";
     public final static String MSG_5_1 = "Alla osparade ändringar kommer att förloras! Forsätt med att skapa ny faktura?";
@@ -220,6 +222,19 @@ public class LANG {
     public static String LBL_MSG_8(String txt) {
         return "ändrad sist av: " + txt;
     }
+    
+     public static String TOOL_TIP_1(int antalForfallna) {
+        //
+        String basicStr = "Skicka påminnelse";
+        //
+        if (antalForfallna == 1) {
+            return basicStr + " (du har " + antalForfallna + " förfallen faktura)";
+        } else if (antalForfallna > 1) {
+            return basicStr + " (du har " + antalForfallna + " förfallna fakturor)";
+        } else {
+            return basicStr;
+        }
+    }
 
     public static String TOOL_TIP_2 = "Inmatningsformat: 123456-7890";
 
@@ -232,18 +247,9 @@ public class LANG {
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
 
-    public static String TOOL_TIP_1(int antalForfallna) {
-        //
-        String basicStr = "Skicka påminnelse";
-        //
-        if (antalForfallna == 1) {
-            return basicStr + " (du har " + antalForfallna + " förfallen faktura)";
-        } else if (antalForfallna > 1) {
-            return basicStr + " (du har " + antalForfallna + " förfallna fakturor)";
-        } else {
-            return basicStr;
-        }
-    }
+   
+    
+     
 
     //==========================================================================
     public static String RUT_MSG_MAIN(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {

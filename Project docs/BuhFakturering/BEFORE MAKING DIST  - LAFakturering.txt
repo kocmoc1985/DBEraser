@@ -19,6 +19,7 @@ Instead for installation iam now using ".zip" file with one signal ".jar" file
 2. For MAC-OS:
 2.1 Remember having "HelpBuh.IS_MAC_OS=true"
 2.2 Zip la.jar HAVING upper directory "LAFakturering"
+3. OBS! Desktop Shortcuts not yet supported for MAC [2021-09-07]
 
 [NONE VERIFIED DEVELOPPER PROBLEM - IMPORTANT] MAC-OS
 
