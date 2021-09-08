@@ -5,7 +5,6 @@
  */
 package BuhInvoice;
 
-import static BuhInvoice.InvoiceB.TABLE_ALL_INVOICES__KUND_ID;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.MomsBuh_F_artikel;

@@ -26,9 +26,6 @@ _____
 
 _____
 
-IMPORTANT BUG DETECTED: When you create an invoice -> add an article -> then edit the article, change the "rabatt" for example. -> 
-after you accept the changes the "INVOICE TOTATLS" will not be recalculated [2021-09-08] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
-
 Rabatt is wrongly calculated when making an invoice for an Foreign Customer and namely it's calculated in swe kr[2021-09-08][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
 
 When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
@@ -89,6 +86,9 @@ SMTP Options PROBLEM -> When changing password for SMTP it must be saved before 
 According to Lina there is also need to make possible to print out a list with fakturas which are still not payed - typ som "Kundfordringar" i SPCS
 
 __________________________________
+
+IMPORTANT BUG DETECTED: When you create an invoice -> add an article -> then edit the article, change the "rabatt" for example. -> 
+after you accept the changes the "INVOICE TOTATLS" will not be recalculated [2021-09-08][DONE]
 
 Make graphical statistical view for customers and articles with priority filter "sedan arsstart / i ar" [DONE]
 
