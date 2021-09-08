@@ -26,7 +26,17 @@ _____
 
 _____
 
-Rabatt is wrongly calculated when making an invoice for an Foreign Customer and namely it's calculated in swe kr[2021-09-08][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
+When chosing a foreign customer you should devide the price in kr with currency rate -> i mean when you choose
+articles from comboBox and the price is displayed [2021-09-08][IMPORTANT]
+
+It seems to make sence to automatically set moms = 0 when working with foreign customer [2021-09-08][IMPORTANT]
+
+"RABATT KR" shall be named different int the tableInvert when working with a foreign customer [2021-09-08][IMPORTANT]
+
+The pointer points on a kredit faktura -> you press create new invoice -> in the faktura total calc you see wrong title "Att erhålla"->
+this happens because you started to create a new invoice when pointing on a kredit faktura [2021-09-08][IMPORTANT]
+
+Rabatt is wrongly calculated when making an invoice for an Foreign Customer and namely it's calculated in swe kr[2021-09-08][PRELIM DONE]
 
 When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
 

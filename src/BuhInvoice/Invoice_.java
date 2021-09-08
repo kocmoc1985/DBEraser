@@ -592,14 +592,15 @@ public abstract class Invoice_ extends Basic_Buh {
         for (int i = 0; i < table.getModel().getRowCount(); i++) {
             //
             double rabatt_percent = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT);
-            double rabatt_kr = getDoubleJTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
+            double rabatt_kr_eur = getDoubleJTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__RABATT_KR);
             double moms_sats = getPercent_JTable(table, i, InvoiceB.TABLE_INVOICE_ARTIKLES__MOMS_SATS);
+            //
             //
             pris_exkl_moms = Double.parseDouble(HelpA.getValueGivenRow(table, i, prisColumn));
             antal = Double.parseDouble(HelpA.getValueGivenRow(table, i, antalColumn));
             //
             //
-            if (rabatt_percent == 0 && rabatt_kr == 0) {
+            if (rabatt_percent == 0 && rabatt_kr_eur == 0) {
                 double actPris = (pris_exkl_moms * antal);
                 //
                 if (HelpBuh.FOREIGN_CUSTOMER) {
@@ -615,9 +616,9 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 MOMS_TOTAL += actMoms;
                 //
-            } else if (rabatt_kr != 0) {
+            } else if (rabatt_kr_eur != 0) {
                 //
-                double actPris = (pris_exkl_moms - rabatt_kr) * antal;
+                double actPris = (pris_exkl_moms - rabatt_kr_eur) * antal;
                 //
                 if (HelpBuh.FOREIGN_CUSTOMER) {
                     //[#EUR-SEK#]
@@ -626,12 +627,22 @@ public abstract class Invoice_ extends Basic_Buh {
                     FAKTURA_TOTAL += actPris;
                 }
                 //
-                RABATT_TOTAL += (rabatt_kr * antal);
-                double actMoms = ((pris_exkl_moms - rabatt_kr) * antal) * moms_sats;
+                if (HelpBuh.FOREIGN_CUSTOMER) {
+                    RABATT_TOTAL += (rabatt_kr_eur * antal) * getCurrencyRateTableInvert3();
+                } else {
+                    RABATT_TOTAL += (rabatt_kr_eur * antal);
+                }
+                //
+                double actMoms = ((pris_exkl_moms - rabatt_kr_eur) * antal) * moms_sats;
                 //
                 HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
                 //
-                MOMS_TOTAL += actMoms;
+                if (HelpBuh.FOREIGN_CUSTOMER) {
+                    MOMS_TOTAL += actMoms * getCurrencyRateTableInvert3();
+                }else{
+                   MOMS_TOTAL += actMoms; 
+                }
+                //
             }
             //
         }
@@ -1474,7 +1485,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
                 //
-                if(pris == null ||pris.equals("null")){ //[2021-09-03] Bug fix -> This was needed when you created a new Invoice added an empty article "-", then you tried to edit it. But the price became "null"
+                if (pris == null || pris.equals("null")) { //[2021-09-03] Bug fix -> This was needed when you created a new Invoice added an empty article "-", then you tried to edit it. But the price became "null"
                     return;
                 }
                 //
