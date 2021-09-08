@@ -679,7 +679,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         boolean print_ok = print_normal();
         //
         if(print_ok){
-            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA);
+            EditPanel_Send.insert(bim.getFakturaId(), DB.STATIC__SENT_STATUS__UTSKRIVEN, DB.STATIC__SENT_TYPE_FAKTURA,null);
         }
         //
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -745,14 +745,14 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
                 if (ok) {
                     //
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__SKICKAD,
-                            DB.STATIC__SENT_TYPE_FAKTURA); // "buh_faktura_send" table
+                            DB.STATIC__SENT_TYPE_FAKTURA,null); // "buh_faktura_send" table
                     //
                     Basic_Buh.executeSetFakturaSentPerEmail(fakturaId,true); // "buh_faktura" table -> update sent status
                     bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
                     //
                 } else {
                     EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__EJ_SKICKAD,
-                            DB.STATIC__SENT_TYPE_FAKTURA);
+                            DB.STATIC__SENT_TYPE_FAKTURA,null);
                 }
             }
         });

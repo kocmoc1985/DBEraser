@@ -1274,28 +1274,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel3.setPreferredSize(new java.awt.Dimension(1288, 1000));
 
         jTable_invoiceB_alla_fakturor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+
         ));
         jScrollPane4.setViewportView(jTable_invoiceB_alla_fakturor);
 
         jTable_invoiceB_faktura_artiklar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+
         ));
         jScrollPane5.setViewportView(jTable_invoiceB_faktura_artiklar);
 
@@ -2087,15 +2071,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel6.setLayout(new java.awt.BorderLayout());
 
         jTable_ArticlesA_articles.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+
         ));
         jScrollPane7.setViewportView(jTable_ArticlesA_articles);
 
@@ -2241,15 +2217,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel5.setLayout(new java.awt.BorderLayout());
 
         jTable_kunder.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+
         ));
         jScrollPane6.setViewportView(jTable_kunder);
 
