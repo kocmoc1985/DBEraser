@@ -26,6 +26,18 @@ _____
 
 _____
 
+IMPORTANT BUG DETECTED: When you create an invoice -> add an article -> then edit the article, change the "rabatt" for example. -> 
+after you accept the changes the "INVOICE TOTATLS" will not be recalculated [2021-09-08] [IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
+
+Rabatt is wrongly calculated when making an invoice for an Foreign Customer and namely it's calculated in swe kr[2021-09-08][IMPORTANT][IMPORTANT][IMPORTANT][IMPORTANT]
+
+When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
+
+When you create an invoice for an Foreign customer and have by mistake the Moms left - it will be shown in the invoice as "Moms kr" -> shall be translated ->
+or even -> Think about having VAT for foreign customers, shall it be possible.
+
+After creating of an "Kontant Faktura" i don't longer get the Window where i can mark the faktura as payed -> Was it removed of some reason? -> CHECK it!! [2021-09-08][IMPORTANT][IMPORTANT]
+
 OBS! Important fix to be done! When you "kredit" an invoice the invoice which you kredited remains as nothing happens - 
 it should be marked somehow as it's kredited automatically or you should be able to do it manually.[2021-09-03][IMPORTANT][IMPORTANT][IMPORTANT]
 

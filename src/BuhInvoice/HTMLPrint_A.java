@@ -231,9 +231,9 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + rutAvdrag() //[#RUTROT#]
                 //
-                + insert_stamp()
-                //
                 + ovmvantSkattNotation()
+                //
+                + insert_stamp()
                 //
                 + brElements()
                 //
