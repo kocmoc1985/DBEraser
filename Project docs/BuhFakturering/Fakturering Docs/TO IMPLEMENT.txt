@@ -26,15 +26,9 @@ _____
 
 _____
 
-When chosing a foreign customer you should devide the price in kr with currency rate -> i mean when you choose
-articles from comboBox and the price is displayed [2021-09-08][IMPORTANT]
 
-It seems to make sence to automatically set moms = 0 when working with foreign customer [2021-09-08][IMPORTANT]
 
 "RABATT KR" shall be named different int the tableInvert when working with a foreign customer [2021-09-08][IMPORTANT]
-
-The pointer points on a kredit faktura -> you press create new invoice -> in the faktura total calc you see wrong title "Att erhålla"->
-this happens because you started to create a new invoice when pointing on a kredit faktura [2021-09-08][IMPORTANT]
 
 Rabatt is wrongly calculated when making an invoice for an Foreign Customer and namely it's calculated in swe kr[2021-09-08][PRELIM DONE]
 
@@ -58,6 +52,13 @@ När jag å andra sidan använder ".pdf" knappen placeras fakturan (namn: faktura.p
 Backup of all data  (have in mind that kundId could id is present in all tables)
 ___
 
+It seems to make sence to automatically set moms = 0 when working with foreign customer [2021-09-08][IMPORTANT]
+
+When chosing a foreign customer you should devide the price in kr with currency rate -> i mean when you choose
+articles from comboBox and the price is displayed -> This one shall be probably not done because lets say if a user creates an article with prices in EURO.... [2021-09-08][SHALL-NOT-BE-DONE][IMPORTANT]
+
+The pointer points on a kredit faktura -> you press create new invoice -> in the faktura total calc you see wrong title "Att erhålla"->
+this happens because you started to create a new invoice when pointing on a kredit faktura [2021-09-08][DONE]
 
 The Currency field of tableInvert becomes sometimes visible for Swedish customers - the reason is still unclear.
 Search for Invoice_.java -> hideField_IF_NOT_ForeignCustomer(Table ti, String colName)

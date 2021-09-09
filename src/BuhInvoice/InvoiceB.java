@@ -107,6 +107,10 @@ public class InvoiceB extends Basic_Buh {
         super(buh_invoice_main);
         this.invoiceA_Update = invoiceA_Update;
     }
+    
+    public static String TABLE_INVOICE_ARTIKLES__RABATT_KR(){
+        return HelpBuh.FOREIGN_CUSTOMER ? "RABATT EUR" : TABLE_INVOICE_ARTIKLES__RABATT_KR;
+    }
 
     private ArrayList<HashMap<String, String>> getFakturaEntry_articleList() {
         return invoiceA_Update.faktura_entry.articlesList;

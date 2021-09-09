@@ -468,7 +468,7 @@ public abstract class Invoice_ extends Basic_Buh {
 
     private void displayTotals() {
         //
-        if (bim.isKreditFaktura()) {
+        if (bim.isKreditFaktura() && CURRENT_OPERATION_INSERT == false) { // bim.isKreditFaktura()
             bim.jLabel4.setText(LANG.ATT_ERHALLA);
         } else {
             bim.jLabel4.setText(LANG.ATT_BETALA);
@@ -1326,8 +1326,8 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 if (HelpBuh.FOREIGN_CUSTOMER) {
                     //OBS! Setting MOMS/VAT = 0%
-//                    setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("0%", "", "", ""));
-//                    setMomsSats_tableInvert(0);
+                    // Because of some reason i had it disabled under some period of time and then enabled it again [2021-09-09]
+                    setMomsSats_tableInvert(0);
                 }
                 //
             }
