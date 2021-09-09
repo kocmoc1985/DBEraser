@@ -537,8 +537,8 @@ public class HTMLPrint_A extends HTMLPrint {
         }
         //
         if (containsSameMomsSats == false) {
-            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS + "</td>";
-            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_SATS() + "</td>";
+            html_ += "<td class='no-border'>" + T__ARTIKEL_MOMS_KR() + "</td>";
         }
         //
         html_ += "<td class='no-border'>" + T__ARTIKEL_PRIS() + "</td>";

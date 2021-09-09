@@ -123,10 +123,10 @@ public abstract class HTMLPrint extends HTMLBasic {
     public static final String T__ARTIKEL_KOMMENT = "Beskrivning";
     public static final String T__ARTIKEL_ANTAL = "Antal";
     public static final String T__ARTIKEL_ENHET = "Enhet";
-    ;
+    
     public static final String T__ARTIKEL_RABATT = "Rabatt%";
-    public static final String T__ARTIKEL_MOMS_SATS = "Moms%";
-    public static final String T__ARTIKEL_MOMS_KR = "Moms Kr";
+    private static final String T__ARTIKEL_MOMS_SATS = "Moms%";
+    private static final String T__ARTIKEL_MOMS_KR = "Moms Kr";
     public static final String T__ARTIKEL_PRIS = "A`Pris";
     public static final String T__ARTIKEL_OMVANT_SKATT = "Omvänt skattskyldighet";
     //
@@ -215,6 +215,14 @@ public abstract class HTMLPrint extends HTMLBasic {
 
     public String T__ARTIKEL_RABATT() {
         return LANG_ENG == false ? T__ARTIKEL_RABATT : "Discount%";
+    }
+    
+     public String T__ARTIKEL_MOMS_SATS() {
+        return LANG_ENG == false ? T__ARTIKEL_MOMS_SATS : "VAT%";
+    }
+     
+      public String T__ARTIKEL_MOMS_KR() {
+        return LANG_ENG == false ? T__ARTIKEL_MOMS_KR : "VAT EUR";
     }
 
     public String T__FAKTURA_RABATT_KR() {

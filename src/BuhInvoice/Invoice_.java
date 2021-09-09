@@ -323,7 +323,7 @@ public abstract class Invoice_ extends Basic_Buh {
     protected abstract void addArticleForDB();
 
     public String insertOrUpdate() {
-       return faktura_entry.insertOrUpdate();
+        return faktura_entry.insertOrUpdate();
     }
 
     protected String getFakturaKundId() {
@@ -614,7 +614,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
                 //
-                MOMS_TOTAL += actMoms;
+                moms_total_count_help(actMoms);
                 //
             } else if (rabatt_kr_eur != 0) {
                 //
@@ -637,21 +637,15 @@ public abstract class Invoice_ extends Basic_Buh {
                 //
                 HelpA.increase_map_value_with_x(moms_sats, actPris, moms_map);
                 //
-                if (HelpBuh.FOREIGN_CUSTOMER) {
-                    MOMS_TOTAL += actMoms * getCurrencyRateTableInvert3();
-                }else{
-                   MOMS_TOTAL += actMoms; 
-                }
+                moms_total_count_help(actMoms);
                 //
             }
             //
         }
         //
-//        double momsSats = getMomsSats();
         FRAKT = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__FRAKT);
         EXP_AVG = getDoubleTableInvert((TableInvert) TABLE_INVERT_3, DB.BUH_FAKTURA__EXP_AVG);
         //
-//        MOMS_TOTAL = FAKTURA_TOTAL * momsSats + countMomsFraktAndExpAvg(frakt, exp_avg, momsSats);
         //
         MOMS_ARTIKLAR = MOMS_TOTAL;
         //
@@ -680,6 +674,14 @@ public abstract class Invoice_ extends Basic_Buh {
         //
 //        System.out.println("COUNT FAKTURA TOTAL*********************************************");
         //
+    }
+
+    private void moms_total_count_help(double actMoms) {
+        if (HelpBuh.FOREIGN_CUSTOMER) {
+            MOMS_TOTAL += actMoms * getCurrencyRateTableInvert3();
+        } else {
+            MOMS_TOTAL += actMoms;
+        }
     }
 
     private double getCurrencyRateTableInvert3() {
@@ -1507,8 +1509,8 @@ public abstract class Invoice_ extends Basic_Buh {
 //                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("25%", "", "", ""));
                 if (momsSet == false && HelpBuh.FOREIGN_CUSTOMER == false) {
                     setMomsSats_tableInvert(25);
-                }else if(momsSet == false && HelpBuh.FOREIGN_CUSTOMER == true){
-                   setMomsSats_tableInvert(0);
+                } else if (momsSet == false && HelpBuh.FOREIGN_CUSTOMER == true) {
+                    setMomsSats_tableInvert(0);
                 }
 
             }
