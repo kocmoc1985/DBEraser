@@ -27,8 +27,11 @@ _____
 _____
 
 
+
 When you create an invoice for an Foreign customer and have by mistake the Moms left - it will be shown in the invoice as "Moms kr" -> shall be translated ->
 or even -> Think about having VAT for foreign customers, shall it be possible.
+
+See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
 
 When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
 
@@ -45,6 +48,9 @@ När jag å andra sidan använder ".pdf" knappen placeras fakturan (namn: faktura.p
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
 ___
+
+Calculation of NyckelTal shall be checked -> The Kredit invoices should not be minused they shall just not affect -> because the invoice they kredit
+becomes makulerad and shall also not be taken into account[DONE]
 
 After creating of an "Kontant Faktura" i don't longer get the Window where i can mark the faktura as payed -> Was it removed of some reason? -> CHECK it!! [2021-09-08][DONE]
 
@@ -90,7 +96,7 @@ No iam saving to the folder of LAFakturering but the problem is that the default
 
 ______
 
-See: what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+
 
 SMTP Options PROBLEM -> When changing password for SMTP it must be saved before test sending a test email. [2021-06-02]
 

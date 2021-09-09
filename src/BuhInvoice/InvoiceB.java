@@ -656,7 +656,7 @@ public class InvoiceB extends Basic_Buh {
     public static double NYCKEL_TAL__TOTAL_EXKL_MOMS = 0;
 
     private void countNyckelTal(ArrayList<HashMap<String, String>> invoices, String filter) {
-        //
+        //[#NYCKEL-TAL#]
         NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA = 0;
         NYCKEL_TAL__ING_MOMS_TOTAL = 0;
         NYCKEL_TAL__TOTAL_INKL_MOMS = 0;
@@ -675,6 +675,7 @@ public class InvoiceB extends Basic_Buh {
                 countNyckelTal_help(map, fakturaTyp);
             }
             if (makulerad == 1) {
+                NYCKEL_TAL__ANTAL_FAKTUROR_SAMTLIGA++;
                 continue;
             }
             //==========
@@ -717,9 +718,9 @@ public class InvoiceB extends Basic_Buh {
         }
         //
         if (fakturaTyp == kredit) {
-            NYCKEL_TAL__ING_MOMS_TOTAL -= moms;
-            NYCKEL_TAL__TOTAL_INKL_MOMS -= inkl_moms;
-            NYCKEL_TAL__TOTAL_EXKL_MOMS -= exkl_moms;
+//            NYCKEL_TAL__ING_MOMS_TOTAL -= moms;
+//            NYCKEL_TAL__TOTAL_INKL_MOMS -= inkl_moms;
+//            NYCKEL_TAL__TOTAL_EXKL_MOMS -= exkl_moms;
         }
         //
         if (fakturaTyp == offert) {

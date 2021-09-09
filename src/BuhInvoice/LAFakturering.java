@@ -342,6 +342,42 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
+    
+    public void executeSetFakturaBetald(String fakturaId, int status) {
+        //status 0 = ej betald; 1 = betald; 2 = delvis; 3 = över
+        HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        map.put(DB.BUH_FAKTURA__BETALD, "" + status);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+    
+    public void executeSetFakturaMakulerad(String fakturaId, int status) {
+        //status 1 = makulerad
+        HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        map.put(DB.BUH_FAKTURA__MAKULERAD, "" + status);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        HelpBuh.update(json);
+        //
+    }
+    
+    public void executeSetFakturaImportantKomment(String fakturaId, String comment) {
+        //
+        HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        //
+        map.put(DB.BUH_FAKTURA__IMPORTANT_KOMMENT, comment);
+        //
+        String json = JSon.hashMapToJSON(map);
+        //
+        HelpBuh.update(json);
+        //
+    }
 
     protected ArrayList<HashMap<String, String>> getArticlesMarkedInvoice() {
         return this.ARTICLES_ACTUAL_INVOICE;
@@ -2972,17 +3008,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
     }
 
-    public void executeSetFakturaBetald(String fakturaId, int status) {
-        //status 0 = ej betald; 1 = betald; 2 = delvis; 3 = över
-        HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
-        //
-        map.put(DB.BUH_FAKTURA__BETALD, "" + status);
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        HelpBuh.update(json);
-        //
-    }
+    
 
     private void jButton_create_new_faktura_bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_faktura_bActionPerformed
         //
@@ -3072,8 +3098,18 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return;
         }
         //
+        String fakturaId_of_invoice_you_copy = getFakturaId();
+        //
         invoiceB.copy(isKreditFaktura, isOffert(), true); // OMVANDLA If isOffert
-//        invoiceB.copy(isKreditFaktura, isOffert(), false); // COPY If isOffert
+        //
+        String fakturaId_of_the_copied_invoice = getFakturaId(); // as example for the future
+        String fakturaNr_of_the_copied_invoice = getFakturaNr();
+        //
+         if(isKreditFaktura){
+            //This is very important, if the invoice was kredited it becomes makulerad
+            executeSetFakturaMakulerad(fakturaId_of_invoice_you_copy, 1);
+            executeSetFakturaImportantKomment(fakturaId_of_invoice_you_copy, "Krediterad av fakturanr# " + fakturaNr_of_the_copied_invoice);
+        }
         //
     }
 

@@ -144,8 +144,16 @@ ________________________________________________________________________________
 
 Counting "nyckel tal" like: ingående moms sedan års start och andra värden sedan års start
 
-Search for: [#NYCKEL-TAL#]
+This corresponds to [#NYCKEL-TAL#] && [#NYCKEL-TAL-GRAFISK-VY#]
+So for the "***TOTAL SUM***" the below is actual:
+Invoice types not taken into account: makulerade, kreditfaktura, offert -> so infact only "typ_normal" och "typ_kontant" are summarized!
 
+This corresponds to [#NYCKEL-TAL#] && [#NYCKEL-TAL-GRAFISK-VY#]
+For the "***TOTAL AMMOUNT OF INVOICES***" following is actual:
+Absolutely ALL types of the documents are summarized.
+
+Search for: [#NYCKEL-TAL#] -> This is for the data under tab "ALLA FAKTUROR"
+Search for: [#NYCKEL-TAL-GRAFISK-VY#] -> This is for the data under tab "GRAFISK VY"
 ________________________________________________________________________________________________________
 [AMMOUNT OF INVOICES SHOWN BY DEFAULT][2021-04-XX]
 

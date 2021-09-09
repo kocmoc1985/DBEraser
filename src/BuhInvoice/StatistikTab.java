@@ -238,7 +238,7 @@ public class StatistikTab implements BarGraphListener {
             if(fakturor_one_year_map.isEmpty()){
                 return;
             }
-            //
+            //[#NYCKEL-TAL-GRAFISK-VY#]
             for (HashMap<String, String> map : fakturor_one_year_map) {
                 //
                 String fakturadatum = map.get(DB.BUH_FAKTURA__FAKTURA_DATUM);
@@ -262,7 +262,7 @@ public class StatistikTab implements BarGraphListener {
                     //
                 } else if (fakturatyp == kredit) {
                     //
-                    HelpA.decrease_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
+//                    HelpA.decrease_map_value_with_x(faktura_datum_short, Double.parseDouble(total), mont_sum_map);
                     //
                 }
                 //
