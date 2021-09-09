@@ -70,7 +70,7 @@ public class LANG {
     public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";
     public final static String MSG_2 = "Obligatoriska fält markerade med * måste vara ifyllda";
     public final static String MSG_3 = "Data kommer att raderas permanent! Vill du fortsätta?";
-    private final static String MSG_3_1 = " kommer att raderas permanent! Vill du fortsätta?";
+    public final static String MSG_3_1 = " kommer att raderas permanent! Vill du fortsätta?";
 
     public static final String MSG_3_1(boolean offert) {
         return offert ? Offerten + MSG_3_1 : Fakturan + MSG_3_1;

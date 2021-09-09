@@ -83,7 +83,7 @@ public class InvoiceB extends Basic_Buh {
     public static String TABLE_INVOICE_ARTIKLES__ENHET = "ENHET";
     public static String TABLE_INVOICE_ARTIKLES__PRIS = "PRIS";
     public static String TABLE_INVOICE_ARTIKLES__RABATT = "RABATT %";
-    public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT KR";
+    public static String TABLE_INVOICE_ARTIKLES__RABATT_KR = "RABATT"; // Don't change to "RABATT KR/EUR" causes many troubles
     public static String TABLE_INVOICE_ARTIKLES__MOMS_SATS = "MOMS %";
     public static String TABLE_INVOICE_ARTIKLES__OMVAND_SKATT = "OMVÄND SKATTSKYLDIGHET";
 
@@ -108,9 +108,6 @@ public class InvoiceB extends Basic_Buh {
         this.invoiceA_Update = invoiceA_Update;
     }
     
-    public static String TABLE_INVOICE_ARTIKLES__RABATT_KR(){
-        return HelpBuh.FOREIGN_CUSTOMER ? "RABATT EUR" : TABLE_INVOICE_ARTIKLES__RABATT_KR;
-    }
 
     private ArrayList<HashMap<String, String>> getFakturaEntry_articleList() {
         return invoiceA_Update.faktura_entry.articlesList;

@@ -1505,8 +1505,10 @@ public abstract class Invoice_ extends Basic_Buh {
                 setValueTableInvert(DB.BUH_F_ARTIKEL__RABATT_KR, TABLE_INVERT_2, "0");
                 setValueTableInvert(DB.BUH_F_ARTIKEL__OMVANT_SKATT, TABLE_INVERT_2, new HelpA.ComboBoxObject("Nej", "", "", ""));
 //                setValueTableInvert(DB.BUH_F_ARTIKEL__MOMS_SATS, TABLE_INVERT_2, new HelpA.ComboBoxObject("25%", "", "", ""));
-                if (momsSet == false) {
+                if (momsSet == false && HelpBuh.FOREIGN_CUSTOMER == false) {
                     setMomsSats_tableInvert(25);
+                }else if(momsSet == false && HelpBuh.FOREIGN_CUSTOMER == true){
+                   setMomsSats_tableInvert(0);
                 }
 
             }
