@@ -27,7 +27,7 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
     }
 
     @Override
-    public void insertOrUpdate() {
+    public String insertOrUpdate() {
         //
         setData();
         //
@@ -68,6 +68,8 @@ public class Faktura_Entry_Insert extends Faktura_Entry {
         }
         //
         resetLists();
+        //
+        return fakturaId;
         //
     }
 

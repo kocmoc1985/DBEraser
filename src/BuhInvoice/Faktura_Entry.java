@@ -45,7 +45,7 @@ public abstract class Faktura_Entry {
         return invoice.bim.getFakturaId();
     }
 
-    protected abstract void insertOrUpdate();
+    protected abstract String insertOrUpdate();
 
     protected abstract void setData();
 

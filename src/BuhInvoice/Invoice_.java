@@ -322,8 +322,8 @@ public abstract class Invoice_ extends Basic_Buh {
 
     protected abstract void addArticleForDB();
 
-    public void insertOrUpdate() {
-        faktura_entry.insertOrUpdate();
+    public String insertOrUpdate() {
+       return faktura_entry.insertOrUpdate();
     }
 
     protected String getFakturaKundId() {

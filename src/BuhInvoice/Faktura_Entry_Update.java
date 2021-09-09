@@ -30,7 +30,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
      * @return
      */
     @Override
-    public void insertOrUpdate() {
+    public String insertOrUpdate() {
         //
         setData();
         //
@@ -40,6 +40,7 @@ public class Faktura_Entry_Update extends Faktura_Entry {
         //
 //        resetLists();
         //
+        return null;
     }
 
     private boolean ADDING_SAME_ARTICLE__UPDATE = false;

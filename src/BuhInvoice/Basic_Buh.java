@@ -122,13 +122,15 @@ public abstract class Basic_Buh extends Basic {
      */
     protected void executeSetFakturaBetald(String fakturaId, int status) {
         //
-        HashMap<String, String> map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+        bim.executeSetFakturaBetald(fakturaId,status);
         //
-        map.put(DB.BUH_FAKTURA__BETALD, "" + status);
-        //
-        String json = JSon.hashMapToJSON(map);
-        //
-        HelpBuh.update(json);
+//        HashMap<String, String> map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
+//        //
+//        map.put(DB.BUH_FAKTURA__BETALD, "" + status);
+//        //
+//        String json = JSon.hashMapToJSON(map);
+//        //
+//        HelpBuh.update(json);
         //
     }
 
