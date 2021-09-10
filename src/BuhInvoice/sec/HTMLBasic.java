@@ -14,7 +14,10 @@ import java.util.logging.Logger;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
+import javax.swing.text.Utilities;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
@@ -22,7 +25,7 @@ import javax.swing.text.html.StyleSheet;
  *
  * @author KOCMOC
  */
-public abstract class HTMLBasic extends JFrame{
+public abstract class HTMLBasic extends JFrame implements DocumentListener {
 
     public abstract String buildHTML();
 
@@ -31,9 +34,9 @@ public abstract class HTMLBasic extends JFrame{
     public abstract JEditorPane getEditorPane();
 
     public abstract JScrollPane getJScrollPane();
-    
+
     public abstract String getWindowTitle();
-    
+
     /**
      * Use this one when, getting the image from inside the "project dir / root"
      *
@@ -55,7 +58,7 @@ public abstract class HTMLBasic extends JFrame{
             return null;
         }
     }
-    
+
     /**
      * Use this one when, getting the image from the "inside project / .jar
      * file"
@@ -67,7 +70,7 @@ public abstract class HTMLBasic extends JFrame{
     public String getPathResources(String path, String imgName) {
         return getImageIconURL(path, imgName).toString();
     }
-    
+
     /**
      *
      * @param path - path to image folder, play around to get the path working
@@ -88,9 +91,11 @@ public abstract class HTMLBasic extends JFrame{
         });
     }
 
+    private JEditorPane jep;
+
     public void go() {
         //
-        JEditorPane jep = getEditorPane();
+        jep = getEditorPane();
         //
         String[] CSSRules = getCssRules();
         //
@@ -105,14 +110,58 @@ public abstract class HTMLBasic extends JFrame{
         }
         //
         Document doc = kit.createDefaultDocument();
+        doc.addDocumentListener(this); // [2021-09-10]
         jep.setDocument(doc);
         //
         jep.setText(buildHTML());
-        
         //
         jep.invalidate();
         jep.validate();
         jep.repaint();
+        //
+    }
+
+    private void getLineCount() {
+        //OBS! Counting lines of an HTML doc seems to be super difficult because of the tags -> so <html> tag considered to be a line which in fact is not
+//        return jep.getText().split("\r\n").length;
+        //
+    }
+
+    // protected final static Dimension A4_PAPER = new Dimension(545, 842);
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        Document doc = e.getDocument();
+        System.out.println("#insertUpdate#");
+        System.out.println("Document length: " + doc.getLength());
+        System.out.println("Document End Position: " + doc.getEndPosition());
+        System.out.println("Document Start Position: " + doc.getStartPosition());
+
+        //
+        System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
+        System.out.println("JEditorPane getAccessibleText: " + jep.getAccessibleContext().getAccessibleText().toString());
+        System.out.println("JEditorPane Height: " + jep.getHeight());
+        System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
+        System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
+        //
+        
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+//        Document doc = e.getDocument();
+//        System.out.println("#removeUpdate#");
+//        System.out.println("Document length: " + doc.getLength());
+//        System.out.println("Document End Position: " + doc.getEndPosition());
+//        System.out.println("Document Start Position: " + doc.getStartPosition());
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+//        Document doc = e.getDocument();
+//        System.out.println("#changedUpdate#");
+//        System.out.println("Document length: " + doc.getLength());
+//        System.out.println("Document End Position: " + doc.getEndPosition());
+//        System.out.println("Document Start Position: " + doc.getStartPosition());
     }
 
 }

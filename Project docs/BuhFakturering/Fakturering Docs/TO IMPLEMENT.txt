@@ -43,6 +43,7 @@ ______
 [TO DO - PRIORITY B]
 
 See what can be done regarding the Faktura content exceeds A4 *******************[2021-02-19]
+Search for tag [#DOCUMENT-HEIGHT#]
 
 When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
 

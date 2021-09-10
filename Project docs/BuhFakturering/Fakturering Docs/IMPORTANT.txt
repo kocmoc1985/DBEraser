@@ -9,6 +9,22 @@ that the building made errors or some other...
 
 You can simply find if it's "corrupting" the "Ä" by trying to delete an invoice and look at the "confirm" message 
 _________________________________________________________________________________________________________
+[PRINT-PAGE-SIZE AND OTHER][2021-09-10][SUPER IMPORTANT]
+
+Dimension of A4 is (545, 842)
+
+The width and height of the JEditorPane is set from Editor and is exatly the size of A4 -> So the white area of the JEditorPane which
+you see before printing is exact the A4.
+
+I made a test when printing letters following by enter so in the end of document i wrote a + enter, b + enter.... and 
+the first letter which arrived outside the visible area appeared to be on the "PAGE 2" when printed to .pdf
+
+
+
+
+Search for tag [#DOCUMENT-HEIGHT#]
+
+_________________________________________________________________________________________________________
 [ADDING SAME ARTICLE SEVERAL TIMES][2021-08-28]
 
 When you add same article twice for example, it will not appear 

@@ -76,7 +76,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     protected final String FAKTURA_TYPE;
     protected final boolean preview;
     //
-    protected final static Dimension A4_PAPER = new Dimension(545, 842);
+    protected final static Dimension A4_PAPER = new Dimension(545, 842); // [#DOCUMENT-HEIGHT#]
     //
     //
     //
@@ -1077,7 +1077,7 @@ public abstract class HTMLPrint extends HTMLBasic {
     }
 
     protected boolean print_normal() {
-        //
+        //[#DOCUMENT-HEIGHT#]
         JEditorPane jep = getEditorPane();
         //
         int actHeight = jep.getHeight();
@@ -1090,7 +1090,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         }
         //
         Paper paper = new Paper();
-        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4
+        paper.setSize(fromCMToPPI(21.0), fromCMToPPI(29.7)); // A4 [#DOCUMENT-HEIGHT#]
         //
 //        paper.setImageableArea(fromCMToPPI(5.0), fromCMToPPI(5.0),
 //                fromCMToPPI(21.0) - fromCMToPPI(10.0), fromCMToPPI(29.7) - fromCMToPPI(10.0));
