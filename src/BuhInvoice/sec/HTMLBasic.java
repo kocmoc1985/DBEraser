@@ -108,6 +108,7 @@ public abstract class HTMLBasic extends JFrame{
         jep.setDocument(doc);
         //
         jep.setText(buildHTML());
+        
         //
         jep.invalidate();
         jep.validate();
