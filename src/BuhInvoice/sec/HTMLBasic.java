@@ -9,15 +9,23 @@ import BuhInvoice.HTMLPrint_A;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.AttributeSet;
 import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.Utilities;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
@@ -127,6 +135,16 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
         //
     }
 
+    private void listAllTags() {
+        //Working great
+        Pattern p = Pattern.compile("<([^\\s>/]+)");
+        Matcher m = p.matcher(jep.getText());
+        while (m.find()) {
+            String tag = m.group(1);
+            System.out.println(tag);
+        }
+    }
+
     // protected final static Dimension A4_PAPER = new Dimension(545, 842);
     @Override
     public void insertUpdate(DocumentEvent e) {
@@ -138,12 +156,30 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
 
         //
         System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
-        System.out.println("JEditorPane getAccessibleText: " + jep.getAccessibleContext().getAccessibleText().toString());
         System.out.println("JEditorPane Height: " + jep.getHeight());
         System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
         System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
         //
-        
+        System.out.println("Carret pos: " + jep.getCaret().getMagicCaretPosition());
+        //
+        //
+//        HTMLDocument htmldoc = (HTMLDocument) jep.getDocument();
+//        //
+//        Element elem = htmldoc.getElement("adressdata");
+//        //
+//        if (elem != null) {
+//            //
+//            System.out.println("Elem: " + elem.getName());
+//            System.out.println("Elem startoffset: " + elem.getStartOffset());
+//            AttributeSet a = elem.getAttributes(); // a.getAttribute(HTML.Attribute.NAME);
+//            Enumeration enumm = a.getAttributeNames();
+//            //
+//            while (enumm.hasMoreElements()) {
+//                System.out.println("Enum: " + enumm.nextElement()); // Attributes are: id, class, name
+//            }
+//            //
+//        }
+        //
     }
 
     @Override
