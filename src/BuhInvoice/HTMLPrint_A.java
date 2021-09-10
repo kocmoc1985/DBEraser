@@ -29,7 +29,6 @@ import javax.swing.JScrollPane;
 public class HTMLPrint_A extends HTMLPrint {
 
     private boolean OMVANT_SKATT__EXIST = false;
-    
 
     public HTMLPrint_A(
             LAFakturering bim,
@@ -484,7 +483,7 @@ public class HTMLPrint_A extends HTMLPrint {
             OMVANT_SKATT__EXIST = true;
             //
             if (ertVatNrExist() == false) {
-                HelpA.showNotification_separate_thread(LANG.MSG_22,null);
+                HelpA.showNotification_separate_thread(LANG.MSG_22, null);
             }
             //
         }
@@ -611,7 +610,6 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         return html_;
     }
-
 
     private String ovmvantSkattNotation() {
         //
@@ -986,11 +984,20 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_send_with_common_postActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_common_postActionPerformed
         //
-        if (GP_BUH.confirmWarning(LANG.MSG_10_5(bim.isOffert())) == false) {
-            return;
-        }
+//        if (GP_BUH.confirmWarning(LANG.MSG_10_5(bim.isOffert())) == false) {
+//            return;
+//        }
+//        //
+//        setSentByCommonPost();
         //
-        setSentByCommonPost();
+        //
+//        jEditorPane1.setCaretPosition(500);
+        java.awt.EventQueue.invokeLater(() -> { //[#DOCUMENT-HEIGHT#][REMOVE IT SOON]
+//            jEditorPane1.getCaret().moveDot(jEditorPane1.getDocument().getEndPosition().getOffset());
+            jEditorPane1.getCaret().moveDot(586);
+            jEditorPane1.getCaret().setBlinkRate(500);
+            jEditorPane1.getCaret().setVisible(true);
+        });
         //
     }//GEN-LAST:event_jButton_send_with_common_postActionPerformed
 

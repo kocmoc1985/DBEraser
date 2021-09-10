@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.HTMLPrint_A;
+import java.awt.Point;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,9 +18,12 @@ import java.util.regex.Pattern;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AttributeSet;
+import javax.swing.text.Caret;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
@@ -33,7 +37,7 @@ import javax.swing.text.html.StyleSheet;
  *
  * @author KOCMOC
  */
-public abstract class HTMLBasic extends JFrame implements DocumentListener {
+public abstract class HTMLBasic extends JFrame implements DocumentListener, ChangeListener {
 
     public abstract String buildHTML();
 
@@ -100,6 +104,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
     }
 
     private JEditorPane jep;
+    private Caret caret;
 
     public void go() {
         //
@@ -118,7 +123,11 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
         }
         //
         Document doc = kit.createDefaultDocument();
+        //
         doc.addDocumentListener(this); // [2021-09-10]
+        caret = jep.getCaret();
+        caret.addChangeListener(this);//[#DOCUMENT-HEIGHT#]
+        //
         jep.setDocument(doc);
         //
         jep.setText(buildHTML());
@@ -126,6 +135,12 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
         jep.invalidate();
         jep.validate();
         jep.repaint();
+        //
+        java.awt.EventQueue.invokeLater(() -> { // [#DOCUMENT-HEIGHT#]
+        jep.getCaret().moveDot(586);
+        jep.getCaret().setBlinkRate(500);
+        jep.getCaret().setVisible(true);
+        });
         //
     }
 
@@ -145,6 +160,35 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
         }
     }
 
+    private void findAndProcessElemnt_example() {
+        //
+        HTMLDocument htmldoc = (HTMLDocument) jep.getDocument();
+        //        
+        Element elem = htmldoc.getElement("adressdata");
+        //
+        if (elem != null) {
+            //
+            System.out.println("Elem: " + elem.getName());
+            System.out.println("Elem startoffset: " + elem.getStartOffset());
+            AttributeSet a = elem.getAttributes(); // a.getAttribute(HTML.Attribute.NAME);
+            Enumeration enumm = a.getAttributeNames();
+            //
+            while (enumm.hasMoreElements()) {
+                System.out.println("Enum: " + enumm.nextElement()); // Attributes are: id, class, name
+            }
+            //
+        }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        // This regards to Caret
+        System.out.println("Caret EVENT *******************");
+        Point point = caret.getMagicCaretPosition();
+        System.out.println("MAGIC POINT: " + point); // y: height, x: width
+        System.out.println("CARRET POS: " + caret.getDot());
+    }
+
     // protected final static Dimension A4_PAPER = new Dimension(545, 842);
     @Override
     public void insertUpdate(DocumentEvent e) {
@@ -153,51 +197,26 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener {
         System.out.println("Document length: " + doc.getLength());
         System.out.println("Document End Position: " + doc.getEndPosition());
         System.out.println("Document Start Position: " + doc.getStartPosition());
-
         //
         System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
         System.out.println("JEditorPane Height: " + jep.getHeight());
         System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
         System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
         //
-        System.out.println("Carret pos: " + jep.getCaret().getMagicCaretPosition());
-        //
-        //
-//        HTMLDocument htmldoc = (HTMLDocument) jep.getDocument();
-//        //
-//        Element elem = htmldoc.getElement("adressdata");
-//        //
-//        if (elem != null) {
-//            //
-//            System.out.println("Elem: " + elem.getName());
-//            System.out.println("Elem startoffset: " + elem.getStartOffset());
-//            AttributeSet a = elem.getAttributes(); // a.getAttribute(HTML.Attribute.NAME);
-//            Enumeration enumm = a.getAttributeNames();
-//            //
-//            while (enumm.hasMoreElements()) {
-//                System.out.println("Enum: " + enumm.nextElement()); // Attributes are: id, class, name
-//            }
-//            //
-//        }
+        System.out.println("Carret pos Insert: " + jep.getCaret().getMagicCaretPosition()); // jep.getCaret().getMagicCaretPosition()
         //
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
 //        Document doc = e.getDocument();
-//        System.out.println("#removeUpdate#");
-//        System.out.println("Document length: " + doc.getLength());
-//        System.out.println("Document End Position: " + doc.getEndPosition());
-//        System.out.println("Document Start Position: " + doc.getStartPosition());
+        System.out.println("Carret pos Update: " + jep.getCaret().getMagicCaretPosition());
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
 //        Document doc = e.getDocument();
-//        System.out.println("#changedUpdate#");
-//        System.out.println("Document length: " + doc.getLength());
-//        System.out.println("Document End Position: " + doc.getEndPosition());
-//        System.out.println("Document Start Position: " + doc.getStartPosition());
+        System.out.println("Carret pos changed: " + jep.getCaret().getMagicCaretPosition());
     }
 
 }
