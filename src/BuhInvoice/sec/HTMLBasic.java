@@ -5,6 +5,7 @@
  */
 package BuhInvoice.sec;
 
+import BuhInvoice.GP_BUH;
 import BuhInvoice.HTMLPrint_A;
 import java.awt.Point;
 import java.io.File;
@@ -26,9 +27,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.Caret;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
-import javax.swing.text.StyledDocument;
-import javax.swing.text.Utilities;
-import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
@@ -48,6 +46,8 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     public abstract JScrollPane getJScrollPane();
 
     public abstract String getWindowTitle();
+    
+    private boolean oneTimeFlag = false;
 
     /**
      * Use this one when, getting the image from inside the "project dir / root"
@@ -137,9 +137,9 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         jep.repaint();
         //
         java.awt.EventQueue.invokeLater(() -> { // [#DOCUMENT-HEIGHT#]
-        jep.getCaret().moveDot(586);
-        jep.getCaret().setBlinkRate(500);
-        jep.getCaret().setVisible(true);
+            jep.getCaret().moveDot(doc.getEndPosition().getOffset()); // 586
+            jep.getCaret().setBlinkRate(500);
+            jep.getCaret().setVisible(true);
         });
         //
     }
@@ -182,11 +182,19 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        // This regards to Caret
+        // SUPER IMPORTANT, this regards to Caret
+        //
         System.out.println("Caret EVENT *******************");
         Point point = caret.getMagicCaretPosition();
+        //
         System.out.println("MAGIC POINT: " + point); // y: height, x: width
         System.out.println("CARRET POS: " + caret.getDot());
+        //
+        if (point != null && point.getY() > 815 && oneTimeFlag == false) { // [#DOCUMENT-HEIGHT#]
+            oneTimeFlag = true;
+            GP_BUH.showNotification("Innehållet är större än tillåtet");
+        }
+        //
     }
 
     // protected final static Dimension A4_PAPER = new Dimension(545, 842);
