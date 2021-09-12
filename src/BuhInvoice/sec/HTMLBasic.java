@@ -46,8 +46,11 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     public abstract JScrollPane getJScrollPane();
 
     public abstract String getWindowTitle();
-    
+
     private boolean oneTimeFlag = false;
+
+    private JEditorPane jep;
+    private Caret caret;
 
     /**
      * Use this one when, getting the image from inside the "project dir / root"
@@ -103,9 +106,6 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         });
     }
 
-    private JEditorPane jep;
-    private Caret caret;
-
     public void go() {
         //
         jep = getEditorPane();
@@ -144,6 +144,50 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         //
     }
 
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        // SUPER IMPORTANT, this regards to Caret
+        //
+        System.out.println("Caret EVENT *******************");
+        Point point = caret.getMagicCaretPosition();
+        //
+        System.out.println("MAGIC POINT: " + point); // y: height, x: width
+        System.out.println("CARRET POS: " + caret.getDot());
+        //
+        if (point != null && point.getY() > 815 && oneTimeFlag == false) { // [#DOCUMENT-HEIGHT#]
+            oneTimeFlag = true;
+            GP_BUH.showNotification("Innehållet är större än tillåtet");
+        }
+        //
+    }
+
+    // protected final static Dimension A4_PAPER = new Dimension(545, 842);
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        Document doc = e.getDocument();
+        //
+        System.out.println("#insertUpdate#");
+        System.out.println("Document length: " + doc.getLength());
+        System.out.println("Document End Position: " + doc.getEndPosition());
+        System.out.println("Document Start Position: " + doc.getStartPosition());
+        //
+        System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
+        System.out.println("JEditorPane Height: " + jep.getHeight());
+        System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
+        System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
+        //
+        System.out.println("Carret pos Insert: " + jep.getCaret().getMagicCaretPosition()); // jep.getCaret().getMagicCaretPosition()
+        //
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+    }
+
     private void getLineCount() {
         //OBS! Counting lines of an HTML doc seems to be super difficult because of the tags -> so <html> tag considered to be a line which in fact is not
 //        return jep.getText().split("\r\n").length;
@@ -178,53 +222,6 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
             }
             //
         }
-    }
-
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        // SUPER IMPORTANT, this regards to Caret
-        //
-        System.out.println("Caret EVENT *******************");
-        Point point = caret.getMagicCaretPosition();
-        //
-        System.out.println("MAGIC POINT: " + point); // y: height, x: width
-        System.out.println("CARRET POS: " + caret.getDot());
-        //
-        if (point != null && point.getY() > 815 && oneTimeFlag == false) { // [#DOCUMENT-HEIGHT#]
-            oneTimeFlag = true;
-            GP_BUH.showNotification("Innehållet är större än tillåtet");
-        }
-        //
-    }
-
-    // protected final static Dimension A4_PAPER = new Dimension(545, 842);
-    @Override
-    public void insertUpdate(DocumentEvent e) {
-        Document doc = e.getDocument();
-        System.out.println("#insertUpdate#");
-        System.out.println("Document length: " + doc.getLength());
-        System.out.println("Document End Position: " + doc.getEndPosition());
-        System.out.println("Document Start Position: " + doc.getStartPosition());
-        //
-        System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
-        System.out.println("JEditorPane Height: " + jep.getHeight());
-        System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
-        System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
-        //
-        System.out.println("Carret pos Insert: " + jep.getCaret().getMagicCaretPosition()); // jep.getCaret().getMagicCaretPosition()
-        //
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-//        Document doc = e.getDocument();
-        System.out.println("Carret pos Update: " + jep.getCaret().getMagicCaretPosition());
-    }
-
-    @Override
-    public void changedUpdate(DocumentEvent e) {
-//        Document doc = e.getDocument();
-        System.out.println("Carret pos changed: " + jep.getCaret().getMagicCaretPosition());
     }
 
 }

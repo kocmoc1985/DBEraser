@@ -24,7 +24,6 @@ import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.SMTP;
 import BuhInvoice.sec.Stamp;
-import com.qoppa.pdfWriter.ImageParam;
 import com.qoppa.pdfWriter.PDFDocument;
 import com.qoppa.pdfWriter.PDFPage;
 import com.qoppa.pdfWriter.PDFPrinterJob;
