@@ -19,6 +19,7 @@ you see before printing is exact the A4.
 I made a test when printing letters following by enter so in the end of document i wrote a + enter, b + enter.... and 
 the first letter which arrived outside the visible area appeared to be on the "PAGE 2" when printed to .pdf
 
+The solution per [2021-09-13] is following: when the invoice is displayed i can now evaluate if the content fits to the A4
 
 
 Search for tag [#DOCUMENT-HEIGHT#]

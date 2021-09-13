@@ -192,7 +192,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String total = map_d.get(att_betala_title);
         return roundBetalaTotal(total);
     }
-
+    
     private String getTotalBeloppInnanAvdrag() {
         //
         if (isRut() == false) {
@@ -389,6 +389,7 @@ public class HTMLPrint_A extends HTMLPrint {
         html_ += "</table>";
         //
         return html_;
+        //
     }
 
     private String betal_alternativ_to_html() {
@@ -435,6 +436,7 @@ public class HTMLPrint_A extends HTMLPrint {
         int colToMakeBold = 9;
         //
         String moms_kr = map_d.get(T__FAKTURA_MOMS_KR);
+        moms_kr = getSpecial_foreign_customer(moms_kr);
         String frakt = map_d.get(T__FAKTURA_FRAKT);
         String exp = map_d.get(T__FAKTURA_EXP_AVG);
         String rabatt_kr = map_d.get(T__FAKTURA_RABATT_KR);

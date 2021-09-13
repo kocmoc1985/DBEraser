@@ -47,7 +47,8 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
 
     public abstract String getWindowTitle();
 
-    private boolean oneTimeFlag = false;
+    private boolean flag_a = false;
+    private final int MAX_ALLOWED = 815;
 
     private JEditorPane jep;
     private Caret caret;
@@ -136,56 +137,77 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         jep.validate();
         jep.repaint();
         //
-        java.awt.EventQueue.invokeLater(() -> { // [#DOCUMENT-HEIGHT#]
-            jep.getCaret().moveDot(doc.getEndPosition().getOffset()); // 586
-            jep.getCaret().setBlinkRate(500);
-            jep.getCaret().setVisible(true);
-        });
+        // The one below triggeres the "stateChanged(...)"
+        stateChangedTrigger(doc.getEndPosition().getOffset()); // [#DOCUMENT-HEIGHT#]
         //
     }
 
     @Override
-    public void stateChanged(ChangeEvent e) {
+    public void stateChanged(ChangeEvent e) { // ChengeListener
+        //
         // SUPER IMPORTANT, this regards to Caret
         //
-        System.out.println("Caret EVENT *******************");
+        System.out.println("Caret EVENT: stateChanged() *******************");
         Point point = caret.getMagicCaretPosition();
         //
-        System.out.println("MAGIC POINT: " + point); // y: height, x: width
-        System.out.println("CARRET POS: " + caret.getDot());
+        System.out.println("MAGIC POINT**: " + point); // y: height, x: width
+        System.out.println("CARRET POS**: " + caret.getDot());
         //
-        if (point != null && point.getY() > 815 && oneTimeFlag == false) { // [#DOCUMENT-HEIGHT#]
-            oneTimeFlag = true;
-            GP_BUH.showNotification("Innehållet är större än tillåtet");
+        if (point != null && point.getY() > MAX_ALLOWED) { // [#DOCUMENT-HEIGHT#]
+//            flag_a = true;
+            GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet");
         }
+        //
+//        if(point != null && point.getY() < MAX_ALLOWED && flag_a){
+//            flag_a = false;
+//        }
+        //
+    }
+
+    private void stateChangedTrigger(int pos) {
+        // [#DOCUMENT-HEIGHT#]
+        java.awt.EventQueue.invokeLater(() -> {
+            //
+            jep.getCaret().moveDot(pos);
+            jep.getCaret().setBlinkRate(500);
+            jep.getCaret().setVisible(true);
+            //
+        });
         //
     }
 
     // protected final static Dimension A4_PAPER = new Dimension(545, 842);
     @Override
-    public void insertUpdate(DocumentEvent e) {
+    public void insertUpdate(DocumentEvent e) { // DocumentListener
         Document doc = e.getDocument();
         //
-        System.out.println("#insertUpdate#");
-        System.out.println("Document length: " + doc.getLength());
-        System.out.println("Document End Position: " + doc.getEndPosition());
-        System.out.println("Document Start Position: " + doc.getStartPosition());
+        stateChangedTrigger(jep.getCaretPosition());
         //
-        System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
-        System.out.println("JEditorPane Height: " + jep.getHeight());
-        System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
-        System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
-        //
-        System.out.println("Carret pos Insert: " + jep.getCaret().getMagicCaretPosition()); // jep.getCaret().getMagicCaretPosition()
+//        System.out.println("#insertUpdate#");
+//        System.out.println("Document length: " + doc.getLength());
+//        System.out.println("Document End Position: " + doc.getEndPosition());
+//        System.out.println("Document Start Position: " + doc.getStartPosition());
+//        //
+//        System.out.println("JEditorPane CaretPosition: " + jep.getCaretPosition());
+//        System.out.println("JEditorPane Height: " + jep.getHeight());
+//        System.out.println("JEditorPane Width: " + jep.getWidth()); //jep.getVisibleRect()
+//        System.out.println("JEditorPane Visible Rect: " + jep.getVisibleRect());
+//        //
+//        System.out.println("Carret pos Insert: " + jep.getCaret().getMagicCaretPosition()); // jep.getCaret().getMagicCaretPosition()
         //
     }
 
     @Override
-    public void removeUpdate(DocumentEvent e) {
+    public void removeUpdate(DocumentEvent e) { // DocumentListener
+        stateChangedTrigger(jep.getCaretPosition());
     }
 
     @Override
-    public void changedUpdate(DocumentEvent e) {
+    public void changedUpdate(DocumentEvent e) { // DocumentListener
+        // This one is triggered only when the document is loaded.
+        // So it's not triggered when you edit the text directly on the invoice.
+        // But if you insert a stamp it will be triggered because the document is reloaded/rebuild in this case.
+        System.out.println("");
     }
 
     private void getLineCount() {
