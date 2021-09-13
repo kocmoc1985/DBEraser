@@ -138,7 +138,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         jep.repaint();
         //
         // The one below triggeres the "stateChanged(...)"
-        stateChangedTrigger(doc.getEndPosition().getOffset()); // [#DOCUMENT-HEIGHT#]
+        stateChangedTrigger(doc.getEndPosition().getOffset()-15); // [#DOCUMENT-HEIGHT#]
         //
     }
 
@@ -155,20 +155,20 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         //
         if (point != null && point.getY() > MAX_ALLOWED_Y && flag_a == false) { // [#DOCUMENT-HEIGHT#]
             flag_a = true;
-            GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet");
+            GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet: " + point);
         }
         //
     }
     
-    private void stateChangedTrigger(){
-        stateChangedTrigger(jep.getDocument().getEndPosition().getOffset());
+    public void stateChangedTrigger(){
+        stateChangedTrigger(jep.getDocument().getEndPosition().getOffset()-20);
     }
 
     private void stateChangedTrigger(int pos) {
         // [#DOCUMENT-HEIGHT#]
         java.awt.EventQueue.invokeLater(() -> {
             //
-            jep.getCaret().moveDot(pos);
+            jep.getCaret().setDot(pos);
             jep.getCaret().setBlinkRate(500);
             jep.getCaret().setVisible(true);
             //
