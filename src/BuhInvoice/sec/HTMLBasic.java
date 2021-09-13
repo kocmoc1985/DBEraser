@@ -48,7 +48,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     public abstract String getWindowTitle();
 
     private boolean flag_a = false;
-    private final int MAX_ALLOWED = 815;
+    private final int MAX_ALLOWED_Y = 815;
 
     private JEditorPane jep;
     private Caret caret;
@@ -153,7 +153,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         System.out.println("MAGIC POINT**: " + point); // y: height, x: width
         System.out.println("CARRET POS**: " + caret.getDot());
         //
-        if (point != null && point.getY() > MAX_ALLOWED && flag_a == false) { // [#DOCUMENT-HEIGHT#]
+        if (point != null && point.getY() > MAX_ALLOWED_Y && flag_a == false) { // [#DOCUMENT-HEIGHT#]
             flag_a = true;
             GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet");
         }
