@@ -153,15 +153,15 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         System.out.println("MAGIC POINT**: " + point); // y: height, x: width
         System.out.println("CARRET POS**: " + caret.getDot());
         //
-        if (point != null && point.getY() > MAX_ALLOWED) { // [#DOCUMENT-HEIGHT#]
-//            flag_a = true;
+        if (point != null && point.getY() > MAX_ALLOWED && flag_a == false) { // [#DOCUMENT-HEIGHT#]
+            flag_a = true;
             GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet");
         }
         //
-//        if(point != null && point.getY() < MAX_ALLOWED && flag_a){
-//            flag_a = false;
-//        }
-        //
+    }
+    
+    private void stateChangedTrigger(){
+        stateChangedTrigger(jep.getDocument().getEndPosition().getOffset());
     }
 
     private void stateChangedTrigger(int pos) {

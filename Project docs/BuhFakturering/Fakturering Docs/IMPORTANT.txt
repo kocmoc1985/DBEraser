@@ -11,7 +11,9 @@ You can simply find if it's "corrupting" the "Ä" by trying to delete an invoice 
 _________________________________________________________________________________________________________
 [PRINT-PAGE-SIZE AND OTHER][2021-09-10][SUPER IMPORTANT]
 
-Dimension of A4 is (545, 842)
+Dimension of A4 is (x:545, y:842)
+
+OBS! y: 795 -> seems to be the maximum for the Printer
 
 The width and height of the JEditorPane is set from Editor and is exatly the size of A4 -> So the white area of the JEditorPane which
 you see before printing is exact the A4.
@@ -19,8 +21,10 @@ you see before printing is exact the A4.
 I made a test when printing letters following by enter so in the end of document i wrote a + enter, b + enter.... and 
 the first letter which arrived outside the visible area appeared to be on the "PAGE 2" when printed to .pdf
 
-The solution per [2021-09-13] is following: when the invoice is displayed i can now evaluate if the content fits to the A4
-
+READ HERE THE ACTUAL SOLUTION STATUS[2021-09-13]:
+The check is working when:
+- The invoice is rebuild/reloaded -> so this will also work when you insert a stamp (as inserting of stamp triggers rebuilding/reloading)
+- When you write or delete text at the END of the document
 
 Search for tag [#DOCUMENT-HEIGHT#]
 
