@@ -1005,9 +1005,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_pdf_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdf_btnActionPerformed
         //
-//        print_help(true);
-        //
-        stateChangedTrigger();
+        print_help(true);
         //
     }//GEN-LAST:event_jButton_pdf_btnActionPerformed
 
