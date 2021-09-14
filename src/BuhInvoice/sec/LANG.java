@@ -200,6 +200,8 @@ public class LANG {
     public static String MSG_30(int antal) {
         return "Samma artikel finns redan, kommer att öka antalet med " + antal + " istället";
     }
+    
+    public static String MSG_31 = "Utskriftens innehåll får inte plats på en A4. Var god försök göra innehållet kortare!";
 
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";

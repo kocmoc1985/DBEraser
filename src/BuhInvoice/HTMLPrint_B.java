@@ -12,16 +12,12 @@ import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
-import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -162,7 +158,7 @@ public class HTMLPrint_B extends HTMLPrint {
                 //
                 + faktura_data_C_to_html__addr()
                 //
-                + "<br><br>"
+//                + "<br><br>"
                 //
                 + "</div>"
                 + "</body>"

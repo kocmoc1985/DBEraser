@@ -13,7 +13,10 @@ ________________________________________________________________________________
 
 Dimension of A4 is (x:545, y:842)
 
-OBS! y: 795 -> seems to be the maximum for the Printer
+Printer Margins:
+Y-AXIS: 808 is max of what can be printed (print-test:done)
+X-AXIS: 520-530 seems to be the "preffered" max -> strange thing is that the printer manages to print over 545 (maybe i don't inderstand something) 
+
 
 The width and height of the JEditorPane is set from Editor and is exatly the size of A4 -> So the white area of the JEditorPane which
 you see before printing is exact the A4.
@@ -25,6 +28,10 @@ READ HERE THE ACTUAL SOLUTION STATUS[2021-09-13]:
 The check is working when:
 - The invoice is rebuild/reloaded -> so this will also work when you insert a stamp (as inserting of stamp triggers rebuilding/reloading)
 - When you write or delete text at the END of the document
+
+The check will not work if:
+- If you add some text somewhere in the middle and the content will exceed the limit. By [2021-09-14] i don't have an optimal solution for check
+when inserted in the "middle". An idea which was not ended because of difficulties was to perform a check when user clicks the "print" button.
 
 Search for tag [#DOCUMENT-HEIGHT#]
 

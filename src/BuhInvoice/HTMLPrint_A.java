@@ -238,7 +238,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + faktura_data_C_to_html__addr()
                 //
-                + "<br><br>"
+//                + "<br><br>"
                 //
                 + "</div>"
                 + "</body>"

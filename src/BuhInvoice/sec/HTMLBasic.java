@@ -48,8 +48,18 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     public abstract String getWindowTitle();
 
     private boolean flag_a = false;
-    private final int MAX_ALLOWED = 815;
-
+    //
+    // Dimension of A4 is (x:545, y:842)
+    //
+    // PRINTER MARGINS - TESTED ON BRN8460
+    // Y - AXIS: 
+    // ABSOLUTE MAX = 808 (yes it is printed but in very low part of A4)(print-test:done)
+    // BETTER NOT TO EXCEED = 796 -> For the 
+    // 
+    // X - AXIS: 
+    // ABSOLUTE MAX = 515 (i didn't test with 515 but did test with 514)
+    private final int MAX_ALLOWED_Y = 800; // This is about printer margins
+    
     private JEditorPane jep;
     private Caret caret;
 
@@ -147,22 +157,19 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         //
         // SUPER IMPORTANT, this regards to Caret
         //
-        System.out.println("Caret EVENT: stateChanged() *******************");
+//        System.out.println("Caret EVENT: stateChanged() *******************");
         Point point = caret.getMagicCaretPosition();
         //
         System.out.println("MAGIC POINT**: " + point); // y: height, x: width
         System.out.println("CARRET POS**: " + caret.getDot());
         //
-        if (point != null && point.getY() > MAX_ALLOWED && flag_a == false) { // [#DOCUMENT-HEIGHT#]
+        if (point != null && point.getY() > MAX_ALLOWED_Y && flag_a == false) { // [#DOCUMENT-HEIGHT#]
             flag_a = true;
-            GP_BUH.showNotification("Utskriftens innehåll är större än tillåtet");
+            GP_BUH.showNotification(LANG.MSG_31);
         }
         //
     }
     
-    private void stateChangedTrigger(){
-        stateChangedTrigger(jep.getDocument().getEndPosition().getOffset());
-    }
 
     private void stateChangedTrigger(int pos) {
         // [#DOCUMENT-HEIGHT#]
@@ -179,6 +186,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     // protected final static Dimension A4_PAPER = new Dimension(545, 842);
     @Override
     public void insertUpdate(DocumentEvent e) { // DocumentListener
+        //
         Document doc = e.getDocument();
         //
         stateChangedTrigger(jep.getCaretPosition());
@@ -210,6 +218,8 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         System.out.println("");
     }
 
+    //==========================================================================
+    
     private void getLineCount() {
         //OBS! Counting lines of an HTML doc seems to be super difficult because of the tags -> so <html> tag considered to be a line which in fact is not
 //        return jep.getText().split("\r\n").length;
