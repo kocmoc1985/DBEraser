@@ -8,7 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.LANG;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.MomsBuh_F_artikel;
-import BuhInvoice.sec.MomsComporator;
+import BuhInvoice.sec.MomsComparator;
 import BuhInvoice.sec.RutRot;
 import BuhInvoice.sec.RutRotFrame;
 import MyObjectTable.OutPut;
@@ -715,7 +715,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         }
         //
-        Collections.sort(list, new MomsComporator());
+        Collections.sort(list, new MomsComparator());
         //
         //
         double momsSats = 0.25;

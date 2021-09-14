@@ -11,7 +11,7 @@ import java.util.Comparator;
  *
  * @author KOCMOC
  */
-public class MomsComporator implements Comparator<MomsBuh_F_artikel> {
+public class MomsComparator implements Comparator<MomsBuh_F_artikel> {
 
     @Override
     public int compare(MomsBuh_F_artikel o1, MomsBuh_F_artikel o2) {

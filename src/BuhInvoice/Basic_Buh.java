@@ -78,7 +78,7 @@ public abstract class Basic_Buh extends Basic {
         //
         tableInitReadySet.add(ti); //[#SAVE-INVOICE-NOTE#]
         //
-        System.out.println("ADDED: " + ti.getTABLE_NAME());
+//        System.out.println("ADDED: " + ti.getTABLE_NAME());
         //
         super.showTableInvert(container, tableInvert); //To change body of generated methods, choose Tools | Templates.
     }
@@ -92,7 +92,7 @@ public abstract class Basic_Buh extends Basic {
         //
         tableInitReadySet.remove(ti); //[#SAVE-INVOICE-NOTE#]
         //
-        System.out.println("REMOVED: " + ti.getTABLE_NAME());
+//        System.out.println("REMOVED: " + ti.getTABLE_NAME());
     }
 
     /**

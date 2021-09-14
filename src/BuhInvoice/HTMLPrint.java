@@ -1075,7 +1075,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         bim.invoiceB.refresh_c();
     }
 
-    protected boolean print_normal() {
+    private boolean print_normal() {
         //[#DOCUMENT-HEIGHT#]
         JEditorPane jep = getEditorPane();
         //
@@ -1137,7 +1137,7 @@ public abstract class HTMLPrint extends HTMLBasic {
      * @param filename
      * @return
      */
-    protected boolean print_java(String filename) {
+    private boolean print_java(String filename) {
         //
         JEditorPane jep = getEditorPane();
         //

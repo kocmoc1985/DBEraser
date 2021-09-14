@@ -7,9 +7,6 @@ package BuhInvoice.sec;
 
 import BuhInvoice.LAFakturering;
 import BuhInvoice.GP_BUH;
-import forall.HelpA;
-import static forall.HelpA.objectToFile;
-import java.util.HashSet;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;

@@ -267,7 +267,7 @@ public class Validator {
         return validate(jli, EMAIL);
     }
 
-    public static boolean validate(JLinkInvert jli, Pattern pattern) {
+    private static boolean validate(JLinkInvert jli, Pattern pattern) {
         //
         String val = jli.getValue();
         //

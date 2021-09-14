@@ -27,6 +27,8 @@ _____
 
 Dont name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file.
 
+Referenser - this shall be done soon: Dmitrij Bouglinov, Höör, Lina, Alex Breicht
+
 Find the places where "GRATIS" is used and think what to do with that.
 
 _____
