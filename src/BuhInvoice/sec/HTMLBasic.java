@@ -148,7 +148,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         jep.repaint();
         //
         // The one below triggeres the "stateChanged(...)"
-        stateChangedTrigger(doc.getEndPosition().getOffset()); // [#DOCUMENT-HEIGHT#]
+        stateChangedTrigger(doc.getEndPosition().getOffset()-15); // [#DOCUMENT-HEIGHT#]
         //
     }
 
@@ -175,7 +175,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         // [#DOCUMENT-HEIGHT#]
         java.awt.EventQueue.invokeLater(() -> {
             //
-            jep.getCaret().moveDot(pos);
+            jep.getCaret().setDot(pos);
             jep.getCaret().setBlinkRate(500);
             jep.getCaret().setVisible(true);
             //
