@@ -25,9 +25,10 @@
 _____
 [TO DO - CONTENT]
 
-Dont name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file.
+Don't name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file. [partially done]
 
 Referenser - this shall be done soon: Dmitrij Bouglinov, Höör, Lina, Alex Breicht
+So there is an unused section named "About". You can there display any Page. You can also call it different then "About".
 
 Find the places where "GRATIS" is used and think what to do with that.
 

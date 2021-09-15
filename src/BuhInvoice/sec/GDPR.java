@@ -202,7 +202,7 @@ public class GDPR extends HTMLBasic {
                 //
                 + "<br>"
                 //
-                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:9px;'>"
+                + "<div style='margin-left:10px;padding:5 5 5 5px;font-size:8px;'>"
                 + personUppgiftsAnsvarig()
                 + "</div>"
                 //
@@ -278,15 +278,15 @@ public class GDPR extends HTMLBasic {
 
     private String personUppgiftsAnsvarig() {
         return ""
-                + "<h2>Personuppgiftsansvarig</h2>"
+                + "<h3>Personuppgiftsansvarig</h3>"
                 + "<p>"
                 + "MixCont AB <br>"
                 //                + "Organisationsnummer: 556251-6806 <br>"
-                + "Gatuadress: Sanktagertudsväg 10 <br>"
-                + "Ort: Trelleborg <br>"
+                + "Gatuadress: Gertudsväg 10<br>"
+                + "Ort: 231-45 <br>"
                 + "Land: Sverige <br>"
                 + "E-Post: info@lafakturering.se <br><br>"
-                + "Denna integritetspolicy uppdateras senast: 2020-12-26"
+                + "Uppdaterades senast: 2021-09-01"
                 + "</p>";
     }
 

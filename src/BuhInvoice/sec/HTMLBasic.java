@@ -59,7 +59,7 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     // X - AXIS: 
     // ABSOLUTE MAX = 515 (i didn't test with 515 but did test with 514)
     private final int MAX_ALLOWED_Y = 800; // This is about printer margins
-    
+
     private JEditorPane jep;
     private Caret caret;
 
@@ -135,9 +135,12 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         //
         Document doc = kit.createDefaultDocument();
         //
-        doc.addDocumentListener(this); // [2021-09-10]
         caret = jep.getCaret();
-        caret.addChangeListener(this);//[#DOCUMENT-HEIGHT#]
+        //
+        if (this instanceof GDPR == false) {
+            doc.addDocumentListener(this); // [2021-09-10]
+            caret.addChangeListener(this);//[#DOCUMENT-HEIGHT#] 
+        }
         //
         jep.setDocument(doc);
         //
@@ -148,7 +151,9 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         jep.repaint();
         //
         // The one below triggeres the "stateChanged(...)"
-        stateChangedTrigger(doc.getEndPosition().getOffset()-15); // [#DOCUMENT-HEIGHT#]
+        if(this instanceof GDPR == false){
+            stateChangedTrigger(doc.getEndPosition().getOffset() - 15); // [#DOCUMENT-HEIGHT#]
+        }
         //
     }
 
@@ -169,7 +174,6 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
         }
         //
     }
-    
 
     private void stateChangedTrigger(int pos) {
         // [#DOCUMENT-HEIGHT#]
@@ -219,7 +223,6 @@ public abstract class HTMLBasic extends JFrame implements DocumentListener, Chan
     }
 
     //==========================================================================
-    
     private void getLineCount() {
         //OBS! Counting lines of an HTML doc seems to be super difficult because of the tags -> so <html> tag considered to be a line which in fact is not
 //        return jep.getText().split("\r\n").length;
