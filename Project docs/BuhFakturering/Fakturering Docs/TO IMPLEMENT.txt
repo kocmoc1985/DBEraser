@@ -25,20 +25,27 @@
 _____
 [TO DO - CONTENT]
 
-Don't name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file. [partially done]
-
-Referenser - this shall be done soon: Dmitrij Bouglinov, Höör, Lina, Alex Breicht
 So there is an unused section named "About". You can there display any Page. You can also call it different then "About".
 
 Find the places where "GRATIS" is used and think what to do with that.
 
+$Referenser - (Section named "About"):
+Dmitrij Bouglinov - sent waiting
+Ivan Dontu - 
+Lina - 
+Igorj Helsinborg -
+Alex Breicht: done
+
+$Webbsidor:
+# http://www.gratis-bokfringsprogram.se/   ----> Det står att man kan hamna högt om sponsrar. 
+@@Skapa fakturor, offerter, påminelser - superenkelt. Skicka iväg som .pdf med en enda knapptryckning.
+@@Samtliga inmatningsfält ser likadana ut vilket gör att du vänjer dig vid första användning.
+@@"GRAFISK VY" möjlighet att jobba med fakturor i grafisk form. Kontodelning - dela konto med din kollega, bokföringskonsult m.m.
+# www.foretagande.se
+# https://www.bokforingstips.se/
+
 _____
 [TO DO - PRIORITY A]
-
-Make new V 1.16 distributions for PC and MAC
-
-Regarding the [#DOCUMENT-HEIGHT#] subject - there is a problem. Let's say you preview an invoice and it's ok. But then
-yo add some text manually - this will not trigger the "checking" the checking is triggered when the document is REDRAWN or you MANUALLY PLACE THE CARET.
 
 RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
 when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximum 2000
@@ -50,6 +57,9 @@ När jag å andra sidan använder ".pdf" knappen placeras fakturan (namn: faktura.p
 ______
 [TO DO - PRIORITY B]
 
+Regarding the [#DOCUMENT-HEIGHT#] subject - there is a problem. Let's say you preview an invoice and it's ok. But then
+yo add some text manually - this will not trigger the "checking" the checking is triggered when the document is REDRAWN or you MANUALLY PLACE THE CARET.
+
 When you choose en "Foreign" customer the user must be informed that the prices and all other costs are now in EUR[2021-09-08][IMPORTANT]
 
 Backup of all data  (have in mind that kundId could id is present in all tables)
@@ -57,6 +67,10 @@ Backup of all data  (have in mind that kundId could id is present in all tables)
 ______
 
 [MIXED CONTENT BELOW - DONE - AND NOT ONLY]
+
+Don't name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file. [partially done]
+
+Make new V 1.16 distributions for PC and MAC [DONE]
 
 VAT for foreign invoices is shown in Swe krouns but the EUR is shown[2021-09-11][DONE]
 
