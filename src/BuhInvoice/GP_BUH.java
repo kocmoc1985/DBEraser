@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import BuhInvoice.sec.BlinkThread;
+import BuhInvoice.sec.ChooseLogoEntry;
 import BuhInvoice.sec.IO;
 import BuhInvoice.sec.LANG;
 import MyObjectTableInvert.JLinkInvert;
@@ -496,26 +497,28 @@ public class GP_BUH {
         return f.exists();
     }
 
-    public static void chooseLogo(Component parent) {
+    public static ChooseLogoEntry chooseLogo(Component parent) {
+        //
+        ChooseLogoEntry cse = new ChooseLogoEntry();
         //
         if (logoExistAlready()) {
             if (confirm(LANG.MSG_17)) {
                 File f = new File(GP_BUH.LOGO_PATH());
                 f.delete();
-                return;
+                cse.setSTATUS__LOGO_WAS_DELETED_BY_PLANNED(true);
+                return cse;
             }
         }
         //
         String path = chooseFile(null);
         //
         try {
-            copyAndConvertImage(path);
+            return copyAndConvertImage(path);
 //            Files.copy(new File(path).toPath(), new File(LOGO_PATH()).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
             Logger.getLogger(GP_BUH.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        //
-        //
         //
         //
     }
@@ -602,15 +605,18 @@ public class GP_BUH {
         return new Dimension((int) w, (int) h);
     }
 
+
     /**
      *
      * @param path
      * @throws IOException
      */
-    private static void copyAndConvertImage(String path) throws IOException {
+    private static ChooseLogoEntry copyAndConvertImage(String path) throws IOException {
+        //
+        ChooseLogoEntry cse = new ChooseLogoEntry();
         //
         if (path == null || path.isEmpty()) {
-            return;
+            return null;
         }
         //
         int MIN_WIDTH = 120;
@@ -622,14 +628,14 @@ public class GP_BUH {
         //
         if (w_orig < MIN_WIDTH) {
             showNotification(LANG.LOGOTYP_TO_SMALL("" + MIN_WIDTH, "" + w_orig));
-            return;
+            return null;
         }
         //
         Double fileSizeMb = HelpA.get_file_size_mb(path);
         //
         if (fileSizeMb > 3) {
             showNotification(LANG.LOGOTYP_FILE_SIZE_TO_BIG("" + fileSizeMb, VERSION));
-            return;
+            return null;
         }
         //
         File f = new File(path);
@@ -644,12 +650,21 @@ public class GP_BUH {
                 .toFile(new File(GP_BUH.LOGO_PATH()));
         //
         //
+        File file = new File(GP_BUH.LOGO_PATH());
+//        file.delete(); //Simulating antivirus which removes the file
+        //
+        // On [2021-09-20] a problem appeared (Dmitrij Bouglinov) -> antivirus was removing the newely created logo or it did not allowed to create, not sure 100%.
+        if (file.exists() == false) { //
+            cse.setSTATUS__REMOVED_AFTER_SETTING_LOGO(true);
+        }
+        //
         //For the ".jpeg, jpg" below, not working good
 //         Thumbnails.of(f)
 //                .size(w_new, h_new)
 //                .outputQuality(0.5F) // OBS! Important! Working with .jpg only!
 //                .toFile(new File(GP_BUH.LOGO_PATH())); 
         //
+        return cse;
     }
 
     private static String chooseFile(Component parent) {

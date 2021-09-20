@@ -2541,6 +2541,10 @@ public class HelpA {
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);
     }
+    
+    public static void showNotificationWarning(String msg) {
+        JOptionPane.showMessageDialog(null, msg, "OBS!", JOptionPane.WARNING_MESSAGE);
+    }
 
     public static void showNotification_separate_thread(String msg, String title) {
         //

@@ -8,6 +8,7 @@ package BuhInvoice;
 import static BuhInvoice.GP_BUH._get;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
+import BuhInvoice.sec.ChooseLogoEntry;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
 import forall.HelpA;
@@ -192,7 +193,7 @@ public class HTMLPrint_A extends HTMLPrint {
         String total = map_d.get(att_betala_title);
         return roundBetalaTotal(total);
     }
-    
+
     private String getTotalBeloppInnanAvdrag() {
         //
         if (isRut() == false) {
@@ -238,7 +239,7 @@ public class HTMLPrint_A extends HTMLPrint {
                 //
                 + faktura_data_C_to_html__addr()
                 //
-//                + "<br><br>"
+                //                + "<br><br>"
                 //
                 + "</div>"
                 + "</body>"
@@ -968,7 +969,11 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
-        GP_BUH.chooseLogo(this);
+        ChooseLogoEntry cle = GP_BUH.chooseLogo(this);
+        //
+        if (cle != null && cle.isSTATUS__REMOVED_AFTER_SETTING_LOGO()) {
+            HelpA.showNotificationWarning(LANG.MSG_32);
+        }
         //
         go();
         //

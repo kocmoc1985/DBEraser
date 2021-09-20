@@ -10,8 +10,10 @@ import static BuhInvoice.HTMLPrint.NO_BORDER;
 import static BuhInvoice.HTMLPrint.T__FAKTURA_MOMS_PERCENT;
 import static BuhInvoice.HelpBuh.FOREIGN_CUSTOMER;
 import static BuhInvoice.HelpBuh.LANG_ENG;
+import BuhInvoice.sec.ChooseLogoEntry;
 import BuhInvoice.sec.HeadersValuesHTMLPrint;
 import BuhInvoice.sec.LANG;
+import forall.HelpA;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -634,7 +636,11 @@ public class HTMLPrint_B extends HTMLPrint {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //
-        GP_BUH.chooseLogo(this);
+        ChooseLogoEntry cle = GP_BUH.chooseLogo(this);
+        //
+        if (cle != null && cle.isSTATUS__REMOVED_AFTER_SETTING_LOGO()) {
+            HelpA.showNotificationWarning(LANG.MSG_32);
+        }
         //
         go();
     }//GEN-LAST:event_jButton3ActionPerformed
