@@ -19,8 +19,35 @@ So yes this requires to be solved somehow
 - In fact a hacker can use any of the methods on back-end using a valid login - so let's say you make a code
 which inserts invoices, customers or what ever in a loop. This will surely cause problems for the server-side.
 
+________________________________________________________________________________________________________
+["DOS ATTACK" PREVENTION][2021-09-22]
 
+The main idea is to prevent a hacker to make a big ammount of "calls" to the server.
 
+All needed changes were implemeted both for "main" & "test" scripts and database[2021-09-22]
+
+At the moment i see two types of sulutions:
+1. [THIS SOLUTION IS IMPLEMENTED]Check uppon each call if the "x-calls/x-seconds" is exceeded and make php "exit()" -> in this case the "buh_ban" table is not needed.
+2. Nearly the same as "1" but with adding to the "buh_ban" ----> NOT Sure it's needed at the moment, maybe later.
+
+ABOUT AMMOUNT OF CALLS:
+Meassured approximate calls/second when making many and fast actions with the program -> 0.815 calls/second 
+1. Start + login = 8 calls
+2. Start + login + grafisk vy = 10 calls
+3. Start + login + switch invoice x2 = 10 calls (within 10 seconds)
+4. Just opening the preview of invoice = 7 calls (within 2 seconds)
+
+THE ACTUAL LIMIT/CONDITION:
+[>= 25 CALLS WITHIN 3 SECONDS] -> if this limit is exceeded it's considered as a "dos-attack" and "exit()" function is called which stops from exucuting the script further.
+The limit above is rather tight but seems to be GOOD. At the moment i don't see a situation where 25 calls within 3 seconds can be done.
+
+WHEN IS THE TABLE CLEARED:
+[($calls > 3 && $calls <= 10)] -> more then 3 calls but less then 10 calls within 3 seconds -> then the table is cleared
+
+MSSQL table: "buh_dos_attack"
+MSSQL working query example: SELECT ip, COUNT(ip) as ammount FROM buh_dos_attack WHERE date_call >= NOW() - INTERVAL 1 DAY AND ip='94.234.172.7'   ---> OBS! The possible time units are: FRAC_SECOND (microseconds), SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR
+PHP-Side: 100% everything on php-side
+Search for tag [#DOS-ATTACK#]
 ________________________________________________________________________________________________________
 [SMTP - PHPMailer - SECURITY THREAT?]
 
@@ -97,6 +124,12 @@ See: _http_buh.php -> isLoginAttempt()
 
 Also search for: "login_attempt_marker" in both projects
 ________________________________________________________________________________________________________
+[ADDITIONAL INFO REGARDING LOGIN PROCEDURE][2021-09-22]
+
+If the user fails the validation: check_login_local($user, $pass, true) -> the "failed login attempt" will be written to "buh_login_failed" table
+If the user will make a successful login after he failed the record will be REMOVED from the "buh_login_failed" table: delete_from__buh_login_failed__if_login_ok($user)
+
+________________________________________________________________________________________________________
 [BAN IP/MAC IF VALIDATE FAILS SEVERAL TIMES][2020-10-24]
 
 The ban is priliminary implemented. The BAN functionality is 100% on PHP side.
@@ -114,6 +147,7 @@ As example [ask@mixcont.com / 94.234.43.186] is banned but it will not block [an
 The BAN is active if "date_ban" is not older then 0.5 days (12 howrs) *****
 SELECT COUNT(user) AS ban_nr FROM buh_ban WHERE date_ban - INTERVAL 0.5 DAY < NOW() AND user=? AND ip=?
 
+The ban entry in DB will be REMOVED from the "buh_ban" table after the BAN is not longer active. OBS! It removes an entry which matches the combination of [user + ip]
 ________________________________________________________________________________________________________
 [DELETE ALL DATA RELATED TO CUSTOMER][2020-12-23]
 

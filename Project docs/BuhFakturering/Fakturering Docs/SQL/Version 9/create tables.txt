@@ -21,6 +21,13 @@ f_skatt boolean DEFAULT false,
 date_created varchar(30) DEFAULT 'no'
 );
 
+CREATE TABLE buh_dos_attack (
+call_id integer primary key not null AUTO_INCREMENT,
+user_agent varchar(200) DEFAULT '',
+ip varchar(100) not null,
+date_call timestamp DEFAULT CURRENT_TIMESTAMP()
+);
+
 CREATE TABLE buh_login_failed (
 login_id integer primary key not null AUTO_INCREMENT,
 user varchar(100) DEFAULT '',
