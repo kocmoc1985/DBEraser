@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
+import BuhInvoice.sec.Backup_All;
 import BuhInvoice.sec.Backup_Invoice;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HttpResponce;
@@ -55,8 +56,8 @@ public class HelpBuh {
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     //Yes you can use test scripts but not use the "test-db"
-    public static boolean USE_TEST_DB = false; // [#TEST-DB#] 
-    public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
+    public static boolean USE_TEST_DB = true; // [#TEST-DB#] 
+    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
     //
     //
@@ -201,7 +202,7 @@ public class HelpBuh {
         //
     }
 
-    private static void backup_invoices_and_articles() {
+    private static ArrayList<Backup_Invoice> backup_4_5() { // Backup of all invoices with all articles
         //
         String json = LAFakturering.getSELECT_(DB.BUH_FAKTURA__KUNDID__, "777");
         //
@@ -214,7 +215,7 @@ public class HelpBuh {
             //
             System.out.println("");
             //
-            ArrayList<Backup_Invoice> ALL_INVOICES_BACKUP = new ArrayList<>();
+            ArrayList<Backup_Invoice> allInvoicesList = new ArrayList<>();
             //
             for (HashMap<String, String> invoice : allInvoices) {
                 //
@@ -233,18 +234,21 @@ public class HelpBuh {
                 //
                 Backup_Invoice bie = new Backup_Invoice(0, invoice, articles);
                 //
-                ALL_INVOICES_BACKUP.add(bie);
+                allInvoicesList.add(bie);
                 //
             }
             //
-            HelpA.objectToFile("BACKUP_4_5", ALL_INVOICES_BACKUP);
+            return allInvoicesList;
+            //
+//            HelpA.objectToFile("BACKUP_4_5", allInvoicesList);
             //
         } catch (Exception ex) {
             Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
-    
-    private static ArrayList<HashMap<String, String>> backup_single_table__by_kund_id(String phpFunc){
+
+    private static ArrayList<HashMap<String, String>> backup_single_table(String phpFunc) {
         //
         String json = LAFakturering.getSELECT_(DB.BUH_KUND__ID, "777");
         //
@@ -257,32 +261,43 @@ public class HelpBuh {
             //
             return entries;
             //
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-    
-    private static void backup_1(){
+
+    private static void backup() {
         //
-        ArrayList<HashMap<String, String>> buh_kund = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
+        ArrayList<HashMap<String, String>> buh_kund__1 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         //
-        ArrayList<HashMap<String, String>> buh_faktura_kund = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE);
+        ArrayList<HashMap<String, String>> buh_faktura_artikel__2 = backup_single_table(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA);
         //
-        ArrayList<HashMap<String, String>> buh_faktura_artikel = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA);
+        ArrayList<HashMap<String, String>> buh_faktura_kund__3 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE);
+        //
+        ArrayList<Backup_Invoice> allInvoicesList__4_5 = backup_4_5();
+        //
+        ArrayList<HashMap<String, String>> buh_faktura_inbet__6 = backup_single_table(DB.PHP_FUNC_PARAM__GET_FAKTURA_INBET_SIMPLE);
+        //
+        ArrayList<HashMap<String, String>> buh_address__7 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES_SIMPLE);
+        //
+        Backup_All backup_All = new Backup_All(buh_kund__1, buh_faktura_artikel__2, buh_faktura_kund__3, allInvoicesList__4_5, buh_faktura_inbet__6, buh_address__7);
         //
         System.out.println("");
+        //
     }
 
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
         //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
+//        GP_BUH.USER = "ask@mixcont.com";
+//        GP_BUH.PASS = "mixcont4765";
         //
-        backup_1();
-//        backup_invoices_and_articles();
+        GP_BUH.USER = "andrej.brassas@gmail.com";
+        GP_BUH.PASS = "09WYJK1aUy";
+        //
+        backup();
         //
 //        GP_BUH.USER = "kocmoc1985@gmail.com";
 //        GP_BUH.PASS = "dbJztp1PR9";

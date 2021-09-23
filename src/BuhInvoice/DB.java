@@ -176,6 +176,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM__GET_FTG_NAME = "get_ftg_name"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_KUNDER = "get_faktura_kunder"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET_SIMPLE = "get_faktura_inbet_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND = "get_faktura_send"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE = "get_faktura_kunder_all_data_simple"; // using php-function: "select()"
@@ -222,6 +223,7 @@ public class DB {
     //
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES_SIMPLE = "get_kund_addr_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FORETAG_ADDRESS = "get_kund_addr"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_GIVEN_FKID = "get_invoices_given_fakturakundid"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_INVOICES_GIVEN_ARTICLEID = "get_invoices_given_artikelId"; // using php-function: "select()"
