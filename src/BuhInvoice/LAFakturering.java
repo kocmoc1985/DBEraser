@@ -727,6 +727,19 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
+    
+    public static String getSELECT_doubleWhere_(String whereColName, String whereValue, String whereColName_b, String whereValue_b) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        map.put("where_b", whereColName_b);
+        map.put(whereColName_b, whereValue_b);
+        //
+        return JSon.hashMapToJSON(map);
+    }
 
     /**
      * @deprecated - must use "DB.BUH_FAKTURA__KUNDID__, "777""

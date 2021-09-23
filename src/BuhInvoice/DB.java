@@ -178,6 +178,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND = "get_faktura_send"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE = "get_faktura_kunder_all_data_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA__PERSON = "get_faktura_kunder_all_data__person"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_KUND_ALL_DATA = "get_one_faktura_kund_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_ONE_FAKTURA_ALL_DATA = "get_one_faktura_all_data"; // using php-function: "select()"
@@ -191,6 +192,7 @@ public class DB {
     //Search filters below..
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL = "get_kund_fakturor_all"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL__SIMPLE = "get_kund_fakturor_all_simple"; // using php-function: "select()", used for the backup
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD = "get_kund_fakturor__obetald"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FORFALLEN = "get_kund_fakturor__forfallen"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DELVIS_BETALD__UNUSED = "get_kund_fakturor__delvis"; // using php-function: "select()"

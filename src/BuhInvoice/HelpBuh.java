@@ -6,6 +6,7 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
+import BuhInvoice.sec.Backup_Invoice;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
@@ -200,15 +201,91 @@ public class HelpBuh {
         //
     }
 
+    private static void backup_invoices_and_articles() {
+        //
+        String json = LAFakturering.getSELECT_(DB.BUH_FAKTURA__KUNDID__, "777");
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL__SIMPLE, json);
+            //
+            ArrayList<HashMap<String, String>> allInvoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            System.out.println("");
+            //
+            ArrayList<Backup_Invoice> ALL_INVOICES_BACKUP = new ArrayList<>();
+            //
+            for (HashMap<String, String> invoice : allInvoices) {
+                //
+                String fakturaId = invoice.get("fakturaId");
+                //
+                String json_ = LAFakturering.getSELECT_doubleWhere_(DB.BUH_F_ARTIKEL__KUND_ID, "777", DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
+                //
+                String json_str_return_ = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json_);
+                //
+                if (json_str_return_.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) { // this value='empty' is returned by PHP script
+                    continue;
+                }
+                //
+                ArrayList<HashMap<String, String>> articles = JSon.phpJsonResponseToHashMap(json_str_return_);
+                //
+                Backup_Invoice bie = new Backup_Invoice(0, invoice, articles);
+                //
+                ALL_INVOICES_BACKUP.add(bie);
+                //
+            }
+            //
+            HelpA.objectToFile("BACKUP_4_5", ALL_INVOICES_BACKUP);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static ArrayList<HashMap<String, String>> backup_single_table__by_kund_id(String phpFunc){
+        //
+        String json = LAFakturering.getSELECT_(DB.BUH_KUND__ID, "777");
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunc, json);
+            //
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            return entries;
+            //
+        }catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    private static void backup_1(){
+        //
+        ArrayList<HashMap<String, String>> buh_kund = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
+        //
+        ArrayList<HashMap<String, String>> buh_faktura_kund = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE);
+        //
+        ArrayList<HashMap<String, String>> buh_faktura_artikel = backup_single_table__by_kund_id(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA);
+        //
+        System.out.println("");
+    }
+
     public static void main(String[] args) {
         //
 //        checkUpdates(null);
         //
-//        GP_BUH.USER = "ask@mixcont.com";
-//        GP_BUH.PASS = "mixcont4765";
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
         //
-        GP_BUH.USER = "kocmoc1985@gmail.com";
-        GP_BUH.PASS = "dbJztp1PR9";
+        backup_1();
+//        backup_invoices_and_articles();
+        //
+//        GP_BUH.USER = "kocmoc1985@gmail.com";
+//        GP_BUH.PASS = "dbJztp1PR9";
         //
 //        createAccountPHP_existing_customer("1");
         //
