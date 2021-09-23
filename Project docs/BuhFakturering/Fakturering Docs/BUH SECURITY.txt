@@ -24,9 +24,22 @@ ________________________________________________________________________________
 
 The main idea is to prevent a hacker to make a big ammount of "calls" to the server.
 
-All needed changes were implemeted both for "main" & "test" scripts and database[2021-09-22]
+IN FACT IT'S NOT A "DDOS-ATACK PREVENTION" but prevention of "LOOP-ATTACK" when trying to reveal a password or..
 
-At the moment i see two types of sulutions:
+WHAT WILL IT PREVENT / WHEN IT IS EFFECTIVE:
+1. If a hacker makes a login attempt in a loop he will be blocked - which means he will be "baned" before reaching the "validate()" function.
+In other words it will be effective when a hacker tries to reveal an login within a "LOOP".
+
+IT WILL NOT PREVENT / WHEN IT IS NOT EFFECTIVE:
+1. Let's say a hacker uses a valid login, and starts to upload *BIG FILES* (i would like to remember that files larger then 500kb are abandoned but only AFTER the upload finishes - read more in "BUH SECURITY.txt”).
+2. The hacker might make a slow loop with "<25 calls within 3 seconds" this will not be blocked
+3. It will not work if the hacker changes the ip upon each call
+
+DISADVANTAGES: 
+1. As the db is in use, each time when the functionality is used, exactly two calls are made to the db. The first call when "loggCall__dos_attack()" is called
+and the second when the "check__if__dos_attack()" is called. So any call consumes server capacity - how much is difficult to estimate...
+
+At the moment i see two types of sulutions regarding the mechanism of "BAN":
 1. [THIS SOLUTION IS IMPLEMENTED]Check uppon each call if the "x-calls/x-seconds" is exceeded and make php "exit()" -> in this case the "buh_ban" table is not needed.
 2. Nearly the same as "1" but with adding to the "buh_ban" ----> NOT Sure it's needed at the moment, maybe later.
 
