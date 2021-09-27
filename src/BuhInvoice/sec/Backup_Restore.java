@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.DB;
+import BuhInvoice.GP_BUH;
 import BuhInvoice.HelpBuh;
 import BuhInvoice.JSon;
 import forall.HelpA;
@@ -43,8 +44,6 @@ public class Backup_Restore implements Serializable {
             }
             //
             //
-            //
-            //
         }
         //
     }
@@ -61,6 +60,10 @@ public class Backup_Restore implements Serializable {
   
     
     public static void main(String[] args) {
+        //
+        GP_BUH.USER = "andrej.brassas@gmail.com";
+        GP_BUH.PASS = "09WYJK1aUy";
+        //
         try {
             //
             Backup_All ba = (Backup_All) HelpA.fileToObject(Backup_All.BACKUP_FILE_NAME);
@@ -69,7 +72,7 @@ public class Backup_Restore implements Serializable {
             //
             System.out.println("");
             //
-//            bg.restoreBackup();
+            bg.restoreBackup();
             //
         } catch (Exception ex) {
             Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
