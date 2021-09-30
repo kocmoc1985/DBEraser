@@ -222,6 +222,7 @@ public class DB {
     }
     //
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES = "get_faktura_articles"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES__BUH_F_ARTIKEL = "get_faktura_articles__buh_f_artikel"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES = "get_faktura_kund_addr"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES_SIMPLE = "get_kund_addr_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FORETAG_ADDRESS = "get_kund_addr"; // using php-function: "select()"

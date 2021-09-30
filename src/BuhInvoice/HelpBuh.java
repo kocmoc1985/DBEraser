@@ -224,7 +224,7 @@ public class HelpBuh {
                 String json_ = LAFakturering.getSELECT_doubleWhere_(DB.BUH_F_ARTIKEL__KUND_ID, "777", DB.BUH_F_ARTIKEL__FAKTURAID, fakturaId);
                 //
                 String json_str_return_ = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                        DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES, json_);
+                        DB.PHP_FUNC_PARAM_GET_FAKTURA_ARTICLES__BUH_F_ARTIKEL, json_);
                 //
                 if (json_str_return_.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) { // this value='empty' is returned by PHP script
                     continue;
