@@ -268,7 +268,7 @@ public class HelpBuh {
     }
 
     private static void backup() {
-        //
+        //[#BACKUP-RESTORE-DATA#]
         ArrayList<HashMap<String, String>> buh_kund__1 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         //
         ArrayList<HashMap<String, String>> buh_faktura_artikel__2 = backup_single_table(DB.PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA);
@@ -281,7 +281,23 @@ public class HelpBuh {
         //
         ArrayList<HashMap<String, String>> buh_address__7 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FAKTURA_KUND_ADDRESSES_SIMPLE);
         //
-        Backup_All backup_All = new Backup_All(buh_kund__1, buh_faktura_artikel__2, buh_faktura_kund__3, allInvoicesList__4_5, buh_faktura_inbet__6, buh_address__7);
+        ArrayList<HashMap<String, String>> buh_faktura_send_8 = backup_single_table(DB.PHP_FUNC_PARAM__GET_FAKTURA_SEND_SIMPLE);
+        //
+        ArrayList<HashMap<String, String>> buh_faktura_rut_9 = backup_single_table(DB.PHP_FUNC_PARAM_GET_RUT_SIMPLE);
+        //
+        ArrayList<HashMap<String, String>> buh_faktura_rut_person_10 = backup_single_table(DB.PHP_FUNC_PARAM_GET_RUT_PERSON_SIMPLE);
+        //
+        Backup_All backup_All = new Backup_All(
+                buh_kund__1,
+                buh_faktura_artikel__2,
+                buh_faktura_kund__3,
+                allInvoicesList__4_5,
+                buh_faktura_inbet__6,
+                buh_address__7,
+                buh_faktura_send_8,
+                buh_faktura_rut_9,
+                buh_faktura_rut_person_10
+        );
         //
         System.out.println("");
         //
@@ -500,8 +516,8 @@ public class HelpBuh {
         }
         //        
     }
-    
-     public static HttpResponce deleteBeforeRestore(String userPassConfirm) {
+
+    public static HttpResponce deleteBeforeRestore(String userPassConfirm) {
         //
         HashMap<String, String> map = new HashMap();
         map.put("pass_confirm", userPassConfirm);

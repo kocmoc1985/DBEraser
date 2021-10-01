@@ -179,6 +179,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET = "get_faktura_inbet"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_INBET_SIMPLE = "get_faktura_inbet_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND = "get_faktura_send"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM__GET_FAKTURA_SEND_SIMPLE = "get_faktura_send_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA = "get_faktura_kunder_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA_SIMPLE = "get_faktura_kunder_all_data_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_FAKTURA_KUNDER_ALL_DATA__PERSON = "get_faktura_kunder_all_data__person"; // using php-function: "select()"
@@ -189,7 +190,9 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES = "get_kund_articles"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_ARTICLES_ALL_DATA = "get_kund_articles_all_data"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_RUT_PERSON = "get_rut_person"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_RUT_PERSON_SIMPLE = "get_rut_person_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_RUT = "get_rut"; // using php-function: "select()"
+    public static final String PHP_FUNC_PARAM_GET_RUT_SIMPLE = "get_rut_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET__FAKTURA_KUND__IS_PERSON = "faktura_kund_is_person";
     //Search filters below..
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK = "get_kund_fakturor"; // using php-function: "select()"

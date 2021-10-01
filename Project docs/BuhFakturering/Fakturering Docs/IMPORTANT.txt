@@ -9,6 +9,12 @@ that the building made errors or some other...
 
 You can simply find if it's "corrupting" the "Ä" by trying to delete an invoice and look at the "confirm" message 
 _________________________________________________________________________________________________________
+[BACKUP-RESTORE-FUNCTIONALITY][2021-10-01][SUPER IMPORTANT]
+
+
+Look at: ACCOUNT BACKUP.vsd
+Search for tag: [#BACKUP-RESTORE-DATA#]
+_________________________________________________________________________________________________________
 [PRINT-PAGE-SIZE AND OTHER][2021-09-10][SUPER IMPORTANT]
 
 Dimension of A4 is (x:545, y:842)
@@ -33,7 +39,7 @@ The check will not work if:
 - If you add some text somewhere in the middle and the content will exceed the limit. By [2021-09-14] i don't have an optimal solution for check
 when inserted in the "middle". An idea which was not ended because of difficulties was to perform a check when user clicks the "print" button.
 
-Search for tag [#DOCUMENT-HEIGHT#]
+Search for tag: [#DOCUMENT-HEIGHT#]
 
 _________________________________________________________________________________________________________
 [ADDING SAME ARTICLE SEVERAL TIMES][2021-08-28]

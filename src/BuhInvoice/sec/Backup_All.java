@@ -24,14 +24,30 @@ public class Backup_All implements Serializable {
     protected final ArrayList<Backup_Invoice> allInvoicesList__4_5;
     protected final ArrayList<HashMap<String, String>> buh_faktura_inbet__6;
     protected final ArrayList<HashMap<String, String>> buh_address__7;
+    protected final ArrayList<HashMap<String, String>> buh_faktura_send_8;
+    protected final ArrayList<HashMap<String, String>> buh_faktura_rut_9;
+    protected final ArrayList<HashMap<String, String>> buh_faktura_rut_person_10;
 
-    public Backup_All(ArrayList<HashMap<String, String>> buh_kund__1, ArrayList<HashMap<String, String>> buh_faktura_artikel__2, ArrayList<HashMap<String, String>> buh_faktura_kund__3, ArrayList<Backup_Invoice> allInvoicesList__4_5, ArrayList<HashMap<String, String>> buh_faktura_inbet__6, ArrayList<HashMap<String, String>> buh_address__7) {
+    public Backup_All(
+            ArrayList<HashMap<String, String>> buh_kund__1,
+            ArrayList<HashMap<String, String>> buh_faktura_artikel__2,
+            ArrayList<HashMap<String, String>> buh_faktura_kund__3,
+            ArrayList<Backup_Invoice> allInvoicesList__4_5,
+            ArrayList<HashMap<String, String>> buh_faktura_inbet__6,
+            ArrayList<HashMap<String, String>> buh_address__7,
+            ArrayList<HashMap<String, String>> buh_faktura_send_8,
+            ArrayList<HashMap<String, String>> buh_faktura_rut_9,
+            ArrayList<HashMap<String, String>> buh_faktura_rut_person_10
+    ) {
         this.buh_kund__1 = buh_kund__1;
         this.buh_faktura_artikel__2 = buh_faktura_artikel__2;
         this.buh_faktura_kund__3 = buh_faktura_kund__3;
         this.allInvoicesList__4_5 = allInvoicesList__4_5;
         this.buh_faktura_inbet__6 = buh_faktura_inbet__6;
         this.buh_address__7 = buh_address__7;
+        this.buh_faktura_send_8 = buh_faktura_send_8;
+        this.buh_faktura_rut_9 =  buh_faktura_rut_9;
+        this.buh_faktura_rut_person_10 = buh_faktura_rut_person_10;
         //
         toFile();
         //

@@ -30,6 +30,7 @@ public class Backup_Restore implements Serializable {
     }
 
     private void restoreBackup() {
+        //[#BACKUP-RESTORE-DATA#]
         //======================================================================
         //Step 0 - DELETE FROM ALL TABLES EXCEPT "buh_kund"
         //
@@ -40,6 +41,8 @@ public class Backup_Restore implements Serializable {
             return;
         }
         //
+        //======================================================================
+        //======================================================================
         //======================================================================
         //Step 1 - "buh_kund" -> RUN "sql update" instead of "insert"
         //
@@ -100,9 +103,15 @@ public class Backup_Restore implements Serializable {
             }
             //
             //Step 5 - "buh_f_artikel"
-            for (HashMap<String, String> article : bi.getArticles()) {
+             for (HashMap<String, String> article : bi.getArticles()) {
                 //
                 article.remove(DB.BUH_F_ARTIKEL__ID); // VERY IMPORTANT
+                //
+                String artikelId = article.get(DB.BUH_F_ARTIKEL__ARTIKELID);
+                //
+                if(artikelId == null ||artikelId.isEmpty() || artikelId.equals("null") || artikelId.equals("NULL")){
+                    article.remove(DB.BUH_F_ARTIKEL__ARTIKELID); // This is for the cases when you don't use an article but only using comment instead
+                }
                 //
                 String json_ = JSon.hashMapToJSON(article);
                 //
@@ -112,6 +121,7 @@ public class Backup_Restore implements Serializable {
                 } catch (Exception ex) {
                     Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //
             }
             //
         }
@@ -151,7 +161,49 @@ public class Backup_Restore implements Serializable {
             }
             //
         }
-        //
+        //======================================================================
+        //Step 8 - "buh_faktura_send"
+        for (HashMap<String, String> send : backup_All.buh_faktura_send_8) {
+            //
+            String json = JSon.hashMapToJSON(send);
+            //
+            try {
+                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
+            } catch (Exception ex) {
+                Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //======================================================================
+        //Step 9 - "buh_faktura_rut"
+        for (HashMap<String, String> rut : backup_All.buh_faktura_rut_9) {
+            //
+            String json = JSon.hashMapToJSON(rut);
+            //
+            try {
+                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
+            } catch (Exception ex) {
+                Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //======================================================================
+        //Step 10 - "buh_faktura_rut_person"
+        for (HashMap<String, String> rut : backup_All.buh_faktura_rut_person_10) {
+            //
+            String json = JSon.hashMapToJSON(rut);
+            //
+            try {
+                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                        DB.PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB, json);
+            } catch (Exception ex) {
+                Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+        }
+        //======================================================================
     }
 
     private void singleTableToDB(ArrayList<HashMap<String, String>> list) {

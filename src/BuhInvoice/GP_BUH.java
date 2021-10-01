@@ -70,9 +70,9 @@ public class GP_BUH {
     public static String LA_WEB_ADDR = "www.lafakturering.se";
 
     /*
-     * By [2021-03-09]
+     * By [2021-10-01]
      * For the TEST-DB: andrej.brassas@gmail.com / KpxHs5jufF [domain la.se][php-test]
-     * For the TEST-DB: guest_1_kocmoc1985@gmail.com / 41zKTnoAwU  [domain la.se][php-test]
+     * For the TEST-DB: kocmoc1985@gmail.com / p1AN9W4YXj [domain la.se][php-test]
      *
      * For demoDemo.. use "demo@lafakturering.se" -> p:e2gK0knpf9
      * For demo use: "exempel@lafakturering.se" ->  p:"YxCa3i1EgM" [Verified on 2021-04-08][domain la.se] [not test]
