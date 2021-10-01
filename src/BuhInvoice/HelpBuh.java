@@ -48,7 +48,7 @@ public class HelpBuh {
     // I'am now not using "save to desktop" both for win & mac. 
     // Also remember that for win10 it can also be a trouble saving to desktop
     // OBS! No Desktop icon creation for the MAC-OS
-    public final static boolean IS_MAC_OS = true;
+    public final static boolean IS_MAC_OS = false;
     //
     private final static boolean IS_DISTRIBUTION = false;
     //
@@ -295,7 +295,7 @@ public class HelpBuh {
 //        GP_BUH.PASS = "mixcont4765";
         //
         GP_BUH.USER = "andrej.brassas@gmail.com";
-        GP_BUH.PASS = "09WYJK1aUy";
+        GP_BUH.PASS = "KpxHs5jufF";
         //
         backup();
         //
@@ -499,8 +499,26 @@ public class HelpBuh {
             return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_23);
         }
         //        
-        //        
-        //        
+    }
+    
+     public static HttpResponce deleteBeforeRestore(String userPassConfirm) {
+        //
+        HashMap<String, String> map = new HashMap();
+        map.put("pass_confirm", userPassConfirm);
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_DELETE_BEFORE_RESTORE, JSon.hashMapToJSON(map));
+            //
+            System.out.println("response: " + response);
+            //
+            return new HttpResponce(response, LANG.MSG_23);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
+            return new HttpResponce(HttpResponce.GENERAL_ERR_0, LANG.MSG_23);
+        }
         //        
     }
 

@@ -824,7 +824,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return map;
     }
 
-    protected static HashMap<String, String> getUPDATE_static(String whereColName, String whereValue, String tableName) {
+    public static HashMap<String, String> getUPDATE_static(String whereColName, String whereValue, String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
         map.put("where", whereColName); // $whereCoulunName
