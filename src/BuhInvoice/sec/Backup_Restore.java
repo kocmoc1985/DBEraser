@@ -12,9 +12,7 @@ import BuhInvoice.JSon;
 import BuhInvoice.LAFakturering;
 import forall.HelpA;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -133,7 +131,11 @@ public class Backup_Restore implements Serializable {
                 //[#BACKUP-REDEFINE-ID#]
                 String fakturaKundId = bi.getInvoice().get(DB.BUH_FAKTURA__FAKTURAKUND_ID);
                 String fakturaKundId__old = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID + "_old");
-                
+                //
+                if (fakturaKundId.trim().equals(fakturaKundId__old.trim())) {
+                    bi.getInvoice().put(DB.BUH_FAKTURA_KUND__ID, faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID));
+                    break;
+                }
                 //
             }
             //

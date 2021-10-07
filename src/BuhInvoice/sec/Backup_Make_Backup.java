@@ -23,8 +23,11 @@ public class Backup_Make_Backup {
 
     public static void main(String[] args) {
         //
-        GP_BUH.USER = "andrej.brassas@gmail.com";
-        GP_BUH.PASS = "KpxHs5jufF";
+//        GP_BUH.USER = "andrej.brassas@gmail.com";
+//        GP_BUH.PASS = "KpxHs5jufF";
+        //
+        GP_BUH.USER = "ask@mixcont.com";
+        GP_BUH.PASS = "mixcont4765";
         //
         backup();
         //
@@ -39,7 +42,8 @@ public class Backup_Make_Backup {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     phpFunc, json);
             //
-            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap(json_str_return);
+            // OBS! phpJsonResponseToHashMap_for_backup
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap_for_backup(json_str_return);
             //
             return entries;
             //
@@ -94,7 +98,8 @@ public class Backup_Make_Backup {
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL__SIMPLE, json);
             //
-            ArrayList<HashMap<String, String>> allInvoices = JSon.phpJsonResponseToHashMap(json_str_return);
+            // OBS! phpJsonResponseToHashMap_for_backup
+            ArrayList<HashMap<String, String>> allInvoices = JSon.phpJsonResponseToHashMap_for_backup(json_str_return);
             //
             ArrayList<Backup_Invoice> allInvoicesList = new ArrayList<>();
             //
@@ -111,7 +116,7 @@ public class Backup_Make_Backup {
                     continue;
                 }
                 //
-                ArrayList<HashMap<String, String>> articles = JSon.phpJsonResponseToHashMap(json_str_return_);
+                ArrayList<HashMap<String, String>> articles = JSon.phpJsonResponseToHashMap_for_backup(json_str_return_);
                 //
                 Backup_Invoice bie = new Backup_Invoice(0, invoice, articles);
                 //

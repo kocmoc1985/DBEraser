@@ -257,6 +257,10 @@ public class JSon {
         HashMap<String, String> map = JSONToHashMap(json, reverse, null);
         return map.get(key);
     }
+    
+    public static HashMap<String, String> JSONToHashMap_for_backup(String json, boolean reverse, String noneCommonSeparator) {
+        return JSONToHashMap(json, reverse, 1, false, true, noneCommonSeparator);
+    }
 
     public static HashMap<String, String> JSONToHashMap(String json, boolean reverse, String noneCommonSeparator) {
         return JSONToHashMap(json, reverse, 1, true, true, noneCommonSeparator);
@@ -394,6 +398,29 @@ public class JSon {
         for (String json : jsonEnriesList) {
             //
             HashMap<String, String> map = JSONToHashMap(json, false, null);
+            //
+//            System.out.println("map: " + map);
+            //
+            list.add(map);
+            //
+        }
+        //
+        return list;
+    }
+    
+    public static ArrayList<HashMap<String, String>> phpJsonResponseToHashMap_for_backup(String phpJsonString) {
+        //
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        //
+        if (phpJsonString.equals(DB.PHP_SCRIPT_RETURN_EMPTY)) { //[2020-09-09] this value='empty' is returned by PHP script
+            return list;
+        }
+        //
+        ArrayList<String> jsonEnriesList = phpJsonStringSplit(phpJsonString);
+        //
+        for (String json : jsonEnriesList) {
+            //
+            HashMap<String, String> map = JSONToHashMap_for_backup(json, false, null);
             //
 //            System.out.println("map: " + map);
             //
