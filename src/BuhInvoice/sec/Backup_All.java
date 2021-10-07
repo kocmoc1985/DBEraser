@@ -16,6 +16,7 @@ import java.util.HashMap;
  */
 public class Backup_All implements Serializable {
 
+    public static final long serialVersionUID = -7737096419321204313L;
     protected final static String BACKUP_FILE_NAME = "BACKUP";
 
     protected final ArrayList<HashMap<String, String>> buh_kund__1;
