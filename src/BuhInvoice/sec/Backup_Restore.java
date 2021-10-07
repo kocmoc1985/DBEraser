@@ -85,7 +85,7 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 2 - "buh_faktura_artikel"
         for (HashMap<String, String> article_ : backup_All.buh_faktura_artikel__2) {
-            //[#BACKUP-CHANGE-ID#]
+            //[#BACKUP-REDEFINE-ID#]
             String artikelId_old = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID);
             article_.remove(DB.BUH_FAKTURA_ARTIKEL___ID);
             article_.put(DB.BUH_FAKTURA_ARTIKEL___DATE_CREATED, GP_BUH.getDateCreated_special());
@@ -96,7 +96,7 @@ public class Backup_Restore implements Serializable {
                 String artikelId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_ARTIKEL_TO_DB, json);
                 //
-                article_.put(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);//[#BACKUP-CHANGE-ID#]
+                article_.put(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);//[#BACKUP-REDEFINE-ID#]
                 article_.put(DB.BUH_FAKTURA_ARTIKEL___ID + "_old", artikelId_old);//
                 //
             } catch (Exception ex) {
@@ -111,7 +111,7 @@ public class Backup_Restore implements Serializable {
             String json = JSon.hashMapToJSON(faktura_kund__map);
             //
             try {
-                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+               String fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
             } catch (Exception ex) {
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,7 +130,7 @@ public class Backup_Restore implements Serializable {
                 String fakturaId_new = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_TO_DB, json);
                 //
-                bi.getInvoice().put(DB.BUH_FAKTURA__ID__, fakturaId_new);//[#BACKUP-CHANGE-ID#]
+                bi.getInvoice().put(DB.BUH_FAKTURA__ID__, fakturaId_new);//[#BACKUP-REDEFINE-ID#]
                 bi.getInvoice().put(DB.BUH_FAKTURA__ID__ + "_old", fakturaId_old);
                 //
                 System.out.println("INSERTED: " + bi.getInvoice().get(DB.BUH_FAKTURA__ID__));
@@ -142,7 +142,7 @@ public class Backup_Restore implements Serializable {
             //
             //Step X1 - modifying the id's for "buh_f_artikel" - OBS! No update to DB done at this step
             for (HashMap<String, String> article : bi.getArticles()) {
-                //[#BACKUP-CHANGE-ID#]
+                //[#BACKUP-REDEFINE-ID#]
                 String buh_faktura__fakturaId__new = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                 //
                 String buh_faktura__fakturaId__old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
@@ -156,7 +156,7 @@ public class Backup_Restore implements Serializable {
             //
             //Step X2 - modifying the id's for "buh_f_artikel" - OBS! No update to DB done at this step
             for (HashMap<String, String> article : bi.getArticles()) {
-                //[#BACKUP-CHANGE-ID#]
+                //[#BACKUP-REDEFINE-ID#]
                 for (HashMap<String, String> article_ : backup_All.buh_faktura_artikel__2) {
                     //
                     String artikelid_old = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID + "_old");
@@ -199,14 +199,17 @@ public class Backup_Restore implements Serializable {
         //Step 6 - "buh_faktura_inbet"
         for (HashMap<String, String> inbet : backup_All.buh_faktura_inbet__6) {
             //
+            inbet.remove(DB.BUH_FAKTURA_INBET__INBET_ID);
+            //
             for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
-                //[#BACKUP-CHANGE-ID#]
+                //[#BACKUP-REDEFINE-ID#]
                 String buh_faktura_inbet__fakturaId = inbet.get(DB.BUH_FAKTURA_INBET__FAKTURA_ID);
                 String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
                 //
                 if (buh_faktura_inbet__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
                     String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                     inbet.put(DB.BUH_FAKTURA_INBET__FAKTURA_ID, buh_faktura__fakturaId);
+                    break;
                 }
                 //
             }
@@ -226,6 +229,7 @@ public class Backup_Restore implements Serializable {
         for (HashMap<String, String> address : backup_All.buh_address__7) {
             //
             String fakturaKundId = address.get(DB.BUH_ADDR__FAKTURAKUND_ID);
+            address.remove(DB.BUH_ADDR__ID);
             //
             if (fakturaKundId == null || fakturaKundId.isEmpty() || fakturaKundId.equals("null") || fakturaKundId.equals("NULL")) {
                 // IMPORTANT Means that this address belongs to the company it's self
@@ -247,14 +251,17 @@ public class Backup_Restore implements Serializable {
         //Step 8 - "buh_faktura_send"
         for (HashMap<String, String> send : backup_All.buh_faktura_send_8) {
             //
+            send.remove(DB.BUH_FAKTURA_SEND__ID);
+            //
             for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
-                //[#BACKUP-CHANGE-ID#]
+                //[#BACKUP-REDEFINE-ID#]
                 String buh_faktura_send__fakturaId = send.get(DB.BUH_FAKTURA_SEND__FAKTURA_ID);
                 String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
                 //
                 if (buh_faktura_send__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
                     String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                     send.put(DB.BUH_FAKTURA_SEND__FAKTURA_ID, buh_faktura__fakturaId);
+                    break;
                 }
                 //
             }
@@ -272,11 +279,24 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 9 - "buh_faktura_rut"
         for (HashMap<String, String> rut : backup_All.buh_faktura_rut_9) {
+             //
+            for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
+                //[#BACKUP-REDEFINE-ID#]
+                String buh_faktura_rut__fakturaId = rut.get(DB.BUH_FAKTURA_RUT__FAKTURAID);
+                String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
+                //
+                if (buh_faktura_rut__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
+                    String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
+                    rut.put(DB.BUH_FAKTURA_RUT__FAKTURAID, buh_faktura__fakturaId);
+                    break;
+                }
+                //
+            }
             //
             String json = JSon.hashMapToJSON(rut);
             //
             try {
-                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+               String rutId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
             } catch (Exception ex) {
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
@@ -285,9 +305,22 @@ public class Backup_Restore implements Serializable {
         }
         //======================================================================
         //Step 10 - "buh_faktura_rut_person"
-        for (HashMap<String, String> rut : backup_All.buh_faktura_rut_person_10) {
+        for (HashMap<String, String> rut_person : backup_All.buh_faktura_rut_person_10) {
             //
-            String json = JSon.hashMapToJSON(rut);
+            for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
+                //[#BACKUP-REDEFINE-ID#]
+                String buh_faktura_rut_person__fakturaId = rut_person.get(DB.BUH_FAKTURA_RUT_PERSON__FAKTURAID);
+                String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
+                //
+                if (buh_faktura_rut_person__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
+                    String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
+                    rut_person.put(DB.BUH_FAKTURA_RUT_PERSON__FAKTURAID, buh_faktura__fakturaId);
+                    break;
+                }
+                //
+            }
+            //
+            String json = JSon.hashMapToJSON(rut_person);
             //
             try {
                 HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
