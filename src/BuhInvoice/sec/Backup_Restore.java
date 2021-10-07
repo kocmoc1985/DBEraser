@@ -108,11 +108,18 @@ public class Backup_Restore implements Serializable {
         //Step 3 - "buh_faktura_kund"
         for (HashMap<String, String> faktura_kund__map : backup_All.buh_faktura_kund__3) {
             //
+            String faktuKundId__old = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID);
+            faktura_kund__map.remove(DB.BUH_FAKTURA_KUND__ID);
             String json = JSon.hashMapToJSON(faktura_kund__map);
             //
             try {
-               String fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                //
+                String fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
+                //
+                faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
+                faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID + "_old", faktuKundId__old);
+                //
             } catch (Exception ex) {
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -121,6 +128,14 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 4 - "buh_faktura"
         for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
+            //
+            for (HashMap<String, String> faktura_kund__map : backup_All.buh_faktura_kund__3) {
+                //[#BACKUP-REDEFINE-ID#]
+                String fakturaKundId = bi.getInvoice().get(DB.BUH_FAKTURA__FAKTURAKUND_ID);
+                String fakturaKundId__old = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID + "_old");
+                
+                //
+            }
             //
             String fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
             bi.getInvoice().remove(DB.BUH_FAKTURA__ID__);
@@ -229,6 +244,19 @@ public class Backup_Restore implements Serializable {
         for (HashMap<String, String> address : backup_All.buh_address__7) {
             //
             String fakturaKundId = address.get(DB.BUH_ADDR__FAKTURAKUND_ID);
+            //
+            for (HashMap<String, String> faktura_kund__map : backup_All.buh_faktura_kund__3) {
+                //[#BACKUP-REDEFINE-ID#]
+                String fakturaKundId__old = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID + "_old");
+                //
+                if (fakturaKundId.trim().equals(fakturaKundId__old.trim())) {
+                    String fakturaKundId__new = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID);
+                    address.put(DB.BUH_ADDR__FAKTURAKUND_ID, fakturaKundId__new);
+                    break;
+                }
+                //
+            }
+            //
             address.remove(DB.BUH_ADDR__ID);
             //
             if (fakturaKundId == null || fakturaKundId.isEmpty() || fakturaKundId.equals("null") || fakturaKundId.equals("NULL")) {
@@ -279,7 +307,7 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 9 - "buh_faktura_rut"
         for (HashMap<String, String> rut : backup_All.buh_faktura_rut_9) {
-             //
+            //
             for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
                 //[#BACKUP-REDEFINE-ID#]
                 String buh_faktura_rut__fakturaId = rut.get(DB.BUH_FAKTURA_RUT__FAKTURAID);
@@ -296,7 +324,7 @@ public class Backup_Restore implements Serializable {
             String json = JSon.hashMapToJSON(rut);
             //
             try {
-               String rutId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                String rutId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
             } catch (Exception ex) {
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
