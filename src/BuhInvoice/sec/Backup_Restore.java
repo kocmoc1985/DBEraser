@@ -14,6 +14,7 @@ import forall.HelpA;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,12 +85,20 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 2 - "buh_faktura_artikel"
         for (HashMap<String, String> article_ : backup_All.buh_faktura_artikel__2) {
-            //
+            //[#BACKUP-CHANGE-ID#]
+            String artikelId_old = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID);
+            article_.remove(DB.BUH_FAKTURA_ARTIKEL___ID);
+            article_.put(DB.BUH_FAKTURA_ARTIKEL___DATE_CREATED, GP_BUH.getDateCreated_special());
             String json = JSon.hashMapToJSON(article_);
             //
             try {
-                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                //
+                String artikelId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_ARTIKEL_TO_DB, json);
+                //
+                article_.put(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);//[#BACKUP-CHANGE-ID#]
+                article_.put(DB.BUH_FAKTURA_ARTIKEL___ID + "_old", artikelId_old);//
+                //
             } catch (Exception ex) {
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -121,7 +130,7 @@ public class Backup_Restore implements Serializable {
                 String fakturaId_new = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_TO_DB, json);
                 //
-                bi.getInvoice().put(DB.BUH_FAKTURA__ID__, fakturaId_new);
+                bi.getInvoice().put(DB.BUH_FAKTURA__ID__, fakturaId_new);//[#BACKUP-CHANGE-ID#]
                 bi.getInvoice().put(DB.BUH_FAKTURA__ID__ + "_old", fakturaId_old);
                 //
                 System.out.println("INSERTED: " + bi.getInvoice().get(DB.BUH_FAKTURA__ID__));
@@ -131,9 +140,9 @@ public class Backup_Restore implements Serializable {
             }
             //
             //
-            //Step X - modifying the id's for "buh_f_artikel" - OBS! No update to DB done at this step
+            //Step X1 - modifying the id's for "buh_f_artikel" - OBS! No update to DB done at this step
             for (HashMap<String, String> article : bi.getArticles()) {
-                //
+                //[#BACKUP-CHANGE-ID#]
                 String buh_faktura__fakturaId__new = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                 //
                 String buh_faktura__fakturaId__old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
@@ -143,8 +152,22 @@ public class Backup_Restore implements Serializable {
                     article.put(DB.BUH_F_ARTIKEL__FAKTURAID, buh_faktura__fakturaId__new);
                 }
                 //
-                System.out.println("");
-                //
+            }
+            //
+            //Step X2 - modifying the id's for "buh_f_artikel" - OBS! No update to DB done at this step
+            for (HashMap<String, String> article : bi.getArticles()) {
+                //[#BACKUP-CHANGE-ID#]
+                for (HashMap<String, String> article_ : backup_All.buh_faktura_artikel__2) {
+                    //
+                    String artikelid_old = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID + "_old");
+                    String artikleId = article.get(DB.BUH_F_ARTIKEL__ARTIKELID);
+                    //
+                    if (artikelid_old.trim().equals(artikleId.trim())) {
+                        String artikelId_new = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID);
+                        article.put(DB.BUH_F_ARTIKEL__ARTIKELID, artikelId_new);
+                    }
+                    //
+                }
                 //
             }
             //
@@ -177,11 +200,11 @@ public class Backup_Restore implements Serializable {
         for (HashMap<String, String> inbet : backup_All.buh_faktura_inbet__6) {
             //
             for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
-                //
+                //[#BACKUP-CHANGE-ID#]
                 String buh_faktura_inbet__fakturaId = inbet.get(DB.BUH_FAKTURA_INBET__FAKTURA_ID);
                 String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
                 //
-                if(buh_faktura_inbet__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())){
+                if (buh_faktura_inbet__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
                     String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                     inbet.put(DB.BUH_FAKTURA_INBET__FAKTURA_ID, buh_faktura__fakturaId);
                 }
@@ -225,11 +248,11 @@ public class Backup_Restore implements Serializable {
         for (HashMap<String, String> send : backup_All.buh_faktura_send_8) {
             //
             for (Backup_Invoice bi : backup_All.allInvoicesList__4_5) {
-                //
+                //[#BACKUP-CHANGE-ID#]
                 String buh_faktura_send__fakturaId = send.get(DB.BUH_FAKTURA_SEND__FAKTURA_ID);
                 String buh_faktura__fakturaId_old = bi.getInvoice().get(DB.BUH_FAKTURA__ID__ + "_old");
                 //
-                if(buh_faktura_send__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())){
+                if (buh_faktura_send__fakturaId.trim().equals(buh_faktura__fakturaId_old.trim())) {
                     String buh_faktura__fakturaId = bi.getInvoice().get(DB.BUH_FAKTURA__ID__);
                     send.put(DB.BUH_FAKTURA_SEND__FAKTURA_ID, buh_faktura__fakturaId);
                 }

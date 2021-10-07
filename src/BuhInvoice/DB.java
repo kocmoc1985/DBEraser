@@ -297,6 +297,7 @@ public class DB {
     public static final String BUH_FAKTURA_ARTIKEL___KOMMENT_B = "komment_b";
     public static final String BUH_FAKTURA_ARTIKEL___KOMMENT_C = "komment_c";
     public static final String BUH_FAKTURA_ARTIKEL___KATEGORI = "artikel_kategori";
+    public static final String BUH_FAKTURA_ARTIKEL___DATE_CREATED = "date_created";
     //
     public static final String BUH_F_ARTIKEL__ID = "id";
     public static final String BUH_F_ARTIKEL__KUND_ID = "kundId"; // added on[2020-10-15]
