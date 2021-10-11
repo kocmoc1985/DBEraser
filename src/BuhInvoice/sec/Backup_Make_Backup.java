@@ -23,11 +23,11 @@ public class Backup_Make_Backup {
 
     public static void main(String[] args) {
         //
-//        GP_BUH.USER = "andrej.brassas@gmail.com";
-//        GP_BUH.PASS = "KpxHs5jufF";
+        GP_BUH.USER = "andrej.brassas@gmail.com";
+        GP_BUH.PASS = "KpxHs5jufF";
         //
-        GP_BUH.USER = "ask@mixcont.com";
-        GP_BUH.PASS = "mixcont4765";
+//        GP_BUH.USER = "ask@mixcont.com";
+//        GP_BUH.PASS = "mixcont4765";
         //
         backup();
         //
