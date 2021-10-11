@@ -77,13 +77,13 @@ public class Backup_Restore implements Serializable {
             //
             final_map.remove(DB.BUH_KUND__ID);
             //
-            HelpBuh.update(json);
+            HelpBuh.update(json); // OBS!OBS!OBS! Is updated instead of "insert"
             //
         }
         //======================================================================
         //Step 2 - "buh_faktura_artikel"
         for (HashMap<String, String> article_ : backup_All.buh_faktura_artikel__2) {
-            //[#BACKUP-REDEFINE-ID#]
+            //
             //
             String artikelId_old = article_.get(DB.BUH_FAKTURA_ARTIKEL___ID);
             article_.remove(DB.BUH_FAKTURA_ARTIKEL___ID);//[#BACKUP-REMOVE-ID#][USED-IN-OTHER-TABLES]
@@ -96,6 +96,7 @@ public class Backup_Restore implements Serializable {
                 String artikelId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_ARTIKEL_TO_DB, json);
                 //
+                //[#BACKUP-REDEFINE-ID#] -> affects: buh_f_artikel -> artikelId;
                 article_.put(DB.BUH_FAKTURA_ARTIKEL___ID, artikelId);
                 article_.put(DB.BUH_FAKTURA_ARTIKEL___ID + "_old", artikelId_old);
                 //
@@ -107,7 +108,7 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 3 - "buh_faktura_kund"
         for (HashMap<String, String> faktura_kund__map : backup_All.buh_faktura_kund__3) {
-            //
+            // 
             String faktuKundId__old = faktura_kund__map.get(DB.BUH_FAKTURA_KUND__ID);
             faktura_kund__map.remove(DB.BUH_FAKTURA_KUND__ID);//[#BACKUP-REMOVE-ID#][USED-IN-OTHER-TABLES]
             //
@@ -118,6 +119,8 @@ public class Backup_Restore implements Serializable {
                 String fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
                 //
+                //
+                -> affects: buh_faktura -> fakturaKundId; buh_address -> fakturaKundId
                 faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
                 faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID + "_old", faktuKundId__old);
                 //
@@ -153,6 +156,8 @@ public class Backup_Restore implements Serializable {
                 String fakturaId_new = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_TO_DB, json);
                 //
+                // [#BACKUP-REDEFINE-ID#] -> affects: buh_f_artikel -> fakturaId; buh_faktura_inbet -> fakturaId; 
+                // buh_faktura_rut -> fakturaId; buh_faktura_send -> fakturaId;
                 bi.getInvoice().put(DB.BUH_FAKTURA__ID__, fakturaId_new);//[#BACKUP-REDEFINE-ID#]
                 bi.getInvoice().put(DB.BUH_FAKTURA__ID__ + "_old", fakturaId_old);
                 //
@@ -223,7 +228,7 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 6 - "buh_faktura_inbet"
         for (HashMap<String, String> inbet : backup_All.buh_faktura_inbet__6) {
-            //
+            // 
             inbet.remove(DB.BUH_FAKTURA_INBET__INBET_ID);//[#BACKUP-REMOVE-ID#]
             //
             String buh_faktura_inbet__fakturaId = inbet.get(DB.BUH_FAKTURA_INBET__FAKTURA_ID);
@@ -345,9 +350,11 @@ public class Backup_Restore implements Serializable {
             String json = JSon.hashMapToJSON(rut);
             //
             try {
+                //
                 String rutId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB, json);
                 //
+                //[#BACKUP-REDEFINE-ID#] -> affects: buh_faktura_rut_person -> rutId
                 rut.put(DB.BUH_FAKTURA_RUT__ID, rutId);
                 rut.put(DB.BUH_FAKTURA_RUT__ID + "_old", rutId_old);
                 //
