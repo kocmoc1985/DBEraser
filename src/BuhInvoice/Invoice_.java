@@ -1487,7 +1487,7 @@ public abstract class Invoice_ extends Basic_Buh {
                 HelpA.ComboBoxObject cbo = (HelpA.ComboBoxObject) box.getSelectedItem();
                 String pris = cbo.getParam_3();
                 //
-                if (pris == null || pris.equals("null")) { //[2021-09-03] Bug fix -> This was needed when you created a new Invoice added an empty article "-", then you tried to edit it. But the price became "null"
+                if (pris == null || pris.equals("null")) { //[2021-09-03] Bug fix -> This was needed when you created a new Invoice_ added an empty article "-", then you tried to edit it. But the price became "null"
                     return;
                 }
                 //

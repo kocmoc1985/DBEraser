@@ -13,6 +13,7 @@ import BuhInvoice.LAFakturering;
 import forall.HelpA;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,14 +49,14 @@ public class Backup_Restore implements Serializable {
             Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public static void restoreBackup(String backupFilePath) throws IOException, ClassNotFoundException{
+
+    public static void restoreBackup(String backupFilePath) throws IOException, ClassNotFoundException {
         Backup_All ba = (Backup_All) HelpA.fileToObject(backupFilePath);
         Backup_Restore bg = new Backup_Restore(ba);
         bg.restoreBackup();
     }
 
-    private void restoreBackup() {
+    private synchronized void restoreBackup() {
         //
         LoadingNotification loadingNotification = new LoadingNotification(LANG.MSG_37, LANG.MSG_37_2);
         //
@@ -307,6 +308,7 @@ public class Backup_Restore implements Serializable {
         }
         //======================================================================
         //Step 8 - "buh_faktura_send"
+        int failed = 0;
         for (HashMap<String, String> send : backup_All.buh_faktura_send_8) {
             //
             send.remove(DB.BUH_FAKTURA_SEND__ID);//[#BACKUP-REMOVE-ID#]
@@ -329,14 +331,23 @@ public class Backup_Restore implements Serializable {
             //
             try {
                 //
-                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                // Here i found a problem when many entries were added in a batch "one.com"
+                // was denying requests. Making pause seems to help.
+                //
+                String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
                 //
+                wait(50); // 100ms and even 50ms seems to be solving this problem completely
+                //
             } catch (Exception ex) {
+                failed++;
                 Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("FAILED: " + failed);
             }
             //
         }
+        //
+        //
         //======================================================================
         //Step 9 - "buh_faktura_rut"
         for (HashMap<String, String> rut : backup_All.buh_faktura_rut_9) {
@@ -416,6 +427,8 @@ public class Backup_Restore implements Serializable {
             //
         }
         //======================================================================
+        //
+        //
         //
         loadingNotification.hide_();
     }
