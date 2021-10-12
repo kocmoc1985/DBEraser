@@ -36,7 +36,7 @@ public class Backup_Restore implements Serializable {
         //
         try {
             //
-            Backup_All ba = (Backup_All) HelpA.fileToObject("BACKUP");
+            Backup_All ba = (Backup_All) HelpA.fileToObject(Backup_All.BACKUP_FOLDER_NAME + "/BACKUP");
             //
             Backup_Restore bg = new Backup_Restore(ba);
             //
@@ -56,10 +56,14 @@ public class Backup_Restore implements Serializable {
     }
 
     private void restoreBackup() {
+        //
+        LoadingNotification loadingNotification = new LoadingNotification(LANG.MSG_37, LANG.MSG_37_2);
+        //
         //[#BACKUP-RESTORE-DATA#]
         //======================================================================
         //Step 0 - DELETE FROM ALL TABLES EXCEPT "buh_kund"
         //
+        loadingNotification.show_();
         //
         HttpResponce responce = HelpBuh.deleteBeforeRestore(GP_BUH.PASS);
         //
@@ -412,6 +416,8 @@ public class Backup_Restore implements Serializable {
             //
         }
         //======================================================================
+        //
+        loadingNotification.hide_();
     }
 
 }

@@ -3374,8 +3374,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             return;
         }
         //
-        Backup_Make_Backup bmb = new Backup_Make_Backup();
-        bmb.backup();
+        new Thread(() -> {
+            Backup_Make_Backup bmb = new Backup_Make_Backup();
+            bmb.backup();
+        }).start();
         //
     }//GEN-LAST:event_jButton4ActionPerformed
 

@@ -778,7 +778,7 @@ public class HelpBuh {
         //
         String[] arr = result.split("###");
         //
-        if (arr.length == 0) {
+        if (arr.length == 0 || arr.length == 1) {
             System.out.println("HTTP REQ FAILED");
             return "";
         }
@@ -851,7 +851,7 @@ public class HelpBuh {
         //
         String[] arr = result.split("###");
         //
-        if (arr.length == 0) {
+        if (arr.length == 0 || arr.length == 1) {
             System.out.println("HTTP REQ FAILED");
             return "";
         }

@@ -208,6 +208,12 @@ public class LANG {
     public final static String MSG_34 = "Återställning lyckades!";
     public final static String MSG_35 = "Återställning misslyckades!";
     
+    public final static String MSG_36 = "Säkerhetskopiering";
+    public final static String MSG_36_2 = "Säkerhetskopierar, var god dröj";
+    
+    public final static String MSG_37 = "Återställning";
+    public final static String MSG_37_2 = "Återställer, var god dröj";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";

@@ -12,7 +12,7 @@ ________________________________________________________________________________
 [BACKUP-RESTORE-FUNCTIONALITY][2021-10-01][SUPER IMPORTANT]
 
 
-Look at: ACCOUNT BACKUP.vsd
+Look at: ERD Fakturering.vsd
 Search for tag: [#BACKUP-RESTORE-DATA#]
 _________________________________________________________________________________________________________
 [PRINT-PAGE-SIZE AND OTHER][2021-09-10][SUPER IMPORTANT]

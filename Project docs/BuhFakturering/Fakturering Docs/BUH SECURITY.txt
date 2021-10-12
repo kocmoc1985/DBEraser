@@ -57,6 +57,14 @@ The limit above is rather tight but seems to be GOOD. At the moment i don't see 
 WHEN IS THE TABLE CLEARED:
 [($calls > 3 && $calls <= 10)] -> more then 3 calls but less then 10 calls within 3 seconds -> then the table is cleared
 
+OBS! OBS! OBS! DETECTED THAT "ONE.COM" has also mechanisms for limiting calls, the below you can see what it returns. As i understand it happens when rather "equal" calls are
+made in a batch. For me it happened when restoring backup only on table "buh_faktura_send".
+	<script src="/____proof-of-work/sha256.js"></script><script> challengeString = "d6c5c3fa6bbf2a63513ceb057aa253dfe92977c4d67e40de863d744d63dca8d6" ;
+	nonce = 0;hash = sha256(challengeString + nonce); while(1) {
+	hash = sha256(challengeString + nonce); if(hash.substr(0, 4) === '0000') 
+	break; nonce += 1; } window.location.replace("/____proof-of-work/validate/" + nonce + "/" 
+	+ "aHR0cDovL3d3dy5sYWZha3R1cmVyaW5nLnNlL3BocC10ZXN0L19odHRwX2J1aC5waHA=");</script>  
+
 MSSQL table: "buh_dos_attack"
 MSSQL working query example: SELECT ip, COUNT(ip) as ammount FROM buh_dos_attack WHERE date_call >= NOW() - INTERVAL 1 DAY AND ip='94.234.172.7'   ---> OBS! The possible time units are: FRAC_SECOND (microseconds), SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, or YEAR
 PHP-Side: 100% everything on php-side
