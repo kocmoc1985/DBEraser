@@ -123,7 +123,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 //        }
 //    }
     private void resetRutRot() {
-        System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//        System.out.println("RUT RESET ************************AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         this.rutRot = null;
     }
 
@@ -3385,6 +3385,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         String path = GP_BUH.chooseFile_for_restore_backup(null);
         //
+        if(path == null){
+            return;
+        }
+        //
         new Thread(() -> {
             try {
                 //
@@ -3665,9 +3669,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JTable jTable_kund_adresses;
     protected javax.swing.JTable jTable_kunder;
     protected javax.swing.JTable jTable_shared_users;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
+    public javax.swing.JTextArea jTextArea1;
+    public javax.swing.JTextArea jTextArea2;
+    public javax.swing.JTextArea jTextArea3;
     public javax.swing.JTextArea jTextArea4;
     protected javax.swing.JTextArea jTextArea_faktura_komment;
     protected javax.swing.JTextArea jTextArea_reminder_message;

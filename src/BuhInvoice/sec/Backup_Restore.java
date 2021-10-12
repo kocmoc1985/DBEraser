@@ -309,6 +309,7 @@ public class Backup_Restore implements Serializable {
         //======================================================================
         //Step 8 - "buh_faktura_send"
         int failed = 0;
+        //
         for (HashMap<String, String> send : backup_All.buh_faktura_send_8) {
             //
             send.remove(DB.BUH_FAKTURA_SEND__ID);//[#BACKUP-REMOVE-ID#]
@@ -334,10 +335,11 @@ public class Backup_Restore implements Serializable {
                 // Here i found a problem when many entries were added in a batch "one.com"
                 // was denying requests. Making pause seems to help.
                 //
-                String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_SEND_TO_DB, json);
-                //
-                wait(50); // 100ms and even 50ms seems to be solving this problem completely
+                // 100ms and even 50ms seems to be solving this problem completely
+                // 25ms is not enough causes exception from time to time
+                wait(50);
                 //
             } catch (Exception ex) {
                 failed++;

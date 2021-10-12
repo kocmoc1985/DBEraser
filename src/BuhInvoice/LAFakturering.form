@@ -3131,6 +3131,9 @@
                         <Property name="text" type="java.lang.String" value="H&#xe4;r till v&#xe4;nster &#xe4;ndrar du p&#xe5;minnelsetexten. Om du vill ha &#xa;fakturanummer med i texten s&#xe5; skriver du %s. Det ers&#xe4;tts av&#xa;fakturanummer n&#xe4;r du skriver ut eller skickar p&#xe5;minnelsen.&#xa;&#xa;Om du vill &#xe5;terst&#xe4;lla standard text d&#xe5; trycker du p&#xe5; &quot;kryss&quot;.&#xa;"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3150,6 +3153,9 @@
                         <Property name="wrapStyleWord" type="boolean" value="true"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3184,6 +3190,9 @@
                         <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! ALL DATA KOMMER ATT RADERAS PERMANENT!&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n ett g&#xe4;stkonto."/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
