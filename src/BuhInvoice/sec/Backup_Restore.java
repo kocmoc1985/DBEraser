@@ -119,8 +119,7 @@ public class Backup_Restore implements Serializable {
                 String fakturaKundId = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                         DB.PHP_FUNC_FAKTURA_KUND_TO_DB, json);
                 //
-                //
-                -> affects: buh_faktura -> fakturaKundId; buh_address -> fakturaKundId
+                //[#BACKUP-REDEFINE-ID#] -> affects: buh_faktura -> fakturaKundId; buh_address -> fakturaKundId
                 faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID, fakturaKundId);
                 faktura_kund__map.put(DB.BUH_FAKTURA_KUND__ID + "_old", faktuKundId__old);
                 //
