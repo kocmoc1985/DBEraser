@@ -5,6 +5,9 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.Backup_All;
+import BuhInvoice.sec.Backup_Make_Backup;
+import BuhInvoice.sec.Backup_Restore;
 import forall.BackgroundPanel;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
@@ -34,6 +37,7 @@ import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 import icons.IconUrls;
 import BuhInvoice.sec.IO;
+import java.io.IOException;
 
 /**
  *
@@ -342,7 +346,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected void setArticlesMarkedInvoice(ArrayList<HashMap<String, String>> list) {
         this.ARTICLES_ACTUAL_INVOICE = list;
     }
-    
+
     public void executeSetFakturaBetald(String fakturaId, int status) {
         //status 0 = ej betald; 1 = betald; 2 = delvis; 3 = över
         HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -354,7 +358,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HelpBuh.update(json);
         //
     }
-    
+
     public void executeSetFakturaMakulerad(String fakturaId, int status) {
         //status 1 = makulerad
         HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -366,7 +370,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HelpBuh.update(json);
         //
     }
-    
+
     public void executeSetFakturaImportantKomment(String fakturaId, String comment) {
         //
         HashMap<String, String> map = getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -727,7 +731,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-    
+
     public static String getSELECT_doubleWhere_(String whereColName, String whereValue, String whereColName_b, String whereValue_b) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -1125,6 +1129,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_delete_rut_msg = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jLabel_create_shortcut_options_tab = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -2660,6 +2666,20 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             }
         });
 
+        jButton4.setText("Säkerhetskopiering");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Återställ säkerhetkopia");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -2667,38 +2687,51 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane21, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
-                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
-                        .addComponent(jLabel8))
-                    .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9))
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
+                                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                                .addComponent(jLabel8))
+                            .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel20Layout.createSequentialGroup()
+                                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9))
+                            .addGroup(jPanel20Layout.createSequentialGroup()
+                                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel20Layout.createSequentialGroup()
+                                .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                                .addComponent(jScrollPane15)
+                                .addComponent(jScrollPane18))
+                            .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(275, 275, 275))
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
-                        .addComponent(jScrollPane15)
-                        .addComponent(jScrollPane18))
-                    .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(275, 275, 275))
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3021,7 +3054,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
     }
 
-    
 
     private void jButton_create_new_faktura_bActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_create_new_faktura_bActionPerformed
         //
@@ -3118,7 +3150,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         String fakturaId_of_the_copied_invoice = getFakturaId(); // as example for the future
         String fakturaNr_of_the_copied_invoice = getFakturaNr();
         //
-         if(isKreditFaktura){
+        if (isKreditFaktura) {
             //This is very important, if the invoice was kredited it becomes makulerad
             executeSetFakturaMakulerad(fakturaId_of_invoice_you_copy, 1);
             executeSetFakturaImportantKomment(fakturaId_of_invoice_you_copy, "Krediterad av fakturanr# " + fakturaNr_of_the_copied_invoice);
@@ -3336,6 +3368,35 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         createDesktopShortcut();
     }//GEN-LAST:event_jLabel_create_shortcut_options_tabMousePressed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //
+        if (GP_BUH.confirmWarning(LANG.MSG_33) == false) {
+            return;
+        }
+        //
+        Backup_Make_Backup bmb = new Backup_Make_Backup();
+        bmb.backup();
+        //
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        //
+        String path = GP_BUH.chooseFile_for_restore_backup(null);
+        //
+        new Thread(() -> {
+            try {
+                //
+                Backup_Restore.restoreBackup(path);
+                //
+                GP_BUH.showNotification(LANG.MSG_34);
+                //
+            } catch (Exception ex) {
+                Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
+                GP_BUH.showNotification(LANG.MSG_35);
+            }
+        }).start();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3413,8 +3474,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20_accept_edited_article;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     protected javax.swing.JButton jButton4_delete_faktura_komment1;
     protected javax.swing.JButton jButton4_save_faktura_komment;
+    private javax.swing.JButton jButton5;
     protected javax.swing.JButton jButton_add_article;
     protected javax.swing.JButton jButton_articles_a__tab__search_btn;
     protected javax.swing.JButton jButton_confirm_insert_update;

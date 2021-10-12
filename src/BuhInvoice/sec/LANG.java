@@ -204,6 +204,10 @@ public class LANG {
     public static String MSG_31 = "Utskriftens innehåll får inte plats på en A4. Var god försök göra innehållet kortare!";
     public static String MSG_32 = "Kunde inte skapa logotyp! \nMöjlig orsak är att din antivirus blockerar att logotypen kopieras.\nStarta om programmet och försök på nytt, tillåt att filen skapas i din antivirus.";
 
+    public final static String MSG_33 = "En säkerhetskopia kommer nu att skapas. Säkerhetkopiering kan dröja länge vid en stor datamängd! Vill du forsätta?";
+    public final static String MSG_34 = "Återställning lyckades!";
+    public final static String MSG_35 = "Återställning misslyckades!";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";

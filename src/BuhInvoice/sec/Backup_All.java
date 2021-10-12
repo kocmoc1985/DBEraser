@@ -6,6 +6,7 @@
 package BuhInvoice.sec;
 
 import forall.HelpA;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,8 @@ import java.util.HashMap;
 public class Backup_All implements Serializable {
 
     public static final long serialVersionUID = -7737096419321204313L;
-    protected final static String BACKUP_FILE_NAME = "BACKUP";
+    public static String BACKUP_FOLDER_NAME = "sakerhetskopia";
+    private String BACKUP_FILE_NAME = BACKUP_FOLDER_NAME + "/BACKUP";
 
     protected final ArrayList<HashMap<String, String>> buh_kund__1;
     protected final ArrayList<HashMap<String, String>> buh_faktura_artikel__2;
@@ -55,7 +57,10 @@ public class Backup_All implements Serializable {
     }
 
     private void toFile() {
+        HelpA.create_dir_if_missing(BACKUP_FOLDER_NAME);
+        BACKUP_FILE_NAME =  BACKUP_FILE_NAME + "_" + HelpA.get_date_time__file();
         HelpA.objectToFile(BACKUP_FILE_NAME, this); // HelpA.get_proper_date_time_same_format_on_all_computers_err_output()
+        HelpA.open_dir(new File(BACKUP_FILE_NAME).getParent());
     }
 
 }

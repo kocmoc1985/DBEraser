@@ -29,31 +29,12 @@ public class Backup_Make_Backup {
 //        GP_BUH.USER = "ask@mixcont.com";
 //        GP_BUH.PASS = "mixcont4765";
         //
-        backup();
+        Backup_Make_Backup bmb = new Backup_Make_Backup();
+        bmb.backup();
         //
     }
 
-    private static ArrayList<HashMap<String, String>> backup_single_table(String phpFunc) {
-        //
-        String json = LAFakturering.getSELECT_(DB.BUH_KUND__ID, "777");
-        //
-        try {
-            //
-            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    phpFunc, json);
-            //
-            // OBS! phpJsonResponseToHashMap_for_backup
-            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap_for_backup(json_str_return);
-            //
-            return entries;
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    private static void backup() {
+    public  void backup() {
         //[#BACKUP-RESTORE-DATA#]
         ArrayList<HashMap<String, String>> buh_kund__1 = backup_single_table(DB.PHP_FUNC_PARAM_GET_FORETAG_DATA);
         //
@@ -85,11 +66,29 @@ public class Backup_Make_Backup {
                 buh_faktura_rut_person_10
         );
         //
-        System.out.println("");
+    }
+    
+    private static ArrayList<HashMap<String, String>> backup_single_table(String phpFunc) {
         //
+        String json = LAFakturering.getSELECT_(DB.BUH_KUND__ID, "777");
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    phpFunc, json);
+            //
+            // OBS! phpJsonResponseToHashMap_for_backup
+            ArrayList<HashMap<String, String>> entries = JSon.phpJsonResponseToHashMap_for_backup(json_str_return);
+            //
+            return entries;
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(HelpBuh.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
-    private static ArrayList<Backup_Invoice> backup_4_5() { // Backup of all invoices with all articles
+    private  ArrayList<Backup_Invoice> backup_4_5() { // Backup of all invoices with all articles
         //
         String json = LAFakturering.getSELECT_(DB.BUH_FAKTURA__KUNDID__, "777");
         //

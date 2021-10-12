@@ -373,7 +373,7 @@ public class HelpA {
         //Write error stream to a file
         create_dir_if_missing("err_output");
         try {
-            String err_file = "err_" + get_date_time() + ".txt";
+            String err_file = "err_" + get_date_time__file() + ".txt";
             String output_path = "err_output/" + err_file;
             LAST_ERR_OUT_PUT_FILE_PATH = output_path;
             PrintStream out = new PrintStream(new FileOutputStream(output_path));
@@ -650,7 +650,7 @@ public class HelpA {
         return ammount;
     }
 
-    public static String get_date_time() {
+    public static String get_date_time__file() {
         DateFormat formatter = new SimpleDateFormat("yyyy_MM_dd HH_mm_ss");
         Calendar calendar = Calendar.getInstance();
         return formatter.format(calendar.getTime());

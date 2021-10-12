@@ -11,6 +11,7 @@ import BuhInvoice.HelpBuh;
 import BuhInvoice.JSon;
 import BuhInvoice.LAFakturering;
 import forall.HelpA;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -35,7 +36,7 @@ public class Backup_Restore implements Serializable {
         //
         try {
             //
-            Backup_All ba = (Backup_All) HelpA.fileToObject(Backup_All.BACKUP_FILE_NAME);
+            Backup_All ba = (Backup_All) HelpA.fileToObject("BACKUP");
             //
             Backup_Restore bg = new Backup_Restore(ba);
             //
@@ -46,6 +47,12 @@ public class Backup_Restore implements Serializable {
         } catch (Exception ex) {
             Logger.getLogger(Backup_Restore.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void restoreBackup(String backupFilePath) throws IOException, ClassNotFoundException{
+        Backup_All ba = (Backup_All) HelpA.fileToObject(backupFilePath);
+        Backup_Restore bg = new Backup_Restore(ba);
+        bg.restoreBackup();
     }
 
     private void restoreBackup() {

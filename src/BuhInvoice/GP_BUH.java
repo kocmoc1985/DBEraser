@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.Backup_All;
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.ChooseLogoEntry;
 import BuhInvoice.sec.IO;
@@ -676,6 +677,26 @@ public class GP_BUH {
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, PNG, BMP Images", "jpg", "png", "bmp");
         chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(window); // this one is needed to test icon
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String path = chooser.getSelectedFile().getPath();
+            System.out.println("You chose to open this file: " + path);
+            return path;
+        } else {
+            return null;
+        }
+    }
+    
+    public static String chooseFile_for_restore_backup(Component parent) {
+        //
+        JFileChooser chooser = new JFileChooser(Backup_All.BACKUP_FOLDER_NAME);
+        //
+        Frame window = new Frame();
+        window.setIconImage(getBuhInvoicePrimIcon());
+        //
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+//                "JPG, PNG, BMP Images", "jpg", "png", "bmp");
+//        chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(window); // this one is needed to test icon
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String path = chooser.getSelectedFile().getPath();
