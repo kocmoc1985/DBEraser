@@ -5,6 +5,8 @@
  */
 package BuhInvoice;
 
+import BuhInvoice.sec.ChooseLogoEntry;
+import BuhInvoice.sec.LANG;
 import MyObjectTable.OutPut;
 import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
@@ -12,8 +14,17 @@ import MyObjectTableInvert.RowDataInvertB;
 import MyObjectTableInvert.TableBuilderInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import icons.ICON;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,12 +55,37 @@ public class ForetagA extends CustomerAForetagA {
     }
 
     @Override
+    protected void startUp() {
+        super.startUp(); //To change body of generated methods, choose Tools | Templates.
+        showCompanyLogo();
+    }
+
+    
+    
+    @Override
     protected void SET_CURRENT_OPERATION_INSERT(boolean insert) {
 
     }
+
+    public void chooseLogo(){
+        //
+        ChooseLogoEntry cle = GP_BUH.chooseLogo(null);
+        //
+        if (cle != null && cle.isSTATUS__REMOVED_AFTER_SETTING_LOGO()) {
+            HelpA.showNotificationWarning(LANG.MSG_32);
+        }
+        //
+        showCompanyLogo();
+    }
     
-    protected void jTableForetagA_ftg_table_clicked(){
-         //
+    private void showCompanyLogo() {
+        String logoPath = GP_BUH.LOGO_PATH();
+        Dimension d = GP_BUH.calculate_w_h__proportionalScaling(logoPath);
+        GP_BUH.setLabelIcon_b(bim.jLabel26__ftg_setup_logo, logoPath, d.width, d.height);
+    }
+
+    protected void jTableForetagA_ftg_table_clicked() {
+        //
         showTableInvert_2();
         refreshTableInvert(TABLE_INVERT_2);
         fillAddressTable();
@@ -58,8 +94,8 @@ public class ForetagA extends CustomerAForetagA {
         jTableForetagA_adress_clicked();
         //
     }
-    
-    protected void jTableForetagA_adress_clicked(){
+
+    protected void jTableForetagA_adress_clicked() {
         showTableInvert_3();
         refreshTableInvert(TABLE_INVERT_3);
     }
@@ -217,7 +253,7 @@ public class ForetagA extends CustomerAForetagA {
             iban,
             bic,
             swift
-                
+
         };
         //
         return rows;

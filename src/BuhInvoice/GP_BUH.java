@@ -280,8 +280,15 @@ public class GP_BUH {
         label.setIcon(ICON.getImageIcon(iconFileName, 32, 32));
     }
 
-    public static void setLabelIconAndToolTip(JLabel label, String iconFileName, int w, int h) {
+    public static void setLabelIcon(JLabel label, String iconFileName, int w, int h) {
         label.setIcon(ICON.getImageIcon(iconFileName, w, h));
+    }
+    
+    public static void setLabelIcon_b(JLabel label, String filePathAndName, int w, int h) {
+        ImageIcon icon = ICON.getImageIcon_b(filePathAndName, w, h);
+        if(icon != null){
+            label.setIcon(icon);    
+        }
     }
 
     public static void reminder_btn_adjustment(JButton btn, boolean forfallnaFakturorFinns) {
@@ -531,8 +538,6 @@ public class GP_BUH {
         }
         //
         int MIN_WIDTH = 120;
-//        int MAX_WIDTH = 180;
-//        int MAX_HEIGHT = 70;
         //
         int MAX_WIDTH = 200;
         int MAX_HEIGHT = 85;
@@ -559,32 +564,11 @@ public class GP_BUH {
         System.out.println("Original img w: " + w_orig + " height: " + h_orig);
         System.out.println("wh_proportion: " + wh_proportion);
         //
-        int w_new = 0;
-        int h_new = 0;
-        //
         if (w_orig > MAX_WIDTH || h_orig > MAX_HEIGHT) {
             return proportionalRescaling(wh_proportion, w_orig, h_orig, MAX_WIDTH, MAX_HEIGHT);
         } else {
             return new Dimension(w_orig, h_orig);
         }
-        //
-//        if (w_orig > MAX_WIDTH) {
-//            //
-//            w_new = MAX_WIDTH;
-//            //
-//            if (h_orig > MAX_HEIGHT) {
-//                h_new = MAX_HEIGHT; // This should be made more flexible***********[2020-09-04]
-//            } else {
-//                h_new = (int) (w_new / wh_proportion);
-//            }
-//            //
-//            //
-//        } else {
-//            w_new = w_orig;
-//            h_new = h_orig;
-//        }
-//        //
-//        return new Dimension(w_new, h_new);
         //
     }
 

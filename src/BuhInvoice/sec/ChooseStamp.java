@@ -86,7 +86,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
             //
             label.addMouseListener(this);
             //
-            GP_BUH.setLabelIconAndToolTip(label, stamp.getFileName(), stamp.getW(), stamp.getH());
+            GP_BUH.setLabelIcon(label, stamp.getFileName(), stamp.getW(), stamp.getH());
             //
         }
         //

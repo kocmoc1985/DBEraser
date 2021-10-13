@@ -8,6 +8,7 @@ package BuhInvoice;
 import BuhInvoice.sec.Backup_All;
 import BuhInvoice.sec.Backup_Make_Backup;
 import BuhInvoice.sec.Backup_Restore;
+import BuhInvoice.sec.ChooseLogoEntry;
 import forall.BackgroundPanel;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
@@ -1097,8 +1098,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jPanel17 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTable_ftg_addr = new javax.swing.JTable();
-        jButton_update_kund_data = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
+        jLabel26__ftg_setup_logo = new javax.swing.JLabel();
+        jPanel27 = new javax.swing.JPanel();
+        jButton_update_kund_data = new javax.swing.JButton();
+        jButton_change_logo_ftg_page = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         jPanel20 = new BackgroundPanel();
         jPanel_email_client_options = new javax.swing.JPanel();
@@ -1264,7 +1268,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addComponent(jScrollPane17)
                         .addComponent(jLabel_restore_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel_share_account, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(921, Short.MAX_VALUE))
+                .addContainerGap(1527, Short.MAX_VALUE))
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1316,7 +1320,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jButton_delete_account_sharing)
-                .addContainerGap(1029, Short.MAX_VALUE))
+                .addContainerGap(1032, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel19);
@@ -1675,7 +1679,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel_nyckel_tal__info_label, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(802, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1991,7 +1995,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3_faktura_sec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1282, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2464,6 +2468,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         ));
         jScrollPane12.setViewportView(jTable_ftg_addr);
 
+        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel24.setText("Företagsuppgifter");
+
+        jPanel27.setLayout(new java.awt.GridLayout());
+
         jButton_update_kund_data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/correct.png"))); // NOI18N
         jButton_update_kund_data.setToolTipText("Spara");
         jButton_update_kund_data.addActionListener(new java.awt.event.ActionListener() {
@@ -2471,10 +2481,16 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 jButton_update_kund_dataActionPerformed(evt);
             }
         });
+        jPanel27.add(jButton_update_kund_data);
 
-        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel24.setText("Företagsuppgifter");
+        jButton_change_logo_ftg_page.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
+        jButton_change_logo_ftg_page.setToolTipText("Sätt eller radera logotyp");
+        jButton_change_logo_ftg_page.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_change_logo_ftg_pageActionPerformed(evt);
+            }
+        });
+        jPanel27.add(jButton_change_logo_ftg_page);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -2482,38 +2498,40 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jButton_update_kund_data, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel8Layout.createSequentialGroup()
+                            .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+                    .addComponent(jLabel26__ftg_setup_logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(870, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton_update_kund_data, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26__ftg_setup_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1221, Short.MAX_VALUE))
         );
 
         jPanel16.getAccessibleContext().setAccessibleDescription("");
@@ -2692,7 +2710,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                             .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 993, Short.MAX_VALUE)
                                 .addComponent(jLabel8))
                             .addComponent(jPanel_email_client_options, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel20Layout.createSequentialGroup()
@@ -2706,7 +2724,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                             .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel20Layout.createSequentialGroup()
                                 .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 527, Short.MAX_VALUE)))
+                                .addGap(0, 1133, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -3399,6 +3417,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }).start();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton_change_logo_ftg_pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_change_logo_ftg_pageActionPerformed
+        //
+       foretagA.chooseLogo();
+        //
+    }//GEN-LAST:event_jButton_change_logo_ftg_pageActionPerformed
+
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3482,6 +3506,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JButton jButton5;
     protected javax.swing.JButton jButton_add_article;
     protected javax.swing.JButton jButton_articles_a__tab__search_btn;
+    public javax.swing.JButton jButton_change_logo_ftg_page;
     protected javax.swing.JButton jButton_confirm_insert_update;
     private javax.swing.JButton jButton_copy_faktura;
     private javax.swing.JButton jButton_create_new_faktura;
@@ -3542,6 +3567,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    public javax.swing.JLabel jLabel26__ftg_setup_logo;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3605,6 +3631,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
     protected javax.swing.JPanel jPanel2_faktura_main;
     private javax.swing.JPanel jPanel3;
     protected javax.swing.JPanel jPanel3_faktura_sec;
