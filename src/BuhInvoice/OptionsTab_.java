@@ -63,7 +63,6 @@ public class OptionsTab_ extends Basic_Buh {
         //
         bim.jTextArea1.getParent().getParent().setVisible(false);
         bim.jTextArea2.getParent().getParent().setVisible(false);
-        bim.jTextArea3.getParent().getParent().setVisible(false);
         bim.jTextArea4.getParent().getParent().setVisible(false);
         //
         bim.jTextArea4.setCaretPosition(0);

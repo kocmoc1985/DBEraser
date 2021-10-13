@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,7,-23,0,0,5,-75"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,7,57,0,0,5,-63"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -83,7 +83,7 @@
                                   <Component id="jLabel_share_account" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="909" max="32767" attributes="0"/>
+                          <EmptySpace pref="921" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
                           <Component id="jScrollPane17" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jButton_delete_account_sharing" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="921" max="32767" attributes="0"/>
+                          <EmptySpace pref="1029" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -448,7 +448,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="184" max="32767" attributes="0"/>
+                          <EmptySpace pref="196" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1160,7 +1160,7 @@
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jPanel3_faktura_sec" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jPanel2" pref="664" max="32767" attributes="0"/>
+                                      <Component id="jPanel2" pref="676" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jPanel12" min="-2" pref="250" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
@@ -2710,7 +2710,7 @@
                                   <Component id="jScrollPane11" min="-2" pref="599" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="252" max="32767" attributes="0"/>
+                          <EmptySpace pref="264" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2847,6 +2847,11 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[1200, 1002]"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&#xd6;VRIGA INST&#xc4;LLNINGAR">
@@ -2858,6 +2863,11 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="jPanel20">
+              <Properties>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[1466, 1000]"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BackgroundPanel()"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -2875,7 +2885,7 @@
                                       <Component id="jScrollPane14" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jPanel21" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <EmptySpace pref="375" max="32767" attributes="0"/>
+                                          <EmptySpace pref="387" max="32767" attributes="0"/>
                                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jPanel_email_client_options" alignment="1" max="32767" attributes="0"/>
@@ -2892,7 +2902,7 @@
                                       <Component id="jLabel_create_shortcut_options_tab" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jButton_erase_account_btn" min="-2" pref="212" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="527" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2900,7 +2910,6 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jScrollPane16" pref="433" max="32767" attributes="0"/>
                                           <Component id="jScrollPane15" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane18" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane22" min="-2" pref="433" max="-2" attributes="0"/>
                                   </Group>
@@ -2921,12 +2930,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="jLabel_create_shortcut_options_tab" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jButton4" pref="39" max="32767" attributes="0"/>
                               <Component id="jButton5" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel21" min="-2" pref="50" max="-2" attributes="0"/>
@@ -2953,15 +2962,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane22" pref="125" max="32767" attributes="0"/>
+                              <Component id="jScrollPane22" pref="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane21" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane18" pref="148" max="32767" attributes="0"/>
-                              <Component id="jButton_erase_account_btn" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jButton_erase_account_btn" min="-2" pref="101" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3106,7 +3112,7 @@
                     <Component class="javax.swing.JButton" name="jButton_delete_reminder_msg">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/cancel-1.png"/>
+                          <Image iconType="3" name="/icons/undo_a.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="&#xc5;terst&#xe4;ll p&#xe5;minnelse"/>
                       </Properties>
@@ -3176,26 +3182,6 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane18">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="jTextArea3">
-                      <Properties>
-                        <Property name="columns" type="int" value="20"/>
-                        <Property name="rows" type="int" value="5"/>
-                        <Property name="text" type="java.lang.String" value="Du kan n&#xe4;r som helst radera ditt konto och all relaterat data.&#xa;Du kommer att beh&#xf6;va ange l&#xf6;senordet du anv&#xe4;nder vid inloggning f&#xf6;r&#xa;att bekr&#xe4;fta borttagningen.&#xa;&#xa;OBS! ALL DATA KOMMER ATT RADERAS PERMANENT!&#xa;&#xa;Att radera kontot &#xe4;r ej m&#xf6;jligt fr&#xe5;n ett g&#xe4;stkonto."/>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                      </AuxValues>
-                    </Component>
-                  </SubComponents>
-                </Container>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane21">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -3263,7 +3249,7 @@
                     <Component class="javax.swing.JButton" name="jButton_delete_rut_msg">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icons/cancel-1.png"/>
+                          <Image iconType="3" name="/icons/undo_a.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="&#xc5;terst&#xe4;ll meddelande"/>
                       </Properties>
@@ -3299,6 +3285,7 @@
                       <Image iconType="3" name="/icons/la.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value=" Skapa genv&#xe4;g till LAFakturering p&#xe5; skrivbordet"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Klicka f&#xf6;r att skapa en g&#xe4;nv&#xe4;g p&#xe5; skrivbordet"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_create_shortcut_options_tabMousePressed"/>
@@ -3307,6 +3294,7 @@
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#xe4;kerhetskopiering"/>
+                    <Property name="toolTipText" type="java.lang.String" value="S&#xe4;kerhetskopiering av all data tillh&#xf6;rande f&#xf6;retaget"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -3315,6 +3303,7 @@
                 <Component class="javax.swing.JButton" name="jButton5">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#xc5;terst&#xe4;ll s&#xe4;kerhetkopia"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>

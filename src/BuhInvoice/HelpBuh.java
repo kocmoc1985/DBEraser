@@ -6,8 +6,6 @@
 package BuhInvoice;
 
 import static BuhInvoice.JSon.JSONToHashMap;
-import BuhInvoice.sec.Backup_All;
-import BuhInvoice.sec.Backup_Invoice;
 import BuhInvoice.sec.EmailSendingStatus;
 import BuhInvoice.sec.HttpResponce;
 import BuhInvoice.sec.IO;
@@ -56,8 +54,8 @@ public class HelpBuh {
     private static boolean HTTPS = false;
     private static boolean DOMAIN_LA = true; // false = "mixcont.com", true = "lafakturering.se"
     //Yes you can use test scripts but not use the "test-db"
-    public static boolean USE_TEST_DB = true; // [#TEST-DB#] 
-    public static boolean USE_TEST_SCRIPTS = true; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
+    public static boolean USE_TEST_DB = false; // [#TEST-DB#] 
+    public static boolean USE_TEST_SCRIPTS = false; // [#TEST-SCRIPTS#] - folder "php-test" on FTP
     //
     //
     //

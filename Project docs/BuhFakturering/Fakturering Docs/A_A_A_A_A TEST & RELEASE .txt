@@ -6,12 +6,15 @@ Search for tag: [#BACKUP-RESTORE-DATA#] in "DBEraser" and "MCWebNew" projects
 
 PRIORITY: HIGH
 AMMOUNT OF CHANGES: (8) [1-10]
-COMPATIBLE WITH PREVIOUS VERSION: I THINK YES - should be tested
+COMPATIBLE WITH PREVIOUS VERSION: ALMOST SURE YES - should be tested
 
 DATE-LAST-WORK-DONE: [2021-10-12]
 PHP-SCRIPTS-INVOLVED: YES
 CHANGES ON JAVA-SIDE: YES
 CHANGES-TO-DB:YES -> Table: "buh_faktura_artikel" -> added column -> date_created
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-10-XX]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-10-13]
 ________________________________________________________________________________________
 [2021-08-31][PHP]
 
