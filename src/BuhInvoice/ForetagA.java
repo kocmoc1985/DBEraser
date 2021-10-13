@@ -81,7 +81,7 @@ public class ForetagA extends CustomerAForetagA {
     private void showCompanyLogo() {
         String logoPath = GP_BUH.LOGO_PATH();
         Dimension d = GP_BUH.calculate_w_h__proportionalScaling(logoPath);
-        GP_BUH.setLabelIcon_b(bim.jLabel26__ftg_setup_logo, logoPath, d.width, d.height);
+        GP_BUH.setLabelIcon_b(bim.jLabel26__ftg_setup_logo, logoPath, d.width, d.height,true);
     }
 
     protected void jTableForetagA_ftg_table_clicked() {

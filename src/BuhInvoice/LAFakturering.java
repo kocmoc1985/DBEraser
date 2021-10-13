@@ -3420,7 +3420,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_change_logo_ftg_pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_change_logo_ftg_pageActionPerformed
         //
        foretagA.chooseLogo();
-        //
+       //
     }//GEN-LAST:event_jButton_change_logo_ftg_pageActionPerformed
 
     private void createDesktopShortcut() {

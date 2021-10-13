@@ -40,6 +40,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -49,6 +50,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import net.coobird.thumbnailator.Thumbnails;
@@ -283,11 +287,20 @@ public class GP_BUH {
     public static void setLabelIcon(JLabel label, String iconFileName, int w, int h) {
         label.setIcon(ICON.getImageIcon(iconFileName, w, h));
     }
-    
-    public static void setLabelIcon_b(JLabel label, String filePathAndName, int w, int h) {
+
+    public static void setLabelIcon_b(JLabel label, String filePathAndName, int w, int h, boolean drawBorder) {
+        //This method aquires the image not from the inside of the project
         ImageIcon icon = ICON.getImageIcon_b(filePathAndName, w, h);
-        if(icon != null){
-            label.setIcon(icon);    
+        if (icon != null) {
+            label.setIcon(icon);
+            if (drawBorder) {
+                Border border = BorderFactory.createRaisedBevelBorder();
+                Border margin = new EmptyBorder(2, 5, 2, 5);
+                label.setBorder(new CompoundBorder(border, margin));
+            }
+        } else {
+            label.setIcon(null);
+            label.setBorder(null);
         }
     }
 
@@ -590,7 +603,6 @@ public class GP_BUH {
         return new Dimension((int) w, (int) h);
     }
 
-
     /**
      *
      * @param path
@@ -670,7 +682,7 @@ public class GP_BUH {
             return null;
         }
     }
-    
+
     public static String chooseFile_for_restore_backup(Component parent) {
         //
         JFileChooser chooser = new JFileChooser(Backup_All.BACKUP_FOLDER_NAME);
