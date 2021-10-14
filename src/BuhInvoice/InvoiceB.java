@@ -618,6 +618,7 @@ public class InvoiceB extends Basic_Buh {
             } else {
                 HashMap<String, String> noteMap = notes.get(0);
                 String note = noteMap.get(DB.BUH_NOTES__NOTE);
+                note = note.replaceAll("linebreak", "\n");
                 String date_last_change = noteMap.get(DB.BUH_NOTES__DATE_LATS_CHANGE);
                 bim.jTextArea_notes_general.setText(note);
             }
@@ -643,6 +644,7 @@ public class InvoiceB extends Basic_Buh {
             jtxt.setText("");
         } else {
             note = bim.jTextArea_notes_general.getText();
+            note = note.replaceAll("(\r\n|\n)", "linebreak");
             note = GP_BUH.replaceColon(note, false);
             note = GP_BUH.replaceComma(note, false);
             note = GP_BUH.replacePlus(note, false);
@@ -655,6 +657,8 @@ public class InvoiceB extends Basic_Buh {
             update_map.put(DB.BUH_NOTES__NOTE, note);
             String json = JSon.hashMapToJSON(update_map);
             HelpBuh.update(json);
+            //
+            resetAnslagstavlaBackground();
             //
         } else { // insert
             //
@@ -674,18 +678,17 @@ public class InvoiceB extends Basic_Buh {
             //
             resetAnslagstavlaBackground();
             //
-            if (clear) {
-                BlinkThread bt = new BlinkThread(jtxt, true);
-            } else {
-                BlinkThread bt = new BlinkThread(jtxt, false);
-            }
-            //
         }
         //
-
+        if (clear) {
+            BlinkThread bt = new BlinkThread(jtxt, true);
+        } else {
+            BlinkThread bt = new BlinkThread(jtxt, false);
+        }
+        //
     }
-    
-    private void resetAnslagstavlaBackground(){
+
+    private void resetAnslagstavlaBackground() {
         bim.jTextArea_notes_general.setBackground(new Color(236, 233, 216));
     }
 
