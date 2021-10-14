@@ -5,6 +5,7 @@ OBS! REMEMBER THAT THE CHANGES SHALL BE DONE TO ALL ACTIVE DATABASES:
 
 [#UPDATED BOTH#] = lafakturering_semain & lafakturering_setest
 
+[2021-10-14] New Table: "buh_notes"  [#UPDATED BOTH#]
 [2021-10-07] Table: "buh_faktura_artikel" -> added column -> date_created [#UPDATED BOTH#]
 [2021-09-21] New Table: "buh_dos_attack"  [#UPDATED BOTH#]
 [2021-08-16] Table: "buh_faktura_article" -> column -> artikel_kategori -> changed from varchar(1) to varchar(20) [#UPDATED BOTH#]
