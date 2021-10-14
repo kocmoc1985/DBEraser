@@ -137,6 +137,7 @@ public class DB {
     public static final String TABLE__BUH_KUND = "buh_kund";
     public static final String TABLE__BUH_FAKTURA_INBET = "buh_faktura_inbet";
     public static final String TABLE__BUH_FAKTURA_SEND = "buh_faktura_send";
+    public static final String TABLE__BUH_NOTES = "buh_notes";
     //
     public static final String PHP_FUNC_GET_NEWEST_AVAILABLE_VERSION = "get_newest_version";
     //
@@ -165,6 +166,7 @@ public class DB {
     public static final String PHP_FUNC_ARTIKEL_TO_DB = "artikel_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_RUT_ENTRY_TO_DB = "faktura_rut_to_db"; // using php-function: "insert()"
     public static final String PHP_FUNC_FAKTURA_RUT_PERSON_ENTRY_TO_DB = "faktura_rut_person_to_db"; // using php-function: "insert()"
+    public static final String PHP_FUNC_FAKTURA_BUH_NOTE_TO_DB = "buh_notes_to_db"; // using php-function: "insert()"
     //
     public static final String PHP_FUNC_GET_LATEST_FAKTURA_NR = "get_latest_faktura_nr"; // using php-finction: "getLatestFakturaNr()"
     //
@@ -194,6 +196,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_RUT = "get_rut"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_RUT_SIMPLE = "get_rut_simple"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET__FAKTURA_KUND__IS_PERSON = "faktura_kund_is_person";
+    public static final String PHP_FUNC_PARAM_GET__NOTE__ANSLAGSTAVLA = "get_note_anslagstavla";
     //Search filters below..
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL = "get_kund_fakturor_all"; // using php-function: "select()"
@@ -394,4 +397,9 @@ public class DB {
     public static final String BUH_CONSTANTS__ID = "constant_id";
     public static final String BUH_CONSTANTS__NAME = "name";
     public static final String BUH_CONSTANTS__VAL = "name";
+    //
+    public static final String BUH_NOTES__KUNDID = "kundId";
+    public static final String BUH_NOTES__NOTE = "note";
+    public static final String BUH_NOTES__DATE_LATS_CHANGE = "date_last_change";
+    
 }

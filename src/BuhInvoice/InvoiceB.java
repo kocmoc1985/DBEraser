@@ -5,6 +5,7 @@
  */
 package BuhInvoice;
 
+import static BuhInvoice.HelpBuh.executePHP;
 import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTableRowData;
 import MyObjectTableInvert.JTextAreaJLink;
@@ -13,6 +14,7 @@ import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -107,7 +109,6 @@ public class InvoiceB extends Basic_Buh {
         super(buh_invoice_main);
         this.invoiceA_Update = invoiceA_Update;
     }
-    
 
     private ArrayList<HashMap<String, String>> getFakturaEntry_articleList() {
         return invoiceA_Update.faktura_entry.articlesList;
@@ -346,6 +347,8 @@ public class InvoiceB extends Basic_Buh {
         fillFakturaArticlesTable(fakturaId);
         //
         showImportantKomment();
+        //
+        showAnslagstavla();
         //
         showLowPriorityKomment();
         //
@@ -593,6 +596,97 @@ public class InvoiceB extends Basic_Buh {
 
     protected void deleteComment() {
         updateKomment(true);
+    }
+
+    private boolean notes_given_kundid_mising = false;
+
+    protected void showAnslagstavla() {
+        //
+        bim.jTextArea_notes_general.setBackground(new Color(236, 233, 216));
+        //
+        String json = bim.getSELECT_kundId();
+        //
+        try {
+            //
+            String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+                    DB.PHP_FUNC_PARAM_GET__NOTE__ANSLAGSTAVLA, json);
+            //
+            ArrayList<HashMap<String, String>> notes = JSon.phpJsonResponseToHashMap(response);
+            //
+            if (notes.isEmpty()) {
+                notes_given_kundid_mising = true;
+            } else {
+                HashMap<String, String> noteMap = notes.get(0);
+                String note = noteMap.get(DB.BUH_NOTES__NOTE);
+                String date_last_change = noteMap.get(DB.BUH_NOTES__DATE_LATS_CHANGE);
+                bim.jTextArea_notes_general.setText(note);
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void updateAnslagstavla(boolean clear) { // Anslagstavlan -> Flik "ALLA FAKTUROR" -> längst ner
+        //
+        JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_notes_general;
+        //
+        if (jtxt.getValidated() == false) {
+            HelpA.showNotification(LANG.MSG_8_2);
+            return;
+        }
+        //
+        String note;
+        //
+        if (clear) {
+            note = "";
+            jtxt.setText("");
+        } else {
+            note = bim.jTextArea_notes_general.getText();
+            note = GP_BUH.replaceColon(note, false);
+            note = GP_BUH.replaceComma(note, false);
+            note = GP_BUH.replacePlus(note, false);
+        }
+        //
+        //
+        if (notes_given_kundid_mising == false) { // update
+            //
+            HashMap<String, String> update_map = bim.getUPDATE__simple(DB.TABLE__BUH_NOTES);
+            update_map.put(DB.BUH_NOTES__NOTE, note);
+            String json = JSon.hashMapToJSON(update_map);
+            HelpBuh.update(json);
+            //
+        } else { // insert
+            //
+            HashMap<String, String> noteMap = new HashMap<>();
+            noteMap.put(DB.BUH_NOTES__KUNDID, "777");
+            noteMap.put(DB.BUH_NOTES__NOTE, note);
+            //
+            String json_ = JSon.hashMapToJSON(noteMap);
+            //
+            try {
+                //
+                executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_FAKTURA_BUH_NOTE_TO_DB, json_);
+                //
+            } catch (Exception ex) {
+                Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //
+            resetAnslagstavlaBackground();
+            //
+            if (clear) {
+                BlinkThread bt = new BlinkThread(jtxt, true);
+            } else {
+                BlinkThread bt = new BlinkThread(jtxt, false);
+            }
+            //
+        }
+        //
+
+    }
+    
+    private void resetAnslagstavlaBackground(){
+        bim.jTextArea_notes_general.setBackground(new Color(236, 233, 216));
     }
 
     private void fillFakturaTable(String fakturaKundId) {
@@ -1053,8 +1147,8 @@ public class InvoiceB extends Basic_Buh {
                 //[#OFFERT#]
                 HelpA.showNotification(LANG.OFFERT_OMVANDLA_MSG(fakturaNrCopy, newFakturaNr));
                 //
-                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT,LANG.OMVANDLADES_TILL +""+ newFakturaNr);
-                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA,LANG.SKAPADES_FRAN + "" + fakturaNrCopy);
+                EditPanel_Send.insert(fakturaId, DB.STATIC__SENT_STATUS__OMVANDLAT, DB.STATIC__SENT_TYPE_OFFERT, LANG.OMVANDLADES_TILL + "" + newFakturaNr);
+                EditPanel_Send.insert(fakturaId_new, DB.STATIC__SENT_STATUS__SKAPAD, DB.STATIC__SENT_TYPE_FAKTURA, LANG.SKAPADES_FRAN + "" + fakturaNrCopy);
                 //
                 refresh_sync(null);
                 //

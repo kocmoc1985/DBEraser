@@ -88,7 +88,8 @@ public class LANG {
     public final static String MSG_7 = "Kund e-post saknas, var god gå till flik"
             + " \"" + LAFakturering.TAB_KUDNER + "\" och fyll i \"" + CustomersA_.TABLE_FAKTURA_KUNDER__EPOST + "\" ";
     public final static String MSG_7_2 = "Skriv en e-post du vill skicka den till";
-    public final static String MSG_8 = "Kommentaren är för lång och kommer därmed inte sparas";
+    public final static String MSG_8 = "Kan ej spara, kommentaren är för lång";
+    public final static String MSG_8_2 = "Kan ej spara, anteckningen är för lång";
     public final static String MSG_9 = "Var god observera, fakturan är MAKULERAD";
 
     public static String MSG_10 = "Skapar PDF";

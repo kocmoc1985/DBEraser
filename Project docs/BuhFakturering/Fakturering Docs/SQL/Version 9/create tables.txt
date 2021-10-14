@@ -60,6 +60,14 @@ java varchar(100) DEFAULT '',
 date_visit timestamp DEFAULT CURRENT_TIMESTAMP()
 );
 
+CREATE TABLE buh_notes (
+kundId integer not null,
+note varchar(1000) DEFAULT '',
+date_last_change timestamp DEFAULT CURRENT_TIMESTAMP(),
+Foreign key (kundId) references buh_kund(kundId),
+UNIQUE (kundId)
+);
+
 CREATE TABLE buh_licens (
 licensId integer primary key not null AUTO_INCREMENT,
 kundId integer not null,
