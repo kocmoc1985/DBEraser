@@ -215,6 +215,9 @@ public class LANG {
     public final static String MSG_37 = "Återställning";
     public final static String MSG_37_2 = "Återställer, var god dröj";
     
+    public final static String MSG_38 = "Skriv fakturakommentar här";
+    public final static String MSG_38_2 = "Skriv valfria anteckningar här";
+    
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
     public static String LBL_MSG_1_3 = "SKAPA NY OFFERT";

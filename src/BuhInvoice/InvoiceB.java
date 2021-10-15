@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -348,9 +349,9 @@ public class InvoiceB extends Basic_Buh {
         //
         showImportantKomment();
         //
-        showAnslagstavla();
-        //
         showLowPriorityKomment();
+        //
+        showAnslagstavla();
         //
         showOtherFakturaInfo();
         //
@@ -528,6 +529,8 @@ public class InvoiceB extends Basic_Buh {
             //
             if (fakturannr_alt.equals("0") == false) {
                 bim.jTextArea_faktura_komment.setText("Alternativ fakturanummer: " + fakturannr_alt);
+            }else{
+                bim.jTextArea_faktura_komment.setText(LANG.MSG_38); // Skriv fakturakommentar...
             }
             //
         }
@@ -540,9 +543,13 @@ public class InvoiceB extends Basic_Buh {
         //
         String komment = HelpA.getValueSelectedRow(table, TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
         //
+        komment = GP_BUH.replaceLineBreak(komment, true);
+        //
         bim.jTextArea_faktura_komment.setText(komment);
         //
         Validator.resetValidation(bim.jTextArea_faktura_komment);
+        //
+//        resetNotePanelsBackground(bim.jTextArea_faktura_komment);
         //
     }
 
@@ -569,9 +576,7 @@ public class InvoiceB extends Basic_Buh {
         } else {
             important_komment = bim.jTextArea_faktura_komment.getText();
             important_komment__no_replace = "" + important_komment;
-            important_komment = GP_BUH.replaceColon(important_komment, false);
-            important_komment = GP_BUH.replaceComma(important_komment, false);
-            important_komment = GP_BUH.replacePlus(important_komment, false);
+            important_komment = GP_BUH.replaceSpecialChars(important_komment, false);
         }
         //
         HashMap<String, String> update_map = bim.getUPDATE(DB.BUH_FAKTURA__ID__, fakturaId, DB.TABLE__BUH_FAKTURA);
@@ -592,6 +597,8 @@ public class InvoiceB extends Basic_Buh {
             BlinkThread bt = new BlinkThread(jtxt, false);
         }
         //
+//        resetNotePanelsBackground(jtxt);
+        //
     }
 
     protected void deleteComment() {
@@ -602,8 +609,6 @@ public class InvoiceB extends Basic_Buh {
 
     protected void showAnslagstavla() {
         //
-        bim.jTextArea_notes_general.setBackground(new Color(236, 233, 216));
-        //
         String json = bim.getSELECT_kundId();
         //
         try {
@@ -611,15 +616,17 @@ public class InvoiceB extends Basic_Buh {
             String response = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_PARAM_GET__NOTE__ANSLAGSTAVLA, json);
             //
-            ArrayList<HashMap<String, String>> notes = JSon.phpJsonResponseToHashMap(response);
+            ArrayList<HashMap<String, String>> notes = JSon.phpJsonResponseToHashMap_for_backup(response);
             //
             if (notes.isEmpty()) {
                 notes_given_kundid_mising = true;
+                bim.jTextArea_notes_general.setText(LANG.MSG_38_2);
             } else {
                 HashMap<String, String> noteMap = notes.get(0);
                 String note = noteMap.get(DB.BUH_NOTES__NOTE);
-                note = note.replaceAll("linebreak", "\n");
-                String date_last_change = noteMap.get(DB.BUH_NOTES__DATE_LATS_CHANGE);
+                note = GP_BUH.replaceLineBreak(note, true);
+                String date_last_change = JSon.extractDateFromPhpJsonResponse(response, DB.BUH_NOTES__DATE_LATS_CHANGE);
+                bim.jLabel_anslagstavla_last_change.setText("ändrad sist: " + date_last_change);
                 bim.jTextArea_notes_general.setText(note);
             }
             //
@@ -644,10 +651,7 @@ public class InvoiceB extends Basic_Buh {
             jtxt.setText("");
         } else {
             note = bim.jTextArea_notes_general.getText();
-            note = note.replaceAll("(\r\n|\n)", "linebreak");
-            note = GP_BUH.replaceColon(note, false);
-            note = GP_BUH.replaceComma(note, false);
-            note = GP_BUH.replacePlus(note, false);
+            note = GP_BUH.replaceSpecialChars(note, false);
         }
         //
         //
@@ -657,8 +661,6 @@ public class InvoiceB extends Basic_Buh {
             update_map.put(DB.BUH_NOTES__NOTE, note);
             String json = JSon.hashMapToJSON(update_map);
             HelpBuh.update(json);
-            //
-            resetAnslagstavlaBackground();
             //
         } else { // insert
             //
@@ -676,8 +678,6 @@ public class InvoiceB extends Basic_Buh {
                 Logger.getLogger(CustomersA_.class.getName()).log(Level.SEVERE, null, ex);
             }
             //
-            resetAnslagstavlaBackground();
-            //
         }
         //
         if (clear) {
@@ -688,8 +688,8 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private void resetAnslagstavlaBackground() {
-        bim.jTextArea_notes_general.setBackground(new Color(236, 233, 216));
+    private void resetNotePanelsBackground(JTextArea jtxt) {
+        jtxt.setBackground(new Color(236, 233, 216));
     }
 
     private void fillFakturaTable(String fakturaKundId) {

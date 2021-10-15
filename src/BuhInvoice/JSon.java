@@ -31,11 +31,6 @@ public class JSon {
         return getValNoNull(map.get(value));
     }
 
-    public static void main(String[] args) {
-        System.out.println("LONG_NAME: " + getLongName(DB.STATIC__JA_NEJ, "0"));
-        System.out.println("SHORT_NAME: " + getShortName(DB.STATIC__JA_NEJ, "Ja"));
-    }
-
     public static String getValNoNull(String value) {
         if (value == null || value.isEmpty() || value.equals("null") || value.equals("NULL")) {
             return "";
@@ -257,7 +252,7 @@ public class JSon {
         HashMap<String, String> map = JSONToHashMap(json, reverse, null);
         return map.get(key);
     }
-    
+
     public static HashMap<String, String> JSONToHashMap_for_backup(String json, boolean reverse, String noneCommonSeparator) {
         return JSONToHashMap(json, reverse, 1, false, true, noneCommonSeparator);
     }
@@ -379,6 +374,35 @@ public class JSon {
         return list;
     }
 
+    public static void main(String[] args) {
+//        System.out.println("LONG_NAME: " + getLongName(DB.STATIC__JA_NEJ, "0"));
+//        System.out.println("SHORT_NAME: " + getShortName(DB.STATIC__JA_NEJ, "Ja"));
+        String str = "{\"kundId\";\"1\",\"note\";\"- Compoundslnbrlnbr- Kobelco\",\"date_last_change\";\"2021-10-15 07;20;45\"}";
+        extractDateFromPhpJsonResponse(str, DB.BUH_NOTES__DATE_LATS_CHANGE);
+    }
+
+    public static String extractDateFromPhpJsonResponse(String phpJsonString, String columnName) {
+        //{"kundId";"1","note";"- Compoundslnbrlnbr- Kobelco","date_last_change";"2021-10-15 07;20;45"}
+        String date = "";
+        try {
+            String arr[] = phpJsonString.split(",");
+            for (String entry : arr) {
+                if (entry.contains(columnName)) {
+                    entry = entry.replaceFirst(";", "#");
+                    String arr_b[] = entry.split("#");
+                    String date_unclean = arr_b[1];
+                    date_unclean = date_unclean.replaceAll(";", ":");
+                    date_unclean = date_unclean.replaceAll("\\}", "");
+                    date = date_unclean.replaceAll("\"", "");
+//                    System.out.println("DATE CLEAN: " + date);
+                }
+            }
+        } catch (Exception ex) {
+            return "";
+        }
+        return date;
+    }
+
     /**
      * [2020-07-24]
      *
@@ -407,7 +431,7 @@ public class JSon {
         //
         return list;
     }
-    
+
     public static ArrayList<HashMap<String, String>> phpJsonResponseToHashMap_for_backup(String phpJsonString) {
         //
         ArrayList<HashMap<String, String>> list = new ArrayList<>();

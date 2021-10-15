@@ -197,6 +197,22 @@ public class GP_BUH {
         }
         //
     }
+    
+    public static String replaceSpecialChars(String text, boolean reverse){
+        text = replaceColon(text, reverse);
+        text = replaceComma(text, reverse);
+        text = replacePlus(text, reverse);
+        text = replaceLineBreak(text, reverse);
+        return text;
+    }
+    
+    public static String replaceLineBreak(String text, boolean reverse) {
+        if (reverse == false) {
+            return text.replaceAll("(\r\n|\n)", "lnbr");
+        } else {
+            return text.replaceAll("lnbr", "\n");
+        }
+    }
 
     public static String replaceComma(String text, boolean reverse) {
         if (reverse == false) {
