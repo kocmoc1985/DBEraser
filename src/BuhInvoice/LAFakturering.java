@@ -1005,6 +1005,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jScrollPane23 = new javax.swing.JScrollPane();
         jTextArea_faktura_komment = new JTextAreaJLink();
         jLabel_anslagstavla_last_change = new javax.swing.JLabel();
+        jButton_delete_anslagstavla = new javax.swing.JButton();
         jScrollPane1_faktura = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2_faktura_main = new javax.swing.JPanel();
@@ -1653,6 +1654,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jScrollPane18.setViewportView(jTextArea_notes_general);
 
         jButton_spara_anslagstavla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ok_sm.png"))); // NOI18N
+        jButton_spara_anslagstavla.setToolTipText("Spara anteckning");
         jButton_spara_anslagstavla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_spara_anslagstavlaActionPerformed(evt);
@@ -1668,6 +1670,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jScrollPane23.setViewportView(jTextArea_faktura_komment);
 
         jLabel_anslagstavla_last_change.setForeground(new java.awt.Color(153, 153, 153));
+
+        jButton_delete_anslagstavla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close_sm.png"))); // NOI18N
+        jButton_delete_anslagstavla.setToolTipText("Ta bort anteckning");
+        jButton_delete_anslagstavla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_delete_anslagstavlaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1713,7 +1723,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                             .addComponent(jLabel_anslagstavla_last_change, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_spara_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_spara_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_delete_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(5, 5, 5)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(800, Short.MAX_VALUE))
@@ -1753,7 +1765,10 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_spara_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton_spara_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_delete_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_anslagstavla_last_change, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1065, 1065, 1065))
@@ -3470,6 +3485,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         invoiceB.updateAnslagstavla(false);
     }//GEN-LAST:event_jButton_spara_anslagstavlaActionPerformed
 
+    private void jButton_delete_anslagstavlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_anslagstavlaActionPerformed
+        if(GP_BUH.confirm(LANG.MSG_38_3)){
+            invoiceB.updateAnslagstavla(true);
+        } 
+    }//GEN-LAST:event_jButton_delete_anslagstavlaActionPerformed
+
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3560,6 +3581,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JButton jButton_create_new_faktura_b;
     protected javax.swing.JButton jButton_create_new_kontant_faktura_b;
     protected javax.swing.JButton jButton_delete_account_sharing;
+    public javax.swing.JButton jButton_delete_anslagstavla;
     protected javax.swing.JButton jButton_delete_article;
     protected javax.swing.JButton jButton_delete_articles_row;
     protected javax.swing.JButton jButton_delete_customer;

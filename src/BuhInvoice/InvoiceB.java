@@ -351,8 +351,6 @@ public class InvoiceB extends Basic_Buh {
         //
         showLowPriorityKomment();
         //
-        showAnslagstavla();
-        //
         showOtherFakturaInfo();
         //
         showInfoIcons();
@@ -529,7 +527,7 @@ public class InvoiceB extends Basic_Buh {
             //
             if (fakturannr_alt.equals("0") == false) {
                 bim.jTextArea_faktura_komment.setText("Alternativ fakturanummer: " + fakturannr_alt);
-            }else{
+            } else {
                 bim.jTextArea_faktura_komment.setText(LANG.MSG_38); // Skriv fakturakommentar...
             }
             //
@@ -608,7 +606,7 @@ public class InvoiceB extends Basic_Buh {
     private boolean notes_given_kundid_mising = false;
 
     protected void showAnslagstavla() {
-        //
+        //[#ANSLAGSTAVLA#]
         String json = bim.getSELECT_kundId();
         //
         try {
@@ -624,10 +622,17 @@ public class InvoiceB extends Basic_Buh {
             } else {
                 HashMap<String, String> noteMap = notes.get(0);
                 String note = noteMap.get(DB.BUH_NOTES__NOTE);
-                note = GP_BUH.replaceLineBreak(note, true);
-                String date_last_change = JSon.extractDateFromPhpJsonResponse(response, DB.BUH_NOTES__DATE_LATS_CHANGE);
-                bim.jLabel_anslagstavla_last_change.setText("ändrad sist: " + date_last_change);
-                bim.jTextArea_notes_general.setText(note);
+                //
+                if (note.isEmpty() == false) {
+                    note = GP_BUH.replaceSpecialChars(note, true);
+                    String date_last_change = JSon.extractDateFromPhpJsonResponse(response, DB.BUH_NOTES__DATE_LATS_CHANGE);
+                    bim.jLabel_anslagstavla_last_change.setText("ändrad sist: " + date_last_change);
+                    bim.jTextArea_notes_general.setText(note);
+                } else {
+                    bim.jTextArea_notes_general.setText(LANG.MSG_38_2);
+                    bim.jLabel_anslagstavla_last_change.setText("");
+                }
+                //
             }
             //
         } catch (Exception ex) {
@@ -636,8 +641,10 @@ public class InvoiceB extends Basic_Buh {
     }
 
     protected void updateAnslagstavla(boolean clear) { // Anslagstavlan -> Flik "ALLA FAKTUROR" -> längst ner
-        //
+        //[#ANSLAGSTAVLA#]
         JTextAreaJLink jtxt = (JTextAreaJLink) bim.jTextArea_notes_general;
+        //
+        Validator.validateMaxInputLength(jtxt, 1000);
         //
         if (jtxt.getValidated() == false) {
             HelpA.showNotification(LANG.MSG_8_2);
@@ -688,11 +695,11 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-    private void resetNotePanelsBackground(JTextArea jtxt) {
-        jtxt.setBackground(new Color(236, 233, 216));
-    }
+   
 
     private void fillFakturaTable(String fakturaKundId) {
+        //
+        showAnslagstavla(); //[#ANSLAGSTAVLA#]
         //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
         //

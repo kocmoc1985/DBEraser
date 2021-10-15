@@ -1,3 +1,19 @@
+[2021-10-15][JAVA & PHP]
+
+Anslagstavla / Notes in the "ALLA FAKTUROR" tab, in the bottom of the page.
+
+Search for tag: [#ANSLAGSTAVLA#]
+
+PRIORITY: LOW
+AMMOUNT OF CHANGES: (3) [1-10]
+COMPATIBLE WITH PREVIOUS VERSION: YES - 99% VERIFIED
+PHP-SCRIPTS-INVOLVED: YES
+CHANGES ON JAVA-SIDE: YES
+CHANGES-TO-DB:YES -> new table "buh_notes"
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-10-14]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-10-15]
+________________________________________________________________________________________
 [2021-10-12][JAVA & PHP]
 
 Backup & Restore of user account.

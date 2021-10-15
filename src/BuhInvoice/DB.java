@@ -398,7 +398,7 @@ public class DB {
     public static final String BUH_CONSTANTS__NAME = "name";
     public static final String BUH_CONSTANTS__VAL = "name";
     //
-    public static final String BUH_NOTES__KUNDID = "kundId";
+    public static final String BUH_NOTES__KUNDID = "kundId"; //[#ANSLAGSTAVLA#]
     public static final String BUH_NOTES__NOTE = "note";
     public static final String BUH_NOTES__DATE_LATS_CHANGE = "date_last_change";
     
