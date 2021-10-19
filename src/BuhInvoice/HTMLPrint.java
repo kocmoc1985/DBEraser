@@ -698,7 +698,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_KONTANT)) {
             return LANG_ENG == false ? LANG.KONTANT_FAKTURA : "Receipt";
         } else if (FAKTURA_TYPE.equals(DB.STATIC__FAKTURA_TYPE_OFFERT)) {
-            return LANG_ENG == false ? LANG.OFFERT : "Offer"; //[#OFFERT#]
+            return LANG_ENG == false ? LANG.OFFERT : "Offert"; //[#OFFERT#]
         } else {
             return null;
         }
