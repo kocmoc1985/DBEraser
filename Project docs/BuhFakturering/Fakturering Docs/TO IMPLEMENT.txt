@@ -58,6 +58,7 @@ ______
 [TO DO - PRIORITY B]
 
 BATCH-PRINTING - print several invoices in a batch.
+Search for tag [#INVOICE-BATCH-PRINTING#]
 1. Go to first row
 2. Print chosen
 3. Go to next row 

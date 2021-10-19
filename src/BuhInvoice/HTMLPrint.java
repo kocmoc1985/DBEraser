@@ -1032,15 +1032,20 @@ public abstract class HTMLPrint extends HTMLBasic {
             String fakturaPath = getFakturaPath();
             //
              if(appendFakturaNr){
+                 //[#INVOICE-BATCH-PRINTING#]
                 String arr[] = fakturaPath.split("\\.");
                 fakturaPath = arr[0] + "_" + bim.getFakturaNr() + "." + arr[1];
             }
             //
             print_ok = print_java(fakturaPath);
             //
-            if (print_ok) {
+            if (print_ok && appendFakturaNr == false) {
                 HelpA.open_dir(new File(getFakturaPath()).getParent());
                 HelpA.run_application_with_associated_application__b(new File(getFakturaPath()));
+            }else if(print_ok && appendFakturaNr){
+                //[#INVOICE-BATCH-PRINTING#]
+                HelpA.open_dir(new File(getFakturaPath()).getParent());
+                return;
             }
             //
         } else {

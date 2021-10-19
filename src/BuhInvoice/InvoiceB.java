@@ -1469,6 +1469,34 @@ public class InvoiceB extends Basic_Buh {
             return _get(TABLE_ALL_INVOICES__FAKTURANR);
         }
     }
+    
+    public void printBatch(){
+        //[#INVOICE-BATCH-PRINTING#]
+        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        Object lock = this;
+        //
+        new Thread(() -> {
+             for (int row = 0; row < table.getRowCount(); row++) {
+                 HelpA.markGivenRow(table, row);
+                 all_invoices_table_clicked(bim.getFakturaId());
+                 //
+                 htmlFakturaOrReminder(bim.getFakturaType(), false,true);
+                 //
+                 synchronized(lock){
+                     try {
+                         lock.wait();
+                     } catch (InterruptedException ex) {
+                         Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                 }
+                 //
+             }
+            
+        }).start();
+    }
+    
+    
 
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse, boolean printInBatch) {
         //
@@ -1521,6 +1549,7 @@ public class InvoiceB extends Basic_Buh {
             map_d.put(HTMLPrint_B.getAttBetalaTitle(), _get(TABLE_ALL_INVOICES__TOTAL_INKL_MOMS));
         }
         //
+        Object lock = this;
         //
         if (paminnelse == false) {
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1549,6 +1578,9 @@ public class InvoiceB extends Basic_Buh {
                     }else{
                         hTMLPrint_A.setVisible(false);
                         hTMLPrint_A.print_help(true, true);
+                        synchronized(lock){
+                            lock.notify();
+                        }
                     }
                     //
 //                hTMLPrint_A.printSilent();

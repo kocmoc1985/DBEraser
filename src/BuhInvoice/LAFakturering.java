@@ -2950,8 +2950,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             HelpA.showNotification_separate_thread(LANG.MSG_9, null);
         }
         //
+        //
+        //[#INVOICE-BATCH-PRINTING#]
+//        invoiceB.printBatch();
+        //
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
+    
+    
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
         //
         if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
