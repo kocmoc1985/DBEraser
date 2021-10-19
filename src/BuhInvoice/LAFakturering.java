@@ -5,10 +5,8 @@
  */
 package BuhInvoice;
 
-import BuhInvoice.sec.Backup_All;
 import BuhInvoice.sec.Backup_Make_Backup;
 import BuhInvoice.sec.Backup_Restore;
-import BuhInvoice.sec.ChooseLogoEntry;
 import forall.BackgroundPanel;
 import BuhInvoice.sec.CreateShortcut;
 import BuhInvoice.sec.GDPR;
@@ -38,7 +36,6 @@ import javax.swing.JToggleButton;
 import javax.swing.table.DefaultTableModel;
 import icons.IconUrls;
 import BuhInvoice.sec.IO;
-import java.io.IOException;
 
 /**
  *
@@ -2946,13 +2943,13 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
+        String fakturatype = getFakturaType();
+        invoiceB.htmlFakturaOrReminder(fakturatype, false);
+        //
         if (isMakulerad()) {
             HelpA.showNotification_separate_thread(LANG.MSG_9, null);
         }
         //
-        String fakturatype = getFakturaType();
-//        System.out.println("AA " + fakturaTyp);
-        invoiceB.htmlFakturaOrReminder(fakturatype, false);
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
@@ -3254,7 +3251,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
-        if (isBetald()) {
+        invoiceB.htmlFakturaOrReminder(null, true);
+        //
+         if (isBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12, null);
         }
         //
@@ -3262,7 +3261,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             HelpA.showNotification_separate_thread(LANG.MSG_12_2, null);
         }
         //
-        invoiceB.htmlFakturaOrReminder(null, true);
     }//GEN-LAST:event_jButton_send_reminderActionPerformed
 
 

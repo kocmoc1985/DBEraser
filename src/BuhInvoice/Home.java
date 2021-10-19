@@ -23,11 +23,13 @@ import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.TableInvert;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
+import supplementary.HelpM;
 
 /**
  *
@@ -280,6 +282,12 @@ public class Home extends Basic_Buh {
             //
             bim.openTabByName(LAFakturering.TAB_INVOICES_OVERVIEW);
             bim.allInvoicesTabClicked();
+            //
+            if(HelpBuh.COMPANY_MIXCONT){
+                if(HelpA.file_exists(new File(GP_BUH.SMTP_PATH())) == false){
+                    GP_BUH.showNotification("SMTP options missing (this message only for company=MixCont)!");
+                }
+            }
             //
             if (GP_BUH.firstLogin() && bim.noCustomersPresent()) {
                 GP_BUH.fileFlagMaker_basic(GP_BUH.FIRST_LOGIN_FILE_PATH);

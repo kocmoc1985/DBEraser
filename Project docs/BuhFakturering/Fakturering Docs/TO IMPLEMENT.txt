@@ -47,10 +47,6 @@ $Webbsidor:
 _____
 [TO DO - PRIORITY A]
 
-WEBSITE CONTENT: Add about "Vi har funnits sedan 1997"
-
-WEBSITE CONTENT: Add orgnr
-
 RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
 when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximum 2000
 but the program will devide equally....[2021-09-03][IMPORTANT]
@@ -63,8 +59,6 @@ ______
 
 BATCH-PRINTING - print several invoices in a batch
 
-The Invoice, Reminder window is minimized if a "JOPtionpane" is shown before. To catch this situation try making a reminder for an invoice which "har inte förfallit till betalning".
-
 Regarding the [#DOCUMENT-HEIGHT#] subject - there is a problem. Let's say you preview an invoice and it's ok. But then
 yo add some text manually - this will not trigger the "checking" the checking is triggered when the document is REDRAWN or you MANUALLY PLACE THE CARET.
 
@@ -73,6 +67,12 @@ When you choose en "Foreign" customer the user must be informed that the prices 
 ______
 
 [MIXED CONTENT BELOW - DONE - AND NOT ONLY]
+
+The Invoice, Reminder window is minimized if a "JOPtionpane" is shown before. To catch this situation try making a reminder for an invoice which "har inte förfallit till betalning".
+
+WEBSITE CONTENT: Add about "Vi har funnits sedan 1997"
+
+WEBSITE CONTENT: Add orgnr
 
 Don't name it "installation" anywhere on the website. It shall instead be that you don't need to install but only get one file. [partially done]
 
