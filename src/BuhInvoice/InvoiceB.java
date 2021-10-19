@@ -696,8 +696,6 @@ public class InvoiceB extends Basic_Buh {
         //
     }
 
-   
-
     private void fillFakturaTable(String fakturaKundId) {
         //
         showAnslagstavla(); //[#ANSLAGSTAVLA#]
@@ -1470,13 +1468,13 @@ public class InvoiceB extends Basic_Buh {
             return _get(TABLE_ALL_INVOICES__FAKTURANR);
         }
     }
-    
-    public void printBatch(){
+
+    public void printBatch() {
         //[#INVOICE-BATCH-PRINTING#]
         //
-        JTable table = bim.jTable_invoiceB_alla_fakturor;
+        final JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        if(GP_BUH.confirm(LANG.MSG_39(table)) == false){
+        if (GP_BUH.confirm(LANG.MSG_39(table)) == false) {
             return;
         }
         //
@@ -1486,28 +1484,34 @@ public class InvoiceB extends Basic_Buh {
         Object lock = this;
         //
         new Thread(() -> {
-             for (int row = 0; row < table.getRowCount(); row++) {
-                 HelpA.markGivenRow(table, row);
-                 all_invoices_table_clicked(bim.getFakturaId());
-                 //
-                 htmlFakturaOrReminder(bim.getFakturaType(), false,true);
-                 //
-                 synchronized(lock){
-                     try {
-                         lock.wait();
-                     } catch (InterruptedException ex) {
-                         Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
-                     }
-                 }
-                 //
-             }
+            for (int row = 0; row < table.getRowCount(); row++) {
+                //
+                HelpA.markGivenRow(table, row);
+                all_invoices_table_clicked(bim.getFakturaId());
+                htmlFakturaOrReminder(bim.getFakturaType(), false, true);
+                //
+                synchronized (lock) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                //
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                         table.revalidate();
+                         table.repaint();
+                    }
+                });
+                //
+            }
             //
             loadingNotification.hide_();
             //
         }).start();
     }
-    
-    
 
     public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse, boolean printInBatch) {
         //
@@ -1584,12 +1588,12 @@ public class InvoiceB extends Basic_Buh {
                             map_rut_pers
                     );
                     //
-                    if(printInBatch == false){
+                    if (printInBatch == false) {
                         hTMLPrint_A.setVisible(true);
-                    }else{
+                    } else {
                         hTMLPrint_A.setVisible(false);
                         hTMLPrint_A.print_help(true, true);
-                        synchronized(lock){
+                        synchronized (lock) {
                             lock.notify();
                         }
                     }
@@ -1618,9 +1622,9 @@ public class InvoiceB extends Basic_Buh {
                             map_g__ftg_addr
                     );
                     //
-                     if(printInBatch == false){
+                    if (printInBatch == false) {
                         hTMLPrint_B.setVisible(true);
-                    }else{
+                    } else {
                         hTMLPrint_B.setVisible(false);
                         hTMLPrint_B.print_help(true, true);
                     }

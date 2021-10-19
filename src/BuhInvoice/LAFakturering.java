@@ -958,6 +958,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_copy_faktura = new javax.swing.JButton();
         jButton_delete_faktura = new javax.swing.JButton();
         jButton_print_faktura = new javax.swing.JButton();
+        jButton_print_many = new javax.swing.JButton();
         jButton_send_reminder = new javax.swing.JButton();
         jButton_inbetalning = new javax.swing.JButton();
         jButton_show_actions = new javax.swing.JButton();
@@ -1436,6 +1437,15 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         });
         jPanel4.add(jButton_print_faktura);
 
+        jButton_print_many.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon-c.png"))); // NOI18N
+        jButton_print_many.setToolTipText("Skriv ut flera");
+        jButton_print_many.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_print_manyActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton_print_many);
+
         jButton_send_reminder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bell.png"))); // NOI18N
         jButton_send_reminder.setToolTipText("Skicka påminnelse");
         jButton_send_reminder.addActionListener(new java.awt.event.ActionListener() {
@@ -1693,7 +1703,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jScrollPane23))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
@@ -2943,16 +2953,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
-//        String fakturatype = getFakturaType();
-//        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
-//        //
-//        if (isMakulerad()) {
-//            HelpA.showNotification_separate_thread(LANG.MSG_9, null);
-//        }
+        String fakturatype = getFakturaType();
+        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
         //
-        //
-        //[#INVOICE-BATCH-PRINTING#]
-        invoiceB.printBatch();
+        if (isMakulerad()) {
+            HelpA.showNotification_separate_thread(LANG.MSG_9, null);
+        }
         //
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
@@ -3495,6 +3501,12 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         } 
     }//GEN-LAST:event_jButton_delete_anslagstavlaActionPerformed
 
+    private void jButton_print_manyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_manyActionPerformed
+        //[#INVOICE-BATCH-PRINTING#]
+        invoiceB.printBatch();
+        //
+    }//GEN-LAST:event_jButton_print_manyActionPerformed
+
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3602,6 +3614,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JButton jButton_kredit_faktura;
     protected javax.swing.JButton jButton_logg_in;
     protected javax.swing.JButton jButton_print_faktura;
+    private javax.swing.JButton jButton_print_many;
     protected javax.swing.JButton jButton_register_new_user;
     private javax.swing.JButton jButton_save_reminder_msg;
     public javax.swing.JButton jButton_save_rut_msg;
