@@ -15,6 +15,7 @@ import BuhInvoice.HelpBuh;
 import icons.IconUrls;
 import java.io.File;
 import java.net.URL;
+import javax.swing.JTable;
 
 /**
  *
@@ -46,9 +47,7 @@ public class LANG {
     public final static String SKAPADES_FRAN = "skapades från fknr ";
     public final static String NY_FAKTURANR = "ny fknr ";
     public final static String KREDITERAR = "krediterar fknr ";
-    
-    
-    
+
     public static final String getInloggningsMsg(String customerCompanyName) {
         return "Inloggad som: " + customerCompanyName;
     }
@@ -197,27 +196,33 @@ public class LANG {
 
     public static String MSG_29 = "Version: " + GP_BUH.VERSION + " stöds ej längre, hämta en ny version från " + GP_BUH.LA_WEB_ADDR;
 
-
     public static String MSG_30(int antal) {
         return "Samma artikel finns redan, kommer att öka antalet med " + antal + " istället";
     }
-    
+
     public static String MSG_31 = "Utskriftens innehåll får inte plats på en A4. Var god försök göra innehållet kortare!";
     public static String MSG_32 = "Kunde inte skapa logotyp! \nMöjlig orsak är att din antivirus blockerar att logotypen kopieras.\nStarta om programmet och försök på nytt, tillåt att filen skapas i din antivirus.";
 
     public final static String MSG_33 = "En säkerhetskopia kommer nu att skapas. Säkerhetkopiering kan dröja länge vid en stor datamängd! Vill du forsätta?";
     public final static String MSG_34 = "Återställning lyckades!";
     public final static String MSG_35 = "Återställning misslyckades!";
-    
+
     public final static String MSG_36 = "Säkerhetskopiering";
     public final static String MSG_36_2 = "Säkerhetskopierar, var god dröj";
-    
+
     public final static String MSG_37 = "Återställning";
     public final static String MSG_37_2 = "Återställer, var god dröj";
-    
+
     public final static String MSG_38 = "Skriv fakturakommentar här";
     public final static String MSG_38_2 = "Skriv valfria anteckningar här";
     public final static String MSG_38_3 = "Samtliga anteckningar kommer att raderas";
+
+    public static String MSG_39(JTable table) {
+        return "Vill du verkligen skriva ut alla fakturor i listan (" + table.getRowCount() + " st)?";
+    }
+    
+    public final static String MSG_40 = "Skriv ut flera";
+    public final static String MSG_40_2 = "Skriver ut";
     
     public static String LBL_MSG_1 = "SKAPA NY FAKTURA";
     public static String LBL_MSG_1_2 = "SKAPA NY KONTANTFAKTURA";
@@ -240,8 +245,8 @@ public class LANG {
     public static String LBL_MSG_8(String txt) {
         return "ändrad sist av: " + txt;
     }
-    
-     public static String TOOL_TIP_1(int antalForfallna) {
+
+    public static String TOOL_TIP_1(int antalForfallna) {
         //
         String basicStr = "Skicka påminnelse";
         //
@@ -264,10 +269,6 @@ public class LANG {
     }
     public static String TOOL_TIP_4 = "Spara kommentar";
     public static String TOOL_TIP_5 = "Radera kommentar";
-
-   
-    
-     
 
     //==========================================================================
     public static String RUT_MSG_MAIN(String fastighetsBeteckning, String rutAvdragTotal, String attBetalaTotal, String fakturansTotalBeloppInnanAvdrag) {

@@ -37,7 +37,7 @@ public class Backup_Make_Backup {
     public void backup() {
         //
         LoadingNotification loadingNotification = new LoadingNotification(LANG.MSG_36, LANG.MSG_36_2);
-        //
+        //LoadingNotification
         //
         loadingNotification.show_();
         //

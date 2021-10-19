@@ -2943,16 +2943,16 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
-        String fakturatype = getFakturaType();
-        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
-        //
-        if (isMakulerad()) {
-            HelpA.showNotification_separate_thread(LANG.MSG_9, null);
-        }
+//        String fakturatype = getFakturaType();
+//        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
+//        //
+//        if (isMakulerad()) {
+//            HelpA.showNotification_separate_thread(LANG.MSG_9, null);
+//        }
         //
         //
         //[#INVOICE-BATCH-PRINTING#]
-//        invoiceB.printBatch();
+        invoiceB.printBatch();
         //
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 

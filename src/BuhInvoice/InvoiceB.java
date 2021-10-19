@@ -10,6 +10,7 @@ import BuhInvoice.sec.BlinkThread;
 import BuhInvoice.sec.JTableRowData;
 import MyObjectTableInvert.JTextAreaJLink;
 import BuhInvoice.sec.LANG;
+import BuhInvoice.sec.LoadingNotification;
 import BuhInvoice.sec.RutRot;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableInvert;
@@ -1472,7 +1473,15 @@ public class InvoiceB extends Basic_Buh {
     
     public void printBatch(){
         //[#INVOICE-BATCH-PRINTING#]
+        //
         JTable table = bim.jTable_invoiceB_alla_fakturor;
+        //
+        if(GP_BUH.confirm(LANG.MSG_39(table)) == false){
+            return;
+        }
+        //
+        LoadingNotification loadingNotification = new LoadingNotification(LANG.MSG_40, LANG.MSG_40_2);
+        loadingNotification.show_();
         //
         Object lock = this;
         //
@@ -1492,7 +1501,9 @@ public class InvoiceB extends Basic_Buh {
                  }
                  //
              }
-            
+            //
+            loadingNotification.hide_();
+            //
         }).start();
     }
     
