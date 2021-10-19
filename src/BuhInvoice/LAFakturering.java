@@ -2944,7 +2944,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
         String fakturatype = getFakturaType();
-        invoiceB.htmlFakturaOrReminder(fakturatype, false);
+        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
         //
         if (isMakulerad()) {
             HelpA.showNotification_separate_thread(LANG.MSG_9, null);
@@ -3251,7 +3251,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
-        invoiceB.htmlFakturaOrReminder(null, true);
+        invoiceB.htmlFakturaOrReminder(null, true,false);
         //
          if (isBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12, null);

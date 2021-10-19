@@ -1023,13 +1023,20 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
     }
 
-    protected void print_help(boolean printJava) {
+    protected void print_help(boolean printJava,boolean appendFakturaNr) {
         //
         boolean print_ok;
         //
         if (printJava) {
             //
-            print_ok = print_java(getFakturaPath());
+            String fakturaPath = getFakturaPath();
+            //
+             if(appendFakturaNr){
+                String arr[] = fakturaPath.split("\\.");
+                fakturaPath = arr[0] + "_" + bim.getFakturaNr() + "." + arr[1];
+            }
+            //
+            print_ok = print_java(fakturaPath);
             //
             if (print_ok) {
                 HelpA.open_dir(new File(getFakturaPath()).getParent());

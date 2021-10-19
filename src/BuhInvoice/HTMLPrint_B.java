@@ -624,7 +624,7 @@ public class HTMLPrint_B extends HTMLPrint {
 
     private void jButton_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_printActionPerformed
         //
-        print_help(false);
+        print_help(false,false);
         //
 //        boolean print_ok = print_normal();
 //        //
@@ -662,7 +662,7 @@ public class HTMLPrint_B extends HTMLPrint {
     }//GEN-LAST:event_jButton_send_faktura_any_emailActionPerformed
 
     private void jButton_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdfActionPerformed
-        print_help(true);
+        print_help(true,false);
     }//GEN-LAST:event_jButton_pdfActionPerformed
 
     @Override

@@ -1470,7 +1470,7 @@ public class InvoiceB extends Basic_Buh {
         }
     }
 
-    public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse) {
+    public void htmlFakturaOrReminder(String fakturatype, boolean paminnelse, boolean printInBatch) {
         //
 //        BUH_INVOICE_MAIN bim = invoice.bim;
         //
@@ -1544,7 +1544,12 @@ public class InvoiceB extends Basic_Buh {
                             map_rut_pers
                     );
                     //
-                    hTMLPrint_A.setVisible(true);
+                    if(printInBatch == false){
+                        hTMLPrint_A.setVisible(true);
+                    }else{
+                        hTMLPrint_A.setVisible(false);
+                        hTMLPrint_A.print_help(true, true);
+                    }
                     //
 //                hTMLPrint_A.printSilent();
                     //
@@ -1570,7 +1575,12 @@ public class InvoiceB extends Basic_Buh {
                             map_g__ftg_addr
                     );
                     //
-                    hTMLPrint_B.setVisible(true);
+                     if(printInBatch == false){
+                        hTMLPrint_B.setVisible(true);
+                    }else{
+                        hTMLPrint_B.setVisible(false);
+                        hTMLPrint_B.print_help(true, true);
+                    }
                     //
                 }
             });

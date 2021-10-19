@@ -57,7 +57,12 @@ När jag å andra sidan använder ".pdf" knappen placeras fakturan (namn: faktura.p
 ______
 [TO DO - PRIORITY B]
 
-BATCH-PRINTING - print several invoices in a batch
+BATCH-PRINTING - print several invoices in a batch.
+1. Go to first row
+2. Print chosen
+3. Go to next row 
+4. Print chosen..
+5. Etc....
 
 Regarding the [#DOCUMENT-HEIGHT#] subject - there is a problem. Let's say you preview an invoice and it's ok. But then
 yo add some text manually - this will not trigger the "checking" the checking is triggered when the document is REDRAWN or you MANUALLY PLACE THE CARET.

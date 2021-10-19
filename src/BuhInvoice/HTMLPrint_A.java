@@ -953,7 +953,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_print_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_btnActionPerformed
         //
-        print_help(false);
+        print_help(false,false);
         //
     }//GEN-LAST:event_jButton_print_btnActionPerformed
 
@@ -1010,7 +1010,7 @@ public class HTMLPrint_A extends HTMLPrint {
 
     private void jButton_pdf_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_pdf_btnActionPerformed
         //
-        print_help(true);
+        print_help(true,false);
         //
     }//GEN-LAST:event_jButton_pdf_btnActionPerformed
 
