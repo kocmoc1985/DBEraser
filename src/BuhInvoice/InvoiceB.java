@@ -667,6 +667,7 @@ public class InvoiceB extends Basic_Buh {
             //
             HashMap<String, String> update_map = bim.getUPDATE__simple(DB.TABLE__BUH_NOTES);
             update_map.put(DB.BUH_NOTES__NOTE, note);
+            update_map.put(DB.BUH_NOTES__DATE_LATS_CHANGE, HelpA.get_proper_date_time_same_format_on_all_computers());
             String json = JSon.hashMapToJSON(update_map);
             HelpBuh.update(json);
             //
@@ -687,6 +688,8 @@ public class InvoiceB extends Basic_Buh {
             }
             //
         }
+        //
+        showAnslagstavla();
         //
         if (clear) {
             BlinkThread bt = new BlinkThread(jtxt, true);
@@ -1474,7 +1477,7 @@ public class InvoiceB extends Basic_Buh {
         //
         final JTable table = bim.jTable_invoiceB_alla_fakturor;
         //
-        if (GP_BUH.confirm(LANG.MSG_39(table)) == false) {
+        if (GP_BUH.confirmWarning(LANG.MSG_39(table)) == false) {
             return;
         }
         //
