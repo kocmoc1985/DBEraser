@@ -235,6 +235,13 @@ STATIC__MOMS_SATS: 25%*25¤12%*12¤6%*6¤0%*0
 
 Search for [#BUH-CONSTANTS#]
 ________________________________________________________________________________________________________
+[RUT ROT CALCULATION][IMPORTANT][IMPORTANT][2021-XX-XX]
+
+Search for tags: 
+[#RUTROT#]
+[#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
+
+________________________________________________________________________________________________________
 [SERVICE EMAILS: LIKE - USER CREATED ACCOUNT, DELETED etc..][2021-04-12]
 
 Such messages are sent to "kocmoc1985@gmail.com"

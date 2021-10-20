@@ -47,9 +47,11 @@ $Webbsidor:
 _____
 [TO DO - PRIORITY A]
 
-RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
-when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximum 2000
-but the program will devide equally....[2021-09-03][IMPORTANT]
+CONTENT: Add to fördelar list about "batch printing"[2021-10-20]
+
+
+
+
 
 När du skickar fakturan med e-post så skapas fakturan i "root" alltså placeras inte i någon mapp och har en vilseledande namn som "faktura_34.pdf" (34 -> kundnummer).
 När jag å andra sidan använder ".pdf" knappen placeras fakturan (namn: faktura.pdf) i mappen "la-dokument". Alltså ska (faktura_34.pdf) också spras i en mapp?[2021-09-03]
@@ -65,6 +67,11 @@ When you choose en "Foreign" customer the user must be informed that the prices 
 ______
 
 [MIXED CONTENT BELOW - DONE - AND NOT ONLY]
+
+RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
+when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximum 2000
+but the program will devide equally....[2021-09-03][IMPORTANT]
+Search for: [#RUTROT#][#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
 
 BATCH-PRINTING - print several invoices in a batch.
 Search for tag [#INVOICE-BATCH-PRINTING#]

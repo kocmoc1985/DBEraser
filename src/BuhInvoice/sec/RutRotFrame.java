@@ -34,7 +34,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private final JTable articlesTable;
     private double AVDRAGS_GILL_BELOPP = 0;
     protected double AVDRAG_TOTAL = 0;
-    private double AVDRAG_PER_PERSON = 0;
+    private double AVDRAG_PER_PERSON__EQUALLY_DEVIDED = 0;
     private static double ROT_ELLER_RUT__PERCENT = DB.GET_CONSTANT__DOUBLE("ROT_PERCENT", DB.ROT_PERCENT); // RUT = 50% -> tvätt, städ / ROT = 30% ->bygg
     private String PNR = "";
     private String EFTERNAMN = "";
@@ -171,7 +171,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         model.addRow(jtableRow);
         //
         //
-//        HelpA.setValueAllRows(table, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
+//        HelpA.setValueAllRows(table, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON__EQUALLY_DEVIDED);
         recalcAndSetAvdragPerPers();
         //
         //
@@ -184,7 +184,34 @@ public class RutRotFrame extends javax.swing.JFrame {
     }
 
     private void recalcAndSetAvdragPerPers() {
-        HelpA.setValueAllRows(jTable3_persons, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON);
+        //
+        JTable table = jTable3_persons;
+        //
+        HelpA.setValueAllRows(table, RutRot.COL__AVDRAG, "" + AVDRAG_PER_PERSON__EQUALLY_DEVIDED);
+        //
+        //
+        //[#RUTROT#][#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
+        Rut_Pers_List pers_List = new Rut_Pers_List(AVDRAG_TOTAL);
+        //
+        for (int row = 0; row < table.getRowCount(); row++) {
+            //
+            String fornamn = HelpA.getValueGivenRow(table, row, RutRot.COL__FORNAMN);
+            String efternamn = HelpA.getValueGivenRow(table, row, RutRot.COL__EFTERNAMN);
+            String avdrag = HelpA.getValueGivenRow(table, row, RutRot.COL__AVDRAG);
+            String avdragstak = HelpA.getValueGivenRow(table, row, RutRot.COL__AVDRAGS_TAK);
+            String pnr = HelpA.getValueGivenRow(table, row, RutRot.COL__PNR);
+            //
+            RUT_Pers pers = new RUT_Pers(table,row, fornamn, efternamn, Double.parseDouble(avdrag), Double.parseDouble(avdragstak), pnr);
+            //
+            pers_List.addRutPers(pers);
+            //
+        }
+        //
+        if(pers_List.containsPersonsWithAvdragExceed()){
+            pers_List.devideProperly();
+        }
+        //
+        
     }
 
     private boolean is_ROT__Bygg() {
@@ -216,7 +243,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     }
 
     private void countAvdrag(int antalPers) {
-        //
+        //[#RUTROT#]
         AVDRAGS_GILL_BELOPP = countJTable(jTable2_rut_rot_articles); // ja det inkluderar moms
         //
         AVDRAG_TOTAL = AVDRAGS_GILL_BELOPP * ROT_ELLER_RUT__PERCENT;
@@ -240,9 +267,9 @@ public class RutRotFrame extends javax.swing.JFrame {
             antal_pers_som_delar_på_avdraget = antalPers;
         }
         //
-        AVDRAG_PER_PERSON = AVDRAG_TOTAL / antal_pers_som_delar_på_avdraget;
+        AVDRAG_PER_PERSON__EQUALLY_DEVIDED = AVDRAG_TOTAL / antal_pers_som_delar_på_avdraget;
         //
-        System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON);
+        System.out.println("AVDRAG PER PERSON: " + AVDRAG_PER_PERSON__EQUALLY_DEVIDED);
         //
     }
 
