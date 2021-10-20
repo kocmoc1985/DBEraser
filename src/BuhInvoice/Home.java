@@ -29,7 +29,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
-import supplementary.HelpM;
 
 /**
  *

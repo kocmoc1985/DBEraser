@@ -1437,7 +1437,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         });
         jPanel4.add(jButton_print_faktura);
 
-        jButton_print_many.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdf-icon-c.png"))); // NOI18N
+        jButton_print_many.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/print_several.png"))); // NOI18N
         jButton_print_many.setToolTipText("Skriv ut flera");
         jButton_print_many.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
