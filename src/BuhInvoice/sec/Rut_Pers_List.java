@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- *
+ * [#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
  * @author KOCMOC
  */
 public class Rut_Pers_List {
@@ -46,6 +46,7 @@ public class Rut_Pers_List {
         for (RUT_Pers rUT_Pers : perslist) {
             rutAvdragTotalLeft = rUT_Pers.setAvdrag(rutAvdragTotalLeft);
         }
+        //
     }
 
     class RutPersComporator implements Comparator<RUT_Pers> {

@@ -237,9 +237,50 @@ Search for [#BUH-CONSTANTS#]
 ________________________________________________________________________________________________________
 [RUT ROT CALCULATION][IMPORTANT][IMPORTANT][2021-XX-XX]
 
+In future it would make sence to make it possible to define and distribute among persons "MANUALLY"[2021-10-20]
+
 Search for tags: 
 [#RUTROT#]
-[#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
+[#DEVIDE-RUT-ROT-BETWEEN-PERSONS#] -> It's working much better since [2021-10-20] but there are still many possibilities to enhace
+[#KREDIT-RUT#]
+[#SHOW-HIDE-RUT--IS-PESRON#]
+
+[ESSENTIALS]
+
+1. RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
+2. Counting of "AVDRAG TOTAL" is done in RutRotFrame.class uppon editing of the JTables. The "AVDRAG TOTAL" is finally submitted when "KLART" is klicked. OBS! Not recorded to DB.
+3. OBS! OBS!
+
+[CREATE RUT FAKTURA DETAILS]:
+
+- RUT/ROT data is submitted when clicking save for entire invoice (button in the left corner) -> RutRot.class -> sendDataToDb(String fakturaId)
+
+- You can edit the "rut data" but ONLY before the data was submited.
+
+- If you will try to edit the "rut data" after submitting you will simply overwrite the previous data ---- OR ?? ***
+
+[KOPIERA RUT FAKTURA DETAILS]:
+
+- You can copy a "rut faktura" but it will not copy the "rut data"
+
+- After the copy is made the "total summ" fot the invoice is in fact wrong because of the reason stated above. But when 
+you click edit - the calculation is correct.
+
+[KREDITERA RUT FAKTURA DETAILS]:
+
+Läs först nedan under [#RUT-KREDIT#]
+
+- Det går att göra en kreditfaktura på en rut faktura.
+
+- Det går inte att korrigera artiklar (jag blockerar knappar) och rut data för en kreditfaktura som avser rut
+
+[IMPORTANT NOTES]
+
+Fastighets beteckning exempel: "Sonarp 3:11" eller "Stockholm Marevik 23:1" -> mer info finns här: https://www.svenskfast.se/guider/fastighetsbeteckning/
+
+Kreditera faktura med rot-/rutavdrag***[#KREDIT-RUT#][#RUT-KREDIT#]
+Om du har skapat en felaktig faktura med rot-/rutavdrag och behöver korrigera den måste du kreditera hela fakturan och skapa en ny.
+Tänk på att du måste korrigera uppgifterna hos Skatteverket om du har ansökt om rot-/rutavdrag för fakturan.
 
 ________________________________________________________________________________________________________
 [SERVICE EMAILS: LIKE - USER CREATED ACCOUNT, DELETED etc..][2021-04-12]

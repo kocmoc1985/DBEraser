@@ -34,6 +34,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private final JTable articlesTable;
     private double AVDRAGS_GILL_BELOPP = 0;
     protected double AVDRAG_TOTAL = 0;
+    protected double AVDRAG_TOTAL__ABSOLUT = 0;
     private double AVDRAG_PER_PERSON__EQUALLY_DEVIDED = 0;
     private static double ROT_ELLER_RUT__PERCENT = DB.GET_CONSTANT__DOUBLE("ROT_PERCENT", DB.ROT_PERCENT); // RUT = 50% -> tvätt, städ / ROT = 30% ->bygg
     private String PNR = "";
@@ -82,6 +83,10 @@ public class RutRotFrame extends javax.swing.JFrame {
         HelpA.markFirstRowJtable(jTable1_all_articles);
         //
         autodefineRutArticlesJTable(jTable1_all_articles);
+        //
+        HelpA.setUneditableJTable(jTable1_all_articles);
+        HelpA.setUneditableJTable(jTable2_rut_rot_articles);
+        HelpA.setUneditableJTable(jTable3_persons);
         //
     }
 
@@ -141,7 +146,7 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
     }
 
-    private void deletePerson() {
+    private void deletePersonJTable() {
         //
         JTable table = jTable3_persons;
         //
@@ -181,6 +186,9 @@ public class RutRotFrame extends javax.swing.JFrame {
         //
         TableInvert ti = (TableInvert) rut.TABLE_INVERT;
         ti.clearAllRows();
+        //
+        ti.setValueAt(DB.BUH_FAKTURA_RUT_PERSON__AVDRAGSTAK_VALUE_NOT_AQUIRE, defineAvdragsTak());
+        //
     }
 
     private void recalcAndSetAvdragPerPers() {
@@ -211,7 +219,6 @@ public class RutRotFrame extends javax.swing.JFrame {
             pers_List.devideProperly();
         }
         //
-        
     }
 
     private boolean is_ROT__Bygg() {
@@ -247,6 +254,8 @@ public class RutRotFrame extends javax.swing.JFrame {
         AVDRAGS_GILL_BELOPP = countJTable(jTable2_rut_rot_articles); // ja det inkluderar moms
         //
         AVDRAG_TOTAL = AVDRAGS_GILL_BELOPP * ROT_ELLER_RUT__PERCENT;
+        AVDRAG_TOTAL__ABSOLUT = AVDRAG_TOTAL;
+        jLabel_max_avdrag_kr.setText(""+AVDRAG_TOTAL__ABSOLUT);
         //
         double avdragsTaket = defineAvdragsTak() + countAvdragsTakJTable(jTable3_persons);
         //
@@ -337,7 +346,7 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void autodefineRutArticlesJTable(JTable table) {
         //
-        String[] dict = new String[]{"arbet"};
+        String[] dict = new String[]{"arbet","job","nedlagda"};
         //
         for (int row = 0; row < table.getRowCount(); row++) {
             //
@@ -406,6 +415,9 @@ public class RutRotFrame extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel_fastighets_beteckning = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel_max_avdrag_kr = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -514,6 +526,17 @@ public class RutRotFrame extends javax.swing.JFrame {
 
         jPanel_fastighets_beteckning.setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setLayout(new java.awt.GridLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Maximal möjlig avdrag:");
+        jPanel1.add(jLabel4);
+
+        jLabel_max_avdrag_kr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_max_avdrag_kr.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(jLabel_max_avdrag_kr);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -547,13 +570,15 @@ public class RutRotFrame extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE))))
-                                .addGap(0, 15, Short.MAX_VALUE))
+                                .addGap(0, 51, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addComponent(jPanel_fastighets_beteckning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(719, 719, 719)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -596,7 +621,9 @@ public class RutRotFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -634,15 +661,17 @@ public class RutRotFrame extends javax.swing.JFrame {
 
     private void jButton_delete_personActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_personActionPerformed
         //
-        deletePerson();
+        deletePersonJTable();
         //
         int antal_pers = jTable3_persons.getRowCount();
         //
         if (antal_pers == 0 || antal_pers == 1) {
             countAvdrag(-1);
         } else {
-            countAvdrag(antal_pers - 1);
+            countAvdrag(antal_pers);
         }
+        //
+        recalcAndSetAvdragPerPers();
         //
         showHideMoveArticlesButtons();
         //
@@ -710,6 +739,9 @@ public class RutRotFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox_RUT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel_max_avdrag_kr;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel_fastighets_beteckning;
     protected javax.swing.JPanel jPanel_table_invert;
     private javax.swing.JScrollPane jScrollPane1;

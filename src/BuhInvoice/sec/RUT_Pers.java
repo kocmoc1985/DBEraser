@@ -9,7 +9,7 @@ import forall.HelpA;
 import javax.swing.JTable;
 
 /**
- *
+ * [#DEVIDE-RUT-ROT-BETWEEN-PERSONS#]
  * @author KOCMOC
  */
 public class RUT_Pers {
