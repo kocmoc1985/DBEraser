@@ -2501,6 +2501,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
         jTabbedPane1.addTab("KUNDER", jScrollPane9);
 
+        jPanel8.setPreferredSize(new java.awt.Dimension(1268, 1136));
+
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel16.setLayout(new java.awt.BorderLayout());
 
@@ -2607,7 +2609,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
         jScrollPane13.setPreferredSize(new java.awt.Dimension(1200, 1002));
 
-        jPanel20.setPreferredSize(new java.awt.Dimension(1466, 1000));
+        jPanel20.setPreferredSize(new java.awt.Dimension(1000, 1136));
 
         jPanel_email_client_options.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel_email_client_options.setLayout(new java.awt.BorderLayout());
@@ -4055,13 +4057,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         } catch (InterruptedException ex) {
             Logger.getLogger(LAFakturering.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //
-        //
-        //
-        //
-        //
-        //
-        //
         //
     }
 
