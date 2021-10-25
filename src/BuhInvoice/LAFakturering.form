@@ -424,13 +424,14 @@
                                               <Component id="jPanel18" min="-2" pref="726" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                               <Component id="jComboBox_faktura_kunder_filter" min="-2" pref="192" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jButton_search_by_kund" min="-2" pref="32" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="jButton_search_by_kund" min="-2" pref="32" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               <Component id="jLabel_all_invoices_list" min="-2" pref="110" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -480,7 +481,7 @@
                               <Component id="jPanel18" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jComboBox_faktura_kunder_filter" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jButton_search_by_kund" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="jButton_search_by_kund" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="jLabel_all_invoices_list" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                           </Group>
