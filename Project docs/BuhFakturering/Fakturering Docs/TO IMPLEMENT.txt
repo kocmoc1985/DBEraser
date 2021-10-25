@@ -38,11 +38,9 @@ Alex Breicht: done
 
 $Webbsidor:
 # http://www.gratis-bokfringsprogram.se/   ----> Det står att man kan hamna högt om sponsrar. 
-@@Skapa fakturor, offerter, påminelser - superenkelt. Skicka iväg som .pdf med en enda knapptryckning.
-@@Samtliga inmatningsfält ser likadana ut vilket gör att du vänjer dig vid första användning.
-@@"GRAFISK VY" möjlighet att jobba med fakturor i grafisk form. Kontodelning - dela konto med din kollega, bokföringskonsult m.m.
 # www.foretagande.se
 # https://www.bokforingstips.se/
+# http://www.sweden4rus.nu/ Rus palma
 
 _____
 [TO DO - PRIORITY A]
