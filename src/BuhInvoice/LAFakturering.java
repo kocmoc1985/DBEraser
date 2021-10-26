@@ -9,6 +9,7 @@ import BuhInvoice.sec.Backup_Make_Backup;
 import BuhInvoice.sec.Backup_Restore;
 import forall.BackgroundPanel;
 import BuhInvoice.sec.CreateShortcut;
+import BuhInvoice.sec.DateChooserWindow;
 import BuhInvoice.sec.GDPR;
 import BuhInvoice.sec.HTMLDialog_C;
 import MyObjectTableInvert.JTextAreaJLink;
@@ -3315,6 +3316,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jToggleButton_act_month_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_act_month_filterActionPerformed
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, evt);
+//        DateChooserWindow dcw = new DateChooserWindow();
+//        GP_BUH.centerAndBringToFront(dcw);
     }//GEN-LAST:event_jToggleButton_act_month_filterActionPerformed
 
     private void jToggleButton_forfallen_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_forfallen_filterActionPerformed
