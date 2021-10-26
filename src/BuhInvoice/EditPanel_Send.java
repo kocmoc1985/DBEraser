@@ -210,6 +210,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
         }
         //
         updateKomment(true);
+        //
     }
 
     
