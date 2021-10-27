@@ -44,26 +44,6 @@ $Webbsidor:
 
 _____
 [TO DO - PRIORITY A]
-_____________________________________________________
-implement make "urval" between 2 dates
-
-"get_kund_fakturor__obetald" -> in "_http_buh.php"
-"get_kund_fakturor__between_two_dates" -> implement
-
-Invoice_.class -> line:1094
-
-DateChooserWindow.class
-
-SELECT buh_faktura.kundId,buh_faktura.fakturaId, buh_faktura.fakturanr, buh_faktura.fakturanr_alt, buh_faktura.fakturatyp,
-buh_faktura.fakturadatum,buh_faktura.forfallodatum, buh_faktura.total_exkl_moms, buh_faktura.rabatt_total,
-buh_faktura.total_ink_moms, buh_faktura.valuta,buh_faktura.betald,buh_faktura.sent_with_email,
-buh_faktura.var_referens, buh_faktura.er_referens,buh_faktura.ert_ordernr, buh_faktura.betal_vilkor,
-buh_faktura.lev_vilkor, buh_faktura.lev_satt,
-buh_faktura.exp_avg, buh_faktura.drojsmalsranta, buh_faktura.frakt, buh_faktura.makulerad,buh_faktura.rutavdrag,
-buh_faktura.moms_total, buh_faktura.important_komment, buh_faktura.komment, buh_faktura.changed_by, buh_faktura.date_created,buh_faktura.copied_from_id, buh_faktura.omvant_skatt,buh_faktura.is_printed,buh_faktura.currency_rate_a,
-buh_faktura_kund.fakturaKundId,buh_faktura_kund.kundnr,buh_faktura_kund.namn,buh_faktura_kund.is_person, buh_faktura_kund.kund_kategori FROM buh_faktura INNER JOIN buh_faktura_kund ON buh_faktura.fakturaKundId = buh_faktura_kund.fakturaKundId 
-WHERE buh_faktura.kundId=1 AND fakturadatum >='2021-08-01' AND fakturadatum <= '2021-11-01'
-_____________________________________________________
 
 CONTENT: Add to fördelar list about "batch printing"[2021-10-20]
 
