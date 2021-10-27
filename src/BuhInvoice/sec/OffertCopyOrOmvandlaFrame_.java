@@ -27,7 +27,7 @@ public class OffertCopyOrOmvandlaFrame_ extends javax.swing.JFrame {
     }
 
     private void init() {
-        this.setTitle("Var god välj");
+        this.setTitle(LANG.FRAME_TITLE_7);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

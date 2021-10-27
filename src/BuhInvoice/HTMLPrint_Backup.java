@@ -68,7 +68,7 @@ public class HTMLPrint_Backup extends javax.swing.JFrame {
         //
         initComponents();
         //
-        this.setTitle("Skriv ut faktura");
+        this.setTitle(LANG.FRAME_TITLE_1);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         this.articles_map_list = articles_map_list;

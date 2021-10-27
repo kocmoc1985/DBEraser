@@ -716,6 +716,7 @@ public class InvoiceB extends Basic_Buh {
         if (fakturaKundId != null) {
             json = bim.getSELECT_fakturaKundId__doubleWhere(fakturaKundId);
         } else if (bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD)) {
+            // [#INTERVAL-CHOOSE_INVOICES#]
             json = bim.getSELECT_trippleWhere(
                     DB.BUH_KUND__ID, "777",
                     DB.BUH_FAKTURA__FAKTURA_DATUM, bim.getDateChooserWindowDateFrom(),

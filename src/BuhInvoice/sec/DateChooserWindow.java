@@ -14,13 +14,16 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
+ * [#INTERVAL-CHOOSE_INVOICES#]
  *
  * @author MCREMOTE
  */
 public class DateChooserWindow extends javax.swing.JFrame implements KeyListener {
 
     private final LAFakturering bim;
-    
+    private static String dateFrom = null;
+    private static String dateTo = null;
+
     /**
      * Creates new form DateChooserWindow
      */
@@ -29,25 +32,31 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         this.bim = bim;
         init();
     }
-    
-    private void init(){
+
+    private void init() {
         //
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setTitle("Välj period");
+        this.setTitle(LANG.FRAME_TITLE_5);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         jTextField1.addKeyListener(this);
         jTextField2.addKeyListener(this);
         //
-        jTextField1.setText(GP_BUH.getDate_yyyy_MM_dd());
-        jTextField2.setText(GP_BUH.getDate_yyyy_MM_dd());
+        if (dateFrom == null || dateFrom.isEmpty() || dateTo == null || dateTo.isEmpty()) {
+            jTextField1.setText(GP_BUH.getDate_yyyy_MM_dd());
+            jTextField2.setText(GP_BUH.getDate_yyyy_MM_dd());
+        }else{
+            jTextField1.setText(dateFrom);
+            jTextField2.setText(dateTo);
+        }
+
     }
-    
-    public String getDateFrom(){
+
+    public String getDateFrom() {
         return jTextField1.getText();
     }
-    
-    public String getDateTo(){
+
+    public String getDateTo() {
         return jTextField2.getText();
     }
 
@@ -64,6 +73,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         jTextField2 = new JTextFieldInvert("");
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -79,12 +89,15 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Till");
 
+        jPanel1.setLayout(new java.awt.GridLayout());
+
         jButton1.setText("Välj");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1);
 
         jButton2.setText("Avbryt");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +105,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,17 +113,13 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,14 +128,12 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -134,11 +142,14 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         bim.searchBetweenTwoDatesBtnPressed();
+        dateFrom = getDateFrom();
+        dateTo = getDateTo();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
+        bim.jToggleButton_intervall_filter.setSelected(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -182,23 +193,24 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        JTextFieldInvert jtfi = (JTextFieldInvert)e.getSource();
-        Validator.validateDate(jtfi,false);
+        JTextFieldInvert jtfi = (JTextFieldInvert) e.getSource();
+        Validator.validateDate(jtfi, false);
     }
 }

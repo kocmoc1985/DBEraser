@@ -44,7 +44,7 @@ public class EditPanel_Send extends EditPanel_Inbet {
     @Override
     protected void init() {
         //
-        this.setTitle("Händelser");
+        this.setTitle(LANG.FRAME_TITLE_3);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();

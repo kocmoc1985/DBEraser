@@ -61,7 +61,7 @@ public class RutRotFrame extends javax.swing.JFrame {
     private void init() {
         //
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-        this.setTitle("RUT-Avdrag");
+        this.setTitle(LANG.FRAME_TITLE_8);
         GP_BUH.centerAndBringToFront(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getPersonalData();

@@ -32,7 +32,7 @@ public class GDPR extends HTMLBasic {
 
     private void init() {
         go();
-        this.setTitle("Licensavtal och Personuppgiftshantering - GDPR");
+        this.setTitle(LANG.FRAME_TITLE_6);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setAlwaysOnTop(true);

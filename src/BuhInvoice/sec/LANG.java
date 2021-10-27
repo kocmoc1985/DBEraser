@@ -64,6 +64,13 @@ public class LANG {
     public final static String FRAME_TITLE_1 = "Skriv ut"; //+ FAKTURA.toLowerCase()
     public final static String FRAME_TITLE_1_2 = "Skriv ut " + PAMINNELSE.toLowerCase();
     public final static String FRAME_TITLE_1_3 = "Förhandsgranska";
+    public final static String FRAME_TITLE_2 = "Inbetalning";
+    public final static String FRAME_TITLE_3 = "Händelser";
+    public final static String FRAME_TITLE_4 = "Välj stämpel";
+    public final static String FRAME_TITLE_5 = "Välj period";
+    public final static String FRAME_TITLE_6 = "Licensavtal och Personuppgiftshantering - GDPR";
+    public final static String FRAME_TITLE_7 = "Var god välj";
+    public final static String FRAME_TITLE_8 = "RUT-Avdrag";
 
     public final static String MSG_1 = "Kunde inte spara data (kontrollera färgmarkerade rader)";
     public final static String MSG_1_1 = "Kunde inte lägga till artikel (kontrollera färgmarkerade rader)";

@@ -772,7 +772,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-    
+
     protected String getSELECT_trippleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b, String whereColName_c, String whereValue_c) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -788,7 +788,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         return JSon.hashMapToJSON(map);
     }
-    
+
     protected HashMap<String, String> getUPDATE__simple(String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -2982,7 +2982,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private void jButton_print_fakturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_fakturaActionPerformed
         //
         String fakturatype = getFakturaType();
-        invoiceB.htmlFakturaOrReminder(fakturatype, false,false);
+        invoiceB.htmlFakturaOrReminder(fakturatype, false, false);
         //
         if (isMakulerad()) {
             HelpA.showNotification_separate_thread(LANG.MSG_9, null);
@@ -2990,8 +2990,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
     }//GEN-LAST:event_jButton_print_fakturaActionPerformed
 
-    
-    
+
     private void jButton_delete_articles_rowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_articles_rowActionPerformed
         //
         if (HelpA.rowSelected(jTable_InvoiceA_Insert_articles) == false) {
@@ -3291,9 +3290,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_send_reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_reminderActionPerformed
         //
-        invoiceB.htmlFakturaOrReminder(null, true,false);
+        invoiceB.htmlFakturaOrReminder(null, true, false);
         //
-         if (isBetald()) {
+        if (isBetald()) {
             HelpA.showNotification_separate_thread(LANG.MSG_12, null);
         }
         //
@@ -3495,7 +3494,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         //
         String path = GP_BUH.chooseFile_for_restore_backup(null);
         //
-        if(path == null){
+        if (path == null) {
             return;
         }
         //
@@ -3515,8 +3514,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jButton_change_logo_ftg_pageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_change_logo_ftg_pageActionPerformed
         //
-       foretagA.chooseLogo();
-       //
+        foretagA.chooseLogo();
+        //
     }//GEN-LAST:event_jButton_change_logo_ftg_pageActionPerformed
 
     private void jButton_spara_anslagstavlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_spara_anslagstavlaActionPerformed
@@ -3524,9 +3523,9 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }//GEN-LAST:event_jButton_spara_anslagstavlaActionPerformed
 
     private void jButton_delete_anslagstavlaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_delete_anslagstavlaActionPerformed
-        if(GP_BUH.confirm(LANG.MSG_38_3)){
+        if (GP_BUH.confirm(LANG.MSG_38_3)) {
             invoiceB.updateAnslagstavla(true);
-        } 
+        }
     }//GEN-LAST:event_jButton_delete_anslagstavlaActionPerformed
 
     private void jButton_print_manyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_print_manyActionPerformed
@@ -3541,25 +3540,30 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private ActionEvent evt_temp_;
     private DateChooserWindow dcw;
-    
+
     private void jToggleButton_intervall_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_intervall_filterActionPerformed
-        evt_temp_ = evt;
-        dcw = new DateChooserWindow(this);
-        GP_BUH.centerAndBringToFront(dcw);
+        //[#INTERVAL-CHOOSE_INVOICES#]
+        if (jToggleButton_intervall_filter.isSelected()) {
+            evt_temp_ = evt;
+            dcw = new DateChooserWindow(this);
+            GP_BUH.centerAndBringToFront(dcw);
+        } else {
+            toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt);
+        }
     }//GEN-LAST:event_jToggleButton_intervall_filterActionPerformed
 
-    public void searchBetweenTwoDatesBtnPressed(){
+    public void searchBetweenTwoDatesBtnPressed() {
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt_temp_);
     }
-    
-    public String getDateChooserWindowDateFrom(){
-       return dcw.getDateFrom();
+
+    public String getDateChooserWindowDateFrom() {
+        return dcw.getDateFrom();
     }
-    
-    public String getDateChooserWindowDateTo(){
+
+    public String getDateChooserWindowDateTo() {
         return dcw.getDateTo();
     }
-    
+
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3854,7 +3858,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JToggleButton jToggleButton_act_month_filter;
     private javax.swing.JToggleButton jToggleButton_delvis_betald_filter;
     private javax.swing.JToggleButton jToggleButton_forfallen_filter;
-    private javax.swing.JToggleButton jToggleButton_intervall_filter;
+    public javax.swing.JToggleButton jToggleButton_intervall_filter;
     private javax.swing.JToggleButton jToggleButton_makulerad_filter;
     private javax.swing.JToggleButton jToggleButton_not_send_filter;
     private javax.swing.JToggleButton jToggleButton_obetald_filter;
@@ -4166,8 +4170,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             //
 //            System.out.println("" + txt.getText().length());
             //
-        }else if (e.getSource() == jTextArea_notes_general) {
-             //
+        } else if (e.getSource() == jTextArea_notes_general) {
+            //
             JTextAreaJLink txt = (JTextAreaJLink) jTextArea_notes_general;
             //
             Validator.validateMaxInputLength(txt, 1000);

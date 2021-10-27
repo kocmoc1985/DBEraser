@@ -50,7 +50,7 @@ public class ChooseStamp extends javax.swing.JFrame implements MouseListener {
     private void init_a() {
         //
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
-        this.setTitle("Välj stämpel");
+        this.setTitle(LANG.FRAME_TITLE_4);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //
         INITIAL_LABEL_BORDER = jLabel_stamp_1.getBorder();

@@ -77,7 +77,7 @@ public class EditPanel_Inbet extends javax.swing.JFrame implements MouseListener
 
     protected void init() {
         //
-        this.setTitle("Inbetalning");
+        this.setTitle(LANG.FRAME_TITLE_2);
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setHeader();

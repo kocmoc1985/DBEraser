@@ -1,3 +1,19 @@
+[2021-10-27][JAVA & PHP]
+
+Possibility to chose invoices in a given interval
+
+Search for tag: [#INTERVAL-CHOOSE_INVOICES#] in "DBEraser" and "MCWebNew" projects
+
+PRIORITY: MIDDLE
+AMMOUNT OF CHANGES: (5) [1-10]
+COMPATIBLE WITH PREVIOUS VERSION: 
+PHP-SCRIPTS-INVOLVED: YES
+CHANGES ON JAVA-SIDE: YES
+CHANGES-TO-DB: NO
+
+PHP-TEST-SCRIPTS UPDATED: YES [2021-10-27]
+PHP-MAIN-SCRIPTS UPDATED: YES [2021-10-27]
+________________________________________________________________________________________
 [2021-10-15][JAVA & PHP]
 
 Anslagstavla / Notes in the "ALLA FAKTUROR" tab, in the bottom of the page.
