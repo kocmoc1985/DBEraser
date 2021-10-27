@@ -236,6 +236,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         toggleBtnList.add(jToggleButton_makulerad_filter);
         toggleBtnList.add(jToggleButton_act_month_filter);
         toggleBtnList.add(jToggleButton_forfallen_filter);
+        toggleBtnList.add(jToggleButton_intervall_filter);
     }
 
     protected void untoggleAll() {
@@ -772,6 +773,22 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return JSon.hashMapToJSON(map);
     }
     
+    protected String getSELECT_trippleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b, String whereColName_c, String whereValue_c) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        map.put("where_b", whereColName_b);
+        map.put(whereColName_b, whereValue_b);
+        //
+        map.put("where_c", whereColName_c);
+        map.put(whereColName_c, whereValue_c);
+        //
+        return JSon.hashMapToJSON(map);
+    }
+    
     protected HashMap<String, String> getUPDATE__simple(String tableName) {
         //
         HashMap<String, String> map = new HashMap<>();
@@ -964,7 +981,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jButton_inbetalning = new javax.swing.JButton();
         jButton_show_actions = new javax.swing.JButton();
         jButton_open_docs = new javax.swing.JButton();
-        jLabel_all_invoices_list = new javax.swing.JLabel();
         jLabel_all_invoices_list1 = new javax.swing.JLabel();
         jButton4_save_faktura_komment = new javax.swing.JButton();
         jButton4_delete_faktura_komment1 = new javax.swing.JButton();
@@ -975,6 +991,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jToggleButton_not_send_filter = new javax.swing.JToggleButton();
         jToggleButton_makulerad_filter = new javax.swing.JToggleButton();
         jToggleButton_act_month_filter = new javax.swing.JToggleButton();
+        jToggleButton_intervall_filter = new javax.swing.JToggleButton();
         jComboBox_faktura_kunder_filter = new JComboBoxA();
         jButton_search_by_kund = new javax.swing.JButton();
         jLabel_faktura_changed_by__user = new javax.swing.JLabel();
@@ -1484,10 +1501,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         });
         jPanel4.add(jButton_open_docs);
 
-        jLabel_all_invoices_list.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_all_invoices_list.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_all_invoices_list.setText("FAKTUROR");
-
         jLabel_all_invoices_list1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_all_invoices_list1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_all_invoices_list1.setText("FAKTURA ARTIKLAR");
@@ -1567,6 +1580,14 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             }
         });
         jPanel18.add(jToggleButton_act_month_filter);
+
+        jToggleButton_intervall_filter.setText("INTERVALL");
+        jToggleButton_intervall_filter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton_intervall_filterActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jToggleButton_intervall_filter);
 
         jComboBox_faktura_kunder_filter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
@@ -1705,34 +1726,29 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel_faktura_changed_by__user, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(606, 606, 606)
                             .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jScrollPane23, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(2, 2, 2)
-                                    .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1747,7 +1763,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                             .addComponent(jButton_delete_anslagstavla, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(5, 5, 5)
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(802, Short.MAX_VALUE))
+                .addContainerGap(800, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1762,20 +1778,18 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton_search_by_kund, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel_all_invoices_list, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBox_faktura_kunder_filter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 86, Short.MAX_VALUE))
+                        .addGap(0, 74, Short.MAX_VALUE))
                     .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_all_invoices_list1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_faktura_changed_by__user, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3316,8 +3330,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
 
     private void jToggleButton_act_month_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_act_month_filterActionPerformed
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ACT_MONTH, evt);
-//        DateChooserWindow dcw = new DateChooserWindow();
-//        GP_BUH.centerAndBringToFront(dcw);
     }//GEN-LAST:event_jToggleButton_act_month_filterActionPerformed
 
     private void jToggleButton_forfallen_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_forfallen_filterActionPerformed
@@ -3527,6 +3539,27 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         HelpA.open_dir("la-dokument");
     }//GEN-LAST:event_jButton_open_docsActionPerformed
 
+    private ActionEvent evt_temp_;
+    private DateChooserWindow dcw;
+    
+    private void jToggleButton_intervall_filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton_intervall_filterActionPerformed
+        evt_temp_ = evt;
+        dcw = new DateChooserWindow(this);
+        GP_BUH.centerAndBringToFront(dcw);
+    }//GEN-LAST:event_jToggleButton_intervall_filterActionPerformed
+
+    public void searchBetweenTwoDatesBtnPressed(){
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt_temp_);
+    }
+    
+    public String getDateChooserWindowDateFrom(){
+       return dcw.getDateFrom();
+    }
+    
+    public String getDateChooserWindowDateTo(){
+        return dcw.getDateTo();
+    }
+    
     private void createDesktopShortcut() {
         //
         if (HelpBuh.IS_MAC_OS) {
@@ -3544,7 +3577,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         JToggleButton jtb = (JToggleButton) evt.getSource();
         //
         if (jtb.isSelected() == true) {
-//            PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER = phpFunc;
             SET_SEARCH_FILTER(phpFunc, true);
             invoiceB.refresh(null);
             untoggleAllExcept((JToggleButton) evt.getSource());
@@ -3693,7 +3725,6 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     public javax.swing.JLabel jLabel__nyckel_tal__tot_inkl_moms;
     public static final javax.swing.JLabel jLabel__spara_faktura = new javax.swing.JLabel();
     public static final javax.swing.JLabel jLabel__spara_faktura_arrow = new javax.swing.JLabel();
-    protected javax.swing.JLabel jLabel_all_invoices_list;
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
     public javax.swing.JLabel jLabel_anslagstavla_last_change;
@@ -3823,6 +3854,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     private javax.swing.JToggleButton jToggleButton_act_month_filter;
     private javax.swing.JToggleButton jToggleButton_delvis_betald_filter;
     private javax.swing.JToggleButton jToggleButton_forfallen_filter;
+    private javax.swing.JToggleButton jToggleButton_intervall_filter;
     private javax.swing.JToggleButton jToggleButton_makulerad_filter;
     private javax.swing.JToggleButton jToggleButton_not_send_filter;
     private javax.swing.JToggleButton jToggleButton_obetald_filter;

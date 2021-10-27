@@ -1042,7 +1042,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             jtfi.setText(GP_BUH.getDate_yyyy_MM_dd());
             //
-            if (Validator.validateDate(jli)) {
+            if (Validator.validateDate(jli,true)) {
                 forfalloDatumAutoChange(ti);
             }
             //
@@ -1091,7 +1091,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
             forfalloDatumAutoChange(ti);
             //
-            Validator.validateDate(jli);
+            Validator.validateDate(jli,true);
             //
         } else if (col_name.equals(DB.BUH_F_ARTIKEL__ANTAL)
                 || col_name.equals(DB.BUH_F_ARTIKEL__PRIS)
@@ -1202,7 +1202,7 @@ public abstract class Invoice_ extends Basic_Buh {
             //
         } else if (col_name.equals(DB.BUH_FAKTURA__FAKTURA_DATUM)) {
             //
-            if (Validator.validateDate(jli)) {
+            if (Validator.validateDate(jli,true)) {
                 forfalloDatumAutoChange(ti);
             }
             //

@@ -6,26 +6,49 @@
 package BuhInvoice.sec;
 
 import BuhInvoice.GP_BUH;
+import BuhInvoice.LAFakturering;
+import BuhInvoice.Validator;
+import MyObjectTableInvert.JTextFieldInvert;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
 
 /**
  *
  * @author MCREMOTE
  */
-public class DateChooserWindow extends javax.swing.JFrame {
+public class DateChooserWindow extends javax.swing.JFrame implements KeyListener {
 
+    private final LAFakturering bim;
+    
     /**
      * Creates new form DateChooserWindow
      */
-    public DateChooserWindow() {
+    public DateChooserWindow(LAFakturering bim) {
         initComponents();
+        this.bim = bim;
         init();
     }
     
     private void init(){
+        //
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Välj period");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
+        //
+        jTextField1.addKeyListener(this);
+        jTextField2.addKeyListener(this);
+        //
         jTextField1.setText(GP_BUH.getDate_yyyy_MM_dd());
         jTextField2.setText(GP_BUH.getDate_yyyy_MM_dd());
+    }
+    
+    public String getDateFrom(){
+        return jTextField1.getText();
+    }
+    
+    public String getDateTo(){
+        return jTextField2.getText();
     }
 
     /**
@@ -37,8 +60,8 @@ public class DateChooserWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField1 = new JTextFieldInvert("");
+        jTextField2 = new JTextFieldInvert("");
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -57,8 +80,18 @@ public class DateChooserWindow extends javax.swing.JFrame {
         jLabel2.setText("Till");
 
         jButton1.setText("Välj");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Avbryt");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,6 +132,15 @@ public class DateChooserWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        bim.searchBetweenTwoDatesBtnPressed();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -128,8 +170,9 @@ public class DateChooserWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new DateChooserWindow().setVisible(true);
+                new DateChooserWindow(null).setVisible(true);
             }
         });
     }
@@ -142,4 +185,20 @@ public class DateChooserWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        JTextFieldInvert jtfi = (JTextFieldInvert)e.getSource();
+        Validator.validateDate(jtfi,false);
+    }
 }

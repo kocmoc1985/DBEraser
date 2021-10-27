@@ -54,7 +54,7 @@ public class Validator {
         }
         //
         if (valToCheck == null || valToCheck.isEmpty() || table.getRowCount() == 0) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         }
         //
         for (int x = 0; x < table.getRowCount(); x++) {
@@ -64,7 +64,7 @@ public class Validator {
             String val = (String) table.getValueAt(x, col);
             //
             if (val == null) {
-                return setValidated(jli);
+                return setValidated(jli, true);
             }
             //
             if (val.equals(valToCheck)) {
@@ -73,7 +73,7 @@ public class Validator {
             }
             //
         }
-        return setValidated(jli);
+        return setValidated(jli, true);
     }
 
     /**
@@ -94,7 +94,7 @@ public class Validator {
         String val = jtfi.getText();
         //
         if (val.isEmpty()) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         }
         //
         String json = bim.getExist(colName, val, tableName);
@@ -115,7 +115,7 @@ public class Validator {
         int exist_ = Integer.parseInt(exist.trim());
         //
         if (exist_ == 0) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         } else {
             return setNotValidated(jli, Color.ORANGE);
         }
@@ -131,10 +131,10 @@ public class Validator {
             // OBS! The border is set here and not from "setNotValidater()" because
             // setting border is the only method that works in this situation
             box.setBorder(BorderFactory.createLineBorder(Color.red, 3));
-            setNotValidated((JLinkInvert) box);
+            setNotValidated((JLinkInvert) box, true);
         } else {
             box.setBorder(null);
-            setValidated((JLinkInvert) box);
+            setValidated((JLinkInvert) box, true);
         }
     }
 
@@ -157,7 +157,7 @@ public class Validator {
         String val = jli.getValue();
         //
         if (val.length() <= length) {
-            setValidated(jli);
+            setValidated(jli, true);
             //
             return true;
         } else {
@@ -179,26 +179,26 @@ public class Validator {
             double percent = Double.parseDouble(val);
             //
             if (percent >= 0 && percent < 100) {
-                return setValidated(jli);
+                return setValidated(jli, true);
             }
             //
         } catch (Exception ex) {
             //
         }
         //
-        return setNotValidated(jli);
+        return setNotValidated(jli, true);
     }
 
     public static void resetValidation(JComponent jc) {
         if (jc instanceof JLinkInvert) {
             JLinkInvert jli = (JLinkInvert) jc;
-            setValidated(jli);
+            setValidated(jli, true);
         }
     }
 
-    private static boolean setValidated(JLinkInvert jli) {
+    private static boolean setValidated(JLinkInvert jli, boolean childSetValidation) {
         //
-        if (jli instanceof JTextFieldInvert) {
+        if (jli instanceof JTextFieldInvert && childSetValidation) {
             //
             JTextFieldInvert jtf = (JTextFieldInvert) jli;
             //
@@ -213,14 +213,18 @@ public class Validator {
         JComponent c = (JComponent) jli;
         //
         c.setBackground(Color.WHITE);
-        jli.setValidated(true);
+        if (childSetValidation) {
+            jli.setValidated(childSetValidation);
+        }
         return true;
     }
 
-    private static boolean setNotValidated(JLinkInvert jli) {
+    private static boolean setNotValidated(JLinkInvert jli, boolean setChildValidation) {
         JComponent c = (JComponent) jli;
         c.setBackground(Color.RED);
-        jli.setValidated(false);
+        if (setChildValidation) {
+            jli.setValidated(setChildValidation);
+        }
         return false;
     }
 
@@ -244,13 +248,13 @@ public class Validator {
         GP_BUH.onFlightReplaceComma(jli, val); // 2021-05-03
         //
         if (val.isEmpty()) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         }
         //
         if (HelpA.isNumber(val)) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         } else {
-            return setNotValidated(jli);
+            return setNotValidated(jli, true);
         }
         //
     }
@@ -272,29 +276,29 @@ public class Validator {
         String val = jli.getValue();
         //
         if (val.isEmpty()) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         }
         //
         boolean validated = validate_(pattern, val);
         //
         if (validated) {
-            return setValidated(jli);
+            return setValidated(jli, true);
         } else {
-            return setNotValidated(jli);
+            return setNotValidated(jli, true);
         }
         //
     }
 
-    public static boolean validateDate(JLinkInvert jli) {
+    public static boolean validateDate(JLinkInvert jli, boolean childSetValidated) {
         //
         String val = jli.getValue();
         //
         boolean validated = validate_(DATE_YYYY_MM_DD, val);
         //
         if (validated && GP_BUH.isDateValid(val)) {
-            return setValidated(jli);
+            return setValidated(jli, childSetValidated);
         } else {
-            return setNotValidated(jli);
+            return setNotValidated(jli, childSetValidated);
         }
         //
     }

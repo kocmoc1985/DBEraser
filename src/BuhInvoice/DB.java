@@ -201,6 +201,7 @@ public class DB {
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK = "get_kund_fakturor"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL = "get_kund_fakturor_all"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ALL__SIMPLE = "get_kund_fakturor_all_simple"; // using php-function: "select()", used for the backup
+    public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD = "get_kund_fakturor__between_two_dates"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__OBETALD = "get_kund_fakturor__obetald"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FORFALLEN = "get_kund_fakturor__forfallen"; // using php-function: "select()"
     public static final String PHP_FUNC_PARAM_GET_KUND_FAKTUROR__DELVIS_BETALD__UNUSED = "get_kund_fakturor__delvis"; // using php-function: "select()"
