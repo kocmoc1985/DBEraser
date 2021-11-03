@@ -391,11 +391,13 @@ public class ArticlesA extends Basic_Buh implements BarGraphListener {
         //
         map.put(DB.BUH_FAKTURA_ARTIKEL___KUND_ID, "777"); //[#KUND-ID-INSERT#]
         //
+        map.put(DB.BUH_FAKTURA_ARTIKEL___DATE_CREATED, GP_BUH.getDateCreated_special()); // [2021-11-03]
+        //
         String json = JSon.hashMapToJSON(map);
         //
         try {
             //
-            HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
+            String artikelId =  HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
                     DB.PHP_FUNC_ARTIKEL_TO_DB, json);
             //
         } catch (Exception ex) {
