@@ -40,10 +40,13 @@ $Webbsidor:
 # http://www.gratis-bokfringsprogram.se/   ----> Det står att man kan hamna högt om sponsrar. 
 # www.foretagande.se
 # https://www.bokforingstips.se/
-# http://www.sweden4rus.nu/ Rus palma
+# http://www.sweden4rus.nu/ Rus palma -> Done [2021-10-2X]
 
 _____
 [TO DO - PRIORITY A]
+
+Faktura preview funtion "Förhandsgranskning" - it can "lurigt" for the user that for example sending function is disabled from there. Think
+in general maybe all of the "actions" shall not be available from the preview window.[2021-11-04]
 
 CONTENT: Add to fördelar list about "batch printing"[2021-10-20]
 
