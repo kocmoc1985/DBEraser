@@ -53,39 +53,53 @@ public class CreateShortcut {
         }
         //
         //
-        File f2 = new File("shortcut_.log");
-        String fileName = "shortcut.cmd";
+        File f2 = new File(IO.IO_DIR + "shortcut_.log");
+        String fileName = IO.IO_DIR + "shortcut.cmd";
         File f1 = new File(fileName);
         //
-        write(fileName, createShortCutScript(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt));
-        //
+        // Create on desktop
+        write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt,true));
         HelpA.run_application_with_associated_application__b(f1);
+        startDeleteThread(f1, f2);
         //
+        // Create in the la folder (root)
+        write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt,false));
+        HelpA.run_application_with_associated_application__b(f1);
         startDeleteThread(f1, f2);
         //
     }
 
     private void startDeleteThread(File f1, File f2) {
+        //
         Thread x = new Thread(new DeleteThred(f1, f2));
         x.start();
+        //
+         try {
+            x.join(); // Very important!! [2021-10-08]
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CreateShortcut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
     }
-
-    /**
-     *
-     * @param shortcutName
-     * @param appNameWithExt
-     * @param logoPath Using double back slashes: \\la\\ic.ico
-     * @return
-     */
-    private String[] createShortCutScript(String shortcutName, String appNameWithExt, String logoPath) {
+    
+    private String[] createShortCutScript_(String shortcutName, String appNameWithExt, String logoPath, boolean desktop) {
+        //
+        String destinationPath;
+        //
+        if(desktop){
+           destinationPath = "SET Esc_LinkDest=%%HOMEDRIVE%%%%HOMEPATH%%\\Desktop\\!LinkName!.lnk"; // Skapar ikonen på skrivborder
+        }else{
+            destinationPath = "SET Esc_LinkDest=!LinkName!.lnk"; // Skapar ikonen i samma map/root
+        }
+        //
         return new String[]{
             "@echo off",
             "SETLOCAL ENABLEDELAYEDEXPANSION",
             "SET LinkName=" + shortcutName,
-            "SET Esc_LinkDest=%%HOMEDRIVE%%%%HOMEPATH%%\\Desktop\\!LinkName!.lnk",
+            destinationPath,
             "SET Esc_LinkTarget=%CD%\\" + appNameWithExt, //OBS! %CD% = current dir
             "SET cSctVBS=CreateShortcut.vbs",
-            "SET LOG=\".\\%~N0_.log\"",
+            "SET LOG=\"la\\%~N0_.log\"", // "SET LOG=\".\\%~N0_.log\"" --> OBS! Here is the output of the "shortcut_.log" defined
             "((",
             "echo Set oWS = WScript.CreateObject^(\"WScript.Shell\"^) ",
             "echo sLinkFile = oWS.ExpandEnvironmentStrings^(\"!Esc_LinkDest!\"^)",
@@ -99,7 +113,9 @@ public class CreateShortcut {
             "DEL !cSctVBS! /f /q",
             ")1>>!LOG! 2>>&1"
         };
+        //
     }
+
 
     private void write(String fileToWriteTO, String[] signalArr) {
         try {
