@@ -466,7 +466,7 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jButton4_save_faktura_komment" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jPanel4" alignment="0" pref="50" max="32767" attributes="0"/>
+                              <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                               <Component id="jButton4_delete_faktura_komment1" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jScrollPane23" alignment="0" max="32767" attributes="0"/>
                           </Group>

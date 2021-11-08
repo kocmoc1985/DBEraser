@@ -118,6 +118,8 @@ public class LANG {
     private static String MSG_11 = "Du saknar registrerade kunder, var god gå till fliken " + LAFakturering.TAB_KUDNER + " och registrera en.";
     public static String MSG_12 = "Var god observera, fakturan är betald eller delvis betald!";
     public static String MSG_12_2 = "Var god observera, fakturan har inte förfallit till betalning!";
+    
+    public static String MSG_12_3 = "OBS! Det är endast förhandsgranskning. Utskriften görs från \"ALLA FAKTUROR\" flik";
 
     public static String MSG_14 = "För många tecken, max antal:";
     public static String MSG_14_2 = "Det angivna värdet finns redan";

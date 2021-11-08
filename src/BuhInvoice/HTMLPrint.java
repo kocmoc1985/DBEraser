@@ -320,9 +320,12 @@ public abstract class HTMLPrint extends HTMLBasic {
         //
         HashMap<String, String> dict = new HashMap<>();
         //
-        dict.put("st", "Pcs");
+        dict.put("st", "Pcs"); // not sure this one is needed [2021-10-08]
         dict.put("Förp", "Pkg");
-        dict.put("Tim", "h");
+        dict.put("Tim", "h"); // not sure this one is needed [2021-10-08]
+        //
+        dict.put("Styck", "Pcs");
+        dict.put("Timmar", "h");
         //
         //
         String enhet = map.get(DB.BUH_F_ARTIKEL__ENHET);

@@ -61,11 +61,17 @@ public class HTMLPrint_A extends HTMLPrint {
         }
         //
         if (preview) {
+            //
+            GP_BUH.setEnabled(jButton_print_btn, false);
+            GP_BUH.setEnabled(jButton_pdf_btn, false);
+            GP_BUH.setEnabled(jButton_change_logo_btn, false);
             GP_BUH.setEnabled(jButton_send_faktura_email, false);
             GP_BUH.setEnabled(jButton_send_with_outlook, false);
             GP_BUH.setEnabled(jButton_send_faktura_any_email, false);
             GP_BUH.setEnabled(jButton_send_with_common_post, false);
+            //
         }
+        //
     }
 
     @Override
@@ -824,7 +830,7 @@ public class HTMLPrint_A extends HTMLPrint {
         jPanel1 = new javax.swing.JPanel();
         jButton_print_btn = new javax.swing.JButton();
         jButton_pdf_btn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_change_logo_btn = new javax.swing.JButton();
         jButton_send_faktura_email = new javax.swing.JButton();
         jButton_send_faktura_any_email = new javax.swing.JButton();
         jButton_send_with_outlook = new javax.swing.JButton();
@@ -860,14 +866,14 @@ public class HTMLPrint_A extends HTMLPrint {
         });
         jPanel1.add(jButton_pdf_btn);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
-        jButton3.setToolTipText("Sätt eller radera logotyp");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_change_logo_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image.png"))); // NOI18N
+        jButton_change_logo_btn.setToolTipText("Sätt eller radera logotyp");
+        jButton_change_logo_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_change_logo_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
+        jPanel1.add(jButton_change_logo_btn);
 
         jButton_send_faktura_email.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/post.png"))); // NOI18N
         jButton_send_faktura_email.setToolTipText("Skicka faktura per E-post automatiskt, inga inställningar behövs");
@@ -967,7 +973,7 @@ public class HTMLPrint_A extends HTMLPrint {
     }//GEN-LAST:event_jButton_send_faktura_emailActionPerformed
 
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_change_logo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_change_logo_btnActionPerformed
         //
         ChooseLogoEntry cle = GP_BUH.chooseLogo(this);
         //
@@ -977,7 +983,7 @@ public class HTMLPrint_A extends HTMLPrint {
         //
         go();
         //
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton_change_logo_btnActionPerformed
 
     private void jButton_send_with_outlookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_send_with_outlookActionPerformed
         sendWithStandardEmailClient(false);
@@ -1058,7 +1064,7 @@ public class HTMLPrint_A extends HTMLPrint {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_change_logo_btn;
     private javax.swing.JButton jButton_make_stamp;
     private javax.swing.JButton jButton_pdf_btn;
     private javax.swing.JButton jButton_print_btn;
