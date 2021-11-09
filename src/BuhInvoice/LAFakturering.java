@@ -1165,6 +1165,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         jLabel_create_shortcut_options_tab = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel_create_shortcut_homefolder_options_tab = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -1772,7 +1773,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                 .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4_save_faktura_komment, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4_delete_faktura_komment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2791,6 +2792,17 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             }
         });
 
+        jLabel_create_shortcut_homefolder_options_tab.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_create_shortcut_homefolder_options_tab.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_create_shortcut_homefolder_options_tab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/la.png"))); // NOI18N
+        jLabel_create_shortcut_homefolder_options_tab.setText(" Skapa genväg till LAFakturering i LAFakturerings mapp");
+        jLabel_create_shortcut_homefolder_options_tab.setToolTipText("Skapa genväg och sedan kopiera manuellt till en vallfri plats på datorn");
+        jLabel_create_shortcut_homefolder_options_tab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel_create_shortcut_homefolder_options_tabMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
@@ -2818,7 +2830,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
                             .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel20Layout.createSequentialGroup()
                                 .addComponent(jButton_erase_account_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1133, Short.MAX_VALUE)))
+                                .addGap(0, 1133, Short.MAX_VALUE))
+                            .addComponent(jLabel_create_shortcut_homefolder_options_tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2837,6 +2850,8 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel_create_shortcut_options_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel_create_shortcut_homefolder_options_tab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
@@ -3474,11 +3489,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }//GEN-LAST:event_jButton_save_rut_msgActionPerformed
 
     private void jLabel_logo_home_tabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_logo_home_tabMousePressed
-        createDesktopShortcut();
+        createDesktopShortcut(true);
     }//GEN-LAST:event_jLabel_logo_home_tabMousePressed
 
     private void jLabel_create_shortcut_options_tabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_create_shortcut_options_tabMousePressed
-        createDesktopShortcut();
+        createDesktopShortcut(true);
     }//GEN-LAST:event_jLabel_create_shortcut_options_tabMousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -3556,6 +3571,11 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         }
     }//GEN-LAST:event_jToggleButton_intervall_filterActionPerformed
 
+    private void jLabel_create_shortcut_homefolder_options_tabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_create_shortcut_homefolder_options_tabMousePressed
+        createDesktopShortcut(false);
+        HelpA.open_dir(".");
+    }//GEN-LAST:event_jLabel_create_shortcut_homefolder_options_tabMousePressed
+
     public void searchBetweenTwoDatesBtnPressed() {
         toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt_temp_);
     }
@@ -3568,14 +3588,18 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         return dcw.getDateTo();
     }
 
-    private void createDesktopShortcut() {
+    private void createDesktopShortcut(boolean createBoth) {
         //
         if (HelpBuh.IS_MAC_OS) {
             return;
         }
         //
-        if (GP_BUH.confirm("Vill du skapa genväg på skrivbordet?")) {
-            new CreateShortcut();
+        if (createBoth) {
+            if (GP_BUH.confirm("Vill du skapa genväg på skrivbordet?")) {
+                new CreateShortcut(createBoth);
+            }
+        } else {
+            new CreateShortcut(false); // skapar endast i lafakturerings mapp
         }
         //
     }
@@ -3736,6 +3760,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected javax.swing.JLabel jLabel_all_invoices_list1;
     protected javax.swing.JLabel jLabel_ammount_of_articles_;
     public javax.swing.JLabel jLabel_anslagstavla_last_change;
+    private javax.swing.JLabel jLabel_create_shortcut_homefolder_options_tab;
     private javax.swing.JLabel jLabel_create_shortcut_options_tab;
     protected javax.swing.JLabel jLabel_faktura_changed_by__user;
     protected javax.swing.JLabel jLabel_info__betald;

@@ -23,15 +23,21 @@ import java.util.logging.Logger;
  * @author KOCMOC
  */
 public class CreateShortcut {
-    
+
     private final String iconNameWithExt = "ic.ico";
     private final String shortCutName = "LAFakturering";
     private final String appNameWithExtToLaunch = "la.jar";
-    
+    private boolean createBothOnDesktopAndLaFolder = true; // By default it will create at both locations
+
     public static void main(String[] args) {
         //
         CreateShortcut cs = new CreateShortcut();
         //
+    }
+
+    public CreateShortcut(boolean createBothOnDesktopAndLaFolder) {
+        this.createBothOnDesktopAndLaFolder = createBothOnDesktopAndLaFolder;
+        go();
     }
 
     public CreateShortcut() {
@@ -40,14 +46,14 @@ public class CreateShortcut {
 
     private void go() {
         //
-        if(HelpBuh.IS_MAC_OS){
+        if (HelpBuh.IS_MAC_OS) {
             return;
         }
         //
         HelpA.create_dir_if_missing(IO.IO_DIR);
         //
         try {
-            copy_file_b(getClass().getResourceAsStream("/icons/ic.ico"),  IO.IO_DIR + iconNameWithExt);
+            copy_file_b(getClass().getResourceAsStream("/icons/ic.ico"), IO.IO_DIR + iconNameWithExt);
         } catch (Exception ex) {
             Logger.getLogger(CreateShortcut.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,13 +63,16 @@ public class CreateShortcut {
         String fileName = IO.IO_DIR + "shortcut.cmd";
         File f1 = new File(fileName);
         //
-        // Create on desktop
-        write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt,true));
-        HelpA.run_application_with_associated_application__b(f1);
-        startDeleteThread(f1, f2);
+        if (this.createBothOnDesktopAndLaFolder) {
+            // Create on desktop
+            write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt, true));
+            HelpA.run_application_with_associated_application__b(f1);
+            startDeleteThread(f1, f2);
+            //
+        }
         //
         // Create in the la folder (root)
-        write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt,false));
+        write(fileName, createShortCutScript_(shortCutName, appNameWithExtToLaunch, "\\" + IO.getIO_DIR() + "\\" + iconNameWithExt, false));
         HelpA.run_application_with_associated_application__b(f1);
         startDeleteThread(f1, f2);
         //
@@ -74,21 +83,21 @@ public class CreateShortcut {
         Thread x = new Thread(new DeleteThred(f1, f2));
         x.start();
         //
-         try {
+        try {
             x.join(); // Very important!! [2021-10-08]
         } catch (InterruptedException ex) {
             Logger.getLogger(CreateShortcut.class.getName()).log(Level.SEVERE, null, ex);
         }
         //
     }
-    
+
     private String[] createShortCutScript_(String shortcutName, String appNameWithExt, String logoPath, boolean desktop) {
         //
         String destinationPath;
         //
-        if(desktop){
-           destinationPath = "SET Esc_LinkDest=%%HOMEDRIVE%%%%HOMEPATH%%\\Desktop\\!LinkName!.lnk"; // Skapar ikonen på skrivborder
-        }else{
+        if (desktop) {
+            destinationPath = "SET Esc_LinkDest=%%HOMEDRIVE%%%%HOMEPATH%%\\Desktop\\!LinkName!.lnk"; // Skapar ikonen på skrivborder
+        } else {
             destinationPath = "SET Esc_LinkDest=!LinkName!.lnk"; // Skapar ikonen i samma map/root
         }
         //
@@ -115,7 +124,6 @@ public class CreateShortcut {
         };
         //
     }
-
 
     private void write(String fileToWriteTO, String[] signalArr) {
         try {
@@ -165,8 +173,8 @@ public class CreateShortcut {
             }
         }
     }
-    
-    private boolean copy_file_b(InputStream source , String destination) {
+
+    private boolean copy_file_b(InputStream source, String destination) {
         //
         boolean succeess = true;
         //
@@ -181,6 +189,5 @@ public class CreateShortcut {
         return succeess;
 
     }
-
 
 }
