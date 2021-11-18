@@ -45,8 +45,8 @@ $Webbsidor:
 _____
 [TO DO - PRIORITY A]
 
-Faktura preview funtion "Förhandsgranskning" - it can "lurigt" for the user that for example sending function is disabled from there. Think
-in general maybe all of the "actions" shall not be available from the preview window.[2021-11-04]
+Make possibility to print in BLACK color only. Why is that. According to a problem which Dmitrij Bouglinov had, when it was not
+to print an invoice on a "cvetnoj strujnij" printer because no color was left and the printer was not able to print.[2021-11-15]
 
 CONTENT: Add to fördelar list about "batch printing"[2021-10-20]
 
@@ -64,6 +64,9 @@ When you choose en "Foreign" customer the user must be informed that the prices 
 ______
 
 [MIXED CONTENT BELOW - DONE - AND NOT ONLY]
+
+Faktura preview funtion "Förhandsgranskning" - it can "lurigt" for the user that for example sending function is disabled from there. Think
+in general maybe all of the "actions" shall not be available from the preview window.[2021-11-04]
 
 RUT/ROT So when you have several persons who "shares" RUT/ROT the "avdrag" is devided equally between these 2 persons which is not correct
 when: Let's say the "totalavdrag=16312:-" But one of the persons has a remaining "TAK=2000:-" -> So in fact these person can only declare maximum 2000
