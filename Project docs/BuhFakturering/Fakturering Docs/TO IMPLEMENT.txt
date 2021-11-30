@@ -45,6 +45,9 @@ $Webbsidor:
 _____
 [TO DO - PRIORITY A]
 
+I have noticed when you create an invoice with foreign currency in the "faktura-förhandsgranskning" wrong value is shown in total. When
+you look at the invoice from the "common-priniting-window" it's ok [2021-11-30]
+
 Make possibility to print in BLACK color only. Why is that. According to a problem which Dmitrij Bouglinov had, when it was not
 to print an invoice on a "cvetnoj strujnij" printer because no color was left and the printer was not able to print.[2021-11-15]
 
