@@ -1,0 +1,1 @@
+Libraries needed: jtds-1.3.1.jar, MyCommons.jar, mysql-connector-java-5.1.10-bin.jar, NetProcMonitor.jar, sqljdbc4.jar
