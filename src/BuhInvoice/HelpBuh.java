@@ -210,7 +210,7 @@ public class HelpBuh {
 //        GP_BUH.PASS = "mixcont4765";
         //
         GP_BUH.USER = "andrej.brassas@gmail.com";
-        GP_BUH.PASS = "KpxHs5jufF";
+        GP_BUH.PASS = "bdtDJRGOEB";
         //
 //        GP_BUH.USER = "kocmoc1985@gmail.com";
 //        GP_BUH.PASS = "dbJztp1PR9";
