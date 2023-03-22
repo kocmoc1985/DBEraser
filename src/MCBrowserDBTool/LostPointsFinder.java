@@ -5,7 +5,6 @@
  */
 package MCBrowserDBTool;
 
-import BuhInvoice.HelpBuh;
 import forall.HelpA;
 import forall.Sql_B;
 import java.sql.ResultSet;
@@ -13,10 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import supplementary.HelpM;
 
 /**
- *
+ * Libraries needed: jtds-1.3.1.jar, MyCommons.jar, mysql-connector-java-5.1.10-bin.jar, NetProcMonitor.jar, sqljdbc4.jar
  * @author KOCMOC
  */
 public class LostPointsFinder extends javax.swing.JFrame {
@@ -26,9 +24,14 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
     private String date_more_then = "2023-01-01";
     private String date_less_then = "2023-03-21";
-
-    private boolean CEAT = true;
-    private boolean FEDMOG = false;
+    public static int DELAY_MORE_THEN = 2100; // 1000 is not enough
+    public static int SHOW_OUTPUT_IF_DELAYS_MORE_THEN = 0;
+    
+    private boolean CEAT = false;
+    private boolean FEDMOG = true;
+    
+    private String ORDER_NAME_COLUMN;
+    
 
     /**
      * Creates new form LostPointsFinder
@@ -36,6 +39,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
     public LostPointsFinder() {
         initComponents();
         connect_sql();
+        this.setTitle("Delay finder");
     }
     
     private void go(){
@@ -55,12 +59,15 @@ public class LostPointsFinder extends javax.swing.JFrame {
     }
     
     public static void output(String text){
-        jTextArea1.append("\n " + text);
+        jTextArea1.append("\n " + HelpA.get_proper_date_dd_MM_yyyy() + "  " +  text);
     }
 
     private void connect_sql() {
         //
         if (FEDMOG) {
+            //
+            ORDER_NAME_COLUMN = "ARBEITSREF";
+            //
             try {
                 sql.connect_jdbc("10.4.188.9", "1433", "MIXCONT", "mixcont", "newmixcont");
             } catch (SQLException ex) {
@@ -71,6 +78,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
         }
         //
         if (CEAT) {
+            //
+            ORDER_NAME_COLUMN = "OrderName";
+            //
             try {
                 sql.connectMySql("localhost", "3306", "ceat", "root", "0000");
             } catch (SQLException ex) {
@@ -85,6 +95,8 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
     private void mc_batchinfo_loop() {
         //
+        output("Started");
+        //
         String q = String.format("SELECT * FROM mc_batchinfo where PROD_DATE > '%s' AND PROD_DATE < '%s' ORDER BY PROD_DATE DESC", date_more_then, date_less_then);
         //
         try {
@@ -96,7 +108,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
                 int id = rs.getInt("ID");
                 //
                 String recipe = rs.getString("RECIPEID");
-                String orderName = rs.getString("OrderName");
+                String orderName = rs.getString(ORDER_NAME_COLUMN);
                 String batch = rs.getString("BATCHNO");
                 String date = rs.getString("PROD_DATE");
                 //
@@ -105,6 +117,8 @@ public class LostPointsFinder extends javax.swing.JFrame {
                 mc_trend_loop(id, recipe, orderName, batch, date);
                 //
             }
+            //
+            output("Ended");
             //
         } catch (SQLException ex) {
             Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,9 +142,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
                 //
             }
             //
-            batches.add(batch__);
+//            batches.add(batch__); // IS CAUSING JAVA HEAP-SPACE problem
             //
-            System.out.println("added");
+            jTextField1.setText(date + " " + recipe + " " + order + " " + batch + " \n");
             //
         } catch (SQLException ex) {
             Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,17 +165,18 @@ public class LostPointsFinder extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField_date_less.setText("2023-03-21");
+        jTextField_date_less.setText("2023-03-07");
         jTextField_date_less.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_date_lessActionPerformed(evt);
             }
         });
 
-        jText_date_more.setText("2023-01-01");
+        jText_date_more.setText("2023-03-01");
 
         jButton1.setText("Start");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -181,11 +196,17 @@ public class LostPointsFinder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(522, 522, 522))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(jTextField1))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +214,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -254,6 +277,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField_date_less;
     private javax.swing.JTextField jText_date_more;
     // End of variables declaration//GEN-END:variables

@@ -26,12 +26,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="673" max="-2" attributes="0"/>
-                  <Component id="jText_date_more" min="-2" pref="151" max="-2" attributes="0"/>
-                  <Component id="jTextField_date_less" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jText_date_more" min="-2" pref="151" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="522" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" min="-2" pref="673" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTextField_date_less" min="-2" pref="151" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jTextField1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,7 +50,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jText_date_more" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextField_date_less" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTextField_date_less" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="289" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -54,7 +66,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextField_date_less">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2023-03-21"/>
+        <Property name="text" type="java.lang.String" value="2023-03-07"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_date_lessActionPerformed"/>
@@ -62,7 +74,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jText_date_more">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2023-01-01"/>
+        <Property name="text" type="java.lang.String" value="2023-03-01"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -91,5 +103,7 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+    </Component>
   </SubComponents>
 </Form>
