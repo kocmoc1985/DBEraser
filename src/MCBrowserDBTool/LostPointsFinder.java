@@ -10,11 +10,15 @@ import forall.Sql_B;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Libraries needed: jtds-1.3.1.jar, MyCommons.jar, mysql-connector-java-5.1.10-bin.jar, NetProcMonitor.jar, sqljdbc4.jar
+ * Libraries needed: jtds-1.3.1.jar, MyCommons.jar,
+ * mysql-connector-java-5.1.10-bin.jar, NetProcMonitor.jar, sqljdbc4.jar
+ *
  * @author KOCMOC
  */
 public class LostPointsFinder extends javax.swing.JFrame {
@@ -24,14 +28,13 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
     private String date_more_then = "2023-01-01";
     private String date_less_then = "2023-03-21";
-    public static int DELAY_MORE_THEN = 2100; // 1000 is not enough
-    public static int SHOW_OUTPUT_IF_DELAYS_MORE_THEN = 0;
-    
-    private boolean CEAT = false;
-    private boolean FEDMOG = true;
-    
+    public static int DELAY_MORE_THEN = 2100; // 1000 is not enough #CHANGABLE-PARAMETER#
+    public static int SHOW_OUTPUT_IF_DELAYS_MORE_THEN = 0; // #CHANGABLE-PARAMETER#
+
+    private boolean CEAT = true; // #CHANGABLE-PARAMETER#
+    private boolean FEDMOG = false; // #CHANGABLE-PARAMETER#
+
     private String ORDER_NAME_COLUMN;
-    
 
     /**
      * Creates new form LostPointsFinder
@@ -41,25 +44,25 @@ public class LostPointsFinder extends javax.swing.JFrame {
         connect_sql();
         this.setTitle("Delay finder");
     }
-    
-    private void go(){
+
+    private void go() {
         date_more_then = jText_date_more.getText();
         date_less_then = jTextField_date_less.getText();
         Thread x = new Thread(new CalcThread());
         x.start();
     }
-    
-    class CalcThread implements Runnable{
+
+    class CalcThread implements Runnable {
 
         @Override
         public void run() {
-             mc_batchinfo_loop();
+            mc_batchinfo_loop();
         }
-        
+
     }
-    
-    public static void output(String text){
-        jTextArea1.append("\n " + HelpA.get_proper_date_dd_MM_yyyy() + "  " +  text);
+
+    public static void output(String text) {
+        jTextArea1.append("\n " + HelpA.get_proper_date_dd_MM_yyyy() + "  " + text);
     }
 
     private void connect_sql() {
@@ -118,12 +121,30 @@ public class LostPointsFinder extends javax.swing.JFrame {
                 //
             }
             //
-            output("Ended");
+            prepare_delete_sql();
+            //
+            output("\n\nEnded");
             //
         } catch (SQLException ex) {
             Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void prepare_delete_sql() {
+        //
+        HashSet<Integer> set = Batch.ids_to_remove;
+        String output = "";
+        //
+        for (Iterator<Integer> iterator = set.iterator(); iterator.hasNext();) {
+            Integer id = iterator.next();
+            output += id + ",";
+        }
+        //
+        output = output.substring(0,output.length() - 1);
+        //
+        output("\n\n delete from mc_batchinfo where ID in (" + output + ")");
+        //
     }
 
     private void mc_trend_loop(int id, String recipe, String order, String batch, String date) {
@@ -261,7 +282,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LostPointsFinder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-         if (HelpA.runningInNetBeans() == false) {
+        if (HelpA.runningInNetBeans() == false) {
             HelpA.err_output_to_file();
         }
         /* Create and display the form */
