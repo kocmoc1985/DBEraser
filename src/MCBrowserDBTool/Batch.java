@@ -38,7 +38,7 @@ public class Batch {
     }
 
     private static int id_prev;
-    public static HashSet<Integer>ids_to_remove = new HashSet<>();
+    
 
     private void check_lost_points_a() {
         //
@@ -60,7 +60,7 @@ public class Batch {
             if (lost_points_type_a > LostPointsFinder.SHOW_OUTPUT_IF_DELAYS_MORE_THEN) {
                 String str = "diff: " + diff + " / " + recipe + " / " + order + " / " + batch + " date: " + date + " tick: " + (ticks.size() - 1) + " id: " + id;
                 LostPointsFinder.output(str);
-                ids_to_remove.add(id);
+                LostPointsFinder.ids_to_remove.add(id);
             }
             //
 

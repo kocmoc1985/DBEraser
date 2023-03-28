@@ -24,17 +24,18 @@ import java.util.logging.Logger;
 public class LostPointsFinder extends javax.swing.JFrame {
 
     private ArrayList<Batch> batches = new ArrayList<>();
-    private Sql_B sql = new Sql_B(true, false);
+    public Sql_B sql = new Sql_B(true, false);
 
-    private String date_more_then = "2023-01-01";
-    private String date_less_then = "2023-03-21";
+    public static String date_more_then = "2023-01-01";
+    public static String date_less_then = "2023-03-21";
     public static int DELAY_MORE_THEN = 2100; // 1000 is not enough #CHANGABLE-PARAMETER#
     public static int SHOW_OUTPUT_IF_DELAYS_MORE_THEN = 0; // #CHANGABLE-PARAMETER#
 
-    private boolean CEAT = true; // #CHANGABLE-PARAMETER#
-    private boolean FEDMOG = false; // #CHANGABLE-PARAMETER#
+    public static boolean CEAT = true; // #CHANGABLE-PARAMETER#
+    public static boolean FEDMOG = false; // #CHANGABLE-PARAMETER#
 
-    private String ORDER_NAME_COLUMN;
+    public static String ORDER_NAME_COLUMN;
+    public static HashSet<Integer>ids_to_remove = new HashSet<>();
 
     /**
      * Creates new form LostPointsFinder
@@ -96,7 +97,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
     }
 
-    private void mc_batchinfo_loop() {
+    public void mc_batchinfo_loop() {
         //
         output("Started");
         //
@@ -131,9 +132,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
     }
 
-    private void prepare_delete_sql() {
+    public void prepare_delete_sql() {
         //
-        HashSet<Integer> set = Batch.ids_to_remove;
+        HashSet<Integer> set = ids_to_remove;
         String output = "";
         //
         for (Iterator<Integer> iterator = set.iterator(); iterator.hasNext();) {
