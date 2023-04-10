@@ -438,6 +438,19 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     protected String getFakturaNr() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__FAKTURANR);
     }
+    
+    protected String getFakturaNrSPCS(){
+        //
+        String important_komment = HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__IMPORTANT_KOMMENT);
+        //
+        if(important_komment == null || important_komment.isEmpty()){
+            return "";
+        }else{
+            important_komment = important_komment.replaceAll(":", "_");
+            return important_komment;
+        }
+        //    
+    }
 
     protected String getFakturaKund() {
         return HelpA.getValueSelectedRow(jTable_invoiceB_alla_fakturor, InvoiceB.TABLE_ALL_INVOICES__KUND);
