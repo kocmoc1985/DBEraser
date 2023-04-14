@@ -1025,7 +1025,7 @@ public abstract class HTMLPrint extends HTMLBasic {
         bim.setValueAllInvoicesJTable(InvoiceB.TABLE_ALL_INVOICES__SKICKAD, DB.STATIC__YES);
         //
     }
-
+    
     protected void print_help(boolean printJava, boolean appendFakturaNr) {
         //
         boolean print_ok;
@@ -1039,7 +1039,7 @@ public abstract class HTMLPrint extends HTMLBasic {
                 String arr[] = fakturaPath.split("\\.");
                 //
                 if (GP_BUH.CUSTOMER_COMPANY_NAME.toLowerCase().contains("mixcont")) {
-                    fakturaPath = arr[0] + "_" + bim.getFakturaNr() + "__" + bim.getFakturaNrSPCS()+ "." + arr[1]; // ORIGINAL
+                    fakturaPath = arr[0] + "_" + bim.getFakturaNr() + "__" + bim.getFakturaNrSPCS()+ "." + arr[1]; // ORIGINAL             
                 } else {
                     fakturaPath = arr[0] + "_" + bim.getFakturaNr() + "." + arr[1];
                 }

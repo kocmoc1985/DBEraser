@@ -28,3 +28,35 @@ that the insertion of data is done sequentially oposite to how the tables are dr
 4. Java Side
 4.2 Replacing the URL for calling the scripts from www.lafakturering.se instead of www.mixcont.com
 4.3 So the url is: https://www.lafakturering.se/php/_http_buh.php?get_newest_version=true&json={"user";"","pass";""}
+
+_______________________
+
+[TEST-DB & TEST SCRIPTS FOR TESTING OF THE NEW FUNCTIONALITY][2021-03-09] [SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT][SUPER IMPORTANT]
+
+So the main idea is to have a *TEST-DB* and *TEST-SCRIPTS* when testing new features.
+
+Search for: [#TEST-DB#] in both projects
+Search for: [#TEST-SCRIPTS#] in the java "DBEraser.proj"
+
+
+INSTRUCTIONS WHEN IMPLEMENTING NEW FUNCTIONS:
+
+[TEST WITH BOTH TEST-DB AND TEST SCRIPTS] / [*BEST AND MOST SECURE OPTION*]:
+1. Be sure that the "TEST-DB" is up to date -> here i mean EXACTLY same structure as the MAIN database
+2. Be sure that the "TEST-SCRIPTS" are up to date in the "php-test" folder -> here i mean the same version as the real scripts from the "php" folder
+3. Commit & Push the MCWebNew before starting to implement the new function -> in order to be able to roll back easily
+
+[TEST WITH TEST-DB AND REAL SCRIPTS]:
+1. Be sure that the "TEST-DB" is up to date -> here i mean EXACTLY same structure as the MAIN database
+
+[TEST WITH REAL DB AND TEST SCRIPTS]:
+1. Be sure that the "TEST-SCRIPTS" are up to date in the "php-test" folder -> here i mean the same version as the real scripts from the "php" folder
+
+Pay attention at the directories on FTP:
+1. folder "php" -> is the main folder with "*********WORKING/ONLINE" scripts
+2. folder "php-test" -> is the folder for testing the scripts
+ 
+
+Pay attention at the databases on "one.com":
+1. The "*********WORKING/ONLINE" database is named "lafakturering_semain"
+2. The test database is named "lafakturering_setest"
