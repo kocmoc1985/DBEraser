@@ -2,9 +2,14 @@ ________________________________________________________________________________
 [OBS! DONT FORGET THE BUH_SECURITY.vsd]
 
 ________________________________________________________________________________________________________
-[SECURITY WEEKPOINTS][2021-06-08]
+[SECURITY WEEKPOINTS][2021-06-08]updated latest on[2023-04-25]
 
 Things to think about and protect in feature:
+
+[HACKER GAINED CONTROL OVER THE DB - table: buh_licens][2023-04-25]
+- Consider that a hacker gains control over the buh_licens table. The hacker may change the e-mail and
+after it he can only call the account restore function. If he does that the new password will be sent
+to his email.
 
 [DIFFERENT-ATTACKS]:
 - in many places in the "_http_buh.php" i am doing the echo "[###status:$q###]\n"; -> this reveals the construction of query to the hacker. -> search for [#QUERY-ECHO-SECURITY-BREACH#]
