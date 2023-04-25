@@ -525,7 +525,7 @@ public class HelpBuh {
     private static String getDomain() {
         //
         if (DOMAIN_LOCALHOST) {
-            return "127.0.0.1";
+            return "127.0.0.1/MCWebNew";
         }
         //
         if (DOMAIN_LA) {
