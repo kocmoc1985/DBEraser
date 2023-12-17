@@ -201,15 +201,33 @@ public class HelpBuh {
         //
     }
 
-    public static void main(String[] args) {
+  
+
+    public static void update(String json) {
         //
-//        checkUpdates(null);
+        try {
+            //
+            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_UPDATE_AUTO, json);
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+    }
+
+    public static boolean OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = false;
+
+      public static void main(String[] args) {
+        //
+        
         //
 //        GP_BUH.USER = "ask@mixcont.com";
 //        GP_BUH.PASS = "mixcont4765";
         //
         GP_BUH.USER = "andrej.brassas@gmail.com";
         GP_BUH.PASS = "bdtDJRGOEB";
+        //
+        checkUpdates(null);
         //
 //        GP_BUH.USER = "kocmoc1985@gmail.com";
 //        GP_BUH.PASS = "dbJztp1PR9";
@@ -235,21 +253,7 @@ public class HelpBuh {
 //        get_constants();
         //
     }
-
-    public static void update(String json) {
-        //
-        try {
-            //
-            executePHP(DB.PHP_SCRIPT_MAIN, DB.PHP_FUNC_UPDATE_AUTO, json);
-            //
-        } catch (Exception ex) {
-            Logger.getLogger(Faktura_Entry_Update.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //
-    }
-
-    public static boolean OBLIGATORY_UPDATE__INSTALL_NEW_REQUIRED = false;
-
+    
     /**
      * JSON: {"version":"versionVersion"}
      *

@@ -94,7 +94,6 @@ public class LostPointsFinder extends javax.swing.JFrame {
             }
         }
         //
-
     }
 
     public void mc_batchinfo_loop() {
