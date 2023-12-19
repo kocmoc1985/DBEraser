@@ -62,6 +62,8 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     //
     private static final String QUERY_MAIN = "select * from MC_BARCODES order by date_scan desc";
     private static final String TABLE_NAME = "MC_BARCODES";
+    //
+    public static int MAX_ROWS = 100000;
 
     /**
      * Creates new form FQ
@@ -77,6 +79,18 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
         jButton1.setEnabled(false);
         //
         show_data();
+        //
+        
+    }
+    
+    private void change_table_columns_names(){
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "nr", "NR");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "lot", "LOT");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "part", "PART");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "quantity", "QUANTITY");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "test", "TEST");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "date_recieve", "DATE RECIEVE");
+        HelpA.changeTableHeaderTitleOfOneColumn(jTable1, "date_scan", "DATE SCAN");
     }
 
     private void init_other() {
@@ -139,7 +153,7 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     }
 
     private void addToOutPutWindow(String str) {
-        jTextArea2.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+        jTextArea_output.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {
@@ -154,7 +168,6 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     }
 
     private Object[][] getContent(ResultSet rs) throws SQLException {
-        int MAX_ROWS = Integer.parseInt(jTextField1RowsMax.getText());
         ResultSetMetaData rsmt;
         Object[][] content;
         int columns;
@@ -221,20 +234,18 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextArea_output = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1RowsMax = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextArea_output.setColumns(20);
+        jTextArea_output.setRows(5);
+        jScrollPane2.setViewportView(jTextArea_output);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,25 +261,24 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jTable1);
 
-        jLabel1.setText("Rows max");
-
-        jTextField1RowsMax.setText("100000");
-
-        jButton2.setText("SHOW / REFRESH");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/refresh.png"))); // NOI18N
+        jButton2.setToolTipText("Refresh data");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("APPLY CHANGE");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
+        jButton1.setToolTipText("Apply changes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("SELECT ROW");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jButton3.setToolTipText("Select row to be modified");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -285,15 +295,11 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -301,15 +307,13 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1RowsMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -455,11 +459,12 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
             cursorSetWaitCursor(true);
             ResultSet rs = sql.execute(query);
             build_table(rs);
-            addToOutPutWindow("Executing ok: " + query);
+            change_table_columns_names();
+//            addToOutPutWindow("Executing ok: " + query);
             SimpleLoggerLight.logg(QUERY_OK_LOG_FILE, query);
             cursorSetWaitCursor(false);
         } catch (SQLException ex) {
-            addToOutPutWindow("Executing failed, see output file " + LOG_FILE);
+//            addToOutPutWindow("Executing failed, see output file " + LOG_FILE);
             SimpleLoggerLight.logg(QUERY_WRONG_LOG_FILE, query);
             SimpleLoggerLight.logg(LOG_FILE, ex.toString());
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
@@ -506,11 +511,9 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1RowsMax;
+    private javax.swing.JTextArea jTextArea_output;
     // End of variables declaration//GEN-END:variables
 }
