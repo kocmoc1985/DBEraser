@@ -22,6 +22,8 @@ public class Batch {
     private final String batch;
     private final String date;
     private int lost_points_type_a = 0;
+    private int signals_not_changing = 0;
+    private static int id_prev;
 
     public Batch(int id, String recipe, String order, String batch, String date) {
         this.id = id;
@@ -31,22 +33,58 @@ public class Batch {
         this.date = date;
     }
 
-    public void addTick(ResultSet rs) {
+    public boolean addTick__check_lost_points_a(ResultSet rs) {
         Tick tick = new Tick(rs);
         ticks.add(tick);
-        check_lost_points_a();
+        return check_lost_points_a();
     }
 
-    private static int id_prev;
-    
+    public boolean addTick__check_not_changing_signals(ResultSet rs) {
+        Tick tick = new Tick(rs);
+        ticks.add(tick);
+        return check_not_changing_signal();
+    }
 
-    private void check_lost_points_a() {
+    private boolean check_not_changing_signal() {
         //
         if (ticks.size() < 2) {
-            return;
+            return true;
         }
         //
+        double torq_act = ticks.get(ticks.size() - 1).getAnalog_1__torq();
+        double torq_prev = ticks.get(ticks.size() - 2).getAnalog_1__torq();
+        //
+        double temp_act = ticks.get(ticks.size() - 1).getAnalog_3__temp();
+        double temp_prev = ticks.get(ticks.size() - 2).getAnalog_3__temp();
+        //
+        //
+        double diff_torq = Math.abs(torq_act - torq_prev);
+        double diff_temp = Math.abs(temp_act - temp_prev);
+        //
+        //
+        if (diff_torq == 0 && diff_temp == 0) {
+            //
+            signals_not_changing++;
+            //
+            if (signals_not_changing > 27) {
+                String str = "not changing: " + signals_not_changing + " / " + recipe + " / " + order + " / " + batch + " date: " + date + " tick: " + (ticks.size() - 1) + " id: " + id;
+                LostPointsFinder.output(str);
+                LostPointsFinder.ids_to_remove.add(id);
+                return false;
+            }
+            //
 
+        } else {
+            signals_not_changing = 0;
+        }
+        return true;
+    }
+
+    private boolean check_lost_points_a() {
+        //
+        if (ticks.size() < 2) {
+            return true;
+        }
         //
         long r_time_act = ticks.get(ticks.size() - 1).getR_time__long();
         long r_time_prev = ticks.get(ticks.size() - 2).getR_time__long();
@@ -65,6 +103,7 @@ public class Batch {
             //
 
         }
+        return true;
 
     }
 

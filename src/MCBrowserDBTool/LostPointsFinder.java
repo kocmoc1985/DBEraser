@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class LostPointsFinder extends javax.swing.JFrame {
 
-    private ArrayList<Batch> batches = new ArrayList<>();
+//    private ArrayList<Batch> batches = new ArrayList<>();
     public Sql_B sql = new Sql_B(true, false);
 
     public static String date_more_then = "2023-01-01";
@@ -35,7 +35,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
     public static boolean FEDMOG = false; // #CHANGABLE-PARAMETER#
 
     public static String ORDER_NAME_COLUMN;
-    public static HashSet<Integer>ids_to_remove = new HashSet<>();
+    public static HashSet<Integer> ids_to_remove = new HashSet<>();
 
     /**
      * Creates new form LostPointsFinder
@@ -43,6 +43,14 @@ public class LostPointsFinder extends javax.swing.JFrame {
     public LostPointsFinder() {
         initComponents();
         connect_sql();
+        initOther();
+    }
+
+    private void initOther() {
+        initOther_();
+    }
+
+    public void initOther_() {
         this.setTitle("Delay finder");
     }
 
@@ -141,7 +149,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
             output += id + ",";
         }
         //
-        output = output.substring(0,output.length() - 1);
+        output = output.substring(0, output.length() - 1);
         //
         output("\n\n delete from mc_batchinfo where ID in (" + output + ")");
         //
@@ -159,7 +167,11 @@ public class LostPointsFinder extends javax.swing.JFrame {
             //
             while (rs.next()) {
                 //
-                batch__.addTick(rs);
+                boolean go_on = addTick(batch__, rs);
+                //
+                if (go_on == false) {
+                    break;
+                }
                 //
             }
             //
@@ -170,6 +182,10 @@ public class LostPointsFinder extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public boolean addTick(Batch batch__, ResultSet rs) {
+        return batch__.addTick__check_lost_points_a(rs);
     }
 
     /**
@@ -216,18 +232,18 @@ public class LostPointsFinder extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jTextField1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
                             .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(522, 522, 522))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(28, 28, 28)
-                            .addComponent(jTextField1))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

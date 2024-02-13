@@ -59,6 +59,18 @@ public class Tick {
     public long getR_time__long() {
         return r_time__long;
     }
+
+    public double getAnalog_1__torq() {
+        return analog_1__torq;
+    }
+
+    public double getAnalog_3__temp() {
+        return analog_3__temp;
+    }
+    
+    
+    
+    
     
     
     
