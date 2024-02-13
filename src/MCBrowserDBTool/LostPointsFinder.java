@@ -206,14 +206,14 @@ public class LostPointsFinder extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField_date_less.setText("2023-03-07");
+        jTextField_date_less.setText("2024-12-31");
         jTextField_date_less.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_date_lessActionPerformed(evt);
             }
         });
 
-        jText_date_more.setText("2023-03-01");
+        jText_date_more.setText("2024-01-01");
 
         jButton1.setText("Start");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
