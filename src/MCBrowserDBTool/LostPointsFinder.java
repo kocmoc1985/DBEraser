@@ -31,8 +31,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
     public static int DELAY_MORE_THEN = 2100; // 1000 is not enough #CHANGABLE-PARAMETER#
     public static int SHOW_OUTPUT_IF_DELAYS_MORE_THEN = 0; // #CHANGABLE-PARAMETER#
 
-    public static boolean CEAT = true; // #CHANGABLE-PARAMETER#
+    public static boolean CEAT = false; // #CHANGABLE-PARAMETER#
     public static boolean FEDMOG = false; // #CHANGABLE-PARAMETER#
+    public static boolean OMSK = true; // #CHANGABLE-PARAMETER#
 
     public static String ORDER_NAME_COLUMN;
     public static HashSet<Integer> ids_to_remove = new HashSet<>();
@@ -102,6 +103,19 @@ public class LostPointsFinder extends javax.swing.JFrame {
             }
         }
         //
+        if (OMSK) {
+            //
+            ORDER_NAME_COLUMN = "OrderName";
+            //
+            try {
+                sql.connectMySql("localhost", "3306", "database_mc", "root", "0000");
+            } catch (SQLException ex) {
+                Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //
     }
 
     public void mc_batchinfo_loop() {
@@ -149,8 +163,11 @@ public class LostPointsFinder extends javax.swing.JFrame {
             output += id + ",";
         }
         //
-        output = output.substring(0, output.length() - 1);
+        if (output.length() == 0) {
+            return;
+        }
         //
+        output = output.substring(0, output.length() - 1);
         output("\n\n delete from mc_batchinfo where ID in (" + output + ")");
         //
     }
@@ -237,12 +254,9 @@ public class LostPointsFinder extends javax.swing.JFrame {
                         .addComponent(jTextField_date_less, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jTextField1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jButton1)
+                    .addComponent(jText_date_more, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -315,7 +329,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField_date_less;
-    private javax.swing.JTextField jText_date_more;
+    public javax.swing.JTextField jTextField_date_less;
+    public javax.swing.JTextField jText_date_more;
     // End of variables declaration//GEN-END:variables
 }

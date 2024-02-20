@@ -17,6 +17,10 @@ public class SignalsNotChangingFinder extends LostPointsFinder  {
     @Override
     public void initOther_() {
         this.setTitle("Signals not changing finder");
+        //
+        jTextField_date_less.setText("2024-01-01");
+        jText_date_more.setText("2024-02-29");
+        //
     }
     
     @Override

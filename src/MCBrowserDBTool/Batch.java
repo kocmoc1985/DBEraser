@@ -7,7 +7,6 @@ package MCBrowserDBTool;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 /**
  *
@@ -61,14 +60,16 @@ public class Batch {
         double diff_torq = Math.abs(torq_act - torq_prev);
         double diff_temp = Math.abs(temp_act - temp_prev);
         //
+        int motor_start = ticks.get(ticks.size() - 1).getDigSignal(Tick.MOTOR);
         //
-        if (diff_torq == 0 && diff_temp == 0) {
+        if (diff_torq == 0 && diff_temp == 0 && motor_start == 1) { //&& motor_start == 1
             //
             signals_not_changing++;
             //
             if (signals_not_changing > 27) {
-                String str = "not changing: " + signals_not_changing + " / " + recipe + " / " + order + " / " + batch + " date: " + date + " tick: " + (ticks.size() - 1) + " id: " + id;
-                LostPointsFinder.output(str);
+//                String str = "not changing: " + signals_not_changing + " / " + recipe + " / " + order + " / " + batch + " date: " + date + " tick: " + (ticks.size() - 1) + " id: " + id;
+                String str_ = string_to_table_view("" + signals_not_changing, recipe, order, batch, date, "" + (ticks.size() - 1), "" + id);
+                LostPointsFinder.output(str_);
                 LostPointsFinder.ids_to_remove.add(id);
                 return false;
             }
@@ -78,6 +79,12 @@ public class Batch {
             signals_not_changing = 0;
         }
         return true;
+    }
+
+    private static String string_to_table_view(String param1, String param2, String param3, String param4, String param5, String param6, String param7) {
+        String format = "%1$5s %2$10s %3$30s %4$10s %5$30s %6$10s %7$10s \n";
+        String arr[] = {param1, param2, param3, param4, param5, param6, param7};
+        return String.format(format, (Object[]) arr);
     }
 
     private boolean check_lost_points_a() {
