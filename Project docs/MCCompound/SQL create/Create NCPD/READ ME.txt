@@ -1,18 +1,43 @@
-
 1. Create Linked servers CPRECIPE & PRODPLAN, find instruction on google drive.
 
-2. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql).
-	You also need to fill the CPM with data by detaching it on some Server and then attaching it.
+2[OLD-DON'T USE]. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql).
+You also need to fill the CPM with data by detaching it on some Server and then attaching it.
+[OBS! DON'T forget to run CPM.sql script - I forgot last time 2024-03-28]
+
+2[NEW]. Use the CPM.zip file. First attach the CPM.mdf and then create an additional Table by using the script below:
+CREATE TABLE [dbo].[CASNO](
+	[EC_Number] [nchar](10) NULL,
+	[CAS_Number] [nchar](12) NULL,
+	[ChemName] [nvarchar](max) NULL,
+	[ChemNameAlt] [nvarchar](max) NULL,
+	[Date_Reg] [datetime] NULL,
+	[UpdatedOn] [datetime] NULL,
+	[UpdatedBy] [nchar](3) NULL
+) ON [PRIMARY]
 
 3. Create Database "NCPD" using NCPD.sql -> OBS! you will need to execute the NCPD.sql *twice*
 the first time it fails because some tables/views are created before others.
+Also remember that some failures can be "fixed" by changing "Server Objects" - "Linked Servers" - "MSDASQL" - try
+to play with the settings: "Nested queries", "Level zero only", etc...
 
 4. Add "rule" for free entrance (used by MCRecipe.jar):
 
-insert into MCRecipeUsers values (
+insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
 'rule_free_entrance',
 '',
 'enabled',
 getDate(),
 getDate()
 )
+
+OBS! IF you use "rule_free_entrance" you will not be able to open PRODPLAN and also other settings from the HOME tab 2024-03-28
+
+insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
+'a',
+'a',
+'admin',
+getDate(),
+getDate()
+)
+
+LATEST ON 2024-03-27 i have completed all the STEPS above. The tables in DB "NCPD" were created but the data was not filled.
