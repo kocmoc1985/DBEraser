@@ -395,13 +395,13 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
             if (event != null && event.getSource() == mCRecipe2.jButtonRecipeInitialGo2) {// Sort by note value
                 q = SQL_A_.recipeInitialBuildTable1_B(PROC.PROC_33, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
-                fillTable1HelpM();
                 OUT.showMessage(q);
+                fillTable1HelpM();
             } else {
                 q = SQL_A_.recipeInitialBuildTable1(PROC.PROC_30, PROC.PROC_31, PROC.PROC_32, params);
                 HelpA.runProcedureIntegerReturn_A(sql.getConnection(), q);
-                fillTable1HelpM();
                 OUT.showMessage(q);
+                fillTable1HelpM();
             }
             //
         } catch (SQLException ex) {
@@ -418,7 +418,7 @@ public class RecipeInitial extends BasicTab implements RecipeInitialIF {
 
     public void fillTable1HelpM() {
         //
-        String q = SQL_A_.recipe_initial_main();
+        String q = SQL_A_.recipe_initial_main(); // "from ZZZ"
         //
         JTable table = mCRecipe2.jTable1;
         try {

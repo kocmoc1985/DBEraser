@@ -17,10 +17,30 @@ CREATE TABLE [dbo].[CASNO](
 
 3. Create Database "NCPD" using NCPD.sql -> OBS! you will need to execute the NCPD.sql *twice*
 the first time it fails because some tables/views are created before others.
-Also remember that some failures can be "fixed" by changing "Server Objects" - "Linked Servers" - "MSDASQL" - try
+
+Also remember that some failures during creation can be "fixed" by changing "Server Objects" - "Linked Servers" - "MSDASQL" - try
 to play with the settings: "Nested queries", "Level zero only", etc...
 
-4. Add "rule" for free entrance (used by MCRecipe.jar):
+On 2024-03-28 there was an issue regarding NCPD - Programmability - Stored procedues - "dbo.prc_ITF_Recipes_Z_Z" - the
+"@code_stage" parameter was missing while calling the procedure. So i have added this parameter by my own.
+
+4. FILL THE NCPD DB: NCPD - Programmability - Stored procedues - "dbo.DELETE_CREATE_ALL_RECIPE" & "dbo.DELETE_CREATE_ALL_RECIPENew"
+Per 2024-03-29 iam still not sure which of them does the job. Maybe even both.
+
+5. In the "mccompounds.properties" file use "company=compounds" - YES THIS IS 100% verified 2024-03-28.
+Otherwise the recipe initial list will not become visible even if data is available.
+
+________________
+
+insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
+'sb',
+'a',
+'admin',
+getDate(),
+getDate()
+)
+
+______
 
 insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
 'rule_free_entrance',
@@ -31,13 +51,12 @@ getDate()
 )
 
 OBS! IF you use "rule_free_entrance" you will not be able to open PRODPLAN and also other settings from the HOME tab 2024-03-28
+________________
+GOOD TO REMEMBER:
+Procedure:  "dbo.[prc_ITF_Recipes_Z_Z ] null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null" 
+is called to fill the table "ZZZ". The initial recipe-jtable which MCRECIPE shows, is showing data from the "ZZZ" table:
+"select [Recipe Version],[Recipe_Additional],Descr,[Detailed_Group],Status,Class,Mixer_Code,LEFT(CONVERT(VARCHAR(19),[UpdatedOn],126),10) as [UpdatedOn],[UpdatedBy],Recipe_ID,Recipe_Origin,Loadfactor,MixTime from ZZZ"
+________________
 
-insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
-'a',
-'a',
-'admin',
-getDate(),
-getDate()
-)
-
-LATEST ON 2024-03-27 i have completed all the STEPS above. The tables in DB "NCPD" were created but the data was not filled.
+LATEST ON 2024-03-29 i have completed all the STEPS above. I have succeeded to get the list of recipes and ingredients when opening
+the MCRECIPE.

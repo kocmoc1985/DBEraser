@@ -24,19 +24,19 @@ public class PROC {
         return false;
     }
 
-    public static final String PROC_01 = "Create_Recipe_Tempory_USER_Compare ";//#RECIPE INITIAL
-    public static final String PROC_02 = "fn_Lab_REsults "; //#RECIPE ADDITIONAL
-    public static final String PROC_03 = "fn_Lab_SelectOrders "; //#RECIPE ADDITIONAL
-    public static final String PROC_04 = "fn_Lab_Procedures ";//#RECIPE ADDITIONAL
-    public static final String PROC_05 = "prc_ITF_Vendor_Insert ";//#VENDORS
-    public static final String PROC_06 = "fn_Recipe_Ingredient_Insert ";//#RECIPE DETAILED
-    public static final String PROC_07 = "prc_ITF_RECIPE_FreeInfo_Insert ";//#RECIPE DETAILED
-    public static final String PROC_08 = "prc_ITF_RECIPE_FreeTEXT_Insert ";//#RECIPE DETAILED
-    public static final String PROC_09 = "prc_ITF_RECIPE_FreeInfo_Update ";//#RECIPE DETAILED
-    public static final String PROC_10 = "prc_ITF_Ingredient_NEW_fromScratch ";//#INGREDIENTS
+    public static final String PROC_01 = "Create_Recipe_Tempory_USER_Compare ";//#RECIPE INITIAL, HelpA.runProcedureIntegerReturn_A_2
+    public static final String PROC_02 = "fn_Lab_REsults "; //#RECIPE ADDITIONAL, ResultSet rs = sql.execute(q,mCRecipe)
+    public static final String PROC_03 = "fn_Lab_SelectOrders "; //#RECIPE ADDITIONAL, ResultSet rs = sql.execute(query)
+    public static final String PROC_04 = "fn_Lab_Procedures ";//#RECIPE ADDITIONAL, ResultSet rs = sql.execute(q,mCRecipe)
+    public static final String PROC_05 = "prc_ITF_Vendor_Insert ";//#VENDORS, sql.execute(q)
+    public static final String PROC_06 = "fn_Recipe_Ingredient_Insert ";//#RECIPE DETAILED, ResultSet rs = sql.execute(q, mCRecipe2)
+    public static final String PROC_07 = "prc_ITF_RECIPE_FreeInfo_Insert ";//#RECIPE DETAILED, sql.execute(q, mCRecipe2)
+    public static final String PROC_08 = "prc_ITF_RECIPE_FreeTEXT_Insert ";//#RECIPE DETAILED, sql.execute(q, mCRecipe2)
+    public static final String PROC_09 = "prc_ITF_RECIPE_FreeInfo_Update ";//#RECIPE DETAILED, sql.execute(q, mCRecipe2)
+    public static final String PROC_10 = "prc_ITF_Ingredient_NEW_fromScratch ";//#INGREDIENTS, sql.execute(q, mCRecipe)
     public static final String PROC_11 = "prc_ITF_Ingredient_NEW_Insert ";//#INGREDIENTS
-    public static final String PROC_12 = "prc_ITF_RECIPE_Scratch_1 ";//#RECIPE DETAILED
-    public static final String PROC_13 = "prc_ITF_RECIPE_main_Insert ";//#RECIPE DETAILED
+    public static final String PROC_12 = "prc_ITF_RECIPE_Scratch_1 ";//#RECIPE DETAILED, HelpA.runProcedureIntegerReturn_A_2
+    public static final String PROC_13 = "prc_ITF_RECIPE_main_Insert ";//#RECIPE DETAILED, HelpA.runProcedureIntegerReturn_A_2
     public static final String PROC_14 = "prc_ITF_Igredients_DisplVendor_Delete ";//#VENDORS
     public static final String PROC_15 = "prc_ITF_Igredients_DisplPurchase_delete ";//#VENDORS
     public static final String PROC_16 = "prc_ITF_Igredients_DisplVendor_INSERT ";//#VENDORS
@@ -53,10 +53,10 @@ public class PROC {
     public static final String PROC_27 = "fn_ITF_Recipes_Z_X "; //#RECIPE INITIAL
     public static final String PROC_28 = "fn_ITF_Recipes_Z_X_IngredName "; //#RECIPE INITIAL
     public static final String PROC_29 = "fn_ITF_Recipes_Z_X_OR "; //#RECIPE INITIAL
-    public static final String PROC_30 = "prc_ITF_Recipes_Z_Z "; //#RECIPE INITIAL
+    public static final String PROC_30 = "prc_ITF_Recipes_Z_Z "; //#RECIPE INITIAL, HelpA.runProcedureIntegerReturn_A
     public static final String PROC_31 = "prc_ITF_Recipes_Z_X "; //#RECIPE INITIAL
     public static final String PROC_32 = "prc_ITF_Recipes_Z_X_OR "; //#RECIPE INITIAL
-    public static final String PROC_33 = "prc_ITF_Recipes_Z_A "; //#RECIPE INITIAL
+    public static final String PROC_33 = "prc_ITF_Recipes_Z_A "; //#RECIPE INITIAL, HelpA.runProcedureIntegerReturn_A
     public static final String PROC_34 = "prc_ITF_Sequence_deleteMain "; //#SEQUENCE
     public static final String PROC_35 = "prc_ITF_Sequence_Edit_Main "; //#SEQUENCE
     public static final String PROC_36 = "prc_ITF_Sequence_Insert_Main "; //#SEQUENCE
@@ -84,7 +84,7 @@ public class PROC {
     public static final String PROC_58 = "Recipe_Tempory_UPDATE_USER "; //#RECIPE DETAILED
     public static final String PROC_59 = "Recipe_Tempory_INSERT_INTO_USER "; //#RECIPE DETAILED
     public static final String PROC_60 = "Create_Recipe_Tempory1_USER "; //#RECIPE DETAILED
-    public static final String PROC_61 = "Recipe_Full_RZPT_1_O_W_User ";  //#RECIPE DETAILED
+    public static final String PROC_61 = "Recipe_Full_RZPT_1_O_W_User ";  //#RECIPE DETAILED, HelpA.runProcedureIntegerReturn_A_2(sql_additional, q_0_1)
     public static final String PROC_62 = "User_Int_RecipeInvert "; //#RECIPE DETAILED
     public static final String PROC_63 = "fn_ITF_Recipes_Info "; //#RECIPE INITIAL
     public static final String PROC_64 = "fn_ITF_Recipes_TEXT "; //#RECIPE INITIAL
@@ -104,7 +104,7 @@ public class PROC {
     public static final String PROC_78 = "fn_ITF_CPWORDER_Info "; //#LAB DEVELOPMENT -> TEST VARIABLES -> check exist
     public static final String PROC_79 = "prc_ITF_CPWORDER_INSERT_Table "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> ADD MATERIAL
     public static final String PROC_80 = "prc_ITF_CPWORDER_Delete "; //#LAB DEVELOPMENT -> FIND ORDER -> DELETE ORDER
-    public static final String PROC_81 = "prc_ITF_CPWORDER_Materials_Delete "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> DELETE MATERIAL
+    public static final String PROC_81 = "prc_ITF_CPWORDER_Materials_Delete "; //#LAB DEVELOPMENT -> MATERIALINFORMATION -> DELETE MATERIAL, HelpA.runProcedureIntegerReturn_A_2(sql, q)
     public static final String PROC_82 = "prc_ITF_MCCPTproc_INSERT_Procedure "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> CREATE NEW
     public static final String PROC_83 = "prc_ITF_MCCPTproc_Copy_From "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> COPY
     public static final String PROC_84 = "prc_ITF_MCCPTproc_Delete_Procedure "; //#LAB DEVELOPMENT -> TEST PROCEDURE -> DELETE ENTRY
@@ -117,7 +117,7 @@ public class PROC {
     //
     //PROD_PLAN
     public static final String PROC_P_01 = "fn_Sequence_Get ";
-    public static final String PROC_P_02 = "DELETE_CREATE_ALL_RECIPENew ";
+    public static final String PROC_P_02 = "DELETE_CREATE_ALL_RECIPENew ";// HelpA.runProcedureIntegerReturn_A
     public static final String PROC_P_03 = "generate_CSVColumn_1 ";
     public static final String PROC_P_04 = "generate_Empty_CSVColumn ";
 

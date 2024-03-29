@@ -12,9 +12,10 @@ Some important notes:
 "Sql-procedures" are mainly used for other things then returning a ResultSet. An example of using Sql-procedures is
 insertion, delitions, updating.. "Sql-functions" on other hand are mainly used for "SELECT" statements.
 
+Other notes:
+
+
 _______________________________________________________________________________________________
-
-
 
 [ADDING NEW TAB PROCEDURE]
 
@@ -30,7 +31,7 @@ See class: "LabDev.package -> LAB_DEV__STATUS.class".
 Remember that the "status" is always stored in "ENG" in the DataBase. (Table: "MC_Cpworder", Column: "WOSTATUS")
 
 ______________________________________________________________________________________________
-[MARKING SAVED / INSAVED]
+[MARKING SAVED / UNSAVED]
 
 Marking "UNSAVED" done from: UnsavedEntryInvert.class -> getValueFromDataField()
 
