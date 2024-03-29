@@ -35,11 +35,12 @@ ________________
 insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
 'sb',
 'a',
-'admin',
+'developer',
 getDate(),
 getDate()
 )
 
+OBS! USE ALWAYS "developer" WORKING WITH PROJECT. IT WILL SHOW TOOLTIPS AND ADDITIONAL LOG's*******
 ______
 
 insert into MCRecipeUsers (userName,pass,[role],dateCreated,dateChanged) values (
