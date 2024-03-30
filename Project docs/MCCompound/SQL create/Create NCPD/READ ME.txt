@@ -1,3 +1,10 @@
+_____________________________________________
+
+AS CONFIRMED ON 2024-03-30: The easiest way of installing of the NCPD DB is attaching
+it. The propper Componds NCPD version is 2 163 264KB (2,06 GB). When attaching this file
+almost all functionality is working.
+_____________________________________________
+
 1. Create Linked servers CPRECIPE & PRODPLAN, find instruction on google drive.
 
 2[OLD-DON'T USE]. Create Database "CPM" using CPM.sql (Don't forget to create Database "CPM" manually and then run the script CPM.sql).

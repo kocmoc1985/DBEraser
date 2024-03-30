@@ -1,0 +1,25 @@
+
+FOR BELOW FUNCTIONS THERE IS MUCH LEFT TO TRANSLATE:
+
+HelpA.showNotification()
+HelpA_.confirm()
+___________________________________
+
+The current architecture per 2024-03-20, allows to
+have only two languages. 
+
+___________________________________
+
+COMPANY NAME:
+
+The company name defines:
+- Language
+- Date format
+
+___________________________________
+
+Companies per 2024-03-30
+
+GP.COMPANY_NAME_COMPOUNDS : LNG.LANG_ENG = false
+GP.COMPANY_NAME_DATWILLER : LNG.LANG_ENG = true
+GP.COMPANY_NAME_QEW : LNG.LANG_ENG = true

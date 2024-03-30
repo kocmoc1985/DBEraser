@@ -23,8 +23,8 @@ import javax.swing.JTextArea;
  */
 public class BuildWorkInstrTable {
 
-    private static final String WI_00_0_0000 =
-            "speed  25.0, add  10000,30242,18839,17687,17971,30822; \n"
+    private static final String WI_00_0_0000
+            = "speed  25.0, add  10000,30242,18839,17687,17971,30822; \n"
             + "time  30.0, speed  20.0, add  ; \n"
             + "temp  100.0, speed  15.0, add  ; \n"
             + "time  30.0, sweep  2.0, temp  120.0, speed  15.0, disch  1.0; \n";
@@ -34,8 +34,8 @@ public class BuildWorkInstrTable {
             + "time  30.0, sweep  2.0, temp  100.0, speed  14.0, add  12013,17856,30771;"
             + "time  30.0, sweep  2.0, temp  117.0, speed  15.0, ram  up, disch  1.0;";
     //
-    private static final String WI_02_8_1595__DOUBLE_SWEEP =
-            "speed  30.0, add  30589;"
+    private static final String WI_02_8_1595__DOUBLE_SWEEP
+            = "speed  30.0, add  30589;"
             + "time  45.0, speed  18.0, add  30071,11537,12396,11250,11418,30273,12070;"
             + "time  30.0, sweep  3.0, time  30.0, sweep  3.0, temp  135.0, speed  15.0, ram  up, disch  1.0";
     //
@@ -44,12 +44,12 @@ public class BuildWorkInstrTable {
             + "temp  90.0, add  11080,30581,17857,17687; \n"
             + "temp  105.0, sweep  0.0, temp  125.0, ram  up, disch  1.0; ";
     //
-    private static final String WI_27_0_N911 =
-            "speed  19.0, add  12467,30798,10068,11188,17203,15837,10100,30807,17687,30771,30776; \n"
+    private static final String WI_27_0_N911
+            = "speed  19.0, add  12467,30798,10068,11188,17203,15837,10100,30807,17687,30771,30776; \n"
             + "time  30.0, sweep  2.0, time  30.0, sweep  1.0, temp  125.0, speed  15.0, ram  up, disch  1.0;";
     //
-    private static final String WI_00_0_1803 =
-            "speed  13.0, time  30.0, sweep  2.0, temp  95.0, ram  up, disch  1.0; ";
+    private static final String WI_00_0_1803
+            = "speed  13.0, time  30.0, sweep  2.0, temp  95.0, ram  up, disch  1.0; ";
     //
     private static final String WI_00_0_1134 = "speed  12.0, add  00-8-1134,17687,17899,17905,30776;"
             + "time  20.0, add  00-8-1134;"
@@ -62,7 +62,7 @@ public class BuildWorkInstrTable {
     private static final String SWEEP = "sweep";
     private static final String DISCH = "disch";
 
-    public static void build(String work_instruction,String recipe) {
+    public static void build(String work_instruction, String recipe) {
         String[] headers = getHeader(max_sweeps_in_row(work_instruction));
         String[][] content = getContent(work_instruction);
 
@@ -72,7 +72,7 @@ public class BuildWorkInstrTable {
         frame.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage());
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JTable table = new JTable(content, headers);
-        
+
         //==========
         String recipe_info = "RECIPE: " + recipe;
         String workInstr_info = "WORK_INSTR.:\r\n" + work_instruction;
@@ -86,14 +86,15 @@ public class BuildWorkInstrTable {
         frame.setLocation(position_window_in_center_of_the_screen(frame));
         frame.setVisible(true);
     }
-    
+
     public static Point position_window_in_center_of_the_screen(JFrame window) {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point((d.width - window.getSize().width) / 2, (d.height - window.getSize().height) / 2);
     }
 
     public static void main(String[] args) {
-        build(WI_34_0_1637,"");
+//        build(WI_34_0_1637, "");
+         build(WI_00_0_1803, "");
     }
 
     private static String[] getHeader(int sweeps_in_row) {

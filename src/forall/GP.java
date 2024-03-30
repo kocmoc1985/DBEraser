@@ -18,7 +18,7 @@ public class GP {
     //public static boolean LANG_ENG = true; --> This one is in MCRecipe.Lang -> LNG.class
     public static boolean IS_DATE_FORMAT_DE = false;
     public static String DATE_FORMAT_COMMON = "yyyy-MM-dd";
-    public static String DATE_FORMAT_DE  = "dd.MM.yyyy";
+    public static String DATE_FORMAT_DE_RUS  = "dd.MM.yyyy";
     //
     public static final String COMPANY_NAME_UNDEFINED = "undef";
     public static final String COMPANY_NAME_QEW = "qew";

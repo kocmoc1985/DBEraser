@@ -231,7 +231,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
         //
         if (GP.IS_DATE_FORMAT_DE) {
             try {
-                return HelpA.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE);
+                return HelpA.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE_RUS);
             } catch (ParseException ex) {
                 Logger.getLogger(LabDevelopment_.class.getName()).log(Level.SEVERE, null, ex);
                 return null;

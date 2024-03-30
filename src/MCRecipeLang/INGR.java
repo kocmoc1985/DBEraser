@@ -13,7 +13,7 @@ import static MCRecipeLang.LNG.LANG_ENG;
 public class INGR {
 
     public static String INGRED_DETAILED_TBL() {
-        return LANG_ENG ? "INGRED. DETAILED" : "INGRED. ERWEITERT";
+        return LANG_ENG ? "INGRED. DETAILED" : "INGRED. ERWEITERT";//INGRED. ERWEITERT
     }
 
     public static String EXPRESS_INFO_TBL() {

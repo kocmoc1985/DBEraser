@@ -1,5 +1,0 @@
-
-FOR BELOW FUNCTIONS THERE IS MUCH LEFT TO TRANSLATE:
-
-HelpA.showNotification()
-HelpA_.confirm()
