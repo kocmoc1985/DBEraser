@@ -155,18 +155,18 @@ public class GP_BUH {
         }
     }
 
-    public static void setPageBackground(JPanel panel, URL url) {
-        //
-        BackgroundPanel bg = (BackgroundPanel) panel;
-        //
-        try {
-            Image image = ImageIO.read(url); //"io/bg.jpg"
-            bg.go(image);
-        } catch (Exception ex) {
-            // Will set the initial background
-        }
-        //
-    }
+//    public static void setPageBackground(JPanel panel, URL url) {
+//        //
+//        BackgroundPanel bg = (BackgroundPanel) panel;
+//        //
+//        try {
+//            Image image = ImageIO.read(url); //"io/bg.jpg"
+//            bg.go(image);
+//        } catch (Exception ex) {
+//            // Will set the initial background
+//        }
+//        //
+//    }
 
     public static boolean loggedIn() {
         return KUND_ID != null;

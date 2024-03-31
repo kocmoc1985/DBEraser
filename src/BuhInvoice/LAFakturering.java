@@ -87,7 +87,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
         SET_SEARCH_FILTER(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__ONE_YEAR_BACK, true);
         //
         //GP_BUH.setPageBackground(jPanel19, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
-        GP_BUH.setPageBackground(jPanel19, IconUrls.LA_BG);
+        HelpA.setPageBackground(jPanel19, IconUrls.LA_BG);
         //
         setMarginLeftLabelsHomeTab();
         //

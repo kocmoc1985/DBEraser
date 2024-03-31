@@ -42,7 +42,7 @@ public class OptionsTab_ extends Basic_Buh {
     public OptionsTab_(LAFakturering bim) {
         super(bim);
 //        GP_BUH.setPageBackground(bim.jPanel20, GP_BUH.BASIC_BACKGROUND_IMG__PATH);
-        GP_BUH.setPageBackground(bim.jPanel20, IconUrls.LA_BG);
+        HelpA.setPageBackground(bim.jPanel20, IconUrls.LA_BG);
     }
 
     protected void refresh() {

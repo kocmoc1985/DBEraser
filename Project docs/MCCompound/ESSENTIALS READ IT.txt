@@ -2,10 +2,19 @@
 
 Search for tag: [#RUN-SQL-PROCEDURE-JAVA#]
 
+As i understand per 2024-03-31 the main advantage of calling the PROCEDURES with a method like
+runProcedureIntegerReturn_A(...) is that you will get the return only after the procedure has ended. 
+
+So if you would run the procedure with common sql.execute(...) it would also run but you don’t know when 
+The procedures is READY.
+
+By getting a return when running runProcedureIntegerReturn_A(...) you also know if the procedure executed properly or not.
+As example if you get 0 it’s ok if 1 it failed.
+
 SOME IMPORTANT STATEMENTS:
 1. Yes a procedure can return a "ResultSet" - this is 100% verified on [2021-05-11] 
 -> search for [#RUN-SQL-PROCEDURE-JAVA#][#RESULT-SET-RETURN-JAVA#] in the "DBEraser" project
-2. Procedures can also return an "Int" - an error code or something
+2. Procedures can also return an "Int" - an error code or something (It’s not obligatory to return an Int though)
 3. When using with Java a Procedure shall only have one return
 
 Some important notes:

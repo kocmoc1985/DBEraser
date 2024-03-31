@@ -26,6 +26,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
@@ -79,6 +80,7 @@ import java.util.Set;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -124,6 +126,19 @@ public class HelpA {
     private static Border PREV_BORDER;
 
     private static int checkInetAttempts = 0;
+
+    public static void setPageBackground(JPanel panel, URL url) {
+        //
+        BackgroundPanel bg = (BackgroundPanel) panel;
+        //
+        try {
+            Image image = ImageIO.read(url); //"io/bg.jpg"
+            bg.go(image);
+        } catch (Exception ex) {
+            // Will set the initial background
+        }
+        //
+    }
 
     public static boolean checkInternetConnection(Object toSynchronizeOn, int connectionAttempts) {
         //
@@ -899,6 +914,14 @@ public class HelpA {
         return ret;
     }
 
+    /**
+     * The main diff from runProcedureIntegerReturn_A is that the "A_2" does not
+     * throw exception
+     *
+     * @param sql
+     * @param procedure
+     * @return
+     */
     public static int runProcedureIntegerReturn_A_2(SqlBasicLocal sql, String procedure) {
         //[#RUN-SQL-PROCEDURE-JAVA#]
         CallableStatement proc;
@@ -2541,7 +2564,7 @@ public class HelpA {
     public static void showNotification(String msg) {
         JOptionPane.showMessageDialog(null, msg);
     }
-    
+
     public static void showNotificationWarning(String msg) {
         JOptionPane.showMessageDialog(null, msg, "OBS!", JOptionPane.WARNING_MESSAGE);
     }

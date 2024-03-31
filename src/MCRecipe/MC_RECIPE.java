@@ -40,6 +40,7 @@ import forall.BackgroundPanel;
 import forall.ErrorOutputListener;
 import forall.SqlBasicLocal;
 import forall.Sql_B;
+import icons.IconUrls;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -169,7 +170,8 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
         //
         errorOutputListener = new ErrorOutputListener(HelpA.LAST_ERR_OUT_PUT_FILE_PATH, jTabbedPane1, jTextArea1, jPanel52);
         //
-        setHomePageBackground();
+//        setHomePageBackground();
+        HelpA.setPageBackground(jPanelHome, IconUrls.LA_BG);
         //
     }
 
@@ -329,13 +331,15 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
     private void defineLanguage() {
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
             GP.IS_DATE_FORMAT_DE = true;
-            LNG.LANG_ENG = false;
+//            LNG.LANG_ENG = false;
         } else if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
             GP.IS_DATE_FORMAT_DE = true;
-            LNG.LANG_ENG = true;
+//            LNG.LANG_ENG = false;
         } else {
-            LNG.LANG_ENG = true;
+//            LNG.LANG_ENG = true;
         }
+        
+//        LNG.LANG_ENG = false;
     }
 
     private void lang_other() {
