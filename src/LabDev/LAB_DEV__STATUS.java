@@ -26,6 +26,7 @@ public class LAB_DEV__STATUS {
     //
     private static final Properties DICT_DE_ENG = new Properties();
     private static Properties DICT_ENG_DE = new Properties();
+
     //
     public static String[] getLabDevStatusesAuto(boolean langEng) {
         if (langEng == false) {
@@ -34,24 +35,26 @@ public class LAB_DEV__STATUS {
             return LAB_DEV_STATUSES__ENG;
         }
     }
+
     //
-    public static String getStatusEng(boolean langEng,String status){
-        if(langEng == false){
+    public static String getStatusEng(boolean langEng, String status) {
+        if (langEng == false) {
             return ENG(status);
-        }else{
+        } else {
             return status;
         }
     }
+
     //
-     public static String getStatusActLang(boolean langEng,String status_eng){
+    public static String getStatusActLang(boolean langEng, String status_eng) {
         //
-        if(status_eng == null){
+        if (status_eng == null) {
             return "";
         }
         //
-        if(langEng == false){
+        if (langEng == false) {
             return DICT_ENG_DE.getProperty(status_eng, "*" + status_eng);
-        }else{
+        } else {
             return status_eng;
         }
     }
@@ -93,5 +96,5 @@ public class LAB_DEV__STATUS {
     private static String ENG(String status) {
         return LANG_ENG ? status : DICT_DE_ENG.getProperty(status, "*" + status);
     }
-    
+
 }

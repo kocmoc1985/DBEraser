@@ -24,7 +24,7 @@ public class RECIPE_OVERVIEW_ {
     }
 
     public static String RECIPE_OVERVIEW__RECIPE_ORIGIN() {
-        return LANG_ENG ? "RECIPE ORIGIN" : "REZEPT ORIGINEL";
+        return LANG_ENG ? "RECIPE ORIGIN" : "REZEPT ORIGINEL"; // REZEPT ORIGINEL
     }
 
     public static String RECIPE_OVERVIEW__RECIPE_STAGE() {
