@@ -1,0 +1,7 @@
+[FORBIDDEN USER NAMES][2024-04-01]
+
+If you create a user with a "sql reserved name" as "from, create, user" etc. - 
+this will cause problem when automatically creating a table: [Create_Recipe_Tempory1_USER 'E 4373/B1 80','0','user'].
+Following exception will be thrown:
+Msg 156, Level 15, State 1, Line 4
+Incorrect syntax near the keyword 'user'.

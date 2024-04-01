@@ -29,6 +29,11 @@ public class AdministrateMixerInfoBasic extends AdministrateRecipeGroups_ {
     }
     
     @Override
+    public void setAddButtonToolTipText() {
+        this.jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new mixer");
+    }
+    
+    @Override
     public JTable getJTable() {
         return jTable1;
     }

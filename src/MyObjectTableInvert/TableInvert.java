@@ -519,16 +519,17 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
         Set set = unsaved_entries_map.keySet();
         Iterator it = set.iterator();
+        //
         while (it.hasNext()) {
             Object key = it.next();
             UnsavedEntryInvert unsavedEntryInvert = unsaved_entries_map.get(key);
-
+            //
             String updateOtherTablesBeforeInstruction = unsavedEntryInvert.getUpdateOtherTablesBefore();
-
+            //
             if (updateOtherTablesBeforeInstruction.isEmpty() == false) {
                 UpdateBefore.updateBefore(unsavedEntryInvert, getSql(), updateOtherTablesBeforeInstruction);
             }
-
+            //
             boolean ok = updateFieldString(
                     unsavedEntryInvert.getTableName(),
                     unsavedEntryInvert.getColumnName(),

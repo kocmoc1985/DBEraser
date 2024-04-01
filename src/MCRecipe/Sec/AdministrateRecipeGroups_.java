@@ -79,6 +79,11 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         this.setLocation(HelpA.position_window_in_center_of_the_screen(this));
         setTableTitle();
         setUneditableJTable();
+        setAddButtonToolTipText();
+    }
+    
+    public void setAddButtonToolTipText(){
+        this.jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new group");
     }
     
     public void setTableTitle(){
@@ -242,7 +247,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jButtonRecipeDetailedAddNewRecipe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new group");
+        jButtonRecipeDetailedAddNewRecipe.setToolTipText("");
         jButtonRecipeDetailedAddNewRecipe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRecipeDetailedAddNewRecipeActionPerformed(evt);

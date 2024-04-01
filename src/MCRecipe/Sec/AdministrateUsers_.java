@@ -8,6 +8,10 @@ import BuhInvoice.JSon;
 import MCRecipe.Ingredients;
 import MCRecipeLang.T_INV;
 import MCRecipe.MC_RECIPE;
+import static MCRecipe.MC_RECIPE.ROLE_ADMIN;
+import static MCRecipe.MC_RECIPE.ROLE_ADVANCED_USER;
+import static MCRecipe.MC_RECIPE.ROLE_COMMON_USER;
+import static MCRecipe.MC_RECIPE.ROLE_DEVELOPER;
 import MCRecipe.SQL_B;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
@@ -32,14 +36,18 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
     public AdministrateUsers_(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title, mc_recipe, sql, sql_additional);
 //        HelpA.setUneditableJTable(jTable1);
+
+    }
+
+    @Override
+    public void setAddButtonToolTipText() {
+        this.jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new user");
     }
 
     @Override
     public JTable getJTable() {
         return jTable1;
     }
-    
-    
 
     @Override
     public void setTableTitle() {
@@ -49,7 +57,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
     @Override
     public String addEntryQuery() {
         return "insert into " + TABLE_NAME
-                + " values('new','new','','" + HelpA.updatedOn() + "','" + HelpA.updatedOn() + "')";
+                + " values('new','new','" + ROLE_COMMON_USER + "','" + HelpA.updatedOn() + "','" + HelpA.updatedOn() + "')";
     }
 
     @Override
@@ -61,14 +69,17 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
             @Override
             public RowDataInvert[] getConfigTableInvert() {
+                //
                 RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "id", "ID", "", true, true, false);
                 //
                 RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "userName", "USER", "", true, true, false);
                 //
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
                 //
-                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "admin,user,poweruser,developer"
-                );
+//                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "user,poweruser,admin,developer");
+                //
+                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), ROLE_COMMON_USER + "," + ROLE_ADVANCED_USER + "," + ROLE_ADMIN + "," + ROLE_DEVELOPER);
+                //
                 RowDataInvert role = new RowDataInvert(RowDataInvert.TYPE_JCOMBOBOX, fixedComboValues_b, null, "", TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
                 role.enableFixedValues();
 //              RowDataInvert role = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "role", "ROLE", "", true, true, false);
