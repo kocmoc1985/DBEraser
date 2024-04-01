@@ -318,7 +318,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         saveButtonClicked_b();
     }
     
-    public void saveButtonClicked_b(){
+    private void saveButtonClicked_b(){
         TableInvert ti = (TableInvert) basicTab.TABLE_INVERT;
         ti.handleAutomaticFieldUpdate("dateChanged", HelpA.updatedOn());
         basicTab.saveChangesTableInvert__no_check(ti);

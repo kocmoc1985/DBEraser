@@ -203,7 +203,7 @@ public class Validator_MCR {
             //
             setNotValidated(jli, Color.blue);
             //
-            setToolTip(jli, MSG.LANG("Input is to long:") + " " + val.length() + " / " + length);
+            setToolTip(jli, MSG.LANG("Input is too long:") + " " + val.length() + " / " + length);
             //
             return false;
         }
@@ -222,7 +222,7 @@ public class Validator_MCR {
             //
             setNotValidated(jli, Color.blue);
             //
-            setToolTip(jli, MSG.LANG("Input is to long") + " " + length);
+            setToolTip(jli, MSG.LANG("Input is too long") + " " + length);
             //
             return false;
         }

@@ -70,7 +70,7 @@ public class MSG {
         DICT.put("Confirm", "Bestätigen");
         DICT.put("Confirm action?", "Handlung bestätigen?");
         DICT.put("Input contains errors", "Die Eingabe enthält Fehler");
-        DICT.put("Input is to long:", "Die Eingabe ist zu lang");
+        DICT.put("Input is too long:", "Die Eingabe ist zu lang");
         DICT.put("Please choose a row from table", "Bitte eine Reihe von Tabelle auswählen");
         DICT.put("Confirm deletion of: ", "Löschung bestätigen, Code: ");
         DICT.put("Create new ageing code", "Neuen Alterungscode erstellen");

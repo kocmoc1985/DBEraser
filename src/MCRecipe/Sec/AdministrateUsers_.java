@@ -74,10 +74,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
         //#MCRECIPE-INPUT-VALIDATION#
         if (basicTab.fieldsValidated(false)) {
             super.saveButtonClicked(); //To change body of generated methods, choose Tools | Templates.
-            System.out.println("Fields validated");
-        } else {
-            System.out.println("Fields not validated");
-        }
+        } 
     }
 
     @Override
@@ -102,7 +99,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 if (col_name.equals(USER_NAME_FIELD)) {
                     //
                     if (Validator_MCR.validateMaxInputLengthAutomatic(sql, jli)) {
-                        Validator_MCR.checkForSqlReservedWords(jli);
+                        Validator_MCR.checkForSqlReservedWords(jli);//#MCRECIPE-CHECK-SQL-RESERVED-WORDS#
                     }
                     //
                 } else {
@@ -137,6 +134,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, USER_NAME_FIELD, "USER", "", true, true, true);
                 //
                 RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, PASS_FIELD, "PASS", "", true, true, true);
+                pass.setInputLenthValidation(4);
                 //
 //                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "user,poweruser,admin,developer");
                 //

@@ -701,7 +701,7 @@ public class HelpA {
 //            return get_proper_date_yyyy_MM_dd();
 //        }
         //
-        //
+        //#DATE-YYYY-MM-DD-ISSUE-TABLE-INVERT#
         return get_proper_date_yyyy_MM_dd(); // ONLY HAVE IT LIKE THIS!!
     }
 

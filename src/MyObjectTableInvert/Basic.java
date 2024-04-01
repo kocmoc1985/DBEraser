@@ -566,7 +566,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public void automaticFieldUpdate(Table tableInvert) {
         TableInvert ti = (TableInvert) tableInvert;
-        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA.updatedOn());
+        ti.handleAutomaticFieldUpdate("UpdatedOn", HelpA.updatedOn()); // #DATE-YYYY-MM-DD-ISSUE-TABLE-INVERT#
         ti.handleAutomaticFieldUpdate("UpdatedBy", HelpA.updatedBy());
     }
 
