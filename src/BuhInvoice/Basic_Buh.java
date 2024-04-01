@@ -29,7 +29,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 
 /**
- *
+ * ..
  * @author KOCMOC
  */
 public abstract class Basic_Buh extends Basic {
