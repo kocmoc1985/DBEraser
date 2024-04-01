@@ -74,7 +74,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
         //#MCRECIPE-INPUT-VALIDATION#
         if (basicTab.fieldsValidated(false)) {
             super.saveButtonClicked(); //To change body of generated methods, choose Tools | Templates.
-        } 
+        }
     }
 
     @Override

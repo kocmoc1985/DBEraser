@@ -40,11 +40,11 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
     public TableBuilderInvert TABLE_BUILDER_INVERT;
     public String TABLE_NAME = "Recipe_Group";
     public String TABLE_ID = "Recipe_Group_ID";
-    
+
     /**
      * Creates new form AdministrateUsers
      */
-    public AdministrateRecipeGroups_(String title,MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
+    public AdministrateRecipeGroups_(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         initComponents();
         this.TITLE = title;
         this.mc_recipe = mc_recipe;
@@ -54,17 +54,16 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
 
         go();
     }
-    
-    
-    public JTable getJTable(){
+
+    public JTable getJTable() {
         return this.jTable1;
     }
-    
-    private void setUneditableJTable(){
+
+    private void setUneditableJTable() {
         //
         JTable table = getJTable();
         //
-        if(table != null){
+        if (table != null) {
             HelpA.setUneditableJTable(table);
         }
         //
@@ -81,12 +80,12 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         setUneditableJTable();
         setAddButtonToolTipText();
     }
-    
-    public void setAddButtonToolTipText(){
+
+    public void setAddButtonToolTipText() {
         this.jButtonRecipeDetailedAddNewRecipe.setToolTipText("Add new group");
     }
-    
-    public void setTableTitle(){
+
+    public void setTableTitle() {
         jLabel1.setText("RECIPE GROUPS");
     }
 
@@ -113,10 +112,12 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         actionsAfterShowTable();
         //
     }
-    
-    public void actionsAfterShowTable(){
+
+    public void actionsAfterShowTable() {
         HelpA.hideColumnByName(jTable1, "dateCreated");
         HelpA.hideColumnByName(jTable1, "dateChanged");
+        HelpA.hideColumnByName(jTable1, "UpdatedOn");
+        HelpA.hideColumnByName(jTable1, "UpdatedBy");
         HelpA.markLastRowJtable(jTable1);
     }
 
@@ -163,7 +164,7 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
                             + " where " + TABLE_ID + "= " + id;
                     //
                     OUT.showMessage(q);
-                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
+                    TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q, this);
                 } catch (SQLException ex) {
                     Logger.getLogger(Ingredients.class.getName()).log(Level.SEVERE, null, ex);
                     TABLE_BUILDER_INVERT.showMessage(ex.toString());
@@ -314,17 +315,21 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         saveButtonClicked();
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
-    public void saveButtonClicked(){
+    public void saveButtonClicked() {
         saveButtonClicked_b();
     }
-    
-    private void saveButtonClicked_b(){
+
+    private void saveButtonClicked_b() {
         TableInvert ti = (TableInvert) basicTab.TABLE_INVERT;
         ti.handleAutomaticFieldUpdate("dateChanged", HelpA.updatedOn());
         basicTab.saveChangesTableInvert__no_check(ti);
+        int selected_row = jTable1.getSelectedRow();
         showTable();
+        //
+        HelpA.markGivenRow(jTable1, selected_row); //#DATE-YYYY-MM-DD-ISSUE-TABLE-INVERT#HERE-IS-THE-FIX#
+        clikedJtable1();
     }
-    
+
     private void jButtonRecipeDetailedAddNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
         addEntry();
     }//GEN-LAST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
@@ -354,10 +359,10 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
         HelpA.markFirstRowJtable(jTable1);
         clikedJtable1();
     }
-    
-    public String addEntryQuery(){
+
+    public String addEntryQuery() {
         return "insert into " + TABLE_NAME
-                + " values('NEW','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy()+ "')";
+                + " values('NEW','','','','','" + HelpA.updatedOn() + "','" + HelpA.updatedBy() + "')";
     }
 
     private void addEntry() {

@@ -1,10 +1,10 @@
-[DATE YYYY-MM-DD SHOW WHEN SAVING ISSUE][2024-04-01][#DATE-YYYY-MM-DD-ISSUE-TABLE-INVERT#]
+[DATE YYYY-MM-DD SHOW WHEN SAVING ISSUE][2024-04-01][#DATE-YYYY-MM-DD-ISSUE-TABLE-INVERT#][DONE]
 This is not a big issue or even not an issue at all but visually not so nice.
 Test it by updating a user in look at "Updated On"
 
 
 
-[FORBIDDEN USER NAMES][2024-04-01][DONE][#MCRECIPE-CHECK-SQL-RESERVED-WORDS#]
+[FORBIDDEN USER NAMES][2024-04-01][#MCRECIPE-CHECK-SQL-RESERVED-WORDS#][DONE]
 
 If you create a user with a "sql reserved name" as "from, create, user" etc. - 
 this will cause problem when automatically creating a table: [Create_Recipe_Tempory1_USER 'E 4373/B1 80','0','user'].

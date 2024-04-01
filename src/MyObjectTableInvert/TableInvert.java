@@ -162,7 +162,9 @@ public class TableInvert extends Table implements ControlsActionsIF {
         //
         for (TableRow tableRow : rows_list) {
             //
-            TableRowInvertB row = (TableRowInvertB) tableRow;
+            TableRowInvert row = (TableRowInvert)tableRow; // Changed on 2024-04-01
+            //
+//            TableRowInvertB row = (TableRowInvertB) tableRow; // Changed on 2024-04-01
             //
             RowDataInvert rdi = row.getRowConfig();
             //

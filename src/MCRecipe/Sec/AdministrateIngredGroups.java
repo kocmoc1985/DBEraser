@@ -81,7 +81,7 @@ public class AdministrateIngredGroups extends AdministrateRecipeGroups_ {
                 //
                 try {
                     String q = "select * from " + TABLE_NAME
-                            + " where " + TABLE_ID + "= " + id;
+                            + " where " + TABLE_ID + "=" + id;
                     //
                     OUT.showMessage(q);
                     TABLE_INVERT = TABLE_BUILDER_INVERT.buildTable(q,this);
