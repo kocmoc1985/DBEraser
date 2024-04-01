@@ -195,6 +195,11 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
                 }
                 return false;
             }
+
+            @Override
+            public boolean fieldsValidated(boolean insert) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
         };
     }
 

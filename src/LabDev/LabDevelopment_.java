@@ -229,7 +229,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
             return "";
         }
         //
-        if (GP.IS_DATE_FORMAT_DE) {
+        if (GP.IS_DATE_FORMAT_DE_RUS) {
             try {
                 return HelpA.dateToDateConverter(date, GP.DATE_FORMAT_COMMON, GP.DATE_FORMAT_DE_RUS);
             } catch (ParseException ex) {
@@ -541,7 +541,7 @@ public class LabDevelopment_ extends LabDevTab_ implements MouseListener {
 //        projektnr_projectno.setInputLenthValidation(10);
         //
         RowDataInvert fertigwunsch_expready = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "EXPREADY", T_INV.LANG("EXPREADY"), "", true, true, false);
-        fertigwunsch_expready.setValidateDate();
+        fertigwunsch_expready.setValidateDate();//#MCRECIPE-SET-VALIDATE-DATE#
         //
         RowDataInvert ziel1_aimline1 = new RowDataInvert(TABLE__MC_CPWORDER, "ID", false, "AIMLINE1", T_INV.LANG("TARGET 1"), "", true, true, false);
         ziel1_aimline1.enableToolTipTextJTextField();

@@ -98,10 +98,9 @@ public abstract class BasicTab extends Basic  {
         Validator_MCR.validateMaxInputLengthAutomatic(sql, jli);
         //
         //
-        //
         if (jli.getValidateDate()) {
             //
-            Validator_MCR.validateDate(jli);
+            Validator_MCR.validateDate(jli); // #MCRECIPE-SET-VALIDATE-DATE#
             //
         } //Manual input length validation below. YES IS USED [2020-11-24]
         else if (jli.getInputLengthValidationManual() > 0) {

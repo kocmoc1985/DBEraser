@@ -330,10 +330,10 @@ public class MC_RECIPE extends javax.swing.JFrame implements MouseListener, Item
 
     private void defineLanguage() {
         if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_COMPOUNDS)) {
-            GP.IS_DATE_FORMAT_DE = true;
+            GP.IS_DATE_FORMAT_DE_RUS = true;
 //            LNG.LANG_ENG = false;
         } else if (GP.COMPANY_NAME.equals(GP.COMPANY_NAME_DATWILLER)) {
-            GP.IS_DATE_FORMAT_DE = true;
+            GP.IS_DATE_FORMAT_DE_RUS = true;
 //            LNG.LANG_ENG = false;
         } else {
 //            LNG.LANG_ENG = true;

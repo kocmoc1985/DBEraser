@@ -437,7 +437,7 @@ public class TableBuilderInvert {
         //
         Locale locale = Locale.getDefault();
         //
-        if (GP.IS_DATE_FORMAT_DE || locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")) {
+        if (GP.IS_DATE_FORMAT_DE_RUS || locale == Locale.GERMAN || locale == Locale.GERMANY || locale.getCountry().equals("CH")) {
             return HelpA.millisToDateConverter("" + millis, GP.DATE_FORMAT_DE_RUS);
         } else {
             return HelpA.millisToDateConverter("" + millis, GP.DATE_FORMAT_COMMON);

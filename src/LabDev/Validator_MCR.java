@@ -203,7 +203,7 @@ public class Validator_MCR {
             //
             setNotValidated(jli, Color.blue);
             //
-            setToolTip(jli, MSG.LANG("Input is to long") + " " + length);
+            setToolTip(jli, MSG.LANG("Input is to long:") + " " + val.length() + " / " + length);
             //
             return false;
         }
@@ -338,12 +338,12 @@ public class Validator_MCR {
     }
     
     public static boolean validateDate(JLinkInvert jli) {
-        //
+        //#MCRECIPE-SET-VALIDATE-DATE#
         String val = jli.getValue();
         //
         boolean validated;
         //
-        if (GP.IS_DATE_FORMAT_DE) {
+        if (GP.IS_DATE_FORMAT_DE_RUS) {
             validated = validate_(DATE_DD_MM_YYYY, val);
         } else {
             validated = validate_(DATE_YYYY_MM_DD, val);
@@ -352,7 +352,7 @@ public class Validator_MCR {
         if (validated) { // HelpA.isDateValid(val)
             return setValidated(jli);
         } else {
-            setToolTip(jli, "Date format not correct");
+            setToolTip(jli, MSG.LANG("Date format not correct"));
             return setNotValidated(jli);
         }
         //

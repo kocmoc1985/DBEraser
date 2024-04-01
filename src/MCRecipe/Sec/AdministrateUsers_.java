@@ -39,6 +39,8 @@ import javax.swing.JTable;
 public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
 
     public static final String USER_ADM_TBL_NAME = "MCRecipeUsers";
+    public static final String USER_NAME_FIELD = "userName";
+    public static final String PASS_FIELD = "pass";
 
     public AdministrateUsers_(String title, MC_RECIPE mc_recipe, SqlBasicLocal sql, SqlBasicLocal sql_additional) throws HeadlessException {
         super(title, mc_recipe, sql, sql_additional);
@@ -70,15 +72,13 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
     @Override
     public void saveButtonClicked() {
         //#MCRECIPE-INPUT-VALIDATION#
-        if(basicTab.fieldsValidated(false)){
+        if (basicTab.fieldsValidated(false)) {
             super.saveButtonClicked(); //To change body of generated methods, choose Tools | Templates.
-             System.out.println("Fields validated");
-        }else{
+            System.out.println("Fields validated");
+        } else {
             System.out.println("Fields not validated");
         }
     }
-    
-    
 
     @Override
     public void initBasicTab() {
@@ -92,10 +92,6 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
             public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
                 //#MCRECIPE-INPUT-VALIDATION#
                 //
-                //#MCRECIPE-INPUT-VALIDATION-BASIC-SHALL-BE-CHECKED#
-//                super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
-                //
-                //
                 JLinkInvert jli = (JLinkInvert) ke.getSource();
                 //
                 String col_name = ti.getCurrentColumnName(ke.getSource());
@@ -103,8 +99,15 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 // You call this one here to unmark the row marked in RED when the row is not empty
                 containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
                 //
-                if (col_name.equals("userName")) {
-                    Validator_MCR.checkForSqlReservedWords(jli);
+                if (col_name.equals(USER_NAME_FIELD)) {
+                    //
+                    if (Validator_MCR.validateMaxInputLengthAutomatic(sql, jli)) {
+                        Validator_MCR.checkForSqlReservedWords(jli);
+                    }
+                    //
+                } else {
+                    // Perform basic checking for other fields
+                    super.keyReleasedForward(ti, ke);
                 }
                 //
             }
@@ -131,9 +134,9 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 //
                 RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "id", "ID", "", true, true, false);
                 //
-                RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "userName", "USER", "", true, true, true);
+                RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, USER_NAME_FIELD, "USER", "", true, true, true);
                 //
-                RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, true);
+                RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, PASS_FIELD, "PASS", "", true, true, true);
                 //
 //                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "user,poweruser,admin,developer");
                 //

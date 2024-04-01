@@ -70,7 +70,7 @@ public class MSG {
         DICT.put("Confirm", "Bestätigen");
         DICT.put("Confirm action?", "Handlung bestätigen?");
         DICT.put("Input contains errors", "Die Eingabe enthält Fehler");
-        DICT.put("Input is to long", "Die Eingabe ist zu lang");
+        DICT.put("Input is to long:", "Die Eingabe ist zu lang");
         DICT.put("Please choose a row from table", "Bitte eine Reihe von Tabelle auswählen");
         DICT.put("Confirm deletion of: ", "Löschung bestätigen, Code: ");
         DICT.put("Create new ageing code", "Neuen Alterungscode erstellen");
@@ -87,17 +87,14 @@ public class MSG {
         DICT.put("Table row not chosen" , "Tabellenzeile nicht ausgewählt");
         DICT.put("Specify new note value" , "Bitte, einen neuen Notenwert eingeben");
         DICT.put("Id is missing, cannot continue" , "Id fehlt, kann nicht weitergehen");
-        DICT.put("Copy order " , "Auftrag kopieren "); // Create new test procedure
-        //
+        DICT.put("Copy order " , "Auftrag kopieren "); // Create new test procedure        //
         DICT.put("The length of input exceeded the limit" , "Die Länge der Dateneigabe ist zu lang");
         DICT.put("SQL ERROR, could not update" , "SQL FEHLER, Speicherung nicht möglich");
-        //
         DICT.put("Confirm deletion of marked row" , "Löschung der ausgewählten Reihe bestätigen");
-        //
         DICT.put("Cannot save, check marked rows", "Kann nicht löschen");
         DICT.put("Fields marked with red cannot be empty", "Diesen eintrag kann nicht leer sein");
-        //
         DICT.put("This word cannot be used as a user name", "Disen Name kann nicht alls Benutzename benutzt werden");
+        DICT.put("Date format not correct", "Format der Datei nicht richtig");
     }
     //#MCRECIPE-INPUT-VALIDATION#
     public static String cannotSaveCheckMarkedRowsMsg(){
