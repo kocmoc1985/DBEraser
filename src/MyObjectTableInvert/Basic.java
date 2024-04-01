@@ -52,6 +52,7 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
 
     public Basic() {
     }
+    
 
     public String getValueHashMap(String value) {
         //
@@ -737,6 +738,8 @@ public abstract class Basic implements SaveIndicator.SaveIndicatorIF {
                     if (cde.getActualValue().isEmpty() || cde.getActualValue().equals("NULL")) {
                         cde.markInvalidated();
                         contains = true;
+                    }else{
+                        cde.markValidated();
                     }
                     //
                 }

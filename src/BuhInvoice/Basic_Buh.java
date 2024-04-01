@@ -174,6 +174,7 @@ public abstract class Basic_Buh extends Basic {
         return comboString;
     }
 
+    // Moved to Basic.java on 2024-04-01
     protected abstract boolean fieldsValidated(boolean insert);
 
     @Override

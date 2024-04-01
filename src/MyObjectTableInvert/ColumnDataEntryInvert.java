@@ -77,6 +77,20 @@ public class ColumnDataEntryInvert {
         }
         //
     }
+    
+    public void markValidated() {
+        //
+        if (parent != null && parent instanceof JComponent) {
+            JComponent jc = (JComponent) parent;
+            jc.setBackground(Color.white);
+        }
+        //
+        if (object instanceof JComboBoxInvert) {
+            JComboBoxInvert jcbi = (JComboBoxInvert) object;
+            jcbi.setBackground(Color.white);
+        }
+        //
+    }
 
     /**
      * [2020-08-03]

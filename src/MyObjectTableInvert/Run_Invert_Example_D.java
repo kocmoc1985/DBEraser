@@ -250,4 +250,9 @@ public class Run_Invert_Example_D extends BasicTab implements MouseListener {
     public void fillNotes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean fieldsValidated(boolean insert) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

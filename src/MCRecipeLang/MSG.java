@@ -94,6 +94,18 @@ public class MSG {
         //
         DICT.put("Confirm deletion of marked row" , "Löschung der ausgewählten Reihe bestätigen");
         //
+        DICT.put("Cannot save, check marked rows", "Kann nicht löschen");
+        DICT.put("Fields marked with red cannot be empty", "Diesen eintrag kann nicht leer sein");
+        //
+        DICT.put("This word cannot be used as a user name", "Disen Name kann nicht alls Benutzename benutzt werden");
+    }
+    //#MCRECIPE-INPUT-VALIDATION#
+    public static String cannotSaveCheckMarkedRowsMsg(){
+        return LANG("Cannot save, check marked rows");
+    }
+    
+     public static String cannotSaveObligatoryRowEmpty(){
+        return LANG("Fields marked with red cannot be empty");
     }
 
     public static String LANG(String word) {

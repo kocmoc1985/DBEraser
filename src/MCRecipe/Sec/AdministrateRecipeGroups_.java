@@ -306,12 +306,20 @@ public class AdministrateRecipeGroups_ extends javax.swing.JFrame implements Mou
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
+        saveButtonClicked();
+    }//GEN-LAST:event_jButton_SaveActionPerformed
+
+    public void saveButtonClicked(){
+        saveButtonClicked_b();
+    }
+    
+    public void saveButtonClicked_b(){
         TableInvert ti = (TableInvert) basicTab.TABLE_INVERT;
         ti.handleAutomaticFieldUpdate("dateChanged", HelpA.updatedOn());
         basicTab.saveChangesTableInvert__no_check(ti);
         showTable();
-    }//GEN-LAST:event_jButton_SaveActionPerformed
-
+    }
+    
     private void jButtonRecipeDetailedAddNewRecipeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed
         addEntry();
     }//GEN-LAST:event_jButtonRecipeDetailedAddNewRecipeActionPerformed

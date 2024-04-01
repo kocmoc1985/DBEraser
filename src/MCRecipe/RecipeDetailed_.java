@@ -1537,6 +1537,11 @@ public class RecipeDetailed_ extends BasicTab {
         mCRecipe2.recipeDetailedTabbClicked();
     }
 
+    @Override
+    public boolean fieldsValidated(boolean insert) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public class IngredientToDelete {
 
         private int row_id;

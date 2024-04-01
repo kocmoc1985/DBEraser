@@ -21,6 +21,7 @@ import forall.SqlBasicLocal;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -43,6 +44,26 @@ public class Validator_MCR {
     private static final Pattern DATE_YYYY_MM_DD = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
     private static final Pattern DATE_DD_MM_YYYY = Pattern.compile("\\d{2}.\\d{2}.\\d{4}");
     public static final Pattern EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static final HashSet<String> SQL_RESERVED_WORDS = new HashSet<>();
+    
+    static {
+        SQL_RESERVED_WORDS.add("user");
+        SQL_RESERVED_WORDS.add("from");
+    }
+    
+    public static boolean checkForSqlReservedWords(JLinkInvert jli) {
+        //#MCRECIPE-INPUT-VALIDATION#
+        String val = jli.getValue();
+        //
+        if (SQL_RESERVED_WORDS.contains(val.toLowerCase()) == false) {
+            setToolTip(jli, null);
+            return setValidated(jli);
+        } else {
+            setToolTip(jli, MSG.LANG("This word cannot be used as a user name"));
+            return setNotValidated(jli);
+        }
+        //
+    }
 
     /**
      * [2020-08-19]
@@ -97,21 +118,21 @@ public class Validator_MCR {
             setValidated((JLinkInvert) box);
         }
     }
-
+    
     private static void unsetToolTip(JLinkInvert jli) {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
             jc.setToolTipText(null);
         }
     }
-
+    
     private static void setToolTip(JLinkInvert jli, String message) {
         if (jli instanceof JComponent) {
             JComponent jc = (JComponent) jli;
             jc.setToolTipText(message);
         }
     }
-
+    
     public static boolean validateMaxInputLengthAutomatic(SqlBasicLocal sql, JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -187,7 +208,7 @@ public class Validator_MCR {
             return false;
         }
     }
-
+    
     public static boolean validateMaxInputLength(JLinkInvert jli, int length) {
         //
         String val = jli.getValue();
@@ -206,7 +227,7 @@ public class Validator_MCR {
             return false;
         }
     }
-
+    
     public static boolean validatePercentInput(JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -225,14 +246,14 @@ public class Validator_MCR {
         //
         return setNotValidated(jli);
     }
-
+    
     public static void resetValidation(JComponent jc) {
         if (jc instanceof JLinkInvert) {
             JLinkInvert jli = (JLinkInvert) jc;
             setValidated(jli);
         }
     }
-
+    
     private static boolean setValidated(JLinkInvert jli) {
         //
         unsetToolTip(jli);
@@ -244,7 +265,7 @@ public class Validator_MCR {
         jli.setValidated(true);
         return true;
     }
-
+    
     private static boolean setNotValidated(JLinkInvert jli) {
         TableRowInvert tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
@@ -252,7 +273,7 @@ public class Validator_MCR {
         jli.setValidated(false);
         return false;
     }
-
+    
     private static boolean setNotValidated(JLinkInvert jli, Color color) {
         TableRowInvert tri = jli.getParentObj();
         HeaderInvert hi = tri.getHeaderInvert();
@@ -289,15 +310,15 @@ public class Validator_MCR {
         }
         //
     }
-
+    
     public static boolean validateOrgnr(JLinkInvert jli) {
         return validate(jli, ORGNR);
     }
-
+    
     public static boolean validateEmail(JLinkInvert jli) {
         return validate(jli, EMAIL);
     }
-
+    
     public static boolean validate(JLinkInvert jli, Pattern pattern) {
         //
         String val = jli.getValue();
@@ -315,7 +336,7 @@ public class Validator_MCR {
         }
         //
     }
-
+    
     public static boolean validateDate(JLinkInvert jli) {
         //
         String val = jli.getValue();
@@ -336,12 +357,12 @@ public class Validator_MCR {
         }
         //
     }
-
+    
     private static boolean validate_(Pattern pattern, String stringToCheck) {
         Matcher matcher = pattern.matcher(stringToCheck);
         return matcher.matches();
     }
-
+    
     private static Color getJTextFieldInitialColor() {
         JTextField field = new JTextField();
         return field.getForeground();

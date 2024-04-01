@@ -377,4 +377,9 @@ public class LabDevMaterialInfoTab extends LabDevTab_ implements ActionListener,
     public void mouseExited(MouseEvent e) {
     }
 
+    @Override
+    public boolean fieldsValidated(boolean insert) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

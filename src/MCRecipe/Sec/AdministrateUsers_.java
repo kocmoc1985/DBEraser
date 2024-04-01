@@ -4,7 +4,10 @@
  */
 package MCRecipe.Sec;
 
+import BuhInvoice.DB;
 import BuhInvoice.JSon;
+import BuhInvoice.sec.LANG;
+import LabDev.Validator_MCR;
 import MCRecipe.Ingredients;
 import MCRecipeLang.T_INV;
 import MCRecipe.MC_RECIPE;
@@ -13,13 +16,17 @@ import static MCRecipe.MC_RECIPE.ROLE_ADVANCED_USER;
 import static MCRecipe.MC_RECIPE.ROLE_COMMON_USER;
 import static MCRecipe.MC_RECIPE.ROLE_DEVELOPER;
 import MCRecipe.SQL_B;
+import MCRecipeLang.MSG;
 import MyObjectTable.SaveIndicator;
 import MyObjectTableInvert.BasicTab;
+import MyObjectTableInvert.JLinkInvert;
 import MyObjectTableInvert.RowDataInvert;
 import MyObjectTableInvert.TableBuilderInvert;
+import MyObjectTableInvert.TableInvert;
 import forall.HelpA;
 import forall.SqlBasicLocal;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,20 +68,72 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
     }
 
     @Override
+    public void saveButtonClicked() {
+        //#MCRECIPE-INPUT-VALIDATION#
+        if(basicTab.fieldsValidated(false)){
+            super.saveButtonClicked(); //To change body of generated methods, choose Tools | Templates.
+             System.out.println("Fields validated");
+        }else{
+            System.out.println("Fields not validated");
+        }
+    }
+    
+    
+
+    @Override
     public void initBasicTab() {
         //
         TABLE_NAME = USER_ADM_TBL_NAME;
         TABLE_ID = "id";
         //
         basicTab = new BasicTab(sql, sql_additional, mc_recipe) {
+
+            @Override
+            public void keyReleasedForward(TableInvert ti, KeyEvent ke) {
+                //#MCRECIPE-INPUT-VALIDATION#
+                //
+                //#MCRECIPE-INPUT-VALIDATION-BASIC-SHALL-BE-CHECKED#
+//                super.keyReleasedForward(ti, ke); //To change body of generated methods, choose Tools | Templates.
+                //
+                //
+                JLinkInvert jli = (JLinkInvert) ke.getSource();
+                //
+                String col_name = ti.getCurrentColumnName(ke.getSource());
+                //
+                // You call this one here to unmark the row marked in RED when the row is not empty
+                containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert());
+                //
+                if (col_name.equals("userName")) {
+                    Validator_MCR.checkForSqlReservedWords(jli);
+                }
+                //
+            }
+
+            @Override
+            public boolean fieldsValidated(boolean insert) {
+                // This one is called when the saved button is pressed
+                //#MCRECIPE-INPUT-VALIDATION#
+                if (containsEmptyObligatoryFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                    HelpA.showNotification(MSG.cannotSaveObligatoryRowEmpty());
+                    return false;
+                }
+                //
+                if (containsInvalidatedFields(TABLE_INVERT, DB.START_COLUMN, getConfigTableInvert())) {
+                    HelpA.showNotification(MSG.cannotSaveCheckMarkedRowsMsg());
+                    return false;
+                }
+                //
+                return true;
+            }
+
             @Override
             public RowDataInvert[] getConfigTableInvert() {
                 //
                 RowDataInvert id = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "id", "ID", "", true, true, false);
                 //
-                RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "userName", "USER", "", true, true, false);
+                RowDataInvert user = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "userName", "USER", "", true, true, true);
                 //
-                RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, false);
+                RowDataInvert pass = new RowDataInvert(TABLE_NAME, TABLE_ID, false, "pass", "PASS", "", true, true, true);
                 //
 //                String fixedComboValues_b = JSon._get_simple(HelpA.getValueSelectedRow(jTable1, "role"), "user,poweruser,admin,developer");
                 //
@@ -142,6 +201,7 @@ public class AdministrateUsers_ extends AdministrateRecipeGroups_ {
                 }
                 return false;
             }
+
         };
     }
 }

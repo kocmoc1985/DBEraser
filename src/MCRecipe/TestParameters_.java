@@ -295,4 +295,9 @@ public class TestParameters_ extends BasicTab {
         return false;
     }
 
+    @Override
+    public boolean fieldsValidated(boolean insert) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

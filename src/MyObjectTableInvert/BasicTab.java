@@ -45,6 +45,8 @@ public abstract class BasicTab extends Basic  {
         this.sql_additional = sql_additional;
     }
     
+    public abstract boolean fieldsValidated(boolean insert);
+    
     public void saveChangesTableInvert__no_check(Table tableInvert){
         super.saveChangesTableInvert(tableInvert);
     }
