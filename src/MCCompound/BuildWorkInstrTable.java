@@ -94,7 +94,7 @@ public class BuildWorkInstrTable {
 
     public static void main(String[] args) {
 //        build(WI_34_0_1637, "");
-         build(WI_00_0_1803, "");
+         build(WI_02_8_1595__DOUBLE_SWEEP, "");
     }
 
     private static String[] getHeader(int sweeps_in_row) {

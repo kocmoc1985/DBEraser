@@ -31,6 +31,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -144,16 +145,16 @@ public class FixedQueryTool_FED_BCR extends javax.swing.JFrame implements Runnab
             } else if (dbtype.equals(ODBC)) {
                 sql.connectODBC(odbc_user, odbc_name, odbc);
             }
-            addToOutPutWindow("Connection to " + host + " / " + db_name + " established");
+            addToOutPutWindow(jTextArea_output,"Connection to " + host + " / " + db_name + " established");
 
         } catch (SQLException ex) {
-            addToOutPutWindow("Connection to " + host + " / " + db_name + " failed: " + ex);
+            addToOutPutWindow(jTextArea_output,"Connection to " + host + " / " + db_name + " failed: " + ex);
             Logger.getLogger(FQ.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void addToOutPutWindow(String str) {
-        jTextArea_output.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
+    private void addToOutPutWindow(JTextArea jtxt,String str) {
+        jtxt.append("\n " + HelpA.get_proper_date_time_same_format_on_all_computers() + " " + str);
     }
 
     private String[] getHeaders(ResultSet rs) throws SQLException {

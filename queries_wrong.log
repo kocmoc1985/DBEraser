@@ -1,0 +1,5 @@
+[2024-06-16 11:56:25]   delete from npmc_limits_by_recipe where nr = 11
+[2024-06-16 11:56:25]   insert into npmc_limits_by_recipe values('60.0','30.0','80.0','50.0','40.0')
+[2024-06-16 11:57:10]   delete from npmc_limits_by_recipe where nr = 11
+[2024-06-16 11:57:11]   insert into npmc_limits_by_recipe values('60.0','30.0','80.0','50.0','40.0')
+[2024-06-16 12:02:06]   insert into npmc_limits_by_recipe values('65','30.0','80.0','50.0','40.0')

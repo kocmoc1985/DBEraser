@@ -93,8 +93,8 @@ public class SQL_A_ {
      */
     public static String recipe_additional_fill_combo_orders(String PROC, String param1) {
         return "SELECT * FROM " + PROC + " ("
-                + quotes(param1, false) + ")"
-                + " order by [order] desc";
+                + quotes(param1, false) + ")";
+//                + " order by [order] desc"; // changed on 2024-04-03
     }
 
     /**
