@@ -3,3 +3,8 @@
 [2024-06-16 11:57:10]   delete from npmc_limits_by_recipe where nr = 11
 [2024-06-16 11:57:11]   insert into npmc_limits_by_recipe values('60.0','30.0','80.0','50.0','40.0')
 [2024-06-16 12:02:06]   insert into npmc_limits_by_recipe values('65','30.0','80.0','50.0','40.0')
+[2024-06-16 14:01:49]   select * from npmc_limits_all_recipes order by recipe desc
+[2024-06-16 14:11:25]   delete from npmc_limits_all_recipes where recipe = 1
+[2024-06-16 14:11:25]   insert into npmc_limits_all_recipes values('1','7','0.0','0.0')
+[2024-06-16 14:22:40]   insert into npmc_limits_all_recipes values('7','0.0','0.0')
+[2024-06-16 15:10:33]   insert into npmc_limits_all_recipes values('1','9','7.0','0.0')

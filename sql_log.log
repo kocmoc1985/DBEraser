@@ -3,3 +3,8 @@
 [2024-06-16 11:57:10]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'nr' in 'where clause'
 [2024-06-16 11:57:11]   java.sql.SQLException: Column count doesn't match value count at row 1
 [2024-06-16 12:02:06]   java.sql.SQLException: Column count doesn't match value count at row 1
+[2024-06-16 14:01:49]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'recipe' in 'order clause'
+[2024-06-16 14:11:25]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'recipe' in 'where clause'
+[2024-06-16 14:11:25]   com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+[2024-06-16 14:22:40]   java.sql.SQLException: Column count doesn't match value count at row 1
+[2024-06-16 15:10:33]   com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
