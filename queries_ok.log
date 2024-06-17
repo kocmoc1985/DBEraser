@@ -66,3 +66,49 @@
 [2024-06-16 15:13:27]   select * from npmc_limits_by_recipe order by recipe desc
 [2024-06-16 19:18:37]   select * from npmc_limits_by_recipe order by recipe desc
 [2024-06-16 19:31:01]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:08:33]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:08:35]   select * from npmc_limits_all_recipes order by id desc
+[2024-06-16 20:09:21]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:11:59]   select * from npmc_limits_all_recipes order by id asc
+[2024-06-16 20:12:07]   delete from npmc_limits_all_recipes where id = 2
+[2024-06-16 20:12:07]   insert into npmc_limits_all_recipes values('2','test_limit_a','1')
+[2024-06-16 20:12:10]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:12:10]   select * from npmc_limits_all_recipes order by id asc
+[2024-06-16 20:12:33]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:12:37]   select * from npmc_limits_all_recipes order by id asc
+[2024-06-16 20:17:04]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:17:06]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:18:07]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:18:08]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:20:06]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:20:08]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:22:28]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:22:29]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:23:30]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:27:34]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:27:36]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:29:18]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:29:19]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:29:27]   delete from npmc_limits_all_recipes where limit_name = 'test_limit_a'
+[2024-06-16 20:29:27]   insert into npmc_limits_all_recipes values('test_limit_a','9')
+[2024-06-16 20:29:29]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:29:30]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:29:31]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:29:40]   delete from npmc_limits_by_recipe where recipe = '11'
+[2024-06-16 20:29:40]   insert into npmc_limits_by_recipe values('11','280','50.0','0.0','0.0','0.0')
+[2024-06-16 20:29:43]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:29:43]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:29:45]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:29:51]   delete from npmc_limits_all_recipes where limit_name = 'test_limit_b'
+[2024-06-16 20:29:51]   insert into npmc_limits_all_recipes values('test_limit_b','55')
+[2024-06-16 20:29:58]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:29:59]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:30:08]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-16 20:35:10]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-16 20:35:22]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-17 11:03:07]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-17 11:03:47]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-17 11:03:49]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-06-17 11:03:50]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-17 11:47:43]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-06-17 11:51:25]   select * from npmc_limits_by_recipe order by recipe desc

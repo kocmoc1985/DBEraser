@@ -68,7 +68,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
     private static final String QUERY_MAIN_A = "select * from " + TABLE_NAME_A + " order by recipe desc";
     //
     private static final String TABLE_NAME_B = "npmc_limits_all_recipes";
-    private static final String QUERY_MAIN_B = "select * from " + TABLE_NAME_B + " order by id desc";
+    private static final String QUERY_MAIN_B = "select * from " + TABLE_NAME_B + " order by limit_name desc";
     //
     private static String CURRENT_TABLE = TABLE_NAME_A;
     private String CURRENT_QUERY = QUERY_MAIN_A;
@@ -84,7 +84,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         connect();
         this.setIconImage(new ImageIcon(GP.IMAGE_ICON_URL).getImage()); // maximize window
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setTitle("MCBarcodes (" + monitor.currentPid() + ")");
+        this.setTitle("OnlineAlarm limits (" + monitor.currentPid() + ")");
         //
         jButton1.setEnabled(false);
         //
@@ -394,7 +394,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         if (CURRENT_TABLE.equals(TABLE_NAME_A)) {
             delete_selected_row(CURRENT_TABLE, "recipe");
         } else if (CURRENT_TABLE.equals(TABLE_NAME_B)) {
-            delete_selected_row(CURRENT_TABLE, "id");
+            delete_selected_row(CURRENT_TABLE, "limit_name");
         }
         //
         q = build_insert_query(CURRENT_TABLE, jTable1, SELECTED_ROW, false);
@@ -473,7 +473,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
     }
 
     private void delete_selected_row(String table_name, String where_col_name) {
-        String q = "delete from " + table_name + " where " + where_col_name + " = " + jTable1.getValueAt(SELECTED_ROW, 0);
+        String q = "delete from " + table_name + " where " + where_col_name + " = '" + jTable1.getValueAt(SELECTED_ROW, 0) + "'";
         execute_query_with_result_output(q);
     }
 

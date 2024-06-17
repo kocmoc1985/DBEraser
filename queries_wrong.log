@@ -8,3 +8,11 @@
 [2024-06-16 14:11:25]   insert into npmc_limits_all_recipes values('1','7','0.0','0.0')
 [2024-06-16 14:22:40]   insert into npmc_limits_all_recipes values('7','0.0','0.0')
 [2024-06-16 15:10:33]   insert into npmc_limits_all_recipes values('1','9','7.0','0.0')
+[2024-06-16 20:17:40]   delete from npmc_limits_all_recipes where id = test_limit_a
+[2024-06-16 20:17:40]   insert into npmc_limits_all_recipes values('test_limit_a','7')
+[2024-06-16 20:18:15]   delete from npmc_limits_all_recipes where id = test_limit_a
+[2024-06-16 20:18:15]   insert into npmc_limits_all_recipes values('test_limit_a','7')
+[2024-06-16 20:20:14]   delete from npmc_limits_all_recipes where limit_name = test_limit_a
+[2024-06-16 20:20:14]   insert into npmc_limits_all_recipes values('test_limit_a','5')
+[2024-06-16 20:22:38]   delete from npmc_limits_all_recipes where limit_name = test_limit_b
+[2024-06-16 20:22:38]   insert into npmc_limits_all_recipes values('test_limit_b','5')
