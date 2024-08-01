@@ -717,7 +717,7 @@ public class InvoiceB extends Basic_Buh {
             json = bim.getSELECT_fakturaKundId__doubleWhere(fakturaKundId);
         } else if (bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER.equals(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD)) {
             // [#INTERVAL-CHOOSE_INVOICES#]
-            json = bim.getSELECT_trippleWhere(
+            json = bim.getSELECT_trippleWhere( // #TEMP-TAG-AA1#
                     DB.BUH_KUND__ID, "777",
                     DB.BUH_FAKTURA__FAKTURA_DATUM, bim.getDateChooserWindowDateFrom(),
                     DB.BUH_FAKTURA__FAKTURA_DATUM + "_tmp", bim.getDateChooserWindowDateTo());
@@ -728,7 +728,7 @@ public class InvoiceB extends Basic_Buh {
         try {
             //
             String json_str_return = HelpBuh.executePHP(DB.PHP_SCRIPT_MAIN,
-                    bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, json);
+                    bim.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__FILTER, json); // #TEMP-TAG-AA1#
             //
             //=======
             //

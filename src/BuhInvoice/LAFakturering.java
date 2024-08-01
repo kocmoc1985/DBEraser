@@ -3590,7 +3590,7 @@ public class LAFakturering extends javax.swing.JFrame implements MouseListener, 
     }//GEN-LAST:event_jLabel_create_shortcut_homefolder_options_tabMousePressed
 
     public void searchBetweenTwoDatesBtnPressed() {
-        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt_temp_);
+        toggleFilterBtnPressed(DB.PHP_FUNC_PARAM_GET_KUND_FAKTUROR__TIME_PERIOD, evt_temp_); // #TEMP-TAG-AA1#
     }
 
     public String getDateChooserWindowDateFrom() {

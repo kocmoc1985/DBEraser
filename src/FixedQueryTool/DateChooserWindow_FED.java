@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BuhInvoice.sec;
+package FixedQueryTool;
 
+import BuhInvoice.sec.*;
 import BuhInvoice.GP_BUH;
-import BuhInvoice.LAFakturering;
 import BuhInvoice.Validator;
 import MyObjectTableInvert.JTextFieldInvert;
 import java.awt.event.KeyEvent;
@@ -14,29 +14,29 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
- * [#INTERVAL-CHOOSE_INVOICES#]
- * 
+ * [#INTERVAL-CHOOSE_INVOICES#] #TEMP-TAG-AA1#
+ *  #ALARMS-EXPORT-FROM-ONE-COM#
  * @author MCREMOTE
  */
-public class DateChooserWindow extends javax.swing.JFrame implements KeyListener {
+public class DateChooserWindow_FED extends javax.swing.JFrame implements KeyListener {
 
-    private final LAFakturering bim;
+    private final FixedQueryTool_FED_LIMITS fED_LIMITS;
     private static String dateFrom = null;
     private static String dateTo = null;
 
     /**
      * Creates new form DateChooserWindow
      */
-    public DateChooserWindow(LAFakturering bim) {
+    public DateChooserWindow_FED(FixedQueryTool_FED_LIMITS lIMITS) {
         initComponents();
-        this.bim = bim;
         init();
+        this.fED_LIMITS = lIMITS;
     }
 
     private void init() {
         //
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setTitle(LANG.FRAME_TITLE_5);
+        this.setTitle("Choose date");
         this.setIconImage(GP_BUH.getBuhInvoicePrimIcon());
         //
         jTextField1.addKeyListener(this);
@@ -45,7 +45,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         if (dateFrom == null || dateFrom.isEmpty() || dateTo == null || dateTo.isEmpty()) {
             jTextField1.setText(GP_BUH.getDate_yyyy_MM_dd());
             jTextField2.setText(GP_BUH.getDate_yyyy_MM_dd());
-        }else{
+        } else {
             jTextField1.setText(dateFrom);
             jTextField2.setText(dateTo);
         }
@@ -84,14 +84,14 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Från");
+        jLabel1.setText("From");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Till");
+        jLabel2.setText("To");
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
-        jButton1.setText("Välj");
+        jButton1.setText("Choose");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -99,7 +99,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
         });
         jPanel1.add(jButton1);
 
-        jButton2.setText("Avbryt");
+        jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -119,7 +119,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(0, 125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +132,7 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -141,15 +141,14 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        bim.searchBetweenTwoDatesBtnPressed();
         dateFrom = getDateFrom();
         dateTo = getDateTo();
         this.setVisible(false);
+        this.fED_LIMITS.search_by_date_btn_pressed();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        bim.jToggleButton_intervall_filter.setSelected(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -169,21 +168,22 @@ public class DateChooserWindow extends javax.swing.JFrame implements KeyListener
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DateChooserWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DateChooserWindow_FED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DateChooserWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DateChooserWindow_FED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DateChooserWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DateChooserWindow_FED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DateChooserWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DateChooserWindow_FED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new DateChooserWindow(null).setVisible(true);
+                new DateChooserWindow_FED(null).setVisible(true);
             }
         });
     }

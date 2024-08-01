@@ -10,6 +10,11 @@
  */
 package FixedQueryTool;
 
+import BuhInvoice.DB;
+import BuhInvoice.GP_BUH;
+import BuhInvoice.HelpBuh;
+import BuhInvoice.InvoiceB;
+import BuhInvoice.JSon;
 import DatabaseBrowser.FQ;
 import forall.SimpleLoggerLight;
 import com.jezhumble.javasysmon.JavaSysMon;
@@ -24,6 +29,8 @@ import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +81,8 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
     private String CURRENT_QUERY = QUERY_MAIN_A;
     //
     public static int MAX_ROWS = 100000;
+    //
+    private DateChooserWindow_FED chooserWindow_FED;
 
     /**
      * Creates new form FQ
@@ -91,6 +100,101 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         show_data__table_a();
         //
 
+    }
+
+    public void search_by_date_btn_pressed() {
+        //#ALARMS-EXPORT-FROM-ONE-COM#
+        HelpBuh.DOMAIN_LA = false; // DOMAIN_LA = false: means domain "mixcont.com" active
+        //
+        HelpA.clearAllRowsJTable(jTable1);
+        //
+        fillJTable_header_alarms_report(jTable1);
+        //
+        String json;
+        //
+        String date_from = chooserWindow_FED.getDateFrom();
+        String date_to = chooserWindow_FED.getDateTo();
+        //
+        json = getSELECT_trippleWhere("company", "federalmogul", "date_", date_from, "date_tmp", date_to);
+        //
+        try {
+            //
+            String json_str_return = HelpBuh.executePHP("_json_requests", "get_npmc_alarms_time_period", json);
+            //
+            // Very important replacement 2024-06-19
+            json_str_return = json_str_return.replaceAll("start;", "start");
+            json_str_return = json_str_return.replaceAll("end;", "end");
+            json_str_return = json_str_return.replaceAll("limit;", "limit");
+            json_str_return = json_str_return.replaceAll("value;", "value");
+            json_str_return = json_str_return.replaceAll("_", " ");
+            json_str_return = json_str_return.replaceAll("->", "    ");
+            json_str_return = json_str_return.replaceAll("order ", "order_");
+            json_str_return = json_str_return.replaceAll("date ", "date_");
+            //
+            ArrayList<HashMap<String, String>> alarms = JSon.phpJsonResponseToHashMap(json_str_return);
+            //
+            for (HashMap<String, String> invoice_map : alarms) {
+                addRowJtable(invoice_map, jTable1);
+            }
+            //
+        } catch (Exception ex) {
+            Logger.getLogger(InvoiceB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //
+        HelpA.setColumnWidthByIndex(0, jTable1, 10.0);
+        HelpA.setColumnWidthByIndex(1, jTable1, 10.0);
+        HelpA.setColumnWidthByIndex(2, jTable1, 10.0);
+        HelpA.setColumnWidthByIndex(3, jTable1, 60.0);
+        HelpA.setColumnWidthByIndex(4, jTable1, 10.0);
+        //
+    }
+
+    protected void fillJTable_header_alarms_report(JTable table_) {
+        //
+        //
+        JTable table = table_;
+        //
+        String[] headers = {
+            "RECIPE",
+            "ORDER",
+            "BATCH",
+            "ALARM",
+            "DATE"
+        };
+        //
+        table.setModel(new DefaultTableModel(null, headers));
+        //
+    }
+
+    private void addRowJtable(HashMap<String, String> map, JTable table) {
+        //
+        Object[] jtableRow = new Object[]{
+            map.get("recipe"),
+            map.get("order_"), // hidden
+            map.get("batch"),
+            map.get("alarmdescr"),
+            map.get("date_")
+        };
+        //
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(jtableRow);
+        //
+    }
+
+    private String getSELECT_trippleWhere(String whereColName, String whereValue, String whereColName_b, String whereValue_b, String whereColName_c, String whereValue_c) {
+        //
+        HashMap<String, String> map = new HashMap<>();
+        //
+        map.put("where", whereColName); // $whereCoulunName
+        map.put(whereColName, whereValue); // $whereValue
+        //
+        map.put("where_b", whereColName_b);
+        map.put(whereColName_b, whereValue_b);
+        //
+        map.put("where_c", whereColName_c);
+        map.put(whereColName_c, whereValue_c);
+        //
+        return JSon.hashMapToJSON(map);
     }
 
     private void change_table_columns_names() {
@@ -252,8 +356,10 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_edit = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -277,7 +383,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton2.setText("A");
-        jButton2.setToolTipText("Refresh data");
+        jButton2.setToolTipText("Limits by recipe");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -292,20 +398,38 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_basic/edit.png"))); // NOI18N
-        jButton3.setToolTipText("Select row to be modified");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_basic/edit.png"))); // NOI18N
+        jButton_edit.setToolTipText("Select row to be modified");
+        jButton_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton_editActionPerformed(evt);
             }
         });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton4.setText("B");
-        jButton4.setToolTipText("Refresh data");
+        jButton4.setToolTipText("Limits all recipes");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton5.setText("C");
+        jButton5.setToolTipText("Alarms by date");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons_basic/new.png"))); // NOI18N
+        jButton6.setToolTipText("Export table to Excel");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -322,8 +446,12 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(162, 162, 162)
+                        .addComponent(jButton_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -336,10 +464,13 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                        .addComponent(jButton_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -350,6 +481,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         show_data__table_a();
+        disableEnbaleEditButton(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void show_data__table_a() {
@@ -366,17 +498,33 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         JOptionPane.showMessageDialog(null, "Changes saved");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_editActionPerformed
         SELECTED_ROW = jTable1.getSelectedRow();
         paint_selected_row(SELECTED_ROW);
         //
         jButton1.setEnabled(true);
         //
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton_editActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         show_data__table_b();
+        disableEnbaleEditButton(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        chooserWindow_FED = new DateChooserWindow_FED(this);
+        HelpA.centerAndBringToFront(chooserWindow_FED);
+        disableEnbaleEditButton(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        HelpA.jTableToCSV(jTable1, true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void disableEnbaleEditButton(boolean enabled) {
+        jButton_edit.setEnabled(enabled);
+    }
 
     private void show_data__table_b() {
         CURRENT_TABLE = TABLE_NAME_B;
@@ -527,7 +675,9 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
             java.util.logging.Logger.getLogger(FixedQueryTool_FED_LIMITS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //
-        HelpA.err_output_to_file();
+        if (HelpA.runningInNetBeans() == false) {
+            HelpA.err_output_to_file();
+        }
         //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -539,8 +689,10 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton_edit;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
