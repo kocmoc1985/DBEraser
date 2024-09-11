@@ -45,13 +45,11 @@ public class JTableBasicRepport {
             COLUMNS[i] = colNames.get(i);
         }
         //
-        //
-
     }
 
     private void build(JTable table) {
         try {
-
+            //
             JasperReportBuilderM report = new JasperReportBuilderM();
             //
             report.setTemplate(Templates.reportTemplate);
@@ -60,7 +58,7 @@ public class JTableBasicRepport {
             report.title(cmp.text("MCRecipe"));//shows report title
             report.pageFooter(cmp.pageXofY());//shows number of page at page footer
             report.setDataSource(createDataSource(table));//set datasource
-            report.show(false);
+            report.show(false); // Boolean exit_on_close is sent as parameter
             //
         } catch (DRException e) {
             e.printStackTrace();

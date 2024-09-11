@@ -21,10 +21,11 @@ import java.util.logging.Logger;
  */
 public class ShortBatchFinder extends LostPointsFinder {
 
-    private int length_less_then = 200;
+    private int length_less_then = 100;
 
     public ShortBatchFinder() {
         this.setTitle("ShortBatchFinder");
+        OMSK = true; // ========================================================
     }
 
     @Override

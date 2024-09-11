@@ -108,7 +108,7 @@ public class LostPointsFinder extends javax.swing.JFrame {
             ORDER_NAME_COLUMN = "OrderName";
             //
             try {
-                sql.connectMySql("localhost", "3306", "database_mc", "root", "0000");
+                sql.connectMySql("localhost", "3306", "omsk", "root", "0000");
             } catch (SQLException ex) {
                 Logger.getLogger(LostPointsFinder.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
