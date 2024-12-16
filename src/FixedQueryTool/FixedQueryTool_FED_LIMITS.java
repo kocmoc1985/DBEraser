@@ -29,7 +29,11 @@ import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -114,6 +118,7 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         //
         String date_from = chooserWindow_FED.getDateFrom();
         String date_to = chooserWindow_FED.getDateTo();
+        date_to = get_date_time_plus_some_time_in_ms(date_to, "yyyy-MM-dd", ONE_DAY_MILLIS); // added on 2024-12-16
         //
         json = getSELECT_trippleWhere("company", "federalmogul", "date_", date_from, "date_tmp", date_to);
         //
@@ -147,6 +152,34 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         HelpA.setColumnWidthByIndex(3, jTable1, 60.0);
         HelpA.setColumnWidthByIndex(4, jTable1, 10.0);
         //
+    }
+
+    private static long ONE_DAY_MILLIS = 86400000;
+    
+    private String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    public long dateToMillisConverter3(String date, String date_format) {
+
+        DateFormat formatter = new SimpleDateFormat(date_format);
+        try {
+            return formatter.parse(date).getTime();
+        } catch (ParseException ex) {
+            Logger.getLogger(FixedQueryTool_FED_LIMITS.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+    
+    private String millisToDateConverter(String millis, String format) {
+        DateFormat formatter = new SimpleDateFormat(format); // this works to!
+        long now = Long.parseLong(millis);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(now);
+        return formatter.format(calendar.getTime());
     }
 
     protected void fillJTable_header_alarms_report(JTable table_) {
