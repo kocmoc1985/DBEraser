@@ -197,3 +197,15 @@
 [2024-12-16 18:16:42]   select * from npmc_limits_by_recipe order by recipe desc
 [2024-12-16 18:28:20]   select * from npmc_limits_by_recipe order by recipe desc
 [2024-12-16 18:29:05]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-19 13:22:49]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-19 13:23:16]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-12-19 13:25:24]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-19 13:35:45]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-19 13:59:48]   delete from npmc_limits_by_recipe where recipe = '8'
+[2024-12-19 13:59:48]   insert into npmc_limits_by_recipe values('8','0.0','0.0','0.0','0.0','0.0','500')
+[2024-12-19 14:00:41]   delete from npmc_limits_by_recipe where recipe = '11'
+[2024-12-19 14:00:41]   insert into npmc_limits_by_recipe values('11','280.0','50.0','0.0','0.0','0.0','190')
+[2024-12-19 14:00:54]   delete from npmc_limits_by_recipe where recipe = '7'
+[2024-12-19 14:00:54]   insert into npmc_limits_by_recipe values('7','320.0','200.0','145.0','75.0','65.0','600')
+[2024-12-19 14:01:18]   delete from npmc_limits_by_recipe where recipe = '14'
+[2024-12-19 14:01:18]   insert into npmc_limits_by_recipe values('14','4.0','0.0','0.0','7.0','0.0','220')

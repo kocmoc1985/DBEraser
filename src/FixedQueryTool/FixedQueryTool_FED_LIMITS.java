@@ -87,6 +87,8 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
     public static int MAX_ROWS = 100000;
     //
     private DateChooserWindow_FED chooserWindow_FED;
+    //
+    private static long ONE_DAY_MILLIS = 86400000;
 
     /**
      * Creates new form FQ
@@ -104,6 +106,32 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         show_data__table_a();
         //
 
+    }
+
+    private String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    private long dateToMillisConverter3(String date, String date_format) {
+
+        DateFormat formatter = new SimpleDateFormat(date_format);
+        try {
+            return formatter.parse(date).getTime();
+        } catch (ParseException ex) {
+            Logger.getLogger(FixedQueryTool_FED_LIMITS.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+
+    private String millisToDateConverter(String millis, String format) {
+        DateFormat formatter = new SimpleDateFormat(format); // this works to!
+        long now = Long.parseLong(millis);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(now);
+        return formatter.format(calendar.getTime());
     }
 
     public void search_by_date_btn_pressed() {
@@ -152,34 +180,6 @@ public class FixedQueryTool_FED_LIMITS extends javax.swing.JFrame implements Run
         HelpA.setColumnWidthByIndex(3, jTable1, 60.0);
         HelpA.setColumnWidthByIndex(4, jTable1, 10.0);
         //
-    }
-
-    private static long ONE_DAY_MILLIS = 86400000;
-    
-    private String get_date_time_plus_some_time_in_ms(String date, String date_format, long time_to_plus) {
-        long ms = dateToMillisConverter3(date, date_format);
-        long new_date_in_ms = ms + time_to_plus;
-        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
-        return new_date;
-    }
-
-    public long dateToMillisConverter3(String date, String date_format) {
-
-        DateFormat formatter = new SimpleDateFormat(date_format);
-        try {
-            return formatter.parse(date).getTime();
-        } catch (ParseException ex) {
-            Logger.getLogger(FixedQueryTool_FED_LIMITS.class.getName()).log(Level.SEVERE, null, ex);
-            return -1;
-        }
-    }
-    
-    private String millisToDateConverter(String millis, String format) {
-        DateFormat formatter = new SimpleDateFormat(format); // this works to!
-        long now = Long.parseLong(millis);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(now);
-        return formatter.format(calendar.getTime());
     }
 
     protected void fillJTable_header_alarms_report(JTable table_) {
