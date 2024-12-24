@@ -16,3 +16,4 @@
 [2024-06-16 20:20:14]   com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'test_limit_a' for key 'limit_name'
 [2024-06-16 20:22:38]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'test_limit_b' in 'where clause'
 [2024-06-16 20:22:38]   com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'test_limit_b' for key 'limit_name'
+[2024-12-23 12:49:28]   com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'mixcont.npmc_alarms_active' doesn't exist

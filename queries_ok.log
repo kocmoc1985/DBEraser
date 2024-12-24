@@ -209,3 +209,27 @@
 [2024-12-19 14:00:54]   insert into npmc_limits_by_recipe values('7','320.0','200.0','145.0','75.0','65.0','600')
 [2024-12-19 14:01:18]   delete from npmc_limits_by_recipe where recipe = '14'
 [2024-12-19 14:01:18]   insert into npmc_limits_by_recipe values('14','4.0','0.0','0.0','7.0','0.0','220')
+[2024-12-23 10:51:06]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-23 10:51:10]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-12-23 12:49:24]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-23 12:54:49]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-23 12:55:16]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-23 12:55:41]   insert into npmc_alarms_active values('ram_press_below_limit','0')
+[2024-12-23 12:56:03]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-23 12:56:19]   insert into npmc_alarms_active values('ram_press_below_limit','2')
+[2024-12-23 12:58:51]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-23 12:58:53]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-23 12:59:03]   delete from npmc_alarms_active where alarm_nick_name = 'ram_press_below_limit'
+[2024-12-23 12:59:03]   insert into npmc_alarms_active values('ram_press_below_limit','3')
+[2024-12-23 12:59:05]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-23 12:59:59]   delete from npmc_alarms_active where alarm_nick_name = 'ram_press_below_limit'
+[2024-12-23 12:59:59]   insert into npmc_alarms_active values('ram_press_below_limit','0')
+[2024-12-23 13:00:19]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-23 13:20:39]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-24 08:22:56]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-24 08:23:00]   select * from npmc_alarms_active order by alarm_nick_name desc
+[2024-12-24 08:23:03]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-24 08:23:04]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-12-24 08:23:05]   select * from npmc_limits_by_recipe order by recipe desc
+[2024-12-24 08:23:10]   select * from npmc_limits_all_recipes order by limit_name desc
+[2024-12-24 08:23:37]   select * from npmc_limits_by_recipe order by recipe desc

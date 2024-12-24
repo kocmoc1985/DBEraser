@@ -16,3 +16,4 @@
 [2024-06-16 20:20:14]   insert into npmc_limits_all_recipes values('test_limit_a','5')
 [2024-06-16 20:22:38]   delete from npmc_limits_all_recipes where limit_name = test_limit_b
 [2024-06-16 20:22:38]   insert into npmc_limits_all_recipes values('test_limit_b','5')
+[2024-12-23 12:49:28]   select * from npmc_alarms_active order by alarm_nick_name desc
